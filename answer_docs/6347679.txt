@@ -1,0 +1,6 @@
+<p>IIRC, 32-bit Windows reserves 64K of 'real' physical RAM for the initial thread stack.  Maybee the kernel might reserve another page of non-paged memory, but, basically, the only important initial reserve is the stack for the new thread.  If this stack gets blown, the virtual memory manager increases it up to a limit read from in the exe header and typically set at link time.  IIRC, this limit cannot be reduced below 1MB.</p>
+
+<p>Don't know how Linux-32 behaves.  Presumably, somewhat similarly.</p>
+
+<p>Rgds,
+Martin</p>

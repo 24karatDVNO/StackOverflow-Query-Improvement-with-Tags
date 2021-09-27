@@ -1,0 +1,18 @@
+<p>Not sure if this is the correct way, but it works for me, running it on the TextChanged event TextBox has:</p>
+
+<pre><code>    private void CoordinateValidation(object sender, TextChangedEventArgs e) {
+        TextBox inputBox = e.OriginalSource as TextBox;
+        inputBox.TextChanged -= CoordinateValidation;
+        int caretPos = inputBox.CaretIndex;
+        foreach (TextChange change in e.Changes) {
+            if (inputBox.Text.Substring(change.Offset, change.AddedLength).Any(c =&gt; !ValidChars.Contains(c)) ||
+                inputBox.Text.Count(c =&gt; c == '.') &gt; 1 ||
+                (inputBox.Text.Length &gt; 0 &amp;&amp; inputBox.Text.Substring(1).Contains('-'))) {
+                inputBox.Text = inputBox.Text.Remove(change.Offset, change.AddedLength);
+                caretPos -= change.AddedLength;
+            }
+        }
+        inputBox.CaretIndex = caretPos;
+        inputBox.TextChanged += CoordinateValidation;
+    }
+</code></pre>
