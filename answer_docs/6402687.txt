@@ -1,0 +1,14 @@
+<p>You're binding the autocmplete (<code>.professor</code>?) to the <code>&lt;div&gt;</code> instead of the <code>&lt;input&gt;</code> in your attempt, so it just needs a little adjustment to actually be the <code>&lt;input&gt;</code> element via <a href="http://api.jquery.com/find/" rel="nofollow"><code>.find()</code></a>, like this:</p>
+
+<pre><code>J(document).ready(function(){
+    J("#addproffield").click(function(){
+    var div = J("&lt;div class='added-field'&gt;&lt;input type='text' name='professor[]' size='25' value='' /&gt;&amp;nbsp;&amp;nbsp;&lt;a href='' class='remove-btn'&gt;Remove field&lt;/a&gt;&lt;/div&gt;");
+    J("#addprof").append(div);
+
+    div.find("input").autocomplete({
+        source:'autocomplete.php', minLength:1
+    });
+});
+</code></pre>
+
+<p>Note the html changes above, the <code>id</code> need not be there now and shouldn't be, since it's invalid to use the same ID multiple times.</p>

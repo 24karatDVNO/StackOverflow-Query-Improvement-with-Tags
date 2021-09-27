@@ -1,0 +1,5 @@
+<p>If you are restricted to C++03 and all your arguments should be integers, one solution would be to simply hide the variable argument function (in a 'detail' namespace for example) and make a series of overloaded functions for 1 to N amount of arguments. Those functions would be simple inline functions that forward the call to the vararg version of the real function. This way, you have one real implementation, no run-time overhead, and you expose a type-safe interface to the caller (and the caller can always use the vararg version if he needs more than N arguments).</p>
+
+<p>Boost.PP can also help to generate these types of repetitive patterns.</p>
+
+<p>Of course, if you have some level of C++0x support, than the problem can be solved in many ways, including initializer_list or variadic templates.</p>

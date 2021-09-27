@@ -1,0 +1,18 @@
+<p>You can make bindings conditional using <code>DataTriggers</code>, here's an example of a ListBox which only has its <code>ItemsSource</code> set if the Border around it is visible:</p>
+
+<pre><code>&lt;ListBox Height="100" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+        ScrollViewer.VerticalScrollBarVisibility="Auto"&gt;
+    &lt;ListBox.Style&gt;
+        &lt;Style TargetType="{x:Type ListBox}"&gt;
+            &lt;Style.Triggers&gt;
+                &lt;DataTrigger
+                        Binding="{Binding Visibility, RelativeSource={RelativeSource AncestorType=Border}}"
+                        Value="Visible"&gt;
+                    &lt;Setter Property="ItemsSource"
+                            Value="{Binding Source={x:Static local:App.Log}, Path=Buffer}" /&gt;
+                &lt;/DataTrigger&gt;
+            &lt;/Style.Triggers&gt;
+        &lt;/Style&gt;
+    &lt;/ListBox.Style&gt;
+&lt;/ListBox&gt;
+</code></pre>

@@ -1,0 +1,6 @@
+<p>This line:</p>
+
+<pre><code>document.getElementById('callbackForm').elements["callback_form.ipAddress"].value = ipAddress;
+</code></pre>
+
+<p>is executing before <code>ipAddress</code> gets set with the correct value. Try moving the line into the callback method.</p>

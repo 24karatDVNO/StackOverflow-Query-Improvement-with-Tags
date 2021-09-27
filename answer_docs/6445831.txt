@@ -1,0 +1,15 @@
+<p>One simple way is to create a class with only static members. This effectively implements the singleton pattern, by never allowing multiple instances of the class.</p>
+
+<pre><code>public class Singleton {
+    private static String m_string;
+    private static int m_int;
+    static {
+        // initialization code...
+    }
+
+    public static void foo() {
+    }
+}
+</code></pre>
+
+<p>Of course, the class is not passable as an object to other methods, but this has no meaning for singletons, as they can be referred to directly from anywhere in the code (this, of course, is their biggest disadvantage, since it creates very untestable code).</p>

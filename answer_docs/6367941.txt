@@ -1,0 +1,23 @@
+<p>Why not do this</p>
+
+<p>Here's your map</p>
+
+<pre><code>Map&lt;Something,SomeoneFun&gt; myMap = new HashMap&lt;Something,Someonefun);
+</code></pre>
+
+<p>if you just want to iterate the keys:</p>
+
+<pre><code>    for (Something myThing : MyMap.keySet() ) {
+    // do whatever you want with my thing 
+}
+</code></pre>
+
+<p>If you want to iterate the entries:</p>
+
+<pre><code>for (Entry&lt;Something,Someone&gt; myEntry : myMap.entrySet() ) {
+          Something myKey=myEntry.getKey();
+          Someone myValue = myEntry.getValue();
+}
+</code></pre>
+
+<p>As noted by others, you must be running a JRE 1.5+ and targeting Java 1.5+</p>

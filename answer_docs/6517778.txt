@@ -1,0 +1,16 @@
+<p>I tried your code on my laptop and the QWebView had focus already - once Google had loaded I could type and my text appeared in the text box.</p>
+
+<p>If it is a focus problem then as QWebView inherits QWidget you can call its <a href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qwidget.html#setFocus" rel="nofollow">setFocus()</a> method. Here is your code with an extra line calling the QWebView's setFocus method once a page has loaded:</p>
+
+<pre><code>import sys
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+from PyQt4.QtWebKit import *
+
+app = QApplication(sys.argv)
+web = QWebView()
+web.loadFinished.connect(web.setFocus)
+web.showFullScreen()
+web.load(QUrl("http://www.google.com/"))
+sys.exit(app.exec_())
+</code></pre>

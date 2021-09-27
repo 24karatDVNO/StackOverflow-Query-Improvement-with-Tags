@@ -1,0 +1,14 @@
+<p>In <code>awk</code> it's easy if you correctly set th <strong>Record Separator</strong> and <strong>Field Separator</strong>:</p>
+
+<pre><code>awk  '/Disktype/{print $2}' RS=" " FS==
+</code></pre>
+
+<p><code>cut</code> doesn't really lend itself to this task:</p>
+
+<pre><code>tr " " "\n" | grep Disktype | cut -f 2 -d =
+</code></pre>
+
+<p>You could also do it using <code>sed</code>:</p>
+
+<pre><code>sed -n 's/^.*Disktype=\([^ ]\+\)/\1/p'
+</code></pre>

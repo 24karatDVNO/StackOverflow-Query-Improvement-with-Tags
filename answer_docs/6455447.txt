@@ -1,0 +1,3 @@
+<p>You don't state any required properties of the keys excet that thy should be unique, so the obvious solution is to use the canonicalized IP addresses as keys. You can turn the addresses into numbers the obvious way, but be warned that IPv6 addresses make for huge numbers, so you'll need the BigInt implementation in whatever language you use.</p>
+
+<p>(If you <em>didn't</em> actually mean that all 340 undecillion addresses should have unique keys, then of course you should look at normal hash functions instead.)</p>

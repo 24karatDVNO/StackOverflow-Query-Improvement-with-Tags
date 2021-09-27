@@ -1,0 +1,28 @@
+<p>Your <code>if</code> statement is incorrect. It fires when the value has changed (<code>.change()</code>), yet you are checking if the value is the same through <code>if(oldVal.val() == newVal.val())</code></p>
+
+<p>Also, <code>.val()</code> is a method of the jQuery object, so unless the function <code>getOldValue()</code> returns a jQuery object, your <code>if</code> statement is probably not going to do what you're expecting it to do.</p>
+
+<p>What I'd do is store the oldValues of the form fields inside a <code>data</code> attribute of the formfield, so you can easily access it from within the <code>.change()</code> event, something like:</p>
+
+<pre><code>$(document).ready(function(){
+
+    var oldCounter = parseInt(getOldValue("Counter"), 10); // use the second argument '10' here or you might get strange results
+    var curCounter = oldCounter;
+
+
+    $('.field').each(function() {
+        // store the old value
+        $(this).data("oldValue", getOldValue($(this).attr("id")));
+    })
+    .change(function(){
+        // compare values, increase counter if it is different than the original value
+        if($(this).data("oldValue") != $(this).val()) {
+           curCounter++;
+           setField("Counter", curCounter);
+        }
+    });
+
+});
+</code></pre>
+
+<p>Untested code but you get the gist, hope this helps</p>

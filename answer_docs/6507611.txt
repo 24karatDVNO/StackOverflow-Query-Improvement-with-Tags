@@ -1,0 +1,14 @@
+<pre><code>var problemdataFromScopeChain = 4;
+var callback = function(problemdata){
+  // Return the 'real' callback.
+  //return function (tx, results) {
+  //  // Do something with problemdata
+  //  return tx + results + problemdata;
+  //}
+  return new Function('tx', 'results', 'return tx + results + ' + problemdata + ';');
+}(problemdataFromScopeChain);
+alert('' + callback);
+</code></pre>
+
+<p>But in my opinion using the Function constructor like this is not very nice =).
+<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" rel="nofollow">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function</a></p>

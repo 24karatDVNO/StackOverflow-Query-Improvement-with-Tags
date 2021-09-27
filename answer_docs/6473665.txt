@@ -1,0 +1,25 @@
+<p>I think there is definitely a way to accomplish what you are looking for here. Since you say that you have successfully achieved Step 1, it sounds like you have registered a custom URL scheme for your application, and set up a URL in Safari which the user clicks on to open your application. Let’s pretend your custom URL scheme is <code>myApp://</code> in which case all you would need to do is embed whatever information your application needs to know about where to send Safari as part of that URL, something like <code>myapp://mysite.com/page/to/display</code></p>
+
+<p>Then, in your app delegate’s <code>application:openURL:sourceApplication:annotation:</code> method, you can look at the URL that was used to open your application, and store away the part you need to tell Safari to return to, <code>mysite.com/page/to/display</code> in this example. (If you are using a version of iOS older than 4.2, then the simpler method <code>application:handleOpenURL:</code> will be called instead.)</p>
+
+<p>So let’s assume that in this method we store the URL we were given in a property <code>openedURL</code> as follows (this code goes in your application delegate):</p>
+
+<pre><code>- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    self.openedURL = openURL;
+}
+</code></pre>
+
+<p>Then when you want to relaunch Safari, just use the saved information to open Safari to the right place. You need to swap out the <code>myApp:</code> scheme with <code>http:</code> so that it gets sent to Safari:</p>
+
+<pre><code>NSURL *safariURL = [[NSURL alloc] initWithScheme:@"http"
+                                            host:[openedURL host]
+                                            path:[openedURL path]];
+[[UIApplication sharedApplication] openURL:[safariURL autorelease]];
+</code></pre>
+
+<p>If the URL you are opening needs to send other information to your application, which seems likely, then you need to do something a bit more complex, but you can still embed the page you want to go back to in Safari as a query parameter in the URL or something like that: <code>myApp://process?arg1=foo,arg2=bar,safariContext=mysite.com/page/to/display</code> (with proper URL encoding, of course).</p>
+
+<p>Does that make sense?</p>

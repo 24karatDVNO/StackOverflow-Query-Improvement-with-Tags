@@ -1,0 +1,35 @@
+<p>The C90 standard specifically said:</p>
+
+<blockquote>
+  <p>If size is zero and ptr is not a null pointer, the object it points to is freed.</p>
+</blockquote>
+
+<p>So this is how C90 and C++ implementations should behave - nice, simple, and straightforward.</p>
+
+<p>However, for some reason that sentence was removed from the C99 standard.</p>
+
+<p>POSIX currently has the sentence that's in the C90 standard. But, The Austin Group (which handles some aspects of the POSIX standardization) <a href="http://austingroupbugs.net/view.php?id=374" rel="nofollow">has a defect open on this</a>.  Note that the defect report indicates that BSD has the following behavior for <code>realloc(ptr,0)</code>:</p>
+
+<blockquote>
+  <p>realloc(ptr,0) only gives NULL on alloc failure, ptr unchanged, errno is ENOMEM</p>
+</blockquote>
+
+<p>Which I read as saying that <code>ptr</code> is not freed (I don't have a BSD system to check this on).</p>
+
+<p>In other words, it's kind of a mess what should/will happen with <code>realloc(ptr,0)</code> - I wouldn't depend on it freeing the memory. Call <code>free()</code> of that's what you want to do.</p>
+
+<p>I wonder what the rationale for C99 removing that sentence was...</p>
+
+<p>In fact, the C99 standard actually seems to preclude <code>realloc(ptr,0)</code> from simply freeing the block (ie., it doesn't seem to leave this implementation defined at all). The C99 standard says:</p>
+
+<blockquote>
+  <p>... If memory for the new object cannot be allocated, the old object is not deallocated and its value is unchanged</p>
+  
+  <p><strong>Returns</strong></p>
+  
+  <p>The realloc function returns a pointer to the new object (which may have the same value as a pointer to the old object), or a null pointer if the new object could not be allocated.</p>
+</blockquote>
+
+<p>So, if <code>realloc()</code> returns <code>NULL</code> then the new object could not be allocated and the old object must not be freed. But if <code>realloc()</code> returns non-NULL, then you still have the object that must be freed (or some new memory object that must be freed).  In other words, if <code>realloc(ptr,0)</code> returns <code>NULL</code> then you are still responsible for freeing <code>ptr</code>.  If <code>realloc(ptr,0)</code> returns a non-null pointer, then you're responsible for freeing whatever pointer is returned.</p>
+
+<p>I guess maybe that's why C99 removed that sentence.  Note however, that many (most?) implementations do free the block when <code>realloc(ptr,0)</code> is called, regardless of what C99 might have to say about it.</p>

@@ -1,0 +1,21 @@
+<p>You can compute the difference between <a href="http://perldoc.perl.org/functions/localtime.html" rel="nofollow noreferrer"><code>localtime($t)</code></a> and <a href="http://perldoc.perl.org/functions/gmtime.html" rel="nofollow noreferrer"><code>gmtime($t)</code></a>. Here is my version inspired by <a href="https://stackoverflow.com/users/168657/mob">mob</a>'s <a href="https://stackoverflow.com/questions/2143528/whats-the-best-way-to-get-the-utc-offset-in-perl/2143586#2143586">answer</a>:</p>
+
+<pre><code>use strict;
+use warnings;    
+
+sub tz_offset
+{
+    my $t = shift;
+    my @l = localtime($t);
+    my @g = gmtime($t);
+
+    my $minutes = ($l[2] - $g[2] + ((($l[5]&lt;&lt;9)|$l[7]) &lt;=&gt; (($g[5]&lt;&lt;9)|$g[7])) * 24) * 60 + $l[1] - $g[1];
+    return $minutes unless wantarray;
+    return (int($minutes / 60), $minutes % 60);
+}
+
+push @ARGV, time;
+foreach my $t (@ARGV) {
+    printf "%s (%d): %+03d%02u\n", scalar localtime($t), $t, tz_offset($t);
+}
+</code></pre>

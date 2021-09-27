@@ -1,0 +1,23 @@
+<p>First off, congratulations on a very elegant plugin!</p>
+
+<p>Unfortunately, <code>onload</code> only fires on:</p>
+
+<ul>
+<li><code>&lt;body&gt;</code></li>
+<li><code>&lt;link&gt;</code> and <code>&lt;script&gt;</code></li>
+<li><code>&lt;frame&gt;</code>, <code>&lt;frameset&gt;</code> and <code>&lt;iframe&gt;</code></li>
+<li><code>&lt;img&gt;</code></li>
+</ul>
+
+<p>If you could predict the image dimensions in advance, that would be ideal.  Since your use case won't allow that, you could bind to the <code>onload</code> event based on the content of the footnote:</p>
+
+<pre><code>var resize = function() {
+  // within this handler, `this` will refer to the img tag.
+  var container = $(this).closest('.sidenote');
+
+  // ... resize calculation ...
+}
+
+// bind images in the sidenote to the resize handler
+$('img', sidenote).load(resize);
+</code></pre>

@@ -1,0 +1,10 @@
+<p>Assuming you are handling the touch from within <code>CCLayer</code>'s <code>ccTouchesBegan:withEvent:</code> method:</p>
+
+<pre><code>- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+   UITouch *touch = [touches anyObject];
+   CGPoint location = [self convertTouchToNodeSpace:touch];
+
+   // now the location CGPoint variable contain coordinate of the touch aligned to the cocos2d coordinate system
+   [self popBubbleAtLocation:location];
+}
+</code></pre>

@@ -1,0 +1,2 @@
+<p>I found the solution looking at the file 
+"/dbdata/databases/com.google.android.gm/mailstore.xxx@xxx", which is the sqlite3 database where Gmail stores the label info (among other things). Inside this database, if inspected with a database viewer app (for example, Root Explorer does the job), the table "labels" contains the correct label name in the column "canonicalName".</p>

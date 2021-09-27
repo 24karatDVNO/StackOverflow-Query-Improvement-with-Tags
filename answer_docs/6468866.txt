@@ -1,0 +1,9 @@
+<p>Use CAMediaCurrentTime ( media current / current media -- I always forget which way round )</p>
+
+<p>Gosh this source code is butt ugly, whoever wrote it at Apple has a lot to learn in terms of writing readable code.  The fact that it is actually used as a public sample is just a joke.</p>
+
+<p>it looks like you are doing everything right. Why don't you try disabling everything else and ONLY  feeding the samples into your buffer?</p>
+
+<p>I have done this when I was writing a pitch detector and it worked fine.   once I had 30 seconds of samples I just printed everything onto the console much as you are saving to file.</p>
+
+<p>I really think there is much more benefit in coding a visualiser from scratch.  AurioTouch is a mess, and it will take longer to figure out how it works then it would take to actually build one.</p>

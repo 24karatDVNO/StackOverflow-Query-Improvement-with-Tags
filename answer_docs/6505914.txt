@@ -1,0 +1,16 @@
+<pre><code>var radioLength = radioObj.length;
+if(radioLength == undefined)
+    if(radioObj.checked)
+        return radioObj.value;
+    else
+        return "";
+for(var i = 0; i &lt; radioLength; i++) {
+    if(radioObj[i].checked) {
+        return radioObj[i].value;
+    }
+}
+</code></pre>
+
+<p>this will get the radio object value out, then you can use the previous answer to pull the response into a  or div</p>
+
+<hr>

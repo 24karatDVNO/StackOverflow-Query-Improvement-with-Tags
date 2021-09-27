@@ -1,0 +1,9 @@
+<p>How does the api link with the boost library they used? They deploy a boost-##.so with it, or it was statically link?</p>
+
+<p>So, please run "objdump -T api.so | grep boost"  in your api .so to check if the api exposes the Boost.</p>
+
+<p>Also, it is possible that they have renamed the boost namespace like the user chrisaycock mentioned. Use the c++filt command to have a closer look at the symbols you found with "objdump -T api.so | grep boost".</p>
+
+<p>If it was statically linked and the boost symbols weren't exposed ( or were renamed ) then you can use boost at your code without concerning the API's boost.</p>
+
+<p>If boost is really exposed, I recommend to just try using boost. To your code using boost, probably a clash won't happen. If it happens, you may compile a new boost and change your namespace name. Just run a replace-all script replacing "namespace boost" for something like "namespace boost_1_46".</p>

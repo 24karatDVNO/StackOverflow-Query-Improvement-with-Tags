@@ -1,0 +1,8 @@
+<p><a href="http://jsfiddle.net/interdream/XyJEE/" rel="nofollow">Here is a fiddle</a> that shows an example of how you could do it. It simply calls <code>stop</code> on the caption element when the mouse enters that element:</p>
+
+<pre><code>$("#caption").mouseover(function() { 
+    $(this).stop(); 
+});
+</code></pre>
+
+<p>The <code>stop</code> function cancels any animation that is running on the selected element (in this case, the caption element).</p>

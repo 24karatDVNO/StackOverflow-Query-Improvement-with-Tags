@@ -1,0 +1,5 @@
+<p>POCO isn't an architecture. It stands for Plain Old CLR Objects, and is generally used to describe a method of exchanging data between different layers or sections of an application. Years ago that was called DTOs (Data Transfer Objects). The point of POCO being that it has no dependency on any specific data access technology or framework. As a result of being decoupled from the data access layer, you can use them anywhere in the application where you don't want (or can't allow) the DAL to bleed into, such as web pages, client applications, and testing (probably the main driving force behind MS supporting POCO entities). </p>
+
+<p>There are plenty of methods to keep your objects 'clean' and still have the benefits of EF4. I have a rather large enterprise project which uses POCO entities, change tracking (even over webservices), and LINQ over the entities. All of these features are well documented on the A<a href="http://blogs.msdn.com/b/adonet/" rel="nofollow">DO.NET team blog</a>.</p>
+
+<p>tl;dr - If your system is 'heavy into POCO architecture', <strong><em>nothing</em></strong> except your DAL will know EF has been introduced.</p>

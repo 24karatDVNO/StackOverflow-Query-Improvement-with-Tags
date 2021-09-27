@@ -1,0 +1,5 @@
+<p>You have to group by everything in the select list that is not an aggregate. That's fundamental SQl as implemented in just about every database except mySQL. If you don't have a field in the group by and the values for two records are different, how would it know which one to put into the result set? You must specify which one you want. Your only choices are:
+Include the other field in the group by
+Specify using an aggregate which value you want selected. Usually people use min() or max().</p>
+
+<p>Even in mySQl you should use the aggreagate approach or add them tothe group by as it otherwise will pick out a value for you and it may not be the one you need. </p>

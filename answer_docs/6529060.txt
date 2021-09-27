@@ -1,0 +1,21 @@
+<p>The solution was simple in the end. I just didn't understand the concept of getter and setter methods. </p>
+
+<p>So the answer was to make a method in the 'glass' object like so:</p>
+
+<pre><code>-(BOOL)collidesWithRect:(CGRect)rect
+{
+   return (CGRectIntersectsRect(self.frame, rect));
+}
+</code></pre>
+
+<p>And then call it from the 'rock' object:</p>
+
+<pre><code>if([rock collidesWithRect:glass.frame])
+{
+    //collision code
+}
+</code></pre>
+
+<p>Which returns true when the two rectangles intersect.</p>
+
+<p>I'm surprised I didn't get any replies for this as it was simple solution in the end. Perhaps I didn't explain myself properly? Hope I explained the solution correctly. If not then please feel free to correct me. We wouldn't want the blind leading the blind now would we!!!</p>

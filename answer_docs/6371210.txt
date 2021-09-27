@@ -1,0 +1,19 @@
+<p>I haven't actually done this before, but I have adapted some of my code (that makes a enemy ship face the player ship) to what you need.  Hopefully this is correct.</p>
+
+<pre><code>//rotate to face the touch
+CGPoint diff = ccpSub(sprite.position, touch.position);
+float angleRadians = atanf((float)diff.y / (float)diff.x);
+
+float angleOffset = CC_DEGREES_TO_RADIANS(90);
+
+if(diff.x &lt; 0)
+{
+    angleRadians += angleOffset;
+}
+else
+{
+    angleRadians -= angleOffset;
+}
+</code></pre>
+
+<p>PengOne's answer (cool name BTW) was great though and I am voting it up because you should make use of it.</p>

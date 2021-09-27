@@ -1,0 +1,14 @@
+<p>(1) is:</p>
+
+<pre><code>var inString = "TestMarkMarkMark";
+
+var lookFor = "Mark";
+var replaceWith = "Tom";
+var length = lookFor.Length;
+var first = inString.IndexOf(lookFor);
+var newString = inString.Substring(0, first) + replaceWith + inString.Substring(first + length);
+</code></pre>
+
+<p>Which could be optimized, but I've expanded it out so it's easy to follow.</p>
+
+<p>(2) is trivial - just do <code>inString.Replace("Mark", "Tom");</code></p>

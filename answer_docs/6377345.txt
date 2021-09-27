@@ -1,0 +1,13 @@
+<p>if you do move your config.php file outside of your www, you may have a openbase_dir issue, which what will not allow that script to be processed as a php file (only on certain server configs.. I think that moving your config file outside of the www folder is unnecessary as long as it is not echoing all that info out. </p>
+
+<p>Keep in mind that if your server is processing php files correctly your server will not reveal the file content to the world.</p>
+
+<p>so:
+1) Keep it in the www folder
+2) I set mine to 644</p>
+
+<p>take a look at this for some more security info:
+<a href="http://www.acunetix.com/websitesecurity/php-security-3.htm" rel="nofollow">http://www.acunetix.com/websitesecurity/php-security-3.htm</a></p>
+
+<p>Good luck,
+Joe</p>

@@ -1,0 +1,26 @@
+<p>Thanks to user187291's suggestion and <a href="http://php.net/manual/en/function.preg-replace-callback.php" rel="nofollow">preg_replace_callback specification</a> I've ended up with the following outcome which does the job spot on! :</p>
+
+<pre><code>function parseTagsRecursive($input)
+{
+
+    $regex = '~\[xcode\](.+?)\[/xcode\]~';
+
+    if (is_array($input)) {
+        $input = highlight_string($input[1], true);
+    }
+
+    return preg_replace_callback($regex, 'parseTagsRecursive', $input);
+}
+
+
+$text = "hello [xcode] &lt;? echo bar ?&gt; [/xcode] world and [xcode] &lt;?php phpinfo(); ?&gt; [/xcode]";
+
+echo parseTagsRecursive($text);
+</code></pre>
+
+<p>The output of parsing the $text variable through this function is:</p>
+
+<pre><code>hello  &lt;? echo bar ?&gt;  world and  &lt;?php phpinfo(); ?&gt;  
+</code></pre>
+
+<p>Thank you everyone for input!</p>

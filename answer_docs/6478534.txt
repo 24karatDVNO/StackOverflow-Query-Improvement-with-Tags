@@ -1,0 +1,24 @@
+<pre><code>public struct SeasonEpisodeNr
+{
+    public SeasonEpisodeNr(int seasonNr, int episodeNr)
+    {
+        this.seasonNr = seasonNr;
+        this.episodeNr = episodeNr;
+    }
+
+    public int seasonNr; public int episodeNr; 
+}
+
+static void Main(string[] args)
+{
+    List&lt;SeasonEpisodeNr&gt; list = new List&lt;SeasonEpisodeNr&gt;();
+    list.Add(new SeasonEpisodeNr(1, 2));
+    list.Add(new SeasonEpisodeNr(1, 1));
+    list.Sort((a, b) =&gt;
+    {
+        //implement comparison, e.g. compare season first and if equal compare the epizods
+        int res = a.seasonNr.CompareTo(b.seasonNr);
+        return res != 0 ? res : a.episodeNr.CompareTo(b.episodeNr);
+    });
+}
+</code></pre>

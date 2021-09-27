@@ -1,0 +1,13 @@
+<p>I've not tested this but it should give you an idea..</p>
+
+<p>Inner join the receipts i.e. subset of the table where left(col,1) = 'r'
+with the journals (subset of the table where left(col,1) = 'j) and you'll get a list of matching rows.</p>
+
+<p>Then simply select the rows from the table which are not in this list</p>
+
+<pre><code>SELECT * FROM [Table] 
+WHERE SUBSTRING(col,2,100) NOT IN 
+    (SELECT Receipts.Ref FROM 
+           (SELECT SUBSTRING(col,2,100) Ref from [Table] WHERE LEFT(col,1) = 'R') Receipts
+INNER JOIN (SELECT SUBSTRING(col,2,100) Ref from [Table] WHERE LEFT(col,1) = 'J') Journals ON Receipts.Ref = Journals.Ref)
+</code></pre>

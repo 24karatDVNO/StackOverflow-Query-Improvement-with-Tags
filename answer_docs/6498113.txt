@@ -1,0 +1,3 @@
+<p><code>erase</code> appears to be implemented recursively.  At each stage, we test whether the object to erase is equal to the current object, or whether we need to go down into the left or right child.</p>
+
+<p>If the child that we want to go into does not exist (<code>left() == 0</code> or <code>right() == 0</code>), then we cannot erase the object (because it's not in the tree), so we return <code>0</code>.  Otherwise, we recurse into the child function, and return whatever it returns.</p>

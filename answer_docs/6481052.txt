@@ -1,0 +1,5 @@
+<p>I was running into the same problem. Sometimes POST-ing JSON works, but not always. It's unreliable and the reasons for it failing can be mysterious. I ended finding that POST was more work than it's worth, and that you could accomplish the same with GET. If you don't absolutely <em>have</em> to design your service with POST, I have a working example of how to accomplish what you're trying to do with POST with GET here:</p>
+
+<p><a href="http://winsockwebsocket.codeplex.com/" rel="nofollow">http://winsockwebsocket.codeplex.com/</a></p>
+
+<p>(It's part of a seemingly unrelated project, but just go to the Northwind.Web folder to see a complete working example of send/receving JSON from jQuery to WCF.)</p>

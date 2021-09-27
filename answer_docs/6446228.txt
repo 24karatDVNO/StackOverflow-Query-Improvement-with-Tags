@@ -1,0 +1,22 @@
+<p>Try this on for size:</p>
+
+<pre><code>            List&lt;string&gt; firstNames = new List&lt;string&gt;();
+            firstNames.Add("John");
+            firstNames.Add("Mary");
+            firstNames.Add("Jane");
+
+            // Only do this if there is more than one name
+            if (firstNames.Count &gt; 1)
+            {
+                string separator = ", ";
+
+                // Join the names, using ", " as a separator
+                string names = String.Join(seperator, firstNames.ToArray());
+
+                // Insert "and" before the last comma
+                names = names.Insert(names.LastIndexOf(separator), ", and ");
+
+                // Remove the last comma
+                names = names.Remove(names.LastIndexOf(separator), separator.Length);
+            }
+</code></pre>

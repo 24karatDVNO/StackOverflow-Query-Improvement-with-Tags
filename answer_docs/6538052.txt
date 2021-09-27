@@ -1,0 +1,5 @@
+<p>You can't <code>goto</code> or <code>case</code> across constructors. Builtins don't have constructors.</p>
+
+<p>The compiler knows when it enters the function what the total space requirement of its local variables is, and it will move the stack pointer to accommodate them. This memory is uninitialised.</p>
+
+<p>It calls the constructors and destructors during the function flow as it needs to. This is why you can't use <code>goto</code> or <code>case</code> like that -- it breaks the invariants. Statements such as <code>break</code> call destructors as necessary in, say, a for-loop, and everything works out OK.</p>

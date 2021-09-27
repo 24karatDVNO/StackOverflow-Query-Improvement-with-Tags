@@ -1,0 +1,10 @@
+<p>Since you are using VS 2010, and .Net 4.0?  ... try </p>
+
+<pre><code>public void setAction(Action action, object[] parameters = null)     
+{
+    this.parameters = this.parameters;    
+    this.action&lt;parameters&gt; = action&lt;parameters&gt;;     
+} 
+</code></pre>
+
+<p>You are creating an 'optional' parameter.</p>

@@ -1,0 +1,3 @@
+<p>By default the field type <em>text</em> does stemming on the content (<code>solr.SnowballPorterFilterFactory</code>). Thus 'un' and 'uned' match une. Then you might not have the <code>solr.LowerCaseFilterFactory</code> filter on both, query and index analyzer, therefore EDUAR* does not match. And the 4th doesnt match as edouard is not stemmed to edouar. If you want exact matches, you should copy the data in another field that has a type with a more limited set of filters. E.g. only a <code>solr.WhitespaceTokenizerFactory</code></p>
+
+<p>Posting the <code>&lt;fieldType name="text"&gt;</code> section from your schema might be helpful to understand everything.</p>

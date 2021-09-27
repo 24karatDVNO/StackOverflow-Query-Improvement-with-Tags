@@ -1,0 +1,64 @@
+<p>In my Windows Service I have a bootstrapper which is exactly the same as the one in ASP.NET MVC:</p>
+
+<pre><code>public static class Bootstrapper
+{
+    public static void Initialize()
+    {
+        StructureMap.ObjectFactory.Initialize(cfg =&gt;
+        {
+            cfg.UseDefaultStructureMapConfigFile = false;
+            cfg.IgnoreStructureMapConfig = true;
+            cfg.AddRegistry&lt;Web.Core.DI.NhibernateRegistry&gt;();
+            cfg.AddRegistry&lt;Web.Core.DI.DomainRegistry&gt;();
+            cfg.AddRegistry&lt;Web.Core.DI.ServicesRegistry&gt;();
+            cfg.AddRegistry&lt;Web.Core.DI.QuartzRegistry&gt;();
+        });
+        ServiceLocator.SetLocatorProvider(() =&gt; new StructureMapServiceLocator(ObjectFactory.Container));
+    }
+}
+</code></pre>
+
+<p>then I have defined a registry for each module:</p>
+
+<pre><code>public class NhibernateRegistry: Registry
+{
+    public NhibernateRegistry()
+    {
+        SchemaOperation schemaOperation = SchemaOperation.None; 
+
+        For&lt;ISessionFactory&gt;()
+            .Singleton()
+            .Use(new BpReminders.Data.NH.NHibernateSessionFactory(connectionString, schemaOperation).SessionFactory);
+
+        For&lt;IUnitOfWork&gt;()
+            .HybridHttpOrThreadLocalScoped()
+            .Use&lt;BpReminders.Data.NH.UnitOfWork&gt;();
+
+        For&lt;ISession&gt;()
+            .HybridHttpOrThreadLocalScoped()
+            .Use(o =&gt; ((BpReminders.Data.NH.UnitOfWork)o.GetInstance&lt;IUnitOfWork&gt;()).CurrentSession);
+    }
+}
+</code></pre>
+
+<p>I bootstrap everything as soon as the service starts:</p>
+
+<pre><code>protected override void OnStart(string[] args)
+{
+    Bootstrapper.Initialize();
+}
+</code></pre>
+
+<p>At the end I adopted a Singleton pattern cause my Windows Service doesn't use any extra threads.
+I know that StructureMap has got a keyword AlwaysUnique which might be useful for what you're trying to do:</p>
+
+<pre><code>For&lt;ISession&gt;()
+    .AlwaysUnique()
+</code></pre>
+
+<p>the code comments say (about AlwaysUnique)</p>
+
+<p><em><strong>/// Forces StructureMap to always use a unique instance to<br>
+/// stop the "BuildSession" caching</em></strong></p>
+
+<p>You have to dig in this cause I've just done a couple of test. Not much.</p>

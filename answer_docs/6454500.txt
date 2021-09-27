@@ -1,0 +1,5 @@
+<p>First, C++ has a <code>inline</code> keyword, but not <code>_inline</code>. Is <code>_inline</code> a macro? A compiler-specific extension? Something related to your profiler?</p>
+
+<p>Second, the C++ compiler generally inlines whatever it likes, and the <code>inline</code> keyword is, <em>at best</em>, a hint that you'd like to see this function inlined. </p>
+
+<p>The main purpose of the <code>inline</code> keyword <em>today</em> is not so much to enable the inlining <em>optimization</em> (which the compiler applies pretty aggressively whether or not you tell it to), but instead to suppress the One-Definition-Rule (ODR), so that a function can be fully defined in a header without risking multiple definitions errors from the linker.</p>

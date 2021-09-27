@@ -1,0 +1,24 @@
+<p>So, a piece of code for you.
+I use <a href="http://htmlparser.sourceforge.net/" rel="nofollow">http://htmlparser.sourceforge.net/</a> to parse HTML. It is not overcomplicated and quite straightforward to use.</p>
+
+<p>Basically it looks like this:</p>
+
+<pre><code>import org.htmlparser.Parser;
+import org.htmlparser.util.NodeList;
+import org.htmlparser.util.ParserException;
+
+    ...
+
+    String html; /* read your HTML into variable 'html' */
+    String result=null;
+    ....
+    try {
+        Parser p = new Parser(html);
+        NodeList nodes = p.parse(null);
+        result = nodes.asString();
+    } catch (ParserException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+
+<p>That will give you plain text stripped of tags (but no substitutes like <strong>&amp;amp;</strong> would be fixed). And of course you can do plenty more with this library, like applying filters, visitors, iterating and all the stuff.</p>

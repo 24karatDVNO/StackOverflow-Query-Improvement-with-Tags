@@ -1,0 +1,27 @@
+<p>To make a file writable for more than once use <code>Context.MODE_APPEND</code></p>
+
+<h2>Sample Code</h2>
+
+<pre><code>FileOutputStream fos;
+            try {
+                fos = openFileOutput("nuzz.txt", Context.MODE_APPEND);
+                fos.write(string.getBytes());
+                fos.close();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            try {
+
+                fos = openFileOutput("nuzz.txt", Context.MODE_APPEND);
+
+                fos.write("bye".getBytes());
+                fos.close();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+</code></pre>
+
+<p>Thanks
+Deepak</p>

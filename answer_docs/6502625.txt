@@ -1,0 +1,14 @@
+<p>Enemies that do not have a weapon associated can be accomplished by:</p>
+
+<pre><code>SELECT  *
+FROM    Enemies
+LEFT JOIN Weapons ON Enemies.ID = Weapons.RefID
+WHERE   Weapons.ID IS NULL
+</code></pre>
+
+<p>It might be of note that your original query might not give you what you want in that if two weapons are associated to a single enemy you might get duplicates when counting, another possibility for your original query might be:</p>
+
+<pre><code>SELECT  DISTINCT Enemies.ID
+FROM    Weapons 
+JOIN    Enemies ON Weapons.RefID=Enemies.ID
+</code></pre>

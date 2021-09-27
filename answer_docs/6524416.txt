@@ -1,0 +1,4 @@
+<p>Another way would be to use a match evaluator to use a two character match:</p>
+
+<pre><code>string s = Regex.Replace("H e l l o  W o r l d", @"\s\S", x =&gt; x.Value[1].ToString());
+</code></pre>

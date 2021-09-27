@@ -1,0 +1,9 @@
+<p>try this:</p>
+
+<pre><code>SELECT d1.Date as 'start', d2.Date as 'end', d1.State,SUM(d1.Seconds) FROM Data d1,Data d2
+where 
+convert(varchar(5),d1.Date,8) = convert(varchar(5),DATEADD(s,d2.Seconds,d2.Date),8)
+AND 
+d1.State = d2.State
+group by d1.Date,d1.State,d2.Date
+</code></pre>

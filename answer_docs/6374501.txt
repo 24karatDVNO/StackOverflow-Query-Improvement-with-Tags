@@ -1,0 +1,14 @@
+<p>I think I'll do this in two steps:</p>
+
+<pre><code>1. create the color lists
+    var dataRows = from row in ds.Tables[0].AsEnumerable()
+                   //group row by row.Field&lt;Int32&gt;("TierId")
+                   where row.Field&lt;Int32&gt;("ProductId") == 1
+                   select
+                       row.Field&lt;String&gt;("Color");
+
+    List&lt;String&gt; list =  dataRows.ToList();
+
+2. acquire the product price
+3. combine them both to array
+</code></pre>

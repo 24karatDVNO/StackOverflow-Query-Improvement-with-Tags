@@ -1,0 +1,7 @@
+<p><code>ClassCastException</code> is thrown because you are attempting to cast <code>FrameLayout</code> to <code>RecipientsEditor</code>. Change this line:</p>
+
+<blockquote>
+  <p>mRecipientsEditor = (RecipientsEditor) stub.inflate();  </p>
+</blockquote>
+
+<p>to <code>mRecipientsEditor = stub.inflate();</code> and also change declared type of <code>mRecipientsEditor</code> to <code>View</code>.</p>

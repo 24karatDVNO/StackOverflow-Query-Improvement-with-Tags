@@ -1,0 +1,4 @@
+<pre><code>var regex = /&lt;\?[=|php]?[^&lt;&gt;]*\?&gt;/;
+</code></pre>
+
+<p>You will also need to use the multiline modifier <code>new RegExp(regex, "gim")</code>. The 'g' is global, 'i' is case insensitive and 'm' multiline.</p>

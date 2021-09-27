@@ -1,0 +1,5 @@
+<p>The views/windows do retain their child views, the view controllers retain their views, but the views don't retain their controllers. It's a "one-way" relationship, a clear <em>has-a</em>. This also comes in handy to prevent retain cycles.</p>
+
+<p>You probably want to save the controller in an ivar in the class you alloc/init it, and release it in <code>dealloc</code> or when you pull the view from screen.</p>
+
+<p>View controllers often get retained by other view controllers, i.e. when you push them onto a navigation stack, or put them in tabs.</p>

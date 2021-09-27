@@ -1,0 +1,19 @@
+<p>Another solution if you want the $.ajax to be async, but only allow one ajax request at any time. You could take a look at $.ajaxStart and $.ajaxStop global event</p>
+
+<pre><code>var ajaxLock = false;
+$.ajaxStart(function(){ajaxLock = true;});
+$.ajaxStop(function(){ajaxLock = false;});
+var ajaxRequest = function(url, data) {
+     if (!ajaxLock) {
+        $.ajax({
+             url: url
+             type: 'POST',
+             dataType: "JSON",
+             async: false,
+             success: function(data){
+                response = data;
+             }
+           });
+     }
+ }
+</code></pre>

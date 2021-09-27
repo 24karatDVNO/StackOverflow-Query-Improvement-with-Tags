@@ -1,0 +1,43 @@
+<p>My solution does not work with booleans, but you could adapt it. For example the call of Option.CombinedOption.get(Option.ONE, Option.THREE) returns the enum CombinedOption.OPTION_1_3.</p>
+
+<pre><code>public enum Option {
+ONE, TWO, THREE;
+
+public enum CombinedOption {
+
+    ALL_FASLSE(), OPTION_1(ONE), OPTION_1_2(ONE, TWO), OPTION_1_3(ONE,
+            THREE), OPTION_1_2_3(ONE, TWO, THREE), OPTION_2(TWO), OPTION_2_3(
+            TWO, THREE), OPTION_3(THREE);
+
+    private Set&lt;Option&gt; keySet;
+
+    private CombinedOption(Option... options) {
+        if (options != null &amp;&amp; options.length &gt; 0)
+            keySet = EnumSet.copyOf(Arrays.asList(options));
+        else
+            keySet = EnumSet.noneOf(Option.class);
+
+    }
+
+    private static final Map&lt;Set&lt;Option&gt;, CombinedOption&gt; optionMapping = new HashMap&lt;Set&lt;Option&gt;, CombinedOption&gt;();
+
+    static {
+        for (CombinedOption combined : CombinedOption.values()) {
+            optionMapping.put(combined.keySet, combined);
+        }
+    }
+
+    public static CombinedOption get(Option... options) {
+        Set&lt;Option&gt; keySet;
+
+        if (options != null &amp;&amp; options.length &gt; 0)
+            keySet = EnumSet.copyOf(Arrays.asList(options));
+        else
+            keySet = EnumSet.noneOf(Option.class);
+
+        return optionMapping.get(keySet);
+    }
+}
+</code></pre>
+
+<p>}</p>

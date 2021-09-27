@@ -1,0 +1,9 @@
+<p>Why are you using 5 vertices to make up a triangle strip? I guess what you wanted is a square made of 2 triangles, thus your strip needs only 4 vertices.</p>
+
+<p>Also, in your case it would be  easier just to initialize a square texture and render it like this (without using vertices):</p>
+
+<pre><code>/* do the glGenTextures() / glTexImage() / glBindTexture() dance here */
+int box[] = { nXOffset, nYOffset, nWidth, nHeight };  /* define the part of the texture you're going to render */
+glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_CROP_RECT_OES, box);
+glDrawTexfOES(0.0f, 0.0f, 0.0f, nWidth, nHeight); /* rectangle in the screen coordinates, where to render the previously defined part of the texture */
+</code></pre>

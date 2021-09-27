@@ -1,0 +1,22 @@
+<p>There are many issues in your code. It can all be compacted like this:</p>
+
+<pre><code>List &lt;Map&lt;String,Object&gt;&gt; actList= new ArrayList&lt;Map&lt;String,Object&gt;&gt; ();
+
+for (int x=0;x&lt;2 ;x++ ){
+    Map&lt;String,Object&gt; childRowMap = new HashMap&lt;String, Object&gt;();
+    childRowMap.put("startDate","startDate"+x);
+    childRowMap.put("endDate","endDate"+x);
+    childRowMap.put("encodedValue"," enc"+x);
+    System.out.println("Adding object in the postition "+ x);
+    actList.add(childRowMap);
+}
+System.out.println(actList);
+</code></pre>
+
+<p>Few other things:</p>
+
+<ul>
+<li>As a Java standard your class name should start with upper case so consider <code>TestMap</code> instead of <code>testMap</code></li>
+<li>Type of Map variable should be generic <code>Map</code> instead of an implementation like <code>HashMap</code> (I have corrected that in my answer).</li>
+<li>Consider declaring List as of more specific type <code>List&lt;Map&lt;String,Object&gt;&gt;</code> instead of generic Object for type safety.</li>
+</ul>

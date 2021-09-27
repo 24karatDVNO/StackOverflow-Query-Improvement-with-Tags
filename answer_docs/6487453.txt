@@ -1,0 +1,3 @@
+<p>The cleanest way IMO would be to have two actions, index_leave and show_leave, since the flow is different. The two actions should call a model method called leave_organization on the User model so that the code remains DRY. </p>
+
+<p>I think you have tried to have only one action instead of two because you are thinking about the API to the web server as a data store API rather than an application controller API. If you want to use your web server as a data store then you need to implement the controller logic on the client side (i.e. you shouldn't rely on the leave.js.erb file for controller logic). </p>

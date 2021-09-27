@@ -1,0 +1,3 @@
+<p><code>position:fixed</code> apparently works for all block elements in Mobile Safari (4.3.2) except body, so the CFT answer (http://kangax.github.com/cft/#IS_POSITION_FIXED_SUPPORTED) should have this in it:</p>
+
+<p><code>var isSupported = (container.scrollTop === 500 &amp;&amp; elementTop === 100);</code></p>

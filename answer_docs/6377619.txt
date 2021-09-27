@@ -1,0 +1,37 @@
+<p>There are a number of things going on here.</p>
+
+<p>Firstly, the link you provide is talking about Cloudfront urls. I don't think its possible to replace characters in S3 urls as discussed.</p>
+
+<p>Secondly you shouldn't be changing the <code>=</code> signs directly after <code>AWSAccessKeyId</code>, <code>Expires</code> and <code>Signature</code>. The problem characters are only those that appear in the signature string. In your example the <code>%3D</code> at the end is <code>=</code> in url encoded from and that's what you need to change.</p>
+
+<p>The problem though, is that if you change that character, the signature is no longer valid and that's why private content is no longer accessible. Public content would be accessible as the authentication part of the url is just ignored by Amazon.</p>
+
+<p>I ran into a similar problem with a Silverlight based video player that failed if there were <code>+</code> (<code>%2b</code>) characters in the url. I solved this by just generating a new url in a loop until I had one that didn't have invalid characters. The key is to change the expiry time slightly in order change the generated signature.</p>
+
+<p>Here's an example using the AWS SDK. (converted from vb.net so I hope the syntax is correct)</p>
+
+<pre><code>using (AmazonS3 client = Amazon.AWSClientFactory.CreateAmazonS3Client(AWSKey, AWSSecretKey)) {
+
+    string url = null;
+
+    int secs = 0;
+    do {
+        var req = new Model.GetPreSignedUrlRequest {
+            BucketName = bucket,
+            Key = key,
+            Protocol = Model.Protocol.HTTP,
+            Verb = Model.HttpVerb.GET,
+            Expires = DateTime.Now.AddDays(ExpiryInDays).AddSeconds(secs)
+        };
+
+        url = client.GetPreSignedURL(req);
+
+        secs += 1;
+    } while (url.ToLower().Contains("%2b"));
+
+    return url;
+
+}
+</code></pre>
+
+<p>In my experience, the performance hit is negligible as generally only a couple of iterations are ever necessary to ensure a 'clean' url.</p>

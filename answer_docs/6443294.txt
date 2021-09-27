@@ -1,0 +1,63 @@
+<p>I haven't used Google App Engine, but this is how I would do it on a pure Django 1.3 installation:</p>
+
+<p><strong>forms.py:</strong></p>
+
+<pre><code>from django import forms
+from django.forms import fields
+
+class UploadImageForm(forms.Form):
+    image_file = fields.ImageField()
+</code></pre>
+
+<p><strong>views.py:</strong></p>
+
+<pre><code>from django.shortcuts import render_to_response
+from django.template import RequestContext
+from NAME_OF_YOUR_APP.forms import UploadImageForm
+
+def addImage(request):
+
+    if request.method == 'POST':
+        upload_image_form = UploadImageForm(data=request.POST, files=request.FILES)
+
+        if upload_image_form.is_valid():
+            image_file = request.cleaned_data['image_file']
+            # do something with the image...
+            return ...
+
+    else:
+        upload_image_form = UploadImageForm()
+
+    context = {'form':upload_image_form}
+    return render_to_response('path/to/upload_template.html', context, context_instance=RequestContext(request))
+</code></pre>
+
+<p><strong>upload_template.html:</strong></p>
+
+<pre><code>&lt;form enctype="multipart/form-data" action="" method="post"&gt;
+    {% csrf_token %}
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;{{ form.image_file.label_tag }}&lt;/td&gt;
+            &lt;td&gt;{{ form.image_file }}&lt;/td&gt;
+            &lt;td&gt;{% if form.image_file.errors %}{% for error in form.image_file.errors %}{{ error }}{% endfor %}{% endif %}&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;input type="submit" value="Submit"/&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>Your template code looks good (it's missing <code>{% csrf_token %}</code>, which I'm not sure if GAE needs or not). Your view code should check to see if the request is a POST request or not.</p>
+
+<p>In my example, I created a form called UploadImageForm, which accepts a single <code>image_file</code> to be uploaded. Logic works like so:</p>
+
+<ol>
+<li>User visits example.com/upload_image</li>
+<li><code>addImage()</code> runs. Since this is a GET and not a POST request, it makes an empty UploadImageForm(), and renders it inside upload_template.html.</li>
+<li>User is displayed the form.</li>
+<li>User fills out the form and Submits an image.</li>
+<li>Server receives POST request, and <code>addImage()</code> is called again.</li>
+<li>We bind the uploaded file data to UploadImageForm.</li>
+<li>If there are no errors (e.g. upload_image_form.is_valid() is True), we capture the image_file out of cleaned_data, and we can then do something with it.</li>
+<li>If there are errors (upload_image_form.is_valid() is False), the template is re-displayed with error messages.</li>
+</ol>

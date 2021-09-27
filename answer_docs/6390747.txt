@@ -1,0 +1,6 @@
+<p>The client will need to send another request to the service to let it know it requires cancellation - this assumes</p>
+
+<ol>
+<li>The service can identity teh piece of work being performed for this cancelling client</li>
+<li>The work being performed is actually cancellable (many async operations don;t have cancellation APIs</li>
+</ol>

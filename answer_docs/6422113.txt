@@ -1,0 +1,11 @@
+<p>you could always just disable the button in the onclick handler.</p>
+
+<pre><code>$('input[type="submit"]').click(function(e) {
+   e.preventDefault();
+   var self = this;
+   $(self).attr('disabled', 'disabled');
+   $.post('url',$(self).closest('form').serialize(), function() {
+      $(self).removeAttr('disabled'); // re-enable after request complete. 
+   });
+});
+</code></pre>

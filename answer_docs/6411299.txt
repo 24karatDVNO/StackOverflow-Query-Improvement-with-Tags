@@ -1,0 +1,18 @@
+<p>Change</p>
+
+<pre><code> loadMovie("http://mysite.com/"+thisitem+".swf", thisSlot);
+ var mySlot = eval("slot"+ThisSlotID);
+     mySlot.onPress = function (){ 
+          trace("" + mySlot['itemID']);
+           trace(mySlot)    
+  } 
+</code></pre>
+
+<p>to</p>
+
+<pre><code> var mySlot = loadMovie("http://mysite.com/"+thisitem+".swf", thisSlot);
+      mySlot.onPress = function (){
+           trace("" + mySlot['itemID']);
+           trace(mySlot)      
+} 
+</code></pre>

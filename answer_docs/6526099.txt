@@ -1,0 +1,9 @@
+<p>My portlets wern't configured for struts. I changed that now, and its working fine.</p>
+
+<p>EG:</p>
+
+<pre><code>&lt;netuix:strutsContent action="getStudentList" module = "people/students"
+  refreshAction = "getStudentList" reqestAttrpersistence="none"/&gt;
+</code></pre>
+
+<p>And then in the action class I am checking for the browser and displaying the appropriate jsp</p>

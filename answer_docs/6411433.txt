@@ -1,0 +1,4 @@
+<p>You can try an alternative in Netbeans 7.0 which is to use <strong>JSP</strong> as View Technology instead of Facelets (XHTML). If you do so, the IDE will generate a different code for Managed Beans, and add an utility class : JsfElResolver.java which will be called on every user action to allow navigation between parent and child as just as submiting forms.
+The <strong>Many2Many</strong> Relationship is partially supported in this case, but it generally works if your DataBase is well designed.</p>
+
+<p>As what you called Plugin, in this case use <strong>PrimeFaces</strong> or <strong>OpenFaces</strong> as A view faces libray. Those two libraries do not need painful configuration and work flawlessly with the JSF CRUD scaffolding in Netbeans. Except Primefaces Datatable filtering and sorting which is buggy when using DataModel.</p>

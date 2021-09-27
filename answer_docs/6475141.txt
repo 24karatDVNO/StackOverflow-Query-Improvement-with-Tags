@@ -1,0 +1,36 @@
+<p>Took me a while to figure it out, thanks for the union idea.  Not quite sure <em>why</em> this works, the <code>.take(n)</code> seems to take a large number to work not quite sure why that is, this code seems to work 100% fine and will take 5 from each side:</p>
+
+<pre><code>var q = (
+    from c in db.tblTags
+    where
+        !(from o in db.tblTagSynonyms
+            select o.SynonymTagID)
+        .Contains(c.ID)
+        &amp;&amp;
+        c.Name.CompareTo(AnchorTagName) &lt; 1
+    orderby c.Name descending
+    select new
+        {
+            c.ID,
+            c.Name,
+            c.Priority,
+            TotalResources = (from a in db.tblTagAnchors where a.TagID == c.ID select new { a.ID }).Count()
+        }
+    ).Take(7).ToArray().Reverse().Union(
+    from c in db.tblTags
+    where
+        !(from o in db.tblTagSynonyms
+            select o.SynonymTagID)
+        .Contains(c.ID)
+        &amp;&amp;
+        c.Name.CompareTo(AnchorTagName) &gt;= 1
+    orderby c.Name ascending
+    select new
+    {
+        c.ID,
+        c.Name,
+        c.Priority,
+        TotalResources = (from a in db.tblTagAnchors where a.TagID == c.ID select new { a.ID }).Count()
+    }
+).Skip(1).Take(11).ToArray();
+</code></pre>

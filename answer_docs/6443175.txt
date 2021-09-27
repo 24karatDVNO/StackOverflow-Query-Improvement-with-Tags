@@ -1,0 +1,8 @@
+<p>The horizontal scrollbar wont show unless you actually have items in your datagrid.</p>
+
+<p>If you'll have scenarios where your DataGrid has no items but your columns are wide enough to require a horizontal scrollbar, instead of working with the ScrollBar properties of the DataGrid itself... I've found it easier to put the DataGrid directly into a ScrollViewer instead.</p>
+
+<pre><code>&lt;ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="2,2,2,2"&gt;
+    &lt;DataGrid Name="Dps" /&gt;
+&lt;/ScrollViewer&gt;
+</code></pre>

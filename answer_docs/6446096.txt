@@ -1,0 +1,11 @@
+<p>I don't think it's feasible at all because it is requiring the web programming language to be aware of the specific SQL syntax you're using. That functionality is the domain of the database provider (such as ODBC, OLEDB, SQL Server Native, Jet, whatever) to be able to convert all inputs into the SQL-specific-variant syntax necessary to get the job done in the database with no errors and no SQL injection.</p>
+
+<p>The cure isn't to give web developers a crutch for their misuse of concatenated SQL statements, but instead for web developers to use formal parameters on commands (or at least to use parameter placeholders such as <code>?</code> on ad-hoc queries) instead of just squishing SQL fragments and parameter strings together and hoping it works right.</p>
+
+<p>If you offer <code>$_ESCAPE</code> to supposedly cure people who brainlessly use <code>$_GET</code>, then you'll introduce other problems through the brainless use of <em>that</em>, such as storing in the database strings that have been escaped twice (oops). That is just going to confuse the issue.</p>
+
+<p>An additional issue this brings up is the problem of not knowing whether the string you're using is safe or unsafe. A resolution I would support is the construction of strongly-typed String objects that indicate what kind of string it is (HTMLString, UnsafeString, SQLString, etc.).</p>
+
+<p>Then if you try to do something like <code>&lt;SQLStringFragment&gt; + &lt;UnescapedString&gt;</code> you will get a compile-time or run-time error for trying to concatenate two different kinds of strings without first converting them to the same type.</p>
+
+<p>The DB Library could be extended to offer conversion utilities like <code>SQLStringFromParameterValue</code> that would accept an unescaped string and return an escaped one based on the properties of the current connection.</p>

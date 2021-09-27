@@ -1,0 +1,9 @@
+<p>You can specifically set the path to "/" when you set the cookie, regardless of how deep in the directory structure you are when you set it.</p>
+
+<p><a href="https://developer.mozilla.org/En/Document.cookie" rel="nofollow">https://developer.mozilla.org/En/Document.cookie</a></p>
+
+<p>So in your setCookie function, just tweak this:</p>
+
+<p>document.cookie='StateTheme='+stateTheme+';expires='+exp.toGMTString()+',path=/';</p>
+
+<p>...or add a path argument to the function that you can pass in, if you need the flexibility.</p>

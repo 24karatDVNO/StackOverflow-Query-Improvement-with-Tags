@@ -1,0 +1,5 @@
+<p>In regex, <code>^</code> matches the start of the string, and <code>$</code> matches the end of the string.</p>
+
+<p>Therefore, regex <code>/^$/</code> will successfully match a completely empty string (and nothing else).</p>
+
+<p><code>/$^/</code> will not match anything, as logically you can't have the end of the string before the beginning of it.</p>

@@ -1,0 +1,11 @@
+<p>What it's doing:</p>
+
+<ol>
+<li>Creating a random number generator with the default seed.</li>
+<li>Creating an array with 7 elements (indexed as 0 through 6)</li>
+<li>Looping 99 times (with roll from 1 to 99)</li>
+<li>As others have said, incrementing the value of one of the array elements by one at random. Note that the zero-index is never incremented.</li>
+<li>The rest of the code outputs the values that have been counted in indices 1 through 6.</li>
+</ol>
+
+<p>The fact that the writer has ignored the zero-index is a bit of a smell.</p>

@@ -1,0 +1,4 @@
+<p>I think InBetween is right. You can also convert the string to date inside the SQL statement instead of using parameters by replacing your SQL statement with this:</p>
+
+<pre><code>Dim str9 As String = "Select * From TblMaster Where Tanggal=CDate('" &amp; Me.DateTimePicker1.Value.ToString() &amp; "')"
+</code></pre>

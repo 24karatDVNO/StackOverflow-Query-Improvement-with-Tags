@@ -1,0 +1,3 @@
+<p>I would argue that "in most cases" you should be doing more than just printing or logging the stack trace. This means you are swallowing an exception, which is not generally a good practice. At the least, if you cannot gracefully recover from the exception, you should log and rethrow it in case code higher up the stack can.</p>
+
+<p>That said, I don't think there is really an answer to your question beyond "that's just how they designed it".</p>

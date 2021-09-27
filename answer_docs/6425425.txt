@@ -1,0 +1,36 @@
+<p>There is at least one difference between IE below #9 and most other browsers when dealing with string splitting-</p>
+
+<p>var s='In some browsers, you can "split" a  string on a parenthized delimeter and return the "split-off" bits in the array.';</p>
+
+<pre><code>s.split(/( ?['"] ?)/).join('\n')
+
+/***************************************************/
+Firefox 4.0.1&gt;&gt;
+ In some browsers, you can
+ "
+split
+" 
+a  string on a parenthized delimeter and return the
+ "
+split-off
+" 
+bits in the array.
+/***************************************************/    
+MSIE 8.0&gt;&gt;
+ In some browsers, you can
+split
+a  string on a parenthized delimeter and return the
+split-off
+bits in the array.
+/***************************************************/    
+MSIE 9.0&gt;&gt;
+ In some browsers, you can
+ "
+split
+" 
+a  string on a parenthized delimeter and return the
+ "
+split-off
+" 
+bits in the array.
+</code></pre>

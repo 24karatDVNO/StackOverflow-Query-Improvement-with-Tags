@@ -1,0 +1,21 @@
+<p>The text is always defaulted to black so there no need to play with anything except setText.</p>
+
+<p>There are a number of things you could be asking here so.</p>
+
+<p>To set the text on load simply use setText at the top of your code.</p>
+
+<pre><code>public TestFrame() {
+    initComponents();
+    jTextField1.setText("Hello I am text in a box");
+}
+</code></pre>
+
+<p>You can also have it respond to an event in the following way. Example is a button click.</p>
+
+<pre><code>private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+//Text Box changes from default
+   jTextField1.setText("The button was pushed!!");        
+}
+</code></pre>
+
+<p>Notice that it is all the same, I feel like you are making it a little more complicated than it actually is. </p>

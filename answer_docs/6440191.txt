@@ -1,0 +1,11 @@
+<p>If elt was allocated as</p>
+
+<pre><code>elt = (ngx_hash_elt_t*)malloc(sizeof(ngx_hash_elt_t));
+</code></pre>
+
+<p>, then it will cause an overflow with strings longer than 1. However, most probably, it was allocated as:</p>
+
+<pre><code>elt = (ngx_hash_elt_t*)malloc(sizeof(ngx_hash_elt_t) + maximum_possible_length);
+</code></pre>
+
+<p>, so there isn't an overflow.</p>

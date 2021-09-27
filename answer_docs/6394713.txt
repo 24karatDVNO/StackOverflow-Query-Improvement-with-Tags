@@ -1,0 +1,5 @@
+<p>My opinion regarding building such applications would be to use the straightforward observer pattern. 
+Design your controller in a way that it simply dispatches particular events when the hashtag changes. Have an event map in the controller,that acts as a reference table between events to be dispatched and the urls, better still, you can follow a particular convention regarding the choice of hash parts eg. everytime user navigates to url mydomain.com/#part1/part2 the controller dispatches an event 'evt_part1_part2'. You can use a common dispatch point (which can be a dom element, or a javascript object particularly being used for this very purpose). </p>
+
+<p>Now all your views can listen to this common dispatch point, and if the event matches the one that this view is looking for, you can create the respective environment accordingly through that view. 
+This approach definitely helps in compartmentalization of views, leading of more modular and maintainable code.</p>

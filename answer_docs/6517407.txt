@@ -1,0 +1,12 @@
+<p>You could use <a href="http://www.w3.org/TR/xpath/" rel="nofollow">XPATH</a> and its <a href="http://www.w3.org/TR/xpath/#function-contains" rel="nofollow">contains() function</a> to match the links via <a href="https://developer.mozilla.org/en/DOM/document.evaluate" rel="nofollow">document.evaluate</a>.</p>
+
+<p><a href="http://diveintogreasemonkey.org/" rel="nofollow">Dive Into Greasemonkey</a> has an exampl eof <a href="http://diveintogreasemonkey.org/patterns/match-attribute.html" rel="nofollow">selecting and iterating over nodes using XPATH</a>.</p>
+
+<pre><code>for (var i = 0; i &lt; blacklist.length; i++) {
+  var links = document.evaluate('//a[contains(@href, "' + blacklist[i] + '"]', document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+  for (var j = 0; j &lt; links .snapshotLength; j++) {
+    var link = links.snapshotItem(j);
+    link.parentNode.removeChild(link);
+  }
+}
+</code></pre>

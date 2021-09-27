@@ -1,0 +1,32 @@
+<p>All you have to do is add it to the scene id</p>
+
+<pre><code>+ (id)scene
+{
+    CCScene *scene = [CCScene node];
+    GameScene *layer = [GameScene node];
+    [scene addChild:layer];
+
+    CGSize s = [[CCDirector sharedDirector] winSize];
+
+    layer.player = [CCRenderTexture renderTextureWithWidth:s.width height:s.height];
+
+    CCSprite *mms = [layer.player sprite];
+
+    [mms setScale:kMinimapScaleFactor];
+    mms.scaleY *= -1;
+    mms.position = ccp(300, 400);
+
+    [scene addChild:layer.player z:2 tag:1];
+
+    [layer schedule:@selector(updateMinimap:) interval:1/30.0f];
+
+    layer._mini = [CCSprite spriteWithFile:@"minimap.png"];
+    layer._mini.position = ccp(405, 255);
+    layer._mini.opacity = 150;
+
+    [scene addChild:layer._mini];
+
+    return scene;
+
+}
+</code></pre>

@@ -1,0 +1,5 @@
+<p>I may have the terminology slightly wrong but I think you need to identify the composition root of your interaction; what is the thing that begins the interaction?</p>
+
+<p>In the Webforms example I gave, the Webform is created by the Http pipeline, the OnInit or OnLoad event is the first point in the pipeline ( depending on what context you need ) that you can 'hook in' to the process. Thus, you create a Presenter and give it your concrete instance of a Webform as a View Interface.</p>
+
+<p>I don't know the Javascript frameworks you are discussing but I presume there is an initialisation / invocation step - in ASP.NET MVC this is when an ActionInvoker gets involved, it's the Main in a Console App.</p>

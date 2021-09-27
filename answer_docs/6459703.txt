@@ -1,0 +1,5 @@
+<p>I got this error message yesterday when wiring up Fluent on a new project.  It is working now (with Guid keys) but I am not able to reproduce the error now.</p>
+
+<p>The message itself conveys that it is looking for mapping configuration for System.Guid.  My best guess is that it's seeing a property name that is triggering its foreign key logic and that property name is associated with a Guid.</p>
+
+<p>Maybe you could add a new foreign key convention so it no longer makes those assumptions with that default logic?</p>

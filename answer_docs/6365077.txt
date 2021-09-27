@@ -1,0 +1,20 @@
+<p>It looks like there's <a href="http://mikeknowles.com/blog/2009/03/27/ConfiguringLog4NetOnAGoDaddyASPNETSite.aspx" rel="nofollow">no problem</a> writing log files to a virtual directory on your website. You just tell log4net that the path is relative to the current directory by writing the configuration</p>
+
+<pre><code>&lt;appender ...&gt;
+    &lt;file value="Logs\website.log" /&gt;
+&lt;/appender&gt;
+</code></pre>
+
+<p>Now, if you want to put the current username in the log message, you'll want to investigate log4net <a href="http://logging.apache.org/log4net/release/manual/contexts.html" rel="nofollow">Contexts</a>. Stashing the current user in the log4net context</p>
+
+<pre><code>log4net.ThreadContext.Properties["user"] = HttpContext.Cache["current-user"];
+</code></pre>
+
+<p>And pulling it out in the Appender <a href="http://logging.apache.org/log4net/release/sdk/log4net.Layout.PatternLayout.html" rel="nofollow">layout</a></p>
+
+<pre><code>&lt;appender ...&gt;
+    &lt;layout ...&gt;
+        &lt;conversionPattern value="%date %-5level [%property{user}] %message%newline" /&gt;
+    &lt;/layout&gt;
+&lt;/appender&gt;
+</code></pre>

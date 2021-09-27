@@ -1,0 +1,14 @@
+<p>So you're going to have HTML, and you're going to use jQuery (Because it's baller.)</p>
+
+<p>In your HTML, you're going to have a <code>&lt;form...&gt;</code> with your two drop down form fields.</p>
+
+<p>I'm going to use short pseudo'ish code to explain.</p>
+
+<pre><code>$('#first_dropdown').change(function(         
+    // When someone makes a change to the drop down or "selects" something (maybe bind click() too)
+    // Your code here to select the value selected and do a ...
+    $.post() // post to some PHP script that will return the values that will fill the 2nd  
+    // dropdown but it'll be stored in some javascript variable
+    // and you're going to add jQuery code to take that js variable to populate the 2nd dropdown
+){});
+</code></pre>

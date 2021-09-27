@@ -1,0 +1,3 @@
+<p>Filtering with PHP loops would still be a major waste of time. Every query will fetch all 1000 rows, which have to be ripped off disk, formatted into default appearances, stuffed into the communications pipe, transmitted, received, coerced into PHP data types, and THEN filtered.</p>
+
+<p>Databases are designed for filtering, whether it's on a single record or many billions of records. What you'd be using it for is just a complicated and computationally expensive storage medium. Anything you can do on the database to reduce the size of the transmitted results (even if it's over a local socket connection) is a Good Thing(tm).</p>

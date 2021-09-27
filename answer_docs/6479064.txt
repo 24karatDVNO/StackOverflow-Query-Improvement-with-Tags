@@ -1,0 +1,5 @@
+<p>(I'm going to write with Java regex syntax, since that's what I know; it ought to be the same for our purposes here as any other regex system you're using but I'm not 100% sure.)</p>
+
+<p>The regex for a sentence boundary is evidently <code>[.!?]\s</code>. So, you want to match everything up to that first one. ".+" matches greedily and matches everything up to the start of the last sentence. You want a reluctant capture:</p>
+
+<p><code>(.+?)[.!?]\s</code></p>

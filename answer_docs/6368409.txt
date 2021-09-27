@@ -1,0 +1,24 @@
+<pre><code>$stringA = "hello world hello world helloo world";
+$stringB = "hello php hello php hello php";
+
+echo "string 1----&gt;".$stringA."&lt;br&gt;";
+echo "string 2----&gt;".$stringB."&lt;br&gt;";
+
+$array1 = explode(' ', $stringA);
+$array2 = explode(' ', $stringB);
+
+$result = array_diff($array2, $array1);
+
+$zem= implode(' ',$result);
+if (!empty($zem)) {
+    echo "string diffrence---&gt; ".$zem."&lt;br&gt;";
+} else {
+    echo "string diffrence---&gt;both strings are same &lt;br&gt;";
+}
+
+$a = count(explode(' ', $stringA));
+$b= count(explode(" ", $zem));
+
+similar_text($stringA, $stringB , $p);
+echo "  similarity between  the stirng is  Percent:".$p."% &lt;br&gt;";
+</code></pre>

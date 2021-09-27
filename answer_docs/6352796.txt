@@ -1,0 +1,13 @@
+<p>Not sure have you solved this. My example is based on Spring-Flex. From <a href="http://static.springsource.org/spring-flex/docs/1.5.x/reference/html/index.html#message-interceptors" rel="nofollow">Spring-Flex reference</a> and <a href="http://static.springsource.org/spring-flex/docs/1.5.x/javadoc-api/org/springframework/flex/security3/LoginMessageInterceptor.html#getAuthenticationResult%28%29" rel="nofollow">Spring Flex Javadoc</a>, have your class implements MessageInterceptor or override the default class provided by Spring, register it with desired <strong>position</strong> attribute of the <strong>message-interceptor</strong> configuration tag. Example for my case: </p>
+
+<pre><code>&lt;bean id="myMessageInterceptor" class="my.mimos.kec.ooes.security.LoginMessageInterceptor"/&gt;
+&lt;flex:message-broker mapping-order="1"&gt;
+    &lt;flex:message-interceptor position="LOGIN_MESSAGE_INTERCEPTOR" ref="myMessageInterceptor"/&gt;
+    &lt;flex:mapping pattern="/messagebroker/*"/&gt;
+    &lt;flex:message-service
+        default-channels="my-streaming-amf,my-longpolling-amf,my-polling-amf" /&gt;
+    &lt;flex:secured /&gt;
+&lt;/flex:message-broker&gt;
+</code></pre>
+
+<p>Thanks. </p>

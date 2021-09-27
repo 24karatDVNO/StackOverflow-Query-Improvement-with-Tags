@@ -1,0 +1,25 @@
+<p>It sounds like you need to add an entity to model the relationship itself. </p>
+
+<pre><code>RelateType{
+  type:string // ...isDuplicate, isSuccessor, isPredecessor etc
+  fromMessage&lt;&lt;--&gt;Message.toMessages
+  toMessage&lt;&lt;--&gt;Message.fromMessages
+}
+
+Message{
+  title:string
+  toMessages&lt;--&gt;&gt;RelateType.fromMessages
+  fromMessages&lt;--&gt;&gt;RelateType.toMessages
+}
+</code></pre>
+
+<p>The <code>RelateType</code> will form a bridge between any two <code>Messages</code>. The <code>RelateType.type</code> relationship will let you model any arbitrary kind of relationship. To find any particular <code>Message</code> objects relationships by type you just:</p>
+
+<pre><code>NSString *relateType=@"isDuplicate";
+NSPredicate *p=[NSPredicate predicateWithFormat:@"type == %@", relateType];
+NSSet *duplicateMsgs=[msgObj filteredSetUsingPredicate:p];
+</code></pre>
+
+<p>Alternatively, you can do a fetch on the <code>RelateType</code> entity to find all of a certain type of relationship e.g. all <code>isDuplicate</code> relationships. </p>
+
+<p>However, usually if you find yourself doing something like this, it's because you've tried to shoehorn a SQL schema into Core Data model which is always a mistake. </p>

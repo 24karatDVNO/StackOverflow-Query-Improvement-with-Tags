@@ -1,0 +1,23 @@
+<p>You can do by implementing <a href="http://developer.db4o.com/Documentation/Reference/db4o-8.0/net35/reference/Content/advanced_topics/callbacks/event_registry_api.htm" rel="nofollow">event-handlers</a>. Basically you can register a event-handler for the creating and the updating event. Like this:</p>
+
+<pre><code>IEventRegistry events = EventRegistryFactory.ForObjectContainer(container);
+events.Creating +=delegate(object sender, CancellableObjectEventArgs args)
+    {
+        Console.WriteLine("{0} created: Value {1}",args.Object.GetType(),args.Object);
+    };
+</code></pre>
+
+<p>For viewing value changes you maybe need to peek the old state in the event-handler. You can do this like this:</p>
+
+<pre><code>IEventRegistry events = EventRegistryFactory.ForObjectContainer(container);
+events.Creating +=delegate(object sender, CancellableObjectEventArgs args)
+    {
+        IObjectContainer eventContainer = args.ObjectContainer();
+        object oldVersion = eventContainer.Ext().Peek(args.Object,1,false);
+        object currentVersion = args.Object;
+
+        // Do comparison and print stuff
+    };
+</code></pre>
+
+<p>Of course the comparison and printing is the work you have to do. There's nothing built in for that.</p>

@@ -1,0 +1,30 @@
+<p>The question is why? There are a couple of approaches, depending on your architecture:</p>
+
+<p>First thing you can do is to make your MainPage singleton. It makes sense because you only have one Main Page in reality too, but I don't like singletons, and it makes your components coupled and your design becomes hard to unit test.</p>
+
+<p>Alternatively, you can pass an interface of your MainPage into your class. If you only pass the interface, you then have the chance to do unit testing without too much trouble. Something like this:</p>
+
+<pre><code>public interface IMainView
+{
+   void MethodOnMainPage();
+}
+
+public class MainPage : IMainView
+{
+}
+
+public class MyClass 
+{
+   private IMainView _view;
+
+   public MyClass(IMainView view)
+   {
+      _view = view;
+   }
+
+   private void SomeEventHappened() 
+   {
+      _view.MethodOnMainPage();
+   }
+}
+</code></pre>

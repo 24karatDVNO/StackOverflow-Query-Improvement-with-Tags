@@ -1,0 +1,20 @@
+<p>Looking at the generated Serialize and Deserialize methods of Xsd2Code, it doesn't look like it does schema validation. I haven't used Xsd2Code much, so I might be wrong.</p>
+
+<p>But what you could do is use the XmlReaderSettings class to set up the schemas the XML will use.</p>
+
+<pre><code>// Load the Schema Into Memory. The Error handler is also presented here.
+StringReader sr = new StringReader(File.ReadAllText("schemafile.xsd"));
+XmlSchema sch = XmlSchema.Read(sr,SchemaErrorsHandler);
+
+// Create the Reader settings.
+XmlReaderSettings settings = new XmlReaderSettings();
+settings.Schemas.Add(sch);
+
+// Create an XmlReader specifying the settings.
+StringReader xmlData = new StringReader(File.ReadAllText("xmlfile.xml"));
+XmlReader xr = XmlReader.Create(xmlData,settings);
+
+// Use the Native .NET Serializer (probably u cud substitute the Xsd2Code serializer here.
+XmlSerializer xs = new XmlSerializer(typeof(SerializableClass));
+var data = xs.Deserialize(xr);
+</code></pre>

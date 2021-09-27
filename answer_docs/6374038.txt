@@ -1,0 +1,12 @@
+<p>I think it is because the <code>style=" "</code> is choking on the first double quote?</p>
+
+<blockquote>
+  <p>style = "&lt;%# If
+  (DataBinder.Eval(Container,
+  "<strong>&lt;--right here</strong>  DataItem.Exclamation").ToString() ==
+  "1") then Response.Write("color:red") 
+  Else Response.Write("color:black")
+  EndIf%>"</p>
+</blockquote>
+
+<p>Perhaps you need to escape one or more of the quotes?</p>

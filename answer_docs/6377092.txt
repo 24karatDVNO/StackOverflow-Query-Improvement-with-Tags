@@ -1,0 +1,5 @@
+<p>First off - if your validation is that the field is required, consider using a RequiredFieldValidator control instead.</p>
+
+<p>The Text property is what is displayed directly from the validator control. You can use a ValidationSummary control to display the ErrorMessage property from all failing validators.</p>
+
+<p>For the CustomValidator control, you should consider implementing a client-side javascript validation as well (if possible) and point to it using the ClientValidationFunction property.</p>

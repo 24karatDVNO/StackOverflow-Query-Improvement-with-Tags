@@ -1,0 +1,5 @@
+<p>Moving a specific column won't help performance much and will likely reduce performance because you need to get data from two places instead of one. </p>
+
+<p>In general the slow part of any query is finding the right record - once you find that record, reading a few hundred bytes more doesn't really change anything. </p>
+
+<p>Also, 10 million records of 200 characters is at most 4GB - not much even if your dataset needs to fit in RAM.</p>

@@ -1,0 +1,13 @@
+<p>You can use custom CSS targeted for the printer using the <code>media</code> CSS directives.</p>
+
+<p>Either import a whole stylesheet tageted for print using:</p>
+
+<pre><code>&lt;LINK rel="stylesheet" type="text/css" media="print" href="foo.css"&gt;
+</code></pre>
+
+<p>Or wrap your CSS <code>STYLE</code> declarations in a <code>media</code> directive like this:</p>
+
+<pre><code>@media print {
+  div{ background-color:#CCCCCC; }
+}
+</code></pre>

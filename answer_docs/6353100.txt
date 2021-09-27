@@ -1,0 +1,1 @@
+<p><code>self.request</code> and <code>self.response</code> are not set by the class constructor in webapp. They're set later, when the framework calls the handler's <code>initialize</code> method. You can override this, just make sure you call the parent class's <code>initialize</code> before doing anything else.</p>

@@ -1,0 +1,9 @@
+<p>You could e.g. use <code>bash</code>'s <code>=~</code> operator, e.g.:</p>
+
+<pre><code>if [[ $string =~ "@" ]] ; then
+    # do something
+else
+    echo You have entered an invalid e-mail address!
+    exit 1
+fi
+</code></pre>

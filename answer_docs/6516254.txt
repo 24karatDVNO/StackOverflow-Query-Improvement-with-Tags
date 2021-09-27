@@ -1,0 +1,7 @@
+<p>For this scenario I use a pattern in that ensures that the data cannot be updated concurrently.</p>
+
+<p>I always add a special column to the table, usually 'LastModified' of type 'timestamp'. When adding or inserting a row I always set this column.</p>
+
+<p>When I come to update a record I make sure that the stored procedure checks the value that I am passing in with that stored in the database. If these are different then another user or process has altered this row, and I raise a concurrency error.</p>
+
+<p>This can be propergated up to the calling process or handled in your service.</p>

@@ -1,0 +1,7 @@
+<p>Try using <code>mysql_error()</code> to check for errors.</p>
+
+<pre><code>mysql_query("INSERT INTO table(
+         full_name, email_address, phone_number, message, ip_address, agent) 
+         VALUES ('$fn', '$email', '$telephone', '$comments', '$ip', '$agent')")
+         or die(mysql_error());
+</code></pre>

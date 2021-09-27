@@ -1,0 +1,20 @@
+<p>Check the FAQ</p>
+
+<p><a href="http://www.grails.org/FAQ#Q%3a%20OMG%20I%20get%20OutOfMemoryErrors%20or%20PermGen%20Space%20errors%20when%20running%20Grails%20in%20development%20mode.%20What%20do%20I%20do?" rel="nofollow">Q: OMG I get OutOfMemoryErrors or PermGen Space errors when running Grails in development mode. What do I do?</a></p>
+
+<blockquote>
+  <p>Since Grails 0.6, Grails automatically re-compiles Java sources and
+  domain classes using pre-compilation and then a server restart. This
+  can lead to permgen space running out if the server is run for a long
+  time and many changes are made. You can disable this feature if it is
+  not important to you with:</p>
+  
+  <p>grails -Ddisable.auto.recompile=true run-app</p>
+  
+  <p>There is also a problem with Grails 0.6 on Windows where you get
+  OutOfMemoryErrors during a period of activity in development mode due
+  to the re-compilation. This may be solved in SVN head, but if you see
+  this problem the above option can also help.</p>
+</blockquote>
+
+<p>Easiest just to restart your application server when it happens.</p>

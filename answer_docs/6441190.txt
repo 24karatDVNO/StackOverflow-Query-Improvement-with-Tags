@@ -1,0 +1,6 @@
+<p>this is a simple query that gives you all the data. now you just have to split the top_scores by /,/ and then add them up in your code. an alternative is a stored procedure but i think this is simpler. good luck.</p>
+
+<pre><code>select GROUP_CONCAT(score ORDER BY score DESC) top_scores
+from userscore
+group by userid
+</code></pre>

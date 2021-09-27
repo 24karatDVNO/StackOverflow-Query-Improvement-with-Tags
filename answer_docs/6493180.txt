@@ -1,0 +1,55 @@
+<p>Do you really want to use ASP.NET Ajax?</p>
+
+<p>If you want a simple way, implement this:</p>
+
+<p>1 - create a new <strong>Generic Handler</strong> (ashx page), call it for example <code>refreshDbValues.ashx</code></p>
+
+<p>2 - add your code there and at the end return the message you want, for example:</p>
+
+<pre><code>public void ProcessRequest (HttpContext context) {
+
+    string r = "",
+           time = context.Request["t"];
+
+    // your code - start
+    r = "There are new results to see";
+    // your code - end
+
+    context.Response.ContentType = "text/plain";
+    context.Response.Write(r);
+}
+</code></pre>
+
+<p>3 - Now that you did your Server part, let's do the client part, in your page, add this jQuery code:</p>
+
+<pre><code>var processId = 0;
+
+$(document).ready(function() {
+
+    // let's make this method fires every 2 seconds
+    processId = setInterval(requestNewValue, 2000);
+
+});
+
+function requestNewValue() {
+
+    var now = new Date();
+
+    $.ajax({
+        url: "refreshDbValues.ashx",
+        type: "GET",
+        data: { t: now.getTime() }
+        success: function(data){
+
+            // do we have text to show?
+            if(data.length &gt; 0) {
+                alert(data);
+            }
+        },
+        error: function(msg) {
+            alert('Error found:\n' + msg);
+        }
+    );
+
+}
+</code></pre>

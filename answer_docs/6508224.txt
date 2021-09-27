@@ -1,0 +1,7 @@
+<p>I found the error and sorry for wasting your time.  A mishap on my part.  Because the UserID is my primary key I wasn't using it in my select criteria thus there was no column in the data reader.  So, to recap: Ensure all your filter criteria are also listed in the select criteria in your stored procedure.  Simply changing my stored proc to (below) corrected it.</p>
+
+<pre><code>CREATE procedure getuserbyID
+(@UserID int)
+AS
+SELECT UserID, Firstname, Lastname, Email From TestDatabase WHERE UserID = @UserID
+</code></pre>

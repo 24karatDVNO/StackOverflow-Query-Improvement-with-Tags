@@ -1,0 +1,6 @@
+<p>You will need escape_javascript</p>
+
+<pre><code>$('#follow-update').html("&lt;%= raw( escape_javascript( follow_button(@question ))) %&gt;");
+</code></pre>
+
+<p>If this doesn't work, please see show the returned ajax text and the button html </p>

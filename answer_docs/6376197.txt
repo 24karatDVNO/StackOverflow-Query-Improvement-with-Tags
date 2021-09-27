@@ -1,0 +1,111 @@
+<p>I have an impression that you're not entirely understand how works Regular expressions.
+Well,first you need have an input for matching with regex. 
+Exemple:</p>
+
+<pre><code>$input = "hello, 123"; //I just need the digits part
+$regex = @"\d+";
+preg_match($regex, $input, $matched); 
+</code></pre>
+
+<p>\d search by digits[0-9] on string,equivalents to [0-9]  or:</p>
+
+<pre><code>        for ($c = 0, $len = strlen($input); $c &lt; $len; $c++)
+        {
+            $tmp = $input[$c];
+            if ($tmp == '0' || $tmp == '1' || $tmp == '2' ||
+               $tmp == '3' || $tmp == '4' || $tmp == '5' ||
+               $tmp == '6'|| $tmp == '7' || $tmp == '8' ||
+                $tmp == '9')
+            {
+
+               echo $tmp; 
+            }
+        }
+</code></pre>
+
+<p>if you want to download all google images,also check:</p>
+
+<p><a href="http://www.google.com/logos/" rel="nofollow">http://www.google.com/logos/</a>
+web crawler for extract link all images in this page:</p>
+
+<pre><code>&lt;?
+Header('Content-Type:text/plain');
+$domain = "http://www.google.com/logos/";
+$ch = curl_init($domain);
+curl_setopt($ch ,CURLOPT_RETURNTRANSFER, true);
+$response  = curl_exec($ch);
+preg_match_all("/&lt;img\s+alt=\"(?&lt;title&gt;[^\"]+)\"\s+src=\"(?&lt;url&gt;[^\"]+)\"/", $response, $matched); 
+print_r($matched); 
+?&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>  [title] =&gt; Array
+        (
+            [0] =&gt; Latest Google Logos
+            [1] =&gt; Les Paul's 96th Birthday
+            [2] =&gt; Dragon Boat Festival
+            [3] =&gt; Richard Scarry's 92nd Birthday
+            [4] =&gt; Republic Day
+            [5] =&gt; Birthday of Ibn Khaldun
+            [6] =&gt; Africa Day
+            [7] =&gt; Jordan Independence Day
+            [8] =&gt; Day of Slavonic Alphabet, Bulgarian Enlightenment and Culture
+            [9] =&gt; Emile Berliner's 160th Birthday
+            [10] =&gt; Doodle4Google US Winner
+            [11] =&gt; 100th Birthday of Annie M.G. Schmidt
+            [12] =&gt; Dame Nellie Melba's 150th Birthday
+            [13] =&gt; 120th Birthday of Mikhail Bulgakov
+            [14] =&gt; Paraguay's Independence Day
+            [15] =&gt; Martha Graham's 117th Birthday. Animated by Ryan Woodward, choreographed by Janet Eilber, and danced by Blakeley White-McGuire.
+//...
+
+
+
+ [url] =&gt; Array
+        (
+            [0] =&gt; /images/feed-icon.gif
+            [1] =&gt; /logos/2011/lespaul11-hp.png
+            [2] =&gt; /logos/2011/dragonboat11-hp.jpg
+            [3] =&gt; /logos/2011/scarry11-hp.png
+            [4] =&gt; /logos/2011/republicday11-hp.jpg
+            [5] =&gt; /logos/2011/ibn11-hp.jpg
+            [6] =&gt; /logos/2011/africaday11-hp.jpg
+            [7] =&gt; /logos/2011/jordan11-hp.png
+            [8] =&gt; /logos/2011/slavonic_alaphabet11-hp.jpg
+            [9] =&gt; /logos/2011/berliner11-hp.png
+            [10] =&gt; /logos/2011/d4g11-matteolopez-HP.png
+            [11] =&gt; /logos/2011/annieschmidt11-hp.jpg
+            [12] =&gt; /logos/2011/nelliemelba11-hp.jpg
+            [13] =&gt; /logos/2011/bulgakov11-hp.png
+            [14] =&gt; /logos/2011/paraguay11-hp.jpg
+            [15] =&gt; /logos/2011/graham11-hp.png
+//....
+</code></pre>
+
+<p>and more</p>
+
+<pre><code>$urlToDownlaod = implode($domain, $matched["url"]);
+$urlToDownlaod  = explode("\"", $urlToDownlaod);
+print_r($urlToDownlaod);
+</code></pre>
+
+<p>Now here you have all urls of images hosted in google.com/logos
+make a function for download </p>
+
+<p>simple example:</p>
+
+<pre><code>function GetSrc($link) { 
+$ch = curl_init($link);
+curl_setopt($ch ,CURLOPT_RETURNTRANSFER, true);
+return curl_exec($ch); 
+}
+
+for($x = 0,$len = count($urlToDownlaod); $x &lt; $len; $x++) {
+     $fp = fopen("images/".$matched["title"][$x], "w");
+     fputs($fp, GetSrc($urlToDownlaod[$x]);
+     fclose($fp);
+     flush();
+}
+</code></pre>

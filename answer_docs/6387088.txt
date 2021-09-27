@@ -1,0 +1,15 @@
+<p>I've run into the same issue when converting a site from .net 1.1 to 3.5. As in the opening post on some pages the buttons work fine whilst on others they do not. There doesn't appear to be any common ground between the pages that don't work.</p>
+
+<p>I've tried changing the code so that it matches the pages that do work so changing the use statements, changing the autowireevent property to be specified and set to true, removing the system key word where it isn't necessary. I've also tried specifically adding the events in the pageload as with:</p>
+
+<pre><code>this.dlCVs.ItemDataBound += new System.Web.UI.WebControls.DataListItemEventHandler
+    (this.dlCVs_ItemDataBound);
+this.dlCVs.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler 
+    (this.dlCVs_ItemCommand);
+this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+</code></pre>
+
+<p>Interestingly though in the above the itemdatabound event does actually work so its only the button clicks that fail to work.</p>
+
+<p>So far the only solution that I've come across is to delete the page and then recreate it and copying in the individual sections of the code. If I copy the code in one big block then this solution doesn't work.</p>

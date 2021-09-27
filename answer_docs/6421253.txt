@@ -1,0 +1,13 @@
+<pre><code>In [6]: lines="""1. Tom is a guy
+2. Sara is a woman
+3. Alex is a guy too"""
+
+In [10]: lines=lines.splitlines()
+
+In [11]: def findLine(word):
+   ....:     return filter(lambda x: word in x,lines)
+   ....: 
+
+In [12]: findLine("Alex")
+Out[12]: ['3. Alex is a guy too']
+</code></pre>

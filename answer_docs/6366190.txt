@@ -1,0 +1,50 @@
+<p>try the following. </p>
+
+<p><strong>Data Layer Code</strong></p>
+
+<pre><code> public class ProjectDetailManager 
+ {   
+   public static List&lt;ViewProjectDetail&gt; GetProjectDetailById(int id)    
+   {
+       using(var dbContext = new SDMPREntities())
+       {
+          return dbContext.ViewProjectDetails(id).ToList();
+       }    
+    }
+
+    public static ProjectProgress GetProjectProgress(int id)    
+    {
+       using(var dbContext = new SDMPREntities())
+       {
+          return dbContext.ProjectProgress().Where(x=&gt;x.ProjectId ==id).FirstOrDefault();
+       }    
+    }
+
+ }
+</code></pre>
+
+<p><strong>Controller Code:</strong></p>
+
+<pre><code>public ActionResult Details(int id) 
+{
+  ViewData.Model = ProjectDetailManager.GetProjectDetailById(id); 
+   ViewBag.Progress = ProjectDetailManager.GetProjectProgress(id);
+   return View();    
+}
+</code></pre>
+
+<p><strong>View Code</strong></p>
+
+<pre><code>     @model IEnumerable&lt;ViewProjectDetail&gt; 
+    @{
+        ViewBag.Title = "Project Details";
+        Layout = "~/Views/Shared/_SiteContent.cshtml";
+     }
+@// not sure what your object look like but here an example 
+    &lt;h1&gt;Project Status: @(ViewBag.Progress != null ? ViewBag.Progress.Status : string.Empty)&lt;/h1&gt;
+
+       @foreach(var item in Model) 
+       {     
+          //format display whatever 
+       }
+</code></pre>

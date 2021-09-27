@@ -1,0 +1,20 @@
+<p>This looks like a hack, but it worked and is pretty accurate:</p>
+
+<pre><code>
+private Point _releasePoint;
+
+public Grid()
+{
+   Grid.MouseLeftButtonUp += new MouseButtonEventHandler(Grid_MouseLeftButtonUp);
+}
+
+void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+{
+   _releasePoint = e.GetPosition(Grid);
+}
+
+private void DragAndDrop_ItemDroppedOnTarget(object sender, ItemDragEventArgs e)
+{
+   // fires next and _releasePoint is already set
+}
+</code></pre>

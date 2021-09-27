@@ -1,0 +1,15 @@
+<p>Here is one approach which I had done in one of previous projects.</p>
+
+<p>Just append the row to tbody. Give index to each row as a data attribute. Grab the data values of the column on which you want to sort the able in the form of any array of object as shown below. </p>
+
+<pre><code>var trs = [['data', 0], ['data', 1]];//0, 1 are the row indexes before sort.
+</code></pre>
+
+<p>Sort this array by providing a custom sort method. After sorting you can loop through this array and append the rows to the same table.</p>
+
+<pre><code>var tbody = $('tbody', fromYourTable);
+$.each(trs, function(index, tr){
+      //find the row by using tr[1] which contains the index in the unsorted table
+      tbody.append(tbody.find('tr[index="'+tr[1]+'"]'));
+});
+</code></pre>

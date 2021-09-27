@@ -1,0 +1,14 @@
+<p>You can spawn up "worker processes" by using setTimeout.</p>
+
+<pre><code>var proc;
+somefunc();
+
+function somefunc() {
+    //do stuff
+    proc = setTimeout(somefunc, 6000);
+}
+
+//...
+
+clearTimeout(proc); //Cancel the looping somefunc from executing.
+</code></pre>

@@ -1,0 +1,1 @@
+<p>I'm pretty sure XSD won't support what you need. However you can use <code>&lt;xsd:any&gt;</code> for that bit of the schema, then use something lower-level than JAXB to generate the XML for that particular part. (I think your generated classes will have fields like <code>protected List&lt;Element&gt; any;</code> which you can fill in using DOM).</p>

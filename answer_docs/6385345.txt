@@ -1,0 +1,19 @@
+<p>One can also use Fast Enumeration, in some cases it can be more clear to a reader:</p>
+
+<pre><code>NSString *userName = userName.text;
+NSString *userPass = passWord.text;
+
+BOOL userValid = NO;
+BOOL passValid = NO;
+int index = 0;
+for (NSString *eachName in namesArray) {
+    if ([eachName isEqualToString:userName) {
+        userValid = YES:
+        if ([[passArray objextAtIndex:index] isEqualToString:passWord) {
+            passValid = YES;
+        }
+        break;
+    }
+    index += 1;
+}
+</code></pre>

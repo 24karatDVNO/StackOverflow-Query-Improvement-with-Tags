@@ -1,0 +1,10 @@
+<p>or you dont need to use derived table. You can do this too</p>
+
+<pre><code>SELECT *   INTO  #temp_UNION  
+FROM         [#temp1]     
+UNION     
+SELECT     *     FROM         [#temp2]     
+UNION     SELECT     *     FROM         [#temp3]     
+UNION     SELECT     *     FROM         [#temp4]     
+UNION     SELECT     *     FROM         [#temp5] 
+</code></pre>

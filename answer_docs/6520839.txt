@@ -1,0 +1,40 @@
+<p>nodejs &amp; EventEmitter answer:
+<a href="http://nodejs.org/docs/v0.4.9/api/events.html" rel="nofollow">http://nodejs.org/docs/v0.4.9/api/events.html</a></p>
+
+<pre><code>function myobj()
+{
+   // constructor
+}
+
+util.inherits(myobj, process.EventEmitter)
+
+myobj.prototype.hereComesEvent1 = function()
+{
+   // do stuff
+   // ..
+   // fire event
+   this.emit('first', 1, 2);
+}
+
+myobj.prototype.hereComesEvent2 = function()
+{
+   // do stuff
+   // ..
+   // fire event
+   this.emit('second', 'one', 'two');
+}
+
+
+// test myobj
+
+var mo = new myobj();
+mo.on('first', function(a, b) {
+   console.log([a, b]);
+});
+mo.on('second', function(a, b) {
+   console.log([a, b]);
+});
+
+mo.hereComesEvent1();
+mo.hereComesEvent2();
+</code></pre>

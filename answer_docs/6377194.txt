@@ -1,0 +1,40 @@
+<p>Here's an example of a getView method. Note that it's using a viewholder for efficiency. If you want to know more about that, let me know.  </p>
+
+<pre><code>public View getView(int position, View convertView, ViewGroup parent) {
+
+    tempDeal = exampleBoxArrayList.get(position);
+
+    ViewHolder holder;
+
+    if (convertView == null) {
+        convertView = inflator.inflate(R.layout.list_item_example_box, null);
+        holder = new ViewHolder();
+        holder.divider = (RelativeLayout) convertView.findViewById(R.id.example_box_divider);
+        holder.merchantName = (TextView) convertView.findViewById(R.id.example_box_merchant_name);
+        holder.expireDate = (TextView) convertView.findViewById(R.id.example_box_expire_date);
+        holder.description = (TextView) convertView.findViewById(R.id.example_box_description);
+
+        convertView.setTag(holder);
+    } else {
+        holder = (ViewHolder) convertView.getTag();
+
+    }
+
+    if (tempDeal.isDivider()) {
+        holder.divider.setVisibility(View.VISIBLE);
+    } else {
+        holder.divider.setVisibility(View.GONE);
+    }
+
+    holder.merchantName.setText(tempDeal.getMerchantName());
+    holder.expireDate.setText(tempDeal.getExpiryDateString());
+    holder.description.setText(tempDeal.getPriceOption().getDescription());
+
+    return convertView;
+
+}
+</code></pre>
+
+<p>As you can see, I call the <code>isDivider()</code> method on my custom object (this method looks at a boolean set on data load). This method is used to turn the visibility of part of the layout on or off.  </p>
+
+<p>Alternatively, you could load a completely new layout based on this same concept.</p>

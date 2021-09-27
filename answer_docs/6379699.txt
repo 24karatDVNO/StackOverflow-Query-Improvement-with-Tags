@@ -1,0 +1,34 @@
+<p>I'll try to help your confusion....</p>
+
+<p>A byline <em>can</em> have multiple <code>wordlist_mgmnt_records</code>, so defining the <code>has_many</code> there seems to make sense.</p>
+
+<p>I'm not sure I understand your confusion in the other direction.  Since you have defined the attribute <code>wordlist_mgmnt_records.byline_id</code>, any given <code>wordlist_mgmnt_record</code> can only 'have' (belong_to) a single byline.  You're simply defining the crows foot via ruby (if you like database diagrams):</p>
+
+<pre><code>wordlist_msgmnt_records (many)&gt;&gt;----------(one) byline
+</code></pre>
+
+<p>Or read in english:  "One byline can have many wordlist_mgmnts, and many individual wordlist_mgmnt's can belong to a single byline"</p>
+
+<p>Adding the belongs_to definition to the wordlist_mgmnt model doesn't affect the performance of the queries, it just let's you do things like:</p>
+
+<pre><code>@record = WordlistMgmntRecord.find(8)
+@record_byline = @record.byline
+</code></pre>
+
+<p>Additionally you're able to do joins on tables like:</p>
+
+<pre><code>@records = WordlistMgmntRecord.joins(:byline).where({:byline =&gt; {:teacher_id =&gt; current_user.id}})
+</code></pre>
+
+<p>Which will execute this SQL:</p>
+
+<pre><code>SELECT wordlist_mgmnt_records.*
+FROM wordlist_mgmnt_records
+INNER JOIN bylines
+  ON wordlist_mgmnt_records.byline_id = bylines.id
+WHERE bylines.teacher_id = 25
+</code></pre>
+
+<p>(Assuming <code>current_user.id</code> returned 25)</p>
+
+<p>This is based off of your current DB design.  If you find that there's a way you can implement the functionality you want <em>without</em> having <code>byline_id</code> as a foreign key in the <code>wordlist_mgmnt_records</code> table then you would modify your models to accomodate it.  However this seems to be how a normalized database should look, and I'm not really sure what other way you would do it.</p>

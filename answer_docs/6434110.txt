@@ -1,0 +1,13 @@
+<p>Found the solution:</p>
+
+<p>I created a listener for a click for every div I create dynamically and I change the text there:</p>
+
+<pre><code>Ext.get('divID'+count).on('click', function(eventObj, elRef) {
+        Ext.Msg.prompt('Text', 'Enter new text:', function(btn, text){
+      if (btn == 'ok'){
+          elRef.innerHTML = text;
+
+});
+</code></pre>
+
+<p>divID + count is the id of my div, where count is a counter that increments every time I create a new div.</p>

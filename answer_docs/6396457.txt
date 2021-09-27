@@ -1,0 +1,28 @@
+<p>The solution was to do this in index.php:</p>
+
+<pre><code>Doo::loadCore('db/DooSqlMagic');
+$db = new DooSqlMagic;
+$db-&gt;setDb($dbconfig, 'db'.$config['APP_MODE']);
+$db-&gt;connect();
+
+$db2 = new DooSqlMagic;
+$db2-&gt;setDb($dbconfig, 'db2'.$config['APP_MODE']);
+$db2-&gt;connect();
+</code></pre>
+
+<p>This in db.conf.php:</p>
+
+<pre><code>$dbconfig['dbdev'] = array('localhost', 'db', 'root', '', 'mysql', true, 'collate'=&gt;'utf8_unicode_ci', 'charset'=&gt;'utf8');
+$dbconfig['dbprod'] = array('localhost', 'db', 'root', '', 'mysql', true, 'collate'=&gt;'utf8_unicode_ci', 'charset'=&gt;'utf8');
+
+$dbconfig['db2dev'] = array('localhost', 'db2', 'root', '', 'mysql', true, 'collate'=&gt;'utf8_unicode_ci', 'charset'=&gt;'utf8');
+$dbconfig['db2prod'] = array('localhost', 'db2', 'root', '', 'mysql', true, 'collate'=&gt;'utf8_unicode_ci', 'charset'=&gt;'utf8');
+</code></pre>
+
+<p>And use it like this in the controller:</p>
+
+<pre><code>global $db;
+global $db2;
+$db-&gt;query('.......');
+$db2-&gt;query('......');
+</code></pre>

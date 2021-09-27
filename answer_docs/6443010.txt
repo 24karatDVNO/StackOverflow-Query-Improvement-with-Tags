@@ -1,0 +1,8 @@
+<p><code>/* */</code> aren't valid comment characters in python, which is causes a parse error, so the import fails.  Use <code>#</code> instead.</p>
+
+<p>Also, you'll want to get an instance of <code>X</code> then call the <code>operation</code> method on that.  Like:</p>
+
+<pre><code>from myproj.models import X
+x = X.objects.get(id=1)
+val = x.operation()
+</code></pre>

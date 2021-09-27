@@ -1,0 +1,17 @@
+<p>The following worked for me:</p>
+
+<pre><code>/* Cache a reference to save_post since we
+   will use it more than once */
+var $btn_savepost = $("#save_post");
+
+/* Make sure we know when our button is hit */
+$btn_savepost.click(function(){ alert("Clicked Me"); });
+
+/* Capture all kepress events on the document
+   level, and check which key it is */
+$(document).keypress(function(e){
+  if ( e.which === 13 ) $btn_savepost.focus().click();
+});
+</code></pre>
+
+<p>Demo: <a href="http://jsbin.com/izusem/2/edit" rel="nofollow">http://jsbin.com/izusem/2/edit</a></p>

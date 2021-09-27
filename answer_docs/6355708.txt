@@ -1,0 +1,5 @@
+<p>It's very easy. You just go to your browser's cookie storage and modify it. Thereafter your browser owns the cookie as much as its original recipient did.</p>
+
+<p>In my case (Chrome 12), cookies are stored in <code>C:\Users\PJ\AppData\Local\Google\Chrome\User Data\Default</code>. Opening this file with a hex editor shows me it's an SQLite database, which can be accessed and modified pretty easily.</p>
+
+<p>Indeed, the whole point behind cross site scripting (XSS) attacks is to get your session cookie, store it in the attacker's browser and thus hijack the victim's session.</p>

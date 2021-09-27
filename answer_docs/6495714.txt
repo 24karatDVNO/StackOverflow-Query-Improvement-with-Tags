@@ -1,0 +1,16 @@
+<pre><code>$.template('yourTemplateName', 'yourTemplateCode');
+</code></pre>
+<p>From <a href="http://api.jquery.com/jQuery.template/" rel="nofollow noreferrer">http://api.jquery.com/jQuery.template/</a></p>
+<blockquote>
+<p>This method compiles the markup in the template parameter as a named template, which can be referenced using the string specified in the name parameter.</p>
+<p>The return value is the compiled-template function.</p>
+<p>Example: Create a compiled template associated with the name &quot;summaryTemplate&quot; and then reference it by name for rendering:</p>
+</blockquote>
+<pre><code>// Convert the markup string into a named template
+$.template( &quot;summaryTemplate&quot;, &quot;&lt;li&gt;${Name}&lt;/li&gt;&quot; );
+
+function renderList() {
+    // Render the movies data using the named template: &quot;summaryTemplate&quot;
+    $.tmpl( &quot;summaryTemplate&quot;, movies ).appendTo( &quot;#moviesList&quot; );
+}
+</code></pre>

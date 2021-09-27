@@ -1,0 +1,7 @@
+<p>The first way will declare the function if it already exists.</p>
+
+<pre><code>JSON.stringify = JSON.stringify || function (obj){
+}
+</code></pre>
+
+<p>This means that <code>JSON.stringify</code> exists, it will use that, otherwise it will make a new function.</p>

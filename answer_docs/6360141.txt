@@ -1,0 +1,12 @@
+<p>use <code>ObservableCollection&lt;T&gt;</code> and fire <code>CollectionChanged</code> event when it changed
+<a href="http://msdn.microsoft.com/en-us/library/ms668604.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms668604.aspx</a></p>
+
+<p>or you can make your method as exentsion method like that</p>
+
+<pre><code>public static List&lt;int&gt; DoSomeStuffAndModifyList(this List&lt;int&gt; list)
+{
+ ...
+ list.Add(newElement);
+ return list;
+}
+</code></pre>

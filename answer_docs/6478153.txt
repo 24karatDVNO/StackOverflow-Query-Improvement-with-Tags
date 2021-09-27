@@ -1,0 +1,12 @@
+<pre><code>function myClass () {
+    this.mouseX=x;
+    this.mouseY=y;
+    $(document).mousemove(this.mouseMove);
+}
+myClass.prototype.mouseMove = function(e){
+    this.mouseX=e.pageX;//not a good idea but you can alert this
+}
+var a=new myClass();
+</code></pre>
+
+<p>You need to use the this keyword and not var to instantiate in the constructor</p>

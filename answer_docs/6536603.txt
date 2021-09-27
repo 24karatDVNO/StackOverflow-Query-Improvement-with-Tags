@@ -1,0 +1,51 @@
+<p>I'm dealing with the same issue myself so I'll be interested to see if anyone comes up with a better solution, but for now I have a couple ideas:</p>
+
+<p>I have a comm wrapper class (let's call it <code>AsyncComm</code>) around my sockets that is passed an exception handler delegate from its owner class when it's constructed. The exception handler delegate takes arguments of an exception and a reference to the <code>AsyncComm</code> instance that threw it. I then put</p>
+
+<pre><code>try
+{
+   // Do stuff here
+{
+catch (Exception e)
+{
+   CallExceptionHandlerDelegate(e, this);
+}
+</code></pre>
+
+<p>in each of my async handler methods in <code>AsyncComm</code> so they can throw their exceptions up the chain. In my case, the exception handler uses the reference to the <code>AsyncComm</code> instance to call a method in the <code>AsyncComm</code> instance to tell it to reinitialize its socket. You can change that behavior to whatever you need to do to stop continuously getting <code>SocketExceptions</code>.</p>
+
+<p>Regarding determining the end point the exception came from, the only idea I have right now is parsing the end point from the end of the <code>SocketException.Message</code> string, but that seems like quite a kludge. </p>
+
+<p><strong>Update</strong>: It is a kludge but it works. Parse code below, some of it taken from <a href="https://stackoverflow.com/questions/2727609/best-way-to-create-ipendpoint-from-string">this question</a>.</p>
+
+<pre><code>private IPEndPoint parseEndPointFromString(string input)
+{
+    // Matches 1-255.1-255.1-255.1-255:0-65535. I think.
+    const string IPPortRegex = @"(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):(6553[0-5]|655[0-2]\d|65[0-4]\d\d|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3}|0)";
+
+    Match match = Regex.Match(input, IPPortRegex);
+
+    if (match.Success)
+    {
+        string IPPortString = match.Value;
+
+        string[] ep = IPPortString.Split(':');
+        if (ep.Length != 2) throw new FormatException("Invalid endpoint format");
+        IPAddress ip;
+        if (!IPAddress.TryParse(ep[0], out ip))
+        {
+            throw new FormatException("Invalid IP address");
+        }
+        int port;
+        if (!int.TryParse(ep[1], out port))
+        {
+            throw new FormatException("Invalid port");
+        }
+        return new IPEndPoint(ip, port);
+    }
+    else
+    {
+        throw new FormatException("Invalid input string, regex could not find an IP:Port string.");
+    }
+}
+</code></pre>

@@ -1,0 +1,13 @@
+<p>add a hidden input field for each pair you wanna add:</p>
+
+<pre><code>$("#SimpleForm").submit(function(e){
+    // for each key/value pair:
+    $(this)
+        .append($("&lt;input /&gt;").attr({"type":"hidden", "name":"keyA"}).val("value 1"))
+        .append($("&lt;input /&gt;").attr({"type":"hidden", "name":"keyB"}).val("value 2"));
+
+    alert($(this).html());
+});
+</code></pre>
+
+<p>see a working demo: <a href="http://jsfiddle.net/roberkules/6gHhR/" rel="nofollow">http://jsfiddle.net/roberkules/6gHhR/</a></p>

@@ -1,0 +1,10 @@
+<pre><code>$msg = "Your message here";
+
+fwrite($sk, $msg);
+// Only if you expect some response
+while (!feof($sk)) {
+    echo fgets($sk, 128);
+}
+// Close the stream
+fclose($sk);
+</code></pre>

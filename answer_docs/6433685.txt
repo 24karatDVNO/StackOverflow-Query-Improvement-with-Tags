@@ -1,0 +1,3 @@
+<p>Having large numbers of tables is definitely a symptom of a well normalized database design. This can be a pain when writing queries, but it is much better then getting data out of sync.</p>
+
+<p>I sometimes write reports that run off of a database with thousands of tables. Each night, we have a program that runs and dumps data from the production tables into a <a href="http://en.wikipedia.org/wiki/Data_warehouse" rel="nofollow">data warehouse</a> so that we can report against it more easily. The data warehouse tables are much less normalized, and this makes writing queries much simpler. You may want to consider something like this if it makes sense in your situation.</p>

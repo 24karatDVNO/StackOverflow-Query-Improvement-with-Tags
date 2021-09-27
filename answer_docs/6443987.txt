@@ -1,0 +1,11 @@
+<p>Start like this:</p>
+
+<ol>
+<li>Check the ID of that given control. Copy it. Now remove the control from dialog resource.</li>
+<li>Ensure that ID is not <strong>used</strong> by other dialogs. If not, you can use following.</li>
+<li>Delete that ID from resource.h.</li>
+<li>When you compile it, you'd get error (around <code>GetDlgItem</code>, <code>DDX_Control</code> etc). Remove or comment them. Remove appropriate <code>CWnd</code>-derived variables (like <code>CEdit</code>, <code>CComboBox</code> etc).</li>
+<li>You are done!</li>
+</ol>
+
+<p>If given ID is used by other dialogs (check it from Resource View's context menu <strong>Resource Symbols...</strong>), then you cannot directly remove it from resource editor. You, however, need to remove it from appropriate implementation file (of <code>CDialog</code>/<code>CPropertyPage</code>-derived class).</p>

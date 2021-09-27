@@ -1,0 +1,9 @@
+<p>This is not something you should do in the view.  Instead do it when you CALL the view, i.e.:</p>
+
+<pre><code>IF (SELECT COUNT(*) FROM v_MyView) &gt; 0
+BEGIN
+   SELECT * FROM v_MyView
+END 
+ELSE
+SELECT 0
+</code></pre>

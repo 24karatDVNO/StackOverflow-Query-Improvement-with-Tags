@@ -1,0 +1,3 @@
+<p>Without fully testing, I suspect the reason you're seeing this is because you have an absolute width of 900px defined for the various elements that appear in the body of the page.</p>
+
+<p>When the scrollbar appears, that's then eating into your screen real estate, and so the content shifts to maintain its 900px width. I would move to a more fluid sizing model, or at least wrap the content in a container of some sort, so that the scrollbar doesn't interfere with it.</p>

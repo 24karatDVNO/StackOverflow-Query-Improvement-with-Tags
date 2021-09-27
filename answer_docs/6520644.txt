@@ -1,0 +1,9 @@
+<pre><code>    Locale.setDefault(Locale.GERMAN);
+    DecimalFormat format = new DecimalFormat();
+    Number d = format.parse("0.23");
+    System.out.println(d);
+    d = format.parse("1.000,23");
+    System.out.println(d);
+</code></pre>
+
+<p>This works for me, output is 23 and 1000.23.</p>

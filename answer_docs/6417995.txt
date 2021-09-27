@@ -1,0 +1,5 @@
+<p>What is likely happening is the system can't find the View you are pointing at.</p>
+
+<p>Make sure the only time you call R.id.foobar is in your onActivityStarted override.  This ensures that you won't get this error.</p>
+
+<p>Hope this helped.</p>

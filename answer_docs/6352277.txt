@@ -1,0 +1,13 @@
+<p>There's a good book on working with the ribbon UI in Office:
+RibbonX: Customizing the Office 2007 Ribbon
+Robert Martin, Ken Puls, Teresa Hennig</p>
+
+<p>The authors and MS both suggest a trick along these lines for solving this problem:</p>
+
+<p>When your add-in loads, it queries the app to find out what version it's running in.</p>
+
+<p>If Office 2003, it creates a normal CommandBars 'n Buttons UI.</p>
+
+<p>If Office 2007 or later, it looks for another add-in and demand-loads it.  This second add-in contains just the RibbonX code to create your ribbon UI plus handlers for the button click events.  The handler simply calls back to the main add-in.</p>
+
+<p>With a little clever use of tags in your RibbonXML and handler, you can have a single handler work out which routine in the main add-in to call.  </p>

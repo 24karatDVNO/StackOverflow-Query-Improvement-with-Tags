@@ -1,0 +1,7 @@
+<p>It's throwing the exception because at the end of the first line you closed out the where method. You are missing a ( that groups those lines together.</p>
+
+<pre><code>where ((p.ModelName != null &amp;&amp; p.ModelName.Contains(s)) ||
+       (p.ProductID != null &amp;&amp; p.ProductID.ToString().Contains(s)) || 
+       (p.ModelNumber != null &amp;&amp; p.ModelNumber.Contains(s)) ||
+       (p.Description != null &amp;&amp; p.Description.Contains(s)))
+</code></pre>

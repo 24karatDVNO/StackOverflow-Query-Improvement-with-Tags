@@ -1,0 +1,8 @@
+<p>If you start the script in nodejs, why not kill it there too, after 1800s?</p>
+
+<pre><code>var pid = startPHPProcess();
+
+setTimeout(function() {
+    killPHPProcess(pid);
+}, 1800);
+</code></pre>

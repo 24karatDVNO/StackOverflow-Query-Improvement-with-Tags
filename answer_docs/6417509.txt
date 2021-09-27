@@ -1,0 +1,13 @@
+<p>Let your expect a callback function as its second argument and call that callback when the AJAX request succeeds:</p>
+
+<pre><code>getFullAddressFromId: function (contactId, callback) {
+    $.ajax({
+        url: "/WebServices/FormOverview.asmx/GetFullAddressfromId",
+        data: { id: contactId },
+        success: callback,
+        error: function (err) {
+            _local.sendNotification.apply(this, ['Failed to load address information', 'Error']);
+        }
+    });     
+}
+</code></pre>

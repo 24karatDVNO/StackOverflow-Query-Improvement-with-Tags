@@ -1,0 +1,23 @@
+<p>C# version:</p>
+
+<pre><code>string s = @"
+&lt;param&gt;
+&lt;data&gt;
+    &lt;value&gt;&lt;string&gt;ErrorCode&lt;/string&gt;&lt;/value&gt;
+    &lt;value&gt;&lt;string&gt;200&lt;/string&gt;&lt;/value&gt;
+&lt;/data&gt;
+&lt;data&gt;
+    &lt;value&gt;&lt;string&gt;Desc&lt;/string&gt;&lt;/value&gt;
+    &lt;value&gt;&lt;string&gt;Age group&lt;/string&gt;&lt;/value&gt;
+&lt;/data&gt;
+&lt;/param&gt;";
+
+XDocument xdoc = XDocument.Parse(s);
+
+foreach (var elem in xdoc.XPathSelectElements("/param/data/value[string='ErrorCode']"))
+{
+    XName value = XName.Get("value");
+    foreach (var res in elem.ElementsBeforeSelf(value).Union(elem.ElementsAfterSelf(value)).Select(el =&gt; el.XPathSelectElement("string").Value))
+        Console.WriteLine(res);
+}
+</code></pre>

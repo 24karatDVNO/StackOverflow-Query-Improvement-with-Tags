@@ -1,0 +1,44 @@
+<p>I would recommend sending the image path in the first query, but maybe it's not possible, so here is the double ajax request to set the background images too:</p>
+
+<pre><code>$(document).ready( function() {
+    var i = 1;
+    $.ajax({
+        type: 'POST',
+        url: 'ajax.php',
+        data: 'id=' + i,
+        dataType: 'json',
+        cache: false,
+        success: function(result) {
+            $('.title').each(function(index){
+
+                if (result[index]) {
+                    // you need to set these local variables only if above is true
+                    var values = result[index].split('*'),
+                        indexa = values[0],
+                        indexb = values[1];
+
+                    $(this).html(indexb);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'ajax.php',
+                        // You set your post parameters for this query
+                        data: 'data1=' + indexa + '&amp;data2=' + indexb,
+                        dataType: 'json',
+                        cache: false,
+                        success: function(result) {
+                            // Here result will be your image path
+                            // You index the content with the index of title
+                            $(".content").eq(index).css("background","url(images/" + result + ")");
+                        }
+                    });
+
+                } else {
+                    $(this).html("&amp;nbsp;");
+                    // You may reset your background image here...
+                }
+            });
+        }
+    });
+});
+</code></pre>

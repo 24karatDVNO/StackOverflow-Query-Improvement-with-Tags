@@ -1,0 +1,25 @@
+<p>Split them in different tds</p>
+
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Foo&lt;/td&gt;
+        &lt;td&gt;&lt;input type=text id=Foo class=textInput&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;a href="#" class="ui-state-default ui-corner-all ui-icon ui-icon-triangle-1-s"&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>or</p>
+
+<p>add style float:left to the input</p>
+
+<pre><code>&lt;td&gt;
+  &lt;input type=text id=Foo class=textInput style="float:left"&gt;
+  &lt;a href="#" class="ui-state-default ui-corner-all ui-icon ui-icon-triangle-1-s"&gt;&lt;/a&gt;
+&lt;/td&gt;
+</code></pre>
+
+<p>or like Niklas's idea</p>
+
+<pre><code> .ui-icon {float: right; margin: 0 2px;}
+</code></pre>

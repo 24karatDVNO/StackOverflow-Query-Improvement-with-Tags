@@ -1,0 +1,5 @@
+<p>You also require specific versions of each of these - the ones you built and tested your application against. </p>
+
+<p>But they're all just python modules - ie uncompiled text files.  You can put them all with your source such that when they get your code they get all these exact dependencies at the same time.  Set pythonpath and you're done.</p>
+
+<p>Works just so long as the package is pure python. Any C libs lurking in there and you're probably back to pip/setuptools/apt/easy - "lxml" i'm talking about you.</p>

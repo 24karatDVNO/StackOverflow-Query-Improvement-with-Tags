@@ -1,0 +1,5 @@
+<p>"For a file or a socket(not pipe),"</p>
+
+<p>For a file it ought to be pretty easy to imagine.</p>
+
+<p>It's easy to experiment too.  Create a hard disk partition of size 100 MB, open a file, write 99 MB, and then try to write another 99 MB.  The experiment might not be reliable because some version of Windows might return FALSE, but it's easy to imagine that some other version of Windows might return TRUE with *lpNumberOfBytesWritten less than nNumberOfBytesToWrite.</p>

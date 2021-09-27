@@ -1,0 +1,28 @@
+<p>Well you're question kind gets cloudly when a mysterious "taxiLayer" appears positively gets muddy when you want set a binding on it instead of the "point" (which I guess represents a car).</p>
+
+<p>What needs to happen is you are using the <code>MapLayer.Position</code> dependency property as an attached property.  When the UIElement to which this is attached is a child of a <code>MapLayer</code> map layer knows how to layout it.</p>
+
+<p>So the question is how would assign a binding to this property so that when the value of the bound object changes the position is updated.  I'm going to make an assumption the Elipse created in the earlier part of the code is available as field I'll call <code>car</code>.   Then the code might look something like this:-</p>
+
+<pre><code>private Elipse AddCarDot(object source)
+{
+    Ellipse point = new Ellipse();
+    point.Width = 15;
+    point.Height = 15;
+    point.Fill = new SolidColorBrush(Colors.Blue);
+    point.Opacity = 0.65;
+    MapLayer.SetPositionOrigin(point, PositionOrigin.Center);
+    point.SetBinding(MapLayer.PositionProperty, new Binding("CarLocation") {Source = source});
+    carLayer.Children.Add(point);
+}
+
+private void cmbCar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if(cmbCar.SelectedItem != null)
+    {
+        AddCarDot(cmbCar);
+    }
+}
+</code></pre>
+
+<p>Now assuming you object that has a <code>CarLocation</code> property implement <code>INotifyPropertyChanged</code> so the binding can be alerted when <code>CarLocation</code> changes the dot will move appropriately.</p>

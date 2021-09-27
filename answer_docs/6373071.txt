@@ -1,0 +1,6 @@
+<p>escape the ' character, not sure if this is the correct syntax but something like this should work:</p>
+
+<pre><code>Cursor selCur= myDataBase.rawQuery("SELECT * FROM drinks WHERE name like '%"+editTextSearch.getText().toString().replace("'", "''")+"%'", null);
+</code></pre>
+
+<p>Beware of sql injection by the way. you should validate editTextSearch field for sql injection.</p>

@@ -1,0 +1,3 @@
+<p>Both of the options will work.  My first intuition would be to create an object model that reflects the choices in your UI.  You can then add this object to the knowledgebase and trigger your rules based on it.</p>
+
+<p>If you do go with the first option you can store the rules in Guvnor or you could also store the rules in a database and import the rules from a stream at runtime.  I'm currently working on a large enterprise project that incorporates drools changes via guvnor and the models change quite regularly.  We have not had any issues uploading new models into guvnor.</p>

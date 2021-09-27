@@ -1,0 +1,7 @@
+<p>You can use the regular expressions (System.Text.RegularExpressions namespace) to test for valid URLs:</p>
+
+<pre><code>var urlTester = new Regex( @"http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?" );
+bool isValidUrl = urlTester.IsMatch( url );
+</code></pre>
+
+<p>Also ask google for other Regex URL patterns if it's needed.</p>

@@ -1,0 +1,24 @@
+<p>Using the IOStream library is pretty much the same as you could have done using basic read and write without the intermediate buffer in C. i.e.</p>
+
+<pre><code>#include &lt;inttypes.h&gt;
+#include &lt;iostream&gt;
+
+void readData( std::istream input )
+{
+    // Declare variables
+    unsigned char login_req;
+    int64_t       device_id;
+    uint32_t      name_len;
+    char*         name_str;
+
+    // Populate variables;
+    input.read( &amp;login_req, 1 );
+    input.read( &amp;device_id, 8 );
+    input.read( &amp;name_len, 4 );
+    name_str = (char*)malloc( name_len + 1 );
+    input.read( name_str, name_len );
+    name_str[name_len] = '\0';
+}
+</code></pre>
+
+<p>Once again I am not error checking on the istream::read calls, worrying about endian issues, or putting in the type casts. Trying to keep it simple.</p>

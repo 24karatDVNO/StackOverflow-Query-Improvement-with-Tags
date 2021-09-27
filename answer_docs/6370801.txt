@@ -1,0 +1,17 @@
+<p>You can add the following to your home page</p>
+
+<pre><code>window.onload = function() {
+     //Open your lightbox here
+};
+</code></pre>
+
+<p>Or you can use Jquery all together with something like...</p>
+
+<pre><code>$(function(){
+   $(body).load(function(){
+      // Open your lightbox here
+   });
+});
+</code></pre>
+
+<p>both of the above will fire the lightbox once the page is loaded. Its probably better to use the jquery example as this will ensure that the DOM is ready.</p>

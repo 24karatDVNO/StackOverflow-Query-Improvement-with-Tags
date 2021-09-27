@@ -1,0 +1,15 @@
+<p>currently there is no way to send an html, because only plain text is accepted, and I can give you some tips why not to use mailto to send email: </p>
+
+<p>Disadvantages of mailto in HTML</p>
+
+<ol>
+<li>Mail address can be read by spam bots</li>
+<li>Mailto only works if visitor have configured mail client</li>
+<li>HTML mailto screams "This site is developed by begginer" </li>
+</ol>
+
+<p>There is only one advantage and its easy to create and implement into web site. But if you want to use it just encode your mail address so it can't be read with spam bots.</p>
+
+<p>But if you want to add footer in your mail message, then just in your body parameter add %0A, %0A is new line and your cursor will blink there so <code>?body=%0AThen your footer text</code> will give you footer in email.</p>
+
+<p>:)</p>

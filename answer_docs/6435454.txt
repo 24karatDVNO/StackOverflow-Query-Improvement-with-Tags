@@ -1,0 +1,8 @@
+<p>Do you have a forward declaration for the operator&lt;&lt; in your header (personDirectory.h i assume)? i.e:</p>
+
+<pre><code>ostream&amp; operator&lt;&lt;(ostream&amp; out,const set&lt;person*&gt;&amp; s);
+</code></pre>
+
+<p>If you don't, you need one.</p>
+
+<p>Note: the friend declaration isn't enough afaik.</p>

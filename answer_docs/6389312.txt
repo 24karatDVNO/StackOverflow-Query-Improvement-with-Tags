@@ -1,0 +1,9 @@
+<p>The line above the pushViewController should be</p>
+
+<pre><code>detailViewController.dialogTitle = [[title retain] autorelease];
+</code></pre>
+
+<p>This should work as well if dialagTitle is a retain property</p>
+
+<pre><code>detailViewController.dialogTitle = title;
+</code></pre>

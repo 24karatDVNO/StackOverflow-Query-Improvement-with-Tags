@@ -1,0 +1,4 @@
+<ol>
+<li>Don't do any long-running work on the UI thread. Use <code>BackgroundWorker</code>s or something like <a href="http://msdn.microsoft.com/en-us/data/gg577609" rel="nofollow">ReactiveExtensions</a> to make this easy.</li>
+<li>Create all <code>Window</code> instances on the UI thread.</li>
+</ol>

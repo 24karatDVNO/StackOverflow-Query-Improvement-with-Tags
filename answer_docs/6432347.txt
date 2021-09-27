@@ -1,0 +1,21 @@
+<p>I agree that the updates are occurring too often, but instead of a handler object to publish progress I'd probably write it something like the following with a bit of simple integer maths. </p>
+
+<p>It uses a precalculated tickSize (effectively the percent of the total size you want to show progress updates), and then tracks when to show next progress with a bit of simple integer division that isn't too compute heavy (uses 2 <code>int</code>s instead of a <code>Handler</code> object).</p>
+
+<pre><code>int lengthOfFile = conexion.getContentLength(); // note spelling :)
+int tickSize = 2 * lengthOfFile / 100; // adjust to how often you want to update progress, this is 2%
+int nextProgress = tickSize;
+
+// ...
+
+while ((count = input.read(data)) != -1 &amp;&amp; running) {
+    total += count;
+    if (total &gt;= nextProgress) {
+        nextProgress = (total / tickSize + 1) * tickSize;
+        this.publishProgress((int)(total*100/lengthOfFile));
+    }
+    output.write(data, 0, count);
+}
+
+// ...
+</code></pre>

@@ -1,0 +1,20 @@
+<p>Figured out what was going on.</p>
+
+<p>First to trouble shoot I ran the command:</p>
+
+<p>env</p>
+
+<p>From both my terminal and my php secript.</p>
+
+<p>I noticed in my php script that it had the following explicitly set:</p>
+
+<p>DYLD_LIBRARY_PATH=/some/path</p>
+
+<p>But in the terminal that value wasn't set at all. So all I did was add:</p>
+
+<p>DYLD_LIBRARY_PATH="";</p>
+
+<p>Here's my final command:
+DYLD_LIBRARY_PATH="";./wkhtmltopdf-0.9.9-OS-X.i368 ./'newxhtml.html' ./tmp_pdf.pdf 2>&amp;1</p>
+
+<p>And I just run it via shell_exec.</p>

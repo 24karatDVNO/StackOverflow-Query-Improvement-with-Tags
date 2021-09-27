@@ -1,0 +1,19 @@
+<p>Firstly there are some online sites that can help you to develop a regular expression. They let you enter some text, and a regular expression and then show you the result of applying the expression to the text. This saves you having to write code as you develop the expression and expand your understanding. A good site I use alot is <a href="http://www.fileformat.info/tool/regex.htm" rel="nofollow">FileFormat regex</a> because it allows me to test one expression against multiple test strings. A quick search also brought up <a href="http://www.regexplanet.com/simple/" rel="nofollow">regex Planet</a>, <a href="http://gskinner.com/RegExr/" rel="nofollow">RegExr</a> and <a href="http://regexpal.com/" rel="nofollow">RegexPal</a>. There are lots of others.</p>
+
+<p>In terms of resources, the <a href="http://download.oracle.com/javase/6/docs/api/" rel="nofollow">Java Pattern class reference</a> is useful for Java development and I quite like <a href="http://www.regular-expressions.info/" rel="nofollow">regular-expression.info</a> as well.</p>
+
+<p>For your problem I used fileFormat.info and came up with this regex to match "http://whatismyipaddress.com/ip/1.1.1.1":</p>
+
+<pre><code>.*//([.\w]+)/.*/(\d+(?:.\d+){3})
+</code></pre>
+
+<p>or as a java string:</p>
+
+<pre><code>".*//([.\\w]+)/.*/(\\d+(?:.\\d+){3})"
+</code></pre>
+
+<p>A quick break down says anything (<code>.*</code>), followed by two slashes (<code>//</code>), followed by at least one or more decimal points or characters (<code>([.\w]+)</code>), followed by a slash, any number of characters and another slash (<code>/.*/</code>), followed by at least 1 digit (<code>(\d+</code>), followed by 3 sets of a decimal point and at least one digit (<code>(?:.\d+){3})</code>). The sets of brackets around the server name part and the IP part are called capturing groups and you can use methods on the Java Matcher class to return the contents of these sections. The <code>?:</code> on the second part of the ip address tells it that we are using the brackets to group the characters but it's not to be treated as a capturing group.</p>
+
+<p>This regex is not as strict or as flexible as it should be, but it's a starting point. </p>
+
+<p>All of this can be researched on the above links.</p>

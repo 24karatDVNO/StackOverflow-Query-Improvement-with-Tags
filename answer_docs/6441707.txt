@@ -1,0 +1,51 @@
+<p><strong>EDIT : Here is another attempt at this.</strong>
+This seems to working for all cases.</p>
+
+<pre><code>if [[ $# -ge 1 ]]
+then 
+    str=$1;
+    echo $str &gt; myCmd
+else
+    str=`cat myCmd`;
+fi
+echo $str
+history -s $str
+</code></pre>
+
+<p>Execute this as : $ source myScript "cmd".(adding source is important). After that command is displayed on terminal and if you want to execute that enter !! or press the <strong>UP</strong> key (its the last command in the history), then you can also edit the command. Again, this script also stores your last command, so if you run this script without arguments it shows you the last command that you executed. Also, alias myscript="source myscript" can be done to make things easier.</p>
+
+<p>Here is what the output looks like :</p>
+
+<pre><code>priyank@priyank-laptop ~ $ source try.sh 'cat i.cpp | grep main'
+cat i.cpp | grep main
+priyank@priyank-laptop ~ $ !!
+cat i.cpp | grep main
+int main()
+priyank@priyank-laptop ~ $ . try.sh
+cat i.cpp | grep main
+priyank@priyank-laptop ~ $ !!
+cat i.cpp | grep main
+int main()
+priyank@priyank-laptop ~ $ 
+</code></pre>
+
+<p>My first attempt :
+This is the best i could come up with, but still this has some problems (runs only basic cmds, no pipes etc) :</p>
+
+<pre><code>if [[ $# -ge 1 ]]
+then
+    str=$1 
+    echo $1 &gt; myCmd
+else 
+    str=`cat myCmd`;
+fi
+echo $str | cat &amp;
+t=`cat`
+$str;
+</code></pre>
+
+<p>Press Ctrl+D to run the command. Ctrl+C if you do not want to run the command.
+If there is something wrong you can copy and try the command. You can try and edit this script to suit your needs.</p>
+
+<p>You can also run it as : bash script.sh "new cmd".
+New cmd will be overwritten in your myCmd file, which contains your command. If no cmd is provided then it uses the cmd in myCmd file.</p>

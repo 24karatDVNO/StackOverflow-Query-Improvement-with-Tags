@@ -1,0 +1,18 @@
+<p>You have a syntax error in the query, and/or something else wrong with the database. Within your dbquery function, you'd need to have something like:</p>
+
+<pre><code>$result = mysql_query($sql) or (die(mysql_error());
+</code></pre>
+
+<p>which will abort the script and output the reason why the query failed.</p>
+
+<p>However, given your query string, and your data going into it, the error is due to a lack of quotes around your <code>$cat</code> within the query:</p>
+
+<pre><code>SELECT ... WHERE `cat_slug`=funny;
+</code></pre>
+
+<p>Unless your table has a field called "funny", this is a syntax error. You need:</p>
+
+<pre><code>SELECT ... WHERE `cat_slug`='funny';
+</code></pre>
+
+<p>(note the quotes).</p>

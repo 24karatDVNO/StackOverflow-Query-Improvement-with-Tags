@@ -1,0 +1,15 @@
+<p>I am not aware of a <code>.Data</code> property for the BindingSource object, but there is a <code>.DataSource</code> property, which can be set to null:</p>
+
+<pre><code>bindingSource.DataSource = null;
+</code></pre>
+
+<p>This releases the binding source from the data. However, looking at the <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.bindingsource.datasource.aspx" rel="nofollow">reference for BindingSource.DataSource</a>:</p>
+
+<pre><code>DataSource property             List results
+----------------------------    -------------------------------------------
+null with DataMember set        Not supported, raises ArgumentException.
+</code></pre>
+
+<p>If you're using a DataMember, you can't set the DataSource to null without an exception.</p>
+
+<p>Unfortunately I don't know whether your workaround is a proper way of doing it, but at least now we know that you can't simply bind to null when a DataMember is set.</p>

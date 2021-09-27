@@ -1,0 +1,68 @@
+<p>What about this? It's a hack but seems to work okay.</p>
+
+<pre><code>/**
+ * 
+ */
+package lt;
+
+import java.util.Currency;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+/**
+ * LocaleTest - LocaleTest
+ * @version 1.0
+ * @author &lt;a href="mailto:Dessimat0r@ntlworld.com"&gt;Chris Dennett&lt;/a&gt;
+ */
+public class LocaleTest {
+    public static final Map&lt;String, Currency&gt; CURRENCIES = new HashMap&lt;String, Currency&gt;();
+    static {
+        for (Locale l : Locale.getAvailableLocales()) {
+            try {
+                Currency c = Currency.getInstance(l);
+
+                if (c != null) {
+                    CURRENCIES.put(l.getCountry(), c);
+                    System.out.println("key: " + l.getCountry() + ", loc: " + l + ", curr: " + c + " (" + c.getSymbol(l) + ")");                
+                }
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+    }
+
+    public static final void main(String args[]) {
+        if (args == null || args.length == 0 || (args[0] = args[0].trim()).isEmpty()) {
+            System.out.println("Please provide an argument!");
+            return;
+        }
+        System.out.println("LocaleTest: got " + args[0] + " as argument");
+        Currency c = CURRENCIES.get(args[0]);
+        if (c != null) {
+            System.out.println("LocaleTest: got " + c + " (" + c.getSymbol() + ") as currency");
+        } else {
+            System.out.println("LocaleTest: no currency found for " + args[0]);
+        }
+    }
+}
+</code></pre>
+
+<p>Output with GB given:</p>
+
+<pre><code>...
+key: YE, loc: ar_YE, curr: YER (?.?.?)
+key: MK, loc: mk_MK, curr: MKD (Den)
+key: CA, loc: en_CA, curr: CAD ($)
+key: VN, loc: vi_VN, curr: VND (?)
+key: NL, loc: nl_NL, curr: EUR (€)
+key: US, loc: es_US, curr: USD (US$)
+key: CN, loc: zh_CN, curr: CNY (?)
+key: HN, loc: es_HN, curr: HNL (L)
+key: US, loc: en_US, curr: USD ($)
+..
+LocaleTest: got GB as argument
+LocaleTest: got GBP as currency
+</code></pre>
+
+<p>An issue is that a currency may display the name as symbol rather than the symbol ($ £ etc.). The currency has to be created with the locale of its originating country for that to work. If you fix this, you might still have currencies with symbols that don't look right.</p>

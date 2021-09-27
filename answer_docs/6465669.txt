@@ -1,0 +1,16 @@
+<p>Is it because in the else statement of your function, you are calling the same function name again? So its just recurring. </p>
+
+<p>Try renaming the function name so its not overriding the implicit getter and see what happens. For example</p>
+
+<pre><code>&lt;cffunction name="getNewname" returnType="string"&gt; 
+&lt;cfscript&gt;
+    if (this.getLocked()) {
+        return this.getScreenName();
+    } else {
+        return this.getFullname();
+    }
+
+&lt;/cfscript&gt;
+</code></pre>
+
+<p></p>

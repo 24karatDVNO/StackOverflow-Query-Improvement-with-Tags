@@ -1,0 +1,3 @@
+<p>The FixedDocument element also has thread-affinity. So if you are creating it in a separate thread than the documentViewer1, then you would get that exception.</p>
+
+<p>Basically, anything that derives from <a href="http://msdn.microsoft.com/en-us/library/system.windows.threading.dispatcherobject.aspx" rel="nofollow">DispatcherObject</a> has a thread-affinity. <a href="http://msdn.microsoft.com/en-us/library/system.windows.documents.fixeddocument.aspx" rel="nofollow">FixedDocument</a> derives from DispatcherObject, just like the viewer controls.</p>

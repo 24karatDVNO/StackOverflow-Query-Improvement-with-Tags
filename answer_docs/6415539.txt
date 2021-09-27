@@ -1,0 +1,9 @@
+<pre><code>declare @Qid int
+set @Qid = 1
+
+select top 1 Q2.Qid, COUNT(*) from Questions Q1
+inner join Questions Q2 on Q1.Tags = Q2.Tags
+where Q1.Qid = @Qid and Q2.Qid &lt;&gt; @Qid
+group by Q2.Qid
+order by COUNT(*) desc
+</code></pre>

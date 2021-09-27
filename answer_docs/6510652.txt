@@ -1,0 +1,6 @@
+<p>I know this is old, but ust make sure you have the following code somewhere visible in your app/views/layouts/default.ctp (or whatever is your layout for this application)</p>
+
+<pre><code>&lt;?php echo $this-&gt;Session-&gt;flash(); ?&gt;
+</code></pre>
+
+<p>It will echo nothing if there is no message to be displayed, but if there is a message, then it will be output accordingly.</p>

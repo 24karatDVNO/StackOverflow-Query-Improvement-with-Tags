@@ -1,0 +1,27 @@
+<p>Just found out the solution looking at the demos. Within my main activity, I need to set the EGL configuration chooser. Something like this should be written in the onCreate method of the main activity (in which I add the opengl view and the camera view):</p>
+
+<pre><code>protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //Create an Instance with this Activity
+        glSurface = new GLSurfaceView(this);
+        // We want an 8888 pixel format because that's required for a 
+        //translucent window. And we want a depth buffer. 
+        glSurface.setEGLConfigChooser(8, 8, 8, 8, 16, 0);  // &lt;-- NEW LINE ADDED
+        //Set our own Renderer
+        MyRenderer renderer = new MyRenderer ();
+        glSurface.setRenderer(renderer);
+        glSurface.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+
+        //Set the GLSurface as View to this Activity
+        setContentView(glSurface);
+
+        mCameraView = new CameraView(this);
+        addContentView(mCameraView, new LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT));
+
+                // More code ...
+}
+</code></pre>
+
+<p>Apparently, that line is necessary for having a translucent opengl window.</p>

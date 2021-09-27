@@ -1,0 +1,29 @@
+<p>Since it looks like homework, I will give you a solution I doubt you can submit to give you some ideas. ;)</p>
+
+<pre><code>public static void main(String... args) {
+    displayPatternIII(5);
+}
+
+public static void displayPatternIII(int lines) {
+    int cols = lines + 2;
+    for (int i = 0; i &lt; cols * lines; i++) {
+        int x = i % cols;
+        int y = i / cols;
+        if (x == lines + 1)
+            System.out.println();
+        else if (x + y &lt; lines)
+            System.out.print(' ');
+        else
+            System.out.print(cols - x - 1);
+    }
+}
+</code></pre>
+
+<p>prints</p>
+
+<pre><code>     1
+    21
+   321
+  4321
+ 54321
+</code></pre>

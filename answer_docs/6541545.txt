@@ -1,0 +1,8 @@
+<p>In <strong>forms.py</strong></p>
+
+<pre><code>class ReportForm_insert(forms.ModelForm):  
+    class Meta:  
+        model=Report
+</code></pre>
+
+<p>That is it. Django automatically understands that a drop down has to be created when we declare it as a Foreign key in the model.</p>

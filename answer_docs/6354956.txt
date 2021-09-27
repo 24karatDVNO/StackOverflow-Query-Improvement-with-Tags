@@ -1,0 +1,13 @@
+<p>For plugins, I have great experience with MvcTurbine (it can be used with other projects, not only mvc). If you use it in combination with Ninject and define interface for plugin, ie:</p>
+
+<pre><code>IPlugin{
+    string Name {get;}
+    someResultType PerformAction(someArgType arg);
+
+}
+</code></pre>
+
+<p>and, in your plugin dll you register implementation of IPlugin by implementing IServiceRegistrator interface from MvcTurbine, then if you place dll with plugin in bin directory, your plugin implementation will be added to list that is passed into constructor of some class that uses DI and receives List, or you can resolve it from IOC container by hand.
+It is a lot cleaner than loading your assemblies by hand and inspecting them for interfaces/implementations etc...</p>
+
+<p>If you are interested in this, please ask if anything is unclear and I will elaborate.</p>

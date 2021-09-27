@@ -1,0 +1,7 @@
+<p>First of all - PK should NOT have any business meaning - imagine what if user ask for change login. Just use simple autoinc.
+You should use those tables:</p>
+
+<pre><code>Users (id(PK), username, ....)
+Questions (id(PK), question, ....)
+Answers (id(PK), userId(FK)(I), questionId(FK)(I), date(I), answer)
+</code></pre>

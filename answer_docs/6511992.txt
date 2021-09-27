@@ -1,0 +1,15 @@
+<p>Apparently older versions of android using setAdapter on absListView throws NoSuchMethodError, so the solution is to cast it first like so:</p>
+
+<p><code>
+if (libraryView instanceof ListView){
+    ((ListView)libraryView).setAdapter(listadapter);
+}</p>
+
+<p>else if (libraryView instanceof GridView){
+            ((ListView)libraryView).setAdapter(listadapter);
+}
+</code></p>
+
+<p>Found the answer here: <a href="http://comments.gmane.org/gmane.comp.handhelds.android.devel/150653" rel="nofollow">http://comments.gmane.org/gmane.comp.handhelds.android.devel/150653</a></p>
+
+<p>Thanks for everyone's help!</p>

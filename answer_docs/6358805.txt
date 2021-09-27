@@ -1,0 +1,7 @@
+<p>Not easily, really. I can think of a few ways</p>
+
+<ul>
+<li>call a Java program within your C code that just calls log4j (slow, you have to load up Java for each logging call)</li>
+<li>leave a Java process running that accepts log requests (communicate with the process using one of the options here <a href="https://stackoverflow.com/questions/904492/good-alternative-to-shared-memory-ipc-for-java-c-apps-on-linux">Good alternative to shared memory IPC for Java/C++ apps on Linux</a>)</li>
+<li>use GCJ to natively compile a Java program that calls log4j, then link it to your C program</li>
+</ul>

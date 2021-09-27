@@ -1,0 +1,8 @@
+<p>I do not believe that it is possible to change the disposition of a local symbol to be global without editing the library as a binary via some custom program or very low level ELF utility. But I wouldn't recommend that approach for anything that you are going to run in production, or intend to maintain.</p>
+
+<p>I don't know much about GL, however, either:</p>
+
+<ul>
+<li><p>glDrawTexiOES is local because it is considered an implementation detail of the library. In that case, as a local symbol, you must not use it, as the library authors have explicitly denied you access and can therefore alter its signature and interpretation as they see fit at any time.</p></li>
+<li><p>glDrawTexiOES is supposed to be global, because it is part of the GL API, and the author of the GL library for your board has failed to inform the linker that the symbol should be exported. If that is the case, you should report a bug upstream.</p></li>
+</ul>

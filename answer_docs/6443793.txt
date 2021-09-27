@@ -1,0 +1,5 @@
+<p>I'm not sure what the current best practice is, but in our shop we create console applications and use the task scheduler to execute them.</p>
+
+<p>A library (dll) won't be executable from the task scheduler AFAIK, and a WinForms app isn't very useful for any app that runs automatically (i.e.: doesn't require user interaction).</p>
+
+<p>A service would be appropriate for an application that needs to respond to system events/changes when they occur, which doesn't sound like your use case.</p>

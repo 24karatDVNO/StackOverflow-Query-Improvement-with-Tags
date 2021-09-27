@@ -1,0 +1,23 @@
+<p>Well, jQuery submit does nothing, you need to have a form inside the partial view, then what happen is when the jQuery dialog submit execute, you call your form submit which have the action defined already.</p>
+
+<p>See my code below which is non ajax submit</p>
+
+<pre><code>      }); 
+    $dialog
+        .dialog("option", "buttons", {
+            "Submit":function(){
+                var dlg = $(this);
+                var $frm = $(frm);
+                if(onFormSubmitting != null)
+                    onFormSubmitting();
+                $frm.submit();
+        },
+        "Cancel": function() { 
+            $(this).dialog("close");
+            $(this).empty();
+        }    
+
+    });
+</code></pre>
+
+<p>And regarding ur question inside post action, you should perform your business logic then call "Return RedirectToAction("viewname",new {id=xxx})"</p>

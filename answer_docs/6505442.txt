@@ -1,0 +1,13 @@
+<p>This code is valid, but it will not do what you want</p>
+
+<pre><code>if (url==showbasket.html||order1.html
+</code></pre>
+
+<p>"url==showbasket.html" checks if "url" is equal to the "html" attribute of object "showbasket". Since showbasket does not exist, your code will throw an exception. </p>
+
+<p>"||order1.html" means the same, check if the "html" attribute of "order1" object is "true"</p>
+
+<p>Like others have said, what you want to do is :</p>
+
+<pre><code>if ( url == "showbasket.html" || url == "order1.html"
+</code></pre>

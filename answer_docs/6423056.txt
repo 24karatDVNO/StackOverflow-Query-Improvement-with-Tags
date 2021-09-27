@@ -1,0 +1,31 @@
+<pre><code> int main() {
+
+ int x, y; 
+ for(x = 10; x &gt;= 1; x--)
+ {
+   // this for loop will run 10 times, with x values: 10 9 8 ... 2 1
+   for(y = 1; y &lt; x; y++)    
+   {
+     // will print 1234 ... up to one less than the current value of x
+     printf("%d", y);
+   }
+   printf("\n");
+ }
+
+ system("pause");
+ return 0;
+ }
+</code></pre>
+
+<p>Expect output</p>
+
+<pre><code>123456789
+12345678
+1234567
+123456
+12345
+1234
+123
+12
+1
+</code></pre>

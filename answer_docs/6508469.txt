@@ -1,0 +1,6 @@
+<p>Ok, so I figured it out. Basically even though the list of Behaviour is a property on Field, you still have to add that to the list of types that use the custom model binder in the Global.asax file</p>
+
+<pre><code>System.Web.Mvc.ModelBinders.Binders.Add(typeof(Types.Behaviour), new ConcreteTypeModelBinder());
+</code></pre>
+
+<p>With this line in place the type changing code I had worked a treat.</p>

@@ -1,0 +1,10 @@
+<p>you can always add an app specific yaml file that you load from a file in initializers</p>
+
+<p>in initializers:</p>
+
+<p>raw_config = File.read("#{Rails.root}/config/app_config.yml")</p>
+
+<p>APP_CONFIG = YAML.load(raw_config)[Rails.env].symbolize_keys</p>
+
+<p>then you can access APP_CONFIG from anywhere in your app
+APP_CONFIG[:some_var]</p>

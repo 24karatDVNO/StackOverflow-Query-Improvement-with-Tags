@@ -1,0 +1,19 @@
+<p>Actually, even what you have done will not show the rows it updated, because meanwhile (after the update) some process may add/change rows.</p>
+
+<p>And this will show all the records, including the ones updated yesterday :)</p>
+
+<p>If I want to see exactly which rows were changed, I would go with temp table. First select into a temp table all the row IDs to be updated. Then perform the update based on the raw IDs in the temp table, and then return the temp table.</p>
+
+<pre><code>CREATE TEMPORARY TABLE to_be_updated
+SELECT id
+FROM myTable
+WHERE someVal = 1;
+
+UPDATE myTable
+SET niceColumn = 1
+WHERE id IN (SELECT * FROM to_be_updated);
+
+SELECT *
+FROM myTable
+WHERE id IN (SELECT * FROM to_be_updated)
+</code></pre>

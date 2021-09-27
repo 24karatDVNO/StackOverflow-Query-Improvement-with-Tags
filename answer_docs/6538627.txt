@@ -1,0 +1,3 @@
+<p><code>em.remove( yourEntity )</code> command will book your entity for removal from the Persistence Context and afterwards from the database, but it does not take effect immediatelly. I can imagine that removal from persistence context and database had not already happened when you persisted the new entity.</p>
+
+<p>You may try to delete this entity with a custom JPQL query like <code>"DELETE FROM YourEntity ye WHERE ye.primary1 = :primary1 AND ye.primary2 = :primary2... whatever;"</code> after remove() command. I assume this removes your entity from the persistence context immediatelly, but I'm not sure. Give it a try, and let us know :)</p>

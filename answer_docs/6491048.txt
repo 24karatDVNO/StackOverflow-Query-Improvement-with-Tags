@@ -1,0 +1,11 @@
+<p>Try this:</p>
+
+<pre><code>p-&gt;setSizePolicy (QSizePolicy::Expanding,QSizePolicy::Expanding);
+</code></pre>
+
+<p>and after call to </p>
+
+<pre><code>ui-&gt;scrollArea-&gt;setWidget(p);
+</code></pre>
+
+<p>call <code>p-&gt;adjustSize()</code> to fit the scroll area size.</p>

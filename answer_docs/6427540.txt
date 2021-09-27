@@ -1,0 +1,17 @@
+<p>I've had to do this very thing. Here's the code I used:</p>
+
+<pre><code>$(function() {
+    var 
+    jqDdl = $('#ddl'),
+    onChange = function(event) {
+        if ($(this).val() === 'Other') {
+            $('#otherTxtbox').show();
+            $('#otherTxtbox').focus().select();
+        } else {
+            $('#otherTxtbox').hide();
+        }
+    };
+    onChange.apply(jqDdl.get(0)); // To show/hide the Other textbox initially
+    jqDdl.change(onChange);
+});
+</code></pre>

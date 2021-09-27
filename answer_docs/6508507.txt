@@ -1,0 +1,10 @@
+<p>You were closer on the first try I think. You want something like this:</p>
+
+<pre><code>SELECT MAX(tableC.cValue) FROM tableA
+LEFT JOIN tableB
+  ON tableA.tableA_id = tableB.tableA_id
+LEFT JOIN tableC
+  ON tableB.tableB_id = tableC.tableB_id
+</code></pre>
+
+<p><a href="http://www.w3schools.com/sql/sql_join.asp" rel="nofollow">http://www.w3schools.com/sql/sql_join.asp</a></p>

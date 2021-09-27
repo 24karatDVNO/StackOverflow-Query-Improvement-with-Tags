@@ -1,0 +1,45 @@
+<p>I will suggest you to use a DOM Parser for this type of work since any regex you try will break at some point using sed or any of its variant. Since you've asked for an alternative in your comments consider following code in PHP:</p>
+
+<pre><code>$content = '
+&lt;HTML&gt;
+&lt;HEAD&gt;
+   &lt;link href="/style.css" rel="stylesheet" type="text/css"&gt;
+   &lt;title&gt;
+   Page Title Goes here
+   &lt;/title&gt;
+   &lt;script&gt;
+       var str = "ZZZZZ1233@qq.edu";
+   &lt;/script&gt;    
+&lt;/HEAD&gt;
+';
+$dom = new DOMDocument();
+$dom-&gt;loadHTML($content);
+$head='
+&lt;head&gt;
+&lt;script&gt;
+   // your javascript goes here
+   var x="foo";
+&lt;/script&gt;
+';
+$headTag = $dom-&gt;getElementsByTagName("head")-&gt;item(0);
+if ($headTag != null) {
+   $title = $headTag-&gt;getElementsByTagName("title")-&gt;item(0);
+   if ($title != null)
+      $head .= '&lt;title&gt;' . $title-&gt;textContent . '&lt;/title&gt;
+';
+}
+$head .= '&lt;/head&gt;';
+var_dump($head);
+</code></pre>
+
+<h3>OUTPUT</h3>
+
+<pre><code>string(118) "
+&lt;head&gt;
+&lt;script&gt;
+   // your javascript goes here
+   var x="foo";
+&lt;/script&gt;
+&lt;title&gt;Page Title Goes here&lt;/title&gt;
+&lt;/head&gt;"
+</code></pre>

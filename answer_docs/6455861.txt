@@ -1,0 +1,16 @@
+<p>Use the breadcrump methods in the Html helper.</p>
+
+<p>In your layout:</p>
+
+<pre><code> echo $this-&gt;Html-&gt;getCrumbs(' &gt; ','Home');
+</code></pre>
+
+<p>In your view:</p>
+
+<pre><code>$this-&gt;Html-&gt;addCrumb('Users', '/users');
+$this-&gt;Html-&gt;addCrumb('Add User', '/users/add');
+</code></pre>
+
+<p>In each of your views, you can add in a new crumb, or the chain of crumbs to be able to see a history of your actions.</p>
+
+<p>More here: <a href="http://book.cakephp.org/view/1653/Creating-breadcrumb-trails-with-HtmlHelper" rel="nofollow">http://book.cakephp.org/view/1653/Creating-breadcrumb-trails-with-HtmlHelper</a></p>

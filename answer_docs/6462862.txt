@@ -1,0 +1,7 @@
+<p>For memory reservation you need to think twice before convert a MovieClip to a Bitmap sequence. Is it really that need ? Can you break things down as there are several things (like the background) is static (or just moving around) why don't cache bitmap for each elements instead of one big Bitmap sequence ?</p>
+
+<p>I usually used AnimatedBitmap (the name for bitmap sequence alternative for a MovieClip) only for small size animated icons, and other heavy calculation stuffs (like fire / smoke effects ...). Just break things down as much as you can !</p>
+
+<p>As far as i know, there are no way to compress the memory used by a BitmapData located in the memory and there are nothing related to Alchemy could help improve memory used in this case.</p>
+
+<p>Animated GIF won't works in Flash natively, you will need some library to do that. Search for AnimatedGIF as3 library from bytearray.com, actually the library just read the gif file in raw byteArray and convert to an animatedBitmap just like how you've done.</p>

@@ -1,0 +1,6 @@
+<p>You can make a hidden field in your form, for example</p>
+
+<pre><code>&lt;input type="hidden" name="isSubmitted" value ="1"&gt;
+</code></pre>
+
+<p>Then, in your checking routines, you first check if $_POST['isSubmitted'] (or $_GET['isSubmitted']) == 1 If it's true, then you know that user have been submitted your form, and you can make your additional checks</p>

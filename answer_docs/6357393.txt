@@ -1,0 +1,20 @@
+<p>You were pretty much almost there, you forgot the numeric index for the <code>Section</code> array.</p>
+
+<pre><code>$arr = array(
+    0 =&gt; array(
+        'Category' =&gt; array(
+            'name' =&gt; 'aaa'),
+        'Section' =&gt; array(
+            0 =&gt; array(
+                'name' =&gt; 'b'),
+            1 =&gt; array(
+                'name' =&gt; 'a'),
+            2 =&gt; array(
+                'name' =&gt; 'c')
+        )
+    )
+);
+
+$brr = Set::sort($arr, '{n}.Section.{n}.name', 'ASC');
+pr($brr);
+</code></pre>

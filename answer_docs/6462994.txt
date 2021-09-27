@@ -1,0 +1,32 @@
+<p>Is <a href="http://jsfiddle.net/Eau4p/8/" rel="nofollow">this</a> how you wanted it to work?  </p>
+
+<p>I simplified your html and added classes to the Spanish/English pieces of the content.</p>
+
+<pre><code>&lt;style type="text/css"&gt;
+    .notshown{display:none;}
+&lt;/style&gt;     
+&lt;h2 id="hd"&gt;Hover over this title to switch from Spanish to English&lt;/h2&gt;
+
+&lt;h3 class="spanish"&gt;Spanish&lt;/h3&gt;
+&lt;h3 class="english notshown"&gt;English&lt;/h3&gt;
+&lt;div class="spanish" title="spanish" style="margin-right:400px"&gt;
+   "Hola! Uno, dos, tres"
+&lt;/div&gt;
+
+&lt;div class="english notshown" title="english" style="margin-right:400px"&gt;
+   "Hi! One, Two Three"
+&lt;/div&gt;
+</code></pre>
+
+<p>Here is the javascript:</p>
+
+<pre><code>$(document).ready(function() {
+    $('#hd').hover(function() {
+        $(".english").show();
+        $(".spanish").hide();
+    }, function(){
+        $(".spanish").show();
+        $(".english").hide();
+    });
+});
+</code></pre>

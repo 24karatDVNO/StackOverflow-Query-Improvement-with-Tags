@@ -1,0 +1,7 @@
+<p>Do not use a try catch block to validate your date input. If you really want to do this in code behind, use tryparse instead, in combination with a CustomValidator:</p>
+
+<pre><code>  void ServerValidation (object source, ServerValidateEventArgs arguments)
+  {
+        arguments.IsValid = (DateTime.TryParse(arguments.value, out dateValue));
+  }
+</code></pre>

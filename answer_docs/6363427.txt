@@ -1,0 +1,5 @@
+<p>In C++, there is a header called <code>&lt;complex&gt;</code> which defines a template class <code>double&lt;&gt;</code>, which can be instantiated for <code>float</code>, <code>double</code>, and <code>long double</code>. This allows you to define complex numbers and do the usual arithmetic operations and some functions.</p>
+
+<p>There is no <code>imaginary</code> class or type in standard C++, just complex numbers with a real part of 0.0.  Any <code>imaginary</code> class would be some sort of vendor extension.  (Personally, I don't see that an <code>imaginary</code> class would be of much use.  It's not even closed under multiplication.)</p>
+
+<p>Any name that begins with an underscore and is followed by a capital letter is specifically reserved for use by the implementation, and so there isn't anything standard C++ has to say about them.  Any such type would be implementation-specific, and you haven't specified an implementation.  Moreover, it's probably not something you should be using yourself.</p>

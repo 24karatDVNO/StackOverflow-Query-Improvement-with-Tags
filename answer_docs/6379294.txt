@@ -1,0 +1,16 @@
+<p>You <em>can't</em> have same id used twice on two HTML elements. Furthermore, you <em>can't</em> start an id with a number.</p>
+
+<p>If you can change your HTML markup to use classes, which would look like this:</p>
+
+<pre><code>&lt;table&gt;
+    &lt;tr class="one"&gt;Parent&lt;/tr&gt;
+    &lt;tr class="one"&gt;Child&lt;/tr&gt;
+    &lt;tr class="one"&gt;Child&lt;/tr&gt;
+    &lt;tr class="one"&gt;Child&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>Then, you would do it like this:</p>
+
+<pre><code>$('.one').hide();
+</code></pre>

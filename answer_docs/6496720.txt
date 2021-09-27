@@ -1,0 +1,5 @@
+<p>Ignoring SIGTTIN and friends does not remove the underlying problem that caused them to be generated in the first place.</p>
+
+<p>I imagine in your example writing output to the terminal works fine, but reading either gets nothing or partial data.  This is because your program reading data from the terminal doesn't stop someone else reading data as well.  When the terminal is your shell, this leads to situations where you need to double every character to try and recover from whatever problem you had which caused this.</p>
+
+<p>Yes, you can run a program from the command line which will stop it from reading data and allow your other program to come in and grab the input but…if you can arrange for that, you should just arrange to have the program which is running do the user interaction itself and send the results to the daemon/child-of-daemon via IPC.</p>

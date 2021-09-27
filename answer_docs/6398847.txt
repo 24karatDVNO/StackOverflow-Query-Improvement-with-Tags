@@ -1,0 +1,10 @@
+<p>This is a web page. Webpages are state-less. Thus you cannot preserve any state. Thus you cannot preserve your login across requests. Thus you have to auth every request.</p>
+
+<p>An alternative would be to only run the before filter on certain controller actions. Right now it runs on every action, which my be not necessary.</p>
+
+<p>Try:</p>
+
+<pre><code>before_filter :auth, :only=&gt; my_action_name
+</code></pre>
+
+<p>(P.S. That might be the wrong syntax -- I'm confused 'cause rails changes so much -- just look it up)</p>

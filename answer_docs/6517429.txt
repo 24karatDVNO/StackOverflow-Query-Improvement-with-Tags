@@ -1,0 +1,27 @@
+<p>These two should be used in your <code>getJSON</code> complete function.</p>
+
+<pre><code>json.features[0].geometry.coordinates[0]
+json.features[0].geometry.coordinates[1]
+</code></pre>
+
+<p>You shouldn't just <code>alert</code> after you issue an Ajax request. Why? Because Ajax call is asynchronous by nature. That simply means that request is send out and your code immediately continues its execution without waiting for the request to get a response. That's why your <code>alert</code> is executed (without any results of course) before you get results back from the server.</p>
+
+<p>And also <code>getJSON</code> will not return data the way that you've done it. It will return data in its complete function where you'll have to consume  it yourself.</p>
+
+<pre><code>function findTristan(){
+    var FindUrl = "/proxy.php";
+
+    var tristanCoords = {};
+
+    $.getJSON(FindUrl, function(data){
+
+        tristanCoords = data.features[0].geometry.coordinates;
+        alert("x: " + tristanCoords[0] + ", y: " + tristanCoords[1]);
+
+    });
+}
+</code></pre>
+
+<h2>Advice</h2>
+
+<p>Whenever you have to work with javascript, objects etc. use <a href="http://www.getfirebug.com" rel="nofollow">Firebug</a> (Firefox plugin) and debug your code. You'll be ablle to drill down your object and exactly see its structure.</p>

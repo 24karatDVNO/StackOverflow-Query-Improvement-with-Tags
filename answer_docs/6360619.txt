@@ -1,0 +1,15 @@
+<p>I think your if-statement is wrong:</p>
+
+<pre><code>-(void) scroll
+{
+    if (scrollingToTop==YES) 
+    {
+        [self performSelector:@selector(scrollToBottom) withObject:nil afterDelay:1.0];
+    }
+    else...
+</code></pre>
+
+<p>if you delete your scrollToBottom-method your code fails.<br><br>
+you should change this to <br>
+            [self performSelector:@selector(<strong>scrollToTop</strong>) withObject:nil afterDelay:1.0];<br>
+because you are asking if scrollingToTop is true</p>

@@ -1,0 +1,9 @@
+<p>If you don't care about the speed of inserts and deletions, then you probably want multiple indexes which target the queries precisely.</p>
+
+<p>You could create an auto increment primary key as you suggest, but also create indexes as required to cover the reporting queries. Create a unique constraint on the columns you currently have in the key to enforce uniqueness.</p>
+
+<p>Index tuning wizard will help with defining the optimum set of indexes, but it's better to create your own. </p>
+
+<p>Rule of thumb - you can define columns to index, and also "include" columns.</p>
+
+<p>If your report has an OrderBy or a Where clause on a column then you need the index to be defined against these. Any other fields returned in the select should be included columns.</p>

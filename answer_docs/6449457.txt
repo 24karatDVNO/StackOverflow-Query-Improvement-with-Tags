@@ -1,0 +1,27 @@
+<p>For me, this comes up when setting the padding or margins to a negative number. This has been discussed in a number of places online re: "IE negative padding". The following are the watch values from my IE console that prove this.</p>
+
+<ul>
+<li>a.prop >> 'paddingTop'</li>
+<li>a.prop==="width"||a.prop==="height" >> false</li>
+<li>Math.max(0,a.now) >> 0</li>
+<li>a.now >> -1.8277004484618357 </li>
+<li>(a.prop==="width"||a.prop==="height"?Math.max(0,a.now):a.now)+a.unit >> "-1.8277004484618357px"
+<ul>
+<li>a.elem.style[a.prop]=(a.prop==="width"||a.prop==="height"?Math.max(0,a.now):a.now)+a.unit >> Invalid Argument</li>
+</ul></li>
+</ul>
+
+<p>experimenting:
+ - a.elem.style[a.prop] = '1px' >> '1px'
+ - a.elem.style[a.prop] = '-1px' >> Invalid Argument</p>
+
+<p>The thread over at: <a href="http://a.elem.style%5Ba.prop%5D=%28a.prop===%22width%22%7C%7Ca.prop===%22height%22?Math.max%280,a.now%7C%7C0%29%3aa.now%29%20a.unit;" rel="nofollow">StackOverflow: jQuery, IE &amp; Animate</a> proposes the following:</p>
+
+<pre><code>a.elem.style[a.prop]=(a.prop==="width"||a.prop==="height"?Math.max(0,a.now||0):a.now)+a.unit;
+</code></pre>
+
+<p>... which did nothing for me. </p>
+
+<p>I don't really think this is a jQuery bug, and I haven't found it in their bug tracking system (I'll admit I haven't looked too hard), but rather an issue with IE not being able to handle negative padding/margins. It's a tough call whether jQuery should handle this or not ...</p>
+
+<p>EDIT: This was opened as <a href="http://bugs.jquery.com/ticket/4571" rel="nofollow">jQuery bug 4571</a>, where they decided that the behavior was correct and that developers should be more careful in setting margins/padding values since a negative margin/pad really isn't valid. They went on to say that they wish FF would throw an error like IE. Wow! don't hear that often!</p>

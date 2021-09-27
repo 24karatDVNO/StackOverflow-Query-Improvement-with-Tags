@@ -1,0 +1,23 @@
+<p>Here's all the code that I used with building and setting up the view/scene from MainWindow</p>
+
+<pre><code>m_scene-&gt;setSceneRect( -width/2, -height/2, width, height );
+
+m_view = new QGraphicsView( m_scene );
+m_view-&gt;setRenderHint( QPainter::Antialiasing );
+m_view-&gt;setResizeAnchor( QGraphicsView::AnchorViewCenter );
+m_view-&gt;setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+m_view-&gt;setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+m_view-&gt;setFixedWidth( width );
+m_view-&gt;setFixedHeight( height );
+setMaximumWidth( width );
+setMinimumWidth( width );
+setMaximumHeight( height );
+setMinimumHeight( height );
+setCentralWidget( m_view );
+m_view-&gt;show();
+move( geometry().x() + 1, geometry().y() ); // force mainWindow to update
+move( geometry().x() - 1, geometry().y() ); // hackish but only thing that works
+m_view-&gt;setFocus();
+</code></pre>
+
+<p>Edit: the only layout in my program (that I know about) is the implicitly constructed MainWindow layout, I haven't used any QGraphicsLayouts or the like.</p>

@@ -1,0 +1,3 @@
+<p>Firstly have your compiled your C++ library with the <code>--coverage</code> flag?  I've never actually used a '.so' library with gcov before, so I'm not sure it would work anyway.</p>
+
+<p>Secondly could you arrange a test version of your application to not use <code>dlopen()</code>, but instead be linked to a static library(.a) version of your library and still make the usual calls?</p>

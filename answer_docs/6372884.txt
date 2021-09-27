@@ -1,0 +1,3 @@
+<p>Change your upgrade to a major upgrade and move the RemoveExistingProducts standard action before InstallInitialize in the InstallExecuteSequence.</p>
+
+<p>As Stephen Connolly writes, you have probably messed up the component referencing. This makes upgrades unreliable or downright impossible. You can "decouple" the new and older version by using major upgrades because a major upgrade isn't an upgrade, but an uninstall of the old version and an install of the new version in a chained sequence.</p>

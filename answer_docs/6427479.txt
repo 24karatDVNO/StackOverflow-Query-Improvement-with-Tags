@@ -1,0 +1,6 @@
+<ol>
+<li>having incremental id's will put records that were created around the same time near each other on the hdd. this might make some queries faster. if this is the primary key on innodb or for the index that these id's are used.</li>
+<li>incremental records can sometimes be inserted a little bit quicker. test to see.</li>
+<li>you'll need to make sure that the random id is unique. so you'll need an extra lookup.</li>
+<li>i don't know if these points are material for you application.</li>
+</ol>

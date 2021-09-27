@@ -1,0 +1,16 @@
+<p>You can't reuse an <code>EditorGrid</code> in this manner, because it's column model gets destroyed after use.</p>
+
+<p>The best way to reuse a component is to use the <code>Ext.extend</code> method <a href="http://www.sencha.com/learn/Manual%3aComponent%3aExtending_Ext_Components" rel="nofollow">described here</a>, and then in your <code>initComponent</code> have something like..</p>
+
+<pre><code>initComponent : function() {
+    this.cm = new Ext.grid.ColumnModel({
+        columns: [
+          //define columns here
+        ]
+    });
+    this.ds = new Ext.data.JsonStore({
+        //store config
+    });
+    //...
+}
+</code></pre>

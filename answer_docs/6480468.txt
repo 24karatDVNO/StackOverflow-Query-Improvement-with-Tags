@@ -1,0 +1,5 @@
+<p>The problem is that <code>raw()</code> will output raw HTML content. The Rails template engine will try to merge that with the <code>.erb</code> template you supplied.</p>
+
+<p>Therefore, if either <code>m.content</code> or <code>e.content</code> are malformed, you will most likely get unexpected output.</p>
+
+<p>The best way would be to look for syntax errors, especially missing closing elements.</p>

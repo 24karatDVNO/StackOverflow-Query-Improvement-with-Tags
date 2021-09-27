@@ -1,0 +1,9 @@
+<p>The fix involved adding a bit of code to the 'Navigating' event of the WebBrowser control.</p>
+
+<pre><code>  Private Sub HelpBrowser_Navigating(sender As System.Object, e As System.Windows.Forms.WebBrowserNavigatingEventArgs) Handles HelpBrowser.Navigating
+    If e.Url.Scheme = "about" And e.Url.AbsolutePath &lt;&gt; "blank" Then 
+        ' The clicked URL is of the format about:&lt;file&gt;.
+        HelpBrowser.Navigate(HelpRootPath + "\" + e.Url.AbsolutePath)
+    End If
+End Sub
+</code></pre>

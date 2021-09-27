@@ -1,0 +1,9 @@
+<p>Without more info it's hard to say, but my initial reaction is that you may not be passing the user variable to the template context in your view function.</p>
+
+<p>i.e.:</p>
+
+<pre><code>def view(request):
+    t = loader.get_template('index.html')
+    c = Context({"user": request.user})
+    return HttpResponse(t.render(c))
+</code></pre>

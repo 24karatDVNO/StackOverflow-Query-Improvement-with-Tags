@@ -1,0 +1,11 @@
+<p>For the "minute of day", you can use this (assuming that you have your data as <code>DATETIME</code> named <code>eventdt</code>):</p>
+
+<pre><code>SELECT (HOUR(`eventdt`) * 60) + MINUTE(`eventdt`)
+   AS minute_of_day FROM `your_table`
+</code></pre>
+
+<p>For "day per bi-weekly", day of year modulo 14 might be usable:</p>
+
+<pre><code>SELECT (DAYOFYEAR(`eventdt`) % 14) AS day_per_biweekly
+   FROM `your_table`
+</code></pre>

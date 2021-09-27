@@ -1,0 +1,11 @@
+<p>multiple spaces in HTML get normalised in the view. That's why I can do something like this:</p>
+
+<pre><code>&lt;p&gt;Hello         World&lt;/p&gt;
+</code></pre>
+
+<p>yet display as "Hello World".</p>
+
+<p>Do a string replace of " " to &amp;nbsp; - that should fix your problem:</p>
+
+<pre><code>$op = $row['Name'].replace(/\s/g,'&amp;nbsp;');  
+</code></pre>

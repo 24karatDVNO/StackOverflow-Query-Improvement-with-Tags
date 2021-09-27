@@ -1,0 +1,23 @@
+<p>no, but you can do something like:</p>
+
+<pre><code>    enum E {
+        e1,e2
+    }
+    interface I{
+        Enum getEnum();
+    }
+ interface I2 {
+    EnumSet getEnums();
+}
+class I2Impl implements I2 {
+    @Override public EnumSet getEnums() {
+        return EnumSet.allOf(E.class);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(new IImpl().getEnum());
+        System.out.println(new I2Impl().getEnums());
+    }
+}
+</code></pre>

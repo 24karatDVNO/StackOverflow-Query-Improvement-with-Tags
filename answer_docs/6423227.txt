@@ -1,0 +1,15 @@
+<p>You have not actually created generic methods you have declared non geeneric methods that return <code>List&lt;T&gt;</code> without defining T.  You need to change as below:</p>
+
+<pre><code>public static class TExtensions
+    {
+        public static List&lt;T&gt; ToList&lt;T&gt;(this IEnumerable&lt;T&gt; collection)
+        {
+            return new List&lt;T&gt;(collection);
+        }
+
+        public static BindingList&lt;T&gt; ToBindingList&lt;T&gt;(this IEnumerable&lt;T&gt; collection)
+        {
+            return new BindingList&lt;T&gt;(collection.ToList());
+        }
+    }
+</code></pre>

@@ -1,0 +1,6 @@
+<p>A simple regex (not bullet-proof) would be:</p>
+
+<pre><code>(\d\d-\w\w\w-\d\d .*?(?=(\d\d-\w\w\w-\d\d|$)))
+</code></pre>
+
+<p>This captures the lines, using a look-ahead of another match or end of line.</p>

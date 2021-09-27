@@ -1,0 +1,12 @@
+<p>I had a certificate that expired (which generated the error).<br>
+Step 1. Go to developer.apple.com, login, and go to IOS provisioning portal</p>
+
+<p>Step 2. Go to certificates (which is now empty), and follow the instructions listed to create a new certificate (open keychain on your computer, create a signing request, save it to disk, upload it to apple)</p>
+
+<p>Step 3. Download and install the files created by apple to your keychain</p>
+
+<p>Step 4. Problem: all of your previous provisioning profiles were associated with your OLD certificate, so you need to go back to developer.apple.com->IOS provising portal-> provisioning profiles and 'modify' each profile you care about.  You will see that your identity is no longer assicated with the profile, so just click the check box</p>
+
+<p>Step 5. Download all the profiles you changed</p>
+
+<p>Step 6. Plugin your phone and drag and drop the .mobileprovision file onto xcode icon in the dock bar to install them on the device</p>

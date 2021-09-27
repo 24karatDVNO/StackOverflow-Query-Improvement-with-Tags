@@ -1,0 +1,5 @@
+<p>You are trying to get the int-value of an NSNumber. That's where it goes wrong.</p>
+
+<p>Use this instead:
+<code>sqlite3_bind_int  (addStmt, 2, [HEREisNSNUMBER intValue]);</code>
+`</p>

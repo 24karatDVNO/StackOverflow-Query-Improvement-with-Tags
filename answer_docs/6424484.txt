@@ -1,0 +1,3 @@
+<p>I think it is possible to provide model metadata in run time using <a href="https://stackoverflow.com/questions/1510459/asp-net-mvc-2-implementing-custom-metadata-and-validator-providers">custom metadata provider</a>, but that's wrong (solution would be too complex) approach to tackle this problem.  </p>
+
+<p>I would just ensure in model after http post that entity is editable and avoid rendering editing related stuff @ client side.</p>

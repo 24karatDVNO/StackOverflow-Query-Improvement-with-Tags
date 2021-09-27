@@ -1,0 +1,5 @@
+<p>So after long hours on the phone with MS tech support here is the answer:</p>
+
+<p>So if you have a database that contains two tables, both with automatic integer primary keys, and a relationship exists between a unique char field in one and a non-unique char field in the other, inserting new rows into the second table leads to invalid case exception.  This exception does not happen when calling to the database from Cassini, IIS7.5 Express or IIS 7.5 but does from IIS.6.0.  </p>
+
+<p>I restructured the database to avoid this design architecture and the problem was resolved.</p>

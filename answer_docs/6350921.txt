@@ -1,0 +1,11 @@
+<p>In some implementations of Scheme, any function that shouldn't return anything (such as begin, define, set!) actually returns a special value <code>#&lt;void&gt;</code>. It is an error to display such a value. In your case, it was an extra "display".</p>
+
+<pre><code>(define affiche-gagnant 
+  (lambda (j1 j2 g1 g2)
+    (begin 
+      (display "Le gagnant est : ")
+      (cond
+        ((&gt; g1 g2) j1) 
+        ((&lt; g1 g2) j2) 
+        (else (begin (display "personne. ") (display j1) (display " et ") (display j2) (display " sont exaequos. ")))))))
+</code></pre>

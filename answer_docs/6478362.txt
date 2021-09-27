@@ -1,0 +1,9 @@
+<p>Should go like this:</p>
+
+<pre><code>Field[] f = MyClass.class.getDeclaredFields();
+MyClass targetObject = new MyClass();
+...
+Object fieldValue = f[interestingIndex].get(cl);
+</code></pre>
+
+<p>Mind the exceptions.</p>

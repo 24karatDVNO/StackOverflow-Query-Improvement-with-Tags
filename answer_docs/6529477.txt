@@ -1,0 +1,23 @@
+<p>One option you have is to set the divider in xml, ie:  </p>
+
+<pre><code>android:divider="@drawable/icon".  
+</code></pre>
+
+<p>If you want more control, verify that you are following this syntax in your activity:  </p>
+
+<pre><code>public class DividerExampleActivity extends Activity {
+
+    ListView listView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        listView = (ListView) findViewById(R.id.listView1);
+        listView.setDivider(null);
+    }
+}
+</code></pre>
+
+<p>I've examined the ListView.java source code, and setting it to null should be fine.<br>
+Another option might be to make yourself a very thin, transparent divider in xml (say 0.5dp).</p>

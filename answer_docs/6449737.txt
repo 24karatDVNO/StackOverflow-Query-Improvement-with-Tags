@@ -1,0 +1,32 @@
+<p>Put your selected items into an array.
+And use an adapter to put the items into the listview. How did u do it? And please don't mark your question as a code, it's hard to read now.</p>
+
+<pre><code>lv1 = (ListView) findViewById(R.id.ListView01);
+adapter1 = new ArrayAdapter&lt;String&gt;(Osszekapcsolas.this,R.layout.list_black_text,R.id.list_content, yourArray);
+lv1.setAdapter(adapter1);
+adapter1.notifyDataSetChanged();
+</code></pre>
+
+<p>where list_black_text in az an xml containing a textview for each rows:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:gravity="center_vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"&gt;
+
+&lt;TextView
+android:id="@+id/list_content"
+android:textColor="#222222"
+android:layout_margin="4dip"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+android:gravity="center_vertical"
+/&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>But i suppose you know this. However, in this code there is no ImageView. I don't know why it changes, maybe you set the layout_width, layout_height or other parameters wrong in your rows.
+Hope this helps.</p>

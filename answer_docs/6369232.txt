@@ -1,0 +1,24 @@
+<p>As you can see from javadoc of <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InstantiationException.html" rel="nofollow">InstantiationException javadoc</a>, it's thrown </p>
+
+<blockquote>
+  <p>when an application tries to create an
+  instance of a class using the
+  newInstance method in class Class, but
+  the specified class object cannot be
+  instantiated.</p>
+</blockquote>
+
+<p>you can perfectly write such code:</p>
+
+<pre><code>try {
+Class myClass = Class.forName("Myclass");
+myClass.newInstance();
+} catch (ClassNotFoundException e) {
+} catch (InstantiationException e) {
+} catch (IllegalAccessException e) {
+}
+</code></pre>
+
+<p>no <code>IllegalArgumentException</code> will be thrown.</p>
+
+<p>About <code>checked</code> and <code>unchecked</code> it's more about what caused the exception, not whether it's easy to recover from or not. Please read more about <code>checked</code> vs </p>

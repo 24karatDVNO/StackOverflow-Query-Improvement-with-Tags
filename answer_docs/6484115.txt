@@ -1,0 +1,3 @@
+<p>My guess would be that the Javascript is failing somewhere. If there are JS errors because, for example, <code>.style</code> is <code>undefined</code>, your form will end up posting.</p>
+
+<p>You'll also note that there's no <code>getElementByName()</code> method in Javascript but there is a <code>getElementsByName()</code> method (Elements, plural). This will be likely what's causing your problem.</p>

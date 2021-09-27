@@ -1,0 +1,25 @@
+<p>If you want to do it with javascript, then why not use event delegation?</p>
+
+<pre><code>$(document.body).delegate("form.active","click",function(){
+    this.className = "clicked";
+});
+</code></pre>
+
+<p>This delegates a click event to every form in the page with a class of active (equally you could limit this to every form in a container by using a different context ie $("#container").delegate(...) or omit the active class) and changes the class from being active to clicked</p>
+
+<pre><code>$(document.body).delegate("form.clicked","submit",function(e){
+    e.preventDefault();
+});
+</code></pre>
+
+<p>This delegates a submit event to every form on the page with a className of clicked and stops the form from being submitted.</p>
+
+<p>Alternatively, you could use the first delegate function to bind a submit event directly to the form itself (so replace both of the above functions with the following).</p>
+
+<pre><code>$(document.body).delegate("form","click",function(){
+    $(this).submit(function(e){
+        e.preventDefault();
+        e.stopPropagation();
+    })
+});
+</code></pre>

@@ -1,0 +1,13 @@
+<p>You don't need, or want to include <code>this</code> in your jQuery selector call.</p>
+
+<p>Change your code to this:</p>
+
+<pre><code>var CustomerId = $('#header_customerid_d').children("div").children("span").attr("title");
+alert(CustomerId);
+</code></pre>
+
+<p>and it will work.</p>
+
+<p>Or, if you want to be more concise, do as one of these other fine gentlefolk have suggested!</p>
+
+<p>ian.</p>

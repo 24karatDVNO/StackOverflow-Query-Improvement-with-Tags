@@ -1,0 +1,12 @@
+<p>try to open your rs2 before using if in the do while statement.,  or do it like this </p>
+
+<pre><code>rs2.open " blah blah blah "
+
+Do Until rs2.eof
+    For Each fld In rs2.field 
+        value_holder = fld.value
+    Next
+
+    rs2.movenext
+Loop
+</code></pre>

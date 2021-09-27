@@ -1,0 +1,12 @@
+<p>Confusing code, I am assuming you have an arraylist holding 2 String arrays u and p and you want to traverse the passwords array. If that is correct, and if u added u first and p later, your password array can be retrieved by</p>
+
+<pre><code>popul.get(1);
+</code></pre>
+
+<p>So to traverse the passwords you should be doing</p>
+
+<pre><code>for(String password: popul.get(1))
+{
+ System.out.println(password);
+}
+</code></pre>

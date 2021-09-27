@@ -1,0 +1,13 @@
+<p>You can use:</p>
+
+<pre><code>if (!empty($_COOKIE["user"])) {
+   // code if not empty
+}
+</code></pre>
+
+<p>but sometimes you want to set if the value is set in the first place</p>
+
+<pre><code>if (!isset($_COOKIE["user"])) {
+   // code if the value is not set
+}
+</code></pre>

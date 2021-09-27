@@ -1,0 +1,16 @@
+<p>This is a classic "SQL Filter" query problem. I've found that the typical approaches of "(<strong>@b is null or</strong> b = @b)" &amp; it's common derivatives all yeild mediocre performance. The OR clause tends to be the cause. </p>
+
+<p>Over the years I've done a lot of Perf/Tuning &amp; Query Optimisation. The Approach I've found best is to <strong>generate Dynamic SQL</strong> inside a Stored Proc. Most times you also need to add "with Recompile" on the statement. The Stored Proc helps reduce potential for SQL injection attacks. The Recompile is needed to force the selection of indexes appropriate to the parameters you are searching on. 
+Generally it is at least an order of magnitude faster. </p>
+
+<p>I agree you should also look at points mentioned above like :-</p>
+
+<ol>
+<li><p>If you commonly only refer to a small subset of the columns you could create non-clustered "Covering" indexes.</p></li>
+<li><p>Highly selective (ie:those with many unique values) columns will work best if they are the lead colum in the index.</p></li>
+<li><p>If many colums have a very small number of values, consider using The BIT datatype. OR Create your own BITMASKED BIGINT to represent many colums ie: a form of "Enumerated datatyle". But be careful as any function in the WHERE clause (like MOD or bitwise AND/OR) will prevent the optimiser from choosing an index. It works best if you know the value for each &amp; can combine them to use an equality or range query. </p></li>
+<li><p>While often good to find RoWID's with a small query &amp; then join to get all the other columns you want to retrieve. (As you are doing above) This approach can sometimes backfire. If the 1st part of the query does a Clustred Index Scan then often it is faster to get the otehr columns you need in the select list &amp; savethe 2nd table scan. 
+So always good to try it both ways &amp; see what works best. </p></li>
+<li><p>Remember to run SET STATISTICS IO ON &amp; SET STATISTICS TIME ON. Before running your tests. Then you can see where the IO is &amp; it may help you with index selection, for the mose frequent combination of paramaters. 
+I hope this makes sense without long code samples. (it is on my other machine)</p></li>
+</ol>

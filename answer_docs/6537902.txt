@@ -1,0 +1,7 @@
+<p>I sincerely hope the answer to this question is still "No".</p>
+
+<p>What exactly are you wanting to edit on the server? If the answer is view templates, then look into <a href="http://www.liquidmarkup.org/" rel="nofollow">Liquid</a> - you can provide an admin for template bits that you store in the database.</p>
+
+<p>Editing (let alone displaying) application code via a web interface is madness. Allowing users to enter evaluated code is crazy. I have an app that lets users enter formulas, but these are expressed in a mathematical grammar parsed by <a href="http://polyglot.rubyforge.org/" rel="nofollow">polyglot</a>/<a href="http://treetop.rubyforge.org/" rel="nofollow">treetop</a> - not in Ruby code. Application code should be written - with tests - on a dev. machine and only deployable by trusted users.</p>
+
+<p>Nevermind that if you were updating the code on a server, you'd need to tell the app server to reload the code.</p>

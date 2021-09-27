@@ -1,0 +1,10 @@
+<p>Try simple script like this:</p>
+
+<pre><code>#!/bin/bash
+
+for file in *INA.txt
+do
+    match=$(echo "${file%INA.txt}" | sed  -r 's/^\w{4}-\w{5}-\w{5}-$/found/')
+    [ $match == "found" ] &amp;&amp; echo "$file"
+done
+</code></pre>

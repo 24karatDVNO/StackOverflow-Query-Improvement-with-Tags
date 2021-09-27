@@ -1,0 +1,10 @@
+<p>The issue was resolved by having the <code>UIButton</code> outside the <code>scrollview</code>.</p>
+
+<p>Done with the following lines...</p>
+
+<pre><code>UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0 , 0, appFrame.size.width, appFrame.size.height-100)];
+
+scrollView.contentSize = CGSizeMake(appFrame.size.width, appFrame.size.height+however_big_area_i_needed);
+</code></pre>
+
+<p>The button was made using IB.</p>

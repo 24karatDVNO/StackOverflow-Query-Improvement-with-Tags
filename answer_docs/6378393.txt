@@ -1,0 +1,14 @@
+<p>What you try here is a kind of creation of a new document, it will not work at least in IE this way.<br>
+Put this line </p>
+
+<pre><code>alert(parent.innerHTML)
+</code></pre>
+
+<p>right after:</p>
+
+<pre><code>parent.innerHTML = html_text; 
+</code></pre>
+
+<p>...and you will see, that you only get the contents of the body, everything else has been omitted.</p>
+
+<p>If the response is valid xml, <code>request.responseXML</code> should be available, you can inspect it directly(it's already a document).</p>

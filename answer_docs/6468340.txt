@@ -1,0 +1,11 @@
+<p>I do not understand the question fully. I do not work with Python, but know OpenCL quite well.</p>
+
+<p>In OpenCL you have two possibilities to create shared/local memory buffers:</p>
+
+<p>1) You add a kernel parameter as you have it in you question.
+2) Do define a buffer statically within the kernel itself like:</p>
+
+<pre><code>__local buffer[1024];
+</code></pre>
+
+<p>There are no other chances to do this with OpenCL. How you create the kernel code string to pass it to OpenCL is another question and related to Python. I am not an expert on this.</p>

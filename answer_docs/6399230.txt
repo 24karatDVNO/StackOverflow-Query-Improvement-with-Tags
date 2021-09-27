@@ -1,0 +1,42 @@
+<pre><code>public const String LocalCrime = http://policeapi2.rkh.co.uk/api/leicestershire/C01/crime";
+
+[WebMethod(true)]
+public static String request()
+{
+    // Initialize the WebRequest.
+    WebRequest myRequest = WebRequest.Create(LocalCrime);
+
+    myRequest.ContentType = "application/x-www-form-urlencoded";
+    myRequest.Credentials = new NetworkCredential("username", "password");
+    // Return the response. 
+    WebResponse myResponse = myRequest.GetResponse();
+    StringBuilder _Content = new StringBuilder();
+    using (StreamReader _Reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8))
+    {
+        _Content.Append(_Reader.ReadToEnd());
+    }
+    // Code to use the WebResponse goes here.
+
+    // Close the response to free resources.
+    myResponse.Close();
+    return _Content.ToString();
+}
+</code></pre>
+
+<p>with script:</p>
+
+<pre><code>$.ajax({
+    type: "POST",
+    contentType: "application/json; charset=utf-8",
+    url: "police/crimerequest.aspx/request",
+    dataType: "json",
+    // success: insertCallback 
+    success: function (data) {
+        $('#requestResult').append(data.d);
+    },
+    error: function () {
+        alert('Sorry there was an error, try again!');
+        return false;
+    }
+});
+</code></pre>

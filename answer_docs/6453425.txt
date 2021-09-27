@@ -1,0 +1,7 @@
+<p><code>onCleanup</code> functions still fire in the presence of CTRL-C, however I don't think that's really going to help because it will be hard for you to connect the value you want to the <code>onCleanup</code> function handle (there are some tricky variable lifetime issues here). You may have more luck using a MATLAB handle object to track your value. For example</p>
+
+<pre><code>x = containers.Map(); x('Value') = [];
+myFcn(x); % updates x('Value') 
+% CTRL-C
+x('Value') % contains latest value
+</code></pre>

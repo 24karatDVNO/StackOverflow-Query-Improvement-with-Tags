@@ -1,0 +1,5 @@
+<pre><code>preg_replace("/\[url=(.*)\](.*?)\[\/url]\/i", "", $text);
+preg_replace("/\[link=(.*)\](.*?)\[\/link]\/i", "", $text);
+preg_replace("/http:\/\/\/i", "", $text);
+preg_replace("/\.com/i", "", $text); //this is very agresive line! 
+</code></pre>

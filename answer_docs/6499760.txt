@@ -1,0 +1,35 @@
+<p>The comment Oswald made about ordering (or lack thereof) of the rows is very important.  You have no garuntee, <em>period</em>, that unsorted rows selected out of this table will be in the order you expect.  This means that unless you specify the existing in table order <em>every single time</em>, things could be tagged 'AS ABOVE' even when this does not reflect reality.  In addition, none of the provided solutions so far will deal with any out-of-sequence records properly.<br>
+Overall, this sounds more like a database design issue (specifically, a normalization problem), than a query issue.<br>
+Ideally, the descriptions would be extracted to some master datatable (along with the necessary ids).  Then, the choice about the description to use is left to when the 'SELECT' runs.  This has the added benefit of making the 'AS ABOVE' safe for changes in ordering.</p>
+
+<p>So, assuming that each instance of the order_ref column should have a different description (barring the 'AS ABOVE' bit), the tables can be refactored as followed:</p>
+
+<pre><code>id | order_ref | price 
+======================= 
+ 1 | 34567     | 19.99  
+ 2 | 34567     | 13.99  
+</code></pre>
+
+<p>and </p>
+
+<pre><code>order_ref_fk | description  
+==========================================
+34567        | "This is the description"
+</code></pre>
+
+<p>At this point, you join to the description table normally.  Displaying a different description is usually a <em>display</em> issue regardless, to be handled by whatever program you have outputting the rows to display (not directly in the database).</p>
+
+<p>If you insist on doing this in-db, you could write the <code>SELECT</code> in this vein:</p>
+
+<pre><code>SELECT Orders.id, Orders.order_ref, Orders.price,
+       COALESCE(Dsc.description, 'AS ABOVE')
+FROM Orders
+LEFT JOIN (Description
+           JOIN (SELECT order_ref, MIN(id) AS id
+                 FROM Orders
+                 GROUP BY order_ref) Ord
+             ON Ord.order_ref = Description.order_ref_fk) Dsc
+        ON Dsc.order_ref_fk = Orders.order_ref
+           AND Dsc.id = Orders.id
+ORDER BY Orders.order_ref, Orders.id
+</code></pre>

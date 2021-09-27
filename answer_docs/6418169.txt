@@ -1,0 +1,15 @@
+<p>It looks like the compiler was having problems infering the correct type. Instead of using the class returned by the LINQ2SQL context, it was using the base class, so I had to cast it to the correct type explicitly.</p>
+
+<p>This previous example does NOT work:</p>
+
+<pre><code>result = from c in dataContext.ConcreteClasses where c.Foo == 42 select c;
+</code></pre>
+
+<p>This example does work:</p>
+
+<pre><code>result = from c in dataContext.ConcreteClasses where ((ConcreteClass)c).Foo == 42 select c;
+</code></pre>
+
+<p>Odd, but it works. Upvotes to anyone who can figure out why it would do that.</p>
+
+<p>(Reference: <a href="http://social.msdn.microsoft.com/forums/en-US/linqprojectgeneral/thread/016ad28b-f813-4f26-9e70-2265a1943bad/" rel="nofollow" title="MSDN: Very strange inheritance behavior">Very strange inheritance behavior.</a>)</p>

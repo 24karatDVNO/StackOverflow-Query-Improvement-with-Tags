@@ -1,0 +1,7 @@
+<p>The answer is: No, you cannot build for 4.x simulator and run on a 3.1.x simulator or earlier due to fundamental changes in the way the simulator works.</p>
+
+<p>The only way to test 3.x support is to either run it on a 3.x device (after setting min deployment target), or build on an older xcode that supports 3.x simulator (which isn't feasible if you use Xcode 4, except for iPad 3.2).</p>
+
+<p>Note: Setting the deployment target does not test compatibility with older operating systems. It's the operating system that it actually RUNS on that matters (such as "iPhone 4.3 Simulator", "iPhone 4.0 Simulator", "iPad 3.2 Simulator", or an actual device).</p>
+
+<p>Of course, now that 3.x users make up less than 10% of the total population, it's not really worth the trouble to support it anymore.</p>

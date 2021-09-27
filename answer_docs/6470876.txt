@@ -1,0 +1,26 @@
+<p>You can use the javascript function isNAN to check if the value of the field "is not a number". So, I added a onclick event to the submit button to call a function that checks it:</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+
+    function validate() {
+
+        if (isNaN(document.forms[0].ID.value)) { 
+            alert("Please enter only numbers.")
+            return false;
+        }
+        return true;
+    }
+
+
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;form action="update.php" method="POST" name="ID"&gt;
+&lt;input type="text" name="ID"&gt;
+&lt;input type="Submit" value="Submit" onclick="return validate();"&gt;
+&lt;/form&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Hope it helps!</p>

@@ -1,0 +1,19 @@
+<p>You can solve this problem by using two different viewmodels in which you derive the one from the other: the superclass can be used for editing, the subclass is for inserts with remote validation.</p>
+
+<pre><code>public class EmployeeViewModel // The normal one, can be used for editing
+{
+    [ScaffoldColumn(false)]
+    public int EmployeeId { get; set; }
+
+    public virtual string Username { get; set; }
+}
+
+public class InsertEmloyeeViewModel : EmployeeViewModel
+{
+    [Remote("UsernameExists", "Employees", ErrorMessage = "Username already exists")]
+    public override string Username { get; set; }
+
+}
+</code></pre>
+
+<p>When the edit-functionlity also contains some 'specialities', you could derive a third class 'EditEmployeeViewModel' from the base class EmployeeViewmodel.</p>

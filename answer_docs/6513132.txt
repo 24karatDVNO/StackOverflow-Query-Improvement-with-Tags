@@ -1,0 +1,19 @@
+<p>I would use a RelativeLayout for this.</p>
+
+<pre><code>&lt;RelativeLayout
+  android:width="fill_parent"
+  android:height="wrap_content"
+  android:clickable="true"
+  android:background="#18a2e7"
+  android:padding="10dip"&gt;
+  &lt;TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Something" /&gt;
+  &lt;TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_align_parentRight="true"
+    android:text="0%" /&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>

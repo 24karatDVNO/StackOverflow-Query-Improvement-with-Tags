@@ -1,0 +1,8 @@
+<p>It is possible to check for this, but you're right, it will have to be done at runtime, but more formally than just throwing an exception.</p>
+
+<pre><code>public static byte[] SerializeObject&lt;T&gt;(this T obj)
+{
+    Contract.Requires(typeof(T).IsSerializable);
+    ...
+}
+</code></pre>

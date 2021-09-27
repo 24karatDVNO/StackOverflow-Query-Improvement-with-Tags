@@ -1,0 +1,21 @@
+<p>Run methods are missing in your Thread classes. So your threads did start and finish doing nothing. Rename the put and get methods to run and use while loop. Also note that you need to call the notify and wait on the store (monitor). </p>
+
+<pre><code>public void run() {
+
+        while(true){
+        synchronized (store) {
+            if (store.Q.size() &gt; store.max_capacity) {
+                try {
+                    store.wait();
+                } catch (InterruptedException e) {}
+            }
+            else {
+                element ++;
+                System.out.println( "Producer put: " + element );
+                store.Q.add(element);
+                store.notify();
+            }               
+        }
+    }
+    }
+</code></pre>

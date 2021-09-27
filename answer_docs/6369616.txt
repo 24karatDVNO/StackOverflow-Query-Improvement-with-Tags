@@ -1,0 +1,17 @@
+<p>As far as I can understand, you want to create a new bean instead of 
+   ICustomListener readerListener = new MyCustomListener(queueConfig);
+If that is the case, creating a factory for mycustomlistener and using</p>
+
+<pre><code>public abstract TestClient createTestClient();
+</code></pre>
+
+<p>to create your beans, and defining </p>
+
+<pre><code>&lt;bean id="testClient" class="com.myproject.testbeans.TestClient" scope="prototype"&gt;     
+&lt;/bean&gt;
+&lt;bean id="testClientFactory" class="com.myproject.testbeans.TestClientFactory"&gt;
+    &lt;lookup-method name="createTestClient" bean="testClient" /&gt;
+&lt;/bean&gt; 
+</code></pre>
+
+<p>in your context will solve your problem. This way, every time the createTestClient method of the factory is called, a new bean is created and given to your code. However, you have to give the config object via a setter instead of the constructor.</p>

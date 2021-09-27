@@ -1,0 +1,93 @@
+<p>Using AspectJ to weave a logging aspect into your code base can be done.  Below is an example of advice on a joinpoint within execution of any objects with the method <code>actionPerformed(ActionEvent)</code> you have in your code base.  Similar constructions can be used to advise other Listeners.</p>
+
+<p>Below is the aspect to advise button presses and other components having ActionListeners.  It simply outputs the class name of the source of the action and the signature of the actionPerformed method.</p>
+
+<pre><code>import java.awt.event.ActionEvent;
+
+import org.aspectj.lang.Signature;
+
+public aspect Logger {
+  before(ActionEvent e) : execution(* *.actionPerformed(ActionEvent)) &amp;&amp; args(e) {
+    Signature sig = thisJoinPoint.getSignature();
+    System.out.println(e.getSource().getClass() + " lead to " + sig);
+  }
+}
+</code></pre>
+
+<p>A test class which produces two buttons of different classes (in file StackTraceExample.java):</p>
+
+<pre><code>import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+
+class MyButton extends JButton {
+  public MyButton(String string) {
+    super(string);
+  }
+}
+
+class MyOtherButton extends JButton {
+  public MyOtherButton(String string) {
+    super(string);
+  }
+}
+
+class ButtonStackDisplay implements ActionListener {
+  private final JTextArea stackTraceText;
+
+  ButtonStackDisplay(JTextArea textArea) {
+    this.stackTraceText = textArea;
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    String endl = System.getProperty("line.separator");
+    StringBuilder b = new StringBuilder();
+
+    // you can see the source of the event 
+    b.append(e.getSource()).append(endl).append(endl);
+
+    // the stack trace shows that events don't propagate through the components
+    // originating them, but instead processed in a different thread
+    for (StackTraceElement se : new Throwable().getStackTrace()) {
+      b.append(se.toString());
+      b.append(endl);
+    }
+    stackTraceText.setText(b.toString());
+  }
+}
+
+public class StackTraceExample {
+  public static void main(String[] args) {
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setLayout(new BorderLayout());
+        JPanel top = new JPanel();
+        JButton button = new MyButton("Stack Trace");
+        top.setLayout(new GridLayout(2, 1));
+        top.add(button);
+        JButton otherButton = new MyOtherButton("Stack Trace");
+        top.add(otherButton);
+        f.getContentPane().add(top, BorderLayout.NORTH);
+        JTextArea stackTraceText = new JTextArea();
+        f.add(stackTraceText, BorderLayout.CENTER);
+        ButtonStackDisplay bsd = new ButtonStackDisplay(stackTraceText);
+        button.addActionListener(bsd);
+        otherButton.addActionListener(bsd);
+        f.setSize(400, 400);
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+        f.toFront();
+      }
+    });
+  }
+}
+</code></pre>

@@ -1,0 +1,21 @@
+<p>I used the <a href="http://validator.w3.org/" rel="nofollow">W3C validator</a> to check your markup (a bit edited) against the HTML5 doctype:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+     &lt;title&gt;asdf&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class='slide'&gt;&lt;a href='asdf' target='_blank' border='0'&gt;&lt;img width='420' height='220'  src='asdf'/&gt;&lt;/a&gt;&lt;div class='caption' style='bottom:0'&gt;&lt;p&gt;asdf&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>This gives the following errors:</p>
+
+<ul>
+<li>an anchor does not have a border attribute. Did you mean to style it like <code>&lt;a style="border:0;"&gt;</code>?</li>
+<li>an image should have an alt tag</li>
+</ul>
+
+<p>So yes, your markup at liHtml is invalid, but easy to fix.</p>

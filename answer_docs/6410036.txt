@@ -1,0 +1,18 @@
+<p>From MDC - <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/parseInt" rel="nofollow">parseInt</a>:</p>
+
+<blockquote>
+  <p>If the input string begins with "0", radix is eight (octal). This feature is non-standard, and some implementations deliberately do not support it (instead using the radix 10).  For this reason always specify a radix when using parseInt.</p>
+</blockquote>
+
+<p>And the example:</p>
+
+<blockquote>
+  <p>parseInt("08"); // 0, '8' is not an octal digit.</p>
+</blockquote>
+
+<p>That is, since no radix was passed in and the string begins with <code>0</code> octal is assumed. Since <code>8</code> is not an octal digit it cannot be parsed.</p>
+
+<p>Solution? Always provide a radix parameter:</p>
+
+<pre><code>parseInt("08", 10);
+</code></pre>

@@ -1,0 +1,16 @@
+<p>Check the permission in the AndroidManifest.xml, first.</p>
+
+<pre><code>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"&gt;&lt;/uses-permission&gt;
+</code></pre>
+
+<p>And try this code below.</p>
+
+<pre><code>ConnectivityManager manager = (ConnectivityManager)appContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+if(mobile.isConnected()) {
+    //Do Sth.
+}
+</code></pre>
+
+<p>If this is not work, check your phone's brand. If the phone's developer blocked some codes or not implement some code, it doesn't work. What is your phone?</p>

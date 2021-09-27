@@ -1,0 +1,7 @@
+<p>Just because you do new Facebook... does not mean you can call getSession and expect a session back. Either $_REQUEST or $_COOKIE has to be set as that is what getSession uses to figure out what to return. If either is set with the session info and it is not obviously invalid, you will get a valid session returned. </p>
+
+<p>A network request is never made in getSession so it is not guaranteed to return a still valid session. It is guaranteed to return a session the client still thinks is valid, if available. You will only find out it's not valid when you try to use it. Hence the "session key invalid" error.</p>
+
+<p>A simple example is if you log into an account with two browsers, and then log out on one, you are actually logged out on both browsers, but the other one has no idea until you try to make a request. Thus on the latter browser, a seemingly valid session will be returned but will fail when you try to make a request.</p>
+
+<p>Also I believe you are using an outdated version of the php sdk.</p>

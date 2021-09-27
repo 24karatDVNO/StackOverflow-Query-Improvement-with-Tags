@@ -1,0 +1,13 @@
+<p>Figured out the solution.  I needed to have TX and RX on two separate threads.</p>
+
+<p>RX Thread does this forever:</p>
+
+<pre><code>pcap_loop(handle, -1, got_packet, NULL);
+</code></pre>
+
+<p>Then I call the TX thread whenever I want, which does this (and loops however many times I need):</p>
+
+<pre><code>pcap_sendpacket(t, TxPacket, DataLen + 42);
+</code></pre>
+
+<p>This solved the problem.</p>

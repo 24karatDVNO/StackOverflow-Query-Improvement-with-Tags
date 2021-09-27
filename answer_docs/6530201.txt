@@ -1,0 +1,39 @@
+<p>Well I found a solution... and it goes something like this:</p>
+
+<ul>
+<li>First assign unique numbers to the pages. Since these pages are generated in PHP, this can be accomplished by using <code>uniqid()</code>.</li>
+<li><p>Assign the following function the the <code>pageshow</code> event:</p>
+
+  
+
+<pre class="lang-js prettyprint-override"><code>$('#page_id').live('pageshow', function(event, ui) {
+    var script = document.createElement('script');
+    script.type   = 'text/javascript';
+    script.src    = 'path_to_mathjax/MathJax.js';
+    script.onload = callback;
+    document.getElementsByTagName('head')[0].appendChild(script);
+});
+</code></pre>
+
+<p>This loads MathJax and inserts it into the DOM - this script should be included <em>within</em> the page element. Also note that we mention a 'callback'. This will be called when the script loads.</p></li>
+<li><p>This function (the callback) needs to go <em>outside</em> of any pages. This will prevent it from being included twice after a new page is loaded.</p>
+
+  
+
+<pre class="lang-js prettyprint-override"><code>var mathjax_loaded = false;
+function callback()
+{
+    if(mathjax_loaded)
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    else
+    {
+        MathJax.Hub.Startup.onload();
+        mathjax_loaded = true;
+    }
+}
+</code></pre>
+
+<p>There's a lot here. First of all, we keep track of whether this callback has been called once before. If not, we tell MathJax to parse the page as if it were invoked from the <code>window.onload</code> event. If this has already happened (and we're on a new page) then we simply need to have MathJax run through the new page.</p></li>
+</ul>
+
+<p>I'm probably missing something and there may be a better way of doing this. But I haven't found any other way that works.</p>

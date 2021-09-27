@@ -1,0 +1,21 @@
+<p>when you use a ProcessBuilder you instantiate a Process Object it's java representation of a batch execution</p>
+
+<p>Tipically you can hook process streaming via Java API.</p>
+
+<p>Extracted from Process JAVA API:</p>
+
+<ul>
+<li>abstract 
+InputStream  getErrorStream() 
+         Gets the error stream of the subprocess</li>
+<li>abstract 
+InputStream  getInputStream() 
+         Gets the input stream of the subprocess</li>
+<li>abstract 
+OutputStream getOutputStream() 
+         Gets the output stream of the subprocess</li>
+</ul>
+
+<p>If perl script write on standard output stream then you can read that output.</p>
+
+<p>Generally, If process doesn't write on standard output stream then you cannot read it.</p>

@@ -1,0 +1,24 @@
+<p>First, I am going to go on record and say I wholeheartedly agree with remi bourgarel.  This is likely a bad idea.</p>
+
+<p>But, from a technical standpoint here's how I'd do this IF I NEEDED TO:</p>
+
+<pre><code>$php_code = '
+    &lt;?php
+        $var = "this is a string";
+        $var = strtoupper($var);
+        echo $var;
+    ?&gt;
+';
+$php_code = bin2hex($php_code);
+$db-&gt;query("INSERT INTO php_code_snips (text_code) VALUES(x'{$php_code}')");
+</code></pre>
+
+<p><code>bin2hex</code> will transform the string <code>$php_code</code> from a binary string to a hex string, and the <code>x'{$php_code}'</code> tells mysql to expect a hex string.</p>
+
+<p>This means the string is stored as a string in the DB, and is fully searchable.  But, since all chars are encoded as hex during the <code>INSERT</code> the special chars won't cause a problem.</p>
+
+<p>Documentation:</p>
+
+<p><a href="http://php.net/manual/en/function.bin2hex.php" rel="nofollow">bin2hex</a></p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.1/en/hexadecimal-values.html" rel="nofollow">Mysql Hex Values</a></p>

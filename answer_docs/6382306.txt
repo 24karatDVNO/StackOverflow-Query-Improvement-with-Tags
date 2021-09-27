@@ -1,0 +1,18 @@
+<p>Try this ,its a standart bind functions</p>
+
+<pre><code>.bind("rename.jstree", function (e, data) {
+        $.post(
+            "./server.php", 
+            { 
+                "operation" : "rename_node", 
+                "id" : data.rslt.obj.attr("id").replace("node_",""),
+                "title" : data.rslt.new_name
+            }, 
+            function (r) {
+                if(!r.status) {
+                    $.jstree.rollback(data.rlbk);
+                }
+            }
+        );
+    })
+</code></pre>

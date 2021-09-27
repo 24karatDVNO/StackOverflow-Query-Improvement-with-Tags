@@ -1,0 +1,32 @@
+<p>A Perl way to do it:</p>
+
+<pre><code>#!/usr/bin/perl 
+use strict;
+use warnings;
+use Data::Dumper;
+
+open my $fh, '&lt;', 'path/to/file' or die "unable to open file:$!";
+my %res;
+while(&lt;$fh&gt;) {
+    my ($k, $v) = split;
+    push @{$res{$k}}, $v;
+}
+print Dumper \%res;
+</code></pre>
+
+<p><strong>output:</strong></p>
+
+<pre><code>$VAR1 = {
+      'c' =&gt; [
+               'bar2'
+             ],
+      'a' =&gt; [
+               'foo',
+               'bar',
+               'foo2'
+             ],
+      'b' =&gt; [
+               'bar'
+             ]
+    };
+</code></pre>

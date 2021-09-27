@@ -1,0 +1,17 @@
+<p>I've actually built my own since I don't have the need for a strength meter; just a requirements checker.</p>
+
+<p>By using a simple password.match using a regular expression, I was able to check for these certain words.  The requirements that were given to me didn't specify upper or lower case letters, so I did a simple match.</p>
+
+<pre><code> password.match(/((SYSTEM)|(Password)|(Default)|(USER)|(Demo)|(TEST))/)
+</code></pre>
+
+<p>I was also able to check for the below using different algorithms.</p>
+
+<pre><code> //password != user name, first name, or last name
+ //password != 6 chars, 6 nums, or 6 symbols
+ //password != social security numbers
+ //password != a date
+ //password = 3 of 4 requirements (upper, lower, num, char)
+</code></pre>
+
+<p>A helpful site was www.regular-expressions.info</p>

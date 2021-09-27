@@ -1,0 +1,15 @@
+<p>What you are trying to do is not very clever. 10,000 times 100 is 1,000,000 elements. The most efficient way is use P elements with a minimal id, then use a click listener on the body element to determine which element was clicked on and genrate the URL. So your html looks something like:</p>
+
+<pre><code>&lt;html&gt;&lt;title&gt;Silly Page&lt;/title&gt;
+&lt;style type="text/css"&gt;p {display:inline;margin:0;padding:0}&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+function doNav(e) {
+  var id = (e.target || e.srcElement).id;
+  window.location.href = 'http://www.example.com/' + id.replace('p','');
+}
+&lt;/script&gt;
+&lt;body onclick="doNav(event)"&gt;&lt;p id=p1&gt;x&lt;p id=p2&gt;x&lt;p id=p3&gt;x&lt;p id=p4&gt;x...
+&lt;/body&gt;
+</code></pre>
+
+<p>If you are trying to associate a link with a location on a page, use an image map, it will be vastly more efficient.</p>

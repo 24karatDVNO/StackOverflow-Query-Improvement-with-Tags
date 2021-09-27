@@ -1,0 +1,34 @@
+<p>I would strongly advocate against writing your own full text search engine using "WHERE column1 LIKE '%blah%'" expressions. You will have all sorts of issues with word stemming, misspellings, etc. </p>
+
+<p>MySQL has one already. It's the one using MATCH() syntax. Looks like you want only the precise matches. MySQL supports that - you can filter out the records that have a low match score. See this page of the manual for the details: <a href="http://dev.mysql.com/doc/refman/5.5/en/fulltext-natural-language.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.5/en/fulltext-natural-language.html</a></p>
+
+<p>Example: </p>
+
+<pre><code>CREATE TABLE articles (
+    -&gt;   id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    -&gt;   title VARCHAR(200),
+    -&gt;   body TEXT,
+    -&gt;   FULLTEXT (title,body)
+    -&gt; ) ENGINE=MyISAM;
+
+mysql&gt; INSERT INTO articles (title,body) VALUES
+    -&gt; ('MySQL Tutorial','DBMS stands for DataBase ...'),
+    -&gt; ('How To Use MySQL Well','After you went through a ...'),
+    -&gt; ('Optimizing MySQL','In this tutorial we will show ...'),
+    -&gt; ('1001 MySQL Tricks','1. Never run mysqld as root. 2. ...'),
+    -&gt; ('MySQL vs. YourSQL','In the following database comparison ...'),
+    -&gt; ('MySQL Security','When configured properly, MySQL ...');
+
+mysql&gt; SELECT id, body, MATCH (title,body) AGAINST
+    -&gt; ('Security implications of running MySQL as root'
+    -&gt; IN NATURAL LANGUAGE MODE) AS score
+    -&gt; FROM articles WHERE MATCH (title,body) AGAINST
+    -&gt; ('Security implications of running MySQL as root'
+    -&gt; IN NATURAL LANGUAGE MODE);
++----+-------------------------------------+-----------------+
+| id | body                                | score           |
++----+-------------------------------------+-----------------+
+|  4 | 1. Never run mysqld as root. 2. ... | 1.5219271183014 |
+|  6 | When configured properly, MySQL ... | 1.3114095926285 |
++----+-------------------------------------+-----------------+
+</code></pre>

@@ -1,0 +1,7 @@
+<p>Registry way is working fine for me IF I don't have any dependencies on other assemblies.</p>
+
+<p>The problem you face may most likely due to inability to locate the dependencies for your extension. </p>
+
+<p>CodedUITestBuilder does not look at the dependent assemblies at the location you mention. You may need to tinker the configuration files to resolve your dependent assemblies.</p>
+
+<p>Easiest (not great) approach is to copy your stuff to the designated folder.</p>

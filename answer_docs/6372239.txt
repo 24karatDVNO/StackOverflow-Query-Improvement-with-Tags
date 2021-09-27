@@ -1,0 +1,7 @@
+<p>Linq could come to rescue for this:</p>
+
+<pre><code>IEnumerable&lt;eMyEnum&gt; values = typeof(eMyEnum).GetEnumValues()
+                               .Cast&lt;int&gt;().Distinct().Cast&lt;eMyEnum&gt;();
+</code></pre>
+
+<p>Note that this will get you only cValue2 and not cValue2_too i think.</p>

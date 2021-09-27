@@ -1,0 +1,30 @@
+<p>I was searching for the same thing yesterday and I came across your post (and I saw it was recent). After some search I managed to overcome this problem so I thought it would be nice to share with you my findings.</p>
+
+<p>I suppose that you defined an POJO for your data and then added all these objects to the HashMap (correct me if I am right).</p>
+
+<p>What I did was to create a new Object that extends HashMap implementation. (In fact you dont have to extend this, you can use the HashMap object itself). So now instead of having objects inside HashMap I directly inserted values for the properties. But lets just add some code blocks in order to clear things :)</p>
+
+<p>Suppose that you have the following PoJO</p>
+
+<pre><code>public class MyPOJO{
+
+  private String name;
+  private String value;
+  //getters, setters etc..
+ }
+</code></pre>
+
+<p>Instead of adding these various objects to a List and providing it as datasource you can use a HashMap this way to define your objects:</p>
+
+<pre><code>Map&lt;String,String&gt; myObject1=new HashMap&lt;String,String&gt;();
+myObject1.put("name","Name1");
+myObject1.put("value","Value1");
+
+Map&lt;String,String&gt; myObject2=new HashMap&lt;String,String&gt;();
+myObject2.put("name","Name2");
+myObject2.put("value","Value2");
+</code></pre>
+
+<p>After defining these objects we can add them in a List and provide it as datasource (<code>JRBeanCollectionDataSource</code>). So the keys of each <code>HashMap</code> are considered to be the properties defined in the Columns (the properties of the initial POJO).</p>
+
+<p>I dont know if my solution is the best but it worked for me!</p>

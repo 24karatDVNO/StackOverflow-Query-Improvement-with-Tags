@@ -1,0 +1,12 @@
+<p>You could set it to the max value 2147483644. </p>
+
+<p>Probably your application will have serious performance problems before you hit the max value, so in a way it is unlimited since you will get other problems before you hit this liimtation.</p>
+
+<p>There are problems with setting the limit very high:</p>
+
+<ul>
+<li>You are more vulnerable to a denial of service attack</li>
+<li>Your app could slow down and you get no information why (increasing payload size)</li>
+</ul>
+
+<p>If I were you I would stick with the value you have now. And include info in the operations documentation that is they see that error they should increase the value.</p>

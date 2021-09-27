@@ -1,0 +1,27 @@
+<p>How about something like the following:</p>
+
+<pre><code>        Form mainForm;
+
+        switch (comboBox1.SelectedText)
+        {
+            case "Individual employees":
+                mainForm = new EmployeesForm();
+                break;
+            case "HR":
+                mainForm = new HRForm();
+                break;
+            case "Manager":
+                mainForm = new ManagerForm();
+                break;
+            case "Supervisor":
+                mainForm = new SupervisorForm();
+                break;
+            default:
+                mainForm = new DefaultForm();
+                break;
+        }
+
+        mainForm.Show();
+</code></pre>
+
+<p>This uses a conditional statement called the <a href="http://msdn.microsoft.com/en-us/library/06tc147t.aspx" rel="nofollow">switch</a>, which handles multiple selections by passing control to one of the case statements within its body.</p>

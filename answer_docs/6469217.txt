@@ -1,0 +1,8 @@
+<p>Do you see any • in x? No, so you can't replace it. To achieve what you want, use:</p>
+
+<pre><code>x.replace(/^\s*[0-9]+\.\s*/, '');
+</code></pre>
+
+<p><img src="https://i.stack.imgur.com/u4ca3.png" alt="enter image description here"></p>
+
+<p>What the regex does is basically removing any <code>[number].</code>, along with any whitespace before and after it, so what is left is the text you need.</p>

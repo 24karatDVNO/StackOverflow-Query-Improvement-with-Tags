@@ -1,0 +1,9 @@
+<p>If you want location updates in the background, just set <a href="http://developer.apple.com/library/ios/#documentation/general/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW22" rel="nofollow">UIBackgroundModes</a> in Info.plist. Something like this should work:</p>
+
+<pre><code>&lt;key&gt;UIBackgroundModes&lt;/key&gt;
+&lt;array&gt;
+  &lt;string&gt;location&lt;/string&gt;
+&lt;/array&gt;
+</code></pre>
+
+<p>Note that keeping the GPS on all the time reduces battery life significantly (~6h?). You can set desiredAccuracy to something larger if you're happy with less frequent updates.</p>

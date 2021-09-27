@@ -1,0 +1,14 @@
+<p>Either</p>
+
+<p><code>input#address.error {}</code></p>
+
+<p>or <code>input#error {}</code></p>
+
+<p>What you really should do is style the input using a <code>class</code>.</p>
+
+<p>Then you can reuse <code>.error</code> more easily, because it won't have to fight with the <code>#id</code> selector for specificity.</p>
+
+<p><code>input.address {}</code>
+<code>input.address.error {}</code></p>
+
+<p>I'd recommend making a more generic class for the input, so you can apply it to any textfield and still have it make sense.</p>

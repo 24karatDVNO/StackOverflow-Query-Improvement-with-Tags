@@ -1,0 +1,12 @@
+<pre><code>android:layout_alignRight="@+id/button2"
+android:layout_alignLeft="@+id/button2"
+android:layout_below="@+id/button2" 
+</code></pre>
+
+<p>These should all be set to either "true" or "false".  These properties are used to determine in a RelativeLayout the "relative" gravity/alignment of a member.</p>
+
+<p>Declaring android:id="@+button2" once is enough.  </p>
+
+<p>What is likely happening is the device it doesn't work on has an older or different version of Android that is not tolerant of this error.</p>
+
+<p>Hope this helped.</p>

@@ -1,0 +1,39 @@
+<p>I got it to work with this code. This works for letters or words:</p>
+
+<pre><code>//parse the phrase into tokens. Punctuation will be tokenized too.
+NSMutableArray *tokens = [NSMutableArray array];
+NSInteger last_word_start = -1;
+//
+for (NSUInteger i = 0; i &lt; [myPhrase length]; ++i) 
+{
+    unichar character = [myPhrase characterAtIndex:i];
+    if ([[NSCharacterSet whitespaceCharacterSet] characterIsMember:character]) 
+    {
+        if (last_word_start &gt;= 0) 
+            [tokens addObject:[myPhrase substringWithRange:NSMakeRange(last_word_start, i-last_word_start)]];
+        last_word_start = -1;
+    }
+    else
+    {
+        if ([[NSCharacterSet punctuationCharacterSet] characterIsMember:character])
+        {
+            if (last_word_start &gt;= 0) 
+                [tokens addObject:[myPhrase substringWithRange:NSMakeRange(last_word_start, i-last_word_start)]];
+            [tokens addObject:[NSString stringWithFormat:@"%C", character]];
+            last_word_start = -1;
+        }
+        else
+        {
+            if (last_word_start == -1)
+                last_word_start = i;
+        }
+    }
+}
+//save pending letters
+if (last_word_start &gt;= 0) 
+    [tokens addObject:[myPhrase substringWithRange:NSMakeRange(last_word_start, [myPhrase length]-last_word_start)]];
+NSLog(@"Tokens for phrase '%@':",myPhrase);
+NSLog(@"%@", tokens);
+</code></pre>
+
+<p>Thank you!</p>

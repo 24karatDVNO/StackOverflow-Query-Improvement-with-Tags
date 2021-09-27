@@ -1,0 +1,25 @@
+<p>The way that you get data from datatable in QTP is, first import the Excel sheet into your datatable (Either Global or Local), then try to get data from datatable using following Syntax</p>
+
+<p>Datatable(columnName,dtGlobalSheet) if imported in Global sheet</p>
+
+<p>Datatable(columnName,dtLocalSheet) if imported in Local sheet</p>
+
+<p>Importing Data</p>
+
+<hr>
+
+<p>myFile = "C:\datasheet\excelone.xls"</p>
+
+<p>datatable.Importsheet myFile,1,Global</p>
+
+<p>Enter Value</p>
+
+<hr>
+
+<p>DataTable("Coumn1Data", dtGlobalSheet)</p>
+
+<p>This way you can get data from Excel sheet.</p>
+
+<p>Thanks,</p>
+
+<p>Karthik</p>

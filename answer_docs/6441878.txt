@@ -1,0 +1,12 @@
+<p>Reading between the lines, this might be achievable using a manual registry modification in the same way described for the <a href="http://support.microsoft.com/kb/949316" rel="nofollow">Windows XP/Windows Server 2003 backport of CTCP</a>.  Hypothetically, you would have to set the given value to 1 using <a href="http://msdn.microsoft.com/en-us/library/ms724923%28v=VS.85%29.aspx" rel="nofollow">RegSetValueEx</a> and inspect it using <a href="http://msdn.microsoft.com/en-us/library/ms724911%28v=VS.85%29.aspx" rel="nofollow">RegQueryValueEx</a> to see what is the state at this time. </p>
+
+<pre><code>When you apply this hotfix, the following registry subkey is created: 
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+The properties of this subkey are as follows: 
+Name: TCPCongestionControl
+Type: REG_DWORD
+Value: 1
+When the value is set to 1, CTCP support is enabled. When the value is set to 0, CTCP support is disabled.
+</code></pre>
+
+<p>Whether this works for you at all, or without a reboot or not depends on 1) whether the appropriate component auto-detects registry mods and 2) whether that's all there is to it on the newer OSes.  Does not seem like this would be too hard to try out, though.</p>

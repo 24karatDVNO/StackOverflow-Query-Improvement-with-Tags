@@ -1,0 +1,10 @@
+<p>js1568 has a better approach</p>
+
+<p>$('div.myDiv').filter('p').text() would probably work.</p>
+
+<p>I take it back, filter would not work. maybe something like:</p>
+
+<pre><code>var jText = $('div.myDiv').clone();
+jText.find('p').remove();
+jText.text();
+</code></pre>

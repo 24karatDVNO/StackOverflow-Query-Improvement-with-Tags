@@ -1,0 +1,9 @@
+<p>You need to send a <a href="http://msdn.microsoft.com/en-us/library/ms632617.aspx" rel="nofollow"><code>WM_CLOSE</code> message</a> to the application's main window. Presumably, this is what <code>CloseMainWindow</code> abstracts for you. That will work fine every time.</p>
+
+<p>Unfortunately, it sounds like the app in question handles the <code>WM_CLOSE</code> message by minimizing itself to the taskbar's notification area. In that case, it would do the same thing if you tried to exit the app any other way, including File -> Exit or clicking the "X" button in the title bar.</p>
+
+<p>Applications that are extremely self-important often do this. It's wrong, and strongly discouraged, and there's even a <em>right</em> way of implementing it, but none of those things have ever stopped people before. </p>
+
+<p>Therefore, the only way to actually get the program to close is going to be to check the documentation for the application in question and see how to close it, rather than minimize it. I'm betting there's an option in one of the preferences dialogs that controls this. Make sure you've set that option accordingly.</p>
+
+<p>Definitely shy away from any suggestions involving sending the thread a <a href="http://msdn.microsoft.com/en-us/library/ms632641.aspx" rel="nofollow"><code>WM_QUIT</code> message</a>, or killing the entire process. This is not the recommended approach, and can cause a number of problems, as you point out in the question. You need to figure out a way of getting the app to close itself nicely. Everything else falls squarely into the category of "killing", exactly what you wish to avoid.</p>

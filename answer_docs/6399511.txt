@@ -1,0 +1,14 @@
+<h2>File type problem</h2>
+
+<p>Since the MIME type reported by the browser (which is what you get in <code>$_FILES</code>) can be spoofed, you can't rely on it. This leaves you with two reasonable options:</p>
+
+<ol>
+<li>Filter by file extension</li>
+<li>Filter using <a href="http://www.php.net/manual/en/function.finfo-file.php" rel="nofollow"><code>finfo_file</code></a></li>
+</ol>
+
+<p>Unfortunately <code>finfo_file</code> is not included by default on PHP &lt; 5.3, so this leaves you with the extension check (which has worked just fine for me in the past), or using the <a href="http://pecl.php.net/package/fileinfo" rel="nofollow">discontinued PECL package finfo</a>.</p>
+
+<h2>Max upload size problem</h2>
+
+<p>There are <em>many</em> PHP settings that influence this, and you need to tweak <em>all</em> of them to have big uploads work. Fortunately, for some time now the PHP docs have <a href="http://www.php.net/manual/en/features.file-upload.common-pitfalls.php" rel="nofollow">a page where everything related to file upload</a> that can cause problems is discussed.</p>

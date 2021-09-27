@@ -1,0 +1,4 @@
+<p>You should elaborate on what kinds of things you are searching for -- if it's plain content Strings, I would consider using Stax API (javax.xml.stream.XMLStreamReader), for example.
+XPath is good if you need to restrict your search for specific subset.</p>
+
+<p>One problem with XPath however is that depending on expression it may end up building a DOM tree in memory, and this is rather costly (relative to parsing XML), both in terms of speed and memory use. So if this can be avoided that alone can speed up processing by factory of 3x.</p>

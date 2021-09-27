@@ -1,0 +1,5 @@
+<p>Don't worry too much about it. Yes, having "heavy" views is opposed to the ideas of MVVM (thin views, testability). But there are always exceptions to the rule.</p>
+
+<p>The decision here is using the "free/existing" XAMDataGrid export functionality or write your own MVVM version of it (which resides in the ViewModel). </p>
+
+<p>If you choose Option1, you'd need to cache the View object within the ViewModel (use ctor injection) in addition the usual approach of setting View.DataContext = ViewModel and relying on data-binding to handle the rest. </p>

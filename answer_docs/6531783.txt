@@ -1,0 +1,44 @@
+<p>Your Stored procedure should be like below. See for <code>Error_Message</code> and <code>Error_Number</code></p>
+
+<pre><code>Create Proc Testing
+As
+
+Set NoCount On
+Set XACT_ABORT ON
+Begin Try
+    Begin Tran
+        "Your Insert/Update Statement"
+        Select '' as 'Message', 0 as 'Number'
+    Commit Tran
+End Try
+Begin Catch
+    Select Error_Message() as 'Message', Error_Number() as 'Number'
+    Rollback Tran
+End Catch
+</code></pre>
+
+<p>Your code should be like below</p>
+
+<pre><code>string str;
+int number;
+using (System.Data.SqlClient.SqlConnection con = new SqlConnection("YourConnection string")) { 
+    con.Open(); 
+    SqlCommand cmd = new SqlCommand(); 
+    string expression = "Parameter value"; 
+    cmd.CommandType = CommandType.StoredProcedure; 
+    cmd.CommandText = "Your Stored Procedure"; 
+    cmd.Parameters.Add("Your Parameter Name", 
+                SqlDbType.VarChar).Value = expression;    
+    cmd.Connection = con; 
+    using (IDataReader dr = cmd.ExecuteReader()) 
+    { 
+        if (dr.Read()) 
+        {
+             str = dr["Message"].ToString();
+             number = Convert.ToInt16(dr["Number"]);
+        } 
+    } 
+}
+</code></pre>
+
+<p>In this way you can capture the Error Message/ Error Number from stored procedure if it returns any</p>

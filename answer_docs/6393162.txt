@@ -1,0 +1,19 @@
+<p>Thanks for your help Peko but it was not that.</p>
+
+<p>After hours trying stuff, I found out that I needed to launch the UIImagePickerController from the root controller.
+This is maybe because I'm using TTNavigator from the Three20 library.</p>
+
+<p>So in my case to have this working:</p>
+
+<pre><code>[[TTNavigator navigator].rootViewController presentModalViewController:self.cameraOverlayViewController.imagePickerController animated:YES];
+</code></pre>
+
+<p>instead of:</p>
+
+<pre><code>[self presentModalViewController:self.cameraOverlayViewController.imagePickerController animated:YES];
+</code></pre>
+
+<p>same thing for dismissModalViewControllerAnimated:</p>
+
+<pre><code>[[TTNavigator navigator].rootViewController dismissModalViewControllerAnimated:YES];
+</code></pre>

@@ -1,0 +1,9 @@
+<p>well assuming you have the two closing divs in your html structure, my guess is that it is a float problem. put this before the closing div for #footer and you should be alright:</p>
+
+<pre><code>&lt;div style='clear:both'>&lt;/div></code></pre>
+
+<p>also add</p>
+
+<pre><code>#footer{
+    clear:both;
+}</code></pre>

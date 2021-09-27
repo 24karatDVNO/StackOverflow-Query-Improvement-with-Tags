@@ -1,0 +1,8 @@
+<p>I'm not really clear on what you want to do, either -> but are you familiar with the concept of ORMs, for example NHibernate, are you trying to map those entites to a relational database?
+You can have abstractions like those with simple NHibernate session:</p>
+
+<pre><code>IEntity someEntity = new Customer("John", "Doe");
+session.Save(someEntity);
+</code></pre>
+
+<p>provided that you map the entity to the database...</p>

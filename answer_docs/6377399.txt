@@ -1,0 +1,12 @@
+<p>in the onChange event of your start data field</p>
+
+<pre><code>var startDate = crmForm.all.proposedstart.DataValue; //substitute "proposedstart" by your entity's attribute name
+if (startDate == null)
+    return;
+var endDate =  crmForm.all.proposedend.DataValue; //substitute "proposedend" by your entity's attribute name
+if (endDate == null) {
+    endDate = new Date();
+}
+endDate.setDate(startDate.getDate()+5); // add 5 days to the start date
+crmForm.all.proposedend.DataValue = endDate;
+</code></pre>

@@ -1,0 +1,17 @@
+<p>The slowness may be to using correlated sub-queries in the Select statement. Remember that sub-queries will execute for every record in the table</p>
+
+<p>If you are only going to have a fixed number of values returned using a Temp table (or Table variable) and the Row_Number() Over method will work:</p>
+
+<blockquote>
+<pre><code>SELECT ROW_NUMBER() OVER (PARTITION BY TheKey ORDER BY DateValue DESC) RowNum, TheKey, DateValue, OtherValue
+INTO tmp
+FROM SomeTable
+WHERE .....
+</code></pre>
+</blockquote>
+
+<pre><code>SELECT x1.TheKey, x1.DateValue date1, x1.OtherValue Value1, x2.DateValue Date2, x2.OtherValue Value2, x3.CreateDate Date3, x3.OtherValue Value3
+FROM (SELECT * FROM #tmp WHERE rownum=1) x1
+left JOIN (SELECT * FROM #tmp WHERE rownum=2) x2 ON x1.TheKey = x2.TheKey
+left JOIN (SELECT * FROM #tmp WHERE rownum=3) x3 ON x1.TheKey = x3.TheKey
+</code></pre>

@@ -1,0 +1,9 @@
+<p>I've just tested this again with GCC 4.6. In the standard settings, this works as expected, giving 101 for all the lengths. However, with your option <code>-fshort-wchar</code> I also get unexpected results (51 in my case, and 251 for the final conversion after using setlocale()).</p>
+
+<p>So I looked up the man entry for the option:</p>
+
+<blockquote>
+  <p>Warning: the -fshort-wchar switch causes GCC to generate code that is not binary compatible with code generated without that switch.  Use it to conform to a non-default application binary interface.</p>
+</blockquote>
+
+<p>I think that explains it: When you're linking to the standard library, you are expected to use the correct ABI and type conventions, which you are overriding with that option.</p>

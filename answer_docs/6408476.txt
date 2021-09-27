@@ -1,0 +1,3 @@
+<p>From what I understand, in AutoFac you can use lifetime scopes as an alternative to the missing <strong>Web Request Context</strong> lifestyle: create a new lifetime scope at the beginning of each web request and use it to resolve components. Then <strong>dispose of the scope when the request ends</strong>.</p>
+
+<p>So my guess is that you should not dispose your scope at the end of the request ?</p>

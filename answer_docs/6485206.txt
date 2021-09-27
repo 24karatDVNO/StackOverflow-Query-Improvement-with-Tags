@@ -1,0 +1,13 @@
+<p>is the "do something" part of the code actually doing something? Otherwise, you may just want to decrement by 100 instead of by 1.</p>
+
+<p>Otherwise, try the following</p>
+
+<pre><code>$account_id_new = 147887000;
+while($account_id_new &gt; 2) {
+    if($account_id % 100 == 0)
+       echo " this is 100th time";
+
+$account_id_new = $account_id_new-1;
+</code></pre>
+
+<p>}</p>

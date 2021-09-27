@@ -1,0 +1,38 @@
+<pre><code>&gt; &lt;script language="javascript"
+&gt; type="text/javascript"&gt;
+</code></pre>
+
+<p>The language attribute has been deprecated for over a decade, it should not be used.</p>
+
+<pre><code>&gt; function appendStuff(){   var node = document.getElementsByTagName("P");  
+&gt;   node.appendChild.createTextNode('Here's some text');
+&gt;   return true;
+&gt; }
+</code></pre>
+
+<p>As others have pointed out, <em>getElemetsByTagName</em> returns a live <a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-536297177" rel="nofollow"><em>NodeList</em></a>, which has a length property and whose members can be accessed by index. Note that while it is array-like, it is not an array. </p>
+
+<p>A text element can be appended to the first node in the NodeList using:</p>
+
+<pre><code>  node[0].appendChild(document.createTextNode("Here's some text"));
+</code></pre>
+
+<p>However it is much safer to first see if <code>node[0]</code> exists before attempting to call one of its methods.</p>
+
+<pre><code>&gt; &lt;noscript&gt; Your browser doesn't
+&gt; support javascript. &lt;/noscript&gt;
+</code></pre>
+
+<p>The fact that a browser displays a <a href="http://www.w3.org/TR/html401/interact/scripts.html#edef-NOSCRIPT" rel="nofollow">noscript</a> element doesn't necessarily mean that the browser doesn't support javascript. The description of a noscript element includes:</p>
+
+<pre><code>The NOSCRIPT element allows authors to provide 
+alternate content when a script is not executed.
+</code></pre>
+
+<p><a href="http://www.w3.org/TR/html401/interact/scripts.html#edef-NOSCRIPT" rel="nofollow">W3C, <em>HTML4.01</em>, §18.3.1</a></p>
+
+<pre><code>&gt; &lt;input type="submit" value="click me"
+&gt; onclick="appendStuff();" /&gt;
+</code></pre>
+
+<p>An input with a type of submit is intended to be in a form and be used to submit the form. A more appropriate value for the type attribute here is "button". And the XML-style closing tag is unnecessary.</p>

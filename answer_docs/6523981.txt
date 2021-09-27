@@ -1,0 +1,43 @@
+<p>Figured it out. here's a solution:</p>
+
+<pre><code>&lt;s:List height="100%" width="100%"&gt;
+    &lt;s:itemRenderer&gt;
+        &lt;fx:Component&gt;
+            &lt;s:IconItemRenderer height="100" labelField="name" 
+                                iconField="photo" iconHeight="80" 
+                                iconWidth="80" messageFunction="getMessage"&gt;
+                &lt;fx:Script&gt;
+                    &lt;![CDATA[
+                        import spark.components.NavigatorContent;
+                        protected function getMessage(o:Object):String
+                        {
+                            return o.message;
+                        }
+                    ]]&gt;
+                &lt;/fx:Script&gt;
+            &lt;/s:IconItemRenderer&gt;
+        &lt;/fx:Component&gt;
+    &lt;/s:itemRenderer&gt;
+    &lt;s:dataProvider&gt;
+        &lt;s:ArrayCollection&gt;
+            &lt;fx:Object name="Projects" photo="@Embed('libs/ProjectsIcon2.png')" message="Learn more about what we're working on"&gt;
+            &lt;/fx:Object&gt;
+            &lt;fx:Object name="Locate Office" photo="@Embed('libs/google-maps-icon.png')" message="Find directions to our nearest office"&gt;
+            &lt;/fx:Object&gt;
+            &lt;fx:Object name="Contact Us" photo="@Embed('libs/gmailicon.png')" message="Let us know your thoughts!"&gt;
+            &lt;/fx:Object&gt;
+            &lt;fx:Object name="About Us" photo="@Embed('libs/info-icon.png')" message=""&gt;
+            &lt;/fx:Object&gt;
+        &lt;/s:ArrayCollection&gt;
+    &lt;/s:dataProvider&gt;
+    &lt;s:change&gt;
+              //these if statements were the solution i used. rough, but works well
+        &lt;![CDATA[
+            if(event.currentTarget.selectedItem.name == "Projects"){navigator.pushView(Projects);}
+        if(event.currentTarget.selectedItem.name == "Locate Office"){navigator.pushView(Locations);}
+        if(event.currentTarget.selectedItem.name == "Contact Us"){navigator.pushView(Contact);}
+        if(event.currentTarget.selectedItem.name == "About Us"){navigator.pushView(About);}
+        ]]&gt;
+    &lt;/s:change&gt;
+&lt;/s:List&gt;
+</code></pre>

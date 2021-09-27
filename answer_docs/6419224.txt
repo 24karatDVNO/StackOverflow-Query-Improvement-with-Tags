@@ -1,0 +1,21 @@
+<p>I have look how to do it trough HTTP with the Apache HttpClient4 and HttpCore4 libraries and I have wrote this code, you think it would work properly? Thank you very much!</p>
+
+<pre><code>private String server;
+//private Integer port;
+
+// getter and settler methods for server property
+
+public void sendXML(String fileName) throws Exception{
+    try{
+        File file = new File(fileName);
+        FileEntity entity = new FileEntity(file, "text/xml; charset=\"UTF-8\"");
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+        HttpPost method = new HttpPost(server);
+        method.setEntity(entity);
+        HttpResponse response = httpclient.execute(method);
+    }
+    catch(IOException e){
+        e.printStackTrace();
+    }
+}
+</code></pre>

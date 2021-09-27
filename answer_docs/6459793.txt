@@ -1,0 +1,13 @@
+<p>It'll be tedious, but I'd suggest creating N steps (where N = the number of parallel tasks you want)</p>
+
+<p>Each step will generally do the following:</p>
+
+<ol>
+<li>Check if the current reviewer field is empty (if so, skip to the next step)</li>
+<li>Create a new "Task" item in a (task) List</li>
+<li>Send an email to the person you assigned the task to</li>
+</ol>
+
+<p>Then you'll need to somehow stop your workflow until all of the tasks have been completed. This part gets a bit trickier, but do some searches on creating a State Machine workflow in SharePoint Designer and you'll be on the right track.</p>
+
+<p>Really though, this sounds like a workflow that's too complex for SPD. Use Visual Studio or some 3rd-party workflow solution if at all possible.</p>

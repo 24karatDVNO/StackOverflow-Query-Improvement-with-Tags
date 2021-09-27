@@ -1,0 +1,18 @@
+<p>You can do it the way you described like so</p>
+
+<pre><code>&lt;script type="text/javascript" language="javascript"&gt;
+$.fillit = function(content)
+{
+$("result").html(content);
+
+}
+
+//call function
+$.fillit("HELLO WORLD");
+
+&lt;/script&gt;
+</code></pre>
+
+<p>or as Alexander just posted if you want to do it on the selected element.</p>
+
+<p>I don't think adding functions directly to jquery with $.func = is a good idea though. If jQuery ever adds a fillit method your method will conflict with theirs.</p>

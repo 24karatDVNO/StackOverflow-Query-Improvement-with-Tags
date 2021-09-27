@@ -1,0 +1,35 @@
+<pre><code>private string GetX64Installedsoftware()
+{
+    string Software = null;
+    string SoftwareKey = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+
+    Software += "\r\nWINDOWS X64 Software\r\n\r\n\r\n ";
+    using (RegistryKey rk = Registry.LocalMachine.OpenSubKey(SoftwareKey))
+    {
+        if (rk == null)
+        {
+            return Software;
+        }
+        foreach (string skName in rk.GetSubKeyNames())
+        {
+            using (RegistryKey sk = rk.OpenSubKey(skName))
+            {
+                try
+                {
+                    if (!(sk.GetValue("DisplayName") == null))
+                    {
+                        if (sk.GetValue("InstallLocation") == null)
+                            Software += sk.GetValue("DisplayName") + " - Install path not known \r\n ";
+                        else
+                            Software += sk.GetValue("DisplayName") + " - " + sk.GetValue("InstallLocation") + "\r\n ";
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+    }
+    return Software;
+}
+</code></pre>

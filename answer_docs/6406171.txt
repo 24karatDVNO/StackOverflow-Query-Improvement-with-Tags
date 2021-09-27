@@ -1,0 +1,14 @@
+<p><a href="http://orion.math.iastate.edu/docs/cmlib/uncmin/optif9" rel="nofollow">OPTIF9</a> can be converted to C (from Fortran) and may already have been by somebody.</p>
+
+<p>If what you mean by box constraints is that it supports upper and lower limits on parameter values, I believe there is a version that does that.</p>
+
+<p>That is a tricky problem, because it means whenever a parameter gets to a boundary, it effectively reduces the degrees of freedom by 1.
+It can get "stuck on a wall" when you didn't really want it to.</p>
+
+<p>What we've found is that it's better to use an unconstrained minimizer and transform parameters, via something like a log or logit transform, so that in the search space they are unconstrained, but in the model space they are constrained.</p>
+
+<p>As far as the other types of constraints, I don't know, although one option is, as part of your objective function, to make it get really bad when constraints are violated, so the optimizer avoids those areas.</p>
+
+<p>I've found when I have a really flexible set of constraints, if I want a good trouble-free algorithm, I use <a href="http://en.wikipedia.org/wiki/Metropolis-Hastings_algorithm" rel="nofollow">Metropolis-Hastings</a>.
+Unless I'm wrong, if it generates a sample that violates constraints, you can simply discard the sample.
+It takes longer, but it's simple and always works.</p>

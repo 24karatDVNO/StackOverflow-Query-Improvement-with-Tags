@@ -1,0 +1,6 @@
+<p>There is another question <a href="https://stackoverflow.com/questions/1127192/rails-order-by-in-associated-model">here</a> that might be able to help, although I have yet to try it. If you try based on this example (from the previous site), hopefully sorting in the form will work for you:</p>
+
+<pre><code>class Log &lt; ActiveRecord::Base
+  has_many :items, :order =&gt; "some_col DESC"
+end
+</code></pre>

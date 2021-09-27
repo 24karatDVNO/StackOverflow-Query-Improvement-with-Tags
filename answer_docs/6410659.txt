@@ -1,0 +1,12 @@
+<p>The problem might be that your passing every li element to jQuery.each. Try:</p>
+
+<pre><code>$("#colorlist li:visible").each(function(i, elem){
+   var $el = $(this);
+   //If is 0 add class
+   if( i % 15 === 0 ){
+       $el.addClass('first-column');
+   }
+});
+</code></pre>
+
+<p>Demo here: <a href="http://jsfiddle.net/tomgrohl/473ky/" rel="nofollow">http://jsfiddle.net/tomgrohl/473ky/</a></p>

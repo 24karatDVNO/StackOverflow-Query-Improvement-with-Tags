@@ -1,0 +1,17 @@
+<pre><code>    AsynchronousImageView *image = [[AsynchronousImageview alloc]init];
+    [image loadImagewithUrlString:getString];
+
+    FbGraphResponse *fb_graph_response = [fbGraph doGraphGet:get_string withGetVars:nil];
+
+    UIImageView *image_view = [[UIImageView alloc] initWithImage:fb_graph_response.imageResponse];
+
+
+    cell.imageView.image = image_view.image;
+</code></pre>
+
+<p>This code is creating the described problem ..... try this approch ... once any image is downloaded save it in any temp folder in document directory(make name of ur image such that you can identify each of them uniquely)....and when you have to configure the cell just take the image form tha temp folder every time the method <code>celForRowAtIndexPath</code> is called  .... dont use </p>
+
+<pre><code>   UIImageView *image_view = [[UIImageView alloc];
+</code></pre>
+
+<p>This make no sence here as you are not using it (you are just using its <code>.image</code> property) .... also if possible collect all you data in <code>viewDidLoad</code> in that way you can further improve the performance</p>

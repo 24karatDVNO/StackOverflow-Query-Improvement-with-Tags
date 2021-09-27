@@ -1,0 +1,6 @@
+<p>While fgetcsv is potentially a more elegant solution, that doesn't answer your original question: your second array element has a newline, and you're comparing against a string that doesn't.</p>
+
+<p>To fix:</p>
+
+<pre><code>if ($string == str_replace('"','', chop($thisarray[1]))) {
+</code></pre>

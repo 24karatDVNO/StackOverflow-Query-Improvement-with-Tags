@@ -1,0 +1,46 @@
+<p>migrations:</p>
+
+<pre><code>class CreateUsers &lt; ActiveRecord::Migration
+  def self.up
+    create_table :users, :primary_key =&gt; 'facebook_id' do |t|
+      t.string :name
+    end
+  end
+
+  def self.down
+    drop_table :users
+  end
+end
+
+class CreatePools &lt; ActiveRecord::Migration
+  def self.up
+    create_table :pools do |t|
+      t.integer :creator_facebook_id
+      t.string :name
+    end
+  end
+
+  def self.down
+    drop_table :pools
+  end
+end
+</code></pre>
+
+<p>models:</p>
+
+<pre><code>class User &lt; ActiveRecord::Base
+  set_primary_key 'facebook_id'
+  has_many :pools, :foreign_key =&gt; "creator_facebook_id"
+end
+
+class Pool &lt; ActiveRecord::Base
+  belongs_to :user, :foreign_key =&gt; "creator_facebook_id"
+end
+</code></pre>
+
+<p>this will allow for:</p>
+
+<pre><code>pool.user.name
+</code></pre>
+
+<p>tested with sqlite and rails 3.0.7</p>

@@ -1,0 +1,12 @@
+<p>Here's a function that works in all major browsers:</p>
+
+<pre><code>function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection &amp;&amp; document.selection.type == "Text") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+</code></pre>

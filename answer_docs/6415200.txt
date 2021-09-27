@@ -1,0 +1,8 @@
+<p>Push substrings to the array</p>
+
+<pre><code>$result = array();
+for ($index=0; $index&lt;=strlen($string)-$width; $index+= $width)
+{
+array_push($result,substr($string,$index,$width));
+}
+</code></pre>

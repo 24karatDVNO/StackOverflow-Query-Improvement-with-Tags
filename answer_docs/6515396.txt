@@ -1,0 +1,7 @@
+<p>Another slight technicality to note:</p>
+
+<p>def has_user_voted? user
+  poll_votes.where(:user_id => user.id).size > 0
+end</p>
+
+<p>.size will either issue a db .count, or if the association is already loaded, it will get the length of the array and not even do a sql call.  I always use size.</p>

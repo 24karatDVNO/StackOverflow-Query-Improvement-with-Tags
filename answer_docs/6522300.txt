@@ -1,0 +1,49 @@
+<p>You can use the <strong>DateDiff</strong> class of the <a href="http://www.codeproject.com/KB/datetime/TimePeriod.aspx" rel="nofollow">Time Period Library for .NET</a>:</p>
+
+<pre><code>// ----------------------------------------------------------------------
+public void DateDiffSample()
+{
+  DateTime date1 = new DateTime( 2009, 11, 8, 7, 13, 59 );
+  Console.WriteLine( "Date1: {0}", date1 );
+  // &gt; Date1: 08.11.2009 07:13:59
+  DateTime date2 = new DateTime( 2011, 3, 20, 19, 55, 28 );
+  Console.WriteLine( "Date2: {0}", date2 );
+  // &gt; Date2: 20.03.2011 19:55:28
+
+  DateDiff dateDiff = new DateDiff( date1, date2 );
+
+  // differences
+  Console.WriteLine( "DateDiff.Years: {0}", dateDiff.Years );
+  // &gt; DateDiff.Years: 1
+  Console.WriteLine( "DateDiff.Quarters: {0}", dateDiff.Quarters );
+  // &gt; DateDiff.Quarters: 5
+  Console.WriteLine( "DateDiff.Months: {0}", dateDiff.Months );
+  // &gt; DateDiff.Months: 16
+  Console.WriteLine( "DateDiff.Weeks: {0}", dateDiff.Weeks );
+  // &gt; DateDiff.Weeks: 70
+  Console.WriteLine( "DateDiff.Days: {0}", dateDiff.Days );
+  // &gt; DateDiff.Days: 497
+  Console.WriteLine( "DateDiff.Weekdays: {0}", dateDiff.Weekdays );
+  // &gt; DateDiff.Weekdays: 71
+  Console.WriteLine( "DateDiff.Hours: {0}", dateDiff.Hours );
+  // &gt; DateDiff.Hours: 11940
+  Console.WriteLine( "DateDiff.Minutes: {0}", dateDiff.Minutes );
+  // &gt; DateDiff.Minutes: 716441
+  Console.WriteLine( "DateDiff.Seconds: {0}", dateDiff.Seconds );
+  // &gt; DateDiff.Seconds: 42986489
+
+  // elapsed
+  Console.WriteLine( "DateDiff.ElapsedYears: {0}", dateDiff.ElapsedYears );
+  // &gt; DateDiff.ElapsedYears: 1
+  Console.WriteLine( "DateDiff.ElapsedMonths: {0}", dateDiff.ElapsedMonths );
+  // &gt; DateDiff.ElapsedMonths: 4
+  Console.WriteLine( "DateDiff.ElapsedDays: {0}", dateDiff.ElapsedDays );
+  // &gt; DateDiff.ElapsedDays: 12
+  Console.WriteLine( "DateDiff.ElapsedHours: {0}", dateDiff.ElapsedHours );
+  // &gt; DateDiff.ElapsedHours: 12
+  Console.WriteLine( "DateDiff.ElapsedMinutes: {0}", dateDiff.ElapsedMinutes );
+  // &gt; DateDiff.ElapsedMinutes: 41
+  Console.WriteLine( "DateDiff.ElapsedSeconds: {0}", dateDiff.ElapsedSeconds );
+  // &gt; DateDiff.ElapsedSeconds: 29
+} // DateDiffSample
+</code></pre>

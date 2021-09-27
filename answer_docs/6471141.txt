@@ -1,0 +1,11 @@
+<p>wowzers.... I finally found the issue and i can't wait to share.</p>
+
+<p><strong>"Guard Malloc" and "Enable Guard Edges"</strong> finally helped me finding the bug. Two Float32 arrays were allocated using calloc, but the index accessing them and writing the Float32s into it was too big by 1 (haven't we heard that before?!?).</p>
+
+<p>After enabling Guard Malloc the debugger stopped right at the source code point where the wrong access has happened, but it wasn't too obvious why. Being bored with calloc (in fact always have been since my early C coding days) I changed the arrays to be NSMUtableArrays and guess what, Guard Malloc again stopped at the same line of code (this time with the NSMutableArray replacing the *Float32 pointers), but because it is Objective-C it also told me that the Index was out of bounds and gave me a stack trace.</p>
+
+<p>The fix of course then was easy by allocating the right sizes for the arrays, however what worries me is that this wrong code was in the App since 2008 and it never caused any problems! Just now that I added something to the App memory must have been shifted to the "dark side".</p>
+
+<p><strong>So.... there you have it, when you get a EXEC_BAD_ACCESS in your main, watch out for calloc / malloc / free and check, double check and recheck your indices.</strong></p>
+
+<p>By the way, in Xcode 4 setting those flags for Guard Malloc, etc. is done through "Edit Scheme"</p>

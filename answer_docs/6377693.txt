@@ -1,0 +1,15 @@
+<p>you could send it as a parameter</p>
+
+<pre><code>function scrollbackground(limit) {
+        // decrease the offset by 1, or if its less than 1 increase it by the background height minus 1
+//          offset = (offset &lt; 1) ? offset + (backgroundheight - 1) : offset - 1;
+        offset = offset&lt;limit?offset - 1:offset + 1;
+        // apply the background position
+        $('body').css("background-position", "50% " + offset + "px");
+        // call self to continue animation
+        setTimeout(function() {
+            scrollbackground(limit);
+            }, 1000
+        );
+    }
+</code></pre>

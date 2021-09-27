@@ -1,0 +1,5 @@
+<p>As to the error you had with Socket.IO, if you are fronting the app on port 9000 with nginx on port 80, you will need to tell the client side to use port 80 NOT port 9000.</p>
+
+<p>You can look at node-http-proxy with a simple proxyTable lookup map. To map port 80 to multiple sites.</p>
+
+<p>You could also look at nodester.com, it will provide you with a node.js hosting platform.</p>

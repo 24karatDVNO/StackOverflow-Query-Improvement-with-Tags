@@ -1,0 +1,24 @@
+<p><code>fn</code> is a function passed as parameter to <code>auth</code>.</p>
+
+<p>The <code>auth</code> function <a href="https://github.com/LearnBoost/Socket.IO-node/blob/master/lib/manager.js#L548" rel="nofollow">is called here</a>:</p>
+
+<pre><code>Manager.prototype.authorize = function (data, fn) {
+  if (this.get('authorization')) {
+    var self = this;
+
+    this.get('authorization').call(this, data, function (err, authorized) {
+      self.log.debug('client ' + authorized ? 'authorized' : 'unauthorized');
+      fn(err, authorized);
+    });
+  } else {
+    this.log.debug('client authorized');
+    fn(null, true);
+  }
+
+  return this;
+};
+</code></pre>
+
+<p>So you see that the callback function accepts two parameters, <code>err</code> and <code>authorized</code>. In the test, those parameters are set to <code>null</code> and <code>false</code>.</p>
+
+<p>It is likely that at some point you can specify what <code>fn</code> should be, but this does not have to be! It could also be that this function is always provided by the library and it is your job to call it when you set the <code>auth</code> function.</p>

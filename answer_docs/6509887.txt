@@ -1,0 +1,21 @@
+<p>Looking at the python implementation for OS9 os.path.join (macpath)</p>
+
+<pre><code>def join(s, *p):
+  path = s
+  for t in p:
+    if (not s) or isabs(t):
+        path = t
+        continue
+    if t[:1] == ':':
+        t = t[1:]
+    if ':' not in path:
+        path = ':' + path
+    if path[-1:] != ':':
+        path = path + ':'
+    path = path + t
+  return path
+</code></pre>
+
+<p>I'm not familiar with developing under SDL on older Macs. Another alternative in game resources is to use a package file format, and load the resources into memory directly (such as a map &lt; string, SDL_Surface > )</p>
+
+<p>Thereby you would load one file (perhaps even a zip, unzipped at load time)</p>

@@ -1,0 +1,12 @@
+<p>In cases like this I find it best to look at the file in a hex editor rather than a text editor that can have its own ideas on how to render text, it also can be good for finding pesky non-printable characters that can trip you up.</p>
+
+<p>You didn't say what platform you are working on, but if you are on windows I would recommend using <a href="http://mh-nexus.de/en/hxd/" rel="nofollow noreferrer">HxD</a>.</p>
+
+<p>If you are on Windows, you will see something like this:</p>
+
+<pre><code>Offset(h) 00       04       08       0C       10       14       18       1C
+
+00000000  736F6D65 74657874 0D0A736F 6D657465 78740D0A 736F6D65 74657874 0D0A      sometext..sometext..sometext..
+</code></pre>
+
+<p>The hex sequence <code>0D0A</code> is the <code>\n</code> character on Windows in the above example.</p>

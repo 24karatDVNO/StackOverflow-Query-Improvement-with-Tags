@@ -1,0 +1,13 @@
+<p>On the form page, put $_GET["appt"] in a hidden field. Since it is what you used to determine whether or not the fields should be disabled, passing it along to the PHP validating page can let you determine whether or not you disabled the fields on the form page.</p>
+
+<p>On the form page:
+    " /></p>
+
+<p>And on the mail.php page:</p>
+
+<pre><code>$disabled = trim($_POST["disabled_var"]);
+</code></pre>
+
+<p>If true, the elements were disabled.</p>
+
+<p>Also, no, you can't just see whether or not they exist in the post, because they could very much be empty (but enabled).</p>

@@ -1,0 +1,5 @@
+<p>The line <code>++number[1+rand.nextInt(6)];</code> takes advantage of the fact that arrays in Java are 0-initialized and order of operations.</p>
+
+<p>A random number between 1 and 6 is generated. The appropriate index of the array <code>number</code> is incremented based on the random value. This operation is looped on many times. At the end, a second loop is used to print out the number of times each value was printed.</p>
+
+<p>However, the 0-index of the <code>number</code> array is never used by this code. In effect, it's wasted space that must be (and is) accounted for in the second loop.</p>

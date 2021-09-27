@@ -1,0 +1,25 @@
+<p>import mx.core.BitmapAsset;<br>
+[Embed("assets/Fair.png")]<br>
+const Fair:Class;<br>
+[Embed("assets/Cldy.png")]<br>
+const Cldy:Class;<br>
+[Embed("assets/Sunny.png")]<br>
+const Sunny:Class;<br>
+[Embed("assets/Fog.png")]<br>
+const Fog:Class;</p>
+
+<p>var desc:String = new String();</p>
+
+<p>if(desc == "Fair"){<br>
+        var FairImg:BitmapAsset = new Fair();<br>
+        TemperatureImageId.addChild(FairImg); //TemperatureImageId is the Id of graphic symbol<br>
+       } else if(desc == "Cloudy"){<br>
+        var Cloudy:BitmapAsset = new Cldy();<br>
+        TemperatureImageId.addChild(Cloudy);<br>
+    }else if(desc == "Sunny"){<br>
+        var Sunny:BitmapAsset = new sunny();<br>
+        TemperatureImageId.addChild(Sunny);<br>
+    }else if(desc == "Fog"){<br>
+        var Fog:BitmapAsset = new Fog();<br>
+        TemperatureImageId.addChild(Fog);<br>
+    }</p>

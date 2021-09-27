@@ -1,0 +1,21 @@
+<p>Try:</p>
+
+<pre><code>$(document).ready(function(){
+    $('.dropInput').click(function() {
+        var offset  =   $(this).offset(),
+            height  =   $(this).height(),
+            width   =   $(this).width(),
+            top     =   offset.top + height + "px",
+            right   =   offset.left + width + "px";
+
+        $(this)
+            .next('.inputDrop')
+            .show()
+            .css({
+                'position': 'absolute',
+                'right': right,
+                'top': top
+            });
+    });
+});
+</code></pre>

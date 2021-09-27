@@ -1,0 +1,8 @@
+<p>There might be a few things that are causing this to happen:</p>
+
+<ol>
+<li>Farther down in this style sheet, you are applying another style whose rule over-writes this one.  As many other people here have suggested, inspect the element to see which rules are being applied to it the element.  Remember to keep your most generalized or generic rules at the top and your most specific rules at the bottom of your stylesheet file.</li>
+<li>Farther UP in this style sheet, you're missing a terminating character like a semi-colon or closing curly brace.  This can be a pain in the ass to catch because it's not always immediately evident since some of the rest of the sheet will load instead of the whole thing just breaking.</li>
+</ol>
+
+<p>Hard to say without seeing anything else, but your current markup and style are correct.</p>

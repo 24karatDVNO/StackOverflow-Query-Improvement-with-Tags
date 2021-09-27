@@ -1,0 +1,3 @@
+<p>Beyond other correct things that have been said, remember that "comparing" is in general not a trivial action: it is so just for "primitive" basic types. Complex types (structs in this case) would need overloading ==, but C has no such concept.</p>
+
+<p>In order to compare two "object" (structs) you have to write your own function that knows how to compare them, e.g. <code>int compare_emp(const struct emp *, const struct emp *);</code> or similar.</p>

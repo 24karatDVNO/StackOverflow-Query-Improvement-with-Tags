@@ -1,0 +1,17 @@
+<p>use a flex config.xml file in your src directory.</p>
+
+<p>If your mxml file is named  <strong>project.mxml</strong>  then the config file should be <strong>project-config.xml</strong></p>
+
+<p>This is the default name that both the FlexBuilder built in compiler and mxmlc command line compiler will try to load.</p>
+
+<p>Here is a sample config file with only the specific entry you are asking about.  However anything that you can add to the command line you can specify in the config.xml file.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;flex-config&gt;
+&lt;compiler append="true"&gt;
+        &lt;include-libraries append="true"&gt;
+            &lt;library&gt;libs/myLibrary.swc&lt;/library&gt;
+        &lt;/include-libraries&gt;    
+&lt;/compiler&gt;
+&lt;/flex-config&gt;
+</code></pre>

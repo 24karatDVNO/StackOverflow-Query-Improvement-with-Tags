@@ -1,0 +1,9 @@
+<pre><code>var patt1   = /mid(\d+)/,
+    matches = $('ul').attr('class').match(patt1);
+
+if (matches != undefined &amp;&amp; matches[1] != undefined) {
+    $('SomeOtherElement'+matches[1]);        
+} else {
+    alert("No matches.");   
+}
+</code></pre>

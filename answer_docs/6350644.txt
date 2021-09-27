@@ -1,0 +1,17 @@
+<p>To get the contents of an XML node, navigate to the desired node using the E4X standards built in to as3. A great resource for this is the following site: <a href="http://dispatchevent.org/roger/as3-e4x-rundown/" rel="nofollow">http://dispatchevent.org/roger/as3-e4x-rundown/</a></p>
+
+<p>The following is an example of how to trace the contents of the <code>&lt;Title&gt;</code> node with the attribute <code>"15 FitF 600"</code>:</p>
+
+<pre><code>var xml:XML = 
+&lt;Bookmark&gt;
+  &lt;Title Action="GoTo" Page="14 FitH 670" &gt;1. internal diseases&lt;/Title&gt;
+  &lt;Title Action="GoTo" Page="14 FitH 463" &gt;gastroesophageal reflu&lt;/Title&gt;
+  &lt;Title Action="GoTo" Page="15 FitH 600" &gt;gastritis&lt;/Title&gt;
+  &lt;Title Action="GoTo" Page="15 FitH 215" &gt;peptic ulcer&lt;/Title&gt;
+&lt;/Bookmark&gt;
+
+trace (xml.Title.(@Page == "15 FitH 600")); //gastritis
+trace (xml.Title.(@Page == "15 FitH 600").toString()); //gastritis
+trace (xml.Title.(@Page == "15 FitH 600").valueOf()); //gastritis
+trace (xml.Title.(@Page == "15 FitH 600").toXMLString()); //&lt;Title Action="GoTo" Page="15 FitH 600"&gt;gastritis&lt;/Title&gt;
+</code></pre>

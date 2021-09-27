@@ -1,0 +1,30 @@
+<pre><code>filelist = (
+    'file1.txt',
+    'file2.txt',
+    'file3.txt',
+)
+
+all_records = []
+
+max_records = 0
+for f in filelist:
+    fp = open(f, 'r')
+    records = fp.readlines()
+    if len(records) &gt; max_records:
+        max_records = len(records)
+    records.reverse()
+    all_records.append(records)
+    fp.close()
+
+all_records.reverse()
+
+res_fp = open('result.txt', 'w')
+for i in range(max_records):
+    for records in all_records:
+        try:
+            res_fp.write(records[i])
+        except IndexError:
+            pass
+    i += 1
+res_fp.close()
+</code></pre>

@@ -1,0 +1,6 @@
+<p>Your regex is not matching because you require whitespace on each side of your term, but since it's not <code>_and__not_</code>, you only match <code>_and_</code>.</p>
+
+<p>Consider this regex:</p>
+
+<pre><code>@"(?:and|or|not|near)\s+|"""
+</code></pre>

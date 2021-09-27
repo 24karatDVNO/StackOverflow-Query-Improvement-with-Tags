@@ -1,0 +1,7 @@
+<p>Self-opinionated:</p>
+
+<pre><code>List&lt;string&gt; list = 
+  collection.
+  Select(control =&gt; SearchForControl(control, someOtherParameters)).
+  Select(customControl =&gt; customControl.InnerText).ToList();
+</code></pre>

@@ -1,0 +1,13 @@
+<p>I've always used <a href="http://bg2.php.net/manual/en/function.empty.php" rel="nofollow">php function</a> <code>empty();</code> though it works differently if you don't know what you are doing.</p>
+
+<ul>
+<li>If it's an empty array, it will
+return FALSE</li>
+<li>If it's NULL, it will return FALSE</li>
+</ul>
+
+<p>I personally had little problems with the new <a href="http://codeigniter.com/user_guide/libraries/sessions.html" rel="nofollow">session class</a> in CI 2.0.2. Create a table called "sessions" and store the sessions in the database, using <code>sess_use_database</code> to true. Also set <code>sess_encrypt_cookies</code> to true, and lastly, if you want sessions to match with user IPs, use <code>sess_match_ip</code>. Oh, and make sure to set encryption key, which will make it even more secure.</p>
+
+<p>PHP sessions are nice, but I personally like CI sessions better because it gives more flexibility. Especially when you are running multiple web heads with load balancer.</p>
+
+<p>Hope that helps!</p>

@@ -1,0 +1,6 @@
+<p>The <code>1</code> in your line:</p>
+
+<pre><code>val = val +1;
+</code></pre>
+
+<p>is an <code>int</code> implicitly, so the result of <code>val + 1</code> is an <code>int</code>. You're trying to assign that value a short, and that can't be done implicitly because you'd risk losing some precision.</p>

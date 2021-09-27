@@ -1,0 +1,25 @@
+<p>Eek... bad data format. JSON would be a much prettier. URL encoded parameter strings would better too. Both would allow for arbitrary nesting of groups if that ever happens.</p>
+
+<p>But perhaps something like this?</p>
+
+<pre><code>String groupDelim="~!";
+String entryDelim="~^";
+String pairDelim="=";
+
+String[] groups = X.split(groupDelim);
+int groupId = 0;
+for(String group:groups){
+   String entries = group.split(entryDelim);
+   int entryId = 0;
+   for(String entry:entries){
+      String[] pair = entry.split(pairDelim);
+      /* now do stuff with */
+      groupId; // for sort order if it matters
+      entryId; // for sort order if it matters
+      String key = pair[0];
+      String value = pair[1]; 
+      entryId++;
+   }
+   groupId++;
+}
+</code></pre>

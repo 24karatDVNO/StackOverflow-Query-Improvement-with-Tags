@@ -1,0 +1,16 @@
+<p>I could not reproduce your problem, but I don't think that image inputs return a value, only .x and .y. The following works in Chrome, Firefox and IE (sorry about vb.net):</p>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>Public Class ImageButtonViewData
+    Public Property X As String
+    Public Property Y As String
+
+    Public ReadOnly Property WasClicked As Boolean
+        Get
+            Return Not String.IsNullOrEmpty(X)
+        End Get
+    End Property
+
+End Class
+</code></pre>

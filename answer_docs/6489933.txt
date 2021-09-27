@@ -1,0 +1,16 @@
+<p>The bane of modern internet communications is <a href="http://en.wikipedia.org/wiki/Network_address_translation" rel="nofollow">NAT</a>. Due to NAT (which shouldn't be confused with a simple firewall) a large portion of hosts on the internet don't have a public address and thus can't (easily) accept incoming connections. NAT breaks the internet so badly that people are moving to a <a href="http://en.wikipedia.org/wiki/IPv6" rel="nofollow">totally different scheme</a>, with slightly different semantics, just to get rid of it. </p>
+
+<p>There are basically two class of solutions</p>
+
+<ul>
+<li><p><a href="http://en.wikipedia.org/wiki/NAT_traversal" rel="nofollow">NAT traversal</a> which is sometimes used for peer-to-peer communication. Usually NAT traversal schemes require some publicly accessible server for brokering the initial connection, but the actual communication is done peer-to-peer</p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Client%E2%80%93server_model" rel="nofollow">Client-server communication</a>. This is easier (since the server generally should have a publicly accessible address) but also kind of <strong>inefficient</strong>. For instance, say you've got a peer on the same 10Gb LAN. If you want to send him a file through the server (which happens to be in another country) it's going to take ages instead of seconds.</p></li>
+</ul>
+
+<p>I'm not sure which one is "generally used". But think of it this way:</p>
+
+<ul>
+<li>If there is the logical need for a "controller" (say 8 people are playing a strategy game) then you probably need a server</li>
+<li>If any two peers can logically interact without a "controller", you probably want peer-to-peer communication</li>
+<li>If you need to transfer LOTS of data fast (file transfer), you almost surely want p2p.</li>
+</ul>

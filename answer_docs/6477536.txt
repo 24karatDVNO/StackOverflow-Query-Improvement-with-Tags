@@ -1,0 +1,7 @@
+<p>I would replace the text when the pageshow even is fired. This event fires when a page is requested and shown to the user. Here I am attaching the event to all pages:</p>
+
+<pre><code>$('div[data-role="page"]').live('pageshow', function() {
+     // replace header text
+     $(this).children('div[data-role="header"] h1').html(sessionStorage.siteTitle);
+});
+</code></pre>

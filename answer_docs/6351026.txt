@@ -1,0 +1,5 @@
+<blockquote>
+  <p>Is there any best pracice for this how to do?</p>
+</blockquote>
+
+<p>Have your program check some URL on some Web server to find out the latest version of the app (e.g., downloads an XML or JSON file). If there is a newer version, download it in the background to external storage. Once downloaded, display a <code>Notification</code> letting the user know an update is ready to install. When they click that, fire off an <code>ACTION_VIEW</code> <code>Intent</code> pointing to your APK file and supplying the correct MIME type, which will trigger the update process.</p>

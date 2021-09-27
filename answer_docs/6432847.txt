@@ -1,0 +1,19 @@
+<p>The suggestions to grab the class from the clicked item are valid, but as some have commented, it will break if the li has multiple classes. It also gets a bit messy if you start doing this for a great deal of classes.</p>
+
+<p>I think it's better approached from different angle which is flexible for situations where the li has many classes, and consolidates the common behavior to a common class. I've called that class toggle. I've left the original classes on the li so as not to change more of your markup than necessary, but if you were only using it for the click selector it could be removed.</p>
+
+<pre><code>&lt;li class="toggle" data-targetclass="classone"&gt;One&lt;/li&gt;
+&lt;li class="toggle" data-targetclass="classtwo"&gt;Two&lt;/li&gt;
+</code></pre>
+
+<p>Use the common toggle class to bind all of the lis that should trigger the behavior, but then use the specific data- attribute to determine which div to toggle.</p>
+
+<pre><code>$('li.toggle').click(function(){
+    var target = $(this).data('targetclass');
+    $('div.' + target).toggle();
+});
+</code></pre>
+
+<p><strong>EDIT</strong>: You can see this live and tested on <a href="http://jsfiddle.net/SbHrN/1/" rel="nofollow">jsfiddle</a>.</p>
+
+<p><strong>EDIT 2</strong>: If you only have one div of each class, you could use ids instead of classes. Put an id on each div, a data-targetid attribute on the lis, and use the #id selector in the click handler.  </p>

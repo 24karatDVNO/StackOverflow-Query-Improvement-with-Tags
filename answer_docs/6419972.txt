@@ -1,0 +1,14 @@
+<p>Since Groovy is dynamic, you could just take away your currentDate() method from your service and replace it by one that suits your need. You can do this at runtime during the setup of your test.</p>
+
+<p>Prior to having an instance of MyService instantiated, have the following code executed:</p>
+
+<pre><code>MyService.metaClass.currentDate &lt;&lt; {-&gt; new Date(1308619647140) }
+</code></pre>
+
+<p>This way, you can have a consistent behavior across all your tests.</p>
+
+<p>However, if you prefer, you can override the instance method by a closure that does the same trick.</p>
+
+<p>Let me know how it goes.</p>
+
+<p>Vincent Giguère</p>

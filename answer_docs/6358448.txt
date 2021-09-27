@@ -1,0 +1,60 @@
+<p>In Symfony Form, </p>
+
+<pre><code>class ClientForm extends sfForm
+{
+   public function configure() 
+   {
+      $clients_data = ClientsData::getAllClients(); //get from database
+      $clients = array_merge(array("--Select Clients--", $clients_data);
+      $this-&gt;setWidgets(array(
+          "clients" =&gt; new sfWidgetFormChoice(array("choices" =&gt;$clients)),
+          "products" =&gt;new sfWidgetFormChoice(array("choices" =&gt;array("--Select Product--")))
+      ));
+
+      $this-&gt;setValidators(array(
+           "clients" =&gt; new sfValidatorChoice(array("choices" =&gt;array_keys($clients_data))),
+            "products" =&gt; new sfValidatorString()
+      ));
+   } 
+}
+</code></pre>
+
+<p>in View</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+    $(document).ready(function(){
+         $("#clients").change(function(){
+        var client_id=$("#clients").val();
+        $('#products &gt; option').remove();
+        $.ajax({
+                    type: 'POST',
+                    url: 'products/load',
+                    async: true,
+                    cache: false,
+                    dataType : 'json',
+                    data: 'cid='+client_id,
+                    success: function(jsonData){
+                        $(jsonData.products).each(function()
+                        {
+                            $("#products").append($('&lt;option&gt;&lt;/option&gt;').val(this.id).html(this.item));
+                        });                            
+                    }
+         });
+      });
+    });
+&lt;script&gt;
+&lt;form action="&lt;?php url_for('submit/form'); ?&gt;" id="form" method="post" &gt;
+   &lt;?php echo $form["clients"]-&gt;render(array('id' =&gt; 'clients')); ?&gt;
+   &lt;?php echo $form["clients"]-&gt;renderError(); ?&gt;
+   &lt;br/&gt;
+   &lt;?php echo $form["products"]-&gt;render(array('id' =&gt; 'products')); ?&gt;
+   &lt;?php echo $form["products"]-&gt;renderError(); ?&gt;
+   &lt;button type="submit"&gt;submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>The above code sends an Ajax request to the products module with client id, and based on client id does a query and returns the product data for the given client id.</p>
+
+<p>NOTE: Javascript should be enabled.  </p>
+
+<p>Hope this helped you. you can also do this the symfony way, please check the symfony docs.  </p>

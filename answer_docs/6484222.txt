@@ -1,0 +1,12 @@
+<p>The selector</p>
+
+<pre><code>$(".link");
+</code></pre>
+
+<p>Is getting a collection that contains <strong>all</strong> of your links (say 5 in your example).
+When you do this</p>
+
+<pre><code> perf = $(".link").data('performer');
+</code></pre>
+
+<p>You are getting the data value of the <em>first element in the collection only</em></p>

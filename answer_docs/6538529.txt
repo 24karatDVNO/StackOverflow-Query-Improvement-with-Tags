@@ -1,0 +1,13 @@
+<pre><code>$("#test").keyup(function(){
+
+   var number = $("#number").text();
+   var current = $(this).val();
+
+   var total = parseFloat(number*current).toFixed(2);
+
+   $("#result").val(total);
+
+});
+</code></pre>
+
+<p><strong>Cast the variable to a float</strong> and then use the toFixed() method</p>

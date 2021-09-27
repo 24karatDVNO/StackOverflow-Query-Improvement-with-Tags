@@ -1,0 +1,5 @@
+<p>I have found the reason for this error to come up. The NameError shown is fired from the module, which won't recognize the paths correctly.</p>
+
+<p>@Dogbert correctly pointed out that autoload was probably not working. According to Dave Barker in <a href="http://kzar.co.uk/blog/view/autoload-uninitialized-constant-nameerror" rel="nofollow">his post</a>, the class that autoloads must include the current path in <code>$:</code> / <code>$LOAD_PATH</code>. I did that and now it works.</p>
+
+<p>The <a href="https://github.com/josemota/blogrite/commit/a26b1cc5d09c5d9c7495d337d7c439f5fc1552a1" rel="nofollow">resulting commit</a> is now available. Thanks @Dogbert for pointing the autoload issue in the first place!</p>

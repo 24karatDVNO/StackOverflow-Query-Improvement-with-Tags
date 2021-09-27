@@ -1,0 +1,11 @@
+<p>Make sure you do it either like this</p>
+
+<pre><code>&lt;% Html.RenderPartial("YourUserControl"); %&gt;
+</code></pre>
+
+<p>or (note the colon (:) )</p>
+
+<pre><code>&lt;%: Html.Partial("YourUserControl"); %&gt;
+</code></pre>
+
+<p>Or your partial view will not be written to the document</p>

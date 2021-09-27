@@ -1,0 +1,14 @@
+<p>Your code, as provided, will not compile. Are you having issues compiling the code? I'll ignore the syntax errors and point out the logic errors. Change the third for loop into</p>
+
+<pre><code>for(i=len-1;i&gt;=p;i--) // note 'p-1' was changed to 'p'
+   str[i+w]=str[i];
+</code></pre>
+
+<p>Change the fourth for loop to</p>
+
+<pre><code>for(i=p;f=0;f&lt;w;f++,i++) // again, note the 'p-1' changed to 'p'
+   str[i]=word[f];
+</code></pre>
+
+<p>Lastly, change the <code>str[len+w-1]='\0';</code> to <code>str[len+w]='\0';</code>
+The logic errors with your code are essentially an "off by one" error. In each case, removing the -1 should fix the errors.</p>

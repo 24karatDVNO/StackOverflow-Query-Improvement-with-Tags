@@ -1,0 +1,25 @@
+<p>if you wan the values to be saved permanently, then you need to use <a href="http://developer.android.com/reference/android/content/SharedPreferences.html" rel="nofollow">SharedPreferences</a> like this:</p>
+
+<pre><code>(within onCreate)
+...
+SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+hole = user_info.getInt("hole", 0);
+stroke = user_info.getInt("stroke", 0);
+...
+}
+
+@Override
+public void onPause()
+    {
+    super.onPause();
+    SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    user_info.edit()
+    user_info.putInt("hole", hole)
+    user_info.putInt("strike", stroke)
+    user_info.commit();
+    }
+</code></pre>
+
+<p>if you don't include the <code>commit()</code> then nothing happens. also you can (and i would) use method chaining for the <code>SharedPreferences</code>, i just thought i should keep it simple.</p>
+
+<p>it is just as easy to leave them as int (or int[] i wasnt entirely clear which you were going for) instead of dealing with all that splitting and parseing. now if you are trying to add them so that everytime you quit, your hole and strike are added to an evergrowing array, thats a little more complex and i can help you with that too if thats the case.</p>

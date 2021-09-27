@@ -1,0 +1,7 @@
+<p>I suppose you want to draw y=f(x) over a certain interval [a,b]</p>
+
+<p>A classical solution is to take N points uniformly distributed over [a,b], to compute f over these points and draw lines (or polynoms). </p>
+
+<p>It of course doesn't work in your case, since y is nearly vertical in certain area. But why don't you take more points in these areas (and less points where the function is nearly horizontal) ?</p>
+
+<p>You can compute the derivative of your function (or approximate this derivative with (f(x+h)-f(x))/h and h small) and determine the step between two successive points with this derivative</p>

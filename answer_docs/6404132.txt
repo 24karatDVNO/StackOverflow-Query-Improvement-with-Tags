@@ -1,0 +1,3 @@
+<p>Check what c-runtime you compiled ogg-vorbis with. It must match your app if you're linking statically.</p>
+
+<p>If you've compiled vorbis to a DLL instead, you might be able to use separate c-runtimes (if memory allocated by the vorbis DLL is always freed by that DLL, and it's a c-only API). </p>

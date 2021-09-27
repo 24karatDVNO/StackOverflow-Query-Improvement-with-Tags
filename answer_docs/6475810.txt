@@ -1,0 +1,29 @@
+<p>So what you got to do is </p>
+
+<pre><code>ExceptionPersistingService eps = new ExceptionPersistingService(); 
+
+try{
+    //some code that might trow exception
+}catch(Exception e){
+   eps.saveNewExceptin(getStackTrace(e));   
+}
+
+public static String getStackTrace(Throwable aThrowable) {
+    //add the class name and any message passed to constructor
+    final StringBuilder result = new StringBuilder("Trace: ");
+    result.append(aThrowable.toString());
+    final String NEW_LINE = "&lt;br&gt;";
+    result.append(NEW_LINE);
+
+    //add each element of the stack trace
+    for (StackTraceElement element : aThrowable.getStackTrace()) {
+        result.append(element);
+        result.append(NEW_LINE);
+    }
+    return result.toString();
+}
+</code></pre>
+
+<p>Than you create lucene implementation (I recommend using hibernate search) that will index the the exception strings that you stored in the database. In your save() method you can create object PersistentException that has <code>ID</code>, <code>Date</code>, <code>ExceptionString</code>, <code>User</code>, and even possibly <code>URL</code> details at which the exception occurred. </p>
+
+<p>Than all you have to do is parse your queries, create Fuzzy or any other query and enjoy the search results. For more details you will have to study books like <code>Hibernate Search in Action</code> and <code>Lucene in Action</code>. They have pretty good examples on how to do what I just briefly mentioned. </p>

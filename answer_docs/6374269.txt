@@ -1,0 +1,11 @@
+<p>In Groovy you can do this:</p>
+
+<pre><code>def a = ​[['Steph', 'Allen', 29], ['Jon', 'Doe', 30], ['Jane', 'Doe', 30], ['Tom', 'Moore', 28]]
+
+a.each { 
+    def name = "last_name-${it[1]}.txt"
+    new File(name) &lt;&lt; it.toString()
+}
+</code></pre>
+
+<p>Probably there is shorter (groovier) way to do this.</p>

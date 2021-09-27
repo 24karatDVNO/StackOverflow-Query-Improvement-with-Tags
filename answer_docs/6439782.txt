@@ -1,0 +1,13 @@
+<p>Dogbane is quite correct in his answer but this problem is common in your code: you are over complicating your logical conditions which is making errors harder to spot.</p>
+
+<p>Take the line:</p>
+
+<pre><code>  else if (!(HoursWorked &gt; 1 || HoursWorked &lt; 80))
+</code></pre>
+
+<p>HoursWorked will ALWAYS be either > 1 or &lt; 80 so the bracketed condition will ALWAYS be true and the reverse never.  Try to make your logical conditions simpler so that you can easily see what they are rather than using the ! operator when it really isn't necessary.</p>
+
+<p>This condition should be:</p>
+
+<pre><code>  else if (HoursWorked &lt; 1 || HoursWorked &gt; 80)
+</code></pre>

@@ -1,0 +1,46 @@
+<p>you are absolutely right, here is the correct code now:</p>
+
+<pre><code>    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glBegin(GL_QUADS);
+    //back
+    glColor3f(1.0f,1.0f,1.0f); //white
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.2f,0.2f,0.2f); //top left
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(0.2f,0.2f,0.2f); //top right
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(0.2f,-0.2f,0.2f); //bottom right
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.2f,-0.2f,0.2f); //bottom left
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    //bottom
+    glColor3f(0.0f,1.0f,0.0f); //green
+    glVertex3f(0.2f,-0.2f,0.2f); //back right
+    glVertex3f(-0.2f,-0.2f,0.2f); //back left
+    glVertex3f(-0.2f,-0.2f,-0.2f); //front left
+    glVertex3f(0.2f,-0.2f,-0.2f); //front right
+    //front
+    glColor3f(0.0f,0.0f,1.0f); //blue
+    glVertex3f(0.2f,-0.2f,-0.2f); //bottom right
+    glVertex3f(-0.2f,-0.2f,-0.2f); //bottom left
+    glVertex3f(-0.2f,0.2f,-0.2f); //top left
+    glVertex3f(0.2f,0.2f,-0.2f); //top right
+    //top
+    glColor3f(1.0f,1.0f,0.0f); //yellow
+    glVertex3f(0.2f,0.2f,-0.2f); //front right
+    glVertex3f(-0.2f,0.2f,-0.2f); //front left
+    glVertex3f(-0.2f,0.2f,0.2f); //back left
+    glVertex3f(0.2f,0.2f,0.2f); //back right
+    //left
+    glColor3f(0.0f,1.0f,1.0f); //pink
+    glVertex3f(-0.2f,-0.2f,-0.2f); //bottom front
+    glVertex3f(-0.2f,-0.2f,0.2f); //bottom back
+    glVertex3f(-0.2f,0.2f,0.2f); //top back
+    glVertex3f(-0.2f,0.2f,-0.2f); //top front
+    //right
+    glColor3f(1.0f,0.0f,0.0f); //red
+    glVertex3f(0.2f,-0.2f,-0.2f); //bottom front
+    glVertex3f(0.2f,-0.2f,0.2f); //bottom back
+    glVertex3f(0.2f,0.2f,0.2f); //top back
+    glVertex3f(0.2f,0.2f,-0.2f); //top front
+    glEnd();
+</code></pre>

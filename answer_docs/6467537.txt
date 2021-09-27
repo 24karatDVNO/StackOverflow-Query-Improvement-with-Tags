@@ -1,0 +1,36 @@
+<p>Try this, inside the improvedDropDown.js, replace the above code. I have add 2 lines, the first is hide the control until its populate, and then show it. Try to see if this solve your problem. I must say that I try to reproduce your problem but I fail to see any flickering.</p>
+
+<pre><code>this.each(function () {
+    var thisElement = $(this);
+
+    var wrapperControl = getWrapperElement(thisElement);
+
+    // hide it
+    wrapperControl.hide();
+
+    thisElement.after(wrapperControl);
+
+    var newImgElement = getImageElement(thisElement,iconPath);
+    wrapperControl.append(newImgElement);
+
+    var newTextElement = getTextElement(thisElement, newImgElement);
+    wrapperControl.prepend(newTextElement); 
+
+    var newListControl = getListElement(thisElement);
+    wrapperControl.append(newListControl); 
+
+    populateList(thisElement, newListControl,noMatchesText,noItemsText);
+
+    if (document.activeElement == thisElement[0]) {
+        //if replaced element had focus, move it to new control.
+        newTextElement.focus().select(); 
+    }
+
+    if (debugMode != 1) { 
+        thisElement.hide();                                                
+    }
+
+    // show it now
+    wrapperControl.show();
+ });
+</code></pre>

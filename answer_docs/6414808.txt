@@ -1,0 +1,22 @@
+<pre><code>$('#International').live("click",function() {
+var paramChangeBoxes = $('input:checkbox');
+if ($(this).is(':checked')) {
+    $('#Americas').attr('checked', 'checked');
+    $('#Americas').attr('disabled', 'disabled');
+    $('#Europe').attr('checked', 'checked');
+    $('#Europe').attr('disabled', 'disabled');
+    $('#Asia').attr('checked', 'checked');
+    $('#Asia').attr('disabled', 'disabled');
+}
+else {
+    paramChangeBoxes.removeAttr('disabled');
+    $('#Americas').removeAttr('disabled');
+    $('#Europe').removeAttr('disabled');
+    $('#Asia').removeAttr('disabled');
+
+    }
+});
+</code></pre>
+
+<p>For Dynamic content (includes and element dom creation after page load) use live.
+Have a nice day</p>

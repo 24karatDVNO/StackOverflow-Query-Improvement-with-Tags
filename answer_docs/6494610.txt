@@ -1,0 +1,30 @@
+<p>XML is a grammar; regular expressions are not the best tools to work with grammars.</p>
+
+<p>My advice would be working with a real parser to work with the DOM instead of doing matches</p>
+
+<p>For example, if you have:</p>
+
+<pre><code>&lt;xml&gt;
+ &lt;items&gt;
+  &lt;myItem&gt;
+     &lt;tagtoRemove&gt;something1&lt;/tagToRemove&gt;
+  &lt;/myItem&gt;
+  &lt;myItem&gt;
+     &lt;tagtoRemove&gt;something2&lt;/tagToRemove&gt;
+  &lt;/myItem&gt;
+ &lt;/items&gt;
+</code></pre>
+
+<p>A regex could try to match it (due to the greedy mechanism)</p>
+
+<pre><code>&lt;xml&gt;
+ &lt;items&gt;
+  &lt;myItem&gt;
+     matchString
+  &lt;/myItem&gt;
+ &lt;/items&gt;
+</code></pre>
+
+<p>Also, some uses that some DTDs may allow (such as <code>&lt;tagToRemove/&gt;</code> or <code>&lt;tagToRemove attr="value"&gt;</code>) make catching tags with regex more difficult.</p>
+
+<p>Unless it is very clear to you that none of the above may occur (nor or in the future) I would go with a parser. </p>

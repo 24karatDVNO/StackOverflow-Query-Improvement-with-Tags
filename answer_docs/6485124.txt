@@ -1,0 +1,4 @@
+<p>mysql will implicitly convert bool values to integers (1 and 0 respectively). you can thus sort by comparing the picture value:</p>
+
+<pre><code>ORDER BY picture = 'privatePic' ASC, picture = 'noPic' ASC, last_visit_date
+</code></pre>

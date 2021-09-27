@@ -1,0 +1,5 @@
+<p>ORM datasource just uses the default datasource if not defined.</p>
+
+<p>Having said that, if you want to add / remove datasource dynamically, see Administrator API at: <a href="http://help.adobe.com/en_US/ColdFusion/9.0/Admin/WSc3ff6d0ea77859461172e0811cbf364104-7fcf.html" rel="nofollow">http://help.adobe.com/en_US/ColdFusion/9.0/Admin/WSc3ff6d0ea77859461172e0811cbf364104-7fcf.html</a> (available since CF8)</p>
+
+<p>I'm not sure if you can re-set the <code>this.ormsettings.datasource</code> to something else at runtime (i.e. <code>onApplicationStart()</code>? or <code>onServerStart()</code>?), but many of the settings can be set again.  You may want to try it out.</p>

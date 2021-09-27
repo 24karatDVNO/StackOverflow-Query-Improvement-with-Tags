@@ -1,0 +1,17 @@
+<p>As you answered to a comment that "it won't work" means "I get a blank page", the first thing you should do is <strong>enable PHP's error reporting</strong>. Put at the beginning of your script:</p>
+
+<pre><code>ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 'On'); // shows in the web page instead of just logs
+</code></pre>
+
+<p>Then your page probably won't stay blank and you'll have useful error messages.</p>
+
+<p>Second, you should replace your <code>include</code> by a <code>require</code>. This way, if PHP cannot find the file, you'll get a fatal error. Depending on the content, a <code>require_once</code> could be even better suited.</p>
+
+<p>Then, you should be cautious with relative paths in includes. They are not immediately relative to the script where the include is. PHP first tries to use the include path and the path of the calling script (the file that was launched first for this HTTP query). It is recommended to use a full path :</p>
+
+<pre><code>require dirname(dirname(__FILE__)) . '/includes/configure.php';
+require dirname(__DIR__) . '/includes/configure.php'; // PHP5.3 only
+</code></pre>
+
+<p>One last thing: don't use the expression <em>session variables</em> when you're dealing with application <em>constants</em>. "Session" has a special meaning in PHP, and in web development in general.</p>

@@ -1,0 +1,5 @@
+<p>Basically, the URL is not actually retrieving the file directly each time, but rather the server is intercepting that URL and serving a (possibly random) image from a larger set of images. Depending on whether the server is running Apache, IIS, etc, the implementation could vary... This could also probably be achieved with the <a href="http://www.asp.net/mvc/tutorials/asp-net-mvc-routing-overview-cs" rel="nofollow noreferrer">MVC routing engine</a> by defining a custom route handler for URLs ending in '.jpg', but I'm not actually sure.</p>
+
+<p><strong>EDIT:</strong></p>
+
+<p>See <a href="https://stackoverflow.com/questions/1146652/how-do-i-route-images-using-asp-net-mvc-routing">this discussion</a> for more detail on the MVC implementation.</p>

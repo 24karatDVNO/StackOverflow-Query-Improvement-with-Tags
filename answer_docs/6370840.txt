@@ -1,0 +1,36 @@
+<pre><code>#define NULL 0 //for C
+</code></pre>
+
+<p>is the perfect definition in C </p>
+
+<p>e.g.</p>
+
+<pre><code>char *ch = NULL ;
+*ch++ ;// will cause error
+</code></pre>
+
+<p>it causes error since ch pointing to nothing while executing increment statement 
+is known by compiler by seeing the value of pointer in LOOK-UP table to be 0</p>
+
+<p>if u try to update this pointer then u are actually changing the contents of 
+CODE region which start at 0 physical address.
+FOR that reason the first entry of page table prior to code region starts
+is kept empty</p>
+
+<p>What exactly is the problem with getting your NULL from where you're supposed to?, i.e.,</p>
+
+<pre><code>#include &lt;stddef.h&gt;
+</code></pre>
+
+<p>or</p>
+
+<pre><code>#include &lt;cstddef&gt;
+</code></pre>
+
+<p>as alluded to in @Johannes Rudolph's answer, any trickery you do is not likely be very future proof in the face of things like nullptr etc.</p>
+
+<p>EDIT: while stdlib (and many others) are mandated to include a NULL, stddef is the most canonical header [and has been for decades].</p>
+
+<p>PS In general, it's just a bad idea to get involved in this sort of trickery unless you have a really good reason. You didnt expand on the thinking that led you to feeling the need to do this. If you could add some detail on that, it's likely to lead to better answers. Other people answering the question should have pointed this out in their answers too, but I guess does FGITW as FGITW does best :D</p>
+
+<p>EDIT 2: As pointed out by @Yossarian: The single justification for doing this is if there isnt a NULL defined in an appropriately language-agnostic form elsewhere in your system. Naked compilers with no headers and/or if you're writing your own custom standard library from scratch are examples of such a circumstance. (In such a bare-bones scenario, I'd go with @lilburne's answer (be sure to use 0 as much as possible))</p>

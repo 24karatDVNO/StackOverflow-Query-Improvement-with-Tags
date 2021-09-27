@@ -1,0 +1,6 @@
+<p>The problem here is that the compiler has trouble to decide the type of the expression <code>b ? new int[1] : new String[1]</code>. I had something like this before (with 1.1.8 or 1.2, I think - but with a real error message, not a compiler crash), and then simply used a cast to help the compiler here.</p>
+
+<pre><code> res[0] = b ? (Object)new int[1] : new String[1];
+</code></pre>
+
+<p>I didn't look what the language specification says about this - but the compiler should never crash with an exception, it should give a real error message.</p>

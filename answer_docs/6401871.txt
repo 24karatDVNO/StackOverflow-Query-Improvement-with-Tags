@@ -1,0 +1,6 @@
+<p>the file hasn't loaded when you set <code>num</code>.  use a callback.</p>
+
+<pre><code>$("someElement").load("file.php", function () {
+   var num = $("div#max_page").attr("title");
+});
+</code></pre>

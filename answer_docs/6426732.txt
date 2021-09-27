@@ -1,0 +1,9 @@
+<p>When you read the file, the end of line is making the regex fail. In irb, there probably is no end of line. If that is the case, chomp the lines first.</p>
+
+<pre><code>regex=/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+line_from_irb = "example@live.com"
+line_from_file = line_from_irb +"/n"
+
+p line_from_irb.scan(regex) # =&gt; ["example@live.com"]
+p line_from_file.scan(regex) # =&gt; []
+</code></pre>

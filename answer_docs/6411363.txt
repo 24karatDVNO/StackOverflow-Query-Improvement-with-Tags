@@ -1,0 +1,5 @@
+<p>It's because when you are inside the .each loop, $(this) is no longer the $('.someClass'). Set a variable to the jQuery object earlier in scope, and reference that:</p>
+
+<p><a href="http://pastie.org/2095747" rel="nofollow">http://pastie.org/2095747</a></p>
+
+<p>Keep in mind though, the code still loops through and re-replaces it each time. Youll need to adjust it to get the content again each time in the loop from the element.</p>

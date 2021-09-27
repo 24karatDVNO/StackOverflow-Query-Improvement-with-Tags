@@ -1,0 +1,17 @@
+<p><strong>Actual Problem is :</strong> </p>
+
+<p>AS you are Following the book, there are a few insert/ update statements are executed on </p>
+
+<pre><code>tbl_proect, 
+tbl_issue
+</code></pre>
+
+<p>than you are trying to add Foreign Key Constraint. that checks the table data before applying. So, Here is the actual mistake, may be your tables contain a few records that violate the foreign key constraints. hence phpmyadmin doesnot allow you to alter table and generates error message. </p>
+
+<p><strong>Solution :</strong> </p>
+
+<pre><code>TRUNCATE TABLE `tbl_project`
+TRUNCATE TABLE `tbl_issue`
+</code></pre>
+
+<p>Do Only one thing, clear all the tables . Empty tables. . And here's your problm resolved now phpmyadmin allows you to run commands.</p>

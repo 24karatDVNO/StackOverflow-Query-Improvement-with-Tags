@@ -1,0 +1,12 @@
+<p>If you are reading bit values from the SQL server and want to check against null errors, Use the following Extension method against the data Row</p>
+
+<pre><code>public static T GetValueOrDefault&lt;T&gt;(this DataRow row, string key)
+{
+    return row.GetValueOrDefault(key, default(T));
+}
+</code></pre>
+
+<p>and when you are reading data from the SQL server put in. </p>
+
+<pre><code> Boolean IsVisible = GetValueOrDefault&lt;string&gt;("FieldName");
+</code></pre>

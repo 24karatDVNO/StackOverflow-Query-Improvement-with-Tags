@@ -1,0 +1,8 @@
+<p>Try, before receiving, putting a timeout on the socket:</p>
+
+<pre><code>comSocket.settimeout(5.0)
+try:
+    rawData = comSocket.recv(512)
+except socket.timeout:
+    print "No response from server"
+</code></pre>

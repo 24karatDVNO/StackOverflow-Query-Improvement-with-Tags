@@ -1,0 +1,42 @@
+<p>the solution is quite simple:</p>
+
+<pre><code>var popups = {};
+
+function showPopup(settings) {
+    var target = settings.target;
+    var $popup = popups[target];
+    if (!$popup) {
+        $popup = $('&lt;iframe/&gt;');
+        $popup.appendTo('form');
+        $popup.css('display', 'none');
+        $popup.attr('frameborder', 0);
+        $popup.dialog({
+            'title': settings.title,
+            'autoOpen': false,
+            'modal': true,
+            'width': settings.width,
+            'height': settings.height,
+            'draggable': false,
+            'resizable': false,
+            'open': function () {
+                var $widget = $popup.dialog('widget');
+                $widget.css('position', 'fixed');
+                $widget.css('top', '50%');
+                $widget.css('margin-top', $widget.height() / 2 * -1);
+                $widget.css('left', '50%');
+                $widget.css('margin-left', $widget.width() / 2 * -1);
+                $popup.css('width', settings.width);
+                $popup.css('padding', '0px');
+                $popup.attr('src', settings.target);
+            },
+            'close': function () {
+                $popup.attr('src', 'blankPage.html');
+            }
+        });
+        popups[target] = $popup;
+    }
+    $popup.dialog('open');
+}
+</code></pre>
+
+<p>still ... i'm quite interested in any alternative!</p>

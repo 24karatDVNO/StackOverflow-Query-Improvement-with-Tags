@@ -1,0 +1,17 @@
+<p>Put your code into its own file and generate a C header from that via <code>make</code> and a scripting language of your choice.</p>
+
+<p>For example, the following <code>make</code> rule</p>
+
+<pre><code>hook.h : hook.rb
+    ./rb2h POST_COMMIT_HOOK &lt; $&lt; &gt; $@
+</code></pre>
+
+<p>together with this Perl script <code>rb2h</code></p>
+
+<pre><code>#!perl -w
+print "#define $ARGV[0] \\\n";
+chomp, s/\\/\\\\/g, s/"/\\"/g, print "\t\"$_\" \\\n" for &lt;STDIN&gt;;
+print "\t\"\"\n"
+</code></pre>
+
+<p>will generate a file <code>hook.h</code> which defines the macro <code>POST_COMMIT_HOOK</code> containing your code.</p>

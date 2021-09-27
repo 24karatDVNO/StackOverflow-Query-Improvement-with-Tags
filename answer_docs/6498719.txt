@@ -1,0 +1,21 @@
+<p>I want to share my problem and my final solution...</p>
+
+<p>The problem was because the Eclipse Helios 3.6 internal GWT plugin update error (so the UI Designer doesn't work).
+I was trying to update gwt plugins and that made gwt never compile...</p>
+
+<p>So I had to delete it and reinstall.
+The reinstallation was OK but since then I tried to download gwt plugin for many times and had the same UI editor error... I think there is a bug in included gwt plugin GWT UI core and window builder.</p>
+
+<p>If someone faces the same problem please read next...</p>
+
+<p>To install GWT for Eclipse Helios 3.6 you should</p>
+
+<p>A) Install GWT UI Designer first from <a href="http://dl.google.com/eclipse/inst/d2gwt/latest/3.6" rel="nofollow">http://dl.google.com/eclipse/inst/d2gwt/latest/3.6</a></p>
+
+<p>B) Only then Install GWT SDK and gwt plugin (to skip the bugged plugin part to be installed)</p>
+
+<p>otherwise if you start from this link <a href="http://dl.google.com/eclipse/plugin/3.6" rel="nofollow">http://dl.google.com/eclipse/plugin/3.6</a>, it will install a bugged GWT window builder and core (the newest one) and won't allow you to install the correct one because "the newest is already installed" so you'll have to delete and reinstall etc... That's  a real headache %) So to avoid that follow point A then B.</p>
+
+<p>I hope that will save ones day :)</p>
+
+<p>Good luck</p>

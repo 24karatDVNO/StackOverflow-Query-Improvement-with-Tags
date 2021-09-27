@@ -1,0 +1,13 @@
+<p>try using isvisible to check if its being displayed or not and add the respective position:</p>
+
+<pre><code>$('.close').click(function () {
+    $('.banner-inner-content').slideToggle('slow', function () {
+        if( $(this).is(':visible') ) {
+            $(this).css({backgroundPosition: 'top'});
+        }
+        else {
+            $(this).css({backgroundPosition: 'bottom'});
+        }
+    });
+});
+</code></pre>

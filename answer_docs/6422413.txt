@@ -1,0 +1,18 @@
+<p><a href="http://www.imagemagick.org/script/index.php" rel="nofollow">Imagemagick</a> allows you to batch-processing on files and offers a everything you could possible ask for when it comes to handling of images</p>
+
+<p>E.g. to resize every image in folder (destroy originals) to QVGA do</p>
+
+<pre><code>mogrify -resize 320x240 *.jpg
+</code></pre>
+
+<p>To preserve aspect ratio do</p>
+
+<pre><code>mogrify -resize 320x240! *.jpg
+</code></pre>
+
+<p>If you need to traverse a directory structure, this is how you can do it in *nix based systems (also destroying originals)</p>
+
+<pre><code>find . -type f -name *.jpg -exec convert -resize 800x800 {} \;
+</code></pre>
+
+<p>There is also an quality switch available, see <a href="http://www.imagemagick.org/script/command-line-options.php#quality" rel="nofollow">here</a></p>

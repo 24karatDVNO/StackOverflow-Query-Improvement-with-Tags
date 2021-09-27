@@ -1,0 +1,9 @@
+<p>Remove the <code>DISTINCT</code> first I think because it will count for each date.</p>
+
+<pre><code>SELECT BillingLawyer, 
+(SELECT COUNT( itemSent)FROM tbl_matteritem mit WHERE itemid=2 AND itemSent IS      NOT NULL AND mit.ItemSent= mi.itemSent) AS [Sent], 
+(SELECT COUNT( itemReceived)FROM tbl_matteritem mitm WHERE itemid=2 AND itemReceived IS NOT NULL AND mitm.itemreceived = mi.itemreceived)AS Received
+FROM tbl_matteritem mi JOIN tbl_matter m ON mi.matterid = m.matterid
+GROUP BY BillingLawyer, ItemSent, itemreceived
+ORDER BY 1
+</code></pre>

@@ -1,0 +1,10 @@
+<p>This is a side-effect of the callback function being invoked asynchronously. When it is called, <code>this</code> is no longer what you expect it to be.</p>
+
+<p>Saving the current value of <code>this</code> in a variable before you create the callback helps:</p>
+
+<pre><code>var self = this;
+function (msg) {
+  var container = $(self).parent().attr('id');   
+  alert (container); //returns undefined
+}
+</code></pre>

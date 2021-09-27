@@ -1,0 +1,7 @@
+<p>Once you have called your update sproc, you can check the @@ROWCOUNT variable to see if any rows were actually updated</p>
+
+<pre><code>If @@ROWCOUNT &lt;&gt; 0
+    -- Successful write
+ELSE
+    -- Failed to update as the timestamp didn't match
+</code></pre>

@@ -1,0 +1,12 @@
+<p>First, get the ID of the required user</p>
+
+<pre><code>UserProfile profile = GetProfile();
+string userId = profile .MultiloginAccounts[0];
+</code></pre>
+
+<p>Second, get user from one of the following collections</p>
+
+<pre><code>web.AllUsers, web.Users or web.SiteUser
+</code></pre>
+
+<p>This article is about the differences <a href="http://social.msdn.microsoft.com/Forums/en-US/sharepointdevelopment/thread/71d1c8e3-de32-4e3d-9f8c-7a9be13197f6/" rel="nofollow">http://social.msdn.microsoft.com/Forums/en-US/sharepointdevelopment/thread/71d1c8e3-de32-4e3d-9f8c-7a9be13197f6/</a></p>

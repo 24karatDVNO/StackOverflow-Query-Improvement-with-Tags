@@ -1,0 +1,11 @@
+<p>As Brandon suggested, posting to the second view was a usable solution.
+Something along the lines of:</p>
+
+<pre><code>def view2(request):
+    if request.method == 'POST':
+        page_list=request.POST.values()
+    else:
+        HttpResponseRedirect('/urls/')
+</code></pre>
+
+<p>and then no need for regex in the urls</p>

@@ -1,0 +1,7 @@
+<pre><code>$("#slider1 li img").each(function(){
+    var imageWidth = $(this).width();
+    var imageHeight = $(this).height();    
+    $(this).parent().attr('width', imageWidth);
+    $(this).parent().attr('height', imageHeight);
+});
+</code></pre>

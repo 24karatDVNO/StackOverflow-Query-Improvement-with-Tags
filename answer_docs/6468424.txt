@@ -1,0 +1,15 @@
+<p>You would simply create a hash inside an array to achieve that:</p>
+
+<pre><code>var shopsArray = [
+  {
+    shopName: 'value1'
+  }, {
+    shopName: 'value2'
+  }
+];
+</code></pre>
+
+<p>If you have an existing array, use <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/push" rel="nofollow">push</a>:</p>
+
+<pre><code>shopsArray.push({ shopName: 'value' });
+</code></pre>

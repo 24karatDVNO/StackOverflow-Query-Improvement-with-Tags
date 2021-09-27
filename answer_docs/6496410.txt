@@ -1,0 +1,9 @@
+<p>You mean your web service is protected with a "client certificate"? If yes, get the certificate in either a .p12 (PFX) or keystore format from the service provider and use the following System properties to set it before your call:</p>
+
+<p><strong>javax.net.ssl.keyStore</strong> - Path to the keystore on your server</p>
+
+<p><strong>javax.net.ssl.keyStorePassword</strong> - passphrase for that keystore</p>
+
+<p><strong>javax.net.ssl.keyStoreType</strong> - Set it to "pkcs12" is the client certificate provided to you is .p12</p>
+
+<p>If you application is client to only one web service provider, set these properties as VM arguments, if not, you may need to create specific SSLConnectionFactory for each secured endpoint.  Refer to my response on this <a href="https://stackoverflow.com/questions/6465907/creating-ssl-client-with-axis2-java/6469073#6469073">post</a> for details on creating custom SSL Socket Factories.</p>

@@ -1,0 +1,43 @@
+<p>This is the snippet for a basic splash screen</p>
+
+<pre><code>public class Splash extends Activity {
+
+//private ProgressDialog pd = null;
+private final int SPLASH_DISPLAY_LENGTH = 3000; 
+
+/** Called when the activity is first created. */
+@Override
+public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
+    setContentView(R.layout.splashscreen);
+    //this.pd = ProgressDialog.show(this, "Initializing..", "Initializing Infraline...", true, false);
+
+    /* New Handler to start the InfralineTabWidget-Activity
+     * and close this Splash-Screen after some seconds.*/
+
+    new Handler().postDelayed(new Runnable(){
+        @Override
+        public void run() {
+        /* Create an Intent that will start the InfralineTabWidget-Activity. */
+            Intent mainIntent = new Intent(Splash.this,InfralineTabWidget.class);
+            Splash.this.startActivity(mainIntent);
+            Splash.this.finish();
+        }
+    }, SPLASH_DISPLAY_LENGTH);
+
+}
+
+}
+</code></pre>
+
+<p>And in your AndroidManifest.xml put</p>
+
+<pre><code>    &lt;activity android:name=".Splash" android:theme="@android:style/Theme.NoTitleBar" android:configChanges="orientation|keyboardHidden"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN" /&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+</code></pre>
+
+<p>Hopefully this works for you :)</p>

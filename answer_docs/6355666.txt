@@ -1,0 +1,16 @@
+<p>The methods I needed are found on Db class</p>
+
+<p>For inserting:</p>
+
+<pre><code>/** create a doc from an object with auto id generation */
+def doc[T &lt;: AnyRef](obj: T)
+</code></pre>
+
+<p>For retrieval there is:</p>
+
+<pre><code>/** get an entity of type &lt;tt&gt;T&lt;/tt&gt; based on its id. Returns a
+Tuple3 of (id, ref, T) */
+def get[T](id: String)
+</code></pre>
+
+<p>See <a href="https://github.com/debasishg/scouchdb/blob/master/src/main/scala/scouch/db/Database.scala" rel="nofollow">https://github.com/debasishg/scouchdb/blob/master/src/main/scala/scouch/db/Database.scala</a></p>

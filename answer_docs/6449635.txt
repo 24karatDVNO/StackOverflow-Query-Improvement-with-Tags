@@ -1,0 +1,16 @@
+<p>I ended up defining a subproject for the integration tests.  See below:</p>
+
+<pre><code>integration_layout = Layout.new
+integration_layout[:source, :test, :java] = _('src/integration/java')
+define "integrate", :layout =&gt; integration_layout do
+    test.with TEST_CLASSPATH
+    test.using :integration
+    integration.setup { Rake::Task['my_project:jetty_start'].invoke }
+    integration.teardown { Rake::Task['my_project:jetty_stop'].invoke }
+end
+</code></pre>
+
+<p>I can then run the integration tests with the following command:</p>
+
+<pre><code>buildr integration
+</code></pre>

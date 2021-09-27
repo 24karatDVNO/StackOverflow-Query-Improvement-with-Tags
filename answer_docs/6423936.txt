@@ -1,0 +1,6 @@
+<p>Since you are catching the Exception; the fillUI() function is never notified of any error.</p>
+
+<p>Your codepath is as following:
+fillUI -> getDetailedItem -> exception caught -> closeAndShowError -> finish() -> return to closeAndShowError -> return to getDetailedItem after caught block -> return back to fillUI.</p>
+
+<p>So basically, the code after getDetailedItem in fillUI is called because you caught the exception and didn't let the other function know. Either by return value, or by throwing (and maybe catching) a new exception.</p>

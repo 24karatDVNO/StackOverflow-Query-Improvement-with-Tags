@@ -1,0 +1,10 @@
+<p>Your onclick event handler won't be bypassed simply by setting <code>IsValid</code> to <code>false</code>.</p>
+
+<p>You'll need to do a check inside your event handler for IsValid.</p>
+
+<pre><code>if(Model.IsValid)
+{
+}
+</code></pre>
+
+<p>(or something similar to that).</p>

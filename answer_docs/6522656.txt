@@ -1,0 +1,22 @@
+<p>Just provide them a js file to include in theur headers. Be sure to not modify the global scop because you dont know what they are doing. Usually, this is ensured using a closure :</p>
+
+<pre><code>(function(){
+    // Put your code here
+
+    window.yourLibName = someObject;
+})();
+</code></pre>
+
+<p>The only code they can use in the global scope is yourLibName, everything else si kept within your colsure.</p>
+
+<p>Then, you can provide them a code sample to call your tool from their webpage. Something like :</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;&lt;!--
+yourLibName(someParameters);
+//--&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>This method will lead to something clean and usable on most websites.</p>
+
+<p>Also, avoid using libraries like jQuery in such a solution, as it has a risk of messing up the client's javascript, especially if he is using a different version of jQuery or another lib like mootoools.</p>

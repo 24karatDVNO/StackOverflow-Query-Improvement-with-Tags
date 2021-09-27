@@ -1,0 +1,24 @@
+<p>This isn't super elegant but I think the result is what you expect</p>
+
+<pre><code>string coords = "{{2,3}, {9,0}}";
+string matchPattern = @"\{\{(?&lt;x1&gt;\d{1})\,(?&lt;y1&gt;\d{1})\}\,\s*\{(?&lt;x2&gt;\d{1})\,(?&lt;y2&gt;\d{1})\}\}";
+
+var matches = Regex.Match(coords, matchPattern);
+
+int[,] values = new int[2,2];
+
+int.TryParse(matches.Groups["x1"].ToString(), out values[0,0]);
+int.TryParse(matches.Groups["y1"].ToString(), out values[0,1]);
+
+int.TryParse(matches.Groups["x2"].ToString(), out values[1,0]);
+int.TryParse(matches.Groups["y2"].ToString(), out values[1,1]);
+
+/* Result:
+ *    0  1
+ *   -----
+ * 0| 2  3
+ * 1| 9  0
+ */
+</code></pre>
+
+<p>Of course you will want to check that four groups were returned before assigning values to the rectangular array, but that should be easy enough for you to implement.</p>

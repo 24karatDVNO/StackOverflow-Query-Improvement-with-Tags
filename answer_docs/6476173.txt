@@ -1,0 +1,8 @@
+<pre><code>def swap(i):
+    s = list(str(i))
+    s[0], s[-1] = s[-1], s[0]
+    i = int(''.join(s))
+    return i
+
+print swap(123456789) # 923456781
+</code></pre>

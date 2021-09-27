@@ -1,0 +1,15 @@
+<p>Why not just attach <code>showData</code> to <code>getData</code>'s on success callback like this:</p>
+
+<pre><code>function getData(){
+$.ajax({
+  url: "/your.url",
+  success: showData
+});
+}
+
+function showData(){
+  // foo bar here
+}
+</code></pre>
+
+<p>This also deals with the fact that you might not want to call <code>showData</code> <strong>unless</strong> <code>getData</code> succeeds.</p>

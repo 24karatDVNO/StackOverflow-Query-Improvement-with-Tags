@@ -1,0 +1,7 @@
+<p>The combination of your error message and the svn info you provided in your comment don't seem to tell the same story.</p>
+
+<p>The info says that those 3 files including conflictedFile.xml.r0 should exist, but the r0 file is the previous BASE file, so you should only see it when you resolve to BASE.</p>
+
+<p>The files shown in svn info should always exist when the conflict occurs, but any process can then change/remove them. Resolving to MINE should resolve to the .mine file.</p>
+
+<p>Resolving to WORKING should always work but has a different result, but you can resolve the conflict yourself (by installing the right file) before resolving to WORKING.</p>

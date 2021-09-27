@@ -1,0 +1,12 @@
+<p>Use <code>@Context HttpServletResponse servletResponse</code> to get direct control over the servlet's response mechanism.</p>
+
+<pre><code>@PUT
+@Path("/myService/{name}")
+@Consumes({APPLICATION_XML, APPLICATION_JSON})
+void postSomething(@PathParam("name") String name, @Context HttpServletResponse response, MyObject data) {
+    // ...
+    response.setStatus(HttpServletResponse.SC_ACCEPTED);
+    response.setHeader("Location", myURL);
+    // ...
+}
+</code></pre>

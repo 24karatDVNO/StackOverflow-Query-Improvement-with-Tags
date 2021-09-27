@@ -1,0 +1,6 @@
+<p>It may work if you wrap the htmlText in <code>&lt;![CDATA[]]&gt;</code>:</p>
+
+<pre><code>&lt;![CDATA[&lt;font size="-2"&gt;this text is way&lt;/font&gt;&lt;br&gt;&lt;font size="+5"&gt;TOO BIG&lt;/font&gt;&lt;br&gt;to fit in this box, but I'll give it a try!]]&gt;
+</code></pre>
+
+<p>Otherwise, you could try wrapping the TextField in a Sprite and scale the Sprite instead? <a href="https://stackoverflow.com/questions/2276423/how-do-you-scale-a-dynamic-textfield-in-flash-from-the-center-point-using-as3">How do you scale a dynamic textfield in flash from the center point using as3?</a></p>

@@ -1,0 +1,39 @@
+<p>With the given code you can try this:</p>
+
+<pre><code>$(function(){
+    $(document).ready(function () {
+        $(".prov").click(function(){
+            $(".clearfix").hide();
+        });
+
+        $('#BC').hide();
+        $('#BC-show').click(function () {
+                $('#BC').toggle('slow');
+                return false;
+        });
+        $('#AB').hide();
+        $('#AB-show').click(function () {
+                $('#AB').toggle('slow');
+                return false;
+        });
+    });
+
+});
+</code></pre>
+
+<p>Working example:  <a href="http://jsfiddle.net/WGRvw/" rel="nofollow">http://jsfiddle.net/WGRvw/</a></p>
+
+<p>However, you can make the handlers more generic as given below:</p>
+
+<pre><code>$(function(){
+    $(document).ready(function () {
+        $('.clearfix').hide();
+        $(".prov").click(function(){
+            var tgtId = this.id.replace("-show");
+            $(".clearfix").hide();
+            $("#" + tgtId).toggle('slow');
+            return false;
+        });
+    });
+});
+</code></pre>

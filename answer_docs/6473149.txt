@@ -1,0 +1,35 @@
+<p>Something like this using the BudgetType.  Of course you'd probably create a code table for these or a IsAdopted bit field.  But you get the idea.</p>
+
+<pre><code>Select 
+budgets.*
+,row_number() over(partition by 
+   ProjectNumber
+  ,SubProjectNumber
+  ,FiscalYearBegin
+  ,FiscalYearEnd 
+   order by QuarterImportDate) as SequenceNumber
+From
+(
+  Select
+  ProjectNumber
+  ,SubProjectNumber
+  ,FiscalYearBegin
+  ,FiscalYearEnd
+  ,QuarterImportDate
+  ,'Proposed' as BudgetType
+  ,ProposedBudget as Budget
+  From sourceProposed
+
+  Union
+
+  Select
+  ProjectNumber
+  ,SubProjectNumber
+  ,FiscalYearBegin
+  ,FiscalYearEnd
+  ,QuarterImportDate
+  ,'Adopted' as BudgetType
+  ,AdoptedBudget as Budget
+  From sourceAdopted
+) as budgets
+</code></pre>

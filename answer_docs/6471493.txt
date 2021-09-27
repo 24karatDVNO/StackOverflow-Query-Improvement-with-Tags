@@ -1,0 +1,36 @@
+<p>Ok so, your table is like this:</p>
+
+<pre><code>post_text    post_type    post_date
+---------    ---------    ---------
+Hello World  1            2011-06-21
+Foo Bar      2            2011-06-22
+Fizz Buzz    2            2011-06-23
+lol hai      1            2011-06-24
+</code></pre>
+
+<p>And you want to retrieve some number (x) of posts where half of them will be of type 1 and the other half of type 2?</p>
+
+<p>One possible solution is this:</p>
+
+<pre><code>(SELECT post_text
+FROM mytable
+WHERE post_type = 1
+ORDER BY post_date DESC
+LIMIT 1)
+UNION
+(SELECT post_text
+FROM mytable
+WHERE post_type = 2
+ORDER BY post_date DESC
+LIMIT 1);
+</code></pre>
+
+<p>Of course the limit quantity should be half the desired quantity X.</p>
+
+<p>This returns:</p>
+
+<pre><code>post_text    post_type    post_date
+---------    ---------    ---------
+lol hai      1            2011-06-24
+Fizz Buzz    2            2011-06-23
+</code></pre>

@@ -1,0 +1,11 @@
+<p>The standard way to execute a M/R job using HBase is the same way you execute a non-HBase m/r job:
+${HADOOP_HOME}/bin/hadoop jar .jar  [args]</p>
+
+<p>This copies your jar to all of the task trackers (via HDFS) so that they can execute your code.</p>
+
+<p>With HBase you also will typically use the HBase utility:
+TableMapReduceUtil.initTableReducerJob</p>
+
+<p>This uses built-in algorithms to split an HBase table (using the regions of the table) so that computation can be distributed over the m/r jobs.  If you want a different split, you have to modify the way splits are calculated, which means that you cannot use the built-in utility.</p>
+
+<p>The other thing you can specify is conditions on the rows that are returned.  If you use a built-in scan condition, then you don't have to do anything special.  However, if you want to create a custom comparator, you have to make sure that the region servers have this code in their classpath so that they can execute it.  Before you go this route, examine the built-in comparators carefully, as they are quite powerful.</p>

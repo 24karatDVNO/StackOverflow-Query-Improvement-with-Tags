@@ -1,0 +1,9 @@
+<p>You need to specify a type parameter for the iterator</p>
+
+<pre><code>public Iterator&lt;Item&gt; iterator() {
+    Iterator&lt;Item&gt; itr = itemList.iterator();
+    return itr;
+}   
+</code></pre>
+
+<p>and when <code>Catalag implements Iterable</code> make sure it <code>implements Iterable&lt;Item&gt;</code>.</p>

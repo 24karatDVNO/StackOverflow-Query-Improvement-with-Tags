@@ -1,0 +1,13 @@
+<p>You can  try disabling  with Jquery as follows</p>
+
+<pre><code>&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
+         $(function(){
+              $("#myform  input[type = radio]:nth(1)").attr('disabled', 'disabled');
+        });
+&lt;/script&gt;
+</code></pre>
+
+<p>myform:your Form Name
+Inplace of nth(1) 
+you can mention the row number to be dispbled.</p>

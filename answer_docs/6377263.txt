@@ -1,0 +1,8 @@
+<p>If I am not misunderstanding your problem, this is what you are looking for.</p>
+
+<pre><code>UPDATE tbl
+SET col=tbl.col
+FROM tbl 
+INNER JOIN tbl1 ON tbl1.SomeCol=tbl.SomeCol
+WHERE ......
+</code></pre>

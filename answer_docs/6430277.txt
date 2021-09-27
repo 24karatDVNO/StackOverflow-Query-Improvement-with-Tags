@@ -1,0 +1,10 @@
+<p>Serialize does not work with IE and ISO-8859-1 chars.</p>
+
+<p>See <a href="http://forum.jquery.com/topic/serialize-problem-with-latin-1-iso-8859-1-and-solution" rel="nofollow">http://forum.jquery.com/topic/serialize-problem-with-latin-1-iso-8859-1-and-solution</a></p>
+
+<p>I also add the test</p>
+
+<pre><code>if( $.browser.msie )
+</code></pre>
+
+<p>Because in FF works and this hack doesnt work.</p>

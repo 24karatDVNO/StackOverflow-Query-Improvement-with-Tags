@@ -1,0 +1,18 @@
+<p>This is my makefile that solves the problem for me.</p>
+
+<p>all :  test </p>
+
+<h1>-isystem /usr/local/include</h1>
+
+<p>CFLAGS= -D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fno-strict-aliasing -pipe  -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 </p>
+
+<p>icinga-core-wrap-perl.c : icinga-core.i 
+    swig -perl -outcurrentdir   -o icinga-core-wrap-perl.c  -oh icinga-core-wrap-perl.h icinga-core.i</p>
+
+<p>icinga-core-wrap-perl.o : icinga-core-wrap-perl.c
+    gcc $(CFLAGS) -I../include icinga-core-wrap-perl.c -I/usr/lib/perl/5.10.1/CORE/ -o icinga-core-wrap-perl.o</p>
+
+<p>test : icinga-core-wrap-perl.o 
+    echo todo </p>
+
+<p><a href="https://gitorious.org/icinga/icinga-core/commit/5c19af4baf01b6741bdef782a33339da0e403de6" rel="nofollow">https://gitorious.org/icinga/icinga-core/commit/5c19af4baf01b6741bdef782a33339da0e403de6</a></p>

@@ -1,0 +1,21 @@
+<p>As @user384706 says, it's entirely configurable.</p>
+
+<p>The scenario you're talking about is one where a machine is both a server and a client (and is the client as far as the SSL/TLS connection is concerned).</p>
+
+<p>You don't necessarily gain much more security by verifying that the connection originates from the CN (or perhaps Subject Alternative Name) of the certificate that is presented.</p>
+
+<p>There are a couple of issues:</p>
+
+<ul>
+<li><p>If the SSL/TLS server is meant to be used by clients that are both end-users and servers themselves, you're going to have two different rules depending on which type of client you're expecting for a particular certificate. You could have a rule base on whether the client certificate has the "server" extended key usage extension or only the client one, but this can get a bit complex (why not).</p></li>
+<li><p>The client (which is also a server) may be coming through a proxy, depending on the network where it is, in which case the source IP address will not match what you'd expect.</p></li>
+<li><p>Usually, client-certificate authentication relies on the fact that private keys are assumed to be  kept protected. If a private key is compromised by an attacker on the server, the attacker may also have the ability to spoof the origin IP address when making the connection (or making the connection from the compromised server directly). This being said, servers tend to have private keys that are not password-protected, so it may help a little bit in case it was copied discretely.</p></li>
+</ul>
+
+<p>I think some tools are so strict that they don't only verify the CN to be the FQDN of the incoming connection: they also check that it's the reverse DNS entry for the source IP address. This can cause a number of problems in practice, since some servers may have multiple CNAME entries in the DNS, in which case the CN would be legitimate, but not necessarily the primary FQDN for that IP address.</p>
+
+<p>It all really depends on the overall protocol and general architecture of the system.</p>
+
+<p><a href="http://tools.ietf.org/html/rfc6125#section-1.7.2" rel="nofollow">RFC 6125 (Representation and Verification of Domain-Based Application Service Identity within Internet Public Key Infrastructure Using X.509 (PKIX) Certificates in the Context of Transport Layer Security (TLS))</a>, recently published, considers this scenario out of scope.</p>
+
+<p>The closest reference I can think of is <a href="http://tools.ietf.org/html/rfc5922#section-7.4" rel="nofollow">SIP</a>.</p>

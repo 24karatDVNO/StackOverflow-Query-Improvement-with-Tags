@@ -1,0 +1,14 @@
+<p><code>setDateFromat:</code> function used for formatting sting object for <code>stringFromDate:</code> function. <code>dateFromString:</code> returns <code>NSDate</code> object.</p>
+
+<p>Example from Docs:</p>
+
+<pre><code>NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+[dateFormatter setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
+
+NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:162000];
+
+NSString *formattedDateString = [dateFormatter stringFromDate:date];
+NSLog(@"formattedDateString: %@", formattedDateString);
+// For US English, the output may be:
+// formattedDateString: 2001-01-02 at 13:00 
+</code></pre>

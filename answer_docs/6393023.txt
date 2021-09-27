@@ -1,0 +1,38 @@
+<p>The suggested "Vector" is they safest way to do it.<br>
+But if it is only about making your code work (without resizing and stuff) the following should be working:</p>
+
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+struct keyframe {
+    bool a;
+    int b;
+    int c;
+};
+
+
+struct keyframe_file {
+    const int num_views;
+    const int num_keyframes;
+    keyframe* keyframes;
+};
+
+
+int main()
+{
+    keyframe_file my_file = {1, 6};  // initialization needed bcause of 'const int'
+
+    my_file.keyframes = new keyframe[my_file.num_keyframes];
+
+    for (int i = 0; i &lt; my_file.num_keyframes; i++)
+    {
+        my_file.keyframes[i].a = true;
+        my_file.keyframes[i].b = 5 + i;
+        my_file.keyframes[i].c = 9 - i;
+    }
+    return 0;
+}
+</code></pre>
+
+<p>somewhere in your code, when you are done using the array you have to call <code>delete [] my_file.keyframes;</code> as already mentioned.</p>

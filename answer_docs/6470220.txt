@@ -1,0 +1,10 @@
+<p>Following your interface convention:</p>
+
+<pre><code>interface Conditional {
+    public Condition Condition();
+    public int TrueValue();
+    public int FalseValue();
+}
+</code></pre>
+
+<p>I would use classes and instead of referring to ints, I would refer to an <code>Expression</code> class too.</p>

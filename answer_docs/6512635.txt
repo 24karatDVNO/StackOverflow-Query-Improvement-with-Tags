@@ -1,0 +1,15 @@
+<p>Retain/Release should sufficient for what you are trying to do. If your object is accessed between two threads there is some middle ground they need to communicate through to access this object and usually that will be the same thread. </p>
+
+<p>Example:</p>
+
+<pre><code>//Thread 1 Object
+
+//Setting thread 2's object will occur on the same thread so
+//retains and releases will happen in order with no issue
+thread2Object.atomicObject = self.atomicObject;
+</code></pre>
+
+<p>Making sure that your properties are atomic (thread safe) means just not putting nonatomic in the property declaration. If you decide to override a getter or a setter you need to override both and use your own locking mechanism (@synchronize,NSLock,etc..).</p>
+
+<pre><code>@propert(retain) NSObject *atomicObject;
+</code></pre>

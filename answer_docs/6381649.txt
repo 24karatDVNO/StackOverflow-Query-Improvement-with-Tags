@@ -1,0 +1,11 @@
+<p>You can also use <a href="http://guava-libraries.googlecode.com" rel="nofollow">guava's</a> <a href="http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/collect/Lists.html#transform%28java.util.List,%20com.google.common.base.Function%29" rel="nofollow">Lists.transform</a>.</p>
+
+<pre><code>List&lt;String&gt; numberList=Lists.newArrayList("1","2","3");
+    List&lt;Integer&gt; trnsList = Lists.transform(numberList,new Function&lt;String,Integer&gt;() {
+    @Override
+    public Integer apply(String arg0) {
+        return Integer.valueOf(arg0);
+     }
+    });
+    Integer[] intArr=trnsList.toArray(new Integer[trnsList.size()]);
+</code></pre>

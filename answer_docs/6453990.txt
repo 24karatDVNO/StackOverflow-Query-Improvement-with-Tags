@@ -1,0 +1,13 @@
+<p>really simple , </p>
+
+<p>edit this line:</p>
+
+<pre><code>img = images.resize(request.POST.get('img'),50,50)
+</code></pre>
+
+<p>with this one: </p>
+
+<pre><code>img = request.FILES['img'].read() 
+</code></pre>
+
+<p>make sure that you are using django 1.2 </p>

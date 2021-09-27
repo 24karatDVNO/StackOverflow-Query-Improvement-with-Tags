@@ -1,0 +1,13 @@
+<p>You need to create an <code>NSTimer</code> repeatable instance.</p>
+
+<pre><code>NSTimer* myTimer = [NSTimer scheduledTimerWithTimeInterval: 60.0 target: self
+                                       selector: @selector(callAfterSixtySecond:) userInfo: nil repeats: YES];
+</code></pre>
+
+<p>After each 60.0 second , iOS will call the below function </p>
+
+<pre><code>-(void) callAfterSixtySecond:(NSTimer*) t 
+{
+    NSLog(@"Check your image here ");
+}
+</code></pre>

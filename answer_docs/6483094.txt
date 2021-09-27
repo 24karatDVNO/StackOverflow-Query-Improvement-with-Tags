@@ -1,0 +1,16 @@
+<p>Ok so I figured this out. The problem is due to the language. I realized it after noticing da is in english and webtop is in FR.</p>
+
+<p>Here is what I did to fix to the problem.</p>
+
+<p>Enabled french data dictionary in data_dictionary.ini. under documentum/dba/config
+Modified data_dictionary_fr under product/6.5/bin to LOCALE = en
+Ran the script:
+dmbasic -f dd_populate.ebs -e Entry_Point --    D:\Documentum\dba\config\\data_dictionary.ini
+Ran the dictionary job again
+restarted app server</p>
+
+<p>and now I can see my types.</p>
+
+<p>I'm not sure why this wasn't working ootb though and if all these manipulations were necessary. </p>
+
+<p>Anyway thanks all for your input!</p>

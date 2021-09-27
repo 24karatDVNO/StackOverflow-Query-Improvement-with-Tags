@@ -1,0 +1,9 @@
+<p>You are calling the script from the <code>body onload</code> event, so by definition it will wait until the page has fully loaded.</p>
+
+<p>If you wish the script to run earlier, you can place a script tag inside the HTML that calls the <code>goforit()</code> function at the position in parsing you wish, but the result may not be much better.</p>
+
+<pre><code>&lt;div id="time-date"&gt;&lt;/div&gt;
+&lt;script type='text/javascript'&gt;
+  goforit();
+&lt;/script&gt;
+</code></pre>

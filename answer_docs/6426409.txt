@@ -1,0 +1,22 @@
+<p>From what I see, the problem is that when you set the handlers to the click function to <code>move up</code> and <code>move down</code>, you have to specify to hide the image and call the new image based on the current position of the mask.</p>
+
+<p>You could have seperate functions defined that will handle out and over. </p>
+
+<p>and bind the same function to click as well as drag handlers. To track the current position of the div have a variable that tells the current position, say</p>
+
+<pre><code>var position = 0;
+
+function onOUT(direction){
+   if(direction == "up")
+     position--;
+   else
+     position++;
+   //hide current image.
+}
+function onIN() {
+   //display image at current position
+}
+</code></pre>
+
+<p>Note : Make sure the <code>onOUT</code> and <code>onIN</code> functions are independent of the place from where it is called. 
+( OR ) . <code>this</code> inside the function should not decide the postion or moving the element. If it decides then it will give an error, since <code>this</code> points to different objects when dragging and when using separate buttons. </p>

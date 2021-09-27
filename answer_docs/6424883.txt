@@ -1,0 +1,7 @@
+<p>The authority is missing the ContentProvider name. It should be:</p>
+
+<pre><code>&lt;provider android:name="sensordata.collector.SurveyDbProvider"
+          android:authorities="sensordata.collector.surveydbprovider" ... /&gt;
+</code></pre>
+
+<p>And as a good practice you should declare a CONTENT_URI constant matching this authority inside the provider class.</p>

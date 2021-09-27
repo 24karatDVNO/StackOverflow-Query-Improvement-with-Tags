@@ -1,0 +1,5 @@
+<p>I'd implement general pagination using will_paginate.  You'll have, for ex, 10-25 results per page no matter what year that you're viewing.</p>
+
+<p>I'd then implement a second filtering mechanism by which you view results by year using some good ole AR / SQL magic.  With my app, I used a drop-down to select the year, but you can user some other UI element.</p>
+
+<p>I can't say for sure if will_paginate can help you with the by-year issue, but I wouldn't advise customizing it to fit your needs.  Just creates a compatibility issue unless you monkeypatch.</p>

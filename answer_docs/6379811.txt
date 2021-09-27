@@ -1,0 +1,13 @@
+<p>It should be</p>
+
+<pre><code>update tablename set column1 = 'test' where column2 = 'xy' and column3 = 'xx'
+</code></pre>
+
+<p>This is the update syntax for Single-table:</p>
+
+<pre><code>UPDATE [LOW_PRIORITY] [IGNORE] table_reference
+SET col_name1={expr1|DEFAULT} [, col_name2={expr2|DEFAULT}] ...
+[WHERE where_condition]
+[ORDER BY ...]
+[LIMIT row_count]
+</code></pre>

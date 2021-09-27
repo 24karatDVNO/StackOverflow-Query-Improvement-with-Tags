@@ -1,0 +1,31 @@
+<p>The problem is, you are creating your hidden inputs with the same value for the html attribute <code>ID</code>:</p>
+
+<pre><code>&lt;input type="hidden" id="id" value="&lt;?php echo $row['id'] ?&gt;" /&gt;
+</code></pre>
+
+<p>This won't work, because ID's have to be unique.</p>
+
+<p>Modify your PHP code, to have a unique ID and additional a class name for all hidden inputs, to be able to select them all with jQuery.</p>
+
+<pre><code>while($row = mysql_fetch_assoc($result))
+{
+?&gt;
+&lt;input type="hidden" class="hiddenId" id="id_&lt;?php echo $row['id'] ?&gt;" value="&lt;?php echo $row['id'] ?&gt;" /&gt;
+&lt;span id="&lt;?php echo "defaultCountdown_" . $row['id'] ?&gt;"&gt;&lt;/span&gt;
+&lt;input type="hidden" id="&lt;?php echo "endtime_" . $row['id']?&gt;" value="&lt;?php echo $row['end_time'] ?&gt;" /&gt;
+&lt;?php
+}
+</code></pre>
+
+<p>Then iterate thru all hidden inputs by selecting with <code>$(".hiddenId")</code>, get the ID, and start the countdown.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+$(function () {
+    $(".hiddenId").each(function() {
+        var id = $(this).val();
+        var endDate = $("#endtime_" + id).val();
+        $('#defaultCountdown_'+id).countdown({until: endDate});
+    });
+});
+&lt;/script&gt;
+</code></pre>

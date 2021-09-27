@@ -1,0 +1,3 @@
+<p>You can't convert the image to float by simply casting the pointer. You need to loop over every pixel and calculate the new value.</p>
+
+<p>Note that most float image types assume a range of 0-1 so you need to divide each pixel by whatever you want the maximum to be.</p>

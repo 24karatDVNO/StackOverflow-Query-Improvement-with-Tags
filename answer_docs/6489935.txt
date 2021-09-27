@@ -1,0 +1,12 @@
+<p>Possibly casting it to whatever type of object it is, such as if it were a button:</p>
+
+<pre><code>((Button)findViewById(R.id.xyz)).setVisisibility(View.VISIBLE);
+</code></pre>
+
+<p>I know I would try that and even :</p>
+
+<pre><code>Button b = (Button)findViewById(R.id.xyz);
+b.setVisibility(View.VISIBLE);
+</code></pre>
+
+<p>However it might have something to do with your Z-order. You might be drawing them in a weird way so it is being drawn, but simply beneath another view? Keep us posted, and I'm sure you'll find the solution!</p>

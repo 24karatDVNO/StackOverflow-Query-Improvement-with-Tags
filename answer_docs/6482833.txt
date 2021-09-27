@@ -1,0 +1,3 @@
+<p>As discussed in the comments, @bassneck is right - while you are rendering the edit view, the <code>form_for</code> call looks at whether the object is persisted or not (<code>@user.persisted?</code>). This has the benefit in a lot of cases of being able to use one piece of form code for both new and edit views (I'll generally have a partial <code>_form.html.erb</code> that gets used for both situations).</p>
+
+<p>In your case though, it isn't leading to the desired behaviour - so wwhat you need to do is make sure you're using the relevant user object. If you want to update a user, <code>@user</code> should be the object you want to update.</p>

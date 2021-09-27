@@ -1,0 +1,31 @@
+<p>I think technically you don't HAVE a position before it is drawn. I personally don't know of a way to convert the "System.Windows.Forms.FormStartPosition" enumerable to a Point. </p>
+
+<p>However for what you want, it should be quite simple. I would show the first form, then pass it's bounds to the second form where you can set it's start up logic to use those for it's positioning. like so.</p>
+
+<pre><code> public Form1()
+    {
+        InitializeComponent();
+
+        StartPosition = FormStartPosition.CenterScreen;
+        this.Shown += new EventHandler(Form1_Shown);
+    }
+
+    void Form1_Shown(object sender, EventArgs e)
+    {
+        ShowForm2(this.Bounds);
+    }  
+
+    public void ShowForm2(Rectangle ParentBounds)
+    {
+        Form2 f = new Form2();
+
+        int x = ParentBounds.Right+2;
+        int y = ParentBounds.Y + (ParentBounds.Height/2) - (f.Height/2);
+
+        Point childStartPosition = new Point(x,y);
+
+        f.StartPosition = FormStartPosition.Manual;
+        f.Location = childStartPosition;
+        f.Show();
+    }
+</code></pre>

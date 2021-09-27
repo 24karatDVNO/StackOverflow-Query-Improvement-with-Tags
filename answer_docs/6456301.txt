@@ -1,0 +1,7 @@
+<p>Unless you use the Fullname a lot, I would suggest to use an anonymous type in your select. </p>
+
+<p>This also limits the amount of data that will be done in your select and other overhead.</p>
+
+<pre><code>var ddlclientnames = (from ddl in mortgageentity.Clients 
+                select new { id = ..., FullName = FirstName + Lastname}.ToList();
+</code></pre>

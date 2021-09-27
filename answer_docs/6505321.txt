@@ -1,0 +1,13 @@
+<p>As well as using live for your events (which will apply to things not yet in the dom but will add events when they get added) you might also want to change your function that remove the text from the input because at the moment it will just remove all, which is probably not what you are wanting.</p>
+
+<p>Instead of:</p>
+
+<pre><code>$('.inbox').css('color','black');
+$('.inbox').css('font-style','normal');
+$('.inbox').val('');
+</code></pre>
+
+<p>Try</p>
+
+<pre><code>$(this).css({'color': 'black', 'font-style': 'normal'}).val('');
+</code></pre>

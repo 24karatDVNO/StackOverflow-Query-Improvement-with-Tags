@@ -1,0 +1,19 @@
+<p>like this??</p>
+
+<pre><code>my @type_p;
+my $l='a'; # ++ op will increment it
+print "\n---------type n--------------\n" ;
+
+foreach my $line (@results) { 
+    if ($line =~ m/(^Mgn\d\.qna.*)/i) {
+        print $1.($l++)."\n";  
+    } elsif ($line =~ m/(^Mgp\d\.qpa.*)/i) { #avoid the 2nd foreach loop
+       push @type_p,$1; 
+    }
+
+}
+
+print "\n---------type p--------------\n" ;
+#$l='a'; #reset counter
+print $_.($l++)."\n" for (@type_p);
+</code></pre>

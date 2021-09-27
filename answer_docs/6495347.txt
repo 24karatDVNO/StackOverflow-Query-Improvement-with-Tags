@@ -1,0 +1,10 @@
+<p>On line 148 of the select box code there is this:  </p>
+
+<pre><code>                .bind('blur.selectBox', function() {
+                    if( !control.hasClass('selectBox-active') ) return;
+                    control.removeClass('selectBox-active');
+                    select.trigger('blur');
+                });
+</code></pre>
+
+<p>You have to add on a <code>mouseout</code></p>

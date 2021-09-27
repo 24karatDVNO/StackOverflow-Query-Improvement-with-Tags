@@ -1,0 +1,6 @@
+<p>You can even define the default order in your model with <a href="http://api.rubyonrails.org/classes/ActiveRecord/Base.html#method-c-default_scope" rel="nofollow"><code>default_scope</code></a></p>
+
+<pre><code>class Person &lt; ActiveRecord::Base
+  default_scope order('last_name, first_name')
+end
+</code></pre>

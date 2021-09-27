@@ -1,0 +1,6 @@
+<p>As Lele pointed out, you are looking at view helpers. But here is simpler version for your code:</p>
+
+<pre><code>public function findexts($filename) {
+    return array_pop(split("[/\\.]", strtolower($filename));
+}
+</code></pre>

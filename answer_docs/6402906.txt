@@ -1,0 +1,9 @@
+<p>To do the progress bar thing, you can use a queue. When something finishes downloading, update the progress bar, and start the next download. 
+However, I don't think the WebClient class can tell you how much of the download finished, only if it is finished or not.</p>
+
+<p>To verify if the directory exists, use:</p>
+
+<pre><code>if (!System.IO.Directory.Exists(folder_name)) System.IO.Directory.Create(folder_name);
+</code></pre>
+
+<p>You can get the directory from a path, using the System.IO.Path class.</p>

@@ -1,0 +1,17 @@
+<p>I would use an NSMutableDictionary of days with an NSMutableArray of times for each day. That way you avoid trying to keep two separate arrays in sync since each "day" key will always point to your array of times.</p>
+
+<p>You can sort your array of times any way you want since it's an array, and you can choose how to show your days in the table simply based on the key. You can access an array of all your keys using the <code>[dictionary allKeys]</code> method.</p>
+
+<p>For example, in <code>viewDidLoad</code> you can use the <code>[dictionary allKeys]</code> method to get an array of the keys of your dictionary. You can sort this whichever way you like, and then iterate through the array in the <code>cellForRowAtIndexPath</code> tableview datasource method.</p>
+
+<pre><code>-(void)viewDidLoad {
+    /* keys = NSMutableArray instance variable
+       dictionary = the dictionary of days, with each days value being an array of times 
+    */
+    keys = [dictionary allKeys];
+
+    //sort however you want
+}
+</code></pre>
+
+<p>And then in your <code>didSelectRowAtIndexPath</code> delegate method, you know which key they selected based on the indexPath.row of the selection and the row of your keys array.</p>

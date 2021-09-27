@@ -1,0 +1,5 @@
+<p>a and b are both references to the same thing in part 1</p>
+
+<p>In part 2 the references remain the same because the compiler has worked out in advance you are just reusing the same string literal (a little memory optimisation) and because strings are immutable it knows it is safe to make that optimisation.</p>
+
+<p>In part 3 you are changing the reference to b only. a remains a reference to "foo" as it was before.</p>

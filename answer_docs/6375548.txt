@@ -1,0 +1,9 @@
+<p>Found it!</p>
+
+<p>Possible bug in XCode4, plus human error.</p>
+
+<p>When you single-click an NSTextField, it will sometimes consistently select the item BENEATH that textfield.</p>
+
+<p>In each case in my current project, I had "something" behind the front field - usually a non-editable version of the same field that I was switching back/and forth to based on editable status.</p>
+
+<p>(so I was selecting the NSTextField - but Xcode4 was selecting the item behind it - and then I was making changes to a different item altogether. So, the textfield was retaining its default settings - which are to stick to left, not right)</p>

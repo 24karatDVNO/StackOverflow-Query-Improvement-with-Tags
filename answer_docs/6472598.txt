@@ -1,0 +1,9 @@
+<p>Another possibility is that both tables do not actually have a <code>job_id</code> column; the <code>jobs</code> table might simply have an <code>id</code> column, making the correct join syntax:</p>
+
+<pre><code>$sql = "SELECT * 
+    FROM jobs 
+    INNER JOIN job_resp ON jobs.id = job_resp.job_id 
+    WHERE jobs.id = '1';";
+</code></pre>
+
+<p>Check the column names in both tables to be sure. This is a common mistake, but it depends on the table structure (which we don't know).</p>

@@ -1,0 +1,9 @@
+<p>It <strong>is a recommended best practice to always close the proxy when the client is done
+using it</strong>. Closing the proxy releases the connection held toward the service, which is
+particularly important to do in the presence of a transport session. It also helps ensure the threshold for the maximum number of connections
+on the client’s machine is not reached.</p>
+
+<p>For the singleton service closing the client proxy will terminate only the transport session, not the singleton context and the instance inside. If the singleton
+service supports contracts without a session, those contracts will not be per-call: they
+too will be connected to the same instance. By its very nature, the singleton is shared,
+and each client should simply create its own proxy or proxies to it. closing the proxies <strong>did not terminate the singleton</strong>.</p>

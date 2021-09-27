@@ -1,0 +1,5 @@
+<p>The best way I can think of on the top of my head would involve creating a rendering server and a client application.</p>
+
+<p>You can have the rendering server do all the actual rendering to two separate RenderTarget2D (or the main screen and then on a rendertarget) and then transfer one rendertarget to the client for rendering to the secondary screen. This means that the client application is super-lightweight and will only involve rendering a texture to full screen.</p>
+
+<p>Transfering data to the client application can be done in many ways, but my personal favourite in this situation would be a memory mapped file to transfer the byte data of the rendertarget to the second. Otherwise tcp communication should be used for performance. If you need info on extracting byte data or transfering to the other application simply comment on my post.</p>

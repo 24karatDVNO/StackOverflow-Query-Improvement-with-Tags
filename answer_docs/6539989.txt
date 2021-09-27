@@ -1,0 +1,18 @@
+<p>What about making the Editable item a copy of an item instead of the actual item?</p>
+
+<p>So your ViewModel would contain</p>
+
+<pre><code>ObservableCollection&lt;MyModel&gt; ComboBoxItems;
+int SelectedComboBoxIndex;
+MyModel EditingItem;
+</code></pre>
+
+<p>Whenever the <code>PropertyChange</code> event occurs on <code>SelectedComboBoxIndex</code>, you check and see if <code>EditingItem</code> is null or not. If it is <code>null</code>, it means you're safe to switch and you set</p>
+
+<p><code>EditingItem = ComboBoxItem[SelectedComboBoxIndex]).Copy();</code></p>
+
+<p>If the <code>EditingItem</code> is not null, then you throw up a prompt asking if the user wants to save changes or cancel.</p>
+
+<p>When the user hits Save, it takes the <code>EditingItem</code> and applies the changes to the data store and updates the item in the <code>ComboBoxItems</code> list. </p>
+
+<p>If they hit Cancel, the <code>EditingItem</code> is simply discarded.</p>

@@ -1,0 +1,15 @@
+<p>Something like this should do it. You're basically adding blocks of 30 mins to a time and looping till you get the correct number of options. </p>
+
+<pre><code>//get the timestamp for 6.30 am
+$time   = strtotime('6.30 am'); //not important what the date is.
+
+//start adding 30mins
+$times      = array();
+$halfHour   = 60 * 30;
+$blocks     = 12; //adjust this to get the number of options
+while ($blocks) {
+    $times[]  = date('h:i', $time) . ' - ' . date('h:i a', ($time += $halfHour)); //I keep incrementing the time by half an hour
+    $blocks--;
+}
+var_dump($times);
+</code></pre>

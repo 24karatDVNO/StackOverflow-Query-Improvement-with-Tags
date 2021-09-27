@@ -1,0 +1,7 @@
+<p>Based on what Gaby wrote in their post, this solution seems to be working for me:</p>
+
+<pre><code>$('input').focus(function(){
+    var _self = this;
+    setTimeout(function(){   console.log(_self.select())},100)
+    })
+</code></pre>

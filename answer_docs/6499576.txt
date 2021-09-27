@@ -1,0 +1,12 @@
+<p>This can be done with wget (http://www.gnu.org/software/wget/). </p>
+
+<p>Ex: wget -nc --page-requisites --domains mysubsite.mysite.com --no-parent mysubsite.mysite.com/Folder1/Folder2/ mysubsite.mysite.com/Folder1/Folder2/</p>
+
+<p>-nc is no-clobber, meaning any existing files will not be overwritten
+--page-requisites will grab anything necessary for proper page viewing (css files, etc)
+--domains mysubsite.mysite.com will not follow any links outside of mysubsite.mysite.com
+--no-parent: don't follow links outside the directory /Folder1/Folder2/</p>
+
+<p>Edit: Just re-read your question- I don't think you'd want to use the recursive flag. Stick with --no-parent and that will allow you to get everything in the /Folder1/Folder2/ directory.</p>
+
+<p>HTH</p>

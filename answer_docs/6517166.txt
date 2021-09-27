@@ -1,0 +1,29 @@
+<p>This should do it with the existing structure in one iteration (<a href="http://codepad.org/GwhT7lwK" rel="nofollow">demo</a>):</p>
+
+<pre><code>$currentCompanyId = 0;
+foreach ($array as $company) {
+    if ($currentCompanyId !== $company['company_id']) {
+        printf("%s\n", $company['company_name']);
+        $currentCompanyId = $company['company_id'];
+    }
+    printf("\t-%s\n", $company['user_name']);
+}
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>ABC Company
+    -Andrew
+    -Jeffrey
+Some Company
+    -William
+My Company
+    -Jaime
+</code></pre>
+
+<p>The snippet assumes the array is sorted by Company Name (like shown in your code example). If that isnt the case, sort it by Company ID first:</p>
+
+<pre><code>usort($array, function($companyA, $companyB) {
+    return $companyA['company_id'] - $companyB['company_id'];
+});
+</code></pre>

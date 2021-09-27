@@ -1,0 +1,8 @@
+<p>If I've understood your question correctly, and you want to apply a class to an element if 4 <code>li</code> elements all have a specific class, you can do this:</p>
+
+<pre><code>if($("li.complete").length == 4) {
+    $("#done").addClass("active");
+}
+</code></pre>
+
+<p>See an example of it working <a href="http://jsfiddle.net/interdream/nmue5/" rel="nofollow">here</a>.</p>

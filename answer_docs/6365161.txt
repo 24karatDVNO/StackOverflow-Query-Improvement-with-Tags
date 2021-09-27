@@ -1,0 +1,9 @@
+<p>The documentation that Olegas linked you has all the information you need to set up the layouts. </p>
+
+<p>Basically, you want to create layouts for each screen size (in cm or inches). For that, you need to create different folders, and name them <code>res/layout-small</code>, <code>res/layout-normal</code>, <code>res/layout-large</code> and <code>res/layout/xlarge</code>. </p>
+
+<p>You will want also to create Bitmaps with different sizes for each screen density (in dpi). Again, you need to create several alternative folders: <code>res/drawable-ldpi</code>, <code>res/drawable-mdpi</code> and <code>res/drawable-hdpi</code>.</p>
+
+<p>the Android OS will decide which set of layouts and which set of drawables to use depending on the device specs. The range of densities are described in this section: <a href="http://developer.android.com/guide/practices/screens_support.html#range" rel="nofollow">http://developer.android.com/guide/practices/screens_support.html#range</a></p>
+
+<p>To have an idea of the size of the bitmaps you will need, you can follow the icon design guidelines: <a href="http://developer.android.com/guide/practices/ui_guidelines/icon_design.html" rel="nofollow">http://developer.android.com/guide/practices/ui_guidelines/icon_design.html</a>.</p>

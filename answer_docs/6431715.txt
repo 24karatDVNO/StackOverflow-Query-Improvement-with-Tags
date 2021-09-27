@@ -1,0 +1,22 @@
+<p>From the code above I presume you are trying to make the images fade/appear in the #foreground, instead of the div #slides2.</p>
+
+<p>Try replacing the id of the element calling the crossSlide method, like this:</p>
+
+<pre><code>$('#foreground').crossSlide({
+      sleep: 2,
+      fade: 1
+    }, [
+      { src: 'http://treethink.treethink.net/images/foreground.png' },
+      { src: 'http://treethink.treethink.net/images/foreground-night.png' },
+    ]);
+</code></pre>
+
+<p>And maybe also the CSS</p>
+
+<pre><code>&lt;style type="text/css"&gt;
+  #foregroundslides2 {
+    width: 100%;
+    height: 95px;
+  }
+&lt;/style&gt;
+</code></pre>

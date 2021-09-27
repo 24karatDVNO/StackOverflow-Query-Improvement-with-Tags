@@ -1,0 +1,15 @@
+<p>You seem to run <code>git pull</code> on <code>live</code>, which means the <code>live</code> will ssh back into <code>www.ServerAAddress.com</code>. So there are 2 sshs that need to use passphrase-less public key for authentication and one of them is not correctly authorized:</p>
+
+<ol>
+<li>ssh from "A" ("bare") to "live" needs private key (<code>.ssh/id*</code>) stored on "A" and public key (in <code>.ssh/authorized_keys</code>) on "live".</li>
+<li>ssh from "live" back to "A" (inside the <code>git pull</code>) needs private key stored on "live" and public key on "A". The keys should be different.</li>
+</ol>
+
+<p>The locations on the servers are probably different. The files on "A" need to be in <code>userForBare</code>'s home, while files on "live" need to be in home of <code>www</code> user.</p>
+
+<p>Look in the logs (ssh usually logs into <code>/var/log/auth</code> or <code>/var/log/security</code>) and check that it's actually finding the public keys it's supposed to <em>and</em> that it's willing to read it:</p>
+
+<ul>
+<li>Many setups will <em>not</em> have <code>/var/www</code> as <code>$HOME</code> of the <code>www</code> user, so you may need to place the <code>.ssh/authorized_keys</code> elsewhere.</li>
+<li>ssh refuses to read anything <code>$HOME/.ssh/</code> if the file or any directory up to root is writable by anybody except that user or root, so if e.g. <code>/var/www</code> is group-writable, ssh will reject <code>/var/www/.ssh/authorized_keys</code> as possibly compromised.</li>
+</ul>

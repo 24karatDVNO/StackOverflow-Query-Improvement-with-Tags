@@ -1,0 +1,9 @@
+<p>For validating if a <code>value</code> is infact decimal or not, you can simply use -   </p>
+
+<pre><code>try {
+        new BigDecimal(value.toString());
+        // value is decimal
+} catch (NumberFormatException numberFormatException) {
+    // value is not decimal
+}
+</code></pre>

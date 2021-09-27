@@ -1,0 +1,5 @@
+<p>I use this method almost daily on the <em>8300</em> simulator. The important parameter (which you can get by analysing the debug setup in Eclipse) is <code>/app-param=launch=MyBBAppName</code>.</p>
+
+<p>I think the later simulators, which you ask about, do not allow you to specify an app to load on startup.</p>
+
+<p>If you need to be able to do this, one workaround would be to create the app as a "load at startup" app, then when the simulator boots up, your app will start. I use this workaround on the later simulators at the moment.</p>

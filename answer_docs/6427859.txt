@@ -1,0 +1,10 @@
+<pre><code>$start = strtotime('2011-06-01');
+$end = strtotime('2011-06-15');
+$date = $start;
+$anArray = array();
+
+while ($date &lt;= $end) {
+    $date = strtotime("+1 DAY", $date);
+    $anArray[] = $date;
+}        
+</code></pre>

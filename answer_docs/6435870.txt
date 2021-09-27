@@ -1,0 +1,7 @@
+<p>I've found that, by default, decompressing an image to a bitmap doesn't scale with high density screens.  You have to set the density to none.  In other words, you specify that the image is meant for an unknown density.</p>
+
+<p>Solution:</p>
+
+<pre><code>Bitmap b = BitmapFactory.decodeFile(filepath);
+b.setDensity(Bitmap.DENSITY_NONE);
+</code></pre>

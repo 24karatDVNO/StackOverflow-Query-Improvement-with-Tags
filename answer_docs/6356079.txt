@@ -1,0 +1,5 @@
+<p>I believe if you have multiple keywords, such as when exploding on a space, you can just use the array as the 3rd parameter for the where method.</p>
+
+<pre><code>$keywords = explode(' ', $_POST['keywords']);
+DB::select()-&gt;from('table')-&gt;where('keywords', 'LIKE', $keywords)-&gt;execute();
+</code></pre>

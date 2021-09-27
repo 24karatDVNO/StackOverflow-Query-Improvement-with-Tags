@@ -1,0 +1,3 @@
+<p>using the long <code>ARRAY_SIZE</code> with square brackets <code>[]</code> as if it were an array is already a mistake. I don't think your code compiles</p>
+
+<p>Also, you have a name shadowing problem - the parameter ARRAY_SIZE (of type long) is shadowing the static member with the same name, albeit of type int.</p>

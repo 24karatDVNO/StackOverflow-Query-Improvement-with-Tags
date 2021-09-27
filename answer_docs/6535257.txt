@@ -1,0 +1,3 @@
+<p>getActionAnnotation() is defined in the Java Controller parent class, not in the Scala version (which is in ScalaController but gets "renamed" in the Scala module's source, see src/play/mvc/package.scala in the scala module). </p>
+
+<p>I fear you either need to fork&amp;patch the Scala module, or grab the source from the Java source (framework/src/play/mvc/Controller.java).</p>

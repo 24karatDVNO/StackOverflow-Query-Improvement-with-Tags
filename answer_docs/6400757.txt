@@ -1,0 +1,23 @@
+<p>I see an object model consisting of:</p>
+
+<ul>
+<li>Panelists: a fixed repository of of your the panelists (Tom, Dick, Harry, etc)</li>
+<li>Panel: consists of X Panelists (X=3 in your case)</li>
+<li>Timeslots: a fixed repository of your time slots. Assuming fixed duration and only occurring on a single day, then all you need is track is start time.</li>
+<li>Meeting: consists of a Panel and Timeslot</li>
+<li>Schedule: consists of many Meetings</li>
+</ul>
+
+<p>Now, as you have observed, the optimization is the key. To me the question is: "Optimized with respect to what criteria?". Optimal for Tom might means that the Panels on which he is a member lay out without big gaps. But Harry's Panels may be all over the board. So, perhaps for a given Schedule, we compute  something like <code>totalMemberDeadTime</code> (= sum of all dead time member gaps in the Schedule). An optimal Schedule is the one that is minimal with respect to this sum</p>
+
+<p>If we are interested in computing a technically optimal schedule among the universe of all schedules, I don't really see an alternative to brute force .</p>
+
+<p>Perhaps that universe of Schedules does not need to be as big as might first appear. It sounds like the panels are constituted first and then the issue is to assign them to Meetings which them constitute a schedule. So, we removed the variability in the panel composition; the full scope of variability is in the Meetings and the Schedule. Still, sure seems like a lot of variability there.</p>
+
+<p>But perhaps optimal with respect to <em>all</em> possible Schedules is more than we really need. </p>
+
+<p>Might we define a Schedule as acceptable if no panelist has total dead time more than X? Or failing that, if no more than X panelists have dead time more than X (can't satisfy everyone, but keep the screwing down to a minimum)? Then the user could assign meeting for panels containing the the more "important" panelists first, and less-important guys simply have to take what they get. Then all we have to do is fine a single acceptable Schedule</p>
+
+<p>Might it be sufficient for your purposes to compare any two Schedules? Combined with an interface (I'm seeing a drag-and-drop interface, but that's clearly beyond the point) that allows the user to constitute a schedule, clone it into a second schedule, and tweak the second one, looking to reduce aggregate dead time until we can find one that is acceptable.</p>
+
+<p>Anyway, not a complete answer. Just thinking out loud. Hope it helps.</p>

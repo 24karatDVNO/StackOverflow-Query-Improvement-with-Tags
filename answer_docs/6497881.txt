@@ -1,0 +1,7 @@
+<pre><code>SELECT
+  u.realname as reporter
+  Count(b.id) as bugs
+FROM bugs b
+INNER JOIN profiles u on u.userid = b.reporter
+WHERE u.userid in (1,4)
+</code></pre>

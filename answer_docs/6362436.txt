@@ -1,0 +1,3 @@
+<p>DirectoryEntry and DirectorySearcher both implement <a href="http://msdn.microsoft.com/en-us/library/system.idisposable.aspx" rel="nofollow">IDisposable</a>. Also, you need to insure that they are disposed even in the event of an exception. I would suggest placing the construction of both inside <a href="http://msdn.microsoft.com/en-us/library/yh598w02.aspx" rel="nofollow">using blocks</a>.</p>
+
+<p>EDIT: As does SearchResultCollection, so +1 to @Joe.</p>

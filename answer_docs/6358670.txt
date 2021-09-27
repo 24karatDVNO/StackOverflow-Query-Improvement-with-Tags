@@ -1,0 +1,5 @@
+<p>You should try playing with intern method of String class. Java keeps something like dictionary where all different strings are stored. When you create a string object which can be evaluated at compile time, Java searches it in its dictionary. If it founds the string, it stores only a reference to this string (which is actually returned by intern method). </p>
+
+<p>You should notice that:
+<code>"str4" == ("str" + "str4".length())</code> returns false, but
+<code>"str4" == ("str" + "str4".length()).intern()</code> returns true, because the only "wrapper" is a different object.</p>

@@ -1,0 +1,3 @@
+<p>Your problem is that the PHP code is embedded in your HTML code.  When the server reads your HTML code, it begins to send that output to the output buffer.  As such, any PHP code that wants to re-direct to a completely new page must come BEFORE any HTML code, or be in a completely separate file, as the buffers cannot be modified once they are already sent.</p>
+
+<p>The easy answer: just make sure your PHP code that does the header() redirect function comes <strong>before</strong> any HTML code in your file, or put this code in a separate file.</p>

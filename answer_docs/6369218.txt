@@ -1,0 +1,15 @@
+<blockquote>
+  <p>Is failure to implement an interface in a child, which is implemented by a parent, considered bad practice or something?</p>
+</blockquote>
+
+<p>The child always implements the interface, it can not go around with this.</p>
+
+<p>I have no clue if that is bad practice or something. I would say it's a language feature.</p>
+
+<blockquote>
+  <p>Are there any technical drawbacks to omitting the implementation in the child?</p>
+</blockquote>
+
+<p>You can not test the reflection of the abstract class for having the interface for example.</p>
+
+<p>However, abstract class are already an interface, so technically they themselves not really need the interface but you can do so to keep things fluid within the inheritance.</p>

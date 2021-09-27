@@ -1,0 +1,15 @@
+<p>Found a solution:</p>
+
+<p>I put in a check to prevent the ajax call firing if the user tabbed into the input box.
+The addition of the extra a4j:support component is to allow the ajax call when tabbing out of the input box.</p>
+
+<pre><code>&lt;h:inputText id="limit1" value="#{bean.purchaseTypeItem.subPurchaseLimit}" immediate="true"&gt;
+    &lt;f:converter converterId="javax.faces.BigDecimal" /&gt;
+    &lt;f:attribute name="fieldRef" value="Purchase Limit1" /&gt;
+    &lt;a4j:support event="onkeyup" ajaxSingle="true" immediate="true" requestDelay="200" 
+        actionListener="#{bean.validateAmount}" ignoreDupResponses="true" reRender="main"  
+    onsubmit="if(event.keyCode == 9){return false;}" /&gt;
+    &lt;a4j:support event="onblur" ajaxSingle="true" immediate="true"
+    requestDelay="200" actionListener="#{bean.validateAmount}"
+    ignoreDupResponses="true" reRender="main" /&gt;
+</code></pre>

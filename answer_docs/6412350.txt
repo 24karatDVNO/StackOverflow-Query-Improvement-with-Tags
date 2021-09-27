@@ -1,0 +1,16 @@
+<p>Your catch block is wrong. see handling exceptions in java.</p>
+
+<p>the syntax is:</p>
+
+<pre><code>try{
+// do your logic here.
+
+}catch (Exception e){
+e.printStackTrace();
+}
+finally{
+// do something if there is or isnt an exception
+}
+</code></pre>
+
+<p>if there is an exception it will skip to the catch code which means you can add your code for deleting the old data as the last line before the catch block then if everything above it runs without an exception your code will execute, otherwise at the point of the exception it will skip everything to the catch block and then when the catch is completed it will go to the finally block and leave the try-catch.</p>

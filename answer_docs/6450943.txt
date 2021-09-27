@@ -1,0 +1,49 @@
+<p>Modified Marty Wallace's answer to handle the difference between where you click and the registration point:</p>
+
+<pre><code>package {
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+
+    public class DummyTest extends Sprite {
+
+        private var mDeltaX:Number = 0;
+        private var mDeltaY:Number = 0;
+
+        private var mGfx:Sprite;
+
+        public function DummyTest() {
+            mGfx = new Sprite();
+
+            with(mGfx.graphics) {
+                beginFill(0x00FF00);
+                drawRect(0, 0, 200, 200);
+                endFill();
+            }
+
+            addChild(mGfx);
+
+            addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+        }
+
+        private function onMouseDown(e:MouseEvent) : void {
+            mDeltaX = mGfx.x - mouseX;
+            mDeltaY = mGfx.y - mouseY;
+
+            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+        }
+
+        private function onMouseUp(e:MouseEvent) : void {
+            removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+            removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+        }
+
+        private function onEnterFrame(e:Event) : void {
+            mGfx.x = parent.mouseX + mDeltaX;
+            mGfx.y = parent.mouseY + mDeltaY;
+        }
+    }
+</code></pre>
+
+<p>}</p>

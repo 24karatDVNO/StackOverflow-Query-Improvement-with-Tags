@@ -1,0 +1,16 @@
+<p>You can add words weights. Declare another <code>NSMutableArray</code> (let's say arrWordsWeights) of the same size as arrWords. Fill it with all <code>1</code>'s initially. Then you can increase or decrease frequency of any word just by increasing or decreasing it's frequency in weights array. To get the random index which respects the weighting you can use the following code:</p>
+
+<pre><code>int maxVal = 0;
+for (int i in arrWordsWeights)
+    maxVal += i;
+int r = arc4random() % maxVal + 1;
+int index = 0;
+while (r &gt; 0 &amp;&amp; index &lt; [arrWordsWeights size])
+{
+    r -= [arrWordsWeights objectAtIndex:index];
+    index++;
+}
+return index - 1;
+</code></pre>
+
+<p>At the moment I can't check if it will compile, but at least you should get an idea.</p>

@@ -1,0 +1,34 @@
+<p>If you look in <strong>both</strong> of those urls there is <strong>no</strong> index called <code>data</code>: these are the 2 json responses:</p>
+
+<pre><code>{
+   "id": "19292868552",
+   "name": "Facebook Platform",
+   "picture": "http://profile.ak.fbcdn.net/hprofile-ak-snc4/211033_19292868552_7506301_s.jpg",
+   "link": "http://www.facebook.com/platform",
+   "likes": 2158804,
+   "category": "Product/service",
+   "website": "http://developers.facebook.com",
+   "username": "platform",
+   "founded": "May 2007",
+   "company_overview": "Facebook Platform enables anyone to build social apps on Facebook and the web.",
+   "mission": "To make the web more open and social."
+}
+
+{
+   "id": "7270241753",
+   "name": "YouTube",
+   "picture": "http://profile.ak.fbcdn.net/hprofile-ak-snc4/41601_7270241753_5799_s.jpg",
+   "link": "http://www.facebook.com/youtube",
+   "likes": 40013301,
+   "category": "Product/service",
+   "website": "http://www.facebook.com/youtube",
+   "username": "youtube",
+   "founded": "2005",
+   "company_overview": "YouTube is the the largest online video destination in the world and the third most visited Website overall. The site exceeds two billion views a day - nearly double the prime time audience of all three major U.S. networks combined. The platform comprises the largest video-sharing community in the world and includes users, advertisers and over 10,000 partners. Every minute 24 hours of video uploaded to the site. Hundreds of millions of users spanning the globe come to YouTube to discover and shape the world through video.",
+   "mission": "To be the best place on earth to create, watch, discover and share videos.",
+   "products": "More to explore at: http://www.youtube.com/testtube",
+   "description": "YouTube - We  | Facebook"
+}
+</code></pre>
+
+<p>Also make sure that <code>json_decode</code> worked (which could also be an issue)</p>

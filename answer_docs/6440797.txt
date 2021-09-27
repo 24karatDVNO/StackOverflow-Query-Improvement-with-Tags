@@ -1,0 +1,16 @@
+<p>Is the exception says; the answer is to add a transaction around the method with the line of code: <code>var session = sessionFactory();</code></p>
+
+<p>If you are getting the exception and HAVE added [Transaction] on that method, then you are not resolving the service LocalDbTest properly.</p>
+
+<p>Have a look at my quick-start for a quick-start:
+<a href="https://github.com/haf/Castle.Facilities.NHibernate/wiki/NHibernate-Facility---Quick-Start" rel="nofollow">https://github.com/haf/Castle.Facilities.NHibernate/wiki/NHibernate-Facility---Quick-Start</a></p>
+
+<hr>
+
+<p>I'm reading your code now ;), the reason that it was missing was because of this line:</p>
+
+<p><a href="https://github.com/haf/Castle.Transactions/blob/master/src/Castle.Facilities.AutoTx/AutoTxFacility.cs#L86" rel="nofollow">https://github.com/haf/Castle.Transactions/blob/master/src/Castle.Facilities.AutoTx/AutoTxFacility.cs#L86</a></p>
+
+<p>It's a known 'TODO' that you have to register your facility before your components, and I think this is stated in the quickstart as well.</p>
+
+<p>Cheers</p>

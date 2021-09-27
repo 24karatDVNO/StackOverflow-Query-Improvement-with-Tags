@@ -1,0 +1,10 @@
+<p>Finally caught the bug — turned out it wasn't a zombie issue at all, but an unrelated memory corruption issue in a routine to decode base64 data. Nothing to do with retain/release, blocks or GCD. Sigh.</p>
+
+<p>With hindsight, this should have been more obvious. The fact my program was crashing shortly after Instruments reported the overreleased object should have been a clue — if it was actually a zombie issue, you wouldn't have expected a crash. (I think?) The retain count jumping from +2 to 0 probably suggested something other than a simple overrelease as well.</p>
+
+<p>So what have I learned?</p>
+
+<ul>
+<li>Don't copy-paste code without thoroughly checking it. All base64 conversion routines are not created equal. (Specifically, calling <code>realloc</code> without using its return value is wrong, wrong wrong! It's a pity the Static Analyser doesn't flag this.)</li>
+<li>Don't exclusively rely on Instruments—other tools such as Valgrind can be useful. In this case, Valgrind gave me more accurate information.</li>
+</ul>

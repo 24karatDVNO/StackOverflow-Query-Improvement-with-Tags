@@ -1,0 +1,25 @@
+<p>Loop through the array and group invoices by email:</p>
+
+<pre><code>$invoicesByEmail = array();
+
+foreach($invoices as $invoice) {
+  if(!isset($invoicesByEmail[$invoice['Email']])) {
+    $invoicesByEmail[$invoice['Email']] = array();
+  }
+
+  $invoicesByEmail[$invoice['Email']][] = $invoice;
+}
+</code></pre>
+
+<p>Then, it's a matter of looping through the grouped invoice and mailing them.</p>
+
+<pre><code>foreach($invoicesByEmail as $recipient =&gt; $invoices) {
+  $emailBody = '';
+
+  foreach($invoices as $invoice) {
+    // Parse your invoice
+  }
+
+  Mailer::send($recipient, $emailBody, $headers);
+}
+</code></pre>

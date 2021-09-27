@@ -1,0 +1,19 @@
+<p>I finally figured it out. The procedure is as follows :</p>
+
+<ul>
+<li>Create a DataObject which will contain an array of file paths.</li>
+<li>Set the DataObject type to FileDrop</li>
+<li>Pass the DataObject to the DoDragDrop procedure</li>
+</ul>
+
+<p>Sample code :</p>
+
+<pre><code>if (is_in_selection)
+{
+    sel_rows = from DataGridViewRow r in gridFiles.SelectedRows select r;
+    var files = (from DataGridViewRow r in gridFiles.SelectedRows select all_files[r.Index]);
+    string[] files_paths = files.Select((f) =&gt; f.FullPathName).ToArray();
+    var data = new DataObject(DataFormats.FileDrop, files_paths);
+    gridFiles.DoDragDrop(data, DragDropEffects.Copy);
+}
+</code></pre>

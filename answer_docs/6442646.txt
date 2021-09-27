@@ -1,0 +1,8 @@
+<pre><code>SELECT tbl.message_id, personal_messages.thread_id
+       , personal_messages.body, users.username
+FROM users u
+JOIN personal_messages tbl on tbl. from_id = u.UsersId
+WHERE tbl.message_id IN (SELECT MAX(message_id) from personal_messages 
+GROUP BY thread_id)
+ORDER BY personal_messages.message_date DESC
+</code></pre>

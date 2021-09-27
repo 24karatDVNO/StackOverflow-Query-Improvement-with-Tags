@@ -1,0 +1,38 @@
+<p>In complement of the other answers, when defining your function as </p>
+
+<pre><code>public class A{
+    public &lt;T&gt; T test(java.lang.Class&lt;T&gt; classOfT) { ... }
+}
+</code></pre>
+
+<p>if you are using the <code>classOfT</code> parameter just to determine the type of <code>T</code>, you might be better off defining your method with no parameter at all. For instance, do this instead of the above declaration :</p>
+
+<pre><code>public class A{
+    public &lt;T&gt; T test() { ... }
+}
+</code></pre>
+
+<p>That way you can just call it using this qualified method-call syntax. This is how I would rewrite your code:</p>
+
+<pre><code>public class A{
+    public &lt;T&gt; T test() {
+          // ...
+    }        
+
+    public static void main(String[] args) {
+          A a = new A();
+          String result = a.&lt;String&gt;test(); 
+    }
+}
+
+public class B &lt;T&gt; {
+    private A a = new A();
+
+    T test() {
+        return this.a.&lt;T&gt;test();
+    }
+}
+</code></pre>
+
+<p>This way you do not need to pass the generic <code>A#test()</code> function a class parameter, which would possibly have been unused at runtime. 
+Of course if you do use the <code>classOfT</code> at runtime, this solution may not be that much interesting for you...</p>

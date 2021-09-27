@@ -1,0 +1,39 @@
+<p>I find that when I need hundreds of interfaces in my project to isolate dependencies, I find that there may be an issue in my design.  This is especially the case when a lot of these interfaces end up having only one method.  An alternative to doing this is to have your objects raise events and then bind your dependencies to those events.  For an example, let's say you want to mock out persisting your data.  One perfectly reasonable way to do this would be to do this:</p>
+
+<pre><code>public interface IDataPersistor
+{
+    void PersistData(Data data);
+}
+
+public class Foo
+{
+    private IDataPersistor Persistor { get; set; }
+    public Foo(IDataPersistor persistor)
+    {
+        Persistor = persistor;
+    }
+
+    // somewhere in the implementation we call Persistor.PersistData(data);
+
+}
+</code></pre>
+
+<p>Another way you could do this without using interfaces or mocks would be do do this:</p>
+
+<pre><code>public class Foo
+{
+    public event EventHandler&lt;PersistDataEventArgs&gt; OnPersistData;
+
+    // somewhere in the implementation we call OnPersistData(this, new PersistDataEventArgs(data))
+}
+</code></pre>
+
+<p>Then, in our test, you can instead of creating a mock do this:</p>
+
+<pre><code>Foo foo = new Foo();
+foo.OnPersistData += (sender, e) =&gt; { // do what your mock would do here };
+
+// finish your test
+</code></pre>
+
+<p>I find this to be cleaner than using mocks excessively.</p>

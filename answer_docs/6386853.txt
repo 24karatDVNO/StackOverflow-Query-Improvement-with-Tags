@@ -1,0 +1,18 @@
+<p>There's no readable way to insert quote marks into code that generates a string. You can try triple-quotes - """ - and good luck with your debugging.</p>
+
+<p>I tend to use the chr() function, with the knowledge that character 34 is the double-quote:</p>
+
+<p></p>
+
+<pre><code>strQ = "He said: " &amp; chr(34) &amp; "It's a dead parrot" &amp; chr(34) 
+strQ = strQ  &amp; ", and explained: "  &amp; "It has ceased to be" &amp; chr(34)  &amp; "."
+
+
+Debug.Print strQ
+</code></pre>
+
+<p></p>
+
+<p>Will concatenate this string:</p>
+
+<p>He said: "It's a dead parrot", and explained: "It has ceased to be".</p>

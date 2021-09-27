@@ -1,0 +1,13 @@
+<p>EDIT: nevermind, my algorithm for finding the point of collision is incorrect. I'll think about this a bit more.</p>
+
+<p>EDIT2: Ok, sorry about that. Try this:</p>
+
+<ol>
+<li>Find out when they collided. Let's call this T seconds ago. This would be T such that the distance between the two balls is equal to the sum of their radii. The equation is ((x1 - v_x1*T)-(x2 - v_x2*T))^2 = r1 + r2</li>
+<li>Move the balls back time T</li>
+<li>Continue with the your collision</li>
+</ol>
+
+<p>I'm sorry, I don't know how to format math equations on SO. :S</p>
+
+<p>After going back to the time of collision, you can calculate their new velocities fairly easily using elementary physics. See <a href="http://en.wikipedia.org/wiki/Elastic_collision#Two-_and_three-dimensional" rel="nofollow">http://en.wikipedia.org/wiki/Elastic_collision#Two-_and_three-dimensional</a></p>

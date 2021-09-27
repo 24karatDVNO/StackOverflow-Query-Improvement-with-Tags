@@ -1,0 +1,9 @@
+<p>Have you tried opening the XML file directly in Firefox? I'm guessing there's an error in your XML file that is causing Firefox to "choke". Fiddler filters all HTTP requests through its proxy before they get to your app so that could be causing this anomaly. </p>
+
+<p>Is your XML encoded correctly with something like this at the top?</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</code></pre>
+
+<p>Try running your XML file through a validator such as <a href="http://www.w3schools.com/xml/xml_validator.asp" rel="nofollow">http://www.w3schools.com/xml/xml_validator.asp</a>
+to catch any errors.</p>

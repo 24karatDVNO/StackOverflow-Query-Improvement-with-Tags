@@ -1,0 +1,49 @@
+<p>This will just act as an extension to the <code>UrlHelper</code> and just provide a nice url ready to put anywhere rather than an an entire a tag, also it will preserve most of the other route values for any other specific urls being used... giving you the most friendly specific url you have (minus the IEnumerable values) and then just append the query string values at the end.</p>
+
+<pre><code>public static string ActionWithList(this UrlHelper helper, string action, object routeData)
+{
+
+    RouteValueDictionary rv = new RouteValueDictionary(routeData);
+
+    var newRv = new RouteValueDictionary();
+    var arrayRv = new RouteValueDictionary();
+    foreach (var kvp in rv)
+    {
+        var nrv = newRv;
+        var val = kvp.Value;
+        if (val is IEnumerable &amp;&amp; !(val is string))
+        {
+            nrv = arrayRv;
+        }
+
+        nrv.Add(kvp.Key, val);
+
+    }
+
+
+    string href = helper.Action(action, newRv);
+
+    foreach (var kvp in arrayRv)
+    {
+        IEnumerable lst = kvp.Value as IEnumerable;
+        var key = kvp.Key;
+        foreach (var val in lst)
+        {
+            href = href.AddQueryString(key, val);
+        }
+
+    }
+    return href;
+}
+
+public static string AddQueryString(this string url, string name, object value)
+{
+    url = url ?? "";
+
+    char join = '?';
+    if (url.Contains('?'))
+        join = '&amp;';
+
+    return string.Concat(url, join, name, "=", HttpUtility.UrlEncode(value.ToString()));
+}   
+</code></pre>

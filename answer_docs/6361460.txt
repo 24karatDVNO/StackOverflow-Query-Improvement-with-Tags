@@ -1,0 +1,6 @@
+<p>You have to have a reference to the instance of Form2 in order to write to it.  Pass the reference to the instance of Form2 to Form1 and then manipulate it like you are expecting.  You can pass this instance in via the constructor or you can pass it in later.  You can also store the instance reference in a central location.  Just be sure that you don't create a new instance of Form2 when you try to access the instance.  For example, if you put the following code in your form:</p>
+
+<pre><code>Form2 myInstance = new Form2();
+</code></pre>
+
+<p>then you will be creating a new instance of Form2, which probably isn't what you want.</p>

@@ -1,0 +1,9 @@
+<p>I suppose that this is Epoch Timestamp to convert it to human readable form use</p>
+
+<pre><code>int date = (cursor.getColumnIndex(SmsReceiver.DATE));
+String date = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date (date*1000));
+</code></pre>
+
+<p>hopefully this will work as on converting this value: <strong>1308114404722</strong></p>
+
+<p>the time comes to be <strong>Wed, 15 Jun 2011 05:06:44 GMT</strong></p>

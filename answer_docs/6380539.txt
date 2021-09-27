@@ -1,0 +1,13 @@
+<p>That way is bad because you have only one buf, meaning that you can only have one thread at a time working on it, so you are not using threads like they should be used.</p>
+
+<p>What you can do is malloc() a buffer, copy the payload to that malloc'd buffer and pass it to the thread and let the thread free that buffer once it's done with it. Just be sure to free it or else there will be memory leaks.</p>
+
+<p>example code:</p>
+
+<pre><code>char * p;
+
+p = (char *)malloc(str_len+1);
+memcpy(p, buf, str_len+1);
+
+pushWork(p); //free p inside, after use.
+</code></pre>

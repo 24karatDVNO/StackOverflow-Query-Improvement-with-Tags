@@ -1,0 +1,6 @@
+<p>Backticks if you want to be portable to older shells (sh):</p>
+
+<pre><code>NUMBER=`$F | sed s/$PREFIX//g | sed s/$SUFFIX//g`.
+</code></pre>
+
+<p>Otherwise, use <code>NUMBER=$($F | sed s/$PREFIX//g | sed s/$SUFFIX//g)</code>. It's better and supports nesting more readily.</p>

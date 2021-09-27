@@ -1,0 +1,9 @@
+<pre><code>var firstMapMultiLatitude;
+$('.map_multi_latitude').each(function (index, element) {
+    if ($(element).val() != '') {
+        firstMapMultiLatitude = $(element).val();
+        alert($(element).val());
+        return;
+    }
+});
+</code></pre>

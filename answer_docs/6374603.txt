@@ -1,0 +1,15 @@
+<pre><code>// in php change
+echo '&amp;string="tom,dick,harry"'
+// to 
+echo "tom,dick,harry"
+
+// in actionscript change
+function onLoaded(event:Event):void {
+  var str:String = event.target.data;
+  modelli = str.split(",");
+  caricaColori(modelli[0]);
+}
+</code></pre>
+
+<p>If you want to add more variables and whatever, I would suggest turning the php response into an xml file. URLVariables should be used to  <strong>SEND</strong> data to the server not for parsing a server response.<br/>
+<a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/net/URLVariables.html" rel="nofollow">LOOK HERE</a></p>

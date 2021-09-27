@@ -1,0 +1,3 @@
+<p>Suitable scopes for this situation are conversation, request and view. Unsuitable scopes are session and (depending on your usage) application. Although CDI doesn't have a view scope, there are a number of 3rd party implementations you can use. (View scope is handy for ajax.)</p>
+
+<p>Conversation scope acts like request scope until a conversation is explicity started. Until you end the conversation, it is tied to the view in which is was initiated, so you can have multiple instances of a conversation scoped bean, one per browser window.</p>

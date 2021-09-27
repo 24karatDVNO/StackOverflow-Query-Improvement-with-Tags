@@ -1,0 +1,6 @@
+<p>You could use the HostingEnvironment object along with Path.Combine</p>
+
+<pre><code>Path.Combine(@HostingEnvironment.ApplicationPhysicalPath, "calcologo.png");
+</code></pre>
+
+<p>Of course, @HostingEnvironment.ApplicationPhysicalPath will only take you to the root of your application, so you might need to use "Content/picturescalcologo.png".</p>

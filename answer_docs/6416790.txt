@@ -1,0 +1,15 @@
+<p>I have never seen it try to auto-convert data types like you are saying it does.<br/>
+But in anycase you are not type casting your parameter and you are not declaring a return type.<br/>
+Being a constructor it needs to return void.<br/>
+You are also not declaring the scope of the variable name/<br/>
+Also you are not declaring the package</p>
+
+<pre><code>package{
+  public class SomeClass{
+      public var name:String;
+      public function SomeClass(n:String):void{
+          this.name = n;
+      }
+  }
+}
+</code></pre>

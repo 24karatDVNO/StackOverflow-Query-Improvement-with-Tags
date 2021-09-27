@@ -1,0 +1,25 @@
+<p>Not sure I get you but check out this link: <a href="http://www.coderanch.com/t/217864/ORM/java/Hibernate-retrieve-data-database" rel="nofollow">http://www.coderanch.com/t/217864/ORM/java/Hibernate-retrieve-data-database</a></p>
+
+<p>Specifically this snippet:</p>
+
+<pre><code> public static void retrieve() {
+  AnnotationConfiguration config = new AnnotationConfiguration();
+  config.addAnnotatedClass(User.class);
+  SessionFactory factory= config.configure().buildSessionFactory();
+  Session session = factory.getCurrentSession();
+  session.beginTransaction();
+  Query queryResult = session.createQuery("from User");
+  java.util.List allUsers;
+  allUsers = queryResult.list();
+  for (int i = 0; i &lt; allUsers.size(); i++) {
+   User user = (User) allUsers.get(i);
+  }
+ System.out.println("Database contents delivered..."); 
+ }
+</code></pre>
+
+<p>Actually I just re-read your question and I see you want a sub select.  You should consider using a query like:</p>
+
+<pre><code>List&lt;Integer&gt; list = custumor.getCart();
+Query query = query("select product from Product product where product.id IN (: list)");
+</code></pre>

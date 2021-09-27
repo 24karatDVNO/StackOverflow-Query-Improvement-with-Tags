@@ -1,0 +1,11 @@
+<p>I don't know if this is what you need:</p>
+
+<pre><code>$('#div1').hide();
+$('#checkbox_01').click(function(){
+    $('#div1').toggle($(this).is(':checked'));
+});
+</code></pre>
+
+<p>When you click the checkbox the div "toggles".</p>
+
+<p>fiddle here: <a href="http://jsfiddle.net/2XWaU/1/" rel="nofollow">http://jsfiddle.net/2XWaU/1/</a></p>

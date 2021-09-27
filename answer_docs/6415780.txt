@@ -1,0 +1,22 @@
+<p>Taking the first statement </p>
+
+<pre><code>(From u In db.Customers Where u.CustomerEmail Like UserName.Text Select    u.CustomerEmail).ToString
+</code></pre>
+
+<p>This can give a null exception if </p>
+
+<pre><code>db is null
+
+db.Customers is null
+</code></pre>
+
+<p>or</p>
+
+<pre><code>UserName is null
+</code></pre>
+
+<p>and I think that's about it.</p>
+
+<p>Does the ToString command actually execute the query? I don't know about EntityFramework,  but if, like Linq2Sql, it returns the sql query, then this should not throw a null exception. If it actually executes the query, then assuming u.CustomerEmail is defined as a string, then again, I don't think this will ever throw a null exception.</p>
+
+<p>If this was a case of missing data, then you would still not expect a null exception. Single might throw a 'Sequence contains no elements' error.</p>

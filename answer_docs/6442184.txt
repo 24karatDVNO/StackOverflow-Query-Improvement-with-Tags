@@ -1,0 +1,24 @@
+<p>You could check all your validation in one outer conditional, open a database transaction inside of that.  Put all your inserts inside of a try and a transaction rollback inside of a catch.</p>
+
+<p>something like this:</p>
+
+<pre><code>if ($val-&gt; check($form) === true &amp;&amp; $val-&gt;validate_age($form) === true &amp;&amp; $val-&gt;val($form) === true &amp;&amp; $val-&gt;valexp($form) === true) {
+    //begin your transaction here.  Depending on your framework it could be different.
+    mysql_query('start transaction');
+    try {
+        $val-&gt;insertData($db, $form, $id);
+        $val-&gt;insertLanguages($db, $form, $id);
+        $val-&gt;insertWorker($db, $form, $id);
+
+        //... blah blah blah  more inserts here
+
+        //commit your transaction here
+        mysql_query('commit');
+    } catch (Exception $e) {
+        //Roll back the transaction here
+        mysql_query('rollback');
+    }
+}
+</code></pre>
+
+<p>You just need to have your inserts throw an exception if they fail.</p>

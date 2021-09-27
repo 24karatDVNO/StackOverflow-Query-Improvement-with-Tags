@@ -1,0 +1,13 @@
+<p>To create image of chart for JCChart I use snapshot(JCChart,int) method of JCChart, it will return the image of the chart. So to display all the legends we will have to overide the snapshot method as follows<br/></p>
+
+<p>public Image snapshot(JCChart chart,int num_legends){<br/>
+      Image image = chart.createImage(chart.getSize().width, chart.getSize().height+<br/>
+                        (chart.getLegend().getSymbolSize()+4)*num_legends);<br/>
+      if(image != null)<br/>
+      {<br/>
+           Graphics g = image.getGraphics();<br/>
+           g.setClip(0, 0, chart.getSize().width,<br/>        chart.getSize().height+chart.getSize().height+<br/> (chart.getLegend().getSymbolSize()+4)*num_legends);<br/>
+                chart.paint(g);<br/>
+            }<br/>
+            return image;<br/>
+        }<br/></p>

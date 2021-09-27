@@ -1,0 +1,32 @@
+<p>In the case of generics, you would presumably be limited to basic CRUD operations. In which case, you should be able to to use the <em>table</em>:</p>
+
+<pre><code>        DataContext ctx;
+        var table = ctx.GetTable&lt;Foo&gt;();
+        table.InsertOnSubmit(newObject);
+        table.DeleteOnSubmit(oldObject);
+</code></pre>
+
+<p>(and update should work for entities that have been changed, using the SPROC that you have specified for updates).</p>
+
+<p>the <code>SubmitChanges</code> will then use the correct sprocs automatically (you can specify a SPROC for insert, update and delete in the designer or the DBML. The tricky bit is the <em>get</em>. That is not exposed directly on the ctx... The only suggestion I have their is a name-based pattern on the data-context and reflection? So maybe a <code>GetFoo</code> method for getting a <code>Foo</code>.</p>
+
+<p>Another approach, of course, is to implement multiple generic interfaces, i.e.</p>
+
+<pre><code>partial class MyDataContext : IFetch&lt;Foo&gt;, IFetch&lt;Bar&gt;
+{
+     Foo IFetch&lt;Foo&gt; Get(int key) { .. call get method on ctx ..}
+     Bar IFetch&lt;Bar&gt; Get(int key) { .. call get method on ctx ..}
+}
+interface IFetch&lt;T&gt;
+{
+     T Get(int key);
+}
+</code></pre>
+
+<p>(which extends the data-context)</p>
+
+<p>Then you could cast the data-context:</p>
+
+<pre><code>var fetch = ctx as IFetch&lt;T&gt;();
+return fetch.Get(key);
+</code></pre>

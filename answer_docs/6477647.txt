@@ -1,0 +1,10 @@
+<p>You're only defining the <code>watermark()</code> function <em>after</em> the DOM is loaded. You could define it outside the <code>$(document).ready()</code> call and you could embed the <code>$(document).ready()</code> call inside it, so it will execute when the DOM is loaded, but be available before that.</p>
+
+<p>For example:</p>
+
+<pre><code>watermark = function(elemId, text, hoverClass, normalClass, parentId) {
+    $(document).ready(function() {
+        /* ... */
+    }
+}
+</code></pre>

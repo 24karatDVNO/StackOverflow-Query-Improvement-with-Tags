@@ -1,0 +1,56 @@
+<p>I wrote a program to both write to and read from a text file. To write the lines of a list box to a text file I used the following code:</p>
+
+<pre><code>Private Sub txtWriteToTextfile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtWriteToTextfile.Click
+
+    Dim FileWriter As StreamWriter
+
+        FileWriter = New StreamWriter(FileName, False)
+
+        ' 3. Write some sample data to the file.
+        For i = 1 To lstNamesList.Items.Count
+            FileWriter.Write(lstNamesList.Items(i - 1).ToString)
+            FileWriter.Write(Chr(32))
+        Next i
+
+        FileWriter.Close()
+
+End Sub
+</code></pre>
+
+<p>And to read and write the contents of the text file and write to a multi-line text box (you just need to set the multiple lines property of a text box to <code>true</code>) I used the following code. I also had to do some extra coding to break the individual words from the long string I received from the text file.</p>
+
+<pre><code>Private Sub cmdReadFromTextfile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdReadFromTextfile.Click
+    Dim sStringFromFile As String = ""
+    Dim sTextString As String = ""
+    Dim iWordStartingPossition As Integer = 0
+    Dim iWordEndingPossition As Integer = 0
+    Dim iClearedTestLength As Integer = 0
+
+    Dim FileReader As StreamReader
+
+
+        FileReader = New StreamReader(FileName)
+
+        sStringFromFile = FileReader.ReadToEnd()
+
+        sTextString = sStringFromFile
+
+        txtTextFromFile.Text = ""
+
+        Do Until iClearedTestLength = Len(sTextString)
+
+            iWordEndingPossition = CInt(InStr((Microsoft.VisualBasic.Right(sTextString, Len(sTextString) - iWordStartingPossition)), " "))
+
+            txtTextFromFile.Text = txtTextFromFile.Text &amp; (Microsoft.VisualBasic.Mid(sTextString, iWordStartingPossition + 1, iWordEndingPossition)) &amp; vbCrLf
+
+            iWordStartingPossition = iWordStartingPossition + iWordEndingPossition
+
+            iClearedTestLength = iClearedTestLength + iWordEndingPossition
+
+        Loop
+
+        FileReader.Close()
+
+
+End Sub
+</code></pre>

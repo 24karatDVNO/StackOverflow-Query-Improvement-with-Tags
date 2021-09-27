@@ -1,0 +1,20 @@
+<p>I assume that you have declared a member function (usually in a <code>.h</code> or <code>.hpp</code> file) but have ommited the respective definition of the member function (usually in a <code>.cpp</code> file).</p>
+
+<p>In c++, it is possible to declare a class like so: </p>
+
+<pre><code>class foo {
+  void x();
+  void y();
+}
+</code></pre>
+
+<p>with a cpp file that goes like so</p>
+
+<pre><code>void foo::x() {
+   do_something()
+}
+</code></pre>
+
+<p>Note, there is no <code>foo::y()</code>.</p>
+
+<p>This poses no problem to the compiling/linking process as long as the member function <code>foo::y()</code> is referenced nowhere throughout the compiled code.</p>

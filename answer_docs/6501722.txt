@@ -1,0 +1,13 @@
+<p>Set the <code>maximumDate</code> property in <code>viewWillAppear:</code> method like this,</p>
+
+<pre><code>datePicker.maximumDate = [NSDate date];
+</code></pre>
+
+<p>To deal with date change while the application is being used, get the time left till tomorrow and set an NSTimer to trigger off at date change and then update the <code>UIDatePicker</code> instance.</p>
+
+<pre><code>NSDate * tomorrow = [NSDate dateWithNaturalLanguageString:@"12 AM tomorrow"];
+NSTimeInterval timeInterval = [tomorrow timeIntervalSinceNow];
+
+/* Create an NSTimer to trigger a method to update the datePicker's maximumDate 
+   after timeInterval */
+</code></pre>

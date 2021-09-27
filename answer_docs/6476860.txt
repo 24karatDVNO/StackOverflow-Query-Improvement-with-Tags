@@ -1,0 +1,8 @@
+<p>In magento we can access model class from our view file. Please assign your model with ship_email field value.</p>
+
+<p>for example</p>
+
+<pre><code>$customer=Mage::getModel('customer/customer'); // please find correct model
+$customer-&gt;setship_email('your form email');
+$customer-&gt;save();
+</code></pre>

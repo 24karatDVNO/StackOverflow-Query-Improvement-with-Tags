@@ -1,0 +1,10 @@
+<p>You can print out all ENV variables with a simple CGI script, like this:</p>
+
+<pre><code>#!/usr/bin/perl
+print "Content-type: text/html\n\n";
+foreach $key (keys %ENV) {
+    print "$key --&gt; $ENV{$key}&lt;br&gt;";
+} 
+</code></pre>
+
+<p>From that output, it should be semi-obvious what the variable you're looking for is.</p>

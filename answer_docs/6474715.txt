@@ -1,0 +1,3 @@
+<p>Would it be appropriate to only push changes to the live db table?  For most applications I have worked with changes have been minimal.  You should be able to apply all the changes in a single transaction.  Committing the transaction will make them visible with no outage on the table.</p>
+
+<p>If the data does change entirely, then you could configure the database so that you can replace all the data in a single transaction.</p>

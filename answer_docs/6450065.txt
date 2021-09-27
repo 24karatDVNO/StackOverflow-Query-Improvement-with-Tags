@@ -1,0 +1,11 @@
+<p>If there was a view model, I would do something like:</p>
+
+<pre><code>&lt;DataGrid ItemsSource="{Binding ElementName=tvMusicLibrary, Path=SelectedItem.Tracks /&gt;
+</code></pre>
+
+<p>where the Tracks collection would contain the list of tracks at any node level.</p>
+
+<p>But with loading in XML, I'm not sure, I doubt the following will work:</p>
+
+<pre><code>&lt;DataGrid ItemsSource="{Binding ElementName=tvMusicLibrary, XPath=ARTIST/ALBUM/TRACK Path=SelectedItem /&gt;
+</code></pre>

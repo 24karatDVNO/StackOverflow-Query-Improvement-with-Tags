@@ -1,0 +1,5 @@
+<p>Doctrine records hooks (preInsert, postInsert, etc.) are not trigerred when DQL or plain SQL is used to alter records. </p>
+
+<p>I remember in sfDoctrineObjectForm they are not called as well, and you have to override methods in form class, like doSave, either to add behavior or to call them directly (the latter is much better imho)</p>
+
+<p>Regards,</p>

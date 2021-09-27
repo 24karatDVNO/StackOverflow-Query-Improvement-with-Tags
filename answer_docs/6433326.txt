@@ -1,0 +1,22 @@
+<p>Just like any other framework, it's reasonably safe from hacking and not totally immune. You will be vulnerable to:</p>
+
+<ul>
+<li>mistakes in your code/logic;</li>
+<li>vulnerabilities in Tomcat/your servlet runner as they are discovered;</li>
+<li>vulnerabilities in the JVM as they are discovered;</li>
+<li>vulnerabilities in the OS;</li>
+<li>vulnerabilities in... well, you get the idea...</li>
+</ul>
+
+<p>In other words, it's essentially not so different anything else you might decide to use (be it PHP etc). I personally prefer Java to e.g. PHP because I have more confidence that there isn't some random default setting that's going to put the app at risk. But that's also because I'm far more of an expert in Java than PHP-- "use the technology you know best" is also another strategy...</p>
+
+<p>Main things to keep in mind, apart from keeping your infrastructure updated:</p>
+
+<ul>
+<li>don't use "raw" SQL to access the DB: at least use prepared statements, and for good measure implement some sensible validation on user input;</li>
+<li>look at the Servlet <a href="http://www.javamex.com/tutorials/servlets/session_api.shtml" rel="nofollow">Session API</a>;</li>
+<li>you generally want to check the logged in user for every page request: not sure exactly what you meant by "redirection";</li>
+<li>if possible, firewall off "raw" access to the database, so that only localhost/the app server (if hosting DB on a separate server-- guess you won't to start off with) can access your DB (if you need to access remotely, consider a VPN connection).</li>
+</ul>
+
+<p>I also wouldn't necessarily just "dive in": have more of a read round the subject.</p>

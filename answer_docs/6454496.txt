@@ -1,0 +1,18 @@
+<pre><code>public function yourAction() {
+        // get response and layout 
+        $response                        = $this-&gt;getResponse();
+        $layout                          = $this-&gt;_helper-&gt;layout();
+
+        // rendering action's template      
+        $this-&gt;render( 'template' );   
+
+        // setting content, don't remember to echo $this-&gt;Layout()-&gt;content in the layout script                           
+        $layout-&gt;content                 = $response-&gt;getBody();
+
+        //  here you can get your rendered content, and do something with it 
+        $renderedContent                 = $layout-&gt;render( 'layout' );  
+
+        // you have to clean response otherwise will be automaticaly sent
+        $response-&gt;clearBody();                                         
+}
+</code></pre>

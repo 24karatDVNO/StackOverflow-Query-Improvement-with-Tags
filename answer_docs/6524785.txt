@@ -1,0 +1,36 @@
+<p>Don't do it that way, try this:</p>
+
+<pre><code>if [[ -z $1 ]]; then
+    echo "Error"
+fi
+</code></pre>
+
+<p>The error in your version is actually the lack of <strong>quoting</strong>.<br>
+Should be:</p>
+
+<pre><code>if [ ! -n "$1" ]; then
+    echo "Error"
+fi
+</code></pre>
+
+<p>But you don't need the negation, use <code>-z</code> instead.</p>
+
+<p>If you work on Bash, then use double brackets <code>[[</code> <code>]]</code> too.</p>
+
+<p>from the <code>man bash</code> page:</p>
+
+<blockquote>
+<pre><code> -z string
+      True if the length of string is zero.
+ -n string
+      True if the length of string is non-zero.
+</code></pre>
+</blockquote>
+
+<p>Also, if you use bash v4 or greater (<code>bash --version</code>) there's <code>-v</code></p>
+
+<blockquote>
+<pre><code> -v varname
+      True if the shell variable varname is set (has been assigned a value).
+</code></pre>
+</blockquote>

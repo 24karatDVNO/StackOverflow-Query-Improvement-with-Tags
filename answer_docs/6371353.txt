@@ -1,0 +1,14 @@
+<p>I think you should take a look at <a href="http://www.firebirdsql.org/refdocs/langrefupd15-psql-execstat.html" rel="nofollow">EXECUTE STATEMENT</a></p>
+
+<p>Any number of data rows returned  This form – analogous to “FOR SELECT ... DO” – is used with SELECT statements that may return a multi-row dataset. </p>
+
+<p>Syntax: </p>
+
+<pre><code>FOR EXECUTE STATEMENT &lt;select-statement&gt; INTO &lt;var&gt; [, &lt;var&gt; ...]
+DO &lt;compound-statement&gt;
+
+&lt;select-statement&gt;  ::=  Any SELECT statement. 
+&lt;var&gt;               ::=  A PSQL variable, optionally preceded by “:” 
+</code></pre>
+
+<p>you can see <a href="http://www.firebirdsql.org/refdocs/langrefupd15-psql-execstat.html#langrefupd15-psql-execstat-multirow" rel="nofollow">example</a> </p>

@@ -1,0 +1,12 @@
+<p>In addition to the points Ladislav has made, there are a few others: -</p>
+
+<ol>
+<li><p>You can use Unity to decorate methods and classes with cross cutting concerns (in Unity these are called behaviours). You can use behaviours anywhere, but I have used this with EF to do things like: -</p>
+
+<ul>
+<li>Automatic creation / save / cleanup of your object contexts</li>
+<li>Automatic caching of e.g. reference data</li>
+<li>Logging of method call times to find performance bottlenecks on the DAL</li>
+</ul></li>
+<li><p>Slightly more design related, but using Dependency Inversion Principle you can more loosely couple your system so e.g. your UI does not reference the Business Layer (and potentially decoupled from EF entirely depending on how you're generating your entities).</p></li>
+</ol>

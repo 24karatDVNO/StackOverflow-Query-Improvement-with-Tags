@@ -1,0 +1,17 @@
+<p>you can use 
+<a href="http://api.jquery.com/unbind/" rel="nofollow"><strong>unbind</strong></a>  for this purpose   </p>
+
+<pre><code> $("#elementId").unbind('click');
+</code></pre>
+
+<p>in your code you can use this , something like this-  </p>
+
+<pre><code>$("#UnSelected ul li a").click(   
+function ()     {    
+ $(this).unbind('click');
+var li = $(this).parent();     
+$clone = li.clone(false);     
+$clone.children().text("-");    
+ $("#Selected ul").append($clone);     
+return false;     } );
+</code></pre>

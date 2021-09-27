@@ -1,0 +1,14 @@
+<p>Would this do?</p>
+
+<pre><code>&gt;&gt;&gt; raw = "x1 y1\nx2 y2\nx3 y3"
+&gt;&gt;&gt; lines = raw.split("\n")
+&gt;&gt;&gt; points = []
+&gt;&gt;&gt; for l in lines:
+...     points.append(l.split(' '))
+... 
+&gt;&gt;&gt; points
+[['x1', 'y1'], ['x2', 'y2'], ['x3', 'y3']]
+&gt;&gt;&gt;
+</code></pre>
+
+<p>Split on new lines, then for each line assume a space splits the values, create a list of points from that.</p>

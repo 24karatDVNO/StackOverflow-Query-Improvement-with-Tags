@@ -1,0 +1,7 @@
+<p>If you want to do this on the fly, look into <a href="http://php.net/manual/en/function.usort.php" rel="nofollow">usort</a></p>
+
+<p>Whether or not you want to store this "score" in the database depends on your application's requirements. It's basically a tradeoff between storage space and speed. If you store it in the database, you lose storage space but if you compute it on the fly, you lose speed.</p>
+
+<p>Though in this particular case, this small storage space overhead isn't something to be worried about and the speedup more than justifies it.</p>
+
+<p>Short answer: save the score beforehand in the database :)</p>

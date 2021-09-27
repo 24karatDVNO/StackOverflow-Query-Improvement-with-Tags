@@ -1,0 +1,21 @@
+<p><code>mechanize</code> uses the <code>logging</code> module.
+If your script does not supply a logging handler, then logging calls from within <code>mechanize</code> can result in this error.</p>
+
+<p>To supply a generic handler, try adding</p>
+
+<pre><code>import logging
+logging.basicConfig(level=logging.DEBUG)
+</code></pre>
+
+<p>to your script. This will show all logging messages of level <code>DEBUG</code> or higher.
+If you only want to show critical errors, you could change it to</p>
+
+<pre><code>logging.basicConfig(level=logging.CRITICAL)
+</code></pre>
+
+<p>Or, if you want to disable logging, you could use</p>
+
+<pre><code>logging.disable(logging.DEBUG)
+</code></pre>
+
+<p>See <a href="http://docs.python.org/library/logging.html" rel="nofollow">the docs</a> for other options and logging levels.</p>

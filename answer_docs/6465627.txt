@@ -1,0 +1,10 @@
+<p>What you're really dealing with is four bytes of raw memory; all you're
+concerned with is the bit pattern, not the numeric values.  In eight
+bits (the size of a <code>byte</code> in Java), <code>-89</code> and <code>0xA9</code> both have the same
+bit pattern: <code>10101001</code>.  Because <code>byte</code> is signed in Java, dumping the
+value will show a negative value, which is rather counter intuitive, but
+Java doesn't have an eight bit unsigned type.</p>
+
+<p>(Technically, <code>0xA9</code> isn't representable in a <code>byte</code>, and trying to put
+it in a <code>signed char</code> in C++ is illegal.  But Java doesn't care about
+such niceties.) </p>

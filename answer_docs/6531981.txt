@@ -1,0 +1,10 @@
+<p>You didn't mention the language, so maybe something like this:</p>
+
+<pre><code>select t1.*, t2.* from t1 
+left join t2 on t2.id=t1.id 
+
+if flag = 0
+begin 
+ where t2.id is not null
+end
+</code></pre>

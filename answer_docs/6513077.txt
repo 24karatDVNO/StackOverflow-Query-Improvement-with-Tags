@@ -1,0 +1,14 @@
+<p>By the looks of it you sending a request to delete something... If your sending the request twice it's only going to delete once.. </p>
+
+<p>However Try</p>
+
+<pre><code>$('.del').live('click',function(){
+    var lien = $(this).attr("title");
+
+    $.post(lien, function(data) {
+
+        $('#result').empty();
+        $('#result').append(data);
+    }
+});
+</code></pre>

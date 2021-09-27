@@ -1,0 +1,22 @@
+<p>I had this problem when I started using Entity Framework, it happened when I did not change the old SQL server connection to EntityFrameWork connection. </p>
+
+<p>Solution: 
+in the file where connection is made through web.config file  "add name="<strong>Entities</strong>" connectionString=XYZ", 
+make sure you are referring to the correct connection, in my case I had to do this</p>
+
+<pre><code>        public static string MyEntityFrameworkConnection
+    {
+        get
+        {
+             return ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
+        }
+
+    }
+</code></pre>
+
+<p>call MyEntityFrameworkConnection whenever connection need to be established.</p>
+
+<pre><code>private string strConnection= Library.DataAccessLayer.DBfile.AdoSomething.MyEntityFrameworkConnection;
+</code></pre>
+
+<p>note: the connection in web.config file will be generated automatically when adding Entity model to the solution. </p>

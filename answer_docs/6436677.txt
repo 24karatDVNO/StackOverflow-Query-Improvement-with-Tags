@@ -1,0 +1,44 @@
+<p>VB.NET version of Eric's C# answer...</p>
+
+<pre><code>Public Class homeForm
+
+  ''' &lt;summary&gt;
+  ''' Login button click event
+  ''' &lt;/summary&gt;
+  ''' &lt;param name="sender"&gt;&lt;/param&gt;
+  ''' &lt;param name="e"&gt;&lt;/param&gt;
+  ''' &lt;remarks&gt;&lt;/remarks&gt;
+  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Dim loginForm As New loginForm(Me)
+    loginForm.Show()
+    Me.Hide()
+  End Sub
+End Class
+
+Public Class loginForm
+  Private _homeForm As homeForm
+  ''' &lt;summary&gt;
+  ''' Login form constructor
+  ''' &lt;/summary&gt;
+  ''' &lt;param name="homeForm"&gt;&lt;/param&gt;
+  ''' &lt;remarks&gt;&lt;/remarks&gt;
+  Sub New(ByVal homeForm As homeForm)
+
+    ' This call is required by the designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    Me._homeForm = homeForm
+  End Sub
+  ''' &lt;summary&gt;
+  ''' Home button click event
+  ''' &lt;/summary&gt;
+  ''' &lt;param name="sender"&gt;&lt;/param&gt;
+  ''' &lt;param name="e"&gt;&lt;/param&gt;
+  ''' &lt;remarks&gt;&lt;/remarks&gt;
+  Private Sub btnHome_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnHome.Click
+    Me._homeForm.Show()
+    Me.Hide()
+  End Sub
+End Class
+</code></pre>

@@ -1,0 +1,15 @@
+<p>My hunch is that you're throwing an exception because</p>
+
+<p><code>MyMap *mapsView = [[MyMap alloc] initWithNibName:nil bundle:nil];</code></p>
+
+<p>is failing to load a nib. Without seeing your console output it's impossible to say for sure. So a few things to try:</p>
+
+<ul>
+<li><p>Comment out <code>[self presentModalViewController:mapsView animated:YES];</code>, see if it still crashes.</p></li>
+<li><p>Explicitly name the nib you expect to load. The nib loader assumes the nib is named exactly the same as the view controller if you pass in nil. So if you don't have a match, you'll end up with an exception (Like this <code>[[MyMap alloc] initWithNibName:@"NibNameWithoutExtension" bundle:nil];</code>)</p></li>
+<li><p>Set a breakpoint at <code>[self present...</code> and then hover your mouse over "mapsView" after execution pauses. If the popup thing shows you mapsView is nil, you know your trouble is trying to pass a nil object to <code>-presentModalViewController:animated:</code>. If your breakpoint never hits because you throw an exception first, well, there you go, the trouble is a line above.</p></li>
+</ul>
+
+<p>edit:</p>
+
+<p>One more thing. If your nib has a button that's wired to an action that no longer exists, that would definitely get you in trouble. Inspect each button and make sure no actions are labeled in yellow, indicating a mismatch between the button's target and the actions it's reporting to IB. This would definitely account for the breakpoint behavior you described.</p>

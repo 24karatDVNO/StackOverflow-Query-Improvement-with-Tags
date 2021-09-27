@@ -1,0 +1,13 @@
+<p>If i am correctly understood you than you can also try to use something like this:</p>
+
+<pre><code>a = [['w','o','r','d'],
+     ['i','p','o','d'],
+     ['k','u','a','k'],
+     ['i','s','d','s']]
+
+lines = (''.join(line) for line in a)
+rows = (''.join(line) for line in zip(*a))
+
+print list(lines)
+print list(rows)
+</code></pre>

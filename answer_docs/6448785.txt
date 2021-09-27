@@ -1,0 +1,16 @@
+<p>I believe that this is the effect you were looking for.  The randRange() function allows you to specify a minimum and maximum value.</p>
+
+<pre><code>&lt;script language="JavaScript" type="text/javascript"&gt;
+function randRange(lowVal,highVal) {
+     return Math.floor(Math.random()*(highVal-lowVal+1))+lowVal;
+}
+function spectrum(){  
+    var hue = 'rgb(' + randRange(100,256) + ',' + randRange(100,256) + ',' + randRange(100,256) + ')';  
+    $('#div').animate( { backgroundColor: hue }, 1000);  
+    spectrum();  
+ }  
+$(function(){
+    spectrum();
+});
+&lt;/script&gt;
+</code></pre>

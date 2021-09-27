@@ -1,0 +1,14 @@
+<p><a href="https://stackoverflow.com/questions/709433/">This question</a> shows a much easier way: </p>
+
+<pre><code>git filter-branch --subdirectory-filter repo/subdirectory -- --all
+</code></pre>
+
+<p>From <code>git help filter-branch</code>:</p>
+
+<blockquote>
+  <p><code>--subdirectory-filter &lt;directory&gt;</code></p>
+  
+  <p>Only look at the history which touches the given subdirectory.
+         The result will contain that directory (and only that) as its
+         project root. Implies the section called “Remap to ancestor”.</p>
+</blockquote>

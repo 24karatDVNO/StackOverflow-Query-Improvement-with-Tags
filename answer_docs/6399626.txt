@@ -1,0 +1,15 @@
+<p>It seems to me like Context['request'] doesn't fit on there... where does Context come from? As param you get context all lowercase. Probably you sould use the param 'context' instead, so ...</p>
+
+<p>a) make Context['request'] to context['request']</p>
+
+<p>... or, if your are already using context in lowercase, and it's only a typo here on the post, then</p>
+
+<p>b) I searched a while and found this snippet <a href="http://djangosnippets.org/snippets/2428/" rel="nofollow">http://djangosnippets.org/snippets/2428/</a>... so maybe something like this might work:</p>
+
+<pre><code>from django.template import resolve_variable
+
+...
+
+def getURL(self, context):
+    req = resolve_variable('request', context)
+</code></pre>

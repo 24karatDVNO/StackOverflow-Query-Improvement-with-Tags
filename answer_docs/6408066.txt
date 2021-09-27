@@ -1,0 +1,8 @@
+<p>I was also facing the same problem. But i had made the following changes and its start working.</p>
+
+<ol>
+<li><p>The mistake which i had make was the test controller machine name and SQL Server test machine name was different. I had make the changes in load test and make the names same.</p></li>
+<li><p>connect the sql server and enable its connection.</p></li>
+<li><p>Un-check all the Data and Diagnostics options which is in Test-> Edit test setting-> Local setting-> data and Diagnostics-> Uncheck all the check boxes and save it.</p></li>
+<li><p>Use Local Test Setting for running the load test.</p></li>
+</ol>

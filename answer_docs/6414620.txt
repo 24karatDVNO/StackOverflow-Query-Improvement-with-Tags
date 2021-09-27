@@ -1,0 +1,4 @@
+<p>If you're unable to connect to a remote mysql server from the web server, but could connect to the remote mysql server from your localhost, the server may not have permissions granted for your username originating from that host.</p>
+
+<pre><code>GRANT ALL PRIVILEGES ON database.* TO username@serverhostname IDENTIFIED BY 'password'
+</code></pre>

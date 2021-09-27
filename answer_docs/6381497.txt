@@ -1,0 +1,20 @@
+<p>The first issue I see is that you have the joins backwards.  You are doing left joins but the Users table is on the right of that join.  You need to switch that around like so:</p>
+
+<pre><code>SELECT `UserName`, COUNT(`Job2User`.`UserID`), COUNT(`Place2User`.`UserID`) 
+FROM `Users`
+LEFT JOIN `Job2User` ON `Users`.`UserID`=`Job2User`.`UserID` 
+LEFT JOIN `Place2User` ON `Users`.`UserID` =`Place2User`.`UserID`
+GROUP BY `UserName`;
+</code></pre>
+
+<p>Since you are doing the count on the fields that will be NULL when they aren't linked, this might work (sorry it is late and my brain is a little fuzzy).  If it doesn't, here is a way you could do it:</p>
+
+<pre><code>SELECT UserName, 
+  (SELECT COUNT(Job2User.UserID) 
+   FROM Job2User 
+   WHERE Job2User.UserID = t.UserID) AS Job2UserCount,
+  (SELECT COUNT(Place2User.UserID) 
+   FROM Place2User 
+   WHERE Place2User.UserID = t.UserID) AS Place2UserCount
+FROM Users AS t
+</code></pre>

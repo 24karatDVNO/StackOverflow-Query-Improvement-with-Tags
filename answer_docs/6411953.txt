@@ -1,0 +1,7 @@
+<p>I don't exactly understand what you are trying to do, but looks to me like, you need 1 base model so you can filter on a certain attribute of it.</p>
+
+<pre><code>Test.object.filter(type=1)
+Test.object.filter(type=2)
+</code></pre>
+
+<p>should help. Having multiple DB tables wouldn't help if you want to see all those in a given query.</p>

@@ -1,0 +1,4 @@
+<p>You could try boost::assign::list_of, something like this:</p>
+
+<pre><code>vector&lt;Resource*&gt; AbstractClass::lResource = list_of( &amp;res0 )( &amp;res1 );
+</code></pre>

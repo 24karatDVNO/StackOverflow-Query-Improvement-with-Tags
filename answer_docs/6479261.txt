@@ -1,0 +1,53 @@
+<p>I can simplify this question by some ifs that contains your answer.</p>
+
+<p>If you update just the ASPX files and rarely you change the code files : then</p>
+
+<ol>
+<li><p>Use Website and publish it using</p>
+
+<ul>
+<li>Allow this precompiled site to be updatable
+<ul>
+<li><em>Using this option you can change ASPX files</em></li>
+</ul></li>
+<li>Use fixed naming and single page assemblies
+<ul>
+<li><em>Using this option you can change code files, and replace them with their friendly name</em></li>
+</ul></li>
+</ul></li>
+<li><p>Update required published dlls and ASPX files when ever you need.</p>
+
+<ul>
+<li><em><strong>Note</strong>: any changes to bin folder contents may cause application restart and that means all sessions will be lost, so in this case you must consider using other session state modes like SQLServer and StateServer and once you do you need to annotate all your session classes with Serializable attribute</em></li>
+</ul></li>
+</ol>
+
+<p>If you will update just the ASPX files : then</p>
+
+<ol>
+<li>Use Website and publish it using
+<ul>
+<li>Allow this precompiled site to be updatable
+<ul>
+<li><em>Using this option you can change ASPX files</em></li>
+</ul></li>
+</ul></li>
+</ol>
+
+<p>Else if you just need to update the ASPX HTML content : then</p>
+
+<ol>
+<li>You might reconsider your application scenario
+<ul>
+<li><em>because you need to use data-base to rectify the update problem as any body else do</em></li>
+</ul></li>
+</ol>
+
+<p>And finally if you will update web-site code-files very rarely or your changes are at application level rather than page level : then</p>
+
+<ol>
+<li>Use web-application build or publish it if you like.
+<ul>
+<li><em>Using this option you still have the ability to change the ASPX files</em></li>
+</ul></li>
+</ol>

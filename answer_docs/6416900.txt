@@ -1,0 +1,3 @@
+<p>A new, unknown image file type is really unlikely.  It's fine to hard code this.</p>
+
+<p>If you're really, really intent on keeping that file list as an external dependency, pass the list of file types into the <code>FileFactory</code> constructor and make <code>Create()</code> an instance method instead of static.  That'll keep you testable and SOLID.</p>

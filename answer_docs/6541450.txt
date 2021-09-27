@@ -1,0 +1,5 @@
+<p>I have a general aversion to calling <code>dlclose()</code>.  The problem is that you must ensure that nothing will try to execute code in the shared library after it has been unmapped, or you will get a segmentation fault.</p>
+
+<p>The most common way to fail is to create an object whose <strong>destructor</strong> is defined in or calls code defined in the shared library.  If the object still exists after <code>dlclose()</code>, your app will crash when the object is deleted.</p>
+
+<p>If you look at logcat you should see a debuggerd stack trace.  If you can decode that with the arm-eabi-addr2line tool you should be able to determine if it's in a destructor, and if so, for what class.  Alternatively, take the crash address, strip off the high 12 bits, and use that as an offset into the library that was <code>dlclose()</code>d and try to figure out what code lives at that address.</p>

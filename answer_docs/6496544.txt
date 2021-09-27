@@ -1,0 +1,12 @@
+<p>When using a join alias as suggested by psousa, you will get results in a strange combination of an object structure and a row structure, with the top-level objects being duplicated by the child objects that are attached to them.  In order to get the results I was looking for, you can use TransformUsing and a DistinctRootEntityResultTransformer as shown in the following code:</p>
+
+<pre><code>    Site siteAlias = null;
+    Event eventAlias = null;
+
+    var results = currentSession.QueryOver&lt;Site&gt;(() =&gt; siteAlias)
+            .JoinAlias(m =&gt; m.Event, () =&gt; eventAlias)
+            .Where(() =&gt; eventAlias.EventDate &gt; eventDate)
+            .Where(() =&gt; siteAlias.StateCd == state || Restrictions.On(() =&gt; siteAlias.StateName).IsLike(state))
+            .TransformUsing(new NHibernate.Transform.DistinctRootEntityResultTransformer())
+            .List();
+</code></pre>

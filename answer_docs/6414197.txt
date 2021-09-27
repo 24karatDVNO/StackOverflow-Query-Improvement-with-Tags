@@ -1,0 +1,24 @@
+<p>Ok so I fixed this problem now:</p>
+
+<p>heres how my manifest looks now...compiles properly with no errors. </p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="" android:versionCode="6" android:versionName="1.2.3"&gt;
+&lt;uses-sdk android:minSdkVersion="7"/&gt;
+&lt;supports-screens android:smallScreens="false" /&gt;
+&lt;application android:label="" android:icon="@drawable/icon" android:debuggable="true"&gt;
+&lt;activity android:name="com.google.ads.AdActivity" android:screenOrientation="landscape" android:configChanges="keyboard|keyboardHidden|orientation"&gt;
+ &lt;intent-filter&gt;
+ &lt;action android:name="android.intent.action.MAIN"/&gt;
+ &lt;category android:name="android.intent.category.LAUNCHER"/&gt;
+ &lt;/intent-filter&gt;
+ &lt;/activity&gt;
+ &lt;/application&gt;
+ &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;
+ &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;
+ &lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+ &lt;uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/&gt;
+ &lt;uses-permission android:name="android.permission.READ_INPUT_STATE"/&gt;
+ &lt;uses-permission android:name="android.permission.SET_ORIENTATION"/&gt;
+ &lt;/manifest&gt;
+</code></pre>

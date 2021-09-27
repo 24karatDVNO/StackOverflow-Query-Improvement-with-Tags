@@ -1,0 +1,6 @@
+<p>Try this instead</p>
+
+<pre><code>SELECT watchedItems.aid, IF((bigGroups.bigGroupID IS NOT NULL AND watchedItems.maxBidPrice &gt; 0.00), watchedItems.maxBidPrice, bidGroups.bidGroupPrice)   
+</code></pre>
+
+<p>the > 0.00 doesn't guarantee that there is data from bigGroups.</p>

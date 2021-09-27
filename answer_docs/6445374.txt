@@ -1,0 +1,29 @@
+<p>I'm also getting this error using the code:</p>
+
+<pre><code>HttpWebRequest objRequest = 
+(HttpWebRequest)WebRequest.Create("https://api-3t.sandbox.paypal.com/nvp");
+objRequest.Timeout =15000;
+objRequest.Method = "POST";
+objRequest.ContentLength = strPost.Length;
+using (StreamWriter myWriter = new 
+    StreamWriter(objRequest.GetRequestStream()))
+            myWriter.Write(strPost);
+</code></pre>
+
+<p>causes exception at GetRequestStream() :</p>
+
+<pre><code>System.Net.WebException: The request timed out
+  at System.Net.HttpWebRequest.GetRequestStream () [0x0005f] in 
+/usr/src/redhat/BUILD/mono-2.10.2/mcs/class/System/System.Net/HttpWebRequest.cs:752
+  at NVPAPICaller.HttpCall (System.String NvpRequest) [0x00000] in &lt;filename 
+</code></pre>
+
+<p>unknown>:0</p>
+
+<pre><code>--------------------------------------------------------------------------------
+Version information: Mono Runtime Version: 2.10.2 (tarball Mon Apr 18 
+</code></pre>
+
+<p>18:57:39 UTC 2011); ASP.NET Version: 2.0.50727.1433</p>
+
+<p>You should revert back to older Mono 2.10 ,  2.10.1 will probably work.</p>

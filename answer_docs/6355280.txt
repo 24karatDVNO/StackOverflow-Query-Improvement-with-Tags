@@ -1,0 +1,29 @@
+<p>Scrolling is achieved by setting the content offset.</p>
+
+<p>Imagine a view controller constructed something like this (e.g. in -viewDidLoad):</p>
+
+<pre><code>// Load image.
+UIImage *image = [UIImage imageNamed:@"image.png"];
+
+// Create image view to hold the image.
+imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, [image size].width, [image size].height)];
+
+[imageView setImage:image];
+
+// Create a scroll view that is the size of the view.
+scrollView = [[UIScrollView alloc] initWithFrame:[[self view] bounds]];
+
+// Important: If the content size is less than the scroll view frame, then it will not scroll.
+[scrollView setContentSize:[image size]];
+
+// Add to view hierarchy.
+[scrollView addSubview:imageView];
+[[self view] addSubview:scrollView];
+</code></pre>
+
+<p>To make it scroll, just do this:</p>
+
+<pre><code>[scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+</code></pre>
+
+<p>To have the scrolling to be continuous, you need to set up a timer that updates the content offset.</p>

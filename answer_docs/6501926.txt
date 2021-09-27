@@ -1,0 +1,6 @@
+<p>You can put any value instead of n, it gives you required largest salary.</p>
+
+<pre><code>select top 1 salary 
+from(Select Distinct top n salary from Salary order by desc)a 
+order by salary Asc
+</code></pre>

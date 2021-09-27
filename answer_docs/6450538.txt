@@ -1,0 +1,9 @@
+<p>Assuming your questions are : </p>
+
+<p>a.) I want to make the TextBox to inherit the background color of his container. </p>
+
+<p>Answer: you need to set a background color of the root grid for the ListBoxItem ControlTemplate. This will be inherited by the content presenters placed inside the ListBoxItem. </p>
+
+<p>b.) change the Foreground of the TextBoxes to white every time ListView is selected</p>
+
+<p>Answer: in the ListBoxItem ControlTemplate change the foreground of the root grid to be white in the selected state</p>

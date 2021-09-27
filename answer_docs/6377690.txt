@@ -1,0 +1,7 @@
+<p>It's very likely that your configuration has magic_quote_gpc, an ancien attempt in PHP to make scripts secure magically. It proved to have multiple flaws and was since deprecated and was scheduled to be completely removed in 5.4 the last time I heard of it.</p>
+
+<p>If you have access to your php.ini configuration, you should disable it. Otherwise, you can modify your script to take it into account and sanitize your input.</p>
+
+<p>All of this is documented here: <a href="http://www.php.net/manual/en/security.magicquotes.disabling.php" rel="nofollow">http://www.php.net/manual/en/security.magicquotes.disabling.php</a></p>
+
+<p>Otherwise, there is nothing wrong with mysqli_real_escape_string().</p>

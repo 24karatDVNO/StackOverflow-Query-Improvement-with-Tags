@@ -1,0 +1,33 @@
+<p>You can pass parameters to an XSLT in javascript, just put</p>
+
+<p><code>&lt;xsl:param name="myparam" /&gt;</code></p>
+
+<p>in the root of your stylesheet. Look into the <code>setParameter</code> method on the <code>XSLTProcessor</code> object in javascript. Here's a javascript method I use:</p>
+
+<pre><code>function transform(inputXml, xslt) {
+    var xsltProcessor;
+    var toReturn;
+
+    if (window.XSLTProcessor) {
+        xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xslt);
+        if (arguments.length &gt; 2 &amp;&amp; arguments.length % 2 == 0) {
+            for (var i = 0; i &lt; Math.floor((arguments.length)/2)-1; i++) {
+                xsltProcessor.setParameter(null, arguments[2*i+2],arguments[2*i+3]);
+            }
+        }
+        toReturn = xsltProcessor.transformToDocument(inputXml);
+    }
+    else if (window.ActiveXObject) {
+        toReturn = makeDocFromString(inputXml.transformNode(xslt));
+    }
+    else {
+        toReturn = "Unable to transform";
+    }
+    return toReturn;
+}
+</code></pre>
+
+<p>Any parameters beyond the first two are treated as name/value pairs to be passed to the xslt as a parameter. <code>inputXml</code> and <code>xslt</code> are both XML Documents.</p>
+
+<p>EDIT: Just noticed, I forgot to mention this function uses a helper method, 'makeDocFromString', that just takes the source of an XML document as a string input, and returns an actual XML document. That function's define elsewhere in that .js, it's not part of the standard libraries.</p>

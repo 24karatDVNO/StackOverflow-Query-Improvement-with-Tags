@@ -1,0 +1,13 @@
+<p>The <code>where</code> clause is cause the error.  I assume you want to select only one Account where the ID is equal to a local variable caller <code>username</code>.  One solution is:</p>
+
+<pre><code>SqlCeCommand com = new SqlCeCommand("SELECT * FROM Accounts WHERE ID='"
+  + username + "'", connection);
+</code></pre>
+
+<p>A more correct solution is to use a SqlCeParameter:</p>
+
+<pre><code>SqlCeCommand com = new SqlCeCommand("SELECT * FROM Accounts WHERE ID=@UserName", connection);
+SqlCeParameter param = new SqlCeParameter("@UserName", SqlDbType.NVarChar);
+param.Value = username;
+com.Parameters.Add(param);
+</code></pre>

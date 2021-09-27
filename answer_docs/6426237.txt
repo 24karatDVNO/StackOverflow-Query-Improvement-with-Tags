@@ -1,0 +1,12 @@
+<p>You are including your app.urls and using <code>+=</code> in your app urls.py. This is causing the max recursion depth exceeded errors.</p>
+
+<p>Leave your urls.py as it is and change your app/urls.py to:</p>
+
+<pre><code>urlpatterns = patterns('demonstrator.views',
+    ...
+    url(r'^choices/$', 'demo_choices', d_demo_choice,  name="demo_choices"),
+    ...
+)
+</code></pre>
+
+<p>Note that you don't really need that extra "demonstrator" part in the url regex. Hope that helps.</p>

@@ -1,0 +1,26 @@
+<p>Sorry got interrupted</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script&gt;
+var cnt="";
+function countAndSave(num) {
+  var text = (cnt==="")?num:num+":"+Math.abs(num-cnt)+"/"+cnt
+  cnt=num;
+  return text
+}
+window.onload=function() {
+  document.getElementById("output").innerHTML +="&lt;br /&gt;"+countAndSave(1);
+  document.getElementById("output").innerHTML +="&lt;br /&gt;"+countAndSave(3);
+  document.getElementById("output").innerHTML +="&lt;br /&gt;"+countAndSave(4);
+  document.getElementById("output").innerHTML +="&lt;br /&gt;"+countAndSave(1);
+  document.getElementById("output").innerHTML +="&lt;br /&gt;"+countAndSave(2);
+  document.getElementById("output").innerHTML +="&lt;br /&gt;"+countAndSave(3);
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="output"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

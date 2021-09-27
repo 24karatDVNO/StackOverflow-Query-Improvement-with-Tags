@@ -1,0 +1,25 @@
+<blockquote>
+  <p>1)rewrite the queries (in one stored
+  procedure ?)</p>
+</blockquote>
+
+<p>If you have the ability to cache the query plan, do so. Dynamically executing SQL means that the backend needs to re-plan the query every time. Check out <a href="http://www.postgresql.org/docs/current/interactive/sql-prepare.html" rel="nofollow"><code>PREPARE</code></a> for more details on this.</p>
+
+<blockquote>
+  <p>2)pass the table on which the join is
+  made as a parameter in a stored
+  procedure (written in plpgsql BTW) and
+  run the query using EXECUTE</p>
+</blockquote>
+
+<p>Not necessary! <a href="http://www.postgresql.org/docs/current/static/plpgsql-implementation.html#PLPGSQL-PLAN-CACHING" rel="nofollow">Pl/PgSQL automatically does a <code>PREPARE</code>/<code>EXECUTE</code></a> for you. This is one of the primary speed gains that can be had from using Pl/PGSQL. Rhetorical: do you think generating the plan shown in <a href="http://www.postgresql.org/docs/current/interactive/sql-explain.html" rel="nofollow"><code>EXPLAIN</code></a> was cheap or easy? Cache that chunk of work if at all possible.</p>
+
+<blockquote>
+  <p>Also, what about when i have a varying
+  number of conditions. How can i make
+  sure the query runs in optimal time?
+  (I take it rewriting the query more
+  than 10 times isn't the way to go :D)</p>
+</blockquote>
+
+<p>Using individual <code>PREPARE</code>ed statements is one way, and the most "bare-metal" way of optimizing the execution of queries. You could do exotic things like using a single set returning PL function that you pass different arguments in to and it conditionally executes different SQL, but I wouldn't recommend it. For optimal performance, stick to <code>PREPARE</code>/<code>EXECUTE</code> and manage which named statement inside of your application.</p>

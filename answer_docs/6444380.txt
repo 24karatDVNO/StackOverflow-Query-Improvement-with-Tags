@@ -1,0 +1,11 @@
+<p>Speaking from the android side of things:</p>
+
+<p>Yeah good question! HTML has a ton of advantages - like the ability to update a UI without your user needing to re-install the app. Also the analytics for web are WAY better than for phone apps at this point. I guess the obvious reason for a native app is that it's going to perform better and feel better to users. Still, I've been looking at the APIs and seen some interesting stuff.</p>
+
+<p>First off there's WebView - <a href="http://developer.android.com/reference/android/webkit/WebView.html" rel="nofollow">http://developer.android.com/reference/android/webkit/WebView.html</a></p>
+
+<p>This allows you to embed a web page (or have a web page be) your app without the browser chrome - it's just a floating web pane. What's interesting about this is that there are APIs that allow you to expose native android OS functionality to the downloaded JavaScript. Also, you can load we pages from the phone instead of the internet - gets around the long load times issues. So it's possible to have your UI be in JavaScript with a web-based front end. I've been thinking I'm going to try doing this in my next app.</p>
+
+<p>There's also PhoneGap - <a href="http://www.phonegap.com/" rel="nofollow">http://www.phonegap.com/</a> - Allows you to write HTML apps that then show up in android. I've been sorta unimpressed with their implementation myself, but hey it's a start.</p>
+
+<p>Anyway, would really be worth exploring. It's much slower to write and change a phone app and those are HUGE dis-advantages.</p>

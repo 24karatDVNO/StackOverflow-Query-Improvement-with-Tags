@@ -1,0 +1,9 @@
+<p>As far as I know, ordinary 3rd party application cannot store data that cannot be removed by user. Basically both internal and external storages can be cleared at any time. </p>
+
+<p>Internal application's storage will be cleared on factory reset, when application is uninstalled or when user clicks "Clear data" in "Manage Applications" activity.</p>
+
+<p>External storage is simple sd-card that can be formatted by user at any time on any other device (there are devices that have builtin external storage, but it can be formatted as well from Android's settings).</p>
+
+<p>And there is no API for NV items (which is reasonable, I'd be surprised to see this available to 3rd party application developers).</p>
+
+<p>So, you won't be able to store "non-volatile variable" in Andrdoid. At least not without the root. And even then things might be quite different from device to device.</p>

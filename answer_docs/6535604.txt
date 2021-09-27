@@ -1,0 +1,9 @@
+<p>When using <code>apachectl graceful</code>, you minimize the time the website is unavailable when 'restarting' Apache. All children are 'kindly' requested to restart and get their new configuration when they're not doing anything.</p>
+
+<blockquote>
+  <p>The USR1 or graceful signal causes the parent process to advise the children to exit after their current request (or to exit immediately if they're not serving anything). The parent re-reads its configuration files and re-opens its log files. As each child dies off the parent replaces it with a child from the new generation of the configuration, which begins serving new requests immediately.</p>
+</blockquote>
+
+<p>At a heavy-traffic website, you will notice some performance loss, as some children will temporarily not accept new connections. It's my experience, however, that TCP recovers perfectly from this.</p>
+
+<p>Considering that some websites take several minutes or hours to update, that is completely acceptable. If it is a really big issue, you could use a proxy, running multiple instances and updating them one at a time, or update at an off-peak moment.</p>

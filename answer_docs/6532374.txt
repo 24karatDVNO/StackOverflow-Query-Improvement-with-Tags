@@ -1,0 +1,54 @@
+<p>You can use Console.CursorLeft to set its position. Be aware that write-output will reset any custom location, so you need to reset it after each output. Here is a sample:</p>
+
+<pre>
+    $i = 0
+    function Indent() {
+        [console]::CursorLeft += 2
+        $i = [console]::CursorLeft
+        $i
+    }
+
+    function UnIndent() {
+        if($i -gt 0) { $i -= 2 }
+        [console]::CursorLeft = $i
+        $i
+    }
+
+    function WriteIndent([string]$s) {
+        [console]::CursorLeft += $i
+        write-host $s
+        # Reset indent, as write-host will set cursor to indent 0
+        [console]::CursorLeft += $i
+    }
+
+    function myFnNested() {     
+      $i = Indent     
+      WriteIndent "Start of myFnNested"     
+      WriteIndent "End of myFnNested"     
+      $i = UnIndent 
+    }
+
+    function myFn() {     
+      $i = Indent   
+      WriteIndent "Start of myfn"     
+      myFnNested
+      WriteIndent "End of myfn"     
+      $i = UnIndent 
+    } 
+
+    WriteIndent "Start of myscript"
+    myFn
+    WriteIndent "End of myscript"
+</pre>
+
+<p>Output:</p>
+
+<pre>
+    PS C:\scripting> .\Indent-Output.ps1
+    Start of myscript
+        Start of myfn
+            Start of myFnNested
+            End of myFnNested
+        End of myfn 
+    End of myscript
+</pre>

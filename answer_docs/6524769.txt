@@ -1,0 +1,83 @@
+<p>You could use meta programming to dynamically add the methods. Here is a start, you can get even more DRY than this. </p>
+
+<pre><code>class DynamicTotalMatch
+  attr_accessor :attribute
+  def initialize(method_sym)
+    if method_sym.to_s =~ /^total_of_(.*)$/
+      @attribute = $1.to_sym
+    end
+  end
+
+  def match?
+    @attribute != nil
+  end
+end
+</code></pre>
+
+<p>Recipe</p>
+
+<pre><code>class Recipe
+  def self.method_missing(method_sym, *arguments, &amp;block)
+    match = DynamicTotalMatch.new(method_sym)
+    if match.match?
+      define_dynamic_total(method_sym, match.attribute)
+      send(method_sym, arguments.first)
+    else
+      super
+    end
+  end
+
+  def self.respond_to?(method_sym, include_private = false)
+    if DynamicTotalMatch.new(method_sym).match?
+      true
+    else
+      super
+    end
+  end
+
+  protected
+
+    def self.define_dynamic_total(method, attribute)
+      class_eval &lt;&lt;-RUBY
+        def self.#{method}(#{attribute})
+          recipe_ingredients.to_a.sum { |i| i.send(attribute)
+        end                                   
+      RUBY
+    end
+end
+</code></pre>
+
+<p>RecipeIngredient</p>
+
+<pre><code>class RecipeIngredient
+  def self.method_missing(method_sym, *arguments, &amp;block)
+    match = DynamicTotalMatch.new(method_sym)
+    if match.match?
+      define_dynamic_total(method_sym, match.attribute)
+      send(method_sym, arguments.first)
+    else
+      super
+    end
+  end
+
+  def self.respond_to?(method_sym, include_private = false)
+    if DynamicTotalMatch.new(method_sym).match?
+      true
+    else
+      super
+    end
+  end
+
+  protected
+
+    def self.define_dynamic_total(method, attribute)
+      class_eval &lt;&lt;-RUBY
+        def self.#{method}(#{attribute})
+          ingredient.send(attribute) * ingredient.weight1 * quantity / 100
+        end                                   
+      RUBY
+    end
+end
+</code></pre>
+
+<p>Example was copied from ActiveRecord and this page: <a href="http://technicalpickles.com/posts/using-method_missing-and-respond_to-to-create-dynamic-methods/" rel="nofollow">http://technicalpickles.com/posts/using-method_missing-and-respond_to-to-create-dynamic-methods/</a></p>

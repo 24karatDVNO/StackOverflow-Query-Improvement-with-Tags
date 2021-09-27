@@ -1,0 +1,9 @@
+<p>You have an alternative to deal with this situation</p>
+
+<ul>
+<li>While setting up transaction replication on a table that has millions of records</li>
+<li>Initial snapshot would take time for the records to be delivered to subscriber</li>
+<li>In SQL 2005 we have an option to create the tables on both transaction and publish server, populate dataset and setup replication on top of it</li>
+<li>When you add subscription with command EXEC sp_addsubscription set The @sync_type = 'replication support only'. </li>
+<li>Reference article <a href="http://www.mssqltips.com/tip.asp?tip=1117" rel="nofollow">http://www.mssqltips.com/tip.asp?tip=1117</a></li>
+</ul>

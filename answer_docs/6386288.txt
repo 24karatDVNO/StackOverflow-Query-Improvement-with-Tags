@@ -1,0 +1,13 @@
+<p>The first thing you should be aware of is that those functions can <em>fail.</em> You should always check the return values, if only to log the fact that they failed.</p>
+
+<p>Secondly, I thought those colors were only to affect future <code>TextOut</code> calls for the given context. It's possible the title bar doesn't use those calls.</p>
+
+<p>At a bare minimum, you should probably try to do something which will cause that to happen, like change the title bar text.</p>
+
+<hr>
+
+<p>Not that this is intended to stop you, and I may not have all the facts, but I personally find programs that ignore my wishes to be quite annoying. If I, as a user, wanted my programs to have different colored title bars, I would set them up that way myself, thank you very much :-)</p>
+
+<hr>
+
+<p>And, as yet <em>another</em> aside, if you capture the WM_NCPAINT message, you'll either have to the whole thing yourself (not advisable) or call the base version first then effect your changes on top of that (and, to be honest, that's also not advisable due to the large variations of layouts).</p>

@@ -1,0 +1,10 @@
+<p>Have a look at <a href="https://developer.mozilla.org/En/Window.setTimeout" rel="nofollow noreferrer"><strong><code>setTimeout</code></strong></a>. You can hide the image initially (with CSS <code>display: none;</code>) and after the timeout finished, show the image.</p>
+
+<p>Example:</p>
+
+<pre><code>var timeout = setTimeout(function() {
+    document.getElementById('imageID').style.display = 'block';
+}, 10000); // of course you have to set the right time
+</code></pre>
+
+<p>As you want to detect user inactivity, also have a look at <a href="https://stackoverflow.com/questions/667555/detecting-idle-time-in-javascript-elegantly">Detecting idle time in JavaScript elegantly</a> and <a href="https://stackoverflow.com/search?q=javascript+detect+user+inactivity">others</a>.</p>

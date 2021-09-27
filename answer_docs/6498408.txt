@@ -1,0 +1,14 @@
+<p>I ended up going with a <a href="http://www.compulab.co.il/" rel="nofollow noreferrer">CompuLab</a> <a href="http://www.fit-pc.com/" rel="nofollow noreferrer">fit-PC2</a> running <a href="http://www.microsoft.com/windowsembedded/en-us/evaluate/windows-embedded-standard-7.aspx" rel="nofollow noreferrer">Windows Embedded Standard 7</a>.  For the RS-485 input, I used an <a href="http://www.bb-elec.com/product_family.asp?FamilyId=357" rel="nofollow noreferrer">isolated RS-485-to-USB interface</a> from <a href="http://www.bb-elec.com/" rel="nofollow noreferrer">B&amp;B Electronics</a>. I ended up skipping the interface to the anemometer and vane, which simplified the problem considerably, since now I only needed to communicate with my RS-485 serial devices.</p>
+
+<p>The fit-PC turned out to be a great solution:</p>
+
+<ul>
+<li>It's cheap (I paid less than $400 for an <a href="https://rads.stackoverflow.com/amzn/click/com/B004KUUNX0" rel="nofollow noreferrer" rel="nofollow noreferrer">8-GB SSD model</a> from <a href="http://www.amazon.com/" rel="nofollow noreferrer">Amazon</a>)</li>
+<li>it's efficient (only <a href="http://www.fit-pc.com/web/fit-pc2/fit-pc2-specifications/" rel="nofollow noreferrer">8 W at full CPU load and 0.5 W standby</a>!)</li>
+<li>it has on-board WiFi and wired Ethernet</li>
+<li>it auto powers on and reboots after a power failure</li>
+<li>it has a hardware watchdog timer that can automatically reboot the PC if it locks up</li>
+<li>it's <i>tiny</i> and decently rugged</li>
+</ul>
+
+<p>Windows Embedded turned out to be very easy to deal with as well.  I ported my app to a Windows Service that runs automatically on system startup and outputs data to a remote MySQL database.  Windows embedded doesn't include a feature for .Net 4, so I had to install that separately, but otherwise everything ported over from my development system to the embedded system perfectly.</p>

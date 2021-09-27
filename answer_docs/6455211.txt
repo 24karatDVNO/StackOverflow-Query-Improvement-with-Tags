@@ -1,0 +1,13 @@
+<blockquote>
+  <p>There is some technic/way/method to free these? </p>
+</blockquote>
+
+<p>In theory, you could serialize the application's key data structures, restart, and reload the serialized data structures.</p>
+
+<p>In practice, the application has to be written to do this.  You would probably have to rearchitect an existing (non-restartable) application to make this possible.  So, a better idea would be to store important application state in database tables so that you can stop and restart at will ... and survive an application crash or power failure.</p>
+
+<blockquote>
+  <p>I need to worry about this?</p>
+</blockquote>
+
+<p>That's up to you / depends on your requirements.  But I'd avoid implementing an application that way.</p>

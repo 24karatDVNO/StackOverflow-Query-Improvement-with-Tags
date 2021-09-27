@@ -1,0 +1,23 @@
+<p>How do you create an instance of the <code>MyConnection</code> class?</p>
+
+<p>It should be through an Activity or a Service, right?</p>
+
+<p>Then when you create it, pass the current Activity</p>
+
+<pre><code>public class MyConnection {
+
+    private Activity activity;
+
+    public MyConnection(Activity a) {
+        this.activity = a;
+    }
+
+    //....
+
+    private void method() {
+        activity.getResources().getString(R.string....);
+    }
+}
+</code></pre>
+
+<p><strong>edit:</strong> I did not see you already had a constructor. Then add a parameter to the existing one.</p>

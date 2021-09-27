@@ -1,0 +1,11 @@
+<p>If you use EBS backed instance for your database data, it will remain available after reboot but not after terminate. You can protect against terminate, though, we option at launch. In many cases you would not need to terminate your instance but only stop it, which is equivalent of shutdown. The only drawback will be that you continue to pay for the storage.</p>
+
+<p>I am going to check what happens if you reboot instance-store backed instance.</p>
+
+<hr>
+
+<p>Yes, for instance-store reboot will retain data. However, you will not have an option to stop instance. That is either it is running and you are paying for it or you don't have your data. I think it would be very bad idea to use instance storage for the database unless you know exactly what you are doing.</p>
+
+<p>As a general rule, I highly recommend using EBS storage. </p>
+
+<p>And as to AMI itself, think about it as a image of your harddrive. If you start image that you created month ago, it will only contain data from month ago. </p>

@@ -1,0 +1,83 @@
+<p>Here is a tutorial for fading in and out when you change pages: <a href="http://www.onextrapixel.com/2010/02/23/how-to-use-jquery-to-make-slick-page-transitions/" rel="nofollow">http://www.onextrapixel.com/2010/02/23/how-to-use-jquery-to-make-slick-page-transitions/</a></p>
+
+<p>If you want to have the pages "bounce" in and out, you can setup your website to be contained in div tags on the same page and simply "ease" them in and out like a slideshow.</p>
+
+<p>CSS -- </p>
+
+<pre><code>.panel{
+    float: left;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+</code></pre>
+
+<p>HTML --</p>
+
+<pre><code>&lt;div id='div1' class='panel'&gt;Page 1&lt;/div&gt;
+&lt;div id='div2' class='panel'&gt;Page 2&lt;/div&gt;
+&lt;div id='div3' class='panel'&gt;Page 3&lt;/div&gt;
+&lt;div id='div4' class='panel'&gt;Page 4&lt;/div&gt;
+&lt;div id='div5' class='panel'&gt;Page 5&lt;/div&gt;
+</code></pre>
+
+<p>JavaScript --</p>
+
+<pre>
+$(document).ready(function () {
+    var left = 0;
+    var width = $(window).width();
+    var easing_type = 'easeOutBack';
+
+    $(window).resize(function() {
+        initialize_all();
+    });
+
+    initialize_all();
+
+    function initialize_all() {
+        left = 0;
+        width = $(window).width();
+        $("#div1").css({
+            left: 0 + "px"
+        });
+        $("#div2").css({
+            left: width + "px"
+        });
+        $("#div3").css({
+            left: 2 * width + "px"
+        });
+        $("#div4").css({
+            left: 3 * width + "px"
+        });
+        $("#div5").css({
+            left: 4 * width + "px"
+        });
+    }
+
+    function move_forward() {
+        left -= width;
+        if (left  0) {
+            left = -4 * width;
+        }
+        $("#div1").animate({
+            left: left + "px"
+        }, transition_time, easing_type);
+        $("#div2").animate({
+            left: left + width + "px"
+        }, transition_time, easing_type);
+        $("#div3").animate({
+            left: left +2 * width + "px"
+        }, transition_time, easing_type);
+        $("#div4").animate({
+            left: left +3 * width + "px"
+        }, transition_time, easing_type);
+        $("#div5").animate({
+            left: left +4 * width + "px"
+        }, transition_time, easing_type);
+    }
+});
+</pre>
+
+<p>This was a simple attempt at a slideshow I had tried, you will need to include the jquery easing plugin but then you can choose from like 30 different easing types.</p>

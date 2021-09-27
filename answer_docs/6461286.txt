@@ -1,0 +1,22 @@
+<p>I wrote this example to help me understand skaffman's answer.</p>
+
+<pre><code>import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
+class Test {
+
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Foo {
+    }
+
+    @Foo
+    public static void main(String... args) throws SecurityException, NoSuchMethodException {
+        final Method mainMethod = Test.class.getDeclaredMethod("main", String[].class);
+
+        // Prints [@Test.Foo()]
+        System.out.println(Arrays.toString(mainMethod.getAnnotations()));
+    }
+}
+</code></pre>

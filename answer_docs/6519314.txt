@@ -1,0 +1,67 @@
+<p>I have now manage to find the way to search in both terms effectively. It was very simple although not implicit. Code below.</p>
+
+<pre><code>if($queryType === "contentSearch"){
+
+    $term  = new Zend_Search_Lucene_Index_Term($query, 'body');
+
+    $searchQuery = new Zend_Search_Lucene_Search_Query_Term($term);
+
+    try{
+        $hits = $index-&gt;find($searchQuery);
+    }
+    catch (Zend_Search_Lucene_Exception $ex) {
+        $hits = array();
+    }
+
+} elseif ($queryType === "dateSearch"){
+
+
+
+    $from = new Zend_Search_Lucene_Index_Term(str_replace('/','',$fQuerydate), 'created');
+
+    $to   = new Zend_Search_Lucene_Index_Term(str_replace('/','',$tQuerydate), 'created');
+
+    $searchQuery = new Zend_Search_Lucene_Search_Query_Range(
+                    $from, $to, true // inclusive
+                    );
+
+    try{
+        $hits = $index-&gt;find($searchQuery);
+    }
+    catch (Zend_Search_Lucene_Exception $ex) {
+        $hits = array();
+    }
+
+}  elseif ($queryType === "bothSearch"){
+
+    $searchQuery = new Zend_Search_Lucene_Search_Query_Boolean();
+
+    $term  = new Zend_Search_Lucene_Index_Term($query, 'body');
+
+    $subquery1 = new Zend_Search_Lucene_Search_Query_Term($term);
+
+    $from = new Zend_Search_Lucene_Index_Term(str_replace('/','',$fQuerydate), 'created');
+
+    $to   = new Zend_Search_Lucene_Index_Term(str_replace('/','',$tQuerydate), 'created');
+
+    $subquery2 = new Zend_Search_Lucene_Search_Query_Range(
+                    $from, $to, true // inclusive
+                    );
+
+    $searchQuery-&gt;addSubquery($subquery1, true  /* required */);
+    $searchQuery-&gt;addSubquery($subquery2, true  /* optional */);
+
+    try{
+        $hits = $index-&gt;find($searchQuery);
+    }
+        catch (Zend_Search_Lucene_Exception $ex) {
+        $hits = array();
+    }
+}
+</code></pre>
+
+<p>This produces the following query: '+(body:hill) +(created:[20110628 TO 20110629])' which works.</p>
+
+<p>I would now like some help with implementing my own stoplist, i.e. changing the stoplist being used by lucene.</p>
+
+<p>Cheers</p>

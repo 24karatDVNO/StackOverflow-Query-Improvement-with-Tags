@@ -1,0 +1,7 @@
+<p>Your selector is wrong.</p>
+
+<p><code>this</code> is a special identifier that gets the context that your function is called in.  It doesn't make sense to write <code>"this"</code>; the <code>jQuery</code> function has no way of knowing what your <code>this</code> is.</p>
+
+<p>You probably want <code>$(this)</code>. </p>
+
+<p>You can also write <code>$(this).find('.redirectLink')</code>, but that isn't the code you're looking for.</p>

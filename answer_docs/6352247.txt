@@ -1,0 +1,2 @@
+<p>Passing a pointer to va_list works fine in 32 bit system. You can even fetch one parameter a time in the sub-routine.
+But it doesn't seem to work in 64 bit system, will produce a segment fault at va_arg().</p>

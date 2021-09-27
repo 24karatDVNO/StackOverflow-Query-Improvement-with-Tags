@@ -1,0 +1,6 @@
+<p>Use quotations around your array values:</p>
+
+<pre><code>foreach($friendDetails as $value){                         
+   array_push($friendList, $value['id'].".".$value['photo']."-".$value['first_name']." ".$value['last_name']);                     
+} 
+</code></pre>

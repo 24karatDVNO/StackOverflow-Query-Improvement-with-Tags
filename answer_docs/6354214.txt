@@ -1,0 +1,14 @@
+<p>It is <strong>not a good practice to save large sized files</strong> (like video,documents etc) <strong>in database</strong> (as binary or varbinary). <strong>Instead you upload them to a structured folder</strong> outside root and <strong>save only the file name(name/path) in the database</strong>.</p>
+
+<p>If you really want to do as you asked do the following steps:</p>
+
+<pre><code>  1. Convert the binary file to a byte array as follows,
+
+                byte[] byteArray=GetBinaryFromDB().TOArray();
+
+  2. Then pass the byte array to the following function within System.IO namespace,
+
+                File.WriteAllBytes (strng path, byte[] bytes) //This will save your file in the path you specified as first argument.
+</code></pre>
+
+<p>In order to play the video file you should design a suitable API (including a flash movie,light box/light window etc)..</p>

@@ -1,0 +1,9 @@
+<p>As far as I know, <code>unbind</code> only works if you have previously <code>bind</code>ed the click. </p>
+
+<pre><code>$("#Selected ul li a").bind('click',
+    function( //do stuff )
+);
+$("#UnSelected ul li a").unbind('click',
+    function ( //do stuff )
+);
+</code></pre>

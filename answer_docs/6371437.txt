@@ -1,0 +1,9 @@
+<p>The browsers have a built in protection called <a href="http://en.wikipedia.org/wiki/Same_origin_policy" rel="nofollow">same origin policy</a> that prevent a page to read the content of other origin(domain, subdomain, port,...)</p>
+
+<p>If you want to gain access to the current page you can use a <a href="http://en.wikipedia.org/wiki/Bookmarklet" rel="nofollow">bookmarklet</a>.</p>
+
+<p>You ask your users to add it in their bookmarks bar, and each time they want to use it, they don't open a tab but click on the bookmark.</p>
+
+<p>This will load your script in the page, with all access to read the page content.</p>
+
+<p>And oddly enough you can POST from this page to your domain, by posting a FORM to an IFRAME hosted on your domain. But you won't be able to read the response of the POST. You can use a <code>setInterval</code> with a JSONP call to your domain to know if the POST was successful.</p>

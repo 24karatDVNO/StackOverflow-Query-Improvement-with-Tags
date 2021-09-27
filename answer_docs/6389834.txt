@@ -1,0 +1,5 @@
+<p>Each of your pages could call a JavaScript function in an external <code>boilerplate.js</code> file. That function could add boilerplate elements to the page, using the DOM.</p>
+
+<p>That said, <strong>you might not want to do this, nor use IFrames, for SEO reasons</strong>! (Also, your pages would not fail gracefully if the client disabled JavaScript.)</p>
+
+<p>To me it seems better to have a more search-engine-friendly page and put up with the transmission of duplicate markup. Server Side Includes (or any server-side scripting language) would give these qualities while also making it easy for you to change the boilerplate on all pages at once.</p>

@@ -1,0 +1,11 @@
+<p>Try it different way:</p>
+
+<pre><code>$("#IframeID").contents().find("body *").hover(
+      function () {
+              $(this).addClass('hoverElem');
+      },
+      function () {
+              $(this).removeClass('hoverElem');
+      }
+);
+</code></pre>

@@ -1,0 +1,47 @@
+<p>you need to bind the cartId to the linkbutton onItemDataBound and then access it onItemCommand, I have modified code for you, give this a go</p>
+
+<pre><code>    &lt;asp:Repeater ID="Cartridges" runat="server" onitemcommand="Repeater_OnItemCommand" OnItemDataBound="Repeater_OnItemDataBound"&gt;
+&lt;ItemTemplate&gt;
+    &lt;p class="cartprice"&gt;&lt;%#String.Format("{0:C}", Eval("Price"))%&gt;&lt;/p&gt;
+    &lt;hr class="hr4" /&gt; 
+    &lt;p class="cartqty"&gt;QTY &lt;asp:TextBox ID="cartQty" Text="0" runat="server"&gt;&lt;/asp:TextBox&gt; &lt;/p&gt;
+    &lt;div class="cartbuy2"&gt;&lt;asp:LinkButton ID="buy" runat="server" CommandName="AddtoCart" Text="Buy"&gt;&lt;/asp:LinkButton&gt;&lt;/div&gt;
+</code></pre>
+
+<p>
+</p>
+
+<p>your onItemdatabound should look like this</p>
+
+<pre><code> protected void Repeater_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+
+        //your code...
+
+          LinkButton add = (LinkButton)e.Item.FindControl("buy");
+                  add.CommandArgument = cartID.ToString();
+
+    }
+</code></pre>
+
+<p>and then you can access the text box on item command like this</p>
+
+<pre><code> protected void Repeater_OnItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "AddtoCart")
+            {
+                LinkButton btnEdit = (LinkButton)e.CommandSource;
+                if (btnEdit != null)
+                {
+                    string editId = btnEdit.CommandArgument;
+                    string text = ((TextBox)e.Item.FindControl("cartQty")).Text;
+                    //do some stuff with your cartid and quantity
+                }
+            }
+}
+</code></pre>
+
+<p>You can also extend your code with edit/delete command arguments by adding more linkbuttons and binding them to the correct command and then accessing them in on item command
+Thanks</p>

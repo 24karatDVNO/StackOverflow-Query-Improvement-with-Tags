@@ -1,0 +1,5 @@
+<pre><code>DECLARE @input VARCHAR(50)
+SET @input = '\\myserver\mydir1\dir2\test.txt'
+
+SELECT SUBSTRING(@input, 1, LEN(@input) - CHARINDEX('\', REVERSE(@input)));
+</code></pre>

@@ -1,0 +1,10 @@
+<p>Easiest way, going by what you're requesting, although you didn't specify how many numbers you wanted to add. so for loop won't work that way. you're best off with a while loop.</p>
+
+<pre><code>$foo = array();
+$i = 1;
+while (some end condition) {
+   array_push($foo, $i);
+   $i++;
+}
+print_r($foo);
+</code></pre>

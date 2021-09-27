@@ -1,0 +1,23 @@
+<p>We've also met the same problem while using ExtJS4, our solution for now is to modify the original code in extJS.</p>
+
+<p>Find:</p>
+
+<pre><code>} else if (me.isSelected(record) &amp;&amp; !e.shiftKey 
+        &amp;&amp; !e.ctrlKey &amp;&amp; me.selected.getCount() &gt; 1) 
+{
+    me.doSelect(record, keepExisting, false);
+</code></pre>
+
+<p><em>You can find them in <code>ext-all.js</code> or in <code>src/selection/Model.js</code></em></p>
+
+<p>And change it to:</p>
+
+<pre><code>} else if (me.isSelected(record) &amp;&amp; !e.shiftKey &amp;&amp; !e.ctrlKey &amp;&amp; me.selected.getCount() &gt; 1) {
+    if (e.button != 0)
+        keepExisting = true;
+    else
+        keepExisting = false;
+    me.doSelect(record, keepExisting, false);
+</code></pre>
+
+<p>This code will prevent clear current item selections except u're clicking the item with mouse button 0 (left button).</p>

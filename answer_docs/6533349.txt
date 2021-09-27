@@ -1,0 +1,38 @@
+<p>I'm not sure that having default arguments except for the (0,0) case is of any use, but something like this could work:</p>
+
+<pre><code>struct X
+{
+    double value;
+    explicit X(double v) : value(v) {}
+};
+
+struct Y
+{
+    double value;
+    explicit Y(double v) : value(v) {}
+};
+
+class pair1
+{
+    private:
+        double x;
+        double y;
+
+    public:
+        pair1() : x(0.0), y(0.0) {}
+        explicit pair1(X a) : x(a.value), y(0.0) {}
+        explicit pair1(Y b) : x(0.0), y(b.value) {}
+        pair1(X a, Y b) : x(a.value), y(b.value) {}  // For completeness
+        pair1(Y b, X a) : x(a.value), y(b.value) {}  // For super-completeness
+        pair1(double a, double b) : x(a), y(b) {}
+};
+</code></pre>
+
+<p>Use:</p>
+
+<pre><code>pair1 aPair(X(2.0));                 // default y
+pair1 anotherPair(Y(4.875));         // default x
+pair1 aThirdPair(X(1.0), Y(1.0));
+pair1 aForthPair(Y(100.0), X(1.0));  // keyword arguments ;-)
+pair1 quintus(23.0, 45.6);
+</code></pre>

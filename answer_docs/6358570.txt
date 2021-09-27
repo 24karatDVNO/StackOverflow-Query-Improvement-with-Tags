@@ -1,0 +1,10 @@
+<p>Try the cross-browser compatible on DOM load method, this fires when the document is loaded but before the page is drawn:</p>
+
+<pre><code>&lt;script&gt;
+document.observe("dom:loaded", function() {
+  $('lol').update('Hi!');
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>You can also put simple script tags rather than text/whateverscript.</p>

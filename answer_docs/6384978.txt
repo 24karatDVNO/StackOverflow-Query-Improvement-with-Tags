@@ -1,0 +1,3 @@
+<p><em>Unless</em> you've put <code>Application.DoEvents()</code> in your code (which is a horrible thing to do) then your event won't be interrupted.</p>
+
+<p>In a multithreading scenario, there's the possibility of them running in parallel. I don't use multiple threads and events both at the same time, so I can't really say much about that, but it seems like Jon's covered that one nicely with his answer.</p>

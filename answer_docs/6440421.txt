@@ -1,0 +1,8 @@
+<p>You are missing a <code>return</code> at the end of your <code>checknum()</code> function:</p>
+
+<pre><code>  int i = root-&gt;employee.emnumber &lt;= num;
+  return checknum(root-&gt;child[i], num);        //Added a return here
+}
+</code></pre>
+
+<p>Without a <code>return</code> the recursive call to <code>checknum()</code> has no effect and the ultimate return value will probably not be what you want. Your compiler should have warned you about this assuming you have warnings turned on (typically something like "not all paths return a value").</p>

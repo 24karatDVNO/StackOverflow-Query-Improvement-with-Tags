@@ -1,0 +1,36 @@
+<ol>
+<li><p>In .dbml file for the stored procedure  the code will be like </p>
+
+<p><code>[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.pr__Home_GetArchiveData")]
+        public ISingleResult&lt;pr__Home_GetArchiveData&gt; pr__Home_GetArchiveData([global::System.Data.Linq.Mapping.ParameterAttribute(Name="AlbumID", DbType="UniqueIdentifier")] System.Nullable&lt;System.Guid&gt; albumID)
+        {
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), albumID);
+            return ((ISingleResult&lt;pr__Album_GetAlbumsFilesResult&gt;)(result.ReturnValue));
+    }</code></p></li>
+<li><p>Replace it with IMultipleResult as below ` </p>
+
+<p>[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.pr__Home_GetArchiveData")]
+        [ResultType(typeof(tbl1))]
+        [ResultType(typeof(tbl2))]
+        [ResultType(typeof(tbl3))]
+        [ResultType(typeof(tbl4))]
+        public IMultipleResults pr__Home_GetArchiveData([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "HOMEID", DbType = "UniqueIdentifier")] System.Nullable hOMEID)
+        {
+            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), hOMEID);
+            return ((IMultipleResults)result.ReturnValue);
+        } </p></li>
+</ol>
+
+<p>in the code .</p>
+
+<pre><code> using (HBDataContext hb = new HBDataContext())
+                {
+                    using (System.Data.Linq.IMultipleResults _results = hb.pr__Home_GetArchiveData(model.HomeID))
+                    {
+                        List&lt;tbl1&gt; _tbl1= _results.GetResult&lt;tbl1&gt;().ToList();
+                        List&lt;tbl2&gt; _tbl2= _results.GetResult&lt;tbl2&gt;().ToList();
+                        List&lt;tbl3&gt; _tbl3= _results.GetResult&lt;tbl3&gt;().ToList();
+                        List&lt;tbl4&gt; _tbl4= _results.GetResult&lt;tbl4&gt;().ToList();}}
+</code></pre>
+
+<p>You will get the values of the Select queries from theStoredProcedure ...</p>

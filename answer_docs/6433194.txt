@@ -1,0 +1,7 @@
+<p>Since C# has operator overloading and <code>==</code>, <code>!=</code> are overloaded the responsibility should fall to the person person modifying your code should know to check if the operator <code>==</code> or <code>!=</code> is overloaded before assuming that it is doing an Object comparison.</p>
+
+<p><strong>NOTE:</strong>
+If you wanted to do a reference comparison you can do the following:</p>
+
+<pre><code>if( (object)a == b )
+</code></pre>

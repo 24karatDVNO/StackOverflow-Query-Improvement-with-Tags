@@ -1,0 +1,36 @@
+<pre><code>cout &lt;&lt; ffmt(0, 2) &lt;&lt; i;
+</code></pre>
+
+<p>Where <code>ffmt</code> is defined as:</p>
+
+<pre><code>class ffmt
+{
+    int width;
+    int precision;
+public:
+    ffmt( int width, int precision )
+        : width( width )
+        , precision( precision )
+    {
+    }
+    friend std::ostream&amp; operator&lt;&lt;(
+        std::ostream&amp; dest,
+        ffmt const&amp; manip )
+    {
+        dest.setf( std::ios_base::fixed, std::ios_base::floatfield );
+        dest.width( width );
+        dest.precision( precision );
+    }
+};
+</code></pre>
+
+<p>You can also extend this to restore format state at the end of the full
+expression; it's not too important for floating point, because most of
+the time, you'll use the manipulator in front of each output, but a
+manipulator which leaves the stream outputting hex is likely to lead to
+surprising output later.</p>
+
+<p>As a general rule, except for quicky demo or test programs, you almost
+never use the standard manipulators, other that <code>std::setw</code>.  For that
+matter, in a lot of applications, you'll even avoid things like <code>ffmt</code>,
+in favor of specific manipulators for each semantic value you have.</p>

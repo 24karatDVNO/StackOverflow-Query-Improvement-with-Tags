@@ -1,0 +1,24 @@
+<p>I've been trying to animate my maps with no luck and finally came up with this:</p>
+
+<p><strong>CSS:</strong>
+We set the map wrapper with <code>position:absolute;</code> and <code>visibility:hidden;</code> because it has to have its normal dimensions to properly render.</p>
+
+<p><strong>JavaScript:</strong></p>
+
+<pre><code>$(document).ready(function() 
+{
+    // We then run this function only once per page load. It places out map back in the document flow but hides it before it starts to toggle its height.
+    $("#mapBtn").one("click", function() 
+    {
+        $("#myMap").hide(); 
+        $("#myMap").css("visibility", "inherit");
+        $("#myMap").css("position", "relative");
+    });
+
+    // And now we toggle away nicely
+    $("#mapBtn").click(function() 
+    {
+        $("#myMap").slideToggle(400);
+    });
+});
+</code></pre>

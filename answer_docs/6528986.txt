@@ -1,0 +1,28 @@
+<p>You'd need to use the codebehind.</p>
+
+<p>Have all the controls you need created on both panels, and in the codebehind, create a SelectedNodeChange event handler for the TreeView. In this event handler, you'd show/hide the controls you need at that point, and set the properties you need at that moment as well.</p>
+
+<p>If you want to show/hide certain controls depending on the parent of a selected node: you can do something like this:</p>
+
+<p>Say you have a treeview consisting of something like this</p>
+
+<pre><code>Ford
+ -Fiesta
+ -Mondeo
+BMW
+ -316
+ -318
+ -320
+</code></pre>
+
+<p>And you want to show textBox1 ONLY IF a BMW model is selected, you'd do something like this in the event handler:</p>
+
+<pre><code>if (CarsTreeView.Parent.SelectedNode.Text == "BMW")
+{
+  textBox1.Visible = true;
+}
+else
+{
+  textBox1.Visible = false;
+}
+</code></pre>

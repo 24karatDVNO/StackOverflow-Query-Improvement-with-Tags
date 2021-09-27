@@ -1,0 +1,51 @@
+<p>You are very close.</p>
+
+<p>It looks like you need to set <code>ignore_text</code> with a true value. <code>$tree-&gt;ignore_text(1)</code> and then make sure its set before calling <code>parse_file</code>.</p>
+
+<p>Sorry this is a bit long but i hope it helps.</p>
+
+<p>Here is quick pass at the new code, hard to test without example page:</p>
+
+<pre><code>my $tree = HTML::TreeBuilder-&gt;new;
+
+$tree-&gt;ignore_text(1);
+$tree-&gt;elementify;
+$tree-&gt;parse_file( $page );
+</code></pre>
+
+<p>Here is my quick test script using a local file:</p>
+
+<pre><code>use strict;
+use warnings;
+
+use HTML::TreeBuilder;
+
+my $page = 'test.html';
+my $tree = HTML::TreeBuilder-&gt;new();
+
+$tree-&gt;ignore_text(1);
+$tree-&gt;parse_file($page);
+$tree-&gt;elementify;
+
+print $tree-&gt;as_HTML;
+</code></pre>
+
+<p>Input <code>test.html</code>:</p>
+
+<pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+  &lt;title&gt;title text&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Heading 1&lt;/h1&gt;
+  &lt;p&gt;paragraph text&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>And output:</p>
+
+<pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;&lt;/h1&gt;&lt;p&gt;&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+
+<p>Good luck</p>

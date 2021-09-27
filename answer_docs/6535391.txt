@@ -1,0 +1,14 @@
+<p>I hope you have tried setting the code in TextBlock MouseLeftButtonDown/Up event</p>
+
+<pre><code>if (TextBlock1.Visibility == Visibility.Visible)
+{ 
+TextBlock1.Visibility = Visibility.Collapsed;
+TextBlock2.Visibility = Visibility.Visible;
+}
+else{
+TextBlock2.Visibility = Visibility.Collapsed;
+TextBlock1.Visibility = Visibility.Visible;
+}
+</code></pre>
+
+<p>You can hook up the MouseleftButtonUp and Down events for the TextBlock in Both SL and WP7.</p>

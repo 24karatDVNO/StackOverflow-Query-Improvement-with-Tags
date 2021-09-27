@@ -1,0 +1,14 @@
+<pre><code>NSArray *UsrDocPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *DocsDir = [UsrDocPath objectAtIndex:0];
+
+    NSString *path = [DocsDir stringByAppendingPathComponent:@"image.jpg"];
+
+//Check if image exists on documents path, if exists removed it, but it depends on your logic, you can add more images in documents path by changing its name...
+    BOOL success = [FileManager fileExistsAtPath:zipPath];
+
+    if(success){
+        [FileManager removeItemAtPath:path error:&amp;error];
+    }
+
+    [UIImageJPEGRepresentation(image,1.0) writeToFile:path atomically:YES];
+</code></pre>

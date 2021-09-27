@@ -1,0 +1,15 @@
+<p>You can <code>split()</code> on an underscore and grab the last item in the array:</p>
+
+<pre><code>var id = $(this).attr('id'));
+var parts = id.split('_');
+var datePart = parts[parts.length-1];
+</code></pre>
+
+<p>You can alternatively get the last index of the underscore and then grab a substring of everything to the right of it: </p>
+
+<pre><code>var id = $(this).attr('id'));
+var index = id.lastIndexOf('_') + 1;
+var datePart = id.substr(index);
+</code></pre>
+
+<p>There's a lot of date formatting documentation out there.  Just google around.  For example:  <a href="http://plugins.jquery.com/project/jquery-dateFormat" rel="nofollow">http://plugins.jquery.com/project/jquery-dateFormat</a></p>

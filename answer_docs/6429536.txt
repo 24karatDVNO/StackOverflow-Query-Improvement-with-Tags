@@ -1,0 +1,22 @@
+<p>Follow this example if you aren't already:</p>
+
+<pre><code>public class RedButton : Button
+</code></pre>
+
+<p>then in the XAML instead of</p>
+
+<pre><code>&lt;UserControl&gt;&lt;/UserControl&gt;
+</code></pre>
+
+<p>Start/end your XAML file with </p>
+
+<pre><code>&lt;Button&gt;&lt;/Button&gt;
+</code></pre>
+
+<p>Note that it is okay to inherit from something in another namespace even though you didn't define the namespace yet. Example:</p>
+
+<pre><code>&lt;radDock:RadPane ...            
+        xmlns:radDock="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking"
+        ...
+        Title="{Binding Path=StudyTitle}"...
+</code></pre>

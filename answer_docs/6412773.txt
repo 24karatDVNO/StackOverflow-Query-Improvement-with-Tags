@@ -1,0 +1,19 @@
+<p>You would need to adjust the height and width accordingly:</p>
+
+<pre><code>function mouseOver()
+{
+var img1 = document.getElementById("img1");
+img1.src ="images/p2.jpg";
+img1.width = "";
+img1.height = "";
+}
+function mouseOut()
+{
+var img1 = document.getElementById("img1");
+img1.src ="images/p1.jpg";
+img1.width = "90";
+img1.height = "110";
+}
+</code></pre>
+
+<p>These days, though, it's really much more recommended to use CSS as Emil suggested.</p>

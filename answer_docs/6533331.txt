@@ -1,0 +1,11 @@
+<p>The problem is this line:</p>
+
+<pre><code>$('#img' + index + '').append(img);
+</code></pre>
+
+<p>This adds more images to the ones which already exist. You probably want:</p>
+
+<pre><code>$('#img' + index + '').html(img);
+</code></pre>
+
+<p>which replaces the current content with the new <code>img</code>.</p>

@@ -1,0 +1,26 @@
+<p>To write csv</p>
+
+<pre><code>NSString *coords = [[[NSString alloc] initWithFormat:@"%f,%f\n",longitude,latitude] autorelease];
+
+NSData *csvData =  [coords dataUsingEncoding:NSUTF8StringEncoding];
+
+NSArray *UsrDocPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *DocsDir = [UsrDocPath objectAtIndex:0];
+    NSString *csvPath = [DocsDir stringByAppendingPathComponent:@"coords.csv"];
+
+    //This is upto your logic that do you want to remove existant csv file or not
+    BOOL success = [FileManager fileExistsAtPath:csvPath];
+    if(success){
+        [FileManager removeItemAtPath:csvPath error:&amp;error];
+    }
+
+    [csvData writeToFile:csvPath atomically:YES];
+</code></pre>
+
+<p>To read from file</p>
+
+<pre><code>NSData *csvData = [NSData dataWithContentsOfFile:csvPath];
+NSString *strCSV = [[NSString alloc]initWithData:csvData encoding:NSUTF8StringEncoding];
+</code></pre>
+
+<p>Hope it helps</p>

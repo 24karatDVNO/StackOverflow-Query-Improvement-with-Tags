@@ -1,0 +1,7 @@
+<p>In this case you could use the string.split() method to break it up into an array, in this case the array would contain 4 elements and the last element is the piece you want.</p>
+
+<p>Something like: </p>
+
+<pre><code>    var splitId = $(this).attr('id').split('_');
+    $('#therapydate').val(splitId[3]);
+</code></pre>

@@ -1,0 +1,7 @@
+<p>As Hans said, a workaround is to move the file first and THEN delete it.</p>
+
+<p>That said with Transactional NTFS' delete, I haven't been able to reproduce the error described. Check out github.com/haf/Castle.Transactions and the corresponding nuget packages... 2.5 is well tested and documented for file transactions.</p>
+
+<p>When testing with non transacted file systems, the unit-test code for this project's unit tests always does moves before deletes.</p>
+
+<p>3.0 is currently in pre-alpha state but will integrate regular transactions with file io with transactional files to a much higher level.</p>

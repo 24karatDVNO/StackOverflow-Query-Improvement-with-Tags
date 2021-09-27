@@ -1,0 +1,12 @@
+<p>Why don't you simply keep your simple hover logic as it is (hide on mouse out) but then simply re-show it when the mouse is over the X or Y div.</p>
+
+<pre><code>$('#openDiv').mouseout(function() {
+    $(this).hide();
+});
+
+$('div.x').mousein(function() {
+    $('#openDiv').show();
+});
+</code></pre>
+
+<p>If you make your $('div.x') selector have an ID or at least a context that isn't the entire DOM, I bet the "flicker" from hiding then showing again isn't even noticeable.</p>

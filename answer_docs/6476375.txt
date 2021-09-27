@@ -1,0 +1,32 @@
+<p>it was a little bit more tricky to get what i exactly wanted:</p>
+
+<p>I have to execute (from shell) 2 commands to get the terminal quiet:</p>
+
+<pre><code>chvt 9
+setterm -cursor &gt; /dev/tty9
+</code></pre>
+
+<p>later one can switch back to terminal 1:</p>
+
+<pre><code>setterm cursor &gt; /dev/tty9
+chvt 1
+</code></pre>
+
+<p>I choose terminal number 9 but any number above 7 should be fine. These calls also work if they are executed from within the java application (as JdeBP said, only one virtual terminal system-wide). Only the setterm command requires some additional steps to pipe the output to /dev/tty9:</p>
+
+<pre><code>Runtime.getRuntime().exec("chvt 9");
+pipe("setterm -cursor off", "/dev/tty9");
+
+private static void pipe(String cmd, String file) {
+    FileOutputStream fos = new FileOutputStream(file);
+    Process p = Runtime.getRuntime().exec(cmd);
+    InputStream is = p.getInputStream();
+    int i;
+    while ( (i = is.read()) != -1 ) {fos.write(i);}
+    p.waitFor();
+    fos.close();
+    is.close();
+}
+</code></pre>
+
+<p>maybe the pipe() method is not optimal, but it worked for me the way it is.</p>

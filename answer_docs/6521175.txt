@@ -1,0 +1,9 @@
+<p>Heres the code, for anyone interested.</p>
+
+<pre><code>   protected void MyDataSource_QueryCreated(object sender, QueryCreatedEventArgs e)
+    {
+        var members = e.Query.Cast&lt;EntityFramework.Member&gt;();
+        e.Query = from member in members.OrderBy(x =&gt; Guid.NewGuid())
+                  select member;  
+    }
+</code></pre>

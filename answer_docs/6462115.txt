@@ -1,0 +1,7 @@
+<p>This isn't so much an OO question, as iOS doesn't always let us use best practices to solve a problem. The best bet for your situation, I think, is to store the information on the selected sort in the <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSUserDefaults_Class/" rel="nofollow">NSUserDefaults</a>. In your -viewDidLoad method, check if the selected sort object exists in NSUserDefaults, use it if it does, and if not choose a reasonable default value. </p>
+
+<p>Don't worry about creating NSSortDescriptors with each load of the application, unless you have done profiling and determined that a large amount of time is spent building it. Serializing and deserializing the NSSortDescriptors would be far more inefficient than just recreating it when needed. Apple spends a lot of time optimizing frequently used classes like NSSortDescriptor. </p>
+
+<p>Regarding #2, you can use indexPathsOfVisibleRows on the UITableView to get an array of visible indices, store the first one in UserDefaults, then on load (or pop from the next view controller if that occurs) call –scrollToRowAtIndexPath:atScrollPosition:animated:.</p>
+
+<p>Once you're code is functioning, I recommend you watch the various videos on iTunes U regarding profiling and Instruments. It's a wonderful tool that is often overlooked, and really helps concentrate effort where it's needed.</p>

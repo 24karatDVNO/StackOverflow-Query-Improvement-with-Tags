@@ -1,0 +1,5 @@
+<p>There are dozens of ways to design this. It all depends on what you want to do and what the specific requirements are. </p>
+
+<p>In a basic design I'd create an additional field called "next run time" which will be calculated by using start time, frequency and previous (if any) end time. Then I'd dump all the tasks in a queue sorted using this field. </p>
+
+<p>The main scheduling will pick up the first queue item and create a suspended thread for that specific task. Now just calculate the time difference to the first item's 'next run time' and sleep for that time period. When you wake up just resume the thread and pick the next queue item and repeat.</p>

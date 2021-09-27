@@ -1,0 +1,16 @@
+<p>Why bother with an array?  Declare an int as a cursor</p>
+
+<p>Assuming you want them across row 1</p>
+
+<pre><code>dim col as integer
+dim Acount as integer (etc)
+'get Acount, Bcount etc from form
+for col 1 =1 to Acount
+    cells(1,col).value = "GA" &amp; col
+next
+for col =1 Acount to Bcount-1
+    cells(1,col).value = "GB" &amp; col
+next
+</code></pre>
+
+<p>etc</p>

@@ -1,0 +1,8 @@
+<p>IME, and yours, a few threads will speed up this kind of task.  I'm guessing that the overall throughput is improved because of better use of the 'intelligent' disk cacheing available on modern controllers - the disk/controller spends less time idle because there are always threads wanting to read something.  The diminishing returns sets in, however, after only a few threads are loaded in and you are disk-bound.  In a slightly similar app, I found that any more than 6 threads provided no additional advantage &amp; just used up more memory.</p>
+
+<p>I can't see how pooling, or otherwise, of these threads would make any difference to performance - it's just a big job that has to be done :(</p>
+
+<p>Tell your customers that they have to install an SSD </p>
+
+<p>Rgds,
+Martin</p>

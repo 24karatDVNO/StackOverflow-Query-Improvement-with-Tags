@@ -1,0 +1,7 @@
+<p>Without seeing more of your code it is difficult to say how decoupled your code is.  Events are one way to decouple code, but can also make code more difficult to understand and debug.</p>
+
+<p>When designing classes, high-cohesion means many of the methods reuse each other, and low-coupling means you only need to expose a few public methods.</p>
+
+<p>When designing packages, high-cohesion means many of the classes in a package depend on each other, and low-coupling means only a few are public scope, or message with other classes through interfaces.</p>
+
+<p>The benefits of high-cohesion, low-coupling should be less pain, especially when it comes to responding to change.  If it doesn't reduce pain, don't spend a lot of time optimizing it.  I know it sounds like I'm spouting platitudes here, but you should keep your own metric in mind when measuring whether high-cohesion, low-coupling is 'good enough' rather than relying on the opinions of people who do not necessarily understand the problem you are trying to solve.</p>

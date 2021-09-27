@@ -1,0 +1,39 @@
+<p>You're getting a NULL because debug_zval_dump() has a built-in echo feature and you cannot set an echo to a variable.  So your $v = foo() is actually giving you $v = "".  The reason you're getting a refcount of 2 for an empty variable is because of inherent PHP optimization.  </p>
+
+<p>Read about that here: <a href="http://us3.php.net/manual/en/function.debug-zval-dump.php" rel="nofollow">http://us3.php.net/manual/en/function.debug-zval-dump.php</a></p>
+
+<p>So to return your value properly you can:</p>
+
+<ol>
+<li>Suppress the built-in echo by writing the echo to a buffer</li>
+<li>Set the buffer result to a variable</li>
+<li>Run your second debug_zval_dump() on that (not NULL) variable</li>
+</ol>
+
+<p>Here's how it works:</p>
+
+<pre><code>function myfunc($foo)
+{
+  debug_zval_dump($foo, 1);
+}
+ob_start();
+/*
+starts the output buffer which will catch all code instead of echoing it to page
+*/
+myfunc('Mouse configuration');
+
+$v = ob_get_contents();
+/*
+writes the buffer which contains your f(x) results to a var
+*/
+
+ob_end_clean();//clears the buffer
+
+debug_zval_dump($v);//will echo non-null value
+</code></pre>
+
+<p>The code will result with this:</p>
+
+<p><b>string(65) "string(19) "Mouse configuration" refcount(3) long(1) refcount(1) " refcount(2)</b></p>
+
+<p>I have no idea what this code is meant to do but Good Luck anyways.  :)</p>

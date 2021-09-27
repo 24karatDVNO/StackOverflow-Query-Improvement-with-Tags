@@ -1,0 +1,19 @@
+<p>The bad news is that you'll have to patch the gem.  Having your code block called by the gem doesn't give your code any special powers to affect how the calling code processes the block's return values.</p>
+
+<p>The good news is that patching the gem can usually be done with a "monkey patch," where your program reopens the gem's class or module and makes the change.  In this made-up example, we'll show the class nested in a module, since many gems make use of nested classes and modules:</p>
+
+<pre><code>require 'somegem'
+
+# Monkey patch to cause Somegem's do_something_cool method
+# to ignore the SomethingBadHappened exception
+
+module SomeGem
+  class SomeClass
+    alias_method :orig_do_something_cool, :do_something_cool
+    def do_something_cool
+      orig_do_something_cool
+    rescue SomethingBadHappened
+    end
+  end
+end
+</code></pre>

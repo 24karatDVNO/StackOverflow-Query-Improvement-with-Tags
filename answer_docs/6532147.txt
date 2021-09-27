@@ -1,0 +1,15 @@
+<p>I have answered my own Question I think.</p>
+
+<p><a href="https://stackoverflow.com/questions/1877949/how-to-cast-a-system-windows-controls-selecteditemcollection">Casting the object passed back from the view at an earlier point</a> means that the object I am passing to the methods under test is more easily created.</p>
+
+<p>This is what I have now for the method under test.</p>
+
+<pre><code>public void DoItemsChanged(IList param)
+</code></pre>
+
+<p>Before I had</p>
+
+<pre><code>public void DoItemsChanged(object param)
+</code></pre>
+
+<p>Where the param is a SelectedItemCollection (previously a RoutedEventArgs, but now I use the IvokeCommandAction on the event trigger in the view, passign the SelectedItems). The param is now more easily passed into the method for the test and the code it much more descriptive as well. So it's all good for everyone.</p>

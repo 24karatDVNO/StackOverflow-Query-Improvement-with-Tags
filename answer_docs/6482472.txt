@@ -1,0 +1,15 @@
+<p>If you searchbox is an aspnet control like this.</p>
+
+
+
+<pre class="lang-cs prettyprint-override"><code>    &lt;asp:TextBox runat="server" ID="texbox"&gt;&lt;/asp:TextBox&gt;
+</code></pre>
+
+<p>Then the correct selector would be something like this:</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>    $('#&lt;%=texbox.ClientID %&gt;')
+</code></pre>
+
+<p>Hope it helps</p>

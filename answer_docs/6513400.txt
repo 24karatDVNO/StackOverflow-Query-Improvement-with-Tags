@@ -1,0 +1,8 @@
+<p>I'm not sure if this is the best or correct way to solve this, but here is what worked, after a lot of trial and error. The route:</p>
+
+<pre><code>Router::connect('/boston-legal-jobs', array('controller' =&gt; 'jobs', 'action' =&gt; 'search', array('radius' =&gt; 'Massachusetts-Boston')));
+</code></pre>
+
+<p>My action was expecting <strong>$this->passedArgs['radius']</strong> but in this routing, 'radius' is the first key in an array. </p>
+
+<p>Simply adding another condition for <strong>$this->passedArgs[0]['radius']</strong> did the trick.</p>

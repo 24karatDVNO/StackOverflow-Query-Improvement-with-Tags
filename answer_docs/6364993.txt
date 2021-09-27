@@ -1,0 +1,23 @@
+<p>Not sure exactly what your DB looks like but I'll assume it looks like:</p>
+
+<pre><code>stories:
+  id
+  content
+
+tags:
+  id
+  name
+
+story_tags:
+  story_id
+  tag_id
+</code></pre>
+
+<p>Try running a query first just to see if it gives you the intended results:</p>
+
+<pre><code>SELECT stories.id, COUNT(*) AS ordering FROM stories 
+  INNER JOIN story_tags ON story_tags.story_id = stories.id 
+  WHERE story_tags.tag_id IN ('id of tag a', 'id of tag b', 'id of tag c', 'id of tag d') 
+  GROUP BY stories.id
+  ORDER BY ordering DESC;
+</code></pre>

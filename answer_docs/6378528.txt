@@ -1,0 +1,15 @@
+<p>What about this?</p>
+
+<pre><code>      routes.MapRoute(
+              "ArticleDetail",
+              "{controller}/{id}",
+              new { controller = "Articles", action = "Details" },
+              new { id = @"\d+" }
+        );
+
+     routes.MapRoute(
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "List", id = "" }
+        );
+</code></pre>

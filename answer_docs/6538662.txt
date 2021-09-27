@@ -1,0 +1,3 @@
+<p>Simplified solution (removed the escapes so it's easier to read):</p>
+
+<p><code>CHtml::ajaxLink('Assign', Yii::app()-&gt;createUrl('pwdApplication/assignApp'), array('type'=&gt;'POST', 'data'=&gt;array('id'=&gt;$data-&gt;id, 'flag'=&gt;1, 'adj'=&gt;js:getAdj())), array('href'=&gt;Yii::app()-&gt;createUrl('pwdApplication/assignApp'), 'id'=&gt;$data-&gt;id . 'assign')))</code></p>

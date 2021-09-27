@@ -1,0 +1,11 @@
+<p>You have to use a LIMIT clause:</p>
+
+<pre><code>SELECT b1.tid AS Tid, MIN(DATEDIFF(b2.date,b1.date)) AS ResponseTime
+FROM billing b1 inner join billing b2 
+ON b1.tid = b2.tid
+WHERE b1.action='New Support Ticket Opened'
+AND b2.action LIKE 'New Ticket Response made by%'
+AND b2.action != 'New Ticket Response made by User'
+GROUP BY Tid
+LIMIT 1
+</code></pre>

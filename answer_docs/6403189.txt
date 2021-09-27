@@ -1,0 +1,8 @@
+<p>I just end up with that problem using this command: </p>
+
+<pre><code> sudo env ARCHFLAGS="-arch i386" gem install --no-rdoc --no-ri mysql -v 2.8.1 -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+</code></pre>
+
+<p>Indeed I needed to install mysql gem version 2.8.1 on my mac OS X Leopard 10.5.8 running the mysql-5.6.2-m5-osx10.5-x86 from dmg file. I had the issue that it couldn't find libraries and I made some manipulations, then it couldn't install because of permissions. I found out that command, added the version I needed and changed architecture to the one corresponding to my mysql installation. </p>
+
+<p>So if somenone still wants to install that version :) let's try ! But we are not a lot installing this probably, and less on Leopard!</p>

@@ -1,0 +1,1 @@
+<p>I see some issues, but I think the biggest one is that you are updating all the table while I see that you actually need to update particular row(s) only. You should add WHERE clause in your UPDATE statement to prevent the rows from locking (and updating) which you do not need to update.</p>

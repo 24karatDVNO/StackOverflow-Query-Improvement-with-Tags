@@ -1,0 +1,5 @@
+<p>If you are working with an existing database then you are going to have a hard time forcing Rails to play nicely with it. Rails power (some might call it a weakness) is that it favors convention over configuration. In other words, it really expects you database columns to be structured a certain way. Stray from the convention and you lose all the reasons for using Rails in the first place.</p>
+
+<p>When you start a new rails project and use the migrations rails makes sure that the structure is as it expects.</p>
+
+<p>If you are moving an old project to rails then I would strongly suggest writing a function to import that data into a rails-created DB. This will save you a lot of heartache in the long run and will allow you to take full advantage of Rails' strengths.</p>

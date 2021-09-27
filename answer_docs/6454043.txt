@@ -1,0 +1,7 @@
+<p>Supposing you have more that 2 pictures to show (as a slideshow) You could try using two images, one on top of the other. One is the image you are actually displaying, the other is the one you need to show when the first fades.
+This way, you can fade the first, showing the bottom one. When the fade animation is ended you place it (callback) under the other one and change its src. There will be no flickering, as you load it in the background.
+If you have only 2 images, then the fading is enough to cycle between the images. </p>
+
+<p>Another solution that may solve your problem is to preload your images and store them in the cache. If i'm not wrong, it could solve the problem.</p>
+
+<p>Sorry I provide no code, but I'm at work.... anyway if you need more details tell me.</p>

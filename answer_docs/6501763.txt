@@ -1,0 +1,15 @@
+<p>These surely are some very interesting findings. But I suspect if the JVM has optimized the loops. It would be interesting to see if the code got expanded. (Loop expansion was once a optimization technique when C was still popular and every CPU clock counts)</p>
+
+<p>e.g</p>
+
+<pre><code>final int cycles = maxCycles / 100
+for (x=0;x&lt;cycles;x++){
+    fTest = 6666f;
+    fTest = 6666f;
+... 100 times ...
+    fTest = 6666f;
+    fTest = 6666f;
+}
+</code></pre>
+
+<p>Or, if possible, make them even 1000 times... and even one step further: write a program to generate the source code which makes every line has a unique number to rule out any possible optimization by the JVM.</p>

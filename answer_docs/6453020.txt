@@ -1,0 +1,6 @@
+<p>try casting the operands of your calculation to a floating point type: </p>
+
+<pre><code> FailurePercentage = ((double)h.Sum(n =&gt; n.Failed) /  (double)h.Sum(n =&gt; n.Success))  * 100.0
+</code></pre>
+
+<p>(though technically casting the first one is enough)</p>

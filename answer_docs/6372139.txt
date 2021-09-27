@@ -1,0 +1,19 @@
+<p>If #div2 doesn't exist yet:</p>
+
+<pre><code>$('#div1').slideUp(300, function(){
+    $(this).before('&lt;div id="div2"&gt;Content&lt;/div&gt;');
+    $(this).remove();
+
+    $('#div2').slideDown(300);
+});
+</code></pre>
+
+<p>Or, if you already have #div2 on the page:</p>
+
+<pre><code>$('#div1').slideUp(300, function(){
+    $(this).before('#div2');
+    $(this).remove();
+
+    $('#div2').slideDown(300);
+});
+</code></pre>

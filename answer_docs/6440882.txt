@@ -1,0 +1,9 @@
+<p>Try this (untested) code and see if it does what you want. By the looks of it, it should return the same things and hopefully a bit faster.</p>
+
+<pre><code>select Tdate = max(Industries.Date)    
+from #ii_t i
+  left outer join Industries
+    on Industries.id = i.id and
+       Industries.Date &lt;= '22 June 2011'
+group by i.id
+</code></pre>

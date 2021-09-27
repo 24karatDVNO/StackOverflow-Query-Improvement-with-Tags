@@ -1,0 +1,9 @@
+<blockquote>
+  <p>Is it a bug on 2.2 or I am doing something wrong?</p>
+</blockquote>
+
+<p>I don't know if there's a bug in 2.2, but you're doing at least one thing wrong.</p>
+
+<p>The <code>characters</code> method can be called multiple times by the parser, partially supplying the characters on each call.  Your <code>characters</code> method will only work if you get lucky and it's only called once.</p>
+
+<p>To properly deal with characters in SAX, you need to (for each tag where you need to collect characters) initialize a buffer in the <code>startElement</code> method, collect characters into the buffer in the <code>characters</code> method, and get the result in the <code>endElement</code> method.</p>

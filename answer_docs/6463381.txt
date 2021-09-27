@@ -1,0 +1,24 @@
+<p>I decided to go with a simple solution:</p>
+
+<p>First, insert the row to the innodb table (master). Then, right after it, insert the row to the myisam table (not trigger).</p>
+
+<p>Run a cron ever hour or so to ensure referential integrity.</p>
+
+<p>The query would be something like this:</p>
+
+<pre><code>SELECT * 
+FROM master 
+WHERE master.ID NOT IN 
+    (SELECT slave.ID FROM slave WHERE master.ID=slave.ID);
+
+SELECT * 
+FROM slave 
+WHERE slave.ID NOT IN 
+    (SELECT master.ID FROM master WHERE slave.ID=master.ID);
+</code></pre>
+
+<p>If a slave row refers to a master row that does not exist, delete.</p>
+
+<p>If a slave row does not exist for a master row, insert.</p>
+
+<p>It's not the best solution, but simple.</p>

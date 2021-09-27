@@ -1,0 +1,17 @@
+<pre><code>while (position == 0) {
+   position = randInt() % nameCount;
+}
+
+for (int i=0;i&lt;nameCount;i++) {
+   addPair(i,position);
+   position++;
+   if (position&gt;=nameCount) position=0;
+}
+</code></pre>
+
+<p>Names in db are logically numbered from 0 to nameCount-1;
+The idea is that you choose random position for the second name and then increment it and roll over at the end. </p>
+
+<p>This is pseudocode. I don't know C#.</p>
+
+<p>Great question!</p>

@@ -1,0 +1,27 @@
+<p>you can make the using <code>javascript</code> by collecting all checked checkboxes values(comma separated) in a hidden field then read this values from your controller and split it.</p>
+
+<pre><code>&lt;% foreach (var _client in ViewData["channels"] as List&lt;DigiTV.Models.CANAL&gt;) { %&gt;
+&lt;%= Html.CheckBox(_client.NOM_CANAL) %&gt; &lt;%= Html.Encode(_client.NOM_CANAL) %&gt; &lt;br /&gt;
+&lt;% } %&gt;
+ &lt;%=Html.HiddenField("AllValues")%&gt;
+</code></pre>
+
+<p>javascript(I am using jquery)</p>
+
+<pre><code>   var allvalues='';
+  $('input[type=checkbox]').each(function(index){
+       if($(this).is(':checked'))
+       {
+          allvalues+=$(this).val();
+       }
+   });
+   $('#AllValues').val(allvalues);
+</code></pre>
+
+<p>in you controller</p>
+
+<pre><code>  public ActionResult MyAction(FormCollection form)
+  {
+     String[] AllValues = form["AllValues"].Split(",");
+  } 
+</code></pre>

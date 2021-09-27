@@ -1,0 +1,19 @@
+<p>You do not need to create separate Fill class, you should create only a Fill function inside separate file, located the same package your Main file is.
+So your Fill.as file might look like this:</p>
+
+<pre><code>// ActionScript file
+package{
+    import flash.display.Sprite;
+    public function Fill(target:Sprite, a:Vector.&lt;int&gt;,b:Vector.&lt;Number&gt;):void{
+        target.graphics.beginFill(0x442266);//set the color
+        target.graphics.drawPath(a, b);
+        }
+}
+</code></pre>
+
+<p>Mention the additional parameter target, which will provide the Sprite where rectangle should be drawn.</p>
+
+<p>The function call might look:</p>
+
+<pre><code>Fill(this, square_commands, square_coord);
+</code></pre>

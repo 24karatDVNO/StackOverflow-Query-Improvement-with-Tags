@@ -1,0 +1,19 @@
+<pre><code>Advantages of MySQL Indexes
+</code></pre>
+
+<p>Generally speaking, MySQL indexing into database gives you three advantages:</p>
+
+<p><code>Query optimization</code>: Indexes make search queries much faster.</p>
+
+<p><code>Uniqueness</code>: Indexes like primary key index and unique index help to avoid duplicate row data.</p>
+
+<p><code>Text searching</code>: Full-text indexes in MySQL version 3.23.23, users have the opportunity to optimize searching against even large amounts of text located in any field indexed as such.</p>
+
+<pre><code>Disadvantages of MySQL indexes
+</code></pre>
+
+<p>When an index is created on the column(s), MySQL also creates a <code>separate file</code> that is sorted, and contains only the field(s) you're interested in sorting on.</p>
+
+<p>Firstly, the <code>indexes take up disk space</code>. Usually the space usage isn’t significant, but because of creating index on every column in every possible combination, the index file would grow much more quickly than the data file. In the case when a table is of large table size, the index file could reach the operating system’s maximum file size.</p>
+
+<p>Secondly, the indexes <code>slow down the speed of writing queries</code>, such as INSERT, UPDATE and DELETE. Because MySQL has to internally maintain the “pointers” to the inserted rows in the actual data file, so there is a performance price to pay in case of above said writing queries because every time a record is changed, the indexes must be updated. However, you may be able to write your queries in such a way that do not cause the very noticeable performance degradation.</p>

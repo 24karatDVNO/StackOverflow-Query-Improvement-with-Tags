@@ -1,0 +1,14 @@
+<p>When you download the comPP library there is a ProgrammersGuide.pdf in the Documentation folder. There you can find what libs are needed. The file is not 100% accurate. I got it working using this format:</p>
+
+<pre><code>g++ -I/usr/include/ComPP -lComPP -lSysPP -lpthread -lrt ExampleClient.cpp -o ExampleClient
+</code></pre>
+
+<p>This will only work if you have these includes:</p>
+
+<pre><code>#include &lt;SysPlusPlus/SysPlusPlus&gt;
+#include &lt;ComPlusPlus/ComPlusPlus&gt;
+</code></pre>
+
+<p>Kind Regards,</p>
+
+<p>Maarten</p>

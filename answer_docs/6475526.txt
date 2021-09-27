@@ -1,0 +1,45 @@
+<p>You are using setters. .html("value") will set the value of the referenced element. So the first $("#box").html("message1") is always setting the message. I'd recommend you using an array for the messages - or if you still want to use the current approach, check for the message value with </p>
+
+<pre><code>if($("#box").html() == "message1") //and then continue from here
+    ...
+</code></pre>
+
+<p>instead of using .html with a value in it. .html() is the getter whilst .html(value) is the setter.</p>
+
+<p><strong>EDIT:</strong> I could not resist. Of course you can setup your code everytime to check whether the message is a certain message - but you can imagine the amount of work for 10 pages with 10 messages each. This smallish plugin will handle an array with all the messages you want to iterate through with very little effort:</p>
+
+<pre><code>//plugin definition
+(function($) {
+    $.fn.messageListRotate = function(messageList) {
+        var messages = messageList; //pass an array here
+        var max = messages.length - 1;
+        var pos = 1;
+
+        //initializing the element with the first message           
+        $(this).html(messages[0]);
+
+        $(this).click(function() {
+            $(this).html(messages[pos]);
+            pos = pos == max ? 0 : pos + 1;
+        });
+    };
+})(jQuery);
+</code></pre>
+
+<p>You then use it:</p>
+
+<pre><code>//in your &lt;head&gt;&lt;/head&gt; area, after having it defined:
+&lt;script type="text/javascript"&gt;
+    $(document).ready(function(){
+        //assuming you element's id is 'messages'
+        $("#messages").messageListRotate(["first", "second", "third"]);
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>And of course your element in your &lt;body&gt;:</p>
+
+<pre><code>&lt;div id="messages"&gt;&lt;/div&gt;
+</code></pre>
+
+<p>And <em>voilà</em>. Rotating on click. See it in action <a href="http://jsfiddle.net/myriad/CqcYk/1/" rel="nofollow">here</a>.</p>

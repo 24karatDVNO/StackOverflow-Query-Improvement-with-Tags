@@ -1,0 +1,3 @@
+<p>You should try to avoid having multiple copies of the same object in memory at the same time. One method to do this is to have your VM be the source of objects. When you load the list have the VM do it and expose an AvailableCountries ObservableCollection property on the VM that your ComboBox can bind to.</p>
+
+<p>If your objects are semantically equal based on ID, definitely override Equals and == and != and hashcode. However be careful because if you're enabling people to update the objects you can run into collisions (even within the same instance of the app) where one screen is holding onto stale data.</p>

@@ -1,0 +1,10 @@
+<p>It looks like listxattr returns the size of the buffer it has filled, so you can use that to help you. Here's an idea:</p>
+
+<pre><code>for(int i=0; i&lt;res-1; i++)
+{
+    if( buffer[i] == 0 )
+        buffer[i] = ',';
+}
+</code></pre>
+
+<p>Now, instead of being separated by null characters, the attributes are separated by commas.</p>

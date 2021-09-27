@@ -1,0 +1,11 @@
+<pre><code>Sub Main()
+    ' We want to split this input string
+    Dim rawstring As String = "Car 29/3/2011"
+
+    ' Split string based on spaces
+    Dim stringarray As String() = rawstring.Split(New Char() {" "c})
+
+    ' Use For Each loop over words and display them
+    Dim datestring As String = stringarray(0);
+End Sub
+</code></pre>

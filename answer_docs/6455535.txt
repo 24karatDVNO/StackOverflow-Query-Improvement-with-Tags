@@ -1,0 +1,5 @@
+<p>You can create «MY_Model» place it on «Application/core». You can afterwards, extend «MY_Model», instead of «CI_Model». Actually, you can have many models on «MY_Model» (using require_once(APPPATH.'/core/some_other_model_name.php')), since «Codeigniter» only suports loading one MY_MODEL. To finish, you can then, on your models, extend from «some_other_model_name». This means that you can actually, inherit from a diferent model, solving your nead on loading a model into model.</p>
+
+<p>This link is for MY_Controller but same principle applies for MY_Model <a href="http://codeigniter.com/wiki/MY_Controller_-_how_to_extend_the_CI_Controller/" rel="nofollow">http://codeigniter.com/wiki/MY_Controller_-_how_to_extend_the_CI_Controller/</a></p>
+
+<p>Hope this helps!</p>

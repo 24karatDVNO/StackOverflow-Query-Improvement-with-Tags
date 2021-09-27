@@ -1,0 +1,19 @@
+<p>When you create a JAXB unmarshaller, you need to pass it the context; that is, the package of the structure you're unmarshalling.  We were using a utility class that made it easy for us to do this: pass it the XML string and a package name, and you get back an Object.</p>
+
+<p>However, when unmarshalling structures that span across multiple namespaces and packages, you need to provide the package name for every package referenced, otherwise the unmarshaller doesn't have the right context.  I never knew you could pass multiple package names to the JAXB context.</p>
+
+<p>WRONG:</p>
+
+<pre><code>// Pass package name for the message only.
+JAXBContext jc = JAXBContext.newInstance("com.mycompany.my.messages");
+Unmarshaller u = jc.createUnmarshaller();
+</code></pre>
+
+<p>RIGHT:</p>
+
+<pre><code>// Pass package names for all XML structures present in the message.
+JAXBContext jc = JAXBContext.newInstance("com.mycompany.my.types:com.mycompany.my.messages:com.othercompany.their.types");
+Unmarshaller u = jc.createUnmarshaller();
+</code></pre>
+
+<p>Maybe this was a stupid mistake, but I figured I would share just in case.  Reading a bit <a href="http://download.oracle.com/docs/cd/E17802_01/webservices/webservices/docs/1.5/tutorial/doc/JAXBWorks2.html#wp86067" rel="nofollow">on this site</a> provided me with the idea.  lexicore above also alluded to this, but I thought he was talking about classpath issues; all of the generated classes were always available to the context, however the context wasn't being told to look for them.</p>

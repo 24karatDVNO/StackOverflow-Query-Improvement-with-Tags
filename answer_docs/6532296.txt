@@ -1,0 +1,17 @@
+<p>The <a href="https://developer.mozilla.org/En/DOM/Element.querySelectorAll" rel="nofollow">querySelectorAll(selectors)</a> method allows you, for a given element, to retrieve an array of its descendant elements that match given criteria.</p>
+
+<p>For example:</p>
+
+<pre><code>// Replace "yourDiv" with a reference to you main div
+var elements = yourDiv.querySelectorAll("input, span");
+for (var i = 0; i &lt; elements.length; i++) {
+    var element = elements[i];
+    var name = element.name;
+    var type = element.type;
+    var value = element.value;
+    // Now you can do what you want with name, type and value, for example:
+    alert("Name: "+name+"\r\n"+"Type: "+type+"\r\n"+"Value: "+value);
+}
+</code></pre>
+
+<p>According to the Mozilla Developer Network the <code>querySelectorAll</code> method is supported in IE8, Fx3.5, Chrome1, Opera 10 and Safari 3.2.</p>

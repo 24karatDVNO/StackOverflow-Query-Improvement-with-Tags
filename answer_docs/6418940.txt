@@ -1,0 +1,14 @@
+<p>I love using the <a href="http://lxml.de/lxmlhtml.html#examples" rel="nofollow">lxml library</a> for this:</p>
+
+<pre><code># copypasta from http://lxml.de/lxmlhtml.html#examples
+import urllib
+from lxml.html import fromstring
+url = 'http://microformats.org/'
+content = urllib.urlopen(url).read()
+doc = fromstring(content)
+els = el.find_class(class_name)
+if els:
+    return els[0].text_content()
+</code></pre>
+
+<p>Then to ensure the scraped words are only English words you could use look them up in a dictionary you load from a text file or <a href="http://www.nltk.org/" rel="nofollow">NLTK</a> that comes with many cool corpora and language processing tools.</p>

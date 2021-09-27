@@ -1,0 +1,3 @@
+<p>This kind of state depends entirely on the unmanaged code in question, it is up to that what it does with it's static variables, once you call into it, you have no control over it and are bound by the rules of the library in question.</p>
+
+<p>One commenter suggests you can remove a static by unloading the library that contains it, this isn't possible in all cases ( you can't unload the main c library ) but may work for you.</p>

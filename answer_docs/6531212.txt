@@ -1,0 +1,30 @@
+<p>As <a href="http://dk.php.net/manual/en/function.strtotime.php" rel="nofollow">strtotime()</a> only handles English date formats, you should maybe try using this function that I just made for you. With this you can handle month names in other languages too.</p>
+
+<p>Don't know if this is essential to your application, but now you have it.</p>
+
+<pre><code>function getMonth($month, $leadingZero = true) {
+    $month = strtolower(trim($month)); // Normalize
+
+    $months = array('january' =&gt; '1',
+                    'february' =&gt; '2',
+                    'march' =&gt; '3',
+                    'april' =&gt; '4',
+                    'may' =&gt; '5',
+                    'june' =&gt; '6',
+                    'july' =&gt; '7',
+                    'august' =&gt; '8',
+                    'september' =&gt; '9',
+                    'october' =&gt; '10',
+                    'november' =&gt; '11',
+                    'december' =&gt; '12',
+                    'dezember' =&gt; '12', // German abrevation
+                    'marts' =&gt; '3', // Danish abrevation for March 
+                   );
+
+    if(isset($months[$month])) {
+        return $leadingZero ? substr('0' . $months[$month], -2) : $months[$month];
+    } else {
+        return false;
+    }
+}
+</code></pre>

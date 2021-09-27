@@ -1,0 +1,11 @@
+<p>This compiles to what appears to be functionally equivalent code, with the advantage of being much shorter.  I would suggest using the coffeescript real-time compiler at <a href="http://jashkenas.github.com/coffee-script/" rel="nofollow">http://jashkenas.github.com/coffee-script/</a> for testing things like this.</p>
+
+<pre><code>promptLogin = (login_level, callback) -&gt;
+  FB.login (response) -&gt;
+    callback response.session and response.perms, response
+    return
+  , perms:'email,publish_stream'
+  return
+</code></pre>
+
+<p>The returns may be unnecessary depending on whether the return values of those functions matter.</p>

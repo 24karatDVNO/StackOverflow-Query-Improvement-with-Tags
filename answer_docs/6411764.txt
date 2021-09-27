@@ -1,0 +1,15 @@
+<p>I'm not entirely sure how you're doing it, so I'll tell you the way I do it and then try to answer your question.</p>
+
+<ol>
+<li>Set up event listeners for dropping and &lt;input&gt;'s change event.
+<ul>
+<li>for dropping: <code>filesUpload.addEventListener("change", function () {traverseFiles(this.files);}, false);</code></li>
+<li>for &lt;input&gt;: <code>dropArea.addEventListener("drop", function (evt) {traverseFiles(evt.dataTransfer.files);}, false);</code></li>
+</ul></li>
+<li><code>traverseFiles</code> that you see above is a function that gets a <code>FileList</code> (an array of <code>File</code>s), which are a part of the <a href="http://www.w3.org/TR/FileAPI/" rel="nofollow">File API</a>. This function then calls a function <code>uploadFile</code> for each <code>File</code>.</li>
+<li><code>uploadFile</code> sends the <code>File</code> asynchronously via ajax (<code>XMLHttpRequest.send(file)</code>).</li>
+</ol>
+
+<p>Now to answer your question <em>how to bind the dropped files to an input field</em>: you don't, you just do it the other way. You create an API or a wrapper for uploading files and then if the user drops files, you call this wrapper function. If the user clicks on the &lt;input&gt; field, you again call this wrapper (like I did with traverseFiles).</p>
+
+<p>Makes sense? If it doesn't, tell me which part and I'll edit this answer / expand on it.</p>

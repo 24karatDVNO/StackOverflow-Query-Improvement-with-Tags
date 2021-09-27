@@ -1,0 +1,24 @@
+<p>I figured out a way to get this to work. By adding it locally to the c: drive and then copying to the final location, we are bypassing the error.</p>
+
+<pre><code>Public Sub Export()
+
+    Dim oFiles As FileSystemObject
+    Dim strSource As String
+    Dim strDest As String
+
+    DoCmd.TransferText acExportFixed, "Rest Export Specification", "RestExport", "C:temp\srest.txt", False, ""
+
+    'copy file to NAS drive
+    strSource = "C:\Temp\srest.txt"
+    strDest = "\\xxx\yyy\srest.txt"
+
+    DoCmd.Hourglass True
+
+    Set oFiles = New FileSystemObject
+    oFiles.CopyFile strSource, strDest
+    Set oFiles = Nothing
+
+    DoCmd.Hourglass False
+
+End Sub
+</code></pre>

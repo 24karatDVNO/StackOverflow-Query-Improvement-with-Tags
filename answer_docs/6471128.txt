@@ -1,0 +1,31 @@
+<p>Here is my working code. maybe needs a little bit of cleaning but it works. the results are correct but I get a lot of nils. </p>
+
+<pre><code>doc = Nokogiri::HTML(search_result.body)
+rows = doc.xpath('//table[@class="articulos"]/tr[td[5]/p/b]')
+i = 0
+details = rows.each do |row|
+  detail = {}  
+  [
+    [:sku, 'td[3]/text()'],
+    [:desc, 'td[4]/text()'],
+    [:stock, "td[5]/p/@title"],
+    [:price, 'td[6]/text()']
+  ].each do |name, xpath|
+      detail[name] = row.at_xpath(xpath).to_s.strip
+    end
+  i = i + 1
+  if detail[:sku] != ""
+        price = detail[:price].split
+
+        if price[1] == "D"
+            currency = 144
+        else
+            currency = 168
+        end
+        stock = detail[:stock].each do |anchor|
+                puts anchor['title']
+                end
+        stock1 = stock.gsub(/[^\d]/, '')
+        cost = price[0].gsub(",", "").to_f
+end
+</code></pre>

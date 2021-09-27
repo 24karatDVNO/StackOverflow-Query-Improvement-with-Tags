@@ -1,0 +1,6 @@
+<p>Scripting space is difficult. You can find a list of things you can do with spaces <a href="http://macscripter.net/viewtopic.php?id=23453" rel="nofollow">here</a>. That might tell you how to make the application open in a particular space. The other part is you need to know how many monitors you have attached at any particular time. Here's some code for that.</p>
+
+<pre><code>tell application "Automator Runner"
+    set numberOfScreens to count of (call method "screens" of class "NSScreen")
+end tell
+</code></pre>

@@ -1,0 +1,11 @@
+<p>I tend to use a field which is named after the index such as:</p>
+
+<pre><code>$oDoc-&gt;addField(
+     Zend_Search_Lucene_Field::keyword(
+         'index',
+         'availability'
+     )
+ );
+</code></pre>
+
+<p>Then the term query will return all fields. It's not pretty but it works fine.</p>

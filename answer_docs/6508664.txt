@@ -1,0 +1,14 @@
+<p>Tarlog's answer is correct, but to make it more clear:
+you should wire objects by their interface, not by their class:</p>
+
+<pre><code>public class A {
+   @Autowired
+   private C b;
+}
+
+public class B implements C{
+   public void foo() {
+      ...
+   }
+}
+</code></pre>

@@ -1,0 +1,4 @@
+<pre><code>select a,(select sum(a) from foo fa where fa.a &gt; fb.a) from foo fb;
+</code></pre>
+
+<p>Doesn't use over, is pretty inefficient since it is running new sub-query for each query, but it works.</p>

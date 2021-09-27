@@ -1,0 +1,9 @@
+<p>This seems to work just fine - looks like you're just missing your quotes</p>
+
+<pre><code>var str = "http://gaurav.com";
+
+var patt1 = "^http\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$";
+document.write(str.match(patt1));
+</code></pre>
+
+<p>Here's a jsfiddle link to the code you can play with <a href="http://jsfiddle.net/chuckplayer/fLrx8/" rel="nofollow">http://jsfiddle.net/chuckplayer/fLrx8/</a></p>

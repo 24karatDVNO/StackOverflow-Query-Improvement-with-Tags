@@ -1,0 +1,14 @@
+<p>Look it from the other side - why do you NEED version numbers?  For example one answer to that can be to know what is deployed at some clients location.</p>
+
+<p>So, if you have application that is deployed as main exe and some dlls, and this dlls AREN'T part of any other app, you can feel safe even if you completely forget about dll versioning.</p>
+
+<p>Otherwise, if the dlls will be part of multiple projects, increase their version to ANY scheme that seems logical to you, for example, increase MINOR 1.X.0.0 when you add some functionality or change something rather large, increase MAJOR if you have completely different classes inside, ...</p>
+
+<p>As for increasing MAJOR because of the functionality, that is of course again personal taste, I would advise there something like:</p>
+
+<ul>
+<li>increase MINOR if functionality is added, and some major milestone is reached</li>
+<li>increase MAJOR if you change user interface paradigms, that suggest that you did some major redesigning or rewriting.</li>
+</ul>
+
+<p>Also: <a href="https://stackoverflow.com/questions/4293134/version-syntax-explination/4293142#4293142">Version Syntax Explanation?</a></p>

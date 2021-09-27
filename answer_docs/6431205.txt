@@ -1,0 +1,7 @@
+<p>It might be important to notice that the order of classes in Translation Unit need to be correct or some c++ features are just disabled and results in a compile-time error.</p>
+
+<p>Edit: Adding examples:</p>
+
+<pre><code>class A { };
+class B { A a; }; // order of classes need to be correct
+</code></pre>

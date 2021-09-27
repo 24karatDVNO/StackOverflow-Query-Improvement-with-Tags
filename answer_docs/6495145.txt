@@ -1,0 +1,10 @@
+<p>Are you talking about the comments from Revisions? You can use <a href="http://msdn.microsoft.com/en-us/library/microsoft.office.tools.word.document.comments%28v=VS.100%29.aspx" rel="nofollow">Document.Comments</a></p>
+
+<pre><code>Comments comments = yourwordDoc.Comments;
+        foreach (var comment in comments)
+        {
+            var text = comment.Range.Text;
+
+
+        }
+</code></pre>

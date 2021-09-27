@@ -1,0 +1,13 @@
+<p>I think your <code>SELECT</code> statement might be being called <em>before</em> the table has finished being created. Have you tried moving your <code>SELECT</code> query to a callback function so that it's called <em>after</em> your <code>CREATE TABLE</code> SQL has been run. Something like:</p>
+
+<pre><code>tx.executeSql('CREATE TABLE IF NOT EXISTS table(X, Y, Z UNIQUE)', function(tx) {
+    tx.executeSql('SELECT * FROM table', [], function (tx, results) {
+        var len = results.rows.length;
+        for (i = 0; i &lt; len; i++) {                 
+            console.log(results.rows.item(i).X.text);
+            console.log(results.rows.item(i).Y.text);
+            console.log(results.rows.item(i).Z.text);                         
+        }
+    });            
+});
+</code></pre>

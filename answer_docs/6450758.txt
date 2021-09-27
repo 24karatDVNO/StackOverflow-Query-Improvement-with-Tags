@@ -1,0 +1,20 @@
+<p>I finally use a better thing.</p>
+
+<p>The magick keyword here is "userInfo". In fact you can link anything with a request and retreive this "anything" in the delegate methods.</p>
+
+<p>My architecture is the following :</p>
+
+<ul>
+<li>A singleton ImageManager</li>
+<li>ImageManager has one attribute : an array containing the request not finished yet</li>
+<li>ImageManager has a method which launches an ASIHTTPRequest and add this request to its array</li>
+<li>In the userInfo of each request there is a pointer to the target UIImageView</li>
+<li>UIActivityIndicatorView is created (with 555 tag number) and added as subview to the target UIImageView after having started the asynchronous request</li>
+<li>UIActivityIndicatorView is removed using its tag number</li>
+</ul>
+
+<p>The array attribute permits to cancel and release all non-finished requests if the ImageManager is deallocated.</p>
+
+<p>Hope it can help !</p>
+
+<p>kheraud</p>

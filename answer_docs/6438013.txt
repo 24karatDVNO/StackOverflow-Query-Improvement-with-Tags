@@ -1,0 +1,13 @@
+<p>Don't know if it is a typo but the line should be:</p>
+
+<p><code>string sqlcode = "INSERT INTO file_uploads (upload_filename) VALUES ('"+filename+"')";</code></p>
+
+<p>Notice the <code>)</code> after <code>upload_filename</code>.</p>
+
+<p>Also also added the single quotes around the filename.</p>
+
+<p>But you probably want to use a parameterized query:</p>
+
+<p><code>string sqlcode = "INSERT INTO file_uploads (upload_filename) VALUES (@filename)";</code></p>
+
+<p>Then use <code>command.Parameters</code> to add the actual value.</p>

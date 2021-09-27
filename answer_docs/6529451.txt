@@ -1,0 +1,3 @@
+<p>Do the training without threshold, ie. computes the error on a example by using what the neuron networks outputs, without thresholding it.</p>
+
+<p>Another little detail : you use a transfer function such as sigmoid ? The sigmoid function returns values in [0, 1], but 0 and 1 are asymptote ie. the sigmoid function can come close to those values but never reach them. A consequence of this is that your neural network can not exactly output 0 or 1 ! Thus, using sigmoid times a factor a little above 1 can correct this. This and some other practical aspects of back propagation are discussed here <a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf" rel="nofollow">http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf</a></p>

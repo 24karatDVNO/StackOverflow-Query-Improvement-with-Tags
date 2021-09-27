@@ -1,0 +1,11 @@
+<p>I'm not sure exactly how you accomplished each step of that tutorial which you are following, but <a href="http://www.vogella.de" rel="nofollow">Lars Vogel</a>'s <a href="http://www.vogella.de/eclipse.html" rel="nofollow">eclipse tutorials</a> are incredibly useful.</p>
+
+<p>I just tested his <a href="http://www.vogella.de/articles/OSGi/article.html" rel="nofollow">Hello World OSGi tutorial</a> (written for Eclipse 3.7) and it worked fine for me, so I recommend trying that.</p>
+
+<p>Alternatively, if you insist on troubleshooting your existing project:</p>
+
+<p>It sounds like you haven't got your target platform activated correctly.</p>
+
+<p>Try clicking the <em>Validate Bundles</em> button in your OSGi framework run configuration (in the debug button's drop down menu, choose <em>Debug Configurations</em>) and see if that passes. If it doesn't, try unticking  <em>Target Platform</em>, and click the <em>Add Required Bundles</em> buttons, then try again.</p>
+
+<p>I'm running Eclipse 3.6, and I'm able to launch a new plugin project using <a href="http://download.eclipse.org/equinox/drops/R-3.7-201106131736/index.php" rel="nofollow">this equinox 3.7 release build</a> as my target platform without any validation errors.</p>

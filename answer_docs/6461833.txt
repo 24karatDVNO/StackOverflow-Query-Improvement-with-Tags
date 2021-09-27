@@ -1,0 +1,13 @@
+<p>I'm not sure the purpose of your DataSet here. This is the sort of syntax I've used in the past. (I think the Syntax is correct - I don't have my code here)</p>
+
+<pre><code>using (SqlDataReader sdr = cmd.ExecuteReader())
+{
+  while (sdr.Read())
+  {
+    res.Add(sdr.GetString(sdr.GetOrdinal("Track_name")));
+    trackIds.Add(sdr.GetInt32(sdr.GetOrdinal("Track_ID")).ToString())
+  }
+}
+</code></pre>
+
+<p>EDIT: and as stated in the comments, put a using around the SqlConnection to save you Closing / Disposing it yourself.</p>

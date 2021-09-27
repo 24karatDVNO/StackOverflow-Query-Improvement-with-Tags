@@ -1,0 +1,5 @@
+<p>This is definitely not safe. It may theoretically work fine forever, but it will always be in danger of failing. Worse, since it is not supported, it could fail in a way that you don't notice, such as returning bad data, instead of throwing an exception.</p>
+
+<p>What MARS allows you to do is execute commands against a connection while in the middle of reading a result set. This is useful, for example, if you want to process each row of a result and send updates back to the database without loading the entire result set into your application first. However, it does NOT allow you to send multiple commands to the same connection simultaneously.</p>
+
+<p>Depending on your needs, you may be able to use MARS appropriately to increase performance without multi-threading. Otherwise, you will need to use multiple connections, which will require use global temp tables or permanent tables. Even then, you will need to be careful to avoid deadlocks, and to design your queries such that locking does not destroy the advantage you are trying to gain from multiple connections.</p>

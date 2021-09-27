@@ -1,0 +1,6 @@
+<p>Is that the actual code or you omitted _ _ shared _ _ from the buffer declaration ?</p>
+
+<p>Keep also in mind that the _ _device _ _ functions get inlined by the compiler and that
+the debugger can stop only at some point in the whole process. 
+Try to use a kernel of a multiple of at least 16 or 32 threads or otherwise you are not running
+a full SP and that might trick the debugger.</p>

@@ -1,0 +1,15 @@
+<p>I don't know why companies insist on using transient mapped drives instead of UNC paths, but this should work...</p>
+
+<pre><code>UPDATE
+    dbo.File_
+SET
+    Link_to_File = 'Z:' + SUBSTRING(Link_to_File, 15, LEN(Link_to_File) - 14)
+WHERE
+    Link_to_File LIKE '\\dc\App Share%'
+</code></pre>
+
+<p>By the way, if you're looking for a to make sure that the data is correct going forward, then you should put that logic in your application. Ideally, your application already uses stored procedures to update the data, so you can add code similar to the above to update the incoming parameter that holds the Link_to_File. Something like:</p>
+
+<pre><code>IF (@Link_to_File LIKE '\\dc\App Share%')
+    SET @Link_to_File = 'Z:' + SUBSTRING(Link_to_File, 15, LEN(Link_to_File) - 14)
+</code></pre>

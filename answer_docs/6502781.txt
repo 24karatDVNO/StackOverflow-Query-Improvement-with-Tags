@@ -1,0 +1,13 @@
+<p>Found the solution.
+First get those two objects via constructor injection:</p>
+
+<pre><code>final SearchService searchService
+final JiraAuthenticationContext authenticationContext
+</code></pre>
+
+<p>Then execute your query like that:</p>
+
+<pre><code>            final SearchResults results = searchService.search(authenticationContext.getLoggedInUser(), query,
+                PagerFilter.getUnlimitedFilter());
+        return results.getIssues();
+</code></pre>

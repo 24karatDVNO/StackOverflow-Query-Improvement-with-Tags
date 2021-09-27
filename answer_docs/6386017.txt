@@ -1,0 +1,23 @@
+<p>We use the [AssemblyInitialize] / [AssemblyCleanup] attributes for project level test setup and cleanup code. We do this for two things:</p>
+
+<ul>
+<li>creating a test database</li>
+<li>creating configuration files in a temp directory</li>
+</ul>
+
+<p>It works fine for us, although we have to be careful that each test leaves the database how it found it. Looks a little like this (simplified):</p>
+
+<pre><code>[AssemblyInitialize]
+public static void AssemblyInit(TestContext context)
+{
+    ConnectionString = DatabaseHelper.CreateDatabaseFornitTests();
+}
+
+[AssemblyCleanup]
+public static void AssemblyCleanup()
+{
+    DatabaseHelper.DeleteDatabase(ConnectionString);
+}
+</code></pre>
+
+<p>I do not know of a way to do this 'solution' wide (I guess this really means for the test run - across potentially multiple projects)</p>

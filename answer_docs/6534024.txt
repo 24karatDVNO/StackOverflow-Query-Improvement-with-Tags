@@ -1,0 +1,12 @@
+<p>You can use transform &amp; animation:</p>
+
+<pre><code>[UIView animateWithDuration:0.5
+                 animations:^{
+                     self.transform = CGAffineTransformRotate(self.transform, 30);
+                 } 
+                 completion:^(BOOL completed){
+                     NSLog(@"Completed");
+                 }];
+</code></pre>
+
+<p>Just remember frame is invalid after transform. I think u can set some conditions to change the duration accordingly as yr requirements. Any further question just post it here.</p>

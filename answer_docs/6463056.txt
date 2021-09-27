@@ -1,0 +1,18 @@
+<p>How about running the query in two parts.  Make the first part as restrictive as possible and then only outer join on the filtered set.</p>
+
+<pre><code>SELECT    a.Field1,   
+          a.Field2,    
+          b.Field3,       
+          c.Field5
+INTO #t
+FROM table1 a   
+    INNER JOIN table3 c ON a.Field1 = c.Field1
+
+SELECT t.Field1,
+       t.field2,
+       b.field3,
+       b.field4,
+       t.field5
+FROM #t t
+     LEFT OUTER JOIN #table2 b ON t.Field1 = b.Field1            
+</code></pre>

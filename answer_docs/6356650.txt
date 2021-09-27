@@ -1,0 +1,27 @@
+<p>Using Iframe we can solve this problem</p>
+
+<p>1] Add destination html file in source html file using iframe.</p>
+
+<pre><code>&lt;FORM name='formName' method='post' action='YourServlet'&gt;    
+&lt;input id="hiddenId" type=hidden    name="hiddenId" value=""&gt;
+&lt;IFRAME  id="iframeId" name="desthtml"  src="http://localhost:8080/gwtApp/GWTRedirect.html" 
+ width="100%" height="100%" style="padding-top: 10px" 
+ frameborder="0" scrolling="no"&gt;                     
+&lt;/IFRAME&gt;
+&lt;FORM &gt;
+</code></pre>
+
+<p>2] In Your servlet read your html using </p>
+
+<pre><code>org.enhydra.xml.xmlc.XMLObjectImpl doc = getXmlcPage(String htmlFileName);
+Element hiddenElement = doc.getElementById("hiddenId");
+        hiddenElement.setAttribute("value",1234));
+</code></pre>
+
+<p>3] access hidden fields on GWTRedirect.html using </p>
+
+<pre><code>&lt;INPUT TYPE='hidden' value='' id='hiddenId' name='hiddenId'&gt; 
+&lt;SCRIPT type="text/javascript" language="javascript"&gt;
+document.getElementById("hiddenId").value =  window.parent.document.getElementById("hiddenId");
+&lt;/SCRIPT&gt;
+</code></pre>

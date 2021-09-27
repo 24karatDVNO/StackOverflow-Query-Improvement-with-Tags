@@ -1,0 +1,10 @@
+<p>The date calculation piece isn't so much jQuery as it is native JavaScript.</p>
+
+<p>You are on the right track with timestamps. In my opinion, the most straightforward way is to compare timestamps by doing the following:</p>
+
+<ul>
+<li>Subtract currentDate from maxDate</li>
+<li>See if the difference is less than 30 days</li>
+</ul>
+
+<p>See a quick example - <a href="http://jsfiddle.net/6YQHQ/" rel="nofollow">http://jsfiddle.net/6YQHQ/</a></p>

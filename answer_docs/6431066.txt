@@ -1,0 +1,7 @@
+<p>Things I see to help make life better:</p>
+
+<p>You don't have to use fully qualified <code>android.widget.EditText myEditText</code>.  Just <code>EditText myEditText</code> is fine.  Thats what your import statements handle  ;)</p>
+
+<p>You have a minSdkVersion="12" in your manifest.  This may present issues, as that correlates to your app will only run on a device with android 3.1.  Try using minsdk=7 (Android 2.1 and above, much more prolific)</p>
+
+<p>Likely a lot more wrong in manifest but I have only a few mins to look  :)</p>

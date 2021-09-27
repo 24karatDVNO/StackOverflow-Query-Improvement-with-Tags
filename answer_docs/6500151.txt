@@ -1,0 +1,53 @@
+<p>I'm not sure what kind of backend you're using, but a better way to store data in a database is not to combine multiple types of data in the same field, and to use numeric ID's instead of text-based ID's.  You could create a table like:</p>
+
+<pre><code>id       name          price
+----------------------------------
+1        Item          19.99
+2        Item 1        0
+3        Item 2        24.99
+4        Item 3        0
+5        Item 4        0
+</code></pre>
+
+<p>Note that my example shows "0" where no price has been entered.  This is because you'd probably want the price column to be stored as a decimal number (with two decimal places), which would make an empty value would default to "0".  That's okay.  Your user interface doesn't have to display the "0".</p>
+
+<p>Then when you retrieve the data from the database, you might end up with an array like this:</p>
+
+<pre><code>Array(
+    [0] =&gt; Array
+    (
+        [id] =&gt; 1
+        [name] =&gt; Item
+        [price] =&gt; 19.99
+    )
+    [1] =&gt; Array
+        [id] =&gt; 2
+        [name] =&gt; Item 1
+        [price] =&gt; 0
+    )
+)
+and so on...
+</code></pre>
+
+<p>So then you could display the values in your .php like the following:</p>
+
+<pre><code>&lt;?php
+foreach ($data as $row) {
+    explode($row);
+
+    if ($price &gt; 0) {
+        $checked = 'checked="checked"';
+    } else {
+        $checked = '';
+        $price = '';
+    }
+
+    $pattern = '&lt;input type="checkbox" name="categories[%s]" value="1" %s&gt; '
+        . '%s &lt;input type="text" name="prices[%s]" value="%s"&gt;';
+
+    echo sprintf($pattern, $id, $checked, $name, $id, $price);
+}
+?&gt;
+</code></pre>
+
+<p>Then when retrieving form input, the variables you want are <code>$_POST['categories']</code> and <code>$_POST['prices']</code>.</p>

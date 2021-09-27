@@ -1,0 +1,8 @@
+<p>Can't you use the Text property of the controls?  That way you won't have to care what type of control it is.  What type do you need the value to be?  Will string do?</p>
+
+<pre><code>foreach (Control item in Panel_Controls.Controls)
+{
+   string value = item.Text;
+   // do something with the value
+}
+</code></pre>

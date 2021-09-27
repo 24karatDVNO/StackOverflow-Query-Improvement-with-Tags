@@ -1,0 +1,21 @@
+<p>not sur eif this i what you are looking for but i saw this on a forum:</p>
+
+<pre><code>b2BodyDef edgedef;
+edgedef.position.Set(0.f,10.f);
+b2Body* edge = world-&gt;CreateBody(&amp;edgedef);
+
+b2Vec2 vertices[2];
+vertices[0].Set(0.0f, 0.0f);
+vertices[1].Set(10.0f, 0.0f);
+int32 count = 2;
+
+b2PolygonShape polygon;
+polygon.Set(vertices, count);
+
+b2FixtureDef edgefixtureDef;
+edgefixtureDef.shape = &amp;polygon;
+
+edge-&gt;CreateFixture(&amp;edgefixtureDef);
+</code></pre>
+
+<p>you could see how you could add more points by sending a larger  array </p>

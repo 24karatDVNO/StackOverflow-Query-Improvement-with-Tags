@@ -1,0 +1,8 @@
+<p><code>NEW</code> is type <code>RECORD</code>, so you can't assign to that AFAIK.</p>
+
+<p>To set the value of a column, assign to <code>NEW.column</code>, for example:</p>
+
+<pre><code>NEW.tenant_code := (SELECT some_calculation);
+</code></pre>
+
+<p>Maybe your design is too complicated; PL/SQL is a very limited language - try to make your code as simple as possible</p>

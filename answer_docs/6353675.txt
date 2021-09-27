@@ -1,0 +1,13 @@
+<p>You can use Q objects to combine queries. In you case your query might look as follows:</p>
+
+<pre><code>from django.db.models import Q
+
+test_logs = InspectorTestLog.objects.fiter(Q(status__status='Open') | Q(status__status='Under Process'))
+</code></pre>
+
+<p>This will retrieve all test_logs with a status of 'Open' or 'Under Process' (and by default exclude those with a status of 'Closed'.)</p>
+
+<p>You could also write a query that just excludes test_logs with a 'Closed' status, which would accomplish the same thing:</p>
+
+<pre><code>test_logs = InspectorTestLog.objects.exclude(status__status='Closed')
+</code></pre>

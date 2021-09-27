@@ -1,0 +1,10 @@
+<p>I have an update. I fixed the issue, although I am not sure why I had to go through this trouble. </p>
+
+<p>I had to regenerate a new xorg.conf file in /etc/X11 folder by using the command "<code>sudo Xorg -configure</code>" after exiting X. Then, I opened the file and added a line in the "Monitor" section that says </p>
+
+<pre><code>Option      "metamodes" "CRT-0: 1600x1200"
+</code></pre>
+
+<p>and I restarted the machine. Presto! My widescreen is back with the higher resolution. </p>
+
+<p>Thanks!</p>

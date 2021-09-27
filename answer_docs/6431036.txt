@@ -1,0 +1,36 @@
+<p>In Chrome you could do:</p>
+
+<pre><code>var err = function( msg ) {
+  // ... 
+  var error = new Error();
+  var stack = error.stack;
+  // Do some string manipulation with stack
+  // mayThrow = 'funcB is in stack'
+  if (mayThrow) {
+    throw(msg); 
+  }
+};
+</code></pre>
+
+<p>May I point out that I consider this a <strong>very bad practice</strong>. I think you should catch the error in <code>FuncB</code> in stead of defining <code>FuncB</code> as a function not to throw from in <code>err</code>. It is less code and much easier to manage. So:</p>
+
+<pre><code>var err = function( msg ) {
+  // ...
+  throw(msg); 
+};
+
+var func3 = function() {
+  // ...
+  err('Double rainbow');
+};
+
+var funcB = function() {
+  try {
+    func3();
+  catch(e) {
+    console.log(e);
+  }
+};
+</code></pre>
+
+<p>Try to understand why this is the better solution, it is about defining responsibilities for which functionality belongs to which function. This is exactly why exception and handling is designed the way it is.</p>

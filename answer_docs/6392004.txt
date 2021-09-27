@@ -1,0 +1,14 @@
+<p>It will probably be pretty hard to get the same timeout in your development enviroment. 
+You would need to use the same kind of hw and the same load as on the production servers.</p>
+
+<p>The time out is most likely caused by:
+1) a dead lock
+2) a missing index
+3) bad query plan</p>
+
+<p>If you know exactly what parameters (their value) are sent in to the stored proc you could take a look at the query plan using SQL Managemnt studio or simular tools. 
+If your running SQL 2008 the query analys will tell you if your missing an index. </p>
+
+<p>If the parameters vary a lot it can be good to force the SQL server to create a new auery plan each time by adding <strong>with recompile</strong> in the stored procedure. </p>
+
+<p>If the query plan looks good and dandy you need to add a trace on the server and look for locks on tables involved in the stored procedure. </p>

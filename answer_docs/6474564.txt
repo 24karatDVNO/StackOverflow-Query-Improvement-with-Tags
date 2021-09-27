@@ -1,0 +1,3 @@
+<p>Long running processes (especially in Ruby) often consume quite a bit of memory and become a point of failure, requiring monitoring, etc.  Cron is pretty reliable, so it makes a lot of sense to just set an entry in crontab and make it a periodic process.</p>
+
+<p>That said, there are Ruby background jobs that would support this.  Take a look at <a href="https://github.com/bvandenbos/resque-scheduler" rel="nofollow">https://github.com/bvandenbos/resque-scheduler</a> , as an example.</p>

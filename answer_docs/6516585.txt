@@ -1,0 +1,22 @@
+<p>Thanks! I was just to tired to find this. So this works:</p>
+
+<pre><code>DECLARE @DivideBy int
+SET @DivideBy = 1
+
+IF @DivideBy = 1 BEGIN ;
+    SELECT Year(o.AccomplishDate) AS [Rok], Month(o.AccomplishDate) AS [Miesiąc], SUM(oi.Price) AS [Przychód]
+    FROM Orders o JOIN OrdersItems oi ON oi.OrderId = o.Id
+    WHERE o.State = 0
+    GROUP BY Year(o.AccomplishDate), Month(o.AccomplishDate)
+    ORDER BY Year(o.AccomplishDate) DESC, Month(o.AccomplishDate) DESC
+END ;
+IF @DivideBy = 2 BEGIN ;
+    SELECT Year(o.AccomplishDate) AS [Rok], SUM(oi.Price) AS [Przychód]
+    FROM Orders o JOIN OrdersItems oi ON oi.OrderId = o.Id
+    WHERE o.State = 0
+    GROUP BY Year(o.AccomplishDate)
+    ORDER BY Year(o.AccomplishDate) DESC
+END;
+</code></pre>
+
+<p>May I optimize this somehow?</p>

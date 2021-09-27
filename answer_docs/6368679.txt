@@ -1,0 +1,4 @@
+<p>Try this:</p>
+
+<pre><code>NSString* fql = [NSString stringWithFormat:@"SELECT uid, name from user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=%lld)", self.usersession.uid];
+</code></pre>

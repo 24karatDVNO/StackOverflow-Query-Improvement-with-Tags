@@ -1,0 +1,18 @@
+<pre><code>scrolling="no"
+</code></pre>
+
+<p>but if you use "scrolling=no" of what I know, the content cannot be moved up and down. </p>
+
+<p>Can you try something like this?</p>
+
+<pre><code>&lt;div style="width:300px;height:250px;overflow:auto;"&gt;
+content goes here
+&lt;/div&gt;
+</code></pre>
+
+<p>If the content is too tall, there will be a vertical scrollbar. If the content is too wide and cannot wrap, there will be a horizontal scrollbar. </p>
+
+<p>By the way, I am guessing you already tried</p>
+
+<pre><code>&lt;body style="overflow: hidden"&gt; 
+</code></pre>

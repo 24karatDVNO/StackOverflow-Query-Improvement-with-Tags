@@ -1,0 +1,6 @@
+<p>The creation of "normal" queues is not adressed by the JMS standard. Depending on what you want to do there are two approaches:</p>
+
+<ul>
+<li>use temporary queues -> however they have many restrictions, most commonly they are used forrequest-reply scenarios</li>
+<li>use the API of the JMS provider - however your solution will be depending on this specific provider then</li>
+</ul>

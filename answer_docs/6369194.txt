@@ -1,0 +1,6 @@
+<p>You can use the <a href="http://developer.apple.com/library/mac/#technotes/tn2002/tn2062.html" rel="nofollow">this technique</a> to hide/show title bar:</p>
+
+<pre><code>OSStatus SetSystemUIMode( SystemUIMode inMode, SystemUIOptions inOptions);
+</code></pre>
+
+<p>I believe you need to use <code>kUIModeAllHidden</code> or <code>kUIModeContentHidden</code> with some other <code>UIOptions</code> as per your requirement.</p>

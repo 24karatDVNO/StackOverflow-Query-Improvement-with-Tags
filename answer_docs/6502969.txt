@@ -1,0 +1,54 @@
+<pre><code>$strone = 'arun sukumar';
+$strtwo = 'a';
+
+echo parsestr($strone, $strtwo);
+
+function parsestr($strone, $strtwo)
+{
+    $len = 0;
+    while ($strtwo{$len} != '') {
+        $len++;
+    }
+
+    $nr = 0;
+
+    while ($strone{$nr} != '')
+    {
+        if($strone{$nr} != ' ')
+        {
+            $data[$nr] = $strone{$nr};
+        }
+        $nr++;
+    }
+
+    $newdata = $data;
+
+    if($len &gt; 1)
+    {
+        $newdata = array();
+        $j = 0;
+        foreach($data as $val)
+        {
+            $str .= $val;
+            if($j == ($len -1))
+            {
+                $newdata[] = $str;
+                $str = '';
+                $j = 0;
+            }
+            else
+                $j++;
+        }
+    }
+    $i = 0;
+
+    foreach($newdata as $val)
+    {
+        if($val == $strtwo)
+        {
+            $i++;
+        }
+    }
+    return $i;
+}
+</code></pre>

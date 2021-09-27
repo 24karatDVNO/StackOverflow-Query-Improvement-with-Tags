@@ -1,0 +1,24 @@
+<p>well, provide some basic scripts, the classic handler of cls made by Andrew Hayway &amp;&amp; Simon Willison</p>
+
+<pre><code>function cls(c,tag){
+    var r=[];
+    var reg=new RegExp("(^|\s)"+c+"($|\s)");
+    var e=document.getElementsByTagName(tag||"*");
+    for(var i=0;i&lt;e.length;i++){
+        if(e[i].className.match(reg))
+        r.push(e[i]);
+    }
+    return r;
+}
+var helps=cls('help','div');
+for(var i=0;i&lt;helps.length;i++){
+    helps[i].onclick=function(){
+        var next_index=helps.indexOf(this)+1;
+        if(helps[next_index]){
+            //here is the next dom with the class help
+            var next=helps[next_index];
+            //then your code...
+        }
+    }
+}
+</code></pre>

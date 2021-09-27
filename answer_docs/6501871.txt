@@ -1,0 +1,7 @@
+<p>You could also just copy the ServiceLoader class file and remove the generic type argument from the load() method, causing it to always work. You'll just need to override the warnings.</p>
+
+<pre><code>  public static &lt;S&gt; ServiceLoader load(final Class&lt;S&gt; service)
+   {
+      return load(service, Thread.currentThread().getContextClassLoader());
+   }
+</code></pre>

@@ -1,0 +1,11 @@
+<p>I was looking at the wrong line DOH!, further up I found this;</p>
+
+<pre><code>$pages = get_pages('exclude='.$exclude.'&amp;child_of='.$parent);
+</code></pre>
+
+<p>So I added this in</p>
+
+<pre><code>$pages = get_pages('exclude='.$exclude.'&amp;child_of='.$parent.'&amp;sort_column=menu_order');
+</code></pre>
+
+<p>All working as should now :)</p>

@@ -1,0 +1,30 @@
+<p>You can read <a href="http://www.tumblr.com/docs/en/custom_themes#navigation" rel="nofollow">the tumblr docs</a> to learn more about how to write your own custom pagination.</p>
+
+<p>In particular, <a href="http://www.tumblr.com/docs/en/localizing_themes" rel="nofollow">these tumblr docs</a> give instructions on how to output the total number of pages in your blog, including what number the current page is:</p>
+
+<pre><code>{lang:Page CurrentPage of TotalPages}   Page ___ of ___        
+{lang:Page CurrentPage of TotalPages 2} Page ___ &lt;em&gt;of&lt;/em&gt; ___        
+</code></pre>
+
+<p>I also found this code from the <a href="http://effectortheme.tumblr.com/" rel="nofollow">Effector tumblr theme</a> that does this kind of pagination.  It may not be exactly what you're looking for, but it's a start:</p>
+
+<pre><code>{block:Pagination}
+&lt;div id="pagination"&gt;
+    &lt;div class="nextprev"&gt;
+        {block:PreviousPage}&lt;a class="prev" href="{PreviousPage}"&gt;{/block:PreviousPage}&lt;span&gt;&amp;larr; {lang:Newer}&lt;/span&gt;{block:PreviousPage}&lt;/a&gt;{/block:PreviousPage} &lt;span class="sep"&gt;&amp;bull;&lt;/span&gt;
+        {block:NextPage}&lt;a class="next" href="{NextPage}"&gt;{/block:NextPage}&lt;span&gt;{lang:Older} &amp;rarr;&lt;/span&gt;{block:NextPage}&lt;/a&gt;{/block:NextPage}
+    &lt;/div&gt;
+    &lt;div class="current-page"&gt;{lang:Page CurrentPage of TotalPages 2}&lt;/div&gt;
+&lt;/div&gt;&lt;!--/#pagination --&gt;
+{/block:Pagination}
+{block:PermalinkPagination}
+&lt;div id="pagination" class="single-pagination"&gt;
+    &lt;div class="nextprev"&gt;
+        {block:NextPost}&lt;a class="prev" href="{NextPost}"&gt;{/block:NextPost}&lt;span&gt;&amp;larr; {lang:Previous}&lt;/span&gt;{block:NextPost}&lt;/a&gt;{/block:NextPost} &lt;span class="sep"&gt;&amp;bull;&lt;/span&gt;
+        {block:PreviousPost}&lt;a class="next" href="{PreviousPost}"&gt;{/block:PreviousPost}&lt;span&gt;{lang:Next} &amp;rarr;&lt;/span&gt;{block:PreviousPost}&lt;/a&gt;{/block:PreviousPost}
+    &lt;/div&gt;
+&lt;/div&gt;&lt;!--/#pagination --&gt;
+{/block:PermalinkPagination}
+</code></pre>
+
+<p>Also, please remember to accept answers if they are useful and help solve your problem.</p>

@@ -1,0 +1,81 @@
+<p>sorry for mistake. now this is the simple example "RelativeLayout" it shows that list item by separating by ":"</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:padding="10sp"&gt;
+&lt;TextView
+  android:id="@+id/infoid"
+  android:layout_width="wrap_content" 
+  android:layout_height="wrap_content" /&gt; 
+&lt;TextView
+  android:id="@+id/infoidcolon"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text=": "
+  android:layout_toRightOf="@id/infoid" /&gt;
+&lt;TextView
+  android:id="@+id/rowid"
+  android:layout_width="wrap_content" 
+  android:layout_height="wrap_content"  
+  android:layout_toRightOf="@id/infoidcolon" /&gt;
+&lt;TextView
+  android:id="@+id/rowidcolon"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text=": "
+  android:layout_toRightOf="@id/rowid" /&gt;
+&lt;TextView
+  android:id="@+id/name"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_toRightOf="@id/rowidcolon" /&gt;
+&lt;TextView
+  android:id="@+id/namecolon"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text=": "
+  android:layout_toRightOf="@id/name" /&gt;
+&lt;TextView
+  android:id="@+id/phoneno"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_toRightOf="@id/namecolon" /&gt;
+&lt;TextView
+  android:id="@+id/phonecolon"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text=": "
+  android:layout_toRightOf="@id/phoneno" /&gt;
+&lt;TextView
+  android:id="@+id/sl"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_toRightOf="@id/phonecolon" /&gt;
+  &lt;TextView
+  android:id="@+id/slcolon"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text=": "
+  android:layout_toRightOf="@id/sl" /&gt;
+&lt;TextView
+  android:id="@+id/nameinfo"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_toRightOf="@id/slcolon" /&gt;
+&lt;TextView
+  android:id="@+id/nameinfocolon"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text=": "
+  android:layout_toRightOf="@id/nameinfo" /&gt;
+&lt;TextView
+  android:id="@+id/qty"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_toRightOf="@id/nameinfocolon" /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>

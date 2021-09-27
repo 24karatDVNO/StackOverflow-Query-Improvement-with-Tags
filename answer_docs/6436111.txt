@@ -1,0 +1,13 @@
+<p>You can check for action_name in the view:</p>
+
+<pre><code>&lt;% case action_name %&gt;
+&lt;% when 'index' %&gt;
+... view part for index action here
+&lt;% when 'show' %&gt;
+... view part for show action here
+&lt;% when 'new' %&gt;
+... view part for new action here
+&lt;% when 'edit' %&gt;
+... view part for edit action here
+&lt;% end %&gt;
+</code></pre>

@@ -1,0 +1,16 @@
+<p>After banging my head into a wall for awhile about this one. I got it, here's the source:</p>
+
+<pre><code>    public void HandleGroupData(ObservableCollection&lt;Group&gt; groupTree)
+    {
+        foreach (var group in groupTree)
+        {
+            var groupNode = new TreeNode(group.DisplayText, ENodeType.Group, group.Id);
+            GetSubitemsOfGroup(group, groupNode);
+            RootLevel.Add(groupNode);
+        }
+    }
+</code></pre>
+
+<p>We build the TreeView from the database. Originally the RootLevel.Add and GetSubitems calls were in reverse order. GetSubitems is a routine that recursively is called building the tree in a DFS. What I believe was happening was that we were adding a node to the tree that had no children, so initially the Silverlight GUI builder thought that they had no child nodes so didn't give them little triangles.</p>
+
+<p>Moral of the story: Watch the ordering of tree view creation!</p>

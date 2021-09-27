@@ -1,0 +1,3 @@
+<p>Expression <code>field.get(cls)</code> will actually attempt to extract <code>field</code>'s value from the <code>cls</code>, but <code>field</code> belongs <code>MyStaticClass</code>, not <code>Class</code> (since you are iterating through all fields declared in <code>MyStaticClass</code>). This expression will throw an <code>IllegalArgumentException</code>.</p>
+
+<p>Use <code>field.get(o)</code>, where <code>o</code> is an instance of <code>MyStaticClass</code> or a subclass thereof.</p>

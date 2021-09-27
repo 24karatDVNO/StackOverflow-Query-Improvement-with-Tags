@@ -1,0 +1,5 @@
+<p>Making the the data member <code>_pimple</code> <code>public</code> won't buy you anything as long as those other classes do not see the <em>definition</em> of its type <code>ObjectImpl</code> - <strong><em>which is the very thing Pimple set out to prevent</em></strong>. </p>
+
+<p>What you can do instead is to add a private interface to your <code>Object</code> class which will allow befriended classes to do whatever they need to do with an <code>Object</code>. </p>
+
+<p>Of course, the common disclaimers about <code>friend</code> being a tool that should be used as rarely as possible all apply. </p>

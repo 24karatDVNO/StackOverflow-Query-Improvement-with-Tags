@@ -1,0 +1,22 @@
+<p>I have some problems with this.
+I use the javascript api... and graph api (php)</p>
+
+<p>to share the article I use</p>
+
+<pre><code>FB.ui({method:'feed', link:'http://www.mysite.com/the-article-slug'});
+</code></pre>
+
+<p>When I post the article... I see in facebook correctly added... with link... image... all is OK.</p>
+
+<p>But when I try to retrieve the count share of this article I use php (@zaw, maybe you can use this method too):</p>
+
+<pre><code>http://graph.facebook.com/?id=http://www.mysite.com/the-article-slug
+</code></pre>
+
+<p>But I see zero count.</p>
+
+<p>But... When I share this URL using www.facebook.com directly... works fine... the count updates.</p>
+
+<p>Why I using FB.ui ? because this method have javascript method to listen if the post are complete...</p>
+
+<p>Anybody knows the way to get correctly the share count ?</p>

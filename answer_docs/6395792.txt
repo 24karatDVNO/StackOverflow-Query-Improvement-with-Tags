@@ -1,0 +1,4 @@
+<p>You have to allocate and init your UILabel first..
+instead of <code>UILabel *mylab;</code> try <code>UILabel *mylab = [[UILabel alloc] init];</code></p>
+
+<p>You also have to release it somewhere and you have to add the label to your view (something like <code>[self.view addSubview:mylab];</code>).</p>

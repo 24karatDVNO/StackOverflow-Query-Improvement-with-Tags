@@ -1,0 +1,14 @@
+<p>Add something like this (especially if the parse method is used frequently):</p>
+
+<pre><code>private static Map&lt;Integer, Errors&gt; errorMap = new HashMap&lt;Integer, Errors&gt;();
+
+static {
+ for(Errors error : Errors.values()) {
+    errorMap.put(error.getErrorCode, error);
+ }
+}
+
+public static String parse (int number) {
+ return errorMap.get(number).toString();
+}
+</code></pre>

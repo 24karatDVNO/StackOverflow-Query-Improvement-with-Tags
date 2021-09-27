@@ -1,0 +1,7 @@
+<p>I think it's because your output bit rate (128kb) is higher than your input bit rate (106 kb).</p>
+
+<p>I've just done a quick test and when I put my output higher than my input mine fails with the same errors as yours - it succeeds when I lower it again.</p>
+
+<p>This may explain why it only fails for some inputs.</p>
+
+<p>If you're scripting this in some way you'll have to use either 'ffmpeg -i' or something like <a href="http://mediainfo.sourceforge.net/en" rel="nofollow">MediaInfo</a> to analyse your input source first and adjust accordingly.</p>

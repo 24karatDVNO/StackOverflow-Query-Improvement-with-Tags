@@ -1,0 +1,38 @@
+<pre><code>var ciContact = data.split(", ");
+var tmpHash = {};
+for(var i = 0; i &lt; ciContact.length; i++){
+    tmpHash[$.trim(ciContact[i])] = 1; // if you are pretty sure that your data is clean, skip $.trim()
+}
+
+$('input[name="ciContact[]"]').each(function(){
+    if($(this).val() in tmpHash){
+        $(this).attr('checked', 'true');
+    }
+}
+</code></pre>
+
+<p>or there is a new javascript lib called tog, you can utilise it for your ajax handling.</p>
+
+<pre><code>function checkBox(data, all_options){
+    var ciContact = data.split(", ");
+    var tmpHash = {};
+    for(var i = 0; i &lt; ciContact.length; i++){
+        tmpHash[$.trim(ciContact[i])] = 1; // if you are pretty sure that your data is clean, skip $.trim()
+    }
+
+    return Tog().map(all_options, function(opt, key, _num){
+        var t = tog.Td().Tog('label').checkbox('$ciContact[]')
+            .id('ciContact_', _num);
+        if(opt in tmpHash){ t.checked() }
+
+        // close the check box, and append the value as its label
+        t.close().cont(opt);
+        return t;
+    }).html();
+}
+</code></pre>
+
+<p>Calling checkBox(data, options) will give you the piece of html.
+and you can append it to something like $('table tr')
+At your backend, you would simply need to dump all your options into a json string.
+And your client side can easily get it as this so-called 'all_options'</p>

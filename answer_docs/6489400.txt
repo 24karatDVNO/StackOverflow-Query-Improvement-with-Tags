@@ -1,0 +1,19 @@
+<blockquote>
+  <p>Will the var variable store Abhi and Abhishek in different memory location or <code>Abhishek</code> overwrites <code>Abhi</code> ??</p>
+</blockquote>
+
+<p>Neither. This code will not compile, because you are declaring two variables with the same name <code>var</code>.</p>
+
+<p>If we look at this:</p>
+
+<pre><code>class A {
+    public void someMethod {
+        String var = "Abhi";
+        var = "Abhishek";
+    }
+}
+</code></pre>
+
+<p>The second assignment to <code>var</code> will make <code>var</code> refer to a different <code>String</code> object.</p>
+
+<p>Note that in Java, variables are <em>references</em> to objects - they do not represents objects directly (as in C++).</p>

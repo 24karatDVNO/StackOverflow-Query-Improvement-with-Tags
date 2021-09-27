@@ -1,0 +1,6 @@
+<pre><code>using (FileStream filestream = new FileStream(filename, FileMode.Open))
+using (BinaryReader reader = new BinaryReader(filestream))
+{
+    float x = reader.ReadSingle();
+}
+</code></pre>

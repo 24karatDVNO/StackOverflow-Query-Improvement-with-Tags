@@ -1,0 +1,5 @@
+<p>it sounds as though you may be making a more complicated peice of code than is necessary to accomplish what you want to accomplish.</p>
+
+<p>if the client (javascript) has the data necessary to allow the server (PHP) to finish rendering the page during the page's load, then the client (javascript) must have gotten that data from the server (PHP) I would imagine. so if the server (PHP) had the data needed before it started rendering the page, it should have set the session variable itself before rendering.</p>
+
+<p>this scenaraio doesn't seem to make a lot of sense. what is this data that the page is sending to the server using ajax during its loading? are you getting user input in any way during the page's load which you need to send back to the server to finish the page rendering? can we see any code?</p>

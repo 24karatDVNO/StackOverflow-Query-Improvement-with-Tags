@@ -1,0 +1,15 @@
+<p>Found the way of changing calling of the jNice script:</p>
+
+<p>In one before last line we have:</p>
+
+<pre><code>$(function(){$('form.jNice').jNice();   });
+</code></pre>
+
+<p>if we change that to (form - > div(or whatever we want))</p>
+
+<pre><code>$(function(){$('div.jNice').jNice();    });
+</code></pre>
+
+<p>That way we can call jNice on whatever we want(element wrapper or element it self).</p>
+
+<p>Reg</p>

@@ -1,0 +1,6 @@
+<p>If you want to specify the number of decimal places to 2 (ie. not 12.2222%, but 12.22%), then use:</p>
+
+<pre><code>val.ToString("0.00") + "%"
+</code></pre>
+
+<p>Note that this will round the number off, so 12.226 would be shown as 12.23%, etc.</p>

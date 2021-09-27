@@ -1,0 +1,30 @@
+<p>Here is a working example: <a href="http://jsfiddle.net/gcummins/HHMu7/" rel="nofollow">http://jsfiddle.net/gcummins/HHMu7/</a> . You can float the labels/inputs that are on the left, and provide a left-margin for the label on the right to force them beyond the left inputs.</p>
+
+<p>Markup:</p>
+
+<pre><code>&lt;form id="sebi_form"&gt;
+    &lt;label for="input1"class="left_column"&gt;Input 1&lt;/label&gt;
+    &lt;input name="input1" id="input1" type="text" class="left_column" /&gt;
+    &lt;label for="input2"class="right_column"&gt;Input 2&lt;/label&gt;
+    &lt;input name="input2" id="input2" type="text" class="right_column" /&gt;&lt;br class="clearfix" /&gt;
+    &lt;label for="input3" class="left_column"&gt;Input 3&lt;/label&gt;
+    &lt;input name="input3" id="input3" type="text" class="left_column" /&gt;
+    &lt;label for="input4"class="right_column"&gt;Input 4&lt;/label&gt;
+    &lt;input name="input4" id="input4" type="text" class="right_column" /&gt;
+&lt;/form&gt;
+&lt;hr /&gt;
+&lt;!-- More elements as needed --&gt;
+</code></pre>
+
+<p>CSS: </p>
+
+<pre><code>.left_column {
+    float: left;
+}
+label.right_column {
+    margin-left: 60px;
+}
+.clearfix {
+    clear: both;
+}
+</code></pre>

@@ -1,0 +1,23 @@
+<p>First, two general shell programming issues:</p>
+
+<ul>
+<li><a href="http://mywiki.wooledge.org/ParsingLs" rel="nofollow">Do not parse the output of <code>ls</code>.</a> It's unreliable and completely useless. Use wildcards, they're easy and robust.</li>
+<li><strong>Always put double quotes around variable substitutions</strong>, e.g. <code>"$PrintQueue/$PrintFile"</code>, not <strike><code>$PrintQueue/$PrintFile</code></strike>. If you leave the double quotes out, the shell performs wildcard expansion and word splitting on the value of the variable. Unless you know that's what you want, use double quotes. The same goes for command substitutions <code>$(command)</code>.</li>
+</ul>
+
+<p>Historically, implementations of <code>file</code> have had different output formats, intended for humans rather than parsing. Most modern implementations have an option to output a <a href="http://en.wikipedia.org/wiki/Internet_media_type" rel="nofollow">MIME type</a>, which is easily parseable.</p>
+
+<pre><code>#!/bin/bash
+print_queue="/root/xxx"
+for file_to_print in "$print_queue"/*; do
+  case "$(file -i "$file_to_print")" in
+    application/pdf\;*|application/postscript\;*)
+      lpr -r "$file_to_print";;
+    application/vnd.oasis.opendocument.*)
+      ooffice -p "$file_to_print" &amp;&amp;
+      rm "$file_to_print";;
+    # and so on
+    *) echo 1&gt;&amp;2 "Warning: $file_to_print has an unrecognized format and was not printed";;
+  esac
+done
+</code></pre>

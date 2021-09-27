@@ -1,0 +1,23 @@
+<p>You can absolutely do it in the way you want using the <a href="http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/validation.html#core-convert-Converter-API" rel="nofollow">Converter SPI</a>.  You implement the Converter interface, which from the spring documentation in the link looks like this:</p>
+
+<pre><code>package org.springframework.core.convert.converter;
+
+public interface Converter&lt;S, T&gt; {
+    T convert(S source);
+}
+</code></pre>
+
+<p>from String to Person, and another from Person to String.  So your implementation would be something like this</p>
+
+<pre><code>public class PersonToStringConverter&lt;Person, String&gt; {
+    String convert( Person person ) {
+        // some code here that serializes your Person object 
+        // into a String that you can later parse back into a person.
+        return mySerializedPerson;
+    }
+}
+</code></pre>
+
+<p>and then an implement of StringToPersonConverter that does the parsing and populates and returns a Person object.  Then follow the directions in the Spring documentation to configure your converter for use and you are ready to go.</p>
+
+<p>Given your usage above, you would need to url encode the serialized person for use in the href of your 'a' tag.</p>

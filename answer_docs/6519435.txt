@@ -1,0 +1,10 @@
+<p>You can accomplish it without sed. Bash script:</p>
+
+
+
+<pre class="lang-shell prettyprint-override"><code>LINE=$(grep -n "$EXPR" "$FILE" |head -1 |cut -f1 -d:)
+head -$(expr $LINE - 1 ) $FILE
+tail +$(expr $LINE + 1 ) $FILE
+</code></pre>
+
+<p>Just declare <code>$EXPR</code> and <code>$FILE</code>.</p>

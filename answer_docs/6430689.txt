@@ -1,0 +1,10 @@
+<p>You can grab all the inputs in the wrappers that have an attribute checked and if the length > 0 you have at least one checkbox checked:</p>
+
+<pre><code>var checkboxes_claimStatus = $("#field-claimStatus-wrapper").find("input:checked");
+if(checkboxes_claimStatus.length)
+{
+    alert('checked');
+}
+</code></pre>
+
+<p>Do the same for the other group.</p>

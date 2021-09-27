@@ -1,0 +1,9 @@
+<p>@Billu: You can have a look at apache open library:-  org.apache.commons.lang.StringEscapeUtils. This class got escapeXML()/escapeHTML() and unescapeXML()/escapeHTML() methods.
+for example to your first problem about converting &lt; and &gt; you can use unescapeHTML(your-data).</p>
+
+<p>You may not even need to store/pass data in CDATA section, you can just use escapeXML(data) at sending/storing end; and user unescapeXML(data) at receiving/retreival end.</p>
+
+<p>for more information, here is the link:-
+<a href="http://commons.apache.org/lang/api-2.5/org/apache/commons/lang/StringEscapeUtils.html" rel="nofollow">StringEscapeUtils</a></p>
+
+<p>Please let me know if aboe information helped you.</p>

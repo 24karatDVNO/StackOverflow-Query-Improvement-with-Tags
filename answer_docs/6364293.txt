@@ -1,0 +1,9 @@
+<p>The problem is in the line:</p>
+
+<pre><code>&lt;%= videos.each do |video| %&gt;
+</code></pre>
+
+<p>There should not be the '=', so:</p>
+
+<pre><code>&lt;% videos.each do |video| %&gt;
+</code></pre>

@@ -1,0 +1,7 @@
+<p>I managed to fix this issue.</p>
+
+<p>Simply put, model-model links are <strong>not</strong> a one-way street as the CakePHP documentation calls it.</p>
+
+<p>For example if model A <code>belongsTo</code> model B, then model B MUST <code>hasOne</code> or <code>hasMany</code> model A.</p>
+
+<p>In my case, syntax at the receiving end was faulty.</p>

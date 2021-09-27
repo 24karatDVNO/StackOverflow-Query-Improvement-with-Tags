@@ -1,0 +1,3 @@
+<p>Think of a cursor like a bookmark, holding place in a result set. Cursors are specific to the query they are for. You can't use the same cursor for two different queries - that would be akin to expecting a bookmark from one book to show you how far through you are in another.</p>
+
+<p>If you want to store cursors elsewhere, you'll need to key them by the filter criteria so you can look up the appropriate one. Memcache is a poor choice, though, as elements may be evicted at any time. Why not just make the cursor part of the 'next page' URL?</p>

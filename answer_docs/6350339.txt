@@ -1,0 +1,10 @@
+<p>If the artifact that you depend on is a snapshot version then maven will check for a new snapshot every time you build, thats why it is a good practice to lock down your dependencies to a released version.  </p>
+
+<p>You can "override" the repository declarations by defining a <code>&lt;mirror&gt;</code> in the settings.xml.</p>
+
+<p>See <a href="http://maven.apache.org/settings.html#Mirrors" rel="nofollow">http://maven.apache.org/settings.html#Mirrors</a></p>
+
+<p>I usually set up a locally hosted repository manager (preferably <a href="http://nexus.sonatype.org/" rel="nofollow">nexus</a>) and then define mirrorOf(*) = local-repo-manager/url.<br>
+Nexus allows multiple repo's to be grouped with a predefined search order.
+Nexus repo's can be locally hosted or caching/proxies to public repo's.<br>
+I usually have a locally hosted 3rd party repo at the front of the group, where I can store artifacts that are not published on public repo's.</p>

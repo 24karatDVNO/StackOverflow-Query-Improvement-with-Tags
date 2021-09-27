@@ -1,0 +1,14 @@
+<p>Shot in the dark</p>
+
+<p>Could you use reflection to make a boolean for a library that is only available in android:</p>
+
+<pre><code>            boolean isAndroid = false;
+            try {
+                    Context.class.getMethod("getApplicationContext", null);
+                    isAndroid = true;
+            } catch (NoSuchMethodException e) {
+                    isAndroid = false;
+            } catch (Exception e) {
+                    isAndroid = false;
+            }
+</code></pre>

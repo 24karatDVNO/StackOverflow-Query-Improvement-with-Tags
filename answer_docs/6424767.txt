@@ -1,0 +1,10 @@
+<p>there are two possibilitys to do this: using <code>func_get_args</code> like Shakti Singh explained or predefine the arguments like this</p>
+
+<pre><code>function myfunc($arg1 = 1, $arg2 = 2, $arg3 = 3){
+  echo $arg1.' '.$arg1.' '.$arg3;
+}
+myfunc(); // outputs "1 2 3";
+myfunc(9,8); // outputs "9 8 3";
+</code></pre>
+
+<p>note that you can set the arguments to any default value that is used if the argument isn't given, but you'll have to define all arguments with this - it isn't as dynamic as using <code>func_get_args</code>.</p>

@@ -1,0 +1,10 @@
+<p>Yes, you can execute dynamic commands using "execute"</p>
+
+<pre><code>if ($1 &gt; 0)  then
+ condition1 ='col1 = '||$1::varchar;
+end if;
+
+execute 'select * from table1 where '||condition1;
+</code></pre>
+
+<p><a href="http://www.postgresql.org/docs/8.3/static/plpgsql-statements.html#PLPGSQL-STATEMENTS-EXECUTING-DYN" rel="nofollow">http://www.postgresql.org/docs/8.3/static/plpgsql-statements.html#PLPGSQL-STATEMENTS-EXECUTING-DYN</a></p>

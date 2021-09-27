@@ -1,0 +1,9 @@
+<p>Can add a temporary variable "c" which must be explicitly typed:</p>
+
+<pre><code>public function newCircle() : Circle {
+    var c : Circle = Circle {        
+        centerX: 1
+        radius: bind (c.centerX / prm._iMaxPop)
+    }
+};
+</code></pre>

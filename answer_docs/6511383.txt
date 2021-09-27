@@ -1,0 +1,6 @@
+<p>I added the following lines to omniauth.rb and it worked like a charm:</p>
+
+<pre><code>Rails.application.config.middleware.use OmniAuth::Builder do  
+   provider :openid, nil, :name =&gt; 'google', :identifier =&gt;'https://www.google.com/accounts/o8/id'  
+end
+</code></pre>

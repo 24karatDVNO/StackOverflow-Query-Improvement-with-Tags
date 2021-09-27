@@ -1,0 +1,11 @@
+<p>For copying your customer, don't use value-of but copy-of. </p>
+
+<pre><code>&lt;xsl:template match="order"&gt;
+    &lt;xsl:copy&gt;
+        &lt;xsl:copy-of select="customerid"/&gt;
+        &lt;xsl:copy-of select="key('customerList', customerid)" /&gt;
+    &lt;/xsl:copy&gt;
+&lt;/xsl:template&gt;
+</code></pre>
+
+<p>BTW, current() is not mandatory here, as order is the context node.</p>

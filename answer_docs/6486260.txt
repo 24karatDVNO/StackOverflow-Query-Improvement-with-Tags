@@ -1,0 +1,5 @@
+<p>You need to use the <code>cameraOverlayView</code> property to draw other views on top of the camera view, not the other way around. </p>
+
+<p>See the documentation for <a href="http://developer.apple.com/library/ios/#documentation/UIKit/Reference/UIImagePickerController_Class/UIImagePickerController/UIImagePickerController.html" rel="nofollow">UIImagePickerController</a>. You cannot force the camera picker controller into a <code>UIView</code>, you have to draw on top of the camera picker controller. </p>
+
+<p>(And then you could set one of you overlaying views to <code>clearColor</code> to get a window to the camera controller.) </p>

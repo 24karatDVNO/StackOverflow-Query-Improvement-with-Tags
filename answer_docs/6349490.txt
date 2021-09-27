@@ -1,0 +1,16 @@
+<p>There is no such function in the standard API, though some methods (which do other things) have it built in.</p>
+
+<p>For example, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/System.html#getProperty%28java.lang.String,%20java.lang.String%29" rel="nofollow">System.getProperty()</a> has a variant which takes a default value, and if it can't find the given property, it will not return <code>null</code>, but the given default value. You might think of providing your <code>fct*</code> methods with such a "default" argument, if it makes sence.</p>
+
+<p>I think C# has a <code>??</code> operator which does about what you want (you would call <code>sb.append(fct2() ?? "")</code>), but I suppose Java will not add any new operators soon.</p>
+
+<p>A better variant of your checking function would be this:</p>
+
+<pre><code>public void appendIfNotNull(StringBuffer sb, String s) {
+    if(s != null) {
+       sb.append(s);
+    }
+}
+</code></pre>
+
+<p>This avoids the superfluous append call with an empty string if there is nothing to append.</p>

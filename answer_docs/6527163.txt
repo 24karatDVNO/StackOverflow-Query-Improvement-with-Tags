@@ -1,0 +1,43 @@
+<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en"&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+
+        console.log('script loaded');
+
+        function showAdvanced() {
+            console.log('showAdvanced() executed');
+            $("#advanced").slideDown("slow");
+        };
+
+        $(document).ready(function(){
+            console.log('document is ready');
+        });
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="content"&gt;
+&lt;form action="mycontrolleraddress" method="post" accept-charset="utf-8" name="search_form" id="search_form"&gt;
+
+&lt;input type="text" name="query" value=""/&gt;&lt;br/&gt;
+
+&lt;a href="#" onclick="showAdvanced();" style="font-size:8pt;font-color:blue;"&gt;Advanced options&lt;/a&gt;&lt;br/&gt;
+
+&lt;div id="advanced" style="display: none;"&gt;
+    From: &lt;input type="text" name="date_from" value="" id="datepicker" onchange="validateDate();" class="datefield"  /&gt;&lt;br/&gt;
+    To: &lt;input type="text" name="date_to" value="" id="datepicker2" onchange="validateDate();" class="datefield"  /&gt; &lt;br/&gt;
+    &lt;input type="text" name="limit" value="Results limit"  /&gt;
+&lt;/div&gt;
+&lt;input type="submit" name="submit" value="Szukaj"  /&gt;
+
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Working for me. Next time try to format your code better, so it will be more readable.</p>

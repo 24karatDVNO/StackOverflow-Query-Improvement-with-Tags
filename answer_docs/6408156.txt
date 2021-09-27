@@ -1,0 +1,9 @@
+<p>Either u can start an activity with an Intent that is similar to the one of the application that you wish to launch or u can launch the application using its file path as shown below:</p>
+
+<pre><code>Intent intent=new Intent();
+ intent.setAction(android.content.Intent.ACTION_VIEW);
+ intent.setDataAndType(Uri.parse("file:///sdcard/the full path to your file"), "application/vnd.android.package-archive");          "application/vnd.android.package-archive");
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+</code></pre>
+
+<p>context.startActivity(intent);</p>

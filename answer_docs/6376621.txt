@@ -1,0 +1,15 @@
+<p>Detect whether or not the object is null instead of trying to infer from the class name.</p>
+
+<pre><code>// if you're key may not exist (NSDictionary will return nil... not sure what type
+// you are using
+if (![object objectForKey:@"display_name"]){
+    // ...
+}
+
+// or if the value may actually be an NSNull object
+if ([[object objectForKey:@"display_name"] == (id)[NSNull null]){
+    // ...
+}
+</code></pre>
+
+<p>I haven't tested the second argument, but <a href="https://stackoverflow.com/questions/968792/what-is-the-right-way-to-check-for-a-null-string-in-objective-c">look here for more about testing null</a>.</p>

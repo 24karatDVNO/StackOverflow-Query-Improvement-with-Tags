@@ -1,0 +1,8 @@
+<pre><code> foreach($skuArray  as $value=&gt;$key){
+    if($where=="")
+       $where= $value" = '".$key."'";
+    else
+       $where.= $value" = '".$key."'";
+ }
+ $getSkus = mysql_query("SELECT sku FROM data " .($where)?" WHERE   $where )":"");
+</code></pre>

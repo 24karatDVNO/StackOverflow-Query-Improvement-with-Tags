@@ -1,0 +1,6 @@
+<p>It seems you forget to implement tableView Delegate methods. You need to implement didSelectRowAtIndexPath method; when you tap on a cell this method will be called. Then in the method you need to get UIImage Object which you have prefilled in an array through this line of code </p>
+
+<pre><code>UIImage* selectedImage = [arrayOfImages objectAtIndex:indexPath.row];
+</code></pre>
+
+<p>Then allocate your imageViewController and pass the image object to the imageViewController and then push the controller on stack. Hope you understand if not post the code.</p>

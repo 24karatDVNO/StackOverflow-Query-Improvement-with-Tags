@@ -1,0 +1,7 @@
+<p>It's possible to package ASPX pages into a Library (.dll), and serve them with the ASP.NET engine.</p>
+
+<p>You will need to implement your own <a href="http://msdn.microsoft.com/en-us/library/system.web.hosting.virtualpathprovider.aspx" rel="nofollow">VirtualPathProvider</a>, which will load via Relfection specific DLL's, or you could include the DLL name in your pathname. It's up to you.</p>
+
+<p>The magic happens when overriding the <a href="http://msdn.microsoft.com/en-us/library/system.web.hosting.virtualfile.open.aspx" rel="nofollow">VirtualFile.Open</a> method, where you return the ASPX file as a resource from the Assembly class: <a href="http://msdn.microsoft.com/en-us/library/xc4235zt.aspx" rel="nofollow">Assembly.GetManifestResourceStream</a>. The ASP.NET engine will process the resource since it is served via the VirtualPathProvider.</p>
+
+<p>This allows to plug-in pages, or like I did, use it to include a HttpHandler with a control.</p>

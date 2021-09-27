@@ -1,0 +1,5 @@
+<p>I would go with your own suggest of applying the observer/observable pattern here. Albeit, you will have to (loosely) couple the "worker/executor" thread object with an observer, but it would lead to much cleaner code and you can throw the necessary exception through the observer</p>
+
+<p>Only problem with this approach, you don't know what state is the calling thread in, and therefore, if any action will/could be taken from the the observer's exception. Although, you could log the exception (or store it) for later retrieval by the main thread if that is dispatched again.</p>
+
+<p>Hope this helps</p>

@@ -1,0 +1,29 @@
+<p>I encounter the same issue.</p>
+
+<p>After some research i found out that there is a similar behaviour in RadioGroup for the setCheckChangeListener.</p>
+
+<p>Tagging messes things up, seems like a bug. </p>
+
+<p>My workaround was setting the tag to null at the end of the listener It worked for me.</p>
+
+<pre><code>private OnCheckedChangeListener checkBoxitemClickListener = new OnCheckedChangeListener() {
+
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+        if(isChecked)
+        {               
+            //do smth
+        }else
+        {
+            //do smth
+        }   
+
+        buttonView.setTag(null);                        
+    }
+};
+</code></pre>
+
+<p>If you need to update your ListView after, don't forget to call "notifyDataSetChanged" on your adapter.</p>
+
+<p>Cheers</p>

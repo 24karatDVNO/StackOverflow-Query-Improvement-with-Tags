@@ -1,0 +1,6 @@
+<p>Simpler approach:</p>
+
+<pre><code>([^\\]*)\s?\[\d{4}\]$
+</code></pre>
+
+<p>I believe your issue is also with you including "double backslashes" (e.g. <code>\\\\</code> instead of a single <code>\\</code>. You can also make life easier by using a class to include characters you <strong>don't</strong> want by prefixing it with a caret (<code>^</code>).</p>

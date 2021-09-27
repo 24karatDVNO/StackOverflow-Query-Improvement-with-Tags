@@ -1,0 +1,8 @@
+<p>The entire URL gets URL ecoded, which is probably because you are not URL encoding the values that you put in the string. URL encode the values properly, and it should work:</p>
+
+<pre><code>Response.Redirect(
+  "TestingReport.aspx?id=" + Server.UrlEncode(Request.QueryString("id")) +
+  "&amp;Test_Type_ID=" + Server.UrlEncode(Request.QueryString("Test_Type_ID")) +
+  "&amp;TType=" + Server.UrlEncode(Request.QueryString("TType"))
+)
+</code></pre>

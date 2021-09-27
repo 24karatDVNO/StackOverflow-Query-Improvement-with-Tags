@@ -1,0 +1,44 @@
+<p>I ran into the same issue and I have just solved it.</p>
+
+<p>Storing the whole DirectionsResponse is totally unneccesary.
+The DirectionsService.route returns a route based on a Hash that is passed to it.
+So storing that Hash should be enough to store the route.
+<br/>By the time, this might only become a different route when a better/faster way is available. </p>
+
+<p>Let's take a look at the request hash:</p>
+
+<pre><code>request = {
+  origin: "Hamburg"
+  destination: "Berlin"
+  waypoints: [{location: new google.maps.LatLng(53.88,11.51), stopover: false}],
+  travelMode: google.maps.DirectionsTravelMode.DRIVING
+}
+</code></pre>
+
+<p>As previously mentioned by <a href="https://stackoverflow.com/users/429806/crag">Crag</a>, the data that is returned is JSON-like and not JSON.
+So, when we store this data, we need to convert the JSON string into a JSON-like Hash again.
+The waypoints that are going to be stored in the database by using JSON.stringify() looks like that:</p>
+
+<pre><code>waypoints:
+  [location: {
+      Ha: 53.88, 
+      Ia: 11.51
+    },
+    stopover: false
+  ]
+</code></pre>
+
+<p>whenever you want to pass that data to DirectionsService.route you can simply call a function before which will overwrite each location with a LatLng object:</p>
+
+<pre><code>parse_route_request = function(request) {
+  var waypoint, i, len;
+  request = JSON.parse(request);
+  for (i = 0, len = request.waypoints.length; i &lt; len; i++) {
+    waypoint = request.waypoints[_i];
+    if (waypoint.location.Ha) {
+      waypoint.location = new google.maps.LatLng(waypoint.location.Ha, waypoint.location.Ia);
+    }
+  }
+  return request;
+};
+</code></pre>

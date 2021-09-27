@@ -1,0 +1,20 @@
+<p>You'll need to pass a <code>Context</code> instance to your class or individual methods. The <code>Context</code> instance can be an instance of <code>Activity</code> or <code>Service</code> or anything else which is a subclass of <code>Context</code>. You can then use this to access system resources:</p>
+
+<pre><code>class MyConnection
+{
+    private final Context context;
+
+    public MyConnection( Context context )
+    {
+        this.context = context;
+    }
+
+    .
+    .
+    .
+    public void someMethod()
+    {
+        String str = context.getResources().getString ( R.string.myString );
+    }
+}
+</code></pre>

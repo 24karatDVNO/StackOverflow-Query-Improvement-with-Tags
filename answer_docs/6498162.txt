@@ -1,0 +1,45 @@
+<p>This is how it would have been solved in Scheme:</p>
+
+<pre><code>(define (Cat num1 num2)
+    (define (CatLoop num1 num2 temp)
+            (if (= temp 0)
+                (+ num1 num2)
+                (CatLoop (* num1 10) num2 (/ temp 10))))
+    (CatLoop num1 num2 num2))
+</code></pre>
+
+<p>[It might contain syntax errors, I didn't test it.]</p>
+
+<p>In a C-like language with nested functions:</p>
+
+<pre><code>int Cat(int num1, int num2) {
+    int CatLoop(int num1, int num2, int temp) {
+        if (temp == 0)
+            return num1 + num2;
+        else
+            return CatLoop(num1 * 10, num2, temp / 10);
+    }
+
+    return CatLoop(num1, num2, num2);
+}
+</code></pre>
+
+<p>After tail-call optimization, this gets unrolled into the following:</p>
+
+<pre><code>int Cat(int num1, int num2) {
+    int temp = num2;
+    // goto CatLoop;
+
+    CatLoop:
+    if (temp == 0)
+        goto Done;
+
+    Else:
+    num1 *= 10;
+    temp /= 10;
+    goto CatLoop;
+
+    Done:
+    return num1 + num2;
+}
+</code></pre>

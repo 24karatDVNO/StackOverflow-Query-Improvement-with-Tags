@@ -1,0 +1,14 @@
+<p>Div elements don't have a name attribute, so use an id instead. </p>
+
+<pre><code>&lt;div id="editThis" ...&gt;
+</code></pre>
+
+<p>Then use:</p>
+
+<pre><code>function repeatName() {
+  var editField = document.getElementById("editThis");
+  if (editField) {
+    editField.innerHTML = document.theForm.txtName.value + ' is the value';
+  }
+}
+</code></pre>

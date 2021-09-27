@@ -1,0 +1,20 @@
+<p>Give each div a class e.g.  <code>my_class</code></p>
+
+<p><a href="http://jsfiddle.net/uQ2rv/" rel="nofollow">http://jsfiddle.net/uQ2rv/</a></p>
+
+<p><strong>CODE</strong></p>
+
+<pre><code>var all = $('div.my_class');
+var release = false;
+function fader(i){
+    if(i==all.length) return false;//so it don't go on and on ... or use the animation complete here :)
+    $(all.eq(i)).fadeIn(500, function() {
+        $(all.eq(i)).fadeOut(500,function (){
+             i++;
+             fader(i);
+        });
+    });
+
+}
+fader(0);
+</code></pre>

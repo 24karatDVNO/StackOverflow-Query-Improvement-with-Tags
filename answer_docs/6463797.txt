@@ -1,0 +1,7 @@
+<p>The normal way to run a mysql query from the command prompt is to use the -e option. Hence this would work:</p>
+
+<pre><code>ssh pos$server "mysql -u root -p12345 pos_master_prod -e 'show slave status \G'" &gt;&gt; output.log
+</code></pre>
+
+<p>UPDATE: About the "into outfile" part, it is not allowed in the syntax. Trying "show slave status into outfile 'xxx'" on the mysql prompt will result in the following error:
+ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'into outfile "xxx"' at line 1</p>

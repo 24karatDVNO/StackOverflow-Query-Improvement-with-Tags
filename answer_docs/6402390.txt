@@ -1,0 +1,5 @@
+<p>Rather than re-hack the system you could put your own controller that returns the product image for a given category/product URL. This would remove the need to rewrite core functionality.</p>
+
+<p>If writing modules phases you (it should!) then you can use the API on a cron job to go through every product, retrieve its category URL, product name and primary image to then copy (or link) the primary image to the desired path, e.g. images/cat1/subcat1/sku.jpg</p>
+
+<p>This approach will mean that the images will download quicker, you can also tailor them to a desired size with a bit of Imagemagick image processing.</p>

@@ -1,0 +1,86 @@
+<p>I was also same type of problem but i have removed it using the fallowing blow given code </p>
+
+<pre><code>        tabHost = getTabHost(); // The activity TabHost
+    tabHost.setOnTabChangedListener(this);
+    Resources res = getResources(); // Resource object to get Drawables
+    tabHost = getTabHost(); // The activity TabHost
+    TabHost.TabSpec spec; // Reusable TabSpec for each tab
+
+    TabSpec firstTabSpec = tabHost.newTabSpec("tid1");
+    TabSpec secondTabSpec = tabHost.newTabSpec("tid2");
+    TabSpec thirdTabSpec = tabHost.newTabSpec("tid3");
+    TabSpec fourthTabSpec = tabHost.newTabSpec("tid4");
+    TabSpec fifthTabSpec = tabHost.newTabSpec("tid5");
+
+    viewCache[0] = LayoutInflater.from(this).inflate(R.layout.tabs1, null);
+    viewCache[1] = LayoutInflater.from(this).inflate(R.layout.tabs1, null);
+    viewCache[2] = LayoutInflater.from(this).inflate(R.layout.tabs1, null);
+    viewCache[3] = LayoutInflater.from(this).inflate(R.layout.tabs1, null);
+    viewCache[4] = LayoutInflater.from(this).inflate(R.layout.tabs1, null);
+
+    firstTabSpec.setIndicator(viewCache[0]);
+    secondTabSpec.setIndicator(viewCache[1]);
+    thirdTabSpec.setIndicator(viewCache[2]);
+    fourthTabSpec.setIndicator(viewCache[3]);
+    fifthTabSpec.setIndicator(viewCache[4]);
+
+    firstTabSpec.setContent(new Intent(this, HomeTabActivityGroup.class));
+    secondTabSpec
+            .setContent(new Intent(this, ProfileTabActivityGroup.class));
+    thirdTabSpec.setContent(new Intent(this,
+            NotificationTabActivityGroup.class));
+    fourthTabSpec.setContent(new Intent(this,
+            FavoritesTabActivityGroup.class));
+    fifthTabSpec
+            .setContent(new Intent(this, MoreTabActivityGroupNew.class));
+
+    tabHost.addTab(firstTabSpec);
+    tabHost.addTab(secondTabSpec);
+    tabHost.addTab(thirdTabSpec);
+    tabHost.addTab(fourthTabSpec);
+    tabHost.addTab(fifthTabSpec);
+
+    currentTabvalue = tabHost.getCurrentTab();
+    C2DMessaging.register(TennisAppActivity.mContext,
+            "racquetester@gmail.com");
+    for (int i = 0; i &lt; tabHost.getTabWidget().getChildCount(); i++) {
+
+        // tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#7392B5"));
+        switch (i) {
+        case 0:
+            tabHost.getTabWidget().getChildAt(i)
+                    .setBackgroundResource(R.drawable.home);
+            break;
+        case 1:
+            tabHost.getTabWidget().getChildAt(i)
+                    .setBackgroundResource(R.drawable.profile);
+            break;
+        case 2:
+            tabHost.getTabWidget().getChildAt(i)
+                    .setBackgroundResource(R.drawable.notifications);
+            break;
+        case 3:
+            tabHost.getTabWidget().getChildAt(i)
+                    .setBackgroundResource(R.drawable.fav);
+            break;
+        case 4:
+            tabHost.getTabWidget().getChildAt(i)
+                    .setBackgroundResource(R.drawable.more);
+            break;
+        }
+    }
+</code></pre>
+
+<p>//<strong><em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**<em>*</em>**</strong>
+it is the xml file use for it.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+  &lt;LinearLayout android:id="@+id/LinearLayout01" 
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center"&gt;
+  &lt;ImageView android:id="@+id/ImageView01" android:layout_width="wrap_content"              android:layout_height="50dip"&gt;&lt;/ImageView&gt;
+</code></pre>
+
+<p></p>
+
+<p>I hope it is help full to you.</p>

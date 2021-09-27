@@ -1,0 +1,5 @@
+<p>GROUP BY doesn't return 0 value if there is no visitor some day. That will yield to the holes in time continuity. There are two ways:</p>
+
+<p>1) Group like others said and then find holes</p>
+
+<p>2) Create aggregation table with fields "date", "count" etc. and insert there data every day by cron.</p>

@@ -1,0 +1,9 @@
+<p>I found that the user_id was being given the value of 'users'. After commenting the following line out in my routes.rb, the id was no longer given that value.</p>
+
+<pre><code>match '/:id' =&gt; 'users#show', :as =&gt; :user
+</code></pre>
+
+<p>I also needed the users_controllers #show to have the following line, since my user path uses the username. removing '_by_username' caused an error on pages that called for the username:</p>
+
+<pre><code>@user = User.find_by_username(params[:id])
+</code></pre>

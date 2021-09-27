@@ -1,0 +1,32 @@
+<p>I'm retaining my other answer, because it's a straightforward answer for 1.9.2.</p>
+
+<p>In your case, I'd separate the replacements from the replacement method, which you can put in a helper to keep your views clean.</p>
+
+<p>The replacements can be set up in a hash:</p>
+
+<pre><code>replacements = {
+  "{Company}" =&gt; contact.company_name.clear_company || "",
+  "{FirstName}" =&gt; contact.first_name,
+  "{LastName}" =&gt; contact.last_name,
+  "{Title}" =&gt; contact.title || "blank",
+}
+</code></pre>
+
+<p>Then the helper method would look something like this:</p>
+
+<pre><code>def replace(string, replacements = {})
+  replacements.each do |k,v|
+    string.gsub!(k,v)
+  end
+  string
+end
+</code></pre>
+
+<p>And to use it you'd just do the following:</p>
+
+<pre><code>&lt;%= replace("message", replacements) %&gt;
+</code></pre>
+
+<p>Another advantage of this strategy is that when you upgrade to 1.9.2, the replacements are close to the form that can be used by the string templating feature.</p>
+
+<p>If your needs are any more complex than what you've posted, I'd consider using the <a href="http://www.liquidmarkup.org/" rel="nofollow">liquid</a> templating engine to process your replacements.</p>

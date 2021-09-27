@@ -1,0 +1,8 @@
+<p>I do this on Ruby 1.9 when I want to make sure things are in UTF-8:</p>
+
+<pre><code>if filename.encoding.to_s != 'UTF-8'
+  filename.encode!('UTF-8')
+end
+</code></pre>
+
+<p>Unless your OS gives a file name encoded with a coding system which doesn't support some special characters found on the file name, it can be encoded to UTF-8 without a hickup.</p>

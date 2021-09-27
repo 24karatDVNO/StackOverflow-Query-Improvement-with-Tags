@@ -1,0 +1,11 @@
+<p>I've got the solution:</p>
+
+<pre><code>Select Month(B.NewDate) Mon, Year(B.NewDate) Year, Code, PK
+from T1 A ,
+(Select Max(Str_To_Date(Concat('01',',',Month,',',Year), '%d,%m,%Y')) as NewDate, Code C
+from T1 group by Code) B
+Where PK = (Select PK from T1
+                where Year = Year(B.NewDate) and Month = Month(B.NewDate)  and Code = A.Code)
+and A.Code = C
+group by Code
+</code></pre>

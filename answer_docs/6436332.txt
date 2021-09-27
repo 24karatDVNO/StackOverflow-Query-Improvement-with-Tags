@@ -1,0 +1,8 @@
+<p>I think the problem might be connected with the heroku server type (or idiomatically: stack). The normal stack (called Aspen, I think) is runned by Debian Etch which doesn't support newer versions of Rails (i.e. Rails 3) and neither Sinatra.</p>
+
+<p>To solve the problem you can switch to the Bamboo stack which is runned by Debian Lenny. You can do it by switching the stack as followed:</p>
+
+<pre><code>heroku create yourname --stack bamboo-mri-1.9.2
+</code></pre>
+
+<p>"yourname" is of course the name of your application. After that it should work as it should.</p>

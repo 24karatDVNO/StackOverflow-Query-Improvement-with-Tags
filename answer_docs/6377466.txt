@@ -1,0 +1,14 @@
+<p>Why not setup a hash-table using the word-size as the key-value, and then store the pointers to each <code>char</code> string in its associated hash-slot?  If you wanted, it could be done using either <code>std::unordered_map</code>, or you could make a hash-table yourself using a combination of <code>std::vector</code> and <code>std::list</code> with <code>strlen()</code> as your hashing function.  For instance, using the latter setup you could do something like the following:</p>
+
+<pre><code>char* my_string = "Something";
+
+//create a hash-table with ten slots (that's what you have in your example)
+//where each slot holds a word of N length
+std::vector&lt;std::list&lt;char*&gt; &gt; hash_table(10);
+
+//this will store my_string at the back of the list at hash_table[9]
+hash_table[strlen(my_string)].push_back(my_string);
+
+//if you want the current num elements in the list, that's easy to-do as well
+int list_size = hash_table[9].size();
+</code></pre>

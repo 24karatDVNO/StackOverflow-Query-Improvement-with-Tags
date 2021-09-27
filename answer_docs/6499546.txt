@@ -1,0 +1,6 @@
+<p>Try this:</p>
+
+<pre><code>select if(count(*)=1 and status_code='c',1,0) as W from Student
+</code></pre>
+
+<p>(If you have 2 rows with <code>status_code='c'</code>, it will return <code>0</code>. Is it the expected output ?)</p>

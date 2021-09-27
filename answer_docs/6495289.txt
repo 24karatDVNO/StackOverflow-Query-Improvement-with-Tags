@@ -1,0 +1,1 @@
+<p>It looks like pretty much everything you're using is a local variable.  Your also passing variables by value, not by reference, which helps for thread safety.  So you appear to be pretty safe!  Just make sure the one lock your using doesn't get you into a race condition.</p>

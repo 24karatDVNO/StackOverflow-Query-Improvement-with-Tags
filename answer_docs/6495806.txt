@@ -1,0 +1,26 @@
+<ul>
+<li>Convert the assets to MovieClip.</li>
+<li>Add Linkage for them.</li>
+<li><p>Use the following code to load it:</p>
+
+<pre><code>var context:LoaderContext       = new LoaderContext( );
+    context.applicationDomain   = ApplicationDomain.currentDomain;
+
+var loader : Loader = new Loader( );
+    loader.contentLoaderInfo.addEventListener(Event.COMPLETE, complete );
+    loader.load( new URLRequest( "assets.swf" ), context );
+
+    function complete ( e:Event ) : void
+    {
+        var Asset : Class = e.target.applicationDomain.getDefinition("the linkage of the asset") as Class;
+        var asset : MovieClip = new Asset( );
+        addChild( asset );
+    }
+</code></pre></li>
+</ul>
+
+<p>Hope this helps.</p>
+
+<p>Cheers</p>
+
+<p>Tamas Gronas</p>

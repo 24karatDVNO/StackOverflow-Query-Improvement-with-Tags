@@ -1,0 +1,6 @@
+<p>The function you pass in as a callback should comprise the code which actually processes the results of your initial ajax call. For example, at its simplest:</p>
+
+<pre><code>alert("RESPONSE: " + xmlhttp.responseText;
+</code></pre>
+
+<p>However, we need to clarify what you're trying to do: read a file that's stored on the server? If so, that target file has to be accessible from the web (so that you can pass over its URL to your ajax call), else your code simply won't work.</p>

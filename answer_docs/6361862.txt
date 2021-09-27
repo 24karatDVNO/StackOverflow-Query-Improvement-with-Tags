@@ -1,0 +1,16 @@
+<p>Your form tag doesn't work the way you want.</p>
+
+<pre><code>&lt;form method="post" action="&lt;?php insertstatements(); ?&gt;"&gt;
+</code></pre>
+
+<p>What this will do is run <code>insertstatements</code> and then echo nothing, thus making a form tag like:</p>
+
+<pre><code>&lt;form method="post" action=""&gt;
+</code></pre>
+
+<p>A blank action will make the script <code>POST</code> to itself.  If this is what you want then leave it, or you can make it post to a certain page, by setting action to that page.</p>
+
+<pre><code>&lt;form method="post" action="submit.php"&gt;
+</code></pre>
+
+<p>To read the variables from the form use, <code>$_POST</code>, eg: <code>$_POST['gamestart']</code>.</p>

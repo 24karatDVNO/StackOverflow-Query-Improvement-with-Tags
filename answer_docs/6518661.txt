@@ -1,0 +1,3 @@
+<p>Just remove the <code>extern</code> keyword. Non-<code>static</code> globals are <code>extern</code> by nature. It should work fine.</p>
+
+<p><strong>Edit</strong>: if <code>color.h</code> is included in multiple files, then it might give linker error. So it's a good practice to keep the array definition in <code>.cpp</code> file and put the <code>extern &lt;array&gt;</code> syntax in <code>.h</code> file.</p>

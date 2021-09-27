@@ -1,0 +1,17 @@
+<p>Using PHP I would do something like this (assuming db-results are in <code>$res</code> having date as <code>Y-m-d</code> as key):</p>
+
+<pre><code>$year = date('Y');
+for ($month = 1; $month &lt;= 12; $month++) {
+    $last_day = date('t', mktime(0, 0, 0, 1, $month, $year));
+    for ($day = 1; $day &lt;= $last_day; $day++) {
+        $key = sprintf('%4d-%02d-%02d', $year, $month, $day);
+        if (!empty($res[$key])) {
+            $output[$key] = $res[$key];
+        } else {
+            $output[$key] = 0;
+        }
+    }
+}
+</code></pre>
+
+<p>That way you'll get an array <code>$output</code> with empty dates having value <code>0</code>.</p>

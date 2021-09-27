@@ -1,0 +1,16 @@
+<p>I Tlooks like youre not actually gabbing the question or comment text... dont know if thats an issue or not. Since there is only ever one question (????) i would jjoin all the comments to the question and do it that way:</p>
+
+<pre><code>$query = "SELECT q.*, c.* FROM approvedQuestions q LEFT JOIN comments c ON (q.id = c.questionID) WHERE q.status = 'active'";
+
+$result = mysql_query($query);
+if(mysql_num_rows()){
+  while(false !== ($row = mysql_fetch_assoc($result)){
+     // $row contains all columns for both question and record as array keys
+     echo $row['commentID'];
+     echo $row['id'];
+     echo $row['name'];
+  }
+}
+</code></pre>
+
+<p>Not this would pront the question info everytime you print the answer info but that is easily solved by fetching the first ro before the loop and pulling the question data into another array, then rewinding the result set and invoking the loop.</p>

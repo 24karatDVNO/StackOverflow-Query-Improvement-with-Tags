@@ -1,0 +1,55 @@
+<p>if you don't mind starting a new thread it's possible using a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/SynchronousQueue.html" rel="nofollow">SynchronousQueue</a></p>
+
+<pre><code>public class InternalIterator&lt;T&gt; implements Iterator&lt;T&gt;{
+
+    private SynchronousQueue&lt;T&gt; queue = new SynchronousQueue&lt;T&gt;();
+    private volatile boolean empty = false;
+    private T current =null;
+    private Object lock = new Object();
+
+    private Runner implements Runnable{//run in deamon
+
+        public void run(){
+            //iterate and call 
+            synchronized()(lock){
+                try{
+                    queue.offer(t);
+                    lock.wait();
+                }catch(InteruptedException e){
+                    empty=true;
+                    throw new RuntimeException(e);
+                }
+            } 
+            //for each element to insert this will be the yield return 
+
+            emtpy=true;
+        }
+
+    }
+
+    public boolean hasNext(){
+        if(current!=null)return true;
+
+        while(!empty){
+            if( (current=queue.poll(100,TimeUnit.MILLISECONDS))!=null){//avoid deadlock when last element is already returned but empty wasn't written yet 
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean next(){
+        if(!hasNext())throw new NoSuchElementException();
+        T tmp = current;
+        current=null;
+        return tmp;
+    }
+
+    public void remove(){
+        throw new UnsupportedOperationException();
+    }
+
+
+}
+</code></pre>

@@ -1,0 +1,34 @@
+<p>Ok here's the setup (using your elegantly named sample columns):</p>
+
+<pre><code>CREATE TABLE dbo.Foo
+    (
+    FieldA varchar(50) NOT NULL,
+    FieldB varchar(50) NOT NULL,
+    FieldC varchar(50) NOT NULL,
+    FieldD varchar(50) NOT NULL,
+    FieldE varchar(50) NOT NULL
+    )  
+go
+
+insert into foo values('abc123', '123abc', '01', '01', '')
+insert into foo values('abc123', '123abc', '012', '012', '')
+insert into foo values('abc123', '123abc', '0123', '01', '')
+insert into foo values('abc123', '123abc', '01234567', '01', '')
+insert into foo values('abc123', '123abc', '012345', '012345', '')
+insert into foo values('def123', '123def', '012345', '012345', '')
+insert into foo values('def123', '123def', '', '012345', '')
+</code></pre>
+
+<p>And the solution:</p>
+
+<pre><code>select * from
+(
+select *, row_number() over(partition by fielda, fieldb order by len(fieldc) + len(fieldd) desc) seq
+from foo
+) ordered
+where seq = 1
+</code></pre>
+
+<p>This will give you unique combinations of your first two columns, and the longest (defined as length of col3 + the length of col4)</p>
+
+<p>Pull out the where clause to see the values it came up for all rows. </p>

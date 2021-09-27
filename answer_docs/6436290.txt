@@ -1,0 +1,5 @@
+<p>As running parallel R instances which might be even on different nodes/computers, using an outer database to store parameters might be a good option.</p>
+
+<p>I would use <a href="http://redis.io/" rel="nofollow">redis</a> as being extremely fast and fully <a href="http://cran.r-project.org/web/packages/rredis/index.html" rel="nofollow">accessible in R</a>, and for parallel runs its brother: <a href="http://cran.r-project.org/web/packages/doRedis/index.html" rel="nofollow">doredis</a>.</p>
+
+<p>So you could have a redis server (or even a replicated, slave database on every host) which could be fetched for parameters. You could instantly update the parameters even from outside of R available to all workers and could easily add new workers for the task with doredis.</p>

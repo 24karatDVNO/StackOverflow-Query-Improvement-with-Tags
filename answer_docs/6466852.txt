@@ -1,0 +1,16 @@
+<p>First, collect all the keys in the inner arrays:</p>
+
+<pre><code>$keys = array_keys(
+    array_reduce($A, function ($a, $b) { return $a + $b; }, array()));
+sort($keys);
+</code></pre>
+
+<p>The print the headers, and finally iterate over the lines and, for each line, over the keys:</p>
+
+<pre><code>foreach ($A as $lineKey =&gt; $lineValue) {
+    //TODO: print $lineKey;
+    foreach ($keys as $k) {
+        //TODO: print $lineValue[$k]; or 0
+    }
+}
+</code></pre>

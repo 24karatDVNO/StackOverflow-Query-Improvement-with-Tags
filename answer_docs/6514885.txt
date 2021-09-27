@@ -1,0 +1,16 @@
+<p>I used restFB to connect to Facebook Graph API. You can download it @ <a href="http://restfb.com/" rel="nofollow">http://restfb.com/</a></p>
+
+<p>In com.restfb.types.Page source file, add the following line:</p>
+
+<pre><code>@Facebook("description")
+private String description;
+</code></pre>
+
+<p>Also write a getter for description</p>
+
+<pre><code>public String getDescription() {
+    return description;
+}
+</code></pre>
+
+<p>Compile the library and you can fetch the description automatically each time you fire a query.</p>

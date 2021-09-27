@@ -1,0 +1,18 @@
+<p>Assuming you set the handler with a simple property called onConnectionChange, you can write a new function that takes a callback instead.</p>
+
+<pre><code>// The new function, it takes a callback to let you know
+// that disconnecting is done
+pluginObject.disconnect = function (deviceKey, callback) {
+     var me = this;
+     me.onConnectionChange = function (connectionState) {
+        if (connectionState === state.disconnected) {
+             delete me.onConnectionChange;
+             callback();
+        }
+}
+
+// Now you can call
+pluginObject.disconnect(deviceKey, function() {
+    pluginObject.connectDevice(deviceKey, backingInfo);
+});
+</code></pre>

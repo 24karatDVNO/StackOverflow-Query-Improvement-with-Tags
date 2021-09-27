@@ -1,0 +1,9 @@
+<p>There are a couple of ways to do so:</p>
+
+<ol>
+<li><p>Add a field - <code>IS_UPDATED</code> - to your table to maintain some sort of a flag that defaults to FALSE. Then in your query that updates the <code>status</code> field, also set <code>IS_UPDATED</code> to TRUE. Also, in the update query, add this condition to the where clause - <code>IS_UPDATED = FALSE</code>. This will mean that the <code>status</code> column will only update if it has not already been updated.</p></li>
+<li><p>If the field <code>upl_time</code> is originally NULL or empty, and is only updated in the above query, when the <code>status</code> column is updated, I think you can as well use this column instead of adding a new one. But this is better known by you.</p></li>
+<li><p>I'm not sure what's the origin of the update query from your application. But if possible, you might also consider adding logic to your application to disable the UPDATE altogether.</p></li>
+</ol>
+
+<p>I'd prefer approach 1.</p>

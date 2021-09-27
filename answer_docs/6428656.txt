@@ -1,0 +1,3 @@
+<p>The answer is partially listed <a href="http://geekswithblogs.net/SoYouKnow/archive/2011/04/06/setting-sharepoint-drop-down-lists-w-jquery---20-items.aspx" rel="nofollow">here</a>.  Looks like the page renders the control differently if the number of items is 20 or greater.  The content organizer rule creation page does not handle this change and does not show any error when saving the information.  </p>
+
+<p>I was able to get around this limitation in the UI by adding the rules through code during my feature creation event.  A link to creating rules through code is <a href="http://msdn.microsoft.com/en-us/library/microsoft.office.recordsmanagement.recordsrepository.ecmdocumentrouterrule.aspx#CommunityContent" rel="nofollow">here</a>.</p>

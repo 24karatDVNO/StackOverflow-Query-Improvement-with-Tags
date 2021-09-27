@@ -1,0 +1,14 @@
+<p>You will be having something like this - </p>
+
+<pre><code>&lt;%= form_for @timesheet do |f| %&gt;
+
+ # Fields for @timesheet attributes.     
+ &lt;% f.fields_for 7.times.map{@timesheet.workd_day.new}.each do |t| %&gt;
+   Hour: &lt;%= t.text_field hour %&gt;
+   Days: &lt;%= t.text_field days %&gt;
+   Comments: #one more fields for block for comments.
+ &lt;% end %&gt;
+
+ &lt;%= f.sumit "Save" %&gt;
+&lt;% end %&gt;
+</code></pre>

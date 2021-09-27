@@ -1,0 +1,13 @@
+<p>Ideally those "structures" share a common parent node. If there are a lot of those, it's best practice to use event delegation. Lets assume there is a <code>&lt;div&gt;</code> with the id <code>foo</code> which contains all of those constructs:</p>
+
+<pre><code>$('#foo').delegate('div.header', 'click', function( event ) {
+    $(this).find('.content').slideToggle();
+});
+</code></pre>
+
+<p>This will bind <em>one</em> event handler to the shared parent node. If there isn't a common parent node, you would need to bind an event handler for each of your <code>.header</code> div elements:</p>
+
+<pre><code>$('.header').click(function() {
+    $(this).find('.content').slideToggle();
+});
+</code></pre>

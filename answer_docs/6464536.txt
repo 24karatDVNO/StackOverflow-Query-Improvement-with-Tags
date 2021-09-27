@@ -1,0 +1,21 @@
+<p>This problem might also be to security issue.
+If you have authentication on your website, for example</p>
+
+<pre><code>&lt;authentication mode="Forms"&gt;   
+&lt;forms loginUrl="file1.aspx" defaultUrl="file2.aspx"/&gt;
+&lt;/authentication&gt;
+&lt;authorization&gt;
+&lt;deny users="?"/&gt; 
+&lt;/authorization&gt;
+</code></pre>
+
+<p>Then you must exclude your script folder from this security settings with the following in web.config.</p>
+
+<pre><code>&lt;location path="Scripts"&gt;
+    &lt;system.web&gt;
+      &lt;authorization&gt;
+        &lt;allow users="*"/&gt;
+      &lt;/authorization&gt;
+    &lt;/system.web&gt;
+  &lt;/location&gt;
+</code></pre>

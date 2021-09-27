@@ -1,0 +1,3 @@
+<p>If I were you I would consider revising the navigational hierarchy. Modal dialogs are considered bad enough as it is, but incorporating a modal dialog <em>within a modal dialog</em> is user interface suicide. It causes confusion to the user and is very non-traditional. Is there any way you can use the first modal popup and simply exchange the content?</p>
+
+<p>A side note: You mentioned setting up the view as being a <code>UITextViewDelegate</code>. Did you the view as the delegate for the textbox? Are you returning <code>NO</code> or <code>FALSE</code> from <code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string</code>?</p>

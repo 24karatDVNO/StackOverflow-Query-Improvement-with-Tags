@@ -1,0 +1,16 @@
+<p>From the example of the urls you would be using, this should work:</p>
+
+<pre><code># http://website.com/about_us/ rewrites to /index.php?p=about_us
+RewriteRule ^([0-9a-z_-]+)/?$ index.php?p=$1 [NC,L]
+
+# http://website.com/order/12/ rewrites to /index.php?p=order&amp;course_id=12
+RewriteRule ^order/([0-9]+)/?$ index.php?p=order&amp;course_id=$1 [NC,L]
+</code></pre>
+
+<p>The second Rewrite might be:</p>
+
+<pre><code># http://website.com/order/12/ rewrites to /index.php?p=order&amp;course_id=12
+RewriteRule ^([0-9a-z_-]+)/([0-9]+)/?$ index.php?p=$1&amp;course_id=$2 [NC,L]
+</code></pre>
+
+<p>Depending on your page structure.</p>

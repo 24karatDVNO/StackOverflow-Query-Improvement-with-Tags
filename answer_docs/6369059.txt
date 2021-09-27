@@ -1,0 +1,12 @@
+<pre><code>&lt;?php
+function subanchor($url) {
+
+    return preg_replace("#&lt;a\s*[^&gt;]*href=\"(.*)\".*&gt;(.*)&lt;/a&gt;#i", "&lt;url&gt;\\1+\\2&lt;/url&gt;", $url);
+}
+
+echo subanchor($argv[1]);
+?&gt;
+
+$ php subacnchor.php  '&lt;a href="http://hello.com/"&gt;trololol&lt;/a&gt;' 
+&lt;url&gt;http://hello.com/+trololol&lt;/url&gt;
+</code></pre>

@@ -1,0 +1,26 @@
+<p>Okay, I figured it out, but it's a little hacky and restless.  Make a dummy html document, say <code>/html/home.html</code> for instance.  Call the js-function inside the dummy doc:</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"&gt;
+  &lt;title&gt;Ripping Status&lt;/title&gt;
+  &lt;script type="text/javascript"&gt;
+    domain = localStorage['domain'] || '';
+    function init() {
+      window.location=domain+'/';
+      document.getElementById( 'box' );             
+    };
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="init();"&gt;
+  &lt;div id="box"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>where 'domain' is stored as, say, <code>http://192.168.1.101</code>.  Now, call <code>/html/home.html</code> inside the main html document via</p>
+
+<pre><code>&lt;a href="/html/home.html"&gt;CLICK HERE&lt;/a&gt;
+</code></pre>
+
+<p>and it allows right click > open new tab, window, etc as you would expect. </p>

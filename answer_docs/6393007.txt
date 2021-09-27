@@ -1,0 +1,7 @@
+<p>I think that if you need to tell the user that the password expires in so many days, you should make a page that appears after the login has been completed. </p>
+
+<p>For example, if you have one page that is your login form, then after that it goes to another script that redirects to the home page on successful login. 
+Instead of immediately redirecting, you could use <code>&lt;meta http-equiv="refresh" content="5; URL=/"&gt;</code> on the page to give the user five seconds to read the page and show how many days the user has until their password expires. 
+But make sure the message is only shown after login, otherwise a hacker can read the contents of the login page to find out when their password needs changing.</p>
+
+<p>Ad@m</p>

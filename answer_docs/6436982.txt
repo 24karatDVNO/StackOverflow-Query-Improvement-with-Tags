@@ -1,0 +1,13 @@
+<p>I found the cause and a solution to my issue.
+After much investigation i found out that the button being disposed was coinciding with this chance exception happening in debug:</p>
+
+<pre><code>A first chance exception of type 'System.ObjectDisposedException' occurred in System.Drawing.dll
+A first chance exception of type 'System.ObjectDisposedException' occurred in System.Drawing.dll
+</code></pre>
+
+<p>I also found out that this chance exception can happen when the device is or thinks it's running out of memory causing the GC to run and try to clear memory.</p>
+
+<p>I used the answer to this question 
+<a href="https://stackoverflow.com/questions/282327/net-compact-framework-can-i-prevent-garbage-collector-to-stop-some-of-my-threa">Prevent Garbage Collector</a> and also added GC.KeepAlive on the form that were suffering this issue. </p>
+
+<p>The chance exception still happens in debug at the same time but i haven't been able to reproduce the issue since then.</p>

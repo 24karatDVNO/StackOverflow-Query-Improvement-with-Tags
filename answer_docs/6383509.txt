@@ -1,0 +1,11 @@
+<p>Please clone the <code>DataTable</code> first.</p>
+
+<pre><code>DataTable dt=table.Clone();
+
+foreach (DataRow row in table.Select("AirAvail_Id=0"))
+{                     
+    dtAirAvail.ImportRow(row);
+}
+</code></pre>
+
+<p>This will work fine.</p>

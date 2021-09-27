@@ -1,0 +1,18 @@
+<p>you need to iterate through all the letters inside the setInterval.</p>
+
+<pre><code>function numberScroll(){
+   setInterval(function() {
+     var n = Math.floor(Math.random() * 9);
+     document.getElementById('txt2').innerHTML = n;}
+     , 50);
+
+
+   var i=0;
+   setInterval(function() {
+     document.getElementById('txt1').innerHTML = name.charAt(i);
+     i = (i+1)%name.lenghth;
+     }
+     ,1000);
+
+}
+</code></pre>

@@ -1,0 +1,29 @@
+<p>The plugin <a href="http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-one-plugin/" rel="nofollow">does exist</a> in central repo</p>
+
+<p>Just wondering if you are running this command using maven 1.  If so, can you install maven 2/3 and try?  </p>
+
+<p><strong>Edit 1</strong>:</p>
+
+<p>Downloaded a sample Maven 1 project from <a href="http://maven.apache.org/maven-1.x/start/ten-minute-test.html" rel="nofollow">here</a>.
+Ran <code>mvn convert:one</code> using the latest maven (maven 3).
+Worked successfully</p>
+
+<pre><code>D:\work\sample-echo&gt;mvn one:convert
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-one-plugin:1.2:convert (default-cli) @ standalone-pom ---
+[INFO] Adding report org.apache.maven.plugins:maven-changes-plugin
+[INFO] There are 14 plugin relocators available
+[INFO] Writing new pom to: D:\work\sample-echo\pom.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.950s
+[INFO] Finished at: Wed Jun 22 15:01:52 IST 2011
+[INFO] Final Memory: 4M/15M
+[INFO] ------------------------------------------------------------------------
+</code></pre>

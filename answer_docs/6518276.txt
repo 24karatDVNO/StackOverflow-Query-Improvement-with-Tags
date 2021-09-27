@@ -1,0 +1,10 @@
+<pre><code>    function frDrop($arr,$frm,$dropTitle) {
+    $temp   =''
+    $temp.="&lt;select name='".$frm."' id='".$frm."'&gt;&lt;option value=''&gt;".$dropTitle."...&lt;/option&gt;";
+        foreach ($arr as $key =&gt; $value) {
+        $temp.= "&lt;option value='".$value."'&gt;".$value."&lt;/option&gt;";
+        }
+    $temp.="&lt;/select&gt;";
+    }
+echo $temp
+</code></pre>

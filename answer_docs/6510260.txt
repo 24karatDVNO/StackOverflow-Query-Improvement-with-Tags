@@ -1,0 +1,14 @@
+<pre><code>$vidIDs = array_map(getYTid(),$vids);
+</code></pre>
+
+<p>Not only are you passing the result of calling <code>getYTid()</code> to <code>array_map</code> rather than a reference to the function, but you're not passing any object context... and <code>getYTid</code> is a member function.</p>
+
+<p>Read again <a href="http://php.net/manual/en/function.array-map.php" rel="nofollow">the documentation for <code>array_map</code></a>, then try:</p>
+
+<pre><code>$vidIDs = array_map(array($youtube, "getYTid"), $vids);
+</code></pre>
+
+<p>Prior to PHP 5.3, in which object passing became by-reference by default, you'll need:</p>
+
+<pre><code>$vidIDs = array_map(array(&amp;$youtube, "getYTid"), $vids);
+</code></pre>

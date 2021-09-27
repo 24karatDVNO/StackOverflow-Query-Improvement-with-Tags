@@ -1,0 +1,19 @@
+<p>If you want to use the content of the column in <code>Page</code> table as an expression in <code>ORDER BY</code> you have to do it using prepared statements. Let say, you store in <code>OrderByMethod</code> something like "field1 DESC, field2 ASC" and you want this string to be used as it is:</p>
+
+<pre><code>SET @order_by =(SELECT OrderByMethod FROM Page WHERE id = [value]);
+SET @qr = CONCAT(your original query,' ORDER BY ', @order_by);
+PREPARE stmt FROM @qr;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+</code></pre>
+
+<p>If you want the result set to be sorted based on the value of <code>OrderByMethod</code> , you can use <code>IF</code> as it was already mentioned by others, or <code>CASE</code> :</p>
+
+<pre><code>...
+ORDER BY 
+CASE  OrderByMethod
+  WHEN 'val1' THEN field_name1
+  WHEN 'val2' THEN field_name2
+  ....etc
+END 
+</code></pre>

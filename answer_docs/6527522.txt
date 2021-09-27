@@ -1,0 +1,31 @@
+<p>If you know that you want it to be sent every time (or don't mind having it sent unnecessarily), you can make a simple edit to the <code>Uploadify.js</code> file.</p>
+
+<p>Replace this if clause (beginning line 74 in Uploadify v2.1.4) :</p>
+
+<pre><code>if (settings.scriptData) {
+    var scriptDataString = '';
+    for (var name in settings.scriptData) {
+        scriptDataString += '&amp;' + name + '=' + settings.scriptData[name];
+    }
+    data.scriptData = escape(scriptDataString.substr(1));
+}
+</code></pre>
+
+<p>with the following:</p>
+
+<pre><code>if (settings.scriptData) {
+    var scriptDataString = '';
+    for (var name in settings.scriptData) {
+        scriptDataString += '&amp;' + name + '=' + settings.scriptData[name];
+    }
+}
+scriptDataString += '&amp;elemID=' + settings.id;
+data.scriptData = escape(scriptDataString.substr(1));
+</code></pre>
+
+<p>In the backend, the element ID can be accessed like any other element of <code>scriptData</code>:</p>
+
+<pre><code>$thisInputID = $_POST["elemID"];
+</code></pre>
+
+<p>If you want to access the ID with a different name (here, it's <code>elemID</code>), just change it in the <code>scriptDataString += '&amp;elemID=' + settings.id</code> line, above.</p>

@@ -1,0 +1,4 @@
+<p>I think you have an extra <code>)</code>. Try this</p>
+
+<pre><code>SELECT id, address, name, ( 3959 * acos( cos( radians(0) ) * cos( radians( lat ) ) * cos( radians( long ) - radians(0) ) + sin( radians(0) ) * sin( radians( lat ) ) ) AS distance FROM places HAVING distance &lt; 10 ORDER BY distance LIMIT 0 , 20;
+</code></pre>

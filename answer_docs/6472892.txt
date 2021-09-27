@@ -1,0 +1,18 @@
+<p>You can use secret key of your website and particular salt of every user with your password. Your secret key of your website should be saved in your database and then fetch it and use.</p>
+
+<p>The combination becomes.</p>
+
+<pre><code>$secret = "your key from database";
+$salt = "user salt";// make it randomly
+$password = $_POST['password'];
+
+$new_pass = md5($secret.$salt.$password);
+</code></pre>
+
+<p>Now this combinations will store in database.</p>
+
+<p>At the time of login, use again this combination to match.</p>
+
+<p>I think it can help more to secure your application.</p>
+
+<p>Cheers..!!</p>

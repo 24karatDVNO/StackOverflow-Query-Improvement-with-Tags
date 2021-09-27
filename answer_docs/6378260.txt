@@ -1,0 +1,3 @@
+<p>Depending on which version of TeamCity you are using, you can either do all of these steps in multiple configurations (TC v5 or earlier) or multiple steps within a configuration (TC v6 or later). I generally favor splitting the building steps from the deployment steps. So I would have a single configuration for compiling, testing, etc of the project(s) and publish everything as artifacts. Then have different configurations (for different deployment environment, for example) to deploy, each may share similar steps and scripts.</p>
+
+<p>The benefit is you get more control over queue priority, agent loads, etc. But the trade off is that the end-to-end build process may take longer and have more moving parts.</p>

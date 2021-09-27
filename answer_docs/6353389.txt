@@ -1,0 +1,9 @@
+<p><code>git cherry-pick</code> would allow you to do that (although you'll need to select the commits to merge (and make sure you don't forget any)</p>
+
+<p>Another way is that you can <code>git revert</code> the commit(s) that changed the URL, merge to master and then put it back in your master branch.</p>
+
+<p>Yet again another way is to do <code>git commit --no-commit</code>, then change the file, <code>git add</code> it before commit.</p>
+
+<p>Another method that maybe would avoid to "forget" it is to have this kind of configuration (the URLs and such) into a separate file and add that file into the .gitignore...</p>
+
+<p>I don't think any of those are really elegant, but it would work...</p>

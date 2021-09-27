@@ -1,0 +1,11 @@
+<p>It's a bad idea to use the root user for any task. You can see it like the system-user: only the system should use it, when it needs it, to do <em>everything</em>.</p>
+
+<p>Create a new user and give it only access and priviledges to do what it <em>should</em> do. This is called the <a href="http://en.wikipedia.org/wiki/Principle_of_least_privilege" rel="nofollow">principle of least privilege</a>.</p>
+
+<p>In this case, procedures are part of what a certain user, module or part of a program should do in normal circumstances. Hence, the user you create <a href="http://dev.mysql.com/doc/refman/5.0/en/create-procedure.html" rel="nofollow">owns</a> (<code>DEFINER</code>) that procedure. You should remove the procedure from the root user and add it to your newly created user. If it's impossible to remove from the root user: then so be it! However:</p>
+
+<p>If a user want to access the procedure, <a href="http://dev.mysql.com/doc/refman/5.0/en/grant.html" rel="nofollow">give</a> (<code>GRANT</code>) them access to it. In the case the root user still owns the procedure, any other user still can be granted to <em>use</em> the procedure.</p>
+
+<p>The root user is, as I already mentioned, the system user. If you drop priviledges then any program or user using the root can't do what is expected (being the system-user capable of doing everything), and this cripples your system.</p>
+
+<p>Think about this: how would you add a new database, if you dropped the "ADD DATABASE" privilege from the root user?</p>

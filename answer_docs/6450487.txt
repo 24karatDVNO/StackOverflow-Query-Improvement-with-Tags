@@ -1,0 +1,113 @@
+<p>I have create a little class that take a real image and create the thumb of it maybe it can be usefull for you</p>
+
+<pre><code>&lt;?php
+class thumbnail
+    {
+        var $sourceFile; // We use this file to create the thumbnail
+        var $originalFilename; // We use this to get the extension of the filename
+        var $destinationDirectory; // The Directory in question
+        var $destinationDirectoryFilename; // The destination filename
+        var $failed ; 
+        var $createImageFunction = '';
+        var $outputImageFunction = '';
+
+        function generate($sourceFile = "", $originalFilename = "", $destinationDirectory = "", $destinationDirectoryFilename = "", $width = -1, $height = -1)
+        {
+      if (!empty($sourceFile))
+        $this-&gt;sourceFile = $sourceFile;
+
+      if (!empty($originalFilename))
+        $this-&gt;originalFilename = $originalFilename;
+
+      if (!empty($destinationDirectory))
+        $this-&gt;destinationDirectory = $destinationDirectory;
+
+      if (!empty($destinationDirectoryFilename))
+        $this-&gt;destinationDirectoryFilename = $destinationDirectoryFilename;
+
+      if (!empty($width))
+        $this-&gt;width = $width;
+
+      if (!empty($height))
+        $this-&gt;height = $height;
+
+      list($this-&gt;extension) = explode('.', $this-&gt;originalFilename);
+
+            switch ($this-&gt;extension)
+            {
+                case 'gif' :
+                    $createImageFunction = 'imagecreatefromgif';
+                    $outputImageFunction = 'imagegif';
+                  break;
+
+                case 'png' :
+                    $createImageFunction = 'imagecreatefrompng';
+                    $outputImageFunction = 'imagepng';
+                  break;
+
+                case 'bmp' :
+                    $createImageFunction = 'imagecreatefromwbmp';
+                    $outputImageFunction = 'imagewbmp';
+                  break;
+
+                case 'jpg': case 'jpeg':
+                    $createImageFunction = 'imagecreatefromjpeg';
+                    $outputImageFunction = 'imagejpeg';
+                  break;
+
+                default : 
+                    exit("Sorry: The format '{$this-&gt;extension}' is unsuported");
+                  break;
+            }
+
+            $this-&gt;img  = $createImageFunction($this-&gt;sourceFile);
+
+            list($this-&gt;org_width, $this-&gt;org_height) = getimagesize($this-&gt;sourceFile);
+
+            if ($this-&gt;height == -1)
+            {
+                $this-&gt;height = round($this-&gt;org_height * $this-&gt;width / $this-&gt;org_width);
+            }
+
+            if ($this-&gt;width == -1)
+            {
+                $this-&gt;width = round($this-&gt;org_width * $this-&gt;height / $this-&gt;org_height);
+            }    
+
+            $this-&gt;xoffset = 0;
+            $this-&gt;yoffset = 0;
+
+            $this-&gt;img_new = imagecreatetruecolor($this-&gt;width, $this-&gt;height); 
+
+            if ($this-&gt;img_new)
+            {
+                imagecopyresampled($this-&gt;img_new, $this-&gt;img, 0, 0, $this-&gt;xoffset, $this-&gt;yoffset, $this-&gt;width, $this-&gt;height, $this-&gt;org_width, $this-&gt;org_height);
+
+                list($this-&gt;newFilename) = explode('.', $this-&gt;destinationDirectoryFilename);
+
+                $this-&gt;fullDestination = ($this-&gt;destinationDirectory.'/'.$this-&gt;newFilename.'.'.$this-&gt;extension);
+
+                $outputImageFunction($this-&gt;img_new, $this-&gt;fullDestination);
+            }
+            else
+            {
+                $this-&gt;failed = true;
+            }
+
+            if ($this-&gt;failed == false)
+            {
+                return $this-&gt;fullDestination;
+            }
+        }
+    }
+?&gt;
+</code></pre>
+
+<p>Very easy to use.</p>
+
+<pre><code>&lt;?php 
+require_once 'thumb.class.php' ; 
+$thumb = New thumbnail;
+$thumbnail-&gt;generate($tempfile,$originalname,$destination,$width,$height) ; 
+?&gt;
+</code></pre>

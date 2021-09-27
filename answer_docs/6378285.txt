@@ -1,0 +1,19 @@
+<p>Try this:</p>
+
+<pre><code>&lt;?
+$target = '&lt;span&gt;Hocking Parade, Sorrento WA 6020&lt;/span&gt;';
+
+preg_match("/.+?,\s+([^\s]+).+?([^&lt;]+)/", $target, $matched); 
+echo '&lt;pre&gt;'; print_r($matched); echo '&lt;/pre&gt;';
+?&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>Array
+(
+    [0] =&gt; Hocking Parade, Sorrento WA 6020
+    [1] =&gt; Sorrento
+    [2] =&gt; WA 6020
+)
+</code></pre>

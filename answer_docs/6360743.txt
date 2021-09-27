@@ -1,0 +1,11 @@
+<p>Have you tried running <code>SQLiteDatabase db = dbs.getWritableDatabase();</code>outside of the AsyncTask? </p>
+
+<p>If you have never run that code before I could have something to do with your database and not the AsyncTask.</p>
+
+<p>I know I have used database inside of AsyncTask a couple of times now...</p>
+
+<p><strong>Edit:</strong> Where is dbs created/declared? I am assuming that is your SqlLiteHelper. If you declared that in your activity than it would be part of the UI thread. Try moving your declaration of dbs inside of <code>doInBackground(Object... arg0)</code>.</p>
+
+<p>If you can't move the declaration of dbs inside of <code>doInBackgroud(Object... arg0)</code> (being used other places in Activity) then make sure it is declared with <code>final</code></p>
+
+<p>I would not recommend trying to pass dbs or db as a parameter to doInBackground.</p>

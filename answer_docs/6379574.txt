@@ -1,0 +1,1 @@
+<p>Condition variables signal changes to data structures protected by mutexes. E.g. you may have a queue protected by a mutex, and when it gets empty, you want the consumer to wait on a condition variable until the queue is no longer empty. You want to atomically release the mutex and wait in that situation.</p>

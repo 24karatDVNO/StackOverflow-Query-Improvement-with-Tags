@@ -1,0 +1,5 @@
+<p>Is the strUserId a GUID value or a username?  </p>
+
+<p>If it is a GUID value, you cannot cast it but you can create a new GUID object using new GUID(strUserId).</p>
+
+<p>If it is a username, your last line mu = Membership.GetUser(strUserId) should work without the cast.</p>

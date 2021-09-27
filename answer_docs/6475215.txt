@@ -1,0 +1,3 @@
+<p>Essentially you can't (and shouldn't) do what you're trying to do. If you have code that you want to continue to execute after the user ends a session*, your code should be running in association with a Service. The code should then be writing its work to persistent storage or your Service should allow for some binding interface for the newly created Activity to connect with the Thread.</p>
+
+<p>*A session ends if a user backs our of your Activities. This is a different behavior than the user pressing the HOME key, which indicates that the user wants to resume what they were doing when they return to your application.</p>

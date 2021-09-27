@@ -1,0 +1,10 @@
+<p>Try this</p>
+
+<pre><code>      SELECT COUNT(a.user_id) 
+      FROM announce_arrival AS a       
+      INNER JOIN members as m1 ON (a.user_id = m1.mem_id)
+      INNER JOIN members as m2 ON (a.venue_id= m2.mem_id)
+      GROUP BY  a.user_id LIMIT 0,10;
+</code></pre>
+
+<p>If you are using count no need to give order by</p>

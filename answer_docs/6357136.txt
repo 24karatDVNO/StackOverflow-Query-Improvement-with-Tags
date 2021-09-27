@@ -1,0 +1,10 @@
+<p>JSP is as being a view technology designed to generate and send HTML output, not other file formats. All whitespace and newlines outside the <code>&lt;% %&gt;</code> things are <strong>also</strong> sent to the output. It may have corrupted the one and other.</p>
+
+<p>Remove all that whitespace from the JSP or, better, put all that Java code in a normal Java class. For that a <a href="https://stackoverflow.com/tags/servlets/info">Servlet</a> is perfectly suitable.</p>
+
+<p>Note that you should also be calling</p>
+
+<pre><code>response.setCharacterEncoding("UTF-8");
+</code></pre>
+
+<p>before writing any byte to the response body. It namely instructs the writer what charset to use to translate the written characters to bytes in the response body.</p>

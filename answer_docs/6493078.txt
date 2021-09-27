@@ -1,0 +1,13 @@
+<p>if you use apache library you can do it one line</p>
+
+<p>JSONSerializer.toJSON(sam);</p>
+
+<p>otherwise i think you have to send it as</p>
+
+<pre><code> Sample sam = new Sample();
+ sam.setUsername("Test");
+  JSONObject json = new JSONObject();  
+  json.put("sample", sam.getUserName());
+StringEntity se = new StringEntity(json.toString());  
+ Httppostrequest.setEntity(se);
+</code></pre>

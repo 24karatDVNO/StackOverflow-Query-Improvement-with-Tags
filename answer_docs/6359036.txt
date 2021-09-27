@@ -1,0 +1,14 @@
+<p>I think he want to know how to instantiate this class with C as SomeType:</p>
+
+<pre><code>template&lt;typename A&gt;
+class foo
+{
+    template&lt;typename B, typename C&gt;
+    foo(B b)
+    {
+        C c;
+    }
+};
+</code></pre>
+
+<p>I don't know if this is possible.</p>

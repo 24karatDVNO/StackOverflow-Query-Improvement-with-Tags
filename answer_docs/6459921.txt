@@ -1,0 +1,43 @@
+<p>My solution was to make a shared class, shared_test.rb</p>
+
+<pre><code>require 'test_helper'
+
+class SharedTest
+  def self.initialize_testing_data
+    self.reset_the_database
+
+    self.set_up_user_and_account
+    # make sure our user and account got created 
+    puts "|||||||||||||||||||||||||||||||||||||||||||||"
+    puts "| The user and account "
+    puts "| we'll be testing with:"
+    puts "|             #{@user.name}"
+    puts "|             #{@user.account.name}"
+    puts "|||||||||||||||||||||||||||||||||||||||||||||"
+  end
+
+  def self.reset_the_database
+    #clear the database and reset it
+    call_rake("db:test:prepare")
+    call_rake("db:bootstrap RAILS_ENV=test")
+  end
+
+  def self.set_up_user_and_account
+    #set up our user for doing all our tests (this person is very busy)  
+    @user = Factory(:user)
+    @account = Factory(:account)    
+    @user.account = @account
+    @user.save
+  end
+end
+</code></pre>
+
+<p>so then at the top of every test file that needs user and account to stay the same between all the tests, you just do </p>
+
+<pre><code>require 'shared_test.rb'
+</code></pre>
+
+<p>and methods are called like</p>
+
+<pre><code>SharedTest.initialize_testing_data 
+</code></pre>

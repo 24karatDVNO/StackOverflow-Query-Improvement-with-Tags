@@ -1,0 +1,23 @@
+<p>You can convert a DATETIME to a UNIX timestamp, divide by the number of seconds in the interval you want (10 minutes in the following example), and then use GROUP BY to reduce to one row per distinct value.</p>
+
+<pre><code>SELECT FLOOR(UNIX_TIMESTAMP(datetime_col)/600) AS ts, * FROM WEATHER 
+WHERE datetime_col BETWEEN ? AND ?
+GROUP BY ts
+</code></pre>
+
+<p>This isn't going to be very quick, because it has to calculate <code>ts</code> for every row, and then group by that as an unindexed column.</p>
+
+<p>Also this depends on nonstandard behavior of MySQL, which permits ambiguous GROUP BY queries.  That is, it returns some arbitrary row from the group, determined by the storage engine.  In practice, it's the first row as stored physically, but this can get confusing depending on storage engine, covering indexes, etc.</p>
+
+<p>Alternative:  You can use a user variable to count rows, and return only the first row when the interval changes.</p>
+
+<pre><code>SET @interval := 0;
+SET @row := 0;
+SELECT t.* FROM (
+SELECT (@i:=FLOOR(UNIX_TIMESTAMP(datetime_col)/600)),
+  IF(@interval&lt;&gt;@i),@row:=0,@row:=@row+1) AS row, @interval:=@i, *
+FROM WEATHER
+WHERE datetime_col BETWEEN ? AND ?
+) AS t
+WHERE t.row = 0;
+</code></pre>

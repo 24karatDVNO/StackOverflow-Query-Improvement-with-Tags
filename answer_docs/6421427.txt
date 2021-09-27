@@ -1,0 +1,6 @@
+<ol>
+<li>Build a tree representation of your files, recursively</li>
+<li>Do the search</li>
+</ol>
+
+<p>For "02" suffixes it's quite easy, you use a regex like <code>[0-9]+</code>. However what happens for other kind of suffixes or prefixes? You could implement something that calculates the <a href="http://en.wikipedia.org/wiki/Levenstein_distance" rel="nofollow">levenstein distance</a> only in some given intervals.</p>

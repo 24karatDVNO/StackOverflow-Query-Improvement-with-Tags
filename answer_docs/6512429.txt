@@ -1,0 +1,22 @@
+<p>Geokit is fairly easy to implement.  If you are just beginning to use the Google mapping API, I would recommend starting here: <a href="https://github.com/jlecour/geokit-rails3" rel="nofollow">https://github.com/jlecour/geokit-rails3</a>.</p>
+
+<p>Once you get it setup properly, you can do something like this in your controller...</p>
+
+<pre><code>@event = Event.find(params[:id])
+if @event.is_geocoded?
+  @map = GMap.new("map_div", 'map')
+  @map.control_init(:large_map =&gt; true, :map_type =&gt; false)
+  @map.center_zoom_init(@event.latlon,12)
+  @map.overlay_init(GMarker.new(@event.latlon, :title =&gt; @event.name, :info_window =&gt; @event.address_for_map_popup))
+end
+</code></pre>
+
+<p>In your view, something like this:</p>
+
+<pre><code>- if @map
+  - initialize_map
+  = @map.to_html.html_safe
+  = @map.div(:width =&gt; 478, :height =&gt; 400).html_safe
+</code></pre>
+
+<p>It is the <code>GMarker</code> that creates the map marker and <code>overlay_init</code> that overlays it on top of the map.</p>

@@ -1,0 +1,102 @@
+<p>Any reason you can't put your data in <code>JTable</code> and add the table to the scroll pane?</p>
+
+<pre><code>import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.AbstractTableModel;
+
+class ItemTableModel extends AbstractTableModel {
+
+    final String[] items;
+
+    final double[] prices;
+
+    public ItemTableModel(String[] items, double[] prices) {
+        checkNotNull(items);
+        checkNotNull(prices);
+        checkArgument(items.length == prices.length);
+        this.items = items;
+        this.prices = prices;
+    }
+
+    @Override
+    public int getRowCount() {
+        return items.length;
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 2;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        switch (columnIndex) {
+        case 0:
+            return items[rowIndex];
+        case 1:
+            return prices[rowIndex];
+        default:
+            throw new IllegalArgumentException();
+        }
+
+    }
+
+    @Override
+    public Class&lt;?&gt; getColumnClass(int columnIndex) {
+        switch (columnIndex) {
+        case 0:
+            return String.class;
+        case 1:
+            return Object.class;
+        default:
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @Override
+     public String getColumnName(int columnIndex) {
+        switch (columnIndex) {
+        case 0:
+            return "Item";
+        case 1:
+            return "Price";
+        default:
+            throw new IllegalArgumentException();
+        }       
+    }
+}
+
+public class Example {
+
+    public static void main(String[] args) {
+        Runnable createAndShowGui = new Runnable() {
+            @Override
+            public void run() {
+                createAndShowGui();
+            }
+
+        };
+        SwingUtilities.invokeLater(createAndShowGui);
+    }
+
+
+    private static void createAndShowGui() {
+        String[] items = { "fish", "frog" };
+        double[] prices = { 12, 19 };       
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        ItemTableModel tableModel = new ItemTableModel(items, prices);
+        JTable table = new JTable(tableModel);
+        //table.setTableHeader(null); // uncomment  to hide the table header
+        frame.setContentPane(new JScrollPane(table));
+        frame.pack();
+        frame.setVisible(true);
+    }   
+}
+</code></pre>

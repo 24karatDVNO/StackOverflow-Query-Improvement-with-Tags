@@ -1,0 +1,23 @@
+<p>You can try with something like this:</p>
+
+<pre><code>Imports System.Windows.Forms
+
+Public Class Form1
+Private _labels As Label()
+
+Public Sub New()
+
+    ' This call is required by the designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    InitalizeLabelArray()
+End Sub
+
+Private Sub InitalizeLabelArray()
+    _labels = New Windows.Forms.Label() {Label1, Label2, Label3}
+End Sub
+
+
+End Class
+</code></pre>

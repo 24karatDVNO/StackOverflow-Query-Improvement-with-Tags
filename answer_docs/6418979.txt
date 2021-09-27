@@ -1,0 +1,20 @@
+<p>This solution is somewhat similar to @JBernardo, though I choose to parse the lines with a regular expression. I've written it now so I may as well publish it; Might be of some use.</p>
+
+<pre><code>import re
+
+line_pattern = re.compile(
+    r"jarid: (?P&lt;jarid&gt;[a-z0-9\-]+) (?P&lt;action&gt;[a-z]+): (?P&lt;status&gt;[0-9]+) timestamp: (?P&lt;ts&gt;[0-9\:,]+)"
+)
+
+infile = open('/path/to/file.log')
+entries = (line_pattern.match(line).groupdict() for line in infile)
+events = {}
+
+for entry in entries:
+    event = events.setdefault(entry['jarid'], {})
+    event[entry['action']] = entry['ts']
+
+for jarid, event in events.iteritems():
+    ack_event = 'ack' if 'ack' in event else 'nack' if 'nack' in event else None
+    print 'jarid: %s recv: %s %s: %s' % (jarid, event.get('recv'), ack_event, event.get(ack_event))
+</code></pre>

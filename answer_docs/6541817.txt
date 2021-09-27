@@ -1,0 +1,10 @@
+<p>I would suggest not giving the splash window any taskbar button.  When your app gets activated (with event Application.Current.Activated) you can do this:
+1) Make the splash window visible
+2) Make the splash window topmost (temporarily)
+3) Wait for a short time (a few milliseconds)
+4) Make the splash window non-topmost
+This will make the splash window pop in front of all other windows on activation.</p>
+
+<p>When your app gets deactivated (with events Application.Current.Deactivated or Application.Curent.Exit), make the splash window hidden.</p>
+
+<p>I think that should give you the behavior you are looking for.</p>

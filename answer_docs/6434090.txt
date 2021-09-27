@@ -1,0 +1,28 @@
+<p>The "DataBind" method of the control has to be called in order to show anything. The following  aspx shows nothing alone</p>
+
+<pre><code>&lt;asp:DetailsView ID="dtsView" runat="server"&gt;
+            &lt;EmptyDataTemplate&gt;
+                THIS IS EMPTY
+            &lt;/EmptyDataTemplate&gt;
+        &lt;/asp:DetailsView&gt;
+</code></pre>
+
+<p>but if he add the following code through the c# end</p>
+
+<pre><code> protected void Page_Load(object sender, EventArgs e)
+    {
+        dtsView.DataSource = new DataTable();
+        dtsView.DataBind();
+    }
+</code></pre>
+
+<p>the following gets generated</p>
+
+<pre><code>&lt;table cellspacing="0" rules="all" border="1" id="dtsView" style="border-collapse:collapse;"&gt;
+    &lt;tbody&gt;&lt;tr&gt;
+        &lt;td&gt;
+                THIS IS EMPTY
+            &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+</code></pre>

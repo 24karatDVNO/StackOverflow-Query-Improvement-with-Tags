@@ -1,0 +1,12 @@
+<p>Maybe, this code can help you, too:</p>
+
+<pre><code>var obj = jQuery.ajax({
+   url: url,
+   async: false,
+   dataType: 'json'
+}).responseText;
+
+for(var yahoo in obj){
+   alert(obj[yahoo]);
+}
+</code></pre>

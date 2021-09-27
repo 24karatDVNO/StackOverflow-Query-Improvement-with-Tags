@@ -1,0 +1,24 @@
+<p>I suppose you mean you don't want to make void add() public and still you want to access it from some classes. It is nothing wrong with that and you can do it this way:</p>
+
+<pre><code>
+class A
+{
+private:
+   void DoPrivateStuf() {}
+
+   friend class B;  // now B can access A private stuf
+};
+
+class B
+{
+// can have any modifier: public, private, protected depending on your needs
+public:
+
+  void DoPrivateStufToA( A& a )
+  {
+     a.DoPrivateStuf();
+  }
+};
+
+</code>
+</pre>

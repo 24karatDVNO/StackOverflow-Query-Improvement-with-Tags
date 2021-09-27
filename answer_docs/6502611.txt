@@ -1,0 +1,29 @@
+<p>Using <code>SetStyle</code> on a Textbox will always mess up the painting, according to <a href="https://stackoverflow.com/questions/4360301/setting-background-image-on-textbox-in-c">this answer</a>.</p>
+
+<p>However ... is there any reason why you can't simply set it's <code>BorderStyle</code> to <code>None</code>?</p>
+
+<p>If you need to, you can even modify the <code>BorderStyle</code> so that it's default value is <code>None</code>, like this:</p>
+
+<pre><code>using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MyControls
+{
+  // Apply ToolboxBitmap attribute here
+  public class CustomTextBox : TextBox
+  {
+    public CustomTextBox()
+    {
+      BorderStyle = BorderStyle.None;
+    }
+
+    [DefaultValue(typeof(System.Windows.Forms.BorderStyle),"None")]
+    public new BorderStyle BorderStyle
+    {
+      get { return base.BorderStyle; }
+      set { base.BorderStyle = value; }
+    }
+  }
+}
+</code></pre>

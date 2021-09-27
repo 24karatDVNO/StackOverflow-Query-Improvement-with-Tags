@@ -1,0 +1,11 @@
+<p>Instead of validating in the <code>keyup</code> event, try using the <code>keydown</code> event as the character is not yet added to the input field when the event is fired.</p>
+
+<p>You can do something like this...</p>
+
+<pre><code>$elem.keydown(function (e) {
+    if (isDisallowed(e.which)) {
+        e.preventDefault();
+        $('#errorMsg').text('That key is not allowed').delay(2000).fadeOut();
+    }
+});
+</code></pre>

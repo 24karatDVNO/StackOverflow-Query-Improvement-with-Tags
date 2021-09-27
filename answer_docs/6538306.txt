@@ -1,0 +1,19 @@
+<p>I think you need to return an array of key-value pairs to make this work.  Look @ <a href="https://stackoverflow.com/questions/6444515/rails-based-simple-ajax-calculation-fxn-seems-harder-than-it-should-be/6445166#6445166">my answer</a> to to another recent question.</p>
+
+<p>I'll add the relevant model code not contained in that answer here (note: Rails 3.0):</p>
+
+<pre><code>def self.search(search = nil)
+  if search
+    where('name LIKE ?', "%#{search}%") | tagged_with("%#{search}%")
+  else
+    scoped
+  end
+end
+
+def self.autocomplete(search)
+  results = search(search)
+  results.map! { |result| {:value =&gt; result.name} }
+end
+</code></pre>
+
+<p>Hope this helps.</p>

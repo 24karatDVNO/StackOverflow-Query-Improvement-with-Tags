@@ -1,0 +1,14 @@
+<p>java.sql.DatabaseMetaData interface exposes meta information about the database.  Specifically this method exposes foreign key relationships:</p>
+
+<pre><code>public ResultSet getCrossReference(String primaryCatalog,
+                                   String primarySchema,
+                                   String primaryTable,
+                                   String foreignCatalog,
+                                   String foreignSchema,
+                                   String foreignTable)
+                            throws SQLException
+</code></pre>
+
+<p>Java doc:</p>
+
+<p>Retrieves a description of the foreign key columns in the given foreign key table that reference the primary key columns of the given primary key table (describe how one table imports another's key). This should normally return a single foreign key/primary key pair because most tables import a foreign key from a table only once.</p>

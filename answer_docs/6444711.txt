@@ -1,0 +1,2 @@
+<p>It's much faster to use a large buffer, because the drive will then be able to read eg. an entire cylinder at once, instead of reading a sector, then waiting for the next request to read another. Also, there's a lot of overhead involved in each request, like getting access to the bus and setting the dma controller.
+Just take to don't use so much memory that you'll need to swap data out to the disk, which will slow things down a lot.</p>

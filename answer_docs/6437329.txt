@@ -1,0 +1,5 @@
+<p>I don't believe there is a way to do this.</p>
+
+<p>It seems like you might be going a bit overboard with optimization here: does it really make a noticeable difference to your application to make 2 separate queries? I think your time might be better spent looking for <a href="https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem">N+1 select</a> queries elsewhere in your application instead.</p>
+
+<p>If the cost of one extra query <strong>is</strong> in fact significant then you probably have an issue with the database server or the connection to it.</p>

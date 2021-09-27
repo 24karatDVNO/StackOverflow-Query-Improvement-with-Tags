@@ -1,0 +1,11 @@
+<p>I found a way (sort of):</p>
+
+<ol>
+<li>draw something using Inkscape, save as svg</li>
+<li>open the svg file, find the
+definition of the shape (something
+like <code>M10 10L90 90</code>)</li>
+<li>use that in the
+    js framework Raphaël :
+    <code>paper.path("M10 10L90 90");</code></li>
+</ol>

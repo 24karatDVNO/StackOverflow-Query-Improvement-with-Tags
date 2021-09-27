@@ -1,0 +1,15 @@
+<p>You can check your code with assertions to see what's wrong.</p>
+
+<pre><code>using System.Diagnostics;
+
+private void button1_Click(object sender, EventArgs e)
+{
+    Debug.Assert(Alligor &gt; 0.0);
+    Debug.Assert(AlligorInput &gt; 0.0);
+
+    costofAlligor = Alligor * AlligorInput;
+
+    Debug.Assert(costofAlligor &gt; 0.0);
+    ...
+}
+</code></pre>

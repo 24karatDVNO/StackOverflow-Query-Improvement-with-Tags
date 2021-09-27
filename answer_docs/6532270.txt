@@ -1,0 +1,8 @@
+<p>Hi I'm not sure if it can be achieved through scopes in ruby it may be sth like </p>
+
+<pre><code>   shipments = Shipments.all( :include =&gt; :manifests )
+   empty_shipments = shipments.select { |item| item.manifests.blank? }
+   non_empty_shipments = shipments - empty_shipments
+   non_empty_shipments.delete_if {|item| (item.t_start..item.t_end).cover? Time.now}
+   empty_shipments &amp; non_empty_shipments
+</code></pre>

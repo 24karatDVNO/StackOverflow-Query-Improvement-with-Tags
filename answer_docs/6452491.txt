@@ -1,0 +1,40 @@
+<p>Your JSON contains the filename. Assuming you know the path of the images, form the url and do as Shailendra suggested, example:</p>
+
+<pre><code>URL url = new URL(imgBaseUrl + ss.getString("foto"));
+URLConnection connection = url.openConnection();
+FlushedInputStream fis = new FlushedInputStream(connection.getInputStream());
+ByteArrayBuffer baf = new ByteArrayBuffer(100);
+int current = 0;  
+while((current = fis.read()) != -1){  
+    baf.append((byte)current);  
+}
+fis.close();
+holder.resim.setImageBitmap(BitmapFactory.decodeByteArray(baf, 0, baf.length()));
+</code></pre>
+
+<p>Be sure to use FlushedInputStream as seen at <a href="http://code.google.com/p/android/issues/detail?id=6066" rel="nofollow">http://code.google.com/p/android/issues/detail?id=6066</a></p>
+
+<pre><code>static class FlushedInputStream extends FilterInputStream {
+    public FlushedInputStream(InputStream inputStream) {
+    super(inputStream);
+    }
+
+    @Override
+    public long skip(long n) throws IOException {
+        long totalBytesSkipped = 0L;
+        while (totalBytesSkipped &lt; n) {
+            long bytesSkipped = in.skip(n - totalBytesSkipped);
+            if (bytesSkipped == 0L) {
+                  int bite = read();
+                  if (bite &lt; 0) {
+                      break;  // we reached EOF
+                  } else {
+                      bytesSkipped = 1; // we read one byte
+                  }
+           }
+           totalBytesSkipped += bytesSkipped;
+        }
+        return totalBytesSkipped;
+    }
+}
+</code></pre>

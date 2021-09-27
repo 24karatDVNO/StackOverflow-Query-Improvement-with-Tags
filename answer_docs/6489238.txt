@@ -1,0 +1,6 @@
+<p>To add to Turbo's answer.</p>
+
+<p>There is no check-sum for a sector of data (usually 512 bytes), visible to the File system. Having said this, you can verify the integrity <em>not by checking the check-sum for yourself</em> but by issuing SCSI_VERIFY command that will verify the sector for any defects and report error.</p>
+
+<p>FYI,
+Windows Format command issues SCSI_VERIFY to check data integrity before writing the Boot sector.</p>

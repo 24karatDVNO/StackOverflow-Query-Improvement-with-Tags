@@ -1,0 +1,27 @@
+<p>Using IE9 and native c++ BHO (ATL), I've no problems getting the onQuit event
+My BHO derives from IDispEventImpl, and in the SINK_MAP I specify the DISPID_ONQUIT event:</p>
+
+<pre><code>class ATL_NO_VTABLE CMyBho
+    :public CComObjectRootEx&lt;CComSingleThreadModel&gt;
+    ...
+    ,IObjectWithSiteImpl&lt;CMyBho&gt;
+    ,IDispEventImpl&lt;1, CMyBho, &amp;DIID_DWebBrowserEvents2, &amp;LIBID_SHDocVw, 1, 1&gt;
+{
+    ...
+    BEGIN_SINK_MAP(CMyBho)
+        SINK_ENTRY_EX( 1, DIID_DWebBrowserEvents2, DISPID_ONQUIT, onQuit )
+    END_SINK_MAP()
+    ...
+    STDMETHODCALLTYPE onQuit( );
+    ...
+    STDMETHOD(SetSite)(IUnknown* unkSite) {
+        CComQIPtr&lt;IServiceProvider&gt; ifServiceProvider(unkSite);
+        CComPtr&lt;IWebBrowser2&gt; ifBrz2;
+        ifServiceProvider-&gt;QueryService( SID_SWebBrowserAPP, IID_IWebBrowser2,
+                                         (void**)&amp;ifBrz2 );
+        this-&gt;DispEventAdvise( ifBrz2 );
+    }
+}
+</code></pre>
+
+<p>Saying all that, I know this is native code (vs. C#) and this is IE9 - but maybe it will give you a hint what needs to be done on your C# implementation. Sent me a note or comment if you want the full source code or need more help.</p>

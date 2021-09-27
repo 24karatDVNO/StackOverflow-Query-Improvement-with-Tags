@@ -1,0 +1,7 @@
+<p>When you kill your client application, the operating system closes all its open IO handles.  When a TCP connection is closed this way, it sends a FIN to its peer.  In this regard, having your client killed is indistinguishable from having it exit gracefully.</p>
+
+<p>Once a TCP connection is established, there is no notion of "client" and "server"; it's a simple, bi-directional communication channel.  The result, from a network/sockets point of view, is the same regardless of which side gets aborted.</p>
+
+<p>If you're seeing differences in behavior, then it's in the programming of the two applications.  A blocking <code>recv()</code> call should return with the number of bytes that were available when the connection closed, or possibly -1 for an error.</p>
+
+<p>I suggest using <code>strace &lt;client program and args&gt;</code> on your process to see exactly what's occurring with that system call.</p>

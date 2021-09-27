@@ -1,0 +1,39 @@
+<p>In My case It works Fine for Autoscroling along with one Timer object</p>
+
+<pre><code>timer=new Timer();
+scroll.setSmoothScrollingEnabled(true);
+scroll.pageScroll(ScrollView.FOCUS_DOWN);
+scroll.smoothScrollTo(0, text.getBaseline());
+x=text.getBaseline();
+Toast.makeText(scoruby.this,"number"+x++, Toast.LENGTH_SHORT).show();
+
+timer.schedule(new TimerTask() {
+
+@Override
+public void run() {
+    TimerMethod();
+
+
+}
+}, 0,1000);
+}
+private void TimerMethod()
+{
+//This method is called directly by the timer
+//and runs in the same thread as the timer.
+
+//We call the method that will work with the UI
+//through the runOnUiThread method.
+this.runOnUiThread(Timer_Tick);
+}
+
+private Runnable Timer_Tick = new Runnable() {
+public void run() {
+    x+=5;
+    scroll.smoothScrollTo(0, x++);  
+
+
+
+}
+};
+</code></pre>

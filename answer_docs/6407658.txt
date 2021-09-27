@@ -1,0 +1,15 @@
+<p>Everything is an object. There is no need to worry about "pointers" in Python.</p>
+
+<pre><code>foo = []
+
+def bar(val):
+  val.append(42)
+
+def baz(val):
+  val.append('Hello, world!')
+
+bar(foo)
+print foo
+baz(foo)
+print foo
+</code></pre>

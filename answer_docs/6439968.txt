@@ -1,0 +1,19 @@
+<p>I think you are searching for the "Dialog" box thereby you can show Alert message, confirmation message, etc. to the user.</p>
+
+<p>For more info, refer this: <a href="http://developer.android.com/reference/android/app/Dialog.html" rel="nofollow">http://developer.android.com/reference/android/app/Dialog.html</a> ,</p>
+
+<p>Here a good example on Alert Dialog box: <a href="http://www.androidpeople.com/android-alertdialog-example/" rel="nofollow">http://www.androidpeople.com/android-alertdialog-example/</a> .</p>
+
+<p>From your commented code:</p>
+
+<pre><code>AlertDialog.Builder alt_bld = new AlertDialog.Builder(this).create();     
+alt_bld.setMessage("apprika target achieve...");
+alt_bld.setCancelable(false);
+alt_bld.setPositiveButton("yes", new OnClickListener() { public void onClick(DialogInterface dialog, int which) { // TODO Auto-generated method stub } });
+alt_bld.setNegativeButton("No", new OnClickListener() { public void onClick(DialogInterface dialog, int which) { // TODO Auto-generated method stub dialog.cancel(); } }); 
+alert.show();
+</code></pre>
+
+<p>put that code in in any method any just call by passing the parameter. at the running thread or in the activity.</p>
+
+<p>try this.</p>

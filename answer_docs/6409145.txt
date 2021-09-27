@@ -1,0 +1,15 @@
+<p>I have found that when a non facebook user accesses the page you can check the persons [<em>age</em>] from the signedRequest (this information does not need permission as far as I've tested) and it will have both a <strong>max</strong> and <strong>min</strong> property. </p>
+
+<p>A logged in facebook user will only have a <strong>min</strong> property as that is their actual age. I believe this information is given in order to deliver content restricted by age limits.</p>
+
+<p>A logged in facebook user who then gives access permissions to connect with your app will have a user id so you can detect that seperately too.</p>
+
+<p>This gives 3 user states by taking information from the signed request:</p>
+
+<ul>
+<li><em><strong>Anonymous</em></strong>: Has max and min age properties </li>
+<li><em><strong>Facebook User</em></strong>: Has only a min age property</li>
+<li><em><strong>Facebook User</strong> (who gave permission)</em>: Has a user id</li>
+</ul>
+
+<p>Remember that facebook could revoke this functionality at any time and I've really only tested this a little. Good luck.</p>

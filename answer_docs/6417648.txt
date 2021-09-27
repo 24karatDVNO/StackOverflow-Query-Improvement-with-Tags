@@ -1,0 +1,18 @@
+<p>The <a href="https://www.owasp.org/index.php/Top_Ten" rel="nofollow">OWASP Top Ten</a> represents a broad consensus about what the most critical web application security flaws are and the best practices in defending against them. It recommends using <a href="https://www.owasp.org/index.php/ESAPI#tab=Home" rel="nofollow">OWASP's ESAPI Project</a> to build your defenses against XSS. This ESAPI project has created an encoding library which comes in a variety of languages including Java, .NET, PHP, Classic ASP, Cold Fusion, Python, and Haskell. It has tools for encoding untrusted data for the context that you're dealing with:</p>
+
+<pre><code>encodeForHTML
+encodeForHTMLAttribute
+encodeForJavaScript
+encodeForCSS
+encodeForURL
+</code></pre>
+
+<p>It also has a validator which validates for the context the input belongs to:</p>
+
+<p><code>
+boolean isValidURL = ESAPI.validator().isValidInput("URLContext", userURL, "URL", 255, false);
+</code></p>
+
+<p>Some organisations using ESAPI include American Express, Apache Foundation, Booz Allen Hamilton, Aspect Security, Foundstone(McAfee), The Hartford, Infinite Campus, Lockheed Martin, MITRE, U.S. Navy - SPAWAR, The World Bank, SANS Institute.</p>
+
+<p>I also recommend giving their <a href="https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet" rel="nofollow">XSS Prevention Cheat Sheet</a> a read which describes the best practices in building your defenses against XSS (it essentially boils down to that you MUST use the escape syntax for the part of the HTML document you’re putting untrusted data into).</p>

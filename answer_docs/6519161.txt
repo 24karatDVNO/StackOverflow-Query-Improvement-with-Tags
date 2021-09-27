@@ -1,0 +1,28 @@
+<p>The answer depends on your platform. In a web application you can bind the <code>Application_Error</code> event in Global Asax. In WCF you can inject an error handler of type <a href="http://msdn.microsoft.com/en-us/library/system.servicemodel.dispatcher.ierrorhandler.aspx" rel="nofollow" title="IErrorHandler"><code>System.ServiceModel.Dispatcher.IErrorHandler</code></a> into the WCF stack, in forms applications you can bind the <a href="http://richnewman.wordpress.com/2007/04/08/top-level-exception-handling-in-windows-forms-applications-part-1/" rel="nofollow" title="ThreadException event"><code>ThreadException</code></a> event. </p>
+
+<p>Using it may imho be a good idea in some situations since you prevent showing exception details to the user, but also indicates a certain slobbyness regarding exception handling. I have used WCF error handlers to convert domain exceptions to http status code which is simple. Whether it is a good practice or not I do not know. For asp.net applications it is also worth looking at <a href="http://code.google.com/p/elmah/" rel="nofollow" title="Elmah"><code>elmah</code></a> available via <code>NuGet</code>.</p>
+
+<p>It is also possible to write a simple exception handler that allows you to repeat the try/catch blocks by sending reoutines as <code>Func</code> or <code>Action</code> like this </p>
+
+<pre><code>    var eh = new ExceptionHandler();
+
+    eh.Process ( () =&gt; throw new SillyException());
+</code></pre>
+
+<p>with class <code>ExceptionHandler</code> </p>
+
+<pre><code>    class ExceptionHandler 
+    { 
+        public T Process(Func&lt;T&gt; func()) 
+        {
+           try { return func(); }
+           catch(Exception ex) { // Do stuff }
+        }
+
+        public void Process(Action a) 
+        { 
+            try { action() }
+            catch(Exception ex) { // Do stuff }
+        }
+    }
+</code></pre>

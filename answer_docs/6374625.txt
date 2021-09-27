@@ -1,0 +1,13 @@
+<p>I am assuming your variable $line['data'] does not return a primitive value, i.e. an int or a string.</p>
+
+<p>Here is how i would build the array.</p>
+
+<pre><code>while ($line = $row-&gt;fetch_assoc()){    
+    $hc[] = $line['data'];
+    $hc[] = intval($line['value']);
+    $user[] = $hc;
+    unset($hc);
+}
+
+print_r($user);
+</code></pre>

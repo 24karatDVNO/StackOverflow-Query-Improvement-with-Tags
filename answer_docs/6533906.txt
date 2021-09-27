@@ -1,0 +1,12 @@
+<p>Try using the <code>Collections.sort</code> method for your case:</p>
+
+<pre><code>Collections.sort(myList, new Comparator&lt;String&gt;(){
+
+    @Override
+    public int compare(String s1, String s2) {
+          // perform the comparison here and returns a negative integer,
+          // zero, or a positive integer as the first argument is less than,
+          // equal to, or greater than the second 
+    }
+    });
+</code></pre>

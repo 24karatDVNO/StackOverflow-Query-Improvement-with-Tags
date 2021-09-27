@@ -1,0 +1,4 @@
+<p>if (senderLabel.text = [tempMsg objectForKey:@"sender"]) is not correct.  You need to use isEqual in your comparison.  </p>
+
+<pre><code>if ([senderLabel.text isEqual:[tempMsg objectForKey:@"sender"]])
+</code></pre>

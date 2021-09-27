@@ -1,0 +1,14 @@
+<p>In order to access XML elements in Android you need to do something like the following:</p>
+
+<pre><code>Button submitButton = (Button) myActivity.getViewById(R.id.btnSubmit);
+</code></pre>
+
+<p>Then you can call things like submitButton.setVisibility(View.HIDDEN) to hide it, or whatever else you need to do with it.</p>
+
+<p>This should work for any layout elements.</p>
+
+<p>Make sure you do this in your onActivityStart method, or else you will throw runtime exceptions.</p>
+
+<p>There isn't any way to automatically "convert" an XML layout file to a class, unless you're using an XML parsing algorithm of some sort, which sounds like way more than you're trying to do.</p>
+
+<p>Hope this helped!</p>

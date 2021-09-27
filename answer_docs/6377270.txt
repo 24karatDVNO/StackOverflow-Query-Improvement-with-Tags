@@ -1,0 +1,26 @@
+<pre><code>DECLARE @HTML NVarChar(2000) = '
+  &lt;HTML&gt;
+    &lt;BODY&gt;
+      &lt;DIV STYLE="text-align:Left;font-family:Tahoma;font-style:normal;font-weight:normal;font-size:11;color:#000000;"&gt;
+      &lt;DIV&gt;
+      &lt;DIV&gt;
+        &lt;P&gt;&lt;SPAN&gt;This is my text to display.&lt;/SPAN&gt;&lt;/P&gt;
+      &lt;/DIV&gt;
+      &lt;/DIV&gt;
+      &lt;/DIV&gt;
+    &lt;/BODY&gt;
+  &lt;/HTML&gt;';
+DECLARE @X XML = @HTML;
+
+WITH T AS (
+  SELECT C.value('.', 'VarChar(1000)') StyleAttribute
+  FROM @X.nodes('//@STYLE') D(C)
+)
+SELECT *
+FROM T
+WHERE T.StyleAttribute LIKE '%font-size:%';
+</code></pre>
+
+<p>From here I'd use a CLR function to split the <code>StyleAttribute</code> column on <code>;</code>. Then look for the piece(s) that begin with <code>font-size:</code> and split again on <code>:</code>. <code>TryParse</code> the second element of that result and if it isn't 10, replace it. You'd then build up your string to get the value that <code>StyleAttribute</code> should have. From there you can do a <code>REPLACE</code> looking for the original value (from the table above) and substituting the output of the CLR function.</p>
+
+<p>Nasty problem...good luck.</p>

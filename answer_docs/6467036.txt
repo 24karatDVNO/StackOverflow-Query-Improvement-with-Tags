@@ -1,0 +1,1 @@
+<p>The step #1 of the PKCS#10 standard talks about an octet string as the result of the <code>certificationRequestInfo</code> element encoding and does not refer to an ASN.1 type. The request signature is computed on this DER-encoding and therefore the <em>to-be-signed</em> object is an ASN.1 <code>SEQUENCE</code> and not an <code>OCTET STRING</code>. </p>

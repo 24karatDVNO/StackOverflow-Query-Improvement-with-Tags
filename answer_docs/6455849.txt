@@ -1,0 +1,9 @@
+<p>Maybe I'm wrong, but your counter variable will always be 1, since it's been initialized just before the increment operation.</p>
+
+<p>Move its initialization like that:</p>
+
+<pre><code>public class First {
+    int counter = 0;
+</code></pre>
+
+<p>and let counter = counter + 1 stay where it is now</p>

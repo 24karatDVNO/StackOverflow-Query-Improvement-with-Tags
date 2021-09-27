@@ -1,0 +1,15 @@
+<p>According to ios api, the method "startVideoCapture" gives a boolean return value</p>
+
+<p><strong>Yes</strong> means it is recording</p>
+
+<p><strong>No</strong> means one of the followings:</p>
+
+<ol>
+<li>Movie capture is already in progress</li>
+<li>The device does not support movie</li>
+<li>capture The device is out of disk space</li>
+</ol>
+
+<p>[Reference: http://developer.apple.com/library/ios/#documentation/uikit/reference/UIImagePickerController_Class/UIImagePickerController/UIImagePickerController.html]</p>
+
+<p>So as long as 'startRecording' is returning a Yes, you can almost certainly say it is recording.  Of course, to check that, you can always manually define your own call back with NSTimer (although previously there was abit of a hot debate bout its accuracy.)</p>

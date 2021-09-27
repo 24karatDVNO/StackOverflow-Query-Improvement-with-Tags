@@ -1,0 +1,9 @@
+<p>I think the problem is in:</p>
+
+<pre><code>cmd.CommandText = "select FoodName, Price from tablename where FoodID = '" + txtId + "' ";
+</code></pre>
+
+<p>You need to use the .Text Propertie of the Textbox</p>
+
+<pre><code>cmd.CommandText = "select FoodName, Price from tablename where FoodID = '" + txtId.Text + "' ";
+</code></pre>

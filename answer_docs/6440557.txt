@@ -1,0 +1,5 @@
+<p>You might want to think about refactoring your code to use <a href="http://msdn.microsoft.com/en-us/library/system.web.httpcontextbase.aspx" rel="nofollow">HttpContextBase</a> instead of relying directly on the concrete type.</p>
+
+<p>By doing so you could simply create a stub object that provides the behavior you want. Eventually implementing your own <a href="http://msdn.microsoft.com/en-us/library/system.web.httpbrowsercapabilitiesbase.aspx" rel="nofollow">HttpBrowserCapabilitiesBase</a> object.</p>
+
+<p>You would then have full control to use your mock types during unit testing. Indeed that is what they were created for.</p>

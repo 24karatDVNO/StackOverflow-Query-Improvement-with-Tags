@@ -1,0 +1,23 @@
+<p>Posting your ShowWeight class will help us more.
+Assuming that you have class like this.</p>
+
+<pre><code>public class ShowWeight extends LinearLayout {
+
+    private Object myObject; 
+    public ShowWeight(Context context, AttributeSet attrs)
+    {
+        super(context, attrs);
+        LayoutInflater.from(context).inflate(R.layout.header, this);
+    }
+    public Object getMyObject()
+    {
+        return myObject;
+    }    
+}
+</code></pre>
+
+<p>and in you MainActivity.java</p>
+
+<pre><code>ShowWeight sw=(ShowWeight)this.findViewById(R.id.sw);
+sw.getMyObject();
+</code></pre>

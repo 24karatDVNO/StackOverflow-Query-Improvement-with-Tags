@@ -1,0 +1,15 @@
+<p>You're returning three datasets. If "r" is a DataReader (unclear from your question) then you need to call;</p>
+
+<p>r.NextResult</p>
+
+<p>between your lines of code, like this;</p>
+
+<pre><code>While r.Read()                    
+    Dim o_email As String = CStr(r("email"))      
+    r.NextResult()              
+    Dim o_first_name As String = CStr(r("first_name"))  
+    r.NextResult()                  
+    Dim o_last_name As String = CStr(r("last_name"))
+</code></pre>
+
+<p>One other possible explanation (again, unclear) is that you messed up your first column name ("email"), this would also give an out of range exception.</p>

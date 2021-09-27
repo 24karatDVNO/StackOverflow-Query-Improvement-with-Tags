@@ -1,0 +1,20 @@
+<p>the following worked for me based on Coding Freaks's answer.</p>
+
+<pre><code>$(".sliderBlock").hide();
+
+       $('img.slider').toggle(
+       function()
+       {
+
+          $(".sliderBlock").animate({width:400}, 'slow',function()    {$('.contactBtnBtn img').attr("src", "images/closeTab.png");$('.sliderBlockForm').show();});
+
+
+       },
+       function()
+       {    
+            $('.sliderBlockForm').hide();
+
+          $(".sliderBlock").animate({width:0}, 'slow',function() {$('.contactBtnBtn img').attr("src", "images/contact_us.png");});
+
+       });
+</code></pre>

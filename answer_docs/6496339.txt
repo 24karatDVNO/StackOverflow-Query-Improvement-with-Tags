@@ -1,0 +1,2 @@
+<p>I never tried this my self, but i do not think duplicating the standard file
+descriptors will work. I believe your spawned process need to acquire a new controlling terminal. <a href="http://linux.die.net/man/4/tty_ioctl" rel="nofollow">This</a> API will probably help you.</p>

@@ -1,0 +1,10 @@
+<pre><code>try this code
+
+locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);      
+    locationManager.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            1,
+            0,
+            myLocationListener
+    );
+</code></pre>

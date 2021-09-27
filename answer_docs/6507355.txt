@@ -1,0 +1,30 @@
+<p>This is part of the code I used for generating with JasperPrint; and sending the file back to a browser response. This using JDBC though, not EJBQL. But the JasperReports part of the code is the same.</p>
+
+<pre><code>             FileResolver fileResolver = new FileResolver() {
+                                            @Override
+                                            public File resolveFile(String fileName) {
+                                               return new File(getServletContext().getRealPath("/") + fileName);
+                                            }
+                                         };
+
+             Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
+             parameters.put("REPORT_FILE_RESOLVER", fileResolver);
+
+             ...... // blah blah
+
+             JasperPrint jrprint = JasperFillManager.fillReport(input, parameters,  conn);
+
+             byte[] reportBytes;
+
+             jrprint.setName("MyFile." + fileFormat);
+
+             response.setContentType("APPLICATION/OCTET-STREAM");
+             String disHeader = "Attachment;Filename=\"MyFile.";
+
+             ServletOutputStream os = response.getOutputStream();
+
+                response.setHeader("Content-Disposition", disHeader);
+
+                reportBytes = JasperExportManager.exportReportToPdf(jrprint);
+                os.write(reportBytes);
+</code></pre>

@@ -1,0 +1,7 @@
+<p>This should get you started in the right direction, it will find all products where the <code>Category</code> element is either <code>Book</code> or <code>Paper</code></p>
+
+<pre><code>List&lt;string&gt; categories = new List&lt;string() {"Book", "Paper"};
+XDocument doc = XDocument.Parse("Your xml string");
+var products = doc.Descendants("Product")
+               .Where(el =&gt; categories.Contains(el.Element("Category").Value));
+</code></pre>

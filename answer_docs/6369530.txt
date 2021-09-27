@@ -1,0 +1,9 @@
+<pre><code>$('.status').change(function() {
+    var v = $('.status:checked').val(); // get chosen value
+    $('#Insurance_type option').hide(); // first hide all
+    $('#Insurance_type option:contains("' + v + '")').show(); // Show only those that contain value
+    $('#Insurance_type option:visible:first').attr('selected', true); // myst select a non-hidden value!
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/Jm4gF/" rel="nofollow">Working example</a></p>

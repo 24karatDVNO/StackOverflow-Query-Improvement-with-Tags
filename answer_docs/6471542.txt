@@ -1,0 +1,19 @@
+<p>Figured out the issue with the help of a colleague.
+As it turns out, the Template won't take a string value as an object, so you need to parse it as a JSON object:</p>
+
+<pre><code>var arr = dataz.Result.toString();
+
+var obj = $.parseJSON(arr);
+</code></pre>
+
+<p>However, one thing to note, the way I did this was slightly incorrect and the <code>$.parseJSON</code> method would throw an exception due to "malformed" json.</p>
+
+<p>What I have above:</p>
+
+<pre><code>[{Name: "user", Administrator: "yes" ... }, {Name: "user2", ...}] 
+</code></pre>
+
+<p>won't work, it needs to be:</p>
+
+<pre><code>[{"Name": "user", "Administrator": "yes" ...}, {"Name": "user2", ...}]
+</code></pre>

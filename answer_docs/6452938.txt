@@ -1,0 +1,3 @@
+<p>It would not be a problem to use full object, cause fields would not be initialized, if they are not present at entire json. </p>
+
+<p>Also you can create own <a href="http://en.wikipedia.org/wiki/Data_transfer_object" rel="nofollow">DTO</a> class, e.g. <code>SomeActionLibraryDTO</code>. Extract required fields from Library, and use <code>@JsonIgnoreProperties(ignoreUnknown = true)</code> annotation for class to ignore the rest of json object (I suppose you are using the default json jackson marshaller, right?) </p>

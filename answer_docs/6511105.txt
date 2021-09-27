@@ -1,0 +1,28 @@
+<p>You could check to see if the Agent implements the interface before your Node creates the Agent. </p>
+
+<pre><code>public class CheckForInterface
+{
+    public static void main(String[] args) throws ClassNotFoundException
+    {
+        Class cl = (Class)Class.forName("TestImpl");
+        Class[] itfs = cl.getInterfaces();
+
+        for(Class c : itfs)
+        {
+            System.out.println(c);
+        }
+    }
+}
+
+import java.io.Serializable;
+
+public class TestImpl implements Serializable
+{
+    public TestImpl()
+    {
+
+    }
+}
+</code></pre>
+
+<p>This outputs: interface java.io.Serializable</p>

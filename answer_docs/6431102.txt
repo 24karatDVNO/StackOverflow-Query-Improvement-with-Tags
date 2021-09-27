@@ -1,0 +1,1 @@
+<p>I don't see why not.  You would need to do it programmatically though.   My first thought is to create an activity with a runnable.  In your onCreate, lock the orientation that you want and kick off the runnable thread.   In the runnable thread, wait 5 seconds and then unlock the orientation.</p>

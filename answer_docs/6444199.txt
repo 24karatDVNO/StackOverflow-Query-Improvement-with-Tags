@@ -1,0 +1,12 @@
+<p>After some more tests I found out the reason for the 2 SELECTS:</p>
+
+<ol>
+<li>for accessing user through <code>params[:id]</code> in the edit action</li>
+<li>for accessing current_user (for authorization) through <code>session[:user_id]</code></li>
+</ol>
+
+<p>The former is executed with a string, whereas the latter is executed with an integer. I understand that for the simple cache that comes with Rails as default, the queries have to be exactly the same, so this explains the dual SELECT.</p>
+
+<p>However, following Rails logic, I would now have to read the current user from the session with <code>session[:user_id].to_s</code>, which seems cumbersome to me.</p>
+
+<p>As a result, I might have to switch to a more intelligent cache. Thanks for all your support and comments.</p>

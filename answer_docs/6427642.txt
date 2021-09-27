@@ -1,0 +1,17 @@
+<p>Your HTML looks fine to me. I wouldn't personally use all those <code>div</code>s but I also don't know your exact requirements.</p>
+
+<p>Some people consider a a form to be a list and will code it as:</p>
+
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;
+     &lt;label ... /&gt;
+     &lt;input ... /&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>I don't do it this way and it depends on how you wish to describe your data.</p>
+
+<p>Untimately your main consideration is how you want to describe the data you're marking up. What is the most semantic way and how does that fit in with how you want to style the data. Usually there's a middle ground if you've considered both things well.</p>
+
+<p>I would also consider grouping your form fields logically using a <code>&lt;fieldset&gt;</code>. This will give you something extea to hook into with your CSS also.</p>

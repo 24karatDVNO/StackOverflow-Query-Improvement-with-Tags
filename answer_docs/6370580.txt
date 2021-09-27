@@ -1,0 +1,14 @@
+<p>You could use <code>outer apply</code> to find the <code>top 1</code> row matching your conditions:</p>
+
+<pre><code>select  *
+from    tblUserRepeatHistory u
+outer apply
+        (
+        select  top 1 *
+        from    tblUserQuestionnaireHistory r
+        on      r.userId = u.UserId
+                and r.programmeId = u.programmeId
+                and r.success = 1
+                and r.stepId = 9
+        ) as r
+</code></pre>

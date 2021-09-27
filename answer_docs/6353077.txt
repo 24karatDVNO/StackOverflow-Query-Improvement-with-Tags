@@ -1,0 +1,17 @@
+<p>I'd recommend doing away with the out parameter.. Check if you need both return values. Especially if your return value is an error codes. Use exceptions over error code as it simplifies client code</p>
+
+<pre><code>string realReturnValue;
+if(!MyMethod(out realReturnValue)
+{
+  //handle error
+}
+</code></pre>
+
+<p>vs</p>
+
+<pre><code>var realReturnValue = MyMethod()
+</code></pre>
+
+<p>If you must have them, create a type that wraps [Result, OutputValue]. Define Equals on this type. </p>
+
+<p><code>Assert.AreEqual(new ReturnType(true, "10"), valueReturnedByMethodCall)</code></p>

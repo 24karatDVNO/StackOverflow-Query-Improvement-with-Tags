@@ -1,0 +1,34 @@
+<p>Ok, after playing with it for quite some time, I finally got it working the way I want it.  I am using certain keys within the $new_menu_buttons to decide on what to do.  e.g.:  position tells me if it is after or before, parent tells me where to search for the key at, and slug gives me the key to use for each new menu array that gets added.  <code>array_splice</code> isn't working for me, so I'm using the <code>array_merge</code> approach instead which works just great.  Here it is for anyone else who gets stuck with this problem.</p>
+
+<pre><code>function array_insert_buttons($buttons, $new_menu_buttons)
+{
+    foreach($new_menu_buttons as $new)
+    {
+        $keys = array_keys($buttons);
+        $position = (int)array_search($new['parent'], $keys);
+
+        if ($new['position'] == 'after')
+            $position = $position + 1;
+
+        // Create the new array in the correct format, using the slug!
+        $new_button = array();
+        $new_button[$new['slug']] = $new;
+
+        // Don't need these keys anymore.
+        unset($new_button[$new['slug']]['position']);
+        unset($new_button[$new['slug']]['parent']);
+        unset($new_button[$new['slug']]['slug']);
+
+        // Putting it all together now.
+        $buttons = array_merge(
+            array_slice($buttons, 0, $position),
+            $new_button,
+            array_slice($buttons, $position)
+        );
+    }
+
+    return $buttons;
+}
+</code></pre>
+
+<p>Thanks for your help guys :)</p>

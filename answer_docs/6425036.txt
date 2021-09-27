@@ -1,0 +1,3 @@
+<p>You get the error because the functions are compiled twice (each time the header is included), and so the linker, which combines all the object files into the final executable, sees multiple definitions of the functions.</p>
+
+<p>Like Armen wrote, one solution is to make the functions inline. This way the code for the functions is always copied whenever they are used. This is a feasible solution here because the functions are so small that the code won't get very bloated. If you have any larger functions in a header file or you need to organize your code better, you should take the code from the header file and put in in a cpp file (like in sehe's answer).</p>

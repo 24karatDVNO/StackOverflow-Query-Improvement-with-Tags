@@ -1,0 +1,19 @@
+<p>There is a workaround, but it is merely a "dirty hack", you should seriously reconsider accepting new data entries while offline, especially when dealing with unique IDs to be inserted in many tables.</p>
+
+<p>Say you have an "orders" table and another "orderDetails" table in your local dataset:</p>
+
+<p>1- add a tmpID of type integer in your "orders" table to temporarily identify each unique order.</p>
+
+<p>2- use the tmpID of your newly created order in the rest of the process (say for adding products to the current order in the orderDetails table)</p>
+
+<p>--> once you are connected to the server, in a single transaction do the following</p>
+
+<p>1- insert the first order in the "orders" table</p>
+
+<p>2- get its uniqueID generated on your SQL server</p>
+
+<p>3- search for each line in "orderDetails" that have a tmpID of currentOrder.tmpID and insert them in the "orderDetails" table on your server</p>
+
+<p>4- commit the transaction and continue to the following row.</p>
+
+<p>Keep in mind that this is very bad coding and that it can get real dirty and hard to maintain.</p>

@@ -1,0 +1,10 @@
+<p>There are a couple of things going on in your code: </p>
+
+<ol>
+<li><p>You should probably use a CSS reset like this one: <a href="http://developer.yahoo.com/yui/3/cssreset/" rel="nofollow">http://developer.yahoo.com/yui/3/cssreset/</a> . This will reset all browsers to use the same CSS settings fox box model (padding/margin/etc) to a standard value. Each browser can default these differently - even between versions of browser.</p></li>
+<li><p>Why are you using CSS expressions and in-line CSS? You could achieve the same with Javascript and it's more cross-browser compliant. Your inline CSS will also be difficult to override since it's in the style attribute of the tag. </p>
+
+<ul>
+<li>#1 should solve your problem. #2 is just best practices.</li>
+</ul></li>
+</ol>

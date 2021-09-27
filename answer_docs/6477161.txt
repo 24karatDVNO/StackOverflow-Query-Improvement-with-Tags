@@ -1,0 +1,34 @@
+<p>My final code. This takes the standard IBeam cursor (that one when you hover over a textview) and stores the colored cursor in the <code>coloredIBeamCursor</code> pointer.</p>
+
+<pre><code>- (void)setPointerColor:(NSColor *)newColor {
+    // create the new cursor image
+    [[NSGraphicsContext currentContext] CIContext];
+    // create the layer with the same color as the text
+    CIFilter *backgroundGenerator=[CIFilter filterWithName:@"CIConstantColorGenerator"];
+    CIColor *color=[[[CIColor alloc] initWithColor:newColor] autorelease];
+    [backgroundGenerator setValue:color forKey:@"inputColor"];
+    CIImage *backgroundImage=[backgroundGenerator valueForKey:@"outputImage"];
+    // create the cursor image
+    CIImage *cursor=[CIImage imageWithData:[[[NSCursor IBeamCursor] image] TIFFRepresentation]];
+    CIFilter *filter=[CIFilter filterWithName:@"CIColorInvert"];
+    [filter setValue:cursor forKey:@"inputImage"];
+    CIImage *outputImage=[filter valueForKey:@"outputImage"];
+    // apply a multiply filter
+    filter=[CIFilter filterWithName:@"CIMultiplyCompositing"];
+    [filter setValue:backgroundImage forKey:@"inputImage"];
+    [filter setValue:outputImage forKey:@"inputBackgroundImage"];
+    outputImage=[filter valueForKey:@"outputImage"];
+    // get the NSImage from the CIImage
+    NSCIImageRep *rep=[NSCIImageRep imageRepWithCIImage:outputImage];
+    NSImage *newImage=[[[NSImage alloc] initWithSize:[outputImage extent].size] autorelease];
+    [newImage addRepresentation:rep];
+    // remove the old cursor (if any)
+    if (coloredIBeamCursor!=nil) {
+        [self removeCursorRect:[self visibleRect] cursor:coloredIBeamCursor];
+        [coloredIBeamCursor release];
+    }
+    // set the new cursor
+    NSCursor *coloredIBeamCursor=[[NSCursor alloc] initWithImage:newImage hotSpot:[[NSCursor IBeamCursor] hotSpot]];
+    [self resetCursorRects];
+}
+</code></pre>

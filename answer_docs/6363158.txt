@@ -1,0 +1,8 @@
+<p>There are basically two options:</p>
+
+<ul>
+<li>JPA and JAXB annotations on the same classes (see <a href="http://confluence.highsource.org/display/HJ3/Home" rel="nofollow">Hyperjaxb3</a> or <a href="http://www.datanucleus.org/" rel="nofollow">DataNucleus</a>)</li>
+<li>Or you keepm the separated and write code to map one onto another</li>
+</ul>
+
+<p>I personally do not see much added value in the cross-model mapping code. Usage of factories also does not seem too innovative, it is just a question of programming technique which you use to map one onto another.</p>

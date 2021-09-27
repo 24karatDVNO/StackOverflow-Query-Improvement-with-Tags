@@ -1,0 +1,25 @@
+<p>First, let's get rid of a misunderstanding. You wrote:</p>
+
+<blockquote>
+  <p><em>"This is working fine when the pdf crop box is the same as the media box, but if the crop box is smaller than the media box, only the media box is displayed and the border of the pdf page is lost."</em></p>
+</blockquote>
+
+<p>That's not correct. If the CropBox is smaller than the MediaBox, then only the CropBox should be displayed (not the MediaBox). And that is exactly how it was designed to work. This is the whole idea behind the CropBox concept...</p>
+
+<hr>
+
+<p>At the moment I cannot think of a solution that works automatically for each PDF and all possibly values that can be there (unless you want to use payware).</p>
+
+<p>To manually process the PDF you linked to:</p>
+
+<ol>
+<li>Open the PDF in a good text editor (one that doesn't mess with existing EOL conventions, and doesn't complain about binary parts in the file).</li>
+<li>Search for all spots in the file that contain the <code>/CropBox</code> keyword.</li>
+<li>Since you have only one page in the PDF, it should find only one spot.</li>
+<li>This could read like <code>/CropBox [12.3456 78.9012 345.67 890.123456]</code>.</li>
+<li>Now edit this part, carefully avoiding to add to (or lose from) the number of already existing characters:</li>
+<li>Set the value to your wanted one: <code>/CropBox [0.00000 0.00000 667.00 908.000000]</code>. (You can use spaces instead of my <code>.0000..</code> parts, but if I do, the SO editor will eat them and you'll not see what I originally typed...)</li>
+<li>Save the file under a new name.</li>
+<li>A PDF viewer should now show the full MediaBox (as of your specification).</li>
+<li>When you convert the new file with Ghostscript to PNG, the bigger page will be visible.</li>
+</ol>

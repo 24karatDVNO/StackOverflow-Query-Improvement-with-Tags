@@ -1,0 +1,9 @@
+<p>Why not check to see if the button already exists before adding it?</p>
+
+<pre><code> if ($('#functionspager :has(".ui-icon-plus")').length == 0) {
+     $("#functionslist").jqGrid('navGrid', '#functionspager', { edit: false, add: false, del: false, search: false, refresh: false })
+         .navButtonAdd('#functionspager', {
+            ...
+          });
+ }
+</code></pre>

@@ -1,0 +1,20 @@
+<p>You say that your "License" text is appearing in top of source files. For this, you can store your old license in a file and your new license in another file. Then run the following bash script.</p>
+
+<pre><code>dir=/home/priyank/temp/*.c #for all c files in the temp directory
+for f in $dir
+do
+    filename=$f
+    temp="$filename""__temp"
+    cat new.txt &gt; $temp #new.txt is new license
+    v=`cat old.txt | wc -l`; #old.txt is old license
+    awk '
+    NR&gt;'$v'{
+    print $0 &gt;&gt; "'$temp'";
+    }
+    ' $filename
+    rm $filename
+    mv $temp $filename
+done
+</code></pre>
+
+<p>Run this as <code>bash script.sh</code>. Also, <strong>please save your original files</strong> somewhere before trying this script. It works fast. I took <a href="http://www.ideone.com/d3JUG" rel="nofollow">this</a> as the files, and it worked perfectly. Remember not to add any extra new lines in old license file.</p>

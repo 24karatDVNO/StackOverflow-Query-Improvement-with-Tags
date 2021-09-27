@@ -1,0 +1,15 @@
+<blockquote>
+  <p>I also want bar.foo_id and bar.foobar_id to be unique, but will run into problems if I delete foo.foo_id.</p>
+</blockquote>
+
+<p>You can have unique keys without them being the primary key.  You can also have composite unique keys or primary keys.  You can create as many indexes as you would like of any variety except primary.</p>
+
+<p>You won't run into problems as far as SQL is concerned but you may with people/code that already uses those tables.</p>
+
+<blockquote>
+  <p>And if I do that, how do I relate foo and bar?</p>
+</blockquote>
+
+<p>It looks like you already have foobar_id in bar - you can make that a foreign key of foobar_id in foo.</p>
+
+<p>If that doesn't work than you may need to keep foo_id in both just for the relationship.  That's a big part of what ids are for.  FYI, if the id is an int it's taking up very minimal space, barely enough to worry about.</p>

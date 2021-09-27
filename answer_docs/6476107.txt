@@ -1,0 +1,9 @@
+<p>Logically, you may not simplify the process. </p>
+
+<p>You could put name validation in a function so as to make the top-level code easier to follow, but you must do these validations somewhere. And particularly so in the case where the user has typed <code>$yourName</code>, as might be true in your example.</p>
+
+<p>Consider an analog to this requirement: that you must check for an error return from every function you call. It's no different here.</p>
+
+<p>You really have no choice: if you fail to check for errors from any function, you have placed a time bomb in your program. The same is true here: you must validate function inputs.</p>
+
+<p>It's dismaying to find that argument validation takes as much code as does the core operation of the function. But that's the way it is. There is just no way around it.</p>

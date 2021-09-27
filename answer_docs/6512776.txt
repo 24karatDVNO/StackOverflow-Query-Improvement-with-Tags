@@ -1,0 +1,16 @@
+<pre><code>$('#inputId').focus(function(){
+    var newValue = $(this).val();
+    if ($(this).val() == ""){
+        $(this).css("background-image", "none");
+    }else{
+        $(this).val(newValue);
+    }
+}).blur(function(){
+    var newValue = $(this).val();
+    if ($(this).val() == ""){
+        $(this).css("background-image", "url(/images/phonebg.png)");
+    }else{
+        $(this).val(newValue);
+    }
+});
+</code></pre>

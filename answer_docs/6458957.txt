@@ -1,0 +1,19 @@
+<pre><code>function validate(formName)
+{
+    var form = document.forms[formName];
+
+    //validate, and do stuff
+
+    //remove items that you want with a call like this
+    form.removeChild(document.getElementById(id));
+
+    form.submit();
+}
+</code></pre>
+
+<p>If this is for validation, you should really be doing validation server side, not client side.</p>
+
+<p>You would call this function like so:</p>
+
+<pre><code>&lt;input type=BUTTON onClick="validate('myForm')"/&gt;
+</code></pre>

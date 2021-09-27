@@ -1,0 +1,12 @@
+<p>When you are logged in as root check if <code>rvm_path</code> is set:</p>
+
+<pre><code>echo $rvm_path
+</code></pre>
+
+<p>If it is, then:</p>
+
+<pre><code>export rvm_path=
+rm /etc/rvmrc
+</code></pre>
+
+<p>This should be enough.</p>

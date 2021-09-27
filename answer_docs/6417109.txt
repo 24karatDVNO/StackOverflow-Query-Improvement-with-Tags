@@ -1,0 +1,7 @@
+<p>Unfortunately, <strong>there's no magic number</strong> for that. The circles detection depend a lot on the parameters you pass to <code>cvHoughCircles()</code>, and they are sensitive to the size of the coin  which changes according to the proximity of the camera.</p>
+
+<p>Check this answer for example: <a href="https://stackoverflow.com/questions/6416117/simple-object-detection-using-opencv-and-machine-learning/6416361#6416361">Simple object detection using OpenCV and machine learning</a></p>
+
+<p>That example works wonders for that specific size of coins. But if it was being capture by a camera and we moved it, the size of the coins would change and the application wouldn't be able to provide such accurate results anymore.</p>
+
+<p>What I'm saying is you need to <strong>work with a fixed distance</strong> between your camera and the coins for this approach to work. Find an appropriate distance that suits you and then tweak the parameters of the functions until you are satisfied.</p>

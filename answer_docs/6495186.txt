@@ -1,0 +1,6 @@
+<p>datenwolf's answer has the right idea, but as written it isn't quite correct.  Let P denote the 3x3 upper triangular submatrix of the model-view-projection matrix you are using to draw the cube.  Then the third row of P (call it v for the sake argument) represents your view direction, unnormalized.  Now to check if a face is pointing toward the camera assuming outward pointing unit normals, you would simply check if the dot product of its normal with v is &lt; 0 (not maximized).  This follows from the fact that:</p>
+
+<pre><code> dot(a, b) = |a| |b| cos(theta)
+</code></pre>
+
+<p>Where the theta is the angle between them.  This can only be negative if they are pointing in opposite directions, which is the necessary and sufficient condition for a face to be pointing toward the camera, assuming it is physically positioned in front of the camera.</p>

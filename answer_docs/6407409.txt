@@ -1,0 +1,20 @@
+<p>I had the same problem which I could solve only by implementing a custom template loader. Here is the working code:</p>
+
+<pre><code>protected void init() throws Exception {
+    freemarkerConfig = new Configuration();
+    freemarkerConfig.setObjectWrapper(ObjectWrapper.DEFAULT_WRAPPER);
+    freemarkerConfig.setTemplateLoader(new CacheAgnosticTemplateLoader(new DefaultResourceLoader(), pdfTemplatePath));
+}
+
+protected static class CacheAgnosticTemplateLoader extends SpringTemplateLoader {
+    public CacheAgnosticTemplateLoader(ResourceLoader resourceLoader, String templateLoaderPath) {
+        super(resourceLoader, templateLoaderPath);
+    }
+
+    @Override
+    public long getLastModified(Object templateSource) {
+        // disabling template caching
+        return new Date().getTime();
+    }
+}
+</code></pre>

@@ -1,0 +1,4 @@
+<p>1, Use appropriate types. Your mode is much better off as en enumeration instead as an int.<br>
+2, Your conduit between the threads, Q, isn't actually shared since it is not declared static.<br>
+You would have problems anyway since linkedlist isn't synchronized.<br>
+Synchronizing <code>produce()</code> and <code>consume()</code>makes no difference.</p>

@@ -1,0 +1,20 @@
+<p>I'm not 100% sure I understand what you mean, but if you want to "pop" the new data above the old posts, you could try something like this:</p>
+
+<p>HTML:</p>
+
+<pre><code>...
+&lt;div id="new"&gt;&lt;/div&gt;
+&lt;div id="old"&gt;&lt;/div&gt;
+...
+</code></pre>
+
+<p>JavaScript:</p>
+
+<pre><code>function loadNewData(url) {
+  // prepend contents of 'new' div to 'old' div contents
+  $('#old').prepend($('#new').html());
+
+  // reload 'new' div with fresh data from 'url'
+  $('#new').load(url).hide().fadeIn(3000);
+}
+</code></pre>

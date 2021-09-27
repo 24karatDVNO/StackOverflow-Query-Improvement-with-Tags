@@ -1,0 +1,3 @@
+<p>Depending on how exactly the execution halts on the proc.ExitCode line, it may be the process isn't finished by the time the ExitCode property is accessed, and then it will throw a InvalidOperationException. </p>
+
+<p>In that case you could check if the process has already exited with proc.HasExited before trying to access the ExitCode property</p>

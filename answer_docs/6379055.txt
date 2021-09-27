@@ -1,0 +1,14 @@
+<p>This works with EMFs pasted from Excel:</p>
+
+<pre><code>  Dim oSh as Shape
+  Set oSh = ActiveWindow.Selection.ShapeRange(1)
+  ' Note:  ShapeRange(1), not just ShapeRange
+  '  That's the problem with your second example
+
+  With oSh
+     .CropLeft = 10
+     ' etc
+  End With
+</code></pre>
+
+<p>The fact that it's yelling about an activex object in the first example makes me wonder whether the first shape is really an EMF, which would not be an ActiveX object.</p>

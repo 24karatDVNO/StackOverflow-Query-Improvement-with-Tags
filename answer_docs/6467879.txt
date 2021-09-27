@@ -1,0 +1,14 @@
+<p>The last time I had to code something similar :</p>
+
+<pre><code>context.Response.Clear();
+context.Response.ContentType = attachmentEntity.AttachmentType;
+context.Response.AppendHeader("Content-Disposition", "attachment; filename=\"" + attachmentEntity.Name + "\"");
+context.Response.BinaryWrite(attachmentEntity.AttachmentFile);
+context.Response.End();
+</code></pre>
+
+<p>and it works with FF... 
+maybe the <code>.Flush()</code> is closing the stream a little too earlier... </p>
+
+<p>One other thing I noticed : I use a piece of code to tell what is the ContentType.. and for Msword, I get <code>application/unknown</code>
+but seems to work fine anyway..</p>

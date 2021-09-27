@@ -1,0 +1,5 @@
+<p>A meaningful line (although not the simplest to evaluate) can be found via Gaussian Processes.  You set (or infer) the lengthscale over which you wish the line to vary (i.e. the smoothness of the line) and then the GP line is the most probable line through the data given the lengthscale.  You can add noise to the model if you don't mind the line not passing through the data points.  </p>
+
+<p>Its a nice interpolation method because you can also obtain the standard deviation of your line.  The line becomes more uncertain when you don't have much data in the vacinity.</p>
+
+<p>You can read about them in chapter 45 of David MacKay's <code>Information Theory, Inference, and Learning Algorithms</code> - which you can download from the author's website <a href="http://www.inference.phy.cam.ac.uk/mackay/itila/book.html" rel="nofollow">here</a>.</p>

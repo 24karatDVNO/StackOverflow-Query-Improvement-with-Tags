@@ -1,0 +1,8 @@
+<pre><code>SELECT
+  a.id,
+  a.name
+FROM
+jobs a
+INNER JOIN logs b ON  b.job_id = a.id AND b.event = 'initialized' AND b.event = 'failed'
+GROUP BY a.id
+</code></pre>

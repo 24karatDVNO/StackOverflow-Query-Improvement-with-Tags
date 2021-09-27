@@ -1,0 +1,12 @@
+<p>In PHP, headers need to be sent before any HTML is displayed. Probably the easiest way to do that is to submit a form:</p>
+
+<pre><code>&lt;?php
+// Since this is before the DOCTYPE, you can still send headers.
+if (isset($_POST['foo'])) {
+    header('location: new-url.html');
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;!-- rest of the page goes here --&gt;
+</code></pre>

@@ -1,0 +1,35 @@
+<p>The easiest way is to pass the instance of the main form to the class consuming the Quartz.NET event, so that the consuming class can then call methods on the main form. I'm guessing that class would be created in the main form somewhere anyway, so it would be something like:</p>
+
+<pre><code>var quartzConsumer = new QuartzConsumer(this);
+
+...
+class QuartzConsumer {
+    MainForm _form;
+    public QuartzConsumer(MainForm form) {
+        _form = form;
+        ...
+    }
+    void OnTimer(..) {
+        _form.UpdateGrid();
+    }
+}
+</code></pre>
+
+<p>EDIT as @hundryMind says, another solution is for the main form to subscribe to an event on the consuming class:</p>
+
+<pre><code>class QuartzConsumer {
+    public delegate void DataChangedEventHandler();
+    public event DataChangedEventHandler DataChanged;
+    void OnTimer(..) {
+        if (this.DataChanged != null) this.DataChanged();
+    }
+}
+
+// in MainForm:
+var quartzConsumer = new QuartzConsumer(..);
+quartzConsumer.DataChanged += this.OnDataChanged;
+...
+void OnDataChanged() {
+    // update the grid
+}
+</code></pre>

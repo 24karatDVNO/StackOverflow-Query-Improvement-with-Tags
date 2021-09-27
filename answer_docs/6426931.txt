@@ -1,0 +1,5 @@
+<p>Although there's no standard concept of "hidden" tableViewCells, cells deleted by the user are reported in tableView:commitEditingStyle:forRowAtIndexPath: </p>
+
+<p>But let me also add that you seem to be tracking "hasChosen" in cellForRowAtIndexPath . This method only means that the cell is about to appear on screen, not that it's been chosen.  "Chosen" occurs when your delegate is called with tableView:didSelectRowAtIndexPath:</p>
+
+<p>Edit: ah, maybe by "hidden", you mean that it's gone off-screen.  No, I don't believe there is such a call, (although you could cheat a bit and look at any dequeued cells you get, as those are cells that were formerly on-screen and are now available).</p>

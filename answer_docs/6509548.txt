@@ -1,0 +1,6 @@
+<p>I propose rather than a hard-coded list of GUIDs that these should rather be in a table somewhere, then you can use a SQL syntax as follows:</p>
+
+<pre><code>SELECT MyTable.ColumnA ...
+WHERE MyTable.GUID NOT IN
+(SELECT InvalidGUID FROM InvalidGUIDs)
+</code></pre>

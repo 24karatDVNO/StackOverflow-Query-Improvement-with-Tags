@@ -1,0 +1,16 @@
+<p>First, make sure that you have the HoptoadNotifier source somewhere in your rails app directory. So, let's assume within your directory you have this:</p>
+
+<pre><code>/railsapp/vendor/plugins/hoptoad_notifier/lib
+</code></pre>
+
+<p>which would be where the HoptoadNotifier source is stored.</p>
+
+<p>Then run the following commands:</p>
+
+<pre><code>cd /railsapp
+ctags -R --tag-relative=yes
+</code></pre>
+
+<p>That will create a file within railsapp/ called tags and will contain the tag info of the HoptoadNotifier module.</p>
+
+<p>I know that appears to be more or less what you have already done, so I can only assume that the HoptoadNotifier source isn't within your directory structure, because I recreated this on my machine and it worked perfectly. You can also run ctags with a "-V" to spit out all the debug info and what it's doing.</p>

@@ -1,0 +1,9 @@
+<p>My personal strategy is to start with a reset stylesheet (I use <a href="http://meyerweb.com/eric/tools/css/reset/" rel="nofollow"><strong>Eric Meyer's</strong></a> as well), to reset default styles by browsers.</p>
+
+<p>To solve issues with particular versions of IE, I use <a href="http://en.wikipedia.org/wiki/Conditional_comment" rel="nofollow"><strong>conditional comments</strong></a> instead of CSS hacks, so that my styles for CSS are more likely to work in IE, if IE fixes CSS hacks.</p>
+
+<p>Using a CSS framework such as <a href="http://www.blueprintcss.org/" rel="nofollow"><strong>Blueprint</strong></a> can provide basic styles that you can override with your own styles, and provides a basis for your styles so you don't have to duplicate some basic styles. It also provides good compatibility with IE's CSS quirks by using conditional comments as well.</p>
+
+<p>It's usually best to test in a variety of standards-compliant browsers, and then apply CSS fixes to IE. Usually, to give pseudo-CSS3 styles to IE, you need to investigate IE's <a href="http://msdn.microsoft.com/en-us/library/ms532847%28v=vs.85%29.aspx" rel="nofollow"><strong><code>filter</code></strong></a>, a non-standard way of applying styles. Microsoft's MSDN documentation is fairly comprehensive on this note. Be wary&mdash;anti-aliasing may disappear when you use <code>filter</code> styles on an element.</p>
+
+<p>If you need support with IE for new HTML5 tags, such as <code>&lt;section&gt;</code> and <code>&lt;header&gt;</code>, use an <a href="http://code.google.com/p/html5shim/" rel="nofollow"><strong>html5shim</strong></a>.</p>

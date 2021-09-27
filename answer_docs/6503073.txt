@@ -1,0 +1,13 @@
+<p>As Marc has suggested in a comment, this quite painful to manage in SQL (as far as I can see). I'd suggest caching the processed value in another column, and then index that.</p>
+
+<pre><code>SELECT a.name_words AS name, ...
+</code></pre>
+
+<p>Combining each of your name values and then getting the distinct words is a separate matter - but that really depends on what language you have at hand. Regular expressions should be of some help though - here's a quick attempt in Ruby:</p>
+
+<pre><code>[name, name2, name3, name4].join(' ').split(/\b/).reject { |word|
+  word.blank?
+}.collect { |word|
+  word.downcase
+}.uniq
+</code></pre>

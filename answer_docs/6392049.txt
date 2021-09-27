@@ -1,0 +1,9 @@
+<p>"C2DM makes no guarantees about delivery or the order of messages. So, for example, while you might use this feature to tell an instant messaging application that the user has new messages, you probably would not use it to pass the actual messages."</p>
+
+<p>But you can try to play with 2 parameters:</p>
+
+<p>collapse_key<br>
+An arbitrary string that is used to collapse a group of like messages when the device is offline, so that only the last message gets sent to the client. This is intended to avoid sending too many messages to the phone when it comes back online. Note that since there is no guarantee of the order in which messages get sent, the "last" message may not actually be the last message sent by the application server. Required.</p>
+
+<p>delay_while_idle<br>
+If included, indicates that the message should not be sent immediately if the device is idle. The server will wait for the device to become active, and then only the last message for each collapse_key value will be sent. Optional.</p>

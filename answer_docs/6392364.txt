@@ -1,0 +1,9 @@
+<p>PHP's <a href="http://us3.php.net/manual/en/ref.pcre.php" rel="nofollow" title="regex documentation">regular expression</a> documentation is pretty good at explaining this stuff...</p>
+
+<pre><code>&lt;?php
+$str = "11/06/05 11:29:38 TORM ... H{3} ITEMIX{5} TELL{``marble: initiator SCSI ID now 7 } File={ /var/adm/messages } - MsgRec 5174:406``} USE{TELL} ATTACHMENT{} UserParms{}   AnswerWait{`10`} BaudRate{`1200`} C... eviceId{``} TellExact{`NO`}";
+$pat = '/TELL{(``.*``)}/';
+preg_match($pat,$str,$matches);
+print_r($matches);
+?&gt;
+</code></pre>

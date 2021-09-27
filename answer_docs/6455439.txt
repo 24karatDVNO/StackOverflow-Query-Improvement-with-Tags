@@ -1,0 +1,25 @@
+<p>assuming that the content only consists of &lt;h3>s and &lt;p>s,and they are welled formated like:</p>
+
+<pre><code>&lt;div id="content"&gt;
+   &lt;h3&gt;title&lt;/h3&gt;
+    &lt;p&gt;..........&lt;/p&gt;
+    &lt;p&gt;..........&lt;/p&gt;
+   &lt;h3&gt;another title&lt;/h3&gt;
+    &lt;p&gt;.........&lt;/p&gt;
+   &lt;h3&gt;yet another title&lt;/h3&gt;
+    &lt;p&gt;..........&lt;/p&gt;
+ &lt;/div&gt;
+</code></pre>
+
+<p>then you may try this in jQuery.</p>
+
+<pre><code>  //get the main post content
+  $content=$("#content");
+  $h3s=$content.find('h3');
+  $h3s.each(function(index){
+       if(index==0)$(this).before('&lt;div class="wrapper"&gt;');           
+       else $(this).before('&lt;/div&gt;&lt;div class="wrapper"&gt;');
+  });
+  //remeber to close the last one
+  $content.append('&lt;/div&gt;');
+</code></pre>

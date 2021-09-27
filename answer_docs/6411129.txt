@@ -1,0 +1,12 @@
+<p>change this </p>
+
+<pre><code>object_width = jQuery('.apps_advert').width(); 
+</code></pre>
+
+<p>to this</p>
+
+<pre><code>object_width = jQuery('.app_advert').width(); 
+</code></pre>
+
+<p>your div has <code>app_advert</code> class but in your code you have writen <code>apps_advert</code>, and this class doesn't exist.
+This is the reason why you are getting <strong>null</strong></p>

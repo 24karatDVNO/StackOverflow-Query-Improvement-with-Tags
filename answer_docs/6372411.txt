@@ -1,0 +1,26 @@
+<p>So I found a lot of sample code that used MethodInfo and reflection and things like that, but I couldn't get any of it to work - these Datarows have a Field method but it requires that you add an (of object) argument before the field name argument and that's tricky to do.</p>
+
+<p>So I'm not sure if this solution is the most efficient way, but at least it works.  I'd be interested in finding out whether this way of doing it is efficient and why or why not.  It seemed like most people used reflection to do this kind of thing, but I couldn't get that working properly and anyway what I'm trying to do is pretty simple while those methods were pretty complex.  I suppose I'm doing Linq with a SQL mindset, but anyway it works.</p>
+
+<pre><code> Dim f As Func(Of DataRow, DataRow, String, Boolean) = Function(d1 As DataRow, d2 As DataRow, s As String)
+                                                                  Dim fields = Split(s, ",")
+                                                                  Dim results As Boolean = True
+                                                              For k As Integer = 0 To UBound(fields)
+                                                                  Dim obj = DataRowExtensions.Field(Of Object)(d1, fields(k))
+                                                                  Dim obj2 = DataRowExtensions.Field(Of Object)(d2, fields(k))
+                                                                  If obj &lt;&gt; obj2 Then results = False : Exit For
+                                                              Next
+                                                              Return results
+                                                          End Function
+ Dim new_records = _
+        From new_recs In dt2.AsEnumerable.AsQueryable()
+        Where Not ( _
+            From old_recs In dt1.AsEnumerable.AsQueryable Where f(old_recs, new_recs, id_key)).Any
+         Select new_recs
+
+    Try
+        Return new_records.CopyToDataTable
+    Catch ex As Exception
+        Stop
+    End Try
+</code></pre>

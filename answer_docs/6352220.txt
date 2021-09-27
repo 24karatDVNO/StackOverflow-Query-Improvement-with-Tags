@@ -1,0 +1,5 @@
+<p>The segfault is likely coming from the Operating System level telling you that you've busted the stack. This being said, the reason why you busted your stack is from the multiple invocations of SplFixedArray() that you invoked from the nesting of your loops. This is the reason why, like you mentioned, in small 3d arrays, it'll get busted as well.</p>
+
+<p>That being said, try not to have such nestings if possible. This is equivalent to having an infinite recursion. Not to mention that PHP's underlying mechanism is still C.</p>
+
+<p>Hope it helps! Cheers!</p>

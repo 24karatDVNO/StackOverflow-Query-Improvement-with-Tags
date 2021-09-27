@@ -1,0 +1,10 @@
+<p>Yeah, "Location" response header tell you the actual image URL.</p>
+
+<p>However, if you use the picture as the user's profile image on your site, I recommend you to use "https://graph.facebook.com/:user_id/picture" style URL instead of actual image URL.
+Otherwise, your users will see lots of "not found" images, or outdated profile images in the future.</p>
+
+<p>You just put "https://graph.facebook.com/:user_id/picture" as the "src" attribute of "img" tag.
+They browser gets the updated image of the user.</p>
+
+<p>ps.
+I have such troubles on my site with Twitter &amp; Yahoo! OpenID now..</p>

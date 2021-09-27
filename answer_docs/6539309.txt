@@ -1,0 +1,1 @@
+<p>If you make the <code>Titles</code> constructor <code>internal</code> you will be able to create instances of it within your assembly only. If it is an API, perhaps that will be protected enough? You can see this pattern within the BCL (such as <code>HttpWebRequest</code> that can be created only through calls to <code>WebRequest.Create</code>).</p>

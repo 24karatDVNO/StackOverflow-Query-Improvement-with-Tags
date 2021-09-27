@@ -1,0 +1,18 @@
+<p>This is not complicated (at least I don't think it is), but it seems to be a generation ahead of what you already know. And it could take quite a long time to get the structure in place before you can do this sort of thing without needing help.</p>
+
+<p>There are some basic questions</p>
+
+<ul>
+<li>Does the information need to stay saved when the user hits reload?</li>
+<li>Does the information need to stay saved when the user clears cookies?</li>
+</ul>
+
+<p>If the information can be blanked out next time they come back to your page, then it is simple.</p>
+
+<p>Otherwise, we need a way to keep track of which user sees what information, so the guy in Texas does not see the information the guy in Chinatown typed in. Cookies are a common way to do this. You could save the information to the cookies if there is not too much information.</p>
+
+<p>Otherwise, you need sever-side language. This is usually in PHP, but deciding what language has to do with why you want to learn in the first place? Are you wanting to work for a company later on? Do you have your own website?</p>
+
+<p>Please comment to let me know more what is going on, and what the answers are to the two basic questions, and I will better be able to answer.</p>
+
+<p>Usually, for most cases, there is a login name and password (or OpenID), and if cookies are cleared, the user logs in again, but this requires some work to set up a working login before you re-visit this question of how to store what they type.</p>

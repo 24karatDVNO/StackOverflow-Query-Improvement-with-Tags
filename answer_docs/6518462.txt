@@ -1,0 +1,29 @@
+<p>You should be able to specify the exact version of the <a href="http://izpack.codehaus.org/izpack-maven-plugin/" rel="nofollow">IzPack plugin</a> you are using in your project <code>pom.xml</code>.<br>
+This is quite different from the from <a href="http://maven.apache.org/guides/getting-started/index.html#How_do_I_make_my_first_Maven_project" rel="nofollow">ModelVersion element</a>, which "indicates what version of the object model this POM is using.<br>
+The version of the model itself changes very infrequently but it is mandatory in order to ensure stability of use if and when the Maven developers deem it necessary to change the model".</p>
+
+<p>See for instance this <a href="http://maksim.sorokin.dk/it/2010/06/10/izpack-with-maven/" rel="nofollow">IzPack with Maven</a> setup:</p>
+
+<pre><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;groupId&gt;test&lt;/groupId&gt;
+  &lt;artifactId&gt;test18&lt;/artifactId&gt;
+  &lt;name&gt;Test IzPack and maven&lt;/name&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+
+  &lt;properties&gt;
+    &lt;staging.dir&gt;${project.build.directory}\staging&lt;/staging.dir&gt;
+    &lt;izpack.standalone.compiler.version&gt;4.3.2&lt;/izpack.standalone.compiler.version&gt;
+  &lt;/properties&gt;
+  [...]
+     &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.codehaus.izpack&lt;/groupId&gt;
+        &lt;artifactId&gt;izpack-standalone-compiler&lt;/artifactId&gt;
+        &lt;version&gt;${izpack.standalone.compiler.version}&lt;/version&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre>

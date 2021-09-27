@@ -1,0 +1,13 @@
+<p>You can use an output parameter to send back the information you need - maybe the total row count so that you can define the number of pages to paginate against? You just add the OUTPUT parameter to the proc declaration:</p>
+
+<pre><code>ALTER PROCEDURE [dbo].[spGetMessages]
+    @lastRow int,
+    @yourFlagHere BIT OUTPUT
+</code></pre>
+
+<p>I added BIT to support your binary validation, but you can use several other types. For more info, check <a href="http://msdn.microsoft.com/en-us/library/ms187004.aspx" rel="nofollow">Returning Data by Using OUTPUT Parameters</a>. You would then assign the value to the output parameter by calling the proc with</p>
+
+<pre><code>EXEC dbo.spGetMessages @lastRowYouDefined, @yourFlagHere OUTPUT
+</code></pre>
+
+<p>Your <code>@yourFlagHere</code> var will have the value defined from within the procedure.</p>

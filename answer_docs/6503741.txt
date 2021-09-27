@@ -1,0 +1,16 @@
+<p>It seems that only possible way to use MediaWiki engine for your own application is to install a separate instance on it on your server (source + db). Then you'll be able to use it through API.</p>
+
+<p>Pros:</p>
+
+<ul>
+<li>Easy to update;</li>
+<li>Can be used with any application built on any platform;</li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+<li>It's not too easy to install and maintain MediaWiki;</li>
+<li>You should use external interface for it even from your script. Say, you should use CURL requests from your PHP application to your Wiki even if they are situated on one host.</li>
+<li>Large overheat, 'cause you can't use only Wiki-parser.</li>
+</ul>

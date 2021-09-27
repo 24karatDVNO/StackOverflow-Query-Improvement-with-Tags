@@ -1,0 +1,50 @@
+<p>If I didn't misunderstood your question, following statement would return the results you require.</p>
+
+<h3>I am using following assumptions</h3>
+
+<ul>
+<li><code>Host</code> is mapped to <code>custmerid</code></li>
+<li><code>Participant</code> is mapped to <code>custmerid</code></li>
+<li>The input data you provided is incomplete</li>
+</ul>
+
+<p>Note that if <code>custmerid</code> isn't a spelling error in your question, I would advice you to spell it out completely as <code>customerid</code></p>
+
+<h3>SQL Statement</h3>
+
+<pre><code>SELECT  groupid = g.id
+        , host = chost.customername
+        , participation = cparticipant.customername     
+FROM    [Group] g
+        LEFT OUTER JOIN Customer chost ON chost.custmerid = g.Host
+        LEFT OUTER JOIN Customer cparticipant ON cparticipant.custmerid = g.Participant
+</code></pre>
+
+<h3>Test Data</h3>
+
+<pre><code>;WITH [Group](ID, Host, Participant) AS (
+    SELECT 1, 1000, 2000
+    UNION ALL SELECT 2, 1000, NULL
+    UNION ALL SELECT 3, NULL, 3000
+)
+, Customer (custmerid, customername, alias) AS (
+    SELECT 1000, 'abccorp', 'abc'
+    UNION ALL SELECT 2000, 'bcacorp', 'bca'
+    UNION ALL SELECT 3000, 'lcacorp', 'lca'
+)
+SELECT  groupid = g.id
+        , host = chost.customername
+        , participation = cparticipant.customername     
+FROM    [Group] g
+        LEFT OUTER JOIN Customer chost ON chost.custmerid = g.Host
+        LEFT OUTER JOIN Customer cparticipant ON cparticipant.custmerid = g.Participant
+</code></pre>
+
+<h3>Output</h3>
+
+<pre><code>groupid     host    participation
+----------- ------- -------------
+1           abccorp bcacorp
+2           abccorp NULL
+3           NULL    lcacorp
+</code></pre>

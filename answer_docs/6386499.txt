@@ -1,0 +1,8 @@
+<p>You could achieve the same result without subselects. This is how it could be implemented in MySQL:</p>
+
+<pre><code>SELECT yr
+FROM nobel
+GROUP BY yr
+HAVING COUNT(subject = 'Chemistry' OR NULL) = 0
+   AND COUNT(subject ='Physics' OR NULL) = 1
+</code></pre>

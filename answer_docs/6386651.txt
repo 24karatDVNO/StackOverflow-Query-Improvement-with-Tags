@@ -1,0 +1,11 @@
+<p>Instead of </p>
+
+<pre><code>xlWorkSheet.Cells[cnt, 1] = thisReader["CodeNumber"].ToString(); 
+</code></pre>
+
+<p>try this</p>
+
+<pre><code>((Excel.Range)xlWorkSheet.Cells[cnt, 1]).Value2= thisReader["CodeNumber"].ToString(); 
+</code></pre>
+
+<p>Might work</p>

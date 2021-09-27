@@ -1,0 +1,17 @@
+<p>Your ViewArea property would have to be a <a href="http://msdn.microsoft.com/en-us/library/cc221408%28v=vs.95%29.aspx" rel="nofollow">DependencyProperty</a> in order to support bindings. What you have is a plain old CLR property.</p>
+
+<p>To hook up the SetView call, you'd have to add a change handler to your dependency property. This <a href="http://weblogs.asp.net/dwahlin/archive/2011/01/09/demystifying-silverlight-dependency-properties.aspx" rel="nofollow">article</a> has an example/explaination, but it would be like:</p>
+
+<pre><code>public MC.LocationRect ViewArea {
+    get { return (MC.LocationRect)GetValue(ViewAreaProperty); }
+    set { SetValue(ViewAreaProperty, value); }
+}
+
+public static readonly DependencyProperty ViewAreaProperty = DependencyProperty.Register("ViewArea", typeof(MC.LocationRect),
+    typeof(Map), new PropertyMetadata(new MC.LocationRect(), OnViewAreaChanged));
+
+private static void OnViewAreaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+    var map = d as Map;
+    // Call SetView here
+}
+</code></pre>

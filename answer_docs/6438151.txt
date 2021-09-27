@@ -1,0 +1,9 @@
+<p>Try to change the line:</p>
+
+<pre><code>10.times { |i| Factory.create(:feature, :widget_id =&gt; widget.id)}
+</code></pre>
+
+<p>into </p>
+
+<pre><code>10.times { |i| Factory.create(:feature, :widget =&gt; widget)}
+</code></pre>

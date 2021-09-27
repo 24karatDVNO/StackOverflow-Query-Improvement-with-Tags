@@ -1,0 +1,11 @@
+<p>I fixed the porblem by changing the mapping from</p>
+
+<pre><code>@RequestMapping(value = "/branch/{branchId}/topic", method = RequestMethod.POST)
+</code></pre>
+
+<p>to </p>
+
+<pre><code>@RequestMapping(value = "/branch/{branchId}/topic", method = {RequestMethod.POST, RequestMethod.GET})
+</code></pre>
+
+<p>and the error is gone.</p>

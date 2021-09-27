@@ -1,0 +1,36 @@
+<p>I know this has been answered with very good examples, but the way I set mine up is just a tad different so I thought I'd share. It's on a preference list, no ToggleButtonsGroup involved.</p>
+
+<pre><code>@Override
+    public boolean onPreferenceClick(Preference preference) {
+        String key = preference.getKey();
+        if (key.equals("trailPref") || key.equals("obstaclesPref") || key.equals("insanePref") || key.equals("backgroundBlackPref"))
+        {
+            if (key.equals("insanePref"))
+            {
+                endurancebox.setChecked(false);
+                prefsEditor.putBoolean("obstaclesPref", false);
+                prefsEditor.commit();
+            }
+
+            if (key.equals("obstaclesPref"))
+            {
+                insanebox.setChecked(false);
+                prefsEditor.putBoolean("insanePref", false);
+                prefsEditor.commit();
+            }
+
+
+            boolean b = ((CheckBoxPreference) preference).isChecked();
+            prefsEditor.putBoolean(key, b);
+            prefsEditor.commit();
+        }
+
+        Log.i(DEBUG_TAG, "Boolean value changed. " + key );
+        returnPrefs(c);
+        return false;
+    }
+</code></pre>
+
+<p>Also, I'm an Android noob and not too experienced in java either, so it may not be uber efficient, but hey, it works! Could be formatted easily to fit your needs I believe. If the key equals insanePref, I want to turn off obstaclesPref and vice versa. (different game modes, only one can be active at the time.) The other two booleans are unrelated. Also, it puts the preferences into my SharedPreference file, instantiated earlier, along with everything else.</p>
+
+<p>Cheers!</p>

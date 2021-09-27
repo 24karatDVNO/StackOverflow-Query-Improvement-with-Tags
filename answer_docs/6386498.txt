@@ -1,0 +1,15 @@
+<p>Could you store the style in a data attribute and recover it later? This seems to work with your example.</p>
+
+<pre><code>$(function(){
+    $(".cls ul li").each(function(){
+        $(this).data("defaultStyle",$(this).attr("style") || "");
+    });
+
+    $("#foo").css({"border-left-color": "#ff00ff", "font-style": "italic", "background-color": "#efefef"});
+    $("#bar").css({"border-left-color": "#0000ff", "font-weight": "bold", "background-color": "#cdcdcd"});
+
+    $(".cls ul li").click(function(){
+        $(this).attr("style", $(this).data("defaultStyle")); 
+    });
+});
+</code></pre>

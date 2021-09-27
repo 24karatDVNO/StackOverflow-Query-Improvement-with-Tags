@@ -1,0 +1,19 @@
+<p>I'm not sure what CSV plugin/gem that you are using.  If it is a simple one that simple opens a file and writes to it, this should work.</p>
+
+<pre><code>class Deal
+  def to_csv(delimiter=",")
+    [deal.customer_number, deal.deal_number, deal.contract_number, deal.cancel_date].join(delimiter)
+  end
+end
+
+class CancelledDealCSVGenerator
+  require 'csv'
+
+  def self.generate_csv(deals)
+     CSV.open("#{AppConfig.cancelled_csv_folder}/CANNED.CSV", "a") do |csv|
+       csv &lt;&lt; deals.map(&amp;:to_csv).join("\n")
+     end
+  end
+
+end
+</code></pre>

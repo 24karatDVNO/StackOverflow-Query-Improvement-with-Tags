@@ -1,0 +1,5 @@
+<p>If you want to cache jQuery objects for persistent states, then it's ok to store them in data. I can hardly see a use case where you would want to cache the jQuery objects for persistent states, but your case might be different.</p>
+
+<p>However, if you are caching jQuery objects for execution state in data, then you are doing it wrong.</p>
+
+<p>Either way, I believe the speed of read and write to data is much more slower, so I think it's better for you to build the jQuery objects again, rather than read them from data.</p>

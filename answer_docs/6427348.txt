@@ -1,0 +1,8 @@
+<p>What about accounting for it, and just show all category items:</p>
+
+<pre><code># No phone selected
+RewriteRule ^category/([a-zA-Z0-9-z-]+)/?$ category.php?page=category&amp;subPage=$1&amp;pitem=all
+
+# Phone selected
+RewriteRule ^category/([a-zA-Z0-9-z-]+)/([a-zA-Z0-9-z-]+)/?$ category.php?page=category&amp;subPage=$1&amp;pitem=$2
+</code></pre>

@@ -1,0 +1,3 @@
+<p>Depending on the complexity of your update statements, I'd recommend to do this only on small tables of, say, a few 100 rows. Especially if you have only a small amount of main memory available. Otherwise, for instance, updates on big tables can take a very long time and even appear to hang. Then it's difficult to figure out what the process (spid) is doing and how long it might take.</p>
+
+<p>I'm not sure whether "Drop index" is transaction-logged operation anyway. See <a href="https://stackoverflow.com/questions/1043598/is-it-possible-to-run-multiple-ddl-statements-inside-a-transaction-within-sql-se">this question</a> here on stackoverflow.com.</p>

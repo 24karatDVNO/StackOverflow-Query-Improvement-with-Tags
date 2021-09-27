@@ -1,0 +1,67 @@
+<p>This is resolved thanks to Frank Farmer and Dan Beam.</p>
+
+<p>This worked : <code>echo (string)$check_reo[0][0]['ReclaimDate']</code></p>
+
+<p>For anyone that is looking to use SimpleXML and XPATH to extract and write some basic logic from an XML file this is what worked for me.</p>
+
+<p><code>$xmlstring = &lt;&lt;&lt;XML &lt;?xml version='1.0' standalone='yes'?&gt; &lt;YOURXMLGOESHERE&gt;TEST&lt;/YOURXMLGOESHERE&gt; XML;</code></p>
+
+<p><code>$xpathcount = simplexml_load_string($xmlstring); // Load XML for XPATH Node Counts</code></p>
+
+<p><code>$doc = new DOMDocument(); // Create new DOM Instance for Parsing</code></p>
+
+<p><code>$xpathcountstr = $xpathcount-&gt;asXML(); // Xpath Query</code></p>
+
+<p><code>$doc-&gt;loadXML($xpathcountstr); // Load Query Results</code></p>
+
+<p><code>$xpathquery = array($xpathcount-&gt;xpath("//XMLNODEA[1]/XMLNODEB/*[name()='KEYWORDTOCHECKIFXMLCEXISTS']"));</code></p>
+
+<p><code>print_r ($xpathquery) // CHECK Array that is returned from the XPATH query</code></p>
+
+<p>`Array
+(
+[0] => Array
+    (
+        [0] => SimpleXMLElement Object
+            (
+                [@attributes] => Array
+                    (
+                        [ReclaimDate] => 05/15/2008
+                        [ReclaimPrice] => 555555555
+                        [_Owner] => ownername
+                    )</p>
+
+<pre><code>        )
+
+) // Array RETURNED`
+</code></pre>
+
+<p><code>echo (string)$xpathquery[0][0]['ReclaimDate'] // EXTRACT THE VALUE FROM THE ARRAY COLUMN;</code></p>
+
+<p>This site helped me receive a better understanding on how XPATH can search XML very easily with a lot more features than what I had previously known.</p>
+
+<p><a href="http://zvon.org/xxl/XPathTutorial/Output/examples.html" rel="nofollow">http://zvon.org/xxl/XPathTutorial/Output/examples.html</a></p>
+
+<p>Here is the simple XML Function that worked for me</p>
+
+<p><code>$xmlread = simplexml_load_string($xmlstring, "simple_xml_extended");</code></p>
+
+<p>`class simple_xml_extended extends SimpleXMLElement { // Read XML and get attribute
+     public    function    Attribute($name){
+        foreach($this->Attributes() as $key=>$val) {
+            if($key == $name)
+                return (string)$val;</p>
+
+<pre><code>    }
+}
+</code></pre>
+
+<p>}`</p>
+
+<p>Here is the Function action when extracting Single Values with an attribute based XML results</p>
+
+<p><code>$GETVAR1 = $xmlread-&gt;XMLNODE1-&gt;XMLNODE2-&gt;XMLNODE3-&gt;XMLNODE4-&gt;XMLNODE5[0]-&gt;Attribute('XMLNODE5ATTRIBUTE');</code></p>
+
+<p>This might not be the most efficient or best method, but its what ended working our for me. Hope this helps someone out who is still unclear about SIMPLEXML and XPATH.</p>
+
+<p>An additional link for further insight: <a href="http://www.phpfreaks.com/tutorial/handling-xml-data" rel="nofollow">http://www.phpfreaks.com/tutorial/handling-xml-data</a></p>

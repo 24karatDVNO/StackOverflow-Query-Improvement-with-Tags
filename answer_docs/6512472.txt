@@ -1,0 +1,23 @@
+<p>No. CSS doesn't work that way. You can only go down.</p>
+
+<p>However, if you have your HTML structured properly, you can achieve the effect you're going for.</p>
+
+<p>Assuming the following HTML:</p>
+
+<pre><code>&lt;ul id="main"&gt;
+  &lt;li&gt;&lt;a href="link.php"&gt;A dropdown&lt;/a&gt;
+    &lt;ul class="dropdown"&gt;
+       &lt;li&gt;&lt;a href="link2.php"&gt;A submenu&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>You can have the following CSS, and it should work:</p>
+
+<pre><code>#main li:hover a {
+  border-bottom: 1px solid black;
+}
+</code></pre>
+
+<p><a href="http://jsfiddle.net/4cpTV/" rel="nofollow">Here's a (very) rough Fiddle.</a></p>

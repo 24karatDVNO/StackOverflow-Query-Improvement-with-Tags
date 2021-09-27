@@ -1,0 +1,5 @@
+<p>You can mesh together an arbitrary number or persistent stores and models together in one context. The only major limitations is that (1) you can't have entities of the same name in different models and (2) you can't form relationships across stores. </p>
+
+<p>In your case, you would most likely use one model and two stores. You assign different entities to different stores using the configuration property (see the docs.) I would suggest creating a "main" configuration which would hold the actual app data and then an "export" configuration to handle your exports. The entities in the export configuration should be subentities of you main entities. That way they will inherit all the attributes and relationships of the main entity. Assign the main configuration to your main store and the export configuration to an export file. </p>
+
+<p>When you want to export data, you would clone the main entities to their subentities in the export configuration and then save them to the export persistent store. To import the data, just reverse the process. </p>

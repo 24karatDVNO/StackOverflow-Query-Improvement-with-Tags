@@ -1,0 +1,10 @@
+<p>If you also want to catch this on the client, before submitting (where you will also check), you can use match to count instances of a pattern in a string.</p>
+
+<pre><code>function validSpacesNoShouting(input){
+    var  s= input.value, L= input.value.length,
+    minspace= 1+ L/10, //figure min spacing
+    lowC= (s.match(/([a-z])/g) || []).length,
+    upC= (s.match(/([A-Z])/g) || []).length;
+    return s.match(/(\s)/g).length&gt; minspace &amp;&amp; lowC&gt; upC;
+}
+</code></pre>

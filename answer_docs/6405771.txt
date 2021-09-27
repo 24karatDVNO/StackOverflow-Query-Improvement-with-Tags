@@ -1,0 +1,20 @@
+<p>Here is my solution, which also handles rotation. Might by useful.</p>
+
+<pre><code>// Create transformation
+int rotation = CGPDFPageGetRotationAngle(pdfPage);
+CGRect rect = CGPDFPageGetBoxRect(pdfPage, kCGPDFCropBox);
+CGRect rotatedRect = rect;
+CGRectApplyAffineTransform(rotatedRect, CGAffineTransformMakeRotation(M_PI * rotation / 180.0));
+
+CGFloat scale = MIN(self.bounds.size.width / rotatedRect.size.width, self.bounds.size.height / rotatedRect.size.height);
+// Scale
+CGContextConcatCTM(context, CGAffineTransformMakeScale(scale, scale));  
+// Move left bottom cornet to 0, 0
+CGContextConcatCTM(context, CGAffineTransformMakeTranslation(rotatedRect.size.width * 0.5, rotatedRect.size.height * 0.5));    
+// Rotate
+CGContextConcatCTM(context, CGAffineTransformMakeRotation(-M_PI * rotation / 180.0));    
+// Move center into 0, 0
+CGContextConcatCTM(context, CGAffineTransformMakeTranslation(-rect.origin.x - rect.size.width * 0.5, -rect.origin.y - rect.size.height * 0.5));
+
+CGContextDrawPDFPage(context, pdfPage);
+</code></pre>

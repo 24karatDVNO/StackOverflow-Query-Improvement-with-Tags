@@ -1,0 +1,4 @@
+<p>Are you sure your problem is with the unique_ptr?  Why does your example use new to create your functor? That line should just read:</p>
+
+<pre><code>boost::thread th(TestThread(), std::move(ptr));
+</code></pre>

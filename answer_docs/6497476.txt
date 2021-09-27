@@ -1,0 +1,14 @@
+<p>One way that I've done something like before is to create a movieclip with a bg layer for the button graphic, and a second layer with a dynamic textfield that has the instance name "buttonText".</p>
+
+<p>I then connected the movieclip in the library to a new class called "MyButton". The constructor for MyButton requires a string. The constructor calls a method called setText(txt:String) which does: </p>
+
+<pre><code>this['buttonText'].text = txt;
+</code></pre>
+
+<p>You could also add MouseEvent listeners to each button to call a returnButtonValue method which would return a variable that holds the txt of that button.</p>
+
+<p>To add them,to the stage just do:</p>
+
+<pre><code>button1 = new MyButton("desired text value");
+addChild(btn1);
+</code></pre>

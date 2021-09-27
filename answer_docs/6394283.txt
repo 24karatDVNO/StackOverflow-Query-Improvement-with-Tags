@@ -1,0 +1,14 @@
+<p>On the _layout.cshtml you can add a @Rendersection("header", false) In the header section!! False for the time being.
+Later you have to change this to true or remove the required attribute.</p>
+
+<p>On each page you can use now</p>
+
+<pre><code>@section header{
+&lt;meta name="Author" content="1SeoAdvies.nl" /&gt;;
+
+Here you add every desired meta tag.
+
+}
+</code></pre>
+
+<p>beware you don't have meta tags in the header section on the _layout page.</p>

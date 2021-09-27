@@ -1,0 +1,13 @@
+<p>You'll need <a href="http://dev.mysql.com/doc/refman/5.0/en/group-by-functions.html#function_group-concat" rel="nofollow">GROUP_CONCAT</a> for this.</p>
+
+<p>Quick example:</p>
+
+<pre><code>SELECT b.book_id, book_title, link_src, 
+ GROUP_CONCAT(CONCAT(a.firstname, ' ',a.lastname)) AS author 
+FROM books AS b
+JOIN author_to_books AS atb ON b.book_id = atb.book_id
+JOIN authors AS a ON atb.author_id = a.author_id
+GROUP BY book_id
+</code></pre>
+
+<p>But usually you'd be better of doing this in your application code (since afterwards, you'll going to want to make the 'author' a clickable link too, etcetera).</p>

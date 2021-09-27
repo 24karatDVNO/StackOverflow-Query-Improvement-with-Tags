@@ -1,0 +1,25 @@
+<p>If you have a core data application set up, you will only need to create an entity in the xcdatamodel file.  Add attributes for whatever you may want to store.</p>
+
+<pre><code>latitude - double
+longitude - double
+title - NSString
+</code></pre>
+
+<p>etc. until you have what you want.</p>
+
+<p>When you want to add an annotation, you should create a new core data object for your entity.  It will look something like this</p>
+
+<pre><code>Location *newLocation = (Location *)[NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+Location.latitude = ....
+// and so on to store the information you want in its attributes;
+</code></pre>
+
+<p>You can set the attributes at different point if you change the values at a later point.  You just need to be able to access the right object to go with the annotation.  You should be able to do this by using <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreDataFramework/Classes/NSFetchRequest_Class/NSFetchRequest.html" rel="nofollow">NSFetchRequest</a> in your managedObjectContext.  You can use <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSPredicate_Class/Reference/NSPredicate.html#//apple_ref/doc/c_ref/NSPredicate" rel="nofollow">NSPredicate</a> to filter the objects to the one you want.  Then when you are ready to exit the app, save your context using</p>
+
+<pre><code>NSError *error = nil;
+if ([managedObjectContext save:&amp;error]) {
+    // handle the error;
+}
+</code></pre>
+
+<p>which will store all the objects you've added to be used next time you open the app.  You will then be able to create your annotations based on the objects in your managedObjectContext.  I hope this is what you were looking for, or at least gives you an idea how to approach what you'd like to do.</p>

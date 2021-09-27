@@ -1,0 +1,1 @@
+<p>By doing <code>struct emp e1={"David",23};</code> you have made "David" a string literal, which is read-only in nature. In the executable it is stored in the <code>.rodata</code> or equivalent section of the executable, which is read-only. by the <code>strupr ()</code> you are attempting to modify this read-only data, and thus a segmentation fault.</p>

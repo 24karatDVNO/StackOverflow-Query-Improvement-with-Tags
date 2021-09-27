@@ -1,0 +1,16 @@
+<p>Supposing you have access to the log files themselves, know the <code>CharSequence</code> (the "text") you are looking for in the log file, and want to do it with Java (e.g., SE6) read the file via a <code>newBufferedReader</code> (<a href="http://download.oracle.com/javase/tutorial/essential/io/file.html" rel="nofollow">Tutorial</a>), and then query the lines of the log file with <code>contains(CharSequence s)</code> (<a href="http://download.oracle.com/javase/tutorial/java/data/manipstrings.html" rel="nofollow">Tutorial mentioning this</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html#contains%28java.lang.CharSequence%29" rel="nofollow">API</a>), looping through the lines.</p>
+
+<p>Untested example code snippets from the top of my head:</p>
+
+<pre><code>    File file = full-path-to-your-file // Replace with file path
+    Charset charset = Charset.forName("your-charset"); // Replace with file's charset
+    try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
+    String line = null;
+    while ((line = reader.readLine()) != null) {
+    if (line.contains(error-char-sequence)) // Replace with CharSequence you're looking for
+        System.out.println("Log file contains error message!");
+    }
+} catch (IOException x) {
+    System.err.format("IOException: %s%n", x);
+}
+</code></pre>

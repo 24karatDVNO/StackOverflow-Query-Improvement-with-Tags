@@ -1,0 +1,24 @@
+<p>The square brackets <code>[]</code> are needed for multiselect, it is good that way.</p>
+
+<p>Your serialized string should be working server side, like an array:</p>
+
+<pre><code>key[]=A&amp;key[]=B&amp;key[]=C
+</code></pre>
+
+<p>would be:</p>
+
+<pre><code>Array (
+    0 =&gt; "A",
+    1 =&gt; "B",
+    2 =&gt; "C"
+)
+</code></pre>
+
+<p>There must be something else, if it does not work. 
+What is the main problem, you experience:</p>
+
+<ul>
+<li>click handler won't fire? </li>
+<li>serialize create bad data? </li>
+<li>bad ajax response?</li>
+</ul>

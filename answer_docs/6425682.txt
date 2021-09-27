@@ -1,0 +1,26 @@
+<p>Thanks to all but I've found the solution.</p>
+
+<p>I've try the solution of RobV, but It doesn't work, so I started to repeat the query with less conditions, and I've found that with the following query Jena returns _:b0.</p>
+
+<p><code>PREFIX grounding: "http://www.daml.org/services/owl-s/1.2/Grounding.owl"
+SELECT ?op 
+WHERE
+{
+  ?x grounding:hasAtomicProcessGrounding ?apg .
+  ?apg grounding:wsdlOperation ?op
+}</code></p>
+
+<p>And I see that Jena use that value for the next part of the query <code>?op grounding:WsdlOperationRef ?or .</code> (with ?op == _:b0) and don't find the next property.</p>
+
+<p>But the problem was that when I ask for "grounding:wsdlOperation" Jena returns a reference for the "grounding:WsdlOperationRef" object acting "_:b0" as a subject for the next part of the failed query, so I can't ask for "grounding:WsdlOperationRef" because this element was the subject reference I've obtained before. </p>
+
+<p>So the solution is the next one (without the "WsdlOperationRef" property):</p>
+
+<p><code>PREFIX grounding: "http://www.daml.org/services/owl-s/1.2/Grounding.owl"
+SELECT ?x y? 
+WHERE
+{
+  ?x grounding:hasAtomicProcessGrounding ?apg .
+  ?apg grounding:wsdlOperation ?op.
+  ?op grounding:portType ?y .
+}</code></p>

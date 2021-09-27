@@ -1,0 +1,5 @@
+<p>There might be considerable impact on the server side when you start query all 400 computers. But you can take a look at Parallel LINQ (<a href="http://msdn.microsoft.com/en-us/library/dd460688.aspx" rel="nofollow">PLINQ</a>), where you can limit the <a href="http://msdn.microsoft.com/en-us/library/dd383719.aspx" rel="nofollow">degree of parallelism</a>.</p>
+
+<p>You can also use thread pooling for this matter, e.g. a <a href="http://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx" rel="nofollow">Task</a> class.</p>
+
+<p>Createing manual threads may not be a good idea, as they are not highly reusable and take quite a lot of memory/CPU to be created</p>

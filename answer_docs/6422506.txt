@@ -1,0 +1,21 @@
+<p>In a variation on the theme suggested by others: </p>
+
+<pre><code>cp -al "$oldname" "$newname"
+unlink "$oldname"
+</code></pre>
+
+<p>should avoid any copying as long as $oldname and $newname are on the same mountpoint (filesystem).</p>
+
+<hr>
+
+<p>You're in luck.</p>
+
+<p>Solaris (with ZFS) is one of the very few filesystems that <em>actually</em> honour a creation time property for files.</p>
+
+<p>Now on topic: No you cannot preserve all times: the inode will change and the filename changes. This means that the inode ctime will change by (POSIX) definition.</p>
+
+<p>Your last accessed time will also change, unless you're running a noatime mount point (zfs set atime=off).</p>
+
+<p>I don't think there is a way to change that. However, the file creation date time should not be changed at all. <em>I was going to show the commands to show creation times, but unfortunately I don't have a Solaris box handy and I can't seem to find it. I think your best bet is <code>man ls find stat</code>.</em></p>
+
+<p>GL</p>

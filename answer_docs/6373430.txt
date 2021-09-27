@@ -1,0 +1,21 @@
+<p>Have you considered taking your properties and having them reference a Dictionary of IMetaData?</p>
+
+<pre><code>private Dictionary&lt;string, IMetaData&gt; metaData;
+
+public PersonAddress Address {
+    get { return (PersonAddress)metaData["Address"]; }
+    set { metaData["Address"] = value; }
+}
+</code></pre>
+
+<p>Then you can process each key, run your checks, and still keep the same interface.</p>
+
+<pre><code>public void Process() {
+    foreach(var key in metaData.Keys) {
+        var property = metaData[key];
+        // Check the property...
+    }
+}
+</code></pre>
+
+<p>That should work. However it might end up showing feature envy in which case you would want to take the metaData dictionary and make your own class for it. But that is outside the scope of your question.</p>

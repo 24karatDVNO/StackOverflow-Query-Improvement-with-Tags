@@ -1,0 +1,21 @@
+<p>As a rule of thumb, I always have something like this:</p>
+
+<pre><code>#ifdef DEBUG
+int dbg_printf(char * format, ...) {
+
+    va_list ap;
+    va_start(ap, format);
+
+    vsnprintf(my_printf_buf, my_printf_bufsize, format, ap);
+    uart3_putstr(my_printf_buf); // debug connector
+
+    va_end(ap);
+
+    return 0;
+}
+#else
+#define dbg_printf(format, ...)
+#endif 
+</code></pre>
+
+<p>Good thing is that when you are not debugging, all those dbg_printf() you have on your code are eaten by the pre-processor and don't bloat your code. </p>

@@ -1,0 +1,12 @@
+<pre><code>var xml = @"&lt;parent&gt;
+                &lt;child id=""1""&gt; test1 &lt;/child&gt;
+                &lt;child id=""2""&gt; test2 &lt;/child&gt;
+        &lt;/parent&gt;";
+XElement parentElement = XElement.Parse(xml);
+var childElements = parentElement.Elements("child").ToList();
+var concatenatedValue = string.Join(";", childElements.Select(c =&gt; c.Attribute("id").Value + "|" +c.Value).ToArray());
+childElements.ForEach(c =&gt; c.Remove());
+parentElement.Add(new XElement("child", concatenatedValue));
+
+var newXml = parentElement.ToString();
+</code></pre>

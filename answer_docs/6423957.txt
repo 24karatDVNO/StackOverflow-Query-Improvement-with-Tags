@@ -1,0 +1,6 @@
+<p>I'm not certain what you're doing in the toggle functions that's preventing the link from working, but one thing you could try is to prevent event propagation to the tr when the link is clicked on:</p>
+
+<pre><code>$('tr a').click(function(e){
+  e.stopPropagation();
+});
+</code></pre>

@@ -1,0 +1,3 @@
+<pre><code>select st.*,ft.rate from second_table st,first_table ft 
+where to_char(st.acct_date,'YYYYMM')=to_char(ft.eff_date,'YYYYMM')
+</code></pre>

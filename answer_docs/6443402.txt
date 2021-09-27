@@ -1,0 +1,13 @@
+<p>The button is ok under the partial view, but it sounds like you want to submit the form via AJAX so there's no page refresh.  You can do that like this:</p>
+
+<pre><code>$('#theIdOfYourForm').live('submit', function(event){
+    event.preventDefault();
+    var form = $(this);
+    $.post(form.attr('action'), form.serialize(), function(data){
+        if (data.IsError) { alert(data.Error); }
+        else { alert(data.Message); }
+    });
+});
+</code></pre>
+
+<p>And return a JSON object from your HttpPost PartialEdit action that defines <code>IsError</code>, <code>Error</code>, or <code>Message</code> as necessary.  You can get fancier with this, but then this answer would be too long :)</p>

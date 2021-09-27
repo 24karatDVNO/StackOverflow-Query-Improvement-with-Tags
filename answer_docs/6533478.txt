@@ -1,0 +1,77 @@
+<p>I just made a web service.</p>
+
+<p>PHP server side code:</p>
+
+<pre><code>&lt;?php // instantiate SOAP server
+function sendXmlMsg($msg){
+return $msg;
+}
+ini_set("soap.wsdl_cache_enabled", "0"); // disabling WSD
+$server = new SoapServer("mark.wsdl");
+// Register exposed method
+$server-&gt;addFunction('sendXmlMsg'); // generate captcha
+//$server-&gt;addFunction('check_captcha'); // check captcha ID
+$server-&gt;handle(); //?&gt;
+</code></pre>
+
+<p>My WSDL file is </p>
+
+<pre><code>&lt;?xml version ='1.0' encoding ='UTF-8' ?&gt;
+&lt;definitions name='Msg91'
+  targetNamespace='http://localhost/webtest/test.wsdl'
+  xmlns:tns='http://localhost/webtest/test.wsdl'
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+  xmlns='http://schemas.xmlsoap.org/wsdl/'&gt;
+
+
+
+&lt;message name='sendXmlMsgRequest'&gt;
+  &lt;part name='msg' type='xsd:string'/&gt;
+&lt;/message&gt;
+&lt;message name='sendXmlMsgResponse'&gt;
+  &lt;part name='Result' type='xsd:string'/&gt;
+&lt;/message&gt;
+&lt;portType name='Msg91PortType'&gt;
+  &lt;operation name='sendXmlMsg'&gt;
+    &lt;input message='tns:sendXmlMsgRequest'/&gt;
+    &lt;output message='tns:sendXmlMsgResponse'/&gt;
+  &lt;/operation&gt;
+&lt;/portType&gt;
+
+&lt;binding name='Msg91Binding' type='tns:Msg91PortType'&gt;
+  &lt;soap:binding style='rpc'
+    transport='http://schemas.xmlsoap.org/soap/http'/&gt;
+    &lt;operation name='sendXmlMsg'&gt;
+    &lt;soap:operation soapAction='urn:xmethods-delayed-quotes#sendXmlMsg'/&gt;
+    &lt;input&gt;
+      &lt;soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/&gt;
+    &lt;/input&gt;
+    &lt;output&gt;
+      &lt;soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/&gt;
+    &lt;/output&gt;
+  &lt;/operation&gt;
+&lt;/binding&gt;
+
+&lt;service name='Msg91Service'&gt;
+  &lt;port name='Msg91Port' binding='tns:Msg91Binding'&gt;
+    &lt;soap:address location='http://localhost/webtest/test.php'/&gt;
+  &lt;/port&gt;
+&lt;/service&gt;
+&lt;/definitions&gt;
+</code></pre>
+
+<p>Client side PHP file:</p>
+
+<pre><code>&lt;?php
+$client = new SoapClient("mark.wsdl");
+$params= array('HiT');
+echo $client-&gt;__soapCall( 'sendXmlMsg', $params );
+?&gt;
+</code></pre>
+
+<p>I hope this will help you.</p>

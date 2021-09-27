@@ -1,0 +1,6 @@
+<p>If you can preload the REST facts, do so, so Drools can optimize indexing (hashing) and joins on them.
+If not, you have a situation similar to using hibernate directly for drools with <code>from</code>.</p>
+
+<p>Some things you can do:
+Take a look at <code>salience</code> in the manual to execute those rules last.
+Also, put your <code>eval()</code> last in your rule LHS.</p>

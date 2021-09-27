@@ -1,0 +1,21 @@
+<p>ControlToValidate property is pointless in CustomValidator, you should specify server validation function in OnServerValidate property:</p>
+
+<pre><code>&lt;asp:CustomValidator runat="server" 
+            ErrorMessage="Enter your zip code."
+            EnableClientScript="false"
+            OnServerValidate="OnZipCodeValidate"&gt;
+&lt;/asp:CustomValidator&gt;
+
+&lt;script language="c#" runat="server"&gt;
+    protected void OnZipCodeValidate(object sender, ServerValidateEventArgs args) {
+      // not intending to write correct validation function, just an example
+      args.IsValid = 
+                     ddlState.SelectedValue == "International (No U.S. State)" || 
+                     (ddlCountry.SelectedValue == "United States" &amp;&amp;
+                     !String.IsNullOrEmpty(txtZip.Text));
+    }
+
+&lt;/script&gt;
+</code></pre>
+
+<p>Also, make sure that you form's submit button has <code>CausesValidation="true"</code> and custom validator is in the same validation group (if there's any).</p>

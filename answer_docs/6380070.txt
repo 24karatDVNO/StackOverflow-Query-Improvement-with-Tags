@@ -1,0 +1,20 @@
+<p>
+
+</p>
+
+<p>Try:</p>
+
+<pre><code>&lt;?php
+    if($_POST['answer'] != '')
+    {
+       include 'connect.php';
+       $date=date("Y-m-d");
+       $time=time();
+
+       $answer= $_POST['answer'];
+       $user=$_SESSION['username'];
+       $id=$_GET['id'];
+       $put=mysql_query("INSERT INTO solutions VALUES ('','0','$date','$time','$user', '$answer')");
+    }
+    ?&gt;
+</code></pre>

@@ -1,0 +1,26 @@
+<p>I don't have time to research this to understand why it doesn't work and why you are getting the error. But I do have time to show you how I do it which works great.</p>
+
+<p>Download the Apache Mime and Commons HttpClient Jar libraries and add them to your project's Java Build Path.</p>
+
+<pre><code>HttpClient client = new DefaultHttpClient();
+HttpGet request = new HttpGet();
+request.setURI(new URI("http://www.codinggreenrobots.com"));
+
+HttpResponse response = client.execute(request);
+
+BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+StringBuffer sb = new StringBuffer("");
+String line = "";
+while ((line = in.readLine()) != null) {
+    sb.append(line + "\n";
+}
+in.close();
+str_response = sb.toString();
+</code></pre>
+
+<p>Now that you have parsed the response, just turn it in a JSONObject.</p>
+
+<pre><code>JSONObject event_object = new JSONObject(str_response);
+</code></pre>
+
+<p>I hope that works for you as well as it works for me.</p>

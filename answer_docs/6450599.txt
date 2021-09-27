@@ -1,0 +1,7 @@
+<p>You can acquire the address of the Xap from the <code>BaseAddress</code> of a fresh instance of a <code>WebClient</code>.</p>
+
+<pre><code> WebClient client = new WebClient();
+ string xapAddress = client.BaseAddress;
+</code></pre>
+
+<p>The <code>BaseAddress</code> is initialised witth the application origin address and will work in an OOB.</p>

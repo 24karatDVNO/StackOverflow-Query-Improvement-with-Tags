@@ -1,0 +1,9 @@
+<p>Are you sure the validator is being enabled after btnGetValue returns and updates the UpdatePanel?  How are you testing that it is enabling the validator?  Have you tried setting the validator to enabled in your code-behind?</p>
+
+<pre><code>protected void btnGetValue_Click(object sender, EventArgs e) {
+    txtSomeValue.Text = DateTime.Now.ToString();
+
+    rqdtxtSomeValue.Enabled = true;
+    ScriptManager.RegisterStartupScript(btnGetValue, btnSave.GetType(), "btnGetValue_Click", script, true); 
+}
+</code></pre>

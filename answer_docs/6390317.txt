@@ -1,0 +1,15 @@
+<p>This was ridiculously hard to find.  Here is the answer:</p>
+
+<p>LINQ to Entities has some problem with not providing the Date information to a table that has DateTime fields.  So even if you don't need to put data in a DateTime field the Submit won't work unless you do.  So all I did, on the fields where I did not have data to provide, was, for example, this...</p>
+
+<pre><code>MessageDeliveryTime = null,
+</code></pre>
+
+<p>Now, the other thing that got me was this. I have a column in the database name Created that auto-populates with getdate().  LINQ to Entities doesn't care about your little default values.  You must pass in something; so just do this:</p>
+
+<pre><code>Created = DateTime.Now
+</code></pre>
+
+<p>I hope that the hours of my life that are gone don't go in vain and this will help someone out.</p>
+
+<p>Mark</p>

@@ -1,0 +1,44 @@
+<p>You need to make a loop that will test if the location is within x miles of the user. here is an example of what i mean that i used in my own code </p>
+
+<pre><code>for (CLLocation *prox in locations) {
+    NSLog(@"prox %@", prox);
+    float distanceFromLocation = [mapView.userLocation.location distanceFromLocation:prox]/1609.344;
+    NSLog(@"distance %f", distanceFromLocation);
+    if (distanceFromLocation &lt;= 10) {
+        NearbyLocation *nearbyLocation = [[NearbyLocation alloc]init];
+        NSString *key = [NSString stringWithFormat:@"%d", index];
+        nearbyLocation.title = [storedTitles objectForKey:key];
+        nearbyLocation.loction = prox;
+        nearbyLocation.subtitle = [NSString stringWithFormat:@"%.1f miles away", distanceFromLocation];
+        nearbyLocation.lat = prox.coordinate.latitude;
+        nearbyLocation.lon = prox.coordinate.longitude;
+        [newArray addObject:nearbyLocation];
+        [nearbyLocation release];
+    }
+    index++;
+}
+NSLog(@"new array %d prox %d", [newArray count], [proximityOutlet.nearbyLocations count]);
+if ([newArray count] &gt; [proximityOutlet.nearbyLocations count]) {
+    NSLog(@"set array");
+    // if the new array has actually added any objects, set the array and switch views;
+    proximityOutlet.nearbyLocations = newArray;
+    //[self.navigationController pushViewController:proximityOutlet animated:YES];
+    proximityOutlet.modalPresentationStyle = UIModalPresentationPageSheet;
+    proximityOutlet.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:proximityOutlet animated:YES];
+}
+[newArray release];
+
+}
+</code></pre>
+
+<p>basically, create a loop that will search through an array of locations. have it 
+    [mapView.userLocation.location distanceFrom:prox]/1609.334   //prox representing an instance of a location that is tested to see if the within x miles of the user.</p>
+
+<p>then say </p>
+
+<pre><code>if ([mapview.userLocation.location distanceFrom:prox]/1609.334 &lt; (however many miles)){
+
+        annotationView = x;
+}
+</code></pre>

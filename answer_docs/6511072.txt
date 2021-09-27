@@ -1,0 +1,12 @@
+<p>You don't mention your routing setup, but if you are still using the defaults...</p>
+
+<pre><code>    routes.MapRoute(
+        "Default", // Route name
+        "{controller}/{action}/{id}", // URL with parameters
+        new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+</code></pre>
+
+<p>You specified the action (TemplateInfo) and controller (PatientACO), but you changed the name of the id parameter to PopulationPatientID. Remember that the <strong>name of the parameter</strong> is important in MVC (convention vs. configuration). So change your ActionLink() call to:</p>
+
+<pre><code>    &lt;%: Html.ActionLink("View Detailed Patient Info", "TemplateInfo", "PatientACO", new {  id=item.PopulationPatientID } )%&gt; |                
+</code></pre>

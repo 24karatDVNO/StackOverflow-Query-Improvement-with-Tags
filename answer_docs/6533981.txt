@@ -1,0 +1,9 @@
+<p>You can use also something like this:</p>
+
+<pre><code>select * from (select * from table_name where 1=1 order by time desc 
+limit 5) as tbl order by tbl.time;
+</code></pre>
+
+<p>Edit if you have a lot of accesses to this statement it would be much better to represent it as materialized view. Though there are no materialized views in mysql it is possible to simulate them (<a href="http://lists.mysql.com/mysql/207808" rel="nofollow">http://lists.mysql.com/mysql/207808</a>)</p>
+
+<p>Using a materialized view or a simulated materialized view will seriously outperform the suggested php approaches. Most of the mentioned ones consume to much memory anyways .</p>

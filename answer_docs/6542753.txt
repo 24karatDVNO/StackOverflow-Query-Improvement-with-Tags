@@ -1,0 +1,10 @@
+<p>Try this in the view controller for the view that should be uneditable:</p>
+
+<pre><code>-(void)viewWillAppear:(BOOL)animated {
+     memoDetailViewController.memoTextView.editable = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    memoDetailViewController.memoTextView.editable = YES;
+}
+</code></pre>

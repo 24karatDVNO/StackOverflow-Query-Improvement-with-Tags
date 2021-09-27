@@ -1,0 +1,31 @@
+<p>Assuming you're using Linq-to-SQL, you will have a data context for your database, and an object that represents your table.</p>
+
+<p>When the customers click, you'd write code something like this:</p>
+
+<pre><code>using (YourDataContext ctx = new YourDataContext())
+{
+    Customer myCust = from c in ctx.Customers
+                      where c.CustomerId == ID
+                     select c;
+
+    myCust.ordersTillNow++;
+    ctx.SubmitChanges()
+}
+</code></pre>
+
+<p>Using a <code>SqlCommand</code>, you have lots of options to do this - a stored procedure, inline SQL - whatever.</p>
+
+<p>You'll write code something like this:</p>
+
+<pre><code>string updateStmt = "UPDATE dbo.YourTable SET ordersTillNow = ordersTillNow + 1 " +
+                    "WHERE CustomerID = @CustomerID";
+
+using(SqlConnection _conn = new SqlConnection("your-connection-string-here"))
+using(SqlCommand _cmd = new SqlCommand(_conn, updateStmt))
+{
+   _cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value = yourCustomerID;
+   _conn.Open();
+   _cmd.ExecuteNonQuery();
+   _conn.Close();
+}
+</code></pre>

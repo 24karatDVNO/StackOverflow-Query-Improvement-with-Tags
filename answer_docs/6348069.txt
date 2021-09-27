@@ -1,0 +1,23 @@
+<p>Consideration: Graph must be drawn on UI thread, so how responsive do you want the graph (real-time or delayed)?</p>
+
+<p>Layout a graph (I do this on paper) to determine X and Y ranges, limitations, etc. This will help you get a clear vision of what you want.  </p>
+
+<p>Putting this together without a way to test, but this might get you going in the right direction. I haven't ever created anything quite like a 'sparkline'.</p>
+
+<pre><code>Point newPoint;
+Point lastPoint;
+
+void SetNewPoint( Point NewPoint );
+{
+    newPoint = NewPoint;
+    myPicBox.Refresh ( ); // include the Rectangle area to refresh
+}
+
+void myPicBox_Paint ( object sender, PaintEventArgs e)
+{
+    // grab Graphics handle
+    // paint line from lastPoint to newPoint
+
+    // you will have to keep a collection of points if redrawing the entire graph
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<pre><code>def dict_to_sorted_tuples(unsorted_dict):
+    res = []
+    for k, v in sorted(unsorted_dict.iteritems()):
+        if isinstance(v, (list, tuple)):
+            res.extend((k, _v) for _v in sorted(v))
+        else:
+            res.append((k, v))
+    return res
+</code></pre>

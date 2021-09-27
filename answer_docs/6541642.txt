@@ -1,0 +1,33 @@
+<p>Try this out</p>
+
+<pre><code>&lt;?php
+
+    $products = array('777.777' =&gt; array('price' =&gt; 10, 'name' =&gt; 'a'),
+                    '777' =&gt; array('price' =&gt; 100, 'name' =&gt; 'b')
+                  );
+
+    $products = subval_sort($products, 'price');
+
+    function subval_sort($array, $subkey) {
+
+        foreach ($array as $key =&gt; $value) {
+
+            $newArray[$key] = $value[$subkey];
+        }
+
+        arsort($newArray);
+
+        foreach ($newArray as $key =&gt; $value) {
+
+            $finalArray[$key] = $array[$key];
+        }
+
+        return $finalArray;
+    }
+
+    var_dump($products);
+
+?&gt;
+</code></pre>
+
+<p><a href="http://codepad.org/VgdGdWyQ" rel="nofollow">http://codepad.org/VgdGdWyQ</a></p>

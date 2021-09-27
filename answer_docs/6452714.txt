@@ -1,0 +1,48 @@
+<p>Try this sp in your database:</p>
+
+<pre><code>ALTER Procedure [dbo].[usp_validatecard](
+@strCLUBCARD1 nvarchar(50)
+)
+As
+ SELECT 
+    CASE 
+      WHEN EXISTS(SELECT CLUBCARD1, [STATUS] FROM dbo.clubmembers WHERE CLUBCARD1 = @strCLUBCARD1 AND [STATUS] = 'ACTIVE') THEN 'CARD IS GOOD'
+      WHEN EXISTS(SELECT CLUBCARD1, [STATUS] FROM dbo.clubmembers WHERE CLUBCARD1 = @strCLUBCARD1 AND [STATUS] = 'INACTIVE') THEN 'CARD IS GOOD BUT NOT ACTIVE'
+      ELSE 'CARD NOT IN SYSTEM'
+    END
+</code></pre>
+
+<p>... and then this in your data factory:</p>
+
+<pre><code>''' &lt;summary&gt;
+''' Validates a card in the database
+''' &lt;/summary&gt;
+''' &lt;param name="clubCard"&gt;The card to validate&lt;/param&gt;
+Public Shared Function ValidateCard(ByVal clubCard As String) As String
+
+    'create connection
+    Using cnSQL As SqlConnection = New SqlConnection("MyConnectionString")
+        Using cmdSP As New SqlCommand("usp_validatecard", cnSQL)
+            cmdSP.CommandType = System.Data.CommandType.StoredProcedure
+
+            'declare and add  parameter
+            cmdSP.Parameters.Add("@strCLUBCARD1", System.Data.SqlDbType.NVarChar, 50).Value = clubCard
+
+            Dim dtTable As New DataTable
+
+            'execute command
+            Try
+                cnSQL.Open()
+                dtTable.Load(cmdSP.ExecuteReader())
+                cnSQL.Close()
+            Catch ex As SqlException
+                'do something here
+            End Try
+
+            'return string
+            Return dtTable.Rows(0)(0)
+        End Using
+    End Using
+
+End Function
+</code></pre>

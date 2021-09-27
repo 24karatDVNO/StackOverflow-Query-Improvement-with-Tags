@@ -1,0 +1,19 @@
+<p>You can run a suite file from a single browser by changing the Threads in the ant target.</p>
+
+<pre><code>&lt;target name="runbrowsertests"&gt;
+
+        &lt;sahi suite="../userdata/scripts/demo/demo.suite" 
+            browserType="firefox" 
+            baseurl="http://sahi.co.in/demo/" 
+            sahihost="localhost" 
+            sahiport="9999" 
+            failureproperty="sahi.failed" 
+            haltonfailure="false" 
+            threads="1"
+            &gt;
+            &lt;report type="html" /&gt;
+        &lt;/sahi&gt;
+    &lt;/target&gt;
+</code></pre>
+
+<p>If it still doesn't work, edit browser_types.xml (Click "configure" link on dashboard). Change <code>&lt;capacity&gt;</code> to 1 for the browser that you want to run the tests with. Restart Sahi.</p>

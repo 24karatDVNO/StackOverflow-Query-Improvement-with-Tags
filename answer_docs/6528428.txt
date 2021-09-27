@@ -1,0 +1,180 @@
+<p>For anyone who might follow this thread -I found a mixture of my own approach (admittedly hackish in this code example) and the one mentioned by @bear to work without any issues (plus the location lookup was fast/accurate and error free)</p>
+
+<p>I found the example listed by @bear to be a little more complex than I needed. For starters I wanted to kick off the GPS lookup when a button was clicked and have a simple async task wrapping this so it would throw up a dialog/etc</p>
+
+<p>Next I wanted the exact latitude and longitude (no need to pass this off to another class because my example was simply to use the lat + lng to locate a resource and plot it)</p>
+
+<p>So if you can follow my untested rather copy/paste approach here goes...</p>
+
+<p>Inside your activity you would spin up the service during an onclick lets say ...</p>
+
+<pre><code>LocationManager networkManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+LocationManager gpsManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+LocationService locationProcessor = new LocationService(YourActivityName.this, networkManager, gpsManager, dialog);
+locationProcessor.onStartCommand();
+</code></pre>
+
+<p>Now the location service itself</p>
+
+<pre><code>package com.epicsoftware.android.global;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.os.Handler;
+import com.epicsoftware.android.activity.LocationLookup;
+
+public class LocationService {
+    private LocationManager networkLm;
+    private LocationManager gpsLm;
+    private LocationListener networkListener;
+    private LocationListener gpsListener;
+
+    private boolean isRunning;
+    private boolean networkLocDisabled;
+    private boolean gpsLocDisabled;
+    private Context activity;
+    private LocationManager tmpNetworkManager;
+    private LocationManager tmpGpsManager;
+    private Handler locationHandler;
+    private ProgressDialog dialog;
+    private boolean gpsUpdated;
+    private boolean done;
+
+    public LocationService(final Context activity, LocationManager networkManager, LocationManager gpsManager, ProgressDialog dialog) {
+        this.tmpNetworkManager = networkManager;
+        this.tmpGpsManager = gpsManager;
+        this.activity = activity;
+        this.dialog = dialog;
+    }
+
+    public void onStartCommand() {
+        if (!isRunning) {
+            isRunning = true;
+
+            startLocationListeners();
+
+            locationHandler = new Handler();
+            getLocationByZip.start();
+        }
+    }
+
+    private void startLocationListeners() {
+        networkListener = new NetworkLocationListener();
+        gpsListener = new GpsLocationListener();
+
+        networkLm = tmpNetworkManager;
+        gpsLm = tmpGpsManager;
+
+        networkLm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, networkListener);
+        gpsLm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
+    }
+
+
+    private Thread getLocationByZip = new Thread() {
+        public void run() {
+            try {
+                for (int i = 0; i &lt; 15;) {
+                    if (!locationDisabled() || !gpsUpdated) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (Exception e) {
+                            break;
+                        }
+                        i++;
+                    } else {
+                        break;
+                    }
+                }
+
+                locationHandler.post(monitorTheNetworkAndGpsProviders);
+            } catch (Exception e) {
+                killService();
+                done = true;
+            }
+        }
+    };
+
+    private Runnable monitorTheNetworkAndGpsProviders = new Runnable() {
+        @Override
+        public void run() {
+            killService();
+            dialog.dismiss();
+            if (!done) {
+                done = true;
+                ((LocationLookup) activity).warnUserThatLocationServicesAreDisabledOrFailed();
+            }
+        }
+    };
+
+    private boolean locationDisabled() {
+        if (gpsLocDisabled &amp;&amp; networkLocDisabled) {
+            done = true;
+            ((LocationLookup) activity).warnUserThatLocationServicesAreDisabledOrFailed();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void updateDb(Double lat, Double lon) {
+        done = true;
+        ((LocationLookup) activity).setLocationDataAndSpinUpNextActivity(lat, lon);
+    }
+
+    public void killService() {
+        networkLm.removeUpdates(networkListener);
+        gpsLm.removeUpdates(gpsListener);
+    }
+
+    public class NetworkLocationListener implements LocationListener {
+        @Override
+        public void onLocationChanged(Location location) {
+            if (location != null) {
+                updateDb(location.getLatitude(), location.getLongitude());
+            }
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            networkLocDisabled = true;
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+    }
+
+    public class GpsLocationListener implements LocationListener {
+        @Override
+        public void onLocationChanged(Location location) {
+            if (location != null) {
+                gpsUpdated = true;
+                updateDb(location.getLatitude(), location.getLongitude());
+            }
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            gpsLocDisabled = true;
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+    }
+}
+</code></pre>

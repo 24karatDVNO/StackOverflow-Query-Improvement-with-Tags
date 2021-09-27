@@ -1,0 +1,3 @@
+<p>First, you can create an <a href="https://docs.djangoproject.com/en/1.3/ref/contrib/admin/#adding-views-to-admin-sites" rel="nofollow">custom admin view</a> that is independent of the models in your application and override the <code>admin/index.html</code> to include the new link explicitly. Alternatively, you can also override the <code>get_urls</code> in the <code>AdminSite</code> class</p>
+
+<p>There are saner and better ways to add a new custom admin view. If you still want to use a model however, you can simply extend a django model and mark it as a <a href="https://docs.djangoproject.com/en/dev/topics/db/models/#proxy-models" rel="nofollow">proxy</a> and override it's template.</p>

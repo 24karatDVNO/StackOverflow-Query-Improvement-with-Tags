@@ -1,0 +1,19 @@
+<p>I think you'll want to investigate using html5 data attributes. </p>
+
+<p>For instance, your html may become:</p>
+
+<pre><code>&lt;a href="#" class="voteUp" data-post-id="5"&gt;I approve....&lt;/a&gt;
+</code></pre>
+
+<p>While your JS would read:</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>$(".voteUp").click(function(){
+    $.post(voteAction({postid: $(this).data("post-id"), type: 'up'}), function(data){
+        $("")
+    });
+});
+</code></pre>
+
+<p>While this isn't the best doc available, this should</p>

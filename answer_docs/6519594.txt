@@ -1,0 +1,9 @@
+<p>You can try to partition your data horizontally and "split" your query in a number of smaller queries. For instance you can do </p>
+
+<pre><code>SELECT x FROM users 
+WHERE users.ID BETWEEN 1 AND 5000 
+AND -- your filters on columnToBeSearched
+</code></pre>
+
+<p>putting your results back together in one list may be a little inconvenient, but if it's a report you're only extracting once (or once in a while) it may be feasible.
+I'm assuming ID is the primary key of users or a column that has a index defined, which means SQL should be able to create an efficient execution plan, where it evaluates users.ID BETWEEN 1 AND 5000 (fast) before trying to check the filters (which may be slow).</p>

@@ -1,0 +1,18 @@
+<p>Finally I have figured out the problem and a workaround.</p>
+
+<p>The problem is with Twitter Application API accounts with Direct Message access enabled.</p>
+
+<p>When you select "Read, Write, &amp; Direct Messages" for Default Access type of your application. Sign in with twitter fails as it halts in between to display the message below:</p>
+
+<blockquote>
+  <p>Access your direct messages until June
+  30th, 2011.</p>
+</blockquote>
+
+<p><a href="http://mashable.com/2011/06/10/twitter-clarifies-app-permissions-regarding-direct-messages/" rel="nofollow">Click here to read more about the message</a></p>
+
+<p>It does not says anywhere on twitter dev site, api docs, articles etc that they will be putting a pause in the Sign in with twitter flow.</p>
+
+<p><strong>Solution:</strong> Move your app's "Default Access type" option to anything else but "Read, Write, &amp; Direct Messages" and that should allow your application users to go be automatically logged in without having to see the authorize screen just for the sake of twitter's notification.</p>
+
+<p>The good thing is that it seems like that this issue should be resolved after 30th June once twitter wont need to display that message to its users authorizing apps which need direct messages access as well.</p>

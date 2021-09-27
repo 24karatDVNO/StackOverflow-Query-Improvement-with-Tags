@@ -1,0 +1,1 @@
+<p>Eventually I didn't have to disable those FKs before the archive process starts and enable them when the process ends. But instead, in order to improve performance of the DELETE statements, we had to drop indexes before the archive process starts and recreate them after the archive process finishes. We also committed more often.</p>

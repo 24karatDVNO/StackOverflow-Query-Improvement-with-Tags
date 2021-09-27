@@ -1,0 +1,29 @@
+<p>You can achieve the same using ImageView. Use <strong>ImageView</strong></p>
+
+<pre><code>testimage = (ImageView) findViewById(R.id.imageview);
+
+
+
+testimage.setOnClickListener(listener);
+</code></pre>
+
+<p>write the logic to set both type of image to imageview in onclick event</p>
+
+<pre><code>public OnClickListener listener=new OnClickListener(){
+        @Override
+        public void onClick(View arg0) {
+            System.out.println("..set image button..");
+
+            Drawable[] layers = new Drawable[2];
+            layers[0] = getResources().getDrawable(R.drawable.btn_call);
+            layers[1] = getResources().getDrawable(R.drawable.blue_unfocus);
+            System.out.println(layers[1]+"...Drawable..."+layers[0]);
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            testimage.setImageDrawable(layerDrawable);
+
+        }
+    };
+</code></pre>
+
+<p>Thanks
+Deepak</p>

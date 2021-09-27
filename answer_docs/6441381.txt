@@ -1,0 +1,2 @@
+<p>Yes, last line in function main() calls constructor of std::vector. Have a look <a href="http://www.cplusplus.com/reference/stl/vector/vector/" rel="nofollow">here</a> 
+to see all vector constructor overloads. The third one is used here. Its parameters are iterators for template type (template argument used here is <code>int</code> and so iterator is of type <code>int*</code>). Second argument is iterator that points to the first sequence element that will not be copied into vector. </p>

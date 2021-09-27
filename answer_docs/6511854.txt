@@ -1,0 +1,12 @@
+<p>Which external program? If you are using SQL*Plus, this would work:</p>
+
+<pre><code>var d char(50)
+begin select sysdate into :d from dual; end;
+/
+
+update table1 set some_col = 'updated' where some_other_col &lt; :d;
+delete from table2 where some_col &lt; :d;
+insert into table3 (col1, col2) select c1, c2 from table4 where some_col &lt; :d;
+</code></pre>
+
+<p>You might have to adjust your NLS_DATE_FORMAT setting for the session...</p>

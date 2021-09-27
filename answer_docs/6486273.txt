@@ -1,0 +1,13 @@
+<p>I see now that the SDL_mixer library isn't going to give you what you want. Its support for "music" (MP3) plays the file externally from the mixer, so apart from volume and position controls that the API provides, you can't insert yourself into its audio stream.</p>
+
+<p>If you were using <code>Mix_Chunk</code> objects instead to take advantage of the channel mixer, you would be able to add yourself as an effect on the channel that's streaming the music, using <code>Mix_RegisterEffect</code>. Another place you could insert yourself is after the mix, using <code>Mix_SetPostMix</code>, if you wanted to visualize the final mix of chunks instead of an individual channel or channels. However, those chunks are best suited for short sounds, as they are loaded entirely into memory rather than streamed – and they don't currently support MP3.</p>
+
+<p>If you're committed to using SDL, consider using SDL_sound for this task. This is another extension to SDL, which handles just the decoding of files. It hands you data a chunk at a time when you use <code>Sound_Decode</code>. You can then take the decoded data and pass it to the mixer by using <code>Mix_HookMusic</code> to keep a stream-like approach. Or, you could even load the whole file with <code>Sound_DecodeAll</code>, and fill in a <code>Mix_Chunk</code> directly, if you want to take advantage of the mixer and effect functions, at the expense of streaming.</p>
+
+<p>Things to watch out for:</p>
+
+<ol>
+<li>Make sure the audio is decoded in the output format that the mixer expects.</li>
+<li>Look out for any case where the decoder can't keep up with the mixer on occasion – in which case you'd need to come up with a separate process for the decoding so that you can stream in ahead of where the mixer is and handle occasional bumps in reading without glitching.</li>
+<li>There may be cases where the chunk size you get from the decoder is not the chunk size you want for analysis. You might be able to use <code>Sound_SetBufferSize</code> to simplify this problem.</li>
+</ol>

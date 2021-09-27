@@ -1,0 +1,5 @@
+<p>Rather than using the <code>‑localizedCaseInsensitiveCompare:</code> selector to compare the objects, you should instead initialise your <code>NSSortDescriptor</code> using the <code>+sortDescriptorWithKey:ascending:comparator:</code> class method.</p>
+
+<p>This method allows you to pass in an <code>NSComparator</code> which is a block that contains code to compare two objects and sort them. You can compare them any way you like.</p>
+
+<p>If you've never used blocks before, <a href="http://developer.apple.com/library/ios/#featuredarticles/Short_Practical_Guide_Blocks/_index.html" rel="nofollow">this</a> will be helpful.</p>

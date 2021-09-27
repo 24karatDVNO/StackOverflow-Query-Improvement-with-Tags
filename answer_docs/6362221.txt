@@ -1,0 +1,16 @@
+<p>This is how I would approach the problem:First, I will draw a domain model. In your case it looks like:</p>
+
+<pre><code>List(1)----contains----(0..*)--&gt;ListItem
+ListItem(0..1)----hasTags--(0..*)--&gt;Tag
+Tag(0..1)-----hasSubTags---(0..*)--&gt;Tag
+</code></pre>
+
+<p>This makes the problem explicit leaving no room for doubts. </p>
+
+<p>Now, translate this to a data-model. This is pretty straightforward: for each relation introduce suitable PrimaryKey-ForeignKey mappings.Many-to-Many relations should be split into two 1-M relations using a new table in between.</p>
+
+<p>The data-model you have at this stage should be functionally correct, but could have performance issues. Now is the time for you to focus on the queries that you would want and optimize the table structure accordingly. </p>
+
+<p>(Another similar refinement trip starting from the domain model will give you the design for the final class model as well)</p>
+
+<p>Hope this approach helps. </p>

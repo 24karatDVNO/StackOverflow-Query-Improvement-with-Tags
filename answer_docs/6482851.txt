@@ -1,0 +1,5 @@
+<p>In addition to what @aioobe said, consider the case of <code>InheritableThreadLocal</code>, in which the value of local is passed from a thread to each child thread that it creates.</p>
+
+<p>And as @pst says, there is nothing to prevent the same value being used in different (non-inheritable) <code>ThreadLocal</code>s.</p>
+
+<p>In short, you have to do a thorough analysis of the thread locals, the way that they are initialized and the way that they are used before you can safely conclude that they don't need to be threadsafe.</p>

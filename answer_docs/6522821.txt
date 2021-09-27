@@ -1,0 +1,7 @@
+<p>If the user visits another website in the same tab, you're out of luck; once your webpage is closed the javascript dies.</p>
+
+<p>However you're in luck if the user is just visiting other pages on <strong>your</strong> website. You can do this as follows... but it requires a fundamental redesign of your website. You'd have to use a framework which wraps all link-clicks in XHRs (XML HTTP Requests) and replaces the page with the new data, giving you the illusion that you are clicking links (which you are, but the browser never refreshes the page). This can be done with an iframe or not. This is how GMail works.</p>
+
+<p>You could code such a framework yourself, but you're better off using a framework which has url-rewriting support for faking a history (or else your website won't work well with user histories).</p>
+
+<p>To answer your question about the "every 10 minutes", use <code>setInterval(myFunction, 10*60*1000)</code> (which may have issues in some browsers due to optimizations).</p>

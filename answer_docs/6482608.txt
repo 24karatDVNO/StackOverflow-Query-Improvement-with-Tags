@@ -1,0 +1,11 @@
+<p>I'm not 100% sure to understand your requirements but a script as the following one should work, except that the result is into an array and not into separate variables.</p>
+
+<pre><code>// uncomment the following line to get rid of paragraph breaks;
+// $string = strtr($string, array("\n\n","\n")); 
+$lines = explode("\n", $string);
+$pagelen = array(14,48,48,48);
+
+$result = array();
+foreach($pagelen as $cPageLen)
+    array_push($result, join("\n",array_splice($lines, 0, $cPageLen)));
+</code></pre>

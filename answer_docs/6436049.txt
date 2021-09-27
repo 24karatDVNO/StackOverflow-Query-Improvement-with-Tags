@@ -1,0 +1,18 @@
+<p>If the editing is in datagrid than we could retrieve the item in the current cell by using a property.</p>
+
+<p>The property is :</p>
+
+<pre><code>private &lt;YourObject&gt; datagridselectedItem;
+
+public &lt;YourObject&gt; DatagridselectedItem
+    {
+        get { return datagridselectedItem; }
+        set
+        {
+            datagridselectedItem = value;
+            this.RaisePropertyChanged("DatagridselectedItem");
+        }
+    }
+</code></pre>
+
+<p>Let me know whether it is helpful to you.</p>

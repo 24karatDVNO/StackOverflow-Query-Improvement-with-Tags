@@ -1,0 +1,27 @@
+<p>I've added comments to your code that show my thoughts:</p>
+
+<pre><code>private void Form1_Load(object sender, EventArgs e)
+{
+    // Make a new list of result class objects, local to the Form1_Load method:
+    List&lt;Result&gt; result = new List&lt;Result&gt;();
+
+    // Call a method that populates a list... wait, what list?
+    PopulateResult();
+
+    dgresult.AutoGenerateColumns = false;
+    dgresult.Items.Clear();
+
+    // Set the datagrid data source to the list created earlier
+    dgresult.ItemsSource = result;
+    // ...
+</code></pre>
+
+<p>I'm not sure why the datagrid has a duplicate set of columns after you've specified and added only two columns. It would help to see the method <code>PopulateResult()</code>.</p>
+
+<p>The list that <code>PopulateResult()</code> is adding to must be some other list, because the one created in <code>Form1_Load</code> is local in scope.</p>
+
+<p>I'm not sure if this is just a little oversight, or if you need to learn about variable scope. Forgive me if this is already known to you:</p>
+
+<ul>
+<li><a href="http://www.blackwasp.co.uk/CSharpVariableScopes.aspx" rel="nofollow">C# Variable Scopes</a></li>
+</ul>

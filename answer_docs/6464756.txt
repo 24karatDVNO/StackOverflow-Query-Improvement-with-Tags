@@ -1,0 +1,17 @@
+<p>Application can not stopped in background through programming.if you want to exit application or want to finish all activities-</p>
+
+<p>use this-</p>
+
+<p>If you are calling activity B from an activity A.and C from B</p>
+
+<p>A->B</p>
+
+<p>use startactivityforresult from A</p>
+
+<p>and again B->C</p>
+
+<p>use startactivityforresult from B</p>
+
+<p>and when you want to exit from C then setResult(i.e. RESULT_OK) and finish C.and in OnActivityResult() in B,check if resultcode == RESULT_OK then again finish B and setresult(RESULT_OK) for A.same procedure will follow to finish A.</p>
+
+<p>this will exit you from the application.and application will start from A not from C.</p>

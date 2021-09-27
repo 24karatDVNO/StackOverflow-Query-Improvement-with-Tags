@@ -1,0 +1,10 @@
+<p>For the sake of being complete. There isn't really a good word for it (yet). But frameworks like jQuery and commonJS have adopted a <code>deferred</code> API that allows you to make eventual promises about asynchronous requests. This is what I'll be using.</p>
+
+<p>You can find more info when you look at the documentation of the mentioned frameworks but it's roughly like this:</p>
+
+<pre><code>FW.when([asynchrnous_request, ... ]).then(do_something)
+</code></pre>
+
+<p>The <code>then</code>-clause will fire when all requests have returned successfully.</p>
+
+<p>You'll probably want to do something with error handling and manually fulfilling (or rejecting) promises but this is beyond the scope of my question.</p>

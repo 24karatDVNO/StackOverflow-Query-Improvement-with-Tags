@@ -1,0 +1,30 @@
+<p>Never worked with JQuery DataTable but i can suggest you to add a Javascript function on the rows click and do a $.post to your ASPX page with the data you need... </p>
+
+<p>For some example you can go <a href="http://www.datatables.net/release-datatables/examples/api/form.html" rel="nofollow">Here</a>
+or use this code : </p>
+
+<pre><code>public partial class _Default : Page 
+{
+  [WebMethod]
+  public static string GetDate()
+  {
+    return DateTime.Now.ToString();
+  }
+}
+</code></pre>
+
+<p>and use this javascript to send data... </p>
+
+<pre><code>$.ajax({
+  type: "POST",
+  url: "PageName.aspx/MethodName",
+  data: "{}",
+  contentType: "application/json; charset=utf-8",
+  dataType: "json",
+  success: function(msg) {
+    // Do something interesting here.
+  }
+});
+</code></pre>
+
+<p>Maybe there are more elegant solutions... </p>

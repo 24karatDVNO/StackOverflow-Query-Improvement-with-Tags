@@ -1,0 +1,4 @@
+<p>select id from pictures p
+where id not in 
+(select idpicture as id from ipvote
+where ip='127.0.0.1')</p>

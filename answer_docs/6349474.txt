@@ -1,0 +1,3 @@
+<p>The compiler errors are happening because you didn't link against the right system frameworks.  All of the symbols in dark red are from Foundation.framework, UIKit.framework and libobjc.dylib.</p>
+
+<p>Static libraries don't automatically pull in the required frameworks that they need to link against, so when you use them you must add them to the project yourself.</p>

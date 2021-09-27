@@ -1,0 +1,26 @@
+<p>Your code is very convoluted, I don't understand it at all. Anyway, you are looking for (I think):</p>
+
+<pre><code>var value = filters.arr[0].element;
+</code></pre>
+
+<p>since you assign the element reference to <code>arr[this.index]</code>.</p>
+
+<p>Incidentally, if you are passing an element, then:</p>
+
+<pre><code>$(this).attr('id');
+</code></pre>
+
+<p>is an awfully slow way to do:</p>
+
+<pre><code>this.id;
+</code></pre>
+
+<h3>Edit</h3>
+
+<p>The code I used (where there was a div with id 'd0' in the DOM):</p>
+
+<pre><code>var filters = new MyList();
+AddFilter(document.getElementById('d0'));
+
+alert(filters.arr[0].element);
+</code></pre>

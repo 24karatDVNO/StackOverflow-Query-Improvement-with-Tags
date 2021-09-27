@@ -1,0 +1,7 @@
+<p>Bind the Button to a Command (e.g. Save-Command) <BR />
+Bind the TextBox.Text to a property (e.g. <code>string MyTextBoxText</code>)<BR />
+Bind the SelectedItem of the ComboBox to a property (or even the itemSource) (e.g. <code>object MySelectedItem</code>) <BR />
+The CanExecute of the command has code like this:</p>
+
+<pre><code>return !string.IsNullOrWhiteSpace(MyTextBoxText) &amp;&amp; (MySelectedItem != null);
+</code></pre>

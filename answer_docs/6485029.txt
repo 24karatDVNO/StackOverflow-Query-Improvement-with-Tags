@@ -1,0 +1,18 @@
+<p>See Jon's answer for the difference between private inheritance and composition, but if you want to access the <code>maven</code> instance because, say, there is a function like this:</p>
+
+<pre><code>void baz(maven*);
+</code></pre>
+
+<p>Then in both cases, only members and friends of <code>car</code> can access the <code>maven</code> instance, so given a member of <code>car</code> eg <code>car::zoo</code>:</p>
+
+<p>In the case of private inheritance:</p>
+
+<pre><code>car::zoo(){ baz(this); }
+</code></pre>
+
+<p>or in the case of composition:</p>
+
+<pre><code>car::zoo(){ baz(&amp;m_maven); }
+</code></pre>
+
+<p>In both cases no other functions nor methods outside <code>car</code>, nor methods in classes derived from <code>car</code> can do this.</p>

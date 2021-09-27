@@ -1,0 +1,10 @@
+<p>You can't hide the titlebar, but with Javascript events, you can make it close when it loses focus.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+window.onblur=function() {
+  window.close();
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>Note: Some browsers disable the JavaScript close function. However, if it was your JavaScript code that opened the window, it should work.</p>

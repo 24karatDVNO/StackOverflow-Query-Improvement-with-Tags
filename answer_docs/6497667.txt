@@ -1,0 +1,19 @@
+<p>so final function looks like this:</p>
+
+<pre><code>function check_path($path)
+{ 
+    $headers = @get_headers($path);
+    $licenseID = preg_grep('~licenceID~i', $headers);
+    $licenseID = preg_replace('~licenceID:\s+~i', '', $licenseID); // clean-up
+    if($licenseID)
+    {
+        return $licenseID['7'];
+    }
+    else
+    {
+        return false;
+    }
+}
+</code></pre>
+
+<p>thanks to Alix Axel for the preg_grep suggestion and spotting the mistake in the return false else statement. of course it was always returning false! doh.</p>

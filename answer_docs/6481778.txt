@@ -1,0 +1,24 @@
+<p>First, it is impossible to write an algorithm to do this for an arbitrary permutation under the following assumptions:</p>
+
+<ol>
+<li><p>You can only read from the input sequentially.</p></li>
+<li><p>Writing the output similarly occurs sequentially, and the data written to the output can not be read once written.</p></li>
+<li><p>In addition to the one stack, you are allowed only a constant amount of memory.  (This means no additional recursion or data structures).</p></li>
+</ol>
+
+<p>This is a consequence of the pumping lemma for context free languages: </p>
+
+<p>Wiki: <a href="http://en.wikipedia.org/wiki/Pumping_lemma_for_context-free_languages" rel="nofollow">http://en.wikipedia.org/wiki/Pumping_lemma_for_context-free_languages</a></p>
+
+<p>(Or also check: Michael Sipser (1997). Introduction to the Theory of Computation.  I believe this is one of the exercises in chapter 4.)</p>
+
+<p>Now you can easily implement an algorithm which fixes this problem by breaking any one of these assumptions.  For example, if you can read from the input arbitrarily, then you don't need a stack:</p>
+
+<pre><code>def permute(seq, permutation):
+    result = []
+    for i in permutation:
+        result.push(seq[i])
+    return result
+</code></pre>
+
+<p>Or if you fix a permutation, the problem becomes finite and you similarly don't need a stack.  You just unfold the usual algorithm to special case over all inputs (ie just like doing partial evaluation in a compiler).  This is pretty horrible, so I won't bother writing out all the details, but it still works due to the fact the total number of possible inputs is a fixed (but large!) constant.</p>

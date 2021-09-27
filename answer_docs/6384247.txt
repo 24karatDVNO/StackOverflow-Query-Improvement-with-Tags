@@ -1,0 +1,30 @@
+<p><strong>Recursion is not free</strong>  </p>
+
+<p>It takes a considerable amount of memory space (usually on the stack)<br>
+And CPU time (by using calls, rebuilding stack frames etc).<br>
+In tight loops this makes a recursive algorithm slower than its non-recursive equivalent.  </p>
+
+<p>If speed and stack limits are not an issue, by all means leave the recursion in, but if you use recursion in a tight loop, <em>(which is often the case)</em><br>
+You gain a lot of optimization options by straitening out the recursion.  </p>
+
+<p>Because: maybe:<br>
+ 1. You don't need to save all those registers/variables<br>
+ 2. You don't have to jump back to the exact same place where you come from.<br>
+ 3. You don't need to call that cleanup code for every recursion<br>
+ 4. You can unroll some loops<br>
+ 5. You can use an <code>inline</code> directive on that non-recursive routine.</p>
+
+<p>My mean issue with recursion is the datastructure it most often is used on: <strong>trees</strong>.  </p>
+
+<p>Trees require pointers and pointers require random memory access <em>(they jump all over the place)</em>  this is bad for cache usage because sequential access is much faster than random access.<br>
+If you replace a binary tree with an 2D array you will waste 50% of the space, <em>(unless you stack another tree upside down in the array)</em>, but you gain sequential access options for many of the leaves and you don't have to use pointers, saving space.  </p>
+
+<pre><code>Example of a binary tree stored in an array
++-----------------+
+|0eeeeeeeeeeeeeeee| //no pointers needed, parent/child, is y dimension,
+|11       dddddddd| //sibbling is x dimension of the array.
+|2222         cccc|  //The 123 tree is stored root up.
+|33333333       bb|  //Notice how the abc-tree is stored upside down 
+|4444444444444444a|  //The wasted space in the middle, is offset by the fact 
++-----------------+  //that you do not need up, down, and sibbling pointers.
+</code></pre>

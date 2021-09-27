@@ -1,0 +1,37 @@
+<p>html part</p>
+
+<pre><code> &lt;span id="abcd"&gt;
+ &lt;input type="text" disabled="true" dojoType="dijit.form.ValidationTextBox" id="someId11" /&gt;
+ &lt;/span&gt;
+ &lt;div dojoType="dijit.Tooltip" connectId="someId11" jsId="tt1" label = "Hello" &gt;&lt;/div&gt;
+</code></pre>
+
+<p>JS PARt</p>
+
+<pre><code>&lt;script&gt;
+ dojo.require("dijit.form.ValidationTextBox");
+dojo.require("dijit.Tooltip");
+dojo.require("dijit.TooltipDialog");
+dojo.require("dojox.fx");
+
+var dialog;
+
+dojo.addOnLoad(function() {
+
+dojo.connect(dijit.byId('someId11').domNode,'mouseenter', function(){
+    console.log("HI")
+    tt1.open(this)
+})
+
+dojo.connect(dojo.byId('abcd'),'mouseleave', function(e){       
+    //e.preventDefault ();
+    //e.stopPropagation ();
+    tt1.close();        
+    console.log("HI2")
+    //return;
+
+})
+
+
+tt1.addTarget(dojo.query('input', dijit.byId('someId11').domNode))
+</code></pre>

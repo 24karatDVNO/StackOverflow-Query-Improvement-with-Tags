@@ -1,0 +1,26 @@
+<p>A nicer solution I think is adding a class to the row. 
+Like class="Hilightrow". 
+And avoid script in the html-elements and separate structure from behaviour. </p>
+
+<pre><code>  var hiliclass = "Hilightrow";
+    var trhilight = document.getElementById("mytable").getElementsByTagName("tr"); 
+    var len = trhilight.length; 
+    for(var i=0;i&lt;len;i++) {
+        if(trhilight[i].className == hiliclass) {
+            trhilight[i].onmouseover = function() {
+                  trhilight[i].style.backgroundColor = "red"; 
+           }
+           .... 
+
+}
+
+    }
+</code></pre>
+
+<p>And have the script inside a function and call it inside window.onload or
+use a self-invoking function like this: </p>
+
+<pre><code> function highlightrows() {
+   ..// my code 
+   }(); 
+</code></pre>

@@ -1,0 +1,24 @@
+<p>Going on the error message alone it looks like you are defining class module_info in each of your includes.  It should be defined once and included in each of your module files creating a new instance for each one.  Even though the module information of a new include will override that of the previous you could add to the details to an array if you need to reference it later on:</p>
+
+<pre>
+    ...
+
+    $modules_info = array();
+
+    while ($file = readdir($handler)) {
+    if ($file != "." && $file != "..") {
+        if($num == 1) {
+            $cla = "hvr";
+            $num = 0;
+        } else {
+            $cla = "blu";
+            $num = 1;
+        }
+
+    //Load Modules Info
+    include_once("../includes/modules/payment/".$file);
+
+    $modules_info[basename($file)] = $module_info;
+
+    ...
+</pre>

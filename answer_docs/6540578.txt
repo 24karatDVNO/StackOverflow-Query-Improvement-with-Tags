@@ -1,0 +1,9 @@
+<p>The best place for this sort of information on the DataGridView is MSDN. For more obscure problems the next port of call is the excellent <a href="http://www.windowsclient.net/Samples/Go%20To%20Market/DataGridView/DataGridView%20FAQ.doc" rel="nofollow">DataGridView FAQ</a> written by Mark Rideout, the Program Manager for the DataGridView</p>
+
+<p>There is a quite thorough article on data binding and the DataGridView (including sorting) on MSDN titled <a href="http://msdn.microsoft.com/en-us/library/ms993236" rel="nofollow">Custom Data Binding</a>.</p>
+
+<p>Essentially, when binding a data source to the DataGridView sorting works automatically so long as the source implements IBindingList and has supporting code for the interface methods working with sorting (e.g. SupportsSorting should return <code>true</code>).</p>
+
+<p>Some out of the box data sources do support sorting - the DataTable for example, but most do not.</p>
+
+<p>In particular, the BindingList, though it implements IBindingList does not support sorting. To have a list of objects be sortable you will need to create your own sortable list. There are several example of this on the web, using classes derived from BindingList. Search for SortableBindingList to find one (in fact there is an example in the data binding article I referenced above). </p>

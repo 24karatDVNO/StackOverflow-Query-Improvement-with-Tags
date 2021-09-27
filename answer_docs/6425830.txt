@@ -1,0 +1,7 @@
+<p>as per request I post my answer:</p>
+
+<p>Found the solution in code example from the author of the library blog. The int2* opencl buffer is not mapped as int[n][2] in javacl, but as int[n*2] where the elements n.x and n.y are interleaved</p>
+
+<pre><code>n.x-&gt; array[n*2];
+n.y-&gt; array[n*2+1];
+</code></pre>

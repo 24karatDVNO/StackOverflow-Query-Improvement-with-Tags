@@ -1,0 +1,3 @@
+<p>This is something where you'll need to actually understand your database schema. You'll need to create a program that can look at both versions of the database, identify which records are shared, which are not, and which have conflicting primary keys (vs ones which were updated with the same keys). It then needs to copy over changes, possibly replacing the value of primary keys (including the values in other rows that refer to the row being renumbered!) This isn't easy, and it's not an exact science - you'll be writing heuristics, and expect to do some manual repairs as well.</p>
+
+<p>Next time shut that database down when you grab the final backup :)</p>

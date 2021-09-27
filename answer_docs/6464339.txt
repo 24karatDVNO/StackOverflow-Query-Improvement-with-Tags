@@ -1,0 +1,16 @@
+<p>After a few years i have found a kind of solution that can make connections shorter. Solution is based on @WildSeal 's answer and uses this simple macro:</p>
+
+<pre><code>#define QCON( a, b, c, d ) VERIFY( QObject::connect( a, SIGNAL(b), c, SLOT(d) ) )
+</code></pre>
+
+<p>So, the long code in question:</p>
+
+<pre><code>VERIFY( QObject::connect( first, SIGNAL(signal(int,int,QString)), second, SLOT(slot(int,int,QSTring)) ) );
+</code></pre>
+
+<p>Will became significantly shorter:</p>
+
+<pre><code>QCON( first, signal(int,int,QString), second, slot(int,int,QString) );
+</code></pre>
+
+<p>Any comments and suggestions are welcome :). The only drawbacks i have found right now is that i need a separate macro to connect SIGNAL to SIGNAL. But since such operation is kind of rare i just introduced <code>QCONS()</code> and it does a trick.</p>

@@ -1,0 +1,48 @@
+<p>I try below code in my script.
+Please once try this code if you get cookie value
+than something wrong with your code but if this code also
+not work than check your browser cookie option enabled or not.
+if cookie disabled by browser than also you can't get any cookie
+value.</p>
+
+<p>For enabling browser cookie follow below link <a href="http://www.blogpatrol.com/enable-cookies.php" rel="nofollow">http://www.blogpatrol.com/enable-cookies.php</a>.</p>
+
+<h3>Test Code 1:</h3>
+
+<pre><code>$expire = time() + 60*60*24*30; //1 month expired.
+
+setcookie("TestCookie", "shashank patel here", $expire);
+
+print_r($_COOKIE);
+</code></pre>
+
+<h3>Test code 2:</h3>
+
+<p>Also check this code with your script this code told you 
+your browser cookie enabled or not.</p>
+
+<pre><code>error_reporting (E_ALL ^ E_WARNING ^ E_NOTICE);
+
+// Check if cookie has been set or not
+
+if ($_GET['set'] != 'yes')
+{
+  // Set cookie
+  setcookie ('test', 'test', time() + 60);
+
+  // Reload page
+  header ("Location: test.php?set=yes");
+} 
+else
+{
+  // Check if cookie exists
+  if (!empty($_COOKIE['test']))
+  {
+     echo "Cookies are enabled on your browser";
+  } 
+  else 
+  {
+    echo "Cookies are NOT enabled on your browser";
+  }
+}
+</code></pre>

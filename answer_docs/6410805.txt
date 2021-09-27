@@ -1,0 +1,13 @@
+<p>For a moment, <strong>assume</strong> "abstract static methods" are allowed.</p>
+
+<p>Then using your code, I add this : </p>
+
+<pre><code>Animal modelAnimal;
+int numLegs;
+
+modelAnimal = this.getModelAnimal(4); // Got a dog
+
+numLegs = modelAnimal.getNumberOfLegs();
+</code></pre>
+
+<p>I'll get error as <strong>modelAnimal</strong> which is a <strong>Dog</strong> object will try to call <strong>getNumberOfLegs</strong> in <strong>Animal</strong> class and not <strong>Dog</strong> class. <em>No overriding for static methods you know</em>. To avoid this situation, designers have not included abstract static methods.</p>

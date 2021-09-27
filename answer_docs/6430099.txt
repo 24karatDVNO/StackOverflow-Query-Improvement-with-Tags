@@ -1,0 +1,12 @@
+<p>Background information for this bug: <a href="https://stackoverflow.com/questions/6229184/ie7-z-index-issue-context-menu/6229309#6229309">IE7 Z-Index issue - Context Menu</a></p>
+
+<p>A solution specifically for your case and the exact way you have your page at the moment:</p>
+
+<ul>
+<li>On <code>#header-bar</code>, add <code>z-index: 9999</code> (or whatever number, I just picked that for convenience)</li>
+<li>On <code>#mainpage</code>, add <code>position: relative</code>.</li>
+</ul>
+
+<p>And here's a live version showing <em>a version</em> of the fixes in action, check it out with IE7: </p>
+
+<p><a href="http://jsbin.com/exuko6" rel="nofollow noreferrer">http://jsbin.com/exuko6</a></p>

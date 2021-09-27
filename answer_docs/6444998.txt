@@ -1,0 +1,28 @@
+<p>Another way is to use a <a href="http://msdn.microsoft.com/en-us/library/system.xml.serialization.xmlserializer.aspx" rel="nofollow">XmlSerializer</a>.</p>
+
+<pre><code>[Serializable]
+[XmlRoot]
+public class PowerBuilderRunTime
+{
+ [XmlElement]
+ public string Version {get;set;}
+ [XmlArrayItem("File")]
+ public string[] Files {get;set;} 
+
+ public static PowerBuilderRunTime[] Load(string fileName)
+ {
+    PowerBuilderRunTime[] runtimes;
+    using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+        {
+            var reader = new XmlTextReader(fs);
+            runtimes = (PowerBuilderRunTime[])new XmlSerializer(typeof(PowerBuilderRunTime[])).Deserialize(reader);
+        }
+     return runtimes;
+ }
+}
+</code></pre>
+
+<p>You can get all the runtimes strongly typed, and use each PowerBuilderRunTime's Files property to loop through all the string file names.</p>
+
+<pre><code>var runtimes = PowerBuilderRunTime.Load(string.Format("{0}\\{1}", configPath, Resource.PBRuntimes));
+</code></pre>

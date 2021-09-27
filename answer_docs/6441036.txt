@@ -1,0 +1,5 @@
+<p>Does not really matter if it is ugly, you can just refactor it into a method which takes an <a href="http://msdn.microsoft.com/en-us/library/018hxwa8.aspx" rel="nofollow noreferrer"><code>Action</code></a> as parameter for example and that won't be much of a problem.</p>
+
+<p>As by <em>ugly</em> you probably meant that it looks like bad code i would suggest the use of a normal thread (with <code>Thread.Sleep</code> before your action) which uses <a href="http://msdn.microsoft.com/en-us/library/system.windows.threading.dispatcher.invoke.aspx" rel="nofollow noreferrer"><code>Dispatcher.Invoke</code></a> instead. I for one am not aware of any best practice regarding this though. This can also be nicely refactored into a simple method taking an <code>Action</code>.</p>
+
+<p>If you want a non-blocking wait <a href="https://stackoverflow.com/q/6117293/546730">there is a question</a> to be found about that as well.</p>

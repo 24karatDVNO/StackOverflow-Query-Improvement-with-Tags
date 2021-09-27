@@ -1,0 +1,3 @@
+<p>No you can't create an ActiveX control in .NET. </p>
+
+<p>You could create a .NET assembly that contained a form with a .NET combobox and expose a COM interop function called <code>SelectValue</code> but you would have to pass all your selection options to the assembly and it return what the user selected, so depending on the cirumstances this may not be feasible, efficient, worth the time, etc.</p>

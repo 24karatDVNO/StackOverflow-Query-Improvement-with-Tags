@@ -1,0 +1,10 @@
+<p>If the machine the program is running on has access to that share, it's exactly the same as copying from your local folder except changing the path.</p>
+
+<p>So let's for argument's sake say you want to copy from \Server\Users (where Server is the servername, users is the share name) to your local c:\userShare folder, then it's as simple as:</p>
+
+<pre><code>File.Copy(@"\\Server\Users",@"c:\userShare");
+</code></pre>
+
+<p>You will obviously still need to implement the logic in terms of getting all the files in the directory etc, see <a href="http://xneuron.wordpress.com/2007/04/12/copy-directory-and-its-content-to-another-directory-in-c/" rel="nofollow">here</a> for an example.</p>
+
+<p>If you need to give access to the machine first, have a look <a href="http://www.codeproject.com/KB/IP/ConnectUNCPathCredentials.aspx" rel="nofollow">here</a> for more info.</p>

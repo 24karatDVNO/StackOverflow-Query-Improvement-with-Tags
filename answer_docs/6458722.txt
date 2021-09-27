@@ -1,0 +1,21 @@
+<p>This is the solution i came up with. Pretty much if it is anything over 7 days i know how many days to subtract. if it is under 7 days i can still figure out if it spanned the weekend. Crystal reports has a function DayOfWeek that returns a number for the day i.e. Sunday = 1, Monday = 2, etc. If the finish time day number is less than the start time number we know it passed the weekend. and we can subtract 2.</p>
+
+<p>timeDiff is startdate - finishdate.</p>
+
+<pre><code>if({@timeDiff} &gt;= 35) then
+{@timeDiff} - 10
+else if({@timeDiff} &gt;= 28) then
+{@timeDiff} - 8
+else if({@timeDiff} &gt;= 21) then
+{@timeDiff} - 6
+else if({@timeDiff} &gt;= 14) then
+{@timeDiff} - 4
+else if({@timeDiff} &gt;= 7) then
+{@timeDiff} - 2
+else if(DayOfWeek({Command.Finishdate}) &lt; DayOfWeek({Command.Startdate})) then
+{@timeDiff} - 2
+else
+{@timeDiff}
+</code></pre>
+
+<p>I have a more in depth explanation on my website. the link is <a href="http://www.zachtech.us/blog/2011/06/23/how-to-determine-if-weekends-are-selected-in-date-range/#more-72" rel="nofollow">here</a></p>

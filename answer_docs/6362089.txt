@@ -1,0 +1,17 @@
+<p>This is svn 1.5 bug.
+<a href="https://stackoverflow.com/questions/391864/svn-mergeinfo-properties-on-paths-other-than-the-working-copy-root">SVN Mergeinfo properties on paths other than the working copy root</a></p>
+
+<p>Try to remove them: </p>
+
+<blockquote>
+  <p>Useful commands Get mergeinfo on all
+  tree, the XML format is needed to
+  create readable output: svn propget
+  svn:mergeinfo --recursive --xml</p>
+  
+  <p>Delete mergeinfo on tree except root
+  (the merge target) svn propdel
+  --recursive svn:mergeinfo ./*</p>
+</blockquote>
+
+<p>read more: <a href="https://stackoverflow.com/questions/767418/remove-unnecessary-svnmergeinfo-properties">Remove unnecessary svn:mergeinfo properties</a></p>

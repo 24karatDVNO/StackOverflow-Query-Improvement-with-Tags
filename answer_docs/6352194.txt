@@ -1,0 +1,13 @@
+<p>I think a better solution is presented here ....</p>
+
+<p><a href="http://wonko.com/post/seeing_poor_performance_using_phps_echo_statement_heres_why#comment-5606" rel="nofollow">http://wonko.com/post/seeing_poor_performance_using_phps_echo_statement_heres_why#comment-5606</a></p>
+
+<p>........</p>
+
+<p>Guys, I think I narrowed it down even further!</p>
+
+<p>As previously said, PHP buffering will let PHP race to the end of your script, but after than it will still “hang” while trying to pass all that data to Apache.</p>
+
+<p>Now I was able, not only to measure this (see previous comment) but to actually eliminate the waiting period inside of PHP. I did that by increasing Apache’s SendBuffer with the SendBufferSize directive.</p>
+
+<p>This pushes the data out of PHP faster. I guess the next step would be to get it out of Apache faster but I’m not sure if there is actually another configurable layer between Apache and the raw network bandwidth.</p>

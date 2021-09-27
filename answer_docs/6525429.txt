@@ -1,0 +1,43 @@
+<p>If you were using aspnet membership then CreateUser Control would have done the work itself. But from your question I guess you are not using so. In this case you will have to use logic to check for existing username. You can use Custom Validator and create a server side validation with it.</p>
+
+<p>Example:
+.aspx</p>
+
+<pre><code>&lt;asp:TextBox ID="txtUserName" runat="server" MaxLength="150"&gt;&lt;/asp:TextBox&gt;
+&lt;asp:CustomValidator ID="CustomValidator1" runat="server" OnServerValidate="CustomValidator1_ServerValidate"
+ ControlToValidate="txtUserName" Display="Dynamic"
+ ErrorMessage="UserName Already Exists" 
+ ToolTip="Please select a different UserName" ValidationGroup="Register"&gt;
+&lt;/asp:CustomValidator&gt;
+</code></pre>
+
+<p>The code behind can have:</p>
+
+<pre><code>protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        SqlCommand objcmd = new SqlCommand("Select * from Login_Table where UserName='" + args.Value + "'",con);
+        SqlDataReader objReader;
+        con.Open();
+        objReader = objcmd.ExecuteReader();
+
+        if (objReader.HasRows)
+        {
+            args.IsValid = false;
+        }
+        else {
+            args.IsValid = true;
+        }
+        con.Close();
+    }
+
+protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        if (!Page.IsValid)
+        {
+            return;
+        }
+// your registration code
+}
+</code></pre>
+
+<p>Remember to keep the submit button under the same Validation Group as the Custom Validator i.e. "Register" in this case. You can have the control inside ajax update panel further. Hope this helps :)</p>

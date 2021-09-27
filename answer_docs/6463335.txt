@@ -1,0 +1,8 @@
+<p>As an aside, your <code>delete</code> statement is badly broken.  You can't delete multiple variables in one go, this</p>
+
+<blockquote>
+<pre><code>delete numberOfCourses, credits, score, cumulativeScore;
+</code></pre>
+</blockquote>
+
+<p>is actually using the C++ comma operator which discards its left-hand side, so only <code>cumulativeScore</code> gets deallocated.</p>

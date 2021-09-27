@@ -1,0 +1,6 @@
+<p>You probably want to use a <a href="http://en.wikipedia.org/wiki/Join_%28SQL%29" rel="nofollow">JOIN</a> as in the following code</p>
+
+<pre><code>SELECT Item.ItemLookupCode, ItemDynamic.Quantity
+FROM Item INNER JOIN ItemDynamic 
+ON Item.ItemID=ItemDynamic.ItemID
+</code></pre>

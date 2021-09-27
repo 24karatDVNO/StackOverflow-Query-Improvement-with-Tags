@@ -1,0 +1,20 @@
+<p>For playing with AJAX, I recommend using jQuery as it makes it much easier to use.
+Take a look at <a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">http://api.jquery.com/jQuery.ajax/</a> for more info.</p>
+
+<p>All that you need to do is:</p>
+
+<pre><code>$.ajax({
+//GET or Post
+    type: 'POST',
+//Page you want to use to do stuff with
+    url: 'ajaxpost.php',
+//The data that you are going to send.
+    data: {dd:$('#dd').val(), cc:$('#cc').val()},
+//What sort of data to expect back (can be JSON, HTML, XML, etc)
+    dataType: 'html',
+//function that will deal with the data that you get back
+    success: function(data){ /* do stuff */
+});
+</code></pre>
+
+<p>The php file ajaxpost.php just needs to read the $_POST and then 'do stuff'.  Echo the results of the what ever you want to the page and that will be used by the success function.  Just make sure that the data is returned in the right type for what the script expects.</p>

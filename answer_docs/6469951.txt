@@ -1,0 +1,24 @@
+<p>I had a similar problem in that I wanted to start the application on a different page depending on saved settings. I was not able to directly set the RootFrame's Content to anything but the page named in the WMAppManifest. I tried Navigate() as previously suggested, setting the Content directly, and setting the Source. Very counter-intuitive, but nothing worked!</p>
+
+<p>I finally opted to create a StartView.xaml to do the switching for me. It contains only</p>
+
+<pre>&lt;phone:PhoneApplicationPage x:Class="MyApp.Views.StartView" ...&gt;
+    &lt;ContentControl x:Name="body" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/&gt;
+&lt;/phone:PhoneApplicationPage&gt;
+</pre>
+
+<p>Its constructor populates the body.Content according to loaded settings.</p>
+
+<pre>public StartView() {
+    InitializeComponent();
+
+    switch (App.Current.Settings.StartPage) {
+        default:      body.Content = new MainPage();  break;
+        case "Other": body.Content = new OtherPage(); break;
+    }
+}
+</pre>
+
+<p>This avoids the problems you noted with Navigate(), so you don't navigate back through a dummy "Loading" page. One caveat is that (with page caching disabled), when you navigate back, the body will be populated according to the then-current Settings, which may not be the same as when the user navigated from that page. Maybe that's what you want!  If not, the problem is easily resolved using the transient PhoneApplicationService State.</p>
+
+<p>Kludgy? A bit, but what do you do when what outta work doesn't work? HTH.</p>

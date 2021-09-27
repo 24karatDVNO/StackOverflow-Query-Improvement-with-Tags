@@ -1,0 +1,14 @@
+<p>I think this should work for you:</p>
+
+<pre><code>UPDATE `tableA` `ta`
+INNER JOIN (
+    SELECT `id`, `creation_date`
+    FROM `tableA`
+    WHERE `creation_date` &gt; '0000-00-00'
+    GROUP BY id
+) `tb` ON `ta`.`id` = `tb`.`id`
+SET `ta`.`creation_date` = `tb`.`creation_date`
+WHERE `ta`.`creation_date` = '0000-00-00';
+</code></pre>
+
+<p>Hope this helps.</p>

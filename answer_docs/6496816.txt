@@ -1,0 +1,17 @@
+<p>Are you sure this code shows something for other phones? As Neeraj answered, you have to add .show() to the Toast.</p>
+
+<p>If that is not an issue &amp; you just missed it here, then you might have come across a problem I was facing too. A piece of code similar to yours worked perfectly on <strong>Motorola Atrix</strong>, but not on <strong>Motorola Droid</strong>. </p>
+
+<p><strong>Here was my workaround. In case GPS is not available, I fall back on the Network provider</strong>. Like so:</p>
+
+<pre><code>//Start with fine location using GPS
+String locationProviderInit = LocationManager.GPS_PROVIDER;
+if ((locationProviderInit == null) ||   
+      !(mLocationManager.isProviderEnabled(locationProviderInit)))
+{
+//If GPS not available, fall back on coarse location
+    locationProviderInit = LocationManager.NETWORK_PROVIDER;
+}
+</code></pre>
+
+<p>Hope this helps!</p>

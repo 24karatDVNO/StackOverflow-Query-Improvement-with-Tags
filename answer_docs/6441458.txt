@@ -1,0 +1,3 @@
+<p>The reason this is happening is because your server config is set to not display errors, so  your script is relying on executing that <code>error_reporting(E_ALL);</code> - this should work fine as long as the <code>error_reporting()</code> function gets executed. However, <strong>if there is a parse error, the <code>error_reporting(E_ALL)</code> won't get executed</strong>, and there foreyou will not see an error as the php.ini error reporting settings never get overwritten.</p>
+
+<p>The only solution for you is to set error_reporting in a higher places such as htaccess or php.ini. But now at least you know that a blankpage = a parse error!</p>

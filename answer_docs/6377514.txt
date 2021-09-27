@@ -1,0 +1,3 @@
+<p>A guess:</p>
+
+<p>Seems like the matrices for the two objects differ: you render first object with one transformation setup, then change it and render the 2nd object. Then, <em>visually</em> 2nd object gets projected where it is expected to be, but the z-coordinate scale is now <em>distorted</em> regarding to what was used for the 1st object. Thus you "fool" the Z-buffer — you paint the right pixels, but project them nearer than supposed to.</p>

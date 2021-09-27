@@ -1,0 +1,5 @@
+<p>After figuring out why this was happening, it turns out that this is intentional. As when you run a project in NetBeans you are running it locally, it would be incorrect to try and serve it from a non-local codebase. Hence the ant script in the project ensures that you're running it with a local codebase.</p>
+
+<p>However, you can always build it with a non-local codebase, deploy the jar file, and then test it out.</p>
+
+<p>Sadly there is no way to create a different build profile to build it with a non-local codebase, when you want it, and built it with a local codebase at other times.</p>

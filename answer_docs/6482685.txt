@@ -1,0 +1,11 @@
+<p>@taro You are right. Started by adding the code</p>
+
+<pre><code>joins(:group_locations).where("group_id in (?)", group_id_array)
+</code></pre>
+
+<p>Then I proceeded to define a scope just to make it a nice package:</p>
+
+<pre><code>scope :locations_in_groups, lambda { |grparray| joins(:group_locations).where("group_id in (?)", grparray) }
+</code></pre>
+
+<p>Thanks for your help.</p>

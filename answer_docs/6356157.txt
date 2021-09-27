@@ -1,0 +1,18 @@
+<p>The solution to this is that you need to set the roles in a Web.config for the pages itself.</p>
+
+<p>See <a href="http://weblogs.asp.net/jgalloway/archive/2008/01/26/asp-net-menu-and-sitemap-security-trimming-plus-a-trick-for-when-your-menu-and-security-don-t-match-up.aspx" rel="nofollow">http://weblogs.asp.net/jgalloway/archive/2008/01/26/asp-net-menu-and-sitemap-security-trimming-plus-a-trick-for-when-your-menu-and-security-don-t-match-up.aspx</a></p>
+
+<p>e.g. in the folder for a page called AdminOnly.aspx add a Web.Config with the following:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+  &lt;location path="AdminOnly.aspx"&gt;
+    &lt;system.web&gt;
+      &lt;authorization&gt;
+        &lt;allow roles="Administrator"/&gt;
+        &lt;deny users="*" /&gt;
+      &lt;/authorization&gt;
+    &lt;/system.web&gt;
+  &lt;/location&gt;
+&lt;/configuration&gt;
+</code></pre>

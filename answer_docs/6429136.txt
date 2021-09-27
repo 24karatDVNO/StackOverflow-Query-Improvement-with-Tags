@@ -1,0 +1,3 @@
+<p>Memory freeing functions like delete, free, HeapFree will not just wipe out the memory. They would just mark them as "unallocated", and further request can be completed by these unallocated memory blocks. The same memory block can be used to server multiple memory allocation calls, or just one call. </p>
+
+<p>It is like deleting (Shift+Deleting) a file - the file wouldn't be actually marked as zeros, it would simply be marked as "free-space". As with file-allocations, multiple free-spaces may be used for one file (and that's why we have "Defragmenters"). But with memory allocations, servicing a large memory block allocation cannot be done by multiple free-memory blocks.</p>

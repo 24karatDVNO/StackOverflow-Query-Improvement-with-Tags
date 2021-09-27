@@ -1,0 +1,31 @@
+<p>Please look below code it helpful to you</p>
+
+<pre><code>LinearLayout layoutVertical = (LinearLayout) findViewById(R.id.liVLayout);
+        LinearLayout rowLayout = null;
+        Button[][] buttons = new Button[6][7];
+
+        LayoutParams param = new LinearLayout.LayoutParams(
+                LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1);
+
+        for (int i = 0; i &lt; 6; i++) {
+            rowLayout = new LinearLayout(this);
+            rowLayout.setWeightSum(7);
+            layoutVertical.addView(rowLayout, param);
+            for (int j = 0; j &lt; 7; j++) {
+                buttons[i][j] = new Button(this);
+                buttons[i][j].setText("1");
+
+                buttons[i][j].setBackgroundResource(R.drawable.btn_yes);
+                rowLayout.addView(buttons[i][j], param);
+                buttons[i][j].setClickable(true);
+                buttons[i][j].setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(v.getContext(), "Click Button", 5000).show();
+                    }
+                });
+            }
+        }
+</code></pre>

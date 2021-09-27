@@ -1,0 +1,5 @@
+<p>You can get to the entities through the <code>IPersistenceContext</code> which contains properties EntitiesByKey and CollectionsByKey:</p>
+
+<pre><code>ISession session = ...;    
+var context = session.GetSessionImplementation().PersistenceContext();
+</code></pre>

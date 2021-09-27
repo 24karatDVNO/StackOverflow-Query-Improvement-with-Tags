@@ -1,0 +1,8 @@
+<p>To run a java file, you specify which <strong>class file</strong> (ends with a <code>.class</code> extension but you don't specify the extension) and the rest of the classes and libraries (with a <code>.jar</code> extension) are provided in the classpath.</p>
+
+<p>e.g.</p>
+
+<pre><code>java WriteHelper -classpath "&lt;directory_where_class_file_exists&gt;;mail.jar/localedata.jar;
+</code></pre>
+
+<p>To compile the file, use <code>javac</code> instead. What you did is you told java to look for <code>java</code> in <code>WriteHelper</code> directory (or package).</p>

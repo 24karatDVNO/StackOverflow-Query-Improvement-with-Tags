@@ -1,0 +1,16 @@
+<pre><code>NSNumber* reason = [[aNotification userInfo] objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey]; 
+NSLog(@"%d",reason);
+</code></pre>
+
+<p>NSNumber is an Objective-C object, not a primitive C type.  You are displaying the pointer to the object, not the value.</p>
+
+<p>Correct with:</p>
+
+<pre><code>NSLog(@"%@", reason);
+</code></pre>
+
+<p>OR change <strong>reason</strong> to an Integer:</p>
+
+<pre><code>int reason = [[userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue];
+NSLog(@"%d", reason);
+</code></pre>

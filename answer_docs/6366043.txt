@@ -1,0 +1,23 @@
+<p>Lots of answers on the right track, one more to consider:</p>
+
+<pre><code>// Assumes timeString is hh:mm am/pm
+function addHours(timeString, h) {
+  var t = timeString.match(/\d+/g);
+  var am = /am$/.test(timeString);
+  var d = new Date();
+  d.setHours(+t[0] + (am? 0 : 12) + +h, +t[1]);
+  return formatTime(d.getHours() + ':' + d.getMinutes());
+}
+function formatTime(t) {
+  function addZ(n) {
+    return n&lt;10? '0'+n : ''+n;
+  }
+
+  var t = t.split(':');
+  var m = (t[0] &gt; 12)? 'pm' : 'am';
+
+  return addZ(t[0]%12 || t[0]) + ':' + addZ(t[1]) + ' ' + m;
+}
+
+ alert( addHours('12:15 am', -13) ); // 11:15 pm
+</code></pre>

@@ -1,0 +1,21 @@
+<p>as in your example you can expect the type so you can try that</p>
+
+<pre><code>public class test&lt;T&gt; where T : class
+{
+    public List&lt;String&gt; tt
+    {
+        get;
+        set;
+    }
+}
+ ///////////////////////////
+ test&lt;List&lt;String&gt;&gt; tt = new  test&lt;List&lt;String&gt;&gt;();
+if(tt.GetType().FullName.Contains(TypeOf(List&lt;String&gt;).FullName))
+{
+   //do something
+}
+else
+{
+    //do something else
+}
+</code></pre>

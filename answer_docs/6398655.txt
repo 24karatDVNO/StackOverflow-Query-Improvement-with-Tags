@@ -1,0 +1,12 @@
+<p>I found the answer looking for "how to call and activity from a broadcast receiver".
+I turns out I am missing a flag that should be added when launching an activity from a broadcast receiver.
+The missing flag is: "FLAG_ACTIVITY_NEW_TASK"
+The code looks like this:</p>
+
+<pre><code>Intent APNintent = new Intent(Constants.CHANGE_STATUS_REQUEST);
+int onState = Constants.STATE_ON;
+intent.putExtra(Constants.TARGET_MMS_STATE, onState);
+intent.putExtra(Constants.TARGET_APN_STATE, onState);
+APNintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+context.startActivity(APNintent);
+</code></pre>

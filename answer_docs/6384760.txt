@@ -1,0 +1,41 @@
+<p>I am using this .JS wrapped into a function to best clean up a loaded .doc file into a DIV. Its by no means a total solution. Improvements are welcome.</p>
+
+<pre><code>h = h.replace(/&lt;[/]?(font|st1|shape|path|lock|imagedata|stroke|formulas|span|xml|del|ins|[ovwxp]:\w+)[^&gt;]*?&gt;/gi, '')
+
+h = h.replace(/&lt;([^&gt;]*)style="([^&gt;"]*)"([^&gt;]*)&gt;/gi, '&lt;$1 $3&gt;')
+h = h.replace(/&lt;([^&gt;]*)style='([^&gt;']*)'([^&gt;]*)&gt;/gi, '&lt;$1 $3&gt;')
+h = h.replace(/&lt;([^&gt;]*)style=([^&gt; ]*) ([^&gt;]*)&gt;/gi, '&lt;$1 $3&gt;')
+h = h.replace(/&lt;([^&gt;]*)style=([^&gt;]*)&gt;/gi, '&lt;$1&gt;')
+
+h = h.replace(/&lt;([^&gt;]*)class="([^&gt;"]*)"([^&gt;]*)&gt;/gi, '&lt;$1 $3&gt;')
+h = h.replace(/&lt;([^&gt;]*)class='([^&gt;']*)'([^&gt;]*)&gt;/gi, '&lt;$1 $3&gt;')
+h = h.replace(/&lt;([^&gt;]*)class=([^&gt; ]*) ([^&gt;]*)&gt;/gi, '&lt;$1 $3&gt;')
+h = h.replace(/&lt;([^&gt;]*)class=([^&gt;]*)&gt;/gi, '&lt;$1&gt;')
+</code></pre>
+
+<p><strong>I also found this VB solution on Tim Mackeys helpful blog:</strong></p>
+
+<pre><code>Private Function CleanHtml(ByVal html As String) As String
+html = Regex.Replace(html, "&lt;[/]?(font|link|m|a|st1|meta|object|style|span|xml|del|ins|[ovwxp]:\w+)[^&gt;]*?&gt;", "", RegexOptions.IgnoreCase)
+html = Regex.Replace(html, "&lt;([^&gt;]*)(?:class|lang|style|size|face|[ovwxp]:\w+)=(?:'[^']*'|""[^""]*""|[^\s&gt;]+)([^&gt;]*)&gt;", "&lt;$1$2&gt;", RegexOptions.IgnoreCase)
+html = Regex.Replace(html, "&lt;([^&gt;]*)(?:class|lang|style|size|face|[ovwxp]:\w+)=(?:'[^']*'|""[^""]*""|[^\s&gt;]+)([^&gt;]*)&gt;", "&lt;$1$2&gt;", RegexOptions.IgnoreCase)
+Dim i As Integer = 0
+Dim x As Integer = 0
+html = customClean(html, "&lt;!--[if", "&lt;![endif]--&gt;")
+html = customClean(html, "&lt;!-- /*", "--&gt;")
+Return html
+End Function
+
+Private Function customClean(ByVal html As String, ByVal begStr As String, ByVal endStr As String) As String
+Dim i As Integer
+Dim j As Integer
+While html.Contains(begStr)
+i = html.IndexOf(begStr, 0)
+j = html.IndexOf(endStr, 0)
+html = html.Remove(i, ((j - i) + endStr.Length))
+End While
+Return html
+End Function
+</code></pre>
+
+<p>Hope this helps.</p>

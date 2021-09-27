@@ -1,0 +1,25 @@
+<pre><code>&lt;?php
+$string = 'The quick brown fox jumped over the lazy dog.';
+$patterns = array();
+$patterns[0] = '/quick/';
+$patterns[1] = '/brown/';
+$patterns[2] = '/fox/';
+$replacements = array();
+$replacements[2] = 'bear';
+$replacements[1] = 'black';
+$replacements[0] = 'slow';
+echo preg_replace($patterns, $replacements, $string);
+?&gt;
+</code></pre>
+
+<p>The above example will output:</p>
+
+<p>The bear black slow jumped over the lazy dog.</p>
+
+<p><a href="http://php.net/manual/en/function.preg-replace.php" rel="nofollow">http://php.net/manual/en/function.preg-replace.php</a></p>
+
+<p>OR</p>
+
+<p>str_replace should help you </p>
+
+<p><a href="http://php.net/manual/en/function.str-replace.php" rel="nofollow">http://php.net/manual/en/function.str-replace.php</a></p>

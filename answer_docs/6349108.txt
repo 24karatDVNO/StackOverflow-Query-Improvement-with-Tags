@@ -1,0 +1,3 @@
+<p>In cryptography the strength of the encryption scheme is the function of secrecy and strength of the key. This means that the key must be secret (i.e. not accessible to the attacker). Now, if there key is not in user's hand and not in the application code, where it is? And how secret it is? </p>
+
+<p>So you need to re-think your task. Maybe good obfuscation of the key will drive away most not-very-skilled attackers. The simplest way to obfuscate the key is to use some text phrase of your program as a key. This makes operations with the key less obvious for an occasional lurker (professionals know different ways to find the encryption keys in the application). </p>

@@ -1,0 +1,7 @@
+<p>You can get this functionality in C or C++ with alloca (_alloca on Windows).  std::vector is NOT a substitute:  it is allocated on the heap, with new, which calls malloc, which is potentially expensive.</p>
+
+<p>There is a good reason why you might want to have an array whose length is determined at runtime allocated on the stack:  it's really fast.  Suppose you have loop that executes frequently but has an array that depends on something at runtime (say, the size of your canvas widget).  You can't just hard-code a number:  your program will crash when we all get 36" 300 dpi Retina-display monitors and pixels[2400] is no longer safe.  But you don't want new, or your loop hits a malloc and gets slow.</p>
+
+<p>Although, for large arrays, it might be better to have a std::vector that is static to the function an only gets resized (larger) when necessary since your stack has limited size.</p>
+
+<p>(See <a href="http://msdn.microsoft.com/en-us/library/wb1s57t5(VS.71).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/wb1s57t5(VS.71).aspx</a>)</p>

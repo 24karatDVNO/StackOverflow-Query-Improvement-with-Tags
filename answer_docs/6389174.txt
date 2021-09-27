@@ -1,0 +1,5 @@
+<p>It sounds like what you're struggling with is that the <em>industry</em> is tending to move away from SOAP based services in favor of REST, but the tools for consuming such services are lagging.</p>
+
+<p>One benefit of developing your service with WCF is that you abstract the endpoints (SOAP, REST, etc) from the actual application. Therefore, it seems premature to rule out SOAP or REST. </p>
+
+<p>An approach might be to make your service by defining sound objects that you would like to expose for consumption. Once you've developed this, start trying to consume the service from different platforms/tools. You may learn that consuming a REST service is not as difficult as you might think. However, you may also learn that you simply do not need REST at the moment, but always have the option to <em>turn it on</em> if need be.</p>

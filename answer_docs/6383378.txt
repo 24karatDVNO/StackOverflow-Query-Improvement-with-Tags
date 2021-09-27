@@ -1,0 +1,8 @@
+<p>After manually going through literally every query that was executed after a save action, I discovered what I was missing. When a product has options, it has to display them in a different <em>template</em> (or whatever it's called in Magento). To do this, you'll have to change the value for the attribute <code>options_container</code>.</p>
+
+<p>So, there's a really easy fix for that. Just look up the <code>attribute_id</code> in the table <code>eav_attribute</code>. Then just run the following query for each product:</p>
+
+<pre><code>UPDATE `catalog_product_entity_varchar` SET `value` = 'container1' WHERE `attribute_id` = 836 AND `entity_id` = $productId;
+</code></pre>
+
+<p>That'll do the trick! :)</p>

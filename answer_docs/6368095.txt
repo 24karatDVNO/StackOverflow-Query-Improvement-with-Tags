@@ -1,0 +1,15 @@
+<p>sorry for the javascript example
+I would break it down to avoid a hard to read regex.</p>
+
+<pre><code>function valid(s) {
+  return /^[a-z0-9]+$/i.test(s) &amp;&amp;
+         /[a-z]+/i.test(s) &amp;&amp;
+         /[0-9]+/.test(s)
+}
+
+valid('123a87') ; //# =&gt;  true
+valid('A982') ; //# =&gt;  true
+valid('$54 ') ; //# =&gt;  false
+valid('123') ; //# =&gt;  false
+valid('abd') ; //# =&gt;  false
+</code></pre>

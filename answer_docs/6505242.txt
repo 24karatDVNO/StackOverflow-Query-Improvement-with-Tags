@@ -1,0 +1,224 @@
+<p>For the Simple Soap Request :</p>
+
+<pre><code> SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+    request.addProperty("Celsius", "32");
+
+    SoapSerializationEnvelope soapEnvelop = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+    soapEnvelop.dotNet = true;
+    soapEnvelop.setOutputSoapObject(request);
+    AndroidHttpTransport aht = new AndroidHttpTransport(URL);   
+
+    try {
+
+        aht.call(SOAP_ACTION , soapEnvelop);
+
+        SoapObject resultString = (SoapObject) soapEnvelop.getResponse();
+        } catch (Exception e) {
+        e.printStackTrace();
+    }   
+</code></pre>
+
+<p>Import another Customized AndroidHttpTransport file :</p>
+
+<pre><code>import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.transport.ServiceConnection;
+import org.ksoap2.transport.Transport;
+import org.xmlpull.v1.XmlPullParserException;
+/**
+ * Apache HttpComponent based HttpTransport layer.
+ */
+public class AndroidHttpTransport extends Transport {
+
+    /**
+     * Creates instance of HttpTransport with set url
+     * 
+     * @param url
+     *            the destination to POST SOAP data
+     */
+    public AndroidHttpTransport(String url) {
+        super(url);
+    }
+
+    /**
+     * set the desired soapAction header field
+     * 
+     * @param soapAction
+     *            the desired soapAction
+     * @param envelope
+     *            the envelope containing the information for the soap call.
+     */
+    public void call(String soapAction, SoapEnvelope envelope) throws IOException, XmlPullParserException {
+        if (soapAction == null)
+            soapAction = "\"\"";
+        byte[] requestData = createRequestData(envelope);
+        requestDump = debug ? new String(requestData) : null;
+        responseDump = null;
+        ServiceConnection connection = getServiceConnection();
+        connection.connect();
+
+        try {
+            connection.setRequestProperty("User-Agent", "kSOAP/2.0");
+            connection.setRequestProperty("SOAPAction", soapAction);
+            connection.setRequestProperty("Content-Type", "text/xml");
+            connection.setRequestProperty("Connection", "close");
+            connection.setRequestProperty("Content-Length", "" + requestData.length);
+            connection.setRequestMethod("POST");
+
+            OutputStream os = connection.openOutputStream();
+            os.write(requestData, 0, requestData.length);
+            os.flush();
+            os.close();
+            requestData = null;
+
+            InputStream is;
+            try {
+                is = connection.openInputStream();
+            } catch (IOException e) {
+                is = connection.getErrorStream();
+                if (is == null) {
+                    connection.disconnect();
+                    throw (e);
+                }
+            }
+
+
+            //if (debug) {
+            if (true) { 
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                byte[] buf = new byte[512];
+                while (true) {
+                    int rd = is.read(buf, 0, 512);
+                    if (rd == -1)
+                        break;
+                    bos.write(buf, 0, rd);
+                }
+                bos.flush();
+                buf = bos.toByteArray();
+                responseDump = new String(buf);
+                CommonFunctions.currentXMLString = unescape(responseDump);
+                //CommonFunctions.currentXMLString = responseDump;
+                is.close();
+                is = new ByteArrayInputStream(buf);
+            }   
+
+            parseResponse(envelope, is);
+        } finally {
+            connection.disconnect();
+        }
+    }
+
+    protected ServiceConnection getServiceConnection() throws IOException {
+        return new AndroidServiceConnection(url);
+    }
+
+    public static String unescape (String s)
+    {
+        while (true)
+        {
+            int n=s.indexOf("&amp;#");
+            if (n&lt;0) break;
+            int m=s.indexOf(";",n+2);
+            if (m&lt;0) break;
+            try
+            {
+                s=s.substring(0,n)+(char)(Integer.parseInt(s.substring(n+2,m)))+
+                    s.substring(m+1);
+            }
+            catch (Exception e)
+            {
+                return s;
+            }
+        }
+        s=s.replace("&amp;quot;","\"");
+        s=s.replace("&amp;lt;","&lt;");
+        s=s.replace("&amp;gt;","&gt;");
+        s=s.replace("&amp;amp;","&amp;");
+        return s;
+    }
+}
+</code></pre>
+
+<p>Please Add one Customized AndroidServiceConnection.java as below</p>
+
+<pre><code>import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import org.apache.commons.httpclient.HostConfiguration;
+import org.apache.commons.httpclient.HttpConnection;
+import org.apache.commons.httpclient.HttpConnectionManager;
+import org.apache.commons.httpclient.HttpState;
+import org.apache.commons.httpclient.HttpURL;
+import org.apache.commons.httpclient.SimpleHttpConnectionManager;
+import org.apache.commons.httpclient.methods.ByteArrayRequestEntity;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.RequestEntity;
+import org.ksoap2.transport.ServiceConnection;
+
+
+/**
+ * Connection using apache HttpComponent
+ */
+
+public class AndroidServiceConnection implements ServiceConnection {
+    private static HttpConnectionManager connectionManager = new SimpleHttpConnectionManager();
+    private HttpConnection connection;
+    private PostMethod postMethod;
+    private java.io.ByteArrayOutputStream bufferStream = null;
+
+    /**
+     * Constructor taking the url to the endpoint for this soap communication
+     * @param url the url to open the connection to.
+     */
+    public AndroidServiceConnection(String url) throws IOException {
+        HttpURL httpURL = new HttpURL(url);
+        HostConfiguration host = new HostConfiguration();
+        host.setHost(httpURL.getHost(), httpURL.getPort());
+        connection = connectionManager.getConnection(host);
+        postMethod = new PostMethod(url);
+    }
+
+    public void connect() throws IOException {
+        if (!connection.isOpen()) {
+            connection.open();
+        }
+    }
+
+    public void disconnect() {
+        connection.releaseConnection();
+    }
+
+    public void setRequestProperty(String name, String value) {
+        postMethod.setRequestHeader(name, value);
+    }
+
+    public void setRequestMethod(String requestMethod) throws IOException {
+        if (!requestMethod.toLowerCase().equals("post")) {
+            throw(new IOException("Only POST method is supported"));
+        }
+    }
+
+    public OutputStream openOutputStream() throws IOException {
+        bufferStream = new java.io.ByteArrayOutputStream();
+        return bufferStream;
+    }
+
+    public InputStream openInputStream() throws IOException {
+        RequestEntity re = new ByteArrayRequestEntity(bufferStream.toByteArray());
+        postMethod.setRequestEntity(re);
+        postMethod.execute(new HttpState(), connection);
+        return postMethod.getResponseBodyAsStream();
+    }
+
+    public InputStream getErrorStream() {
+        return null;
+    }
+}
+</code></pre>

@@ -1,0 +1,10 @@
+<p>Instead of always storing "true" in the SharedPreferences, simply store the current state of the CheckBox.</p>
+
+<pre><code>SharedPreferences settings = getSharedPreferences("PREFS_NAME", MODE_WORLD_READABLE);
+SharedPreferences.Editor editor = settings.edit();
+CheckBox yourCheckBox = (CheckBox) findViewById( R.id.fonarb );
+editor.putBoolean("lol", yourCheckBox.isChecked());
+editor.commit();
+</code></pre>
+
+<p>You also might consider moving this code to onPause() instead of onStop().  The operating system (pre-Honeycomb) can kill your activity once it has been paused without ever calling onStop().  If that happens, your SharedPreferences will not be saved.</p>

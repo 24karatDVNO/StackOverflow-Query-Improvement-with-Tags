@@ -1,0 +1,11 @@
+<p>MySQL supports the "REPLACE" operation, which will delete an existing row and recreate it (probably not exactly what you are looking for): <a href="http://dev.mysql.com/doc/refman/5.0/en/replace.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/replace.html</a></p>
+
+<p>What you are really looking for is "INSERT ... ON DUPLICATE KEY UPDATE": <a href="http://dev.mysql.com/doc/refman/5.0/en/insert-on-duplicate.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/insert-on-duplicate.html</a></p>
+
+<p>Their first example on that page seems to be what you described:</p>
+
+<pre><code>INSERT INTO table (a,b,c) VALUES (1,2,3)
+  ON DUPLICATE KEY UPDATE c=c+1;
+</code></pre>
+
+<p>It works when the INSERT causes a conflict on the primary key or a unique key, and then runs as an UPDATE.</p>

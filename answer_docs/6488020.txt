@@ -1,0 +1,9 @@
+<pre><code>"/username:/,/end-config/ {next}"
+</code></pre>
+
+<p><code>username</code> will be literal there.  To match against a variable, you have to use an explicit pattern match:</p>
+
+<pre><code>awk -v username="mallory" '
+    $0 ~ (username ":"),/end-config/ {next}
+    1'
+</code></pre>

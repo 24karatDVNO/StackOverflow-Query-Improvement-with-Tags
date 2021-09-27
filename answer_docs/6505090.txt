@@ -1,0 +1,86 @@
+<p>This is a configuration of my project:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4"&gt;
+
+    &lt;!-- Spring context config location(s) --&gt;
+    &lt;context-param&gt;
+    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;
+        /WEB-INF/applicationContext.xml
+    &lt;/param-value&gt;
+    &lt;/context-param&gt;  
+
+    &lt;display-name&gt;afrodite&lt;/display-name&gt;
+
+    &lt;!-- used by Log4jConfigListener --&gt;
+    &lt;context-param&gt;
+    &lt;param-name&gt;webAppRootKey&lt;/param-name&gt;
+    &lt;param-value&gt;afrodite.root&lt;/param-value&gt;
+    &lt;/context-param&gt;     
+
+    &lt;context-param&gt;
+    &lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;/WEB-INF/log4j.properties&lt;/param-value&gt;
+    &lt;/context-param&gt;   
+
+    &lt;filter&gt;
+    &lt;filter-name&gt;openSessionInView&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.orm.hibernate3.support.OpenSessionInViewFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+
+    &lt;filter&gt;
+    &lt;filter-name&gt;afrodite-app&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.apache.wicket.protocol.http.WicketFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;applicationClassName&lt;/param-name&gt;
+        &lt;param-value&gt;info.afrodite.wicket.AfroditeApplication&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;configuration&lt;/param-name&gt;
+        &lt;param-value&gt;DEPLOYMENT&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;/filter&gt;    
+
+    &lt;!-- open session should be above the wicket filter --&gt;
+    &lt;filter-mapping&gt;
+    &lt;filter-name&gt;openSessionInView&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/app/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;     
+
+    &lt;filter-mapping&gt;
+    &lt;filter-name&gt;afrodite-app&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/app/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;           
+
+    &lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt;
+    &lt;/listener&gt;
+
+    &lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+    &lt;/listener&gt;
+
+    &lt;servlet&gt;
+    &lt;servlet-name&gt;afrodite-api&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+
+    &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;afrodite-api&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/api/*&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;    
+
+    &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+    &lt;/welcome-file-list&gt;
+
+&lt;/web-app&gt;
+</code></pre>
+
+<p>Hope this will help.</p>

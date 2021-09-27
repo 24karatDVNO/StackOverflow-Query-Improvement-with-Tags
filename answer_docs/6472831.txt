@@ -1,0 +1,6 @@
+<p>If it's that consistent, you can just do this:</p>
+
+<pre><code>Select DateAdd(dd,1, DateAdd(yy,4,[Date Created])) From MyWorksheet
+</code></pre>
+
+<p>Of course, you have to be sure this happens for <em>every</em> row in the column and it would be preferable to find the cause of the issue and fix that.  I'm also not sure exactly at what level the dataadd function will run here.  It sql server does it after pulling the data, you will be fine.  But if sql server passes this to excel as an ole query then the dateadd function calls need to be tweaked a bit.  HTH</p>

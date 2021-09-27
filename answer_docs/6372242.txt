@@ -1,0 +1,6 @@
+<p>Although my firewall was off, i was able to connect using the local machine name or ip address, as stated above by SLaks. So, if anyone has there firewall on, you may have to allow the VM to access the ports.</p>
+
+<p>I did set the VMXP >> Tools >> Settings >> Networking to my Nic/ethernet card.
+Not sure if this had any effect.</p>
+
+<p>I also had trouble at first not getting the .NET MVC website to run. But then realized our web.config is setup to take only https. I had my website running on 2 ports, one for is for SSL. When i use the https secure port, it connected. So iguess the web app was seeing the VM  as another computer tryingto coinnect, that was not local, so it required it to connect by https.</p>

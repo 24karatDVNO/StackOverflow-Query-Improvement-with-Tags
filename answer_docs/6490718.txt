@@ -1,0 +1,35 @@
+<p>It seems Workbench doesn't support the command "SOURCE" so the next best thing is is (at least in windows) is to run a batch job. Simply create a new .sql file and add the full path to each .sql file like so:</p>
+
+<p><strong>Create the batch file:</strong></p>
+
+<p>In windows,  the batch file can be a .sql with the sql comman SOURCE which calls the other .sql files, like so:</p>
+
+<p>create run.sql</p>
+
+<pre><code>SOURCE C:\xampp\htdocs\mysite\sql\procs\sp_article_delete.sql
+SOURCE C:\xampp\htdocs\mysite\sql\procs\sp_article_insert.sql
+SOURCE C:\xampp\htdocs\mysite\sql\procs\sp_article_load.sql
+</code></pre>
+
+<p><strong>Open Command Line and CD to MySQL Folder</strong></p>
+
+<p>Open the command line, and cd to MySQL. If you are using XAMPP, the command/location should be something like:</p>
+
+<pre><code>cd C:\xampp\mysql\bin\
+</code></pre>
+
+<p>Execute the Batch File by pressing ENTER</p>
+
+<p><strong>Last, simply load mysql and run the batch file using the following command:</strong></p>
+
+<pre><code>mysql -u root -h 127.0.0.1 my_database_name -vvv &lt; C:\xampp\htdocs\mysite\sql\procs\run.sql
+</code></pre>
+
+<p>The execution above means the following:</p>
+
+<pre><code>mysql -u &lt;username&gt; -h &lt;host&gt; &lt;database&gt; -vvv &lt; &lt;batch_path_file_name&gt;
+</code></pre>
+
+<p>-vvv shows all the queries being executed and the rows affected for debugging.  </p>
+
+<p>That's it. All .sql files mentioned in the run.sql file will be executed.</p>

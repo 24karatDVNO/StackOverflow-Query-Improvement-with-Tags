@@ -1,0 +1,11 @@
+<p><a href="https://stackoverflow.com/users/15108">Phil Sandler</a>'s <a href="https://stackoverflow.com/questions/6352278/outer-join-on-same-table-sql/6352709#6352709">answer</a> works.  This does, too:</p>
+
+<pre><code>    SELECT FullName
+      FROM table1
+INNER JOIN (SELECT FullName, DateModified
+              FROM table1
+             WHERE DateInsertedToDatabase = (SELECT MAX(DateInsertedToDatabase) FROM table1)) d
+     USING (FullName, DateModified)
+  GROUP BY FullName
+    HAVING COUNT(1) = 1
+</code></pre>

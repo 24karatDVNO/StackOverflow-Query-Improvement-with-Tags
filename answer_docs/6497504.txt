@@ -1,0 +1,6 @@
+<p>Found third way, which retains the image quality.</p>
+
+<pre><code>Drawable drawable = getResources().getDrawable(R.drawable.img);
+drawable.setBounds(x, y, x + CELL_WIDTH - 1, y + CELL_HEIGHT -1);
+drawable.draw(canvas);
+</code></pre>

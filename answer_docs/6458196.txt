@@ -1,0 +1,3 @@
+<p>I think you should try to write as little code as possible to have the class doing what it is supposed to do. If no one is trying to copy the class and it is not going to be copied in the near future then do not add stuff like a copy constructor or assignment operator. Just make the class non copyable.</p>
+
+<p>When someday you actually want to copy the class, then add things like the copy constructor. But until then having the class non copyable means less code to test and maintain.</p>

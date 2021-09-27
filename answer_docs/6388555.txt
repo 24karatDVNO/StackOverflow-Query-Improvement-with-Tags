@@ -1,0 +1,11 @@
+<p>Yes, that is possible -- instead of mod_rewrite you need to use mod_alias (which has more chances to be enabled).</p>
+
+<p>This one will redirect <strong>everything</strong> to <code>index.html</code> on <code>newsite.com/</code></p>
+
+<pre><code>RedirectMatch 301 ^/(.*)$ http://newsite.com/index.html
+</code></pre>
+
+<p>This one will redirect <strong>everything</strong> to the same path but on another domain: (e.g. <code>oldsite.com/meow.php</code> => <code>newsite.com/meow.php</code>)</p>
+
+<pre><code>RedirectMatch 301 ^/(.*)$ http://newsite.com/$1
+</code></pre>

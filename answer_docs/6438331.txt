@@ -1,0 +1,5 @@
+<p>If you need a single container and want to change its type quickly, use a <code>typedef</code> as recommended by @icabod.</p>
+
+<p>If you're writing algorithms that should work with different containers selected at compile-time, then implement them as <code>template</code> code on containers, or, if possible, iterators.</p>
+
+<p>Only if you need to select a container type at run-time you should implement a polymorphic <code>Container</code> or <code>Collection</code> class + subclasses.</p>

@@ -1,0 +1,25 @@
+<p>As far as I can understand you're trying to execute multiple statements, right?<br>
+You should separate your SQL statements with a semicolon and change the reader when you've finished with the previous <a href="http://www.developerfusion.com/code/4638/how-to-run-through-multiple-datareader-results/" rel="nofollow">one</a>.</p>
+
+<p>UPDATE:</p>
+
+<p>I usually use stored procedures and return parameters for counters.
+Something like this:</p>
+
+<pre><code>CREATE PROCEDURE usp_GetUsers (@sid INT, @unpublished INT OUTPUT)
+
+AS
+BEGIN
+
+DECLARE @total_drafts INT
+DECLARE @unpublished_drafts INT;
+
+SELECT @total_drafts = count (1) FROM users WHERE version_replace = @sid 
+SELECT @unpublished_drafts = count (1) FROM users WHERE version_replace = @sid AND moderated = 0 
+
+SELECT * FROM users WHERE id = @sid ORDER By ID DESC
+
+    RETURN(@total_drafts)
+
+END
+</code></pre>

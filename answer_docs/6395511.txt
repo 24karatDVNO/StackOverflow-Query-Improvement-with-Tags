@@ -1,0 +1,10 @@
+<p>Keep your menu wrapper as is and change the js conde to:</p>
+
+<pre><code>$(document).ready(function()
+    {
+        $('#menu').localScroll({duration:800});
+    }
+);
+</code></pre>
+
+<p>And I don't think you need the content ID in content wrapper. That might help.</p>

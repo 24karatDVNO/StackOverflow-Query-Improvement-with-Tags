@@ -1,0 +1,42 @@
+<p>How about</p>
+
+<h2><a href="http://jsfiddle.net/mplungjan/QS8Xx/" rel="nofollow">DEMO HERE</a></h2>
+
+<pre><code>&lt;style&gt;
+#time { width:50px; border:0; text-align:right}
+select {text-align:right}
+&lt;/style&gt;
+&lt;script&gt;
+var mil = false; // use am/pm
+
+window.onload=function() {
+  var hour = document.getElementById("hour");
+  var min = document.getElementById("minutes");
+  var ampm = document.getElementById("ampm");
+
+  for (var i=0;i&lt;24;i++) {
+    var val = i&lt;10&amp;&amp;mil?"0"+i:i;
+    if (!mil &amp;&amp;  val&gt;12) val-=12;
+    hour.options[i]=new Option(val,i);
+  }
+  for (var i=0;i&lt;60;i++) {
+    var val = i&lt;10?"0"+i:i;
+    min.options[i]=new Option(val,i);
+  }
+  hour.onchange=function() {
+    if (!mil) ampm.innerHTML=(hour.selectedIndex)&lt;12?"am":"pm";
+    document.getElementById("time").value=hour.options[hour.selectedIndex].text+":"+min.value;
+  }
+  min.onchange=function() {
+    hour.onchange();
+  }
+  var now = new Date();
+  hour.selectedIndex=now.getHours();
+  min.selectedIndex=now.getMinutes();
+  hour.onchange();
+
+}
+&lt;/script&gt;
+&lt;select id="hour" name="hour"&gt;&lt;/select&gt;:&lt;select id="minutes" name="minutes"&gt;&lt;/select&gt;
+&lt;input type="text" id="time" name="time" readonly="readonly"  /&gt;&lt;!-- hidden or in another form --&gt;&lt;span id="ampm"&gt;&lt;/span&gt;
+</code></pre>

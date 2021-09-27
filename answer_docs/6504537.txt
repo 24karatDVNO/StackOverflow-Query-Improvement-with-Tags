@@ -1,0 +1,15 @@
+<p>You can use the php function <code>mysql_insert_id()</code> to get the last id you input into the database.</p>
+
+<p>EG:</p>
+
+<pre><code>$sql = "INSERT INTO `table` VALUES (NULL, 'Thomas', 'Male')";
+$query = mysql_query($sql);
+$id = mysql_insert_id();
+</code></pre>
+
+<p>So in your question after the first <code>INSERT</code> you need this:</p>
+
+<pre><code>$userid = mysql_insert_id();
+</code></pre>
+
+<p>Then your second query will work.</p>

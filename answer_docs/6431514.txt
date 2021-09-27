@@ -1,0 +1,7 @@
+<p>Where you do the math shouldn't be too important.  It's the same fundamental operation either way.  Now, if MySQL is running on a different server than your PHP code, then you may care which CPU does the calculation.  You may wish that the SQL server does more of the "hard work", or you may wish to leave the SQL server doing "only SQL", and move the math logic to PHP.</p>
+
+<p>Another consideration might be bandwidth usage (if MySQL isn't running on the same machine as PHP)--you may wish to have MySQL return whichever form is shorter, to use less network bandwidth.</p>
+
+<p>If they're both on the same physical hardware, though, it probably makes no noticeable difference, from a sheer CPU usage standpoint.</p>
+
+<p>One tip I would offer is to do the ORDER BY on the raw value (percent) rather than on the calculated value--this way MySQL can use an index on the percent column--it can't use indexes on calculated values.</p>

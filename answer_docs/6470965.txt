@@ -1,0 +1,14 @@
+<p>The questin is tagged C++ and C; but all these answers only cover C++ (for the pointer way).</p>
+
+<p>So in C, you can declare the rows separately and then compose them.</p>
+
+<pre><code>int r0[] = {1,10}, r1[] = {2,20}, r2[] = {3,30}, r3[] = {4,40};
+int *mapTable[] = { r0, r1, r2, r3 };
+</code></pre>
+
+<p>Or, using C99, you can make anonymous arrays in the initializer.</p>
+
+<pre><code>int *mapTable[] = { (int[]){1,10}, (int[]){2,20}, (int[]){3,30}, (int[]){4,40} };
+</code></pre>
+
+<p>Both of these use the fact that an array reference decays into a pointer.</p>

@@ -1,0 +1,10 @@
+<p><strong>Workaround</strong></p>
+
+<p>The system works properly allways. The Log4j system is configured for our instance of the Java Virtual Machine. Geronimo has already done it. We can not reconfigure the root logger, but we can use it. The default threshold is INFO and application uses root logger for a debug message. Thus we cannot see it anywhere.</p>
+
+<p>If threshold has decreased to DEBUG, the message appears in Geronimo log. I have changed in the file <code>$GERONIMO_HOME/var/log/server-log4j.properties</code> a line at the beginning: <pre>log4j.rootLogger=DEBUG, CONSOLE, FILE</pre> And in <code>$GERONIMO_HOME/var/log/geronimo.log</code> I can then read: <pre>2011-06-24 20:02:21,375 DEBUG [root] base URI</pre>
+From some unknown reason is neither under Linux nor under Windows created separated output file. We can the message find just in server log, but it does not matter, we can overcome it. Let rename the logger in Log4j configuration: <pre>#Root logger for application
+log4j.logger.springTestLogger=TRACE, APLOK
+</pre>
+And in the code accordingly: <pre>private Logger log = Logger.getLogger("springTestLogger");</pre>
+We create the separete log file under Linux easily: <pre>cat $GERONIMO_HOME/var/log/geronimo.log|grep springTestLogger > separe.log</pre></p>

@@ -1,0 +1,20 @@
+<p>May I suggest this:</p>
+
+<pre><code>function clientErrMsgs() {
+  var container = document.getElementById("toggle"); 
+  var inputArray = container.getElementsByTagName("input");
+  for (var inp, i=0, n=inputArray.length; i&lt;n; i++) {
+    inp = inputArray[i];
+    if (inp.getAttribute("class") === "required") {
+      var errMsg = container.getElementById("ErrMsg"+i);
+      if (!errMsg) {
+         errMsg = document.createElement('span');
+         errMsg.id = "ErrMsg" + i;
+         errMsg.innerHTML= inp.getAttribute("data-errormessage");
+         inp.parentNode.appendChild(errMsg);      
+      }
+      errMsg.style.display= (inp.value === "")?"":"none"
+    }
+  }
+}
+</code></pre>

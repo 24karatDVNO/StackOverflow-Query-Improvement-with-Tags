@@ -1,0 +1,66 @@
+<p>This is about the best I could come up with:</p>
+
+<pre><code>internal static class Entry
+{
+    private static SplashScreen splashScreen;
+    private static App app;
+
+    [STAThread]
+    internal static void Main()
+    {
+        ShowSplashScreen();
+        CreateApp();
+        PumpDispatcherUntilPriority(DispatcherPriority.Loaded);
+        PumpDispatcherFor(TimeSpan.FromSeconds(2));
+        CloseSplashScreen();
+        PumpDispatcherUntilAppExit();
+    }
+
+    private static void ShowSplashScreen()
+    {
+        splashScreen = new SplashScreen("Splash.png");
+        splashScreen.Show(false, true);
+    }
+
+    private static void CloseSplashScreen()
+    {
+        splashScreen.Close(TimeSpan.FromSeconds(0.5));
+    }
+
+    private static void CreateApp()
+    {
+        app = new App();
+    }
+
+    private static void PumpDispatcherUntilPriority(DispatcherPriority dispatcherPriority)
+    {
+        var dispatcherFrame = new DispatcherFrame();
+        Dispatcher.CurrentDispatcher.BeginInvoke((ThreadStart)(() =&gt; dispatcherFrame.Continue = false), dispatcherPriority);
+        Dispatcher.PushFrame(dispatcherFrame);
+    }
+
+    private static void PumpDispatcherFor(TimeSpan timeSpan)
+    {
+        var dispatcherFrame = new DispatcherFrame();
+
+        using (var timer = new Timer(o =&gt; dispatcherFrame.Continue = false, null, (long)timeSpan.TotalMilliseconds, Timeout.Infinite))
+        {
+            Dispatcher.PushFrame(dispatcherFrame);
+        }
+    }
+
+    private static void PumpDispatcherUntilAppExit()
+    {
+        var dispatcherFrame = new DispatcherFrame();
+        app.Exit += delegate
+        {
+            dispatcherFrame.Continue = false;
+        };
+        Dispatcher.PushFrame(dispatcherFrame);
+    }
+}
+</code></pre>
+
+<p>I toyed with extension methods for <code>Dispatcher</code>, but ultimately found them less intuitive. That's because <code>PushFrame()</code> is <code>static</code>, so any extension methods don't actually execute against the <code>Dispatcher</code> they're invoked against. YMMV.</p>
+
+<p>Note that you could also call <code>app.Run()</code> instead of <code>PumpDispatcherUntilAppExit()</code>, but I just did that for consistency.</p>

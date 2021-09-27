@@ -1,0 +1,43 @@
+<p><a href="http://msdn.microsoft.com/en-us/library/system.io.streamwriter.aspx#Y2863" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.io.streamwriter.aspx#Y2863</a></p>
+
+<p>The problem is simple: sw.writeline expects a string. You are sending it a text object which gets turned into the aformentioned .ToString(); which means your line gets translated, loosely, into</p>
+
+<pre><code>sw.WriteLine(theedit.ToString());
+</code></pre>
+
+<p>if you look at the documentation for WebControls.TextBox... scroll down the list to the Method ToString() </p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.textbox.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.textbox.aspx</a></p>
+
+<p>What you need to do... is give it one string at a time (although I assume you could just give it the raw string from the textbox):</p>
+
+<pre><code>    using System.IO;
+
+    namespace String_Writer
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                string batname = "test.txt";
+                string theedit = "Testing one two three four\n\nfive six seven eight.";
+                using(StreamWriter sw = File.CreateText("C:\\Users\\Kriis\\Desktop\\" + batname))
+                {
+                    using (StringReader reader = new StringReader(theedit))
+                    {
+                        string line = string.Empty;
+                        do
+                        {
+                            line = reader.ReadLine();
+                            if (line != null)
+                            {
+                                sw.WriteLine(line);
+                            }
+
+                        } while (line != null);
+                    }
+                }
+            }
+        }
+    }
+</code></pre>

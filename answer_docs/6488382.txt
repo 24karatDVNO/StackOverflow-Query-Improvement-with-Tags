@@ -1,0 +1,8 @@
+<p>Instead of trying to figure out what's going on, why not <em>print</em> what's going on...</p>
+
+<p>Make this change to your code:</p>
+
+<pre><code>log(myfile.getName() + "(full path=" + myfile.getAbsolutePath() + ") does not exist");
+</code></pre>
+
+<p>You might find it either isn't using the directory you think, or (depending on your filesystem) it might be trying to create a file whose name is literally <code>"src/mypackage/myscript.abc"</code> - ie a filename with embedded slashes.</p>

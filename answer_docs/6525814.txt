@@ -1,0 +1,43 @@
+<p>I apologize for my other answer because it wasn't correct. You could have added a comment there stating that didn't worked as expected. I have <a href="https://stackoverflow.com/questions/6493687/accessing-elements-of-cvcreatematnd/6525748#6525748">fixed it</a> since then and the right way to do what you are trying is:</p>
+
+<pre><code>int size[] = { 5, 5, 5 };
+CvMatND* matA = cvCreateMatND(3, size, CV_32F);
+cvSetZero(matA);
+
+printf("Before writting at 1x1x1 %f \n", cvGetReal3D(matA, 1, 1, 1));
+cvSetReal3D(matA, 1, 1, 1, (cvGetReal3D(matA, 1, 1, 1)+1));
+
+int test = cvGetReal3D(matA, 1, 1, 1);
+printf("After: %d\n", test);
+
+printf("Before writting at 3x2x1 %f \n", cvGetReal3D(matA, 3, 2, 1));
+cvSetReal3D(matA, 3, 2, 1, (cvGetReal3D(matA, 3, 2, 1)+1));
+
+test = cvGetReal3D(matA, 3, 2, 1);
+printf("After: %d\n", test);
+
+for (int x = 0; x &lt; matA-&gt;dim[0].size; x++) // dim 0
+{
+    for (int y = 0; y &lt; matA-&gt;dim[1].size; y++) // dim 1
+    {
+        for (int z = 0; z &lt; matA-&gt;dim[2].size; z++) // dim 2
+        {
+            unsigned char* ptr = matA-&gt;data.ptr + ((size_t)x * matA-&gt;dim[0].step) + ((size_t)y * matA-&gt;dim[1].step) + ((size_t)z * matA-&gt;dim[2].step);
+            float value = *(float*)ptr;
+            printf("x:%d y:%d z:%d --&gt; %f\n", x, y, z, value);
+        }
+    }
+}
+</code></pre>
+
+<p>I improved your test a little bit and the code above writes 1 to the positions (1,1,1) and (3,2,1).</p>
+
+<p>Outputs (simplified):</p>
+
+<pre><code>x:1 y:1 z:0 --&gt; 0.000000
+x:1 y:1 z:1 --&gt; 1.000000
+x:1 y:1 z:2 --&gt; 0.000000
+...
+x:3 y:2 z:1 --&gt; 1.000000
+...
+</code></pre>

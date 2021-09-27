@@ -1,0 +1,5 @@
+<p>The (new) Query optimizer will treat <code>IN</code> the same as <code>EXISTS</code> if you are evaluating a subquery.</p>
+
+<p>Since you are using <code>IN</code>, you don't need the <code>DISTINCT</code> in your subquery.  Just take it out!</p>
+
+<p>It looks like someone is writing queries and always using <code>DISTINCT</code> which is a pretty terrible habit to get into.  <code>DISTINCT</code> should only be used to avoid duplicates.  There's no reason to eliminate dupes in your subquery since it will be just as accurate to say that <code>1</code> is in <code>1,2,1,3</code> as it is to say <code>1</code> is in <code>1,2,3</code>.</p>

@@ -1,0 +1,7 @@
+<p>With TCP sockets, you just see the datastream where you can receive and send bytes. You have no way of knowing where a packet ends and another begins.</p>
+
+<p>This is a feature (and a problem) of TCP. Most people just <strong>read data into a buffer until a linefeed (\n) is seen</strong>. Then process the data and wait for the next line. If transferring chunks of binary data, one can first inform the receiver of how many bytes of data are coming.</p>
+
+<p>If packet boundaries are important, you could use UDP but then the packet order might change or some packets might be lost on the way without you knowing.</p>
+
+<p>The newer SCTP protocol behaves much like TCP (lost packets are resend, packet ordering is retained) but with SCTP sockets you can send packets so that receiver gets exactly the same packet.</p>

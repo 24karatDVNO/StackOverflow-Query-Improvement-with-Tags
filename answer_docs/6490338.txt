@@ -1,0 +1,17 @@
+<p>VBScript is a hog when it comes to string parsing so here is the same decode done in JScript:</p>
+
+<pre><code>&lt;script language="JScript" runat="server"&gt;
+// This function decodes the any string
+// that's been encoded using URL encoding technique
+function URLDecode(psEncodeString) 
+{
+  return unescape(psEncodeString); 
+}
+&lt;/script&gt;
+</code></pre>
+
+<p><a href="http://www.kamath.com/codelibrary/cl006_url.asp" rel="nofollow">http://www.kamath.com/codelibrary/cl006_url.asp</a></p>
+
+<p>.NET has HttpServerUtility.UrlEncode and HttpServerUtility.UrlDecode functions built in.</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/4fkewx0t.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/4fkewx0t.aspx</a></p>

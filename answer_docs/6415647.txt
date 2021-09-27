@@ -1,0 +1,13 @@
+<p>I have a theory but I'm not sure how to prove it. I've done something similar to <a href="https://stackoverflow.com/users/11791/cbcolin">cbcolin</a> and logged the time when the request starts from within the <code>BeginRequest</code> event handler. Then when the request times out (1 hour later in our case) it is logged in the database and a timestamp recorded. </p>
+
+<p>So here is the theory: ASP.NET only counts time that the thread is actually executing, not time that it is asleep. </p>
+
+<p>So after <code>BeginRequest</code> the thread goes to sleep until the entire POST body is received by IIS. Then the thread is woken up to do work and the <code>executionTimeout</code> clock starts running. So time spent in the network transmission phase is not counted against the <code>executionTimeout</code>. Eventually the site wide Connection Timeout is hit and IIS closes the connection, resulting in an exception in ASP.NET.</p>
+
+<p><code>BeginRequest</code> and even <code>PreRequestHandlerExecute</code> all get called <strong>before</strong> the POST body is transferred to the web server. Then there is a long gap before the request handler is called. So it may look like .NET had the request for 30 minutes but the thread wasn't running that long.</p>
+
+<p>I'm going to start logging the time that the request handler actually starts running and see if it ever goes over the limit I set. </p>
+
+<p>Now as to control how long a request can stay in the transmittions phase like this on a per URL basis I have no idea. On a global level we can set minBytesPerSecond in <a href="http://www.iis.net/ConfigReference/system.applicationHost/webLimits" rel="nofollow noreferrer">webLimits</a> for the application. There is no UI for it that I can find. This should kick ultra slow clients in the transmission phase. </p>
+
+<p>That still wont solve the problem for DoS attacks that actually send data.</p>

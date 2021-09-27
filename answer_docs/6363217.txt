@@ -1,0 +1,3 @@
+<p>In your example <code>c</code> is a compiler generated symbol, <code>c</code> has no value until <em>run-time</em>, whereas preprocessor expressions are evaluated at <em>build-time</em>  (in fact as the name suggests before the compiler processes the code), so can only operate on pre-processor symbols which <em>do</em> exist at build time.  </p>
+
+<p>Moreover such expressions must be <em>compile time constants</em>, or in fact more exactly <em>preprocessing time constant</em>, since compiler constant expressions such as <code>sizeof(...)</code> for example are also not defined during pre-processing.</p>

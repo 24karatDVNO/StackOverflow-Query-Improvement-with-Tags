@@ -1,0 +1,20 @@
+<p>You said result is True for the above code so u need to make NSString object.</p>
+
+<pre><code>NSPredicate *predicate;
+predicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS 'aaa'"];
+//this is for NSString object
+NSString *checkMe=@"anystringaaaggg";
+BOOL result = [predicate evaluateWithObject:checkMe];
+</code></pre>
+
+<p>Then we can use this checkMe  as string object and use anywhere u want</p>
+
+<p>OR</p>
+
+<pre><code>//other object
+id *checkMe=anyObject;
+BOOL result = [predicate evaluateWithObject:[NSString stringWithFormat:@"%@",checkMe]];
+NSString *result=[checkMe stringValue];
+</code></pre>
+
+<p>Then we can use this result  as string object and use anywhere u want</p>

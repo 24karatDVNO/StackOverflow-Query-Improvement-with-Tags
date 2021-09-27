@@ -1,0 +1,10 @@
+<p>You need to set the clients NLS_LANG to utf.</p>
+
+<p>sqlplus uses these environent variables (registry parameters on windows): 
+(You may need to use sqlplusw.exe to use utf-8 on windows.)</p>
+
+<p>NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+LC_CTYPE="en_US.UTF-8"
+ORA_NCHAR_LITERAL_REPLACE=true</p>
+
+<p>See also : <a href="https://stackoverflow.com/q/6509751/92018">Inserting national characters into an oracle NCHAR or NVARCHAR column does not work</a></p>

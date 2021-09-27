@@ -1,0 +1,16 @@
+<p>The difference will be generally in memory usage then speed. </p>
+
+<p>But generally you should use for loop when you know that you will be using all elements of array in other cases you should try to use while or do while. </p>
+
+<p>I think that this solution use minimum resources</p>
+
+<pre><code>int i = this.ProductIDs.Length - 1;
+
+while(i &gt;= 0) {
+ if(this.ProductIDs[i--] == productId) {
+   return true;
+ }
+}
+
+return false;
+</code></pre>

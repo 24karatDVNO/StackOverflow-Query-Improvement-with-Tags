@@ -1,0 +1,3 @@
+<p><code>(r'^clients/(?P&lt;client_id&gt;\d+)/$', views.get_client)</code> should be something like <code>url(r'^clients/(?P&lt;client_id&gt;\d+)/$', views.get_client, name='MY_URL_NAME')</code> then called with <code>{% url MY_URL_NAME client.pk %}</code></p>
+
+<p>and import <code>url</code> from <code>django.conf.urls.defaults</code></p>

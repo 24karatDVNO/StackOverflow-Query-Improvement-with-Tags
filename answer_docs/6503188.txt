@@ -1,0 +1,10 @@
+<p>I found the answer for the same i had to override one more method </p>
+
+<pre><code>protected override XPathNavigator GetXPathNavigator(string viewPath)
+
+        {
+
+            return doc.CreateNavigator();
+
+        }
+</code></pre>

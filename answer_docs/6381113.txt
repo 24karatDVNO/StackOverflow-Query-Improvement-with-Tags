@@ -1,0 +1,61 @@
+<p>One suggestion would be to decouple event handling logic from the controller logic (class A).</p>
+
+<p>So you would have 4 types of classes:</p>
+
+<ul>
+<li>the main class used for running the "server" (A)</li>
+<li>the thread listening for events (B)</li>
+<li>the model layer which will be updated (C)</li>
+<li>an event handler class which will support some operation on an event (D)</li>
+</ul>
+
+<p>It could look something like this:</p>
+
+<pre><code>public class Main {
+  private Model m;
+  private EventListener listener;
+
+  ... main() {
+    m = new Model();
+    listener = new EventListener();
+
+    EventHandler eventHandler = new MyEventHandler();
+
+    // set the event handler
+    listener.setEventHandler(eventHandler);
+
+    listener.start(m);
+}
+
+public class Model {
+  // nothing to see here
+}
+
+public class EventListener() {
+
+  private EventHandler handler = new DefaultEventHandler();
+
+  public void start(final Model m) {
+    // startup
+    while (event.type != Event.Quit) {
+      // get event
+      handler.handleEvent(event, m);
+    }
+    // shutdown
+  }
+
+  public void setEventHandler(EventHandler eh) { this.handler = eh }
+}
+
+public class MyEventHandler implements EventHandler {
+
+  public void handleEvent(Event e, Model m) {
+    // update the model
+  }
+
+}
+</code></pre>
+
+<p>Note that in this new design the business logic of updating the model (C in your example) has moved to an external class as opposed to the "Runner" class. this is a bit cleaner as the Main class does not need to have knowledge of what events are and how to handle them.</p>
+
+<p>Another advantage is that using this you can easily code complex event handling using chained event handlers or multiple serial event handlers. It is also quite simple to implement asynchronous event handling as B is only in charge of calling the handlers and doesn't need to understand event types. This is sometimes referred to as <a href="http://en.wikipedia.org/wiki/Publish/subscribe" rel="nofollow">Publish/Subscribe</a> and keeps the listener (B) and the handler (your update(e) method) loosely coupled</p>

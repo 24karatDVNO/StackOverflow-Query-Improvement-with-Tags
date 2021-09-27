@@ -1,0 +1,1 @@
+<p>i got the same problem. when trying to instrument the code, hudson (or JVM) throw java out of memory. The solution is: in the <code>configuration of plugin cobertura-maven-plugin</code>, use <code>&lt;maxmem&gt;512m&lt;/maxmem&gt;</code>.</p>

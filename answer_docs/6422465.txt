@@ -1,0 +1,3 @@
+<p>I'd deal with the problem of the headers by simply attempting to parse <strong>every</strong> line as four numbers, and throwing away any lines where the parsing doesn't work.  If there is a possibility of unparseable lines after the header lines, then you can set a flag the first time you get a "good" line, and then report any subsequent "bad" lines.</p>
+
+<p>Split the lines with <code>String.split(...)</code>.  It is not the absolute fastest way to do it, but the CPU time of your program will be spent elsewhere ... so it probably doesn't matter.</p>

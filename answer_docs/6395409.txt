@@ -1,0 +1,6 @@
+<ol>
+<li><p>No. Reads don't need to be in a transaction</p></li>
+<li><p>The SET is scoped only for the stored procedure. See my answer here: <a href="https://stackoverflow.com/questions/788636/is-it-okay-if-from-within-one-stored-procedure-i-call-another-one-that-sets-a-low/788849#788849">Is it okay if from within one stored procedure I call another one that sets a lower transaction isolation level?</a>. However, you'd use the NOLOCK hint rather then SET: <code>SELECT COUNT(*) FROM myTable WITH (NOLOCK)</code>.</p></li>
+</ol>
+
+<p>If you want an approximate count without WHERE filters, then use sys.dm_db_partition_stats. See my answer here: <a href="https://stackoverflow.com/questions/6069237/fastest-way-to-count-exact-number-of-rows-in-a-very-large-table/6069288#6069288">Fastest way to count exact number of rows in a very large table?</a></p>

@@ -1,0 +1,14 @@
+<p>First of all, you're formatting from a String, not from a number (float or double). Try changing the declaration to:</p>
+
+<pre><code>var number = 0.2343; //this is a double
+</code></pre>
+
+<p>or, if you can't modify that <em>String</em>, <strong>parse it</strong> to a <em>float</em> or <em>double</em>:</p>
+
+<pre><code>var number = parseFloat("0.2343"); //this is a float
+</code></pre>
+
+<p>Then try changing your format string to <code>",##0.00"</code>. It works for me:</p>
+
+<pre><code>alert($.formatNumber(number, {format:",##0.00") );
+</code></pre>

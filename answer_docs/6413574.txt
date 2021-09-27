@@ -1,0 +1,11 @@
+<p>Does the data need to be date-specific and stored in the table? An SQL option that can be used in your source query would be to create a table with 24 records - one for each hour - then do a left join from the hours table to your table. For example:</p>
+
+<p>Table zsysHours
+Field HourValue
+Data: 0, 1, 2...23</p>
+
+<pre><code>SELECT zsysHours.HourValue, HourlyData.Value FROM zsysHours 
+LEFT JOIN HourlyData ON zsysHours.HourValue=HourlyData.HourValue
+</code></pre>
+
+<p>This can be done with date/time values as well, just makes it more complicated.</p>

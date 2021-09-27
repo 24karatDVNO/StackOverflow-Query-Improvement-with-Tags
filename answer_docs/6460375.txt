@@ -1,0 +1,5 @@
+<p>See my answer to this ARM asm question, it shows how to conditionally compile ARM asm only when running on the device and compiling for ARM mode and not Thumb. The answer also shows a small example of passing C arguments into an ARM asm statement. You should use the simplified for loop mentioned above, then convert the instructions to ARM asm.</p>
+
+<p><a href="https://stackoverflow.com/questions/1709850/conditional-compilation-in-assembler-s-code-for-iphone-how/6181034#6181034">ARM asm example</a></p>
+
+<p>Be aware that the compiler generated code for this example will likely be just as fast as any ASM you write. But, a good ASM coder will be able to do a lot better than the compiler when you get into more complex situations, mostly because gcc is not very good at making use of conditional ARM asm statements.</p>

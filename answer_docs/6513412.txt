@@ -1,0 +1,4 @@
+<p>You can try a subselect:</p>
+
+<pre><code>SELECT mail FROM users WHERE uid IN (SELECT entity_id FROM field_data_field_city WHERE field_city_value LIKE 'Fort Lauderdale')
+</code></pre>

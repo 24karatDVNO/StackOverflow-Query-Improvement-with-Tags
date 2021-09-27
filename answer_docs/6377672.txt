@@ -1,0 +1,5 @@
+<p>Since you're using .NET, yes. .NET assemblies are actually designed to be decompiled easily, so reflection is easier and faster.</p>
+
+<p>You simply need a decompilation tool like .NET Reflector to do the decompilation. Reflector is now a retail product, but there are several freeware alternatives; I use CodeReflect.</p>
+
+<p>However, although a tool like this will show you something close to your original code, first off it won't be exact (conditionally-compiled code won't appear, and certain calls and constructs can be optimized, or look the same in IL as a slightly different construct), and second, it won't allow you to change anything. If you have the .cs file and a copy of Visual Studio (or MSBuild; a command-line tool used by VS), you can recompile your source file into the DLL.</p>

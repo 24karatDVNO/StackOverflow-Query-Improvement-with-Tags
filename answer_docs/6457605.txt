@@ -1,0 +1,13 @@
+<pre><code>SELECT ef.fid AS id
+     , COALESCE(e.value, '-', ef.pid, ' / ', f.value)
+       AS entity_field
+FROM EntityFields ef
+  JOIN Language AS e
+    ON e.id = ef.id
+    AND e.type = 'Entity'
+  JOIN Language AS f
+    ON f.id = ef.id
+    AND f.type = 'Field'
+ORDER BY ef.pid
+       , ef.fid
+</code></pre>

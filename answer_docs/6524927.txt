@@ -1,0 +1,15 @@
+<p>I have used this in the past and I just tested it out.</p>
+
+<p>You can do this because every page has a form</p>
+
+<pre><code>HtmlForm form1 = (HtmlForm)Page.FindControl("ContentPlaceHolder1");
+
+for (int i = 1; i &lt;= 3; i++) {
+    ((TextBox)form1.FindControl("label" + i)).Text = "This is label number " + i;
+}
+</code></pre>
+
+<p>If you have a master page change the first line to this</p>
+
+<pre><code>ContentPlaceHolder ph = (ContentPlaceHolder)Page.FindControl("ContentPlaceHolder1");
+</code></pre>

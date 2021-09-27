@@ -1,0 +1,6 @@
+<p>Your JSON is not an array, you actually have an object containing an array in "SearchResults", so you have to pass that on instead of the entire object:</p>
+
+<pre><code>saveJson = saveToArray(jsonResponse.SeachResults); //change this line
+</code></pre>
+
+<p>(assuming <code>jsonResponse</code> is defined)</p>

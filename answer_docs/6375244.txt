@@ -1,0 +1,9 @@
+<p>WOW!! This was a tough nut to crack but really incredible that this can mess up a working codebase.</p>
+
+<p>In my PHP code that retrieves the BLOB I had the db connect string which i replaced with an include "DBCon.inc" and I put the db credentials in that file. </p>
+
+<p>Guess what...the DBCon.inc file had two blank lines or something like that in it before the PHP end ?></p>
+
+<p>So the response to the GET that responds with the BLOB was getting appended with the two blank lines and the BLOB data was getting messed up and the browser was not being able to render the image anymore.</p>
+
+<p>Removed the blanks in this file and Voila!! everything works just as it did before.</p>

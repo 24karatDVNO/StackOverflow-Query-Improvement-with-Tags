@@ -1,0 +1,7 @@
+<ol>
+<li><p>Only worry about this if you <em>really</em> need the ability to go back to old versions of web resources.  I've found that I don't often have to do this.  Remember that the web resources are stored in SQL Server just like they would be if you put them in TFS, so as long as your CRM database is being backed up, you won't lose the web resources.  In traditional development, it is important to keep the source in TFS because you can't easily get back to it once you compile and release.  With CRM development, your web resources are mostly HTML or JavaScript, so you can always get at the source.</p></li>
+<li><p>If you really need version control, why not build a quick little console app that downloads all customizations every night and stores that zip file in TFS?  True, it wouldn't be as easy to get at older versions, but you should gain a lot of productivity by not having to manually keep TFS in sync.  This also has the benefit of storing all customizations in TFS, not just web resources.</p></li>
+<li><p>Silverlight is the obvious exception here - I would definitely store Silverlight web resource source code in TFS, because it is a "compiled" web resource.  You are already in Visual Studio, so TFS is a natural fit anyway.</p></li>
+</ol>
+
+<p>Hope that helps!</p>

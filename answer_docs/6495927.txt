@@ -1,0 +1,5 @@
+<p>I like to simply make a <code>URLRequest</code>, set its method to <code>@"POST"</code>, and using a simple xml just send it as the body of the request. Finally with a <code>NSURLConnection</code> and its delegate methods you verify and add more actions depending on the method being called at a given time.</p>
+
+<p>With the <code>connection:(NSURLConnection *)connection didReceiveData:(NSData *)data</code> delegate method you can handle a response from your php side. </p>
+
+<p>But if all you are doing is receiving something like an <code>XML</code>, you can just make the request to the url and send it to a parser; in this case I usually use <code>NSXMLParser</code>.</p>

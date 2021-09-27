@@ -1,0 +1,33 @@
+<p>If your file is a few gigabytes, then probably my solution will apply only to 64-bit operating systems:</p>
+
+<pre><code>from __future__ import with_statement
+
+import mmap, os
+
+def insert_string(fp, offset, some_bytes):
+    # fp is assumedly open for read and write
+    fp.seek(0, os.SEEK_END)
+    # now append len(some_bytes) dummy bytes
+    fp.write(some_bytes) # some_bytes happens to have the right len :)
+    fp.flush()
+    file_length= fp.tell()
+
+    mm= mmap.mmap(fp.fileno(), file_length)
+    # how many bytes do we have to shift?
+    bytes_to_shift= file_length - offset - len(some_bytes)
+    # now shift them
+    mm.move(offset + len(some_bytes), offset, bytes_to_shift)
+    # and replace the contents at offset
+    mm[offset:offset+len(some_bytes)]= some_bytes
+    mm.close()
+
+if __name__ == "__main__":
+    # create the sample file
+    with open("test.txt", "w") as fp:
+        fp.write("Hello, World!")
+    # now operate on it
+    with open("test.txt", "r+b") as fp:
+        insert_string(fp, 6, " funny")
+</code></pre>
+
+<p>NB: this is a Python 2 program on Linux. YMMV.</p>

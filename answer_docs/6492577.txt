@@ -1,0 +1,19 @@
+<p>What I'd probably do is have an enum type on the Model to switch against.</p>
+
+<pre><code>if(panelCount &lt; NumberOfPanelsToShow)
+{
+  switch(model.modelType)
+  {
+   case Model.Car:
+    // do stuff
+  break;
+  }
+  panelCount++;
+}
+</code></pre>
+
+<p>We'll need more information though really to determine how to handle the cases and how many conditions can apply at any given time.</p>
+
+<p><strong>UPDATE</strong></p>
+
+<p>Given the additional information you've provided, some of the other answers here seem more appropriate. This answer won't be sufficient given your current case.</p>

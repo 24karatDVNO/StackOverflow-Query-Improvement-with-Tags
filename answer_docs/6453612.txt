@@ -1,0 +1,11 @@
+<p>Use this shell script.</p>
+
+<pre><code>#!/bin/sh
+
+for filename in `find /path_to_file -maxdepth 1 -name "*.java"`
+do
+        cat $filename
+done
+</code></pre>
+
+<p>What is the use of <code>find</code> command is, you can specify 'maxdepth'. You can go into the deeper of the current folder and read .java files.</p>

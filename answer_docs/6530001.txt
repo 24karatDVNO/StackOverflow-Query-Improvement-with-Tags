@@ -1,0 +1,9 @@
+<p>From looking at your code above, I notice you are executing "self._load()" at the end of each function in your API. The HTML5 SQL Database is asynchronous, you can never guarantee the result. In this case, I would assume the result will always be 0 or random because it will be a race condition.</p>
+
+<p>I have done something similar in my fb-exporter extension, feel free to see how I have done it <a href="https://github.com/mohamedmansour/fb-exporter/blob/master/js/database.js" rel="nofollow">https://github.com/mohamedmansour/fb-exporter/blob/master/js/database.js</a></p>
+
+<p>To solve a problem like this, did you check the Web Inspector and see if any errors occurs in the background page. I assume this is all in a background page eh? Try to see if any error occurs, if not, I believe your encountering a race condition. Just move the load within the callback and it should properly call the load.</p>
+
+<p>Regarding your first question with the <code>unlimited storage</code> manifest attribute, you don't need it for this case, that shouldn't be the issue. The limit of web databases is 5MB (last I recall, it might have changed), if your using a lot of data manipulation, then you use that attribute.</p>
+
+<p>Just make sure you can guarantee the <code>this.database.all</code> is running after the database has been initialized.</p>

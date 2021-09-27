@@ -1,0 +1,22 @@
+<pre><code>$xml = new DOMDocument();
+$xml-&gt;load(path/to/file);
+$xpath = new DOMXPath($xml);
+$ingdiv = $xpath-&gt;query("/recipeml/recipe/ingredients/ing-div");
+$length = $ingdiv-&gt;length;
+// iterate over all &lt;ing-div&gt; from last to first
+while($length--)
+{
+    // number of &lt;ing&gt; in the specific &lt;ing-div&gt;
+    print $xpath-&gt;query("ing", $ingdiv-&gt;item($length))-&gt;length;
+}
+</code></pre>
+
+<p>Edit:</p>
+
+<p>You should not Copy &amp; Paste the formated output from a browser.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+- &lt;recipeml/&gt;
+</code></pre>
+
+<p>This is malformed XML. XML cannot have text outside the root node.</p>

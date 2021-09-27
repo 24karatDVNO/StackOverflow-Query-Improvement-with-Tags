@@ -1,0 +1,8 @@
+<pre><code>SELECT *
+FROM Pages
+   INNER JOIN Pages2Data
+      ON Pages.PageID = Pages2Data.PageID
+   INNER JOIN Data
+      ON Pages2Data.DataID = Data.DataID
+WHERE DataWord LIKE 'word%'
+</code></pre>

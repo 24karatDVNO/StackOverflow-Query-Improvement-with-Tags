@@ -1,0 +1,29 @@
+<p>Ya I have had this problem too. Its something to do with flash and that effect not playing nicely. </p>
+
+<p>I have been able to find a work around though. Take out the  HTML and use the <a href="http://jquery.thewikies.com/swfobject/" rel="nofollow">SWFObject plugin</a> to embed the flash file after you have told the dialog to open. The code would look like this:</p>
+
+<pre><code>$(function () {
+    $("#modal").dialog({
+        autoOpen: false,
+        width: 750,
+        height: 635,
+        modal: true,
+        show: "scale",
+        hide: "fade",
+        close: function (event, ui) {
+            $("#modal").empty();
+        }
+    });
+    $("#video a").click(function () {
+        $("#modal").dialog('open');
+        $("#modal").flash({
+            swf: 'video.swf',
+            width: 720,
+            height: 526
+        });
+        return false;
+    })
+});
+</code></pre>
+
+<p>Hope this helps!</p>

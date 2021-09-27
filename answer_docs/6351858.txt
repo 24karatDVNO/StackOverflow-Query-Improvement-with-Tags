@@ -1,0 +1,3 @@
+<p>See the paragraph on POCO classes in <a href="http://www.asp.net/entity-framework/tutorials/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application" rel="nofollow">http://www.asp.net/entity-framework/tutorials/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application</a></p>
+
+<p>Essentially, in the context of EF, POCO classes are entity classes that do not inherit from the Entity Framework EntityObject class (which is what you get by default in Database First or Model First). As one of the other answers mentions, this makes it easier to serialize the objects, but also some development and automated testing methodologies prefer to work with objects that have no reference to the Entity Framework.</p>

@@ -1,0 +1,9 @@
+<p>I would recommend using named groups like these:</p>
+
+<pre><code>(?P=name)
+</code></pre>
+
+<p>So in this case I would recommend using named patterns and doing this:</p>
+
+<pre><code>re.search('(?P&lt;first_match&gt;.+) (?P=first_match)', 'the the')
+</code></pre>

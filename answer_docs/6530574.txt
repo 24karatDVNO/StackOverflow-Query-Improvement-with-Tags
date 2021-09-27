@@ -1,0 +1,5 @@
+<p>Looks like you're missed GROUP BY in your query:</p>
+
+<pre><code>SELECT s.country, s.stamp_no, s.year, s.sgno, s.condition, SUM(ssk.price) as psum
+GROUP BY 1, 2, 3, 4, 5
+</code></pre>

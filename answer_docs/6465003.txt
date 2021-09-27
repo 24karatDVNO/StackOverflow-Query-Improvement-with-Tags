@@ -1,0 +1,1 @@
+<p>Drupal doesn't offer this natively. If you need to use it, you would probably want to add it to for example serialized $user->data array when user logs in (Using hook_user() for $op = "login") and save updated user object afterwards, and then you will be able to fetch it on the next login.</p>

@@ -1,0 +1,47 @@
+<p>I'm getting close to what I want.  Some nagging details remain:</p>
+
+<p>ForwardingInclude.h:</p>
+
+<pre><code>// no include guard; we want to be able to include this multiple times
+#undef forward
+#ifdef IMPLEMENTATION
+#define forward(a, b, c)  -(a) b { return [[self c] b]; }
+#else
+#define forward(a, b, c)  -(a) b;
+#endif
+</code></pre>
+
+<p>CarForwarding.h:  </p>
+
+<pre><code>// again, no include guard
+#include ForwardingInclude.h
+forward(int, nPistons, engine)
+forward(SparkPlug* sparkPlug, engine)
+</code></pre>
+
+<p>Car.h:</p>
+
+<pre><code>@interface Car: SomeSuperclass {
+  // some ivars
+}
+
+. . .
+
+#include CarForwarding.h
+</code></pre>
+
+<p>Car.m:</p>
+
+<pre><code>. . .
+
+@implementation Car
+
+#define IMPLEMENTATION
+#include CarForwarding.h
+</code></pre>
+
+<p>The nagging details:</p>
+
+<p>1)  I don't like that #define IMPLEMENTATION line.  I want CarForwarding.h to somehow automatically detect whether or not it is currently being included inside an implementation.</p>
+
+<p>2)  It would be waaaaaay cool if I could have the stuff defined in the forwarding file somehow also appear in human-readable form in the header.  Or better yet -- write the "forward" definitions directly into the Car.h file somehow, so I don't need the CarForwarding.h file at all.</p>

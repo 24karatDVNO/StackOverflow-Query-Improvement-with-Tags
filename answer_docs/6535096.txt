@@ -1,0 +1,48 @@
+<p>You need to use <code>usort</code></p>
+
+<pre><code>$array = array (
+  0 =&gt;
+  array (
+    'item1' =&gt; 80,
+  ),
+  1 =&gt;
+  array (
+    'item2' =&gt; 25,
+  ),
+  2 =&gt;
+  array (
+    'item3' =&gt; 85,
+  ),
+);
+
+function my_sort_cmp($a, $b) {
+    reset($a);
+    reset($b);
+    return current($a) &lt; current($b) ? -1 : 1;
+}
+
+usort($array, 'my_sort_cmp');
+
+print_r($array);
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>(
+    [0] =&gt; Array
+        (
+            [item2] =&gt; 25
+        )
+
+    [1] =&gt; Array
+        (
+            [item1] =&gt; 80
+        )
+
+    [2] =&gt; Array
+        (
+            [item3] =&gt; 85
+        )
+
+)
+</code></pre>

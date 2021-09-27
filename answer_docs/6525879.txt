@@ -1,0 +1,9 @@
+<p>Wouldn't just adding a <code>+</code> fix the problem?</p>
+
+<pre><code>private static Regex _cleaner = 
+    new Regex("(\\s+(and|or|not|near)\\s+)+|\"", 
+              RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+// call the regex
+_cleaner.Replace(searchText, " ")
+</code></pre>

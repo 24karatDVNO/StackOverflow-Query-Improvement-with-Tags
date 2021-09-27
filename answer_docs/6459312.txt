@@ -1,0 +1,10 @@
+<p>The length requirement is probably easier to test without a regex.
+The other tests would work better as separate tests as well:</p>
+
+<p>number: <code>[0-9]+</code></p>
+
+<p>upper case: <code>[A-Z]+</code></p>
+
+<p>special (punctuation characters):    <code>[[:punct:]]+</code></p>
+
+<p>trying to combine them into one regex would probably yield something rather unwieldy, and unclear </p>

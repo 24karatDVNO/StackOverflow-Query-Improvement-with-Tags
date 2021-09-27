@@ -1,0 +1,24 @@
+<p>If you want to keep the blur effect on the border here's an example of how to do this.</p>
+
+<p><a href="http://jsfiddle.net/pxfunc/aE4PY/" rel="nofollow">http://jsfiddle.net/pxfunc/aE4PY/</a></p>
+
+<p>You can prevent the default Chrome behavior by setting <code>outline:none</code> on <code>input</code> itself which will also apply to any pseudo class (like <code>:focus</code>)</p>
+
+<pre><code>input {
+    border:solid 1px #aaa;
+    outline:none;
+}
+input:focus {
+    -webkit-box-shadow: 0 0 4px yellow;
+     -khtml-box-shadow: 0 0 4px yellow;
+       -moz-box-shadow: 0 0 4px yellow;
+        -ms-box-shadow: 0 0 4px yellow;
+         -o-box-shadow: 0 0 4px yellow;
+            box-shadow: 0 0 4px yellow;
+}
+</code></pre>
+
+<p>In order for the <code>box-shadow</code> to work I had to manually set the <code>border</code>.  Also, the most current versions of browsers support box-shadow without vendor prefixes.</p>
+
+<p>for some bonus effects like rounded corners and transition easing check this post out
+<a href="http://blog.gesteves.com/post/475773360/css-glow-effects-with-box-shadow" rel="nofollow">http://blog.gesteves.com/post/475773360/css-glow-effects-with-box-shadow</a></p>

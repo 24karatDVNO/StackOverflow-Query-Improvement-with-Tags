@@ -1,0 +1,13 @@
+<p>You can achieve it in below way.</p>
+
+<p>I think you are reloading table.</p>
+
+<p>So, when you press particular row, then store it's indexPath.row in local variable.
+like currIndexPathRow = indexPath.row
+And reload table.</p>
+
+<p>Then check inside "CellForRowAtIndexPath". that if(indexPath.row == currIndexPathRow) then you can set some background image to that particular row.</p>
+
+<p>Hope you have got the point.</p>
+
+<p>Let me know in case of any difficulty.</p>

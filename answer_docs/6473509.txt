@@ -1,0 +1,13 @@
+<p>Here is a solution that involves <code>mod_rewrite</code> (place it in <code>.htaccess</code> file into root folder). It will forbid (403 code) access to any resource that located <code>myfolder</code> unless it is requested via <code>mydomain.com</code> (e.g. <code>http://mydomain.com/myfolder</code>).</p>
+
+<pre><code>RewriteCond %{HTTP_HOST} !=mydomain.com
+RewriteRule ^myfolder(/|/.*)?$ - [NC,F]
+</code></pre>
+
+<p>The rule below will do the same but for <code>/myfile.php</code> file.</p>
+
+<pre><code>RewriteCond %{HTTP_HOST} !=mydomain.com
+RewriteRule ^myfile\.php$ - [NC,F]
+</code></pre>
+
+<p>As to your original approach -- try this: <code>&lt;FilesMatch "myfile\.php"&gt;</code>. <a href="http://httpd.apache.org/docs/current/mod/core.html#filesmatch" rel="nofollow">FilesMatch</a> works with regular expression and therefore may need to be declared in this way.</p>

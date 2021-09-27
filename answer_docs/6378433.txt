@@ -1,0 +1,21 @@
+<p>I've taken a slightly different approach to the others, using <code>index()</code>:</p>
+
+<pre><code>$('select').change(
+    function(){
+        var i = $(this).index('select');
+        $('select').eq(i+1).removeAttr('disabled');
+    });
+</code></pre>
+
+<p><a href="http://jsfiddle.net/davidThomas/h7EWK/" rel="nofollow">JS Fiddle demo</a>.</p>
+
+<p>Because you have <code>&lt;br /&gt;</code> elements as siblings to the <code>select</code> elements, I've supplied a selector to the <code>index()</code> method, which finds the <code>index()</code> of the element according to the specified selector, rather than among all (or all sibling) elements.</p>
+
+<p>References:</p>
+
+<ul>
+<li><a href="http://api.jquery.com/change/" rel="nofollow"><code>change()</code></a>,</li>
+<li><a href="http://api.jquery.com/eq/" rel="nofollow"><code>eq()</code></a>,</li>
+<li><a href="http://api.jquery.com/index/" rel="nofollow"><code>index()</code></a>,</li>
+<li><a href="http://api.jquery.com/removeAttr/" rel="nofollow"><code>removeAttr()</code></a>.</li>
+</ul>

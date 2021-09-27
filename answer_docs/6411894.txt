@@ -1,0 +1,18 @@
+<p>If you assign multiple values to a single variable, as in:</p>
+
+<pre><code>tgt_name_str = map_name, ",", "TARGET" , ", " , tgt_name
+</code></pre>
+
+<p>Python will implicitly convert that into a tuple. It's equivalent to writing:</p>
+
+<pre><code>tgt_name_str = (map_name, ",", "TARGET" , ", " , tgt_name)
+</code></pre>
+
+<p>and so that is what str(tgt_name_str) supplies.</p>
+
+<p>You might want to concatenate the values:</p>
+
+<pre><code>tgt_name_str = map_name + "," + "TARGET" + ", " + tgt_name
+</code></pre>
+
+<p>, use ''.join or create your own format template to get the output you desire.</p>

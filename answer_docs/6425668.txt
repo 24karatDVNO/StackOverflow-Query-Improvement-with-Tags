@@ -1,0 +1,4 @@
+<p>Take a look at <a href="https://stackoverflow.com/questions/5808287/windows-vista-7-how-to-sample-output-audio-mix/5808780#5808780">this question</a> for a solution on Vista/Win7, and take a look at <a href="https://stackoverflow.com/questions/6196259/intercepting-the-audio-from-player-before-it-reaches-the-real-sound-card/6227855#6227855">this one</a> for WinXP.</p>
+
+<p>Summary: 
+You can use <a href="http://msdn.microsoft.com/en-us/library/dd316551%28v=vs.85%29.aspx" rel="nofollow noreferrer">Loopback recording</a> with <a href="http://msdn.microsoft.com/en-us/library/dd371455%28v=vs.85%29.aspx" rel="nofollow noreferrer">WASAPI</a> in Vista/Win7, but there is no equivalent API in WinXP, however a partial solution can be achieved with a virtual soundcard driver.</p>

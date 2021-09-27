@@ -1,0 +1,3 @@
+<p>It looks like the problem is that while the GPS location isn't enabled, you are still getting a location in myLocation.getLocation.</p>
+
+<p>After you call createGpsDisabledAlert(), you probably should return instead of continuing with the method.</p>

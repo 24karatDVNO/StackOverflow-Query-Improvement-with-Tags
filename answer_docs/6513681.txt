@@ -1,0 +1,56 @@
+<p>I don't know how exactly you have structured your code, but here is a structure that works:</p>
+
+<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;
+
+&lt;head&gt;
+    &lt;title&gt;jQuery Test&lt;/title&gt;
+    &lt;meta http-equiv="content-type" content="text/html;charset=utf-8" /&gt;
+    &lt;meta name="generator" content="Geany 0.20" /&gt;
+    &lt;script type="text/Javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/Javascript"&gt;
+        $(document).ready(function(){
+            $('.overview_table_header').click(function() {
+                alert("clicked!");
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class='overview_table_wrapper'&gt; 
+          &lt;table&gt; 
+            &lt;thead&gt; 
+              &lt;tr&gt; 
+                &lt;th class='col_1'&gt; 
+                  &lt;span class='overview_table_header' data-sort='DESC'&gt; 
+                    Contest
+                  &lt;/span&gt; 
+                  &lt;span class='arrow'&gt;&gt;&lt;/span&gt; 
+                &lt;/th&gt; 
+                &lt;th class='col_2'&gt; 
+                  &lt;span class='overview_table_header' data-sort='DESC'&gt; 
+                    Tweets
+                  &lt;/span&gt; 
+                  &lt;span class='arrow'&gt;&lt;/span&gt; 
+                &lt;/th&gt; 
+                &lt;th class='col_3'&gt; 
+                  &lt;span class='overview_table_header' data-sort='DESC'&gt; 
+                    Starts
+                  &lt;/span&gt; 
+                  &lt;span class='arrow'&gt;&lt;/span&gt; 
+                &lt;/th&gt; 
+                &lt;th class='col_4'&gt; 
+                  &lt;span class='overview_table_header' data-sort='DESC'&gt; 
+                    Ends
+                  &lt;/span&gt; 
+                  &lt;span class='arrow'&gt;&lt;/span&gt; 
+                &lt;/th&gt; 
+              &lt;/tr&gt; 
+            &lt;/thead&gt; 
+    &lt;/div&gt;  
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>

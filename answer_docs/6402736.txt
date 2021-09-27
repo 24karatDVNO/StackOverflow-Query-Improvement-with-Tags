@@ -1,0 +1,6 @@
+<p>We have a few duplicate questions on how to use <a href="http://php.net/preg_preplace" rel="nofollow"><code>preg_preplace('#\\u[a-f0-9]{4}#)</code></a>) and <a href="http://php.net/mb_convert_encoding" rel="nofollow"><code>mb_convert_encoding</code></a> to convert the <code>\u1234</code> Unicode escapes. But can't find it..</p>
+
+<p>But in your case you also have other quotes backslashed, why it would be possible to use this lazy appraoch:</p>
+
+<pre><code> $string = json_decode('"' . $string . '"');
+</code></pre>

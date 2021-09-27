@@ -1,0 +1,7 @@
+<pre><code>Caused by: groovy.lang.MissingPropertyException: No such property: Patient for class: hospitalmanagement.Physician
+    at hospitalmanagement.Physician.&lt;init&gt;(Physician.groovy)
+</code></pre>
+
+<p>This is telling you that <code>hospitalmanagement.Physician</code> is trying to access a <code>Patient</code> property which doesn't exist (in the same class).</p>
+
+<p>No idea how you should solve that since you haven't shown the corresponding code.</p>

@@ -1,0 +1,13 @@
+<p>You could use <code>window.location.href</code> variable which would give you the whole current url, and then play with the string a bit to get the desired information. Substring, split, even regex.</p>
+
+<p>This would work:</p>
+
+<pre><code>var ageMatch= window.location.href.match(/age\/([\d]*)/);
+var age= ageMatch[1];
+</code></pre>
+
+<p>Just for the record, you can also update the url just as easily:</p>
+
+<pre><code>var newUrl= window.location.href.replace(/age\/([\d]*)/, age);
+window.location.href= newUrl;
+</code></pre>

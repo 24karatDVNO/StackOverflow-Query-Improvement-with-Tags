@@ -1,0 +1,9 @@
+<p>I had this same issue when developing for the tablet. After a certain API, I'm thinking 3.0 (sdk 11), Android enforces applications to run long running processes on a separate thread, otherwise it kills it. Logcat will confirm this.</p>
+
+<p>I know you are using another thread, but that didn't work for me either. Try using <a href="http://developer.android.com/reference/android/os/AsyncTask.html" rel="nofollow">AsyncTask</a>. You can create a quick inner class that, in my opinion, is way easier than handling your own threads. AsyncTask has several functions that run on the UI thread and a couple that run on their own thread. This allows you to start a "Loading" user interface object on the user interface thread, process on the back end thread, and then when its done, it'll notify a user interface thread function.</p>
+
+<p>You'll want to specifically look at override</p>
+
+<p>onPreExecute()
+doInBackground()
+onPostExecute()</p>

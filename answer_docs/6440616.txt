@@ -1,0 +1,6 @@
+<p>If you are having difficulty reading a "saved" Java string, you need to look at the specification for the methods that read/write in that format:</p>
+
+<ul>
+<li><p>If the string was written using DataOutput.writeUTF8, the <a href="http://download.oracle.com/javase/6/docs/api/java/io/DataInput.html#readUTF%28%29" rel="nofollow"><code>DataInput.readUTF8()</code> javadoc</a> is a definitive spec.  In addition to the non-standard handling of <code>NUL</code>, it specifies that the string starts with an unsigned 16-bit byte count.</p></li>
+<li><p>If the string was written using <code>ObjectOutputStream.writeObject()</code> then the serialization spec is definitive.</p></li>
+</ul>

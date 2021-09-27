@@ -1,0 +1,20 @@
+<p>The code in the following code block clearly does not return a value for the TRUE and FALSE statement.</p>
+
+<p>In this context IF = TRUE else = FALSE of course I suggest using { and } on ALL IF statements until you have a general understanding of this fact.</p>
+
+<pre><code>    private string GetFileSize(double byteCount)     
+    {           
+  string size = "0 Bytes";            
+ if (byteCount &gt;= 1073741824.0)             
+    size = String.Format("{0:##.##}", byteCount / 1073741824.0) + " GB";   
+          else if (byteCount &gt;= 1048576.0)   
+              //etc...                       return size;   
+       }  
+</code></pre>
+
+<blockquote>
+  <p>The name 'txtFile' does not exist in
+  the current context</p>
+</blockquote>
+
+<p>You never declared a variable called txtFile thus you cannot use it as a variable.  My guess your trying to use a textbox control's Text property.</p>

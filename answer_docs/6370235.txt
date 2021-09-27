@@ -1,0 +1,21 @@
+<p>Use <code>ArrayList</code> instead of array to load data dynamically, to set image from a path use <code>imageView.setImageURI(Uri.parse("myimagepath"));</code></p>
+
+<h2>Modify the following lines in your code as given below</h2>
+
+<pre><code>ArrayList&lt;String&gt; mImageIds = new ArrayList&lt;String&gt;();
+</code></pre>
+
+<p>Add image urls after parsing from json at run time</p>
+
+<pre><code>mImageIds.add("imageurl1");
+mImageIds.add("imageurl2");
+.....
+</code></pre>
+
+<p>Instead of <code>imageView.setImageResource(mImageIds[arg2]);</code>  inside <code>setOnItemClickListener</code> use the following</p>
+
+<pre><code>imageView.setImageURI(Uri.parse(mImageIds.get(arg2)));
+</code></pre>
+
+<p>Thanks
+Deepak</p>

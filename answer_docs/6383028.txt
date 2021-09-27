@@ -1,0 +1,63 @@
+<p>This is my solution:<br>
+I subclassed GridView with constructor (Context, AttributeSet):<br>
+(this for me must be done on a separate file class)<br>
+and overrided onSizeChanged method  </p>
+
+<pre><code>MyGrid.java
+
+public class MyGrid extends GridView {
+
+  public void MyGrid(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    // TODO Auto-generated constructor stub
+  }
+
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    // TODO Auto-generated method stub
+    // Here I call my custom functions to prepare layout of my custom listview
+    super.onSizeChanged(w, h, oldw, oldh);
+  }
+}
+</code></pre>
+
+<p>On class Activity than use GridView,<br>
+I have overrided onStart method<br>
+(called after OnCreate and after onRestart 
+  [when you came from another activity])</p>
+
+<pre><code>MyActivity.java
+
+public class MyActivity extends Activity {
+
+  onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(...)
+    ...
+  }
+  ....
+
+  protected void onStart() {
+    // TODO Auto-generated method stub
+
+    // call db and create cursor
+    // 'mygridview' = findbyid MyGrid
+    // (declared on xml like '&lt;packagepath&gt;'.mygrid
+
+    // setadapter with my costom adapeter       
+
+    // **HERE THE CALLED ONSIZECHANGED**
+    // I make test proper for my app
+    // (there is a simple test)
+    if ('mygridview'.getMeasuredHeight() &gt; 0) {
+      // I use the same width and height for new and old measures
+      // because for me that is right
+      'mygridview'.onSizeChanged(gw.getWidth(), gw.getHeight(), 
+                       gw.getWidth(), gw.getHeight());
+    }
+    super.onStart();
+  }
+}
+</code></pre>
+
+<p>With this approach, I can resize my grid at any time.
+I hope this you helpful.</p>

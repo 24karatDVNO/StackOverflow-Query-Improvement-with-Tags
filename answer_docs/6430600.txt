@@ -1,0 +1,6 @@
+<p>in treeView_selectedItemChanged event handler use following code works fine for me:</p>
+
+<pre><code>string selectName = ((TreeViewItem)(treeView1.SelectedItem)).Header.ToString();
+</code></pre>
+
+<p>hope that's what you needed!</p>

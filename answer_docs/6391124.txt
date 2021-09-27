@@ -1,0 +1,9 @@
+<p>In your code above the "set" is never getting called hence your _theList is empty
+I would also change it to:</p>
+
+<pre>
+_theList = (from i in context select i).ToList();
+
+</pre>
+
+<p>To ensure it gets called now -without deferred execution</p>

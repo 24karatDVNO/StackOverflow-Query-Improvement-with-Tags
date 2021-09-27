@@ -1,0 +1,6 @@
+<p>I'm thinking 2 solutions</p>
+
+<p>1) You create a method get_parent(self) inside TreeComment class. Then in your themplate you could do 
+{% for elem in some_list %}{{ elem.get_parent.whatever_method }}{% endfor %}</p>
+
+<p>2) You could use a custom structure containing (, title) and the populating method reads from your TreeComment.objects.all(), gets the parent and the title and populates your list with your custom couples </p>

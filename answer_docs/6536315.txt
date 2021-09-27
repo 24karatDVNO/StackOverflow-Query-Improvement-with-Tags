@@ -1,0 +1,6 @@
+<p>T extends Comparable means that method parameter (in this case T) should extend from comparable. So when you try to do the following cast</p>
+
+<pre><code>(T[]) m;
+</code></pre>
+
+<p>You are trying to cast an Object[] to Comparable[] (or anything that extends Comparable).</p>

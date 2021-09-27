@@ -1,0 +1,5 @@
+<p>Add a while loop to the end of your background worker:</p>
+
+<p>while(!stop) { Thread.Sleep(yourIntervalinMilliseconds); ... }</p>
+
+<p>I'd create a stop bool somewhere that the thread looks at when you want it to kick out.</p>

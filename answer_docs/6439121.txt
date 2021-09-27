@@ -1,0 +1,85 @@
+<p>I have resolve this question.</p>
+
+<pre><code>[ComVisible(true)]
+[Guid("1c470f4b-0486-4558-80c7-ad08d652a465"), ClassInterface(ClassInterfaceType.AutoDispatch)]
+public class MimeHandler : IInternetProtocol, IInternetProtocolRoot, IInternetProtocolSink
+{
+.......
+//private static ArrayList not = new ArrayList();
+
+private static string newUrl = "";
+public static string NewUrl //set it berfor Navigate
+{
+get
+{ return newUrl; }
+set
+{ 
+newUrl = value;
+not.Clear();
+}
+}
+
+private void HandleData()
+{
+    buffer = new byte[(int)dataStream.Length];
+    dataStream.Seek(0, SeekOrigin.Begin);
+    dataStream.Read(buffer, 0, buffer.Length);
+    written = 0;
+    totalSize = buffer.Length;
+
+    string content = BytesToString(buffer, out char_set);
+
+    if(string.Equals(url,newUrl))
+    {
+        Regex reg_js = new Regex("(?&lt;head&gt;&lt;script[^&lt;&gt;]+src=\"*)(?&lt;url&gt;[^\"\\s&gt;]+)(?&lt;end&gt;\"*[^&lt;&gt;]*&gt;\\s*&lt;/script&gt;)", RegexOptions.IgnoreCase);
+        MatchCollection mc_js = reg_js.Matches(content);
+        foreach (Match m in mc_js)
+        {
+            if (!m.Groups["url"].Value.EndsWith(".js",StringComparison.OrdinalIgnoreCase))
+            { not.Add(m.Groups["url"].Value); }
+        }
+    }
+
+    byte[] data = StringToBytes(content, char_set);
+
+    dataStream = new MemoryStream(data);
+
+    buffer = new byte[(int)dataStream.Length];
+    dataStream.Seek(0, SeekOrigin.Begin);
+    dataStream.Read(buffer, 0, buffer.Length);
+    written = 0;
+    totalSize = buffer.Length;
+}
+
+public void Start(string szURL, IInternetProtocolSink Sink,
+IInternetBindInfo pOIBindInfo, uint grfPI, uint dwReserved)
+{
+    uint Fetched = 0;
+    const int BINDSTRING_URL = 14;
+    pOIBindInfo.GetBindString(BINDSTRING_URL, ref url, 1, ref Fetched);
+
+    for (int i = 0; i &lt; not.Count;++i )
+    {
+        Regex reg_end = new Regex("\\.html?$");
+        string t = (string)not[i];
+
+        if (string.Equals(reg_end.Replace(t, ""), reg_end.Replace(url, "")))
+        {
+            throw new COMException("", INET_E_USE_DEFAULT_PROTOCOLHANDLER);
+        }
+    }
+
+    MimeType = szURL;
+
+    urlMonProtocol = (IInternetProtocol)Sink; 
+    urlMonProtocolSink = Sink; 
+
+    //System.IO.File.AppendAllText("C:\\url.txt", url + "\r\n");
+    throw new COMException("", S_OK);
+}
+
+//.......
+}
+</code></pre>
+
+<p>I don't know why the data still error when I return data directly . Now I have to use "throw new COMException("", INET_E_USE_DEFAULT_PROTOCOLHANDLER)" in Start. In this way flash can shown. </p>

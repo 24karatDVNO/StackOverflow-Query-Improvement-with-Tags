@@ -1,0 +1,28 @@
+<p>To get dynamic size of textview, you need following code</p>
+
+<pre><code>CGSize size = [secondStr sizeWithFont:txtView.font constrainedToSize:CGSizeMake(txtView.frame.size.width,10000)];
+
+size.height +=10;
+</code></pre>
+
+<p>This way you will get dynamic height of string.</p>
+
+<p>Now you can set frame of textview</p>
+
+<pre><code>CGRect frame = txtView.frame;
+
+frame.size.height= size.height;
+
+txtView.frame = frame;
+</code></pre>
+
+<p>Now you can set button frame:</p>
+
+<pre><code>CGRect frame = btnSend.frame;
+
+frame.origin.y = txtView.frame.origin.y + txtView.frame.size.height+10;
+
+btnSend.frame = frame;
+</code></pre>
+
+<p>Hope this helps.</p>

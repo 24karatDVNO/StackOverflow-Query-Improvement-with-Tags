@@ -1,0 +1,11 @@
+<p>It's probably actually hiding this warning in <code>Microsoft.Ria.Client.targets</code></p>
+
+<pre><code>The element 'PropertyGroup' in namespace 
+'http://schemas.microsoft.com/developer/msbuild/2003' has invalid child element 
+'RiaClientCodeGenDependsOn' in namespace 
+'http://schemas.microsoft.com/developer/msbuild/2003'. 
+</code></pre>
+
+<p>Which most likely means there's a mismatch (or non-existent) version of WCF RIA Services for Silverlight 4.</p>
+
+<p>Install the latest from <a href="http://www.silverlight.net/getstarted/riaservices" rel="nofollow">http://www.silverlight.net/getstarted/riaservices</a> and the problem should be solved.</p>

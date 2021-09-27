@@ -1,0 +1,5 @@
+<p><code>simplexml_load_file()</code> seems to struggle with namespaces, which is what the <code>:</code> indicates. If you use <a href="http://ca2.php.net/dom" rel="nofollow">DOM</a> instead, you should be fine:</p>
+
+<pre><code>$xml = new DOMDocument();
+$xml-&gt;load($feed);
+</code></pre>

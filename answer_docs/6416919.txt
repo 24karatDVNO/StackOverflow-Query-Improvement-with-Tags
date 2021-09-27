@@ -1,0 +1,3 @@
+<p>You can change where this happens in your deployment.  </p>
+
+<p>I would deploy the database right after your main build command in the workflow.  In 2008 with the .proj this a little more clear because you would simply add it to <code>&lt;Target Name=BeforeTest&gt;</code> Try moving it to an earlier point in the process.</p>

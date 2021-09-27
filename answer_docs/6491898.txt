@@ -1,0 +1,24 @@
+<p>Okay, so this is basically how I done it. I wrote this class that inherits from <code>System.Web.UI.Page</code>. I override the <code>OnInit</code> event and this is where the authentication happens (looks up the Windows username against the database of users). If the user doesn't get authenticated, <code>isTerminating</code> gets set to true, and the <code>OnLoad</code> event only runs if <code>isTerminating</code> is <code>false</code>. I tried leaving a Response.Redirect with the second parameter set to false on its own, but this still ran all the subsequent page events. (even with a call to <code>HttpApplication.CompleteRequest()</code>)</p>
+
+<pre><code>public class BasePageClass : Page
+{
+    private bool isTerminating = false;
+
+    protected override void OnInit(EventArgs e)
+    {
+        isTerminating = !AuthenticationManager.Authenticate();
+
+        base.OnInit(e);
+    }
+
+    protected override void OnLoad(EventArgs e)
+    {
+        if (!isTerminating)
+        {
+            base.OnLoad(e);
+        }
+    }
+}
+</code></pre>
+
+<p>I have no idea whether not running the OnLoad event is the best thing to do,  but it "seems" to work fine.</p>

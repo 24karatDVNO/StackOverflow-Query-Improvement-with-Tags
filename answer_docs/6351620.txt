@@ -1,0 +1,9 @@
+<p>It is not very clear to me what you're trying to do but you can compress your .htaccess code like this:</p>
+
+<pre><code>Options +FollowSymlinks -MultiViews
+RewriteEngine On
+
+RewriteRule ^user/(.*)/?$ /viewer/index.php?profile=$1 [L,NC,QSA]
+
+RewriteRule ^mobile/user/(.*)/?$ /mobile/index.php?user=$1 [L,NC,QSA]
+</code></pre>

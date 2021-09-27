@@ -1,0 +1,3 @@
+<p>The width of <code>\t</code> is highly dependent on your specific environment. In your case, it looks like you have a tab width of 8; that is, <code>\t</code> adds <em>up to</em> eight spaces, until the current column is divisible by 8. Since <code>(5)*****</code> is eight characters long, <code>\t</code> must move to the next tab position, and adds another 8 spaces. But <code>(4)****</code> is seven characters long, so <code>\t</code> can get away with one space.</p>
+
+<p>In short: Don't use <code>\t</code>, explicitly move over however many spaces you want.</p>

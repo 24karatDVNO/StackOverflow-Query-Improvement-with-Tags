@@ -1,0 +1,51 @@
+<p>Following would work if your <code>Value</code> column is sequential</p>
+
+<pre><code>;WITH q (Value) AS (
+    SELECT  1
+    UNION ALL
+    SELECT  q.Value + 1
+    FROM    q
+    WHERE   q.Value &lt; 38
+)
+
+SELECT  q.Value
+        , CASE WHEN q.Value &gt;= 4 THEN q.Value * 4 - 6 ELSE NULL END
+FROM    q       
+</code></pre>
+
+<p>otherwise you might use something like this</p>
+
+<pre><code>;WITH q (Value) AS (
+    SELECT  1
+    UNION ALL
+    SELECT  q.Value + 1
+    FROM    q
+    WHERE   q.Value &lt; 38
+)
+, Sequential (ID, Value) AS (
+    SELECT  ID = ROW_NUMBER() OVER (ORDER BY Value)
+            , Value
+    FROM    q
+)
+SELECT  s1.Value
+        , [SUM] = s1.Value + s2.Value + s3.Value + s4.Value
+FROM    Sequential s1
+        LEFT OUTER JOIN Sequential s2 ON s2.ID = s1.ID - 1
+        LEFT OUTER JOIN Sequential s3 ON s3.ID = s2.ID - 1
+        LEFT OUTER JOIN Sequential s4 ON s4.ID = s3.ID - 1
+</code></pre>
+
+<p>Note that the table <code>q</code>in the examples is a stub for your actual table. The actual statement then becomes</p>
+
+<pre><code>;WITH Sequential (ID, Value) AS (
+    SELECT  ID = ROW_NUMBER() OVER (ORDER BY Value)
+            , Value
+    FROM    YourTable
+)
+SELECT  s1.Value
+        , [SUM] = s1.Value + s2.Value + s3.Value + s4.Value
+FROM    Sequential s1
+        LEFT OUTER JOIN Sequential s2 ON s2.ID = s1.ID - 1
+        LEFT OUTER JOIN Sequential s3 ON s3.ID = s2.ID - 1
+        LEFT OUTER JOIN Sequential s4 ON s4.ID = s3.ID - 1
+</code></pre>

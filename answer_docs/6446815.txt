@@ -1,0 +1,8 @@
+<p>[UDPATE: SOLUTION]</p>
+
+<p>I was advised to create a jar of the application I was trying to test and then run that jar. So I created the jar "jprinter" containing all my files (not the external jar I was using) and the test class with the main. After that I could execute in any folder</p>
+
+<pre><code>java -cp ".\lib\jprinter-1.15.jar;.\lib\*" print.test.Test
+</code></pre>
+
+<p>where <code>lib</code> is the folder with my and other jars used; <code>print.test</code> is the package of the class <code>Test</code> which contains the main method.</p>

@@ -1,0 +1,7 @@
+<p>You need to sort the transparent polygons by depth before drawing.</p>
+
+<p>The code will be evaluating the colour on <code>Im1</code> first (as it's the first one in the scene) and at that point there will be nothing behind it so "show through". Then when it evaluates the colour of <code>Im2</code> it won't update <code>Im1</code>.</p>
+
+<p>Sorting the polygons first will ensure that when the colour is evaluated it will have the correct background.</p>
+
+<p>I'm not familiar with XNA so I can't say whether there's something built in, but when we've had to do this in the past we had to do the sorting by ourselves.</p>

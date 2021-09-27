@@ -1,0 +1,11 @@
+<p>This code in your view will link you to the Admin area, regardless of which area you are currently in:</p>
+
+<pre><code>@Html.ActionLink("Click Me", "ActionName","ControllerName",new { Area = "AreaName"}, null )
+</code></pre>
+
+<p>e.g. (poor made up example)</p>
+
+<pre><code>@Html.ActionLink("Administer User", "Home","UserAdmin",new { Area = "Admin"}, null )
+</code></pre>
+
+<p>The final null in the call corresponds to <code>HtmlAttributes</code>, and I usually leave it as null.</p>

@@ -1,0 +1,14 @@
+<p>Something like the following should achieve the effect you're looking for. Keep in mind I haven't run or tested this code.</p>
+
+<pre><code>class Bar &lt; ActiveRecord::Base
+
+  has_many :foos, :dependent =&gt; :destroy, :after_remove =&gt; :delete_orphan
+
+  def delete_orphan(foo)
+    foo.destroy
+  end
+
+end
+</code></pre>
+
+<p><strong>Edit</strong>: Switched to a more specific callback</p>

@@ -1,0 +1,28 @@
+<p>Looking at the implementation of <code>KeyStoreSpi.java</code> at line 466 reveals the following:</p>
+
+<pre><code>public KeyStore.Entry engineGetEntry(String alias, ...) throws ... {
+
+    ...
+
+    if (protParam instanceof KeyStore.PasswordProtection) {
+        if (engineIsCertificateEntry(alias)) {
+            throw new UnsupportedOperationException
+                ("trusted certificate entries are not password-protected");
+        } else if ...
+    }
+
+    ...
+}
+</code></pre>
+
+<p>There you have the exact conditions for which it throws the exception.</p>
+
+<p>So when does <code>engineIsCertificateEntry(alias)</code> return true?</p>
+
+<p>According to the <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/security/KeyStoreSpi.html#engineIsCertificateEntry%28java.lang.String%29" rel="nofollow">documentation</a> it does so...</p>
+
+<blockquote>
+  <p>... <em>if the entry identified by the given alias was created by a call to <code>setCertificateEntry</code>, or created by a call to <code>setEntry</code> with a <code>TrustedCertificateEntry</code></em></p>
+</blockquote>
+
+<p>The method is however abstract, so it is hard to dig further without knowing the exact implementation being used. According to your description, the logic seems to differ slightly between implementations.</p>

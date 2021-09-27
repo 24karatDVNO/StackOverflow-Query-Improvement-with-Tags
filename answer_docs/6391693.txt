@@ -1,0 +1,3 @@
+<p>I figured out that if you have a data context using a transaction, any other data context appears to not be able to select from another context of the same type. </p>
+
+<p>I ended up fixing it by using the same context throughout every select/update/delete while a transaction was happening.</p>

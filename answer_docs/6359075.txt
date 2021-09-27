@@ -1,0 +1,7 @@
+<ol>
+<li><p>Each object (instance) in jvm has exactly one monitor. This is crucial for achieving the intended behavior (i.e. ensuring that only one thread from a bunch of threads goes ahead while others wait).</p>
+<p>You can visualize the lock as a kind of token/pass that is needed for entering a room. Many hospitals employ such a scheme to ensure that only a single attendant can be with a particular patient. If you want to take place of current attendant, you should <code>wait()</code> for the current attendant to come out and hand over the pass to you. Only then you can go pass the security to enter the restricted area. Off course this scheme only works if there is only one token/pass per patient. Otherwise it will be impossible for the security personnel to know which patient already have an attendant.</p>
+</li>
+<li><p>With your code, the producer thread will start first because you are creating the producer before the consumer. But if you want to know which one of the <code>get()</code> or <code>put()</code> be called first then there is no guarantee of the order. In practice you will usually see the <code>put()</code> being called first because the producer thread was started first. But theoretically there remains possibility of seeing the <code>get()</code> called first. This is possible because thread scheduler might switch out the producer thread before it reaches the put() call.</p>
+</li>
+</ol>

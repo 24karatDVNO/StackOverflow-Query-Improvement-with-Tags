@@ -1,0 +1,35 @@
+<p>There are many tools for building self-extracting executables, and <a href="http://en.wikipedia.org/wiki/Self-extracting_archive" rel="nofollow">Wikipedia lists several of the popular ones</a>. We ended up using <a href="http://en.wikipedia.org/wiki/WinRAR" rel="nofollow">WinRAR</a> in a post-build step in <a href="http://en.wikipedia.org/wiki/MSBuild" rel="nofollow">MSBuild</a> for this task.</p>
+
+<pre><code>&lt;Target Name="AfterBuild"&gt;
+    &lt;GenerateBootstrapper
+          ApplicationFile="$(OutputName).msi"
+          ApplicationName="$(ProductName)"
+          BootstrapperItems="@(BootstrapperFile)"
+          OutputPath="$(OutputPath)"
+          ComponentsLocation="Relative"
+          CopyComponents="true"
+          Culture="en"
+          Path="$(ProductRoot)\Deployment"/&gt;
+
+    &lt;ConvertToAbsolutePath Paths="$(IconFile)"&gt;
+        &lt;Output TaskParameter="AbsolutePaths" PropertyName="IconFile"/&gt;
+    &lt;/ConvertToAbsolutePath&gt;
+
+    &lt;ConvertToAbsolutePath Paths="$(BannerFile)"&gt;
+        &lt;Output TaskParameter="AbsolutePaths" PropertyName="BannerFile"/&gt;
+    &lt;/ConvertToAbsolutePath&gt;
+
+    &lt;!--  a      Adds files to archive --&gt;
+    &lt;!--  -m     Sets compression level (0-store...3-default...5-maximal) --&gt;
+    &lt;!--  -sfx   Sets self-extracting mode --&gt;
+    &lt;!--  -ep1   Exclude base directory from included file paths --&gt;
+    &lt;!--  -r     Add files recursively --&gt;
+    &lt;!--  -iadm  Request administrator rights --&gt;
+    &lt;!--  -z     Specify sfx configuration file --&gt;
+    &lt;!--  -iicon&lt;icon.ico&gt;  Specify icon to use --&gt;
+    &lt;!--  -iimg&lt;banner.bmp&gt;  Specify splash banner to use --&gt;
+    &lt;Exec Command='$(ProductRoot)\..\buildTools\WinRAR\winrar.exe a -m3 -sfx -ep1 -r -iadm -iicon$(IconFile) -iimg$(BannerFile) -zsfx_config.txt $(OutputPath)\$(OutputSetupName) $(TargetPath) $(OutputPath)\setup.exe "$(BootstrapperDependency)"'/&gt;
+&lt;/Target&gt;
+</code></pre>
+
+<p>In WiX 3.6, <a href="http://en.wikipedia.org/wiki/WiX#Burn" rel="nofollow">Burn</a> should be able to handle that task, but I haven't experimented with it yet.</p>

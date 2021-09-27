@@ -1,0 +1,7 @@
+<p>You should not give multiple <code>SET</code> keyword against each fieldname -
+The proper code should be:</p>
+
+<pre><code>if (!empty($_POST['comment'])) {
+  mysql_query("UPDATE contacts SET opp=1, inforecall='"$_POST['comment']"' WHERE ontact_id='"$_GET['id']"' ");
+}
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Positioning is tricky with tables.  Instead of using positioning, use <code>vertical-align: top;</code> on the table cells, and put the day inside a block level element so that you can put <code>text-align: right</code> on it.  </p>
+
+<p><a href="http://jsfiddle.net/Mftp7/6/" rel="nofollow">http://jsfiddle.net/Mftp7/6/</a></p>
+
+<pre><code>&lt;td&gt;&lt;p class="day"&gt;&lt;a href="#"&gt;6&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+
+table.calendar td, table.calendar th
+  { vertical-align: top; }
+p.day
+{ text-align: right; }
+</code></pre>

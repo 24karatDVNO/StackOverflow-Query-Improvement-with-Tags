@@ -1,0 +1,9 @@
+<pre><code>declare @CrappyStr varchar(10)
+set @CrappyStr = 'dummy'
+
+select @CrappyStr AS SearchString
+, email_address
+, CASE WHEN charindex(@CrappyStr, email_address) &gt; 0 THEN 'True'
+ ELSE 'False' END AS [BOO-lean]
+from SnarkyTable
+</code></pre>

@@ -1,0 +1,39 @@
+<p>So, from how I've understood your question, you want running sums of <code>MovementWithinDay</code> for every <code>&amp;ItemNo</code>. I believe you could employ a <a href="http://msdn.microsoft.com/en-us/library/ms186243.aspx" rel="nofollow">recursive</a> <a href="http://msdn.microsoft.com/en-us/library/ms190766.aspx" rel="nofollow">CTE</a> <a href="http://msdn.microsoft.com/en-us/library/ms175972.aspx" rel="nofollow">with</a> <a href="http://msdn.microsoft.com/en-us/library/ms189798.aspx" rel="nofollow">ranking</a> for that, unless you are on SQL Server 2000 or earlier version.</p>
+
+<p>This is how the query might look:</p>
+
+<pre><code>WITH ranked AS (
+  SELECT
+    *,
+    rank = ROW_NUMBER() OVER (PARTITION BY [&amp;ItemNo] ORDER BY MovementWithinDay)
+  FROM
+),
+cumulated AS (
+  SELECT
+    [&amp;ItemNo],
+    [&amp;LocationId],
+    [&amp;MovementDate],
+    MovementWithinDay,
+    Stock = MovementWithinDay,
+    rank
+  FROM ranked
+  WHERE rank = 1
+  UNION ALL
+  SELECT
+    r.[&amp;ItemNo],
+    r.[&amp;LocationId],
+    r.[&amp;MovementDate],
+    r.MovementWithinDay,
+    Stock = c.Stock + r.MovementWithinDay,
+    r.rank
+  FROM ranked r
+    INNER JOIN cumulated c ON r.[&amp;ItemNo] = c.[&amp;ItemNo] AND r.rank = c.rank + 1
+)
+SELECT
+  [&amp;ItemNo],
+  [&amp;LocationId],
+  [&amp;MovementDate],
+  MovementWithinDay,
+  Stock = MovementWithinDay
+FROM cumulated
+</code></pre>

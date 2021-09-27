@@ -1,0 +1,21 @@
+<p>Use an array of Drawables to wrap each of your images. In each drawable instance, specify how that image should be rendered to the canvas by overriding the onDraw method. </p>
+
+<p>You can use the LayerDrawable class to manage all the drawables (it also gives you some nice handy methods).</p>
+
+<p>I don't know what the final image will be like, but it sounds like the positioning/size of one image might impact that of the other. This means you must know how all of the images are before giving each of them their physical sizes. </p>
+
+<p>Here's what I would do:</p>
+
+<p>1) Create the master class that extends View, it holds the array of drawables (which are really your images) and calculates the right coordinates considering all images.</p>
+
+<p>2) Give it a constructor that accepts your drawables</p>
+
+<p>3) Create class(es) that extends Drawable for you bitmaps. Give it 2 fields, one with logical sizes/coordinates, the other with physical sizes/coordinates. The logical ones should be filled out at construction since they simply read off the bitmap's natural proportions. The physical ones will be filled out later. These classes' onDraw methods should use values from the physical coordinates.</p>
+
+<p>4) Give the master View class a big ugly math method that considers all of the images' logical sizes. The math method will use those as well as the screen's dimensions to figure out the what each images' physical dimensions should be.</p>
+
+<p>5) Populate each Drawable's physical attributes with the math method's resutls.</p>
+
+<p>6) Make the master View class' onDraw occur, either by adding it to a layout from the outside or by invoking invalidate() if it already is on the layout.</p>
+
+<p>Hope this helps</p>

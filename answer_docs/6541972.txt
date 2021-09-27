@@ -1,0 +1,3 @@
+<p>You can do it on OnClientUploadComplete function, but you have to reference the hyperlink like this: &lt;%= hyperLink.ClientID %>.style.display = 'block';</p>
+
+<p>Another more asp.net way is to use update panels. Put the hyperlink into an UpdatePanel and set a trigger on the UpdatePanel when the file is uploaded. then change the visibility on the server at UploadedComplete event.</p>

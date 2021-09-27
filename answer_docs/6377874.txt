@@ -1,0 +1,22 @@
+<p>Try this</p>
+
+<pre><code>var backgroundImageWidth;
+var moveLeft = true;
+var offset = 0;
+    function scrollbackground() {
+
+offset = moveLeft?offset-1:offset+1;
+if(offset*-1 == backgroundImageWidth)
+   moveLeft = false;
+else if(offset == 0)
+   moveLeft = true;
+
+            // apply the background position
+            $('body').css("background-position", "50% " + offset + "px");
+            // call self to continue animation
+            setTimeout(function() {
+                scrollbackground();
+                }, 1000
+            );
+        }
+</code></pre>

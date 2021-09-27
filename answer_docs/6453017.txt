@@ -1,0 +1,8 @@
+<p>I know nothing about xsubpp (or Perl, for that matter), but if the thrown exception can be assumed to derive from <code>std::exception</code>, then you could do something like this:</p>
+
+<pre><code>#define CATCHALL catch(const std::exception&amp; ex) {
+</code></pre>
+
+<p>Then <code>Xreason</code> could be mapped to <code>ex.what()</code>. <code>Xname</code> is trickier. You could make it something like <code>typeid(ex).name()</code>, which might be better than nothing.</p>
+
+<p>That's the best solution I can think of, unless there is some xsubpp-specific trick.</p>

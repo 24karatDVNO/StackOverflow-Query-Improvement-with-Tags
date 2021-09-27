@@ -1,0 +1,5 @@
+<p>The warning will go away if you explicitly downcast, e.g.:</p>
+
+<p><code>if (NSOrderedSame == [(NSString *)[clubsArray objectAtIndex:indexPath.row] compare:@"(null)"] )</code></p>
+
+<p>What happens is that you're calling the <code>compare:</code> method on the result of <code>[clubsArray objectAtIndex:indexPath.row]</code>, which is of type <code>id</code>. Now, implicit downcasting is allowed from <code>id</code> to any other type... but in your case, the compiler cannot tell the exact type you want. Is it <code>NSNumber</code> or <code>NSString</code> or <code>NSDate</code>...? (BTW, <code>NSObject</code> does not respond to <code>compare:</code>). This is a warning because the compiler thinks you will provide the correct types during runtime (which you do!), but it tells you that you should be more explicit with that kind of code.</p>

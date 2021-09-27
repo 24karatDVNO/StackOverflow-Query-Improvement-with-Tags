@@ -1,0 +1,1 @@
+<p>The solution I found was to ensure that the pages I cache in the manifest do not contain any dynamically generated content. When online, my JavaScript code performs an Ajax request to fetch the dynamically generated content. The JavaScript detects when the browser is offline and will refuse to perform the Ajax requests, essentially shifting into offline-only mode.</p>

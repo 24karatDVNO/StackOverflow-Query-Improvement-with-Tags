@@ -1,0 +1,7 @@
+<p>There are two different X extensions that handle the internal rotation of windows. The most basic is RANDR and its source code is in the top level randr directory of the X Server source. </p>
+
+<p>The MODES extension that provides support for multi-headed devices and which exposes the Outputs and CRTCs you can see listed in the results of invoking xrandr, is the second extension that works with rotating windows. MODES can be found in the hw/xfree86/modes subdirectory of the X server source.</p>
+
+<p>If an X driver uses RANDR directly, it must provide a number of functions that lets RANDR rotate and display windows. If you are using MODES then it sets itself as a layer between RANDR and your driver, and you have to give MODES a more limited set of functions and it handles much of the work.</p>
+
+<p>That said, I've yet to actually get MODES to rotate a window in the X Driver I'm writing, probably because both RANDR and MODES are practically undocumented and its far from clear what their image processing models are.</p>

@@ -1,0 +1,5 @@
+<pre><code>memcpy(&amp;a, &amp;b, sizeof (b));
+(&amp;a)-&gt;foo();
+</code></pre>
+
+<p>This is <a href="http://en.wikipedia.org/wiki/Undefined_behavior" rel="nofollow noreferrer">undefined behavior</a>. This is guaranteed to work only for <a href="https://stackoverflow.com/questions/4178175/what-are-aggregates-and-pods-and-how-why-are-they-special">POD</a>-types. So... UB is UB. No need to be surprised</p>

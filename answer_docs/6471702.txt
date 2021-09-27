@@ -1,0 +1,20 @@
+<p>I would toggle based on negation of value at change. I'd also go ahead and trigger the event handler at load to give an initial show/hide state (using a name-spaced event to avoid causing other bound functionality executing).</p>
+
+<p><em>(Edit: I like what Brandon Boone did regarding keyup for instant action and added a comment to the event name on my code. It will, however, add a little overhead as the function is run for every stroke on the keyboard as opposed to when the field is blurred.)</em></p>
+
+<p><strong>Demo:</strong></p>
+
+<p><a href="http://jsfiddle.net/JAAulde/fUKfb/3/" rel="nofollow">http://jsfiddle.net/JAAulde/fUKfb/3/</a></p>
+
+<p><strong>Code:</strong></p>
+
+<pre><code>var namespaced_event = 'change.hideRetweet', //use `keyup.hideRetweet` here to avoid waiting for the input to be blurred
+    contest_max_retweet_wrapper = $( '#contest_max_retweet' ).closest( 'li' ); //hides entire input, label, and container--could be pared down if desired
+
+$( '#contest_numofwinners' )
+  .bind( namespaced_event, function()
+  {
+      contest_max_retweet_wrapper.toggle( ! $( this ).val()  );
+  } )
+  .triggerHandler( namespaced_event );
+</code></pre>

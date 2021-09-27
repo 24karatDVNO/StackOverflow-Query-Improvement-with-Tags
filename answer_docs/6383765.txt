@@ -1,0 +1,4 @@
+<p>We were using createQueueConnection() in QueueConnectionFactory for creating the connection and the issue got resolved by using the method createQueueConnection("",""). The unix userid (webA) is case sensitive and the application was trying to authenticate on the MQ with the case insensitive userid (weba) and MQ queue manager was rejecting the connection attempt. Can you tell us why the application was sending the case insensitive userid (weba) earlier?</p>
+
+<p>Thanks,
+Arun</p>

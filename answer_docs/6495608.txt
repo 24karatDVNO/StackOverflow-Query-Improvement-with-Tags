@@ -1,0 +1,19 @@
+<p>Open task manager and watch the memory</p>
+
+<p>Wrap each major piece of execution in a Class (here i used a BLL)</p>
+
+<p>then call from the BLL</p>
+
+<p>Then Try wrapping each top level piece in a using statement one at a time</p>
+
+<pre><code>using ( TheBll bll = new TheBll)
+            {
+                bll.ProcessStuff();
+            }
+</code></pre>
+
+<p>This makes most everythign deallocate after the code is done, makes for easier memory cleanup.</p>
+
+<p>then re run, if the memory stops going up, or slows down, you've found a cuplrit, go deeper into that one.</p>
+
+<p>If you are happy with the results after you've wrapped all your top level calls with using statements, you might be done before you dig deeper. (Though you should dig, just to learn what's really wrong when you're not in a hurry)</p>

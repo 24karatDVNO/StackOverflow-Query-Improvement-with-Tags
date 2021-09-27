@@ -1,0 +1,28 @@
+<pre><code>//Parse XML for each file here
+function parseXML($file) {
+
+}
+
+//Loops through each file in directory
+if ($handle = opendir('directoryWithXMLFiles')) {
+    while (false !== ($file = readdir($handle))) {
+        if ($file != "." &amp;&amp; $file != "..") {
+            parseXML($file);
+        }
+    }
+    closedir($handle);
+}
+</code></pre>
+
+<p>An alternative method would be to transform the data into a CSV format.  Then use the MySQL data load syntax. If you are more familiar with another language you could avoid using PHP.</p>
+
+<p>i.e. </p>
+
+<pre><code>LOAD DATA LOCAL INFILE '/importfile.csv' 
+INTO TABLE test_table 
+FIELDS TERMINATED BY ',' 
+LINES TERMINATED BY '\n' 
+(field1, filed2, field3);
+</code></pre>
+
+<p><a href="http://support.modwest.com/content/6/253/en/how-do-i-import-delimited-data-into-mysql.html" rel="nofollow">http://support.modwest.com/content/6/253/en/how-do-i-import-delimited-data-into-mysql.html</a></p>

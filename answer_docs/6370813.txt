@@ -1,0 +1,3 @@
+<p>Take a look at the OCaml bytecode interpreter - it's one of the fastest of its kind. It is pretty much a stack machine, translated into a threaded code on loading (using the GNU computed goto extension). You can generate a Forth-like threaded code as well, should be relatively easy to do.</p>
+
+<p>But if you're keeping a future JIT compilation in mind, make sure that your stack machine is not really a full-featured stack machine, but an expression tree serialisation form instead (like .NET CLI) - this way you'd be able to translate your "stack" bytecode into a 3-address form and then into an SSA.</p>

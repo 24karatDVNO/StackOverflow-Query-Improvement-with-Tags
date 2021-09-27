@@ -1,0 +1,12 @@
+<p>Not sure what your question is. The common delimiter of URI parameters is the ampersand '&amp;', while <code>'&amp;amp;'</code> is the HTML / XML entity for the same character, the ampersand '&amp;'. If you have an URI like so ;</p>
+
+<pre><code>adipiscing-elit.&amp;amp;Sort=popular
+</code></pre>
+
+<p>This translates roughly into parameters ;</p>
+
+<pre><code> adipiscing-elit = (blank)
+ amp;Sort = 'popular'
+</code></pre>
+
+<p>This is why your URI don't work; the 'amp;Sort' is the parameter name where you need it to be just 'Sort'.</p>

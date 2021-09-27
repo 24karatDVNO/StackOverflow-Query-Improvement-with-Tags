@@ -1,0 +1,11 @@
+<p>In vim7.3 there is a setting that allows you to undo changes between sessions. You have to have in your .vimrc the following</p>
+
+<pre><code>set undofile
+</code></pre>
+
+<p>if you vim did  not have this setting there is no hope to recover what the original state of the file before editing it with vim.</p>
+
+<p>If it was set then you can just type <code>u</code> in vim to undo the changes there were made.</p>
+
+<p>The is a vim plugin, <a href="http://www.vim.org/scripts/script.php?script_id=3304" rel="nofollow">gundo</a>, that allows you to have a nice visualization
+of the past state of the file (again, you would have to have the option set, and the file were the changes are kept would have to exist).</p>

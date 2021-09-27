@@ -1,0 +1,39 @@
+<p>Are you sure the <a href="http://docs.jboss.org/hibernate/core/3.3/reference/en/html/tutorial.html" rel="nofollow">tutorial</a> isn't calling for an Event?</p>
+
+<p>Wait - now I see your problem.  Your tutorial is from Rose India.  I'd stick to the source and use the Hibernate tutorial from JBoss.</p>
+
+<pre><code>import java.util.Date;
+
+public class Event {
+    private Long id;
+
+    private String title;
+    private Date date;
+
+    public Event() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>

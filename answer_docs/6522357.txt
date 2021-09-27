@@ -1,0 +1,61 @@
+<p>You're creating the data context in a using block in the constructor of your DataModel...so by the time you access the MACRequests, the data context has been disposed. </p>
+
+<p>Consider the following:</p>
+
+<pre><code>public class DataModel : IDisposable {
+    btWholesaleDataContext db = new btWholesaleDataContext();
+
+    public void Dispose() 
+    {
+        btWholesaleDataContext.Dipose();
+    }
+
+    public IQueryable&lt;Models.BT.Request&gt; MACRequests { 
+          get {
+                                 return from r in db.btRequests
+                                 select new Models.BT.Request {
+                                     ID = r.ID,
+                                     Date = r.DateTime,
+                                     StatusCode = 3,
+                                     Status = r.Status
+                                 };
+          } 
+    }
+}
+</code></pre>
+
+<p>Note that this usage will work:</p>
+
+<pre><code>using (var dm = new DataModel())
+{
+   dm.MACRequests.ToArray();
+}
+</code></pre>
+
+<p>but this will fail for the same reason as the original:</p>
+
+<pre><code>IQueryable&lt;Models.BT.Request&gt; requests = null;
+
+using (var dm = new DataModel())
+{
+   requests = dm.MACRequests;
+}   
+
+// this will fail because the context is disposed by the time we force enumeration of the query
+requests.ToArray();
+</code></pre>
+
+<p>...Alternatively, since WCF data services can't filter on projections, and thus all you can really do with the query </p>
+
+<pre><code>                                     from r in db.btRequests
+                                     select new Models.BT.Request {
+                                         ID = r.ID,
+                                         Date = r.DateTime,
+                                         StatusCode = 3,
+                                         Status = r.Status
+                                     };
+</code></pre>
+
+<p>is execute it...</p>
+
+<p>just consider changing your original code to return an array or a list instead of leaving it as a queryable.</p>

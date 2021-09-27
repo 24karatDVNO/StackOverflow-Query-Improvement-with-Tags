@@ -1,0 +1,38 @@
+<p>If you <em>really</em> wanted to include references to DOM elements, you'd have to:</p>
+
+<ol>
+<li>Use <code>$(...).get(0)</code> so that there's only DOM elements rather than jQuery objects in the tree</li>
+<li>Do a deep <code>$.extend()</code> of the original object</li>
+<li>Recursively search the copy for any value which is an <code>instanceof HTMLElement</code></li>
+<li>Convert each such value into a <code>.clone()</code> of itself</li>
+</ol>
+
+<p>Something like (untested):</p>
+
+<pre><code>var fields = {
+    account_id_ : {
+        name : Lang.get('HDL_ACCOUNT'),
+        width : 60,
+        elm : $('&lt;input class="inp" type="text" style="text-align:right" /&gt;').get(0),
+        value : '',
+        focus : true
+    },
+    ...
+};
+
+function cloneDOM(obj) {
+    for (var key in obj) {
+        if (Object.hasOwnProperty(key)) {
+            var val = obj[key];
+            if (val instanceof HTMLElement) {
+                obj[key] = $.clone(val);
+            } else if (val instanceof Object) {
+                cloneDOM(val);
+            }
+        }
+    }
+}
+
+var copy = $.extend(true, {}, fields);
+cloneDOM(copy);
+</code></pre>

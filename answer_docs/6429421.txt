@@ -1,0 +1,29 @@
+<p>Solved.
+As it turns out, when we get an entity out of the context's control, it will no longer control it, even if we attach it to the context. Unless, that is, if we have a is version field;
+To get it working, </p>
+
+<p>=> add a version field to your entity; </p>
+
+<p>1) check Nullable checkbox</p>
+
+<p>2) Is Version checkbox</p>
+
+<p>3) Update check = Never</p>
+
+<p>4) Auto-Sync Always;</p>
+
+<p>You should handle the version somehow. Perhaps an on update trigger;
+Code:</p>
+
+<p>1) create a new instance of your context;</p>
+
+<p>2) attach the object, telling linq it was changed</p>
+
+<p>3) submit changes</p>
+
+<pre><code>DataContext lContext = new DataContext();
+lContext.InvoiceHeaders.Attach(iHeader, true);
+lContext.SubmitChanges();
+</code></pre>
+
+<p>The GREAT BIG difference to what I had already tried before really is the version field on my entity.</p>

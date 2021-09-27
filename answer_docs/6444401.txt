@@ -1,0 +1,49 @@
+<p>Working. Thanks for the help on prior questions.</p>
+
+<pre><code>case "email2":
+                        // Checking to make sure email field is on the form
+                        if (typeof f.email2 != "undefined") 
+                        {
+                            if ((f.email2.value != f.email1.value) &amp;&amp; (f.sameAsShip.checked) )
+                            {
+                                customAlert ("email2",bnadd_msg_005);
+                                if ((typeof TeaLeaf != "undefined") &amp;&amp; (typeof TeaLeaf.Client != "undefined") &amp;&amp; (typeof TeaLeaf.Client.tlAddEvent != "undefined") ) {
+                                        var nVO = { ErrorMessage : bnadd_msg_018} 
+                                        TeaLeaf.Event.tlAddCustomEvent(subtype, nVO);
+                                    }
+                                return false;
+                            }
+                            //Validate that email address has @ and .
+                            if(f.email2 &amp;&amp; ( f.email2.value != f.email1.value) &amp;&amp; (!editEmail(f.email2.value,'Email Address'))) 
+                            {
+                                return false;
+                            }
+                            if(addrType == atBill)
+                            {
+
+
+                                if(f.email2.value != f.email1.value)
+                                {
+                                    customAlert ("email2",bnadd_msg_005);
+                                    if ((typeof TeaLeaf != "undefined") &amp;&amp; (typeof TeaLeaf.Client != "undefined") &amp;&amp; (typeof TeaLeaf.Client.tlAddEvent != "undefined") ) {
+                                        var nVO = { ErrorMessage : bnadd_msg_005} 
+                                        TeaLeaf.Event.tlAddCustomEvent(subtype, nVO);
+                                    }
+                                    return false;
+                                }
+                                else
+                                {
+                                    if(f.email2 &amp;&amp; (f.email2.value != f.email1.value) &amp;&amp; (!editEmail(f.email1.value,'Email Address'))) 
+                                    {
+                                        return false;
+                                    }
+                                    else
+                                        return true;    
+                                }
+
+
+                            }
+
+                        }
+                        break;
+</code></pre>

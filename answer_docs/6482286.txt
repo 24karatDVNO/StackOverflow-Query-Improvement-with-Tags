@@ -1,0 +1,10 @@
+<p>You could iterate through each form (in my example I assume they all have the same class). By default the button value is set to "Join" and if something is checked i.e. they are a member already (something == true) it would change the value to "Leave".</p>
+
+<p>This is a really basic example but may give you some direction.</p>
+
+<pre><code>$('.organization').each(function() {
+    if (something == true) {
+       $(this).find('input[type="submit"]').attr('value', 'Leave');
+    }
+});
+</code></pre>

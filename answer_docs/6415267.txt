@@ -1,0 +1,9 @@
+<p>If you want to use <code>WindowState = Maximized;</code>, you should first indicate the size limits of the form maximized by the <code>MaximizedBounds</code> property...</p>
+
+<p>Example:</p>
+
+<pre><code>MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+WindowState = FormWindowState.Maximized;
+</code></pre>
+
+<p>Where are you limiting the size of your form to the work area that is the desktop area of ​​the display</p>

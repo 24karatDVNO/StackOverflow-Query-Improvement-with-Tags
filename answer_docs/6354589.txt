@@ -1,0 +1,19 @@
+<p>If you are using php you can do something like this: put in each page as first line</p>
+
+<pre><code>&lt;?php session_start(); ?&gt;
+</code></pre>
+
+<p>and in you homepage</p>
+
+<pre><code>&lt;?php session_start();
+  if( $_SESSION['visited'] ){
+      //don't show the modal box
+  } else {
+      $_SESSION['visited'] = true;
+     //show modal box;
+  }
+?&gt;
+</code></pre>
+
+<p>This code check if you already visited the page in this session, if you don't shows the modal box, then set the global session variable <code>$_SESSION['visited']</code> to <code>true</code>, so you can be sure the user have already visited the page :)
+hope this helped</p>

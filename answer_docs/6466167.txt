@@ -1,0 +1,51 @@
+<pre><code>&gt; icode=document.forms[0].intcode;
+&gt; lamt=document.forms[0].lnamt.value;
+&gt; nom =document.forms[0].nomon.value;
+</code></pre>
+
+<p>Variables should be declared with <em>var</em> to keep them local (presuming the above is intended to be in a function). The syntax is more or less correct, it suggests an HTML structure like:</p>
+
+<pre><code>&lt;form ...&gt;
+  &lt;input name="intcode" ... &gt;
+  &lt;input name="lnamt" ... &gt;
+  &lt;input name="nomon" ... &gt;
+  ...
+  &lt;input name="monpmt" ...&gt;
+  &lt;input name="totamt" ...&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>So if you have a button in the form that runs a function to get some values and update the value of some other control, it might look like:</p>
+
+<pre><code>  &lt;input type="button" onclick="updateForm(this);" ...&gt;
+</code></pre>
+
+<p>and the update function might look like:</p>
+
+<pre><code>function updateForm(el) {
+  var form = el.form; // store a reference to the form
+  var icode = document.forms[0].intcode; // reference to element named "intcode"
+
+  // Get the value of some controls
+  var lamt = document.forms[0].lnamt.value;
+  var nom = document.forms[0].nomon.value;
+
+  // Do something with the values
+  var mamt = ...;
+  ...
+  var totamt = ...;
+
+  // Set some values in the form
+  // Have a reference to the form so use it
+  form.monpmt.value = Math.round(mamt);
+  form.totamt.value = totamt;
+}
+</code></pre>
+
+<p>Note that form control values are always strings and that you should test the values you get to make sure they are what you expect. If you want to update values without the user pressing a button[1] you can use the <em>blur</em> event to call <em>updateForm</em>.</p>
+
+<p>You will need validation of input values and to deal with errors (updates before the user has filled in all the fields and invalid data being the obvious ones). Also you'll likely want to format the data when putting it back, such as formatting numbers to two decimal places perhaps.</p>
+
+<ol>
+<li>A button is best as it can be a submit button so that if javascript is disabled or not working, the form is submitted and updated at the server and an updated form returned. If scripting is available, you can cancel the submit and do the processing on the client. You could have the update on the blur event and button if you want.</li>
+</ol>

@@ -1,0 +1,7 @@
+<p>Just add a rewrite rule to add a slash after each url. Something like</p>
+
+<pre><code>RewriteCond %{REQUEST_URI}  ^([^+?&amp;]+[^/])$
+RewriteRule ^([^+?]+[^/])$ $1/  [R,L]
+</code></pre>
+
+<p>Add this before all the rules you have given. This will convert all the urls from <code>a.com/b</code> to <code>a.com/b/</code></p>

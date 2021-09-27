@@ -1,0 +1,14 @@
+<p>Well, you have a lot of white-space between your <code>textarea</code> start tag and your PHP <code>echo</code> content.</p>
+
+<pre><code>&lt;textarea id ='box' autocomplete='off' &lt;?php 
+      if (!$_SESSION['username']){
+           echo "readonly='readonly'";
+      }
+  ?&gt; &gt;&lt;?php 
+      if (!$_SESSION['username']){ 
+          echo "Login to answer...";
+      } else {
+          echo "Answer this problem...";
+      }
+    ?&gt;&lt;/textarea&gt;
+</code></pre>

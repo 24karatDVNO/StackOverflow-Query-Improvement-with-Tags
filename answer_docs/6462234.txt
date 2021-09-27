@@ -1,0 +1,34 @@
+<p>Note that I haven't tested this as I don't own Excel or any Microsoft products. I've adapted the code from <a href="http://pubs.logicalexpressions.com/pub0009/LPMArticle.asp?ID=436" rel="nofollow">here</a> in order to work as you asked. I couldn't automate this without using VBA, which <em>should</em> come with every copy of Excel. It's basically used to quickly automate macro sequences.</p>
+
+<pre><code>Public Sub GenerateHTML(ByVal sTitle As String)
+
+Dim iFileNum As Integer
+Dim lRow As Long
+Dim iColCount As Integer
+Dim iCol As Integer
+Dim sFileName As String
+sFileName = "Your-Title-Here" ' Be sure to change this to a title. '
+
+iColCount = ActiveSheet.UsedRange.Columns.Count
+For lRow = 1 To 570
+    iFileNum = FreeFile
+    Open sFileName + "-row" + lRow + ".html" For Output As iFileNum
+    Print #iFileNum, "&lt;HTML&gt;"
+    Print #iFileNum, "&lt;TITLE&gt;" + sTitle + " Row: " + CStr(lRow) + "&lt;/TITLE&gt;"
+    Print #iFileNum, "&lt;BODY&gt;"
+    Print #iFileNum, "&lt;TABLE BORDER=1&gt;"
+    Print #iFileNum, "&lt;TR&gt;"
+    For iCol = 1 To iColCount
+        Print #iFileNum, "&lt;TD&gt;"
+        Print #iFileNum, CStr(Cells(lRow, iCol).Value)
+        Print #iFileNum, "&lt;/TD&gt;"
+    Next iCol
+    Print #iFileNum, "&lt;/TR&gt;"
+    Print #iFileNum, "&lt;/TABLE&gt;"
+    Print #iFileNum, "&lt;/BODY&gt;"
+    Print #iFileNum, "&lt;/HTML&gt;"
+    Close iFileNum
+Next lRow
+Close iFileNum
+End Sub
+</code></pre>

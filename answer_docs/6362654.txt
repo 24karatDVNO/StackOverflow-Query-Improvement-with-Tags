@@ -1,0 +1,14 @@
+<p>My first thought was to use Sets, as others have mentioned.  Another approach would be to use Java's version of the foreach, instead of using indexes.  A general approach:</p>
+
+<pre><code>public static ArrayList removeDuplicates(ArrayList origList) {
+    ArrayList newList = new ArrayList();
+    for (Object m : origList) {
+        if (!newList.contains(m)) {
+            newList.add(m);
+        }
+    }
+    return newList;
+}
+</code></pre>
+
+<p>In testing, I just used Strings; I'd recommend inserting Customer into the code where appropriate for type safety.</p>

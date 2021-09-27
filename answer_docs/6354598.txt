@@ -1,0 +1,5 @@
+<p>Use a cursor to loop through the data and inside the cursor loop both insert <em>and</em> keep track of min/max values for whatever you need.</p>
+
+<p>Also, your code is brittle: avoid the pattern <code>INSERT INTO TABLE SELECT * FROM ...</code>; if the second table adds a column your SQL will break. It's good practice to name the columns explicitly anyway.</p>
+
+<p>Post if you need help with the cursor.</p>

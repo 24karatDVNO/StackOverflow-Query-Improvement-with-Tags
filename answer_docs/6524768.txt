@@ -1,0 +1,4 @@
+<p>By no means a general solution given the nature of your problem, but in this particular case it looks as though you could get away with removing spaces that touch a word character on either side: on the left, for example:</p>
+
+<pre><code>Regex.Replace(content, " \b", "");
+</code></pre>

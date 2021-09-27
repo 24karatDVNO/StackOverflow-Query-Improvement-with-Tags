@@ -1,0 +1,9 @@
+<p>The url's to the banner images are local to your machine. So on any other computer the site will not work even in IE. Make the urls relative to your site's ROOT path and it should work if you have thos images on your server that is</p>
+
+<pre><code>background-image: url(file://///sanders/web/envirobridge/Publish/images/banner_bkgd.jpg);
+</code></pre>
+
+<p>should be something like:</p>
+
+<pre><code>background-image: url(/images/banner_bkgd.jpg);
+</code></pre>

@@ -1,0 +1,16 @@
+<p>You can just <a href="http://api.jquery.com/jQuery.each/" rel="nofollow">loop through</a> and <a href="http://api.jquery.com/clone/" rel="nofollow"><code>.clone()</code></a> the jQuery object (and the elements, 1 in this case, that it references.  A very concise method would look like this:</p>
+
+<pre><code>var fields2 = $.extend(true, {}, fields);
+$.each(fields2, function(n, f) { f.elm = f.elm.clone(); });
+</code></pre>
+
+<p>Now <code>fields2</code> has it's own elements, <a href="http://jsfiddle.net/nick_craver/ctz5z/" rel="nofollow">you can test it here</a>, compare it <a href="http://jsfiddle.net/nick_craver/ctz5z/1/" rel="nofollow">to here</a> which doesn't run the clone line, and references/re-appends the <em>same</em> elements, instead of clones in the first example.</p>
+
+<p>For clarity, a raw javascript version of the clone loop would look <a href="http://jsfiddle.net/nick_craver/ctz5z/2/" rel="nofollow">like this</a>:</p>
+
+<pre><code>for(var fieldName in newFields) {
+    var field = newFields[fieldName];
+    if(field .hasOwnProperty("elm"))
+        field.elm = field.elm.clone();
+}
+</code></pre>

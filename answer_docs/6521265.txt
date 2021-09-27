@@ -1,0 +1,5 @@
+<p>It may be a little more trouble than it's worth. Yes, you could require clients to provide a token and whitelist certain domains, etc. But they can still open <em>any</em> site that uses that particular JavaScript -- even someone else's -- and just Save As... . </p>
+
+<p>A better bet is controlling the script's interaction with your server. If it makes any AJAX calls a server you control, <em>then</em> take that chance to authenticate. If it doesn't depend on data from you in that way, I think you'll just have to face the problem that anyone dedicated enough <em>will</em> be able to download your script and <em>will</em> be able to use it with a little bit of playing around.</p>
+
+<p>Your best bet is, in addition to the above, keep track of domains that have paid and search every once in a while to find if anyone's taking your code.</p>

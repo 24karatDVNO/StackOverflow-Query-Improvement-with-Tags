@@ -1,0 +1,6 @@
+<pre><code> $sql = "SELECT l.locationname, c.countryname
+FROM
+_countries c
+LEFT JOIN _location l ON c.countryid = l.countryid
+WHERE c.countryid = ".(int)$q;
+</code></pre>

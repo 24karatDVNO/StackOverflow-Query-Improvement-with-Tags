@@ -1,0 +1,14 @@
+<p>Here a tail recursive version of it:</p>
+
+<pre><code>def indexof(elem, list_):
+    return indexof_tailrec(elem, list_, 0)
+
+def indexof_tailrec(elem, list_, index):
+    if index &gt;= len(list_):
+        return None
+    if list_[index] == elem:
+        return index
+    return indexof_tailrec(elem, list_, index + 1)
+</code></pre>
+
+<p>Note, however, that Python does not have tail call optimization (at least not as far as I know).</p>

@@ -1,0 +1,16 @@
+<p>In MS SQL:</p>
+
+<pre><code>update ttl 
+set No_Items_Present = ttl.Total_Items - itm.No_Of_Items 
+from TotalItems ttl
+    join ItemsTable itm on
+        ttl.Item_Name = itm. Item_Name
+</code></pre>
+
+<p>In MySQL:</p>
+
+<pre><code>update TotalItems ttl
+    join ItemsTable itm on
+        ttl.Item_Name = itm. Item_Name
+set tt1.No_Items_Present = ttl.Total_Items - itm.No_Of_Items 
+</code></pre>

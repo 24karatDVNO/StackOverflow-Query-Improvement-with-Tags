@@ -1,0 +1,11 @@
+<p>One way would be to use whatever logic that you're using to show the active tab to hide the errors that are appearing on the fields in the inactive tab.</p>
+
+<p>Another way would be to prepend the rules and field names with a identifier of the form that submitted them.  Something like...</p>
+
+<pre><code>in controller...
+$this-&gt;form_validation-&gt;set_rules("{$tab}_title", 'Title', 'required|trim');
+
+in view...
+&lt;?= form_open("{$tab}_title", set_value($this-&gt;input-&gt;post("{$tab}_title"))) ?&gt;
+&lt;?= form_error("{$tab}_title") ?&gt;
+</code></pre>

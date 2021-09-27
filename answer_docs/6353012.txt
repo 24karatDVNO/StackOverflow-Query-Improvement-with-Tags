@@ -1,0 +1,30 @@
+<p>So I suppose you have 2 states for the ItemRenderer, one called "new", one "old", right?</p>
+
+<p>One good news: You don't need to override updateDisplayList function. Flex SDK 4+ provides you graphics utility named FXG. You can visit this link for more information: <a href="http://help.adobe.com/en_US/flex/using/WS145DAB0B-A958-423f-8A01-12B679BA0CC7.html" rel="nofollow">http://help.adobe.com/en_US/flex/using/WS145DAB0B-A958-423f-8A01-12B679BA0CC7.html</a></p>
+
+<p>In your case, you can do something like this:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                xmlns:s="library://ns.adobe.com/flex/spark" 
+                xmlns:mx="library://ns.adobe.com/flex/mx" width="50" height="50" click="currentState = 'old'"&gt;
+    &lt;fx:Declarations&gt;
+        &lt;!-- Place non-visual elements (e.g., services, value objects) here --&gt;
+    &lt;/fx:Declarations&gt;
+    &lt;s:states&gt;
+        &lt;s:State name="new" /&gt;
+        &lt;s:State name="old" /&gt;
+    &lt;/s:states&gt;
+    &lt;s:BorderContainer width="50" height="50"&gt;
+        &lt;s:Label text="{data.toString()}" /&gt;
+    &lt;/s:BorderContainer&gt;
+    &lt;s:Path data="M 0 10 L 50 10 M 0 20 L 50 20 M 0 30 L 50 30 M 0 40 L 50 40 M 10 0 L 10 50 M 20 0 L 20 50 M 30 0 L 30 50 M 40 0 L 40 50"
+            includeIn="old"&gt;
+        &lt;s:stroke&gt;
+            &lt;s:SolidColorStroke color="black" weight="1" /&gt;
+        &lt;/s:stroke&gt;
+    &lt;/s:Path&gt;
+&lt;/s:ItemRenderer&gt;
+</code></pre>
+
+<p>Idea: Create a path (draw your grid) and put it in state "old", whenever the item change to state "old", the grid will appear.</p>

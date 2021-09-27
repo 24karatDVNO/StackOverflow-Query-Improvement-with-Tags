@@ -1,0 +1,3 @@
+<p>Wish I had a clearer answer, but it looks like your <code>.click()</code> function is consuming the click event, and not passing it on to the element itself. Usually this is done explicitly via a call to <code>stopPropagation()</code>, but since you're not doing that here, I would think the event would still trigger the href.</p>
+
+<p>Maybe you could explicitly redirect the browser in your javascript near the if statement <code>if($('#' + parent).hasClass('noaccordion')) ...</code> as a workaround.</p>

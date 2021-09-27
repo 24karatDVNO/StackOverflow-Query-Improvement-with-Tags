@@ -1,0 +1,13 @@
+<p>I think you have to rethink in which way you want to name your classes.</p>
+
+<p>You can instantiate whatever class you want, at run-time, but to access a instance by name, you have to make changes in your structure. For example, the getContent() function you mentioned in LoaderMax, all it does is to search in an array for the given loader that matchs the name, among other things. You can read the <em>name</em> variable comment for a description.</p>
+
+<blockquote>
+  <p>A name that you use to identify the loader instance. This name can be fed to the <code>getLoader()</code> or <code>getContent()</code> methods or traced at any time. Each loader's name should be unique. If you don't define one, a unique name will be created automatically, like "loader21".</p>
+</blockquote>
+
+<p>So in this system, you have to name every single member (loaders in this case) if you want to be able to search them. Because if I call <code>getClassInstance("myinstance")</code>, what is "myinstance" representing? Where should I name it?</p>
+
+<p>That said, <strong>if you want to do it for DisplayObjects only</strong>, you can use <a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/display/DisplayObjectContainer.html#getChildByName%28%29" rel="nofollow">getChildByName</a>. But again, you have to name every DisplayObject (just set the <em>name</em> variable).</p>
+
+<p>Hope this helps.</p>

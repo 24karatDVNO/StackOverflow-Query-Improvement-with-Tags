@@ -1,0 +1,10 @@
+<p>You should put a web.config file in admin folder and in that, deny access for all users except the users or roles that must have access:</p>
+
+<pre><code>  &lt;system.web&gt;
+    &lt;authorization&gt;
+        &lt;allow roles="admins"/&gt;
+        &lt;allow users="user1,user2"/&gt;
+        &lt;deny users="*"/&gt;
+    &lt;/authorization&gt;
+  &lt;/system.web&gt;
+</code></pre>

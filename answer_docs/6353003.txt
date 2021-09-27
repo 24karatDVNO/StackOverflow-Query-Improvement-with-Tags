@@ -1,0 +1,16 @@
+<p>After having looked at this problem a little more, I can see several solutions</p>
+<p><strong>Solution A</strong> -- store the transition from glow=0 to glow=1 as 60 frames in memory,  then load the appropriate frame into a GL texture every time it is required.</p>
+<p>this has an obvious benefit that a graphic designer could construct the entire sequence and I could load it in as a bunch of PNG files.</p>
+<p>another advantage is that these frames wouldn't need to be played in sequence...  the appropriate frame can be chosen on-the-fly</p>
+<p>however, it has a potential drawback of a lot of sending data RAM-&gt;VRAM</p>
+<p>this can be optimised by using glTexSubImage2D;  several frames can be sent simultaneously and then unpacked from within GL...  in fact maybe the entire sequence.    if this is so, then it would make sense to use PVRT texture compression.</p>
+<p><a href="https://stackoverflow.com/questions/6327477/ios-playing-a-frame-by-frame-greyscale-animation-in-a-custom-colour">iOS: playing a frame-by-frame greyscale animation in a custom colour</a></p>
+<p><strong>Solution B</strong> -- load glow=0 and glow=1 images as GL textures, and manually write shader code that takes in  the glow factor as a uniform and performs the blend</p>
+<p>this has an advantage that it is close to the wire and can be tweaked in all sorts of ways. Also it is going to be very efficient. This advantage is that it is a big extra slice of code to maintain.</p>
+<p><strong>Solution C</strong> -- set glBlendMode to perform additive blending.<br />
+then draw the glow=0 image image, setting eg alpha=0.2 on each vertex.<br />
+then draw the glow=1 image image, setting eg alpha=0.8 on each vertex.</p>
+<p>this has an advantage that it can be achieved with a more generic code structure -- ie  a very general ' draw textured quad / sprite ' class.</p>
+<p>disadvantage is that without some sort of wrapper it is a bit messy...  in my game I have a couple of dozen diamonds -- at any one time maybe 2 or 3 are likely to be glowing.   so first-pass I would render EVERYTHING ( just need to set Alpha appropriately for everything that is glowing ) and then on the second pass I could draw the glowing sprite again with appropriate Alpha  for everything that IS glowing.</p>
+<hr />
+<p>it is worth noting that if I pursue solution A,  this would involve creating some sort of real-time movie player object, which could be a very useful reusable code component.</p>

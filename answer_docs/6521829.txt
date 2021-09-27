@@ -1,0 +1,8 @@
+<p>I think you want:</p>
+
+<pre><code>&lt;xsl:template match="GlobalParam"&gt;
+ &lt;xsl:copy&gt;
+  &lt;xsl:copy-of select="@name|@value"/&gt;
+ &lt;/xsl:copy&gt;
+&lt;/xsl:template&gt;
+</code></pre>

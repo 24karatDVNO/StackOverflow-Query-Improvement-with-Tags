@@ -1,0 +1,3 @@
+<p>The simple answer, at least for the example shown above, is to not display the shadow in the first place. Since you can't see the white-on-white anyway, set the shadowColor to -clearColor.</p>
+
+<p>If you actually need a shadow though, overriding the -setHighlighted method is the best solution. It keeps the code with the cell, which I think is better than trying to handle it from the table view.</p>

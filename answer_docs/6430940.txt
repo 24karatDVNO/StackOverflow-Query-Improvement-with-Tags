@@ -1,0 +1,26 @@
+<p>A little late but this SAVED my hide!! Hope this helps others!</p>
+
+<blockquote>
+  <p>FB Connect display blank popup on
+  login in IE8,IE9 Solution:</p>
+  
+  <p>Use Custom Channel URL</p>
+  
+  <p>1.Add channelUrl parameter in FB.init session.</p>
+  
+  <p>FB.init({
+       appId  : 'YOUR APP ID',
+       status : true,
+       cookie : true,
+       xfbml  : true,
+       channelUrl: "http://yourdomainname/fbtest/channel.html"
+  //Add this file in your website.<br>
+  });</p>
+  
+  <p>2.The contents of the channel.html file should be this single line:
+      </p>
+  
+  <p>3.Test your FB login...Enjoy...       </p>
+</blockquote>
+
+<p>See <a href="http://forum.developers.facebook.net/viewtopic.php?pid=353827" rel="nofollow">http://forum.developers.facebook.net...</a> for the full forum thread.</p>

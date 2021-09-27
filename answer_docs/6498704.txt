@@ -1,0 +1,5 @@
+<p>I'm afraid I'm not familiar with SQLlite. But most SQL engines these days have some sort of "autonumber" feature.</p>
+
+<p>Failing that, create a sequence. The DB engine should manage the sequence for you so you never get duplicate numbers.</p>
+
+<p>If for some reason neither of those things is possible, then you can create a separate table to hold the last-used id. Be sure to read it using "select for update" to avoid race conditions.</p>

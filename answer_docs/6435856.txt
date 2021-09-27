@@ -1,0 +1,3 @@
+<p>It depends on your case and requirements. If you store the data in the session, then that is fine, but you will lose the data once the session is abandoned, or ended. But if that is not important, meaning that you don't want to keep the data there forever, then storing in the session (temporary) is better. But you will need to look into performance issues, specially if multiple users do the same thing at once, that will decrease performance.</p>
+
+<p>If you choose to store in a database, then that will also work but you will need to decide on having ViewState enabled or disabled, again for the sake of performance. </p>

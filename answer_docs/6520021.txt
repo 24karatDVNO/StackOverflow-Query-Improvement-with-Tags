@@ -1,0 +1,13 @@
+<p>as per your given example you have EFF_DATE and ACCT_DATE in formated form only so i think you can directly join basis of these two columns</p>
+
+<p>like - </p>
+
+<pre><code>select st.*,ft.rate from first_table ft, second_table st
+where st.acct_date=ft.eff_date
+</code></pre>
+
+<p>but this will not give your desired output what you have mentioned in you question...</p>
+
+<p>do you really want to join with acct_date???</p>
+
+<p>and if you want to just join without this type of condition then better mention that condition and update your question </p>

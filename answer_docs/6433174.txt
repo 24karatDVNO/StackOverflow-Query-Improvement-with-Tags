@@ -1,0 +1,17 @@
+<p>Given that it's an internal convention, it is entirely up to you: simply pick one of the corners of the grid e.g. top-lef, as your <em>origin</em>.  (General convention is to use top-left as origin and bottom-right as [x-max][y-max].)</p>
+
+<p>Your model can be anything from a single dimensional raster model or a 2d array, or even nested Lists. Choice of model entirely depends on the use-case and performance requirements.  For your case -- introductory homework -- 2d array is a straightforward and sensible choice.</p>
+
+<p>For drawing to a grid cell @ (i,j), you'll need a method to get the canvas coordinates (x,y) of a given grid cell:</p>
+
+<pre><code>/** maps grid cell to coordinates of cell */
+public Point getCoordinates(int i, int j);
+</code></pre>
+
+<p>Here you have a couple of choices: should you return the center point e.g. the middle point of a black square, or its relative origin e.g. its top-left coordinates?  Depends on what you are trying to do.  For example, if you are going to be rendering little icons at each cell, the paint api takes the top-left coordinate of the image you are rendering, so in that case, returning the origin is sensible.</p>
+
+<p>You also need to decide if you need to map from a point in the visual grid to your data.  For example, user clicks in the canvas and you need to determine the corresponding data cell.  (You probably don't need this)</p>
+
+<pre><code>/** maps point in canvas to a data cell - returned 'point' is (i, j) */
+public Point getIndex (int x, int y);
+</code></pre>

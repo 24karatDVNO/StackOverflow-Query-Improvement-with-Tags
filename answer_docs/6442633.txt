@@ -1,0 +1,15 @@
+<p>The way your query is written, you limit the results from playlist_assignments to 1. If I understand correctly, you just want one playlist but all the videos from that playlist. In that case, modifying your query this way should work</p>
+
+<pre><code>SELECT * 
+FROM ( 
+SELECT id, title
+FROM playlists p 
+WHERE 1 and title = 'My Top Videos'
+LIMIT 1
+)d 
+JOIN playlist_assignments pa 
+USING(id) 
+JOIN videos v 
+USING (youtube_id)
+ORDER BY position ASC
+</code></pre>

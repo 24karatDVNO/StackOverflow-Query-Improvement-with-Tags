@@ -1,0 +1,14 @@
+<p>Firstly, you need to find the reason that cedet won't load with a simple <code>(require 'cedet)</code>.</p>
+
+<ol>
+<li>Is Emacs installed at <code>c:\emacs</code>? (ie the emacs.exe you are running is c:\emacs\bin\emacs.exe)</li>
+<li>Is something setting <code>EMACSLOADPATH</code> externally from Emacs (your environment, or in the registry under <code>HKEY_LOCAL_MACHINE</code> or <code>HKEY_CURRENT_USER</code> <code>/Software/GNU/Emacs</code>?</li>
+<li>Is there another installation of an older version of CEDET on your load path?</li>
+<li>Has <code>c:\emacs\lisp\subdirs.el</code> been edited to remove the cedet subdirectory?</li>
+</ol>
+
+<p>Once you've solved that, note that the paths were changed when CEDET was merged into Emacs to accommodate old systems that have limitations on file name lengths.  But at the same time, the autoloads were improved, so you shouldn't need to explicitly require those files any more.  If you still do, the following should work:</p>
+
+<pre><code>(require 'semantic/ia)
+(require 'semantic/bovine/gcc)
+</code></pre>

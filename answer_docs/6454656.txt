@@ -1,0 +1,8 @@
+<pre><code>UIImageView *imageView1 = [view viewWithTag:i];
+</code></pre>
+
+<p>Create your second image view with the tag of your first image view .</p>
+
+<pre><code>UIImageView * imageView2= [[UIImageView alloc] initWithFrame:CGRectMake(0,20,width,height)];
+imageView2.tag = imageView1.tag;
+</code></pre>

@@ -1,0 +1,4 @@
+<p>I found a work a round by getting the affineTransform and calculating the new height. I added the follwing line to the code above</p>
+
+<pre><code>System.out.println("The new height :"+ shape.getHeight() *  shape.getAffineTransform().getScaleX());
+</code></pre>

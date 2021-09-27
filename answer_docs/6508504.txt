@@ -1,0 +1,5 @@
+<pre><code>select max(table3.field),table1.field from table1
+join table2 on table1.id=table2.table1_id
+join table3 on table2.id = table3.table2_id
+group by table1.field
+</code></pre>

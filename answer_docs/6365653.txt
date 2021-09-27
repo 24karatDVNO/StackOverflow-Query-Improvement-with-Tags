@@ -1,0 +1,13 @@
+<p>The example you gave is just a static method, but to answer your question about a global instance of a class:</p>
+
+<pre><code>package myPackage
+{
+    public var globalVariable:MyClass = new MyClass();
+}
+</code></pre>
+
+<p>You can access it with:</p>
+
+<pre><code>import myPackage.globalVariable;
+trace(globalVariable);
+</code></pre>

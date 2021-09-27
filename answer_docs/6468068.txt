@@ -1,0 +1,18 @@
+<p>Your <code>CellTemplate</code> should not be editable, further you need to bind the <code>SelectedItem</code>, e.g.</p>
+
+<pre><code>&lt;DataGridTemplateColumn Header="Enum Stuff"&gt;
+    &lt;DataGridTemplateColumn.CellTemplate&gt;
+                &lt;DataTemplate&gt;
+                        &lt;TextBlock Text="{Binding ID}"/&gt;
+                &lt;/DataTemplate&gt;
+    &lt;/DataGridTemplateColumn.CellTemplate&gt;
+    &lt;DataGridTemplateColumn.CellEditingTemplate&gt;
+                &lt;DataTemplate&gt;
+                    &lt;ComboBox ItemsSource="{Binding Source={StaticResource dataFromEnum}}"                                                          
+                              SelectedItem="{Binding ID}" /&gt;
+                &lt;/DataTemplate&gt;
+    &lt;/DataGridTemplateColumn.CellEditingTemplate&gt;
+&lt;/DataGridTemplateColumn&gt;
+</code></pre>
+
+<p><em>(Properties are supposed to be in PascalCase by the way i.e. capitalize <code>enumType</code>)</em></p>

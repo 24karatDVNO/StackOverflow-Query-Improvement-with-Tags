@@ -1,0 +1,41 @@
+<p>Use relative layout. place webview below of listview</p>
+
+<p>Try with the following xml approach</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+
+&lt;RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"&gt;
+    &lt;LinearLayout
+        android:id="@+id/toplayout"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:layout_alignParentTop="true"
+        android:background="#ffffff"&gt;
+        &lt;ListView
+            android:id="@+id/ListView01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"&gt;
+
+        &lt;/ListView&gt;
+    &lt;/LinearLayout&gt;
+    &lt;LinearLayout
+        android:id="@+id/buttonlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toplayout"&gt;
+        &lt;WebView
+            android:id="@+id/webview001"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" /&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>Thanks
+Deepak</p>

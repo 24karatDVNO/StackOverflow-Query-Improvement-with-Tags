@@ -1,0 +1,7 @@
+<p>After buzzing around a few of my iOS developer buddies, I came up with a solution that worked well enough.</p>
+
+<p>I set it up so that in addition to the icons being loaded from the UIScrollView delegates, an NSTimer object will periodically call a method that checks the currently visible table cells ([UITableView indexPathsForVisibleRows]) every .5 seconds, and loads any icons on the screen that haven't been loaded yet in a single separate thread.</p>
+
+<p>I tried to make the solution as efficient as possible, so I made sure the timer was only active when the tableView was visible and stationary, and I liked it since it meant that every visible icon regardless was addressed.</p>
+
+<p>One thing I discovered was that if the tableView was reloaded while the thread was looping through the visible cells (rare, but was possible), it would crash. The solution to this was to make sure each cell data source entry was retained while the icon was being loaded.</p>

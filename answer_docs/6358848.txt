@@ -1,0 +1,81 @@
+<p>I have found the solution. This is the code:</p>
+
+<pre><code>        int numeroFila = 0;
+        MainPage rootPage = ((App)Application.Current).RootVisual as MainPage;
+        rootPage.NuevoElementoWindowInstance.NuevoElementoInstance.ListadoAtributos.Children.Clear();
+
+        foreach (var atributo in ListaAtributos)
+        {
+            string tipoAtributo = ObtenerDefinicionAtributo(atributo.Key);
+            FrameworkElement campoDatos;
+            TextBlock bloqueTexto = new TextBlock();
+            bloqueTexto.Margin = new Thickness(10,3,0,0);
+            Binding bind = new Binding();
+            bind.Source = atributo;
+            bind.Path = new PropertyPath("Key");
+            bind.Mode = System.Windows.Data.BindingMode.TwoWay;
+            bloqueTexto.SetBinding(TextBlock.TextProperty, bind);
+
+
+            switch (tipoAtributo)
+            {
+                case "Boolean":
+
+                    CheckBox campoBooleano = new CheckBox();
+                    campoBooleano.Name = atributo.Key;
+                    campoBooleano.IsChecked = ObtenerValorCampoBooleano(atributo.Value);
+                    bind = new Binding();
+                    bind.Source = atributo;
+                    bind.Path = new PropertyPath("Value");
+                    bind.Mode = System.Windows.Data.BindingMode.TwoWay;
+                    campoBooleano.SetBinding(CheckBox.IsCheckedProperty, bind);
+                    campoDatos = campoBooleano;
+                    break;
+
+                case "DateTime":
+
+                    DatePicker campoFecha = new DatePicker();
+                    try
+                    {
+                        campoFecha.DisplayDate = DateTime.Parse(atributo.Value);
+                    }
+                    catch (Exception) 
+                    {
+                        campoFecha.DisplayDate = DateTime.Now;
+                    }
+                    bind = new Binding();
+                    bind.Source = atributo;
+                    bind.Path = new PropertyPath("Value");
+                    bind.Mode = System.Windows.Data.BindingMode.TwoWay;
+                    campoFecha.SetBinding(DatePicker.TextProperty, bind);
+                    campoDatos = campoFecha;
+                    break;
+
+                default:
+
+                    TextBox campoTexto = new TextBox();
+                    atributo.Value = atributo.Value == null ? "" : atributo.Value;
+                    bind = new Binding();
+                    bind.Source = atributo;
+                    bind.Path = new PropertyPath("Value");
+                    bind.Mode = System.Windows.Data.BindingMode.TwoWay;
+                    campoTexto.SetBinding(TextBox.TextProperty, bind);
+                    campoDatos = campoTexto;
+                    break;
+            }
+
+            //this.GetType().GetProperty("").GetGetMethod().Invoke(new Object(), null);
+
+            campoDatos.Margin = new Thickness(0,1,10,1);
+            rootPage.NuevoElementoWindowInstance.NuevoElementoInstance.ListadoAtributos.RowDefinitions.Add(new RowDefinition());
+            Grid.SetColumn(campoDatos, 1);
+            Grid.SetColumn(bloqueTexto, 0);
+            Grid.SetRow(campoDatos, numeroFila);
+            Grid.SetRow(bloqueTexto, numeroFila);
+            rootPage.NuevoElementoWindowInstance.NuevoElementoInstance.ListadoAtributos.Children.Add(bloqueTexto);
+            rootPage.NuevoElementoWindowInstance.NuevoElementoInstance.ListadoAtributos.Children.Add(campoDatos);
+            numeroFila++;
+        }
+</code></pre>
+
+<p>However now, I need to set a Converter to the CheckBox, because al "Values" are string and I need to convert string-boolean</p>

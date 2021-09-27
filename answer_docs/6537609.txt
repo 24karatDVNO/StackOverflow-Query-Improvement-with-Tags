@@ -1,0 +1,22 @@
+<p>I would</p>
+
+<pre><code>OnCommandSentThatRequiresAWait Event Call SaveStateAndDisableUI()
+
+SaveStateAndDisableUI()
+{
+   Foreach control in controlsCollection
+   {
+       switch(controlType)
+       {
+           for each control extract and save all you need. 
+           if it's a menu check if it is opened up and so on, 
+           does control have focus, 
+           where is the caret located in case of textbox etc              
+       }
+   }
+   save position of mouse x,y
+   save position of form, state like if it is minimized, maximized
+}
+
+Corresponding RestoreState() should restore everything back up.
+</code></pre>

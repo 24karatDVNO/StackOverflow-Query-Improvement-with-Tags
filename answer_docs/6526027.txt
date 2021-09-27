@@ -1,0 +1,24 @@
+<p>I use silverlight 4 and vs 2010, and I had the same problem, and I resolved modifing the web.config file.</p>
+
+<p>My original web.config file had:</p>
+
+<pre><code>&lt;system.serviceModel&gt;
+   &lt;serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" /&gt;
+&lt;/system.serviceModel&gt;
+</code></pre>
+
+<p>And I changed it by:</p>
+
+<pre><code>  &lt;system.serviceModel&gt;
+    &lt;serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" /&gt;
+    &lt;behaviors&gt; 
+         &lt;serviceBehaviors&gt; 
+             &lt;behavior&gt; 
+                 &lt;serviceMetadata httpGetEnabled="true"/&gt; 
+                 &lt;serviceDebug includeExceptionDetailInFaults="true"/&gt; 
+                 &lt;dataContractSerializer maxItemsInObjectGraph="2147483647"/&gt;  &lt;!--this very is important: it is the size of the buffer--&gt;
+             &lt;/behavior&gt; 
+         &lt;/serviceBehaviors&gt; 
+     &lt;/behaviors&gt;
+  &lt;/system.serviceModel&gt;
+</code></pre>

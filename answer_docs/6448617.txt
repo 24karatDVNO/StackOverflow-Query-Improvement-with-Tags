@@ -1,0 +1,12 @@
+<p>I suggest you watch this <a href="http://www.youtube.com/watch?v=o-AskKI_10Y" rel="nofollow">IO talk</a> and a corresponding <a href="http://themechanism.com/blog/2010/05/19/live-blogging-google-io-stepping-up-porting-v2-javascript-maps-api-applications-to-v3/" rel="nofollow">live blog</a>. There are a few salient points from the talk:</p>
+
+<ul>
+<li>You no longer need the maps api key when you include the maps library. You do need the <strong>sensor</strong> parameter (http://maps.google.com/maps/api/js?sensor=true).</li>
+<li>No more <em>GBrowserCompatible</em>. You will find a few utility type functions that were in v2 removed in v3. These were really outside the scope of a maps library and are available in various other places more suited to this type of feature (JQuery etc..)</li>
+<li>A few required fields on the maps object. <em>mapTypeId</em>, <em>zoom</em> &amp; <em>center</em></li>
+<li>The <em>GMap2</em> in the global namespace is now <em>google.maps.Map</em>.</li>
+<li>The map object now knows about the overlays that it holds. So overlays add &amp; remove themselves from the map (this is the reverse of the v2 approach). This was done to avoid bloating in the map object (no need for add/remove functions for various overlays), this in turn reduces the initial download size for the library. This also means you will need to keep track of your overlays if you want to remove them from the map. </li>
+<li>You can now add multiple info windows to a map (v2 limited you to a single global infowindow).</li>
+</ul>
+
+<p>You are using the GClientGeocoder, so you will need to check the replacement <a href="http://code.google.com/apis/maps/documentation/javascript/services.html#Geocoding" rel="nofollow">javascript geocoding API</a>.</p>

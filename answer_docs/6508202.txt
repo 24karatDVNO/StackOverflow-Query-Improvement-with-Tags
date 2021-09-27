@@ -1,0 +1,11 @@
+<p>Match the entire dollar range with 2 capture groups rather than matching every dollar amount with one capture group:</p>
+
+<pre><code>([0-9]+k?[.,]?[0-9]+) - ([0-9]+k?[.,]?[0-9]+)
+</code></pre>
+
+<p>However, I'm worried (yeah, I'm minding it :p) about that regex as it will match some strange things:</p>
+
+<pre><code>182k,938 - 29.233333
+</code></pre>
+
+<p>will both be matched, it can definitely be improved if you can give more information on your input types.</p>

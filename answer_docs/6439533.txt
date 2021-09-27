@@ -1,0 +1,11 @@
+<p>Unfortunately closures (in ur case the variable i) doesn't work the way they should be in C#.
+Replace </p>
+
+<pre><code>b.Click += (sender, e) =&gt; myClick(i);
+</code></pre>
+
+<p>with </p>
+
+<pre><code>Action&lt;int,Button&gt; act = (index,b) =&gt; { b.click += (sender, e) =&gt; myClick(index) }
+act(i,b);
+</code></pre>

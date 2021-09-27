@@ -1,0 +1,42 @@
+<p>I think you're going to need to show us some code to see exactly what your problem is. I worked up a quick example of using the <code>WebBrowser</code> control with one HTML file that links to the other and its working just as expected.</p>
+
+<p>Relative links are relative to the current document being browsed. If you're writing raw HTML to the browser then I think that links a relative to what it thinks is root which might be <code>file:///c:/</code> but I'm not sure. Also, you might be running into a permission problem if you're files are actually living in the drive's root.</p>
+
+<p>Here's the sample that's working fine for me:</p>
+
+<pre><code>Option Strict On
+Option Explicit On
+
+Imports System.IO
+
+Public Class Form1
+
+    Private WithEvents WebB As WebBrowser
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ''//Create our web browser
+        Me.WebB = New WebBrowser()
+        ''//Set it to fill the form
+        Me.WebB.Dock = DockStyle.Fill
+        ''//Add it to the form
+        Me.Controls.Add(Me.WebB)
+
+        ''//We will put our HTML files in this folder which is on the desktop
+        Dim WorkingFolder = Path.Combine(My.Computer.FileSystem.SpecialDirectories.Desktop, "HTMLTest")
+        ''//Create it if it doesn't exist
+        If Not Directory.Exists(WorkingFolder) Then Directory.CreateDirectory(WorkingFolder)
+
+        ''//The names of the two files that we are creating
+        Dim FirstFile = "Start.html"
+        Dim SecondFile = "End.html"
+
+        ''//Write HTML in the first file that has a link to the second file
+        My.Computer.FileSystem.WriteAllText(Path.Combine(WorkingFolder, FirstFile), &lt;html&gt;&lt;head&gt;&lt;title&gt;Start&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;a href=&lt;%= SecondFile %&gt;&gt;Link to second file&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;.ToString(), False)
+        ''//Write HTML in the second file
+        My.Computer.FileSystem.WriteAllText(Path.Combine(WorkingFolder, SecondFile), &lt;html&gt;&lt;head&gt;&lt;title&gt;End&lt;/title&gt;&lt;/head&gt;&lt;body&gt;This is the second file&lt;/body&gt;&lt;/html&gt;.ToString(), False)
+
+        ''//Tell the web browser to navigate to the second file
+        Me.WebB.Navigate(Path.Combine(WorkingFolder, FirstFile))
+    End Sub
+End Class
+</code></pre>

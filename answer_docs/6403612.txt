@@ -1,0 +1,9 @@
+<p>You could try something like this to ensure the query-string is carried across:    </p>
+
+<pre><code>protected void Page_Load(object sender, EventArgs e)
+{
+    Response.Status = "301 Moved Permanently";
+    string sQueryString = this.Request.ServerVariables["QUERY_STRING"];
+    Response.AddHeader("Location", String.Format("http://www.domain.com/example.aspx?{0}",   sQueryString));
+}
+</code></pre>

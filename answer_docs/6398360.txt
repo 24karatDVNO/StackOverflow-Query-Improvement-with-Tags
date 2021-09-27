@@ -1,0 +1,19 @@
+<p>Assuming you mean "where sender or receiver = 1" to define "colleagues" based on your logic. If colleague is defined elsewhere we'd need more info.</p>
+
+<pre><code>SELECT 
+   M.messageID,
+   USend.firstName AS firstNameFrom,
+   USend.lastName AS lastNameFrom,
+   URrec.userID,
+   URrec.firstName AS firstNameTo,
+   URrec.lastName AS lastNameTo,
+   M.messageBody
+FROM
+   Message M
+   JOIN
+   User URrec ON M.receiver_userID = URrec.userID
+   JOIN
+   User USend ON M.sender_userID = USend.userID
+WHERE
+   M.receiver_userID = 1 OR M.sender_userID = 1
+</code></pre>

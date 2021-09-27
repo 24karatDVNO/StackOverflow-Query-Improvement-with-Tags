@@ -1,0 +1,12 @@
+<blockquote>
+  <p>... if any of the file is not found in the middle of execution,how to stop the corresponding tailer.</p>
+</blockquote>
+
+<p>The fundamental problem is that a file is "found" when you try to open it.  Once it has been opened, the Java application doesn't need to find it again:</p>
+
+<ul>
+<li><p>On Windows, OS-level file locking means that the file typically cannot be deleted (e.g. by another application) until your application closes it.</p></li>
+<li><p>On UNIX / Linux, a file <em>can</em> be deleted (actually "unlinked") while it is open, but this does not affect an application that currently has the file open.  The application can continue to read and write the unlinked file ... even though no other application can open it.</p></li>
+</ul>
+
+<p>With Java 6, the only way to tell if the file you are currently reading / writing has been "deleted" is to attempt to open it again.  That is expensive if you are doing it repeatedly.  In Java 7, there are new classes for processing file system events that would allow your application to "notice" that a file has been deleted / unlinked.</p>

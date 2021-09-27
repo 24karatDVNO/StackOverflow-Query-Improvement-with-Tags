@@ -1,0 +1,9 @@
+<p>As it looks like you know, <code>q.results</code> is an XML object.  To get the text content as a string you would first call <code>text()</code> to get an XML text object, then call <code>toString()</code> to turn it into a JavaScript string.</p>
+
+<pre><code>response.object = {'test': q.results.text().toString()};
+</code></pre>
+
+<p>There is also the option of simply returning an XML object of your own.</p>
+
+<pre><code>response.object = &lt;test&gt;{q.results.text()}&lt;/test&gt;;
+</code></pre>

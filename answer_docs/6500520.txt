@@ -1,0 +1,11 @@
+<p>You cannot guarantee that. In fact, it is guaranteed to work exactly the other direction.  From <a href="http://www.debian.org/doc/debian-policy/ch-relationships.html" rel="nofollow">http://www.debian.org/doc/debian-policy/ch-relationships.html</a>:</p>
+
+<blockquote>
+  <p>The meaning of the five dependency fields is as follows:</p>
+  
+  <p>Depends</p>
+  
+  <p>This declares an absolute dependency. A package will not be configured unless all of the packages listed in its Depends field have been correctly configured (unless there is a circular dependency as described above).</p>
+</blockquote>
+
+<p>Your best bet is to make your package work <em>after</em> MySQL is properly installed--possibly by resetting the password, if you really need that functionality.</p>

@@ -1,0 +1,5 @@
+<p>Ran into a similar situation myself, but with the last checkbox updated programmatically--whouldn't update unless I switched rows. </p>
+
+<p>Try calling the BindingSource.EndEdit method just before you update the combobox. </p>
+
+<p>For me I call the data adapter afterwards and it recognizes a change to the datagridview--so it does the work.</p>

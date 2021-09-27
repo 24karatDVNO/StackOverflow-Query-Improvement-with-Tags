@@ -1,0 +1,4 @@
+<p>One way I'd do this is to use the <code>App</code> class and defined a static property that I'd sent and then when I hit the <code>OnNavigatedTo</code> method on my MainPage I can pick up the value and set the desired Control property to it's new value.</p>
+
+<p>There is also a <code>PhoneApplicationService.Current.State</code>, this post explains how to use it quite well:
+<a href="https://stackoverflow.com/questions/5991604/windows-phone-7-silverlight-using-session">Windows Phone 7 Silverlight using session</a></p>

@@ -1,0 +1,4 @@
+<pre><code>$stmt = $db-&gt;prepare('select password from users where email=? AND (activation=? OR activation=?)');
+</code></pre>
+
+<p>Use the AND keyword, and put your two possible activation values in an encapsulated OR statement.</p>

@@ -1,0 +1,17 @@
+<p>To extract the shape coordinates, use this code:</p>
+
+<pre><code>String path = input.replaceAll(".+&lt;path d=\"(.+?)\" ?/&gt;.+", "$1");
+</code></pre>
+
+<p>Then you can try to split on comma's:</p>
+
+<pre><code>String[] parts = path.split(",");
+</code></pre>
+
+<p>I don't know how to interpret the data, but you can try something with a minX, minY, maxX and maxY. After searching for the largest and smallest values, you can get the width and height as this:</p>
+
+<pre><code>float width = maxX - minX;
+float height = maxY - maxY;
+</code></pre>
+
+<p>This is something general, but I should take a look at <a href="http://xmlgraphics.apache.org/batik/" rel="nofollow">Bakit SVG Toolkit</a>.</p>

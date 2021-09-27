@@ -1,0 +1,8 @@
+<p>You can change your call to this:</p>
+
+<pre><code>var products = productRepository.FindAll(specification,
+                                         new [] { p =&gt; p.Variants, 
+                                                  p =&gt; p.Reviews });
+</code></pre>
+
+<p>But this will only work if the <code>T</code> is the same in both!</p>

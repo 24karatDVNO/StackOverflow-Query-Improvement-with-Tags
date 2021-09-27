@@ -1,0 +1,10 @@
+<p>If the json is already an array you don't need to do anything other than:</p>
+
+<pre><code>$.get('/path', function (data) {
+  console.log('data'); //Should already be an array.
+});
+</code></pre>
+
+<p>Arrays are a supported datatype in json.</p>
+
+<p>If your array is not sorted yet take a look at <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort" rel="nofollow">sort</a>.</p>

@@ -1,0 +1,9 @@
+<p>Recursion works fine. We don't even need a helper method.</p>
+
+<pre><code>public void display()
+{
+    // Displays in reverse order. For forwards order, do it the other way around.
+    if (next != null) { next.display(); }
+    System.out.println("\n\t"+ element +"\n");
+}
+</code></pre>

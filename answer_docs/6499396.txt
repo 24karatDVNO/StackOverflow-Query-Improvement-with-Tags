@@ -1,0 +1,17 @@
+<p>For the future, in case you run into this type of looping problem again (regardless if it's json related), you can use a boolean to detect if a comma is needed:</p>
+
+<pre><code>&lt;?php $firstTime = true ?&gt;
+&lt;?php foreach($items as $item): ?&gt;
+    &lt;?php 
+    if (!$firstTime):
+        echo ', ';
+    else:
+        $firstTime = false;
+    endif;
+    ?&gt;
+     {
+        "title" : "&lt;?php echo $item-&gt;title ?&gt;",
+        "image" : "&lt;?php echo $item-&gt;getImage()?&gt;",
+      }
+ &lt;?php  endforeach ?&gt;
+</code></pre>

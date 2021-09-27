@@ -1,0 +1,19 @@
+<p>This is one way of doing it:</p>
+
+<pre><code>    $list = array('apple','orange','alpha','bib','son','green','odd','soap');
+
+
+$a = array();
+$s = array();
+for ($i = 0; $i &lt; count($list); $i++)
+{
+    if (substr($list[$i], 0, 1) == "s")
+    {
+        $s[$i] = $list[$i];
+    }
+    else if (substr($list[$i], 0, 1) == "a")
+    {
+        $a[$i] = $list[$i];
+    }
+}
+</code></pre>

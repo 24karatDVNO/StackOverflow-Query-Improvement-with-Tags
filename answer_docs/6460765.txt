@@ -1,0 +1,78 @@
+<p>Heres a similar thing i did with a list view, with a button at the bottom and a spinner at the top, you might be able to modify it to suit your app. XML layout: </p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content" android:layout_height="wrap_content"
+android:orientation="vertical"&gt;
+&lt;RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:id="@+id/top_control_bar"&gt;
+    &lt;Spinner android:id="@+id/sort_by" android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:entries="@array/default_sorts" /&gt;
+&lt;/RelativeLayout&gt;
+&lt;LinearLayout android:id="@+id/bottom_control_bar"
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"&gt;
+    &lt;Button android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:text="Add Item" /&gt;
+&lt;/LinearLayout&gt;
+&lt;ListView android:id="@android:id/list" android:layout_width="fill_parent"
+    android:layout_height="0dip" android:choiceMode="multipleChoice"
+    android:layout_below="@id/top_control_bar" android:layout_above="@id/bottom_control_bar"&gt;&lt;/ListView&gt;
+&lt;TextView android:id="@android:id/empty" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:text="@string/main_empty_list"
+    android:layout_below="@id/top_control_bar"android:layout_above="@id/bottom_control_bar" /&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>Java Code:</p>
+
+<pre><code>// myList.java
+package com.test.listview;
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class myList extends ListActivity 
+{
+/** Called when the activity is first created. */
+public void onCreate(Bundle bundle) 
+{
+    super.onCreate(bundle);
+    // Create an array of Strings, that will be put to our ListActivity
+
+    String[] names = new String[] { "Linux", "Windows7", "Eclipse", "Suse",
+            "Ubuntu", "Solaris", "Android", "iPhone", "Linux", "Windows7",
+            "Eclipse", "Suse", "Ubuntu", "Solaris", "Android", "iPhone" };
+    setContentView (R.layout.main);
+    ListView listView = getListView();
+    ArrayAdapter a = new ArrayAdapter &lt;String&gt;(this, android.R.layout.simple_list_item_single_choice, names);
+    setListAdapter(a);
+
+    }
+}
+</code></pre>
+
+<p>Strings.xml:</p>
+
+<pre><code>// strings.xml
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+&lt;string name="hello"&gt;Hello World, myList!&lt;/string&gt;
+&lt;string name="app_name"&gt;listview&lt;/string&gt;
+&lt;string-array name="default_sorts"&gt;
+    &lt;item&gt;fooboo&lt;/item&gt;
+    &lt;item&gt;asdfgh&lt;/item&gt;
+    &lt;item&gt;qwerty&lt;/item&gt;
+    &lt;item&gt;346346&lt;/item&gt;
+    &lt;item&gt;hjkgaf&lt;/item&gt;
+    &lt;item&gt;asdfas&lt;/item&gt;
+    &lt;item&gt;vbncvn&lt;/item&gt;
+    &lt;item&gt;dfgrdf&lt;/item&gt;
+    &lt;item&gt;hjkkmb&lt;/item&gt;
+    &lt;item&gt;fdghgv&lt;/item&gt;
+&lt;/string-array&gt;
+&lt;string name="main_empty_list"&gt;foo&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre>

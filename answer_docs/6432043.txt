@@ -1,0 +1,5 @@
+<p>Addressing the word "alignment" in the title.</p>
+
+<p>Standard <code>malloc</code> makes no guarantees about the alignment of the allocation returned. Particular implementations may or may not do helpful things in the that realm, and may or may not have some kind of extension to allow you to control the alignment of the blocks returned. However, these things will not be portable.</p>
+
+<p>As others have said each allocation is guaranteed to be continuous and at least as big as you requested; but there are no guarantees about the relative positioning of any pair of allocations. Nor is there a portable way to discover how large the actual allocation is, which makes it unsafe and undefined to access memory beyond the requested size (again, some implementations may provide extension that address these issues).</p>

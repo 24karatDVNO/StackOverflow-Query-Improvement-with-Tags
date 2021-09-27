@@ -1,0 +1,10 @@
+<p>You need to return the result via a reference:</p>
+
+<pre><code>void Class1::collect_file_paths(QStringList&amp; file_list)
+{
+  //Gather file paths
+  DirectorySearch ds;
+  connect(&amp;ds, SIGNAL(updateStatus(QString)), this, SLOT(onStatusUpdate(QString)));
+  file_list = ds.get_file_names(_strPath);  //Returns a pointer of QStringList
+}
+</code></pre>

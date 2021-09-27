@@ -1,0 +1,8 @@
+<p><strong>=C:\Documents</strong> makes me think you have a bad setting somewhere. One of two things is likely happening:</p>
+
+<ol>
+<li>That equals sign before the path is causing the failure.</li>
+<li>A path is specified somewhere which requires being wrapped in quotes but isn't, because of the space in the path (ex: should be "C:\Documents And Settings...")</li>
+</ol>
+
+<p>I would check your build properties and paths, as well as any included JAR files or Library projects for a small typo.</p>

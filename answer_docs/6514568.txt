@@ -1,0 +1,10 @@
+<blockquote>
+  <p>If we try to compare two different
+  String objects, maybe with the same
+  memory address, located on different
+  VM, will this work correctly?</p>
+</blockquote>
+
+<p>You can't do that. There is no way of comparing Strings in two VMs, with or without the == operator. Your question therefore isn't <em>about</em> anything. You would have to get them both into the same VM, whereupon you would call String.equals().</p>
+
+<p>The == test is just a shorthand to avoid going through all the rest of the code. It is has nothing to do with Serialization whatsoever. And different VMs cannot possibly come into it.</p>

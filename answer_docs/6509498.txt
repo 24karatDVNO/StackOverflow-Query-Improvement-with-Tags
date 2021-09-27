@@ -1,0 +1,14 @@
+<p>Turn the date into an valid mysql datetime </p>
+
+<pre><code>date('Y-m-d h:i:s', strtotime("Fri Jul 16 16:55:52 +0000 2010"));
+</code></pre>
+
+<p>That then needs quoting and inserting into your table:</p>
+
+<blockquote>
+  <p>$sql = "insert into tweets 
+  (tw,daydate) values ('$tweet',
+  '$date');"</p>
+</blockquote>
+
+<p>Where daydate is a DATETIME field.</p>

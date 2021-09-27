@@ -1,0 +1,9 @@
+<p>There is no way to control this.</p>
+
+<p>The best you can hope to do is take over responsibility of drawing the entire frame (icon, caption, minimize, maximize, close buttons, frame, resizing, etc).</p>
+
+<p>Then you can color your window, but the glass effect of Windows will still colorize your window.</p>
+
+<hr>
+
+<p>Since you seem to want to exclude yourself from the look and feel of Windows, your best bet is to give up on glass rendering: <a href="http://msdn.microsoft.com/en-us/library/aa969508%28v=VS.85%29.aspx" rel="nofollow">DwmEnableBlurBehindWindow</a></p>

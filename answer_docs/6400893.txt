@@ -1,0 +1,23 @@
+<p>use jQuery <a href="http://api.jquery.com/after/" rel="nofollow">after</a> or <a href="http://api.jquery.com/insertAfter" rel="nofollow">insertAfter</a> for that ;)</p>
+
+<pre><code>var target = $(this)
+var copy = target.clone();
+target.after(copy)
+copy.val('').focus();
+</code></pre>
+
+<p>or all at once:</p>
+
+<pre><code>$(this).after($(this).clone().val('').focus()); 
+</code></pre>
+
+<p>this sets the <strong>focus</strong> on and clears the <strong>new</strong> element</p>
+
+<p>or</p>
+
+<pre><code>$(this).after($(this).clone()).val('').focus();
+</code></pre>
+
+<p>this sets the <strong>focus</strong> on and clears the <strong>old</strong> element</p>
+
+<p><strong><a href="http://jsfiddle.net/Gw4Qy/" rel="nofollow">fiddle here</a></strong></p>

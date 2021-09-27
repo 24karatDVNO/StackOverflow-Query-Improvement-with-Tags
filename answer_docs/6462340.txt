@@ -1,0 +1,21 @@
+<p>The solution is to define two different classes, <code>td.single</code> and <code>td.double</code>. The <code>td</code> (which is the column) with the appropriate line spacing:
+    </p>
+
+<pre><code>&lt;head&gt;
+&lt;style type="text/css"&gt;
+td.single {line-height:100%;}
+td.double {line-height:200%;}
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;table border="1"&gt;
+&lt;tr&gt;
+  &lt;td class="single"&gt;single&lt;br /&gt;spacing&lt;/td&gt;
+  &lt;td class="double"&gt;double&lt;br /&gt;spacing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

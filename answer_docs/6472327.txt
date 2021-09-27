@@ -1,0 +1,10 @@
+<p>Use an array instead, like this for each one:</p>
+
+<p><code>$lang[10] = 'asdf';</code></p>
+
+<p>where <code>10</code> is the key, and <code>asdf</code> is your value.</p>
+
+<p>Then use a for loop:</p>
+
+<pre><code>for ($i = 1; $i &lt;= 20; $i++) if ($lang[$i]) echo ($lang[$i] . "&lt;br /&gt;");
+</code></pre>

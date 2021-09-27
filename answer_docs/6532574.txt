@@ -1,0 +1,12 @@
+<p>use grep or egrep commands with subprocess module of python, it may help you.</p>
+
+<p>e.g:</p>
+
+<pre><code>from subprocess import Popen, PIPE
+
+stdout = Popen("grep 'word1' document.txt", shell=True, stdout=PIPE).stdout
+#to search 2 different words: stdout = Popen("egrep 'word1|word2' document.txt",       
+#shell=True, #stdout=PIPE).stdout
+data = stdout.read()
+data.split('\n')
+</code></pre>

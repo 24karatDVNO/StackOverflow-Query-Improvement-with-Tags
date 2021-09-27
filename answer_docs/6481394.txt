@@ -1,0 +1,9 @@
+<p>if you are using tables like $_POST['name'] in a string you have to wrap them with a {} </p>
+
+<pre><code>      $sql = "INSERT INTO $table_name
+        (name, question) VALUES
+        ('{$_POST[name]}', '{$_POST[question]}')";
+&lt;?php echo "{$_POST[name]}"; ?&gt;
+</code></pre>
+
+<p>also </p>

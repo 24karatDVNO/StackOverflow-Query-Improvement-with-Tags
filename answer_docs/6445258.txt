@@ -1,0 +1,5 @@
+<p>I don't think your conditions variable is supposed to contain a 'fileExt' key-value pair.  fileExt is a property of Uploadify, not Amazon S3 POST process, and options is how you configure the Uploadify widget.  </p>
+
+<p>The conditions variable is what gets serialized into the policy file that gets sent to Amazon S3 and explains the rules file uploads must follow.</p>
+
+<p>If you remove 'fileExt' from conditions, that should fix it.</p>

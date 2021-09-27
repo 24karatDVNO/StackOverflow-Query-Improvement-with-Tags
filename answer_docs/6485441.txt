@@ -1,0 +1,18 @@
+<p>You can see the error by using the following command:</p>
+
+<pre><code>$output = exec("$gpg -e -r $recipient $secret_file 2&gt;&amp;1", $out); 
+echo "&lt;pre&gt;$output&lt;/pre&gt;";
+</code></pre>
+
+<p>this will guide you.</p>
+
+<p>possible problem to look at:</p>
+
+<ul>
+<li>the file you are trying to encrypt is not in the right path..</li>
+<li>GnuPG is trying to write to the /root/.gnupg directory with "apache" as a user. Obvisouly this is not possible unless you change you access rights to this dir (not recommended).</li>
+<li>you don't have the right access to the GnuPG root dir (where ever it is)</li>
+<li>you don't have WRITE in the dir apache is trying to create the new file..</li>
+</ul>
+
+<p>Let me know what your code outputs and I'll be able to help. I ran into this already, it is tedious.</p>

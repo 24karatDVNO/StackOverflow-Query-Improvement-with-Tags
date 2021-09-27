@@ -1,0 +1,1 @@
+<p>post your cellForRowAtIndexPath method, thats where you are going wrong, you are probably using the wrong array for certain sections...So for section 0 you use messages received (which might be 5) and in cellForRowAtIndexPath you are reading from the messages sent array which is less that 5, and so you get the out of bounds exception..</p>

@@ -1,0 +1,24 @@
+<p>Something like this should do it:</p>
+
+<pre><code>Set objConnection = CreateObject("ADODB.Connection")
+Set objCommand = CreateObject("ADODB.Command")
+
+objConnection.Open "Provider=ADsDSOObject;"
+objCommand.ActiveConnection = objConnection
+
+strDomainName = "dc=YOURDOMAIN,dc=com"
+strUserCN = "FIRSTNAME LASTNAME"
+
+objCommand.CommandText = "&lt;LDAP://" &amp; strDomainName &amp; "&gt;;(&amp;(objectCategory=person)(objectClass=user)(cn=" &amp; strUserCN &amp; "));samAccountName;subtree"
+
+Set objRecordSet = objCommand.Execute
+
+If Not objRecordset.EOF Then
+    WScript.Echo objRecordSet.Fields("samAccountName")
+End If
+
+objConnection.Close
+Set objRecordSet = Nothing
+Set objConnection = Nothing
+Set objCommand = Nothing
+</code></pre>

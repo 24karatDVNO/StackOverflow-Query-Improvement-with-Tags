@@ -1,0 +1,16 @@
+<p>I expect a subquery (or several) is in order.  </p>
+
+<pre><code>select location, (select count(total)  
+                  from totalTable
+                  where totalTable.location = locationTable.location) as total,
+                 (select count(uniqe)
+                  from uniqeTable
+                  where uniqeTable.location = locationTable.location) as uniqe,
+                 (select count(missing)
+                  from missingTable
+                  where missingTable.location = locationTable.location) as missing
+from locationTable
+where locationCriteria = searchCriteria
+</code></pre>
+
+<p>You can reference the same table in multiple subqueries, if necessary - just try to join them on ids, preferrably on something that's properly indexed.  Obviously the where clauses will have to be adjusted as necessary.</p>

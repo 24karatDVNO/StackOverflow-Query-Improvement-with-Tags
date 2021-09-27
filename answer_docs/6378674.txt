@@ -1,0 +1,24 @@
+<p>&lt;%= form_for(@student) do |f| %></p>
+
+<pre><code>&lt;%= f.label :name %&gt;&lt;br /&gt;
+&lt;%= f.text_field :name%&gt;&lt;br /&gt;
+
+&lt;%= f.label :description %&gt;&lt;br /&gt;
+&lt;%= f.text_field :description %&gt;&lt;br /&gt;
+&lt;%= f.fields_for :courses do |cf| %&gt;
+   ....course attributes
+&lt;% end %&gt;
+&lt;%= f.submit %&gt;&lt;br /&gt;
+</code></pre>
+
+<p>&lt;% end %></p>
+
+<p>In your controller action:
+  @student.courses.build 
+this will create one course</p>
+
+<p>or n.times do
+  @student.courses.build
+end</p>
+
+<p>will add n courses to student object</p>

@@ -1,0 +1,17 @@
+<p>First example cannot work until you do this:</p>
+
+<pre><code>Dim u as User = Ctype(Session("User"),User)
+u.name = "new name"
+(From x in ctx.Users).First()
+ctx.Users.ApplyCurrentValues(u)
+ctx.SaveChanges
+</code></pre>
+
+<p>ApplyCurrentValues only take values from passed object and copies them to the same object type which must be loaded and attached to the context.</p>
+
+<p>Second example shown by @Mlantosca cannot work because you are storing entity in session and you didn't detach it. To make it work you must use:</p>
+
+<pre><code>Dim u as User = (From x in ctx.Users).First()
+ctx.Detach(u)
+Session("user") = u
+</code></pre>

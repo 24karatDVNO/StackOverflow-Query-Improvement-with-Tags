@@ -1,0 +1,5 @@
+<p>Those are pretty much your only options.  Only thing I think you can do is use a faster browser (test out the latest versions of the current browsers, recent years have seen lots of javascript optimization) and/or a faster computer.</p>
+
+<p>The biggest issue though is why are you doing this?  I can't think of any practical use for this, and most likely there's a better way to do what you're actually trying to accomplish</p>
+
+<p>Even generating it server side, it'll likely take a long time to render.  We've recently tried loading a page that hasn't needed paging previously because the dataset has always been small, but with a huge dataset even though the whole page was transferred, it still froze the entire browser for over 5 minutes before we had to kill the process.  I suspect you'll run into similar issues if it's really that much stuff.</p>

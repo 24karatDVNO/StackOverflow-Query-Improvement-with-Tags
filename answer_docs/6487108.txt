@@ -1,0 +1,15 @@
+<p>You can also trying using <code>NSString</code>'s <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/occ/instm/NSString/enumerateSubstringsInRange%3aoptions%3ausingBlock%3a" rel="nofollow"><code>enumerateSubstringsInRange:options:usingBlock:</code></a>.</p>
+
+<p><strong>Usage</strong></p>
+
+<pre><code>NSString * hello = @"72 101 108 108 111";
+
+NSMutableString * result = [NSMutableString string];
+[hello enumerateSubstringsInRange:NSMakeRange(0, [data length])
+                          options:NSStringEnumerationByWords
+                       usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                           [result appendString:[NSString stringWithFormat:@"%c", [substring intValue]]];
+                       }];
+
+NSLog(@"%@", result);
+</code></pre>

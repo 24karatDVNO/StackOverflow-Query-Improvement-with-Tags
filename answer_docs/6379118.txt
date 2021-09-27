@@ -1,0 +1,8 @@
+<pre><code>HKEY_USERS\.DEFAULT
+</code></pre>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/ms684190%28v=vs.85%29.aspx" rel="nofollow">is the location</a> where a non-interactive user gets their profile from when nobody is logged in.</p>
+
+<blockquote>
+  <p>The registry key <strong>HKEY_CURRENT_USER</strong> is associated with the default user, not the current user. To access another user's profile, impersonate the user, then access <strong>HKEY_CURRENT_USER</strong>.</p>
+</blockquote>

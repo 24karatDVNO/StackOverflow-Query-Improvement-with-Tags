@@ -1,0 +1,3 @@
+<p>On postgres, this is exactly what <code>WITH RECURSIVE</code> is for. You probably don't need to do much more than change column names from the (<a href="http://www.postgresql.org/docs/8.4/static/queries-with.html" rel="nofollow">linked here</a>) documentation.</p>
+
+<p>I don't know if the OP's DB supports recursive, probably depends on version number. If available, the syntax will be similar or identical. If not, it's a big nuisance. It's very hard to make a pure SQL solution, especially if the number of levels is unbounded.</p>

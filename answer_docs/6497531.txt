@@ -1,0 +1,20 @@
+<p>"I want to be able to say GROUP_CONCAT(st.term that are status=yes SEPARATOR '|') as <strong>yes</strong> and GROUP_CONCAT(st.term (that are status=no) SEPARATOR '|') as <strong>no</strong>"</p>
+
+<pre><code>    SELECT d.title, matches.match, matches.match_neg 
+    FROM   daily_deals d 
+    JOIN (Select * from (SELECT  
+                adventure_id, 
+                GROUP_CONCAT(term SEPARATOR '|') AS `match` 
+         FROM  search_terms 
+         where status = 'yes'
+         GROUP  BY adventure_id) as temp1
+    left outer join
+    (SELECT  
+                adventure_id as adventure_id_neg, 
+                GROUP_CONCAT(term SEPARATOR '|') AS `match_neg` 
+         FROM  search_terms 
+         where status = 'no'
+         GROUP  BY adventure_id) as temp2
+    on temp1.adventure_id = temp2.adventure_id_neg) as matches
+    ON d.title REGEXP matches.match AND d.title REGEXP matches.match_neg
+</code></pre>

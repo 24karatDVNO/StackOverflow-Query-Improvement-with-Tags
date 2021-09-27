@@ -1,0 +1,13 @@
+<p>Is user_profile a parent element   of user_result?</p>
+
+<p>If so then when you click and it reloads that html the event handler will be removed you will have to use  live 
+<a href="http://api.jquery.com/live/" rel="nofollow">http://api.jquery.com/live/</a></p>
+
+<p>also I would personally use a class instead of a  id to base the click on
+e.g. 
+      ..... </p>
+
+<pre><code>$(".user-profile").live('click', function(){ 
+ ...  
+});
+</code></pre>

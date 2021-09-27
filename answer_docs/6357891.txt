@@ -1,0 +1,14 @@
+<p>Do this in the parent:</p>
+
+<pre><code>var childWin;
+window.onbeforeunload=function() {
+  try {
+    if (childWin &amp;&amp; !childWin.closed()) childWin.close();
+  }
+  catch(e) {}
+}
+.
+.
+.
+childWin=window.open(....);
+</code></pre>

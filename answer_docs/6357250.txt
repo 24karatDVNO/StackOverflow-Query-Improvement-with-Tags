@@ -1,0 +1,23 @@
+<p>something like:</p>
+
+<pre><code>select ref_id,
+startdate.log_stamp as start_date, 
+max(comment.log_stamp) as latest_comment, 
+completeddate.log_stamp as completion_date
+from table1 t, 
+table2 startdate, 
+table2 comment, 
+table2 completeddate
+where  startdate.ref_id = t.ref_id
+and    comment.ref_id   = t.ref_id
+and    completed_date.ref_id = t.ref_id
+and    startdate.log_type = 1
+and    comment.log_type   = 2
+and    completeddate.log_type = 3
+group by
+ ref_id,
+startdate.log_stamp, 
+completeddate.log_stamp
+</code></pre>
+
+<p>You may need an outer join on completeddate and comment if those values aren't always present...</p>

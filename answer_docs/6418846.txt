@@ -1,0 +1,17 @@
+<p>I finally managed to get a NSScrollView working within my cocos2d-mac Xib.</p>
+
+<p>The trick is that you have to programmatically overlay the OpenGLView over the NSScrollView main view (leaving room for the scroll bars) by first setting up a fake view as the scrollView's documentView, and then removing the openGLView from its parent view and adding it again (so the OpenGLView is drawn over the ScrollView). You can do it as follows:</p>
+
+<pre><code>appDelegate = [[NSApplication sharedApplication] delegate];
+// Set up NSScrollView with dummy empty view as big as the layer
+NSRect rect = NSMakeRect(0, 0, myLayer.width, myLayer.height);
+NSView *view = [[NSView alloc] initWithFrame:rect]; 
+appDelegate.scrollView.documentView = view;
+[view release];
+
+// Push OpenGLView back to front 
+[appDelegate.glView removeFromSuperview];  
+[appDelegate.splitLeftView addSubview:appDelegate.glView];
+</code></pre>
+
+<p>And then, you should use the scroll bars events to update the myLayer position accordingly.</p>

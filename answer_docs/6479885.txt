@@ -1,0 +1,8 @@
+<p>where you have <code>$searchSQL = "SELECT * FROM links WHERE</code>title<code>LIKE '%{$query}%'";</code> you can change this to using a LIMIT clause like so:</p>
+
+<pre><code>$searchSQL = "SELECT * FROM links WHERE `title` LIKE '%{$query}%' LIMIT 5";
+</code></pre>
+
+<p>For more information on using a LIMIT clause try the following links:</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/select.html" rel="nofollow" title="MySQL Reference guide">MySQL Reference guide</a></p>

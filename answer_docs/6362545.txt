@@ -1,0 +1,11 @@
+<p>This should work:</p>
+
+<pre><code>UPDATE `product_tbl` `PA`,
+(
+    SELECT `CompanyName`, `CompanyID`
+    FROM `product_tbl`
+    GROUP BY `CompanyName`
+) `PB`
+SET `PA`.`CompanyID` = `PB`.`CompanyID`
+WHERE `PA`.`CompanyName` = `PB`.`CompanyName`;
+</code></pre>

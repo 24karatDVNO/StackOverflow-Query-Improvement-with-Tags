@@ -1,0 +1,11 @@
+<p>I've ended up switching to Deepak's answer, but I also thought I would provide this in case it helps someone (or if people want to provide feedback).</p>
+
+<p>In my <code>showAction</code> method defined above, I refactored it to this:</p>
+
+<pre><code>- (void)someAction {
+    AViewController *av = [[AViewController alloc]
+        initWithNibName:nil bundle:nil];
+    [av setToolbarItems:[[self.navigationController toolbar] items]];
+    [self.navigationController pushViewController:av animated:YES];
+}
+</code></pre>

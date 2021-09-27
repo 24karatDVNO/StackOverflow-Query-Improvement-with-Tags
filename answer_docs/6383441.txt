@@ -1,0 +1,10 @@
+<p>i think your problem is <code>self.player.scalingMode=MPMovieScalingModeAspectFill;</code> </p>
+
+<p>i use just this code and i get the BlackTranslucent StatusBar</p>
+
+<pre><code>        [player setFullscreen:YES];
+
+        // May help to reduce latency
+        [player prepareToPlay];
+        [player play];
+</code></pre>

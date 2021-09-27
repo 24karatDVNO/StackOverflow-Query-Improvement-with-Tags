@@ -1,0 +1,44 @@
+<p>If you are passing the errors to the client you can use a Fault Contract:</p>
+
+<p>Add this attribute to your service contract:</p>
+
+<pre><code>    [OperationContract]
+    [FaultContract(typeof(MyCustomException))]
+    void MyServiceMethod();
+</code></pre>
+
+<p>Create the class for "MyCustomException" containing exactly the information you wish to pass to the client (in this case the full details of the exception from exception.ToString()).</p>
+
+<p>Then add a try/catch around the code in the implementation of your service method:</p>
+
+<pre><code> public void MyServiceMethod()
+ {
+      try
+      {
+         // Your code here
+       }
+      catch(Exception e)
+      {
+         MyCustomException exception= new MyCustomException(e.ToString());
+                throw new FaultException&lt;MyCustomException&gt;(exception);
+       }
+ }
+</code></pre>
+
+<p>On the client side you can put a try / catch(FaultException e) and display the details however you like.</p>
+
+<pre><code> try
+        {
+            // your call here
+        }
+        catch (FaultException&lt;MyCustomException&gt; faultException)
+        {
+            // general message displayed to user here
+            MessageBox.Show((faultException.Detail as MyCustomException).Details);
+        }
+        catch (Exception)
+        {
+            // display generic message to the user here
+            MessageBox.Show("There was a problem connecting to the server");
+        }
+</code></pre>

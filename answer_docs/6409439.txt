@@ -1,0 +1,31 @@
+<p>I've made some progress on this issue. Consider the following:</p>
+
+<pre><code>http://www.google.com/%22%%203E%3Cscript%3Ealert%28123%29%3C%2Fscript%3%20E%22
+</code></pre>
+
+<p>The reason the browser leaves the URL unchanged in this case is that the server returns a HTTP 404 response, signifying that the resource cannot be found. In these cases, Firefox makes no change to the URL. If you instead try a URL that prompts a 200 OK response from Google, such as the following...</p>
+
+<pre><code>http://www.google.com/?displayname=%22%3E%3Cscript%3Ealert%28123%29%3C%2Fscript%3E%22
+</code></pre>
+
+<p>...you will find that FireFox will change the URL when the server responds with a changed URL.</p>
+
+<p>Try it yourself. In fact if you cut and paste the changed URL into an email, you'll find that the characters remain unchanged.</p>
+
+<p>This has nothing to do with what the server actaully responds with, apart from the HTTP reponse code. If the server responds with '404 Not found', FireFox elects to leave the URL in the address bar unchanged. If the server responds with '200 OK', FireFox elects to alter the URL, unescaping some of the characters presumably in an attempt to make the URL more readable. If the resource cannot be found, the logic is I guess that there's no point in doing this.</p>
+
+<p>I'm assuming you're using Firefox. In fact, browsers treat this case differently. I've tried typing this URL (the second one) into several browsers. I've summarised the results:</p>
+
+<p>Google Chrome   Does the same as Firefox. Quotes and angle braces are           displayed as normal characters, unescaped.</p>
+
+<p>Internet Explorer   Leaves the URL unchanged, but presents a message warning            about XSS and does not diplay the Google page.</p>
+
+<p>Opera           Shows just 'www.google.com' in the address bar.</p>
+
+<p>Safari      Leaves the URL unchanged.</p>
+
+<p>I hope this clears things up. One thing you can do to convince yourself of all of this is to run an HTTP debugging proxy like Fiddler. You can see that in each case what the server returns is identical, it is simply a matter of how each browser chooses to alter the URL when the server responds.</p>
+
+<p>Kind regards,</p>
+
+<p>James</p>

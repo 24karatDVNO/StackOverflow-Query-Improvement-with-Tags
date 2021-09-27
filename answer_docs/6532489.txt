@@ -1,0 +1,7 @@
+<p>You can't do that because ContentResolver has only one query method:</p>
+
+<pre><code>    query(Uri uri, String[] projection, String selection, 
+String[] selectionArgs, String sortOrder)
+</code></pre>
+
+<p>there's no parameter for tables or FROM clauses.</p>

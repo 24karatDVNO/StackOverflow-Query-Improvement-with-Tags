@@ -1,0 +1,11 @@
+<p>Is it because this line is trying to put focus on more than one element?</p>
+
+<pre><code>  document.getElementByNames("sitesinput").focus()
+</code></pre>
+
+<p>You could try</p>
+
+<pre><code> document.getElementByNames("sitesinput")[0].focus()
+</code></pre>
+
+<p>And as mentioned in the comments typo on the <code>getElementsByName</code> function</p>

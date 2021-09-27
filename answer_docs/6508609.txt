@@ -1,0 +1,3 @@
+<p>As far as I'm aware you cannot interfere with the back button etc. as it affects the browsers UX.</p>
+
+<p>The best way would probably be to catch the browsers 'onunload' event which is triggered when the page is left. You could write a custom handler function on the assumption that they are clicking back.</p>

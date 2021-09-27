@@ -1,0 +1,16 @@
+<p>What happens when <code>pos</code> is -1? Well, when <code>pos</code> is -1, you're left with:</p>
+
+<pre><code>var mins = "00";
+//...
+result = hour + ":" + mins;
+</code></pre>
+
+<p>How does <code>pos</code> end up being -1? Well, any time that <code>time</code> doesn't contain a colon or period:</p>
+
+<pre><code>var pos = time.indexOf(":");
+if (pos &lt; 0) {
+    pos = time.indexOf(".");
+}
+</code></pre>
+
+<p>In particular, <code>mins</code> will be <code>"00"</code> when <code>time</code> is 1352. You need an <code>else</code> branch on your final <code>if</code> to handle the case when there is no colon or period.</p>

@@ -1,0 +1,14 @@
+<p>Set the flash' to use <code>wmode</code> <code>transparent</code>. That will make it respect the z-ordering of your elements. </p>
+
+<p>Replace your current params line with this:</p>
+
+<pre><code>var params = { baseURI: getURI(), 
+               base: dir, 
+               allowFullScreen: true, 
+               allowScriptAccess: "sameDomain", 
+               quality: "high", 
+               scale: "noscale", 
+               bgcolor:"FFFFFF", 
+               wmode:"transparent" 
+             };
+</code></pre>

@@ -1,0 +1,15 @@
+<pre><code>A a;
+    B b;
+    memcpy(&amp;a, &amp;b, sizeof (b));
+</code></pre>
+
+<p>You will have an access violation in this code if A would have an members.
+Right way is next:</p>
+
+<pre><code>A a;
+B b;
+A *c = &amp;a;
+c-&gt;foo(); //A::foo()
+c = &amp;b;
+c-&gt;foo(); //B::foo()
+</code></pre>

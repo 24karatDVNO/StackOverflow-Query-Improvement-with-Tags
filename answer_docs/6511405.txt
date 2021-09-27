@@ -1,0 +1,23 @@
+<p>The logic for the first view is simple:</p>
+
+<p>USE ODS
+SELECT     TOP (100) PERCENT FIRST_NAME, LAST_NAME, TELEPHONE, IS_STAFF, IS_FACULTY, OFFICE, TITLE, EMAIL, MainPERSON_ID, DEPARTMENT
+FROM         dbo.XM_MASTER_PERSON AS XM_MASTER_PERSON
+WHERE     (TELEPHONE >= 1) AND (TELEPHONE &lt;= 9999)
+ORDER BY LAST_NAME</p>
+
+<p>Where the ID in this case is our main person ODS key and we are able to get one row per person.</p>
+
+<p>The second view we are trying to join comes from a ID system database.  Its logic is:</p>
+
+<p>SELECT     TOP (100) PERCENT AccessControl.dbo.EMP.SSNO AS MainPERSON_ID, AccessControl.dbo.MMOBJS.LNL_BLOB AS PIC_BINARY
+FROM         AccessControl.dbo.EMP INNER JOIN
+                      AccessControl.dbo.MMOBJS ON AccessControl.dbo.EMP.ID = AccessControl.dbo.MMOBJS.EMPID
+WHERE     (AccessControl.dbo.EMP.SSNO &lt;> '')
+ORDER BY MainPERSON_ID</p>
+
+<p>That view uses two tables one called EMP (It is the main demographic table for the pic ID  system) that has our MainPERSON_ID in its SSNO column. It is not the SSN but it was the only available column we could place our main database person ID number. </p>
+
+<p>The ID system use an internal ID called EMP ID. The problem is that for each person in that system multiple badge rows are possible and with each badge a unique pic is possible. We are trying to link the photo table with the EMP table to get us a new view with just the MainPERSON_ID and the last photo on file. We are then trying to combine that unique last photo to our main ODS view listed above. The issue is that the EMP table has one row per person but the photo table has a non standard amount of rows per person depending on how many photos they have taken. This is causing multiple rows per person in the final view. </p>
+
+<p>Thank you very much for your help </p>

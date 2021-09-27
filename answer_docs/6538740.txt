@@ -1,0 +1,13 @@
+<p>While your restraints are somewhat curious I suppose you can add a value in your <code>$_GET</code>.</p>
+
+<p>If a visitor visits <code>www.yoursite.com/</code> they will see your message, all links displayed on that page include a <code>$_GET</code> var 'displayed' or however you wish to name it. so links will be like <code>www.yoursite.com/page.html?displayed=1</code></p>
+
+<p>Then you check </p>
+
+<pre><code>if (isset($_GET["displayed"]))
+// don't display message
+else 
+// display message
+</code></pre>
+
+<p>Not a very 'nice' approach, but it would work.</p>

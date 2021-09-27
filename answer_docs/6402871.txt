@@ -1,0 +1,10 @@
+<p>I think this might be what you want:</p>
+
+<pre><code>SELECT venuename
+  FROM (SELECT venuename, costperday, MIN(costperday) OVER () mincost
+          FROM venues
+         WHERE venuecapacity &gt;= 120) q
+ WHERE q.costperday = q.mincost;
+</code></pre>
+
+<p>Use >= 120, because you might not have any venues that have exactly 120 capacity, and you want all venues that can handle <em>at least</em> 120. Your requirements only state that the venue be able to accommodate 120 people, not that it handle exactly 120 people.</p>

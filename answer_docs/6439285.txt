@@ -1,0 +1,6 @@
+<p>Well, you could always count the number of rows you read, and then do something like this:</p>
+
+<pre><code>if (rownumber == mysql_num_rows($result)) { mysql_data_seek($result, 0); }
+</code></pre>
+
+<p>Don't know why you would need to, but there it is.</p>

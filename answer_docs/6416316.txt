@@ -1,0 +1,14 @@
+<p>You should always try to have unique ids. Use classes if you are going to have multiple.</p>
+
+<pre><code>$('span#editLink').click(function(){ 
+$(this).parent().siblings().each(function(){
+    if($(this).attr('class') == "frequency"){
+        $('#other-frequency-field').html($(this).text());
+    }
+    else if($(this).attr('class') == "boolean"){
+        $('#other-frequency-field').html($(this).text());
+    }
+}
+</code></pre>
+
+<p>With this you would have to add class values to the other table columns in order to recognize them. (I used boolean and frequency, just as examples).</p>

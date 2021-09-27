@@ -1,0 +1,15 @@
+<p>This will work for the types of package names listed here. </p>
+
+<pre><code>use warnings;
+use strict;
+
+my @packs;
+my $line = "Build-Depends: cdbs, debhelper (&gt;=5), smthelse";
+
+if ( $line =~ /^Build-Depends: (.+)$/ ) { # get everything
+    @packs = split /,+\s*/, $1;
+    s/\([^)]+\)//g for @packs; # remove version stuff
+}
+
+print "$_\n" for @packs;
+</code></pre>

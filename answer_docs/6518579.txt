@@ -1,0 +1,27 @@
+<p>Whithin the <code>where</code> clause you are filtering the <strong>$i</strong> elements of the <code>for</code> clause by using the datum element. You are <strong>not</strong> filtering the datum elements.</p>
+
+<p>This expression:</p>
+
+<pre><code>( $i/ADR-NSBG/timeline/datum/@datum/string(.) = $DATUM )
+</code></pre>
+
+<p>is resolved to:</p>
+
+<pre><code>(
+ "SGC_at_bsNo-14___SignalingNetworkConnection_at_netId-4___Sip_at_networkRole-2",
+ "SGC_at_bsNo-13___SignalingNetworkConnection_at_netId-4___Sip_at_networkRole-2"
+) =
+ "SGC_at_bsNo-13___SignalingNetworkConnection_at_netId-4___Sip_at_networkRole-2"
+</code></pre>
+
+<p>which is true. Therefore, the <strong>$i</strong> element is selected. After that, the expression in the return clause selects both child elements of the contained timeline element:</p>
+
+<pre><code>$i/ADR-NSBG/timeline/datum
+</code></pre>
+
+<p><strong>How to filter the datum elements</strong></p>
+
+<p>If you want to select only the datum with a specific string, you need to filter in the return clause:</p>
+
+<pre><code>$i/ADR-NSBG/timeline/datum[@datum eq $DATUM]
+</code></pre>

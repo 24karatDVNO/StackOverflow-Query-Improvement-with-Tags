@@ -1,0 +1,16 @@
+<p>You could use a different message for the function that checks whether to allow the page to load, rather than using the same message as for your beforeLoad handler. For example, in the injected script (which must be a "start" script), put:</p>
+
+<pre><code>safari.self.tab.dispatchMessage('pageIsLoading');
+</code></pre>
+
+<p>And in the global script:</p>
+
+<pre><code>function handleMessage(event) {
+   if (event.name == 'pageIsLoading') {
+       if (event.target.url.indexOf('forbidden.site.com') &gt; -1) {
+           console.log(event.timeStamp);
+           event.target.url = 'about:blank';
+       }
+   }
+}
+</code></pre>

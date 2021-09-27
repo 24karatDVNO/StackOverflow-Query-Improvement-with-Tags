@@ -1,0 +1,21 @@
+<p>First thing that comes to mind is a mildly complex loop (maybe there is a more elegant way, dunno).</p>
+
+<pre><code>BOOL done = FALSE;
+NSArray *arrays = [NSArray arrayWithObjects:users1, users2, users3, nil];
+NSArray *array;
+NSMutableArray *bigArray = [NSMutableArray arrayWithCapacity:users1.count+users2.count+users3.count];
+int i = 0;
+int j;
+while (! done) {
+    done = TRUE;
+    for (j = 0; j &lt; arrays.count; j++) {
+         array = [arrays objectAtIndex:j];
+         if (i &lt; array.count) {
+             [bigArray addObject:[array objectAtIndex:i]];
+             done = FALSE;
+         }
+    }
+
+    i++;
+}
+</code></pre>

@@ -1,0 +1,3 @@
+<p>It turns out the issue was caused by a security patch introduced in rails 3.0.4. (<a href="http://weblog.rubyonrails.org/2011/2/8/csrf-protection-bypass-in-ruby-on-rails" rel="nofollow">More info here</a>) </p>
+
+<p>All I needed to do was <strong>bundle update jquery-rails</strong> and then run <strong>rails generate jquery:install</strong> </p>

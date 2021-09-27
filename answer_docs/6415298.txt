@@ -1,0 +1,5 @@
+<p>I have theory. The left outer join goes away when you turn off change tracking. Also Employee and Rota have references to Department. </p>
+
+<p>So my theory is that with change tracking on the Entity Framework tries to load all entities with a reference to the department in case it has to cascade an update to department.</p>
+
+<p>In other words it thinks that a change to a Department could cause a change to the Employee or Rota referencing the department so it loads everything just in case.</p>

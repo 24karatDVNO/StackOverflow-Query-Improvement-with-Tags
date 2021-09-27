@@ -1,0 +1,25 @@
+<p>As an addition to Mikola's answer, you don't need to check the info log every time; you can check if your shaders compiled correctly and if your program linked correctly and only call <code>glGetShaderInfoLog</code> and <code>glGetProgramInfoLog</code> if an error occurred.</p>
+
+<p>Here's some code to do just that (in Python but translation to C++ is trivial):</p>
+
+<pre><code># create your vertex shader, attach its source, etc.
+glCompileShader(vertex_shader)
+rc_compile = GLint()
+glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, rc_compile)
+if rc_compile.value == GL_FALSE: # shader compilation failed
+  info = create_string_buffer(1024)
+  glGetShaderInfoLog(vertex_shader, 1024, None, info)
+  glDeleteShader(vertex_shader)
+  raise Exception(info.value)
+
+# do the same thing for a fragment shader and create a program to link the two
+glAttachShader(program, vertex_shader)
+glAttachShader(program, fragment_shader)
+rc_link = GLint()
+glGetProgramiv(program, GL_LINK_STATUS, rc_link)
+if rc_link.value == GL_FALSE: # program link failed
+  info = create_string_buffer(1024)
+  glGetProgramInfoLog(program, 1024, None, info)
+  glDeleteProgram(program)
+  raise Exception(info.value)
+</code></pre>

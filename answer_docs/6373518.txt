@@ -1,0 +1,15 @@
+<p>Um, I'm not sure you're having the problem you think you're having.</p>
+
+<pre><code>[#&lt;Machine &gt;, #&lt;Machine &gt;]
+</code></pre>
+
+<p>implies that you have called "inspect" on the array... but not on each of the individual machine-objects inside it. This may be a silly question, but have you actually tried calling inspect on the individual Machine objects returned to really see if they have nil in the columns?</p>
+
+<pre><code>Machine.needs_updates.each do |m|
+  p m.inspect
+end
+</code></pre>
+
+<p>?</p>
+
+<p>If that does in fact result in nil-column data. My next suggestion is that you copy the generated SQL and go into the standard mysql interface and see what you get when you run that SQL... and then paste it into your question above so we can see.</p>

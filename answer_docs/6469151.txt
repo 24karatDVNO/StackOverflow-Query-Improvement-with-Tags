@@ -1,0 +1,8 @@
+<p>You didn't mention which version of prototype you are running. I ran into a similar problem that may be similar on one of my pages using prototype 1.5.0 (please don't judge). In 1.5.0 the setStyle and getStyle functions do a browser check for IE specifically when dealing with opacity/alpha(opacity).</p>
+
+<pre><code>/MSIE/.test(navigator.userAgent)
+</code></pre>
+
+<p>In my case, setStyle calls getStyle('filter').replace(). Unfortunately getStyle('filter') returns null with IE9 so .replace throws an exception.</p>
+
+<p>Some relevant notes from the IE team: <a href="http://blogs.msdn.com/b/ie/archive/2010/08/17/ie9-opacity-and-alpha.aspx" rel="nofollow">http://blogs.msdn.com/b/ie/archive/2010/08/17/ie9-opacity-and-alpha.aspx</a></p>

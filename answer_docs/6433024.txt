@@ -1,0 +1,12 @@
+<p>Assuming you don't care about the potential for the replacement pattern to be in the domain name or some other level of the directory structure, this should select on the pattern you're interested in:</p>
+
+<pre><code>http:\/\/ab\.cdefgh\.com\/(?:aa\-BB|rr\-GG|vv\-VV|yy\-YY|zz\-ZZ)\/index\.aspx
+</code></pre>
+
+<p>where the aa-BB, etc. patterns are simply "or"ed together using the <code>|</code> operator.</p>
+
+<p>To further break this apart, all of the <code>/</code>, <code>.</code>, and <code>-</code> characters need to be escaped with a <code>\</code> to prevent the regex from interpreting them as syntax.  The <code>(?:</code> notation means to group the things being "or"ed without storing it in a backreference variable (this makes it more efficient if you don't care about retaining the value selected).</p>
+
+<p>Here is a link to a demonstration (maybe this can help you play around with the regex here to get to exactly which character combinations you want)</p>
+
+<p><a href="http://rubular.com/r/UfB65UyYrj" rel="nofollow">http://rubular.com/r/UfB65UyYrj</a></p>

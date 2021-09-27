@@ -1,0 +1,12 @@
+<p>you can try using something like this, but it's very rudimentary:</p>
+
+<pre><code>&lt;?php if (preg_match("/weekly.php/i", $_SERVER["SCRIPT_NAME"])) {
+    // Tab should be highlighted
+    &lt; href="weekly.php" class="ww active"&gt;Weekly&lt;/a&gt;
+} else {
+    &lt; href="weekly.php" class="ww"&gt;Weekly&lt;/a&gt;
+}
+?&gt;
+</code></pre>
+
+<p>this will add an 'active' class to the link, that you can then style with CSS to change the background colour...</p>

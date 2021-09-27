@@ -1,0 +1,13 @@
+<p>Your pass condition contradicts your fail condition, because if only one is true, the other one is false and thus fulfills the fail condition.</p>
+
+<p>if you want it to make sense, change it to this: </p>
+
+<pre><code>if (!IsApple &amp;&amp; !IsBanana)
+    Assert.Fail():
+</code></pre>
+
+<p>or, if you also don't want it to be an apple and banana at the same time</p>
+
+<pre><code>if (IsApple == IsBanana)
+    Assert.Fail():
+</code></pre>

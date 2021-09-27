@@ -1,0 +1,24 @@
+<p>You can use the  task to 'dump' the values you describe to the build log, i.e :</p>
+
+<p>
+    
+        </p>
+
+<pre><code>    &lt;!--Copy the installer files into the distribution location.--&gt;
+    &lt;Message Text="PATH TO SERVER INSTALL SET : $(ISServerOutputToBeCopied)" /&gt;
+    &lt;exec command="xcopy &amp;quot;$(ISServerOutputToBeCopied)&amp;quot; &amp;quot;\\jupiter\Albany Products\In Development\EFT Corporate\ePay 1.5 Releases\1.5.$(AlbanyServicePackNumber)\$(BuildNumber)\ePay Server Installer&amp;quot; /i /s /e /h /y" /&gt;
+&lt;/Target&gt;
+
+&lt;!--Build the "ePay Client" Installer project.--&gt;
+&lt;Target Name="CompileISClientProject"
+            DependsOnTargets="CustomCoreDropBuild"
+            Condition="('$(InstallShieldIsCmdBldPath)' != '') And ('@(ISClientProjectFile)' != '') And ('$(InstallShieldProductConfiguration)' != '' ) And ('$(InstallShieldRelease)' != '')"&gt;
+    &lt;exec Command="&amp;quot;$(InstallShieldIsCmdBldPath)&amp;quot; -p &amp;quot;@(ISClientProjectFile)&amp;quot; -c &amp;quot;$(InstallShieldProductConfiguration)&amp;quot; -r &amp;quot;$(InstallShieldRelease)&amp;quot; -z &amp;quot;ARPCOMMENTS=$(BuildNumber)&amp;quot; -y &amp;quot;$(AlbanyMajorNumber).$(AlbanyMinorNumber).$(AlbanyServicePackNumber).$(AlbanyBuildNumber)&amp;quot;" IgnoreExitCode="true" /&gt;
+
+    &lt;!--Copy the installer files into the distribution location.--&gt;
+    &lt;Message Text="PATH TO CLIENT INSTALL SET : $(ISClientOutputToBeCopied)" /&gt;
+    &lt;exec command="xcopy &amp;quot;$(ISClientOutputToBeCopied)&amp;quot; &amp;quot;\\jupiter\Albany Products\In Development\EFT Corporate\ePay 1.5 Releases\1.5.$(AlbanyServicePackNumber)\$(BuildNumber)\ePay Client Installer&amp;quot; /i /s /e /h /y" /&gt;
+&lt;/Target&gt;
+</code></pre>
+
+<p>Hope that helps !</p>

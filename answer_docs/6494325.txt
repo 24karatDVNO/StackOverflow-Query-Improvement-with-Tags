@@ -1,0 +1,18 @@
+<p>Use a private field and only expose the getter.  I'd also make the enum a public class and pass it in directly:</p>
+
+<pre><code>   class Circle
+{
+    public const double PI = 3.14;
+    private Color _color;
+    int radius;
+    public Circle(Color Color,int radius)
+    {
+        _color = Color;
+        this.radius = radius;
+    }
+
+   public Color Color { return _color; }
+}
+
+public enum Color { Black, Yellow, Blue, Green }
+</code></pre>

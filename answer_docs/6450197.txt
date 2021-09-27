@@ -1,0 +1,5 @@
+<ol>
+<li>To use IVY you need an ivy lib. You could download it with the <a href="http://ant.apache.org/manual/Tasks/get.html" rel="nofollow"><code>&lt;get /&gt;</code></a> task, but then you could just use <code>&lt;get /&gt;</code> for the jetty libs as well. </li>
+<li>Download the libs for jetty and put them into a local folder (use ivys <a href="http://ant.apache.org/ivy/history/latest-milestone/use/retrieve.html" rel="nofollow">inline-retrieve</a> or the get-task)</li>
+<li>Use the <a href="http://ant.apache.org/manual/Tasks/java.html" rel="nofollow"><code>&lt;java /&gt;</code></a> Task to run/configure the Jetty-Server. Use <code>&lt;jvmargs&gt;</code> attribute to set Debugging. or use the <a href="http://docs.codehaus.org/display/JETTY/Ant+Jetty+Plugin" rel="nofollow">jetty-ant-plugin</a></li>
+</ol>

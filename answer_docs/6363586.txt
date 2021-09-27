@@ -1,0 +1,6 @@
+<p>The other answers work fine, but another option is to give the new <code>div</code> an <code>id</code> when you create it. Then it can be referenced the normal way anywhere after it's been added to the DOM:</p>
+
+<p><code>
+$('#someElement').prepend('&lt;div id="something"&gt;&lt;/div&gt;"');
+$('#something').html('whatever');
+</code></p>

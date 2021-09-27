@@ -1,0 +1,5 @@
+<p>Only way so far I have discovered to do this is using PythonMagick, which is unfortunate as PythonMagick is slow, undocumented, and difficult to install on Linux if you don't use the python-pythonmagick package. </p>
+
+<pre><code>colormap = PythonMagick.Image("colors256.png")
+original.map(colormap)
+</code></pre>

@@ -1,0 +1,37 @@
+<p>Try this .... worked for me :</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pagelayout"&gt;
+
+    &lt;FrameLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:id="@+id/content"&gt;
+        &lt;ListView android:id="@+id/android:list"
+      android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /&gt;
+    &lt;/FrameLayout&gt;
+
+    &lt;LinearLayout android:layout_height="wrap_content"
+        android:id="@+id/button_layout" 
+        android:layout_width="fill_parent" android:gravity="center" android:layout_above="@+id/content"&gt;
+
+        &lt;Button android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go"
+            android:layout_weight="1"
+            /&gt;
+
+            &lt;EditText&gt;
+            android:id="@+id/search_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            &lt;/EditText&gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;/RelativeLayout&gt;
+</code></pre>

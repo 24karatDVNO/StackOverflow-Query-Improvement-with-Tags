@@ -1,0 +1,27 @@
+<p>I hope this update helps you.   </p>
+
+<pre><code>function mysqlConnect($host, $user, $password, $database) {
+    $con = mysql_connect($host, $user, $password);
+    if (!$con) die('Could not connect: ' . mysql_error());
+   mysql_select_db($database, $con);
+}
+
+mysqlConnect('localhost','root','123456','transport_db');
+
+$flight_Number = isset($_GET['FlightNumber']);
+$arrival_Status = isset($_GET['ArrivalStatus']);
+$recipient_Email = isset($_GET['EmailAddress']);
+
+$flight_Number = mysql_real_escape_string($flight_Number);
+$arrival_Status = mysql_real_escape_string($arrival_Status);
+$recipient_Email = mysql_real_escape_string($recipient_Email);
+
+$results = mysql_query("INSERT INTO landed (priKey, flightNumber, arrivalStatus,       recipientEmail, confirmStatus)
+VALUES ('', '$flight_Number','$arrival_Status', '$recipient_Email' ,'')") or die('Could not insert record:'.mysql_error());
+
+if($results)
+{
+echo "Database updated with: $flight_Number $arrival_Status.";
+}
+mysql_close($con);
+</code></pre>

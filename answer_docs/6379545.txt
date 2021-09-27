@@ -1,0 +1,7 @@
+<p>My guess (without seeing your code) is that you might be falling foul of the way COM objects are released when used through .NET interop. See <a href="http://www.getdotnetcode.com/gdncstore/free/Articles/ReleasingComObjectsWithVbNet.htm" rel="nofollow" title="this article">this article</a> for a quick introduction.</p>
+
+<p>Essentially, what can happen is that all the COM objects your code creates are actually wrapped in a .NET object. These .NET objects ultimately get disposed of by the garbage collector at unpredictable times. When they're disposed, the underlying COM object is released. In some circumstances, this can cause a crash where the underlying COM object has already been destroyed by Excel by the time the garbage collection happens. </p>
+
+<p>Driving Office from .NET is many times more difficult than driving it from older technologies like VB6 precisely because of this issue. (Another problem you'll likely hit is the Excel process not terminating - you'll see lots of questions about that on SO).</p>
+
+<p>PS. To get started, search for ReleaseComObject on SO...</p>

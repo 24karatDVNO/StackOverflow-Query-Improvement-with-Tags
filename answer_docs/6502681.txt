@@ -1,0 +1,6 @@
+<p>I found this works when wanting only to compare the data part.</p>
+
+<pre><code>var results = from rate in ct_rates
+              where rate.StartDate.Date &lt;= date &amp;&amp; rate.EndDate.Date &gt;= date
+              select rate;
+</code></pre>

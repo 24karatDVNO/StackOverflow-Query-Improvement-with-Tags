@@ -1,0 +1,3 @@
+<p>SOLVED: It seems that I was able to implement what I was trying to go for using a .htaccess file enabled for BASIC Auth...</p>
+
+<p>The login/password passed into the client are sent to the server and put in the php $_SERVER array as PHP_AUTH_USER and PHP_AUTH_PW. PHP checks these values against the defined passwd file in the .htaccess file and, when viewed in a webpage, pops up the generic user/pass box, resulting in a 401 Unauthorized if auth fails, and letting you in otherwise... Via SOAP CLIENT, you pass the user pass in with options of "login" and "password" and this authentication piece is then handled in the client instead.</p>

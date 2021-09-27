@@ -1,0 +1,26 @@
+<pre><code>void Main()
+{
+    string myLongString = "lf;kajsd;lfkjal;dfkja;lkdfja;lkdjf;alkjdfa";
+
+    var transformedTString = string.Join(string.Empty, myLongString.ToCharArray().Where(x =&gt; x != ';'));
+
+    transformedTString.Dump();
+}
+</code></pre>
+
+<p>If you have more complicated logic you can move your validation to separate predicated method</p>
+
+<pre><code>void Main()
+{
+    string myLongString = "lf;kajsd;lfkjal;dfkja;lkdfja;lkdjf;alkjdfa";
+
+    var transformedTString = string.Join(string.Empty, myLongString.ToCharArray().Where(MyPredicate));
+
+    transformedTString.Dump();
+}
+
+public bool MyPredicate(char c)
+{
+    return c != ';';
+}
+</code></pre>

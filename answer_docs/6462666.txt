@@ -1,0 +1,9 @@
+<p>If I understand your question, you want to update all of the guest records where they match the main.ID.  You should be able to do this without an inner join, as follows:</p>
+
+<pre><code>UPDATE guest   
+  SET guestMeal ='$guestMeal', guestNotes = '$guestNotes', 
+      guestAccept = '$guestAccept' 
+  WHERE guest.mainID ='$id'
+</code></pre>
+
+<p>This will update all of the guest records who are linked to your main record ID.</p>

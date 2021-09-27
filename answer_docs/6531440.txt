@@ -1,0 +1,20 @@
+<p>Another option that can be read as a double negative:</p>
+
+<p>Show all products for which there is no category in (3,4,5) for which there is no match with that product.</p>
+
+<pre><code>SELECT p.id
+FROM PRODUCTS p
+WHERE NOT EXISTS
+      ( SELECT *
+        FROM CATEGORIES c 
+        WHERE c.id IN (3,4,5)
+          AND NOT EXISTS
+              ( SELECT *
+                FROM PRODUCTS_CATEGORIES pc
+                WHERE pc.product_id = p.id
+                  AND pc.category_id = c.id
+              )
+      )
+</code></pre>
+
+<p>This is popularly known as <a href="http://www.simple-talk.com/sql/t-sql-programming/divided-we-stand-the-sql-of-relational-division/" rel="nofollow">Date's division</a>.</p>

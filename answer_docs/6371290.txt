@@ -1,0 +1,19 @@
+<p>I'm afraid it's a lost battle, the scroll event doesn't look to be cancelable:</p>
+
+<p><a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-scroll" rel="nofollow">http://www.w3.org/TR/DOM-Level-3-Events/#event-type-scroll</a></p>
+
+<p>Or may be with a desperate hack to scroll back the amount of pixel that were scrolled:</p>
+
+<pre><code>var lastPos = isNaN(window.pageYOffset) ? 
+  document.documentElement.scrollTop :
+  window.pageYOffset;
+
+window.onscroll = function(ev){
+  var diff = (isNaN(window.pageYOffset) ? 
+    document.documentElement.scrollTop : 
+    window.pageYOffset) - lastPos;
+  window.scrollBy(0, -diff);
+};
+</code></pre>
+
+<p>And using <code>onmouseover</code> and <code>onmouseout</code> over the DIVs to prevent it or not.</p>

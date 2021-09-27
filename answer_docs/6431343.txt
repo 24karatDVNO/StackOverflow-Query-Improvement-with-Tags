@@ -1,0 +1,15 @@
+<p>If you just need the value of "request", the fastest way to do that would be:</p>
+
+<pre><code>void getRequest(String str) {
+  int start = str.indexOf("request=\"");
+  if (start != -1) {
+     start += 9; // request="
+     end = str.indexOf('"', start);
+     if (end != -1) {
+         return str.substring(start, end);
+     }
+  }
+  // not found
+  return null;
+}
+</code></pre>

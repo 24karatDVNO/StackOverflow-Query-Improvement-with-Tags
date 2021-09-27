@@ -1,0 +1,35 @@
+<blockquote>
+  <p>I did try margin-top: -70px as suggested below and it fixed the height, but now the elements in the top element lay on top of the overlay, and I want the overlay to be on top.</p>
+</blockquote>
+
+<p>Try this:</p>
+
+<pre><code>div.container 
+{ 
+    margin: 0 auto;
+    width: 960px;
+}
+
+div.homePage 
+{ 
+    height: 500px;
+    position: relative;
+    width: 800px;
+    z-index: 1;
+}
+
+div.paperOverlay
+{
+    background: url('Images/Overlay.png') no-repeat top center;        
+    min-height: 400px;
+    position: relative;
+    top: -70px;
+    /* you can optionally use bottom: 70px; rather than top: -70px */
+    width: 960px;
+    z-index: 2;
+}
+</code></pre>
+
+<p>Using position: relative; on both elements and setting the z-index should get the overlay on top of the top element, rather than the other way around.</p>
+
+<p>You may also want to try using display: block; on all elements where you need fixed width/height (especially divs and other containers that need a fixed width/height, like anchors or list items), to prevent collapsing. It will usually resize non-block-level elements to fit their contents and ignore width and height rules otherwise.</p>

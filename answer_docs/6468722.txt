@@ -1,0 +1,13 @@
+<p>The first call to</p>
+
+<pre><code>  setThisContact(something);
+</code></pre>
+
+<p>sets the sets the array for the UpdateProcessStepOneFrame object (via the base class).</p>
+
+<p>Then when you execute this:</p>
+
+<pre><code> UpdateProcessStepTwoFrame step2 = new UpdateProcessStepTwoFrame();
+</code></pre>
+
+<p>you're creating a new object with its own separate array, which is never initialised and hence throws a NPE on theContact.length</p>

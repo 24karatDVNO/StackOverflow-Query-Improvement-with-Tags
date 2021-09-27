@@ -1,0 +1,25 @@
+<p>Another option is to create a function that uses a map:</p>
+
+<pre><code>(defn myclassifier? [x]
+   (let [types-I-care-about #{java.lang.Sring ...}]
+      (if (types-I-care-about (type x))
+          true
+          false)))
+</code></pre>
+
+<p>Another option which may have better performance is to use java's dynamism:</p>
+
+<pre><code>(extend-type Object
+  IMyClassifier
+  (myclassifier? [x]
+            (let [c (.getClass x)]
+             (if (types-I-care-about (type c))
+               (do
+                 (extend-type (.getClass x)
+                   IMyClassifier
+                   (myclassifier? [x] true))
+                 true)
+               false))))
+</code></pre>
+
+<p>where types-I-care-about is a set of types you care about.</p>

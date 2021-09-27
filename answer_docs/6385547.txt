@@ -1,0 +1,16 @@
+<p>ASSUMING your payment system timezone is fixed (even if it's not GMZ), all you need to do is convert from user timezone to GMT whenever you deal with users, and from GMT to payment system time zone whenever you deal with the payment system.</p>
+
+<p>So your user is PST, your timezone system is EST and you are in England (or at least you're GMT).  </p>
+
+<p>User registers for 1 month on 12/31/2010 at 11PM (2300) PST.  </p>
+
+<p>PST is GMT - 8 and EST is GMT -5 (or is it -7 and -4... I get ST and DT confused regularly...).  </p>
+
+<p>GMT the user registered at 1/1/11 0600 (6 am).
+EST the user registered at 1/1/11 0200 (2 am).</p>
+
+<p>As you said, if you told the payment system to expire the user at 1/31/11 at 11pm, it would read that as EST, and send the signal to expire at 2/1/11 4am which would be 1/31/11 8pm PST so the user would lose 3 hours.</p>
+
+<p>But if you tell the payment system to expire the user at 2/1/11 2AM EST, then the signal will be sent at 2/1/11 7am GMT which is 1/31/2011 11PM PST.</p>
+
+<p>So it falls to you to ALWAYS deal with every client, be it user or remote system, in that system's time zone, provided the remote site doesn't support GMT.</p>

@@ -1,0 +1,143 @@
+<p>Edit.aspx</p>
+
+<pre><code>&lt;h2&gt;Edit&lt;/h2&gt;
+&lt;% using (Html.BeginForm()) {%&gt;
+    &lt;%: Html.ValidationSummary(true) %&gt;
+
+    &lt;fieldset&gt;
+        &lt;legend&gt;Fields&lt;/legend&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.RedniBroj) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.RedniBroj) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.RedniBroj) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.DatumPrijema) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.DatumPrijema) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.DatumPrijema) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.DatumPredaje) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.DatumPredaje) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.DatumPredaje) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.BrojID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.BrojID) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.BrojID) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.PredmetJavneNabavke) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.PredmetJavneNabavke) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.PredmetJavneNabavke) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.VrstaID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.VrstaID) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.VrstaID) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.TipSredstvaID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.TipSredstvaID) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.TipSredstvaID) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.ProcenjenaVrednost) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.ProcenjenaVrednost) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.ProcenjenaVrednost) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.PoKontuID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.PoKontuID) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.PoKontuID) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.RealizatorID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.DropDownListFor(model =&gt; model.RealizatorID, ViewData["SelRealizator"] as 
+                IEnumerable&lt;SelectListItem&gt;)%&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.RealizatorID) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.PonudjacID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.PonudjacID) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.PonudjacID) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.Iznos) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.Iznos, String.Format("{0:F}", Model.Iznos)) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.Iznos) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.BrojRacuna) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.BrojRacuna) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.BrojRacuna) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.DatumIsplate) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.DatumIsplate, String.Format("{0:g}", Model.DatumIsplate)) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.DatumIsplate) %&gt;
+        &lt;/div&gt;
+
+        &lt;div class="editor-label"&gt;
+            &lt;%: Html.LabelFor(model =&gt; model.JavnaNabSprovPostID) %&gt;
+        &lt;/div&gt;
+        &lt;div class="editor-field"&gt;
+            &lt;%: Html.TextBoxFor(model =&gt; model.JavnaNabSprovPostID) %&gt;
+            &lt;%: Html.ValidationMessageFor(model =&gt; model.JavnaNabSprovPostID) %&gt;
+        &lt;/div&gt;
+
+        &lt;p&gt;
+            &lt;input type="submit" value="Save" /&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+
+&lt;% } %&gt;
+
+&lt;div&gt;
+    &lt;%: Html.ActionLink("Back to List", "Index") %&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p></p>

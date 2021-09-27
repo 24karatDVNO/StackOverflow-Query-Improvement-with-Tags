@@ -1,0 +1,8 @@
+<pre><code>        for (int counter=1; counter&lt;number; counter++) {
+        ...
+        }
+        [imagesForAnimation addObject:[UIImage imageNamed:@"FlapMoving1.png"]];
+        [imagesForAnimation addObject:[UIImage imageNamed:[NSString stringWithFormat:@"Flap%i.png", number]]];
+</code></pre>
+
+<p>iterating to the all images but the last (counter) and then adding the last image to the animation array should help. tell me how it works.</p>

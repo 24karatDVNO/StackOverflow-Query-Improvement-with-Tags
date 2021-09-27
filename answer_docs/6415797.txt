@@ -1,0 +1,4 @@
+<p>I've found <a href="http://www.streamreader.org/askubuntu/questions/35392/how-to-launch-a-new-instance-of-google-chrome-from-the-command-line" rel="nofollow">one way</a> using <code>--user-data-dir=/some/directory</code>: </p>
+
+<pre><code>call Shell.Run("""%userprofile%\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe"" --user-data-dir=/some/directory "http://www.google.com", 1, true)
+</code></pre>

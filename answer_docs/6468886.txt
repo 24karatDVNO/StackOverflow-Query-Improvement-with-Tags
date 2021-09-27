@@ -1,0 +1,33 @@
+<p>Here is some code to get you started. However, you have some very specific requirements how the merged elements are generated fromt the original elements. You will have to implement that in an extension method:</p>
+
+<pre><code>var xDocuments = new[] { XDocument.Parse(xml1), XDocument.Parse(xml2) };
+
+var acChildren = xDocuments.SelectMany(x =&gt; x.Root.Elements("AC"))
+  .SelectMany(x =&gt; x.Elements()).Merge();
+var cars = xDocuments.SelectMany(x =&gt; x.Root.Elements("CARS")).Merge();
+var boChildren = xDocuments.SelectMany(x =&gt; x.Root.Elements("BO"))
+  .SelectMany(x =&gt; x.Elements()).Merge();
+var pops = xDocuments.SelectMany(x =&gt; x.Root.Elements("POP")).Merge();
+
+var mergedXDocument = new XDocument(
+  new XElement("APPLICATION",
+    new XElement("AC", acChildren),
+    cars,
+    new XElement("BO", boChildren),
+    pops
+  )
+);
+</code></pre>
+
+<p>Here is the template for the extension method:</p>
+
+<pre><code>public static class Extensions {
+
+  public static IEnumerable&lt;XElement&gt; Merge(this IEnumerable&lt;XElement&gt; xElements) {
+    // Implement the requirement:
+    // "the merged XML has left the text from the second attribute if it came from
+    // the first XML"
+  }
+
+}
+</code></pre>

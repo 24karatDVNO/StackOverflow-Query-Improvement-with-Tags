@@ -1,0 +1,10 @@
+<p>Bind jQuery <a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">$.ajax</a> to your 'a' tag.</p>
+
+<pre><code>$(document).ready(){
+  $('a#ajax').click(function(event){
+    event.preventDefault();
+    $.ajax('/process.php', data);
+  });
+
+}
+</code></pre>

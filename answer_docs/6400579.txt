@@ -1,0 +1,15 @@
+<p>EDIT: Warning - long answer from self-taught guy ahead . . .</p>
+
+<p>In my very humble opinion (I am TOTALLY learning here as well) it seems BonyT and Daniel T. are on the right track. The piece which might be missing here is the design part. While it is safe to say that refactoring/composing will always be a necessity, might it also be as safe to say that (ESPECIALLY with beginners!) proper design up front would be the first, second, and third steps to properly composed code?</p>
+
+<p>While I get what you are asking (a test/set of tests for code composition), I think BonyT is applying the earliest of those tests during the "pseudocode" part of the design process, no?</p>
+
+<p>Obviously, in the early stages of project planning, strong design and experienced coders will sniff out the obvious places ripe for composition. As the work progresses, and the team is beginning to fill these initial code stubs with body, some slightly more obtuse exaples are bound to crop up. BonyT's example presents these first two steps quite well. </p>
+
+<p>I think there comes a point at which experience and a finely-tuned "nose" for code smell comes in - in other words, the part you may not be able to teach directly. However, that is where Daniel T's answer comes in - while one may not be able to develop concrete ACID-type "tests" for proper composition, one CAN employ techniques such as Daniel proposes to seek out potential smelly code. Detect "hints" if you will, that should at least prompt further investigation. </p>
+
+<p>If one is not certain whether things are composed at the proper level, it might make sense to work through a particular function and attempt to describe, step-by-step, what is going on in simple, single sentences without conjuctions. This is probably the most basic ACID-type test that could be performed. Not to mention, this process would by default end up correctly documenting the code . . .</p>
+
+<p>In response to BonyT you imply that his pseudocode/method stubs make the next step obvious - I am betting that if one walks through a function and describes things step by step, one will often find that indeed, the next step either obviously follows at the same level of detail, or belongs elsewhere. While there will obviously be cases (many, with complex code) where things are not so neat, I propose that this is where nothing but experience (and possibly genetics!) come in - again, things you can't teach directly. At that point, one must examine the problem domain, and determine a solution which best fits the domain (and also be prepared to change it down the road . . .). Once again, properly documenting the "in-between" cases with short, simple statements (and narrative describing decisions in gray areas) will help the poor maintenence guy down the road. </p>
+
+<p>I realize that I have proposed nothing new here, but what I had to say was longer than a comment would allow!</p>

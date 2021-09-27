@@ -1,0 +1,9 @@
+<p>Try adding the color to the link using a data-value.</p>
+
+<p><code>data-value="#ffcc00"</code></p>
+
+<pre><code>$('.header a').click(function() {
+    $('.header').css('background-color','#ffffff');
+    $(this).parent().css('background-color',$(this).attr('data-value'));
+});
+</code></pre>

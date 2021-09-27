@@ -1,0 +1,10 @@
+<p>Solution and suggestion if you are using at least .net 3.5.</p>
+
+<pre><code>XDocument xdoc = XDocument.Load("XMLFile1.xml");
+foreach (XElement element in xdoc.XPathSelectElements("//file/ROWS/row/code"))
+{
+
+}
+</code></pre>
+
+<p>Be sure to include "using System.Xml.XPath;"</p>

@@ -1,0 +1,46 @@
+<p>To fix the problem above I added a check to see if the item being docked is the same as the first item in the tab group, if so, modifies the insertion index appropriately because trying to insert the item before itself in the group causes the float problem. Since its status was "AutoHide" it is still technically visible, so was kept in the tab group's list of visible objects.  Changes are below.</p>
+
+<p><strong>DockGroup.cs (line 122) - commented out the index increase:</strong></p>
+
+<pre><code>public DockGroupItem AddObject (DockItem obj, DockPosition pos, string relItemId)
+{
+...
+else if (pos == DockPosition.CenterBefore || pos == DockPosition.Center) {
+                if (type != DockGroupType.Tabbed)
+                    gitem = Split (DockGroupType.Tabbed, pos == DockPosition.CenterBefore, obj, npos);
+                else {
+                    //if (pos == DockPosition.Center) // removed to fix issue with drag/docking the 1st tab item after autohiding 
+                        //npos++;
+                    gitem = new DockGroupItem (Frame, obj);
+                    dockObjects.Insert (npos, gitem);
+                    gitem.ParentGroup = this;
+                }
+            }
+            ResetVisibleGroups ();
+            return gitem;
+}
+</code></pre>
+
+<p><strong>DockGroup.cs (line 912) - added check for same item</strong></p>
+
+<pre><code>internal override bool GetDockTarget (DockItem item, int px, int py, out DockDelegate dockDelegate, out Gdk.Rectangle rect)
+        {
+            if (!Allocation.Contains (px, py) || VisibleObjects.Count == 0) {
+                dockDelegate = null;
+                rect = Gdk.Rectangle.Zero;
+                return false;
+            }
+
+            if (type == DockGroupType.Tabbed) {
+                // this is a fix for issue with drag/docking the 1st tab item after autohiding it
+                int pos = 0;
+                if (item.Id == ((DockGroupItem)VisibleObjects[0]).Id)
+                {
+                    pos++;
+                }
+
+                // Tabs can only contain DockGroupItems
+                return ((DockGroupItem)VisibleObjects[pos]).GetDockTarget (item, px, py, Allocation, out dockDelegate, out rect);
+            }
+...
+</code></pre>

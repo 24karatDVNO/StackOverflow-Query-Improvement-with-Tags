@@ -1,0 +1,12 @@
+<p>Here are some additional questions that you'll also want to consider</p>
+
+<ol>
+<li><p>How often do deletes occur. What's your performance budget like? This can affect your choices. The answer to your design will be  different depending of if a user deleting a single row (like lets say an answer on a Q&amp;A site vs deleting records on an hourly basis from a feed)</p></li>
+<li><p>How are you going to expose the deleted records in your system. Is it only through administrative purposes or can any user see deleted records. This makes a difference because you'll probably need to come up with a filtering mechanism depending on the user.</p></li>
+<li><p>How will foreign key constraints work. Can one table reference another table where there's a deleted record?</p></li>
+<li><p>When you add or alter existing tables what happens to the deleted records?</p></li>
+</ol>
+
+<p>Typically the systems that care a lot about audit use tables as Steve Prentice mentioned. It often has every field from the original table with all the constraints turned off. It often will have a action field to track updates vs deletes, and include a date/timestamp of the change along with the user. </p>
+
+<p>For an example see the PostHistory Table at <a href="http://data.stackexchange.com/stackoverflow/query/new" rel="nofollow">http://data.stackexchange.com/stackoverflow/query/new</a></p>

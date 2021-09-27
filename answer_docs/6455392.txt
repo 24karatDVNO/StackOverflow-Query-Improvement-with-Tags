@@ -1,0 +1,18 @@
+<p>Something like that comes to my mind:</p>
+
+<pre><code>// in some c++ file (to make i with internal linkage)
+static int i = init_dummy(Foo&lt;int&gt;::dummy);
+</code></pre>
+
+<p>where init_dummy is defined like this:</p>
+
+<pre><code>int init_dummy(...)
+{
+  return 1;
+}
+</code></pre>
+
+<p>Due to variable args you can put more initializations there like:</p>
+
+<pre><code>static int i = init_dummy(Foo&lt;int&gt;::dummy, Foo&lt;double&gt;::dummy, Foo&lt;whatever&gt;::dummy);
+</code></pre>

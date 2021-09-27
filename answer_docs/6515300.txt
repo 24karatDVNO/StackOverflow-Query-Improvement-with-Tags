@@ -1,0 +1,5 @@
+<p>Combination of <code>readlink</code> and <code>dirname</code> will get the actual directory of the script:</p>
+
+<pre><code>my_dir=$(dirname "$(readlink -f "$0")")
+source "$my_dir/other_file"
+</code></pre>

@@ -1,0 +1,7 @@
+<p>I assume MyLib is called from within a controller? </p>
+
+<p>Could you set variable in MyLib.cs and redirect from your controller based on that once MyLib has finished?</p>
+
+<p><strong>Update :</strong></p>
+
+<p>Do you absolutely <strong><em>have</em></strong> to redirect from this class? I say this because this is going against the MVC paradigm. You should really be handling all your routing within your controllers. Sticking to it really will make your application far more maintainable. Really can't stress that enough! :)</p>

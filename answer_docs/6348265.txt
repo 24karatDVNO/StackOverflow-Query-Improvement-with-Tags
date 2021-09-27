@@ -1,0 +1,3 @@
+<p>It appears to be an <a href="http://www.itk.org/Doxygen/html/classitk_1_1CostFunction.html#adca09b241162b4dbbd99e7bb9b73292b" rel="nofollow" title="itk::CostFunction">Array of double</a>, so I'd assume that you need to create an itk.Array of type double.</p>
+
+<p>But this class is meant to be used with an optimizer, and not really meant to be used alone. So, I'd normally create an <a href="http://www.itk.org/Doxygen/html/classitk_1_1Optimizer.html" rel="nofollow">Optimizer</a>, and use it with that.</p>

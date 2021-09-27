@@ -1,0 +1,17 @@
+<p>You want to replace the custom pin with a framed portrait. You can draw the frame with Quartz, or add the frame as a second transparent image. I would do the second adding the following to MKAnnotationView:</p>
+
+<pre><code>- (id)initWithAnnotation:(id &lt;MKAnnotation&gt;)annotation 
+         reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+    if (self != nil) {
+        self.opaque = NO;
+        self.frame = CGRectMake(0,0, self.portraitImage.size.width, self.portraitImage.size.height);
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+        [self.frameImage drawInRect:CGRectMake(0, 0, frameImage.width, frameImage.height)];
+        [self.portraitImage drawInRect:CGRectMake(0, 0, portraitImage.width, portraitImage.height)];
+}
+</code></pre>

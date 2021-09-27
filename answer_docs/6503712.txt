@@ -1,0 +1,15 @@
+<p>Conceptually it is right choice to put it into separate thread. </p>
+
+<p>There are several conditions when background thread can stop operating:</p>
+
+<ol>
+<li>whole application has closed (received WM_CLOSE message)</li>
+<li>exception was thrown and not caught in the background thread context</li>
+<li>operating system has to shutdown whole application because of memory constraints</li>
+</ol>
+
+<p>In your code you can only prevent condition number 2.</p>
+
+<p>On the other hand if you want perfect isolation you can write a windows service and install it on the device. But I do not think there are .NET CF services natively available. There are however some implementations <a href="http://managedserviceswm.codeplex.com/" rel="nofollow">out there</a> that can be used to overcome this obstacle.</p>
+
+<p>Another way is to have separate application with that loop and hidden main window.</p>

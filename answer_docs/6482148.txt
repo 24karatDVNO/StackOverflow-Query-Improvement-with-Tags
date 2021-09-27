@@ -1,0 +1,17 @@
+<p>To get the type of array you want, you can do something like this:</p>
+
+<pre><code>NSMutableArray *array = [[NSMutableArray alloc] init];
+for (int n = 0; n &lt; [data count]; n++) // data array 
+ {  
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    array = [NSMutableArray arrayWithObjects:[[data objectAtIndex:n] valueForKey:@"timeStamp"] ,nil];
+   if ([array count] != 0) {
+    [newArray addObject:[array objectAtIndex:0]];
+    }
+  }
+ [array release];
+</code></pre>
+
+<p>hope this will help you!! </p>
+
+<p>~Manoj</p>

@@ -1,0 +1,25 @@
+<ol>
+<li>Exceptions can provide much more data than simple <code>-1</code> or <code>false</code>.</li>
+<li>Exceptions can do advanced error handling. Keep in mind that <code>try .. catch</code> blocks can be nested and there could be more than one <code>catch</code> block in <code>try .. catch</code> block.</li>
+<li><p>Exceptions force you to handle errors. When you're not using them you do something like:</p>
+
+<pre><code>function doSomething($a, $b, $c) {
+    ...
+
+    if ($a &lt; $b &amp;&amp; $b &gt; $c) {
+        return -1; // error
+    }
+
+    ...
+}
+
+$d = doSomething($x, $y, $z);
+
+if ($d === -1) {
+    die('Fatal error!');
+}
+</code></pre>
+
+<p>And everything is fine as long as you remember to check whether function returned error. But what happen if you forgot to check that? It's actually a quite common problem.</p></li>
+<li><p>Exceptions make the flow of a program much more natural.</p></li>
+</ol>

@@ -1,0 +1,7 @@
+<p>SUCCESS!! (of a kind).  Its a little hacked together but I managed to get it working.</p>
+
+<p>Rather then trying to rewrite django_php_bridge db.py file to use the new version of phpserialise (1.2), </p>
+
+<p>I used to old version with a couple of my own custom adjustments.  Most importantly I had to add an extra if statement to the serialize function to convert a unicode string but apart from that I just followed the instructions djang_php_bridge docs file (remembering to set the SESSION_COOKIE_NAME field in the django settings file), and it worked straight away.</p>
+
+<p>At some point when I have more time I will have a go at re-writing the django_php_bridge to use the new latest phpserialize version, but for now I am just happy to have a successful out come.</p>

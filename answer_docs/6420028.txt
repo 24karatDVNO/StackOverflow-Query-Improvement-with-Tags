@@ -1,0 +1,3 @@
+<p>You need to reset the SelectedItem value of the combo box back to the original value. </p>
+
+<p>The reason is that the binding of the value in the ComboBox occurs before the SelectedItem change event. This means the value for your combox has already been altered by the application even before the message is displayed. If you need the ComboBox to display the original value you need to reset it back in the code. </p>

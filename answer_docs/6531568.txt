@@ -1,0 +1,19 @@
+<pre><code>enum Time { Day, Week, Month };
+template&lt;Time T&gt; struct Length;
+template&lt;&gt; struct Length&lt;Day&gt; { static const int value = 8 ; };
+template&lt;&gt; struct Length&lt;Week&gt; { static const int value = 9; };
+template&lt;&gt; struct Length&lt;Month&gt; { static const int value = 10; };
+
+template&lt;bool b&gt; struct Limit;
+template&lt;&gt; struct Limit&lt;true&gt; { typedef bool yes; };
+
+#define COMPILE_ASSERT(V) typedef typename Limit&lt;(V)&gt;::yes checked
+
+template&lt;Time t, int length&gt;
+class Timer
+{
+  COMPILE_ASSERT(length &gt;= Length&lt;t&gt;::value);
+};
+</code></pre>
+
+<p>See <a href="http://www.ideone.com/Wrlxo" rel="nofollow">demo here</a>.</p>

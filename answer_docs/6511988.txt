@@ -1,0 +1,30 @@
+<p>The placeholder helper does exactly what you are after:</p>
+
+<pre><code>&lt;?php $this-&gt;placeholder('scriptContent')-&gt;set('var x="foo";') ?&gt;
+....some html
+&lt;?php $this-&gt;placeholder('scriptContent')-&gt;append('var y="feee";') ?&gt;
+....some html
+&lt;?php echo $this-&gt;placeholder('scriptContent')?&gt;
+</code></pre>
+
+<p>the key methods on the helper are <code>set</code>, <code>append</code> and <code>prepend</code>; which overwrite, add to, and add to the start of the content respectively.</p>
+
+<p>If you really want to write your own helper for this, this wouldn't be too difficult. Take a look at the headTitle or headScript helpers for an example, but would be something along the lines of:</p>
+
+<pre><code>class My_View_Helper_ScriptContent extends Zend_View_Helper_Placeholder_Container_Standalone
+{
+    public function scriptContent($script)
+    {
+        $this-&gt;append($script);
+    }
+}
+</code></pre>
+
+<p>usage would then be:</p>
+
+<pre><code>&lt;?php $this-&gt;scriptContent('var x="foo";') ?
+....some html
+&lt;?php $this-&gt;scriptContent('var y="feeee";') ?&gt;
+....some html
+&lt;?php echo $this-&gt;scriptContent() ?&gt;
+</code></pre>

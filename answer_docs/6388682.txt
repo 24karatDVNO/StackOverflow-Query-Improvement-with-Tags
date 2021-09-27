@@ -1,0 +1,3 @@
+<p>Well, for your testStatePause() test I think that may be valid. Even if the activity is paused you are still free to modify it however you want since you still have a reference to it (or one of its textViews at least. In a test like this, you should change the value of the textView in the actual activity's onPause method, then use your testStatePause test to verify that onPause was called and did its job correctly, then do the same for onResume().</p>
+
+<p>I'm not really familiar with Android's testing framework but maybe a similar issue is happening with your testStateDestroy() test. Your mUrlView could still be pointing to the old, finished Activity. The old activity is no longer valid but its widgets might be.</p>

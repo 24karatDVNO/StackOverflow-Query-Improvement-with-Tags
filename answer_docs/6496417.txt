@@ -1,0 +1,3 @@
+<p>Those nulls are probably present in the response.  Does the server specify a content-length?</p>
+
+<p>Is there a reason you're not using an HTTP client to read from an HTTP service?  You'll end up writing a lot of boilerplate (do do with connection failures and so on) that you could just let a library deal with for you.</p>

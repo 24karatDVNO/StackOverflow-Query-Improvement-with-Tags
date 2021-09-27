@@ -1,0 +1,11 @@
+<pre><code>//#include sstream with angular braces in header files 
+
+std::string str = "R,4567890,Dwyer,Barb,CSCE 423,CSCE 486";
+
+std::istringstream iss(str,istringstream:in);
+
+vector&lt;std::string&gt; words;
+
+while (std::getline(iss, str, ','))
+  words.push_back(str);
+</code></pre>

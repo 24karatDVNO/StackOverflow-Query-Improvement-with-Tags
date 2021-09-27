@@ -1,0 +1,13 @@
+<p>Don't know if it was a typo, but you said you have:</p>
+
+<pre><code>&lt;use-permission id="android.permission.INTERNET" /&gt;
+</code></pre>
+
+<p>But it have to be:</p>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+</code></pre>
+
+<p>I tried getByName and it works fine.</p>
+
+<p>May be you fixed your permissions and switched from getByName to getAllByName at the same time? Just curious, if you can confirm that getByName still does not work for you?</p>

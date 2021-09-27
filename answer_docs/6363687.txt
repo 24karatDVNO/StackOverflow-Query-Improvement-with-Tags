@@ -1,0 +1,19 @@
+<p>If I understand correctly, you are given a finite range of values <em>x</em>, say <code>x[0]</code>, <code>x[1]</code>, ..., <code>x[N]</code>, and a function <code>f</code>, and you want to find the index <code>k</code> for which <code>f(x[k])</code> is the largest possible. In that case, a simple search will do:</p>
+
+<pre><code>size_t k = 0;
+T m = f(x[k]);
+T tmp;
+
+for (size_t i = 1; i &lt;= N; ++i)
+{
+  if ((tmp = f(x[i])) &gt; m)
+  {
+    k = i;
+    m = tmp;
+  }
+}
+
+// Maximum is (x[k], m)
+</code></pre>
+
+<p>Here <code>T</code> is the type such that <code>f</code> is <code>T f(T);</code></p>

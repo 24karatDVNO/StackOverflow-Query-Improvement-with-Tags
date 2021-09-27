@@ -1,0 +1,6 @@
+<p>Actually, since I'm going to send it to Python I don't have to process it C-style after all. Just use the Py_BuildValue passing it the format character s#, which knows what do with it. You'll also need the size.</p>
+
+<pre><code>return Py_BuildValue("s#", buffer, size);
+</code></pre>
+
+<p>You can process it into a list on Python's end using split('\x00'). I found this after trial and error, but I'm glad to have learned something about C.</p>

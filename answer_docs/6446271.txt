@@ -1,0 +1,43 @@
+<p>You can use the rendered property like you're doing now. The question is how you want to customize it. There's a fair number of ways depending on the situation. You can do a case by case set of values that are only rendered when their value is true. </p>
+
+<p>i.e.</p>
+
+<pre><code>  &lt;p:outputPanel rendered="#{bean.someBoolCheckCaseOne}" /&gt;
+  &lt;p:outputPanel rendered="#{bean.someBoolCheckCaseTwo}" /&gt;
+  ...
+  &lt;p:outputPanel rendered="#{bean.someBoolCheckCaseThree}" /&gt;
+</code></pre>
+
+<p>or if you're getting a much wider range you can directly inject HTML into the panel with</p>
+
+<pre><code>  &lt;p:outputPanel ...&gt;
+    &lt;h:outputPanel escape="false" value="#{bean.htmlWithoutEscapes}" /&gt;
+  &lt;/p:outputPanel&gt;
+</code></pre>
+
+<p>As far as passing parameters</p>
+
+<pre><code>  &lt;p:commandLink actionListener="#{bean.onClick}"...&gt;
+    &lt;f:attribute name="someParam" value="#{someValue}" /&gt; &lt;!-- you can get this from the component attribute map --&gt;
+  &lt;/p:commandLink&gt;
+
+//Managed Bean
+  public void onClick(ActionEvent evt)
+  {
+    Object param = evt.getComponent().getAttributes().get("someParam");
+  }
+</code></pre>
+
+<p>Really I think it is pretty trivial to do. Obviously you need to define the input and output. I'd recommend using a bean over the requestScope simply because PrimeFaces 2.2.1 has a null pointer in the converter for text that was just fixed a few weeks back. I'm not sure why you're after the remote command. Its use is pretty specific and unless you have a need for that specificity (I would doubt you do) it is just adding some complexity and places for things to go wrong. </p>
+
+<p>If you want to do it all in requestScope you can do that too... I just wouldn't recommend it.</p>
+
+<p>I use it for things like a search string etc...</p>
+
+<pre><code>&lt;h:inputText value="#{requestScope.searchString}"  style="width:95%;"/&gt;
+&lt;p:commandButton value="Search" actionListener="#{inventoryBean.wardrobe.searchViaParameters}" update="inventoryWardrobe:searchForm"&gt;
+  &lt;f:attribute name="searchString" value="#{requestScope.searchString}"/&gt;
+&lt;/p:commandButton&gt;
+</code></pre>
+
+<p>I hope that helps, its a powerful component.</p>

@@ -1,0 +1,10 @@
+<p>Same effect, but Codeigniter-style:</p>
+
+<pre><code>//remember that custom routes need to go _after_ ci's default routes, as they're executed in the order you provide them
+$route['default_controller'] = "welcome";
+$route['404_override'] = '';
+//exception 1 to your regex here
+//exception 2 to your regex here
+//so on...
+$route['(:any)/(:any)/(:any)'] = "$2/$3/$1";
+</code></pre>

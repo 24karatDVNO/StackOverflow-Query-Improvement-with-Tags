@@ -1,0 +1,6 @@
+<p>the problem is that the way you call your console.log(). it evaluates right there and shows found even if nothing is found. because you don't pass a reference to a function, you just call log('found')</p>
+
+<p>you should have </p>
+
+<pre><code>jQuery('div.media', jq).each(function() { console.log("found") });
+</code></pre>

@@ -1,0 +1,15 @@
+<p>Now it works. Please check my code below</p>
+
+<pre><code>        '2 decimal points only
+    'If key-in is after decimal point
+    If txtPrice.SelectionStart &gt; txtPrice.Text.IndexOf(Chr(46)) Then
+        'If text not select All
+        If txtPrice.SelectedText.Length = 0 Then
+            If (txtPrice.Text.Trim() &lt;&gt; "") Then
+                If (rexPrice.IsMatch(txtPrice.Text) = False) AndAlso e.KeyChar &lt;&gt; ControlChars.Back Then
+                    e.Handled = True
+                End If
+            End If
+        End If
+    End If
+</code></pre>

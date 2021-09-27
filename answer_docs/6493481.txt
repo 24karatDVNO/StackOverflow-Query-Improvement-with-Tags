@@ -1,0 +1,26 @@
+<p>I do not think it is possible to set a default namespace on website projects but it is simple to add it yourself after the new file has been created as per:</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MySite
+{
+
+    /// &lt;summary&gt;
+    /// Summary description for Class1
+    /// &lt;/summary&gt;
+    public class Class1
+    {
+        public Class1()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+    }
+}
+</code></pre>
+
+<p>I don't fully understand your second question however if I'm understanding you correctly the order that you create an instance of a class or a variable doesn't matter. Create them as you need them. Variables / objects created in the pageload event will only be available in that event. If you need public variable declare it at the class level.</p>

@@ -1,0 +1,30 @@
+<p><strong>Is it possible?</strong></p>
+
+<p>Certainly.</p>
+
+<p><strong>Does it make sense?</strong></p>
+
+<p>It depends. I would not recommend resource files (via <a href="http://msdn.microsoft.com/en-us/library/system.resources.resourcewriter.aspx" rel="nofollow">ResourceWriter</a>) for storing <strong><em>dynamic</em></strong> content.</p>
+
+<p><strong>Your problem</strong></p>
+
+<p>Let me rephrase it (I am not sure if I understood you correctly). You want to give your users an ability to change presentation style. User will be able to change the style and that change would be somehow propagated to whatever languages the content is translated to.</p>
+
+<p>In such case, I see some issues:</p>
+
+<ol>
+<li><p>How to match English contents with translated one?<br>
+It is typical for translation to have different order and possibly different number of sentences. There is no way to match them unless...</p></li>
+<li><p>Storing such information in resource files along with translatable strings would result in something that is hard to maintain. I believe you would need to either add formatting tags or content tags with styling information in order to achieve that. The result would be a mess; hardly readable, as tough to modify.</p></li>
+</ol>
+
+<p>OK, so what can you do? Actually, what I could recommend is to create Customization Mechanism for CSS files. In your case you need:</p>
+
+<ol>
+<li>Provide CSS classes as well as unique identifiers (HTML id attribute) to each structural elements (tags if you prefer), so that you have something like <code>&lt;div id="main" class="main"&gt;&lt;p id="p1" class="normal"&gt;...</code>. The id's will give users an ability to target precisely that element leaving others untouched (via <code>#p1.normal { // definition here }</code>).</li>
+<li>Store CSS in the Database and create some editor for users.</li>
+<li>Create a <a href="http://support.microsoft.com/kb/308001" rel="nofollow">Handler</a> to serve CSS from database upon web browser's request.</li>
+</ol>
+
+<p>Even with such solution you won't avoid some problems. One is that you need to actually alter font family while translating into certain languages, so you might need language-based CSS files. Another problem pops up when user wants to put <strong>bold</strong> attribute on certain word - with such solution this is not possible (but to be honest if you want to allow that, this won't be i18n friendly for the reasons I mentioned earlier).<br>
+BTW. Bold fonts should be avoided for some languages. For example Chinese characters are pretty hard to read if you manage to output them with bold font.</p>

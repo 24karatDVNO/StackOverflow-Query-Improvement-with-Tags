@@ -1,0 +1,26 @@
+<p>You will most likely have to do a self-join</p>
+
+<pre><code>SELECT [what you are comparing] FROM [table] t1
+  [INNER/LEFT] JOIN [table] t2 ON t1.[someID] = t2.[someID]
+WHERE t1.year = 2009 AND t2.year = 2010
+</code></pre>
+
+<p>In the someID would not necessarily have to be an ID, or even an indexed column, but it should be the column you are looking to compare across the years. </p>
+
+<p>E.g. a table called 'Products' with columns/fields</p>
+
+<ul>
+<li>ID</li>
+<li>ProductName  </li>
+<li>Price</li>
+<li>Year</li>
+</ul>
+
+<p>You could do:</p>
+
+<pre><code>SELECT t1.ProductName, (t2.Price - t1.Price) As Price_change FROM Products t1
+  INNER JOIN Products t2 ON t1.ProductName = t2.ProductName
+WHERE t1.year = 2009 AND t2.year = 2010
+</code></pre>
+
+<p>This would be faster is ProductName was a primary key or an indexed column. This would also be faster than using nested selects which are much much slower than joins (when joining on an index).</p>

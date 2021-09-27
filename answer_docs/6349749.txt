@@ -1,0 +1,9 @@
+<p>You should not compare strings with <code>==</code>. The correct way to compare strings is via <code>isEqualToString:</code>. So your if statements while retrieving the user defaults should look like: </p>
+
+<pre><code>if ([savedSoundSettings isEqualToString:@"SoundsON"])
+{
+    ....
+}
+</code></pre>
+
+<p>EDIT: Moreover, conceptually, all you are checking is whether a single state variable is ON or OFF. So you should ideally be using something like <code>[NSUserDefaults setBool:forKey:]</code> and <code>[NSUserDefaults boolForKey:]</code>.</p>

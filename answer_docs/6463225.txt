@@ -1,0 +1,5 @@
+<p>You will need to guard the access to <code>help1</code> since this is an instance level (shared) variable.
+While <code>help2</code> is safe if you dont allow it to skip the method.</p>
+
+<p>There is nothing special about the static classes and instance created out of it. 
+Same rules of thread safety applies to instances of static classes also which applies to normal cases. </p>

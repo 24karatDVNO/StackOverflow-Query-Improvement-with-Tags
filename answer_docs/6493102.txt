@@ -1,0 +1,12 @@
+<p>Just need to update here in your code:</p>
+
+<p>I might be like that your time would be in 24 hours format, so at that time you need to use this ....other than that you need to set the timezone.</p>
+
+<p><strong>Follow this link for All zone :</strong> <a href="http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns" rel="nofollow">http://unicode.org/reports/tr35/tr35-6.html#Date%5FFormat%5FPatterns</a></p>
+
+<pre><code>[df setDateFormat:@"dd/MM/yyyy hh:mm:ss"];
+to 
+[df setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+</code></pre>
+
+<p>You are Done ;)</p>

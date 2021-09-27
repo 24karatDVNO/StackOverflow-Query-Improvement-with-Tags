@@ -1,0 +1,18 @@
+<p>I'll assume you're trying to minimize the maximum width of a string with n breaks. This can be done in O(words(str)*n) time and space using dynamic programming or recursion with memoziation.  </p>
+
+<p>The recurrence would look like this where the word has been split in to words</p>
+
+<pre><code>def wordwrap(remaining_words, n):
+    if n &gt; 0 and len(remaining_words)==0:
+        return INFINITY  #we havent chopped enough lines
+
+    if n == 0:
+        return len(remaining_words.join(' ')) # rest of the string
+
+    best = INFINITY
+    for i in range remaining_words:
+        # split here 
+        best = min( max(wordwrap( remaining_words[i+1:], n-1),remaining_words[:i].join(' ')), best  )  
+
+    return best
+</code></pre>

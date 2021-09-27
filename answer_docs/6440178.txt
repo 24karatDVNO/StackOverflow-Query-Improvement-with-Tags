@@ -1,0 +1,11 @@
+<p>Try doing it with 2 queries without temp tables:</p>
+
+<pre><code>SELECT * 
+FROM table
+WHERE id IN (
+    SELECT id 
+    FROM table 
+    WHERE contains_criterias
+) 
+AND further_where_classes
+</code></pre>

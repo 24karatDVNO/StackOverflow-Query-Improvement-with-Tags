@@ -1,0 +1,31 @@
+<p>For reference, the following code works as expected:</p>
+
+<pre><code>public class Test {
+
+    public static enum MyEnum {
+        valueA(1),valueb(2),valuec(3),valued(4);
+        private int i;
+        private Object o;
+
+        private MyEnum(int number) {
+             i = number;
+        }
+
+        public void set(Object o) {
+            this.o = o;
+        }
+
+        public Object get() {
+            return o;
+        }
+
+
+     } 
+
+    public static void main(String[] args) {
+        System.out.println(MyEnum.valueA.get());  // prints "null"
+        MyEnum.valueA.set(new Integer(42));
+        System.out.println(MyEnum.valueA.get());  // prints "42"
+    }
+}
+</code></pre>

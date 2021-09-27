@@ -1,0 +1,9 @@
+<p>If you cannot use the <code>BULK INSERT</code> statements (again: <em>why??</em>), then my best bet would be to create a small console app that would</p>
+
+<ul>
+<li><p>download that file from the static URL</p></li>
+<li><p>use the <a href="http://www.filehelpers.com" rel="nofollow">FileHelpers</a> library to load the <code>.txt</code> file into memory (it does this very well and very easily - you define the structure as a C# class, and don't have to worry about anything else anymore...)</p></li>
+<li><p>use a SQL Server stored procedure or a <strong>parametrized</strong> SQL inline query to store the entries - one by one - into your SQL Server table</p></li>
+</ul>
+
+<p>Once you have that console app, use the Windows scheduled tasks facility to run this app once e.g. every morning or whatever your schedule is.</p>

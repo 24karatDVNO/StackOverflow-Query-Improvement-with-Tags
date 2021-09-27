@@ -1,0 +1,36 @@
+<p>You could use C# <code>dynamic</code> with runtime compilation to accommodate the requirement of the unknown property name. </p>
+
+<p>An example:</p>
+
+<pre><code>dynamic d = new ExpandoObject();
+
+d.Value = 7;
+
+var helper = "" +
+    "using System; " +
+    "public class Evaluator " + 
+    "{{ " + 
+    "    public object Eval(dynamic d) {{ return d.{0}; }} " + 
+    "}}";
+
+var references = new string[] 
+{ 
+    "System.dll", 
+    "System.Core.dll", 
+    "Microsoft.CSharp.dll" 
+};
+
+var parameters = new CompilerParameters(references, "Test.dll");
+var compiler = new CSharpCodeProvider();
+
+var results = compiler.CompileAssemblyFromSource(
+    parameters,
+    String.Format(helper, "Value"));
+
+dynamic exp = Activator.CreateInstance(
+    results.CompiledAssembly.GetType("Evaluator"));
+
+Console.WriteLine(exp.Eval(d));
+</code></pre>
+
+<p>This works, but I doubt that this is the best option and if you need invoke method it can get a bit more complex.</p>

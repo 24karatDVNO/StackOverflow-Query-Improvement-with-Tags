@@ -1,0 +1,3 @@
+<p>Class libraries you create with .NET (which end up being DLLs) are only usable from within other .NET applications or libraries, or - if you choose to enable it - from COM.</p>
+
+<p>As far as I know, it's not possible to create a DLL with C# whose methods you can then call from an unmanaged application (C, C++, etc.). There are no so called 'exported methods', which is why DLL viewer shows it to be empty. Check again using .NET Reflector or a similar decompiler, and you'll see the methods show up.</p>

@@ -1,0 +1,31 @@
+<p>...or you CAN use an array to store the various possibilities :</p>
+
+<pre><code>&lt;form name="formone" id="optionsform"&gt;
+&lt;fieldset&gt;
+&lt;label&gt;&lt;input type="radio" name="group1" id="ac-yes" value="1"&gt;Yes&lt;/label&gt;
+&lt;label&gt;&lt;input type="radio" name="group1" id="ac-no" value="0"&gt;No&lt;/label&gt;
+
+&lt;label&gt;&lt;input type="radio" name="group2" id="bt-yes" value="2"&gt;Yes&lt;/label&gt;
+&lt;label&gt;&lt;input type="radio" name="group2" id="bt-no" value="0"&gt;No&lt;/label&gt;
+
+&lt;a href="varible-address"&gt;CONTINUE&lt;/a&gt;
+&lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;script&gt;
+    $(function(){
+      var urls = new Array();
+      urls[0]='http://myurl1/';// no + no
+      urls[1]='http://myurl2/';// yes + no
+      urls[2]='http://myurl3/';// no + yes
+      urls[3]='http://myurl4/';// yes + yes
+
+      $('input[type=radio]').click(fonction(){
+        var score = 0;
+        $('input[type=radio]:checked').each(function(){score+=parseInt($(this).val())});//was missing ) before the the curly bracket
+        $('a').attr('href',urls[score]);
+      });//was missing ) and ;
+   });
+&lt;/script&gt;
+</code></pre>
+
+<p>The advantage here is that you can easily add more choices.</p>

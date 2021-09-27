@@ -1,0 +1,17 @@
+<p>You have not write data to the file. you are directly closing the file thats why you got a file with 0 kb</p>
+
+<p>use something like this</p>
+
+<pre><code>try 
+    {
+        file.createNewFile();
+        FileOutputStream ostream = new FileOutputStream(file);
+        byte[] mydata = null;//data in byte array
+        ostream.write(mydata);
+        ostream.close();
+    } 
+    catch (Exception e) 
+    {
+        e.printStackTrace();
+    }
+</code></pre>

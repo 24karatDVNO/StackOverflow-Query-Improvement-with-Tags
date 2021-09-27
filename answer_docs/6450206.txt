@@ -1,0 +1,3 @@
+<p>Well the error message is pretty OdbcDataReader.GetString returns a string not an int. Therefore you can't compare it. <a href="http://msdn.microsoft.com/en-us/library/system.data.odbc.odbcdatareader.getstring.aspx" rel="nofollow">See MSDN</a></p>
+
+<p>You probably want to check the length of it? <code>if (reader.GetString(0).Length != 1)</code></p>

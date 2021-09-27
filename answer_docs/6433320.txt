@@ -1,0 +1,68 @@
+<p>As at least one of the comments says: "the compiler should warn about this". I strongly suggest that you <strong>make</strong> the compiler warn you about this. :) Let me explain. </p>
+
+<p>YMMV for other platforms, but in <em>Unix</em>, you can set the CFLAGS environment variable to including warnings by default when you use the <code>make</code> utility with implicit rules.</p>
+
+<p>The following is a transcript from my bash session where I paste your code into a file, compile with <code>make</code>, and then add optimization to the CFLAGS variable and recompile to see if that gives any more warnings.</p>
+
+<pre><code>503(1)06:22 PM:~ 0&gt; cat &gt;sostr.c
+#include &lt;stdio.h&gt;
+int main()
+{
+/* A nice long string */
+char string[256];
+int i;
+printf( "Please enter a long string: " );
+/* notice stdin being passed in */
+fgets ( string, 256, stdin );
+
+    for( i = 0; i &lt; 256; i++)
+    {
+            if( string[i] == 'a' )
+            {
+                    string[i] == 'x';
+                    printf("%s", "foo");
+            }
+    }
+  printf( "You entered a very long string, %s", string );
+  getchar();
+}
+504(1)06:22 PM:~ 0&gt; make sostr
+cc -g -Wall    sostr.c   -o sostr
+sostr.c: In function 'main':
+sostr.c:15: warning: statement with no effect
+sostr.c:21: warning: control reaches end of non-void function
+505(1)06:22 PM:~ 0&gt; export CFLAGS+=' -O2'
+506(1)06:23 PM:~ 0&gt; touch sostr.c
+507(1)06:23 PM:~ 0&gt; make sostr
+cc -g -Wall -O2    sostr.c   -o sostr
+sostr.c: In function 'main':
+sostr.c:15: warning: statement with no effect
+sostr.c:21: warning: control reaches end of non-void function
+508(1)06:23 PM:~ 0&gt;
+</code></pre>
+
+<p>Another tool for getting lots of warnings is <code>splint</code>; although it's often too picky.</p>
+
+<pre><code>509(1)06:33 PM:~ 0&gt; splint sostr.c
+Splint 3.1.2 --- 23 Aug 2008
+
+sostr.c: (in function main)
+sostr.c:9:1: Return value (type char *) ignored: fgets(string, 25...
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalother to inhibit warning)
+sostr.c:15:21: Statement has no effect: string[i] == 'x'
+  Statement has no visible effect --- no values are modified. (Use -noeffect to
+  inhibit warning)
+sostr.c:20:3: Return value (type int) ignored: getchar()
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalint to inhibit warning)
+sostr.c:21:2: Path with no return in function declared to return int
+  There is a path through a function declared to return a value on which there
+  is no return statement. This means the execution may fall through without
+  returning a meaningful result to the caller. (Use -noret to inhibit warning)
+
+Finished checking --- 4 code warnings
+510(1)06:34 PM:~ 1&gt;
+</code></pre>
+
+<p>So both of these methods catch the same line 15 ==/= problem. Both also warn you that main should return 0; if successful. And splint also complains that you ignore the return values from <code>fgets</code> and <code>getchar</code>. It looks like you really do want to ignore the result of <code>getchar</code>, so I recommend writing <code>(void)getchar();</code> to show that the value is deliberately ignored. The same is not true for <code>fgets</code>, however. I suggest you make use of the return value or let the warning stand (it's probably fine for this toy code to ignore the value). Checking the return value may be important in other programs, so it's not a wise habit to start marking them <code>(void)</code>.</p>

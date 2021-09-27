@@ -1,0 +1,25 @@
+<p>You can use something like below:</p>
+
+<pre><code>function load() {
+  if (GBrowserIsCompatible()) {
+    var map = new GMap2(document.getElementById("map_canvas"));
+    map.addControl(new GSmallMapControl());
+    map.addControl(new GMapTypeControl());
+    map.setCenter(new GLatLng(43.104135, -77.884455), 6);
+    // Change this depending on the name of your PHP file
+    GDownloadUrl("generateXML.aspx", function(data) {
+          var xml = GXml.parse(data);
+          var markers = xml.documentElement.getElementsByTagName("marker");       
+          for (var i = 0; i &lt; markers.length; i++) {
+            var desc = htmlEntities(markers[i].getAttribute("desc"));   
+            var type = markers[i].getAttribute("type");
+            var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+            parseFloat(markers[i].getAttribute("lng")));
+            var marker = createMarker(point, desc, type);
+            map.addOverlay(marker);
+          }
+    });
+}
+</code></pre>
+
+<p>In generateXML.aspx, send an XML response and it should work like charm.</p>

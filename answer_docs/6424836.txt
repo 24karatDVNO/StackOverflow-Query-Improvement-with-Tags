@@ -1,0 +1,9 @@
+<pre><code>select 1 as ID,
+       C.RowID,
+       C.Position,
+       F.Data
+from tblComplete as C
+  left outer join tblFiltered as F
+    on C.Position = F.Position
+order by C.RowID, C.Position
+</code></pre>

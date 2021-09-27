@@ -1,0 +1,22 @@
+<p>You should be able to do something like this. If you have more files, just add their name into the array <code>fileNames</code>.</p>
+
+<pre><code>var audioRefs = { }, fileNames = ['E1','A1','B1'], i, file;
+for( i = 0; i &lt; fileNames.length; i++ ) {
+    file = fileNames[i];
+    audioRefs[file] = new Audio('audio/' + file + '.ogg');
+    audioRefs[file].addEventListener('ended', callback, false);
+}
+
+function callback() {
+   this.currentTime = 0;
+   this.play();
+};
+</code></pre>
+
+<p><code>audioRefs</code> will end up looking like....</p>
+
+<pre><code>audioRefs = {
+   'A1': (reference to A1 Audio object),
+   'B1': (reference to B1 Audio Object)
+}
+</code></pre>

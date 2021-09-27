@@ -1,0 +1,6 @@
+<p>I'm not sure there's a built in function for this, but something like this should work.</p>
+
+<pre><code>$last = $car_names[count($car_names)-1];
+$implodedString = implode(', ', array_values($car_names))
+$implodedString = str_replace(", $last", "and $last", $implodedString);
+</code></pre>

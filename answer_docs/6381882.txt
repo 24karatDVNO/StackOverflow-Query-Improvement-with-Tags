@@ -1,0 +1,7 @@
+<p>There are two approaches:</p>
+<p><em><strong>1)  check the instantaneous state of the audio route</strong></em></p>
+<p><a href="https://stackoverflow.com/questions/3728781/detect-if-headphones-not-microphone-are-plugged-in-to-an-ios-device">Detect if headphones (not microphone) are plugged in to an iOS device</a></p>
+<p>This answer furnishes you with a ready-made method for detecting whether headphones are plugged in.</p>
+<p><em><strong>2)  monitor route change events,  and set a flag whenever the route changes between headset and non-headset</strong></em></p>
+<p><a href="https://stackoverflow.com/questions/1832041/how-to-programatically-detect-earpiece-in-iphone">How to programmatically detect earpiece in iphone?</a></p>
+<p>( would probably want to add the code from the first link into this to actually determine whether headset/non-headset status has been changed within the route change callback )</p>

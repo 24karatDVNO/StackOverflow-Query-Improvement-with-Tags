@@ -1,0 +1,5 @@
+<p>I would be inclined to change the "architecture of your tagging" in that the data you wish to achieve should not be by tag on the inside of the class as it is "markup" designed for a page(<em>though in obscurity</em> it is possible to get the evaluating program thread of the JSP Servlet engine).</p>
+
+<p>What you would probably find better and more within standard procedure would be using "cooperating tags" with  <code>BodyTagSupport</code> class extension and return <code>EVAL_BODY_BUFFERED</code> in doStartTag() method to repeat process the body <strong>and/or</strong> object sharing such as storing retrived data in the application hierarchy of the session or on the session for the user.</p>
+
+<p>See <a href="http://download.oracle.com/javaee/1.4/tutorial/doc/JSPAdvanced8.html" rel="nofollow">oracle j2ee custom tags tutorial</a> for more information.</p>

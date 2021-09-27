@@ -1,0 +1,32 @@
+<p>Your abstract base class (call it 'object') provides the abstract implementation framework that each inherited class must implement. You just invoke the proper methods on each instance of the base class. Something like this (in C#, because my C++ is rather corroded,  but you should get the idea):</p>
+
+<pre><code>public abstract class Widget
+{
+  public void MandatoryMethod() ; // no method implementation
+}
+
+public class FooConcreteWidget : Widget
+{
+  public override void MandatoryMethod()
+  {
+    // some concreted implementation
+  }
+}
+public class BarConcreteWidget : Widget
+{
+  public override void MandatoryMethod()
+  {
+    // another concrete implementation
+  }
+}
+
+...
+List&lt;Widget&gt; Widgets = GetSomeWidgets() ;
+
+for ( Widget widget in Widgets )
+{
+   widget.MandatoryMethod() ;
+}
+</code></pre>
+
+<p>That's about all there is to it.</p>

@@ -1,0 +1,7 @@
+<p>You're mixing up terms.</p>
+
+<p>"Prepopulating" means to fill in a field from another field. It's not how you filter things for the admin popups, since you aren't actually setting the field, but simply limiting choices and letting the user set the field from those.</p>
+
+<p>Aditionally, the <code>default</code> value for a field needs to be a constant, since this is passed down to the database, which can't use a query to set a default.</p>
+
+<p>What you <em>really</em> want is something like the <code>limit_choices_to</code> (<a href="https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey.limit_choices_to" rel="nofollow">docs</a>) parameter for your <code>ForeignKey</code>, but even then, you can't use <code>request</code> for this; it has to work using fields in the model. The reason for this is that, if you based it on the user, then some users would be unable to select the current value set by another user. You don't want <code>company</code> changing itself when the user just wants to change <code>content</code>, for example, just because <code>user</code> doesn't yield the current <code>company</code> in the filter.</p>

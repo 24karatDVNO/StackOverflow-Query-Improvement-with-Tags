@@ -1,0 +1,12 @@
+<p>From Management studio execute the code below</p>
+
+<pre><code>sp_spaceused
+GO
+DBCC SHRINKDATABASE('yourdatabasename')
+GO
+sp_spaceused
+</code></pre>
+
+<p>Your database now will be shrinked by the number of free space given from the first sp_spaceused execution</p>
+
+<p>Also check <a href="http://msdn.microsoft.com/en-us/library/ms190488.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms190488.aspx</a></p>

@@ -1,0 +1,17 @@
+<p>if you specify On Update Cascade, the referenced values would be updated.
+Try that creation script </p>
+
+<pre><code>CREATE TABLE TableX(
+  id INT, 
+  FooId INT,
+  BarId INT,
+  INDEX foo_idx (FooId),
+  INDEX bar_idx (BarId),
+  FOREIGN KEY (FooId) 
+    REFERENCES Foo(Id) 
+    ON UPDATE CASCADE
+  FOREIGN KEY (BarId) 
+    REFERENCES Bar(Id) 
+    ON UPDATE CASCADE
+) ENGINE=INNODB;
+</code></pre>

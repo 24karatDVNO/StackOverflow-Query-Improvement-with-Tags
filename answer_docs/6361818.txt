@@ -1,0 +1,7 @@
+<p>I don't much about the Photoshop API, so I am going to try to answer your question a little more generally.</p>
+
+<p>32 bit applications can not load 64 bit code into their address space and vice versa.  This means the only way to mix them is through some form of inter process communication.</p>
+
+<p>COM will handle this inter-process communication for you if it is an out of process COM server.  So if the Photoshop COM objects are implemented as out of process objects, then everything would work fine.  Since it is not working for you I am assuming they use in process objects which can not be mixed between 32 and 64 bit.  In this case you would need to create your own out of process server that wraps the Photoshop objects you want to use.  You could then use this out of process wrapper from both 32 and 64 bit code.</p>
+
+<p>Also to clarify some of the other posts, in .NET you need to make sure the Platform Target is set to what you need for what you are trying to accomplish.  x86 will make your code always run as 32 bit. x64 will make it always run as 64 bit.  Any CPU will make it run as 32 bit on a 32 bit OS and 64 bit on a 64 bit OS.  </p>

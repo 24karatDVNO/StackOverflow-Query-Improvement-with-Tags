@@ -1,0 +1,9 @@
+<p>There are commercial products like Splunk which might do what you want - it also provides nice search functionality.</p>
+
+<p>You can configure logback to log in a distributed fashion with the following appenders:</p>
+
+<ul>
+<li>JMSTopicAppender - to send log messages to a JMS topic (which you could potentially hook into Amazon SNS or Amazon SQS)</li>
+<li>DBAppender (this seems like it would work well with Amazon's RDB Service):
+<a href="http://logback.qos.ch/manual/appenders.html#DBAppender" rel="nofollow">http://logback.qos.ch/manual/appenders.html#DBAppender</a></li>
+</ul>

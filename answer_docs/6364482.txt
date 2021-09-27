@@ -1,0 +1,5 @@
+<p>If you want to use ACL component you must have ARO and ACO trees. Otherwise there is no sense to use that component.</p>
+
+<p>I would suggest you to create a super-user for all users, allow him to access all ACO nodes, but deny specific ACO nodes. So, all users would inherit the permissions from that abstract super-user. I guess you have studied <a href="http://book.cakephp.org/view/1543/Simple-Acl-controlled-Application" rel="nofollow">Simple Acl controlled Application tutorial</a>, haven't you?</p>
+
+<p>Another option would be to use Auth component and write your own permissions handling component. There are many tutorials how to build admin panel.</p>

@@ -1,0 +1,9 @@
+<p>You'd use 2 joins to the same table:</p>
+
+<pre><code>select a1.name, a2.name
+from names a1
+   join xref x
+      ON x.src = a1.id
+   join names a2
+      ON x.destination = a2.id
+</code></pre>

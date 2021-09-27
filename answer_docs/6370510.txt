@@ -1,0 +1,12 @@
+<p>OK, 
+this is not the final solution but a good work around:</p>
+
+<p>the problem is:</p>
+
+<ul>
+<li><p>in case of a clients JS-call to the webservice module, the functions are executed twice since the module is run two times: one for CurrentHandler==TransferRequestHandler, the second call (in which session-state is available) then is processed by CurrentHandler==Script/ASPX/Handler</p></li>
+<li><p>i do not know (until now) whats the reason but i solved it simply by returning/not executing my HttpModule-specific stuff on the first run</p></li>
+<li><p>so, it works OK but i'm still looking for an explanation, why the HttpModule PreExecute/PostExecuteRequestHandler is called twice in case of a WebService-call, while it is <em>not</em> called twice for a single/standard ASP.NET page request</p></li>
+</ul>
+
+<p>Regards</p>

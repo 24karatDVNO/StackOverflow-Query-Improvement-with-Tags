@@ -1,0 +1,4 @@
+<p>In Ruby 1.8.7 or later you can use <code>group_by</code> and then turn each list of elements into count - 1, and make a hash from the array returned by <code>map</code>.</p>
+
+<pre><code>Hash[array.group_by(&amp;:class).map { |k,v| [k, v.size-1] }]
+</code></pre>

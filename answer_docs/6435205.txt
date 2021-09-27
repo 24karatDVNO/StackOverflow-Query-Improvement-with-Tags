@@ -1,0 +1,72 @@
+<p>Okay, found a way to make this work. Got kind of maddening there for a while. </p>
+
+<p>The method I found that worked was switching to a RelativeLayout, loading the ad programmatically and throwing in a ViewStub that inflates a view the same height as the ad when the ad loads (using AdListener). I suspect there's a more elegant way to do this, but this definitely works for me.</p>
+
+<p>main.xml:</p>
+
+<pre><code>&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    &gt;
+&lt;ViewStub
+    android:id="@+id/mainPlaceholder"
+    android:inflatedId="@+id/mainAdInflated"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:layout="@layout/ad_mob_layout"
+    /&gt;                         
+&lt;ScrollView 
+    android:layout_below="@+id/mainAdInflated"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="[background drawable]"
+    &gt;
+[snip irrelevant views]
+&lt;/ScrollView&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>ad_mob_layout.xml:</p>
+
+<pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    &gt;
+&lt;View
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"            
+    /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>[main].java: </p>
+
+<pre><code>public class [main] extends Activity implements AdListener {
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    //programattically create adview
+    AdView adView = new AdView(this, AdSize.BANNER, "a14e0010a66c749");
+    //find main layout and add adview to it
+    RelativeLayout layout = (RelativeLayout)findViewById(R.id.mainLayout);
+    layout.addView(adView);      
+
+    //set up ad request with test devices/emulator
+    AdRequest request = new AdRequest();
+    request.addTestDevice(AdRequest.TEST_EMULATOR);
+    adView.loadAd(request);
+    adView.setAdListener(this);
+}
+
+@Override
+public void onReceiveAd(Ad arg0) {
+    @SuppressWarnings("unused")
+    View stubToInflate = ((ViewStub)this.findViewById(R.id.mainPlaceholder)).inflate();
+}
+</code></pre>
+
+<p>Hope this helps if anyone else is having this problem!</p>

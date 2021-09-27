@@ -1,0 +1,19 @@
+<p>Your function is running on document ready, but before the <code>datasets</code> variable is populated.</p>
+
+<p>Move the code to the end of the callback function:</p>
+
+<pre><code>do
+{ 
+...
+}
+while (textLeft.indexOf("#") &gt; -1);
+
+var d1 = [];
+var d2 = datasets[0].cover.data;
+// a null signifies separate line segments
+var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+$.plot($("#placeholder"), [ d1, d2, d3 ]);
+ }); 
+} 
+</code></pre>

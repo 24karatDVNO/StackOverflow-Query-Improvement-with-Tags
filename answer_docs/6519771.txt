@@ -1,0 +1,20 @@
+<p>I would use the simple:</p>
+
+<pre><code>INSERT INTO session
+  ( `date`, startTime, finishTime )
+  SELECT
+  ( $date, $startTime, $finishTime )
+  WHERE NOT EXISTS
+    ( SELECT
+          *
+      FROM
+          session
+      WHERE
+            `date` = $date 
+        AND $startTime &lt;  finishTime 
+        AND  startTime &lt; $finishTime 
+
+    )
+</code></pre>
+
+<p>The <code>&lt;</code> should be changed to <code>&lt;=</code> if you want the two periods <code>09:00 - 11:00</code> and <code>11:00 - 13:00</code> to collide.</p>

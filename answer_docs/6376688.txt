@@ -1,0 +1,13 @@
+<p>The WhoAmIRequest and WhoAmIResponse messages are included in the web reference (crmservice). </p>
+
+<p>You can get the current user like this:</p>
+
+<pre><code>    using CrmWebReference; //whatever you called it
+
+    ... 
+//crm is the name of my CrmService object
+
+    WhoAmIRequest userRequest = new WhoAmIRequest();
+    WhoAmIResponse current = (WhoAmIResponse)crm.Execute(userRequest);
+    systemuser currentUser = (systemuser)crm.Retrieve(EntityName.systemuser.ToString(), current.UserId, new AllColumns());
+</code></pre>

@@ -1,0 +1,36 @@
+<blockquote>
+  <p>My question is Write an SQL query that
+  will determine which is the least
+  expensive venue that will accommodate
+  120 people.</p>
+</blockquote>
+
+<p>In SQL Server I would use <code>select top 1... order by</code></p>
+
+<pre><code>select top 1 v.venuename, v.costperday
+from venues v 
+where v.venuecapacity = 120
+order by v.costperday 
+</code></pre>
+
+<p>Goggling a bit I found this syntax for MySQL and Oracle that looks like they will work but untested by me.</p>
+
+<p>MySQL</p>
+
+<pre><code>select v.venuename, v.costperday
+from venues v 
+where v.venuecapacity = 120
+order by v.costperday 
+limit 1
+</code></pre>
+
+<p>Oracle</p>
+
+<pre><code>select v.venuename, v.costperday
+from (select v.venuename, v.costperday
+      from venues v 
+      where v.venuecapacity = 120
+      order by v.costperday
+     )
+where rownum = 1
+</code></pre>

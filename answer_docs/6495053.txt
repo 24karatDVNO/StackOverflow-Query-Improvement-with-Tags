@@ -1,0 +1,4 @@
+<p>I solved the problem by manually creating the JSON String like so:</p>
+
+<pre><code>NSString *dataString = [NSString stringWithFormat:@"{\"shared_items\":%@,\"shared_list\":%@,\"facebook_id\":%@}",[sharedItems JSONRepresentation],[sharedList JSONRepresentation],facebookID];
+</code></pre>

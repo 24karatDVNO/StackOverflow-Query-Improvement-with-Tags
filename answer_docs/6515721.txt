@@ -1,0 +1,10 @@
+<p>Is it one of these characters? <code>&amp;#9642;</code> = &#9642; or <code>&amp;#9632;</code> = &#9632;</p>
+
+<p>If so, you can do this</p>
+
+<pre><code>var str ="Something &amp;#9642; and &amp;#9632;";
+str = str.replace(/&amp;#9642;|&amp;#9632;/g, "&amp;nbsp;");
+document.write(str);
+</code></pre>
+
+<p><a href="http://jsfiddle.net/jasongennaro/8mCuV/" rel="nofollow">http://jsfiddle.net/jasongennaro/8mCuV/</a></p>

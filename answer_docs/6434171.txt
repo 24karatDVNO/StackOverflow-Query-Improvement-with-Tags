@@ -1,0 +1,5 @@
+<p>I wonder if there is a way to predetermine approximately how much memory you will use for a given job....  If there was some way to determine that a particular input is likely to yield an explosive memory sizing, perhaps you can try to keep it from being run at the same moment as another high usage job.</p>
+
+<p>If you could determine the relative size from job to job (that's a big assumption), you could allow (say) 100 units of work to be run at once using a counting <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Semaphore.html" rel="nofollow">Semaphore</a>.  A typical job might only count as one unit (and aquire just one permit), where a larger job may need to aquire 10 or 20 permits before running....</p>
+
+<p>Of course, if you can't predetermine anything about the size of the to-be-consumed memory, you might still be able to explore ways to further subdivide your problem so that you are doing a larger number of small-memory jobs instead of a small number of big jobs.</p>

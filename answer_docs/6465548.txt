@@ -1,0 +1,19 @@
+<p>Generally, you have two options to create such a workflow: Using the FormBuilder/ FormRunner (but since i don't use them, i can't help you with those), or "by hand" using  <a href="http://wiki.orbeon.com/forms/doc/developer-guide/xml-pipeline-language-xpl" rel="nofollow" title="Orbeon Wiki | XPL">XML pipelines</a> and e.g. the <a href="http://wiki.orbeon.com/forms/doc/developer-guide/processors-sql" rel="nofollow" title="Orbeon Wiki | SQL Processor">SQL Processor</a> to interact with SQL databases.</p>
+
+<ul>
+<li><p><strong><a href="http://wiki.orbeon.com/forms/doc/developer-guide/xml-pipeline-language-xpl" rel="nofollow" title="Orbeon Wiki | XPL">XML pipelines (XPL)</a></strong> let you process XML data, for example creating chunks of XML based on <a href="http://wiki.orbeon.com/forms/doc/developer-guide/processors-request-generator" rel="nofollow" title="Orbeon Wiki | Request generator">session data</a>, <a href="http://wiki.orbeon.com/forms/doc/developer-guide/processors-xml-databases" rel="nofollow" title="Orbeon Wiki | XML databases">XML</a> or <a href="http://wiki.orbeon.com/forms/doc/developer-guide/processors-sql" rel="nofollow" title="Orbeon Wiki | SQL Processor">SQL</a> databases or <a href="http://wiki.orbeon.com/forms/doc/developer-guide/processors-xforms-submission" rel="nofollow" title="Orbeon Wiki | Submission processor">XML web services</a>. XPL is similar to XProc, but gives access to additional modules called processors:</p></li>
+<li><p><strong>Processors</strong>, for example the <a href="http://wiki.orbeon.com/forms/doc/developer-guide/processors-sql" rel="nofollow" title="Orbeon Wiki | SQL Processor">SQL processor</a>, provide an "interface" to interact with SQL databases, making available the full range of SQL CRUD operations.</p></li>
+</ul>
+
+<p>If both forms you're talking of are part the same <code>xforms:model</code>, you can connect them using the technique described by Phil.</p>
+
+<p>If they aren't, you will need to make the <code>xforms:instance</code> data of form 1 persistent before navigating to form 2. Usually, <code>xforms:submission</code>s are used to send data to the persistence layer. You will have to create the following elements:</p>
+
+<ul>
+<li>a <code>xforms:submission</code> element inside the xforms:model of form 1, sending the instance data to a certain xpl pipeline (called xpl 1);</li>
+<li>xpl 1 to write the data to the sql database: at least a sql processor component is needed to build and send the required sql command. you could add a xslt processor if you need to preprocess the instance data.</li>
+<li>xpl 2 to read from the sql database: same as xpl 1, just the other way. Splitting the read operation (xpl 2) from writing to the sql db (xpl 1) has the advantage of higher flexibility, making form 2 more independent from form 1.</li>
+<li>in your form 2, you can initialize the instance using xpl 2. There are <a href="http://wiki.orbeon.com/forms/how-to/logic/load-initial-form-data" rel="nofollow" title="Orbeon Wiki | Initialization">different ways to initialize the <code>xforms:instance</code> described in the Wiki</a>.</li>
+</ul>
+
+<p>Using those components, you can create very flexible workflows.</p>

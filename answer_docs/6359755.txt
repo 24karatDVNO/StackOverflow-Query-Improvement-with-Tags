@@ -1,0 +1,14 @@
+<p>From your question it is not exactly clear if you want to update all rows in the db or just special ids that you read from a file.</p>
+
+<p>In the latter case, try to read chunks from the file and group the ids together. 
+eg. if a file chunk contains the ids 3 4 5 6 7 8 you can optimize the query</p>
+
+<pre><code>update db set field=.... where id between 3 and 8; 
+</code></pre>
+
+<p>(careful if you use varchar keys instead of integers though!)</p>
+
+<p>if the ids are random you might still get a performance boost by using the sql "IN" clause</p>
+
+<pre><code>update db set field=... where id in ('18','49','72','30','187');
+</code></pre>

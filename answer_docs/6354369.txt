@@ -1,0 +1,5 @@
+<p>I believe that you do not close connections, streams or something like this. You mentioned PID file, so I guess you are running on Linux. Linux creates handler every time you get network connection or open file or create process. Number of handlers is limited. Unfortunately I do not remember the shell command by heart but I remember that command that can show you all handlers exists. </p>
+
+<p>So, I'd recommend you to perform the following. I believe that your system updates the details periodically. Let's say every minute. So make the system to do this every second (or 100 times per second if you want). I believe it will stuck faster. Now decrease the period and see that it will continue working after 16 hours you mentioned. If this will be the behavior my assumption about the handlers is correct. So, try to review your code and see that every time you open input/output stream you close it properly into <em>finally</em>. Probably add logging after creating and closing streams. </p>
+
+<p>Good luck!</p>

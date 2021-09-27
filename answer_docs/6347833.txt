@@ -1,0 +1,71 @@
+<p>There are a few different things that you could be asking for here. I don't know which one it is. So I will just try to answer all of them.</p>
+
+<hr>
+
+<p>Is it that you don't know when <code>requestFinished</code> gets called? Did you set the request's delegate like so?</p>
+
+<pre><code>ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+[request setDelegate:self];
+</code></pre>
+
+<p>If you did that, then you should implement the <code>requestFinished:</code> method for whatever it is that <code>self</code> refers to above.</p>
+
+<hr>
+
+<p>Are you not sure how to get the response string in <code>requestFinished:</code>? In that case, the solution is simple:</p>
+
+<pre><code>- (void)requestFinished:(ASIHTTPRequest *)request
+{
+   // Use when fetching text data
+   NSString *responseString = [request responseString];
+
+   // Use when fetching binary data
+   NSData *responseData = [request responseData];
+}
+</code></pre>
+
+<p>i.e. the request's <code>responseString</code> or <code>responseData</code> will give you what you are looking for.</p>
+
+<hr>
+
+<p>Or are you saying that you want to somehow handle the response in <code>submitUserCredentials</code> (maybe because there's a lot of context in this method's local variables)? If so, then your best bet is probably to use <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/00_Introduction.html" rel="nofollow">blocks</a>:</p>
+
+<pre><code>- (IBAction)grabURLInBackground:(id)sender
+{
+   NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
+   __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+   [request setCompletionBlock:^{
+      // Use when fetching text data
+      NSString *responseString = [request responseString];
+
+      // Use when fetching binary data
+      NSData *responseData = [request responseData];
+   }];
+   [request setFailedBlock:^{
+      NSError *error = [request error];
+   }];
+   [request startAsynchronous];
+}
+</code></pre>
+
+<hr>
+
+<p>Or maybe the problem is that you expect ASIHTTPRequest to work in a synchronous manner? In that case, you can just do this:</p>
+
+<pre><code>- (IBAction)grabURL:(id)sender
+{
+  NSURL *url = [NSURL URLWithString:@"http://allseeing-i.com"];
+  ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+  [request startSynchronous];
+  NSError *error = [request error];
+  if (!error) {
+    NSString *response = [request responseString];
+  }
+}
+</code></pre>
+
+<p>But its not recommended that you do this. Doing so will hang the main thread of your application (assuming you make the call in the main thread) which is not a good thing. If this really is the answer you were looking for, then you probably need to read up on event driven programming.</p>
+
+<hr>
+
+<p>Note: All the code examples above were copied from the excellent "<a href="http://allseeing-i.com/ASIHTTPRequest/How-to-use" rel="nofollow">How to use it</a>" documentation page of ASIHTTPRequest.</p>

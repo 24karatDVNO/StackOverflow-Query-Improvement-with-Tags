@@ -1,0 +1,5 @@
+<p>Depends on what you mean by better.  The best solution is to make the object immutable and just copy the references. </p>
+
+<p>An alternative is to generate or write a copy constructor. The copy constructor can use reflections to copy all the fields.  </p>
+
+<p>For the field types you have, you can make the Object Cloneable and use the clone() methods. (Because the fields are primitives or immutable)</p>

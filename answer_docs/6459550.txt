@@ -1,0 +1,20 @@
+<p><a href="https://stackoverflow.com/questions/1700870/how-do-i-do-outerhtml-in-firefox">Firefox doesn't support outerHTML</a>, so you need to <a href="https://stackoverflow.com/questions/1700870/how-do-i-do-outerhtml-in-firefox/3819589#3819589">define a function</a> to help support it:</p>
+
+<pre><code>function outerHTML(node) {
+    return node.outerHTML || (
+        function(n) {
+            var div = document.createElement('div');
+            div.appendChild( n.cloneNode(true) );
+            var h = div.innerHTML;
+            div = null;
+            return h;
+        }
+    )(node);
+}
+</code></pre>
+
+<p>Then, you can use outerHTML:</p>
+
+<pre><code>var x = outerHTML($('#container').get(0));
+$('#save').val(x);
+</code></pre>

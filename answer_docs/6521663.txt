@@ -1,0 +1,10 @@
+<p>As James states in his comment you may want <code>mapply</code>. I don't have your data but this should work:</p>
+
+<pre><code>mapply(
+     function(a, b) LD(genotype(a), genotype(b)),
+     a = df$col3,
+     b = df$col4
+)
+</code></pre>
+
+<p><em>I made it community wiki cause answer is based on, not my, comment.</em></p>

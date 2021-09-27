@@ -1,0 +1,19 @@
+<p>Since this is a ASP.NET MVC application I just created a new action (GetHtml) that returns Html.</p>
+
+<p>I set the src of the iFrame to this new action. Like so:</p>
+
+<pre><code>&lt;iframe id="testFrame" name="testFrame" src ="&lt;%= Url.Action("GetHtml","MyController", new{href = Model.Href}) %&gt;&gt;" width="100%" height="600"&gt;
+    &lt;p&gt;
+        Your browser does not support iframes.
+    &lt;/p&gt;
+&lt;/iframe&gt;
+</code></pre>
+
+<p>Controller:</p>
+
+<pre><code>public ActionResult GetHtml()
+{
+...
+return Content(htmlContent, "text/html");
+}
+</code></pre>

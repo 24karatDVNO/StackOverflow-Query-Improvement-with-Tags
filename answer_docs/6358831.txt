@@ -1,0 +1,13 @@
+<p>My first thought was something much cruder than filtering. Why not look for the big drops followed by long enough stable periods?</p>
+
+<pre><code>span.b &lt;- 20
+threshold.b &lt;- 0.2
+dy.b &lt;- c(rep(NA, span.b), diff(y, lag = span.b))
+span.f &lt;- 10
+threshold.f &lt;- 0.05
+dy.f &lt;- c(diff(y, lag = span.f), rep(NA, span.f))
+down &lt;- which(dy.b &lt; -1 * threshold.b &amp; abs(dy.f) &lt; threshold.f)
+abline(v = down)
+</code></pre>
+
+<p>The plot shows that it's not perfect, but it doesn't discard the outliers (I guess it depends on your take on the data). </p>

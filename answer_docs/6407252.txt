@@ -1,0 +1,7 @@
+<p>As an alternative to starting a new process elevated, you can create a new COM object elevated.</p>
+
+<hr>
+
+<p>Some installers use an approach similar to what you're trying to do. An example to this would be <a href="http://www.foobar2000.org/" rel="nofollow">foobar2000 installer</a>. At the first screen it asks where it would a standard <em>(all users)</em> or portable setup. If standard is selected, it prompts for elevation and relaunches itself.</p>
+
+<p>So your simplest bet would be to collect data from user, then relaunch itself or another executable as Administrator to do the actual job passing it parameters with user's selections.</p>

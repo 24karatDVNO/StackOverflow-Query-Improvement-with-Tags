@@ -1,0 +1,21 @@
+<p>//Activity
+String url2="http://www.gmail.com";</p>
+
+<hr>
+
+<p>wv2=(WebView)findViewById(R.id.w2);
+wv2.setWebViewClient(new HelloWebViewClient());
+   wv2.loadUrl((String)url2);</p>
+
+<hr>
+
+<pre><code>    private class HelloWebViewClient extends WebViewClient 
+    {    
+        @Override    
+        public boolean shouldOverrideUrlLoading(WebView view, String url) 
+        {        
+            view.loadUrl(url); 
+            return true;  
+            }
+        }
+</code></pre>

@@ -1,0 +1,16 @@
+<p>You are creating an instance of <code>FirstViewController</code>, setting the value of <code>array</code> and then releasing that instance which will deallocate the object. So the entire effort is wasted. Since this is in the <code>SecondViewController</code>, I am assuming the <code>FirstViewController</code> exists by this time so you shouldn't be setting the <code>array</code> of a new instance of <code>FirstViewController</code> but try to pass it to the existing instance. Since you already have a property declared to share across the view controllers, we will make use of it. </p>
+
+<p>Do this when instantiating the <code>SecondViewController</code> instance in <code>FirstViewController</code>,</p>
+
+<pre><code>SecondViewController * viewController = [[SecondViewController alloc] init];
+
+self.array = [NSMutableArray array];
+viewController.arraySecond = self.array;
+
+[self.navigationController pushViewController:viewController animated:YES];
+[viewController release];
+</code></pre>
+
+<p>Now the array is shared across the view controllers. Do not initialize the <code>arraySecond</code> property elsewhere so that both of them keep pointing to the same object and the changes your make to <code>arraySecond</code> are visible to the <code>FirstViewController</code> instance. After coming back to the <code>FirstViewController</code> instance, access the values you've added using <code>array</code> property.</p>
+
+<p>Alternatives to object sharing are delegate mechanism and notifications. You can look into them too. For now, this should work.</p>

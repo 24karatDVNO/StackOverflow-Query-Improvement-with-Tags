@@ -1,0 +1,7 @@
+<p>You can use cursor.fetchall() instead of cursor.fetchone() to retrieve all rows.
+And then extract nessesary field:</p>
+
+<pre>
+raw_items = cursor.fetchall()
+items = [ item.field for item in raw_items ]
+</pre>

@@ -1,0 +1,7 @@
+<p>If you want to persist the basket if, for example, the customer leaves half way through and comes back later (think of Amazon; I have stuff that's been in my basket for months, years even), then you have to store the basket in the database and the user has to be logged in for this to happen.</p>
+
+<p>If that's the case, then you could simply retrieve the basket based on the currently logged in user's id (assuming a user can have only one active basket at once). e.g. Here is Dave, get me Dave's basket from the db please. Oh he hasn't got one, create a new one. That kind of thing.</p>
+
+<p>If you want to be able to add stuff to a basket anonymously and then to turn this into an order if the user logs in, you could store the basket in the session and then, after they log in, retrieve it and store it in the database as mentioned above.</p>
+
+<p>You could also do this anyway, even if the user is logged in, but of course you can't then maintain the basket if they abandon half way through.</p>

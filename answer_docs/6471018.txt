@@ -1,0 +1,10 @@
+<pre><code>select fName
+from friends
+where uid = FIRST_USER_ID
+  and exists (
+    select 1
+    from friends sfriends
+    where sfriends.fid = friends.fid
+      and sfriends.uid = SECOND_USER_ID
+);
+</code></pre>

@@ -1,0 +1,4 @@
+<p>It was an image path problem. The problem was that layout was being applied to different urls: e.g. <code>example.com/</code> / <code>example.com/admin.php</code>, so the relative path of <code>image/example.png</code> did not work for all the cases. Maerlyn mentioned in the comments the use of image_path() helper function. With that the problem was solved.</p>
+
+<p>TL;DR:
+Use image_path() in the layout (doesn't hurt to use in templates as well, i suppose)</p>

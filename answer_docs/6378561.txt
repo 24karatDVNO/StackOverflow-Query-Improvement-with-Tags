@@ -1,0 +1,6 @@
+<p>It's how you're passing the parameter.  <code>test(myparam)</code> has type <code>String</code>, and you need to pass <em>a function</em> which returns a <code>String</code>.  You can make one with very little effort using a lambda expression:</p>
+
+<pre><code>var x = Get&lt;string&gt;("mykey", () =&gt; test(myparam));
+</code></pre>
+
+<p>The lambda expression <code>() =&gt; foo</code> creates a function which, when called, executes and returns <code>foo</code>.</p>

@@ -1,0 +1,7 @@
+<p>Ok for those out there interested in a working solution.  </p>
+
+<p>I first removed the many to many relationship between the two models Task and Job.  I have learned that many to many relationships in MVC can get complicated for complex Datasets.  So I recommend avoiding this relationship whenever possible.  I then created a partial view with tasks that could dynamically be loaded into the Job/Edit controller.  I passed to the view a job.Tasks.OrderBy(m = m.order) as recommended above by @William Bonar.</p>
+
+<p>As tasks are added, I increment the order attribute of the last task by 1 and add to the Tasks list.  I then provide a jquery/ajax interface for users to move the tasks up and down in the list, which uses some pretty simple logic to adjust order among tasks.</p>
+
+<p>Hope this helps some people out. </p>

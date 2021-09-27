@@ -1,0 +1,32 @@
+<p>You can manipulate the arrays fairly easily using Matlab, no loops needed. I'll use a smaller array to make it easier to see what's going on. I'll also use Octave, but it makes no difference here. I'll also assume the matrix is already available in a variable (use <code>load</code> to do this, it's much easier than approach in the question).</p>
+
+<p>First, consider a matrix <code>A</code>:</p>
+
+<pre><code>octave-3.0.0:23&gt; A
+A =
+
+    1    7
+    2    8
+    3    9
+    4   10
+    5   11
+    6   12
+</code></pre>
+
+<p>Combining the first three rows can be done with <code>reshape</code>. Since Matlab works column-wise, you'll actually need to apply <code>reshape</code> to the transpose of <code>A</code>:</p>
+
+<pre><code>octave-3.0.0:24&gt; B = reshape(A', 6, 2)'
+B =
+
+    1    7    2    8    3    9
+    4   10    5   11    6   12
+</code></pre>
+
+<p>To reposition columns, just use Matlab's nice indexing abilities. Give a vector with the desired order as the column index, taking all rows by giving a colon <code>:</code> as the row index:</p>
+
+<pre><code>octave-3.0.0:25&gt; B(:,[5,6,1:4])
+ans =
+
+    3    9    1    7    2    8
+    6   12    4   10    5   11
+</code></pre>

@@ -1,0 +1,6 @@
+<p>If <code>Model</code> in your code is the view's Model and not an enumerator variable (and if your content is purely static) you could try with a different view for each type of RowKey, and then in your controller do:</p>
+
+<pre><code>Return View("ABC");
+</code></pre>
+
+<p>Then in your Views folder you would have ABC.cshtml, DEF.cshtml, XYZ.cshtml, etc. All text will still be in the view (not really a problem there), but you will get rid of all those @if() blocks.</p>

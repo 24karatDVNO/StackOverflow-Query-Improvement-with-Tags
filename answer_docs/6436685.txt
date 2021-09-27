@@ -1,0 +1,5 @@
+<p>It is possible to have a kind of memory leak in .NET. </p>
+
+<p>If you have an object "A" that registers to an event on another object "B", then "B" gets an reference to "A" and will continue to have so if you do not unregister the event when "A" gets out of scope. In this case "A" cannot be garbage collected as there is still an active reference. It will stick around until "B" is garbage collected.</p>
+
+<p>If you have a situation where "A" objects are created and goes out of scope continually you will get more and more "A"s in memory. </p>

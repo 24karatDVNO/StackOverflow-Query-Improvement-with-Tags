@@ -1,0 +1,15 @@
+<blockquote>
+  <p>Were my answers correct?</p>
+</blockquote>
+
+<p>I think there are some problems.</p>
+
+<p>First off, I'm assuming that <code>random()</code> returns a floating point value - otherwise to generate any useful distribution of a larger range of numbers using <code>random(0,1)</code> would require repeated calls to generate a pool of bits to work with.</p>
+
+<p>I'm also going to assume C/C++ is the intended platform, since the question is tagged as such.</p>
+
+<p>Given these assumptions, one problem with your answers is that C/C++ do not allow the use of the <code>%</code> operator on floating point types.</p>
+
+<p>But even if we imagine that the <code>%</code> operator was replaced with a function that performed a modulo operation with floating point arguments in a reasonable way, there are still some problems.  In your initial answer, if <code>b</code> (or the uninitialized <code>*z</code> allocated in your second attempt - I'm assuming this is a kind of bizarre way to get an arbitrary value, or is something else intended?) is zero (say the range given for <code>a</code> and <code>b</code> is <code>(-5, 0)</code>), then your result will be decidedly non-uniform.  The result would always be <code>b</code>.</p>
+
+<p>Finally, I'm certainly no statistician, but in your final answer (to generate <code>random(1,7)</code> from <code>random(1.5)</code>), I'm pretty sure that <code>A+B+C</code> would be non-uniform and would therefore introduce a bias in the result.</p>

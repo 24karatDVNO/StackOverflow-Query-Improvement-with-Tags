@@ -1,0 +1,19 @@
+<p>You can set all your secret constants in a config/initializers/01_secrets.rb file. Here are a few things to think about: </p>
+
+<ul>
+<li><p>The 01 prefix is to make sure that
+the secret constants are set before other
+initializers that make use of these
+constants are loaded. </p></li>
+<li><p>The 01_secrets.rb file should not be
+checked in to your SCM.</p></li>
+<li><p>The server(s) that store this file
+must be properly secured and the file
+itself should have maximum security.</p></li>
+</ul>
+
+<p>E.g.</p>
+
+<pre><code># config/initilizers/01_secret.rb
+ENV['ENCRYPTION_KEY'] = "your_key"
+</code></pre>

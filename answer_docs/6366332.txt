@@ -1,0 +1,1 @@
+<p>Unless you need near real time access to the file from another process, I would probably write each log line to a <code>collections.deque</code> of a fixed size.  You could implement a method that would sync the items (rows) from the <code>collections.deque</code> to lines in a log file on demand.</p>

@@ -1,0 +1,14 @@
+<p>If you want to store integers in an array it has to be a C array:</p>
+
+<pre><code>#define C_ARRAY_MAX_SIZE 10
+int cTab[C_ARRAY_MAX_SIZE];
+int i=0;
+
+for (NSNumber* n in yourMutableArray) {
+
+
+ cTab[i] = [n intValue];
+    i++;
+
+}
+</code></pre>

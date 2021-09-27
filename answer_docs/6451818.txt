@@ -1,0 +1,35 @@
+<p>A non static block will execute when the class is initialized. A static block will only be executed once.</p>
+
+<p>The constructor will execute when the object is instantiated.</p>
+
+<p>A static block will execute when the object is instantiated.</p>
+
+<p>That will depend on your language. </p>
+
+<p>For Java, the static block will always be executed first, followed by the non static block and then by the constructor.</p>
+
+<pre><code>public class Q20 {    
+static int i;    
+int j;      
+static  {       
+System.out.println("static block");       
+}     
+{   
+System.out.println("non static block");   
+}     
+
+public Q20()  {       
+System.out.println("constructor");    
+}     
+
+public static void main(String args[])  {       
+Q20 q = new Q20();          
+}  
+}  
+</code></pre>
+
+<p>static block</p>
+
+<p>non static block</p>
+
+<p>constructor</p>

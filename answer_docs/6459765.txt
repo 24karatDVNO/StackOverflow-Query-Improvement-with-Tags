@@ -1,0 +1,7 @@
+<p>I don't think you can do that...This may be what you need to do</p>
+
+<pre><code>SELECT * 
+FROM family_watchdog_offender 
+WHERE name  LIKE CONCAT(firstname, '%') 
+ AND name LIKE CONCAT('%', lastname);
+</code></pre>

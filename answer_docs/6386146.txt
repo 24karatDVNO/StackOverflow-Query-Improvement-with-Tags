@@ -1,0 +1,31 @@
+<p>One way you could fix this is by adding a container <code>span</code> for the <code>label</code> and <code>img</code> like so:</p>
+
+<pre><code>&lt;textarea cols=70 rows="6"&gt;&lt;/textarea&gt;
+&lt;span id="wrap"&gt;
+    &lt;label for="test"&gt;Error!&lt;/label&gt;
+    &lt;img src="plus-icon_16.png"/&gt;
+&lt;/span&gt;
+</code></pre>
+
+<p>You can then float this to the right of the textarea, and then absolutely position the two elements within it.</p>
+
+<pre><code>#wrap {
+    display:inline-block;
+    vertical-align:top;
+    position:relative; 
+}
+
+#wrap label {
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#wrap img {
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+</code></pre>
+
+<p><a href="http://jsfiddle.net/dtdN9/3/" rel="nofollow">http://jsfiddle.net/dtdN9/3/</a></p>

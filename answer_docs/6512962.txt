@@ -1,0 +1,5 @@
+<p>Try</p>
+
+<pre><code>ObservableCollection&lt;MyEntity&gt; entities = ...
+ObservableCollection&lt;MyEntityInterface&gt; iEntities = new ObservableCollection(entities.Cast&lt;MyEntityInterface&gt;());
+</code></pre>

@@ -1,0 +1,8 @@
+<p>How about something like:</p>
+
+<pre><code>var notes = thatEmployees
+    .Join(thisEmployees,
+          ta =&gt; ta.EmployeeNumber,
+          ti =&gt; ti.EmployeeNumber,
+          (ta, ti) =&gt; ta.Notes)
+</code></pre>

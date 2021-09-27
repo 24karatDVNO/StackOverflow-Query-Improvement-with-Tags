@@ -1,0 +1,30 @@
+<p>this is what I needed. I needed to set the read bit with a 0x80 mask.</p>
+
+<pre><code>/**
+ * This writes to a register with the data passed to the address passed
+ * @param unsigned char cReg - the address of the register you wish to write to
+ * @param unsigned char cData - the data you wish to write to the register
+ */
+unsigned char WriteByteSPI(unsigned char cReg, unsigned char cData){
+   set_spics();
+   /* Start transmission send register */
+   SPDR = cReg;
+   /* Wait for transmission complete */
+   while(!(SPSR &amp; (1&lt;&lt;SPIF)))
+       { /* NOOP */ }
+   SPDR = cData;
+   /* Wait for transmission complete */
+   while(!(SPSR &amp; (1&lt;&lt;SPIF)))
+      { /* NOOP */ }
+   clear_spics();
+   return SPDR;
+   }
+
+/**
+ * This adds the read bit to the address and passes it to the Write command
+ * @param cReg - unsigned char the register you wish to read
+ */
+unsigned char ReadByteSPI(unsigned char cReg){
+    return WriteByteSPI( (cReg | ADXL345_SPI_READ),0xAA);
+}
+</code></pre>

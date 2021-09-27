@@ -1,0 +1,11 @@
+<p>I found a better fix by the following:</p>
+
+<pre><code>...
+setCentralWidget( m_view );
+m_view-&gt;show();
+activateWindow();
+raise();
+m_view-&gt;setFocus();
+</code></pre>
+
+<p>I noticed the margins fail to shrink when the new level view being shown has the same x dimensions as the previous, but a smaller y dimension (or vice versa), so apparently QMainWindow only adjusts its size to its child contents when both the width and height of the child widget changes, or the MainWindow receives a move event (at least on GNOME 2.x). Calling activateWindow() and raise() on the MainWindow seems to do the trick, and then I can return focus to the view.</p>

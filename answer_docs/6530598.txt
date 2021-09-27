@@ -1,0 +1,3 @@
+<p>This won't work. PHP is executed on the server, and JS on the client. That means that the php is running before the JS is parsed. I suggest you look at Ajax if you want to run PHP from javascript (specifically the jQuery library and its ".get()" function).</p>
+
+<p>What's happening is that the PHP is parsed, and doesn't see any JS, so it runs as normal, and sets the session to trigger, and then trigger active. Then javascript comes along on the client, and the client doesn't see any PHP code,so doesn't run it.</p>

@@ -1,0 +1,5 @@
+<p>To debug this, examine the CommandText on the SqlCommand object. Before reading further, you should try this.</p>
+
+<p>The issue comes with adding the single quotes around a string that is parameterized. Remove the single quotes and life is beautiful. :-)</p>
+
+<p>Oh, and your conn is an object and needs a comma, not a +.</p>

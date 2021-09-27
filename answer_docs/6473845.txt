@@ -1,0 +1,18 @@
+<p>Just to illustrate my comment on CygnusX1's answer, you could do it like:</p>
+
+<pre><code>class MyFunction {
+  std::vector&lt;int&gt; params;
+  public:
+  MyFunction() { (*this)(); }
+  MyFunction(int eatMe) { (*this)(eatMe); }
+  MyFunction&amp; operator()(int eatMe) {
+    params.push_back(eatMe);
+    return *this;
+  }
+  void operator()() { 
+    // use params to do something interesting
+  }
+}
+
+MyFunction(2)(3)(5)(7)();
+</code></pre>

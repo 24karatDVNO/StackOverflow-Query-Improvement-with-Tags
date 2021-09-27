@@ -1,0 +1,14 @@
+<p>The conditions in the <code>where</code> clause are always enforced as written, so you either need to added the null-test logic or move the filter conditions for the outer join to a sub-query.  Personally, I'd rewrite your query like so:</p>
+
+<pre><code>SELECT   DISTINCT (watcheditems.id)
+  FROM              globalitems
+         INNER JOIN watcheditems
+                 ON watcheditems.aid = globalitems.aid
+         LEFT JOIN  (SELECT   bidgroupid
+                       FROM   bidgroups
+                      WHERE   bidgroups.bidgroupqty &gt; 0) bg
+                 ON bg.bidgroupid = watcheditems.bidgroupid
+ WHERE   watcheditems.processrunning = 0
+</code></pre>
+
+<p>The other change I made was to move your inner join into the <code>from</code> clause. Generally, it's a better practice to use the SQL99 standard of putting the joins in the <code>from</code> clause, but whichever method you choose to use, you should be consistent.  Putting joins in both the <code>where</code> clause and the <code>from</code> clause is just going to lead to confusion.</p>

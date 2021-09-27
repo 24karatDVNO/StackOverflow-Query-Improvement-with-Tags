@@ -1,0 +1,27 @@
+<p>I've done something similar when receiving data from an iOS device.  But, if I understand what you want and what your model(s) look like, to get nested attributes to work you don't want it to look like:</p>
+
+<pre><code>{ "photos_attributes" =&gt; { "0" =&gt; &lt;image1&gt;, "1" =&gt; &lt;image2&gt;, ... }
+</code></pre>
+
+<p>You want it to look like:</p>
+
+<pre><code>{ "photos_attributes" =&gt; [ &lt;image1&gt;, &lt;image2&gt;, ... ] }
+</code></pre>
+
+<p>And to do that all you need to do is:</p>
+
+<pre><code>params["gallery"]["photos_attributes"] = params["gallery"]["photos_attributes"]["0"]["image"]
+</code></pre>
+
+<p>Now, if I've misunderstood what you need, to get what you've asked for what you have might work (I don't use much <code>reduce</code> aka <code>inject</code>) or you could use tap:</p>
+
+<pre><code>i = 0
+params["gallery"]["photos_attributes"] = {}.tap do |hash|
+  params["gallery"]["photos_attributes"]["0"]["image"].each do |image|
+    hash[i.to_s] = image
+    i = i + 1
+  end
+end
+</code></pre>
+
+<p>Not a whole lot better IMO.</p>

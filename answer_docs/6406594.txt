@@ -1,0 +1,8 @@
+<pre><code>union myunion
+{ char ch[4]; };
+...
+union myunion u;
+void *ptr = (void*)&amp;u;
+</code></pre>
+
+<p>This code will place the address of the union variable <code>u</code> into <code>ptr</code>.</p>

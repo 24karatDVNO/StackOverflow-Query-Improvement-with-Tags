@@ -1,0 +1,33 @@
+<p>In .NET, Regex.Match matches anywhere in the string, so you don't need the any-characters (.*) prefix on your pattern. So, to check for ".NET", it would simply be:</p>
+
+<pre><code>Regex regexName = new Regex(@"\.NET", RegexOptions.IgnoreCase);
+// IsMatch returns true/false, Match returns a Match object
+bool nameMatches = regexName.IsMatch(name);
+</code></pre>
+
+<p>Your patterns for Programming and Hardware would just be</p>
+
+<pre><code>new Regex(@"Programming", RegexOptions.IgnoreCase) // Or leave out IgnoreCase if you're case-sensitive
+new Regex(@"Hardware")
+</code></pre>
+
+<p>If you have a list of Name patterns and a list of type patterns, you could do something similar to this:</p>
+
+<pre><code>bool nameIsMatch = false;
+bool typeIsMatch = false;
+
+foreach (string namePattern in namePatterns)
+{
+    nameIsMatch = nameIsMatch || Regex.IsMatch(nameString, namePattern);
+}
+
+foreach (string typePattern in typePatterns)
+{
+    typeIsMatch = typeIsMatch || Regex.IsMatch(typeString, typePattern);
+}
+
+if (nameIsMatch &amp;&amp; typeIsMatch)
+{
+    // Whatever you want to do
+}
+</code></pre>

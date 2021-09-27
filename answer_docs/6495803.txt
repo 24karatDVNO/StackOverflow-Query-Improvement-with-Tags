@@ -1,0 +1,18 @@
+<p>Whatever logging method you use, do something like this.(Hand typed may not compile)</p>
+
+<pre><code>try
+{
+  DoignStuff();
+}
+catch( Exception ex)
+{
+Trace.WriteLine( "Exception in &lt;Page Name&gt;  while calling DoingStuff() Ex:"+ ex.ToString() );
+}
+</code></pre>
+
+<p>It will start with the page name &amp; method (which is redundant, but makes life easier)
+then it will convert the EX to a string which shows call stack and all kinds fo other good stuff and put it in the log file</p>
+
+<p>Note: you have to Type the name of the page in the place of <code>&lt;Page Name&gt;</code> .</p>
+
+<p>Log4Net and Elmah are great to make life easier too.</p>

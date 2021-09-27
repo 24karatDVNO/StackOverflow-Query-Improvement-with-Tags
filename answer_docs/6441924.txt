@@ -1,0 +1,3 @@
+<p>Go through the database. Assuming it is properly indexed, it will be orders of magnitude faster than scanning the filesystem for the folders you want.</p>
+
+<p>Find the records you're interested in via an SQL query, and then locate the corresponding files on disk. This is not only faster, but serves as a foundation for more additional features: You'll be able search and sort records much more easily than implementing similar features yourself on top of a linear search of the filesystem.</p>

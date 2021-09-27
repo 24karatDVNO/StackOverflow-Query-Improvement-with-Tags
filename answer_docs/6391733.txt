@@ -1,0 +1,8 @@
+<p>Since div1 is already a jQuery object, you can just do </p>
+
+<pre><code>div1.live('click', function() {
+   console.log('one of those divs was clicked');
+});
+</code></pre>
+
+<p>without wrapping is in the jQuery selector $(div1)</p>

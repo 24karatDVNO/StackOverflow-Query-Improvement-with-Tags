@@ -1,0 +1,8 @@
+<ul>
+<li>A property on the controller, just like the text is set</li>
+<li>In a method, or the initializer</li>
+<li>through a notification (NSNotificationCenter). This is a bit more advanced.</li>
+<li>Through delegation, where the first controller is a datasource delegate on the Generated Controller. This allows the second controller to get what it needs, whenever it wants. </li>
+</ul>
+
+<p>Which method to use depends on how the controllers are created, when the image can change, and how many different pieces of data the second controller needs - one or two bits, properties work fine. More than that, I tend to use delegation. </p>

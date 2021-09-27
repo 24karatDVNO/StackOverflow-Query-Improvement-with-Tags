@@ -1,0 +1,7 @@
+<p>All the solutions are equivalent to doing a </p>
+
+<pre><code>hadoop fs -cat [dir]/* &gt; tmp_local_file  
+hadoop fs -copyFromLocal tmp_local_file 
+</code></pre>
+
+<p>it only means that the local m/c I/O is on the critical path of data transfer.</p>

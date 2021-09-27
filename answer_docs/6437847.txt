@@ -1,0 +1,17 @@
+<blockquote>
+  <p>Would the browsers be supposed to maintain the codecs without any external library? Would the codecs be embedded?</p>
+</blockquote>
+
+<p>It’s up to the browsers what libraries they use, but yup, they’re expected to bundle whatever libraries or codecs they need to handle audio and video so that the user doesn’t have to install anything (like with images).</p>
+
+<p>They’re not required to support any possible video format that authors might want to use though. (Just like they’re not required to display PhotoShop image files.)</p>
+
+<p>There was a lot of discussion around choosing one video format for all browsers to implement (see <a href="http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2009-June/020620.html" rel="nofollow">http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2009-June/020620.html</a>), but they couldn’t agree on one. (Standards aren‘t perfect.) Hence the HTML5 spec doesn’t mandate a particular format. But all browsers now support at least one video format natively, i.e. without the need for third-party plugins.</p>
+
+<blockquote>
+  <p>is the main reason to avoid closed solutions like Flash?</p>
+</blockquote>
+
+<p>Possibly, although Opera and Microsoft are involved in the HTML5 standardisation effort, and their entire browsers are closed source. Bear in mind that web standards get made mostly by companies that make browsers — it’s not like there’s a completely independent standards body  with a bias towards open-source that invents HTML5 and tells browser-makers what to do.</p>
+
+<p>I believe Firefox refused to support H.264 because it’s not open-source, but equally Apple and Microsoft refused to support Ogg Theora because they thought the patent situation around it was too uncertain.</p>

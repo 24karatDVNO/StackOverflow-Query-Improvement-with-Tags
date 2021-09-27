@@ -1,0 +1,8 @@
+<pre><code>DELETE FROM tblSpecialTable
+  WHERE specialid NOT IN 
+     (SELECT specialid FROM tblSpecialTable
+                 GROUP BY specialid 
+                 HAVING COUNT(table.date) &gt; 1 
+                 ORDER BY date 
+                 LIMIT COUNT(table.date) - 1 )
+</code></pre>

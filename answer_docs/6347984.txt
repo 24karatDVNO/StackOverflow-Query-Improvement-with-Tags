@@ -1,0 +1,12 @@
+<p>I think you would need to check the $_SERVER['HTTP_REFERRER'] to see where they came from. Although, some browsers do not have the referrer, and this can't be reliable.</p>
+
+<pre><code>$url = $_SERVER['HTTP_REFERRER'];
+
+if ($url = www.url1.com){
+
+print(img src="images/url1.png )
+
+}
+</code></pre>
+
+<p>EDIT: HTTP_HOST. (from guy below me)</p>

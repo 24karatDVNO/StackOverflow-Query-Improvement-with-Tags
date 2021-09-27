@@ -1,0 +1,51 @@
+<p>Being that you have an inkex on (id,effdt) I think you have already described the most efficient way of querying your schema.  At least, the method you describe is the way I do it...</p>
+
+<pre><code>SELECT
+  *
+FROM
+  master
+INNER JOIN
+  child1
+    ON child1.id = master.id
+INNER JOIN
+  child2
+    ON child2.id = master.id
+WHERE
+      master.effdt = (SELECT TOP 1 effdt FROM master AS lookup WHERE id = master.id)
+  AND child1.effdt = (SELECT TOP 1 effdt FROM child1 AS lookup WHERE id = child1.id)
+  AND child2.effdt = (SELECT TOP 1 effdt FROM child2 AS lookup WHERE id = child2.id)
+</code></pre>
+
+<p>Resolving the different sub-queries (I use TOP 1, MAX() also works) then becomes an index lookup.</p>
+
+<p>There is an alternative, though I don't recall there being any significant performance benefit...</p>
+
+<pre><code>SELECT
+  *
+FROM
+  (SELECT ROW_NUMBER() OVER (PARTITION BY id ORDER BY effdt), * FROM master) AS master
+INNER JOIN
+  (SELECT ROW_NUMBER() OVER (PARTITION BY id ORDER BY effdt), * FROM child1) AS child1
+    ON child1.id = master.id
+INNER JOIN
+  (SELECT ROW_NUMBER() OVER (PARTITION BY id ORDER BY effdt), * FROM child2) AS child2
+    ON child2.id = master.id
+WHERE
+      master.seq_id = 1
+  AND child1.seq_id = 1
+  AND child2.seq_id = 1
+</code></pre>
+
+<p>Additionally, there is the CROSS APPLY option as mentioned by Maziar...</p>
+
+<pre><code>SELECT
+  *
+FROM
+  master
+CROSS APPLY
+  (SELECT TOP 1 * FROM child1 WHERE id = master.id ORDER BY effdt DESC) AS child1
+CROSS APPLY
+  (SELECT TOP 1 * FROM child2 WHERE id = master.id ORDER BY effdt DESC) AS child2
+WHERE
+  master.effdt = (SELECT TOP 1 effdt FROM master AS lookup WHERE id = master.id)
+</code></pre>

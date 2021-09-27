@@ -1,0 +1,22 @@
+<p>I think you have the wrong approach about this,</p>
+
+<p>You should just use cloning and you will be fine...</p>
+
+<p><strong>HTML</strong></p>
+
+<pre><code>&lt;div class="holder"&gt;Replace Me&lt;/div&gt;
+&lt;div&gt;
+    &lt;div class="car"&gt;&lt;img src="img1" /&gt;&lt;/div&gt;
+    &lt;div class="car"&gt;&lt;img src="img2" /&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><strong>JS</strong></p>
+
+<pre><code>$('.car').click(function(){//when you click the .car div or &lt;img/&gt;
+    var get_car =   $(this).clone();//copy .car and clone it and it's children 
+    $('.holder').html('').append(get_car);//put the clone to the holder div...
+});
+</code></pre>
+
+<p>I think this is what you should be doing, simple and elegant... do not understand why you complicate as much :)</p>

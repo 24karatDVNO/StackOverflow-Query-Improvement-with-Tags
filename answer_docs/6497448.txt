@@ -1,0 +1,16 @@
+<p>You just need to use settimeout to delay the function from firing, and also make sure that if they hover away the timeout is cleared. This will do a 1000ms timeout.</p>
+
+<pre><code>$(document).ready(function(){                   
+    $("#nav ul ").css({display: "none"}); 
+    var onHoverTimeoutFunction = null;
+    $("#nav li").hover(
+        function()
+            {
+                onHoverTimeoutFunction = setTimeout(function() {$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideToggle();},1000);
+            },
+        function(){
+          clearTimeout(onHoverTimeoutFunction);
+          $(this).find('ul:first').css({visibility: "hidden"});
+        }
+);
+</code></pre>

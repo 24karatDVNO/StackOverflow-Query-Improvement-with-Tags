@@ -1,0 +1,7 @@
+<blockquote>
+  <p>..compile some source code using a specific JDK version.</p>
+</blockquote>
+
+<p>Use the <a href="http://download.oracle.com/javase/6/docs/api/javax/tools/JavaCompiler.html" rel="nofollow">JavaCompiler</a> (in the latest JDK the user can lay their hands on) with appropriate options for <code>-source</code>, <code>-target</code> <strong>&amp; <code>-bootclasspath</code></strong>.  The last two are part of the <a href="http://download.oracle.com/javase/6/docs/technotes/tools/windows/javac.html#crosscomp-options" rel="nofollow">Cross-Compilation Options</a> of <code>javac</code>.</p>
+
+<p>As to finding the JDK, pop a <code>JFileChooser</code> with the path of the current JRE as the default directory.  If the user cannot navigate from there to a JDK, it is doubtful they should be writing code.</p>

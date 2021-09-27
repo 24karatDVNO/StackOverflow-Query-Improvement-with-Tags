@@ -1,0 +1,24 @@
+<p>Seems that when calling</p>
+
+<pre><code>Expression.PropertyOrField(param, col.ToString())
+</code></pre>
+
+<p>the variable <code>col</code> contains "entidadeFinanceira.Nome". You may reuse all the splitting of <code>col</code> you did above and do something like:</p>
+
+<pre><code>Expression property = param;
+foreach(var pName in propName) { 
+    property = Expression.PropertyOrField(property, pName);
+}
+</code></pre>
+
+<p>Now the expression <code>property</code> should be correct and you can use it to build the <code>body</code> expression:</p>
+
+<pre><code>var body = Expression.Equal(
+    property, 
+    fixedItem, 
+    false, 
+    Type
+        .GetType("GAcordos.Helpers.Comparators")
+        .GetMethod(oper, new Type[] { propType, propType })
+    );
+</code></pre>

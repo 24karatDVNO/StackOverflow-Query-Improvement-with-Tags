@@ -1,0 +1,3 @@
+<p>Well i think any of the prepackage Dojo themes for Dojo Grid look pretty professional. Are you not using the Grid?</p>
+
+<p>As far as export CSV should be <strong>really</strong> easy. Just take the columns they have selected and loop over the table data doing something like <code>fputcsv($handle, array_diff_key($row, $selected));</code> and then send the file across for download. You could also export to a an xls (or xlsx) if you use something like <a href="http://phpexcel.codeplex.com/" rel="nofollow">phpexcel</a>.</p>

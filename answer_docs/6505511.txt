@@ -1,0 +1,10 @@
+<pre><code>SELECT 
+      u.username, 
+      f.fid 
+FROM 
+      friends f, 
+      users u 
+WHERE 
+      f.uid = 12 and 
+      u.uid = f.fid
+</code></pre>

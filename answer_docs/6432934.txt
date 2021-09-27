@@ -1,0 +1,20 @@
+<p>It looks like you are saving some object which has this (anonymous) ActionListener attached, or somehow references an object which in turn references this ActionListener. The ActionListener, in turn references the <code>fc</code> object, which is a <code>JFileChooser</code>. The JFileChooser itself knows its UI object (which does all the work such that the file chooser fits in your system), and this one is not serializable.</p>
+
+<p>There is no point in serializing a JFileChooser. The only interesting data it would contain are the file or directory name, which anyway could be unusable on another system.</p>
+
+<p>An easy solution would be moving the <code>fc</code> inside the actionPerformed method, and initialize it there (creating a new JFileChooser).</p>
+
+<p>But you really want to have a look why your ActionListener (or the object it is attached to) is serialized - this sometimes could be useful, but most probably you don't want your GUI to be serialized at all, only the data. To have some insight, change </p>
+
+<pre><code>catch (IOException e){l2.setText(e.toString());}
+</code></pre>
+
+<p>to</p>
+
+<pre><code>catch (IOException e){
+    l2.setText(e.toString());
+    e.printStackTrace();
+}
+</code></pre>
+
+<p>and look at the stack trace from standard output. It should show you a hint which objects are tried to serialize. It could be that your Circles have a reference to some object which they shouldn't, really. (Or a reference which should be transient. Or that they are objects of an inner class when they should not.)</p>

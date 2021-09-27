@@ -1,0 +1,7 @@
+<p>"I just need to validate the passwords whenever a profile is edited / created"</p>
+
+<p>Use data annotations combined with IsValid on the ViewModel to check for failures. As far as mapping a Model to a View Model just use a decorator pattern.</p>
+
+<p>Use System.ComponentModel.DataAnnotations (they even have a regular expression validator you can use)
+Once passwords are verified against a policy, convert them to an MD5 hash and store that, not the password value
+If all else fails there is nothing wrong with creating a separate UserValidation Class and share logic between the View Model and Model e.g. they both call the same methods to determine validity (reducing code).</p>

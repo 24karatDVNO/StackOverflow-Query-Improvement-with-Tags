@@ -1,0 +1,9 @@
+<p>All of your <code>echo</code> statements in the <code>TopNavigation()</code> function are still incorrectly quoted.  Instead of <code>\"n;</code>, they should end with <code>\n";</code></p>
+
+<pre><code>// Wrong
+echo "&lt;p&gt;Here is a little about me. I am a mother of twin girls who are 9 &lt;/p&gt;\"n;
+
+// Should be:
+echo "&lt;p&gt;Here is a little about me. I am a mother of twin girls who are 9 &lt;/p&gt;\n";
+                                                                          ---^^^^
+</code></pre>

@@ -1,0 +1,6 @@
+<p>You can programatically zoom the UIWebview by grabbing its UIScrollView and telling that to zoom.  You can access the scrollview this way: </p>
+
+<pre><code>scrollView = [webView.subviews objectAtIndex:0];
+</code></pre>
+
+<p>After that you just manipulate the scrollview like you normally would. I just did this last week, and I have the zooming working correctly but it currently just zooms to the top left corner, so I'm still trying to figure out how to do centerpoint part of it. If you need any more help with the zooming let me know and I can try to explain it more.</p>

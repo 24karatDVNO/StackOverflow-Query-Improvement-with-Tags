@@ -1,0 +1,67 @@
+<p>I use a slight variation of the solution presented by @dave thieben. Or rather, depending on the circumstances, I use two different approaches.</p>
+
+<p>The first approach is basically the same as Dave's but without creating a separate provider.</p>
+
+<pre><code>var kernel = new StandardKernel();
+kernel.Bind&lt;FooBar&gt;().ToSelf().InSingletonScope();
+kernel.Bind&lt;IFoo&gt;().ToMethod(ctx =&gt; ctx.Kernel.Get&lt;FooBar&gt;());
+kernel.Bind&lt;IBar&gt;().ToMethod(ctx =&gt; ctx.Kernel.Get&lt;FooBar&gt;());
+</code></pre>
+
+<p>The advantage of this approach is that that we get the benefit of generic constraints. However, we need to explicitly create a binding for each forwarded type.</p>
+
+<p>The second approach is a bit more elaborate and involves "hijacking" the fluent interface.</p>
+
+<pre><code>var kernel = new StandardKernel();
+kernel.Bind&lt;FooBar&gt;().ToSelf()
+    .Forward().As&lt;IFoo&gt;().As&lt;IBar&gt;()
+         .InSingletonScope();
+</code></pre>
+
+<p>To accomplish this we extend the default binding builder</p>
+
+<pre><code>public interface IBindingForwardSyntax&lt;T&gt; : IBindingWhenInNamedWithOrOnSyntax&lt;T&gt;
+{
+    IBindingForwardSyntax&lt;T&gt; As&lt;TService&gt;();
+}
+
+public class BindingForwardBuilder&lt;T&gt; 
+    : BindingBuilder&lt;T&gt;, IBindingForwardSyntax&lt;T&gt;
+{
+    public BindingForwardBuilder(IBinding binding, IKernel kernel) 
+        : base(binding, kernel) { }
+
+    public IBindingForwardSyntax&lt;T&gt; As&lt;TForwardedType&gt;()
+    {
+        Kernel.Bind&lt;TForwardedType&gt;().ToMethod(ctx =&gt;
+        {
+            var provider = Binding.GetProvider(ctx);
+            if (!typeof(TForwardedType).IsAssignableFrom(provider.Type))
+            {
+                string message = string.Format(
+                     "Invalid binding between '{0}' and '{1}'",
+                         typeof(TForwardedType), typeof(T));
+                throw new InvalidOperationException(message);
+            }
+
+            return (TForwardedType)ctx.Kernel.Get(typeof(T));
+        });
+
+        return this;
+    }
+}
+</code></pre>
+
+<p>Finally we add an extension method.</p>
+
+<pre><code>public static class BindingWhenInNamedWithOrOnSyntaxExtensions
+{
+    public static IBindingForwardSyntax&lt;T&gt; Forward&lt;T&gt;(
+        this IBindingWhenInNamedWithOrOnSyntax&lt;T&gt; syntax)
+    {
+        return new BindingForwardBuilder&lt;T&gt;(syntax.Binding, syntax.Kernel);
+    }
+}
+</code></pre>
+
+<p>The advantage of this is approach is that we only have to explicitly create one binding. The bindings for the forwarded types are implicitly created. However, this comes with a huge disadvantage: we don't get the benefit of generic constraints. Thus, it might fail during run-time if we are not careful while defining our bindings.</p>

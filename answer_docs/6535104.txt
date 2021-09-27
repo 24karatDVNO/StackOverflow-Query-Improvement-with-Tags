@@ -1,0 +1,16 @@
+<p>You need to use <a href="http://www.php.net/manual/en/function.usort.php" rel="nofollow noreferrer">usort</a>, a function that sorts arrays via a user defined function. Something like:</p>
+
+<pre><code>function cmp($a, $b)
+{
+    $a = reset($a); // get the first array elements
+    $b = reset($b); // for comparison.
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a &lt; $b) ? -1 : 1;
+}
+
+usort($yourArray,"cmp")
+</code></pre>
+
+<p>Compare this <a href="https://stackoverflow.com/questions/2426917/how-do-i-sort-a-multidimensional-array-by-one-of-the-fields-of-the-inner-array-in/2426960#2426960">with the answer of one of the questions duplicates</a>.</p>

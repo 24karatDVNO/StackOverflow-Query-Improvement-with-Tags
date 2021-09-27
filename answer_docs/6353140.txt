@@ -1,0 +1,31 @@
+<p>I just made a small testing app where I created a ResourceDictionary from an embedded XAML:</p>
+
+<pre><code>public partial class MainWindow : Window
+{
+    public static ResourceDictionary CachedResourceDictionary;
+
+    public MainWindow()
+    {
+        if (CachedResourceDictionary == null)
+        {
+            CachedResourceDictionary = new ResourceDictionary
+            {
+                Source =
+                    new Uri("/ResourceDictionaryCache;component/Dictionary1.xaml",
+                            UriKind.RelativeOrAbsolute)
+            };
+        }
+        Resources.MergedDictionaries.Add(CachedResourceDictionary);
+
+        InitializeComponent();
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        var toOpen = new MainWindow();
+        toOpen.Show();
+    }
+}
+</code></pre>
+
+<p>In the Button_Click event I just created a new instance of the MainWindow which then </p>

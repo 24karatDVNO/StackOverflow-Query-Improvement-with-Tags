@@ -1,0 +1,30 @@
+<p>Well sounds like people answered the hardware side. For the software side it's pretty simple.</p>
+
+<pre><code>public class LightTrigger {
+private SensorManager mgr = null;
+
+    @Override
+public void onCreate(Bundle savedInstanceState) {
+        //YOUR CODE HERE
+        mgr = (SensorManager) ctxt.getSystemService(Context.SENSOR_SERVICE);
+        mgr.registerListener(listener,
+    mgr.getDefaultSensor(Sensor.TYPE_LIGHT),
+    SensorManager.SENSOR_DELAY_UI);
+    }
+
+    private SensorEventListener listener = new SensorEventListener() {
+        public void onSensorChanged(SensorEvent e) {
+            //Handler code goes here
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            //I don't usually use this for light
+        }
+    }
+}
+</code></pre>
+
+<p>What I've found is that the sensor values don't change continuously. I usually see values coming off the sensor like -- BRIGHT (~1000) -- DIM (~600) -- DARK (~100) -- with nothing in between. I think that could be because the light sensor on my phone is inset (recessed from direct light) right next to the phone speaker. It was probably designed mainly to help figure out if I'm holding the phone up to my head.</p>
+
+<p>Hopefully that helps!</p>

@@ -1,0 +1,44 @@
+<p>Try to use this script. </p>
+
+<p>Set variable @TblName to the name of your table.</p>
+
+<p>The script uses information_schema.columns
+to get the datatypes for every column in selected table.</p>
+
+<pre><code>DECLARE @TblName varchar(128)
+DECLARE @WhereClause varchar(255)
+
+DECLARE @cmd varchar(7000)
+SET @TblName = '&lt;YOUR TABLENAME&gt;' --TABLENAME
+SET @cmd = ''
+
+create table #tableDef (id int identity (1,1), ColType int, ColName varchar(128))
+
+--Fetch table information
+insert  #tableDef (ColType, ColName)
+select case when DATA_TYPE like '%char%' then 1
+            when DATA_TYPE like '%datetime%' then 2 
+            else 0 end ,
+    COLUMN_NAME
+from    information_schema.columns
+where   TABLE_NAME = @TblName
+order by ORDINAL_POSITION
+
+SELECT   @cmd = @cmd
+                + ' CASE WHEN ' + ColName + ' IS NULL '
+                +   ' THEN ''NULL'' '
+                +   ' ELSE '
+                +     case ColType 
+                      when  1 then  ''''''''' + ' + ColName + ' + ''''''''' 
+                      when  2 then  ''''''''' + ' + 'CONVERT(VARCHAR(20),' + ColName + ')' + ' + '''''''''                    
+                      else 'CONVERT(VARCHAR(20),' + ColName + ')' end
+                + ' END + '','' + '
+        from    #tableDef
+order by id
+
+select @cmd = 'SELECT  ' + left(@cmd,len(@cmd)-8) + '+'''' FROM ' + @tblName 
+
+exec (@cmd)
+
+drop table #tableDef
+</code></pre>

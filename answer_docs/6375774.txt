@@ -1,0 +1,21 @@
+<p>The command dynamic_sidebar() actually outputs the indicated sidebar.  When you call get_sidebar, it is displaying both of those sidebars because in the conditional, the sidebar is outputted.</p>
+
+<p>You are not quite on the right path for what you want.</p>
+
+<p>You are going to want to simply have </p>
+
+<pre><code>get_sidebar();
+</code></pre>
+
+<p>in your templates.</p>
+
+<p>Then in the sidebar.php file you would do conditionals to determine when to show what.  For example, something like this...</p>
+
+<pre><code>if ( is_page() ) :
+    dynamic_sidebar('page-sidebar');
+elseif ( is_post() ) :
+    dynamic_sidebar('post-sidebar');
+endif;
+</code></pre>
+
+<p>Let me know if you are still having trouble and I can give more details / a better more detailed solution example</p>

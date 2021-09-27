@@ -1,0 +1,42 @@
+<p>I found an alternative solution using <code>&lt;LinearLayout&gt;</code>s instead:</p>
+
+<pre><code>&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="5dp"&gt;
+    &lt;LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"&gt;
+        &lt;Button
+            android:id="@+id/buttonLoadPhoto"
+            android:text="Load..."
+            android:textSize="20sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" /&gt;
+        &lt;Button
+            android:id="@+id/buttonPrintPhoto"
+            android:text="Print..."
+            android:textSize="20sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" /&gt;
+    &lt;/LinearLayout&gt;
+    &lt;FrameLayout
+        android:id="@+id/frameLayoutPhoto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#303030"&gt;
+        &lt;ImageView
+            android:id="@+id/imageViewPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="matrix"&gt;
+        &lt;/ImageView&gt;
+    &lt;/FrameLayout&gt;
+&lt;/LinearLayout&gt;
+</code></pre>

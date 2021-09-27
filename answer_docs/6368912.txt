@@ -1,0 +1,12 @@
+<p>After going through the various memory classes, it appears that the following will provide at least an indication of swapping:</p>
+
+<pre><code>SELECT PagesPersec FROM Win32_PerfFormattedData_PerfOS_Memory
+</code></pre>
+
+<p>According to <a href="http://library.wmifun.net/cimv2/win32_perfformatteddata_perfos_memory.html" rel="nofollow">wmifun.net</a>, PagesPersec is</p>
+
+<blockquote>
+  <p>Pages/sec is the rate at which pages are read from or written to disk to resolve hard page faults. This counter is a primary indicator of the kinds of faults that cause system-wide delays</p>
+</blockquote>
+
+<p>We're going to go for that for the time being.</p>

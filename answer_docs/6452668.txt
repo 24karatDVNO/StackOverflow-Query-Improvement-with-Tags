@@ -1,0 +1,13 @@
+<p>You can store all the info in an Array and handle them after the loop.</p>
+
+<pre><code>$(".isActive").click(function() {
+     var checkBox_id = $(this).attr("id");
+     var checkbox = $('#'+checkBox_id);
+     var div_array = new Array();
+     $('.display_image').each(function(index) {
+              var div_array[index] = //whatever you want;
+      });
+     // Now in div_array you have stored all the information you want (the id as well)
+</code></pre>
+
+<p>Hope it helps</p>

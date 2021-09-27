@@ -1,0 +1,5 @@
+<p>It was as easy as using <code>dragover</code>, <code>dragexit</code>, <code>dragleave</code> and <code>drop</code> on the body:</p>
+
+<pre><code>$("body").live("dragover", function(event){ $("#upload_media_dropzone").stop(true, true).fadeTo(200, 1); });
+$("body").live("dragexit dragleave drop", function(event){ $("#upload_media_dropzone").fadeTo(200, 0); });
+</code></pre>

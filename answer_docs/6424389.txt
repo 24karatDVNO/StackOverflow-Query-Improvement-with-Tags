@@ -1,0 +1,18 @@
+<p>To stay with your code...</p>
+
+<p>You are performing <code>xsl:if</code> tests starting from the wrong context. The template context is <code>Table</code>. Also the <code>xsl:text</code> is used in the wrong way. For instance, you should change test with:</p>
+
+<pre><code>&lt;xsl:if test="RECORD_TYPE_CODE"&gt;
+    &lt;xsl:value-of select= "RECORD_TYPE_CODE"/&gt;&lt;xsl:text&gt;,&lt;/xsl:text&gt;
+&lt;/xsl:if&gt;
+</code></pre>
+
+<p>This if you want omit empty values in your output like <code>,,</code>. Moreover you will need to change the final condition to avoid the last comma:</p>
+
+<pre><code>&lt;xsl:if test="CTD_SEQ_NUM"&gt;
+        &lt;xsl:value-of select= "CTD_SEQ_NUM"/&gt;
+            &lt;xsl:if test="count(following-sibling::Table)&gt;0"&gt;
+                &lt;xsl:text&gt;,&lt;/xsl:text&gt;
+            &lt;/xsl:if&gt;
+&lt;/xsl:if&gt;
+</code></pre>

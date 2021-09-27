@@ -1,0 +1,16 @@
+<p>Make a system call to the php file and detach it?</p>
+
+<p>ex:</p>
+
+<pre><code>exec('nohup php test.php &gt; test.out 2&gt; test.err &lt; /dev/null &amp;');
+
+echo 'I am totally printing here';
+</code></pre>
+
+<p>test.php contains a sleep for 2 seconds and prints, but echo returns immediately.</p>
+
+<p>Have it store the results in a file/database/whatever. It will act like a very dirty fork.</p>
+
+<p>You could also do something similar with a CURL call I bet if you have issues executing.</p>
+
+<p>Credit <a href="http://php.net/manual/en/function.exec.php" rel="nofollow">here</a> for the code example from bmellink (mine was way worse than his).</p>

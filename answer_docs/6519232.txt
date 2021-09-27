@@ -1,0 +1,5 @@
+<p>If you mean how can you write tests for your whole working application, you might want to have a look at Selenium (http://seleniumhq.org/).  There are a variety of ways of using it, but essentially you can use it to automate a browser and click on elements, enter text, verify that you can see the correct result.</p>
+
+<p>With GWT you will need to use "ensureDebugId" method on UiObject and add
+ 
+to your gwt.xml file so that you get repeatable element ids that you can use in your tests.</p>

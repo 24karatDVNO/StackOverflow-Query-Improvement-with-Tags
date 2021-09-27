@@ -1,0 +1,8 @@
+<p>Your ImageMagick 6.0.7 is more than 6 years old (dozens of releases back). Current is 6.7.0-9.
+Your Ghostscript 8.64 is also more than 2 years old already (5 releases back). Current is 9.02.</p>
+
+<p>My recommendation is to upgrade.</p>
+
+<p>On my (Windows) system I have IM 6.7.0-8 and GS 9.02. Running <code>-define pdf:use-trimbox=true</code> works fine here and translates to a Ghostscript commandline parameter of <code>-dUseTrimBox=true</code>.</p>
+
+<p><strong>However (and this is important!):</strong> one should take into account, that for many practical example PDFs out there, <code>TrimBox</code> is undefined, or explicitely set to the same values as <code>MediaBox</code>. Both have the same effect: a <code>-dUseTrimBox=true</code> will not make any difference in the output to a <code>-dUseTrimBox=false</code>.</p>

@@ -1,0 +1,9 @@
+<p>Use a <code>Map</code> and take <code>Map.Entry&lt;String,String&gt;</code> as value.</p>
+
+<pre><code>Map&lt;Integer,Map.Entry&lt;String,String&gt;&gt; members = new HashMap&lt;Integer,Map.Entry&lt;String,String&gt;&gt;();
+
+members.put(123, new AbstractMap.SimpleEntry&lt;String,String&gt;("John", "Doe"));
+
+members.get(123).getKey(); //returns John
+members.get(123).getValue(); //returns Doe
+</code></pre>

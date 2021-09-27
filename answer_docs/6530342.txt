@@ -1,0 +1,3 @@
+<p>Freeing invalid memory is a serious bug and should be fixed, as it's possible to corrupt the state of your program. Try using a tool like <a href="http://valgrind.org" rel="nofollow">valgrind</a> to spot what's going wrong.</p>
+
+<p>The only pointers you should be using <code>free</code> on are those you receive from <code>malloc</code>, <code>calloc</code> or <code>realloc</code> or <code>NULL</code> pointers. Further you shouldn't use <code>free</code> on the same pointer more than once.</p>

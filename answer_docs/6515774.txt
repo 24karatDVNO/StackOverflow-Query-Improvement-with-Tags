@@ -1,0 +1,24 @@
+<p>You can do it as follow.</p>
+
+<pre><code>@interface C : UIViewController
+{
+    id parent;
+}
+@property (nonatomic,retain) id parent;
+
+@implementation C
+-(IBAction)methodInC:(id)sender
+{
+    [parent methodName]; //B is parent so this will call method declared in B.
+}
+@end
+</code></pre>
+
+<p>Now while presenting B from C controller, allocate the object and set parent as</p>
+
+<pre><code>objB.parent = self;
+</code></pre>
+
+<p>This way you can easily call methods declared in B. </p>
+
+<p>Hope it helps.</p>

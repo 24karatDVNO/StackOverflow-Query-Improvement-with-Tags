@@ -1,0 +1,13 @@
+<pre><code>data = []
+for line in open('file.txt'):
+  data.append(tuple(line.strip().split(':')))
+</code></pre>
+
+<p>The 'tuple' is only there to change the list returned by split to a tuple.</p>
+
+<p>Optionally do:</p>
+
+<pre><code>data = dict(data)
+</code></pre>
+
+<p>afterward to change it into a word:description dictionary, which may be a better representation of what you want.</p>

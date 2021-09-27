@@ -1,0 +1,82 @@
+<p>First, a new array in which keys appear as id's. Then, this array built graph. And it happens recursive the graph. (sorry for my english)</p>
+
+<pre><code>&lt;?php
+
+function change_index_to_id($array) {
+    $result = array();
+
+    foreach ($array as $value) {
+        $result[$value['id']] = $value;
+    }
+
+    return $result;
+}
+
+function make_graph($data) {
+    $graph = array();
+
+    foreach ($data as $id =&gt; $value) {
+        if (!is_null($value['parent'])) {
+            $graph[$value['parent']][$id] = true;
+        } else {
+            $graph[$id] = array();
+        }
+    }
+
+    return $graph;
+}
+
+function make_hierarchical_array($item_id, $graph, $data, $marked_items) {  
+    $result = $data[$item_id];
+    $marked_items[$item_id] = true;
+
+    foreach ($graph[$item_id] as $id =&gt; $v) {
+        if (isset($graph[$id]) &amp;&amp; ! $marked_items[$id]) {
+            $result['childrens'][$id] = make_hierarchical_array($id, $graph, $data, &amp;$marked_items);
+        } else {
+            $result['childrens'][$id] = $data[$id];
+        }
+    }
+
+    return $result;
+}
+
+// load data from database or other
+$data = array(
+    array(
+        'id' =&gt; 1,
+        'parent' =&gt; null,
+        'title' =&gt; 'yek'
+    ),
+    array(
+        'id' =&gt; 2,
+        'parent' =&gt; null,
+        'title' =&gt; 'do'
+    ),
+    array(
+        'id' =&gt; 3,
+        'parent' =&gt; 1,
+        'title' =&gt; 'se'
+    ),
+    array(
+        'id' =&gt; 4,
+        'parent' =&gt; 3,
+        'title' =&gt; 'char'
+    ),
+);
+
+
+$data = change_index_to_id($data);
+$graph = make_graph($data);
+
+$result = array();
+$marked_items = array();
+foreach ($graph as $id =&gt; $childs) {
+    if ($marked_items[$id] == false) {
+        $result[$id] = make_hierarchical_array($id, $graph, $data, &amp;$marked_items);
+    }
+}
+print_r($result);
+
+?&gt;
+</code></pre>

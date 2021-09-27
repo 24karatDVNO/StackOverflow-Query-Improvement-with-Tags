@@ -1,0 +1,18 @@
+<p>First you need to make your ID's unique, maybe classes may work better for you:</p>
+
+<pre><code>&lt;form id="f1" name"f1"&gt;
+    &lt;input type="text" id="quantity" class="quantity" /&gt;
+&lt;/form&gt;
+
+&lt;form id="f2" name"f2"&gt;
+    &lt;input type="text" id="quantity2" class="quantity" /&gt;
+&lt;/form&gt;
+
+form1Qty = $('form[name="fl"] .quantity').val();
+form2Qty = $('form[name="f2"] .quantity').val();
+
+//OR
+
+form1Qty = $('#fl .quantity').val();
+form2Qty = $('#f2 .quantity').val();
+</code></pre>

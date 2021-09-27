@@ -1,0 +1,15 @@
+<p>Using the <code>.push()</code> method as suggested by jfriend00 is my recommendation too, but to answer your question about how to work out what the next index is you can use the array's <code>length</code> property. Because JavaScript arrays are zero-based The <code>length</code> property will return an integer one higher than the current highest index, so <code>length</code> will also be the index value to use if you want to add another item at the end:</p>
+
+<p><code>anArray[anArray.length] = someValue; // add to end of array</code></p>
+
+<p>To get the last element in the array you of course say <code>anArray[anArray.length-1]</code>.</p>
+
+<p>Note that for most purposes <code>length</code> will give the number of elements in the array, but I said "one higher than the current highest index" above because JavaScript arrays are quite happy for you to skip indexes:</p>
+
+<pre><code>var myArray = [];
+myArray[0] = "something";
+myArray[1] = "something else";
+myArray[50] = "something else again";
+alert(myArray.length); // gives '51'
+// accessing any unused indexes will return undefined
+</code></pre>

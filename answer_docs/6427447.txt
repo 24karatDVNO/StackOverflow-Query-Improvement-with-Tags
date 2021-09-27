@@ -1,0 +1,37 @@
+<p>This demonstration code shows one way of how you can achieve option filtering... it would need modification to determine which candidate items are removed as I just hardcoded for purpose of demonstration, but it shows you what you need to consider - when you remove the items, you need to consider the ordering by which they're added back. The easiest way to bypass this problem is to keep a copy of the original list and then when you unfilter, just remove the remaining items, replacing them with what was originally there - otherwise you have to worry about keeping sort data.</p>
+
+<p>So here's my drop down definition:</p>
+
+<pre><code>&lt;select id="mySelector"&gt;
+  &lt;option class="group1"&gt;Item 1&lt;/option&gt;
+  &lt;option class="group2"&gt;Item 2&lt;/option&gt;
+  &lt;option class="group1"&gt;Item 3&lt;/option&gt;
+  &lt;option class="group2"&gt;Item 4&lt;/option&gt;
+  &lt;option class="group1"&gt;Item 5&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;input type="button" id="removeItems" value="Remove candidate items" /&gt;
+&lt;input type="button" id="addItems" value="Add them back" /&gt;
+</code></pre>
+
+<p>And the jquery to filter/restore the items:</p>
+
+<pre><code>$(function () {
+
+    var originalOptionData;
+
+    $("#removeItems").bind('click', function () {
+        /* store original copy for rollback */
+        originalOptionData = $("#mySelector option");
+        $("#mySelector option.group2").remove();
+    });
+
+    $("#addItems").bind('click', function () {
+        var selector = $("#mySelector");
+        selector.children().remove();
+        selector.append(originalOptionData);
+    });
+});
+</code></pre>
+
+<p>This could be turned into a select filter jquery plugin relatively simply I suppose, but I didn't go that far...</p>

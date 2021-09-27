@@ -1,0 +1,22 @@
+<p>I'm not sure how it compares to the algorithm Mr E pointed to, but once I built a window system, and I needed to store rectangular image pieces off-screen. My method was this:</p>
+
+<p>Think of the storage space as tilted 45 degrees to the left, so you have a V-shaped bin.
+It has one "valley point", at the very bottom (the origin)</p>
+
+<pre><code>\    /
+ \  /
+  \/
+</code></pre>
+
+<p>Drop one block into it, so the block's bottom corner is at the valley point.</p>
+
+<p>Now, going from left to right, you have two valley points, where you can drop additional blocks.
+Every time you drop a block into a valley point, you revise the list of valley points.</p>
+
+<pre><code>\    /
+ \/\/
+</code></pre>
+
+<p>It does waste space, if you drop a large block into a valley point made by small blocks, so it is better to put in large blocks first, if possible. When you drop a block in, you can choose the valley point that wastes the least space.</p>
+
+<p>As I said, I don't know how it compares to the other algorithms, but it was simple.</p>

@@ -1,0 +1,11 @@
+<p>Your script is interpreted as HTML code. You should escape angle brackets, like this:</p>
+
+<pre><code>&lt;textarea rows="10" id="bandsvideodescription" name="bandsvideodescription"&gt;
+&amp;lt;script type="text/javascript"&amp;gt;
+  function youtubeFeedCallback( data )
+  {
+    document.writeln( '' + data.entry[ "media$group" ][ "media$description" ].$t.replace( /\n/g, '' ) + '' );
+  }
+&amp;lt;/script&amp;gt;
+&lt;/textarea&gt;
+</code></pre>

@@ -1,0 +1,21 @@
+<p>instead of </p>
+
+<pre><code>if ($row = mysql_fetch_array($result))
+{
+  .....................
+}
+</code></pre>
+
+<p>try to use this:</p>
+
+<pre><code> $num_rows = mysql_num_rows($result); //returns the number of rows selected
+
+ if($num_rows==0)
+ {
+      //no data
+ }
+ else
+ {
+    //your code
+ }
+</code></pre>

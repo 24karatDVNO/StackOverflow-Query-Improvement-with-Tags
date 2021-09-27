@@ -1,0 +1,43 @@
+<p>Actually you don't need a third grouping, just wrap the third level items differently. </p>
+
+<p>In your transform you need to replace:</p>
+
+<pre><code>&lt;xsl:template match="GALLERY" mode="sport"&gt;     
+    &lt;CATEGORY sport="{@sport}"&gt;       
+        &lt;ITEM&gt;         
+            &lt;xsl:apply-templates select="
+              key('k2', concat(@name, '|', @sport))/@vid"/&gt;      
+        &lt;/ITEM&gt;     
+    &lt;/CATEGORY&gt;   
+&lt;/xsl:template&gt;    
+
+&lt;xsl:template match="GALLERY/@vid"&gt;     
+    &lt;vid&gt;       
+        &lt;xsl:value-of select="."/&gt;     
+    &lt;/vid&gt;   
+&lt;/xsl:template&gt;  
+</code></pre>
+
+<p>with:</p>
+
+<pre><code>    &lt;xsl:template match="GALLERY" mode="sport"&gt;     
+        &lt;CATEGORY sport="{@sport}"&gt;          
+            &lt;xsl:apply-templates select="
+              key('k2', concat(@name, '|', @sport))" 
+              mode="item"/&gt; 
+        &lt;/CATEGORY&gt;   
+    &lt;/xsl:template&gt;    
+
+    &lt;xsl:template match="GALLERY" mode="item"&gt; 
+        &lt;ITEM&gt;
+            &lt;vid&gt;       
+                &lt;xsl:value-of select="@vid"/&gt;     
+            &lt;/vid&gt;
+            &lt;vidtitle&gt;
+                &lt;xsl:value-of select="@vidtitle"/&gt;
+            &lt;/vidtitle&gt;
+        &lt;/ITEM&gt;     
+    &lt;/xsl:template&gt;  
+</code></pre>
+
+<p> </p>

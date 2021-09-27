@@ -1,0 +1,10 @@
+<p>Thanks to Aaron:</p>
+
+<p>@tenderlove: @eduardordm likely <a href="http://blog.thefrontside.net/2011/06/13/therubyracer-isnt-threadsafe-yet/" rel="nofollow">this is the problem</a> (make sure to click the "<a href="https://gist.github.com/1011718" rel="nofollow">workaround</a>" link for a fix)</p>
+
+<p>Thing is, therubyracer (pre 0.9.1) is not thread safe.</p>
+
+<p>Solution:</p>
+
+<pre><code>gem 'therubyracer', "~&gt; 0.9.1"
+</code></pre>

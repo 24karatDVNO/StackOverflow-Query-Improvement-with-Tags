@@ -1,0 +1,3 @@
+<p>One way I have seen work is to have the default values set in code, where it is hard-coded in java class. That way any property not set in properties file but used in code will always get the default value.</p>
+
+<p>And from an architecture perspective this is also a really good idea, shipping products with default properties values in code, overridden by the values in properties file. And if you make it so that the product (Android app in my perspective) makes a server call at start-up to check and overwrite the values of properties files then you can add a lot of flexibility to the product.</p>

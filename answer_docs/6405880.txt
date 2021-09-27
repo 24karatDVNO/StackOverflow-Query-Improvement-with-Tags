@@ -1,0 +1,24 @@
+<p>Perhaps I have misunderstood Mitchel Seller's response, but it appears to make an incorrect assumption of what 'useSpecificVersion' is all about. I have refreshed my memory on this through some simple tests, but they are targeting .net 3.5 as I cannot target 1.1 in VS2010.</p>
+
+<p>It appears that people believe that by setting 'useSpecificVersion' in the property-grid of Visual Studio, the .net RUNTIME will allow DLLs to be substituted with newer assembly versions... This is incorrect.</p>
+
+<p>Nothing (custom assembly binding excluded) will change the fact that if your 'dependency' is strongly named, _that_exact_version_ must be present to the application at runtime, or your will receive exceptions relating to assembly-not-found/type-load-exception.</p>
+
+<p>"useSpecificVersion" is purely a compile time option. It allows Visual Studio to substitute the given DLL to ensure it can resolve references to get a successful compile. It is actully used heavily for Visual Studio's multi-targeting capabilities.</p>
+
+<p>Just to give you a simple example...</p>
+
+<p>Notice how if you add a <em>project</em> reference to some DLL, you dont get the 'useSpecificVersion' option in your property-grid - that is because you have specified an explicit project.
+However, if you add a reference from the "Add References" dialog, then what you are saying is, "add a reference that is supplied from some <em>installed product</em>". Then you do have the option of setting "useSpecificVersion" to false.</p>
+
+<p>Lets pretend that you have installed NLog 1.0 via an MSI, and that has put NLog.dll into your Add References dialog (this is done with a registry entry).
+If you set 'useSpecificVersion' to False, then you uninstall NLog.msi (version 1.0) which removes the DLL from your hard drive, Visual Studio will complain for a moment, by putting an exclamation mark on the reference (you have to CLEAN your project though, or VS will just grab the DLL from your build folder).
+But, because the reference has been saved to the project file with "useSpecificVersion false", if you then install NLog.msi (version 2.0)... and rebuild (you might need to restart VS), Visual Studio will locate the version 2 NLog dll, and be quite happy with using it - the little yellow exclamation mark will disappear.
+This works in both directions, from higher version numbers, to lower, and lower to higher.
+Leaving "useSpecificVersion" as "True" would prevent Visual Studio from performing this substitution.</p>
+
+<p>As you can see, this behavior has nothing to do with what actually happens at runtime... .NET will still expect the EXACT version (unless you have configured some assembly version redirection in the app.config) that it was compiled against.</p>
+
+<p>Keeping "useSpecificVersion" as "True" will ensure that a developer is required to have the correct version of dependency libraries installed on their system to get a successful build.</p>
+
+<p>We use DevExpress libraries, of which newer versions are frequently released, and we would never want "useSpecificVersion False" on their references, because we need to make sure that every developer has the correct version of DevExpress installed when they are working on the product. Without that, they could inadvertently start using DevExpress features that have either been deprecated (by having an older version installed), or not yet introduced (by having a newer version) in the version that we actually intend to deploy.</p>

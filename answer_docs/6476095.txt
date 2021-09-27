@@ -1,0 +1,23 @@
+<p>First of all your code is vulnerable to sql injection</p>
+
+<pre><code>$job_id=$_GET['job_id'];
+
+// should be
+$job_id=(int)$_GET['job_id'];
+// or
+$job_id=mysql_real_escape_string($_GET['job_id']);
+</code></pre>
+
+<p>depending on the data type of jobid.</p>
+
+<p>Also you are echoing rows before you declared it, so it wont work. it seems like it should be inside the while loop</p>
+
+<pre><code>&lt;?php
+
+echo "&lt;ul&gt;";
+while($rows=mysql_fetch_array($result))
+{
+    echo "&lt;li&gt;".$rows['job_res']."&lt;/li&gt;";
+}
+echo "&lt;/ul&gt;";
+</code></pre>

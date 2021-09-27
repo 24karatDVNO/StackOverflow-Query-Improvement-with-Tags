@@ -1,0 +1,8 @@
+<p>So many ways to do things with jQuery:</p>
+
+<pre><code>$('td &gt; span:nth-child(2n-1)').text(function(i,txt) { 
+    alert(txt + $(this).next().text());
+});
+</code></pre>
+
+<p><strong>Example:</strong> <a href="http://jsfiddle.net/vqs38/" rel="nofollow">http://jsfiddle.net/vqs38/</a></p>

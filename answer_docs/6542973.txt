@@ -1,0 +1,3 @@
+<p>So, in the end I did not find a way to access the session outside the controller action methods. I instead stored the value in a cookie, which made more sense. </p>
+
+<p>However, if the user had cookies turned off, and an error happened on the site, currently they would be forwarded to the default language. I will likely have to store this information in the database, or a cache item with a unique ID in the case there are no cookies.</p>

@@ -1,0 +1,17 @@
+<p>I am able to get the values in the view if i convert linq result to toList() in controller.</p>
+
+<pre><code>    Like
+</code></pre>
+
+<p>var test = (from p in db.EmpDetails orderby p.EmpName ascending  select p).ToList();
+  ViewBag.test = test;</p>
+
+<pre><code>    And in the view 
+
+   @foreach (var tm in ViewBag.test)
+   {
+           int emId = @tm.id;
+    }
+</code></pre>
+
+<p>Thanks....</p>

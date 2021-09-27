@@ -1,0 +1,33 @@
+<p>I've done some work with the Levenshtein distance algorithm's matrix recently.  I needed to produce the operations which would transform one list into another.  (This will work for strings too.)</p>
+
+<p>Do the following (vows) tests show the sort of functionality that you're looking for? </p>
+
+<pre><code>  , "lev - complex 2"
+  : { topic
+    : lev.diff([13, 6, 5, 1, 8, 9, 2, 15, 12, 7, 11], [9, 13, 6, 5, 1, 8, 2, 15, 12, 11])
+    , "check actions"
+    : function(topic) { assert.deepEqual(topic, [{ op: 'delete', pos: 9, val: 7 },
+                                                 { op: 'delete', pos: 5, val: 9 },
+                                                 { op: 'insert', pos: 0, val: 9 },
+                                                ]); }
+    }
+  , "lev - complex 3"
+  : { topic
+    : lev.diff([9, 13, 6, 5, 1, 8, 2, 15, 12, 11], [13, 6, 5, 1, 8, 9, 2, 15, 12, 7, 11])
+    , "check actions"
+    : function(topic) { assert.deepEqual(topic, [{ op: 'delete', pos: 0, val: 9 },
+                                                 { op: 'insert', pos: 5, val: 9 },
+                                                 { op: 'insert', pos: 9, val: 7 }
+                                                ]); }
+    }
+  , "lev - complex 4"
+  : { topic
+    : lev.diff([9, 13, 6, 5, 1, 8, 2, 15, 12, 11, 16], [13, 6, 5, 1, 8, 9, 2, 15, 12, 7, 11, 17])
+    , "check actions"
+    : function(topic) { assert.deepEqual(topic, [{ op: 'delete', pos: 0, val: 9 },
+                                                 { op: 'insert', pos: 5, val: 9 },
+                                                 { op: 'insert', pos: 9, val: 7 },
+                                                 { op: 'replace', pos: 11, val: 17 }
+                                                ]); }
+    }
+</code></pre>

@@ -1,0 +1,59 @@
+<p>When populating the treeview you just add a javascript method to each node and then the javascript method displays the nodes text to a textbox:</p>
+
+<pre><code>protected void Page_Load(object sender, EventArgs e)
+{
+    SqlConnection sqlconn = new SqlConnection("--Your sql connection--");
+    sqlconn.Open();
+
+    DataSet ds = new DataSet();
+    SqlDataAdapter cmd = new SqlDataAdapter("SELECT * FROM --The table with your info--",sqlconn);
+    cmd.Fill(ds, "region");
+    DataTable dt = ds.Tables[0];
+
+    PopulateNodes(dt, TreeView1.Nodes);
+}
+
+private void PopulateNodes(DataTable dt, TreeNodeCollection nodes)
+{
+    string temp = "";
+
+    foreach (DataRow dr in dt.Rows)
+    {
+        TreeNode tn = new TreeNode();
+
+        tn.Text = dr["Location"].ToString();
+        tn.Value = dr["Location"].ToString();
+        if (temp != tn.Text)
+        {
+            temp = tn.Text;
+            //tn.SelectAction = TreeNodeSelectAction.Expand;
+            tn.NavigateUrl = "javascript:tree('" + dr["--Column--"].ToString() + "')";
+            nodes.Add(tn);
+            AddChildNodes(dt, tn.ChildNodes, dr["--Column--"].ToString());
+        }
+    }
+}
+
+private void AddChildNodes(DataTable dt, TreeNodeCollection node, string p)
+{
+    foreach (DataRow dr in dt.Rows)
+    {
+        TreeNode tn = new TreeNode();
+
+        if ((string)dr["Location"] == p)
+        {
+            tn.Text = dr["SubLocation"].ToString();
+            tn.Value = dr["SubLocation"].ToString();
+            tn.NavigateUrl = "javascript:tree('" + dr["--Column--"].ToString() + "')";
+            node.Add(tn);
+        }
+    }
+}
+</code></pre>
+
+<p>Javascript:</p>
+
+<pre><code>function tree(text) {
+    document.getElementById('&lt;%=TextBox1.ClientID %&gt;').value = text.valueOf();
+}
+</code></pre>

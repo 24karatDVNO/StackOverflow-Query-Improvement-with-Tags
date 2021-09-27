@@ -1,0 +1,32 @@
+<p>Here is my RegexContains function. Pass it the cell and the pattern and it will return TRUE or FALSE if it contains it or not.</p>
+
+<pre><code>Function RegexContains(ByVal find_in As String, _
+                       ByVal find_what As String, _
+                       Optional IgnoreCase As Boolean = False) As Boolean
+
+Application.ScreenUpdating = False
+
+Dim RE As Object
+Set RE = CreateObject("vbscript.regexp")
+
+RE.Pattern = find_what
+RE.IgnoreCase = IgnoreCase
+RE.Global = True
+RegexContains = RE.Test(find_in)
+
+Application.ScreenUpdating = True
+
+End Function
+</code></pre>
+
+<p>Now, I'm not sure exactly what you want to find in your example, but if you want to know if the cell contains a single letter followed by one or more letters, then you would use (assuming the cell is A1):   =RegexContains(A1, "^\w\d+")</p>
+
+<ul>
+<li>The ^ marks the start of the sentence</li>
+<li>The \w marks a single alphabetic
+character (a-zA-Z)</li>
+<li>The \d+ marks one or more numeric
+characters[0-9]</li>
+</ul>
+
+<p>I hope this helps.</p>

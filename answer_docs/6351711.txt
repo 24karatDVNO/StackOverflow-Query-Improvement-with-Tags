@@ -1,0 +1,69 @@
+<p>Ask a weird question, get a weird answer (this is meant to be humerus and not a dig at you):</p>
+
+<pre><code>class Foo{
+    int a;
+public:
+    struct Bar{
+        Foo* this_;
+        int barme(){ return this_-&gt;a; }
+    };
+};
+</code></pre>
+
+<p>Look ma, no constructor!</p>
+
+<pre><code>Foo foo;
+Foo::Bar bar = { &amp;foo };
+bar.barme();
+</code></pre>
+
+<blockquote>
+  <p>you are NOT ALLOWED to use a constructor in the class bar (so you cannot pass in a reference or pointer to foo nor a).</p>
+</blockquote>
+
+<p>But I just did! Or did you mean that I may not? Fine!</p>
+
+<pre><code>class Foo{
+    int a;
+
+public:
+    static Foo* nothing_to_see_here;
+    Foo()
+    { nothing_to_see_here = this; }
+
+    struct Bar{
+        int barme(){ return nothing_to_see_here-&gt;a; }
+    };
+};
+</code></pre>
+
+<p>Look ma, no passing stuff!</p>
+
+<pre><code>Foo foo;
+Foo::Bar bar;
+bar.barme();
+</code></pre>
+
+<hr>
+
+<p>Or did you mean something akin to closures?</p>
+
+<pre><code>// C++0x up in this
+#include &lt;functional&gt;
+
+class Foo{
+    int a;
+
+public:
+    std::function&lt;int()&gt;
+    bar()
+    { return [=] { return a; }; }
+};
+</code></pre>
+
+<p>No passing stuff in constructor or trickery* of any kind, guaranteed**!</p>
+
+<pre><code>Foo foo;
+auto me = foo.bar();
+me();
+</code></pre>

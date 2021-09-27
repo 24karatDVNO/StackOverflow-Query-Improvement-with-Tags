@@ -1,0 +1,5 @@
+<p><code>LIKE</code> statements are very intensive in SQLite in large databases, especially with large strings.</p>
+
+<p>You can try a quick trick and turn pragma off to see if it speeds anything up.  Do not do this if your database is constantly updating, as it may interfere with atomicity.  If its a static DB, this is excellent.  Speeds up my mass queries and inserts by at least double, but they weren't using <code>like</code>.  I'd be interested to hear how this effects your speed.</p>
+
+<p><code>rawQuery('PRAGMA synchronous = OFF');</code></p>

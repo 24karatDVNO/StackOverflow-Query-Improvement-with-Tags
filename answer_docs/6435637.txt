@@ -1,0 +1,46 @@
+<p>If it hurts, don't do it:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class Cube
+{
+public:
+    string str;
+
+    Cube(const string&amp; s) : str(s) { }
+};
+
+int main()
+{
+    vector &lt;Cube&gt; vec;
+
+    for (int i = 0; i &lt; 10; i++)
+    {
+        char in [] = "hello !!";
+        vec.push_back(Cube(in));
+    } 
+
+    int i = 0;
+    for ( vector&lt;Cube&gt;::iterator it = vec.begin(); it &lt; vec.end(); )
+    {
+        cout &lt;&lt; it-&gt;str &lt;&lt; endl;
+        i++;
+        if (i % 2 == 0)
+            it = vec.erase(it);
+        else
+            it++;
+    }
+
+
+    for ( vector&lt;Cube&gt;::iterator it = vec.begin(); it &lt; vec.end(); it++)
+    {
+        cout &lt;&lt; it-&gt;str &lt;&lt; endl;
+    }
+    return 0;    
+}
+</code></pre>
+
+<p>Happens to be shorter and correct (not tested).</p>

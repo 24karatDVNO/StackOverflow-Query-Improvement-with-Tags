@@ -1,0 +1,6 @@
+<p>Since you're using <em>VB.NET</em> you can use the functionality in <code>Microsoft.VisualBasic.DateAndTime</code>. For example, you could use <code>DateTime.Parse</code> (or better, <code>.TryParse</code>) to get a <code>DateTime</code> representation of the user's value, then check whether the system time is within, say, one minute of the user's time. This way, you don't need to mess with seconds.</p>
+
+<pre><code>Dim diffInMinutes As Long = 
+    Microsoft.VisualBasic.DateAndTime.
+        DateDiff(DateInterval.Minute, userTime, DateTime.Now)
+</code></pre>

@@ -1,0 +1,26 @@
+<p>Rather than using Threads directly it is usually better to use a thread pool like ExecutorService.</p>
+
+<pre><code>final String[] parameter=  getParameters(parameters);
+final String[] wsdl = getWSDL(wsdlPaths);
+ExecutorService executor = Executors.newCachedThreadPool();
+List&lt;Future&lt;TestStub.ExperimentResponse&gt;&gt; futures = new ArrayList&lt;Future&lt;TestStub.ExperimentResponse&gt;&gt;();
+for (int j = 0; j &lt; numServices; j++) {
+    final int i = j;
+    futures.add(executor.submit(new Callable&lt;TestStub.ExperimentResponse&gt;() {
+        @Override
+        public TestStub.ExperimentResponse call() throws Exception {
+            TestStub stub = new TestStub(wsdl[i]);
+            TestStub.Experiment request = new TestStub.Experiment();
+            request.setArgs0(model);
+            request.setArgs1(property);
+            request.setArgs2(parameter[i]);
+            return stub.Experiment(request);
+        }
+    }));
+}
+for (Future&lt;ExperimentResponse&gt; future : futures) {
+    TestStub.ExperimentResponse response = future.get();
+    System.out.println("Response: " + response.get_return());
+}
+executor.shutdown();
+</code></pre>

@@ -1,0 +1,7 @@
+<p>I usually go with at least three users:</p>
+
+<ul>
+<li>Root can do everything; changing root's permissions is a recipe for disaster (unless you know exactly what you are doing)</li>
+<li>The application has its own user, and this user has very restrictive permissions - usually just SELECT, UPDATE, INSERT, DELETE on the tables it needs. In any case, no permissions that would allow schema modifications (CREATE / ALTER TABLE and such).</li>
+<li>A special user which can access the application's database, but nothing else. This user is used for maintenance tasks such as schema upgrades, but not for the application itself.</li>
+</ul>

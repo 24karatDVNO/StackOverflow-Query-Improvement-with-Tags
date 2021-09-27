@@ -1,0 +1,41 @@
+<p>The reason because the word Item is being added is because the following:</p>
+
+<pre><code>public enum KopRate
+{
+    0,
+    13,
+    21,
+    56,
+    ts,
+    kp
+} 
+</code></pre>
+
+<p>Is not valid for C# Syntax. The workaround to keep the WSDL as is an be able to deserialize the possible values is to add a letter or something as a prefix. In this case the "Item" word.</p>
+
+<p>If you have control over the WSDL, It's recommended to change the values of the enumeration in order to respect the naming conventions.</p>
+
+<p>If you do <strong>not</strong> have control over the WSDL. You can always change the enumeration as you want, but keeping the XMLEnum attribute, in order to let the deserialization process work correctly.</p>
+
+<p>e.g.:</p>
+
+<pre><code>namespace TestNmsp
+{
+    [GeneratedCode("System.Xml", "4.0.30319.1")]
+    [XmlType(Namespace = "http://www.kop.com/test/schema")]
+    [Serializable]
+    public enum KopRate
+    {
+        [XmlEnum("0")] Rate0,
+        [XmlEnum("13")] Rate13,
+        [XmlEnum("21")] Rate21,
+        [XmlEnum("56")] Rate56,
+        ts,
+        kp,
+    }
+}
+</code></pre>
+
+<p>Please be aware that if you regenerate the proxy you will lose this change.</p>
+
+<p>Regards,</p>

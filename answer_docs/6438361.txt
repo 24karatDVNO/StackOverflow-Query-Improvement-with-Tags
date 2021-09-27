@@ -1,0 +1,8 @@
+<p>i have pasted the sample code <a href="http://pastebin.com/FqB1nLuL" rel="nofollow">Here</a></p>
+
+<p>Crete one interface to notify when location is obtained.. put code in OnClick event(or onSelected) of your Radio button</p>
+
+<p><code>LocProvider locProvider = LocProvider.getInstance();
+                locProvider.init(this);
+                locProvider.initializeLocationSearch();
+                locProvider.setLocationCallbackListener(&lt;crete ownlistener and assign here&gt;);</code></p>

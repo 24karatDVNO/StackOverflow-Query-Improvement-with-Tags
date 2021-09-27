@@ -1,0 +1,7 @@
+<p>I think the only reasonable solution for this is: </p>
+
+<ul>
+<li>Grab data by chunks (for example 100 rows / per request) in JSON</li>
+<li>Insert it into table using DocumentFragment where it's possible</li>
+<li>handle scrolling events and load more data as soon user need it (scroll to the end of table).</li>
+</ul>

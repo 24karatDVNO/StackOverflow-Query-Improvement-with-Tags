@@ -1,0 +1,33 @@
+<p>It looks like modifying the iframe causes <code>$(document).ready()</code> to fire over and over again.  Have you tried changing this from a jQuery call to document ready to an immediate function?</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+function gup( name ) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&amp;]"+name+"=([^&amp;#]*)"; 
+    var regex = new RegExp( regexS );
+    var results = regex.exec( window.location.href );
+    if( results == null )
+        return "";
+    else
+        return results[1];
+}
+var ifSrc = gup("forward");
+
+// edit: notice no $ in front, and () at the end.
+(function(){ 
+    if(ifSrc) {
+     var iframe = document.getElementById('iframe');
+     iframe.src = ifSrc;
+    }
+})();
+
+&lt;/script&gt;
+</code></pre>
+
+<p>Put this at the end of your document and it should work as you're expecting.  Another thing you might want to try is instead of calling that function on document ready, do it on <code>#iframe</code>'s ready function:</p>
+
+<pre><code>$('#iframe').ready(function(){ 
+    if(ifSrc)
+        $("#iframe").attr('src', ifSrc);
+});
+</code></pre>

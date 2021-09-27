@@ -1,0 +1,14 @@
+<p>html:</p>
+
+<pre><code>&lt;div id="1" class="header"&gt;Header1
+    &lt;div class="content"&gt;Some content
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>jquery:</p>
+
+<pre><code>$(".header").click(function() {
+    $(".content", $(this)).slideToggle();
+});
+</code></pre>

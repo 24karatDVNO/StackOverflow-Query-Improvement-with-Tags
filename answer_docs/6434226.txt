@@ -1,0 +1,14 @@
+<p>The simple answer is, "run each test by itself and collect test coverage data for that test".</p>
+
+<p>How you organize that may depend on the specific test coverage tool, and how you choose to run your tests.</p>
+
+<p>For our <a href="http://www.semanticdesigns.com/Products/TestCoverage" rel="nofollow">Test Coverage tools</a>, there is an explicit "TestCoverageDump" method added to your software by the test coverage instrumentation step.  Normally a call to this method is inserted in the "main" program of your application so that when it exits, you get test coverage data for whatever tests you have run.</p>
+
+<p>For your task, you want to modify your unit test running code to make an explicit call, after each test, on 
+"TestCoverageDump" followed by "TestCoverageReset" (also inserted), so that each test gets its own vector.   How you choose to associate the name of the test with the vector is completely
+under you control, at the price of a tiny bit of adjustment to the "TestCoverageDump" code supplied in source.</p>
+
+<p>Our test coverage display tool can easily combine all the individual vectors to give you an overall view.  Or you can view the coverage for any particular vector.   The display tool will also
+let you compare coverage from different tests (where do they intersect? what does one test, that the other does not?)</p>
+
+<p>Having this per-test coverage data also lets you determine which tests you need to run again.  If you modify the code, and re-run the instrumenter, it will tell you which test coverage vectors (e.g., which tests) need to be run again based on what modified code that the vector previously covered.</p>

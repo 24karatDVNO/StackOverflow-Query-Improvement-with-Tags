@@ -1,0 +1,16 @@
+<p>ASP will not flush the result to the browser while working even if you use an UpdatePanel. It will finish the jobb (including the sleep) before flushing.</p>
+
+<p>You can use a UpdateProgress to show the "Working.." text.</p>
+
+<pre><code>&lt;asp:UpdateProgress&gt;
+</code></pre>
+
+<p>This will show its content while the UpdatePanel is working. Once the UpdatePanel is finished, the content will disappear.</p>
+
+<p>What you need in you ClickEvent is:</p>
+
+<pre><code>Label1.Text = "Done."
+btnSubmit.Enabled = false
+</code></pre>
+
+<p>This will show the Done text and disable the button. And tell the UpdateProgress to disappear.</p>

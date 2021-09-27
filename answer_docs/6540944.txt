@@ -1,0 +1,8 @@
+<p>Your error messages are not useful because of incorrect settings.</p>
+
+<ul>
+<li>While debugging your code (on a development server), try using <code>DEBUG=True</code> and check the error messages.</li>
+<li>On a production server, you should <a href="https://docs.djangoproject.com/en/dev/topics/http/views/#the-500-server-error-view" rel="nofollow">add a 500.html page to your templates</a>.  Following this, you might receive better error messages in your log files.  See also: <a href="https://github.com/dcramer/django-sentry" rel="nofollow">https://github.com/dcramer/django-sentry</a></li>
+</ul>
+
+<p>(Since you should get a very different error message,  please post your problem with the new error message again in a new question instead of updating this one.  Thanks.)</p>

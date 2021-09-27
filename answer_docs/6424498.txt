@@ -1,0 +1,4 @@
+<p>There will be loads of ways to do this, and this is one of them:</p>
+
+<pre><code>select convert(datetime,convert(varchar(10),getdate() - day(getdate()) + 1,120))
+</code></pre>

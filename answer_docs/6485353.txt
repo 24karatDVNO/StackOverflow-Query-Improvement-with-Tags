@@ -1,0 +1,7 @@
+<p>Okay, I finally solved this on my own. I have not changed the code. My NIB (.xib) was the culprit!</p>
+
+<p>I thought that nested UIViewControllers was OK, and I still think they are in some cases (and maybe using another programmatic method). Anyway, I was initializing my class <code>MyViewController</code> with a NIB that in the Objects panel had a UIViewController as the first object.</p>
+
+<p>I solved this by having the UIView as the first object in the Objects panel, and setting the File's Owner to be the UIViewController instead.</p>
+
+<p>Correct code, incorrect NIB. Thank you for your help.</p>

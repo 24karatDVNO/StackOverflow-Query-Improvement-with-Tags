@@ -1,0 +1,5 @@
+<p>Aha. I figured this out. Tornado <a href="https://github.com/facebook/tornado/wiki/Threading-and-concurrency" rel="nofollow">does poorly with concurrency</a>. The issue was that my logic was calling the long-lived RequestHandler instances from multiple threads (triggered by inbound RPCs), and when they collided, Tornado would freak out and close the connection.</p>
+
+<p>The fix was to queue up my interactions with RequestHandler instances on the IOLoop thread, using add_callback:</p>
+
+<p>tornado.ioloop.IOLoop.instance().add_callback(do_stuff)</p>

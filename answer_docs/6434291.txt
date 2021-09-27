@@ -1,0 +1,9 @@
+<p>You can use the standard HTTPServletRequest methods, even from velocity:</p>
+
+<p>$request.setAttribute("foo", "bar")</p>
+
+<p>$request.getAttribute("foo") would print "bar"</p>
+
+<p>$request.getParameter("foo") would get a GET or POST parameter "foo" and </p>
+
+<p>#set($map = ${request.getParameterMap()}) would get the whole map.</p>

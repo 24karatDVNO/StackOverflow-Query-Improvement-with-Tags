@@ -1,0 +1,9 @@
+<p>This documentation on the REST API for Configuration Reloading may be what you are looking for...</p>
+
+<p><a href="http://docs.geoserver.org/stable/en/user/restconfig/rest-config-api.html#configuration-reloading" rel="nofollow">http://docs.geoserver.org/stable/en/user/restconfig/rest-config-api.html#configuration-reloading</a></p>
+
+<p>Your curl request seems pretty close, I only had to change it slightly and it worked in my environment...</p>
+
+<p>curl -u admin:password <strong>-v</strong> -XPOST <a href="http://localhost:8080/geoserver/rest/reload" rel="nofollow">http://localhost:8080/geoserver/rest/reload</a></p>
+
+<p>If this doesn't work for you, can you describe more thoroughly in what way it is not working?</p>

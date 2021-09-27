@@ -1,0 +1,5 @@
+<p>In short, no.</p>
+
+<p>Operating systems don't ordinarily just start executing the first byte of a binary program.  What they do instead is set up the address space for the application, which will include things like how big it wants its call stack to be, what values it wants to preassigned to constants, and what parts of the binary file should be loaded as executable code, rather than writable data.  </p>
+
+<p>The way a binary program instructs the operating system how it wants to have it's address space configured varies from operating system to operating system.  </p>

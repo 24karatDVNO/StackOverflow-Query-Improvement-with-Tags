@@ -1,0 +1,8 @@
+<p>I would try to get a collection of categories and see where that takes you.</p>
+
+<p>$categories = Mage::getModel('catalog/category')
+  ->getCollection();</p>
+
+<p>This code will give you every single category. You can use addAttributeToSelect and addAttributeToFilter functions to furter narrow down your categories.</p>
+
+<p>From there you can foreach through the categories to display them or what whatever you want to do with it.</p>

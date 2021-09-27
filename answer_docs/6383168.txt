@@ -1,0 +1,8 @@
+<pre><code>Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+Matcher m = p.matcher("hgbs!hf862376");
+boolean b = m.matches(); // looking for no special characters
+
+if (!b) {
+    System.out.println("sp. character is there");
+}
+</code></pre>

@@ -1,0 +1,39 @@
+<p>You can simply prepare a list of bad words into an array and use the following code to replace such words with <strong>*</strong>. </p>
+
+<pre><code>$badWords = array("badWord1", "badWord2", "badWord3", "badWord4", "badWord1");
+$cleanUp = str_replace($badWords, "****", $originalString);
+</code></pre>
+
+<p>If you want to identify such words including its extensions (eg. ing, ed, s, ly, etc.) and respond with a message stating that it is inappropriate, You can do the following. Any how you should get the full list of such bad words to identify it.</p>
+
+<pre><code>// Array of Bad words
+$words = array('badWord1','badWord2','badWord3','badWord14');
+// Array of extention to words
+$exten = array('','ed','ing','s');
+// Input string
+$str = 'this is a dam sentence';
+// Create an array from input
+$string = explode(' ',strtolower($str));
+// Create a new array for all combinations of swear words
+$wordList = array();
+// Add all combinations to the new array
+foreach($words as $word){
+   foreach($exten as $ext){
+      $wordList[] = $word.$ext;
+   }
+}
+// Loop through each input word, and check if it is a bad word or not
+// FALSE = Good Words
+// TRUE = Bad Words
+$badWord = FALSE;
+foreach($string as $s){
+   if(in_array($s, $wordList)){
+      $badWord = TRUE;
+   }
+}
+// Do something if output is good or bad in this case display a message
+if($badWord)
+   echo 'This input contains inappropriate content';
+else
+   echo 'This is valid input!';
+</code></pre>

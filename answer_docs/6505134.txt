@@ -1,0 +1,16 @@
+<p>I found the solution so fast. You have to modify the 'Children' property, just like this:</p>
+
+<pre><code>treeviewitem my_tvi
+
+if Not IsValid(ids_childrens) then
+    ids_childrens = CREATE datastore
+    ids_childrens.DataObject = 'my_dw'
+    ids_childrens.SetTransObject(SQLCA)
+end if
+num_children = ids_childrens.Retrieve(long(some_pk))
+if num_children &lt;= 0 then
+    my_tvi.children = false
+else
+    my_tvi.children = true          
+end if
+</code></pre>

@@ -1,0 +1,12 @@
+<p>you can use cross apply</p>
+
+<pre><code>SELECT * FROM tblUsers as u CROSS JOIN tblProgrammes p
+CROSS APPLY
+(SELECT TOP 1 dateExpired FROM tblUserRepeatHistory
+WHERE userId = u.id and programmeId = p.id
+ORDER BY dateExpired desc
+) as rr
+</code></pre>
+
+<p>in the co-related sub query you get the maximum dateExpired in tblUserRepeatHistory where meet the programme and the user,
+cross apply is something like inner join, for nested queries and table-valued functions </p>

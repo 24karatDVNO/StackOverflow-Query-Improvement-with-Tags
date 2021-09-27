@@ -1,0 +1,7 @@
+<p>I don't have a lot of IVR experience, but here's how it worked on one system I worked on (which used VXML).</p>
+
+<p>The call was answered by the IVR.  This caused the IVR Voice Browser to issue an HTTP request to the web server.</p>
+
+<p>The web server received the request, along with a port number, to identify the unique caller. In my case, we were using standard ASPX pages that output VMXL (rather than HTML or XHTML), so all processing had to be done in the Page_Load method.  If the page needed additional information about the call, for example the callers number, we would issue a web services call to the IVR, including the port number.</p>
+
+<p>All of the user interaction with the IVR - button presses, etc - were handled on the IVR, and the web server would only get involved when a different VXML document was requested.</p>

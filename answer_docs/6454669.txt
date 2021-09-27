@@ -1,0 +1,21 @@
+<p>I figured out how to do this:</p>
+
+<p>Here's how:</p>
+
+<pre><code>ImageView image = (ImageView) findViewById(R.id.mainImageView);
+Bitmap bMap = BitmapFactory.decodeFile(imageFileString);
+
+bMap = bMap.copy(Bitmap.Config.ARGB_8888 , true);
+
+Canvas canvas = new Canvas(bMap);
+Paint paint = new Paint();
+paint.setAntiAlias(true);
+paint.setStyle(Paint.Style.STROKE);
+paint.setStrokeWidth(1);  
+paint.setColor(Color.BLUE);
+canvas.drawCircle(x, y, radius, paint);
+
+image.setImageBitmap(bMap);
+</code></pre>
+
+<p>Explanation:  The first line gets the <code>ImageView</code> from the layout.  I then grab the new image I want displayed using <code>BitmapFactory.decodeFile</code>, where <code>imageFileString</code> is the file location of the new image I want to display.  After that I create a new canvas using the bitmap and draw on it.  I then display the bitmap to the <code>ImageView</code> using <code>image.setImageBitmap(bMap);</code>.</p>

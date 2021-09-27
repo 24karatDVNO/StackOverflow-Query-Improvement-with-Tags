@@ -1,0 +1,11 @@
+<p>Javascript's regex match returns an array of matched results. In all of your test cases, it will be an array with a single value in it, like ["123"] or ["1"]. If you had a test case like "123-abcd-456", match would return ["123", "456"].</p>
+
+<p>If you are sure you only ever want the first match, you can do this:</p>
+
+<pre><code>var matches = obj.match(/\d+$/);
+if(matches.length != 0) {
+    return matches[0];
+}
+
+return '';
+</code></pre>

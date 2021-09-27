@@ -1,0 +1,8 @@
+<p>You could try something like this</p>
+
+<pre><code>$(document).ready(function () {
+    $("#reason_bars .edit").click(function () {
+        $(this).parent().find("select").removeAttr("disabled");
+    });
+});
+</code></pre>

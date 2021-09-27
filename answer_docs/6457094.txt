@@ -1,0 +1,5 @@
+<p>I think you need to understand better which objects are created and which remain in memory. A profiler tool can help you - many of them let you take a snapshot of the memory, perform some operation, and then compare the current state with the snapshot. This highlights the possible memory leaks.</p>
+
+<p>Also, make sure you explicitly run the garbage collector before even looking at the memory state - otherwise you might see lots of objects which are actually unreferenced and will be collected by the next GC.</p>
+
+<p>I wouldn't worry about resources allocated by the JVM. As long as you free all the resources that <em>you</em> allocate, you should be fine - and a profiler will help you make sure that you indeed free them all.</p>

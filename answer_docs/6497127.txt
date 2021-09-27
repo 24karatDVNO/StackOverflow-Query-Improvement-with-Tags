@@ -1,0 +1,44 @@
+<p>Chances are you have HTML content before your PHP:</p>
+
+<pre><code>&lt;span&gt;This is HTML!&lt;/span&gt;
+&lt;?php header("Location: http://www.example.com"); ?&gt;
+</code></pre>
+
+<p>This won't work because you can't use the <code>header</code> function after having sent output. <em>The HTML code counts as output</em> so the example is the same as:</p>
+
+<pre><code>&lt;?php
+    echo "&lt;span&gt;This is HTML!&lt;/span&gt;"
+    header("Location: http://www.example.com"); // FAIL
+?&gt;
+</code></pre>
+
+<p>... here the output is very clearly before the execution of <code>header</code>, so it won't work.</p>
+
+<p>It won't work because of the way HTTP responses are structured: headers have to be sent before the response body.</p>
+
+<p>Under the hood, the output of a PHP script is a HTTP response:</p>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type:text/html
+
+&lt;span&gt;This is HTML!&lt;/span&gt;
+</code></pre>
+
+<p>Usually the first line and the headers are added to the response implicitly and your PHP code only outputs the body, but when you use the <code>header</code> function you're adding headers, which have to come before the response body.</p>
+
+<p>This means you have to call <code>header</code> before you output any of the response body:</p>
+
+<pre><code>&lt;?php
+    header("Location: http://www.example.com");
+    echo "&lt;span&gt;This is HTML!&lt;/span&gt;"
+?&gt;
+</code></pre>
+
+<p>... resulting in something like:</p>
+
+<pre><code>HTTP/1.1 303 See Other
+Content-Type:text/html
+Location: http://www.example.com
+
+&lt;span&gt;This is HTML!&lt;/span&gt;
+</code></pre>

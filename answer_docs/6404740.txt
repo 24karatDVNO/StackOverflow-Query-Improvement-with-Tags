@@ -1,0 +1,16 @@
+<p>And for MySQL, here're the same queries:</p>
+
+<pre><code>-- Last 30 days grouped by day
+select date_format( timestamp,'%Y:%m:%d' ) `day`, max(D.CounterC) as MaxC
+from `DE0000000D102D1D` as D
+where D.`TimeStamp` between timestampadd(day, -30, now()) and now()
+group by date_format( timestamp,'%Y:%m:%d' )
+order by `day` ASC;
+
+-- Last day grouped by the hour
+select date_format( timestamp,'%Y:%m:%d %H' ) as `Hour`, max(D.CounterC) as MaxC
+from `DE0000000D102D1D` as D
+where D.`TimeStamp` between timestampadd(day, -1, now()) and now()
+group by date_format( timestamp,'%Y:%m:%d %H' )
+order by `Hour` ASC;
+</code></pre>

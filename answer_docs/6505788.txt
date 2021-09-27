@@ -1,0 +1,17 @@
+<p>You get NullPointerException, because you initialise newsList in different thread:</p>
+
+<pre><code>newsList = new ArrayList&lt;NewsPojo&gt;();
+</code></pre>
+
+<p>But this code is executed probably AFTER you return newsList, that equals null</p>
+
+<pre><code>    if(newsList == null)
+    {
+        Thread t = new Thread(){
+                ....
+        };// end of thread
+        t.start(); // &lt;&lt; this only starts thread and continues executing
+    }//end of if
+
+    return newsList; // this is executed before newsList is initialized in t.run()
+</code></pre>

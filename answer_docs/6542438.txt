@@ -1,0 +1,6 @@
+<p>you don't want to <strong>set</strong> the transform, you want to <strong>modify</strong> it,</p>
+
+<pre><code>view.transform = CGAffineTransformRotate(view.transform, angle);
+</code></pre>
+
+<p>if you need to keep the old one around, then do</p>

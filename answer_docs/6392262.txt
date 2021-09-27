@@ -1,0 +1,14 @@
+<pre><code>select U_ID, S.ID
+from UID as U
+  inner join STID as S
+    on S.Pr = U.PR and
+       S.Im = U.IM and
+       S.Ur = U.UR
+union all
+select U_ID, P.ID
+from UID as U
+  inner join PRID as P
+    on U.PR = P.PR and
+       U.IM is null and
+       U.UR is null
+</code></pre>

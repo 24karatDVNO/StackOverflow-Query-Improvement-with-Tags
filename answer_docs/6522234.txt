@@ -1,0 +1,12 @@
+<p>What language are you using? in perl you can do something like</p>
+
+<pre><code>$s = "07-MAY-07 Hello World 07-MAY-07 Hello Again";
+$s =~ s/\s(\d\d-\w\w\w-\d\d)/\n$1/g;
+print $s;
+</code></pre>
+
+<p>result</p>
+
+<pre><code>07-MAY-07 Hello World
+07-MAY-07 Hello Again
+</code></pre>

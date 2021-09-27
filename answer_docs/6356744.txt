@@ -1,0 +1,52 @@
+<p>I've met this one. Let's get a look at it in details. To create your custom picker view, you create your custom UIView class, e.g. :</p>
+
+<pre><code>@interface TimeAroundView : UIView 
+{
+    NSString *title;
+    UIImage *image;
+}
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) UIImage *image;
+@end
+</code></pre>
+
+<p>Then in your custom picker view controller you create some container, e.g. NSArray, which will get all TimeAroundView objects you want to represent in your picker view. So, for every object you must do</p>
+
+<pre><code>timeAroundViewObject.userInteractionEnabled = NO;
+</code></pre>
+
+<p>I think -(id)init is the best place for filling that container in, so you get something like this:</p>
+
+<pre><code>- (id)init
+{
+    self = [super init];
+    if (self) {
+        // create the data source for this custom picker
+        NSMutableArray *viewArray = [[NSMutableArray alloc] init];
+
+        TimeAroundView *earlyMorningView = [[TimeAroundView alloc] initWithFrame:CGRectZero];
+        earlyMorningView.title = @"Early Morning";
+        earlyMorningView.image = [UIImage imageNamed:@"12-6AM.png"];
+        earlyMorningView.userInteractionEnabled = NO;
+        [viewArray addObject:earlyMorningView];
+        [earlyMorningView release];
+
+        TimeAroundView *lateMorningView = [[TimeAroundView alloc] initWithFrame:CGRectZero];
+        lateMorningView.title = @"Late Morning";
+        lateMorningView.image = [UIImage imageNamed:@"6-12AM.png"];
+        lateMorningView.userInteractionEnabled = NO;
+        [viewArray addObject:lateMorningView];
+        [lateMorningView release];
+
+        // ....  (more of objects)
+
+        self.customPickerArray = viewArray;
+        [viewArray release];
+    }
+
+    return self;
+}
+</code></pre>
+
+<p>And in your pickerView:viewForRow:forComponent:reusingView: you just return proper element from array.
+That works for me.</p>

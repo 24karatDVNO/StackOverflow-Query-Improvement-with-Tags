@@ -1,0 +1,13 @@
+<p>It sounds like this might be a good use-case for <a href="http://www.virtualenv.org/en/latest/index.html" rel="nofollow">virtualenv</a>, which lets you easily manage switching between and isolating multiple Python environments. Use the <code>--python</code> switch to specify the path to your desired python version, e.g.:</p>
+
+<pre><code>$ virtualenv --python /path/to/python2.6 env_name
+...
+$ source env_name/bin/activate
+(env_name)$ which python
+/path/to/env_name/bin/easy_install
+(env_name)$ which easy_install
+/path/to/env_name/bin/easy_install
+(env_name)$ deactivate
+$ which python
+/path/to/system/python
+</code></pre>

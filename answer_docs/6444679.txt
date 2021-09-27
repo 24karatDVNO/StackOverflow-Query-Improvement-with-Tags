@@ -1,0 +1,10 @@
+<pre><code>git remote -v show
+git branch -vv
+git config branch.$branch.remote
+</code></pre>
+
+<p><code>git remote -v show</code> shows interesting information about your remotes</p>
+
+<p>The <code>git branch -vv</code> command will show you your upstream for a specific branch which is <em>probably</em> where you push to by default.</p>
+
+<p>However <code>git config branch.master.remote</code> would be the only absolute method to know for sure where you push to when you say <code>git push</code></p>

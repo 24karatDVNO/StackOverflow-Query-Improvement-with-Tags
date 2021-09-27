@@ -1,0 +1,20 @@
+<p>Try using a global variable to turn on or off the timer. For instance (pseudo-code only):</p>
+
+<pre><code>var gKeepRunning = true;   //KEY TO ANSWER HERE
+
+myRepeatingImageLoader();   //this is the method that will repeat
+
+function myRepeatingImageLoader(){
+  $("&lt;img&gt;").attr("src", "path/to/image.jpg").load(function(){
+    $("#thediv").append(this);
+  });
+
+  if( gKeepRunning == true )   //KEY TO ANSWER HERE - WILL STOP WHEN SET TO FALSE
+    var junk = setTimeout('myRepeatingImageLoader();', 6000);   //Repeat again
+}
+
+function loadNewSet(){
+  gKeepRunning == false;   //KEY TO ANSWER HERE
+  loadImages();
+}
+</code></pre>

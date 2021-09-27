@@ -1,0 +1,30 @@
+<p>I accomplished it by doing this.</p>
+
+<p>In the app delegate I made a property for the view controller</p>
+
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+#import "MyViewController.h"
+
+@interface AppDelegate : NSObject &lt;UIApplicationDelegate, UITabBarControllerDelegate&gt; {
+
+    UIViewController *myViewController;
+
+
+}
+
+@property (nonatomic, assign) UIViewController *myViewController;
+
+
+@end
+</code></pre>
+
+<p>Then in the view controller that I wanted to recieve the message i did this.</p>
+
+<pre><code>AppDelegate *theAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+
+theAppDelegate.myViewController = self;
+</code></pre>
+
+<p>Then I can easily send a message to the viewController from the app delegate.</p>
+
+<p>Please let me know if there are any inherit problems with this answer. It works for me...</p>

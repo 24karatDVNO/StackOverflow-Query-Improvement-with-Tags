@@ -1,0 +1,1 @@
+<p>It depends on how large the data set is. If it's a big payload, you might want to source it as an external file (i.e. make an ajax request) in order to have the browser cache it. However, in most cases, minimize the number of HTTP requests as much as possible. Personally I'd go with embedding the json into HTML unless it's maybe >20 kb zipped.</p>

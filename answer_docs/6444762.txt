@@ -1,0 +1,37 @@
+<p>Thanks for all the help.
+I figured it out though this works</p>
+
+<pre><code>function ScrollTo(Aobj){
+obj = document.getElementById(Aobj);
+try{
+    var objpos = ObjectPosition(obj);
+}catch(e){}
+try{
+    scroll(0,objpos[1]);
+}catch(e){}
+try{
+    window.scrollTo(0,objpos[1]);
+}catch(e){}
+</code></pre>
+
+<p>}</p>
+
+<pre><code>function ObjectPosition(obj) {
+var curleft = 0;
+  var curtop = 0;
+  if (obj.offsetParent) {
+        do {
+              curleft += obj.offsetLeft;
+              curtop += obj.offsetTop;
+        } while (obj = obj.offsetParent);
+  }
+  return [curleft,curtop];
+</code></pre>
+
+<p>}</p>
+
+<p>Got it from:
+<a href="http://www.michaelapproved.com/articles/scroll-to-object-without-leaving-page/" rel="nofollow">http://www.michaelapproved.com/articles/scroll-to-object-without-leaving-page/</a></p>
+
+<pre><code>&lt;span style="color:#03F" onclick="ScrollTo('vsresponse')"&gt;&lt;u&gt;goto bottom&lt;/u&gt;&lt;/span&gt;
+</code></pre>

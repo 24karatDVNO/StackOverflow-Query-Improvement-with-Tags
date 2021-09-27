@@ -1,0 +1,21 @@
+<p>I use a callback method, So when result comes to onPostExecute I call another AsynkTask from UI, I think it is good idea, Let me know what do you think.</p>
+
+<pre><code>public class PatientSearchController extends AsyncTask &lt; String, Void, String &gt; {
+
+    private PatientSearchResultHandler handler = null;
+
+    public void onResultHandler(PatientSearchResultHandler handler) {
+        this.handler = handler;
+    }
+
+    @Override
+    protected String doInBackground(String...params) {
+
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        this.handler.onResultSuccessHandler(result);
+    }
+}
+</code></pre>

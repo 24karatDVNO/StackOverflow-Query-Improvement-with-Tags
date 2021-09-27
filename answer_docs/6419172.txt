@@ -1,0 +1,10 @@
+<p>You are allocating p1 on the stack, as a local variable, and then returning a pointer to it.  It will subsequently be wiped out during or after function return as the memory gets reused.  Try returning p1 instead and have the function return the pin_ptr, because when the pin_ptr goes out of scope the memory gets unpinned anyway.</p>
+
+<p>A similar scenario would be this:</p>
+
+<pre><code>int* foo()
+{
+    int x = 2;
+    return &amp;x;
+}
+</code></pre>

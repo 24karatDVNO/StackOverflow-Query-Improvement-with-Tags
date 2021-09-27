@@ -1,0 +1,7 @@
+<p>Application where tables are created dynamically by users is not scenario for Entity Framework. Entity framework requires compiled classes mapped to tables (+ mapping if not inferred by conventions) and your code must use these classes to take advantage of them. </p>
+
+<p>In my opinion application where tables are created dynamically is not something where you can expect strongly typed access or great performance. Both these requirements expect that you write a code against well defined set of classes (defined at design time) and you optimize the code and data access for these classes. In your scenario this is not possible - use untyped datasets and dynamically created SQL + ASP.NET data bound controls and hope that it will work in most cases. </p>
+
+<p>Edit:</p>
+
+<p>Now I see that you want to use MVC3 = no data bound controls. You will have to write a code inspecting your untyped datasets and producing some UI to allow viewing, editing and validating the data with structure you don't know upfront. That generally means that you need your own meta model describing newly created tables, constrains, field sizes, nullable columns etc. and use this information to create UI and perhaps also prepare untyped datasets from that information.</p>

@@ -1,0 +1,11 @@
+<p>If I remember correctly, you can use the name of the relation as fieldname in the displaylist.</p>
+
+<p>But what always works is using a partial. So in your generator.yml:</p>
+
+<pre><code>list:
+  display: [id, name, _referred]
+</code></pre>
+
+<p>And then created <code>_referred.php</code> in your templates folder, and do something like:</p>
+
+<p><code>&lt;?php echo $modelName-&gt;Referred-&gt;name; ?&gt;</code></p>

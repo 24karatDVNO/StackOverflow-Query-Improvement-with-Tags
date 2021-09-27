@@ -1,0 +1,11 @@
+<p>That's because you specify that the end point for your gradient is in middle of the currentBounds - see this line:</p>
+
+<pre><code>CGPoint midCenter = CGPointMake(CGRectGetMidX(currentBounds), CGRectGetMidY(currentBounds));
+</code></pre>
+
+<p>To get rid of the black make sure the y coordinate is at the bottom of your view. </p>
+
+<p>Alternatively, you could use this code to extend your gradient after the end point</p>
+
+<pre><code> CGContextDrawLinearGradient(currentContext, glossGradient, topCenter, midCenter, kCGGradientDrawsAfterEndLocation);
+</code></pre>

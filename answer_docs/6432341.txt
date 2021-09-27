@@ -1,0 +1,15 @@
+<p>You don't need to trigger the click event if you apply the checked attribute after you append it to the dom: <a href="http://jsfiddle.net/XjHUe/2/" rel="nofollow">http://jsfiddle.net/XjHUe/2/</a></p>
+
+<pre><code>&lt;div id='content'&gt;&lt;/div&gt;
+var $itemVariantRowRadio = $("&lt;input/&gt;")
+    .attr("type", "radio")
+    .attr("name", "itemvariant")
+    .addClass("itemvariant")
+    .val('whatever');
+//$itemVariantRowRadio.attr("checked", true);
+$("#content").append($itemVariantRowRadio);
+$(".itemvariant").attr('checked',true);
+
+var val = $(".itemvariant").attr("checked");
+alert(val);
+</code></pre>

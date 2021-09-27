@@ -1,0 +1,49 @@
+<p>SCORM Standard provides only a limited way to report viewer's achievents in a set of the following variables:</p>
+
+<p><strong>cmi.progress_measure</strong> (real (10,7) range (0..1), RW) Measure of the progress the learner has made toward completing the SCO</p>
+
+<p><strong>cmi.scaled_passing_score</strong> (real(10,7) range (-1 .. 1), RO) Scaled passing score required to master the SCO</p>
+
+<p><strong>cmi.score._children</strong> (scaled,raw,min,max, RO) Listing of supported data model elements</p>
+
+<p><strong>cmi.score.scaled</strong> (real (10,7) range (-1..1), RW) Number that reflects the performance of the learner</p>
+
+<p><strong>cmi.score.raw</strong> (real (10,7), RW) Number that reflects the performance of the learner relative to the range bounded by the values of min and max</p>
+
+<p><strong>cmi.score.min</strong> (real (10,7), RW) Minimum value in the range for the raw score</p>
+
+<p><strong>cmi.score.max</strong> (real (10,7), RW) Maximum value in the range for the raw score</p>
+
+<p>These variables are generic and thus can be used by the variety of SCO objects. However, due to imporsonality of this generic mark, the SCOs aggregating mixed content in one unit (such as iSpring Presentations which can contain slides and quizzes) is not possible to track the detailed information - you just have a total mark.</p>
+
+<p>iSpring presenter allows you to specify 'weight' of the slides and individual quizzes within the presentation when calculating the total mark.</p>
+
+<p><em>percent of slides viewed</em></p>
+
+<p><strong>SlidesPercent</strong> = SlidesViewed / TotalSlides</p>
+
+<p><em>The percent of each quiz withing the presentation</em></p>
+
+<p><strong>QuizPercent</strong>(i) = GatheredQuizScore(i) / MaximumScore(i)</p>
+
+<p><em>Calculate weighted percent (the sum of each learning course item percent multiplied to the corresponding weight)</em></p>
+
+<p><strong>WeightedPercent</strong> = (SlidesPercent*SlidesWeight) + Sum(QuizPercent(i) * QuizWeight(i))</p>
+
+<p><em>Calculate total weight of the learning course (the sum of quiz weights plus weight of the slides</em></p>
+
+<p><strong>TotalWeight</strong> = SlidesWeight + Sum(QuizWeight(i)</p>
+
+<p><em>Calculate normalized percent of the whole learning cours (0..1)</em></p>
+
+<p><strong>NormalizedPercent</strong> = WeightedPercent / TotalWeight</p>
+
+<p><em>Calculate total score of the learning course</em></p>
+
+<p><strong>TotalScore</strong> = NormlizedPercent * MaxScore</p>
+
+<p>The total score is reported by iSpring learning content to LMS as cmi.score.raw</p>
+
+<p>The normalized percent is reported to LMS as cmi.score.scaled</p>
+
+<p>However due to the reasons described above it is not possible to report details to a generic SCORM-compliant LMS. The only solution is to make separate quizzes from slides.</p>

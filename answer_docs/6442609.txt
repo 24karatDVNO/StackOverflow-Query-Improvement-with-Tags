@@ -1,0 +1,13 @@
+<p>I have not tested, but the idea is to try to use an aggregate MIN in your subquery to get min playlist id for each youtube videos you have, and then join it to the playlist table</p>
+
+<pre><code>SELECT p.*, v.*
+FROM
+  (SELECT MIN(id) AS id, youtube_id
+  FROM playlists p 
+  JOIN playlist_assignments pa USING(id) 
+  WHERE Title = 'My Top Videos'
+  GROUP BY youtube_id) AS firstPlaylistByVideo
+JOIN playlists p ON p.id = firstPlaylistByVideo.id
+JOIN videos v USING (youtube_id)
+ORDER BY position ASC
+</code></pre>

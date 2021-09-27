@@ -1,0 +1,62 @@
+<p>So if I understood what you wanted in your question, I believe this is what you want:</p>
+
+<pre><code>var counts = clearingMessagesDoc
+    .Elements("ClearingMessages")
+    .Elements("FIXML")
+    .Elements()
+    .GroupBy(e =&gt; e.Name.ToString())
+    .ToDictionary(
+        g =&gt; g.Key,
+        g =&gt; g.SelectMany(e =&gt; e.Attributes())
+              .GroupBy(attr =&gt; new { Name = attr.Name.ToString(), Value = attr.Value.Trim() })
+              .OrderBy(attrg =&gt; attrg.Key.Name)
+              .ThenBy(attrg =&gt; attrg.Key.Value)
+              .ToDictionary(
+                  attrg =&gt; String.Format("{0}=\"{1}\"", attrg.Key.Name, attrg.Key.Value),
+                  attrg =&gt; attrg.Count()));
+</code></pre>
+
+<p>It yields the results:</p>
+
+<pre>
+Element: TrdCaptRpt
+  TrdSubTyp="7": 1
+  TrdTyp="0": 1
+</pre>
+
+<p>This will create a dictionary of dictionaries of the counts of your attribute/value pairs per element type.  It counts <em>all</em> attributes for <em>all</em> elements however.  I couldn't tell which elements or attributes you wanted to count.</p>
+
+<hr>
+
+<p>If you want to go further down the element hierarchy, change the last <code>Elements()</code> call to <code>Descendants()</code> and that will include all the nested elements and their attribute counts.</p>
+
+<pre><code>var counts = clearingMessagesDoc
+    .Elements("ClearingMessages")
+    .Elements("FIXML")
+    .Descendants() // checks ALL elements in the hierarchy
+    .GroupBy(e =&gt; e.Name.ToString())
+    .ToDictionary(
+        g =&gt; g.Key,
+        g =&gt; g.SelectMany(e =&gt; e.Attributes())
+              .GroupBy(attr =&gt; new { Name = attr.Name.ToString(), Value = attr.Value.Trim() })
+              .OrderBy(attrg =&gt; attrg.Key.Name)
+              .ThenBy(attrg =&gt; attrg.Key.Value)
+              .ToDictionary(
+                  attrg =&gt; String.Format("{0}=\"{1}\"", attrg.Key.Name, attrg.Key.Value),
+                  attrg =&gt; attrg.Count()));
+</code></pre>
+
+<p>It yields the following results:</p>
+
+<pre>
+Element: TrdCaptRpt
+  TrdSubTyp="7": 1
+  TrdTyp="0": 1
+Element: Hdr
+  Snt="2011-05-18T12:26:09-05:00": 1
+Element: RptSide
+  Side="2": 1
+Element: Pty
+  ID="GS": 1
+  R="21": 1
+</pre>

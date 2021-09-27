@@ -1,0 +1,5 @@
+<p>Regardless of using features, you cannot properly deïnstall a module if you have removed its files. </p>
+
+<p>The routines and actions to take when deïnstalling, are all in the .install file. If that one is not found by Drupal, it cannot run the deïnstallation actions inside it. </p>
+
+<p>Once you have placed back the files you can simply have your features migration call <a href="http://api.drupal.org/api/drupal/includes--install.inc/function/drupal_uninstall_module/6" rel="nofollow"><code>drupal_uninstall_module()</code></a>. That will uninstall the modules you pass along to it.</p>

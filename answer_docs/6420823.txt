@@ -1,0 +1,6 @@
+<p>Try this</p>
+
+<pre><code> static Regex resourceTextsREGEX = new Regex(@"({)([^}{\|]+)(})|(\|)([^}{\|]+)(\|)", RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnoreCase); 
+</code></pre>
+
+<p>this will match <code>{text}</code> , <code>|text|</code> and <strong>not</strong> with <code>{}</code>,<code>||</code>,<code>{text|</code></p>

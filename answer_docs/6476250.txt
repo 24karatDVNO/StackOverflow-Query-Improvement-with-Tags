@@ -1,0 +1,10 @@
+<p>I had this problem in a project started in XCode 3 and now compiled in XCode 4, where the line</p>
+
+<pre><code> -#include &lt;Foundation/NSString.h&gt;
+</code></pre>
+
+<p>was flagged as no such file.  I fixed it by re-adding the framework - although it was already appearing in my project (from when I had added it in XCode 3) using this approach:</p>
+
+<p><a href="https://stackoverflow.com/questions/3352664/how-to-add-existing-frameworks-in-xcode-4">How to &quot;add existing frameworks&quot; in Xcode 4?</a></p>
+
+<p>I noticed the list seen by using this method <em>did not</em> include the Foundation framework.</p>

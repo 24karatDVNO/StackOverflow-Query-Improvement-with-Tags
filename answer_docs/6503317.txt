@@ -1,0 +1,55 @@
+<p>You can get some inspiration from the following XSLT:</p>
+
+<pre><code>&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:glsync="http://www.portal.com/schemas/GLSync" version="1.0"&gt;
+
+    &lt;xsl:output method="text" /&gt;
+
+    &lt;xsl:template match="glsync:GeneralLedgerReport"&gt;
+        &lt;xsl:value-of select="./glsync:SourceSystemID" /&gt;
+        &lt;xsl:text&gt;|&lt;/xsl:text&gt;
+        &lt;xsl:value-of select="./glsync:ReportID" /&gt;
+        &lt;xsl:text&gt;|&lt;/xsl:text&gt;
+        &lt;xsl:value-of select="./glsync:RevenueType" /&gt;
+        &lt;xsl:text&gt;|&lt;/xsl:text&gt;
+        &lt;xsl:apply-templates select="./glsync:ReportCreatedTime" /&gt;
+        &lt;xsl:text&gt;|&lt;/xsl:text&gt;
+        &lt;xsl:apply-templates select="./glsync:PeriodStartTime" /&gt;
+    &lt;/xsl:template&gt;
+
+    &lt;xsl:template match="glsync:ReportCreatedTime"&gt;
+        &lt;xsl:value-of
+            select="concat(
+                glsync:Year, '/', 
+                glsync:Month, '/', 
+                glsync:Day, '-', 
+                format-number(glsync:Hours, '00'), ':', 
+                format-number(glsync:Minutes, '00'), ':', 
+                format-number(glsync:Seconds,  '00'))" /&gt;
+    &lt;/xsl:template&gt;
+
+    &lt;xsl:template match="glsync:PeriodStartTime"&gt;
+        &lt;xsl:value-of
+            select="concat(
+                glsync:Year, '/', 
+                glsync:Month, '/', 
+                glsync:Day, '-', 
+                format-number(glsync:Hours, '00'), ':', 
+                format-number(glsync:Minutes, '00'), ':', 
+                format-number(glsync:Seconds,  '00'))" /&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>Some notes:</p>
+
+<ul>
+<li><p>you must use namespace in matching elements, because your XML has a <code>targetNamespace</code>;</p></li>
+<li><p>you could use the <code>concat</code> function also in the template matching <code>glsync:GeneralLedgerReport</code></p></li>
+<li><p>note the use of the <code>format-number</code> function to get hours, minutes and seconds on two digits</p></li>
+<li><p>finally, your longer XML seems strange because all <code>GeneralLedgerReport</code>, <code>ReportCreatedTime</code>, <code>PeriodStartTime</code> and <code>PeriodEndTime</code> tags are on the same level; perhaps you have some tag enclosing them so that you have nested structures for every <code>GeneralLedgerReport</code></p></li>
+</ul>
+
+<p>I hope this helps.</p>

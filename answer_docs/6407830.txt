@@ -1,0 +1,21 @@
+<p>This error appears when nothing to test (your main project not build).</p>
+
+<p>the structure of your maven project must be:</p>
+
+<p><strong>your_project-parent</strong></p>
+
+<p><strong>|--your_project</strong></p>
+
+<p><strong>|--your_project-it</strong> </p>
+
+<p>When </p>
+
+<p><strong>your_project</strong> - main project</p>
+
+<p><strong>your_project-parent</strong> - parent project</p>
+
+<p><strong>your_project-it</strong> - instrumental testing project</p>
+
+<p>You must run mvn install on <strong>your_project-perent</strong> project.</p>
+
+<p>Then first builds main project then test project.</p>

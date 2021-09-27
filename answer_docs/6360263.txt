@@ -1,0 +1,11 @@
+<p>I think you're trying to make it so that when a user is logged into Wordpress they are also logged into Pligg. Is this correct?</p>
+
+<p>There is an <a href="http://thedeadone.net/how-to/integrating-pligg-beta-810-with-wordpress-204/" rel="nofollow">interesting article covering this</a> where the author mentions editing the \libs\login.php file. It's basically editing the file's function and adding user_logged_onto_wp() as a custom function which... well here's the author's quite:</p>
+
+<blockquote>
+  <p>All the work to modify Pligg takes place in ‘libs/login.php’. What we want to do is get Pligg to login using WordPress cookies/authentication. If the user doesn’t yet exist in Pligg, create it. Also, copy over all the existing user data to the Pligg database. We won’t be using Pligg’s login, authentication or logout any more.</p>
+  
+  <p>However, we can’t just include wordpress and call wordpress functions. Instead, we’re going to have to do it manually. What I’ve done is added a function called is_user_logged_onto_wp(), which does all the extra work.</p>
+</blockquote>
+
+<p>Check the link and follow his code, this should still work with the latest Pligg 1.1.4 CMS. Not sure though as I haven't personally tested...</p>

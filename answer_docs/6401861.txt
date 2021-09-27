@@ -1,0 +1,29 @@
+<p>Use <a href="http://www.fiddler2.com/fiddler2/" rel="nofollow noreferrer"><strong>Fiddler</strong></a> to check the traffic with the app, where does it get stuck, does it get the <code>.cxml</code> file, can it find the <code>dzi</code> and <code>dsc</code> files? </p>
+
+<p>Did you add dzi and dzc mime types as allowed? </p>
+
+<p>You can see this <code>Stackoverflow</code> question to learn how to do this in <code>IIS 6</code>:</p>
+
+<p><a href="https://stackoverflow.com/questions/3525782/how-do-i-get-the-silverlight-pivot-server-application-to-run-on-iis-6">How do I get the Silverlight Pivot Server application to run on IIS 6?</a></p>
+
+<p>Aslo in case you are using the JIT sample code then in the PivotServer project there is web.config file where there are httpHandler configuration values that are meant to be used when running in VS only. </p>
+
+<p><strong>You should remove those when you're deploying:</strong></p>
+
+<blockquote>
+  <p>The Visual Studio Development Server
+  uses these <strong>httpHandler</strong> configuration
+  values. To run the server under <strong>IIS</strong>,
+  comment these handlers so that IIS
+  will use the duplicate set of handlers
+  in the <strong>system.webServer</strong> section below.</p>
+</blockquote>
+
+<pre><code>&lt;httpHandlers&gt;
+    &lt;add path="*.cxml" verb="GET" type="PivotServer.CxmlHandler"/&gt;
+    &lt;add path="*.dzc" verb="GET" type="PivotServer.DzcHandler"/&gt;
+    &lt;add path="*.dzi" verb="GET" type="PivotServer.DziHandler"/&gt;
+    &lt;add path="*/dzi/*_files/*/*_*.jpg" verb="GET" type="PivotServer.DeepZoomImageHandler"/&gt;
+    &lt;add path="*_files/*/*_*.jpg" verb="GET" type="PivotServer.ImageTileHandler"/&gt;
+&lt;/httpHandlers&gt;
+</code></pre>

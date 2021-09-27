@@ -1,0 +1,5 @@
+<p>In normal circumstances soa-infra should start.  Given that it hasn't and policy manager also hasn't started then there is a problem in the configuration or database connectivity.</p>
+
+<p>Search in %MW_HOME%\user_projects\domains\servers\soa_server1\logs\soa_server1-diagnostic.log for any exceptions.  Also have a look at the soa_server1.out file in the same directory.  Clues will be more apparent there.</p>
+
+<p>Most likely it is a datasource issue and checking the data sources - right click on WebLogic/domains/your_domain and select Data Sources option.  Select monitor and it will show you the current state of all data sources.</p>

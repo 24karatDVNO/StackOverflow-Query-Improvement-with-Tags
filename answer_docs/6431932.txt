@@ -1,0 +1,9 @@
+<p>Todd is correct, in the format of the editable attribute mentioned previously. It sure would be nice if the editable attribute was smart enough to make this data editable on it's own, but unfortunately it is not! Ultimately, you will need to right data access code in order to perform different actions.</p>
+
+<p>The best way to understand how it is setup, is to ultimately take a look at an example.</p>
+
+<p>Check out this example:</p>
+
+<p><a href="http://demos.telerik.com/aspnet-mvc/grid/editingajax" rel="nofollow">Telerik Ajax Editing Example</a></p>
+
+<p>In this example you will need to look at the View and Controller to understand what is needed to make this happen. Ultimately you will need to write CRUD operations on your controller, and link to those operations from you configuration code on your gridview.</p>

@@ -1,0 +1,27 @@
+<p>Well, you'd need to add some kind of conditional statement in there.  if {} else {} for example.  You're calling a jQuery toggle command but then hardcoding what action takes place.  What happens when your user clicks again to go back to the 'default' view.  Your left sidebar will toggle, showing again, but your main container just stays at 700px!  </p>
+
+<p>This isn't exactly how <em>I</em> would do it but here's a quick-n-dirty example::</p>
+
+<pre><code>// jQuery toggle function
+$('h2.trigger').click(function() {
+
+    var container = $('.container');
+
+    $('.toggle_container').toggle('slow');
+
+    if (container.width &gt; 400) {
+        container.css('width', '400px');
+    } else {
+        container.css('width', '700px');
+    }
+
+});
+</code></pre>
+
+<p>Again, quick-n-dirty but it should give you the results that you want.</p>
+
+<p>Now that I've answered your question I'd like to point out a couple things.</p>
+
+<p>1  You have a rather low acceptance rate.  Go to your profile page and look at the questions you've asked.  Has somebody answered them correctly/to your satisfaction?  Mark their answer as the one you accept!  This helps the community and encourages people to answer your questions.</p>
+
+<p>2  Try not to post huge, massive walls of code.  Most people, not willing to look through it.  Instead break out a small 'chunk' of an example that shows the issue and the relevant code.  For your question all that CSS is completely irrelevant and could have been left out.</p>

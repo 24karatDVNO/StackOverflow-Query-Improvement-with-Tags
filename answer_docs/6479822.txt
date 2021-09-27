@@ -1,0 +1,10 @@
+<p>You can use <code>serialize()</code> or <code>serializeArray()</code></p>
+
+<pre><code>var params = $("#my_form").serialize();
+        $.post( "/signup/",params,
+                 function(data,textStatus, jqXHR){foo ... } )
+</code></pre>
+
+<p>See for example </p>
+
+<p><a href="http://api.jquery.com/serialize/" rel="nofollow">http://api.jquery.com/serialize/</a></p>

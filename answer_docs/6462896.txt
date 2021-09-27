@@ -1,0 +1,8 @@
+<pre><code>var xdocument = XDocument.Load(@"C:\1.xml");
+var result = xdocument.Descendants(XName.Get("ApplicationStatus", "urn:Allscripts:Hub:PatientMsg")).First().Value;
+</code></pre>
+
+<p>Or</p>
+
+<pre><code>var result = xdocument.XPathSelectElement("//ns4:ApplicationStatus", xdocument.Root.CreateNavigator()).Value;
+</code></pre>

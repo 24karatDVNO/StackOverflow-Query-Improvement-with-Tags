@@ -1,0 +1,13 @@
+<p>Create a intermediate set and check against it:</p>
+
+<pre><code># create set to check against
+seconds = set(x[1] for x in list_of_lists)
+
+# remove matching keys
+for k in my_dict.keys():
+  if k not in seconds:
+     delete my_dict[k]
+</code></pre>
+
+<p>Easy. Runs in O(N) time, with O(N) storage.
+Note that in your example, the capitalization will not match ('roger' != 'Roger')</p>

@@ -1,0 +1,15 @@
+<p>Create an event handler for the Selected event of the SqlDataSource, test if an exception occurred, perform whatever error reporting you want, then indicate that you've now handled the error. </p>
+
+<pre><code>    mSqlDataSource.Selected += new sqlDataSourceStatusEventHandler(mSqlDataSource_Selected);
+
+
+    void mSqlDataSource_Selected(object sender, SqlDataSourceStatusEventArgs e)
+    {
+        if (e.Exception != null)
+        {
+            mErrorText.Text = e.Exception.Message;
+            mErrorText.Visible = true;
+            e.ExceptionHandled = true;
+        }
+    }
+</code></pre>

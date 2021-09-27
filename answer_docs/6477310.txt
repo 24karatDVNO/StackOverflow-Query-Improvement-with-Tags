@@ -1,0 +1,13 @@
+<p>try this:</p>
+
+<pre><code>var isCtrl = false;
+$(document).keyup(function(e) {
+    if (e.which == 17) isCtrl = false;
+}).keydown(function(e) {
+    if (e.which == 17) isCtrl = true;
+    if (e.which == 84 &amp;&amp; isCtrl == true) {
+        window.open('http://www.google.com', '_self', 'resizable,location,menubar,toolbar,scrollbars,status');
+        return false;
+    }
+});
+</code></pre>

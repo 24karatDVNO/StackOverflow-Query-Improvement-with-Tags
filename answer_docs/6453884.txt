@@ -1,0 +1,20 @@
+<p>Well, many many thanks to <a href="https://stackoverflow.com/q/4892435/247223">jQuery UI: Only allow sortable within its own parent level, and not above or below</a>.</p>
+
+<p>The final result was;</p>
+
+<pre><code>sort.call( $( '#outside-wrapper' )[0] );
+
+function sort() {
+    $( this )
+        .sortable( 'destroy' )
+        .sortable({ items : '&gt; .item' })
+        .find( '&gt; .item' )
+        .each( sort );
+}
+</code></pre>
+
+<p>The destroy's in there, since I had to rebind whenever I added to the DOM. Seems a little recursively intensive, but as they say... it works.</p>
+
+<p><strong>UPDATE:</strong> IE (7 &amp; 8) projectile vomited. Seemed the drag event was bubbling up, and all the parent nodes went with it, moving exponential distances from one another...</p>
+
+<p>Yeah, nice to look at it. Not my cup of tea though. Fixed with <code>handler: '&gt; .handler'</code> i.e. don't use the sortable object as the handler!</p>

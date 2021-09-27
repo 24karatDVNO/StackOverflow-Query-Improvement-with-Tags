@@ -1,0 +1,16 @@
+<p>msgid is actuall 3 strings because of the strings delimiters of double quotation marks. So you could just:</p>
+
+<pre><code>msgid = ""&lt;&lt;"We couldn't set up that account, sorry. Please try again, or contact an "&lt;&lt;"admin (link is above)."
+</code></pre>
+
+<p>Or if you want to take a long route:</p>
+
+<pre><code>x = %q{}
+  msgid = """We couldn't set up that account, sorry. Please try again, or contact an ""admin (link is above)."
+  x &lt;&lt; msgid
+  x.gsub!('"', '')
+  msgid = ""
+  msgid &lt;&lt; x
+# Check
+  puts x
+</code></pre>

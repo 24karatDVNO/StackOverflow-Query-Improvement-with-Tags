@@ -1,0 +1,5 @@
+<p>How is your LoginObject instantiated? </p>
+
+<p>If it's instantiated via a service or repository (ex. <code>MyLoginObject = loginService.GetLogin()</code> then you can move this call into the CustomAuthorization attribute.</p>
+
+<p>If the logic is within the controller itself then this should be refactored into a service or repository depending on you solution architecture so that you can do the above.</p>

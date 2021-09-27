@@ -1,0 +1,22 @@
+<p>Ok, I would analyze this by answering these questions:</p>
+
+<blockquote>
+  <ol>
+  <li>What does x contain ? - A memory location(since it is a pointer
+  variable)</li>
+  <li>What is the scope of x? - Since it a a auto variable it's scope is
+  limited to the function somefunc()</li>
+  <li>What happens to auto variables once they exit the local scope ? - They are
+  deleted from the stack space. </li>
+  <li>So what happens to x now after return from somefunc()? - Since it is
+  an auto variable declared on the stack
+  , it's scope(lifetime) is limited to
+  somefunc() and hence will be deleted. </li>
+  <li>Ok so now, what happens to the value pointed to by x?  We have a
+  memory leak as the value is allocated
+  on the heap and we have just lost the
+  address when x is deleted. </li>
+  <li>What does y get? - No idea. </li>
+  <li>What happens when y is deleted? - No idea.</li>
+  </ol>
+</blockquote>

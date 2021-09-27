@@ -1,0 +1,15 @@
+<p>From what you posted, I have the following solution in mind:</p>
+
+<ul>
+<li>Your <code>ListActivity</code> contains all the
+products you have.</li>
+<li>If you click on one of those
+products, a new Activity is launched
+which provides more informations
+about the product (for example in a
+<code>WebView</code>).</li>
+</ul>
+
+<p>The "next" and "previous"-buttons you describe would be placed on this Activity, too.</p>
+
+<p>I guess all your product informations are stored in an SQLiteDatabase? If so, every product should have an ID which can be used the find the "next"- and "previous"-products in your <code>Show</code>-Activity.</p>

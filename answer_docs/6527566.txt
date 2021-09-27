@@ -1,0 +1,13 @@
+<p>I would use % (modulus), something like this:</p>
+
+<pre><code>&lt;table&gt;
+  &lt;% rows = 0 %&gt;
+  &lt;% @pictures.each do |picture| %&gt;
+    &lt;%= "&lt;tr&gt;" if rows % 6 %&gt;
+    &lt;td&gt;&lt;%= image_tag(picture.url) %&gt;&lt;/td&gt;
+    &lt;% rows += 1 %&gt;
+    &lt;%= "&lt;/tr&gt;" if rows % 6 %&gt;
+  &lt;% end %&gt;
+  &lt;%= "&lt;/tr&gt;" unless rows % 6 %&gt;
+&lt;/table&gt;
+</code></pre>

@@ -1,0 +1,8 @@
+<p>I am not quite sure if I understand your question but if your remote location is</p>
+
+<pre><code>http://www.somehost.com/home/testUser/remoteData.xml
+</code></pre>
+
+<p>then this is exactly your path. You have to begin with http:// if you like get the source via HTTP. Use ftp:// if you wish to get it with FTP. This will instruct the copy() function to initiated the appropriate protocol</p>
+
+<p>Edit: About filectime() this is a filesystem function and will not work for HTTP or FTP. If you are the author of the source file you may set some date time information into the header.</p>

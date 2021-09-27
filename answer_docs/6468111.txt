@@ -1,0 +1,10 @@
+<p>A few immediate issues spring to my attention when looking at your code:</p>
+
+<ol>
+<li>You always do a strcmp with StringValue even though it is in a union with IntegerValue, this means that strcmp will read an invalid memory address and cause a segfault for integer values.</li>
+<li>Is your hash-table initialized, if not then it's quite likely that the line of code you claim is segfaulting because it is the first time a write occurs on a page without write access.</li>
+<li>You check if the next node is NULL before assigning the allocated node to be the next node, if it fails then you don't free the memory, this memory leaking could be an issue. The obvious solution to number 1 and this would be to use the next pointer being NULL as an indicator that you've reached the end of the list rather than checking the string which may not always be there.</li>
+<li>The hash is a signed integer, ensure that the only negative number returned from the hashing function is -1 since any other negative could easily be another out-of-bounds access error.</li>
+</ol>
+
+<p>If I were you then I'd fix these other problems before trying to track down this error, it's easier to find an error when you're only looking for one.</p>

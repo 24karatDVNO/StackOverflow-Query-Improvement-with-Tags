@@ -1,0 +1,9 @@
+<p>Boost asio is a good solution. </p>
+
+<p>But if you dont want to use it (or cant use it for whatever reasons) then you'll probably want to use a semaphore based implementation. </p>
+
+<p>You can find a multithreaded queue implementation based on semaphores that I use here:</p>
+
+<p><a href="https://gist.github.com/482342" rel="nofollow">https://gist.github.com/482342</a> </p>
+
+<p>The reason for using semaphores is that you can avoid having the worker threads continually polling, and instead have them woken up by the OS when there is work to be done.</p>

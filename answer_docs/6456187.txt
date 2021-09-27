@@ -1,0 +1,9 @@
+<p>Have you taken a a look at javascript's 'onkey' functions?</p>
+
+<p><code>onkeyup</code> may be the one you are looking for if you want something as the user types.</p>
+
+<p>In addtion, <code>onchange</code> occurs when the field loses focus, while <code>onkeyup</code> is fired as the user types. Depends on which you need.</p>
+
+<p>You many wanna try something like this:</p>
+
+<p><code>onchange = variable.validate(this.value)</code></p>

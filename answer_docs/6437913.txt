@@ -1,0 +1,13 @@
+<p>Have you tried submitting the timer value(seconds passed) when you submit the answer and then when generating the page with the question instead of hard coded 240 echo the value with php ?</p>
+
+<p>using jquery javascript library</p>
+
+<pre><code>$('#myform').bind('submit', function()
+{
+
+var timer = $('#timer').val()
+
+$('#myform').append('&lt;input type="hidden" value="'+ timer +'" name="timer" /&gt;');
+
+});
+</code></pre>

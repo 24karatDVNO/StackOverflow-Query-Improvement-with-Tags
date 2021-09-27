@@ -1,0 +1,30 @@
+<p>You can do it by wrapping just the right group of elements (C and D)</p>
+
+<pre><code>&lt;div id="top"&gt;Top&lt;/div&gt;
+&lt;div id="container"&gt;
+        &lt;div id="A"&gt;A&lt;/div&gt;
+        &lt;div id="B"&gt;B&lt;/div&gt;
+    &lt;div id="rightgroup"&gt;
+        &lt;div id="C"&gt;C&lt;/div&gt;
+        &lt;div id="D"&gt;D&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="bottom"&gt;Bottom&lt;/div&gt;
+</code></pre>
+
+<p>and alter your css to</p>
+
+<pre><code>#A,#B,#C,#D {
+  float : left;
+}
+
+#rightgroup {
+ float : right;
+}
+</code></pre>
+
+<p>demo <a href="http://jsfiddle.net/gaby/WTwZH/1/" rel="nofollow">http://jsfiddle.net/gaby/WTwZH/1/</a></p>
+
+<hr>
+
+<p>Alternatively, if the A,B,C,D element have fixed size then you can use relative/absolute positioning to achieve the effect you want.. </p>

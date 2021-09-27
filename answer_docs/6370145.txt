@@ -1,0 +1,23 @@
+<p>Solved it finally...</p>
+
+<p>I post here the sum up of the question and the solution.</p>
+
+<p>I had a checkbox in my popup. When I <strong>select it</strong> I want to <strong>show some hidden fields</strong> but this did not work because I also had two <strong>required fields</strong> on the same page so jsf PROCESS_VALIDATIONS phase came up...</p>
+
+<p>I thought that putting <code>immediate=true</code> will solve this, but it did not...</p>
+
+<p>So, in my ValueChangeListener of the checkbox I had to <strong>manually skip</strong> the jsf validation phase:</p>
+
+<pre><code>public void addDomainListener(final ValueChangeEvent valueChangeEvent) {
+        // skip validation
+        final PhaseId phaseId = valueChangeEvent.getPhaseId();
+        final Boolean newValue = (Boolean) valueChangeEvent.getNewValue();
+        if (phaseId.equals(PhaseId.ANY_PHASE)) {
+            valueChangeEvent.setPhaseId(PhaseId.UPDATE_MODEL_VALUES);
+            valueChangeEvent.queue();
+
+            this.addNewDomain = newValue;
+            FacesContext.getCurrentInstance().renderResponse();
+        }
+    }
+</code></pre>

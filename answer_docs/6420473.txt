@@ -1,0 +1,16 @@
+<p>When you have defined selection changed event u can easily get any value from the table you bind to ddDeputi by the index value ....
+Use comboBox1.SelectedIndex for the table index in event ddDeputi_SelectionChanged..</p>
+
+<p>Like this </p>
+
+<pre><code>String value = data.Tables[0].Rows[ddDeputi.SelectedIndex]["kode"].ToString();
+</code></pre>
+
+<p>and the other way is cast your combo box selected item in comboboxitem and use it </p>
+
+<pre><code>System.Windows.Controls.ComboBoxItem currentItem=((System.Windows.Controls.ComboBoxItem)ddDeputi.SelectedItem);
+
+  string  myvalue=currentItem.Content;
+</code></pre>
+
+<p>Here myvalue gives u the selected value.</p>

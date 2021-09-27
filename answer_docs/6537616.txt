@@ -1,0 +1,12 @@
+<p>You can also try something like  <a href="https://stackoverflow.com/questions/2707790/get-a-css-value-from-external-style-sheet-with-javascript-jquery">Get a CSS value from external style sheet with Javascript/jQuery</a></p>
+
+<pre><code>&lt;style&gt;
+p {color: blue}
+&lt;/style&gt;
+
+$(document).ready(function() {
+    var $p = $("&lt;p&gt;&lt;/p&gt;").hide().appendTo("body");
+    alert($p.css("color"));
+    $p.remove();
+});
+</code></pre>

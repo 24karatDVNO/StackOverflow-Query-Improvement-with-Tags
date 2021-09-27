@@ -1,0 +1,6 @@
+<p>You must ensure that:</p>
+
+<ul>
+<li>Executables/DLLs and PDBs are of same build. PDB internally uses GUIDs to determine if associated EXE/DLLs are correct. Otherwise it won't load the symbols. It is not VS per se, but from DbgHelp.DLL.</li>
+<li>Ensure you are having absolutely correct using set of source files. Even if "Source file must match" option is <strong>unset</strong> in VS Debugging options, VS doesn't care when loading .DMP files - it wont load the symbols if sources files don't match.</li>
+</ul>

@@ -1,0 +1,9 @@
+<p>You need to set the request method to <code>POST</code> from Java. You can do this by casting <code>connection</code> to an <code>HttpURLConnection</code> and call <code>setRequestMethod("POST")</code> on it:</p>
+
+<pre><code>HttpURLConnection urlCon = (HttpURLConnection) connection;
+urlCon.setRequestMethod("POST");
+</code></pre>
+
+<p>Add it before you call <code>setDoOutput</code>.</p>
+
+<p></p>

@@ -1,0 +1,7 @@
+<p>That's not really possible.</p>
+
+<p>You can't use anything like <code>:target ~ div</code>, because of your HTML structure: there is no way to select a parent element. Even if that wasn't a problem, there's no automatic way to map "nth" <code>a</code> to "nth" <code>div</code>.</p>
+
+<p>With license to change the HTML, I came up with this: <a href="http://jsfiddle.net/pA84B/" rel="nofollow">http://jsfiddle.net/pA84B/</a> - it's nasty.</p>
+
+<p>Just use JavaScript.</p>

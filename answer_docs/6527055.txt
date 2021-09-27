@@ -1,0 +1,11 @@
+<p>This code</p>
+
+<pre><code>List&lt;string&gt; list = new List&lt;string&gt;();
+list.Add(Environment.NewLine);
+if (list[0].Equals(Environment.NewLine))
+    System.Console.WriteLine("found newline");
+</code></pre>
+
+<p>prints the text "found newline" to the console.  Therefore I can only conclude that your list does not contain a newline in the last item.</p>
+
+<p>We can only guess why that is because we can't see your code that populates the list.</p>

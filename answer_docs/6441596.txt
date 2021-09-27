@@ -1,0 +1,14 @@
+<pre><code>if (typeof Object.make !== 'function') {
+    Object.make = function (o) {
+        for(key in o) {
+            if(o.hasOwnProperty(key))
+                alert( key + ' ' + o[key]);   
+        }
+        return o;
+    };
+}
+
+var MyObj = Object.make({ a: 1});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/uc5Pj/" rel="nofollow">http://jsfiddle.net/uc5Pj/</a></p>

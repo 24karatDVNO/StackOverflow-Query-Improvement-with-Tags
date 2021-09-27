@@ -1,0 +1,3 @@
+<p>You could save the position of the stream then after calling ReadLine, seek back to that position. However this is pretty inefficient.</p>
+
+<p>I would store the result of ReadLine into a "buffer", and when possible use that buffer as a source. When it is empty, use ReadLine.</p>

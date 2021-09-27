@@ -1,0 +1,23 @@
+<p>I think what you want to do is (assuming your container supports EL 2.2):</p>
+
+<pre><code>&lt;ui:repeat value="#{pub.commentList}" var="com"&gt;
+    &lt;h:panelGroup&gt;
+        &lt;h:form id="pub" &gt;                                            
+            &lt;h:inputTextarea id="comment2" value="#{com.msgComment}"  /&gt;                        
+            &lt;div&gt;
+                &lt;h:commandButton type="submit" value="Postar" action="#{classController.saveComment(com)}"  /&gt;                            
+            &lt;/div&gt;
+        &lt;/h:form&gt;
+    &lt;/h:panelGroup&gt;
+&lt;/ui:repeat&gt;
+</code></pre>
+
+<p>And in your <code>classController</code> bean:</p>
+
+<pre><code>public String saveComment(Comment com) {
+    //do stuff
+    return "success"; //or anything
+}
+</code></pre>
+
+<p>If you don't have EL 2.2, you should do some simple workaround with <a href="http://javaserverfaces.java.net/nonav/docs/2.0/vdldocs/facelets/f/setPropertyActionListener.html" rel="nofollow"><code>setPropertyActionListener</code></a>.</p>

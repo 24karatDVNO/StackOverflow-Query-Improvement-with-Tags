@@ -1,0 +1,19 @@
+<p>You cannot use switch to test for boolean expressions. You need to use if.
+You can use switch if you want to check if a variable has one certain value, i.e.:</p>
+
+<pre><code>public String sizeOfSupermarket() {
+String size;
+switch (this.numberOfProducts) {
+    case 5000:
+        size = "Large";
+        break;
+    case 2000:
+        size = "Medium";
+        break;
+    case 100):
+        size = "Small";
+        break;
+    }
+    return size;
+}
+</code></pre>

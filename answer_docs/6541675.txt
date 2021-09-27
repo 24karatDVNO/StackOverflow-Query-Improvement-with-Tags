@@ -1,0 +1,15 @@
+<p>Wes has offered two good answers. Another solution is to create a second branch. Go to your source repository and checkout the second branch. You can now push to the master branch from you work repository.</p>
+
+<pre><code>cd master_repo
+git checkout -b stepaside
+cd work_repo
+git push
+</code></pre>
+
+<p>Subsequent pushes you can replace with</p>
+
+<pre><code>cd master_repo
+git checkout stepaside
+cd work_repo
+git push
+</code></pre>

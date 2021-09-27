@@ -1,0 +1,29 @@
+<pre><code>var $images = $('#gallery img');
+var current_image = 0;
+var duration = 8000;
+
+function animateGallery() {
+
+  $images[current_image].css({
+    'left': '0',
+    'display': 'block'
+  }).animate({
+      'left': '-150px'
+  }, duration, function(){
+      $(this).fadeOut('slow', function() {
+
+          current_image += 1;
+
+          if (current_image &gt; $images.length - 1) {
+             current_image = 0;
+          }
+
+          animateGallery();
+
+      });    
+  });
+}
+
+
+ animateGallery();
+</code></pre>

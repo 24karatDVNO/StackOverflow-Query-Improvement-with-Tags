@@ -1,0 +1,9 @@
+<p>after trial and error i found a dirty fix for this problem</p>
+
+<p>i removed the data output stream then the data input stream worked fine</p>
+
+<pre><code>        //DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        //wr.writeBytes(urlParameters);
+        //wr.flush();
+        //wr.close();
+</code></pre>

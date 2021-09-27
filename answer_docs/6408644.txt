@@ -1,0 +1,11 @@
+<p>The compiler does not know which function implementation to take, since they both fit, and the details of what types are used for template classes are in the error message.</p>
+
+<p>It looks like you can eliminate one method, this one:</p>
+
+<pre><code>template&lt; class T &gt;
+inline void store( char** buffer, T data ){
+
+    memcpy( *buffer, &amp;data, sizeof( T ) );
+    buffer += sizeof(T);
+}
+</code></pre>

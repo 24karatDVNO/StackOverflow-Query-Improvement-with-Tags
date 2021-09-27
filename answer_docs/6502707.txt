@@ -1,0 +1,13 @@
+<p>Try this way, though I have not tested this one,but I hope this will work    </p>
+
+<pre><code>- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
+
+    key = nil;
+    [stringValue release];
+    stringValue = nil;
+    if([elementName isEqualToString:@"item"]){
+    if([elementName isEqualToString:@"value"]){
+    key = @"value";
+        return;
+    }}
+</code></pre>

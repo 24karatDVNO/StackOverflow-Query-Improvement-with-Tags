@@ -1,0 +1,4 @@
+<p>If you can assume that only the stuff between the <code>-------------</code> lines is what you want, try this regular expression: <code>-{40,}([\s\S](?=-{40,}))-{40,}</code>.</p>
+
+<pre><code>Regex.Match(report, @"-{40,}([\s\S](?=-{40,}))-{40,}").Value
+</code></pre>

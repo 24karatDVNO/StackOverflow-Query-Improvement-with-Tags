@@ -1,0 +1,30 @@
+<p><strong>Use regular expressions!</strong></p>
+
+<p>Example (quick and dirty):</p>
+
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+
+&lt;script type="text/javascript"&gt;
+var a = [];
+a.push("Mon-Fri 11 am - 7:30 pm");
+a.push("Sat 11 am - 6 pm");
+
+var seeker = /(\d{1,2}|\d{1,2}:\d{1,2}) (am|pm)/g;
+for (var i = 0; i &lt; a.length; ++i) {
+    document.write(a[i] + " ==&gt; ");
+    document.write(a[i].match(seeker) + "&lt;br&gt;");
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Put this code in <a href="http://www.w3schools.com/jsref/tryit.asp" rel="nofollow">a sandbox</a> and You will get:</p>
+
+<pre><code>Mon-Fri 11 am - 7:30 pm ==&gt; 11 am,7:30 pm
+Sat 11 am - 6 pm ==&gt; 11 am,6 pm
+</code></pre>
+
+<p>Sources: <a href="http://www.w3schools.com/jsref/jsref_match.asp" rel="nofollow">String.match()</a>, <a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp" rel="nofollow">JavaScript Regexp</a></p>

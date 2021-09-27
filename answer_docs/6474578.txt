@@ -1,0 +1,16 @@
+<pre><code>// test: find last date for each day of the week
+foreach (array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun') as $day) {
+    print $day . " =&gt; " . date('m/d/Y', last_dayofweek($day)) . "\n";
+}
+
+function last_dayofweek($day)
+{
+    // return timestamp of last Monday...Friday
+    // will return today if today is the requested weekday
+    $day = strtolower(substr($day, 0, 3));
+    if (strtolower(date('D')) == $day)
+        return strtotime("today");
+    else
+        return strtotime("last {$day}");
+}
+</code></pre>

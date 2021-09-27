@@ -1,0 +1,20 @@
+<p>I would advise adding a class and then separating the jQuery logic from the html.</p>
+
+<pre><code>&lt;% @company.projects.each do |project| %&gt;
+&lt;div class="info_for" id="info_for_&lt;%= project.id %&gt;"&gt;
+&lt;%=project.title%&gt;
+&lt;br /&gt;
+  &lt;div&gt;
+  &lt;p&gt;&lt;%= project.information %&gt;&lt;/p&gt;
+  &lt;br/&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<p>And then some jQuery</p>
+
+<pre><code>$('.info_for').click(function(){
+   $('div',this).toggle();
+});
+</code></pre>

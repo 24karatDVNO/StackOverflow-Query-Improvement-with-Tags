@@ -1,0 +1,5 @@
+<pre><code>var inner = $(".remove_this_only").html();
+var parent = $(".remove_this_only").parent();
+$(".remove_this_only").remove();
+parent.append(inner);
+</code></pre>

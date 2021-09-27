@@ -1,0 +1,5 @@
+<p>Write a PL-SQL stored procedure and pass in the parameters.  Call it once and be done.</p>
+
+<p>Or use <code>PreparedStatement</code> and batch your requests.</p>
+
+<p>They probably take too long because you do a round trip for each one.  Batch will help a great deal, because you'll only do one round trip.</p>

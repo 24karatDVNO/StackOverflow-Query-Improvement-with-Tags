@@ -1,0 +1,3 @@
+<p>Static tools are generally poor at understanding the circumstances around the use of a function. I bet most of them just warn for every strcat encountered instead of actually looking whether the data passed to the function is deterministic or not. As already mentioned, if you have control over your input data neither function is unsafe. </p>
+
+<p>Though note that strncat() is slightly slower, as it has to check against '\0' termination and a counter, and also explicitly add it to the end. strcat() on the other hand just checks for '\0', and it adds the trailing '\0' to the new string by copying the terminator from the second string along with all the data.</p>

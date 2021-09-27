@@ -1,0 +1,37 @@
+<p>A variation of this might fit your need: </p>
+
+<pre><code>use strict;
+use warnings;
+use constant 
+    { SOCKET_ERROR_MESSAGE =&gt; 'Some socket error message right here!'
+    , YOU_WANT_TO          =&gt; 1
+    };
+
+use IO::Select;
+use IO::Socket::INET;
+
+@ARGV = qw&lt;server.domain.tld 8080&gt; unless @ARGV;
+
+sub handle_server_message {
+    ...
+}
+
+my $sel 
+    = IO::Select-&gt;new(
+      IO::Socket::INET-&gt;new( 
+      PeerAddr =&gt; shift
+    , PeerPort =&gt; shift
+    ));
+
+# block until the server sends something that can be read.
+while ( my ( $sock ) = $sel-&gt;can_read ) { 
+    # you could just do this with $sock-&gt;eof...
+    if ( $sock-&gt;error and $sock-&gt;eof ) {
+        die MY_ERROR_MESSAGE if YOU_WANT_TO;
+        print MY_ERROR_MESSAGE;
+    }
+    else { 
+        handle_server_message( $sock );
+    }
+}
+</code></pre>

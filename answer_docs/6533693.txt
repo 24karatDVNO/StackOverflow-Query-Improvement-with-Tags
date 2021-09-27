@@ -1,0 +1,19 @@
+<p>When using facebook android sdk with SingleSignOn (SSO), the access token format actually changed.
+Instead of getting traditional auth token which contains userid &amp; session key as a part of authToken 
+now we get a different format of authToken</p>
+
+<p>As Facebook Devs are still in process to support there rest apis with newly formated access token
+meanwhile we can disable the SSO on android facebook sdk by changing DEFAULT_AUTH_ACTIVITY_CODE to -1 from 32665 (in Facebook.java)
+This will invoke Traditional dialouge for granting acess token and in return you'll get access token which will contain session key in it.</p>
+
+<p>Those who are looking for generating secure session key you need to add your own method in Facebook.java like</p>
+
+<p>public String getSessionSecret(String accessToken) throws MalformedURLException, IOException 
+{
+    Bundle b = new Bundle();
+    b.putString("method", "auth.promoteSession");
+    b.putString("access_token", accessToken);
+    b.putString("session_key_only", "true");
+    String response = request(b);
+    return response;
+}</p>

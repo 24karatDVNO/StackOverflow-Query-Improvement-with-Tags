@@ -1,0 +1,22 @@
+<p>It looks like your issue is that AddressValidateResponse is the root node of your document. </p>
+
+<p>You should change it to:</p>
+
+<pre><code>var address = from a in xDoc.Descendants("Address")
+                  select new AddressBlockResponse
+                  {
+                      // stuff
+                  };
+</code></pre>
+
+<p>Also when you are using xelements like</p>
+
+<pre><code>City = a.Element("City").Value,
+</code></pre>
+
+<p>You should do:</p>
+
+<pre><code>City = (string)a.Element("City"),
+</code></pre>
+
+<p>because if the element doesn't exist your program will throw a null reference exception.  I know you will probably always have these xml nodes but I think it is just a good habit.</p>

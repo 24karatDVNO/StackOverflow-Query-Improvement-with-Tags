@@ -1,0 +1,8 @@
+<p>With what you've provided us this should work fine, but I'm thinking that perhaps this table is also generated with javascript?  If so you'll need to use the delegate method to assign listeners to these span tags</p>
+
+<pre><code>&lt;script&gt;
+$('.overview_table_wrapper').delegate('.overview_table_header','click', function() {
+alert("clicked!");
+});
+&lt;/script&gt;
+</code></pre>

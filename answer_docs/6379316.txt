@@ -1,0 +1,9 @@
+<p>I have the same issue and was researching possible ways around it when I read this. I don't know if you solved the problem, but I think I'm going to use the unload event in the IFrame'd window to notify the parent window when it's unloaded.</p>
+
+<p>If the iframe is closed by a 'valid' method, a variable is set at the parent to say the iframe is expected to unload</p>
+
+<p>If the parent reloads / changes the src of the iframe a variable is set to say the unload is expected</p>
+
+<p>If an unexpected unload happens in the iframe I assume it was the back button and update the parent page accordingly (e.g. jump another step back in the parent's history, or do something else).</p>
+
+<p>The only ugly case here is if the parent page is unloaded and the iframe also throws unload - depending on how quickly the parent page changes you might get a race condition where the parent's iframe unload handler is or isn't fired.</p>

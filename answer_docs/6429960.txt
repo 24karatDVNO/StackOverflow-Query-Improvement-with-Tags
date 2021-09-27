@@ -1,0 +1,5 @@
+<p>I frequently group my variable definitions logically, rather than defining each as needed.  This might mean all at once at the top of the function, or it might not.  </p>
+
+<p>As an example, pretend I have a function that calculates three statistics.  If two of those statistics require some pre-processing [beyond simple initialization], but the third does not, I will still group all three together at the start of the function, since they are a logical group.  But I won't define the random loop conditional that gets used for error checking at the same time, because it has nothing to do with the other three.</p>
+
+<p>Sometimes there are ways to refactor the function to remove such considerations, but sometimes not.</p>

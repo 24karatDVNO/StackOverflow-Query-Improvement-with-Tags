@@ -1,0 +1,14 @@
+<p>I wrote a simple method to solve the issue:</p>
+
+<pre><code>public function timeZoneFormat($time)
+{
+    $currentTimeZone = date_default_timezone_get();
+    $timestamp = strtotime($time);
+    $customTime= new Zend_Date();
+    $customTime-&gt;setTimestamp($timestamp);
+    $customTime-&gt;setTimezone("$currentTimeZone");
+
+    return $customTime;
+
+}
+</code></pre>

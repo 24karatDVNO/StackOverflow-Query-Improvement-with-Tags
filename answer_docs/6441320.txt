@@ -1,0 +1,3 @@
+<p>Use a pointer to the class instead of the class in one of the files and allocate it through <code>new</code> (and <code>delete</code> it in the dtor, ofc). </p>
+
+<p>The thing is, the size of a pointer is ALWAYS known to the compiler, so it won't complain and compile your code. This is called <strong>forward declaration</strong>. It's very well documented.</p>

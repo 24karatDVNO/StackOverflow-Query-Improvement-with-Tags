@@ -1,0 +1,24 @@
+<p>I have the same problem for iPad 3.2 when application resign active and in that time alert is shown that alert will be shown on top left corner. So i fixed using following code in the method -(void)applicationDidBecomeActive:(UIApplication *)application</p>
+
+<pre><code>//Check that key window is alert view
+if ([[[UIApplication sharedApplication].keyWindow description] hasPrefix:@"&lt;_UIAlertOverlayWindow"]) {
+    //Yes then check for subviews tht are alertViews
+    UIWindow *alertViewWindow = [UIApplication sharedApplication].keyWindow;
+    NSArray *subViews = [alertViewWindow subviews];
+    for (UIView *subview in subViews) 
+    {
+        if ([subview isKindOfClass:[UIAlertView class]]) 
+        {
+            //Retain it
+            UIAlertView *alertView = (UIAlertView *)[subview retain];
+            //Now dismiss it and then show it again
+            [alertView dismissWithClickedButtonIndex:0 animated:NO];//Here ClickedButtonIndex must be according to cancel button
+            //Show the alert view again
+            [alertView show];
+            //Release previsous retained object
+            [alertView release];
+
+        }
+    }
+}
+</code></pre>

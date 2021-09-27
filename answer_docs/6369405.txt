@@ -1,0 +1,5 @@
+<p>You run into problems because in your code both scripts do not share the memory of the session even if both are using the <code>$_SESSION</code> array.</p>
+
+<p>That's by the nature of how and when PHP stores the values of the <code>$_SESSION</code> array.</p>
+
+<p>Instead you need a shared store like a database or shared memory to exchange values between your scripts.</p>

@@ -1,0 +1,41 @@
+<p>I got the solution</p>
+
+<pre><code>- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(GoogleLocalObject *) annotation 
+{
+
+    static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
+
+
+    MKPinAnnotationView* customPinView = [[[MKPinAnnotationView alloc]
+                                           initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier] autorelease];
+    customPinView.pinColor = MKPinAnnotationColorRed;
+    customPinView.animatesDrop = YES;
+    customPinView.canShowCallout = YES;
+
+    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    [rightButton addTarget:self
+                    action:@selector(showDetails:)
+          forControlEvents:UIControlEventTouchUpInside];
+    customPinView.rightCalloutAccessoryView = rightButton;
+
+    UIImageView *memorialIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"googlemaps_pin.png"]];
+    customPinView.leftCalloutAccessoryView = memorialIcon;
+    [memorialIcon release];
+
+    return customPinView;
+
+
+}
+
+- (void)showDetails:(id)sender {
+    GoogleLocalObject *obj;
+    for (int i = 0; i &lt; [objectsFromGoogle count]; i++) {
+        obj = [objectsFromGoogle objectAtIndex:i];
+    }
+
+    self.reverseGeocoder =
+    [[[MKReverseGeocoder alloc] initWithCoordinate:obj.coordinate] autorelease];
+    reverseGeocoder.delegate = self;
+    [reverseGeocoder start];
+}
+</code></pre>

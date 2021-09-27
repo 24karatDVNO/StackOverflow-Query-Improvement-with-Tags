@@ -1,0 +1,3 @@
+<p>None of these answers fixed it in my case.</p>
+
+<p>After investigating further, I found that I was calling <code>.resample</code> on a 0.02dpi image (I pull the images from a 3rd party API so I had no idea). This was even prompting a "disk almost full" alert message after the segmentation fault error would show up.</p>

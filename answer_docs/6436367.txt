@@ -1,0 +1,20 @@
+<p>If you using ListBox get selected item like this:</p>
+
+<pre><code>string item = listBox1.SelectedItem.ToString();
+</code></pre>
+
+<p>If you using ListView get selected item(s) depending on MultiSelect property:</p>
+
+<ol>
+<li><p>Use this code if MultiSelect property = false</p>
+
+<pre><code>string itemName = listView.SelectedItems[0].Name;
+</code></pre></li>
+<li><p>Use this code if MultiSelect property = true</p>
+
+<pre><code>foreach (ListViewItem item in ltvMainMenu.SelectedItems)
+{
+   string itemName = item.Name;    
+}
+</code></pre></li>
+</ol>

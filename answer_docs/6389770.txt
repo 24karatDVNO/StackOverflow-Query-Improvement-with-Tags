@@ -1,0 +1,10 @@
+<p>That depends. If you have a lot of rows to insert and you do not need validation from ActiveRecord, your approach seems right. However, it would work considerably faster if you inserted more than a single record at a time, like this:</p>
+
+<pre><code>values = []
+values &lt;&lt; row while row = result.fetch
+values_string = values.map{|v| "({v.join(',')})"}.join(',')
+insert_sql = "insert into table (column1, column2) values #{value_string}"
+ActiveRecord::Base.connection.execute insert_sql
+</code></pre>
+
+<p>If you prefer passing validations, you would need to translate each line of your data sources into an ActiveRecord object. While providing validations and callbacks, this approach is MUCH slower.</p>

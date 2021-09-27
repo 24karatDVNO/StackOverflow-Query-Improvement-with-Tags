@@ -1,0 +1,27 @@
+<p>I have so far not found a simple solution to decode the json string in pure array. For now I parse the string and replace directly the object by an array .</p>
+
+<pre><code>var donnee = JSON.parse(msg.d);
+
+                for (var i in donnee) {
+
+                    if (donnee.hasOwnProperty(i)) {
+
+                        datas[i] = donnee[i];
+
+                        for (var j in donnee[i]) {
+
+                            if (donnee[i].hasOwnProperty(j)) {
+
+                                var lev2 = donnee[i][j];
+
+                                if (typeof lev2 == "object") {
+                                    for (var k in donnee[i][j]) {
+                                        var lev3 = donnee[i][j][k];
+                                        datas[i].data[k] = new Array(lev3.x, lev3.y, lev3.l);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+</code></pre>

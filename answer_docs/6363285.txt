@@ -1,0 +1,8 @@
+<p>One possible problem is that you seem to be overwriting the same file when you "save". I suggest making a test run where you read from one file and write to the other.</p>
+
+<p>In order to append to the file, you have a couple of options:</p>
+
+<ol>
+<li>Have your two functions share the 'RandomAccessFile`, that way after the first one is done reading the file, the cursor is at the end of the file and the second function can proceed to write from there, appending to the file</li>
+<li>Open a <code>RandomAccessFile</code> in the second function and move the cursor to the end of the file (for example by reading everything in it until there are no more lines) before writing.</li>
+</ol>

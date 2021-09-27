@@ -1,0 +1,12 @@
+<p>Just for fun with LINQ:</p>
+
+<pre><code>const string S = "I love cats, some more stuff here, we dont know how much more";
+const string Dogs = "dogs";
+
+var res = S
+    .Take(7)
+    .Concat(Dogs)
+    .Concat(S.Where((c, i) =&gt; i &gt; 10));
+
+var resultString = string.Concat(res);
+</code></pre>

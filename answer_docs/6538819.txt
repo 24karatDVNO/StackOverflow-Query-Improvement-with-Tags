@@ -1,0 +1,5 @@
+<p>One option that I have used, that is relatively simple, is to just add the setting in code within your tests:</p>
+
+<pre><code>ConfigurationManager.AppSettings["FolderPathInConfig"] = 
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData");
+</code></pre>

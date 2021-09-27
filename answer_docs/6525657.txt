@@ -1,0 +1,13 @@
+<p>Based on <a href="https://stackoverflow.com/a/3488736">this answer</a>, but without the terminal controller:</p>
+
+<pre><code>import time
+import sys
+for i in range(100):
+    sys.stdout.write("Downloading ... %s%%\r" % (i))
+    sys.stdout.flush()
+    time.sleep(1)
+</code></pre>
+
+<p>Tested on GNOME terminal (Linux) and Windows console.</p>
+
+<p>Tip: Don't run this example in IDLE editor.</p>

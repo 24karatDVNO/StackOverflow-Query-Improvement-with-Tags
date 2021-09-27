@@ -1,0 +1,199 @@
+<p>i have made one project in which i have made calender ...</p>
+
+<p>it does not fulfill your requirement but still you can customize it ..</p>
+
+<p>here is the code</p>
+
+<p>
+
+<pre><code>$strt_date = '01-04-2011';
+$end_date = '05-07-2011';
+$date_array = array();
+$date_array = explode('-',$strt_date);
+$back_strt_date = $date_array[2]."-".$date_array[0]."-".$date_array[1];// YYYY-MM-DD
+$front_strt_date = $date_array[1]."-".$date_array[0]."-".$date_array[2];// MM-DD-YYYY
+$date_array = array();
+$date_array = explode('-',$end_date);
+$back_bk_date = $date_array[2]."-".$date_array[0]."-".$date_array[1]; // YYYY-MM-DD
+$front_end_date = $date_array[1]."-".$date_array[0]."-".$date_array[2]; // MM-DD-YYYY
+// fetching data for selected date interval
+//$rs_couse_cnt = get_course_cnt($back_strt_date,$back_bk_date);
+if($rs_couse_cnt =='No record Found'){
+    echo "No Records Found.";
+    exit;
+}
+// converting string in to TIMESTAMP
+$sdate = strtotime($front_strt_date);
+$edate = strtotime($front_end_date);
+
+//getting starting and ending month of date...
+$st_dt = array();
+$en_dt = array();
+    // exploding date string in to array
+    $st_dt = explode('-',$strt_date); 
+    $en_dt = explode('-',$end_date); 
+
+    // assigning month value to variables...
+    $st_mon = $st_dt[0];
+    $en_mon = $en_dt[0];
+
+    // calculating month diff..
+    $mon_diff = $en_mon - $st_mon;
+
+    // assinging year value to variables....
+    $st_year = $st_dt[2];
+    $en_year = $en_dt[2];
+
+//converting TIMESTAMP into desired date format...
+$st_date = date('F jS Y',$sdate);
+$en_date = date('F jS Y',$edate);
+
+echo " &lt;center&gt;&lt;h2&gt;$st_date - $en_date&lt;/h2&gt;&lt;/center&gt;";
+//echo " &lt;br /&gt;start month is $st_mon &amp; end month is $en_mon &amp; month diff is $mon_diff";
+//echo " &lt;br /&gt;start year is $st_year &amp; end year is $en_year";
+$ttl_cnt =0;
+for($i=$st_mon;($st_year&lt;=$en_year);$i++){
+    $end = $en_mon+1;
+    if($i == $end &amp;&amp; $st_year == $en_year){
+        break;
+    }
+    // this will continue until all months are completed
+    $st_mon_time_stamp = mktime(0,0,0,$i,1,$st_year);
+    echo "&lt;br /&gt;&lt;br /&gt;&lt;center&gt; &lt;h3&gt; ".date("F Y",$st_mon_time_stamp)."&lt;/h3&gt;&lt;/center&gt;";
+    $no_of_days = date("t",$st_mon_time_stamp);
+    $str_cal ='&lt;table border="1px" width="100%"&gt;
+                &lt;thead&gt;
+                    &lt;th&gt;Sunday&lt;/th&gt;
+                    &lt;th&gt;Monday&lt;/th&gt;
+                    &lt;th&gt;Tuesday&lt;/th&gt;
+                    &lt;th&gt;Wednesday&lt;/th&gt;
+                    &lt;th&gt;Thursday&lt;/th&gt;
+                    &lt;th&gt;Friday&lt;/th&gt;
+                    &lt;th&gt;Saturday&lt;/th&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;';
+    $cnt = 1;
+    $week = 0;
+    $mon_cnt = 0;
+    for($j=1;$j&lt;=$no_of_days;$j++){
+        if($cnt &gt;= $no_of_days){
+            break;
+        }
+        if($cnt == 1){
+            // for first row....
+            $time_stamp = mktime(0,0,0,$i,$cnt,$st_year);
+            $str_cal .='&lt;tr&gt;';
+            if(date("l",$time_stamp) == 'Sunday'){
+                $space = 0;
+            }
+            else if(date("l",$time_stamp) == 'Monday'){
+                $space = 1;
+            }
+            else if(date("l",$time_stamp) == 'Tuesday'){
+                $space = 2;
+            }
+            else if(date("l",$time_stamp) == 'Wednesday'){
+                $space = 3;
+            }
+            else if(date("l",$time_stamp) == 'Thursday'){
+                $space = 4;
+            }
+            else if(date("l",$time_stamp) == 'Friday'){
+                $space = 5;
+            }
+            else if(date("l",$time_stamp) == 'Saturday'){
+                $space = 6;
+            }
+            $dis = 7 - $space; //exit;
+            while($space != 0){
+                // this will display spaces in first row...
+                $str_cal .='&lt;td&gt;&amp;nbsp;&lt;/td&gt;';
+                $space--; 
+            }
+            while($dis != 0){
+                // this will display calender date in first row...
+                if(strlen($i) == 1 &amp;&amp; strlen($cnt)==1){
+                    $date = $st_year.'-0'.$i.'-0'.$cnt;
+                }
+                else{
+                    $date = $st_year.'-'.$i.'-'.$cnt;
+                }
+                $flg = 0;
+                for($rs=0;$rs&lt;count($rs_couse_cnt);$rs++){                      
+                    if($rs_couse_cnt[$rs]['EnrolledDate'] == $date){
+                        $time_stmp = strtotime($date);
+                        $str_cal .='&lt;td&gt;'.date('j S',$time_stmp).'&lt;br /&gt;&lt;br /&gt;Count : &lt;a href="light_box_course.php" onClick="$.showAkModal(\'light_box_course.php?type=list&amp;session_id='.$session_id.'&amp;campus_id='.$campus_id.'&amp;strt_date='.$rs_couse_cnt[$rs]['EnrolledDate'].'&amp;end_date='.$rs_couse_cnt[$rs]['EnrolledDate'].'\',\'\',500,500);return false;"&gt;'.$rs_couse_cnt[$rs]['CourseCount'].'&lt;/a&gt;&lt;/td&gt;';       
+                        $cnt++;
+                        $mon_cnt += $rs_couse_cnt[$rs]['CourseCount'];
+                        $flg = 1;
+                        break;
+                    }
+                }
+
+                if($flg == 0){
+                    $time_stmp = strtotime($date);
+                    $str_cal .='&lt;td&gt;'.date('j S',$time_stmp).'&lt;br /&gt;&lt;br /&gt;&amp;nbsp;&lt;/td&gt;'; 
+                    $cnt++;
+                }
+                $dis--;
+            }           
+            $str_cal .='&lt;/tr&gt;';     
+        }
+        else{
+            // for rest of the rows...
+            $str_cal .='&lt;tr&gt;';
+            for($w=0;$w&lt;7;$w++){
+                if($cnt&lt;=$no_of_days){
+                    if(strlen($i) == 1){
+                        $date = $st_year.'-0'.$i.'-'.$cnt;
+                    }
+                    else{
+                        $date = $st_year.'-'.$i.'-'.$cnt;
+                    }
+                    $flg = 0;
+                    for($rs=0;$rs&lt;count($rs_couse_cnt);$rs++){
+                        if($rs_couse_cnt[$rs]['EnrolledDate'] == $date){ 
+                            $time_stmp = strtotime($date);
+                            $str_cal .='&lt;td&gt;'.date('j S',$time_stmp).'&lt;br /&gt;&lt;br /&gt;Count :&lt;a href="light_box_course.php" onClick="$.showAkModal(\'light_box_course.php?type=list&amp;session_id='.$session_id.'&amp;campus_id='.$campus_id.'&amp;strt_date='.$rs_couse_cnt[$rs]['EnrolledDate'].'&amp;end_date='.$rs_couse_cnt[$rs]['EnrolledDate'].'\',\'\',500,500);return false;"&gt;'.$rs_couse_cnt[$rs]['CourseCount'].'&lt;/a&gt;&lt;/td&gt;';        
+                            $flg = 1;
+                            $cnt++;
+                            $mon_cnt += $rs_couse_cnt[$rs]['CourseCount'];
+                            break;
+                        }
+                    }
+                    if($flg == 0){
+                        $time_stmp = strtotime($date);
+                        $str_cal .='&lt;td&gt;'.date('j S',$time_stmp).'&lt;br /&gt;&lt;br /&gt;&amp;nbsp;&lt;/td&gt;';
+                        $cnt++;
+                    }
+                }
+                else{
+                    $str_cal .='&lt;td&gt;&amp;nbsp;&lt;/td&gt;';
+                }
+            }
+            $str_cal .='&lt;/tr&gt;';
+        }
+    }
+    $ttl_cnt += $mon_cnt;
+    if($mon_cnt != 0){
+        $str_cal .='&lt;tr&gt;
+                        &lt;td&gt; Monthly Count :&lt;/td&gt; 
+                        &lt;td colspan="6"&gt;&lt;a href="light_box_course.php" onClick="$.showAkModal(\'light_box_course.php?type=list&amp;session_id='.$session_id.'&amp;campus_id='.$campus_id.'&amp;strt_date='.$st_year."-".(strlen($i)==1?"0".$i:$i)."-"."01".'&amp;end_date='.$st_year."-".(strlen($i)==1?"0".$i:$i)."-".$no_of_days.'\',\'\',500,500);return false;"&gt;'.$mon_cnt.'&lt;/td&gt;
+                    &lt;/tr&gt;';
+    }else{
+        $str_cal .='&lt;tr&gt;
+                        &lt;td&gt; Monthly Count :&lt;/td&gt; 
+                        &lt;td colspan="6"&gt;'.$mon_cnt.'&lt;/td&gt;
+                    &lt;/tr&gt;';
+    }
+        $str_cal .='&lt;/tbody&gt;
+                &lt;/table&gt;';
+    if($i == 12){
+        $i=0;
+        $st_year ++;
+    }
+    echo $str_cal;  
+}
+</code></pre>
+
+<p>?></p>

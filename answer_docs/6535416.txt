@@ -1,0 +1,17 @@
+<p>If you want to access attributes from the GroupUser model, just do this:</p>
+
+<pre><code>&lt;% @groups.each do |group| %&gt;
+
+   &lt;% group.group_users.each do |group_user| %&gt;
+     &lt;%= group_user.attribute_name %&gt; 
+     &lt;%= group_user.user.name
+  &lt;% end %&gt; 
+&lt;% end %&gt;
+</code></pre>
+
+<p>To make this more efficient from the SQL side of things you can use eager loading:</p>
+
+<pre><code>Group.all(:includes =&gt; [:group_users =&gt; :user])
+</code></pre>
+
+<p>F</p>

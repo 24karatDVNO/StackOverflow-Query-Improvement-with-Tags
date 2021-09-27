@@ -1,0 +1,24 @@
+<p>I have found the answer - as with so many things, it was obvious once I broke the problem down - the ModelState.AddModelError() just needed a fully qualified key!</p>
+
+<p>Modify the HttpPost Controller as follows:</p>
+
+<pre><code>[HttpPost]
+public ActionResult Response(QuestionViewModel model) {
+    if (ModelState.IsValid) {
+       for (int i = 0; i &lt; model.Questions.Count(); i++) {
+           Question q = model.Questions[i];
+
+           /*
+           ** The key must specify a fully qualified element name including
+           ** the name of the property value, e.g.
+           ** "Questions[0].Answer"
+           */
+           string questionId = String.Format("Questions[{0}].Answer", i);
+
+           if (String.IsNullOrWhiteSpace(q.Answer)) {
+               ModelState.AddModelError(questionId, q.ValidationMessage);
+           }
+       }
+    }
+}
+</code></pre>

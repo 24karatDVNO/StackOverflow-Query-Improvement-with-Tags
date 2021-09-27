@@ -1,0 +1,9 @@
+<p>I'd assumed that he wanted a count of 9s depending on the value of xlsx.totalCount.</p>
+
+<pre>
+   StringBuilder sb = new StringBuilder();
+   sb.Append( '9', xlsx.totalCount );
+   String.Format( "Completed {0:" + sb.ToString() + "} of ",0) + xlsx.totalCount.ToString();
+</pre>
+
+<p>Again, there feels like there should be an easier way of building a chain of 9s, but not in 3 minutes of thinking, apparently.</p>

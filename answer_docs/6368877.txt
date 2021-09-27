@@ -1,0 +1,14 @@
+<p>You should be able to remote debug the guest OS's.  Take a look at <a href="http://msdn.microsoft.com/en-us/library/9y5b4b4f.aspx" rel="nofollow noreferrer">this article on MSDN</a> for information on cross-domain remote debugging, which I believe still applies with the host not actually being on a domain.  You simply ignore the fact either machine is on a domain and create like for like local accounts on the machines - all described in the aforementioned MSDN article.</p>
+
+<p>If that creates problems for you, you can also disable authentication which seems to be a popular choice, despite being insecure:
+<a href="http://communities.vmware.com/message/1617741" rel="nofollow noreferrer">http://communities.vmware.com/message/1617741</a></p>
+
+<p>The article you linked in your post solves any networking issues so between that and the above you should be able to get the remote debugger up and running.</p>
+
+<p>Is <a href="https://stackoverflow.com/questions/4402108/does-anyone-know-where-or-how-i-get-the-vmware-visual-studio-plugin-installed">this question</a> and answer any use regarding question 2?  I can't find anywhere a mention that the integrated VM remote debugger is actually available for 2010, but then I can't find any posts complaining that it isn't.  Perhaps it's just a closely guarded secret!?</p>
+
+<p>EDI #19 or so:</p>
+
+<p>Unfortunately I've found <a href="http://communities.vmware.com/thread/282407" rel="nofollow noreferrer">this article</a> complaining that VS2010 isn't support by VSID. =(</p>
+
+<p>Good luck!</p>

@@ -1,0 +1,14 @@
+<p>ok GUys I figure out the mistake</p>
+
+<p>look at my code </p>
+
+<pre><code>format=JSONv=1.01={"name":"mystore","href":"http:\/\/www.mystore.com\/","description":"New order on mystore.com","media":[{"type":"image","src":"http:\/\/www.mystore.com\/skin\/frontend\/default\/mystore\/images\/logo.png","href":"http:\/\/www.mystore.com\/"}]}2=[{"text":"Buy@mystore","href":"http:\/\/www.mystore.com\/"}]3=1000025660978094=5070afefb42b162aff748f55ecf44d110d9e2a90117ee1704e2adb41f1d190fa
+</code></pre>
+
+<p>where u can see <strong>format=JSONv=1.01={....}2=[{.....}]</strong> the problem was I used numeric arrays for parameters. they should be associated arrays
+like <strong>message={new order}attachment={....}</strong> 
+Once I fixed the associative array problem my code start working correctly 
+here is a link that'll give u detail about parameters to pass to stream.publish
+<a href="http://schoolout.net/en/developers/view/39" rel="nofollow">http://schoolout.net/en/developers/view/39</a></p>
+
+<p>Hope this will help somebody else too.</p>

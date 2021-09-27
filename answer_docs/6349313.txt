@@ -1,0 +1,36 @@
+<p>If you want use only native functional, you must change code of dropdown to this look</p>
+
+<pre><code>&lt;select multiple="multiple" name="cat[]"&gt;
+   &lt;option value="1"&gt;first&lt;/option&gt;
+   &lt;option value="2"&gt;second&lt;/option&gt;
+   &lt;option value="3"&gt;third&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p><em>add to name "[]" and multiple option</em></p>
+
+<p>In this case you have url page?cat[]=1&amp;cat[]=2...</p>
+
+<p>And available in the $_GET['cat'] as an array.</p>
+
+<p>If you need comma separated "cat" in url you must use javascript.</p>
+
+<p>Exaple for jQuery.</p>
+
+<pre><code>&lt;form id="multiform"&gt;
+    &lt;select multiple="multiple" name="_cat[]" id="cat-list"&gt;
+        &lt;option value="1"&gt;first&lt;/option&gt;
+        &lt;option value="2"&gt;second&lt;/option&gt;
+        &lt;option value="3"&gt;third&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;input type="hidden" name="cat" id="hidden-cat"/&gt;
+    &lt;input type="submit" value="Send" /&gt;
+&lt;/form&gt;
+&lt;script&gt;
+    $("#multiform").bind("submit",function(){
+        var new_val = $("#cat-list").val().join(",");//joins array by comma
+        $("#cat-list").val("");//cleans temporary variable
+        $("#hidden-cat").val(new_val);
+    });
+&lt;/script&gt;
+</code></pre>

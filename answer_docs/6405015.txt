@@ -1,0 +1,8 @@
+<p>If you need to take a subdirectory out of the url-rewriting from wordpress, put an additional <code>.htaccess</code> file into that directory and switch the Rewrite-Engine off:</p>
+
+<pre><code>RewriteEngine Off
+</code></pre>
+
+<p>That directive overrides any settings of the wordpress <code>.htaccess</code> for that directory and it's subdirectories.</p>
+
+<p>You find the longer version of my answer in a related question on <a href="https://wordpress.stackexchange.com/questions/8536/wordpress-htaccess-subdirectory-problem/8538#8538">wordpress answers</a> with a slightly different <code>.htaccess</code> code.</p>

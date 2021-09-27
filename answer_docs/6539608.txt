@@ -1,0 +1,10 @@
+<p>you have to pass call_me in. gets kind of convoluted...</p>
+
+<pre><code>p = Proc.new { |m| m.call }
+
+def test_me
+  p.call(call_me)
+end
+</code></pre>
+
+<p>I'm not entirely sure what your aim here is in the larger sense so this is more or less a stab in the dark...</p>

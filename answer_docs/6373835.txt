@@ -1,0 +1,43 @@
+<p>If you want to use the RadioButtons you just need to make some minor tweaks to workaround the default behavior of the RadioButton.  </p>
+
+<p>The first issue you need to workaround is the automatic grouping of RadioButtons based on their common immediate parent container.  Since you don't like the "GroupName" hack your other option is to put each RadioButton inside of its own Grid or other container.  This will make each button a member of its own group and will force them to behave based on their IsChecked binding.</p>
+
+<pre><code>    &lt;StackPanel Orientation="Horizontal"&gt;
+        &lt;Grid&gt;
+            &lt;RadioButton IsChecked="{Binding Path=CurrentMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Idle}"&gt;Idle&lt;/RadioButton&gt;
+        &lt;/Grid&gt;
+        &lt;Grid&gt;
+            &lt;RadioButton IsChecked="{Binding Path=CurrentMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Active}"&gt;Active&lt;/RadioButton&gt;
+        &lt;/Grid&gt;
+        &lt;Grid&gt;
+            &lt;RadioButton IsChecked="{Binding Path=CurrentMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Disabled}"&gt;Disabled&lt;/RadioButton&gt;
+        &lt;/Grid&gt;
+        &lt;Grid&gt;
+            &lt;RadioButton IsChecked="{Binding Path=CurrentMode, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Running}"&gt;Running&lt;/RadioButton&gt;
+        &lt;/Grid&gt;
+    &lt;/StackPanel&gt;
+</code></pre>
+
+<p>This brings me to the next workaround which is ensuring the button clicked on doesn't stay in its Checked state after clicking on it which was needed in order to trigger the set call because you are binding on the IsChecked property.  You will need to send out an additional NotifyPropertyChanged, but it must be pushed into the queue of the Dispatch thread so the button will receive the notification and update its visual IsChecked binding.  Add this to your ViewModel class, which is probably replacing your existing NotifyPropertyChanged implementation and I am assuming your class is implementing the INotifyPropertyChanged which is missing in the question's code:</p>
+
+<pre><code>    public event PropertyChangedEventHandler PropertyChanged;
+    protected void NotifyPropertyChanged(string propertyName)
+    {
+        if (this.PropertyChanged != null)
+        {
+            Dispatcher uiDispatcher = Application.Current != null ? Application.Current.Dispatcher : null;
+            if (uiDispatcher != null)
+            {
+                uiDispatcher.BeginInvoke(DispatcherPriority.DataBind,
+                    (ThreadStart)delegate()
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                    });
+            }
+        }
+    }
+</code></pre>
+
+<p>Then in your CurrentMode's Setter call NotifyPropertyChanged("CurrentMode").  You probably already needed something like this since your Server's ModeChanged call is probably coming in on a thread that isn't the Dispatcher thread.</p>
+
+<p>Finally you will need to apply a Style to your RadioButtons if you want them to have a different Checked/Unchecked look.  A quick Google search for WPF RadioButton ControlTemplate eventually came up with this site: <a href="http://madprops.org/blog/wpf-killed-the-radiobutton-star/" rel="nofollow">http://madprops.org/blog/wpf-killed-the-radiobutton-star/</a>.  </p>

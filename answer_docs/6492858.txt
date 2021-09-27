@@ -1,0 +1,7 @@
+<p>You could always take a look at the specification pattern.  Quite handy for boolean logic:</p>
+
+<pre><code>public interface ISpecification&lt;T&gt;
+{
+    public bool IsSatisfiedBy(T candidate);
+}
+</code></pre>

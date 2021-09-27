@@ -1,0 +1,8 @@
+<p>Use the operand <code>IS</code> instead of <code>=</code> </p>
+
+<pre><code>If bllCust.getOrderDepositByOrderID(OrderID) Is DBNull Then
+   lblBoodschap.Text = ("Deposit not paid.\n")
+Else
+   lblBoodschap.Text = ("Deposit paid.\n")
+End If
+</code></pre>

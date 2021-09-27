@@ -1,0 +1,5 @@
+<p>The underlying DateTimePicker Common Control sets its "standard" formats via the lower 6 bits or so of the GWL-STYLE DWORD of its window.  The value for Format stored in the .frm file may well be the entire DWORD of style bits (WS_TABSTOP, WS_VISIBLE, etc.).</p>
+
+<p>So it may be that people are changing other style bitfields, or perhaps even that the IDE is picking up on differences in default values on different machines.  For example some things only exist in later versions of Windows, or perhaps they are different based on whether the user has Luna, Aero, etc. active or not.</p>
+
+<p>Using a "standard VM" makes this less likely though, I admit.</p>

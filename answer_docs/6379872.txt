@@ -1,0 +1,9 @@
+<p>If you could further restrict things so that only objects that implement ISerializable are allowed then you could use generics to get compile-time checking</p>
+
+<pre><code>public void Serialize&lt;T&gt;(T obj) where T : ISerializable
+{
+    // Do work
+}
+</code></pre>
+
+<p>Unfortunately this doesn't count as an answer to your question because not every <code>Serializable</code> class implements <code>ISerializable</code></p>

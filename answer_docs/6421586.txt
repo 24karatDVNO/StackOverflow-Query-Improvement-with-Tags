@@ -1,0 +1,3 @@
+<p>Assuming, you are talking about WCF RIA Services SDK, Jon is right. InvokeOperation has a property <code>IsComplete</code>. The <code>add</code> part of the Completed event checks this property. In case of a completed operation it does not add the passed event handler but calls it immediately.</p>
+
+<p>You can validate this by inspecting OperationBase (base class of InvokeOperation) in System.ServiceModel.DomainServices.Client.dll with a disassemler tool like dotPeek.</p>

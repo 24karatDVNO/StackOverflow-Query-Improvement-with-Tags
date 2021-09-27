@@ -1,0 +1,17 @@
+<p>Since you say that objects of class <code>A</code> will call methods on <code>C</code>, they will have to keep reference to <code>C</code> somehow. Make this reference of type <code>B</code> and you are done.</p>
+
+<p>That is</p>
+
+<pre><code>public class A {
+  public A(B arg) {
+     ....
+  }
+}
+</code></pre>
+
+<p>Then in <code>C</code>:</p>
+
+<pre><code>A a = new A(this);
+</code></pre>
+
+<p>That will force class C to implement interface <code>B</code>.</p>

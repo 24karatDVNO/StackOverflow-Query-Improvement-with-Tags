@@ -1,0 +1,5 @@
+<p>Well, it's an old question and I suppose it is already solved, but I encountered that same problem today... And I hope it may be useful to somebody.</p>
+
+<p>This is just a mistake with an association of a Connection in the Interface Builder, you may have changed an outlet's name programmatically and the connection is still associated with the old name in the Interface Builder.</p>
+
+<p>Solution: Go to IB and update the Connections of the affected View Controller.</p>

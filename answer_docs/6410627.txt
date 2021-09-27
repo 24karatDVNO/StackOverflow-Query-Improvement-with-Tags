@@ -1,0 +1,35 @@
+<p>OK, I assume you are using Interface Builder.</p>
+
+<p>The easy way:</p>
+
+<ol>
+<li><p>make sure you have chosen your view controller class as both UITableViewDelegate and UITabbleViewDataSource. </p></li>
+<li><p>In the ViewController.h (or whatever its called) add <code>&lt;UITableViewDelegate,UITableViewDataSource&gt;</code> before the { of the @interface definition. to the class that it must conform to those protocols.</p></li>
+<li><p>Make sure the minimal datasource protocol methods are in the class :</p>
+
+<pre><code>– tableView:cellForRowAtIndexPath:  
+– tableView:numberOfRowsInSection: 
+</code></pre></li>
+<li><p>in the – tableView:numberOfRowsInSection:  method return the number of desired rows - 3 or by a bit of code to calculate this property</p></li>
+<li><p>in the – tableView:cellForRowAtIndexPath: method do what you need to on the cell and return it. Boilerplate code </p>
+
+<p>is:</p>
+
+<pre><code>-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
+
+ if (cell == nil) 
+ {
+     cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"MyIdentifier"] autorelease];
+ }
+
+cell.text = @"I am a cell";
+return cell;
+}
+</code></pre></li>
+</ol>
+
+<p>N.B. If you are not using Interface Builder do:
+tableView.delegate = self;
+tableView.datasource = self;</p>

@@ -1,0 +1,22 @@
+<p>Tasks like that always boil down to a large amount of custom string-munching code. Your best weapons of choice will be regular expressions. Forget about fgetcsv if files look like your file does.</p>
+
+<p>The basic logic might look something like this:</p>
+
+<ul>
+<li>Fetch all rows of the file via the file function.</li>
+<li>Save each table area to an own array containing the rows:</li>
+</ul>
+
+<pre><code>foreach ($filelines as $line)
+{
+    $lefreportlines[] = trim(substr($line, 0, 93));
+    $middlereportlines[] = trim(substr($line, 67, 135));
+    ...
+}
+</code></pre>
+
+<ul>
+<li>When you're done, start processing each report as it deserves. For example, the leftmost report might simply be parsed with preg_split('/\s+/', $line);</li>
+</ul>
+
+<p>Either way, you'll have a lot of work to do. Good luck!</p>

@@ -1,0 +1,20 @@
+<p>.click binds an event handler to all the entities that match your selector at 'run time' - so despite removing the class, the entity still has a click event bound.</p>
+
+<p>You can do one of two things. Either use:</p>
+
+<pre><code>$('.voteUp').live('click', function() { 
+    // etc 
+} ); 
+</code></pre>
+
+<p>'live' behaves in the manner that you are expecting 'click' to, and only activates when you click on something that matches its selector - and it analyses this every time you click.</p>
+
+<p>Or you can unbind the event manually in the event handler, eg:</p>
+
+<pre><code>$('.voteUp').bind('click.voteUp', function(e) { 
+    $(this).unbind('click.voteUp'); 
+   // and the rest of what you want to do; 
+});
+</code></pre>
+
+<p>This second example also uses namespaced event handlers, a neat feature in jquery, which means only your named event handler will be removed.</p>

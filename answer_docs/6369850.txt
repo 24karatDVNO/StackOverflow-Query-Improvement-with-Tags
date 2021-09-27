@@ -1,0 +1,5 @@
+<p>If you want the response as a plaintext string you shouldn't choose the json datatype for your jquery request. </p>
+
+<p>Should you want to get the response as json however you should make sure the data you send from your controller is json encoded. What you get then is an object with the structure you define. You could then access it with <code>data.pathToYourString</code> where pathToYourString is the structure you defined.</p>
+
+<p>Have a look at <a href="http://json.org" rel="nofollow" title="JSON.org">JSON.org</a> if you are unsure what JSON is and what the structure looks like.</p>

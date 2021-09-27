@@ -1,0 +1,11 @@
+<p>That is because you select the lowest cost per day per venue if you include the name. In fact, the whole grouping is useless in this table as long as venuename is unique. </p>
+
+<p>To get the venue with the lowest price use something like this:</p>
+
+<pre><code>select venuename, costperday
+from
+  venues v
+where
+  v.venuecapacity = 120 and
+  v.costperday = (select min(costperday) from venue vs where va.venuecapacity = 120)
+</code></pre>

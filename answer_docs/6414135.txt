@@ -1,0 +1,45 @@
+<p>Here's an answer for you. It depends on associative array capabilities of bash version 4:</p>
+
+<pre><code>IFS=,
+declare -a words
+
+# read and store the words in file2
+while read line; do
+    set -- $line
+    n=$1
+    shift
+    words[$n]="$*"
+done &lt; file2.csv
+
+# read file1 and process
+while read line; do
+    echo "$line"
+
+    set -- $line
+    indexes=( "$@" )
+    NF=${#indexes[@]}
+    declare -A common
+
+    for (( i=0; i&lt;$NF; i++)); do
+        echo "${words[${indexes[$i]}]}"
+
+        set -- ${words[${indexes[$i]}]}
+        for word; do
+            common[$word]=$(( ${common[$word]} + 1))
+        done
+    done
+
+    printf "Common words: "
+    n=0
+    for word in "${!common[@]}"; do
+        if [[ ${common[$word]} -eq $NF ]]; then
+            printf "%s " $word
+            (( n++ ))
+        fi
+    done
+    [[ $n -eq 0 ]] &amp;&amp; printf "None"
+
+    unset common
+    printf "\n\n"
+done &lt; file1.csv
+</code></pre>

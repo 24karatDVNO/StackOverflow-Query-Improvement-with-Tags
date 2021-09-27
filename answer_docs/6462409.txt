@@ -1,0 +1,45 @@
+<p>I’ve solved the problem by storing the MD5 as a string.</p>
+
+<pre><code>public class PersistedFile
+{
+    public virtual int Id { get; set; }
+    public virtual string Path { get; set; }
+    public virtual string Md5 { get; set; }
+}
+</code></pre>
+
+<p>Files are saved using this method:</p>
+
+<pre><code>public PersistedFile Save(string filePath)
+{
+    using (var fileStream = new FileStream(filePath, FileMode.Open))
+    {
+        var bytes = MD5.Create().ComputeHash(fileStream);
+
+        using (var transaction = this.Session.BeginTransaction())
+        {
+            var newFile = new PersistedFile
+            {
+                Md5 = BitConverter.ToString(bytes),
+                Path = filePath,
+            };
+            this.Session.Save(newFile);
+            transaction.Commit();
+            return newFile;
+        }
+    }
+}
+</code></pre>
+
+<p>Files are retrieved using this one:</p>
+
+<pre><code>public IEnumerable&lt;PersistedFile&gt; FindByMd5(string md5)
+{
+    using (var transaction = this.Session.BeginTransaction())
+    {
+        var files = this.Session.Query&lt;PersistedFile&gt;().Where(f =&gt; f.Md5 == md5).ToList();
+        transaction.Commit();
+        return files;
+    }
+}
+</code></pre>

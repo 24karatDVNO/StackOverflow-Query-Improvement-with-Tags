@@ -1,0 +1,48 @@
+<p>I see why people are not responding. The question is unclear, and based on what I got out of reading it two or three times, the requirement is not all the clear either. At any rate, I can try to help with a few issues:</p>
+
+<p>a) There is most likely no difference between <code>count(*)</code> and <code>count(1)</code> in your example, unless you are using a non-standard database. That is:</p>
+
+<pre><code>select count(1) from tableA
+</code></pre>
+
+<p>and</p>
+
+<pre><code>select count(*) from tableA
+</code></pre>
+
+<p>return the exact same answer. Both ignore non-existent records. Try it and you will see.</p>
+
+<p>b) To get percentages, you are correct that you have to run two queries. Here is a possible method. First, get the total number, with something like this:</p>
+
+<pre><code>select count(*) from TableA
+</code></pre>
+
+<p>Then, get the count per item, and divide that by the total. </p>
+
+<pre><code>select item, count(*) from TableA group by item
+</code></pre>
+
+<p>Combine those into a larger select statement, maybe like this:</p>
+
+<pre><code>select x.item, round (x.nbr / (select count(*) from TableA), 2) * 100 as Pct
+from (
+  select item, count(*) as nbr
+  from TableA 
+  group by item
+  ) x
+</code></pre>
+
+<p>c) Which SQL are you using? Syntax varies enough to make it worth your time to tell us.</p>
+
+<p>d) Your concern for nulls is unnecessary. Generally, if a record does not exist, SQL statements will ignore it. I could be missing your point, but I don't think that will be one of your top concerns. On the other hand, null values are special in SQL, as they are not zero and nulls don't equal anything. Null does not even equal null. If there is a problem with null values in the code above, you might have to do this:</p>
+
+<pre><code>select x.item, round (x.nbr / (select count(*) from TableA), 2) * 100 as Pct
+from (
+  select item, count(*) as nbr
+  from TableA 
+  where item is not null
+  group by item
+  ) x
+</code></pre>
+
+<p>Hope this helps. It might not be the answer you are looking for, but I think it might get you started on the way to formulating the question better.</p>

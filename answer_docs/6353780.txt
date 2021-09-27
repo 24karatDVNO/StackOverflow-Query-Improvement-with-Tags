@@ -1,0 +1,15 @@
+<p>when 'keypress' event is fired, the value of <code>this</code> in the function would be <code>textarea</code> object. But when the function in <code>setTimeout</code> is run (after 500 milliseconds), the value of <code>this</code> has been changed to something else (perhaps <code>window</code> object)</p>
+
+<p>Change your code to:</p>
+
+<pre><code>$('#text_comment').live('keypress', function() {
+
+    var textarea = this;
+    setTimeout(function() {
+    string = $(textarea).val();         
+
+         alert(string);
+    }, 500);
+
+});
+</code></pre>

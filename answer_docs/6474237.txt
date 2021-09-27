@@ -1,0 +1,29 @@
+<p>If you have an array like this,</p>
+
+<pre><code>unsigned char data[2000];
+</code></pre>
+
+<p>then you can just scrape off the first n bits into an integer like so:</p>
+
+<pre><code>typedef unsigned long long int MyInt;
+
+MyInt scrape(size_t n, unsigned char * data)
+{
+    MyInt result = 0;
+    size_t b;
+
+    for (b = 0; b &lt; n / 8; ++b)
+    {
+       result &lt;&lt;= 8;
+       result += data[b];
+    }
+
+    const size_t remaining_bits = n % 8;
+    result &lt;&lt;= remaining_bits;
+    result += (data[b] &gt;&gt; (8 - remaining_bits));
+
+    return result;
+ }
+</code></pre>
+
+<p>I'm assuming that <code>CHAR_BITS == 8</code>, feel free to generalize the code if you like. Also the size of the array times 8 must be at least <code>n</code>.</p>

@@ -1,0 +1,35 @@
+<p>Ok ... Here's what I ended up doing:</p>
+
+<pre><code>this.is.a.really.long.namespace = {
+
+    inputs  : { firstName : undefined },
+    buttons : { submit : undefined },
+
+    fn : {
+
+        root : undefined,
+
+        abc : function() { console.log(this.root.inputs.firstName); },
+        def : function() { console.log(this.root.buttons.submit); }
+
+    },
+
+    init : function() {
+
+        var self     = this,
+            fn       = self.fn,
+            inputs   = self.inputs,
+            buttons  = self.button;
+
+            fn.root  = this;  // this is the key
+
+            inputs.firstName  = $("#first-name");
+            buttons.submit    = $("#submit-button");
+
+        fn.abc();
+        fn.def();
+
+    }
+
+};
+</code></pre>

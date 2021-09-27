@@ -1,0 +1,12 @@
+<p>It sounds like you're trying to invoke this from an I.D.E. (like QT Creator) that can't find the executable.
+Assuming it has been compiled, the I.D.E. may be trying to call it from the wrong directory.</p>
+
+<p>Look in C:\Source\test1\debug and see if that executable exists.</p>
+
+<p>If it's not there, it probably <em>should</em> be looking in C:\Source\test1\release.</p>
+
+<p>Look there for the executable.</p>
+
+<p>For QT Creator: I've found in the past that deleting the *.pro.user file and reopening the project works. The I.D.E. will ask/(force?) you to regenerate this file. Do so. This seems to fix many problems like this.</p>
+
+<p>If you are using an I.D.E. as mentioned, it seems that your project configuration is broken. Save all source files and start a new project with the source files, and let the I.D.E. regenerate its scripts. Check the makefile for errors.</p>

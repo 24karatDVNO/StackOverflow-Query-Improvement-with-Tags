@@ -1,0 +1,32 @@
+<p>Solution</p>
+
+<p><a href="http://jsfiddle.net/vM8kY/9/" rel="nofollow">http://jsfiddle.net/vM8kY/9/</a></p>
+
+<pre><code>$(document).ready(function() {
+    $("#box").html("message1");
+    $("#box").click(function() {
+
+        if ($("#box").html() == ("message3")) {
+            console.log('a');
+            $("#box").html("message1");
+            return false;
+        }
+
+        if ($("#box").html() == ("message2")) {
+            console.log('b');
+            $("#box").html("message3");
+            return false;
+        }
+
+        if ($("#box").html() == ("message1")) {
+            console.log('c');
+            $("#box").html("message2");
+            return false;
+        }
+
+
+
+
+    });
+});
+</code></pre>

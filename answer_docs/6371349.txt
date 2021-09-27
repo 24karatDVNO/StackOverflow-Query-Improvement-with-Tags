@@ -1,0 +1,7 @@
+<p>When you call setContentView() your references to any Views that were previously established are no longer valid.</p>
+
+<p>In onCreate() you setContentView(R.layout.results) and then you establish latitudeField (and other references) which, assuming they do not come back null, is fine. (You didn't mention <em>which</em> layout you provided xml for).</p>
+
+<p>Next you install your button listener, which either calls startService() or stopService(), each of which set a new content view, neither of which updates your View references; all priors are invalid at this point. Then you call update(), which tries to use an invalid reference.</p>
+
+<p>Either update your references when you change views, or fetch them at the time they're needed.</p>

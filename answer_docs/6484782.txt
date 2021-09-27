@@ -1,0 +1,3 @@
+<p>The UI elements are not likely the responsible ones, those barely use any memory.   And calling Dispose()/nulling helps, but only a tiny bit.</p>
+
+<p>The more likely source of the problem are objects like the MPMoviePlayer, the image downloading and the image rendering.   You might be keeping references to those objects which prevent the GC from getting rid of them.</p>

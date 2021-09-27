@@ -1,0 +1,17 @@
+<p>You have to try like this </p>
+
+<pre><code>               var x=document.getElementsByName("sitesinput")[0].value;
+                             if (x==null || x=="" || x==0)
+                              {
+                              alert("You have not selected a total amount of sites.")
+                              document.getElementsByName("sitesinput")[0].style.border="1px solid #F00"
+                              document.getElementsByName("sitesinput")[0].focus()
+                              return false;
+                              }
+</code></pre>
+
+<ul>
+<li>document.getElementsByName returns a array.</li>
+<li>There is no document.getElementByName
+in javascript ,this is  what causing the errors in your code.</li>
+</ul>

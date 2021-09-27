@@ -1,0 +1,9 @@
+<p>Your question doesn't have enough information to answer it.</p>
+
+<ul>
+<li>What URL are they on when they press the link?</li>
+<li>What's the URL of the link itself (view source please)?</li>
+<li>How did you generate the link?</li>
+</ul>
+
+<p>My guess is that whatever you are using to generate the link is not taking into consideration the new route. So the link is generating some relative path "../../" which corresponds to the physical location, but it should be corresponding to the route.</p>

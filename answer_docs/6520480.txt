@@ -1,0 +1,38 @@
+<p>Given a base class:</p>
+
+<pre><code>class SomeBaseClass()
+{
+    public virtual string GetName()
+    {
+         return "SomeBaseClass";
+    }
+}
+</code></pre>
+
+<p>When you override it, you inherit the function </p>
+
+<pre><code>class SomeDerivedClass() : SomeBaseClass
+{
+}
+</code></pre>
+
+<p>So when you say: </p>
+
+<pre><code>SomeDerivedClass sdc = new SomeDerivedClass();
+Console.WriteLine(sdc.GetName()); //outputs "SomeBaseClass"
+</code></pre>
+
+<p><code>GetName()</code> returns "SomeBaseClass"</p>
+
+<p>You can, however, <code>override</code> it.</p>
+
+<pre><code>class SomeDerivedClass()
+{
+    public override string GetName()
+    {
+         return "SomeDerivedClass";
+    }
+}
+</code></pre>
+
+<p>Here <code>GetName()</code> will now return "SomeDerivedClass"</p>

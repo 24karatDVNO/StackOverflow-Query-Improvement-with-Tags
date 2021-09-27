@@ -1,0 +1,3 @@
+<p>You dont need synchronization here as the variable <strong>s</strong> is local.</p>
+
+<p>You need to worry only if multiple threads share resources, for e.g. if <strong>s</strong> was static field, then you have to think about multi-threading.</p>

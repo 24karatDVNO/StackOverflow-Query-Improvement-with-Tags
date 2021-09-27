@@ -1,0 +1,17 @@
+<p>@Maz - thank you for that. I'm learning at the moment and need to look at <code>service_set</code>.</p>
+
+<p>@arustgi - that worked perfectly. For the benefit of fellow novices stumbling over this, I pass in <code>'queryset': Service.objects.all()</code> and use:</p>
+
+<pre><code>    {% regroup object_list by area as area_list %}
+    {% for area in area_list %}
+        &lt;h2 class="separate"&gt;{{ area.grouper }}&lt;/h2&gt;
+        {% for service in area.list %}
+        &lt;div class="column"&gt;
+            &lt;h3&gt;{{ service.title }}&lt;/h3&gt;
+            {{ service.body }}
+        &lt;/div&gt;
+        {% endfor %}
+    {% endfor %}
+</code></pre>
+
+<p>Concise, descriptive code. Many thanks, both of you</p>

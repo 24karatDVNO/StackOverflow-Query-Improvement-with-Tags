@@ -1,0 +1,24 @@
+<p>Using an array of structs/classes seems like that would be the normal way to go. </p>
+
+<p>Not really sure what you mean by a random iterator, but when picking out random sentences from the array of sentences, you might want to avoid repeats until you've gone through all the elements. To do that, you can make a second array of indices, select one at random from those, use the element that corresponds to that index, and remove that number from the array of indices. </p>
+
+<p>In Java, that would look something like </p>
+
+<pre><code>ArrayList&lt;Sentence&gt; sentences;
+ArrayList&lt;Integer&gt; indices;
+Random rand;
+
+private void populateIndices() {
+    for(int i = 0; i &lt; sentences.size(); i++)
+        indices.add(i);
+}
+
+public Sentence getNextSentence() {
+    if(indices.isEmpty())
+        populateIndices();
+    int idx = rand.nextInt(indices.size());
+    int val = indices.get(idx);
+    indices.remove(idx);
+    return sentences.get(val);
+}
+</code></pre>

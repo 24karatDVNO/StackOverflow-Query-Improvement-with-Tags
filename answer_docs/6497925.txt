@@ -1,0 +1,18 @@
+<blockquote>
+  <p>Can I pass some sort of
+  NULL-equivalent to the uLong params?</p>
+</blockquote>
+
+<p>How about <code>0</code>?</p>
+
+<blockquote>
+  <p>Did I do the <code>malloc</code>/<code>free</code> correctly?</p>
+</blockquote>
+
+<p>Looks ok to me.</p>
+
+<p>You have some other error though: <code>fileNameBufferSize</code> is supposed to be the size of the <code>szFileName</code> buffer (1024 in your code). You didn't fill it, which means it's trash, be careful with that.</p>
+
+<p><strong>edit</strong></p>
+
+<p>Yep, you should check the <code>malloc</code> returned value for NULL, forgot to mention that.</p>

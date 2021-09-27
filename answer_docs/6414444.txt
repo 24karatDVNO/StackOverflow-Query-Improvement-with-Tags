@@ -1,0 +1,12 @@
+<p>you have statements at the class level:</p>
+
+<pre><code>class F(Exception):
+    sys.stderr.write('Inside exception\n')
+</code></pre>
+
+<p>consider this, which will not be executed until you create an object instance:</p>
+
+<pre><code>class F(Exception):
+    def __init__(self):
+        sys.stderr.write('Inside exception\n')
+</code></pre>

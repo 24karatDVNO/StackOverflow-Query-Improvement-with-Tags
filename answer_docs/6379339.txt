@@ -1,0 +1,11 @@
+<p>Fixed this by addressing the list elements that had <code>nav</code> containers nested within. Many thanks to <a href="https://stackoverflow.com/users/405015/thirtydot">thirtydot</a> for pointing me to <a href="http://jsfiddle.net/" rel="nofollow noreferrer">jsFiddle</a> - an amazing tool!</p>
+
+<p>Here is the CSS...</p>
+
+<pre><code>nav { text-align: left; }
+nav li { display: inline; text-align: center; }
+nav a { display: inline-block; }
+nav li { width: 95px; }
+nav li nav { display: none; }
+nav li:hover nav { display: inline; }
+</code></pre>

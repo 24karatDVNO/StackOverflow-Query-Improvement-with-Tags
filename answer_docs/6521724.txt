@@ -1,0 +1,12 @@
+<p>I don't know how you have your array structured, but:</p>
+
+<pre><code>        Dim text As String = "Hello &lt;&lt;FirstName&gt;&gt; &lt;&lt;LastName&gt;&gt;"
+        Dim foo() As String 
+        For i As Integer = 0 To UBound(foo)
+            Dim modifiedText As String = text
+            modifiedText = Replace(modifiedText, "&lt;&lt;FirstName&gt;&gt;", foo(i,0), 1, -1, vbTextCompare)
+            modifiedText = Replace(modifiedText, "&lt;&lt;LastName&gt;&gt;", foo(i,1), 1, -1, vbTextCompare)
+            Console.WriteLine(modifiedText)
+
+        Next
+</code></pre>

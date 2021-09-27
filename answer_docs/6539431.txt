@@ -1,0 +1,21 @@
+<h3>Answer</h3>
+<p>There's no real reason to test command-line arguments directly. Instead, write your unit tests to check the behavior of your code (functions and classes) given different arguments. Once you are satisfied that your code is working properly under unit test, simply plug it into <code>main</code> and it should work properly there, as well.</p>
+<h3>Clarification</h3>
+<p>Imagine that you have your unit test on the argument to the <code>std::string</code> constructor.</p>
+<pre><code>TEST(SomeTest)
+{
+    std::string file(&quot;this is some command line argument&quot;);
+    CHECK(something);
+}
+</code></pre>
+<p>Then you plug it into <code>main</code>.</p>
+<pre><code>int main(int argc, char** argv)
+{
+    std::string file(argv[1]);
+
+    // do stuff....
+    
+    return 0;
+}
+</code></pre>
+<p>Because nothing should happen to the command-line argument before it is passed to the constructor, <em>you have effectively tested it already</em>. If, on the other hand, your <code>main</code> is a mess, I would suggest refactoring that first.</p>

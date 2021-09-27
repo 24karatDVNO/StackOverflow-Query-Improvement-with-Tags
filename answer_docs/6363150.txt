@@ -1,0 +1,9 @@
+<p>you can try </p>
+
+<pre><code>&lt;%: Html.DropDownList("MarketingByFax", (IEnumerable&lt;SelectListItem&gt;)ViewData["MarketingByFaxList"])%&gt;
+</code></pre>
+
+<p>dropdwon has an overload that accepts the enumeration of Selectlist type objects and it sets the value of list automatically depending upon Selected property of selectListItems in the list. for this you have to set</p>
+
+<pre><code>ViewData["MarketingByFaxList"] = items;//where item is IEnumerable&lt;SelectListItem&gt; or List&lt;SelectListItem&gt; as you used in your code
+</code></pre>

@@ -1,0 +1,34 @@
+<p>While I'm not sure of your exact intent, I can tell you this: don't use a raw array!</p>
+
+<p>In C++, we have the <code>vector</code> type. A vector is very similar to an array, but you can keep adding elements to it. If it gets full, it makes itself bigger. (In actual fact, a vector is simply a wrapper for an array. When it is filled up, it creates a larger array, copies the element to the new array, and then discards the original array).</p>
+
+<p>When using <code>vector</code>, you're code follows this style:</p>
+
+<pre><code>#include &lt;vector&gt; // so we can actually use vectors
+
+... // program code here
+
+// here's a basic loop which fills a vectors with the numbers 1 to 99.
+std::vector&lt;unsigned char&gt; myVec;
+while( there_is_stuff_to_read )
+{
+    myVec.push_back(get_next_element());
+}
+</code></pre>
+
+<p>Of course, the loop would involve whatever file reading classes you use. The key is the <code>push_back</code> method which adds elements to the vector.</p>
+
+<p>If other portions of your code rely specifically on using an array of unsigned char, then you can fill the vector, and the use this line of code as necessary:</p>
+
+<pre><code>unsigned char * arr = &amp;myVec[0];
+</code></pre>
+
+<p>Then you can use <code>arr</code> as your usual unsigned char array. Just make sure that you don't hang on this pointer after adding more elements to the vector. It isn't guaranteed to remain a valid pointer to the start of the vector's internal array (since the vector reallocates its internal array).</p>
+
+<p>The previous line of code doesn't create a whole new array. If you want a genuine copy of the internal contents of the vector, you can use something like:</p>
+
+<pre><code>unsigned char * arr = new unsigned char[myVec.size()];
+std::copy(myVec.begin(), myVec.end(), arr);
+</code></pre>
+
+<p>Just make sure you include the standard &lt;algorithm&gt; header.</p>

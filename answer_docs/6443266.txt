@@ -1,0 +1,20 @@
+<p>There is no selector that can do this for IE6, if you absolutely must support this feature you will have to use the help of javascript. Put this function on your page:</p>
+
+<pre><code>function appendInputTypeClasses() { 
+ if (!document.getElementsByTagName ) 
+  return; 
+ var inputs = document.getElementsByTagName('input'); 
+ var inputLen = inputs.length; 
+ for ( i=0;i&lt;inputLen;i++ ) { 
+  if ( inputs[i].getAttribute('type') ) 
+   inputs[i].className += ' '+inputs[i].getAttribute('type'); 
+ } 
+} 
+</code></pre>
+
+<p>This will add the type of the input to the class, so you can use:</p>
+
+<pre><code>input[type='text'],input.text
+input[type='radio'],input.radio
+input[type='checkbox'],input.checkbox
+</code></pre>

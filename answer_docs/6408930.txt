@@ -1,0 +1,18 @@
+<p>The only right answer here is: it depends.</p>
+
+<p>I always ask myself this question when creating a function like this. To answer it, I analyze what the function <em>does</em>, instead of what it returns. </p>
+
+<p>For instance, if I have a getter, I expect to get a value, or nothing. In this case I often return <code>null</code> when nothing is found/something went wrong. 
+A test function like yours should return a boolean at all times, in my opinion. Returning a variable when you're checking for something to be true or false is semantically incorrect, I think.</p>
+
+<p>Aside from the semantics: returning 0, false or null does not really matter when you're checking it with <code>if (test($var1, $var2))</code>, since it will all work the same. However, if you want some finer details, you want to do an identity check (<code>===</code>) rather than a equality check. In PHP this is sometimes the case, for instance <a href="http://php.net/manual/en/function.strpos.php" rel="nofollow"><code>strpos</code></a> can return 0 or false, 0 being a match is found, and false is not. Therefore the following would fail:</p>
+
+<pre><code>// returns 0, which is casted to false, so the 'else' part is executed
+if (strpos('a', 'abc')) { 
+    // 'abc' contains 'a'
+} else {
+    // 'abc' does not contain 'a'
+}
+</code></pre>
+
+<p>So, long story short: it depends...</p>

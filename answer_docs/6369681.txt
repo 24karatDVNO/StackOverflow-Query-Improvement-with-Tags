@@ -1,0 +1,105 @@
+<p>Initially load part of data in your list view.
+You have to use concept of <code>Handler</code>. onclick event you have to send message to handler inside handler you have to write the logic to load your full data and call <code>notifydataSetChanged</code> method</p>
+
+<p>have a look on the sample code below. Initially user is able to see some part of list. If user cvlicks on any list item then list user is able to see the whole list view. It is similar to as that you are expecting. </p>
+
+<h2>Sample Code</h2>
+
+<pre><code>import java.util.ArrayList;
+
+import android.app.ListActivity;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+public class MyListView extends ListActivity {
+    ArrayList&lt;String&gt; pens = new ArrayList&lt;String&gt;();
+    ArrayAdapter arrayAdapter = null;
+    private static final byte UPDATE_LIST = 100;
+
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        pens.add("MONT Blanc");
+        pens.add("Gucci");
+        pens.add("Parker");
+
+        arrayAdapter = new ArrayAdapter&lt;String&gt;(this,
+                android.R.layout.simple_list_item_1, pens);
+        setListAdapter(arrayAdapter);
+
+        getListView().setTextFilterEnabled(true);
+        ListView lv = getListView();
+
+        lv.setOnItemClickListener(new OnItemClickListener() {
+
+            public void onItemClick(AdapterView&lt;?&gt; arg0, View arg1, int arg2,
+                    long arg3) {
+                // TODO Auto-generated method stub
+                System.out.println("..Item is clicked..");
+                Message msg = new Message();
+                msg.what = UPDATE_LIST;
+                updateListHandler.sendMessage(msg);
+            }
+        });
+
+
+
+        // System.out.println("....g1..."+PhoneNumberUtils.isGlobalPhoneNumber("+912012185234"));
+        // System.out.println("....g2..."+PhoneNumberUtils.isGlobalPhoneNumber("120121852f4"));
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        // TODO Auto-generated method stub
+
+        super.onConfigurationChanged(newConfig);
+        System.out.println("...11configuration is changed...");
+    }
+
+    void addMoreDataToList() {
+        pens.add("item1");
+        pens.add("item2");
+        pens.add("item3");
+
+    }
+
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Object o = this.getListAdapter().getItem(position);
+        String pen = o.toString();
+        Toast.makeText(this, id + "You have chosen the pen: " + " " + pen,
+                Toast.LENGTH_LONG).show();
+    }
+
+    private Handler updateListHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+            case UPDATE_LIST:
+                addMoreDataToList();
+                arrayAdapter.notifyDataSetChanged();
+                break;
+
+            }
+            ;
+        };
+    };
+
+
+
+
+}
+</code></pre>
+
+<p>Thanks
+Deepak</p>

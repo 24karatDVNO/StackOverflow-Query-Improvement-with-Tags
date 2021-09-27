@@ -1,0 +1,1 @@
+<p>The problem is the control doesn't exist on postback (since you created it at run time).  Creating the control in Init should solve this, and will allow the event to fire.  You can change all of the properties in LoadComplete if you like, but the button needs to exist at that point.</p>

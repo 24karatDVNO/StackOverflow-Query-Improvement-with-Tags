@@ -1,0 +1,14 @@
+<p>Check this out. It actually works better than I expected ;)</p>
+
+<pre><code>scala&gt; def f[T &lt;: Product](x: T) = x
+f: [T &lt;: Product](x: T)T
+
+scala&gt; f(1)
+&lt;console&gt;:9: error: inferred type arguments [Int] do not conform to method f's type parameter bounds [T &lt;: Product]
+
+scala&gt; f(1, "2") // you don't even need the extra parenthesis
+res0: (Int, java.lang.String) = (2,3)
+
+scala&gt; f(1, "2", BigInt("3"))
+res1: (Int, java.lang.String, scala.math.BigInt) = (1,2,3)
+</code></pre>

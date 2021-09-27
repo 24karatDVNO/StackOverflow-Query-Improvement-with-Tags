@@ -1,0 +1,18 @@
+<p>Modify your catch:</p>
+
+<pre><code>try {
+    Class.forName(....);
+} catch (ClassNotFoundException e) {
+    System.out.println(e.getMessage());
+    System.exit(1);
+}
+try {        
+   ...your SQL commands...
+} catch (SQLException sqe) { 
+   System.out.println(sqe.getMessage();
+}
+</code></pre>
+
+<p>in order to see what happens.</p>
+
+<p>As Howard also commented above the READONLY could be a problem...</p>

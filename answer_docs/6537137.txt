@@ -1,0 +1,27 @@
+<p>In it's current form, this script cannot be run effectively via a web server. There are two reasons:</p>
+
+<ol>
+<li><p>The scripts uses $argv, which is a reference to command line arguments. If you run the script via a web server (as an HTML page) that variable will not be populated.</p></li>
+<li><p>The script modifies files. Your web server user may or may not have permission to edit those files.</p></li>
+</ol>
+
+<p>To execute this script from the command line, open a shell and execute</p>
+
+<pre><code>php &lt;script_name&gt; &lt;path_to_direcotry&gt;
+</code></pre>
+
+<p>where <code>&lt;script_name&gt;</code> is the name of Crystaldawn's script, and <code>&lt;path_to_directory&gt;</code> is the directory you wish to clean.</p>
+
+<p>If you cannot run this via the command line, you will need to change the references to $argv to something like:</p>
+
+<pre><code>$_GET['directory'];
+</code></pre>
+
+<p>and call the script like this:</p>
+
+<pre><code>http://yourwebsite/script_name.php?directory=/home/www/
+</code></pre>
+
+<p>If you use this method, you will want to add validation and escaping to make sure someone can't enter an invalid or dangerous value for <code>directory.</code></p>
+
+<p>Second, you will need to check your file permissions to ensure that the webserver user can edit the files in the directory you specify.</p>

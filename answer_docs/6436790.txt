@@ -1,0 +1,3 @@
+<p>As schlingel already said, eclipse can't handle nested project. Generally nested projects represent subprojects or modules of a bigger project and they often inherit settings while the base project might manage the nested ones.</p>
+
+<p>Using Maven and the m2eclipse plugin you might get support for nested projects to some extend. The filesystem representation would be nested, however eclipse can't display that as such. In eclipse they'd look like parallel projects, but the m2eclipse plugin has some support to at least provide some functionality nesting would provide.</p>

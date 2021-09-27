@@ -1,0 +1,5 @@
+<p>To the currently executed <strong>script</strong> directory: <code>chdir(dirname($_SERVER['SCRIPT_FILENAME']));</code></p>
+
+<p>To the currently executed <strong>file</strong> directory: <code>chdir(dirname(__FILE__));</code></p>
+
+<p>There is a slight difference between them. Script directory is always the directory of the main script file being executed, while the file directory can also be the directory of the included php script file.</p>

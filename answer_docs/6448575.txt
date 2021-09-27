@@ -1,0 +1,7 @@
+<p>In JavaScript, global vars are members of the window object, so you can use the array indexing syntax to get at them without using <code>eval</code>, which is generally to be avoided, like so:</p>
+
+<pre><code>function stateSelect(state) {
+    var display_data1 = window[state + "dat"];
+    alert(display_data1);
+}
+</code></pre>

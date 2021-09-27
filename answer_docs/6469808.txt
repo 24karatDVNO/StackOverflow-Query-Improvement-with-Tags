@@ -1,0 +1,11 @@
+<p>You could use LINQ:</p>
+
+<pre><code>string[] results = ...
+string resultsStr = results.Aggregate((a,b) =&gt; a + b);
+</code></pre>
+
+<p>or...</p>
+
+<pre><code>MyEntity[] results = ...
+string resultsStr = results.Select(r =&gt; r.SomeColumn).Aggregate((a,b) =&gt; a + b);
+</code></pre>

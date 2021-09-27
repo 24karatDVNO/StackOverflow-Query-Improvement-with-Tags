@@ -1,0 +1,37 @@
+<pre><code>southWest = new google.maps.LatLng(48.59475380744011,22.247364044189453);
+            northEast = new google.maps.LatLng(48.655344320891444,22.352420806884766);
+            var limBound = new google.maps.LatLngBounds(southWest,northEast);
+            var lastCenter;
+
+            var option = {zoom:15,
+            center: limBound.getCenter(),
+            mapTypeId: google.maps.MapTypeId.ROADMAP};
+            var map = new google.maps.Map(document.getElementById('divMap'),option);
+            google.maps.event.addListener(map,'zoom_changed', function() {
+                minZoom(15);
+                });
+            google.maps.event.addListener(map,'drag',function(e){
+                limitBound(limBound);
+                });
+
+         function minZoom(minZoom){
+                if (map.getZoom()&lt;minZoom)
+                {map.setZoom(minZoom);}
+             };       
+
+         function limitBound(bound)
+         {
+             if (bound.getNorthEast().lat() &gt; map.getBounds().getNorthEast().lat()
+                &amp;&amp; bound.getNorthEast().lng() &gt; map.getBounds().getNorthEast().lng()
+                &amp;&amp; bound.getSouthWest().lat() &lt; map.getBounds().getSouthWest().lat()
+                &amp;&amp; bound.getSouthWest().lng() &lt; map.getBounds().getSouthWest().lng())
+                {
+                    lastCenter=map.getCenter();
+                    $('#divText').text(lastCenter.toString());
+                    }
+                if (bound.contains(map.getCenter()))
+                {
+                    map.setCenter(lastCenter);
+                    }
+             }
+</code></pre>

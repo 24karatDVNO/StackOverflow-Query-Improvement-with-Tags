@@ -1,0 +1,25 @@
+<p>Here's an extension method that should meet your needs.</p>
+
+<pre><code>  public static IEnumerable&lt;string&gt; FormatSubsetList&lt;T&gt;(this IEnumerable&lt;T&gt; input, int every, Func&lt;IEnumerable&lt;T&gt;,string&gt; formatter)
+  {
+     List&lt;T[]&gt; list = new List&lt;T[]&gt; ();
+     int index = 0;
+     foreach (T i in input)
+     {
+        T[] array;
+        if (index % every == 0)
+           list.Add (array = new T[every]);
+        else
+           array = list[list.Count - 1];
+        array[index++ % every] = i;
+     }
+     return list.Select(t =&gt; t.Where (i =&gt; i != null)).Select(formatter);
+  }
+  static Program()
+  {
+     List&lt;Widget&gt; widgets = new List&lt;Widget&gt; ();
+     Func&lt;IEnumerable&lt;Widget&gt;,string&gt; formatter = 
+        items =&gt; items.Aggregate (new StringBuilder ("&lt;div&gt;"), (sb,w) =&gt; sb.Append(" ").Append (w.Name), sb =&gt; sb.Append ("&lt;/div&gt;").ToString ());
+     widgets.FormattedSubsetList(3, formatter);
+  }
+</code></pre>

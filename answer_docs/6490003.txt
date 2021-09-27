@@ -1,0 +1,4 @@
+<p>I'll take the example of hibernate. Hibernate have a concept called HibernateSession which stores the SQL command that are not yet sent to DB.
+With Hibernate you can do inserts and flush the session every 100 inserts which means sending SQL queries every 100 inserts. This helps to gain performance because it communicates with database every 100 inserts and not each insert.</p>
+
+<p>So you can make the same thing by executing the executeUpdate every 100 (or what ever you want) times or use preparedStatement. </p>

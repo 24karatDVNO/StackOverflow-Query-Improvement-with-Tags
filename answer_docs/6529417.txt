@@ -1,0 +1,23 @@
+<p>The solution in my previous answer broke sorting so I came up with another solution.</p>
+
+<p>Because jqGrid doesn't provide the hooks to conveniently modify the data, it was necessary to drop back a level and hook into jQuery. I replaced the <code>$.ajax()</code> method with my own. Firstly it checks whether the operation is one being initiated by jqGrid and if so, it pads the data, calls the original jqGrid <code>success</code> handler, and then adds the radio buttons to the grid. Sorting still works, the datatype is still json, and there are no manual calls to <code>addJSONData</code> and I am still able to achieve what I needed from the previous solution. Essentially, making this small jQuery hack allows me to get by without making any jqGrid hacks which is far messier.</p>
+
+<pre><code>// Set up $.ajax() hook for modifying the data before jqGrid receives it
+if (!this._ajaxOverridden) {
+    var oldAjax = $.ajax;
+    $.ajax = function (options) {
+        // Check whether this call is from jqGrid to our web service
+        if (options.url == config.eventSearchUrl &amp;&amp; options.success) {
+            // Wrap the success event handler with our own handler that pads the data and creates the radio buttons
+            var oldSuccess = options.success;
+            options.success = function () {
+                thisEventSearchDialog._padData(arguments[0]);
+                oldSuccess.apply(this, arguments);
+                thisEventSearchDialog._createRadioButtons();
+            }
+        }
+        oldAjax(options);
+    };
+    this._ajaxOverridden = true;
+}
+</code></pre>

@@ -1,0 +1,30 @@
+<p>You have got this array from var_export function </p>
+
+<p>You can bring back your array like this.</p>
+
+<pre><code>&lt;?php
+$array="Array ( [Dog] =&gt; Array ( [leg] =&gt; 4 [eyes] =&gt; 2 ) [Cat] =&gt; Array ( [leg] =&gt; 3 [eyes] =&gt; 4 ) )";
+$finalRes=eval("return $array;");
+print_r($finalRes);
+?&gt;
+</code></pre>
+
+<p>You can use var_export to store parsable string as the above string give syntax error when executed with eval because that is not a valid array declaration syntax.</p>
+
+<p>Definition: Eval () is used to evaluate the input string as PHP. It is like using the Echo () function in the sense that it outputs everything, except instead of outputting it as text, it outputs it as PHP code to be executed. One use of this is to store code in a database to execute later.
+Also Known As: Evaluate String
+Examples:</p>
+
+<pre><code> &lt;?php 
+ $name = 'Joe';
+ $name2 = 'Jim';
+ $a = 'My friends are $name and $name2';
+ print $a . "&lt;br&gt;"; 
+ eval("\$a = \"$a\";"); 
+ print $a . "&lt;br&gt;"; 
+ ?&gt; 
+</code></pre>
+
+<p>This would output My friends are $name and $name2 when first called with the print statement, but would output My friends are Joe and Jim when called the second time after running eval () </p>
+
+<p>Your can get the array from here</p>

@@ -1,0 +1,33 @@
+<p>Making your own custom scroll buttons is a issue? 
+ If not, you can create a ItemsControl, in the style set the ItemsPanel to </p>
+
+<pre><code>    &lt;ItemsPanelTemplate x:Key="ItemsPanelStyle"&gt;
+        &lt;StackPanel Orientation="Horizontal"&gt;&lt;/StackPanel&gt;
+     &lt;/ItemsPanelTemplate&gt;
+</code></pre>
+
+<p>and in the ControlTemplate of the ItemsControl </p>
+
+<pre><code>&lt;ScrollViewer
+    x:Name="PART_ScrollViewer"
+    HorizontalScrollBarVisibility="Hidden"
+    VerticalScrollBarVisibility="Hidden"
+    CanContentScroll="True"
+    &gt;
+        &lt;ItemsPresenter/&gt;
+    &lt;/ScrollViewer&gt;
+</code></pre>
+
+<p>your toolbar buttons will be the actual ItemsSource of this ItemsControl. If you create now a button in the template (scroll right, the scroll button you need), and on it's command you execute</p>
+
+<pre><code>ScrollViewer myViewer = GetTemplatedPart("PART_ScrollViewer");
+if(myViewer != null)
+{
+    myViewer.LineRight();
+}
+</code></pre>
+
+<p>this should scroll each element to the right untill the end of your list of buttons (notice advantage: no matter what the width of the element is). 
+ The same thing you can do to the left.</p>
+
+<p>HTH, daniell</p>

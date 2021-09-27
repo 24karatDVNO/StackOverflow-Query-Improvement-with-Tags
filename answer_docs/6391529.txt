@@ -1,0 +1,52 @@
+<p>C is byte oriented, not bit oriented.</p>
+
+<p>read two 16 bit ints and combine them to 24 bits (3 bytes) by shaving off the top 4 bits.</p>
+
+<pre><code>for(;;) {
+  uint8_t current;
+  uint16_t d[2];
+  if(fread(d,sizeof d,2,my_file) != 2) //convert the int if it's in the 
+                                        //oposite endian of your host.
+     return;
+   current = (d[0] &amp; 0xff0) &gt;&gt; 4) ;
+   if(fwrite(&amp;current,1,1,my_outfile) != 1) //or store it in an array.
+      return;
+    current = (d[0] &amp; 0xf) &lt;&lt; 4;
+    current |= (d[1] &amp; 0xf00) &gt;&gt; 8) ;
+    if(fwrite(&amp;current,1,1,my_outfile) != 1) //or store it in an array.
+       return;
+     current = d[1] &amp; 0xff;
+     if(fwrite(&amp;current,1,1,my_outfile) != 1) //or store it in an array.
+        return;
+ }
+</code></pre>
+
+<p>Alternativly read them one 16 bit int at a time:</p>
+
+<pre><code>int state = 0;
+uint8_t current;
+for(;;) {
+  uint16_t d;
+  if(fread(&amp;d,sizeof d,1,my_file) != 1) //convert the int if it's in the 
+                                        //oposite endian of your host.
+     return;
+   switch(state)
+      case 0:
+        current = (d &amp; 0xff0) &gt;&gt; 4) ;
+        if(fwrite(&amp;current,1,1,my_outfile) != 1) //or store it in an array.
+          return;
+        current = (d &amp; 0xf) &lt;&lt; 4;
+        state = 1;
+        break;
+     case 1;
+        current |= (d &amp; 0xf00) &gt;&gt; 8) ;
+        if(fwrite(&amp;current,1,1,my_outfile) != 1) //or store it in an array.
+          return;
+        current = d &amp; 0xff;
+        if(fwrite(&amp;current,1,1,my_outfile) != 1) //or store it in an array.
+          return;
+        state = 0;
+        break;
+    }
+ }
+</code></pre>

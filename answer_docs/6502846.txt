@@ -1,0 +1,17 @@
+<p>Sure, the first one is the way to go for it:</p>
+
+<pre><code>Table   -&gt; Roles 
+Columns -&gt; Id
+           Name
+           isDownload
+           isShare
+           isView
+</code></pre>
+
+<ul>
+<li>is a simple design</li>
+<li>you can read roles and privileges from the same table without needing JOINs</li>
+<li>has lesser space requirements than the second alternative</li>
+</ul>
+
+<p>However if you have dynamic privileges with privileges added or removed frequently, you might think of approach 2. But otherwise keeping a single table is fine.</p>

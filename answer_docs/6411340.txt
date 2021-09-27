@@ -1,0 +1,40 @@
+<p>You can build on something like this:</p>
+
+<p>Create a tblOnline table with the following fields</p>
+
+<pre><code>id int not null auto_increment primary key
+colSession text
+colStamp int
+</code></pre>
+
+<p>When someone login you create a session variable for them:</p>
+
+<pre><code>session_start();
+$_SESSION['online'] = md5(uniqid(rand(), true)); // Create a unique string
+</code></pre>
+
+<p>Store the unique session in tblOnline:</p>
+
+<pre><code>$stamp = time();
+mysql_query('INSERT INTO tblOnline (colSession,colStamp) VALUES ('.$_SESSION['online'].','.$stamp.')');
+</code></pre>
+
+<p>When they do something (like, the page reloads) update the colStamp with the current timestamp:</p>
+
+<pre><code>$now = time();
+mysql_query('UPDATE tblOnline SET colStamp = '.$now.' WHERE colSession = '.$_SESSION['online'].'');
+</code></pre>
+
+<p>To get all the online users do something like:</p>
+
+<pre><code>$timecheck = time()-(60*5); // 5 minutes back
+$rs = mysql_query('SELECT * FROM tblOnline WHERE Stamp &gt; '.$timecheck.'');
+$num = mysql_num_rows($rs);
+echo "There are: ".$num." users online right now!";
+</code></pre>
+
+<p>Clean up old session data from the database from time to time (matching on colStamp of course):</p>
+
+<pre><code>$timeclean = time()-(60*60); // One hour back
+mysql_query('DELETE FROM tblOnline WHERE Stamp &lt; '.$timeclean.'');
+</code></pre>

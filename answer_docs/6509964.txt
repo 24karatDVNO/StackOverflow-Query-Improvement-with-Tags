@@ -1,0 +1,20 @@
+<p>No one has any tips, so... this is what I found out. It is indeed related to buffering - or at least, that's what it looks like. The code originally had lines like this:</p>
+
+<pre><code>print("OK\tPowerDNS backend ok")
+</code></pre>
+
+<p>These lines were where the problem was; replacing them with this sequence worked:</p>
+
+<pre><code>print("OK\tPowerDNS backend ok")
+io.flush()
+</code></pre>
+
+<p>However - replacing them with the following sequence did <em>not</em> work:</p>
+
+<pre><code>io.write("OK\tPowerDNS backend ok")
+io.flush()
+</code></pre>
+
+<p>Presumably this is because of some difference between <code>print()</code> and <code>io.write()</code>. Looking for details on Lua unbuffered I/O turned up nothing. It may be that I should use <code>io.stdout.write()</code> instead of <code>io.write()</code>.</p>
+
+<p>By accident, I ran across <a href="http://lua-users.org/lists/lua-l/2008-10/msg00369.html" rel="nofollow">this posting</a> to the Lua-Users mailing list which mentions the <a href="http://www.lua.org/manual/5.1/manual.html#pdf-file%3asetvbuf" rel="nofollow"><code>setvbuf</code></a> function. However, the <code>setvbuf</code> function appears to be new as of Lua 5.1, so it is not available in Lua 5.0.</p>

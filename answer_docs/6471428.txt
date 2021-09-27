@@ -1,0 +1,14 @@
+<p>Assuming the IDs must match up in order to make the comparisons legitimate:</p>
+
+<pre><code>select n.*
+from new n
+left join old o on o.id = n.id
+where o.id is null
+  or not (
+    and o.name = n.name
+    and o.number = n.number
+    and o.email = n.email
+    and ...)
+</code></pre>
+
+<p>Note, this solution handles the case where some of the fields can be NULL.  If you use (o.name &lt;> n.name) instead of not (o.name = n.name) you won't correctly consider NULLs to be different from non-nulls.</p>

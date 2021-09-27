@@ -1,0 +1,13 @@
+<pre><code>#include&lt;stdio.h&gt;
+
+int main ()
+{
+char c[]="GATE2011";   
+char *p=c;  // here you allocated address of character array c into pointer p
+
+printf("%s",p+p[3]-p[1]); 
+/*  p refers to the memory location of c[0],if you add any thing in p
+    i.e p+1 it becomes next block of memory,in this case p+p[3]-p[1]
+    takes 4 bytes forward and gives 2011 as output    */
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<pre><code> [parentView setUserInteractionEnabled:NO];
+</code></pre>
+
+<p>The snippet above disables user interaction for the <code>parentView</code> and all its subviews. So even if you follow it up with,</p>
+
+<pre><code> [childView setUserInteractionEnabled:YES];
+</code></pre>
+
+<p>it won't work. You might want to rethink disabling user interaction on the parent view or do not add the <code>childView</code> as its subview.</p>

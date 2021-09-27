@@ -1,0 +1,28 @@
+<p>In the below condition</p>
+
+<pre class="lang-cpp prettyprint-override"><code>where 
+(( {StrToMember(@DateFrom) : StrToMember(@DateTo ) } ),( {[Claim Document Type].[Document Type].&amp;[1] : [Claim Document Type].[Document Type].&amp;[3]} ))
+</code></pre>
+
+<p>even the following expression should work as this is a range operator. </p>
+
+<pre class="lang-cpp prettyprint-override"><code>({[Claim Document Type].[Document Type].&amp;[1] : [Claim Document Type].[Document Type].&amp;3]})
+</code></pre>
+
+<p>What you need to check when you browse cube for this dimension and attribute <code>[Claim Document Type].[Document Type]</code> does the Dimension KEY order look like </p>
+
+<pre class="lang-cpp prettyprint-override"><code>[Claim Document Type].[Document Type].&amp;[1]
+[Claim Document Type].[Document Type].&amp;[2]
+[Claim Document Type].[Document Type].&amp;[3]
+</code></pre>
+
+<p>or</p>
+
+<pre class="lang-cpp prettyprint-override"><code>[Claim Document Type].[Document Type].&amp;[1]
+[Claim Document Type].[Document Type].&amp;[3]
+[Claim Document Type].[Document Type].&amp;[2]
+</code></pre>
+
+<p>If you see order 1,3 and if you enter 1:3 you would not get 2. So look at order and then modify your range expression. </p>
+
+<p>Earlier solution would also work but what if there are lot of member then it is not practical to include all of such members into set.</p>

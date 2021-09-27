@@ -1,0 +1,11 @@
+<p>Crickets from the audience........</p>
+
+<p>The strategy I've decided to go with is the following:</p>
+
+<p>Upon login, the front end web site creates the normal forms authentication ticket.  It also calls a backend web service login function which will also implement forms authentication.  The ASPXAUTH cookie returned by the backend web service will be stored in the UserData property of the frontend forms authentication cookie.</p>
+
+<p>So now, when the frontend needs to call a backend method, it has the backend forms authentication cookie stored in the UserData of the frontend forms authentication ticket.  It can attach that to the WCF HTTP call for authentication.</p>
+
+<p>The biggest danger I can see is that the session timeouts can get offset from one another, particularly if the user browses around some pages on the frontend that don't require backend calls.  In that case, the sliding timer will reset on the frontend but not on the backend.  The best counter to that I can think of is to have all requests to the front end call a Ping() method on the backend if they're actively logged in.</p>
+
+<p>Anybody see any holes to poke in this strategy?</p>

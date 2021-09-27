@@ -1,0 +1,1 @@
+<p>The second parameter to <code>copy()</code> is the element <em>after</em> the last one copied; <code>str1.end()</code> would point after the last character, not before it. Your call is asking for 0 character to be copied, and that's what you're getting. You could advance <code>itr2</code> by one before making the call.</p>

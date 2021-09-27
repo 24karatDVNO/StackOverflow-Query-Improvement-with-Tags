@@ -1,0 +1,10 @@
+<pre><code>$(document).ready(function() { 
+    $("#edit-submit").click(function() {
+        if($("#field-huima-0-value").val()=='' || $(".link-field .form-text").val() =='') {
+           alert("you must at least enter one value！"); 
+        });
+    }
+});
+</code></pre>
+
+<p>Try that - you need to run the code in the <code>click</code> event, your <code>if</code> statement wasn't containing the code I think you meant it to, and was testing to see if both fields were empty, not if either field was empty.</p>

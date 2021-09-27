@@ -1,0 +1,15 @@
+<pre><code>grid.Column("ColumnName", canSort: true,
+    format: (item) =&gt;
+    {
+        String Oabsent=string.Empty;
+        if (item.ColumnName)
+        {
+            Oabsent += 
+                 "&lt;span style=\"color:#FF0000 ; display:table\"&gt;" 
+                 + item.ColumnName+ "&lt;/span&gt;&lt;br/&gt;";
+        }
+        else { Oabsent += item.ColumnName; }
+
+        return new HtmlString(Oabsent);
+    }),
+</code></pre>

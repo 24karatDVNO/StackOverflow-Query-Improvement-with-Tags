@@ -1,0 +1,9 @@
+<p>This happens because the data loaded dynamically is inserted into the current page. If you really need to have the correct URL every time, use an iframe:</p>
+
+<pre><code>&lt;iframe src="page2.html" style="width:100%;height:300px" id="page2_frame"&gt;Error&lt;/iframe&gt;
+</code></pre>
+
+<p>However, if you use this method, the data in the iframe will only be 300 pixels high and a scroll bar will be shown if the content is longer. 
+To access the content of the iframe, use <code>$("#page2_frame")[0].contentWindow</code>, which will return the window object for the iframe. </p>
+
+<p>Ad@m</p>

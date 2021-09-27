@@ -1,0 +1,19 @@
+<p>Could be possible to do this with GL_MODELVIEW_MATRIX? or GL_MODLVIEW, I´m not modifing the view position, only del modelview.
+I´m doing this: </p>
+
+<pre><code>            glMatrixMode(GL_MODELVIEW);
+
+// Setup model view matrix
+            glLoadIdentity();
+            [gAccel GetAccelerometerMatrix:(GLfloat *) matrix headingX:headx headingY: heady headingZ:headz];
+
+            // Finally load matrix
+            glLoadMatrixf((GLfloat*)matrix);
+
+            glPushMatrix();
+            glRotatef(-90, 1, 0, 0);
+            glScalef(0.0005, 0.0005, 0.0005);
+            glTranslatef(x, 0.0, z);
+</code></pre>
+
+<p>thanks</p>

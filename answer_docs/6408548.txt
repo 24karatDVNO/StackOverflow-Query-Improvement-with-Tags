@@ -1,0 +1,8 @@
+<p>Try this:    </p>
+
+<pre><code>DECLARE @s varchar(max) = 'AB78KH013Hj9';
+SELECT REPLACE(REPLACE(REPLACE(@s, '0', ''), '1', ''), '2', '') [string]
+    , REPLACE(REPLACE(REPLACE(@s, 'a', ''), 'b', ''), 'c', '') [number]
+</code></pre>
+
+<p>etc.</p>

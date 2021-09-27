@@ -1,0 +1,21 @@
+<p>You'll need to pass the values to your proxy using the <code>GET</code> form method and use <code>window.location.search</code> to get the values (this will only work with simple values, not file uploads).</p>
+
+<pre><code>var qsParm = new Array();
+function qs() {
+   var query = window.location.search.substring(1);
+   var parms = query.split('&amp;');
+   for (var i=0; i&lt;parms.length; i++) {
+      var pos = parms[i].indexOf('=');
+      if (pos &gt; 0) {
+         var key = parms[i].substring(0,pos);
+         var val = parms[i].substring(pos+1);
+         qsParm[key] = val;
+
+      }
+   }
+}
+</code></pre>
+
+<p><a href="http://javascript.about.com/library/blqs.htm" rel="nofollow">javascript.about.com article on query passing</a></p>
+
+<p>To resend you'll need to create and populate a form and them call the <code>submit()</code> method on the form element.</p>

@@ -1,0 +1,21 @@
+<pre><code>use this code
+    sqlite3 *database;
+
+    if(sqlite3_open([databasePath UTF8String], &amp;database) == SQLITE_OK) 
+    {   
+        ////your Code
+
+        if(sqlite3_prepare_v2(database, [sqlStatement cStringUsingEncoding:NSUTF8StringEncoding], -1, &amp;compiledStatement, NULL) == SQLITE_OK) 
+        {
+            NSLog(@"%@",sqlStatement);
+
+            while(sqlite3_step(compiledStatement) == SQLITE_ROW) 
+            {
+                //your code
+            }       
+        }
+        sqlite3_finalize(compiledStatement);
+            sqlite3_close(database);
+    }       
+}
+</code></pre>

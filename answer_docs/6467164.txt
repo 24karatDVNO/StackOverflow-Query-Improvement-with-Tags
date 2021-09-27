@@ -1,0 +1,9 @@
+<p>Do not use <code>WriteValue()</code> , it does the encoding. Use WriteProcessingInstruction instead. </p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.xml.xmlwriter.writeprocessinginstruction.aspx" rel="nofollow">MSDN example</a>: </p>
+
+<pre><code>XmlWriter writer = XmlWriter.Create("output.xml");
+writer.WriteProcessingInstruction("xml", "version='1.0' encoding='UTF-16'");
+writer.WriteStartElement("root");
+writer.Close();
+</code></pre>

@@ -1,0 +1,11 @@
+<p>You can do first the POST request to the page, and then redirect:</p>
+
+<pre><code>var urlToPost='http://www.example.com/';
+$.post(urlToPost, {'PARAMETER':'VALUE', 'PARAMETER2': 'VALUE2' /*Etc.*/}, function(response){
+/*Callback*/
+alert(response);
+document.location=urlToPost;
+})
+</code></pre>
+
+<p>More info for this: <a href="http://api.jquery.com/jQuery.post/" rel="nofollow">jQuery Documentation</a></p>

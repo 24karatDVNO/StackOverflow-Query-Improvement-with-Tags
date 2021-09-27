@@ -1,0 +1,5 @@
+<p>You would probably have to make a UIViewController the controller of the table view. That way you can add a UIButton onto the view as well as the table view.     </p>
+
+<p>Just make the UIViewController a UITableViewDelegate and UITableViewDataSource, create a UITableView in the UIViewController and copy the code from the UITableViewController into the UIVIewController. Then add a UIButton below it.    </p>
+
+<p>This is what I have done in the past. I only use UITableViewController if I want just a table view dislayed for things like lists.</p>

@@ -1,0 +1,14 @@
+<p>You can have muliple conditions in the join's <code>ON</code> clause:</p>
+
+<pre><code>SELECT
+    main.*,
+    CASE main_condition
+    WHEN 'X' THEN a.companyname
+    WHEN 'Y' THEN b.companyname
+    ELSE NULL
+    END AS companyname
+FROM main
+LEFT JOIN a ON main.condition_field = 'X' AND main.unique_id = a.unique_id
+LEFT JOIN b ON main.condition_field = 'Y' AND main.username = b.username
+WHERE main.status = 'ACTIVE'
+</code></pre>

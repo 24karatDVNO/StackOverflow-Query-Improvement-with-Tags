@@ -1,0 +1,17 @@
+<p>I assume that the line looks always like</p>
+
+<pre><code>&lt;Something&gt;WHATYOU WANT&lt;/closeSomething&gt;
+</code></pre>
+
+<p>and you don't care about the something. Than the regex looks like:</p>
+
+<pre><code>&lt;.*&gt;.*&lt;/.*&gt;
+</code></pre>
+
+<p>With this line you just use matcher to be sure the line contains the pattern from above.
+Now you just use the split method and split at each &lt; and ></p>
+
+<pre><code>string.split("&lt;|&gt;")[2]
+</code></pre>
+
+<p>either the first second or third is what you wanted. I didn't test it if wrong just play a bit.</p>

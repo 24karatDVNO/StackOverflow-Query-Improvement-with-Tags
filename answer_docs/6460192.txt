@@ -1,0 +1,6 @@
+<p>I would try adding an index with included columns to <code>#table2</code> and see if it helps:</p>
+
+<pre><code>CREATE NONCLUSTERED INDEX IX_table2
+    ON #table2 (Field1)
+    INCLUDE (Field3, Field4);
+</code></pre>

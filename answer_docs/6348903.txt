@@ -1,0 +1,5 @@
+<p>It is the height of your "curtain" containers that is causing the scrollbars to pop up. It seems that you are forgetting that the "curtains" would push the "border" of the container object (namely the div outside it and the body outside that) when their size exceeds the height of the screen. The problem with max-height is that its interpretation is pretty sketchy at best.</p>
+
+<p>I'd suggest you switch to 99% instead of 100% for the curtain values. That makes your scrollbar go away.</p>
+
+<p>Of course, you could use the overflow attribute as well; however, if something exceeds the width of your display it will not be visible (since "overflow" affects both X and Y). There is also overflow-y, which would affect only the y axis; however, not all browsers fully support that.</p>

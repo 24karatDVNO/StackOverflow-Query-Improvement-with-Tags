@@ -1,0 +1,25 @@
+<p>If you have to do more complicated sorting the just "ascending" can take care of (say sort NSString as if they were floats), you might want to do something like this:</p>
+
+<pre><code>    NSDictionary *d = [self dictionaryFromURL:[NSURL URLWithString:urlStringValue]];    
+
+    NSSortDescriptor *distanceSort = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES comparator:^(id left, id right) {
+        float v1 = [left floatValue];
+        float v2 = [right floatValue];
+        if (v1 &lt; v2)
+            return NSOrderedAscending;
+        else if (v1 &gt; v2)
+            return NSOrderedDescending;
+        else
+            return NSOrderedSame;
+    }];
+    NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"company_name" ascending:YES];
+
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:distanceSort, nameSort, nil];
+
+    [distanceSort release];
+
+    NSArray *sortedObjects = [[d allValues] sortedArrayUsingDescriptors:sortDescriptors];
+
+    ILog();
+    return sortedObjects;
+</code></pre>

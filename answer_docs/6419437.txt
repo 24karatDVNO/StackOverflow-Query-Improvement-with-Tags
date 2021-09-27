@@ -1,0 +1,9 @@
+<p>You can use something like the following pseudocode to do this in a recursive manner.</p>
+
+<pre><code>GetParent(current_id)
+  get tuple from mysql with id = current_id
+  If parentId = 0
+    Return tuple (we are at top)
+  Else 
+    Return GetParent(parentId)
+</code></pre>

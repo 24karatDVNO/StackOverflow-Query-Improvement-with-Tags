@@ -1,0 +1,9 @@
+<p>Repeating my solution from the comments, since (a) you really don't want a <code>Canvas</code> and (b) it sounds like this solved your problems, so I'll make it an answer where it will be more visible to others.</p>
+
+<p><code>Canvas</code> is meant for fixed-pixel-size layouts, which is probably the least common case. You should replace your <code>Canvas</code> with a <code>Grid</code> as shown below, so that both <code>Label</code>s are laid out dynamically (and independently) within the available space:</p>
+
+<pre><code>&lt;Grid&gt;
+    &lt;Label Padding="0" FontSize="10"&gt;Esc&lt;/Label&gt;
+    &lt;Label VerticalAlignment="Center" HorizontalAlignment="Center"&gt;Cancel&lt;/Label&gt;
+&lt;/Grid&gt;
+</code></pre>

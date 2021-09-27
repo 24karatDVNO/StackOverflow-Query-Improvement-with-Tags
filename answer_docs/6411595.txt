@@ -1,0 +1,7 @@
+<p>Try for instance this:</p>
+
+<pre><code>function IsNotEmpty($dir) {
+      $dir = rtrim($dir, '/').'/';
+      return is_dir($dir) &amp;&amp; count(glob($dir.'*.*') &gt; 2);
+}
+</code></pre>

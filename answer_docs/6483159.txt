@@ -1,0 +1,22 @@
+<p>first</p>
+
+<pre><code>Intent Jan = new Intent(Months.this,Holiday.class);   
+                    Jan.putExtra("ListCount", "Jan");   
+                  startActivity(Jan);  
+</code></pre>
+
+<p>then</p>
+
+<pre><code>Bundle extras = getIntent().getExtras();
+        String data = extras.getString("ListCount");
+
+        if(data.equals("Jan")){
+            TextView txtMonth = (TextView)findViewById(R.id.txtMonth);
+            txtMonth.setText("January");
+
+            TextView txtDetail = (TextView)findViewById(R.id.txtDetail);
+            txtDetail.setText(R.string.JanHol);
+        }
+</code></pre>
+
+<p><a href="http://android.mayuonline.com/2011/05/20/passing-data-with-intent/" rel="nofollow">check this post</a> I wrote. Hope this will help you. </p>

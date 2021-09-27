@@ -1,0 +1,18 @@
+<p>The logarithm approach will work, but I would experiment with string conversion. I don't know Objective C, although Google implies you want something called <code>stringWithFormat</code>. In Java, the code would be</p>
+
+<pre><code>String s = String.format("%f", theNumber);
+StringBuffer buf = new StringBuffer(s);
+int len = buf.length()-1;
+char c = buf.getCharAt(len);
+switch (c)
+{
+case '9': case '8': case '7': case '6':
+buf.setCharAt(len) = '5'; break;
+case '4' : case '3':
+buf.setCharAt(len) = '2' break;
+default: break; /* don't change '0', '1', '2', '5' */
+}
+double roundNumber = Double.parseDouble(buf.toString());
+</code></pre>
+
+<p>Might be faster. (Might be slower!) You could also try searching the string for the decimal point and subtracting an increment from the original number once you new the magnitude of the last decimal place.    </p>

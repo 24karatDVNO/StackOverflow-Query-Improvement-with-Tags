@@ -1,0 +1,17 @@
+<p>@kiamlaluno yeah, you're right, it's a very localized question.  It's 3 questions in one, but they are all related to how different modules interact with the front page.  I could have broken it up into 3 more general questions, but they all related to the aliases.</p>
+
+<p>@AgA: It's all about control.  I want to control the URLs that Google indexes, and I don't want duplicate content.  (Also, clients just don't want to see "node/xxx" anywhere.)</p>
+
+<p>I did find a solution:</p>
+
+<ol>
+<li>Remove the front page from the XML Sitemap.  It will be indexed regardless.</li>
+<li>Delete any alias for the front page.</li>
+<li>In Nodewords settings, select "Use front page meta tags".</li>
+</ol>
+
+<p>The only thing I don't like about this solution is that my site editors can no longer edit <em>any</em> meta tags on the node edit page.  Once you select "Use front page meta tags", the only way to change them appears to be on the Nodwords admin pages.</p>
+
+<p>The "Use front page meta tags" is a bit confusing, in that Nodewords was already inserting  a canonical tag <em>before</em> I enabled this setting.  Also, it's easy to enter tags at admin/content/nodewords/meta-tags/frontpage thinking they will show up on the home page, only to realize that you also have to enable "Use front page meta tags".</p>
+
+<p>Problems solved.</p>

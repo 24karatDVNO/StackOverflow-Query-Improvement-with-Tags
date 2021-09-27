@@ -1,0 +1,18 @@
+<p>Try this:</p>
+
+<pre><code>function getArrayDimension(arr, dim) {
+  var res = [];
+  for(var i = 0; i &lt; arr.length; i++) {
+    res.push(arr[i][dim]);
+  }
+  return res;
+}
+
+var newitems = [["320","23"],["310","26"]];
+var msgid = getArrayDimension(newitems, 0);
+var rspid = getArrayDimension(newitems, 1);
+</code></pre>
+
+<p>msgid and rspid are arrays holding the 'nth' dimention.</p>
+
+<p>Tnx</p>

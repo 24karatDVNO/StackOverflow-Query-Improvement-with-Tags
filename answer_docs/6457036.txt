@@ -1,0 +1,5 @@
+<p>In your instance ViewData is just a model - it is a ViewModel and is perfectly fine, and actually the recommended approach in general to use. The reason being you dont want for instance, a primary key from a customer model rendered in the case of a "create customer" function - as a customer id doesnt yet exist. However for editing a customer record, you surely need a key. So - if you use viewmodels in some cases and not in others, not you are inconsistent in your project. </p>
+
+<p>'yes' you can - but I prefer consistency and using a view model gives you the consistency.</p>
+
+<p>You can also use the model - and thats normally how the MVC demos are setup, but unfortunately like most demos, they don't give you what is architectually best, but what is best in whipping together a 5 minute application.</p>

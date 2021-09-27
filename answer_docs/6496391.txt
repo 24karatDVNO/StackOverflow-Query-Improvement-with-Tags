@@ -1,0 +1,24 @@
+<p>Supposing your app supports multitasking (and you're on iOS 4 or above):</p>
+
+<p>Override the <code>applicationDidEnterBackground</code> method in your app delegate, and do like the follwing: </p>
+
+<pre><code>- (void)applicationDidEnterBackground:(UIApplication *)application {
+
+
+
+bgTask = [ [UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+    [app endBackgroundTask:bgTask];
+    bgTask = UIBackgroundTaskInvalid;
+}];
+
+//do whatever writing you like    
+
+
+if (bgTask != UIBackgroundTaskInvalid) {
+    [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+    bgTask = UIBackgroundTaskInvalid;
+
+}
+
+}
+</code></pre>

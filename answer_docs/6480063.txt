@@ -1,0 +1,26 @@
+<p>Depends on how crazy and amazing you want your dialogs to be.  It could be something as simple as downloading jQuery UI Dialogs (http://jqueryui.com/demos/dialog/) and then doing this.</p>
+
+<pre><code>&lt;div id="dialog"&gt;Hello&lt;/div&gt;
+&lt;a id="button1"&gt;One&lt;/a&gt;
+&lt;a id="button2"&gt;Two&lt;/a&gt;
+
+// Do the setup when the page has loaded
+$(function() {
+
+   // Create the dialog, don't show it on page load
+   $("#dialog").dialog({autoOpen:false});
+
+   // Button One will show the dialog
+   $("#button1").click(function() { $("#dialog").dialog("open"); });
+
+   // Button Two changes the content, THEN shows the dialog.
+   $("#button2").click(function() { 
+       $("#dialog").html("Goodbye");
+       $("#dialog").dialog("open");
+   });
+});
+</code></pre>
+
+<p>It's a starting point.  Same dialog, changing the content, triggered by clicking a link.  That library has all manner of options (animations, etc) and you can style it to whatever look-and-feel you like.</p>
+
+<p>Here is a demo:  <a href="http://jsfiddle.net/dYMvH/" rel="nofollow">http://jsfiddle.net/dYMvH/</a></p>

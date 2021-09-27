@@ -1,0 +1,15 @@
+<p>"Safefy" your code, like this</p>
+
+<pre><code>str_replace( array("\r", "\r\n", "\n", "\t"), '', str_replace('"','\"',$str));
+</code></pre>
+
+<p>The above function clears linebreaks, and tabs so that your code appears in one line. If it breaks into more than one line, then it cannot be parsed as a string in JS and an error is thrown. Also we are escaping " to \",  maybe there are more string replacements that need to take place, it depends in your content.</p>
+
+<p>and inline it in javascript, </p>
+
+<pre><code>//&lt;![CDATA[ 
+    var myHtml = &lt;?php echo '"'.$stuff.'"'; ?&gt;;
+//]]&gt;
+</code></pre>
+
+<p>keep in mind the '"' part so that it appears like this var myHtml = "test";</p>

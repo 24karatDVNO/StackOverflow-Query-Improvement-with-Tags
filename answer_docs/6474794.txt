@@ -1,0 +1,13 @@
+<p>i'm no sure how your sumbit handler is being called now, but removing that and using:</p>
+
+<pre><code>$('#submit').bind('click', function (e) {
+   e.preventDefault(); 
+   submitHandler(false);
+});
+$('#saveclose').bind('click', function(e) {
+   e.preventDefault();
+   submitHandler(true);
+});
+</code></pre>
+
+<p>to sumbit the form should work. I mean you'll have a boolean passed in to the sumbitHandler that will be true if it needs to close.</p>

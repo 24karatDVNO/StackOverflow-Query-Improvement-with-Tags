@@ -1,0 +1,3 @@
+<p>It is possible (and desirable) for an ORM to 'compress' multiple changes to a single record. So the code may update three attributes and the ORM may have updated the record/instance multiple times in its cache, but only send a single UPDATE statement at the end of the transaction. Or, if the record ended up being deleted, it might skip any updates and just delete the original record.</p>
+
+<p>That said, I can't explain why a record could be deleted without the DELETE trigger being fired. I assume you are using real deletes rather than a 'soft' delete (it marking a record as deleted and just hiding it from view).</p>

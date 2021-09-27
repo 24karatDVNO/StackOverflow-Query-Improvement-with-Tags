@@ -1,0 +1,22 @@
+<p>There are a few things you need to get sorted here - first you need to get your head around getting one thing on top of the other - so here's the effect you're after done really simply in just css using the :hover class. The key is using the absolute position in an absolutely positioned wrap to get the text on top of the image</p>
+
+<p><a href="http://jsfiddle.net/aDwe4/" rel="nofollow">http://jsfiddle.net/aDwe4/</a></p>
+
+<p>Next you want the fade the item - some people might not like it - but jquery makes this super easy - drop the hover class and put the animate function in your footer in some script tags</p>
+
+<p><a href="http://jsfiddle.net/aDwe4/1/" rel="nofollow">http://jsfiddle.net/aDwe4/1/</a></p>
+
+<p>Finally you now need to translate this into your wordpress tempalte - I'm not sure what's going on with your template - so I'll just write an example. I would install the <a href="http://wordpress.org/extend/plugins/get-the-image/" rel="nofollow">get_the_image plugin</a> then put something like this within your loop</p>
+
+<pre><code>&lt;div class="imagewrap"&gt;
+&lt;div class="image"&gt;
+&lt;?php if ( function_exists( 'get_the_image' ) ) get_the_image(); ?&gt;
+&lt;/div&gt;
+&lt;div class="copy"&gt;
+&lt;h3&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;" rel="bookmark"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;?php the_excerpt(); ?&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>You're obviously going to have to look up how get_the_image works, but I think with all this you should be laughing!</p>

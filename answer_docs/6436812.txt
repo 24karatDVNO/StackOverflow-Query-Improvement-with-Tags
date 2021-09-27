@@ -1,0 +1,10 @@
+<p>The copying is easy:</p>
+
+<pre><code>destination &lt;&lt; source.rdbuf();
+</code></pre>
+
+<p>Writing the <code>streambuf</code> to handles the different sources and
+destinations is less obvious, although if you have a good library which
+handles all of the dirty work, it shouldn't be too hard to wrap it in a
+<code>streambuf</code>.  (Otherwise: a robust implementation of any socket protocol
+is not something for someone not strong at C++.)</p>

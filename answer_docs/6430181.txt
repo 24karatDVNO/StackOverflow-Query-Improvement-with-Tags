@@ -1,0 +1,7 @@
+<p>On my latest little website, I hope I somewhat avoid some level of complexity with security by using openid, instead of fully implementing my own auth system. Thus, I don't really store passwords. </p>
+
+<p>I believe MD5 in considered weak, but I'm not convinced that really matters - if you can keep your hashes safe - by using openid, I took that component out of the equation for me. Granted, if openid gets owned, then, yeah, obviously that's a problem too.</p>
+
+<p>Still, you want to do a fair bit of input filtering. Do what you can to limit the input you do take in, make sure you're running on a fully patched server (check in often) and be sure you're running processes that can't access things they don't strictly need access to. So, for example, if your web service runs as root, well, then you deserve to have your server turned in to a palace of pr0n.</p>
+
+<p>Just some thoughts - granted, I'm not exactly a security guy.</p>

@@ -1,0 +1,22 @@
+<p>I don't think the 'Active Solution Configuration' has an equivalent macro property.</p>
+
+<p>What I suggest is to manually add a custom property in all .csproj files, like this (see the new <code>MyVar</code> custom property added for each configuration/platform combination):</p>
+
+<pre><code>&lt;Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"&gt;
+  ...
+  &lt;PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "&gt;
+    ...
+    &lt;MyVar&gt;MyDebugAnyCpu&lt;/MyVar&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "&gt;
+    ...
+    &lt;MyVar&gt;MyReleaseAnyCpu&lt;/MyVar&gt;
+  &lt;/PropertyGroup&gt;
+</code></pre>
+
+<p>You can use the 'Unload project' and 'Edit MyProject.csproj' menus to edit the .csprojet whil in Visual Studio. What's important to know is Visual Studio will not destroy these 'unknown' values even if you save it using the normal GUI editor.</p>
+
+<p>Then in the post build event, you can use these values, for example:</p>
+
+<pre><code>copy $(SolutionDir)\$(MyVar)\$(Platform)\$(Configuration) $(TargetDir)
+</code></pre>

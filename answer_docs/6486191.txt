@@ -1,0 +1,8 @@
+<p>The trick here is to use sudo and the sudoers file see the <a href="http://linux.die.net/man/5/sudoers" rel="nofollow">sudo manpage</a>.</p>
+
+<p>Basically what you would do is give your PHP user access to the <code>sudo</code> utility for the <code>chroot</code> command and your code will be like this:</p>
+
+
+
+<pre class="lang-php prettyprint-override"><code>exec('sudo chroot /path/to/chroot command')
+</code></pre>

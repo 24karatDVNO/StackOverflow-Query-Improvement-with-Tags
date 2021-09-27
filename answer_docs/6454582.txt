@@ -1,0 +1,33 @@
+<p><a href="http://www.exceltip.com/st/Basic_file_and_folder_examples_using_VBA_in_Microsoft_Excel/443.html" rel="nofollow">Dir()</a> will help you determine if a file exists already.</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/microsoft.office.tools.excel.workbook.saveas%28v=vs.80%29.aspx" rel="nofollow">Workbook.SaveAs()</a> will help you save the file out.</p>
+
+<p>You'll need to concatenate your strings together with the <code>&amp;</code> operator (to add on the <code>V1</code>).</p>
+
+<p><strong>Edit:</strong></p>
+
+<p>Thanks for posting what you have.  I came up with</p>
+
+<pre><code>Sub SaveNumberedFile()
+
+    Static count As Integer
+    Dim filestr As String
+    filestr = "C:\Users\Me\Documents\Code\TestWkbk"
+    ThisWorkbook.Activate 'Activate whichever workbook you need
+    If count = 0 Then
+        ActiveWorkbook.SaveAs (filestr &amp; ".xls")
+
+    ElseIf count &gt; 0 And Dir(filestr &amp; "v" &amp; count - 1 &amp; ".xls") = "" Then
+        ActiveWorkbook.SaveAs (filestr &amp; "v" &amp; count &amp; ".xls")
+    End If
+
+    count = count + 1
+
+End Sub
+</code></pre>
+
+<p>I used a static variable to keep track of the numbers.  This will retain the value of <code>count</code> between calls to the macro.  It will not keep track of <code>count</code> after you close the workbook.  In that situation, you can check to see what the last file number was using the <code>Dir()</code> command, and initialize the static variable to that value.  </p>
+
+<p>I did not add all of the frills to the <code>SaveAs</code> command, but you seem to know which ones you need.</p>
+
+<p>Try it out, it may need some tweaking.  </p>

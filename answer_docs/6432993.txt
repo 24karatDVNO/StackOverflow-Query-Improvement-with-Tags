@@ -1,0 +1,3 @@
+<p>I ended up realizing that I was going about the problem in a more complicated manner than was necessary.  Using two separate views trivializes the issue.  I was just under the impression that the admin interface would include such a basic feature.</p>
+
+<p>What I did was create a download_list view to display the files in the directory, and a download_file view which uses django-sendfile to serve the file to the end-user.  Download_file simply parses through the directory with listdir(), checks if the extension is valid and sends the complete file path to the download_file function (after the user selects one).</p>

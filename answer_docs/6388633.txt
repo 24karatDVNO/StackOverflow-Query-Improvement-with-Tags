@@ -1,0 +1,3 @@
+<p>Thanks for your help marc, the solution was blindingly obvious and i shouldn't have missed it!</p>
+
+<p><code>Do While i &lt;= localtab.Rows.Count</code> should have read <code>Do While i &lt;= localtab.Rows.Count-1</code>.  The loop was repeating on itself one too many times causing issues when it was trying to return Mbr to the client side!</p>

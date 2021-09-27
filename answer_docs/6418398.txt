@@ -1,0 +1,19 @@
+<p>You need to give your animation context. for example when you have this block</p>
+
+<pre><code>$('.arrowUp').click(function(){
+    $('#thumbsContainer').animate({top: '-='+93+'px'}, {duration: 1000});
+    cont++;
+    arrowsThumbs();
+});
+</code></pre>
+
+<p>your asking it to animate #ThumbsContainer but there are multiple ones. You might want to do something like</p>
+
+<pre><code>$('.arrowUp').click(function(){
+    $(this).parent('#thumbsContainer').animate({top: '-='+93+'px'}, {duration: 1000});
+    cont++;
+    arrowsThumbs();
+}); 
+</code></pre>
+
+<p>I would abstract it a bit more than that obviously, but i hope this gives you a better idea of why its not working</p>

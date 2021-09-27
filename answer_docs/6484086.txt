@@ -1,0 +1,4 @@
+<p>What I found you can do is use the unix command line tool "xdotool" to generate the click event on the button, which will run the script. Exactly what I wanted to do. This is the command line I run. (Its in a shell script)</p>
+
+<pre><code>xdotool search --name "Selenium IDE"  mousemove --window %1 153 65 click 1 
+</code></pre>

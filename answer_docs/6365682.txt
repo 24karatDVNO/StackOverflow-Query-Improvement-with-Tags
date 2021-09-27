@@ -1,0 +1,15 @@
+<p>Two things that I think might be wrong here:</p>
+
+<p>1) Wrap your partial with div, as AJAX calls results render to divs: </p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+   &lt;div id="poweroutputscript_partial"&gt;
+     &lt;%= render 'javascripts/poweroutputscript.html.erb' %&gt;
+   &lt;/div&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>2) In your action, specify full path to the partial:  </p>
+
+<pre><code>page.replace_html "poweroutputscript_partial", :partial =&gt; 'javascripts/poweroutputscript'
+</code></pre>

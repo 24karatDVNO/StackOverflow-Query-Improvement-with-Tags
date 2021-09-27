@@ -1,0 +1,1 @@
+<p>The best way that I figured out how to do this was to put everything that deals with the database into a rake task and invoke the task with Rake::Task[].invoke. Inside of the Rake task I invoke Rake::Task['environment'] and then it works.</p>

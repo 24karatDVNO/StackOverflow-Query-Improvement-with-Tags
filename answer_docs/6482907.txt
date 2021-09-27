@@ -1,0 +1,16 @@
+<p>Your question is not clear and hard to understand.</p>
+
+<p>Do you mean to say you want keys instead of indexes ? Like Name instead of 1</p>
+
+<p>Well then as <a href="https://stackoverflow.com/users/807815/aliza">Aliza</a> and <a href="https://stackoverflow.com/users/211527/bumble-bee">Bumble Bee</a> have said you need to use a Dictionary instead of a List.</p>
+
+<p>Here's a small example </p>
+
+<pre><code>IDictionary&lt;string, Interval&gt; store = new Dictionary&lt;string, string&gt;();
+
+store.Add("Name","apple");
+store.Add("TeacherName ", John);
+
+foreach(KeyValuePair&lt;string, string&gt; e in store)
+     Console.WriteLine("{0} =&gt; {1}", e.Key, e.Value);   
+</code></pre>

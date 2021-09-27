@@ -1,0 +1,10 @@
+<p>A Perl way:</p>
+
+<pre><code>echo 'abc_dsdsds_ss_gsgsdsfsdf_ewew_wewewewewew_adf' | \
+perl -e 'print ((split/(_)/,&lt;&gt;)[-2..-1])'
+</code></pre>
+
+<p><strong>output:</strong></p>
+
+<pre><code>_adf
+</code></pre>

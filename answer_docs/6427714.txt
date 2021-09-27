@@ -1,0 +1,17 @@
+<p>Well, first off... It boggles my mind why they wouldn't include a way to exclude members from a list... Is there any reason for that I'm just not seeing? I can't imagine there is but I still know so little...</p>
+
+<p>I have managed to make this work though after a few redesigns. We grab the whole list of people and do an outter join with those who have declined and add the declined date to it.</p>
+
+<pre><code>declinedNode = entityNode.GetChildNode("link-entity", "link-entity[@name='xx_decline_{0}']".FormatWith(memberType));
+declinedNode.SetAttribute("name", "xx_decline_{0}".FormatWith(memberType));
+declinedNode.SetAttribute("from", "xx_parent_{0}id".FormatWith(memberType));
+declinedNode.SetAttribute("to", "{0}id".FormatWith(memberType));
+declinedNode.SetAttribute("link-type", "outer");
+declinedNode.SetAttribute("alias", "declined");
+
+var declinedDateNode = fetchXmlDoc.CreateNode(XmlNodeType.Element, "attribute", string.Empty);
+declinedDateNode .SetAttribute("name", "xx_declineddate");
+declinedNode.AppendChild(declinedDateNode);
+</code></pre>
+
+<p>Then server side were already looping through all the members in the list so we just put a condition that it if it had a value for the declined date we ignore it.</p>

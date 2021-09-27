@@ -1,0 +1,19 @@
+<p>Ah, after a bit of distance from the problem, I see the issue.</p>
+
+<p>For this to work, I need to add the prefix of the theme I declare the function in, to make it available to me for use.</p>
+
+<p>So if my module name was <code>my</code>, the desired theme function name would be:</p>
+
+<pre><code>function my_random_text($element) {
+        $output = ' &lt;h1&gt;, 
+                    'This is finally outputting content. Now I can: ' . $element . '&lt;/h1&gt;';
+        return $output;
+}
+</code></pre>
+
+<p>The thing is, if I'm creating an override to a theme function that doesn't already exist, like <code>random_text</code>, there are no functions for it to override anyway.
+The term theme override suggests there being a default theming function to override - in many themes, we're not making explicit overrides of functions, but creating alternatives to use in specific cases. </p>
+
+<p>I'm now assuming that I'd need to define this in a module if I wanted to define a function as <code>theme_function_name</code> rather than <code>themename_theme_function_name</code>.</p>
+
+<p>This <a href="http://drupal.org/node/173880" rel="nofollow">page here about theming on Drupal.org</a> was a useful quide in finding out some of this info.</p>

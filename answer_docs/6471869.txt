@@ -1,0 +1,4 @@
+<p>Yes it would. As you are adding the root controller view on the window, and this would make it appear above all (even above the login view) and then your login view gets dismissed behind the root view, which you cannot see.</p>
+
+<p>EDIT:
+One of the approach would be to have login controller above root in the beginning itself (root view controller presenting login view) and then happily dismiss the login view.</p>

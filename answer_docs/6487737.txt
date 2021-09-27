@@ -1,0 +1,14 @@
+<p>Like your other query help post, and my answer about using the "STRAIGHT_JOIN" clause, do the same here...</p>
+
+<pre><code>SELECT STRAIGHT_JOIN DISTINCT ...
+</code></pre>
+
+<p>Additionally, have a compound index on (Status, Effected_Date)</p>
+
+<p>Finally, in your where clause, add a fixed criteria on the effected_Date to be ANY Effected Date of at least 90 days... Since that is the furthest back you will allow based on hot job or not, at least the status and date filter will match the index and be optimized...  Leave the rest of your OTHER date criteria as-is as they look good and will ultimately filter down even further to the final results you expect...</p>
+
+<pre><code>WHERE
+       a.status='Approved'  
+   AND a.effected_date &gt;= date_sub(now(), interval 90 days)
+   AND (rest of your other date criteria)
+</code></pre>

@@ -1,0 +1,9 @@
+<p>See <a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/fl/video/VideoEvent.html#COMPLETE" rel="nofollow"><code>VideoEvent.COMPLETE</code></a> which is dispatched when a video has finished playing.</p>
+
+<pre><code>video.addEventListener(VideoEvent.COMPLETE, _doNext);
+function _doNext(e:VideoEvent):void
+{
+    video.removeEventListener(VideoEvent.COMPLETE, _doNext);
+    trace("video done, what's next?");
+}
+</code></pre>

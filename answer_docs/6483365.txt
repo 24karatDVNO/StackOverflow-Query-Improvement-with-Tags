@@ -1,0 +1,9 @@
+<p>I couldn't find a nice way to do this, so I instead added properties to my base ViewModel that would hold the information that needed to go in the <code>&lt;head&gt;</code>, and then have a RenderPartial("Head") in my layout page. This way things are slightly more strongly-typed too, rather than just having any page put random junk in:</p>
+
+<pre><code>// Views/Shared/Head.cshtml
+@model ViewModel
+@foreach (var site in model.AuthorSites)
+{
+    &lt;link rel="me" type="text/html" href="@site" /&gt;
+}
+</code></pre>

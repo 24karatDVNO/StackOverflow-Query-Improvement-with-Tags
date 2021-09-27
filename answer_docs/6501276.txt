@@ -1,0 +1,5 @@
+<p>This depends somewhat on your browser and library environment. There is <code>Array.indexOf('value')</code>, but that won't work in IE, and it's probably just doing a (optimized) loop behind the scenes anyway.</p>
+
+<p>If you have a lot of data, and it's likely to be sorted, which doesn't seem to be the case for you, it's better to do a binary search. In other words, take the value from the middle of the data set and compare it to your query. If it's greater, your next query is the middle value of the first half of the set of values, and so on, until you get it.</p>
+
+<p>Not necessarily a solution to the performance problem (though better than some) but a good alternative for this kind of work in terms of reduction of coding overhead is the <a href="http://documentcloud.github.com/underscore/" rel="nofollow">underscore.js</a> library. With underscore you could use <code>_detect</code> to fetch your value and then just use <code>Array.push</code> if not found.</p>

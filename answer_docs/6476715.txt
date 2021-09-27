@@ -1,0 +1,40 @@
+<p>I also faced this problem an finally resolved it in an unusual but successful way.</p>
+
+<p>We are using Blend SDK's <code>System.Windows.Interactivity</code> and <code>Microsoft.Expressions.Interactions</code>.</p>
+
+<p>Everything works fine, unless the designer crashes when using an inherited <code>DataTrigger</code> with the same Exception. This would not be the mess, but the exception also breaks IntelliSense in the whole XAML Document, which is not acceptable.</p>
+
+<p>Since this is a reprocducible and reportet error, I decided to solve the problem using disassembling, since we need the extensions to the Interaction Framework.</p>
+
+<p>See: <a href="http://connect.microsoft.com/VisualStudio/feedback/details/648819/visual-studio-2010-silverlight-designer-crash" rel="nofollow">http://connect.microsoft.com/VisualStudio/feedback/details/648819/visual-studio-2010-silverlight-designer-crash</a></p>
+
+<p>Simply get a Versions of SharpDevelops ILSpy, and open the two assemblies within it. Select the assembly from the list and go to File -> Save. This will disassemble the whole projects. Integrate those in a blank solution and change the assembly names. Rebuild the reference from the Expression.Interactions library to your new disassembled version.</p>
+
+<p>In the <code>AssemblyInfo.cs</code> you can do a trick.</p>
+
+<p>In <code>Microsoft.Expression.Interactions</code>:</p>
+
+<pre><code>[assembly: XmlnsPrefix("http://yourdomain.com/interactions", "i")]
+[assembly: XmlnsDefinition("http://yourdomain.com/interactions", "Microsoft.Expression.Interactivity.Core")]
+[assembly: XmlnsDefinition("http://yourdomain.com/interactions", "Microsoft.Expression.Interactivity.Input")]
+[assembly: XmlnsDefinition("http://yourdomain.com/interactions", "Microsoft.Expression.Interactivity.Layout")]
+[assembly: XmlnsDefinition("http://yourdomain.com/interactions", "Microsoft.Expression.Interactivity.Media")]
+</code></pre>
+
+<p>in <code>System.Windows.Interactivity</code>:</p>
+
+<pre><code>[assembly: XmlnsPrefix("http://yourdomain.com/interactions", "i")]
+[assembly: XmlnsDefinition("http://yourdomain.com/interactions", "System.Windows.Interactivity")]
+</code></pre>
+
+<p>Now put a reference to the new projects in your assembly, or build the assemblies and copy a version of them to your libraries folder and reference the built versions directly.</p>
+
+<p>In XAML add the new namespace to your rootelement like page/window:</p>
+
+<pre><code>&lt;RootElement xmlns:i="http://yourdomain.com/interactions"&gt;
+    &lt;!-- your xaml code --&gt;
+    &lt;i:Interaction.Triggers&gt; ... &lt;/i:Interaction.Triggers&gt;
+&lt;/RootElement&gt;
+</code></pre>
+
+<p>It works like a charm. You can use both interaction and expressions functionality combined into one xmlns and of course, the designer exception is gone and IntelliSense will no longer break.</p>

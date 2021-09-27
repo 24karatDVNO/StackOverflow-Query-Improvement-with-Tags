@@ -1,0 +1,15 @@
+<p>Ok, so I kinda found a work around. I declared a template for my cells that contains a button and a textblock bound to the data. i bind the visibility property of the button on a boolean that will be true only for the elements of the first row.</p>
+
+<pre><code>&lt;sdk:DataGridTemplateColumn Header="Col1" Width="60"&gt;
+    &lt;sdk:DataGridTemplateColumn.CellTemplate&gt;
+       &lt;DataTemplate&gt;
+          &lt;StackPanel Orientation="Vertical" Height="30"&gt;
+             &lt;Button Content="Boutton" Visibility="{Binding Path=IsFirstElement, Converter={StaticResource visibilityConverter}}" /&gt;
+             &lt;TextBlock Text="{Binding Path=Col1Data}" /&gt;
+           &lt;/StackPanel&gt;
+        &lt;/DataTemplate&gt;
+     &lt;/sdk:DataGridTemplateColumn.CellTemplate&gt;
+&lt;/sdk:DataGridTemplateColumn&gt;
+</code></pre>
+
+<p>It's a bit hack-ish. But it works. My only concern is performance since a button is declared for each cell. So with thousands of row, I guess there could be a performance hit.</p>

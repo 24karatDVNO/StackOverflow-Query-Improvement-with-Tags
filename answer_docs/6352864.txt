@@ -1,0 +1,21 @@
+<p>It seems that you should use the <a href="http://camel.apache.org/aggregator2.html" rel="nofollow">Aggregator</a> pattern.
+You may use the various options of the component to indicate the completion criteria and the correlation among the messages</p>
+
+<p>For instance, the following requirement indicates that you probably should consider the Filename on your <code>correlationExpression</code>:</p>
+
+<blockquote>
+  <p>There will only be one NEWFILE message
+  for a given Filename There will be
+  multiple TASK messages for a given
+  Filename</p>
+</blockquote>
+
+<p>In order to process the tasks, you may temporarily store the task messages onto the 
+<code>newExchange</code> object, and then when <em>appropriate</em> you can flush the stored messages to their target queues. I believe you have two main options for the <em>appropriate</em> moment:</p>
+
+<ol>
+<li><p>Wait for <strong>all</strong> the messages of a given context to be aggregated (NEWFILE and TASK messages) using an completion criteria, like size, timeout, etc. for that you may use for instance the <code>completionPredicate</code> option in order to evaluate whether the context has completed or not. And after the completion, send the tasks to the following queue.</p></li>
+<li><p>Wait until the NEWFILE message arrives, flush the temporarily stored TASK messages to the target queue, and then wait for remaining TASK messages (again, using the appropriate criteria to indicate the message context has ended).</p></li>
+</ol>
+
+<p>I haven't tried that in code, but I believe that while the first might be easier, the second option may give you better performance, because since the TASK messages are being forwarded to the their target queues as soon as possible, the first tasks are likely be completed earlier than the latter ones, while in the first case you have to wait for all the tasks to be produced and only after that you start the process. And besides that, as you also flush the temporarily stored messages as soon as possible you will also get lower storage requirements in comparison to the first option. Which means that if you are dealing with large messages and high volumes you will need less memory, if that it is not the case... then both solutions might be similar.</p>

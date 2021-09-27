@@ -1,0 +1,18 @@
+<p>Meanwhile I've located an answer so I post it here:</p>
+
+<pre><code>echo ${!${!1}=ReturnArray()}['a'];
+
+${!${!1}=ReturnArray()}['a']
+ !1 resolves to false.
+
+${!${false}=ReturnArray()}['a']
+ false resolves to... I don't know. Let's just say false resolves to a variable "a".
+
+${!$a=ReturnArray()}['a']
+ $a is now the array. The ! changes the returned array into the boolean false (like: if (!$handle = fopen('x', 'r')) { echo 'connection failed' }.
+
+${false}['a']
+ I don't know what false resolves to, but we're using again variable "a".
+
+$a['a'] // this is trivial
+</code></pre>

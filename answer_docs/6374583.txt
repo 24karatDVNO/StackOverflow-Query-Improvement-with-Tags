@@ -1,0 +1,17 @@
+<p>Well, for inline CSS, you can do specific hacks such as:</p>
+
+<pre><code>.myclass {
+  height: 100px; /* all browsers */
+  #height: 100px; /* MSIE browsers */
+  _height: 100px; /* MSIE &gt;= v6.0 */
+}
+</code></pre>
+
+<p>Alternatively, you can use comment style conditions within the page and include optional style sheets:</p>
+
+<pre><code>&lt;!--[if gt IE 5]&gt;
+&lt;style type="text/css"&gt;
+  .mystyle { height: 100px; }
+&lt;/style&gt;
+&lt;![endif]--&gt;
+</code></pre>

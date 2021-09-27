@@ -1,0 +1,11 @@
+<p>Typical, you post the question, then you instantly find your own answer no matter how long you had been looking before. Changing childnodes to getElementsByTagName('input'):</p>
+
+<pre><code>function checkbox_control(container_id,element_name,status) {
+    var children = document.getElementById(container_id).getElementsByTagName('input');
+    for(var b=0; b &lt; children.length; b++) {
+        if(children[b].name == element_name){
+            children[b].checked = status;
+        }
+    }
+}
+</code></pre>

@@ -1,0 +1,3 @@
+<p>CASE: My data was ready to be processes after a preference change listener event and I needed to add a String queried from user. It doesn't appear possible to pop an alert dialog while the options menu is open...so I had to wait. I threw the half complete object into the next activity in the workflow and set its onResume() to check if its placeholder was !null in which case I popped the dialog and finished up the object <strong>*"<em>in the button handler of the dialog</em>"*</strong>. </p>
+
+<p>Since this is my first post I can't vote for the correct answer given above but want to save anyone else running into this the time and in-elegance of less correct solutions. The dialog is the place.</p>

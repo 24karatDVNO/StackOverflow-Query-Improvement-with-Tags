@@ -1,0 +1,9 @@
+<p>There is no portable way.  On most Unix systems, you can read <code>/dev/random</code> or <code>/dev/urandom</code>.</p>
+
+<p>On Windows, try <a href="http://msdn.microsoft.com/en-us/library/aa379942%28v=vs.85%29.aspx" rel="nofollow"><code>CryptGenRandom</code></a>.</p>
+
+<p>(For this sort of application, cryptographically strong pseudo-random numbers are just as good as "true" random numbers.  Prove me wrong and you can get a Ph.D. from any university in the world.)</p>
+
+<p>[edit]</p>
+
+<p>Sorry, I thought you were looking for a decent way to roll a random character.  If you are trying to use the same number every time, just store the seed in a file and use any old pseudo-random number generator.</p>

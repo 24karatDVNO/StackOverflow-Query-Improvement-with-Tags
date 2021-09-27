@@ -1,0 +1,4 @@
+<p>You could use <code>Thread.CurrentPrincipal</code> to get the Windows Account and pass this as a parameter to your queries, and therefore, available to Triggers.</p>
+
+<pre><code> var userName = Thread.CurrentPrincipal.Identity.Name;
+</code></pre>

@@ -1,0 +1,51 @@
+<p>You will need the thing to be hosted in a real window for this to work because Windows will only deliver keyboard input directly to the active window. You've not made it clear why you want your <code>TextBox</code> not to be hosted in a real window, so it's difficult to know how you expect keyboard input to be captured - could you elaborate on your scenario a little?</p>
+
+<p>From the context I have to guess that it's important in your scenario to ensure that the original text box is not visible. You can actually put a text box in a window in such a way that it remains active and able to receive all forms of input without actually being visible. Here's one way:</p>
+
+<pre><code>&lt;Grid&gt;
+    &lt;Grid
+        x:Name="container"
+        HorizontalAlignment="Left" VerticalAlignment="Top"
+        Margin="69,42,0,0"
+        Opacity="0"
+        &gt;
+        &lt;TextBox
+            Name="textBoxToRender"
+            Height="23" Width="120"
+            TextChanged="textBoxToRender_TextChanged"
+            /&gt;
+    &lt;/Grid&gt;
+
+&lt;/Grid&gt;
+</code></pre>
+
+<p>The <code>TextBox</code> element itself here is perfectly ordinary, but I've put it inside a <code>Grid</code> that I've made invisible by setting its <code>Opacity</code> to 0. For hit testing and keyboard input purposes, it's still considered to be visible. And because I've applied the <code>Opacity</code> to the containing <code>Grid</code>, and not the <code>TextBox</code> itself, you are free to use it with a <code>RenderTargetBitmap</code>. Here's my text change event handler in the codebehind:</p>
+
+<pre><code>private void textBoxToRender_TextChanged(object sender, TextChangedEventArgs e)
+{
+    var rtb = new RenderTargetBitmap(
+        (int) textBoxToRender.ActualWidth, (int) textBoxToRender.ActualHeight,
+        96, 96, PixelFormats.Pbgra32);
+
+    rtb.Render(textBoxToRender);
+
+    rectangle1.Fill = new ImageBrush(rtb);
+}
+</code></pre>
+
+<p>That last line is just for verification purposes - I'm using the image with a brush to paint a rectangle to check it looks like it should. My main Xaml also contains this:</p>
+
+<pre><code>&lt;Rectangle Height="72" HorizontalAlignment="Left" Margin="74,167,0,0"
+   Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Width="255" /&gt;
+</code></pre>
+
+<p>My codebehind's constructor contains this:</p>
+
+<pre><code>textBoxToRender.Focus();
+</code></pre>
+
+<p>And when I start typing, I can see a (distorted, due to the mismatched sizes) bitmap copy of my text box appear in the rectangle, verifying that I'm able to get a bitmap copy of the text box, with text input, focus, caret, and everything.</p>
+
+<p>The text box itself remains 'off screen' in the sense that it remains invisible.</p>
+
+<p>Since it's not clear to me what you're actually trying to do, I've no idea if this helps at all, but I hope it's useful.</p>

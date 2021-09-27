@@ -1,0 +1,13 @@
+<p>Why are you trying to set <code>ImageUrl="d:\mydocuments\ALM\ALM\ALM\imgs\calendar_button.jpg"</code> in this way ?</p>
+
+<p>You should put these images in your Website folder, then set the path like...</p>
+
+<pre><code>ImageUrl="~/imgs/calendar_button.jpg"
+</code></pre>
+
+<p>If you really want to set ImageURL the way you are proposing, I would not recommend it, but you can do it like...</p>
+
+<pre><code>ImageUrl="d:\\mydocuments\\ALM\\ALM\\ALM\imgs\\calendar_button.jpg"
+</code></pre>
+
+<p>You need to use <code>double slash</code> instead <code>single slash</code>  in path</p>

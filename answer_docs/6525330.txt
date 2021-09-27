@@ -1,0 +1,14 @@
+<p>using jquery and <a href="http://jqueryui.com/demos/dialog/" rel="nofollow">jquery dialog</a>, maybe something like</p>
+
+<pre><code>&lt;div id="popup"&gt;loading...&lt;/div&gt;
+&lt;a id="popup_link"&gt;show popup&lt;/a&gt;
+
+
+&lt;script language="javascript" type="text/javascript"&gt;
+    $(document).ready(function(){
+        $("#popup_link").bind("click", function(){
+            $("#popup").load("update.aspx").dialog({modal:true});
+        });
+    });
+&lt;/script&gt;
+</code></pre>

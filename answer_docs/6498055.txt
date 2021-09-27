@@ -1,0 +1,5 @@
+<blockquote>
+  <p>Did the python upgrade change how optional arguments handle <code>None</code> for some conditionals?</p>
+</blockquote>
+
+<p>No. <code>None</code> is still false. Check the value of <code>self.env</code>, it might have been set in a way that relied on implementation details. Someone may have compared strings with <code>is</code> instead of <code>==</code>, for example.</p>

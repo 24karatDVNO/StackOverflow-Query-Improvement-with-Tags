@@ -1,0 +1,33 @@
+<p>Thanks for both answerer, your example helped me understand XSL. However, since it was for SharePoint, I became aware that I'd have to play within the framework...</p>
+
+<p>The case <em>no current event</em> is handled in the <em>mainStyle.xsl</em> and only display default html.</p>
+
+<p>Items are handled in <em>itemStyle.xsl</em>, one by one. Most of my code was placed there.</p>
+
+<p>First, I created a bunch of variables: </p>
+
+<pre><code>    &lt;xsl:variable name="testACCP"&gt;
+            &lt;xsl:choose&gt;&lt;xsl:when test="count(../Row[@Systeme='A'])&gt;0"&gt;1&lt;/xsl:when&gt;
+            [...]
+    &lt;/xsl:variable&gt;
+</code></pre>
+
+<p>I then build up my solution, starting with a header when I was at my first node</p>
+
+<pre><code>     &lt;xsl:if test="count(preceding-sibling::*)=0"&gt;
+        &lt;xsl:text disable-output-escaping="yes"&gt;
+            &amp;lt;table width="100%" border="0" cellspacing="0" cellpadding="3" &amp;gt;
+            [...]
+</code></pre>
+
+<p>If a System had no event, I'd know it with my variable, and display accordingly</p>
+
+<pre><code>&lt;xsl:if test="$testA=0"&gt;
+            &lt;tr id="linkitem" class="item" style="background:#f0fff3"&gt;
+                    &lt;td&gt;A&lt;/td&gt;&lt;td&gt;OK&lt;/td&gt;
+                    [...]
+</code></pre>
+
+<p>As for the display of the max value only, this was abandoned. There's some value to know that you have 2 current events impacting a system in the end.</p>
+
+<p>This solution work, but it is sorta dumb, creating lots of variables per items to do test on a group... To optimize, a highly modified <em>mainstyle.xsl</em> or a full blown WebPart would be required.</p>

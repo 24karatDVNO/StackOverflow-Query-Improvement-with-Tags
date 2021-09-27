@@ -1,0 +1,22 @@
+<p>The solution is to use namespaces:</p>
+
+<p>In foo/display.js:</p>
+
+<pre><code>window.foo = {};
+foo.init = function () { ... };
+</code></pre>
+
+<p>In bar/display.js:</p>
+
+<pre><code>window.bar = {};
+bar.init = function () { ... };
+</code></pre>
+
+<p>Then, in the page that uses bar/display.js's <code>init</code> method:</p>
+
+<pre><code>(function (display) {
+    display.init();
+}(bar));
+</code></pre>
+
+<p>It would be a good idea to wrap your display.js code in an <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/" rel="nofollow">IIFE</a> as well.</p>

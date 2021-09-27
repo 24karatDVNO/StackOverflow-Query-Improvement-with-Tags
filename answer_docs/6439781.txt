@@ -1,0 +1,16 @@
+<p>I've had the same problem and here is my solution. Just add this to your AdDelegate:</p>
+
+<pre><code>- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+    if (!willLeave)
+        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+}
+</code></pre>
+
+<p>It's very simple; when the ad appears I hide the status bar and when the ad disappears I  show it again. I hope the answer helps some people.</p>

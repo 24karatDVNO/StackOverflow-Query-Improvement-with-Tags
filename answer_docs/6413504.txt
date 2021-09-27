@@ -1,0 +1,16 @@
+<p>There seems to be a <a href="http://dev.piwik.org/trac/ticket/656#comment:8" rel="nofollow">workaround</a>:</p>
+
+<blockquote>
+  <p>if you don't mind losing one-click updates, I think this is doable:</p>
+  
+  <ul>
+  <li>copy the core, libs, plugins, config, and tmp folders to a location outside of the piwik document root</li>
+  <li>run "find" to remove .php and .tpl files in those folders still in the document root
+  in index.php and piwik.php, manually set PIWIK_INCLUDE_PATH to point to the hidden(?) folder</li>
+  <li>Disclaimer: untested; use a snapshot from svn (or wait for 0.4.2)</li>
+  </ul>
+  
+  <p>We probably won't change the build/release script, but if you come up with a patch for the Updater, we'll consider it. (You might start with defining PIWIK_DOCUMENT_ROOT, and reading a bootstrap.ini.php file, if present, to override PIWIK_INCLUDE_PATH.)</p>
+</blockquote>
+
+<p>more elegant solutions are still welcomed.</p>

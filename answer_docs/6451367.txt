@@ -1,0 +1,10 @@
+<p>Personally, I'd structure the array slightly different.  Instead of having numeric keys, i'd set the key as the email address.  This way you can simply use <a href="http://www.php.net/manual/en/function.array-unique.php" rel="nofollow">array_unique</a>.  </p>
+
+<p>If you <strong>can't</strong> change the array as you get it now, you can loop through it and extract each email address out and insert it into a new array:</p>
+
+<pre><code>$uniqueEmails = array();
+foreach ($yourArray as $k =&gt; $v) { 
+  if (isset($v['Email']) $uniqueEmails[$v['Email']] = $v['Email'];
+}
+return $uniqueEmails;
+</code></pre>

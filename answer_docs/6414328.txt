@@ -1,0 +1,3 @@
+<p>What happens if you do a ToList() call after the query. Do you see the expected results? If you don't and get null back (which is incorrect as you would expect an empty IEnumerable) this would explain the exception. </p>
+
+<p>Try to eliminate the used persistence framework from your code to see what happens.</p>

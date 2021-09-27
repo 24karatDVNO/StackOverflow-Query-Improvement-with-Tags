@@ -1,0 +1,99 @@
+<p>Can you make <code>window</code> a member of your <code>Game</code> class so that you don't have to pass it around so much?  </p>
+
+<p>One way to do this - while still maintaining <code>Game</code> seperate from the windowing - is to use templates.  This would involve an interface change, however, and so may not be appropriate.  </p>
+
+<p>First of all separate your window specific and console specific code:</p>
+
+<pre><code>//class containing all your window management
+class window
+{
+  window()
+  {
+    //construct
+    std::unique_ptr&lt;Window&gt; m_window = std::unique_ptr&lt;Window&gt;(new Window(...));
+  }
+
+  void
+  redraw()
+  {
+    m_window.redraw();
+  }
+private:
+  std::unique_ptr&lt;Window&gt; m_window;
+};
+
+//your console management
+class console
+{
+};
+</code></pre>
+
+<p>Then load up your game with your windowing/console option.<br>
+Inherit from your option so that you can use the domain specific functions.</p>
+
+<pre><code>template&lt;WindowOption&gt;
+class Game : public WindowOption
+{
+
+  void
+  play_game()
+  {
+    while(!over()){
+      foo();
+      bar();
+    }
+  }
+
+  void 
+  bar() //request for window functions deferred
+  {
+    if(!a()){
+      b();
+    } else {
+      c();
+    }
+  }
+
+  void b() 
+  {
+    //console default
+  }
+  void c()
+  {
+    //console default
+  }
+
+};
+</code></pre>
+
+<p>Then specialize the functions that need to call window specific menthods.</p>
+
+<pre><code>template&lt;&gt;
+Game&lt;window&gt;::b()
+{
+  //with window specialisation
+  //can call window specific functions here as we have a window.
+  redraw();
+}
+
+
+template&lt;&gt;
+Game&lt;window&gt;::c()
+{
+  //with window specialisation
+  //can call window specific functions here as we have a window.
+  redraw();
+}
+</code></pre>
+
+<p>Then call:</p>
+
+<pre><code>int
+main  (int ac, char **av)
+{
+
+  Game&lt;window&gt; gw;
+  Game&lt;console&gt; gc;
+
+}
+</code></pre>

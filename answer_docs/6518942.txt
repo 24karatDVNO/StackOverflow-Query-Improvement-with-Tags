@@ -1,0 +1,12 @@
+<p>Try this one, i hope this may help you</p>
+
+<pre><code>    NSArray *copy = [mutableArray copy];
+NSInteger index = [copy count] - 1;
+for (id object in [copy reverseObjectEnumerator]) {
+    if ([mutableArray indexOfObject:object inRange:NSMakeRange(0, index)] != NSNotFound) {
+        [mutableArray removeObjectAtIndex:index];
+    }
+    index--;
+}
+[copy release];
+</code></pre>

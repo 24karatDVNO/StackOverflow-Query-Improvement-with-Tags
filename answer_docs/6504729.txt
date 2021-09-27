@@ -1,0 +1,14 @@
+<p>Dude you should be setting the name of the file in the label instead of setting its postion.</p>
+
+<p>Check your code over here:</p>
+
+<pre><code>label.setText("Photo" + ++position + " of " + parent.getCount() + file);
+</code></pre>
+
+<p>Modify this to as:-</p>
+
+<pre><code>String fileName = file.getName();
+label.setText("Viewing file: " + fileName);
+</code></pre>
+
+<p>This should work for you.</p>

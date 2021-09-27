@@ -1,0 +1,20 @@
+<p>As Simon says, your NSArray object is been autoreleased when the constructor finishes. If you follow this <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW1" rel="nofollow">link</a>, you'll notice that there are two ways for creating an object:</p>
+
+<pre><code>- (void)printHello {
+    NSString *string;
+    string = [[NSString alloc] initWithString:@"Hello"];
+    NSLog(@"%@", string);
+    [string release];
+}
+</code></pre>
+
+<p>where you become in the owner of string object and then you have to release it. Or,</p>
+
+<pre><code>- (void)printHello {
+    NSString *string;
+    string = [NSString stringWithFormat:@"Hello"];
+    NSLog(@"%@", string);
+}
+</code></pre>
+
+<p>where the object is created but you don't need to release it because when the method printHello finishes, it will be sent to the autorelease pool. So, with NSArray's its the same, if you need to use the object out of the method, then use the first way with alloc + init, else you can use the other kind of methods.</p>

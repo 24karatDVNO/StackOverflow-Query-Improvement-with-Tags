@@ -1,0 +1,5 @@
+<p>The Autofac setup looks ok, and as long as you can navigate to <em>something</em> I cannot say that your assumption makes sense. Also, the pattern you are using for initialization in global.asax is used by <a href="http://litemedia.info/automate-deploy-of-your-orchard-cms-to-azure" rel="nofollow">others</a> too.</p>
+
+<p>The <code>AsyncController</code> requires that async methods come in pairs, in your case <code>IndexAsync</code> &amp; <code>IndexCompleted</code>. These together represent the <code>Index</code> action. When you say you can navigate to IndexCompleted, do you mean that you open a url "..../IndexCompleted"? </p>
+
+<p>Also, and this I cannot confirm from any documentation, but I would guess that <code>AsyncController</code> requires that all actions are async. Thus, your <code>NewMessage</code> action causes trouble and should be converted to an async <code>NewMessageAsync</code> &amp; <code>NewMessageCompleted</code> pair.</p>

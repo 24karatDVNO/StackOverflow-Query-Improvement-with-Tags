@@ -1,0 +1,10 @@
+<p>The code you posted is the complete one? Try adding the get function:</p>
+
+<pre><code>$this-&gt;db-&gt;select('*, news.id as news_id, news.created as created_on, CONCAT(users.firstname, users.surname) as article_author, CONCAT(modified_user.firstname, modified_user.surname) as modified_author')-&gt;join('users', 'users.id = news.author', 'left')-&gt;join('users modified_user', 'modified_user.id = news.modified_by', 'left');
+$this-&gt;db-&gt;get('TableName');
+</code></pre>
+
+<p>Do you get any error? You could also try printing the query with:</p>
+
+<pre><code>print_r( $this-&gt;db-&gt;last_query() );
+</code></pre>

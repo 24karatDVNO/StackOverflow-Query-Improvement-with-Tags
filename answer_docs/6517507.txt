@@ -1,0 +1,12 @@
+<p>Here is a concise, printable and to the point <a href="http://www.unixgeeks.org/security/newbie/unix/cron-1.html" rel="nofollow">text document that covers all the basics</a>.</p>
+
+<p>A simple example of what you may be looking to have in your crontab:</p>
+
+<pre><code>15 2 * * * /usr/bin/mysqldump –opt –all-databases -u root -pPASSWORD &gt; /foo/bar/db-`date +%Y-%m-%d`.sql
+</code></pre>
+
+<p>That job, would run a backup task daily at 2:15 AM. </p>
+
+<p>On a sidenote, if you just need this for regular backing up purposes and not actual duplication, I have come to love <a href="http://sourceforge.net/projects/automysqlbackup/" rel="nofollow">this script</a> for quick and dirty db backups.</p>
+
+<p>Good-luck.</p>

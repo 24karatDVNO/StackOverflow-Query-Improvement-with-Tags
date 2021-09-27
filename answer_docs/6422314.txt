@@ -1,0 +1,18 @@
+<p>I have written a function to get the width of a span as rendered by the browser by adding it to the DOM checking for OffsetWidth and then removing it again. You could probably adapt the principle for other html elements although i doubt that going down that road will be very efficient. My application required this and i only used it to find the longest rendered pixelwidth in a list of strings. If i was you i would consider other approaches for large tables.</p>
+
+<p>Nonetheless here's the function:</p>
+
+<pre><code>function GetTextWidth(text, font, fontSize) {
+    var size = 0;
+    var spanWidthTestEle = document.createElement("span");
+    spanWidthTestEle.id = "spanWidthTest";
+    spanWidthTestEle.style.fontFamily = font;
+    spanWidthTestEle.style.fontSize = fontSize;
+    spanWidthTestEle.innerText = text;
+    document.body.appendChild(spanWidthTestEle);
+    var spanWidthTest = document.getElementById("spanWidthTest");
+    size = spanWidthTest.offsetWidth;
+    document.body.removeChild(spanWidthTest);
+    return size;
+}
+</code></pre>

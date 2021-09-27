@@ -1,0 +1,39 @@
+<p>Within your first query, you have this subquery which includes Titles aliased as "t":</p>
+
+<pre><code>(SELECT DISTINCT
+    s.GroupId,
+    e.EmployeeID,
+    IIf(e.Certified Is Null,0,1) AS cert_complete
+FROM
+    ((Stores AS s
+    INNER JOIN EmployeeStores AS es ON s.StoreId = es.StoreId)
+    INNER JOIN Employees AS e ON es.EmployeeId = e.EmployeeID)
+    INNER JOIN Titles AS t ON e.TitleId = t.TitleId
+)  AS d
+</code></pre>
+
+<p>Then, <em>after</em> the definition of the subquery, you have this WHERE clause:</p>
+
+<pre><code>WHERE t.IsManager
+</code></pre>
+
+<p>The problem is the "t" alias and IsManager column only exist within the the subquery --> they are unknown to the outer (parent) query.  In cases where the Access database engine encounters something it doesn't recognize as an object name, function, literal value, or SQL keyword, it thinks that something must be a parameter ... so pops up the input box asking you to provide a value for the (IsManager) parameter.  </p>
+
+<p>I think you should move the WHERE clause inside the subquery definition.</p>
+
+<pre><code>SELECT d.GroupId, 
+       Sum(d.cert_complete) AS SumOfcert_complete, 
+       Count(d.cert_complete) AS CountOfcert_complete
+FROM [SELECT DISTINCT
+        s.GroupId,
+        e.EmployeeID,
+        IIf(e.Certified Is Null,0,1) AS cert_complete
+    FROM
+        ((Stores AS s
+        INNER JOIN EmployeeStores AS es ON s.StoreId = es.StoreId)
+        INNER JOIN Employees AS e ON es.EmployeeId = e.EmployeeID)
+        INNER JOIN Titles AS t ON e.TitleId = t.TitleId
+        WHERE t.IsManager = True
+    ]. AS d
+GROUP BY d.GroupId;
+</code></pre>

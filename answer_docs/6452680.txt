@@ -1,0 +1,7 @@
+<p>It should be possible to place your custom error page in the WEB-INF directory.  However, I had an issue with this when a servlet was mapped to the <code>/*</code> URL pattern.  You could try mapping to <code>/</code> instead, i.e.</p>
+
+<pre><code>    &lt;servlet-mapping&gt;
+      &lt;servlet-name&gt;wsDispatcher&lt;/servlet-name&gt;
+      &lt;url-pattern&gt;/&lt;/url-pattern&gt; 
+    &lt;/servlet-mapping&gt;
+</code></pre>

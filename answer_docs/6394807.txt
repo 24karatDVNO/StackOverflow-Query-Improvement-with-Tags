@@ -1,0 +1,7 @@
+<p>You seem to have a bit of a misunderstanding about how references work. In your example, you create two distinct objects, and there are two variables referencing these objects. For a change on one variable to be reflected on another, you need two variables pointing to the same object, such as:</p>
+
+<pre><code>myArray = new Array(5);
+myArray2 = myArray; // Now we have two variables pointing to same object
+myArray2[2] = 4;
+if (myArray[2] == 4) alert("Same value");
+</code></pre>

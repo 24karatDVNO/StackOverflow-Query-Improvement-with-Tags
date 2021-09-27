@@ -1,0 +1,30 @@
+<p>If your code is directly or indirectly using a function generating random numbers, you should make sure that you use the same <strong>state/seed</strong> at the beginning of each run.</p>
+
+<p>Example:</p>
+
+<pre><code>rand('twister',5489)
+rand(1,5)
+
+rand('twister',5489)
+rand(1,5)
+</code></pre>
+
+<p>You will get the same output in both:</p>
+
+<pre><code>ans =
+      0.81472      0.90579      0.12699      0.91338      0.63236
+</code></pre>
+
+<p>Note that the <a href="http://www.mathworks.com/help/techdoc/math/bsn94u0-1.html" rel="nofollow">random number generator syntax</a> has changed in recent MATLAB versions (though maintaining backward compatibility).</p>
+
+<p>The new way of achieving the above is:</p>
+
+<pre><code>RandStream.setDefaultStream( RandStream('mt19937ar','Seed',5489) );
+rand(1,5)
+</code></pre>
+
+<p>Or with the newly introduced <a href="http://www.mathworks.com/help/techdoc/ref/rng.html" rel="nofollow">RNG</a> function:</p>
+
+<pre><code>rng(5489,'twister')
+rand(1,5)
+</code></pre>

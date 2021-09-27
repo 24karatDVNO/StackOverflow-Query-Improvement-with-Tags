@@ -1,0 +1,9 @@
+<p>While this is a very old thread, I thought this solution might be of interest:</p>
+
+<pre><code>PATH="/usr/lib/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+REMOVE="ccache" # whole or part of a path :)
+export PATH=$(IFS=':';p=($PATH);unset IFS;p=(${p[@]%%$REMOVE});IFS=':';echo "${p[*]}";unset IFS)
+echo $PATH # outputs /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+</code></pre>
+
+<p>found it on this <a href="http://unstableme.blogspot.com/2009/05/remove-path-from-path-variable-in-bash.html" rel="nofollow">blog post</a>.  I think I like this one most :)</p>

@@ -1,0 +1,32 @@
+<p>You could use the LAST_INSERT_ID MySQL function in your second SQL statement to get the last insert ID from the first.  </p>
+
+<pre><code>mysql_query("
+    INSERT INTO `member_orders` (
+        `order_id`, 
+        `member_id`, 
+        `date`, 
+        `item`, 
+        `size`, 
+        `quantity`, 
+        `price`, 
+        `tracking_id`, 
+        `status`, 
+        `item_sent`, 
+        `notes`
+    ) VALUES (
+        NULL, 
+        LAST_INSERT_ID(), 
+        '', 
+        '', 
+        '', 
+        '', 
+        '', 
+        '', 
+        '', 
+        '', 
+        ''
+    )
+");
+</code></pre>
+
+<p>I would recommend that if you use this approach then you execute the queries within a transaction.   That way there's no way that another insert can occur between your first insert and your second, thus throwing off the result of LAST_INSERT_ID. </p>

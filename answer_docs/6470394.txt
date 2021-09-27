@@ -1,0 +1,13 @@
+<pre><code>if ($bio['results']['Junior'] == 'Yes') {
+    $bio['results']['Result'] .= "Yes"; 
+} 
+</code></pre>
+
+<p>Something like this?</p>
+
+<p>Alternatively, depending on if you want result to read "This is the result No", or "This is the result Yes", you could omit the conditional and just do</p>
+
+<pre><code>$bio['results']['Result'] .= $bio['results']['Junior'];
+</code></pre>
+
+<p>This of course assumes the only two possible values of Junior are Yes and No.</p>

@@ -1,0 +1,20 @@
+<p>In Rails you normally want pages routing to resources. For example if you have a Project model, then you would route to /projects, which will call your ProjectsController#index action</p>
+
+<pre><code>#in config/routes.rb
+resources :projects
+</code></pre>
+
+<p>For something like /index.html, I'll assume your looking to map to some home landing page. In this case you would want the url to be "/" and you can map that to a controller like</p>
+
+<pre><code>#in config/routes.rb
+# This assumes you have a HomepageController with an index action and a view in app/views/homepage/index.html.erb
+root :to =&gt; "homepage#index"
+</code></pre>
+
+<p>Or if you really do want "/index.html" then you can use this</p>
+
+<pre><code># in config/routes.rb
+get "/index" =&gt; "homepage#index"
+</code></pre>
+
+<p>Lots more can be found <a href="http://guides.rubyonrails.org/routing.html" rel="nofollow">in the rails docs</a> or in the railscasts <a href="http://railscasts.com/?tag_id=14" rel="nofollow">here</a></p>

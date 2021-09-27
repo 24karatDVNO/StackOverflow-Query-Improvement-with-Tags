@@ -1,0 +1,35 @@
+<pre><code>&lt;script type="text/javascript"&gt;   
+    $(document).ready(function() {
+        paused = 0;    
+        $("#jquery_jplayer_1").jPlayer( {    
+            ready: function () {    
+                $(this).jPlayer("setMedia", {
+                    m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer_480x270_h264aac.m4v",
+                    poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+                });
+            },
+            ended: function (event) {
+                $("#jquery_jplayer_1").jPlayer("setMedia", {
+                    m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer_480x270_h264aac.m4v",
+                    poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+                });
+                paused = 0;
+            },
+            pause: function (event) {       
+                paused = 1;
+                $("#jp_flash_0").css({"width":"0px"});
+                $(".jp-video-play").show();
+            },
+            play: function(event) {
+                if(paused == 1) {
+                    $("#jp_flash_0").css({"width":"100%"});
+                    $(".jp-video-play").show();
+                }
+                paused = 0;
+            },
+            swfPath: "js",    
+            supplied: "m4v"
+        });
+    });    
+&lt;/script&gt;
+</code></pre>

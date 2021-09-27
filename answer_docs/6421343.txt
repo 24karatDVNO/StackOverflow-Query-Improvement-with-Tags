@@ -1,0 +1,41 @@
+<p>You still haven't said where or how you're using <code>filters.arr[0]</code>, without which it's very difficult to help you.</p>
+
+<p>Assuming your code using it looks something like this:</p>
+
+<pre><code>AddFilter($("#theElement"));
+display(typeof filters.arr[0]);
+filters.arr[0].element.css("color", "blue");
+</code></pre>
+
+<p>It should be working; <a href="http://jsbin.com/ovuki4" rel="nofollow">live example</a>.</p>
+
+<p>My only thought is if <code>AddFilter</code> and <code>filters</code> are not defined within the same scope. You're using <code>filters</code> within <code>AddFilter</code>, so <code>AddFilter</code> must be defined in the same scope as <code>filters</code> (or in a sub-scope). So this would be fine:</p>
+
+<pre><code>var filters;
+function AddFilter() { ... }
+</code></pre>
+
+<p>And this</p>
+
+<pre><code>function AddFilter() { ... }
+var filters;
+</code></pre>
+
+<p>And this</p>
+
+<pre><code>var filters;
+$(function() {
+    function AddFilter() { ... }
+});
+</code></pre>
+
+<p>But not</p>
+
+<pre><code>function AddFilter() { ... }
+$(function() {
+    var filters;
+    // ...
+});
+</code></pre>
+
+<p>...because in that last case, <code>AddFilter</code> is defined outside the scope in which <code>filters</code> is defined.</p>

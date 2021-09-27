@@ -1,0 +1,13 @@
+<p>Actually, its a problem in dev environment. after adding this line to into resque.rake task file</p>
+
+<pre><code># load the Rails app all the time
+namespace :resque do
+  puts "Loading Rails environment for Resque"
+  task :setup =&gt; :environment
+  ActiveRecord::Base.send(:descendants).each { |klass|  klass.columns }
+end
+</code></pre>
+
+<p>it works fine</p>
+
+<p>The code taken from <a href="https://github.com/defunkt/resque/wiki/FAQ" rel="nofollow">GitHub-Resque-Wiki</a></p>

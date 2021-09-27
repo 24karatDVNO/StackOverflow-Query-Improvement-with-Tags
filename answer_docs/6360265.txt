@@ -1,0 +1,7 @@
+<p>You forgot to add implicit jclass/jobject argument to your JNI function:</p>
+
+<pre><code>JNIEXPORT void JNICALL Java_com_android_templateApp_templateApp_Accelerometer( JNIEnv *env, jclass clazz, jfloat x, jfloat y, jfloat z );
+</code></pre>
+
+<p>'clazz' argument will be the Java class of the calling class (templateApp in your case).
+For non-static functions implicit argument will be jobject of the calling object.</p>

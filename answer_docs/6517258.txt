@@ -1,0 +1,14 @@
+<p>Or you can use:</p>
+
+<pre><code>    $username_stringlength_validate = new Zend_Validate_StringLength(6, 20); 
+    $username = new Zend_Form_Element_Text('username');
+    $username-&gt;setLabel('Username: ')
+             -&gt;addFilters(array('StringTrim', 'HtmlEntities'))
+             -&gt;setAttrib('minlength', '6')
+             -&gt;setAttrib('class', 'required')
+             -&gt;removeDecorator('label')
+             -&gt;removeDecorator('HtmlTag')
+             -&gt;removeDecorator('DtDdWrapper')
+             -&gt;setDecorators(array(array('ViewHelper'), array('Errors')))
+             -&gt;addValidator($username_stringlength_validate);
+</code></pre>

@@ -1,0 +1,14 @@
+<p>Rather than create a new table, try creating a view. Views aren't actually tables, but can be used very much like them! </p>
+
+<p>So, try; </p>
+
+<pre><code>CREATE VIEW myItemView 
+as 
+  SELECT 
+     Item.ItemLookupCode
+     ,(Item.Quantity - ItemDynamic.Quantity as Quantity
+  FROM Item 
+  INNER JOIN ItemDynamic ON Item.ItemID=ItemDynamic.ItemID
+</code></pre>
+
+<p>Then, you should be able to select * from myitemview to get what you're looking for. </p>

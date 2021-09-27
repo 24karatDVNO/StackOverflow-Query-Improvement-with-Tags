@@ -1,0 +1,11 @@
+<blockquote>
+  <p>... I have to specify all the .cpp files any linked .cpp ever uses ...</p>
+</blockquote>
+
+<p>This is false. You must give the linker enough information to resolve all the symbols used in the code, but you can do so as source code files (.cpp et al.), as object files (.o), or as libraries (.so or .a). It is sufficient to compile each of the source code files to object files, and then link each of the object files together in order to create the binary.</p>
+
+<pre><code>g++ foo.cpp -c -o foo.o
+g++ bar.cpp -c -o bar.o
+g++ main.cpp -c -o main.o
+g++ main.o foo.o bar.o -o main.exe
+</code></pre>

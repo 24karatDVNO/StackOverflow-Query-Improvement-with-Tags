@@ -1,0 +1,5 @@
+<blockquote>
+  <p>then how can I know whether the user did any actions (like move the mouse, type the keyboard...)?</p>
+</blockquote>
+
+<p>These are all client side events. While you could trap some of these in Javascript and push a notification back serverside - you really don't want this kind of hassle. Just set up your session to timeout at 30 minutes.</p>

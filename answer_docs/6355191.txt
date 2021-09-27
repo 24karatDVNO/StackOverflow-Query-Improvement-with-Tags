@@ -1,0 +1,50 @@
+<p>I got this to work by:</p>
+
+<p>Having the controller first save the data before creating the variables for the view </p>
+
+<p>and saving the list of values, for each drop down, as a variable in the controller.</p>
+
+<pre><code>var $uses = array('Client','Ticket','Userseequeue','Queue','Task','User');
+var $useTable = false;
+
+function index() {
+    if (!empty($this-&gt;data)) {
+        $this-&gt;Ticket-&gt;create();
+        $this-&gt;Ticketsinqueue-&gt;insertData($this-&gt;data);
+        if ($this-&gt;Ticket-&gt;save($this-&gt;data) &amp;&amp; $this-&gt;Ticketsinqueue-&gt;save($this-&gt;data)) {
+            $this-&gt;Session-&gt;setFlash(__('The ticket has been saved', true));
+            $this-&gt;redirect(array('action' =&gt; 'index'));
+        } else {
+            $this-&gt;Session-&gt;setFlash(__('The ticket could not be saved. Please, try again.', true));
+        }
+    }
+    $clientsResult = $this-&gt;Client-&gt;find('all');
+    $userSeeQueuesResult = $this-&gt;Userseequeue-&gt;find('all', array('conditions' =&gt; array('Userseequeue.user_id' =&gt; '1') ) );
+    $ticketsResult = $this-&gt;Ticket-&gt;find('all');
+    $queuesResult = $this-&gt;Queue-&gt;find('all');
+    $tasksResult = $this-&gt;Task-&gt;find('all', array('group' =&gt; array('Task.ticket_id','Task.queue_id') ) );
+    $usersResult = $this-&gt;User-&gt;find('all');
+    $ticketUsers = $this-&gt;User-&gt;find('list');
+    $ticketQueues = $this-&gt;Ticket-&gt;Queue-&gt;find('list');
+    $this-&gt;set(compact('tickets','userSeeQueues','clients','queuesResult','tasksResult','users','ticketUsers','ticketQueues'));
+}
+</code></pre>
+
+<p>My view now list the values from the controller's variables i created:</p>
+
+<pre><code>&lt;div class="Summary index"&gt;
+&lt;h2&gt;&lt;?php __('Summary');?&gt;&lt;/h2&gt;
+&lt;?php echo $this-&gt;Form-&gt;create('Ticket');?&gt;
+&lt;fieldset&gt;
+    &lt;legend&gt;&lt;?php __('Add Ticket'); ?&gt;&lt;/legend&gt;
+&lt;?php
+    echo $this-&gt;Form-&gt;input('Ticket.name');
+    echo $this-&gt;Form-&gt;input('Ticket.user_id', array('options' =&gt; array($ticketUsers),'empty' =&gt; 'None'));
+    echo $this-&gt;Form-&gt;input('Ticket.queue_id', array('options' =&gt; array($ticketQueues)));
+?&gt;
+&lt;?php echo $this-&gt;Form-&gt;end(__('Submit', true));?&gt;
+&lt;/fieldset&gt;
+...
+</code></pre>
+
+<p>With this I can have a form to add a ticket as well as display information from other models / tables all on one page.</p>

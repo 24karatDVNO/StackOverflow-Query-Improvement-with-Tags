@@ -1,0 +1,36 @@
+<pre><code>&lt;ExpandableListView android:id="@+id/Exlist"
+    android:childDivider="#00000000" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:groupIndicator="transparent Image"
+    android:scrollbars="none" android:listSelector="#00000000"
+     android:cacheColorHint="#00000000"
+    android:layout_marginBottom="10dip" /&gt;
+</code></pre>
+
+<p>Above code "android:groupIndicator="transparent image"" becuase remove left side group indicator icon.</p>
+
+<p>Now used below XML for Group Indicator file. </p>
+
+<p><strong>group.xml</strong></p>
+
+<pre><code>  &lt;?xml version="1.0" encoding="utf-8"?&gt;
+ &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="horizontal" android:layout_width="fill_parent"
+android:layout_height="wrap_content"&gt;
+&lt;RelativeLayout android:id="@+id/rlheaderName"
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:background="@drawable/main_down"&gt;
+    &lt;TextView android:id="@+id/headerName"
+        android:layout_marginLeft="5dip" android:layout_centerVertical="true"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#6e6e6e" android:textStyle="bold"&gt;&lt;/TextView&gt;
+    &lt;TextView android:id="@+id/headerCount"
+        android:layout_marginLeft="10dip" android:layout_centerVertical="true"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#6e6e6e" android:layout_toRightOf="@+id/headerName"&gt;&lt;/TextView&gt;
+&lt;/RelativeLayout&gt;
+  &lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Above file "android:background="@drawable/main_down"" main_down used as arrow in rightside.</p>
+
+<p>so you problem solved.</p>

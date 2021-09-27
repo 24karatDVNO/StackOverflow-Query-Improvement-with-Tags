@@ -1,0 +1,11 @@
+<pre><code>SELECT 'window.location.href="http://newlocation.com"' REGEXP "href=\""
+</code></pre>
+
+<p>This gives me 1 (TRUE)</p>
+
+<p>That one also</p>
+
+<pre><code>SELECT 'window.location.href="http://newlocation.com"' REGEXP "window\.location\.href=\"http:\/\/newlocation\.com\""
+</code></pre>
+
+<p>It depends what you want to match really.</p>

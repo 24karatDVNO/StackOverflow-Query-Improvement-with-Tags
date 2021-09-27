@@ -1,0 +1,5 @@
+<p>Brackets are used around identifiers, so your code will look for the field <code>%'%</code> in the <code>Header</code> table. You want to use a string insteaed. To put an apostrophe in a string literal you use double apostrophes.</p>
+
+<pre><code>SELECT *
+FROM Header WHERE userID LIKE '%''%'
+</code></pre>

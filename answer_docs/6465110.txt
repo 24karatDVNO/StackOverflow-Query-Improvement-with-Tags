@@ -1,0 +1,5 @@
+<p>I'm using Linq to Sql in an MVC app, and have some table inheritance to represent items on a "floor". I have a base "table", and 2 tables that link to the base table and then extend the base table adding their own columns.</p>
+
+<p>For me, because my sub-tables don't deviate too much from the base table, I create a database view that returns all the base-table columns plus the key extra columns from the derived tables, and a "type" to identify what they are. My repository then works with this database view.</p>
+
+<p>This might be useful for you as an approach, depending on how many sub-types you have, how they differ, and your requirements. Otherwise, @smartcaveman made a good suggestion.</p>

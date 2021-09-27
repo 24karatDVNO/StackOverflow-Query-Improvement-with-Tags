@@ -1,0 +1,3 @@
+<p>The problem is that <code>textFileView</code> is created in the <code>viewDidLoad</code> method of <code>TextFileViewController</code>. This method has not yet been called by the time you call <code>updateText</code> (this happens before the <code>TextFileViewController</code> is pushed).</p>
+
+<p>You can fix this by forcing the view to load before you call <code>[[self restClient] loadFile:metaData.path intoPath:filePath];</code>.</p>

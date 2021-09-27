@@ -1,0 +1,12 @@
+<p>ugly, but effective:</p>
+
+<pre><code>select CustomerID
+where  CustomerID in 
+(
+select customerID from
+     (select distinct CustomerID
+     from   table
+     where  TimeZone in ('NY','CHI','SF')) t
+having count(*) = 3
+)
+</code></pre>

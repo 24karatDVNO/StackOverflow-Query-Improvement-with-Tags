@@ -1,0 +1,16 @@
+<p>That's because floating point numbers aren't stored exactly (e.g. aren't exactly representable). Here's an example you can use to illustrate this:</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+  double x = 0.009876;
+  printf("%.20lf\n",x);
+  return 0;
+}
+
+---------- Capture Output ----------
+&gt; "c:\windows\system32\cmd.exe" /c c:\temp\temp.exe
+0.00987599999999999940
+
+&gt; Terminated with exit code 0.
+</code></pre>

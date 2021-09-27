@@ -1,0 +1,15 @@
+<p>i cant see your mappings but i would try</p>
+
+<pre><code>public ParentMap()
+{
+    Id(x =&gt; x.Id).GeneratedBy.Increment().UnsavedValue(-1);
+}
+</code></pre>
+
+<p>and </p>
+
+<pre><code>public Parent()
+{
+    Id = -1;
+}
+</code></pre>

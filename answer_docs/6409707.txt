@@ -1,0 +1,9 @@
+<p>if bigL is your bigger array list, and tab has been created to bigL.size().</p>
+
+<p>Can't you do something like :</p>
+
+<pre><code>for( ArrayList&lt;String&gt; l : bigL )
+{
+  tab[ index ++ ] = l.toArray( new String[ l.size() ] );
+}//for
+</code></pre>

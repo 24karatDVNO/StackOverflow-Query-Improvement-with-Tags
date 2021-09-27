@@ -1,0 +1,30 @@
+<p>I found the answer by actually running a test.</p>
+
+<p>By executing the following code, I was able to find out the name of the currently running transaction.</p>
+
+<pre><code>ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        Class tsmClass = contextClassLoader.loadClass("org.springframework.transaction.support.TransactionSynchronizationManager");
+        String transactionName = (String) tsmClass.getMethod("getCurrentTransactionName", null).invoke(null, null);
+        System.out.println(transactionName);
+</code></pre>
+
+<p>and figured out that when I put
+@Transactional on MachoBO as below,</p>
+
+<pre><code>@Transactional
+class MachoBO {
+ void handleEverything(String daoName) {
+   DAO dao = getDAOUsingReflection(daoName);
+   dao.insertData();
+ }
+</code></pre>
+
+<p>since the @Transactional has a "method scope", 
+when <code>machoBO.handleEverthing("Data1");</code> is called,
+inserData() of both DAOs execute under the transaction name "MachoBO.handleEverthing".</p>
+
+<p>However, when the MachoBO is NOT annotated with @Transactional,
+inserData() of both DAOs DO NOT share the same method scope, &amp; therefore,
+get executed under seperate transactions, namely "EndpointData1DAO.inserData" and "EndpointData2DAO.insertData".</p>
+
+<p>It should be noted though(although obvious) that in the case of when a DAO is annotated with @Transactional with the propagation set to REQUIRES_NEW, the insertData() of the DAO runs in a seperate transaction.</p>

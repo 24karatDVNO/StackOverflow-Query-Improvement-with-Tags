@@ -1,0 +1,9 @@
+<p>Note that your proposed warning will also be issued for every <code>it++;</code>, which is found in many for loops.</p>
+
+<p>iammilind has already mentioned that sometimes it is by intention to create and immediatly destroy the temp: when there are side-effects.</p>
+
+<p>And in template meta programming, one might create and destroy a temporary, just in case the user supplies a class with side-effects. When a simple class, without side-effects, is used to instantiate the template, warnings will appear deep down in the template code.</p>
+
+<p>Therefor, your proposed warning will have <strong>many false positives</strong>. It will be hard to find the genuine warnings among the spurious ones.</p>
+
+<p>So I expect that compiler vendors have decided that their time is better spent elsewhere.</p>

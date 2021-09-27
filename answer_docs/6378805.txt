@@ -1,0 +1,11 @@
+<blockquote>
+  <p>Mainly what I'm asking is... Does the
+  server do a verification against the
+  other server's hostname vs the
+  certificates Common name (CN)?</p>
+</blockquote>
+
+<p>This is configurable.<br>
+It is possible to configure strict checking and <strong>not</strong> accept connections from entities sending a certificate that the CN does not match the FQDN despite the fact that the certificate is considered as trusted (e.g. signed by a trusted CA).<br>
+It is possible to relax this and do not do this check and accept the certificate or delegate the decision to the user. E.g. IE shows a pop up warning saying that certificate's name does not match FQDN. Do you want to proceed anyway?<br>
+From security perspective the safest is to do strict verification</p>

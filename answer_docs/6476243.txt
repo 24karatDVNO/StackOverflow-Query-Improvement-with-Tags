@@ -1,0 +1,17 @@
+<p>why not a different approach:</p>
+
+<p>get all php tags and content</p>
+
+<pre><code>$src = get_the_content();
+$matches = array();
+preg_match_all('/(&lt;\?php(?:.*)\?&gt;)/i',$src,$matches);
+echo implode("\n",$matches);
+</code></pre>
+
+<p>or get all contents of [sourcecode] blocks</p>
+
+<pre><code>$src = get_the_content();
+$matches = array();
+preg_match_all('/\[sourcecode[^\]]*\](.*)\[\/sourcecode\]/i',$src,$matches);
+echo implode("\n",$matches);
+</code></pre>

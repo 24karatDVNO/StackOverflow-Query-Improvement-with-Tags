@@ -1,0 +1,65 @@
+<p><strong>This short and complete transformation is based on the most basic XSLT design pattern: overriding the identity rule</strong>:</p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+ &lt;xsl:output omit-xml-declaration="yes" indent="yes"/&gt;
+ &lt;xsl:strip-space elements="*"/&gt;
+
+ &lt;xsl:template match="node()|@*"&gt;
+  &lt;xsl:copy&gt;
+   &lt;xsl:apply-templates select="node()|@*"/&gt;
+  &lt;/xsl:copy&gt;
+ &lt;/xsl:template&gt;
+
+ &lt;xsl:template match="*[1]/ns0:NVBusinessId"&gt;
+  &lt;xsl:copy&gt;
+   &lt;xsl:apply-templates select="/*/*/*/ns0:NVBusinessId/text()"/&gt;
+  &lt;/xsl:copy&gt;
+ &lt;/xsl:template&gt;
+ &lt;xsl:template match="ns0:FinalBusinessIdDetails[position() &gt;1]"/&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p><strong>when applied on the provided XML document</strong>:</p>
+
+<pre><code>&lt;FinalBusinessDetails&gt;
+    &lt;BusinessIdDetails xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails" xmlns="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV0511201142&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV0511201143&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV20111227759&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV20111227763&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV20111227763&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV20111227759&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+            &lt;ns0:NVBusinessId&gt;:NV20111227802&lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+    &lt;/BusinessIdDetails&gt;
+&lt;/FinalBusinessDetails&gt;
+</code></pre>
+
+<p><strong>the wanted, correct result is produced</strong>:</p>
+
+<pre><code>&lt;FinalBusinessDetails&gt;
+   &lt;BusinessIdDetails xmlns="http://www.portal.nv.gov/FinalCorporationDetails" xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+      &lt;ns0:FinalBusinessIdDetails&gt;
+         &lt;ns0:NVBusinessId&gt;:NV0511201142:NV0511201143:NV20111227759:NV20111227763:NV20111227763:NV20111227759::NV20111227802&lt;/ns0:NVBusinessId&gt;
+      &lt;/ns0:FinalBusinessIdDetails&gt;
+   &lt;/BusinessIdDetails&gt;
+&lt;/FinalBusinessDetails&gt;
+</code></pre>

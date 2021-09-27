@@ -1,0 +1,7 @@
+<p>onClick doesn't respond to keyboard events such as being 'tabbed' into. It would be more advisable to use onFocus for this. And to complement the operation also use onBlur.</p>
+
+<pre><code>   &lt;com:TTextBox Id="txtSearch" Text="Quick Search"  CssClass="MainSearchBar"
+       Attributes.onfocus="if (this.value == this.defaultValue) this.value = '';"
+       Attributes.onblur="if (this.value == '') this.value = this.defaultValue;"
+       /&gt; 
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Actually, it could be correct but doesn't have to be. If TXMLParser also uses some global variable that's not threadsafe, this code would not be threadsafe either! The use of global variables is discouraged but Delphi has quite a few build-in variables that might cause problems when they're modied and read from different threads.<br>
+The unit <code>xmldom</code>, for example, has two global variables: <code>DefaultDOMVendor</code> and <code>DOMVendors</code>. These aren't really modified often, thus should be safe to use.<br>
+The SysUtils unit also has a few global variables used for determining the current locale, date/time formats and whatever more. Those aren't threadsafe either, although these too are almost never modified.<br>
+Even third-party code might use global variables for all kinds of purposes. Some more modern code might even use <em>class variables</em> which would also be a kind of global variables and thus definitely <strong>not</strong> threadsafe, although the risks are based on the number of times the data is modified...  </p>
+
+<p>Without a look in the code of TXmlParser it's unclear if it's threadsafe or not. If it uses a third-party DLL like Libxml2.dll then it becomes even more complicated since the handle for this DLL might be stored in a global variable, thus becoming unsafe.  </p>
+
+<p>Then again, you said TXmlParser is threadsafe. To answer your question: your code would then be threadsafe too as long as the "Do stuff" part is threadsafe.</p>

@@ -1,0 +1,8 @@
+<p>You can use:</p>
+
+<pre><code>NSError *err;
+NSFileManager *fileManager = [[NSFileManager alloc] init];
+[fileManager removeItemAtPath:path error:&amp;err];
+</code></pre>
+
+<p>where path is a <code>NSString</code> with the path of the file you want to delete.</p>

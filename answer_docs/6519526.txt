@@ -1,0 +1,5 @@
+<p>I'll answer myself with the solution I came up. I'm not sure it's the best one, but at least, it works.</p>
+
+<p>Since you want to bulk delete something that have a ManyToMany related items, you first have to delete the relation (in the join table), or do a loop and for each item, delete manually (insane and too much heavy).</p>
+
+<p>So, since JPQL does not allow to do it, a possible way is to make a <strong>native SQL query</strong> for deleting the id you want in the related table, and then, do the bulk delete.</p>

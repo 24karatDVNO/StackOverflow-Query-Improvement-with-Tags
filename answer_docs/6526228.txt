@@ -1,0 +1,9 @@
+<p>If you are going to reference the id property of the userAcegi property, then you will likely need to alias the userAcegi property.  It would look something like the following:</p>
+
+<pre><code>Criteria criteria = ThreadSessionManager.getCurrentThreadSession().currentAccegiSession().createCriteria(UserRole.class);
+
+criteria.createAlias("userAcegi", "ua", Criteria.INNER_JOIN);
+criteria.add(Restrictions.eq("ua.id", "7300765"));
+</code></pre>
+
+<p>Hope this helps!</p>

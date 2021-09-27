@@ -1,0 +1,8 @@
+<p>I ended up make my page 768x1024 and disabling all scrolling (which is what I really wanted anyway) using this:</p>
+
+<pre><code>    $(document).ready(function() {
+        document.ontouchmove = function(e){
+             e.preventDefault();
+             }
+    });
+</code></pre>

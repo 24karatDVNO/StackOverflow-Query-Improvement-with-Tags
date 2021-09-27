@@ -1,0 +1,19 @@
+<p>In jQuery this refers to the current object in scope. In the case of a click event this refers to the hyperlink being clicked. But do not enclose it in quotes.</p>
+
+<pre><code> $(document).ready(function() {
+   $('.class-name').click(function(){
+     var linkHref=$(this).attr('href');
+     alert(linkHref);
+     $('.redirect').attr('href',linkHref);       
+   });
+ });
+</code></pre>
+
+<p>you could shorten this to:</p>
+
+<pre><code> $(document).ready(function() {
+   $('.class-name').click(function(){
+     $('.redirect').attr('href',$(this).attr('href'));       
+   });
+ });
+</code></pre>

@@ -1,0 +1,5 @@
+<p>You can do that inside a WPF <code>RichTextBox</code>, just insert an <code>InlineUIContainer</code> (or <code>BlockUIContainer</code>) where can put any <code>UIElement</code> like a button or anything more complicated.</p>
+
+<p>You can then convert the <code>RichTextBox</code> content, orginally a <code>FlowDocument</code>, into RTF or XAML or HTML, or to the Office OpenXML format (.docx) with the OpenXML SDK.</p>
+
+<p>Maybe it's possible to replace the <code>RichTexBox</code> with an actual Microsoft Word window, stuck inside your WPF application, and embed WPF controls in it just like you do with a <code>InlineUIContainer</code>, but I don't know how yet. I'll post if I find out.</p>

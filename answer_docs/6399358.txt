@@ -1,0 +1,12 @@
+<p>I suggest that the Bitmap image is a dependency object being created on a non-GUI thread.  You then invoke UpdateImage on the GUI thread. Since the bitmap image dependency object wasn't created on/(owned by) the GUI thread, you get the "different thread owns it" error.</p>
+
+<p>How about this as a workaround?  </p>
+
+<ol>
+<li>Copy the image temporarily to a local file location in your Watch routine.  </li>
+<li>Add a <code>Thread.Sleep</code> to the watch routine so that you don't hammer the CPU with the endless loop on this thread.</li>
+<li>Use <code>BeginInvoke</code> instead of <code>Invoke</code>.</li>
+<li>Load and update the image in the UpdateImage routine so that the image and the imgVideo objects are on the GUI thread.  Update the image by reading it from your local file copy.</li>
+</ol>
+
+<p>Without knowing the specifics of how you make Watch run on its own thread (using Background worker?) I think this approach will work for you.</p>

@@ -1,0 +1,32 @@
+<ol>
+<li><p>while your id attribute can be numerical in HTML5 I would still strongly suggest against using a digit to start your id. Perhaps id-1, </p></li>
+<li><p>I would do it as follows </p></li>
+</ol>
+
+<p><strong>jquery/javascripit</strong></p>
+
+<pre><code>$(function(){ 
+      ('div.header').click(function() {
+         $('div.content', this).slideToggle(); });`
+)};
+</code></pre>
+
+<p><strong>html</strong></p>
+
+<pre><code>&lt;div id='id-1' class='header'&gt;Header1
+  &lt;div class='content'&gt;Some content
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>live example: <a href="http://jsfiddle.net/QSvYE/" rel="nofollow">http://jsfiddle.net/QSvYE/</a></p>
+
+<p>if you chose to go the route of selecting by id # perhaps the following regex would be helpful</p>
+
+<pre><code>//set regex
+var re = /(^\w+-)(\d+)$/i;
+
+//get attr broken into parts
+var str = $(this).attr('id').match(re)[1], 
+    id  = $(this).attr('id').match(re)[2];
+</code></pre>

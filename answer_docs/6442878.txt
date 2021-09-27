@@ -1,0 +1,6 @@
+<p>That's because only one space has been replaced. Per JavaScript 1.5 specification, <code>String.replace()</code> takes a regular expression as first parameter and the behavior for string parameters is undefined. Browsers later decided to treat strings similarly - but there is no way to specify <code>g</code> flag on a string, so only one replacement is done. This will do what you want:</p>
+
+<pre><code>string = string.replace(/ /g, '');
+</code></pre>
+
+<p>The version provided by Pointy (<code>/\s+/g</code>) might be more efficient however. And it will replace other types of whitespace (tabs, newlines) as well.</p>

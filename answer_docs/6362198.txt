@@ -1,0 +1,23 @@
+<p>Good! I managed to resolve one way and improvised without using AJAX:</p>
+
+<p>ler.php:</p>
+
+<pre><code>&lt;?php
+    if(isset($_SERVER["HTTP_REFERER"])) {
+    $check2 = (strpos($_SERVER["HTTP_REFERER"], 'carregar.php') &gt; 0) ? true : false;
+    if(print_r($check2) != 11) {
+// Blank
+    }
+    } else {          
+    if(isset($_SERVER["HTTP_REFERER"]))
+    {
+// Load Image
+    }
+    if(!isset($_SERVER["HTTP_REFERER"]))
+    {
+// Blank
+    }
+?&gt;
+</code></pre>
+
+<p>So, the image only can be loaded into my page. Maybe...</p>

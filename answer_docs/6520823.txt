@@ -1,0 +1,10 @@
+<p>you could add a base_controller.rb in your /admin/ and let your other controllers in /admin/ inherit from Admin::BaseController. Just include a &lt; ApplicationController in your /admin/base_controller.rb.</p>
+
+<p>Now specify the layout in your /admin/base_controller.rb.</p>
+
+<p>For routing you only need to add references available to the generic public. Add a namespace for it:</p>
+
+<pre><code>namespace :admin do
+    resouces :xyz
+end
+</code></pre>

@@ -1,0 +1,6 @@
+<p>If I understand correctly, you want to set a FieldChangeListener on the field returned from getFieldAtIndex()? And the field returned happens to be a HorizontalFieldManager - is that correct? </p>
+
+<p>If so, then you should be able to set a new change listener like so:
+<code>gridField.getFieldAtIndex(0).setChangeListener(newChangeListener);</code></p>
+
+<p>I'm not sure if that's what you're asking - so feel free to elaborate a bit more if this isn't the answer you're looking for.</p>

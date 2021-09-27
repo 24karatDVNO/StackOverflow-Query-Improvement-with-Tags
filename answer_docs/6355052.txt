@@ -1,0 +1,5 @@
+<p>You could also try something like this:</p>
+
+<pre><code>IEnumerable&lt;bool&gt; answers = from x in Person.PersonDetails select x.correct;
+bool equal = responses.SequenceEqual(answers)
+</code></pre>

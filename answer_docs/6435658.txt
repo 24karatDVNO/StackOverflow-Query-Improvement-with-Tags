@@ -1,0 +1,8 @@
+<p>When you have <code>time()</code> stored in database, the easiest way is to:</p>
+
+<ol>
+<li>Sort table by column with <code>time()</code>.</li>
+<li>Query for every record's timestamp from table (I assume that you only want dates and times).</li>
+<li>For each row in result, call <code>date()</code> twice: once for day and month, one for hour. Have last used date saved and if they are same, put next time to same array element as prievous (I am assuming that you use LainIwakura's solution of storing such data).</li>
+<li>Display it the way you want.</li>
+</ol>

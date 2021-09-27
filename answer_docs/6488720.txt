@@ -1,0 +1,9 @@
+<p>an Array was the answer. I also used an ArrayList because of the complexity of the commands.   Anyways...   Defined arraylist, added commands, converted to array, displayed array, sent commands.. Everything worked well.  Each param must be in it's own String within the array.</p>
+
+<pre><code>    List&lt;String&gt; list = new ArrayList&lt;&gt;();
+    list.add("command");
+    list.add("param");
+    String[] command = (String[]) list.toArray(new String[0]);
+    log.progress (list);
+    run.exec (command);
+</code></pre>

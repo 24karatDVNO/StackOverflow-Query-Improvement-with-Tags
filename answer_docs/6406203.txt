@@ -1,0 +1,1 @@
+<p>The <a href="http://msdn.microsoft.com/en-us/library/system.io.stream.aspx#Y2" rel="nofollow">Stream</a> class is abstract, which you're attempting to create an instance of in line 1. You're not actually ever using the object created there, so just either don't assign anything to it in the declaration, or assign <code>null</code> to it.</p>

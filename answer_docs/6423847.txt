@@ -1,0 +1,6 @@
+<p>I don't know if you managed to get this done, but I wanted to do something like this and check which database links are active. I found this on another forum </p>
+
+<pre><code>Select * from v$dblink 
+</code></pre>
+
+<p>which shows only active dblinks. Again, this will work only if you have permission to access <code>v$dblink</code>.</p>

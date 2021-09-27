@@ -1,0 +1,10 @@
+<p>I think the workflow is something like this:</p>
+
+<pre><code>git clone http://remote rep here
+... Do work ...
+git branch temp
+git checkout temp
+git pull http://remote rep here
+git checkout master
+git merge temp
+</code></pre>

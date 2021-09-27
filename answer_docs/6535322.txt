@@ -1,0 +1,13 @@
+<pre><code>string json = e.Result;
+var response = JObject.Parse(json);
+
+var getcount = response["response"].Children&lt;JObject&gt;();
+int count_friends=getcount.Cast&lt;JToken&gt;().Values("uid").Count();
+Response rr = new Response();
+for (int i = 0; i &lt;count_friends; i++)
+{
+   // rr.Users.ToDictionary(rr.Users[i].Uid =&gt; response["response"][i]["uid"].ToString());
+    rr.Users[i].First_Name = response["response"][i]["first_name"].ToString();
+   // Debug.WriteLine("OUT: "+(string)response["response"][i]["uid"].ToString());
+}
+</code></pre>

@@ -1,0 +1,24 @@
+<p>My favorite approach to this kind of problem is not to rely on overloading the value-holding variable with information regarding whether a value was found. I do this explicitly.</p>
+
+<pre><code>bool value_present = false;
+int imageId;
+
+foreach (DictionaryEntry valueEntry in e.Keys)
+{
+    if (valueEntry.Key.Equals("ImageContentId"))
+    {
+        value_present = true;
+        imageId = Convert.ToInt32(valueEntry.Value.ToString());
+        break;
+    }
+}
+</code></pre>
+
+<p>And then test <code>value_present</code> before using <code>imageId</code>.</p>
+
+<p>That said, and as others have noted, this is crazy.</p>
+
+<ul>
+<li>Don't loop like this, just call <code>e.Keys.Contains()</code></li>
+<li>Don't convert to a string and then back to an int. If it's an int, cast it.</li>
+</ul>

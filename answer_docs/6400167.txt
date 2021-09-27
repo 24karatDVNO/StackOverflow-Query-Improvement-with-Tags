@@ -1,0 +1,7 @@
+<p>I would recommend split up the checking code into a function which only accepts a filename.</p>
+
+<p>Then use a global struct for checking for duplicates, the key would be "size" or "size_hash" and the value could be an array which will contain all filenames that matches this key.</p>
+
+<p>Run the function on all jpeg files in all different directories, after that scan the struct and report all entries that have more than one file in it's array.</p>
+
+<p>If you want to show an image outside your webroot you can serve it via &lt; cfcontent file="#filename#" type="image/jpeg"></p>

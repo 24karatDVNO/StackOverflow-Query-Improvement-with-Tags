@@ -1,0 +1,18 @@
+<p>Duplicate of : <a href="https://stackoverflow.com/questions/6450514/put-color-in-listview-dymically">put color in Listview dymically</a></p>
+
+<p>You can not use <strong>android.R.layout.simple_list_item_1</strong> if you want to do some customization.</p>
+
+<p>You have to create a new layout, e.g. <strong>my_list_row.xml</strong> :</p>
+
+<pre><code>&lt;xml version="1.0" encoding="utf-8"&gt;
+&lt;TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textColor="yourcolor" /&gt;
+</code></pre>
+
+<p>and set in your <strong>Activity</strong> :</p>
+
+<pre><code> lv1.setAdapter(new ArrayAdapter&lt;String&gt;(this,R.layout.my_list_item , lv_arr));
+</code></pre>

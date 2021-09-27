@@ -1,0 +1,14 @@
+<p>If you have the proper permissions, then you can use any of the read()/write() commands to interact with an arbitrary process in Linux.</p>
+
+<p>Look at the /proc/ directory and you will see a file structure representation of the various components of each running process.  </p>
+
+<pre><code>root@netbook:~# ll /proc/
+total 4
+dr-xr-xr-x 153 root       root                0 2011-06-19 23:14 ./
+drwxr-xr-x  22 root       root             4096 2011-04-29 03:52 ../
+dr-xr-xr-x   7 root       root                0 2011-06-22 15:58 1/
+dr-xr-xr-x   7 root       root                0 2011-06-22 15:58 11/
+...
+</code></pre>
+
+<p>I used ls for this example, but you can do this pragmatically with standard Linux libraries. Find the process you want to send keys to and open (with fopen or similar) the file /proc/{pid}/fd/0.   This is the standard in (stdin) in Linux and anything you write to this character device will be interpreted as input.</p>

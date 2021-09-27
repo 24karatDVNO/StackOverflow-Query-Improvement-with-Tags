@@ -1,0 +1,32 @@
+<p>As Radu said, use jquery UI to accomplish the task for collecting the date of birth .</p>
+
+<p>sample code :</p>
+
+<pre><code>    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" type="text/css" media="all" /&gt;
+    &lt;script&gt;
+        $(function() {
+            $( "#dob" ).datepicker({
+                changeMonth: true,
+                yearRange: '1905:2011',
+                dateFormat: "yy/mm/dd",
+                showAnim: 'drop',
+                changeYear: true
+            });
+        });
+        &lt;/script&gt;
+
+
+&lt;td&gt;&lt;?php echo form_label('Birthday', $dob['id']); ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?php echo form_input($dob); ?&gt;&lt;/td&gt;
+        &lt;td style="color: red;"&gt;&lt;?php echo form_error($dob['name']); ?&gt;&lt;?php echo isset($errors[$dob['name']])?$errors[$dob['name']]:''; ?&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+</code></pre>
+
+<p>and for Country list, there are many publicly available database dumps , so I will use a databse to store the list of countries ..</p>
+
+<p><strong>Adding some coolness :</strong></p>
+
+<p>You can detect the user's country and display that as the default option and also with an option to select other countries from the dropdown .</p>

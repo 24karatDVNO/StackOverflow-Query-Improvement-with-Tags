@@ -1,0 +1,7 @@
+<p>you should be able to write this as</p>
+
+<pre><code>RewriteCond %{SERVER_PORT} 80 [OR]
+RewriteCond %{SERVER_PORT} 443
+RewriteCond %{HTTP_HOST} domain.co.uk$ [NC]
+RewriteRule ^$ http://%{HTTP_HOST}/en/ [R=301,L]
+</code></pre>

@@ -1,0 +1,11 @@
+<p>This is indeed a Factory Method and there's nothing wrong with using concrete classes as their construction logic may vary and that's where Factory can be useful.</p>
+
+<p>But in this particular case you can use reflection or IoC containers to achieve low coupling.</p>
+
+<p>For example, if you're using C# and Common Service Locator abstraction, you can then register your Device implementations with names and then you wouldn't even need a factory at all, because it'd look like:</p>
+
+<pre><code>public Device Create(string deviceName)
+{
+    return ServiceLocator.Current.GetInstance&lt;Device&gt;(deviceName);
+}
+</code></pre>

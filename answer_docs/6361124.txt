@@ -1,0 +1,23 @@
+<p>Try observe the field with code by interval</p>
+
+<p>Example</p>
+
+<pre><code>setInterval(function() {
+    var value = $("#code").val(),
+        prev_value = $("#code").attr("prev_value");
+
+    if (prev_value == value) {// compare with prevent value for detecting canges
+        console.log("value is not changed");
+        return;
+    }
+    //if (value.length &lt; 17) {
+        //exeption
+        // or reset value $("#code").val(prev_value);
+        //return;
+    //}
+    if (value[value.length-1] == "\n") {// check last symbol
+        console.log(value);// Do something with you code eg send by AJAX
+    }
+    $("#code").attr("prev_value", value); // save current value for compare later
+}, 1000 );
+</code></pre>

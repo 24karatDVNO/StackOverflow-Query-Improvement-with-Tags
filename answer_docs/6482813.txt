@@ -1,0 +1,13 @@
+<p>The timer objects in the .net framework do not give access to the time already elapsed or remaining.</p>
+
+<p>However when your application starts you will can create and start a stop watch.</p>
+
+<pre><code>private _sw as System.Diagnostics.Stopwatch = System.Diagnostics.Stopwatch.StartNew()
+</code></pre>
+
+<p>At any time you can then call the following code which you can subtract from your 30 minutes</p>
+
+<pre><code>_sw.Elapsed.TotalSeconds
+</code></pre>
+
+<p>To show this time constantly on  a form you may need a second timer to update the screen that queries this value.</p>

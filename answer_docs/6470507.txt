@@ -1,0 +1,3 @@
+<p>Setting the width ignores resizing.  LayoutManagers typically ask components for their preferred widths and heights, and expand / contract items to maintain a visually appealing position after the frame has been resized.  So, your best option is to leverage the layout manager and report a "preferred width".</p>
+
+<p>You can use <code>setPreferredWidth(...)</code>; but, if your preferred width is to change over the run of the program (due to window size changes), you will need to listen to the panel in question and update your button's preferred width as the panel's preferred width changes (this assumes it changes, which might not be true).</p>

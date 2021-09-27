@@ -1,0 +1,7 @@
+<p>If by SSO you mean one password at the beginning of the day, and none until you leave, LDAP can't easily do that alone.  It can help you consolidate passwords, so you only have to remember one (which is nice), but you still have to enter it repeatedly unless you do a lot of engineeering on top of that.</p>
+
+<p>Kerberos can actually do SSO.  The caveat in my opinion, is that applications need to support it specially to some degree.</p>
+
+<p>As far as LDAP storing credentials for kerberos, I'm not sure that that's a win.  I suspect it would have to store the credentials in cleartext in order to be compatible with kerberos (and it makes me nervous to have a service that is network accessible and contains cleartext passwords).  It isn't clear to me how this is better than a kerberos database storing the password.</p>
+
+<p>Hopefully this helps.  Also, my experience with kerberos is from the sidelines; I've read _a_lot_ about it, but never actually used it.</p>

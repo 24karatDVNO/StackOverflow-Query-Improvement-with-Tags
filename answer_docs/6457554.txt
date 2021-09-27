@@ -1,0 +1,5 @@
+<p>I'm afraid my answer isn't an answer, it's a workaround. I'll leave the question open a week or so because it'd be great if someone far smarter than me has some miracle way of doing this.</p>
+
+<p>I called <code>.AsEnumerable()</code> on my query, after applying as many other filters as possible, and then processed the results in memory. I actually used <code>.Where(Function(x) x.Description.Split("&lt;li&gt;").Count &gt; 3)</code> as my in-memory filter, on the grounds that valid HTML isn't always valid XML - I can't necessarily trust my users to provide perfect XHTML compliant content, but that doesn't mean it won't display correctly for their purposes. </p>
+
+<p>Luckily in the business context - quality control of newly added descriptions - the number of things being checked is suitably small that after applying all the other filters there isn't a stupidly big number of things to process.</p>

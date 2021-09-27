@@ -1,0 +1,31 @@
+<p>It looks like you need to change the "$okmystery" case statement to match the other case statements (if those are all working like they're supposed to). </p>
+
+<p>You can then try to <code>ShellExecute()</code> the url.</p>
+
+<pre><code>Case $msg = $okmystery
+  ShellExecute("Http://www.IT-Networks.org")
+</code></pre>
+
+<hr>
+
+<p>Here's a working example of a GUI with a button that opens your company website in your default web browser:</p>
+
+<pre><code>#include &lt;GUIConstantsEx.au3&gt;
+
+Global $Button_1, $msg
+
+GUICreate("Test GUI Button")
+$okmystery = GUICtrlCreateButton("okmystery Button", 10, 30, 100)
+
+GUISetState()
+
+While 1
+    $msg = GUIGetMsg()
+    Select
+        Case $msg = $GUI_EVENT_CLOSE
+            ExitLoop
+        Case $msg = $okmystery
+            ShellExecute("Http://www.IT-Networks.org")
+    EndSelect
+WEnd
+</code></pre>

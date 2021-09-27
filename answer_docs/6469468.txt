@@ -1,0 +1,9 @@
+<p>what about simply having a single url type and differentiating with a type in the table. Then you can have the relationships for each TYPE of url with something along the lines of:</p>
+
+<pre><code>belongs_to :private_url, :class_name =&gt; "Profiles", :conditions =&gt; "type = 0"
+belongs_to :public_url, :class_name =&gt; "Profiles", :conditions =&gt; "type = 1"
+</code></pre>
+
+<p>This would significantly "simplify" your assciations you have to manage. It's not the whole answer I don't think but perhaps if you can make it work this simplifies things enough that the problem you have becomes simpler to address.</p>
+
+<p>I may have the exact syntax above incorrect but you should get the gist of what I'm suggesting...</p>

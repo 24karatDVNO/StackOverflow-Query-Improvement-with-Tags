@@ -1,0 +1,18 @@
+<p>You can create excel with Express Edition using this <a href="http://www.devtriogroup.com/ExcelJetcell/Default.aspx" rel="nofollow">Excel .NET component</a>. It doesn't require VSTO, ADO or MS Excel automation.</p>
+
+<p>Excel Jetcell .NET component allows to read write excel spreadsheet.
+Here you can find many <a href="http://www.devtriogroup.com/ExcelJetcell/Samples/Default.aspx" rel="nofollow">Excel VB.NET and C# examples</a>. For example see VB.NET code to create excel spreadsheet from array:</p>
+
+<pre><code>Imports DTG.Spreadsheet
+...
+Dim WBook = New ExcelWorkbook()
+WBook.Worksheets.Add("ArrayValues")
+For i As Short = 0 To 10
+   For j As Short = 0 To 10
+      WBook.Worksheets(0).Cells[i,j].Value = arr(i,j)
+      j = j + 1
+   Next j
+   i = i + 1
+Next i
+WBook.WriteXLSX("ExcelSpreadsheet.xlsx")
+</code></pre>

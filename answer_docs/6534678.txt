@@ -1,0 +1,12 @@
+<p>Its more likely that your apache instance is configured not to follow symbolic links than you have a permissions problem.</p>
+
+<p>See <a href="http://httpd.apache.org/docs/2.0/mod/core.html#options" rel="nofollow noreferrer">options +symlinks</a></p>
+
+<p>Note that allowing apache to read symlinks may introduce <a href="https://serverfault.com/questions/244592/followsymlinks-on-apache-why-is-it-a-security-risk">vulnerabilities in your application</a> - better solutions are:</p>
+
+<ul>
+<li>use hard links (if the vhost doc roots will stay on the same filesystem)</li>
+<li>use rewrite rules to map the image URL to the file</li>
+<li>use alias to map the image URL to the file</li>
+<li>just copy the damn files!</li>
+</ul>

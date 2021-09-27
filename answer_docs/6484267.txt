@@ -1,0 +1,36 @@
+<p>I haven't tested this.</p>
+
+<pre><code>in .h
+
+CCSprite *sprite;
+
+
+in .m
+
+-(id)init
+{
+    if ((self=[super init))
+    {
+           CGSize s = [[CCDirector sharedDirector] winSize];
+
+           sprite = [CCSprite spriteWithFile:@"imagename.png"];
+           sprite.position = ccp(s.width/2, s.height/2);
+           [self addChild:sprite];
+    }
+    return self;
+}
+
+    - (void) ccTouchesBegan: (NSSet *)touches withEvent: (UIEvent *)event
+{
+
+    UITouch *touch = [touches anyObject];
+
+    CGPoint touchLocation = [touch locationInView: [touch view]];   
+    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+
+    [sprite setPosition:touchLocation];
+
+    //OR YOU CAN RUN AN ANIMATION TO MAKE IT LOOK LIKE IT'S WALKING
+    //[sprite runAction:[CCMoveTo actionWithDuration:5 position:touchLocation]];
+}
+</code></pre>

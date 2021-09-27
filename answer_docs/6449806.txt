@@ -1,0 +1,24 @@
+<p>In the first example:</p>
+
+<pre><code>&gt; setInterval(myFunc, 100);
+&gt; 
+&gt; function myFunc() { alert('asdf'); }
+</code></pre>
+
+<p>The function declaration is processed before any code is executed, so <em>myFunc</em> exists as a local parameter when <em>setInterval</em> is called.</p>
+
+<p>The second example:</p>
+
+<pre><code>&gt; setInterval(myFunc, 100);
+&gt; 
+&gt; var myFunc = function myFunc() {
+&gt; alert('asdf'); }
+</code></pre>
+
+<p><strike>works for exactly the same reason</strike>: <em>myFunc</em> is declared using <em>var</em> and therefore exists as a local variable when <em>setInterval</em> is called.</p>
+
+<h3>Edit</h3>
+
+<p>Ooops! It doesn't work. The value of <em>myFunc</em> is evaluated when <em>setTimeout</em> is called, and at that point <em>myFunc</em> hasn't bee assigned a value so an error results. Changing the value later doesn't affect the value held by <em>setTimeout</em>.</p>
+
+<p>Finally, there is no such thing as a "function statement". ECMA-262 defines <em>FunctionDeclaration</em> and <em>FunctionExpression</em> in §13, there is no other kind of function.</p>

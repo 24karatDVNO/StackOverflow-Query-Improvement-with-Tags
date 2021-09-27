@@ -1,0 +1,11 @@
+<p>Use <code>ord()</code> to convert each character to an integer value (its ordinal value), and then XOR each character together using the bitwise operator <code>^</code>. If the characters are the same, the XOR operation will return <code>0</code> (zero), then use <code>|=</code> to bitwise OR the returned value with <code>result</code> and then save the result of the operation as <code>result</code>. If <code>result</code> is still zero after you iterate over all the characters, then the strings are equivalent. </p>
+
+<pre><code>a = "this is the right string"
+b = "this is right the string"
+
+result = 0
+for x,y in zip(a,b):
+    result |= ord(x) ^ ord(b)
+
+(if result == 0): print "Equivalent"
+</code></pre>

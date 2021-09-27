@@ -1,0 +1,24 @@
+<p>If I understand you correctly, you have a UISplitViewController, and you wish to have three UINavigationControllers as detail views. In which case, the following will work if implemented in your UISplitViewController class:</p>
+
+<pre><code>    if ([detailItem isEqualToString:@"Test"]) {
+
+        TestViewController *testViewController = [[TestViewController alloc] initWithNibName:@"TestView" bundle:nil];
+
+        //since self.viewControllers is immutable, let's make our own temporary copy.
+        NSMutableArray *tempArray = [self.viewControllers mutableCopy];
+
+        //switcheroo with the new view controller
+        [tempArray replaceObjectAtIndex:1 withObject:testViewController];
+
+        // our new view controller is retained by the array, so let's release it
+        [testViewController release];
+
+        //set the new array to be displayed
+        self.viewControllers = tempArray;
+
+        //clean up - out mutableCopy returns a retained object
+        [tempArray release];
+
+
+    }
+</code></pre>

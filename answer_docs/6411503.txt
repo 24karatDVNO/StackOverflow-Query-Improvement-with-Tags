@@ -1,0 +1,33 @@
+<p>Your updated example doesn't help. You say you have TableB:</p>
+
+<pre><code>(1,xx)
+(1,yy)
+(1,xx)
+(3,ff)
+</code></pre>
+
+<p>But, you really don't. So far as SQL is concerned, this is the same as:</p>
+
+<pre><code>(1,xx)
+(1,xx)
+(1,yy)
+(3,ff)
+</code></pre>
+
+<p>or:</p>
+
+<pre><code>(1,yy)
+(1,xx)
+(1,xx)
+(3,ff)
+</code></pre>
+
+<p>or even:</p>
+
+<pre><code>(1,yy)
+(1,xx)
+(3,ff)
+(1,xx)
+</code></pre>
+
+<p>That is to say, rows do not have any kind of ordering. You need some other columns in this table (and TableA) to allow the rows from one table to be matched uniquely with rows in another table.</p>

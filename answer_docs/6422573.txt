@@ -1,0 +1,7 @@
+<p>My understanding is that you want to be able to move the inner canvas around within the outer canvas and provide limitations on how much the inner canvas can be moved.</p>
+
+<p>This functionality sounds very similar to a draggable map effect. If so, are you able to adapt the map control with a custom image for panning/zooming?</p>
+
+<p>To answer your specific question as I understand it though, you need to detect the current position of the inner canvas when you process your <code>GestureListener</code> or <code>GestureReceiver</code> event.</p>
+
+<p>Then either stop the movement when you reach your x,y point or prevent execution of the event if it is already at that position.</p>

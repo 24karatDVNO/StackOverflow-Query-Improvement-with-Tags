@@ -1,0 +1,5 @@
+<p>Historically, the solution of polling (a loop that determines if said "file" exists at some interval) would be the "best" one.  If you're using modern Linux (2.6.12+ but you didn't specify), you can use <a href="http://en.wikipedia.org/wiki/Inotify" rel="nofollow">inotify</a> which probably does exactly what you want -- monitor a directory for the creation of a file (IN_CREATE).  The Wikipedia article to which I linked gives a very good overview and helpful links.</p>
+
+<p>The part where it becomes unplugged is tricky.  When a file is deleted in *nix (dating back to forever-ago), its file descriptors are still valid.  Therefore I would guess that <code>extern int errno;</code> may be your solution; your post was tagged with "C" so there is nothing to "throw" but if you check this when your <code>read</code> (or whatever) call fails, you can gain insight.</p>
+
+<p>Also check out libudev, which is of course more specific to devices rather than the general "everything is a file" philosophy of *nix.</p>

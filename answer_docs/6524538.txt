@@ -1,0 +1,22 @@
+<p>It looks like you want to <a href="http://www.aspose.com/documentation/.net-components/aspose.words-for-.net/mail-merge-and-reporting.html" rel="nofollow">merge the field values in a Word document using VB.NET</a>. If I'm correct, you may try <a href="http://www.aspose.com/categories/.net-components/aspose.words-for-.net/default.aspx" rel="nofollow">Aspose.Words for .NET</a>. This component provides a comprehensive solution for such merging scenarios. </p>
+
+<p>Here is a simple code snippet as well:</p>
+
+<pre><code>' Open an existing document.
+
+Dim doc As New Document(MyDir &amp; "MailMerge.ExecuteArray.doc")
+
+
+
+' Fill the fields in the document with user data.
+
+doc.MailMerge.Execute(New String() {"FullName", "Company", "Address", "Address2", "City"}, New Object() {"James Bond", "MI5 Headquarters", "Milbank", "", "London"})
+
+
+
+' Send the document in Word format to the client browser with an option to save to disk or open inside the current browser.
+
+doc.Save(Response, "PersonalizedLetter Out.doc", ContentDisposition.Inline, Nothing)
+</code></pre>
+
+<p>Disclosure: I work as developer evangelist at Aspose.</p>

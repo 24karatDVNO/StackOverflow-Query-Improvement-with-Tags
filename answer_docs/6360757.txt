@@ -1,0 +1,14 @@
+<pre><code>$(this).closest('div.imgtxt').attr('style', $(this).attr('style'));
+</code></pre>
+
+<p><a href="http://api.jquery.com/closest" rel="nofollow"><code>closest()</code></a> will grap your <code>div</code> you just created. I'd also recommend changing the code to something like this:</p>
+
+<pre><code>$("#foo img").each(function() {
+    var $this = $(this);
+    $this.wrap("&lt;div class='imgtxt' /&gt;");
+    $this.after($("&lt;span /&gt;").text($this.attr("alt")));
+    // etc.
+ });
+</code></pre>
+
+<p>This way you are not looking up/making a jQuery object every time <code>$(this)</code> is called!</p>

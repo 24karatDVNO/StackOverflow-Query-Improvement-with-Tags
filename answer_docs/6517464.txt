@@ -1,0 +1,6 @@
+<p>If the type of <code>ullHighResDiffTime</code> is unsigned long, then you are dividing an integer by and integer which won't invoke floating point arithmetic.</p>
+
+<p>Use this instead:</p>
+
+<pre><code>double udDiffTime = ullHighResDiffTime / 1000000.0;
+</code></pre>

@@ -1,0 +1,22 @@
+<p>It would be alot simpler using the Facebook javascript SDK.  If you are only trying to get basic public information, you won't need to have the user authenticate or even specify an app id.</p>
+
+<p><strong>Here is a full example:</strong></p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;div id="fb-root"&gt;&lt;/div&gt;
+&lt;a href="#" onclick="getUser('1101892195');return false;"&gt;Get User Info&lt;/a&gt;
+&lt;script src="http://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+ function getUser(id) {  
+    FB.api('/' + id,  function(response) {
+        alert('Full response: ' + JSON.stringify(response));
+        alert('User: ' + response.name);
+      }
+    );
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

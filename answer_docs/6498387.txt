@@ -1,0 +1,5 @@
+<p>The contents from <code>file.html</code> are not present the moment you attach the click event to the <code>".alert"</code> items (actually there are no <code>.alert</code> items when that code runs!).</p>
+
+<p>You need to use jQuery's <a href="http://api.jquery.com/delegate/" rel="nofollow">delegate</a> or <a href="http://api.jquery.com/live/" rel="nofollow">live</a> methods which use <strong>event bubbling</strong> in order to capture events not only from existing elements but also from new elements that are inserted in the DOM later.</p>
+
+<p>This also has the nice side effect of using only one event handler instead of one for each <code>.alert</code> element.</p>

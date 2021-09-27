@@ -1,0 +1,9 @@
+<p>@John: No, I wasn't aware of that. Thanks for the info, I'll look into it.</p>
+
+<p>@Felipe: hostname is the dns name of the server I want to connect to.</p>
+
+<p>I found a workaround to make this work. I added an additional TcpListener to the client to which the server connects when the client logs in. Over this second channel I transmit the chat messages back.</p>
+
+<p>However I couldn't understand why the old solution does not work :&lt;</p>
+
+<p>Thanks for the hints guys.</p>

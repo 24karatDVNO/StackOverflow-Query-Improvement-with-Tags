@@ -1,0 +1,3 @@
+<p>The thing that the other answers are not covering well is that when you have a templated class C and you instantiate that class with two different template types, for all practical purposes the compiler sees these as being two distinct classes, not one class instantiated in two ways.</p>
+
+<p>The types are incompatible unless you take the suggestion provided of storing pointers to a base class in your list. This way, if B and D derive off of A, then you can store B*'s and D*'s in the list, but access them through an A*.</p>

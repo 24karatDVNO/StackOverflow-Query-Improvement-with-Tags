@@ -1,0 +1,6 @@
+<p>Your query is assigning the <code>ViewBag.pc</code> variable with a <code>Product</code> object. This means that <code>ViewBag.pc</code> object will have properties for each column in the table.</p>
+
+<p>So, to refer to the data stored in the <code>Code</code> column in your view, you would use something like this:</p>
+
+<pre><code>&lt;%: ViewBag.pc.Code %&gt;
+</code></pre>

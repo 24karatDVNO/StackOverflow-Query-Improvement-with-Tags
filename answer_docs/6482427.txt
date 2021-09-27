@@ -1,0 +1,56 @@
+<p>Just as a side note:</p>
+
+<p>The new C++ standard introduces variadic templates and with that also tuples. gcc and Visual Studio (at least) support these. So if it is possible for you (i.e. if all supported compilers support tuples which is already very likely) you could use this.</p>
+
+<p>The only problem is, that some compilers still have tuple in the std::tr1 namespace and others already have it in the std namespace. Also sometimes you need to include  and sometimes . But you can configure your build system to define some macros which helps you to support several schemes. If you, for example only need to support Visual Studio 10 and/or a quite new gcc version you could do the following:</p>
+
+<pre><code>#include &lt;list&gt;
+#include &lt;string&gt;
+#include &lt;tuple&gt;
+
+std::list&lt;std::tuple&lt;int, string&gt; &gt; time;
+</code></pre>
+
+<p>For example with cmake you could generate a header file, which brings you support for all compilers, that support tuples (and with slightly more work even use boost as a fall back).</p>
+
+<p>To do this, you would create something like a tuple.h.cmake file:</p>
+
+<pre><code>#if defined( __GNUC__ ) &amp;&amp; (__GNUC__ * 100 + __GNUC_MINOR__ &lt; 430)
+# define GCC_OLDER_THAN_430 1
+#endif
+
+#if defined( _MSC_VER ) &amp;&amp; (_MSC_VER &lt; 1600 /* 2010 */)
+# define MSC_OLDER_THAN_2010 1
+#endif
+
+#if defined( GCC_OLDER_THAN_430 )
+# define TR1_IN_TR1_SUBDIRECTORY 1
+#endif
+
+#if defined( ZORBA_GCC_OLDER_THAN_430 ) || defined( ZORBA_MSC_OLDER_THAN_2010 )
+# define TR1_NS_IS_STD_TR1 1
+#endif
+
+#ifdef TR1_NS_IS_STD_TR1
+# define TR1_NS std::tr1
+#else
+# define TR1_NS std
+#endif
+
+#ifdef TR1_IN_TR1_SUBDIRECTORY
+#  include &lt;tr1/tuple&gt;
+#else
+#  include &lt;tuple&gt;
+#endif
+</code></pre>
+
+<p>Then, above example will look like follows:</p>
+
+<pre><code>#include &lt;string&gt;
+#include &lt;list&gt;
+#include "tuple.h"
+
+std::list&lt;TR1_NS::tuple&lt;int, std::string&gt; &gt; time;
+</code></pre>
+
+<p>This should work on nearly all recent compilers.</p>

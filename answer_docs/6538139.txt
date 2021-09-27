@@ -1,0 +1,18 @@
+<p>Well, it ain't pretty, but it works.  combination takes a block.</p>
+
+<pre><code>a = [1,2,3,4]
+ans = []
+
+a.combination(2) do |i|
+  a.combination(2) do |j|
+    x = [i, j]
+    y = x.flatten
+    next if y.uniq != y
+    ans &lt;&lt; x
+  end
+end
+
+puts ans.inspect
+</code></pre>
+
+<p>EDIT: made it slightly less ugly.</p>

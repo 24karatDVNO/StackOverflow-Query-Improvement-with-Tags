@@ -1,0 +1,7 @@
+<p>There are a few problems:</p>
+
+<ol>
+<li>@Dan is right, you need to change <code>$c</code> to 0 or use <code>&gt;</code> instead of <code>==</code>;</li>
+<li>You are adding 2 to <code>$c</code> in every loop instead of 1, once before the <code>if</code> statement and once in the <code>else</code> statement;</li>
+<li>Your loop will fail if the order of the records from the database is not exactly right. I would recommend looping through all your records once to generate 2 arrays, one with horizontal photos and one with vertical photos. Then you can adjust your loop and just pick a photo from the appropriate array.</li>
+</ol>

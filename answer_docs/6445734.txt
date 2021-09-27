@@ -1,0 +1,10 @@
+<p>I figured out how to remove (clear) the elements of the jgGrid. Namely, I am using the following:</p>
+
+<pre><code>$("#list2").jqGrid('clearGridData'); //Clear all rows
+$('#list2').setGridParam({ data: searchresults }); // Set to the new json result set
+$("#list2").trigger("reloadGrid") // reload
+</code></pre>
+
+<p>This works killer, plus you don't have to deal with the black magic of the <code>JsonReader</code>... whatever is going on behind the scenes is a mystery. The above assumes that <code>searchResults</code> was populated by a return Json(list) from the MVC Controller. So, when a user searches by firstname, lastname, etc, simply do an ajax call to the controller, then reload the grid. </p>
+
+<p>Granted this may not be the most robust solution, but for small result sets it rocks, plus you can trace every step.</p>

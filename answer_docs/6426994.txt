@@ -1,0 +1,5 @@
+<p>Since I cant comment yet, use onUnload().</p>
+
+<p>It fires on full postbacks too. Ajax postbacks dont fire!</p>
+
+<p>What you need to do, is guaranty inside the onUload function that you only clear the session when you want. Like setting a variable isPostBack to true before the postbacks so onUnload sees the variable and doenst send a request to clear the session.</p>

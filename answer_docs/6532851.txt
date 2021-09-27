@@ -1,0 +1,5 @@
+<p>I think the issue is related to obfuscation of our assembly. If we do not obfuscate the assembly (and hence merge all assemblies into one big assembly) everything works fine. I'm guessing that this is because Petrel is loading plugin assemblies, checking the reference assemblies and loading dependencies recursively. This won't work in this case as not all assemblies are listed as reference assemblies.</p>
+
+<p>A workaround for this is to include the reference assemblies (Infragistics) in the merged assembly. This seems to work fine. However, I guess this isn't always acceptable (e.g. for LGPL licensed libraries).</p>
+
+<p>Another, maybe better, apporach would be to listen to the <code>AppDomain.CurrentDomain.AssemblyResolve</code>-event to intercept assembly loading errors.</p>

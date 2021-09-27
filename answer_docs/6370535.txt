@@ -1,0 +1,3 @@
+<p>Although I don't know why you would want that, setting your Audio Session to <code>AVAudioSessionCategorySoloAmbient</code> should disable that feature (but also disables the ability to play in the background).</p>
+
+<p>Also make sure that <code>useApplicationAudioSession</code> on your <code>MPMoviePlayerController</code> is set to <code>YES</code>.</p>

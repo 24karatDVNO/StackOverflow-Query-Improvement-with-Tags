@@ -1,0 +1,41 @@
+<p>I'm assuming you've already discovered the answer to this, but I'll post some notes for posterity.</p>
+
+<p>Here's a simple C++ demo for sending and XML doc to a ASP.NET web method.</p>
+
+<pre><code>int _tmain(int argc, _TCHAR* argv[])
+{
+    Service1SoapProxy proxy;
+
+    _WebServiceNS1__HelloWorld helloWorld;
+    _WebServiceNS1__HelloWorld_xml xml;
+    _WebServiceNS1__HelloWorldResponse response;
+
+    xml.__any = "&lt;doc&gt;&lt;x&gt;hi&lt;/x&gt;&lt;/doc&gt;";
+    helloWorld.xml = &amp;xml;
+
+    int result = proxy.HelloWorld(&amp;helloWorld, &amp;response);
+    fprintf(stdout, "result: %i\n", result);
+
+    switch(result)
+    {
+        case SOAP_OK:
+            fprintf(stdout, "Response: %s\n", response.HelloWorldResult);
+            break;
+        default:
+            break;
+    }
+
+    return 0;
+}
+</code></pre>
+
+<p>Here's the trivial web method in the .NET service:</p>
+
+<pre><code>[WebMethod]
+public string HelloWorld(XmlNode xml)
+{
+    return string.Format("Your XML: {0}", xml.OuterXml);
+}
+</code></pre>
+
+<p>If everything works, you'll see "Response: hi" on your console.</p>

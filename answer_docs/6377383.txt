@@ -1,0 +1,29 @@
+<p>Give this a shot:</p>
+
+<pre><code>    &lt;ul class="sizeDriller"&gt;
+  &lt;li&gt;&lt;input type="button" value="S" class="sizeInput" /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;input type="button" value="M" class="sizeInput" /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;input type="button" value="L" class="sizeInput" /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;input type="button" value="XL" class="sizeInput" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+$(document).ready(function() {
+var init = 0;
+var counter = 0;
+$('.sizeInput').bind('click', function()
+  {
+  var initial = $(this).val().substring(0,1);
+  var num = $(this).val().substring(2);
+  if (!num) {
+    init = 1
+        counter = 1;
+  } else {
+    init = parseInt(num);
+    counter = init+1;
+  }
+  $(this).attr('value',initial+'/'+counter);
+  });
+});
+&lt;/script&gt;
+</code></pre>

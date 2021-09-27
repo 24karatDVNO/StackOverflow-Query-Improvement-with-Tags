@@ -1,0 +1,9 @@
+<p>As for now I am satisfied with this code because it works fine and gens a random code</p>
+
+<pre><code>DECLARE @code VARCHAR(MAX)
+SET @code=(SELECT NEWID() AS GUID)
+INSERT INTO TABLEA(CODE)
+VALUES(@code)
+</code></pre>
+
+<p>But still I hope to get it working as a function. Maybe a little bit later then :)</p>

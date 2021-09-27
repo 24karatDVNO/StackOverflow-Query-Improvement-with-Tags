@@ -1,0 +1,4 @@
+<ul>
+<li>If you want to implement a i.e. a List that is filterable by the user you can use a CursorAdapter and just set the ListViews <a href="http://developer.android.com/reference/android/widget/AbsListView.html#setTextFilterEnabled%28boolean%29" rel="nofollow">setTextFilterEnabled</a> to true</li>
+<li>You can use a <a href="http://developer.android.com/guide/topics/fundamentals/loaders.html" rel="nofollow">CursorLoader</a>, to load a new cursor in the background and swap it in when its loaded. </li>
+</ul>

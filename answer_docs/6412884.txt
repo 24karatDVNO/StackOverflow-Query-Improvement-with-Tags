@@ -1,0 +1,15 @@
+<p>Are you looking for a dictionary, where each of your values are keyed to a letter of the alphabet? In that case, you can do:</p>
+
+<pre><code>from string import lowercase as letters
+
+values = [1, 23, 3544, 23]
+mydict = {}
+for (let, val) in zip(letters, values):
+    mydict[let] = val
+
+&lt;&lt;&lt; mydict == {'a': 1, 'c': 23, 'b': 3544, 'd': 23}
+
+&lt;&lt;&lt; mydict['a'] == 1
+</code></pre>
+
+<p>You'll have to add additional logic if you need to handle lists longer than the alphabet.</p>

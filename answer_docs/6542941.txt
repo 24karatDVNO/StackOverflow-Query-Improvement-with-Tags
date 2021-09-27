@@ -1,0 +1,18 @@
+<p>First add an onclick handler to the div as</p>
+
+<p><code>&lt;div id="yourID" onclick="funct1();"</code></p>
+
+<p>here <code>funct1</code> is the function that will be called upon clicking.
+Inside funct1, do whatever you want to do.</p>
+
+<p>To edit the text value, use the function</p>
+
+<pre><code>function editTextNode(textNode,text,pos){
+    var val=textNode.nodeValue;
+    if(pos=="END"){  pos=val.length; }  //add at end of existing text
+    val=val.slice(0,pos) + text + val.slice(pos);   //*
+    textNode.nodeValue=val;
+}
+</code></pre>
+
+<p>This way you can edit it anyway you like. All you have to do is get the textnode and call this function. In case you want to add just at the end, you can remove all statements contining <code>pos</code> and replace the statement marked <em>*</em> with <code>val+=text</code></p>

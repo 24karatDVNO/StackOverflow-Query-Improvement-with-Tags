@@ -1,0 +1,12 @@
+<p>Firstly, are you placing the buttons using Interface Builder? </p>
+
+<p>If so, I'd recommend placing numbered tags for each of the buttons and then you can use something like the following to find the appropriate buttons and remove the background image.</p>
+
+<pre><code> for(UIButton *buttonname in [yourView subViews]){
+        if (buttonname.tag == 2 || buttonname.tag == 3 || buttonname.tag == 4) {
+            [buttonname setBackgroundImage:nil forState:UIControlStateNormal];
+        }
+    }
+</code></pre>
+
+<p>If you're creating them programmatically and sequentially, I'd recommend placing the buttons in an array as they're made and just remove the background of the buttons using "objectAtIndex".</p>

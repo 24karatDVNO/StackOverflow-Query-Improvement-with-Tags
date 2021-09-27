@@ -1,0 +1,13 @@
+<p>This doesn't answer your question but it's much better formatted as an answer than a comment. </p>
+
+<p>Please don't use <em>eval</em> where square bracket notation is by far the better option. Where you have:</p>
+
+<pre><code>&gt; var el_collection=eval("document.forms."+formname+"."+checkname);
+</code></pre>
+
+<p>presuming that <em>checkname</em> is the name of a radio button set, then it should be:</p>
+
+<pre><code>var el_collection = document.forms[formname][checkname];
+</code></pre>
+
+<p>Note also that if there is only one such input, <code>el_collection</code> will be a reference to that element and not an HTMLCollection, so you should check for that.</p>

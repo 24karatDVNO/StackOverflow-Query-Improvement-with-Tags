@@ -1,0 +1,6 @@
+<p>Usually null DB fields are returned as System.DbNull in which case the following cast will fail:</p>
+
+<pre><code>int temp =(int) objDataReader["aiDAta"]; 
+</code></pre>
+
+<p>You can use <a href="http://msdn.microsoft.com/en-us/library/system.data.common.dbdatareader.isdbnull.aspx" rel="nofollow">DBDataReader's IsNull</a> method to check for a null value before using it</p>

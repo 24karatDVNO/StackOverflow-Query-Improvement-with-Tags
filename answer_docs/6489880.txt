@@ -1,0 +1,26 @@
+<p>Agree with the above, gem is the way to go. Just add to you Gemfile:</p>
+
+<pre><code>gem 'paperclip', '2.3.3'
+</code></pre>
+
+<p>and run:</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>Should be as easy as that to get paperclip running. Don't forget to include the 3 migration parts when binding to a model (example for video). In this case I am adding paperclip as 'attachment' to my Video model. Just slap 'file_name', 'content_type', and 'file_size' to the end of the downcased attribute:</p>
+
+<pre><code>class AddVideoAttachment &lt; ActiveRecord::Migration
+  def self.up
+    add_column :videos, :attachment_file_name, :string
+    add_column :videos, :attachment_content_type, :string
+    add_column :videos, :attachment_file_size, :integer
+  end
+
+  def self.down
+    remove_column :videos, :attachment_file_size
+    remove_column :videos, :attachment_content_type
+    remove_column :videos, :attachment_file_name
+  end
+end
+</code></pre>

@@ -1,0 +1,15 @@
+<p>You would probably need to modify the onclick handler to find the element being clicked on (through it's ID most likely) and then call a function so that ID can be used in another function to determine what to show on te right side of the page).  Currently the accordian uses <em>this</em> which is a direct reference to the element, so you would want to consider passing that, or just the id from it.</p>
+
+<pre><code>jQuery(document).ready(function(){
+  myFunction = function(ele){
+    //my custom show/hide stuff here
+  };
+
+  $('.accordion .head').click(function() {
+    $(this).next().toggle();
+    myFunction($(this));
+    return false;
+  }).next().hide();
+
+});
+</code></pre>

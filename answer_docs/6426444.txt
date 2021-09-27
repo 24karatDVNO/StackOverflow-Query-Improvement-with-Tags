@@ -1,0 +1,18 @@
+<pre><code>for (i=0; i&lt;num; i++)
+    fprintf(f, "%d ", tmp_array[i]);
+</code></pre>
+
+<p>If you want to format it differently you can do, but this is the bare bones.  For example, adding line breaks every 10 items:</p>
+
+<pre><code>for (i=0; i&lt;num; i++)
+{
+    fprintf(f, "%d ", tmp_array[i]);
+    if ((i+1) % 10 == 0)
+        fprintf(f, "\n");
+}
+</code></pre>
+
+<p>Or perhaps you want tab separators:</p>
+
+<pre><code>fprintf(f, "%d\t", tmp_array[i]);
+</code></pre>

@@ -1,0 +1,70 @@
+<p>The problem is that the <code>DataGrid</code> isn't loaded when you attempt to set the <code>SelectedIndex</code> in the button click handler if you haven't already navigated to the tab that contains the <code>DataGrid</code>.</p>
+
+<p>The way to achieve what you want is to use data binding. You will also want to implement <code>INotifyPropertyChanged</code> for any subsequent changes to the property you bind <code>DataGrid.SelectedIndex</code> to. The following is a rough example of how to do what you want in the code you provided.</p>
+
+<pre><code>public partial class MainPage : UserControl, INotifyPropertyChanged
+{
+    private ObservableCollection&lt;string&gt; _strs 
+                                        = new ObservableCollection&lt;string&gt;();
+    public ObservableCollection&lt;string&gt; strs
+    {
+        get { return _strs; }
+        set { _strs = value; }
+    }
+
+    public MainPage()
+    {
+        this.DataContext = this;
+        InitializeComponent();
+        strs.Add("1");
+        strs.Add("2");
+        strs.Add("3");
+        strs.Add("4");
+        strs.Add("5");
+
+        SelectedIndex = 0;
+    }
+
+    private int _selectedIndex;
+    public int SelectedIndex
+    {
+        get { return _selectedIndex; }
+        set
+        {
+            _selectedIndex = value;
+            var pChanged = PropertyChanged;
+            if (pChanged != null)
+                pChanged(this, new PropertyChangedEventArgs("SelectedIndex"));
+        }
+    }
+
+    private void button1_Click(object sender, RoutedEventArgs e)
+    {
+        SelectedIndex ++;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+}
+</code></pre>
+
+<p>Then update your <code>DataGrid</code> definition in xaml to:</p>
+
+<pre><code>&lt;sdk:DataGrid ItemsSource="{Binding strs}"
+              SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+              RowBackground="White"
+              AutoGenerateColumns="False"
+              Height="141"
+              HorizontalAlignment="Left"
+              Margin="36,12,0,0"
+              Name="dataGrid1"
+              VerticalAlignment="Top"
+              Width="199"&gt;
+    &lt;sdk:DataGrid.Columns&gt;
+        &lt;sdk:DataGridTextColumn Binding="{Binding}"
+                                CanUserReorder="True"
+                                CanUserResize="True"
+                                CanUserSort="True"
+                                Width="Auto" /&gt;
+    &lt;/sdk:DataGrid.Columns&gt;
+&lt;/sdk:DataGrid&gt;
+</code></pre>

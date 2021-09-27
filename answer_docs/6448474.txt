@@ -1,0 +1,38 @@
+<p>Try this.</p>
+
+<pre><code>$(document).ready(function(){
+    $("#first").click(function()
+    {
+        MyFunction($("#firsthidden"), $("#secondhidden"), $("#thirdhidden"));
+    });
+    $("#second").click(function()
+    {
+        MyFunction($("#secondhidden"), $("#firsthidden"), $("#thirdhidden"));
+    });
+    $("#third").click(function()
+    {
+        MyFunction($("#thirdhidden"), $("#secondhidden"), $("#firsthidden"));
+    });
+    function MyFunction(x, a, b)
+    {
+        if (x.css('display') == "block")
+        {
+            $(x.hide("blind", "slow");
+            $("div.outer").animate({height:200},"slow");
+        }
+        else
+        {
+            x.show("blind", "slow");
+            $("div.outer").animate({height:390},"slow");
+        }
+        if (a.css('display') == "block")
+        {
+            a.hide("blind", "slow");
+        }
+        if (b.css('display') == "block")
+        {
+            b.hide("blind", "slow");
+        }
+    });
+});
+</code></pre>

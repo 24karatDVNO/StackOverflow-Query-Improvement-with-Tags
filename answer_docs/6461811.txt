@@ -1,0 +1,8 @@
+<p>You need to return the result hash at the end of each iteration.</p>
+
+<pre><code>i = 0
+params[:gallery][:photos_attributes]["0"][:image].reduce({}) do |result, element|
+  result[(i += 1).to_s] = element
+  result
+end
+</code></pre>

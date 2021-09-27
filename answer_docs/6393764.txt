@@ -1,0 +1,9 @@
+<p>The following are some of the useful properties of the ColorDialog control in your case. But none of them satisfy your constrant. I think in your case you have to create your own dialog box with your custom colors list.</p>
+
+<p>AllowFullOpen - Specifies whether the user can choose custom colors. </p>
+
+<p>CustomColors -  A collection of custom colors picked by the user. </p>
+
+<p>FullOpen - Specifies whether the part used to pick custom colors are automatically open. </p>
+
+<p>Users can create their own set of custom colors. These colors are contained in an Int32 composed of the ARGB component (alpha, red, green, and blue) values necessary to create the color. Custom colors can only be defined if AllowFullOpen is set to true. So, it's not possible to set CustomColors and restrict others. </p>

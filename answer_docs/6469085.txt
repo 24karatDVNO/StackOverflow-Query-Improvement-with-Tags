@@ -1,0 +1,3 @@
+<p>The <code>onmessagecomplete</code> event will be triggered from a server-side call to the REST API (as @andrew-marshall points out). You can trigger events from .NET using the <a href="https://github.com/grahamscott/pusherrestdotnet" rel="nofollow">Pusher .NET REST library</a> which has been written in C#.</p>
+
+<p>The reason this can clearly be identified as a server triggered event is that any client events must have a <code>client-</code> prefix.</p>

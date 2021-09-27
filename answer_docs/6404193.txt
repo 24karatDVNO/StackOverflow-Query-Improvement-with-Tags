@@ -1,0 +1,13 @@
+<p>layoutroot is most likely the id given to the root layout as in</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutroot"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"&gt;
+... 
+... (other ui items)
+</code></pre>
+
+<p>Try to use the id of the view you want to capture and check if the drawing cache is enabled.</p>

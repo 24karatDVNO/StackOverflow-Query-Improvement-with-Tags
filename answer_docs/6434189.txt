@@ -1,0 +1,20 @@
+<p>I think what you want to do is add another view model</p>
+
+<pre><code>ProgramSkillsModel
+{
+    string Category {get;set;}
+    IList&lt;ProgramSkill&gt; Skills {get;set;}
+}
+</code></pre>
+
+<p>Then in your controller Index()</p>
+
+<pre><code>ProgramsViewModel vm = new ProgramsViewModel();        
+vm.ProgramSkills = consultant.ProgramSkills.GroupBy(c =&gt; c.Category)
+                     .Select(c =&gt; new ProgramSkillsModel{
+Category = c.Key,
+Skills = c.ToList(),
+});
+</code></pre>
+
+<p>Hopefully that works. It's just pseudo code</p>

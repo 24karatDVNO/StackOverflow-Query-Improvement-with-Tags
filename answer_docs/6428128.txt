@@ -1,0 +1,11 @@
+<p>After Collecter provided the key insight about what wasn't working, I found a nicer way to preserve the tab content for reuse. I changed my close function to the following:</p>
+
+<pre><code>$('#tabs').find('div.transient').find(".close").live('click', function() {
+    var footer_tabs = $('#tabs');
+    var tab = $(this).closest("div.transient");
+    var index = footer_tabs.tabs("option", "selected");
+    footer_tabs.tabs("select", -1);
+    footer_tabs.tabs("remove", index);
+    footer_tabs.append(tab);
+});
+</code></pre>

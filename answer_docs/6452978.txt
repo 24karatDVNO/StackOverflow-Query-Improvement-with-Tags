@@ -1,0 +1,15 @@
+<p>What you're looking for some combination of <a href="http://msdn.microsoft.com/en-us/library/bb383977.aspx" rel="nofollow">LINQ extension methods</a> (which depends on what you're exactly trying to do).</p>
+
+<p>For example if I had a List of fruits to their colors and wanted to get a collection of which fruits are red, I would do something like:</p>
+
+<pre><code>var fruits = new List&lt;KeyValuePair&lt;string,string&gt;&gt;() { 
+             new KeyValuePair&lt;string,string&gt;("Apple", "Green"),
+             new KeyValuePair&lt;string,string&gt;("Orange", "Orange"), 
+             new KeyValuePair&lt;string,string&gt;("Strawberry", "Red"), 
+             new KeyValuePair&lt;string,string&gt;("Cherry", "Red") 
+        };
+
+var redFruits = fruits.Where(kvp =&gt; kvp.Value == "Red").Select(kvp =&gt; kvp.Key);
+
+// this would result in a IEnumberable&lt;string&gt; { "Strawberry", "Cherry" }
+</code></pre>

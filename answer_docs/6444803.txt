@@ -1,0 +1,14 @@
+<p>if you want to strip all tags, then try this</p>
+
+<p><strong>function:</strong></p>
+
+<pre><code>String.prototype.stripTags=function(){
+var rtag=/&lt;.*?[^&gt;]&gt;/g;
+return this.replace(rtag,'');
+}
+</code></pre>
+
+<p><strong>usage:</strong>   </p>
+
+<pre><code>var newText=$('selector').html().stripTags();
+</code></pre>

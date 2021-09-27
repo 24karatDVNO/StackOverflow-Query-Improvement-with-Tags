@@ -1,0 +1,11 @@
+<p>Couple of possible approaches:</p>
+
+<p>You could  make sure the property file is in the classpath of the running JVM.  You can add to the classpath on the command line by java -Dclasspath=/path/to/property/file:$CLASSPATH </p>
+
+<pre><code>    Properties props = new Properties();
+    URL url = ClassLoader.getSystemResource(propsName);
+    props.load(url.openStream());
+    return props;
+</code></pre>
+
+<p>You could specify the location as an absolute value in an environment variable (System.getenv('FILELOCATION'))</p>

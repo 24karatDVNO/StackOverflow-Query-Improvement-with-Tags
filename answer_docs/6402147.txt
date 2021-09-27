@@ -1,0 +1,9 @@
+<p>Looks like an encoding issue.</p>
+
+<p>I use to have this issue after reading Excel into a data table and then serializing the data table to a file.</p>
+
+<p>Every time I would read the data back in from the serialized file, some symbols would be replaced with funny A's and E's.</p>
+
+<p>I discovered the problem was with the encoding I was using. I then started to store excel data using Unicode encoding and have never encounter another symbol problem with Excel data again.</p>
+
+<p>I hope this helps...</p>

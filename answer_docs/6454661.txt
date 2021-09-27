@@ -1,0 +1,12 @@
+<p>If you want to create your own function then use this code</p>
+
+<pre><code>string str = "CITY OF DUBLIN YOUNG MEN'S CHRISTIAN ASSOCIATION LIMITED";
+char[] ch = { ' ' };
+string[] str1 = str.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+string result = string.Empty;
+foreach (string s in str1)
+{
+    result += s[0].ToString().ToUpper() + s.Substring(1, s.Length - 1).ToLower() + " ";
+}
+Response.Write(result);
+</code></pre>

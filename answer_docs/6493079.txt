@@ -1,0 +1,12 @@
+<p>So, I have ended up replacing the parameter with an actual value:</p>
+
+<pre><code>String hql = "select sum(doc._masskg), "+
+"    case when (month(doc._date) = month(%1$s)) then 'NOW' else 'BEFORE' "+
+"from Document doc "+
+"    where month(doc._date) &lt;= month(%1$s) "+
+"group by "+
+"    case when (month(doc._date) = month(%1$s)) then 'NOW' else 'BEFORE' end";
+
+Iterator i = session.createQuery(String.format(HQL, "to_date('09.10.2011', 'DD.MM.YYYY')"))
+                .iterate();  
+</code></pre>

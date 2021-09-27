@@ -1,0 +1,5 @@
+<p>I'll assume that the ID of the parent of the '2001' page is 5.</p>
+
+<p>SELECT name FROM page_table WHERE id=(SELECT parentID FROM page_table WHERE id=5)</p>
+
+<p>As long as you know your depth level within the hierarchy, you can construct subqueries to find your way back to the top.</p>

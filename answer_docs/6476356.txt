@@ -1,0 +1,11 @@
+<p>can you telnet to post 1433 on the sql server box?</p>
+
+<p>try this in the command line from your local iis box:</p>
+
+<pre><code>telnet servername 1433
+</code></pre>
+
+<p>If it doesn't connect through the command line, then you will need to open security ports to the sql box.</p>
+
+<p>If it connects fine, then you might want to check your connection string settings.
+Can you provide your web.config if this is the case.</p>

@@ -1,0 +1,13 @@
+<p>If you instead kept your data as XML <em>(ie. not splitting the HTML down to a comma-separated list)</em>, you may be able to use the data directly.</p>
+
+<pre><code>declare @data as XML
+
+set @data = '&lt;tags&gt;'
+          + '&lt;tag&gt;cars&lt;/tag&gt;'
+          + '&lt;tag&gt;red&lt;/tag&gt;'
+          + '&lt;tag&gt;2010&lt;/tag&gt;'
+          + '&lt;/tags&gt;'
+
+SELECT tag.value('text()[1]', 'varchar(50)') as 'tags'
+FROM   @data.nodes('/tags/tag') AS tags(tag)
+</code></pre>

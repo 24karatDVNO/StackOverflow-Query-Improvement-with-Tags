@@ -1,0 +1,8 @@
+<p>Perhaps there is a difference caused by the way Explorer launches an executable vs directly running it from the console.  I think that Explorer uses <a href="http://msdn.microsoft.com/en-us/library/bb762153%28v=VS.85%29.aspx" rel="nofollow">ShellExecute</a> or <a href="http://msdn.microsoft.com/en-us/library/bb762154%28v=VS.85%29.aspx" rel="nofollow">ShellExecuteEx</a> and I doubt that executing an application from a console or batch file does the same.  </p>
+
+<p>I would create a test app that tries some of the ShellExecute variants and use different parameters to see if the Explorer behavior can be reproduced in order to try to diagnose what parameters passed to ShellExecute might be causing the problem.</p>
+
+<p>There is an interesting community note on the ShellExecuteEx page that may or may not be applicable:
+<code>ShellExecuteEx ignores the current input desktop. It always uses winsta0\default.  Instead use ShellExecute or CreateProcess.</code></p>
+
+<p>I would also investigate whether or not <a href="http://support.microsoft.com/kb/931709" rel="nofollow">AppCompatFlags</a> affect console executed applications (or see if any AppCompatFlags have been set for your application).</p>

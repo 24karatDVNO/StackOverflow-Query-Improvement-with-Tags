@@ -1,0 +1,110 @@
+<p>I can give an example in one controller, one view and three C# classes.  To use this code, create an empty MVC2 project in visual studio and add a reference to Entity Framework dll version 4.1.  If you need help as to where to put these files I recommend <a href="http://blog.stevensanderson.com/2010/06/11/pro-aspnet-mvc-2-framework/" rel="nofollow">Steve Sanderson's MVC2 book</a>.</p>
+
+<pre><code>public class User
+{
+    public int ID { get; set; }
+    public string UserName { get; set; }
+    public string Question { get; set; }
+
+    public virtual Location Category { get; set; }
+}
+
+public class Location
+{
+    public int ID { get; set; }
+    public string LocationName { get; set; }
+}
+</code></pre>
+
+<p>Repository</p>
+
+<pre><code>using System.Data.Entity;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Repository : System.Data.Entity.DbContext
+{
+    public DbSet&lt;User&gt; User { get; set; }
+    public DbSet&lt;Location&gt; Locations { get; set; }
+
+    public Repository()
+    {
+        this.Database.Connection.ConnectionString = 
+            @"Server=.;Database=Test;Integrated Security=SSPI";
+
+        if (!this.Database.Exists())
+        {
+            this.Database.Create();
+            this.Locations.Add(new Location { LocationName = "Queensway" });
+            this.Locations.Add(new Location { LocationName = "Shepherds Bush" }); 
+            this.SaveChanges();
+        }
+    }
+
+    public IEnumerable&lt;Location&gt; GetLocations()
+    {
+        return this.Locations.Where(x =&gt; x.ID &gt; -1);
+    }
+
+    public Location GetLocation(int id)
+    {
+        return this.Locations.First(x =&gt; x.ID == id);
+    }
+
+    public void SaveUser(User user)
+    {
+        this.User.Add(user);
+        this.SaveChanges();
+    }
+}
+</code></pre>
+
+<p>Controllers\HomeContoller.cs: </p>
+
+<pre><code>using System.Web.Mvc;
+
+public class HomeController : Controller
+{
+    Repository repo = new Repository();
+
+    [HttpGet]
+    public ActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Index(User user, int categoryId)
+    {
+        user.Category = repo.GetLocation(categoryId);
+        repo.SaveUser(user);
+        return View();
+    }
+}
+</code></pre>
+
+<p>Views\Home\Index.aspx</p>
+
+<pre><code>&lt;%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage&lt;User&gt;" %&gt;
+
+&lt;html&gt; 
+&lt;body&gt;
+    &lt;% using (Html.BeginForm())
+       {%&gt;
+    Username: &lt;%: Html.TextBoxFor(model =&gt; model.UserName) %&gt;&lt;br /&gt;
+    Question: &lt;%: Html.TextBoxFor(model =&gt; model.Question) %&gt;&lt;br /&gt;
+    Location: &lt;select name="categoryId"&gt;
+        &lt;% foreach (var location in new Repository().GetLocations())
+           {%&gt;
+        &lt;option value="&lt;%= location.ID %&gt;"&gt;
+            &lt;%= location.LocationName %&gt;&lt;/option&gt;
+        &lt;%} %&gt;
+    &lt;br /&gt;
+    &lt;/select&gt;
+    &lt;p&gt;
+        &lt;input type="submit" value="Create" /&gt;
+    &lt;/p&gt;
+    &lt;% } %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

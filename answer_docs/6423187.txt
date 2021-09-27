@@ -1,0 +1,30 @@
+<p>This is just looping through y from 1 to "1 less than x". Within an outer loop where x is decreasing from 10 down to 1.</p>
+
+<pre><code>int x, y;  //Declare 2 integers x and y.
+
+for(x = 10; x &gt;= 1; x--)      //Loop through values of x starting with 10 then decrease by 1 until x = 1. Each time do the following:
+{          
+    for(y = 1; y &lt; x; y++)  //Loop through values for y starting at 1 and going to 1 less than the x from the line above. Each time do the following:            
+    {
+        printf("%d", y);  // Print the value of y as a decimal integer               
+    }   
+    printf("\n");      //Print a carriage return. i.e. start a new line after this.
+}
+
+system("pause");  //Wait so you can see the output until you type a key.
+
+return 0; //When this program is run it will return a value of 0 to whereever it was called from.
+</code></pre>
+
+<p>You should see the following output.</p>
+
+<pre><code>123456789
+12345678
+1234567
+123456
+12345
+1234
+123
+12
+1
+</code></pre>

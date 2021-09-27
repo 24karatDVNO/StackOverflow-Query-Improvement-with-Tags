@@ -1,0 +1,12 @@
+<p>I had the exact same problem even with embedded fonts (Arial and Helvetica). As well as the above by frankhermes, you must also do the following;</p>
+
+<p>SOLUTION:</p>
+
+<p>Ensure that your external file being loaded dynamically is also supported; in my case a text file.
+To ensure a text file is supported when loading text with foreign characters into a dynamic text field in Flash, make sure you save it as a UTF-8 Unicode.</p>
+
+<p>METHOD:</p>
+
+<p>Whilst in Text Edit, click FILE > SAVE AS, name your file and at the bottom of the Save As dialoue box, you will see "Plain Text Encoding" with a drop down list next to it, click the drop-down and choose "Unicode (UTF-8)" and then save it. </p>
+
+<p>Viola! Problem solved!!!</p>

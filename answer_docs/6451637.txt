@@ -1,0 +1,17 @@
+<p>This seems to work in FF:</p>
+
+<pre><code>$(document).ready( function() {
+    $( "#divTest" ).resizable({
+        maxHeight: 200,
+        maxWidth: 100,
+        minHeight: 0,
+        minWidth: 100,
+          handles:'s',
+            resize: function(event, ui) {
+            $( "#divHeight" ).empty().append("height: " + $(this).height());
+        }
+    });
+
+    $('.ui-resizable-s').dblclick(function(){$( "#divTest" ).height(0);})
+});
+</code></pre>

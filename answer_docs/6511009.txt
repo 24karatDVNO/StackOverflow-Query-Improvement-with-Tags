@@ -1,0 +1,26 @@
+<p>I think you've got viewstate problem.</p>
+
+<p>One of the things you can do is this :</p>
+
+<pre><code>    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            // do things here
+        }
+    }
+</code></pre>
+
+<p>Because whenever anything happens, the page posts back. By encapsulating your <code>Page_Load</code> with <code>! Page.IsPostBack</code>, you prevent those things from happening over and over again.</p>
+
+<p>Now, if your variable is a global variable, you will have this same problem. Consider instead using a <code>Session</code> variable.</p>
+
+<p>Also, I just wanted to show you this piece of code just in case :</p>
+
+<pre><code>    protected void HideShowClicked(object sender, EventArgs e)
+    {
+        // toggle the visibility of the control
+        // (that is, if visible then hide, if hidden then show) 
+        myControl.Visible = ! myControl.Visible;
+    }
+</code></pre>

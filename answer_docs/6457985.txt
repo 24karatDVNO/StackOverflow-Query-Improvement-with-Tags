@@ -1,0 +1,8 @@
+<p>I used jQuery to do this.  In my case I had a drop-down select item as a field on the edit for and I wanted to add a link next to it.  I used the beforeShowForm event.</p>
+
+<pre><code>beforeShowForm: function(form) {
+           $("#MyDropDownList").after("&lt;a href='#' id='link'&gt;A Link To Something&lt;/a&gt;");
+       },
+</code></pre>
+
+<p>Hope this helps, even though it's a few weeks late.</p>

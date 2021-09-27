@@ -1,0 +1,8 @@
+<p>If you also expect to exclude string starting with ftp://, etc:</p>
+
+<pre><code>&gt;&gt;&gt; re.match('[^/]*\.asp', '/tmp/foo.asp')
+&gt;&gt;&gt; re.match('[^/]*\.asp', 'http://foo.asp')
+&gt;&gt;&gt; re.match('[^/]*\.asp', 'ftp://foo.asp')
+&gt;&gt;&gt; re.match('[^/]*\.asp', 'foo.asp')
+&lt;_sre.SRE_Match object at 0x2abe856856b0&gt;
+</code></pre>

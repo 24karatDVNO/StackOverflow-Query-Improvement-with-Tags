@@ -1,0 +1,26 @@
+<p>The problems are arising because your Table2 is not really a 'vehicle' table. Because the VehicleId does not uniquely identify a record in that table. This is where all of the confusion is coming from. So to solve that and get your problem to work I did a select distinct on table2 against the values in table 1 (I also did a select distinct for clarity, but it was not necessary.) Hope this helps.</p>
+
+<pre><code>CREATE TABLE #Table1 (Id INT)
+CREATE TABLE #Table2 (VehicleID INT, Value VARCHAR(50), Table1ID INT)
+
+INSERT INTO #Table1 VALUES (1),(2),(3),(4),(5)
+INSERT INTO #Table2 VALUES (1, 't', 1),(1, 'q', 2),(3, 'w', 3),(3, 'e', 4),(4, 't', 1),(5, 'e', 1),(5, 'f', 2),(5, 'g', 4)
+
+SELECT * FROM #Table1
+SELECT * FROM #Table2
+
+SELECT  t2.VehicleID, t2.Value
+FROM    ( SELECT    t2.VehicleId, t1.Id
+          FROM      ( SELECT DISTINCT
+                                VehicleId
+                      FROM      #Table2 ) t2
+                    CROSS JOIN ( SELECT Id
+                                 FROM   #Table1 ) t1 ) Base
+        LEFT JOIN #Table2 t2
+            ON Base.VehicleId = t2.VehicleID
+               AND Base.Id = t2.Table1ID
+WHERE (Base.VehicleId BETWEEN 1 AND 3)
+
+DROP TABLE #Table1
+DROP TABLE #Table2
+</code></pre>

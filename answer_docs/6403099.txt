@@ -1,0 +1,13 @@
+<p>You are passing pointer to array to your function. That means <code>h</code> has only one element.</p>
+
+<pre><code>swap( &amp;p, 10 );
+</code></pre>
+
+<p>Should be:</p>
+
+<pre><code>swap( p, 10 );
+</code></pre>
+
+<p>That means you need to change your function to accept arrays of <code>mystruct</code> or change <code>p</code> to array of pointers to <code>mystruct</code>.</p>
+
+<p>And, as KennyTM suggested the last element has index 9 not 10.</p>

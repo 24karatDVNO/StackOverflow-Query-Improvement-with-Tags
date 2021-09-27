@@ -1,0 +1,22 @@
+<p>Got it!</p>
+
+<p>Instead of creating the "Product" entity on the POST EditProduct method, i use a Form Collection and then set each product detail according to that form collection and then save.  I don't understand why it doesn't work the first way.  I am manually updating the foreign reference.  Maybe i am missing something?</p>
+
+<pre><code>[HttpPost]
+public ActionResult EditProduct(int id, FormCollection formCollection)
+{
+    var model = new MyLSstoreInfoViewModel{
+                                  StoreCurrent = _profileRepository.GetProduct(Id)
+                                          };
+    var productDetails = model.Product.ProductDetails.Where(p =&gt; p.productId == id).Single();
+
+
+            productDetaisl.Details = formCollection["details"];
+            if (TryUpdateModel(model.StoreCurrent))
+            {
+
+                _profileRepository.Save();
+
+            }
+}
+</code></pre>

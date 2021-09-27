@@ -1,0 +1,7 @@
+<p>I cannot even see any not-so-obvious bugs, so will note that <a href="http://www.sqlite.org/c3ref/free_table.html" rel="nofollow">sqlite3_get_table says</a>:</p>
+
+<blockquote>
+  <p>This is a legacy interface that is preserved for backwards compatibility. Use of this interface is not recommended.</p>
+</blockquote>
+
+<p>but it really shouldn't be broken. Have you double-checked that the table actually contains more than zero rows?</p>

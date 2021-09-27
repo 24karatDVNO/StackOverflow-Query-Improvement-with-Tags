@@ -1,0 +1,37 @@
+<p>You need to read on unsynchronized ws calls and how to fill up data in a listview dynamically. Here is the code snippet below that works and will ensure that no mattter how much time the WS CAll takes there is no interruption on the GUI and the flow is smooth:</p>
+
+<pre><code>String wsResponse[];
+
+public void sampleFunction()
+    {
+
+
+        progressDialog = ProgressDialog.show(this, "", "Getting backup list...");
+        new Thread() {
+            public void run() {
+                try {
+                    //do the ws call and store the ws response in a string array 
+                    wsResponse=wsCall();
+
+                }catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                messageHandler.sendEmptyMessage(0);
+                //              messageHandler.sendEmptyMessage(0);
+            }
+        }.start();
+    }
+}
+
+
+//inside the handler set the string array retrieved from the WS in sampleFunction to the adapter
+private Handler messageHandler = new Handler() {
+
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //here write the code to assign the string array to the adapter
+
+        }
+    };
+</code></pre>

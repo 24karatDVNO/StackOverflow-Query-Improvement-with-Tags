@@ -1,0 +1,3 @@
+<p>It's <a href="https://docs.djangoproject.com/en/dev/topics/db/queries/#retrieving-specific-objects-with-filters" rel="nofollow">in the docs</a>. You want:</p>
+
+<p><code>t = Times.objects.filter(delay__ne=0)</code></p>

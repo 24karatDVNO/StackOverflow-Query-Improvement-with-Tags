@@ -1,0 +1,42 @@
+<p>You need more detail as mentioned elsewhere. But what is clear is that you should use push instead pull in order to get all your data. Google 'xslt push' and read up on this. Here is a quick example:</p>
+
+<p>XML</p>
+
+<pre><code>&lt;div&gt;
+&lt;div id ="mbSubMenu"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;a href="#"&gt;Blah&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+  &lt;div id="something"&gt;
+    &lt;a href="#"&gt;else&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>XSLT</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+  &lt;xsl:output method="html" indent="yes"/&gt;
+
+  &lt;xsl:template match="/"&gt;   
+    &lt;html&gt;
+      &lt;xsl:apply-templates select="//div[@id = 'mbSubMenu']" /&gt;
+    &lt;/html&gt; 
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template match="li"&gt;
+    &lt;p&gt;
+      &lt;xsl:apply-templates/&gt;
+    &lt;/p&gt;
+  &lt;/xsl:template&gt;
+
+    &lt;xsl:template match="a"&gt;
+    &lt;xsl:copy-of select="."/&gt;
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>

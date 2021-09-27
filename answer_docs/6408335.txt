@@ -1,0 +1,7 @@
+<p>I've suggested a <a href="https://stackoverflow.com/questions/6392942/postgresql-trigger-to-generate-codes-for-multiple-tables-dynamically">dup question</a>, since it's really the same underlying issue.</p>
+
+<hr>
+
+<p>I'd be quite enthusiastic to be shown wrong (I occasionally need this myself too), but best I'm aware, referring column names using variables is one of those cases where you actually need to use PL/C triggers rather than PL/PgSQL triggers. You'll find examples of such triggers in contrib/spi and on PGXN.</p>
+
+<p>Alternatively, write a function that writes your trigger <a href="https://stackoverflow.com/questions/6392942/postgresql-trigger-to-generate-codes-for-multiple-tables-dynamically/6393882#6393882">using <code>execute</code> statements</a>.</p>

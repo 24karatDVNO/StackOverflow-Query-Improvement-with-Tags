@@ -1,0 +1,13 @@
+<p>Is there a reason you're using find_by_sql?</p>
+
+<p>The docs suggest that supplying an array (your syntax looks wrong anyway - where's the closing square bracket?) isn't an option - you have to supply the sql</p>
+
+<pre><code># File activerecord/lib/active_record/base.rb, line 472
+def find_by_sql(sql)
+  connection.select_all(sanitize_sql(sql), "#{name} Load").collect! { |record| instantiate(record) }
+end
+</code></pre>
+
+<p>EDIT: looks like I'm wrong - sanitize_sql will take a string, array or hash. Still...</p>
+
+<p>My tip: try looking to do this without find_by_sql()</p>

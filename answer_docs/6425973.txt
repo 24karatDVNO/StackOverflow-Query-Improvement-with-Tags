@@ -1,0 +1,15 @@
+<p>The web.xml look good but it is impossible to know why you are getting a 404 without knowing more about your environment. </p>
+
+<p>The problem might be that the servlet is not loaded or if it is being loaded, that the servlet cannot find the URL.</p>
+
+<p>To see if your servlet is being loaded add a log statement (System.out will do) to the init method of the servlet. Add the following line to your servlet element as well so that the servlet will not load on demand but at startup:</p>
+
+<pre><code>&lt;load-on-startup&gt;0&lt;/load-on-startup&gt;
+</code></pre>
+
+<p>Then you can check that the servlet is being recognized and loaded. </p>
+
+<p>Then add a log statement to the doGet/doPost etc methods to output the .getPathInfo of the request object. It might help to add a wildcard to the servlet mapping as well just to test:</p>
+
+<pre><code>&lt;url-pattern&gt;/authenticate/*&lt;/url-pattern&gt;
+</code></pre>

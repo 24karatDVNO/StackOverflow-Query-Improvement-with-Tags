@@ -1,0 +1,21 @@
+<p>A more general purpose way to do this is to tell PHP how to sort the items, by defining a sorting "comparison" that prefers the "top choices", and then passing it to <code>usort</code>.</p>
+
+<p>I don't really know PHP, but something like:</p>
+
+<pre><code>function prefer_top($a, $b) {
+    /* We can modify this array to specify whatever the top choices are. */
+    $top_choices = array('Steak');
+    /* If one of the two things we're comparing is a top choice and the other isn't,
+       then it comes first automatically. Otherwise, we sort them alphabetically. */
+    $a_top = in_array($a, $top_choices);
+    $b_top = in_array($b, $top_choices);
+    if ($a_top &amp;&amp; !$b_top) { return -1; }
+    if ($b_top &amp;&amp; !$a_top) { return 1; }
+    if ($a == $b) { return 0; }
+    return ($a &lt; $b) ? -1 : 1;
+}
+
+usort($meat_items, "prefer_top");
+
+// and then output them all in order as before.
+</code></pre>

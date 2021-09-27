@@ -1,0 +1,36 @@
+<p>You need to determine when a thread was finished:</p>
+
+<pre><code>// Create and start a thread
+Thread thread = new MyThread();
+thread.start();
+
+// Check if the thread has finished in a non-blocking way
+if (thread.isAlive()) {
+  // Thread has not finished
+} else {
+  // Finished
+}
+
+// Wait for the thread to finish but don't wait longer than a
+// specified time
+long delayMillis = 5000; // 5 seconds
+try {
+   thread.join(delayMillis);
+
+  if (thread.isAlive()) {
+     // Timeout occurred; thread has not finished
+  } else {
+     // Finished
+  }
+ } catch (InterruptedException e) {
+    // Thread was interrupted
+}
+
+// Wait indefinitely for the thread to finish
+try {
+ thread.join();
+  // Finished
+} catch (InterruptedException e) {
+  // Thread was interrupted
+}
+</code></pre>

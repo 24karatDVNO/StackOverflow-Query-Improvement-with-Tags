@@ -1,0 +1,47 @@
+<p>Call me paranoia but i find this solution more elegant and that because i don't think you need owners to be a class variable at all:</p>
+
+<pre><code>def auto_assign_perms(*users):
+
+    def class_wrapper(cls):
+        class ClassWrapper(cls):
+            def __init__(self, owners=users):
+                super(cls, self).__init__(owners=owners)
+
+        ClassWrapper.__name__ = cls.__name__
+        ClassWrapper.__module__ = cls.__module__
+
+        return ClassWrapper
+
+    return class_wrapper
+
+
+class Base(object):
+    def __init__(self, owners=None):
+        if owners is None:
+            owners = set()
+        self.owners = owners
+
+    def save(self, *args, **kwargs):
+        for owner in self.owners:
+            print owner,
+        print
+
+
+@auto_assign_perms('owner', 'user')
+class Test1(Base):
+    pass
+
+
+@auto_assign_perms('coach')
+class Test2(Base):
+    pass
+
+
+class Test3(Base):
+    pass
+
+
+t = Test1(); t.save() # owner user
+t = Test2(); t.save() # coach
+t = Test3(); t.save() # 
+</code></pre>

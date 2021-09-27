@@ -1,0 +1,12 @@
+<p>I am not sure there is any built-in regex solution for to change the case. But I think you can do it by hands by writing a new regex for every character.</p>
+
+<p>Converting to upper case example:</p>
+
+<pre><code>$new_string = preg_replace(
+    array('a', 'b', 'c', 'd', ....),
+    array('A', 'B', 'C', 'D', ....),
+    $string
+);
+</code></pre>
+
+<p>I think you got the point.</p>

@@ -1,0 +1,8 @@
+<p>I have just come across this same issue. It was seemingly being caused because I had applied position:relative to the parent element.</p>
+
+<p>Adding this this CSS fixed the issue for me:</p>
+
+<pre><code>.ajax__calendar_prev, .ajax__calendar_next{z-index:1;}
+</code></pre>
+
+<p>Hope that helps!</p>

@@ -1,0 +1,32 @@
+<p>I think something like this will give you better results.</p>
+
+<pre><code>&lt;?php
+echo "&lt;table border='1' class='tabtext'&gt;";
+
+$result = mysql_query("SELECT * FROM orders");
+$numrows = mysql_num_rows($result);
+$numfields = mysql_num_fields($result);
+
+// show headers
+echo '&lt;thead&gt;&lt;tr&gt;';
+for ($field = 0; $field &lt; $numfields; $field++) {
+    $field_name = mysql_field_name($result, $i);
+    echo '&lt;th&gt;&lt;label&gt;&lt;input type="checkbox" name="checkbox[' . $field_name . ']" value="1"/&gt; ' . $field_name . '&lt;/label&gt;&lt;/th&gt;';
+}
+echo '&lt;/tr&gt;&lt;/thead&gt;';
+
+echo '&lt;tbody&gt;';
+for ($row = 0; $row &lt; $numrows; $row++) {
+    $data = mysql_fetch_assoc($result);
+    echo '&lt;tr&gt;';
+    for ($field = 0; $field &lt; $numfields; $field++) {
+        $field_name = mysql_field_name($result, $i);
+        if (isset($_POST['checkbox'][$field_name])) {
+            echo '&lt;td&gt;' . $data[$field_name] . '&lt;/td&gt;';
+        }
+    }
+    echo '&lt;/tr&gt;';
+}
+echo '&lt;/tbody&gt;';
+echo '&lt;/table&gt;';
+</code></pre>

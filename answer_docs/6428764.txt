@@ -1,0 +1,7 @@
+<p>What is your creationTime and other input variables set to?  Your GetSystemTime() is creating a time based on those and it's not clear if the returned time is in UTC format.</p>
+
+<p>The docs for SystemTimeToFileTime state that the time must be in UTC format</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/ms724948(VS.85).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms724948(VS.85).aspx</a></p>
+
+<p>I suspect this conversion is not being handled in your code someplace.</p>

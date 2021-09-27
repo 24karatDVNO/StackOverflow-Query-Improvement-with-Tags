@@ -1,0 +1,7 @@
+<pre><code>SELECT info_cat.name, GROUP_CONCAT(info_subcat.name) AS name2
+FROM info_cat, info_subcat
+WHERE info_cat.id = info_subcat.id_info_cat
+GROUP BY info_cat.name;
+</code></pre>
+
+<p>conCAT! :)</p>

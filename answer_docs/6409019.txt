@@ -1,0 +1,9 @@
+<p>If this is about code quality/maintainability w.r.t. OOP, you might want to look into the refactoring "replace conditional with polymorphism".</p>
+
+<p>In case of performance optimization (which you shouldn't care about until you've verified the <em>real</em> bottlenecks of your application, and also you shouldn't care about them prematurely), you could use a good old lookup table, simply let it there like it is <sup>0</sup>, or (again) let it there like it is because your CPU is less than 15 years old <sup>1</sup></p>
+
+<hr>
+
+<p><sup>0</sup>  compilers already optimize many switch statements (but you might want to look at what your compiler actually does for you)</p>
+
+<p><sup>1</sup> speculative execution, branch prediction and your branch target buffer might very well be better than you and the compiler</p>

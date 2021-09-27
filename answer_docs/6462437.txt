@@ -1,0 +1,25 @@
+<p>Here is my untested attempt to fix this:</p>
+
+
+
+<pre><code>doc = Nokogiri::HTML(search_result.body)
+rows = doc.xpath('//table[@class="articulos"]/tr[td[5]/p/b]')
+i = 0
+details = rows.each do |row|
+  detail = {}  
+  [
+    [:sku, 'td[3]/text()'],
+    [:desc, 'td[4]/text()'],
+    [:stock, 'td[5]/p[@title]'],
+    [:price, 'td[6]/text()']
+  ].each do |name, xpath|
+    if name == :stock
+      detail[name] = row.at_xpath(xpath).collect { |p| p[:title].gsub(/[^\d]/, '') }
+    else
+      detail[name] = row.at_xpath(xpath).to_s.strip
+    end
+  end
+  i = i + 1
+  detail
+end
+</code></pre>

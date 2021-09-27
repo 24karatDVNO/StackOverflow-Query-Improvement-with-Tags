@@ -1,0 +1,9 @@
+<p>When a vector stores objects, it stores a <em>copy</em> of the original object that was passed in. So when you do something like this</p>
+
+<pre><code>yourClass yourObj;
+std::vector&lt;yourClass&gt; yourVector;
+yourvector.push_back(yourObj);
+yourvector[0].myFunction();
+</code></pre>
+
+<p>only the object at <code>yourvector[0]</code> changes because it is a copy of the original.</p>

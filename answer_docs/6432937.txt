@@ -1,0 +1,16 @@
+<p>Andy's right: correctly parsing CSV is a lot harder than you probably realise, and has all kinds of ugly edge cases. I suspect that it's mathematically impossible to correctly parse CSV with regexes, particularly those understood by sed.</p>
+
+<p>Instead of sed, use a Perl script that uses <a href="http://search.cpan.org/~makamaka/Text-CSV-1.21/lib/Text/CSV.pm" rel="nofollow">the Text::CSV module from CPAN</a> (or the equivalent in your preferred scripting language). Something like this should do it:</p>
+
+<pre><code>use Text::CSV;
+use feature 'say';
+
+my $csv = Text::CSV-&gt;new ( { binary =&gt; 1, eol =&gt; $/ } )
+    or die "Cannot use CSV: ".Text::CSV-&gt;error_diag ();
+my $rows = $csv-&gt;getline_all(STDIN);
+for my $row (@$rows) {
+    say join("\t", @$row);
+}
+</code></pre>
+
+<p>That assumes that you don't have any tab characters embedded in your data, of course - perhaps it would be better to do the subsequent stages in a Real Scripting Language as well, so you could take advantage of proper lists?</p>

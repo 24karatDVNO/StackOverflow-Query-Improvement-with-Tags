@@ -1,0 +1,15 @@
+<p>start with an inner pre-query for the last date per city.. then join based on that most recent entry per city</p>
+
+<pre><code>select t2.*
+   from
+      ( select t1.trans_city,
+               max( t1.trans_date ) as MostRecentDate
+           from 
+               Transactions t1
+           group by
+               t1.trans_city ) PreQuery
+
+      join Transactions t2
+         on PreQuery.Trans_City = t2.Trans_City
+         and PreQuery.MostRecentDate = t2.Trans_Date
+</code></pre>

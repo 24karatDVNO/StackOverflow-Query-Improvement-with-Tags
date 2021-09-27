@@ -1,0 +1,14 @@
+<p>You can use a boolean value to check if you're currently animating something.</p>
+
+<pre><code>animating = false;
+
+$('.something').hover(function() {
+    if(animating) {
+        return;
+    }
+    animating = true;
+    $('.other').fadeOut(200, function() {
+        animating = false;
+    });
+});
+</code></pre>

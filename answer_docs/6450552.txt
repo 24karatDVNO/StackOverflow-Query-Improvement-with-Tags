@@ -1,0 +1,49 @@
+<p>here i attached a full code for splash screen that initalize location based application.</p>
+
+<pre><code>public class splashScreen extends Activity {
+
+private LocationManager locationManager = null;
+private LocationListener locationListener = null;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);     
+    setContentView(R.layout.splash);
+    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    locationListener = new MyLocationListener();
+    // Start the Animation of SplashScreen
+    new Handler().postDelayed(new Runnable() {
+        public void run() {
+            ImageView imageView = (ImageView) findViewById(R.id.splashImageView);
+            AnimationDrawable animation = (AnimationDrawable) imageView.getDrawable();
+            animation.start();
+        }
+    }, 500);
+    // Obtain user's location
+    new Handler().post(new Runnable() {         
+        public void run() {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            String locationProvider = LocationManager.GPS_PROVIDER;
+            locationManager.requestLocationUpdates(locationProvider, 1000, 0, locationListener);
+            try { wait(5000); } catch (Exception e) {}
+            if(locationManager != null) {
+                locationManager.removeUpdates(locationListener);
+            }
+        }
+    });
+    // Start the Tabs screen.
+    new Handler().postDelayed(new Runnable() {
+        public void run() {
+            Bundle extras = new Bundle();
+            extras.putDouble(Constants.LATITUDE, ((MyLocationListener)locationListener).getLat());
+            extras.putDouble(Constants.LONGITUDE, ((MyLocationListener)locationListener).getLng());
+            Intent intent = new Intent(splashScreen.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtras(extras);
+            startActivity(intent);
+        }
+    }, 5000);
+}
+</code></pre>
+
+<p>}</p>

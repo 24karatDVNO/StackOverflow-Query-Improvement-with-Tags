@@ -1,0 +1,15 @@
+<p>The Example is a little convoluted, but i think i understand the question.</p>
+
+<p>you will like want to use the Distinct key word:</p>
+
+<p>SELECT DISTINCT T1.Title
+FROM T1 INNER JOIN T2 ON T1.id = T2.id
+UNION ALL
+SELECT DISTINCT T2.Title
+FROM T1 INNER JOIN T2 ON T1.id = T2.id</p>
+
+<p>This should grab distinct titles from T1 and T2. I hope this is what you were looking for, if not please describe what you are looking for as far as results a little bit more clearly, if you could add a table view that would be ideal.</p>
+
+<p>Thanks,</p>
+
+<p>~Madullah</p>

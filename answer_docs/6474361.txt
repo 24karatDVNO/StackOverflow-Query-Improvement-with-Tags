@@ -1,0 +1,6 @@
+<p>Okay after a lot of searching I found the answer:</p>
+
+<pre><code>    preg_replace('/&amp;(?!(?:[a-zA-Z][a-zA-Z0-9]*|#\d+);)(?!(?&gt;(?:(?!&lt;script|\/script&gt;).)*)\/script&gt;)/s', "&amp;amp;$1", $text);
+</code></pre>
+
+<p>The regex is based on <a href="https://stackoverflow.com/questions/462831/regular-expression-to-escape-html-ampersands-while-respecting-cdata">this thread</a> but with script tags instead of cdata. I thought I should post it since someone may find this little parser useful.</p>

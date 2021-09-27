@@ -1,0 +1,26 @@
+<p>If my understanding is correct then $cat is a comma delimited string of integers. You could use PHP's explode function to convert this into an array and then use in_array to test to see if that value is in the array:</p>
+
+<pre><code>&lt;?
+function display($cat, $name)
+
+$cat = explode(',', $cat);
+
+{?&gt;
+&lt;select name="&lt;?=$name?&gt;"&gt;
+
+&lt;option value=&lt;?php if (in_array("2", $cat)) {echo"2 selected";} else {echo"0";}?&gt;&gt; 2&lt;/option&gt;
+&lt;option value=&lt;?php if (in_array("41", $cat)) {echo"41 selected";} else {echo"41";}?&gt;&gt;41&lt;/option&gt;
+&lt;option value=&lt;?php if (in_array("3", $cat)) {echo"3 selected";} else {echo"1";}?&gt;&gt;3&lt;/option&gt;
+&lt;? 
+if (in_array("xx", $cat)) // any
+{
+print "&lt;option value=\"\" selected&gt;Any&lt;/option&gt;";
+}
+?&gt;
+&lt;/select&gt;
+&lt;?
+}
+?&gt;
+</code></pre>
+
+<p>Equally you could use implode with an existing $cat array to create a comma delimited string that you could output as part of a url.</p>

@@ -1,0 +1,15 @@
+<pre><code>// Put this before your empty imgs somewhere in your script
+function myCb($buffer)
+{
+    return str_replace('&lt;img src="" /&gt;', '' , $buffer);
+}
+
+ob_start('myCb');
+
+// *Your code*...
+
+// Put this after your empty imgs in your script
+ob_end_flush();
+</code></pre>
+
+<p>Please note that it's probably not the right way to handle this but this answer your question. I suggest not generating empty imgs at all since it would be x times faster.</p>

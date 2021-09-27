@@ -1,0 +1,43 @@
+<p><a href="http://jsfiddle.net/R3aJS/" rel="nofollow">http://jsfiddle.net/R3aJS/</a> - working fiddle, you can hide unhide the controls through calling the animate functions on the image elements as and when.
+I guess that I was bored and wanted to expand on viclm answer :)</p>
+
+<pre><code>  $("document").ready(function(){
+
+        var direction=0;
+        $("img").hide();
+        $('.direction').click(function() {
+            if ($(this).attr('id') == -1) {
+                if (direction != 0) {
+                    direction --;
+                }
+                runAnimation($("img:eq("+direction+")"));
+            } else {
+                if (direction == $("img").length-1) {
+                    direction = 0; //go back to the start why not
+                } else {
+                    direction ++;            }
+                runAnimation($("img:eq("+direction+")"));
+            }    
+        });
+
+    });
+
+    function runAnimation (something) {
+        $('.direction').hide();
+        $(something).toggle();
+         $(something).animate({
+            opacity: 0.25,
+            left: '+=50',
+            height: 'toggle'
+          }, 2000, function() {
+            $('.direction').show();
+          });
+    }
+
+&lt;div class="gallery"&gt;
+    &lt;img width="150px" height="150px" src="http://survivalgaming.co.uk/images/star1.jpg"/&gt;
+    &lt;img width="150px" height="150px" src="http://images.pictureshunt.com/pics/s/star-2192.jpg"/&gt;
+    &lt;img width="150px" height="150px" src="http://upload.wikimedia.org/wikipedia/commons/9/97/Esperanto_star.png"/&gt;
+&lt;/div&gt;
+&lt;span class="direction" id="-1"&gt;Prev&lt;/span&gt; &lt;span class="direction" id="1"&gt;Next&lt;/span&gt;
+</code></pre>

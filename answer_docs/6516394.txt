@@ -1,0 +1,28 @@
+<p><strong>I finally found a solution.</strong>
+This solves the issue. But adds another one. As expected, the ListView now behaves differently when the user clicks on different views(either TextView or ImageView).
+But it seems unresponsive. I have to "double-click" in order to trigger either the company.setOnClick or dial.setOnClick. Any suggestions?</p>
+
+<p>// Add actions to user interaction</p>
+
+<pre><code>listCompanies.setOnItemClickListener(new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView&lt;?&gt; arg0, View v, int position, long id) {
+
+            TextView company = (TextView) v.findViewById(R.id.textCompany);
+            ImageView dial = (ImageView) v.findViewById(R.id.imageButtonDTMFDial);
+
+            company.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(app, EditMenuNavigationActivity.class));
+                }
+            });
+
+            dial.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(app, InstructionsActivity.class));
+                }
+            });
+        }
+</code></pre>

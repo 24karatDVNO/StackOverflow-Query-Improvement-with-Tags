@@ -1,0 +1,135 @@
+<pre><code>public class ModifiedExpandableList extends Activity {
+
+    ExpandableListAdapter mAdapter;
+    private ExpandableListView mExpandableListView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_copy);
+        // set our list
+        mExpandableListView = (ExpandableListView)findViewById(R.id.list);
+        // Set up our adapter
+        mAdapter = new MyExpandableListAdapter(this);
+        mExpandableListView.setAdapter(mAdapter);
+        // Need no icon as of now
+        mExpandableListView.setGroupIndicator(null);
+        registerForContextMenu(mExpandableListView);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Sample menu");
+        menu.add(0, 0, 0,"dd");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item.getMenuInfo();
+
+        String title = ((TextView) info.targetView).getText().toString();
+
+        int type = ExpandableListView.getPackedPositionType(info.packedPosition);
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition); 
+            int childPos = ExpandableListView.getPackedPositionChild(info.packedPosition); 
+            Toast.makeText(this, title + ": Child " + childPos + " clicked in group " + groupPos,
+                    Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+            int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition); 
+            Toast.makeText(this, title + ": Group " + groupPos + " clicked", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * A simple adapter which maintains an ArrayList of photo resource Ids. 
+     * Each photo is displayed as an image. This adapter supports clearing the
+     * list of photos and adding a new photo.
+     *
+     */
+    public class MyExpandableListAdapter extends BaseExpandableListAdapter {
+
+        Context mContext;
+        public MyExpandableListAdapter(Context context){
+            this.mContext = context;
+        }
+
+        // Sample data set.  children[i] contains the children (String[]) for groups[i].
+        private String[] groups = { "People Names", "Dog Names", "Cat Names", "Fish Names" };
+        private String[][] children = {
+                { "Arnold", "Barry", "Chuck", "David" },
+                { "Ace", "Bandit", "Cha-Cha", "Deuce" },
+                { "Fluffy", "Snuggles","ddef","afadsfasf" },
+                { "Goldy", "Bubbles","sfef","dafs" }
+        };
+
+        public Object getChild(int groupPosition, int childPosition) {
+            return children[groupPosition][childPosition];
+        }
+
+        public long getChildId(int groupPosition, int childPosition) {
+            return childPosition;
+        }
+
+        public int getChildrenCount(int groupPosition) {
+            int result=4;
+
+            return result;
+       }
+
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+                View convertView, ViewGroup parent) {
+            View v = null;
+            // changed here
+                LayoutInflater li = ModifiedExpandableList.this.getLayoutInflater();
+                v = li.inflate(R.layout.child_view,null);
+                TextView tv = (TextView)v.findViewById(R.id.TextView01);
+                tv.setText(getChild(groupPosition, childPosition).toString());
+                ImageView im = (ImageView)v.findViewById(R.id.ImageView01);
+                im.setBackgroundDrawable(ModifiedExpandableList.this.getResources().getDrawable(R.drawable.closearrow));
+            return v;
+        }
+
+        public Object getGroup(int groupPosition) {
+            return groups[groupPosition];
+        }
+
+        public int getGroupCount() {
+            return groups.length;
+        }
+
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
+                ViewGroup parent) {
+            // change here to modify parent group layout
+            View v = null;
+            LayoutInflater li = ModifiedExpandableList.this.getLayoutInflater();
+            v = li.inflate(R.layout.parent_view,null);
+            TextView tv = (TextView)v.findViewById(R.id.TextView01);
+            tv.setText(getGroup(groupPosition).toString());
+            ImageView im = (ImageView)v.findViewById(R.id.ImageView01);
+            im.setBackgroundDrawable(ModifiedExpandableList.this.getResources().getDrawable(R.drawable.closearrow));
+            if(isExpanded){
+                im.setBackgroundDrawable(ModifiedExpandableList.this.getResources().getDrawable(R.drawable.closearrow_b));
+            }
+            return v;
+        }
+
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
+        }
+
+        public boolean hasStableIds() {
+            return true;
+        }
+
+    }
+}
+</code></pre>

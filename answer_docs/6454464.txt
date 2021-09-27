@@ -1,0 +1,3 @@
+<p>i'd use some background daemon/sheduled task/etc on a server to regulary calculate the "snapshot" value of "total gp" and store that somewhere (db table) with a timestamp...</p>
+
+<p>your web application knows the last displayed timestamp of those snapshots and can query everything that's newer whenever desired (e.g. every 3 min)</p>

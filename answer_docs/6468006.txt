@@ -1,0 +1,23 @@
+<p>I also had page loading delay because of Facebook/LinkedId/etc plugins. </p>
+
+<p>Solution for me is asynchronous loading of the third-party JavaScript.
+It works not for every web-service/widget but for many of them (Facebook "Like" button, Twitter "tweet" button, etc.).</p>
+
+<p>Example:</p>
+
+<pre><code>&lt;div id="tweet"&gt;
+    &lt;a href="http://twitter.com/share" 
+        class="twitter-share-button" 
+        data-count="horizontal"
+    &gt;Tweet&lt;/a&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+    $(function() {
+        $.getScript('http://platform.twitter.com/widgets.js');
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>This code will render the "Tweet" button after page (DOM) loaded.</p>
+
+<p>But you should check first if requested web-service's JavaScript uses document.write() or not. If it does - you can do nothing here, only sync load is possible.</p>

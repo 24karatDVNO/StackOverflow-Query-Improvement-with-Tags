@@ -1,0 +1,3 @@
+<p>I don't think you can do that, you see, one of the cool things of a window's based UI is that you can stack Windows on top of others, in a desktop metafore.</p>
+
+<p>Now, what you can do is a always on top window, using NSScreenSaverWindowLevel as the NSWindow level. One nice trick you can do is [window setLevel: NSScreenSaverWindowLevel+1], and it set's your window above the screensaver level.</p>

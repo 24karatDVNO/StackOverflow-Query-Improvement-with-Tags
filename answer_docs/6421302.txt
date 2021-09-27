@@ -1,0 +1,57 @@
+<p>It is fairly normal for your CCScene subclass and CCLayer subclass to be quite big (as in hundreds of lines of implementation code) since those are where most of the game mechanics like sprite animation, touch event handling, game logic etc are implemented. That said, here are some of the techniques I am using to break up the codes into smaller classes:</p>
+
+<p><strong>Refactor codes pertaining to specific game objects into the objects classes</strong></p>
+
+<p>Suppose that your game contains a hero avatar and some enemies avatars moving on the screen interacting to each other. Normally, each of the avatar has specific pattern of movements and logic that belong to it. For example, the hero may walk to the left or to the right depending on where the player is touching on the screen. Thus, it is better to put the logic that moves the hero's position and animate the legs into the Hero class, something like:</p>
+
+<pre><code>@interface Hero : CCSprite {
+   EnumDirection currentDirection;
+}
+
+- (void)walkTowardsPoint:(CGPoint)touchPoint;
+
+@end
+</code></pre>
+
+<p>Do the same for enemies class. Then, in the CCLayer/CCScene class, you just have to do:</p>
+
+<pre><code>- (void)ccTouchBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [self convertTouchToNodeSpace:touch];        
+    [hero walkTowardsPoint:location]; 
+}
+</code></pre>
+
+<p><strong>Create a base superclass that generalizes a big class</strong></p>
+
+<p>Normally, you would have a few enemies that are almost the same but with slight variations in their behaviors, strength, AI etc. Rather than implementing those enemies in totally separate classes, create a base class 'Enemy' that encapsulates the common logic and code among the enemies classes, and derive these enemies class from this superclass. For example:</p>
+
+<pre><code>@interface Enemy : CCSprite {
+   EnumEnemyState state;
+   CGFloat hitpoint;
+}
+
+- (void)spawnAt:(CGPoint)spawnLocation;
+- (void)observeHeroLocation:(CGPoint)location;
+- (BOOL)slashedByHeroWithDamage:(CGFloat)damage;
+
+@end
+
+@interface Goomba : Enemy {
+   EnumGoombaColor color;
+}
+@end
+
+@interface Koopa : Enemy {
+}    
+- (void)shootHammerAt:(EnumDirection)direction;
+@end
+</code></pre>
+
+<p>This way you don't have repeat the implementation for spawning, reacting towards Hero's new location, reducing HP when slashed by Hero etc in all the classes because your enemies subclasses will inherit the superclass methods, as per OOP inheritance.</p>
+
+<p><strong>And many more</strong></p>
+
+<p>Code refactoring is an art. You have to be creative in how you want to design your code structure. Other than the two techniques I explained above, you may also want to anticipate how you may want to create an upgrade to your game early in the process, and shape your object classes in order to allow such upgrade with less troublesome later. Or you can even create your own custom game framework that covers the general aspect of your games (I hope you will not stop after creating one game only, will you?) such as audio, physics, rules etc. Generalizing what I already wrote in the first sentence of this paragraph, programming is an art. Imagine your IDE (Xcode) as a blank canvas, Objective-C as the brush and Cocos2d as the color palette, and you'll enjoy creating the game as you would enjoy playing the end product :)</p>
+
+<p>Good luck!</p>

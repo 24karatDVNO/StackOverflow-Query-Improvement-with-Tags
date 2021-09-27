@@ -1,0 +1,17 @@
+<p>Thanks for you solution Andyb. It works like a charm now. I had a look at jQuery Ajax before but never thought it wasn't powerful enough. Here is the code that I'm using right now.</p>
+
+<pre><code>    function getDownloadLink(artist, track) {
+        $.ajax({
+            url:'http://localhost/bone/searchmusic.php?artistname='+artist+'&amp;trackname='+track,
+            dataType:'xml',
+            success: function(xml) {
+                $(xml).find('link').each(function() {
+                    $('#download').append('&lt;li&gt;&lt;a href="'+$(this).text()+'"&gt;track&lt;/a&gt;&lt;/li&gt;');
+                    });
+                }
+            });
+        }
+&lt;/script&gt;
+</code></pre>
+
+<p>Thanks again.</p>

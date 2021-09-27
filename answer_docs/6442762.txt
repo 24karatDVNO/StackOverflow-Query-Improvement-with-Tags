@@ -1,0 +1,7 @@
+<pre><code>SELECT COUNT(member_id) JOIN membertomshiptable USING(member_id)
+     JOIN membershipstatustypetable ON mshipstatustype_id=membershipstatustype_id
+     WHERE membertomship_startdate &lt;= 'XXXX-XX-XX' 
+     AND membershipstatusname='complete'
+</code></pre>
+
+<p>If you know the status ID you want to check you could avoid the last JOIN. You might also need to specify an end date as well if you're looking for a specific month.</p>

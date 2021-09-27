@@ -1,0 +1,19 @@
+<p>It is not possible, because <strong>client-side script</strong> can NOT interact directly with <strong>server-side script</strong>, therefore it requires you to have a "transporter" in the between, which is AJAX. Have a look at <a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">jQuery AJAX</a>, it's tiny, sweet and powerful.</p>
+
+<p>But assume there is a small chunk of information, and it's not very confidential, I can suggest you to do this way, using cookies. People don't usually take advantage of cookies.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+document.cookie = 'info='+information; expires=Mon, 19 Jul 201110:00:00 UTC; path=/';
+&lt;/script&gt;
+</code></pre>
+
+<p>In PHP file</p>
+
+<pre><code>&lt;?php
+if (isset($_COOKIES['info'])) {
+   $information= intval($_COOKIES['info']);
+}
+?&gt;
+</code></pre>
+
+<p>Once you finish getting the information, you can delete that cookies.</p>

@@ -1,0 +1,26 @@
+<p>This sounds like homework, so I'm not going to give you complete code.  But the idea is to keep count of how many recursive calls you've made:</p>
+
+<pre><code>int myRecursiveFunction(Node *node, int thingToFind, int level)
+{
+    if (someCondition())
+    {
+        return level;
+    }
+    else
+    {
+        if (goLeft())
+        {
+            return myRecursiveFunction(node-&gt;left, thingToFind, level+1);
+        }
+        else
+        {
+            return myRecursiveFunction(node-&gt;right, thingToFind, level+1);
+        }
+    }
+}
+
+
+...
+
+int level = myRecursiveFunction(root, thingToFind, 0);
+</code></pre>

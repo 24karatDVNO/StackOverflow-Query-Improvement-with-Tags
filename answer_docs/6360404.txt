@@ -1,0 +1,3 @@
+<p>A likely possibility is that your browser reaches your web service through a proxy, and SoapUI is not configured to use that proxy.  For example, I work in a corporate environment and while my IE and FireFox can access external websites, my SoapUI can only access internal web services. </p>
+
+<p>The easy solution is to just open the WSDL in a browser, save it to a .xml file, and base your SoapUI project on that. This won't work if your WSDL relies on external XSDs that it can't get to, however.</p>

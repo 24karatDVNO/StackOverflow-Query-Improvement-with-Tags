@@ -1,0 +1,7 @@
+<p>It appears fine on chrome(pc, latest ver). But in safari the menu seems to be aligned left. But the sub items are fine. 
+The problem is that you have asssigned position:absolute to #access .menu-header .sub-menu in your css, this results in ignoring of the float property by safari, adding a style="position:relative" for each
+        &lt;ul class="sub-menu">
+ should solve your trouble.
+BTW, your page has many errors in html markup : I strongly suggest you fix it.
+<a href="http://validator.w3.org/" rel="nofollow">http://validator.w3.org/</a> should provide necessary help for that.
+I also suggest that you try firebug (now also available for browsers other than ff) it's a lifesaver!</p>

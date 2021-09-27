@@ -1,0 +1,26 @@
+<p><a href="http://jsfiddle.net/vol7ron/Hxf6F/" rel="nofollow">Example Here</a></p>
+
+<p>As I stated in comments:</p>
+
+<ol>
+<li><p>The following are equivalent, pick and choose:  </p>
+
+<p><code>$(document).ready(function(){</code></p>
+
+<p><code>$(function() {</code></p></li>
+<li>you can remove the <code>find</code> function, as you've already started with the img</li>
+<li>you can remove the <code>px</code> from the assignment</li>
+<li>you need to give your img a <code>position</code> (absolute/relative)</li>
+</ol>
+
+<hr>
+
+<p>Example: </p>
+
+<pre><code>$(document).ready(function(){
+   $('img.caption').hover(
+      function(){ $(this).animate({top:'182'},{queue:false,duration:500}); },
+      function(){ $(this).animate({top:'0'},{queue:false,duration:500});   }
+   );
+});
+</code></pre>

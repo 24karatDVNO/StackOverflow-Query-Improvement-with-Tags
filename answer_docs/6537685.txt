@@ -1,0 +1,23 @@
+<p>Here's a workaround, as we couldn't find any shorter way of making that mapping.</p>
+
+<p>First, map to an open generic implementation class, as <a href="http://codebetter.com/jeremymiller/2009/01/13/open-generic-types-in-structuremap/" rel="nofollow">discussed elsewhere</a>:</p>
+
+<pre><code>For(typeof(IRepository&lt;&gt;)).Use(typeof(ConcreteRepository&lt;&gt;));
+</code></pre>
+
+<p>Then, for each repository with custom behavior, add extension methods on the appropriate interface.  For instance, supposing your <code>MailoutStatusRepository</code> has a method <code>GetStatus()</code>, you might translate that to an extension method on <code>IRepository&lt;MailoutStatusRepository&gt;</code>:</p>
+
+<pre><code>public static Status GetStatus(this IRepository&lt;MailoutStatusRepository&gt; repo,
+                               Mailout mail)
+{
+    return mail.Status;  // or whatever
+}
+</code></pre>
+
+<p>Now you have the custom repository behavior without having to worry about casting StructureMap's output to some custom class:</p>
+
+<pre><code>var repo = container.GetInstance&lt;IRepository&lt;MailoutStatusRepository&gt;&gt;();
+var status = repo.GetStatus(mailout);
+</code></pre>
+
+<p>Another benefit of this approach is that your custom repository behavior works regardless of your repository implementation: in tests and in production code.  The only downside (I think) is that your repositories are necessarily stateless, but we haven't found this to be a problem at all.</p>

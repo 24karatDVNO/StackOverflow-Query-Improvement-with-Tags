@@ -1,0 +1,65 @@
+<p><strong>below is the calling method which is unchanged...</strong>   </p>
+
+<pre><code>    -(IBAction)postComment:(id)sender
+            {
+        [UserManager instance]authenticateUserAndProceed:self withSelector:@selector(showCommentView)];
+        }
+-(void)showCommentView
+    {
+        TTPostController *postController = [[TTPostController alloc] init];
+
+    // self must implement the  TTPostControllerDelegate protocol
+        postController.delegate = self; 
+        self.popupViewController = postController;
+
+     // assuming self to be the current UIViewController
+        postController.superController = self;
+            postController.textView.text=@"temporary text";
+        [postController showInView:self.view animated:YES];
+        [postController release];
+    }
+</code></pre>
+
+<p><strong>changed method</strong></p>
+
+<pre><code>-(void)authenticateUserAndProceed:(id)parent withSelector:(SEL)selector
+{
+    theParentViewController = parent;
+    self.theFunctionToCall = selector;
+    if(userid == nil)
+    {
+        GetUserInfoViewController *guivc = [[GetUserInfoViewController alloc] init];
+        [parent presentModalViewController:guivc  animated:YES];
+        guivc.delegate = self;
+        [guivc release];
+    }
+
+
+    else {
+//////////////////// below line was replaced///////////
+//  2.          [theParentViewController performSelector:selector];
+// with below code
+    UIAlertView *alert =[[UIAlertView alloc]initWith Title........
+    [alert show];
+
+        }
+    }
+</code></pre>
+
+<p>PROBLEM SUMMARY: 
+as soon as the user registered, he was not able to the kyboard for the TTPostController </p>
+
+<p>CHANGE SUMMARY: 
+As soon as the user is registered the call to 
+    [theParentViewController performSelector:selector];
+is not sent directly but the call goes to ann alertview which inter calls it.</p>
+
+<p>EFETCS SUMMARY: 
+the user will see a "you are registered successfully" (kind of) alertview.
+tapping OK on which, he will be sent to TTPostController. (this time the keyboard is appearing)</p>
+
+<p>I kept the line# 2 in the AlertViewDelegate method.
+I was amazed o see it working just by not calling the line 2 directly.</p>
+
+<p>this worked for me.
+I welcome any new and better idea to implement the same</p>

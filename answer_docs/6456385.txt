@@ -1,0 +1,16 @@
+<p>can you give me more information.  You`re books, Glasses, Notebooks are they build like this?</p>
+
+<pre><code>value="10" text="Books"
+value="230" text="Glasses"
+value="27" text="Notebooks"
+</code></pre>
+
+<p>if yes then you should build it like this:</p>
+
+<pre><code>string myString = dropdownlist.SelectedValue.toString();
+</code></pre>
+
+<p>If you want to fetch out the information and the complete text is Books(10)
+ per exemple then I would do a split,</p>
+
+<p><code>string myString = dropdownlist.SelectedText.Text.Split('(')[0];</code>  &lt;-- Which will give you the Books per exemple</p>

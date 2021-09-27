@@ -1,0 +1,1 @@
+<p>If you're changing a label via javascript, the server has no idea that you did that. Remember, a label is simply a span element. You do not send the <em>entire</em> page back to the server everytime you post back, you only send form elements. If you want the server to know about this, you'll need to put the change into a hidden form element (for example). </p>

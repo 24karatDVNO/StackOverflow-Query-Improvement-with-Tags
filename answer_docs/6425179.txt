@@ -1,0 +1,25 @@
+<p>MaxLength is used when you don't want the user to be able to input more than the assigned amount. However, programatically, it can be overridden. This is what append text does:</p>
+
+<pre><code>public void AppendText(string text)
+{
+    if (text.Length &gt; 0)
+    {
+        int start;
+        int length;
+        this.GetSelectionStartAndLength(out start, out length);
+        try
+        {
+            int endPosition = this.GetEndPosition();
+            this.SelectInternal(endPosition, endPosition, endPosition);
+            this.SelectedText = text;
+        }
+        finally
+        {
+            if (base.Width == 0 || base.Height == 0)
+            {
+                this.Select(start, length);
+            }
+        }
+    }
+}
+</code></pre>

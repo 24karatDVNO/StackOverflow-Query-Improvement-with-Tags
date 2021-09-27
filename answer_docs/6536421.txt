@@ -1,0 +1,3 @@
+<p>Just for documentation purposes: I found the answer myself.</p>
+
+<p>When a view is entered, the <code>InputMethodService</code>'s <code>onStartInput(EditorInfo attribute, boolean restarting)</code> method is called. If the <code>EditorInfo</code>'s <code>InputType</code> is != 0, the view is editable, it seems.</p>

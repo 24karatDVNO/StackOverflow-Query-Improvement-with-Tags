@@ -1,0 +1,8 @@
+<p>Why not do this in a derived column? </p>
+
+<p>ISNULL(std)==TRUE?NULL(DT_STR,10,1252):replace(std,"ABC","0.00") </p>
+
+<p>The above line says
+"If column std is null, then return a null, else return the string with ABC replaced by 0.00"</p>
+
+<p>One thing to note.  In the example I assume the string is char(10)..replace the 10 with the appropriate size.</p>

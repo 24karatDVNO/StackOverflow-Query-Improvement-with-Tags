@@ -1,0 +1,4 @@
+<p>You should do as <a href="https://stackoverflow.com/questions/3574894/cakephp-tinymcehelper-helper-error-method-tinymcehelper-name-does-not-exist/3584848#3584848">cdburgess</a> suggested, and if it does not work, make sure your javascripts gets loaded, and edit tinmce.php the TinyMce helper's code to properly load javascripts, line looks like this:</p>
+
+<pre><code> $this-&gt;Javascript-&gt;link('/webroot/js/tiny_mce.js', false);
+</code></pre>

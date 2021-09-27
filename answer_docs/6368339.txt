@@ -1,0 +1,6 @@
+<p><code>contains()</code> returns only a true/false result depending on whether the list contains the given input object (in your case the string "-1"). So in your example, your list wouldn't contain "-1", so your remove statement would be resolved to this:</p>
+
+<pre><code>monstersToAdd.remove(false);
+</code></pre>
+
+<p>which wouldn't work for obvious reasons.</p>

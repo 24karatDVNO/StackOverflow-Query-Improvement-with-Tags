@@ -1,0 +1,11 @@
+<p>using meioupload, it turn out that i can use relative path, so i do it like this:</p>
+
+<pre><code>public $actsAs = array(
+    'MeioUpload' =&gt; array(
+        'filename' =&gt; array(
+            'dir' =&gt; '../../../path/to/outside/webroot',
+            'create_directory' =&gt; true,
+        )
+    )
+);
+</code></pre>

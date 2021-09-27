@@ -1,0 +1,44 @@
+<p>here is a simple way that can be easily expanded to cover many columns:</p>
+
+<pre><code>--create a sample table to work with
+DECLARE @YourTable table (id int,name varchar(10)
+                         ,address varchar(10), shoe_size varchar(10))
+--populate that table
+INSERT @YourTable VALUES (1,'aa','bb','cc')
+INSERT @YourTable VALUES (2,'','bb','cc')
+INSERT @YourTable VALUES (3,'aa','','cc')
+INSERT @YourTable VALUES (4,'aa','bb','')
+INSERT @YourTable VALUES (5,'','','cc')
+INSERT @YourTable VALUES (6,'aa','','')
+INSERT @YourTable VALUES (7,'','bb','')
+INSERT @YourTable VALUES (8,'','','')
+
+SELECT 
+    id
+        ,name
+        ,address
+        ,shoe_size
+        ,STUFF(
+            CASE WHEN name        ='' THEN ', name'       ELSE '' END
+            +CASE WHEN address    ='' THEN ', address'    ELSE '' END
+            +CASE WHEN shoe_size  ='' THEN ', shoe_size'  ELSE '' END
+            ,1,2, ''
+         ) AS column_name 
+    FROM @YourTable
+    WHERE Name='' OR shoe_size='' OR address=''
+</code></pre>
+
+<p>OUTPUT:</p>
+
+<pre><code>id          name       address    shoe_size  column_name
+----------- ---------- ---------- ---------- -------------------------
+2                      bb         cc         name
+3           aa                    cc         address
+4           aa         bb                    shoe_size
+5                                 cc         name, address
+6           aa                               address, shoe_size
+7                      bb                    name, shoe_size
+8                                            name, address, shoe_size
+
+(7 row(s) affected)
+</code></pre>

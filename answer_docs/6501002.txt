@@ -1,0 +1,15 @@
+<p>Ok, I have managed to find what I am looking for, so I am posting my findings here for anyone who might find this info useful. There are simply 2 solutions that I could use:</p>
+
+<ol>
+<li><p>There is something called 'BareBoneBrowser' check out the project link <a href="http://www.centerkey.com/java/browser/" rel="nofollow">here</a></p>
+
+<p>this project allows you to launch the user's default browser on any platform (windows, Mac OS, linux) which is exactly what I wanted. and I have tried it and it seems to be working fine. There are few limitations to it (you can't detect if that browser windows has been closed by the user. Maybe there is a way if you have time to understand the code and alter it) but its a quick way to get a browser launched with Java and at the same time being cross platform.</p></li>
+<li><p>The other solution that I found is the DJ Project <a href="http://djproject.sourceforge.net/ns/" rel="nofollow">click here for project home page</a></p>
+
+<p>This is almost a complete solution that allows you to open a 'native' browser in a JPanel. Cross platform (works for Windows and Mac OS or even Linux). Because the browser gets launched inside a JPanel, you can detect when the user 'close' the JPanel and terminates the application so you can then do what ever you need to do to shutdown/terminate or stop your application and doing any cleanup work required.</p></li>
+</ol>
+
+<p>Hope that this will help anyone who is looking to do something similar.
+My advice is to just download the code and start playing with it or do a small POC (Proof Of Concept) project to get a better understanding about the API.</p>
+
+<p>Cheers.</p>

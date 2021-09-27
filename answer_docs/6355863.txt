@@ -1,0 +1,4 @@
+<p><em>NSNumber</em> is a reference type. You should not assign it as a <em>int</em> value directly. You should get the <code>intValue</code> of <em>NSNumber</em> and bind it to sqlite3 statement.</p>
+
+<pre><code>sqlite3_bind_int(addStmt, 2, [HEREisNSNUMBER intValue]);
+</code></pre>

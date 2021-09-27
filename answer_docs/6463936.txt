@@ -1,0 +1,16 @@
+<p>If passing line at <code>alert</code>, newresult.highlighting should be object or array. then, this is not a problem about Same Origin Policy. And you are specifying <code>json.wrf=?</code> for callback.
+Probably, you missed about struct of element in highlighting array. maybe.
+Try to access directry, and confirm structure of the array.
+You are expecting:</p>
+
+<pre><code>{
+"highlighting": [ { "description" : "foo" }, { "description" : "bar" } ]
+}
+</code></pre>
+
+<p>But it may be</p>
+
+<pre><code>{
+"highlighting": { "A001" : { "description" : "foo" }, "A002" : { "description" : "bar" } }
+}
+</code></pre>

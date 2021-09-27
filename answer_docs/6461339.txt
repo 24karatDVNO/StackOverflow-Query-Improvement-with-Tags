@@ -1,0 +1,12 @@
+<p>I recently got the same error while attempting to use glBitmapString(). I was using vs2008. I set a breakpoint at the function call and stepped into it (using freeglut_font.c). Inside I noticed that the exception was being thrown upon what was described to be glut not being initialized. So inside my initialization function I added... </p>
+
+<pre><code>char* argv[] = {"some","stuff"};    int argc=2;
+glutInit(&amp;argc,argv);   
+glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+glutInitWindowPosition(100,100);
+glutInitWindowSize(800,600);
+</code></pre>
+
+<p>Where of course you can use whatever argc/argv you please. This, as well as what was suggested by Marnix solved the exception errors for me.</p>
+
+<p>Note that I don't actually create a window with glut.</p>

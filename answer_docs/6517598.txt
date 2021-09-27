@@ -1,0 +1,11 @@
+<p>[HttpPost]</p>
+
+<p>public RedirectToRouteResult Save(TestViewModel viewModel)</p>
+
+<p>{</p>
+
+<pre><code>TempData["Output"] = "Here is some response";
+return RedirectToAction("Index", viewModel);
+</code></pre>
+
+<p>}</p>

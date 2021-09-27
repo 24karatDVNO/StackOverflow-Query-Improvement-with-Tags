@@ -1,0 +1,48 @@
+<p>If the compiler doesn't have specific information about how the argument should be passed, such as when there's no prototype or for arguments that are passed where the protoype have an ellipsis (<code>'...'</code>), the compiler follows certain rules for passing the arguments:</p>
+
+<ul>
+<li>the integer promotions are applied (note this doesn't apply to structures)</li>
+<li>if the argument has <code>float</code> type it's promoted to double</li>
+</ul>
+
+<p>After these default argument promotions are applied, the argument is simply copied to wherever the compiler normally copies arguments (generally, the stack). So a struct argument would be copied to the stack.</p>
+
+<p>Try examining the assembly output for the following code, and you'll see that GCC will copy the structures passed to <code>foo()</code> to the stack:</p>
+
+<pre><code>#include &lt;stdarg.h&gt;
+
+void foo( size_t siz, ...);
+
+struct x
+{
+    int x;
+    int y;
+};
+
+struct y
+{
+    char a;
+};
+
+struct z
+{
+    double x;
+    double y;
+    int z;
+};
+
+int main()
+{
+    struct x x1;
+    struct y y1;
+    struct z z1;
+
+    foo( sizeof(x1), x1);
+    foo( sizeof(y1), y1);
+    foo( sizeof(z1), z1);
+
+    return 0;
+}
+</code></pre>
+
+<p>GCC might not be applying this rule to your <code>printf()</code> test because it has special knowledge of <code>printf()</code> and knows that only certain types are supported by the format string.  If an argument type doesn't match what's expected by a format specifier then undefined behavior occurs (so the compiler doesn't have to do what you might expect otherwise).  I'm surprised you don't get some sort of warning.  If you leave out the <code>#include &lt;stddio.h&gt;</code>, you'll probably see a warning something like, "warning: incompatible implicit declaration of built-in function 'printf'", which hints at GCC's special treatment of <code>printf()</code>.</p>

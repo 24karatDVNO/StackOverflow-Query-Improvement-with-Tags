@@ -1,0 +1,7 @@
+<p>The reason that you cannot see the session key is that it is automatically decrypted and used. Normally it is considered part of the XML. If you want to get at it, just use</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.xml.encryptedxml.decryptencryptedkey.aspx" rel="nofollow">encryptedxml.decryptencryptedkey</a></p>
+
+<p>And you should be alright. Note that for all the less important security warnings, the code represented here is vulnerable to both man in the middle attacks and to a lesser extend to padding oracle attacks. It should help against most eavesdropping attempts though.</p>
+
+<p>Finally, reusing a session key is considered pretty bad security practice too. If you reuse it, at least consider using an IV, e.g. a counter for each followup message.</p>

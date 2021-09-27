@@ -1,0 +1,5 @@
+<p>The assignment operator = needs a <em>variable</em> on the left hand side, to which the value on the right hand side is assigned to. You can't assign something to a function, which is what f(n) is according to C syntax. This is assigning a value to lines of code, which makes no sense. The only thing that makes sense on the left hand side of a function is <em>something that can store a value</em>.</p>
+
+<p>Functions can go on the right hand side of the assignment though, as long as they return something (they are not type void).</p>
+
+<p>To get the factorial right you need to think through it a little more... first of all remember that you want the last value to be 1, not zero. And all of the numbers in the factorial are multiplied.</p>

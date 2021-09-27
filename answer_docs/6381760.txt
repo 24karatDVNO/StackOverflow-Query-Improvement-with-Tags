@@ -1,0 +1,13 @@
+<p>Doing some more research ( Google ), I ended up checking r/Groovy on reddit and was led to <a href="http://www.mengu.net/post/annotating-your-grails-controller-classes-and-actions" rel="nofollow">this</a> very useful blog post </p>
+
+<p>From my perspectives, Java annotations can be used to decorate or markup methods with extended logic.  So something like</p>
+
+<pre><code> class Root {
+    @Expose
+    void index() {
+      #som sort of logic here
+    }
+ }
+</code></pre>
+
+<p>And then use Java annotations to detect the @Expose annotation.</p>

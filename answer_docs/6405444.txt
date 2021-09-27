@@ -1,0 +1,14 @@
+<p>Checkout this <a href="https://github.com/huerlisi/validates_timeliness" rel="nofollow">validates timeliness</a></p>
+
+<p>Which gives tons of useful validators like</p>
+
+<pre><code>   validates_date :date_of_birth :before =&gt; lambda { 18.years.ago },
+                            :before_message =&gt; "must be at least 18 years old"
+
+  validates_time :breakfast_time, :on_or_after =&gt; '6:00am',
+                              :on_or_after_message =&gt; 'must be after opening time',
+                              :before =&gt; :second_breakfast_time,
+                              :allow_nil =&gt; true
+
+  validates_datetime :appointment_date, :before =&gt; lambda { 1.week.from_now }
+</code></pre>

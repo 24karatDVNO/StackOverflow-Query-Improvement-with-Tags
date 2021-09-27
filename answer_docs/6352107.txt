@@ -1,0 +1,8 @@
+<p>That impl is quite odd. It probably was translated from a C++ impl</p>
+
+<pre><code>Node&lt;E&gt; temp = finger; // C++, copy constructor, default is shallow copy
+finger.setValue(newVal);
+return temp.getValue();
+</code></pre>
+
+<p>That would be very cheap for C++. </p>

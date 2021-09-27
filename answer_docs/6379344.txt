@@ -1,0 +1,8 @@
+<p>I think if you update your request's datatype from jsonp to json then the data object in the response handler should already be parsed, so</p>
+
+<pre><code>alert(data.name);
+</code></pre>
+
+<p>should work (if the returned object conforms to your example above)</p>
+
+<p><strong>EDIT</strong>: this answer based on the OP's indication that the response was json, but response appears to be jsonp</p>

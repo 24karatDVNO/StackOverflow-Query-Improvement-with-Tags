@@ -1,0 +1,9 @@
+<p>Maybe I didn't understand your question correctly, but are you possibly looking for something like this:</p>
+
+<pre><code>set style fill solid border -1
+set boxwidth 0.4
+
+plot "Data.dat" u 2 w boxes t "boxes", "" u (column(0)):1 t "lines" w l 
+</code></pre>
+
+<p>?</p>

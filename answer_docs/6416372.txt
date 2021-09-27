@@ -1,0 +1,17 @@
+<p>Okay.. so after more research and some fiddling around, I seem to have the functionality that I want. I can't write proper jQuery code though, can someone tell me what I'm doing wrong to make it more elegant?</p>
+
+<pre><code>var $float = $('.two-column li');
+$float.filter(function(index) {
+    return $(this).css('float') != 'none'
+}).equalHeights();
+$(window).resize(function () {
+    $float.filter(function(index) {
+        if ($(this).css('float') != 'none') {
+            $float.equalHeights();
+        }
+        else {
+            $float.height('auto');
+        }
+    });
+});
+</code></pre>

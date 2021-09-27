@@ -1,0 +1,9 @@
+<p>To get you started, you can fairly easily use <a href="http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx#Y6555" rel="nofollow noreferrer">HttpWebRequest</a> to get the contents of a URL. From there, you will have to do something to parse out the HTML. That is where it starts to get tricky. You can't use a normal XML parser, because many (most?) web site HTML pages aren't 100% valid XML. Web browsers have specially implemented parsers to work around the invalid portions. In Ruby, I would use something like <a href="http://nokogiri.org/" rel="nofollow noreferrer">Nokogiri</a> to parse the HTML, so you might want to look for a .NET port of it, or another parser specificly designed to read HTML.</p>
+
+<hr>
+
+<p>Edit:</p>
+
+<p>Since the topic is likely to come up: <a href="https://stackoverflow.com/questions/1694388/webclient-vs-httpwebrequest-httpwebresponse">WebClient vs. HttpWebRequest/HttpWebResponse</a></p>
+
+<p>Also, thanks to the others that answered for noting HtmlAgility. I didn't know it existed.</p>

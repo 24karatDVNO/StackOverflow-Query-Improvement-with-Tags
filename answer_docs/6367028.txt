@@ -1,0 +1,14 @@
+<p>kennebec - good going, but your <em>stDeviation</em> function calls <em>reduce</em> twice and <em>map</em> once when it only needs a single call to <em>reduce</em> (which makes it a lot faster):</p>
+
+<pre><code>Math.stDev = function (a) {
+    var n = a.length;
+    var v = a.reduce(function (v, x) {
+      v[0] += x * x;
+      v[1] += x;
+      return v;
+    }, [0,0]);
+    return Math.sqrt( (v[0] - v[1]*v[1] / n) / n );
+}
+</code></pre>
+
+<p>Should do a conversion to number when assigning to <em>v[1]</em> to make sure string numbers don't mess with the result and the divisor in the last line should probablly be (n - 1) in most cases, but that's up to the OP. :-)</p>

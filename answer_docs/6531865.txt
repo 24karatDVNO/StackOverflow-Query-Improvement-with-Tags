@@ -1,0 +1,15 @@
+<p>Try this:</p>
+
+<pre><code>ob_start(); // put this at the beginning of your scripts
+
+$str_res_exp = $this-&gt;export_res($column ,$res_data,$column_length); 
+header("Content-type: plain/text");
+header("Content-Disposition: attachment; filename=".$_POST['txt_name'].".txt");
+header("Pragma: no-cache");
+header("Expires: 0");
+ob_end_clean();
+echo $str_res_exp;
+exit;
+</code></pre>
+
+<p>What type of server are you using?</p>

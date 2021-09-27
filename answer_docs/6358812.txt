@@ -1,0 +1,39 @@
+<p>For 1) you may invert your question, the job of mod-rewrite is to read dirty url and find the real file, so what you want is to use a false url (without index.php) and that mod-rewrite finds the index.php. <strong>Mod-rewrite will not modify your url, it's your application code job (PHP?)</strong>. </p>
+
+<p>So let's say your application is writing this url:</p>
+
+<pre><code>http://www.example.com/
+</code></pre>
+
+<p>The fact that apache will use </p>
+
+<pre><code>http://www.example.com/index.php
+</code></pre>
+
+<p>or</p>
+
+<pre><code>http://www.example.com/index.htm
+</code></pre>
+
+<p>or</p>
+
+<pre><code>http://www.example.com/index.html
+</code></pre>
+
+<p>to respond is not handled by mod-rewrite but simply by the Apache configuration directive</p>
+
+<pre><code>DirectoryIndex index.php,index.htm,index.phtml
+</code></pre>
+
+<p>For <a href="http://www.example.com/?action=login" rel="nofollow">http://www.example.com/?action=login</a> it should also work.</p>
+
+<p>For 2): well it's unclear. Do you always want to redirect people trying to access your classes directory? Then 2 things:</p>
+
+<ol>
+<li>If this directory should'nt be accessed from the web put it outside of the web directory, nobody will see it, and if it only contain php classes PHp can include files which are not on the web directory. If it contains css and js files then it's an error, redirecting them in the root will certainly not give them a js or a css</li>
+<li><p>You do not need mod-rewrite to make simpel redirect, mod_alis, which is a module that you certainly have (99% of chances) procides the <code>Redirect</code> and <code>RedirectMatch</code> keywords so that you can write:</p>
+
+<p>RedirectMatch permanent /classes/.* <a href="http://www.example.com/" rel="nofollow">http://www.example.com/</a></p></li>
+</ol>
+
+<p>as always check <a href="http://httpd.apache.org/docs/current/rewrite/avoid.html" rel="nofollow">this page:</a> for rules that can be done easily without entering in the brain convolutions of mod-rewrite.</p>

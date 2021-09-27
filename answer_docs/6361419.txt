@@ -1,0 +1,1 @@
+<p>For a one-gigabyte file, Windows buffering will indeed probably be faster, especially if doing many small I/Os.  If you're dealing with files which are much larger than available RAM, and doing large-block I/O, the flags you were setting WILL produce must better throughput (up to three times faster for heavily threaded and/or random large-block I/O).</p>

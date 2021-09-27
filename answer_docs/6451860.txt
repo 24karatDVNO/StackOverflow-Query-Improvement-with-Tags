@@ -1,0 +1,13 @@
+<p>Perhaps your problem is the following line:</p>
+
+<p><code>$unitsPerCount = $fontSizeSpread/$tagCountSpread;</code> </p>
+
+<p>And not the previous one. You should check if <code>$tagCountSpread</code> is NULL (0) and if not, do the division:</p>
+
+<pre><code>if($tagCountSpread != 0)
+{
+     $unitsPerCount = $fontSizeSpread/$tagCountSpread;
+}else{
+     ///something
+}
+</code></pre>

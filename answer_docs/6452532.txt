@@ -1,0 +1,9 @@
+<p><code>fgets</code> is documented to return <code>false</code> when there is no more data to read. Therefore, the technically correct solution would be</p>
+
+<pre><code>// Notice the !== [non-identical] operator below
+while (($c = fgets($f)) !== false) {
+    doSomethingWith($c);
+}
+</code></pre>
+
+<p>This is better because <code>fgets</code> could legitimately return an empty (zero-length) string, which would compare equal to <code>null</code> when using the equality operator. The operator <code>!==</code> also checks the <em>type</em> of its operands, so this way you are covered.</p>

@@ -1,0 +1,14 @@
+<p>That's an example with the functions named in my comment above:</p>
+
+<ol>
+<li><a href="http://php.net/manual/en/function.strrpos.php" rel="nofollow"><code>strrpos()</code></a> - Find the position of the last occurrence of a substring in a string</li>
+<li><a href="http://www.php.net/manual/en/function.substr.php" rel="nofollow"><code>substr()</code></a> - Return part of a string</li>
+</ol>
+
+<p>and the code:</p>
+
+<pre><code>$text = implode(', ', array_values($car_names));
+$last = strrpos($text, ',');
+if ($last) $text = substr($text, 0, $last-1) . ' AND ' . substr($text, $last+1);
+echo $text;
+</code></pre>

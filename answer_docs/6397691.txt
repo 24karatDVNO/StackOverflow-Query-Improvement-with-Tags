@@ -1,0 +1,13 @@
+<p>You could use the <a href="https://developer.mozilla.org/En/Window.setTimeout" rel="nofollow">setTimeout()</a> function to achieve this. The function takes two parameters, a function to run and the time to delay. 10 minutes = 600 seconds which works out as 600,000 milliseconds, which is the timescale JS uses. So you could do something like this, if you were using jQuery of course:</p>
+
+<pre><code>setTimeout(function() {
+    $("#my-img").show();
+},600000);
+</code></pre>
+
+<p>Or if not do it with regular JS using:</p>
+
+<pre><code>setTimeout(function() {
+    document.getElementById("my-img").style.display = "block";
+}, 600000);
+</code></pre>

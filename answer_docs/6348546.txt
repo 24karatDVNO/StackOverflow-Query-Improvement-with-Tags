@@ -1,0 +1,38 @@
+<p>You can write a C function like this:</p>
+
+<pre><code>void switchtheviews(UIViewController *coming, UIViewController *going)
+{
+...
+/* there is no self here */
+...
+}
+</code></pre>
+
+<p>And use it anywhere in your code:</p>
+
+<p><code>switchtheviews(v1, v2);</code></p>
+
+<p>I don't think this is what you want. You can write a private method to do the same thing and keep everything encapsulated in your class. Try something like this on your <code>.m</code> file (it's private stuff, no need to put it on the <code>.h</code>):</p>
+
+<pre><code>// MegaCoolViewController.m
+
+@interface MegaCoolViewController ()
+
+- (void)_switchtheviews:(UIViewController*)coming over:(UIViewController*)going;
+
+@end
+
+
+@implementation MegaCoolViewController
+
+#pragma mark - Private
+
+- (void)_switchtheviews:(UIViewController*)coming over:(UIViewController*)going
+{
+/* do your thing, use self freely */
+}
+
+@end
+</code></pre>
+
+<p>As you can read in other answers, there are easier ways to switch views. I'm just answering the syntax part of the question.</p>

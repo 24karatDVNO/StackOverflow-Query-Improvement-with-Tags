@@ -1,0 +1,22 @@
+<p>As you have prototype you could simply use:</p>
+
+<pre><code>$$('.dialog').first().remove();
+</code></pre>
+
+<p>Also, if you are using prototype, you should probably avoid onClick, and use an event observer instead:</p>
+
+<pre><code>&lt;button id="dialogremover"&gt;Remove&lt;/button&gt;
+&lt;script type="text/javascript"&gt;
+$('dialogremover').observe('click', function(ev) {
+  ev.stop();
+  $$('.dialog').first().remove();
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>This has two benefits:</p>
+
+<ul>
+<li>It's much easier on the eyes!</li>
+<li>It's possible to put the JS in an external script an clean up your HTML.</li>
+</ul>

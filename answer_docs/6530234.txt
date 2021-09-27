@@ -1,0 +1,7 @@
+<p>What is happening here is that you declare <code>var x</code> without giving it a value. It is thus <code>undefined</code>, so <code>typeof x != 'undefined'</code> is false, so you don't end up setting <code>x</code> to true.</p>
+
+<p>(What does <code>x</code> denote, by the way? Please name your variables something a human can understand...)</p>
+
+<p>Then, since <code>undefined</code> is "falsy", the code inside <code>if (!x)</code> gets executed. <code>$('body')</code> gets bound those events, and <code>x</code> gets set to true.</p>
+
+<p>Then the function you passed to <code>jQuery(document).ready</code> ends, and <code>x</code> goes out of scope, never to be seen again or used by anyone. So its existence was pretty pointless; you could have commented out all code except for that before <code>var x</code>, inside <code>if (!x)</code>, and <code>$('#red-edit-full a').pjax...</code></p>

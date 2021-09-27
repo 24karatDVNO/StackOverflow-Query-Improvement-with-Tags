@@ -1,0 +1,10 @@
+<p>When you use the 'dragonfly/rails/images' default settings, it sets Dragonfly[:images] as the app name. See the Dragonfly <a href="http://markevans.github.com/dragonfly/file.Rails3.html" rel="nofollow">documentation</a> for how you customize it inside of config/initializers/dragonfly.rb. You could do something like this:</p>
+
+<pre><code>  require 'dragonfly'
+
+  app = Dragonfly[:app_name]
+  app.configure_with(:imagemagick)
+  app.configure_with(:rails)
+
+  # ... etc
+</code></pre>

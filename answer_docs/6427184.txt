@@ -1,0 +1,12 @@
+<p>Fix (<a href="http://forums.asp.net/p/1454799/3605020.aspx" rel="nofollow">this link helped me.</a>) </p>
+
+<hr>
+
+<p>1) In the LocalTestRun.testrunConfigfile/deployment the Web.Config file in host project is selected.Click Apply and save this.</p>
+
+<p>2) A RenameWebConfig.bat file is added in the folder of test project with below one line of code indicating it to copy the Web.config file and rename it every time there is a new build.</p>
+
+<p><strong>rename web.config UAWebService.TestProject.dll.config</strong> </p>
+
+<p>Hence the issue of Config settings not visible to the test project is defeated. 
+Wonder why Microsoft skipped this aspect ;)</p>

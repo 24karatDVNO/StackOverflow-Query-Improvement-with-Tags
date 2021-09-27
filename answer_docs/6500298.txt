@@ -1,0 +1,15 @@
+<p>As mentioned most non html5 dont allow cross browser ajax requests. To get around this I call a remote javascript script.</p>
+
+<p>use javascript to add a line like</p>
+
+<pre><code>&lt;script type="text/javascript" src="http://www.somemedomain.xxx/myjavascript.php?arg1=xxx&amp;arg"&gt; 
+</code></pre>
+
+<p>on the myjavascript.php file on the other server, you can process, collect information collected from the browser. </p>
+
+<p>you have to encode the php file as javascript.</p>
+
+<pre><code>header( "content-type: application/javascript" ) //check php.net
+</code></pre>
+
+<p>This will work in ie6+ </p>

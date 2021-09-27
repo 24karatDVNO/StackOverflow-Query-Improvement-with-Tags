@@ -1,0 +1,6 @@
+<p>This should work by removing the starting "asdf_" only from all names that start with "asdf_"</p>
+
+<pre><code>UPDATE `Users` 
+SET `name` = SUBSTRING(`name`, 6) 
+WHERE `name` REGEXP '^asdf_';
+</code></pre>

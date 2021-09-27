@@ -1,0 +1,14 @@
+<p>Not sure where the requirement to return a <code>List&lt;List&lt;T&gt;&gt;</code> is coming from because your method signature is simple public <code>List&lt;StockMaterial&gt;</code>.</p>
+
+<p>You could reduce all the above to:</p>
+
+<pre><code>return
+  stock.StockMaterials
+    .Where(s =&gt; 
+       s.expirydate &lt;= DateTime.Now &amp;&amp; 
+       s.expirydate.ToString() != "01/01/1900 00:00") &amp;&amp; 
+       s.chkexpirydate)
+     .ToList();
+</code></pre>
+
+<p>I would also declare a constant for the Magic string.</p>

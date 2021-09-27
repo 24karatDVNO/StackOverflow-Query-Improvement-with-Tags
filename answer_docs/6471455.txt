@@ -1,0 +1,10 @@
+<p>You must reference them via the key which in this case is the colour values you have given. To add a new element to the first item (red) you would use:</p>
+
+<pre><code>$assoc_array["red"][] = 6;
+</code></pre>
+
+<p>Using $assoc_array[$x][] = 6; will create a new array key with the identifier of $x unless $x is either red, green or blue.</p>
+
+<p>The above method works but is massively convoluted if you just wish to reference an existing array value.</p>
+
+<p>Part of the idea of giving a string value as an array key is to allow the easy reference of the array values via a related string rather than a meaningless number.</p>

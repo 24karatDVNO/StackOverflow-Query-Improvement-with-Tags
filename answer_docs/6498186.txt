@@ -1,0 +1,53 @@
+<p>I don't believe you need to start intercepting orientation changes. Its cutting corners and its possibly going to cause you a lot of headaches if you actually want to do things like load different resources for different orientations.</p>
+
+<p>The root problem is that the reference the AsyncTask has to the button that its meant to update is stale, it refers to your old button. What you can do to solve this is implement <code>Activity.onRetainNonConfigurationInstanceState()</code>. This method is called in situations when an orientation change is happening and its to allow you to store items that are non-configuration specific, like running Threads.</p>
+
+<p>The other thing you need is a method in your AsyncTask to set the Button it should enable/disable. While your Activity is restarting you unset the Button and then reset it in onCreate().</p>
+
+<p>The implementation might looks something like this.</p>
+
+<pre><code>public class MyActivity extends Activity {
+  private static final String NON_CONFIG_KEY = "com.example.NON_CONFIG_KEY";
+  protected void onCreate(Bundle instanceState) {
+    setContentView(R.layout.main);
+    HashMap&lt;String, Object&gt; nonConfigState = (HashMap&lt;String, Object&gt;)
+        getLastNonConfigurationIntstanceState();
+    if (nonConfigState != null &amp;&amp; nonConfigState.get(NON_CONFIG_KEY) != null) {
+      MyAsyncTask task = (MyAsyncTask) nonConfigState.get(NON_CONFIG_KEY);
+      task.setUiControl(findViewById(R.id.my_button));
+    }
+  }
+
+  public Object onRetainNonConfigurationInstanceState() {
+    task.setUiControl(null);
+    // create HashMap, store AsyncTask in it, and return it
+  }
+}
+
+public MyAsyncTask extends AsyncTask {
+
+  private Button mControl = null;
+  private boolean shouldUpdateControl = false;
+  private Object mLock = new Object();
+
+  public void setUiControl(Button b) {
+    synchronized (mLock) {
+      if (b != null &amp;&amp; shouldUpdateControl) {
+        b.setEnabled(true);
+        shouldUpdateControl = false;
+      }
+      mControl = b;
+    }
+  }
+
+  protected void onPostExecute(Result r) {
+    synchronized (mLock) {
+      if (mControl == null) {
+        shouldUpdateControl = true;
+      } else {
+        mControl.setEnabled(true);
+      }
+    }
+  }
+}
+</code></pre>

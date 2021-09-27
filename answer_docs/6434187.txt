@@ -1,0 +1,13 @@
+<p>When I do alphabetized results, I create a separate column (e.g. <code>first_letter</code>) to hold the first letter of the name, or "#" when the first character is not a letter. (I generally do this when I'm only showing one letter at a time, so if you're not querying by first letter this is probably overkill.)</p>
+
+<p>Your controller code would look like <code>@contacts = Contact.all.order('first_letter, name').group_by(&amp;:first_letter)</code></p>
+
+<p>A simple (HAML) view could look like this (I'm not quickly seeing what kind of output jQuery mobile wants):</p>
+
+<pre><code>- (['#'] + ('A'..'Z').to_a).each do |letter|
+  %h2 #{letter}
+  %ol
+    - if !@contacts[letter].empty?
+      - @contacts[letter].each do |contact|
+        %li #{contact.name}
+</code></pre>

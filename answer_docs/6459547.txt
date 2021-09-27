@@ -1,0 +1,19 @@
+<p>Given the code, the following properties could be null:</p>
+
+<ul>
+<li>Submission sub (If there is no submission with the ID = x)</li>
+<li>sub.Status1</li>
+<li>List item</li>
+</ul>
+
+<p>PanelComment</p>
+
+<p>Just change your code by the following:</p>
+
+<pre><code>Submission sub = String.IsNullOrEmpty(x) ? null : ss.getSubmissionByID(x);
+
+if (sub!= null &amp;&amp; sub.Status1 == 0){
+...
+</code></pre>
+
+<p>It should fix most of the null references.</p>

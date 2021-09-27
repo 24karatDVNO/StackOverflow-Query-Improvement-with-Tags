@@ -1,0 +1,7 @@
+<pre><code> UPDATE table_name set Approved = 'Yes' 
+ WHERE DateDiff(dd, JoiningDate, getdate()) &gt; Period
+</code></pre>
+
+<p>Assumes Period is stored as integer number of days.</p>
+
+<p>See <a href="http://msdn.microsoft.com/en-us/library/ms189794.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms189794.aspx</a> for other examples if Period is not days.</p>

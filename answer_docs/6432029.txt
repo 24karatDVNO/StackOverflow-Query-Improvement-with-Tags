@@ -1,0 +1,31 @@
+<p>I would recommend that you use a <a href="http://www.boost.org/doc/libs/1_46_1/libs/multi_array/doc/index.html" rel="nofollow">Boost::multi_array</a>, from the library of the same name, which provides a simple interface to a multidimensional array.  It can be allocated in one line, and at a sufficiently high optimization level is usually as fast as a native array.</p>
+
+<p>Here's some example code from the library's website:</p>
+
+<pre><code>#include "boost/multi_array.hpp"
+#include &lt;cassert&gt;
+
+int 
+main () {
+  // Create a 3D array that is 3 x 4 x 2
+  typedef boost::multi_array&lt;double, 3&gt; array_type;
+  typedef array_type::index index;
+  array_type A(boost::extents[3][4][2]);
+
+  // Assign values to the elements
+  int values = 0;
+  for(index i = 0; i != 3; ++i) 
+    for(index j = 0; j != 4; ++j)
+      for(index k = 0; k != 2; ++k)
+        A[i][j][k] = values++;
+
+  // Verify values
+  int verify = 0;
+  for(index i = 0; i != 3; ++i) 
+    for(index j = 0; j != 4; ++j)
+      for(index k = 0; k != 2; ++k)
+        assert(A[i][j][k] == verify++);
+
+  return 0;
+}
+</code></pre>

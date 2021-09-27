@@ -1,0 +1,20 @@
+<p>The only thing you get out of a Bundle is what you put in.  Bundles are ways of passing information between activities.  If you're in charge of your entire application, you shouldn't need to look inside the Bundle for your objects, you should just grab them.  Think hashmap keys... if you don't know the key, it's not like you can search the hashmap.</p>
+
+<p>To place an item into a Bundle and pass it on to the next activity, you need to put it as an Extra.  Take a look <a href="http://miragemiko.wordpress.com/2010/03/20/android-using-bundle-for-sharing-variables/" rel="nofollow noreferrer">here</a> for an example of passing data via extras and bundles between activities.</p>
+
+<p>Copied and pasted below:</p>
+
+<p>From Activity1</p>
+
+<pre><code>Intent intent = new Intent(this,myActivity2.class);
+Bundle bundle = new Bundle();
+bundle.putString("myValue", myValue);
+intent.putExtras(bundle);
+navigation.this.startActivity(intent);
+</code></pre>
+
+<p>In Activity2</p>
+
+<pre><code>Bundle bundle = getIntent().getExtras();
+act2MyValue= bundle.getString("myValue");
+</code></pre>

@@ -1,0 +1,11 @@
+<p><a href="http://www.ietf.org/mail-archive/web/oauth/current/msg04969.html" rel="nofollow">http://www.ietf.org/mail-archive/web/oauth/current/msg04969.html</a> and <a href="http://www.ietf.org/mail-archive/web/oauth/current/msg03655.html" rel="nofollow">http://www.ietf.org/mail-archive/web/oauth/current/msg03655.html</a></p>
+
+<p>says that the "code_and_token" type was good, but the RFC didn't make it clear enough that the token in the fragment (for Javascript) should/could have less rights than the token obtained by the access code...</p>
+
+<p>Thanks Nov Matake for pointing out the code_and_token type was part of the spec (at one point) as I missed it in the old specification versions (though it is widely implemented).</p>
+
+<p>Looks like it will make a comeback though, as it is quite well supported by existing implementations at <strike>Google</strike> and Facebook and seems to be a core request to support both user-agent tokens and server-side access codes in one round trip.</p>
+
+<p>The problem seems to be defining the semantics of "scope" in this context as well as defining a degree to which scope can differ in a single request. It makes sense that the user-agent token has limited rights, ie not the same rights as the client application.</p>
+
+<p>We shall wait and see ... the downside of  implementing off the back of an involving RFC.</p>

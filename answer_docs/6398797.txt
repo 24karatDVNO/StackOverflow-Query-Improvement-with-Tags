@@ -1,0 +1,7 @@
+<p>If you are setting the velocity yourself, it's up to you to make it look natural :)
+Changing the vertical part of the velocity is not a good idea - just leave it how it was:</p>
+
+<pre><code>b2Vec2 vel = body-&gt;GetLinearVelocity();
+vel.x = ...;
+body-&gt;SetLinearVelocity( vel );
+</code></pre>

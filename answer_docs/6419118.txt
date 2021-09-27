@@ -1,0 +1,9 @@
+<p>Maybe get the sandbox safety with regular user permissions? So the process running the show has specific access to specific directories. </p>
+
+<p><code>chroot</code> would be an option but I can't figure out how to track these tries to write outside the root.</p>
+
+<p>Another idea would be along the lines of intercepting system calls. I don't know much about this but <code>strace</code> is a start, try running a program through it and check if you see something you like.</p>
+
+<p>edit:</p>
+
+<p>is using kernel modules an option? because you could replace the write system call with your own so you could prevent whatever you needed and also log it.</p>

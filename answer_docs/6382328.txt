@@ -1,0 +1,18 @@
+<p>The statement <code>var abc = {};</code> creates a new (empty) object and points the variable <code>abc</code> to that object.</p>
+
+<p>The test <code>abc == {}</code> creates a second new (empty) object and checks whether <code>abc</code> points to the <em>same</em> object. Which it doesn't, hence the <code>false</code>.</p>
+
+<p>There is no built-in method (that I know of) to determine whether an object is empty, but you can write your own short function to do it like this:</p>
+
+<pre><code>function isObjectEmpty(ob) {
+   for (var prop in ob)
+      if (ob.hasOwnProperty(prop))
+         return false;
+
+   return true;
+}
+</code></pre>
+
+<p>(The <code>hasOwnProperty()</code> check is to ignore properties in the prototype chain not directly in the object.)</p>
+
+<p>Note: the term 'object' is what you want to use, not 'hash map'.</p>

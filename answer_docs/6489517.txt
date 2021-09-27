@@ -1,0 +1,5 @@
+<p>When you say <code>prepare</code> on the underlying <code>mediaplayer</code> object, internally it really does some preparation like - setting up the extractor for the file, setting up the audio decoder to decode the encoded audio file and setting up the audio sink to play the raw audio data that was decoded from the decoder. Now all this will take time, it is not instantaneous. </p>
+
+<p>So in your original code, you check if the mediaplayer <code>isPlaying</code> and then dismiss it but the problem is at that point of time the mediaplayer is not playing the audio yet and thus your dismiss is never called so it always visible.</p>
+
+<p>What you need to do is implement the listener <code>MediaPlayer.OnPreparedListener</code> and when the method <code>onPrepared</code> is called in your application call the dismiss <code>mediaPlayerLoadingBar.dismiss();</code> in that method. </p>

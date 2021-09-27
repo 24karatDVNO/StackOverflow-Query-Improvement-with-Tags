@@ -1,0 +1,6 @@
+<p>You could just concatenate the two strings together and do a normal sort on that value. It would give you the same result. Or if you can use link you could do:</p>
+
+<pre><code>myObjectList.OrderBy(p =&gt; p.LastName).ThenBy(p =&gt; p.FirstName);
+</code></pre>
+
+<p>There are also OrderByDescending and ThenByDescending methods as well.</p>

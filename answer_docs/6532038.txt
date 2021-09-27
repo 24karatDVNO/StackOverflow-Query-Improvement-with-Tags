@@ -1,0 +1,7 @@
+<p>Put the following in your .htaccess</p>
+
+<pre><code>RewriteEngine on
+RewriteRule ^([a-z0-9_-]+)/?$ /users.php?idu=$1 [NC]
+</code></pre>
+
+<p>The [NC] will make it case-insensitive, if you accept only lowercase username, remove the [NC] from the last.</p>

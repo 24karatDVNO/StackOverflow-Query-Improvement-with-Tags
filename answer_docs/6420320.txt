@@ -1,0 +1,9 @@
+<p>I dealt with this last night.  That is, I needed to call dispose on an object in a UserControl.  I think you have two options.</p>
+
+<p>I added a instance of BackgroundWorker to the WPF UserControl.  That may or may not be a good idea, but whatever.  Only one instance of the BackgroundWorker needs to be run per UserControl.  So, I initialize the BackgroundWorker as null.  When I need to use the BackgroundWorker, I check to see if it's null, and then create a new instance of it, have it do its work.  Then, I dispose of it in the worker complete event, and set it back to null.</p>
+
+<p>You can use the WPF Window closing or unload events.  Unload doesn't get called on the UserControl, but it does in the Window that holds that UserControl.</p>
+
+<p>WPFWindow Event Close (or Unload, or whatever) calls a custom release function in your UserControl.  This custom release function does the work.</p>
+
+<p>So, there's no real good one size fits all solution to your problem.  It requires more design and thought to handle features that require dispose, because, in general, WPF doesn't require it.  WPF generally only requires you to set items to null.  (Does UserControl.Unload get called when you set the UserControl to null?  Haven't thought about it before now, but if it does, that would be the correct answer.)</p>

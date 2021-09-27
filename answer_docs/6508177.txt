@@ -1,0 +1,12 @@
+<p>According to the <a href="http://docs.python.org/library/re.html" rel="nofollow">python re documentation</a>, \d matches any digit if the UNICODE flag is not set. If the flag is set, then it matches anything considered a digit in that locale. </p>
+
+<p>It won't match negative numbers without some additions though:</p>
+
+<pre><code>-?\d+
+</code></pre>
+
+<p>This works, but does not get any number, since numbers are quite complex little things. 
+Try this one:</p>
+
+<pre><code>[-+]?\d*\.?\d+([eE][-+]?\d+)?
+</code></pre>

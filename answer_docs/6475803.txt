@@ -1,0 +1,7 @@
+<pre><code>$str = htmlentities(strtolower($_GET['content'])); 
+</code></pre>
+
+<p>Also, you can use new filter_input function to prevent SQL injection if you are using new PHP version.</p>
+
+<p>FYI:
+<a href="http://php.net/manual/en/function.filter-input.php" rel="nofollow">http://php.net/manual/en/function.filter-input.php</a></p>

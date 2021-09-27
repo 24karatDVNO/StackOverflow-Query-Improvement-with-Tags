@@ -1,0 +1,7 @@
+<p>A string is a nullable type.</p>
+
+<p>So you in the given code you compare a <strong>NULL</strong> string to a string that contains the characters "<strong>blah</strong>" and you have no else statement.</p>
+
+<p>Of course I would argue using == when you are trying to compare a string is wrong.</p>
+
+<p>Technically "<strong>Dog played ball with the boy\n</strong>" and "<strong>Dog played ball with the boy</strong>\0" would not equate to true when using the == comparison.</p>

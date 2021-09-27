@@ -1,0 +1,15 @@
+<p>You can still code the anonymous function and use <code>.__proto__</code> to access its prototype like this:</p>
+
+<pre><code>test = new function(){
+    ...
+};
+
+test.__proto__.foo = function() { return 1 };
+</code></pre>
+
+<p>However, you only have one instance so you could also just use:</p>
+
+<pre><code>test.foo = function() { return 1 };
+</code></pre>
+
+<p>I'm not completely sure what exactly you're trying to accomplish, but as for the naming, it is usual to name the class like <code>SomeClass</code> and other variables (like instances) along the lines of <code>someVariable</code>. JavaScript is case-sensitive so you could use <code>TestClass</code>/<code>testClass</code>.</p>

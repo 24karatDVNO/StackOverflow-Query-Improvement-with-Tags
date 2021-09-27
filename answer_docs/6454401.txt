@@ -1,0 +1,10 @@
+<p>You should store the displayed labels in an <code>NSMutableArray</code> that is a property of the cell. That way you can iterate through simply by using:</p>
+
+<pre><code>for (UILabel *tmpLabel in yourLabelArray){
+   // do: add height to sum
+}
+</code></pre>
+
+<p>This will save you an the if (labelExists) for every label.</p>
+
+<p>Good luck!</p>

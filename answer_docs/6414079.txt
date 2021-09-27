@@ -1,0 +1,16 @@
+<p>If you are trying to read the value of 'A' within PHP, you have to use bind variables.  You also need to pass the bind variable in as a reference.  And since you cannot rename your A variable you can do something like this ... </p>
+
+<pre><code>$rVal = '';
+$sql = "declare
+        A varchar2(16);
+        docs.InsT(...);
+        :rVal := A;
+        end;";
+$stid = oci_parse($conn, trim($sql));
+oci_bind_by_name($stid, ':rVal', &amp;$rVal, 16);
+oci_execute($stid);
+oci_commit($conn);
+var_dump($rVal);
+</code></pre>
+
+<p><strong>$rVal</strong> now contains the value of <strong>A</strong> from oracle.</p>

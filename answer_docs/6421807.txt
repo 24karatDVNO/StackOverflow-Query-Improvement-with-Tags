@@ -1,0 +1,31 @@
+<p>you could do this:</p>
+
+<pre><code>&lt;!--Put this in your &lt;head&gt; tag--&gt;
+var stateOfClick = null;
+
+function initiateLine(){
+    document.getElementById('test').value = "Started";
+}
+
+function endLine(){
+    document.getElementById('test').value = "Line Ended";
+}
+
+function createLines(){
+  if(!stateOfClick) {
+    initiateLine();
+    stateOfClick = 1;
+  } else {
+    endLine();
+  }
+}
+</code></pre>
+
+<p>then on the object add:-</p>
+
+<pre><code>onclick="createLines()"
+</code></pre>
+
+<hr>
+
+<p><a href="http://jsfiddle.net/WpLG3/1/" rel="nofollow">http://jsfiddle.net/WpLG3/1/</a></p>

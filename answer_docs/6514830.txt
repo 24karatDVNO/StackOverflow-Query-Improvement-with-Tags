@@ -1,0 +1,21 @@
+<p>maybe not THE most efficient, but you could try this:</p>
+
+<pre><code>int main() {
+    //use ifstream to read
+    ifstream in("yourfile.txt");
+
+    //string to store the line
+    string line = "";
+
+    //random number generator
+    srand(time(NULL));
+
+    for(int i = 0; i &lt; 100000; i++) {
+        in.seekg(rand() % 10000);
+        in&gt;&gt;line;
+        //do what you want with the line here...
+    }
+}
+</code></pre>
+
+<p>Im too lazy right now, but you need to make sure that you check your ifstream for errors like end-of-file, index-out-of-bounds, etc...</p>

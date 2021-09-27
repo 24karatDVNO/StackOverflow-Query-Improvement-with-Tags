@@ -1,0 +1,10 @@
+<p>You should really do your select list using the HTML class. You should first create your select list in the controller like the following:</p>
+
+<pre><code>var types = typeRepo.GetRecTypes();
+ViewBag.SelectList = new SelectList(types, "KeyFieldName", "TitleFieldName");
+</code></pre>
+
+<p>then in your view:</p>
+
+<pre><code>@Html.DropDownList("SelectListName", (SelectList)ViewBag.SelectList)
+</code></pre>

@@ -1,0 +1,5 @@
+<p>I cannot reproduce the error in FF4.01. However, this might be to do with the fonts installed on your coworker's machine - as has already been suggested. Ask him to set the standard font to "Arial Unicode MS" or "Lucida Sans Unicode" (if these two don't appear in the fonts list, your coworker would have to install them) and see if it works. </p>
+
+<p>If it does, you should consider setting <code>&lt;span style="font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', sans-serif;"&gt;</code>. Although this seems to be a highly machine-specific problem, there is still a chance this might happen on other machines as well.</p>
+
+<p>The character encoding shouldn't have any impact, it should work under ISO-8859-1 as well as UTF-8 to UTF-32 - at least. </p>

@@ -1,0 +1,7 @@
+<p>Yes, you are doing it correctly. It may seem awkward at first, but it really is the best option. It is definitely far better than aborting a thread. Loop iterations, as you have discovered, are ideal candidates for checking <code>CancelationPending</code>. This is because a loop iteration often isolates a logical unit of work and thus easily delineate a safe point. Safe points are markers in the execution of a thread where termination can be easily accomplished without corrupting any data.</p>
+
+<p>The trick is to poll <code>CancelationPending</code> at safe points frequently enough to provide timely feedback to the caller that cancelation completed successfully, but not too frequently to negatively effect performance or as to "litter the code".</p>
+
+<p>In your specific case the inner loop is the best place to poll <code>CancelationPending</code>. I would omit the check on the outer loop. The reason is because the inner loop is where most of the time is spent. The check on the outer loop would be pointless because the outer loop does very little actual work except to get the inner loop going.</p>
+
+<p>Now, on the GUI side you might want to grey out the stop button to let the user know that the cancelation request was accepted. You could display a message like "cancelation pending" or the like to make it clear. Once you get the feedback that cancelation is complete then you could remove the message.</p>

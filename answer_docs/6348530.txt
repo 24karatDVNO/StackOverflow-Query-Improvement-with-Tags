@@ -1,0 +1,10 @@
+<pre><code>    $('.close').click(function () {
+        if($('.banner-inner-content').hasClass('top')){
+            $('.banner-inner-content').removeClass('top');
+            $('.banner-inner-content').addClass('bottom');
+    }else{
+            $('.banner-inner-content').addClass('top');
+            $('.banner-inner-content').removeClass('bottom');
+    }
+});
+</code></pre>

@@ -1,0 +1,17 @@
+<p>Actually, no, you do not.</p>
+
+<p>Whenever you use any of the <code>UIWindow</code> <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIWindow_Class/UIWindowClassReference/UIWindowClassReference.html#//apple_ref/doc/uid/TP40006817-CH3-SW7" rel="nofollow">Make Key Window</a> methods (as you probably is doing inside your <code>AppDelegate</code>), such as</p>
+
+<blockquote>
+  <p>– makeKeyAndVisible <br>
+  – makeKeyWindow</p>
+</blockquote>
+
+<p>The window becomes available from all your application just by using the <code>UIApplication's</code> <a href="http://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40006728-CH3-SW32" rel="nofollow">keyWindow</a> property.</p>
+
+<pre><code>[[UIApplication sharedApplication] keyWindow]
+</code></pre>
+
+<p>So, there is no need for a property or a retain in your <code>AppDelegate</code> or anywhere else, as it will be retained by your application class.</p>
+
+<p>OBS: The property is commonly placed in your <code>AppDelegate</code> as the application template from XCode used the interface builder and an IBOutlet to instantiate the <code>UIWindow</code>. So, if your are creating your window by hand, there is no need for a property there.</p>

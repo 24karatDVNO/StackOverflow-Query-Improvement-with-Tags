@@ -1,0 +1,18 @@
+<p>If I understand what you're attempting, I think you can extend <a href="http://msdn.microsoft.com/en-us/library/system.dynamic.dynamicobject.aspx" rel="nofollow">DynamicObject</a> to achieve this.</p>
+
+<pre><code>class Proxy : System.Dynamic.DynamicObject
+{
+    public Proxy(object someWrappedObject) { ... }
+
+    public override bool TryInvokeMember(System.Dynamic.InvokeMemberBinder binder, object[] args, out object result)
+    {
+      // Do whatever, binder.Name will be the called method name
+    }
+}
+</code></pre>
+
+<p><code>//Do whatever...</code> would become some code that pokes at some other object's internal members (via reflection, presumably) using <code>binder.Name</code> as part of the lookup process.</p>
+
+<p>There are <code>TryGetMember</code> and <code>TryGetIndex</code> methods to override if you need to wrap up anything fancier that simple method invokes.</p>
+
+<p>You will have to cast instances of <code>Proxy</code> to <code>dynamic</code> after construction to make arbitrary calls, just like when dealing with <a href="http://msdn.microsoft.com/en-us/library/system.dynamic.expandoobject.aspx" rel="nofollow">ExpandoObject</a>.</p>

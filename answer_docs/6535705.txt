@@ -1,0 +1,11 @@
+<p>The C# btn.KeyDown += h corresponds to the following in VB:</p>
+
+<pre><code>AddHandler btn.KeyDown, AddressOf h
+</code></pre>
+
+<p>Similarly, -= corresponds to RemoveHandler.</p>
+
+<p>However, the VB compiler has issues when using custom EventHandler types that are not directly the generic EventHandler(Of T). In the case of your sample, I"m not sure what the custom KeyDownEventHandler type is doing, in the conversion parameter. If you don't need it, you may be able to use the weakly typed version:</p>
+
+<pre><code>Dim keysIO = Observable.FromEventPattern(Of KeyDownEventHandler, RotedEventArgs)(btn, "KeyDown")
+</code></pre>

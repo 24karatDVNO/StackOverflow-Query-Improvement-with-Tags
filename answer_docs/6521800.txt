@@ -1,0 +1,1 @@
+<p>At first glance, it looks like there's a couple of issues here. I believe you need to apply the GlobalParam template within the Global template (using xsl:apply-templates). In the GlobalParam template you need to get rid of the middle section where you close and reopen the GlobalParam tag in order to have the name and value contained within a single element. </p>

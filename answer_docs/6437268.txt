@@ -1,0 +1,7 @@
+<p>This regex would work for your example:</p>
+
+<pre><code>/(?:^|\r\r)(.+?)\r(.+?)(?=\r\r|$)/s
+</code></pre>
+
+<p>Catches countries in group 1 and cities in group 2.
+You may have to adjust your newline characters, depending on your system. They can be \n, \r or \r\n. edit: added a $ sign, so you don't need two linebreaks at the end. You will need the flag for dotall for the regex to work as expected.</p>

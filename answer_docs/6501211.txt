@@ -1,0 +1,7 @@
+<p>You can't without adding new Day objects; it goes against the whole point of Core Data (object graph/change management). And if each event can only have one Day, it gets messy.</p>
+
+<p>Alternatively, you can return some sort of "proxy" Day objects, but that won't quite do the same thing (it might be closer to what you're looking for, though).</p>
+
+<p>Alternatively, in each event, store a number between 0 and 60*60*24*7, do the query, and sort the results however you like.</p>
+
+<p>Alternatively, tell us what you're actually trying to achieve and we might be able to give a better answer.</p>

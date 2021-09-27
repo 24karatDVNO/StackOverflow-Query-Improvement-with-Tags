@@ -1,0 +1,20 @@
+<p>The main issue, which I think you've noticed, is that if you treat Faculty as the base for your join, then there is no way to join on the Presence nodes. Oppositely, if you treat Presence as the base, then you will not see faculties that have no presence number.</p>
+
+<p>There is no easy way, using your currently defined structure, to do these joins in views.
+I would say your easiest option is to remove the 'node-reference-faculty' field from the presence node and add a node-reference-presence field to the faculty. Since CCK fields can have multiple values, you can still have your one-to-many relationship properly.</p>
+
+<p>The one downside of this is that then you need to manage the presence-faculty relationship from the faculty nodes instead of the presence nodes. If that's a show stopper, which it could be depending on your workflow, you could have BOTH node-reference fields, and use a module like <a href="http://drupal.org/project/backreference" rel="nofollow">http://drupal.org/project/backreference</a> to keep them in sync.</p>
+
+<p>Once you have your reference from faculty -> presence, you will need to add a relationship in Views. Just like adding a field or a filter, open the list of relationships and find the one for your node-reference field.</p>
+
+<p>Next, you will need to add an argument for period id and set it up to use a node id from the url. The key thing is that when you add the argument, it will ask which relationship to use in its options. You will want to tell it to use your newly added presence relationship.</p>
+
+<p>You don't really need to do a subquery in your SQL like that. This should be the same thing and won't make mysql try to create a temporary table. I mention it because you can't really do subqueries in Views unless you are writing a very custom Views handler, but in this case you don't really need the subquery anyway.</p>
+
+<p>Ex.</p>
+
+<pre><code>SELECT f.name, p.presence_number
+FROM Faculty AS f
+LEFT JOIN Presence AS p ON f.id=p.Faculty_id
+WHERE p.Period_id=1;
+</code></pre>

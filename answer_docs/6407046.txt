@@ -1,0 +1,7 @@
+<p>If you're grabbing profile thumbnail, it's because they get resized when you upload them to Facebook.  Facebook does this automatically.  If you want higher quality photos, you need to use a different API method than the the one used to get profile photos:</p>
+
+<p><a href="http://developers.facebook.com/docs/reference/api/" rel="nofollow">http://developers.facebook.com/docs/reference/api/</a></p>
+
+<p>I'd suggest "Photos" or "Photo albums" method.</p>
+
+<p><em>EDIT</em> The actual dimensions for a profile photo are 50x50.  If you try to display them larger than this, you're going to get loss.  Non vector graphics can only contain so much data per pixel.</p>

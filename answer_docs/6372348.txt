@@ -1,0 +1,47 @@
+<p>Try this,</p>
+
+<p>this goes in didSelectRowAtIndexPath</p>
+
+<pre><code> MoreInfoTable *moreInfoView = [[MoreInfoTable alloc] initWithStyle:UITableViewStyleGrouped];
+//in the MoreInfoTable, make properties like titles etc.
+[self.navigationController pushViewController:moreInfoView animated:YES];
+[moreInfoView release]; 
+}
+</code></pre>
+
+<p>here's an example of an MoreInfoTable.h</p>
+
+<pre><code>   @interface MoreInfoTable : UITableViewController {
+NSMutableArray *moreInfo;
+NSURL *getDirections;
+NSURL *getWebsite;
+NSMutableString *getPhoneNumber;
+NSString *address;
+NSString *footer;
+float lat, lon;
+
+
+}
+-(void)goToWebsite;
+-(void)goToMaps;
+-(IBAction)addToFavorites:(id)sender;
+-(void) callNumber;
+@property (nonatomic,retain) NSURL *getDirections;
+@property (nonatomic,retain) NSURL *getWebsite;
+@property (nonatomic,retain) NSMutableString *getPhoneNumber;
+@property (nonatomic,retain) NSString *footer;
+@property (nonatomic,retain) NSString *address;
+@property (readwrite) float lat;
+@property (readwrite) float lon;
+@end
+</code></pre>
+
+<p>now back in the other file in which you declare the table, you can say</p>
+
+<pre><code>MoreInfoTable *moreInfoView = [[MoreInfoTable alloc] initWithStyle:UITableViewStyleGrouped];
+//in the MoreInfoTable, make properties like titles etc.
+moreInfoView.title = @"TITLE!";
+//etc. 
+[self.navigationController pushViewController:moreInfoView animated:YES];
+[moreInfoView release];  //
+</code></pre>

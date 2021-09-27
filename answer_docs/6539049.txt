@@ -1,0 +1,23 @@
+<p>This is some code that I've used for getting search results from google, using the API:</p>
+
+<pre><code>string googleUriPattern =
+        "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&amp;safe=off&amp;rsz=large&amp;userip={0}&amp;q={1}";
+var requestUri = new Uri(
+    string.Format(
+        googleUriPattern,
+        "A valid IP address",
+        "query"
+    ));
+
+var httpWebRequest = (HttpWebRequest)WebRequest.Create(requestUri);
+httpWebRequest.Timeout = 5000;
+
+using (var webResponse = httpWebRequest.GetResponse())
+using (var sr = new StreamReader(webResponse.GetResponseStream()))
+{
+    var result = JsonConvert.DeserializeXNode(sr.ReadToEnd(), "responseData");
+    var searchResultCount = Convert.ToInt32((string)result.Descendants("estimatedResultCount").FirstOrDefault());
+}
+</code></pre>
+
+<p>As you can see, my case was to determine Googles estimated result count for the query, but you get the entire reply which you can read results from if you wish.</p>

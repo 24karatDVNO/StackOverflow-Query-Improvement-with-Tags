@@ -1,0 +1,22 @@
+<p>I agree with Pointy but since I can't seem to add onto the answer, I must make another.</p>
+
+<pre><code>$('[data-show-table]').click(function() {
+   var $this_button = $(this);
+
+   $('#div_' + $(this).attr('data-show-table')).toggle(function() {
+       var msg = $(this).css('display') == 'none' ? 'Show table' : 'Hide table';
+       $this_button.html(msg);
+   });
+
+});
+
+
+&lt;div id="div_1" style="display:none"&gt;Table 1&lt;/div&gt;
+&lt;button id="button_1" data-show-table="1"&gt;Show Table&lt;/button&gt;
+
+&lt;div id="div_2" style="display:none"&gt;Table 2&lt;/div&gt;
+&lt;button id="button_2" data-show-table="2"&gt;Show Table&lt;/button&gt;
+
+&lt;div id="div_3" style="display:none"&gt;Table 3&lt;/div&gt;
+&lt;button id="button_3" data-show-table="3"&gt;Show Table&lt;/button&gt;
+</code></pre>

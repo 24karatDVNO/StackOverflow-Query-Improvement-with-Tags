@@ -1,0 +1,7 @@
+<p>I had a similar problem so maybe you could check the following:</p>
+
+<ul>
+<li>is the markup showing as <code>"&amp;lt;p&amp;gt;&amp;lt;"</code> etc. in your datastore?</li>
+<li>if so, you can add this in your template to the string <code>.replace("&amp;lt;", "&lt;").replace("&amp;gt;", "&gt;")</code> while still using autoescape or something similar</li>
+<li>if it works you can also change it directly in your handler, like described here: <a href="http://wiki.python.org/moin/EscapingHtml" rel="nofollow">http://wiki.python.org/moin/EscapingHtml</a></li>
+</ul>

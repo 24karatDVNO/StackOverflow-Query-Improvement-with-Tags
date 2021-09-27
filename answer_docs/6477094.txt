@@ -1,0 +1,5 @@
+<p>I think maybe you're trying to accomplish too much with inheritance when composition would be better for your situation. You could pass a reference to <code>$dbClass</code> to your controllers so they have access to database functionality. </p>
+
+<p>From the names of your classes I assume that you're trying to use Model-View-Controller, in which case I would recommend against exposing the <code>DB_class</code> functionality to <code>expense_html_form</code>. You should instead perform any necessary calculations within your controllers and give the end result to the view.</p>
+
+<p>If you absolutely must use inheritance, having <code>expense_html_form</code> and <code>con_class</code> extend <code>DB_class</code> would expose those methods to <code>expense_html_form</code> and <code>mod_expense</code>.</p>

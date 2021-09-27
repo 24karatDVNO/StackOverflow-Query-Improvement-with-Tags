@@ -1,0 +1,19 @@
+<p>From the discussion in the comments, it is my conclusion that the root cause of your problem is in the implementation of the <code>DBException</code> constructor or its hierarchy. For a valid reason or not, I think it's not calling the exception class hierarchy (e.g. <code>super(reason);</code>) and therefore, you are not getting the expected behaviour from the call to <code>dbException.getMessage()</code>. Note that a call to <code>new Exception(anotherException)</code> will always populate the field backing the <code>getMessage()</code> call in the base Throwable class through this call chain: (only relevant bits shown)</p>
+
+<pre><code>public Throwable(Throwable cause) { 
+    ... 
+    detailMessage = (cause==null ? null : cause.toString());
+     ... 
+} 
+public String toString() { 
+    ... 
+    String message = getLocalizedMessage(); 
+    ...
+} 
+
+public String getLocalizedMessage() { 
+    return getMessage();
+}
+</code></pre>
+
+<p>Check the implementation of <code>DBException</code> as the root cause of the problem discussed.</p>

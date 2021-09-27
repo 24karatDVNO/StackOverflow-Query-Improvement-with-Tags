@@ -1,0 +1,3 @@
+<p>Unfortunately EF doesn't allow to selectively load related entities using its navigation properties, it will always load all <code>Foos</code> if you specify <code>Include("Foo")</code>.</p>
+
+<p>You will have to do a join on each of the related entities using your <code>Where()</code> clauses as filters where they apply.</p>

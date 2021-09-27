@@ -1,0 +1,8 @@
+<p>You can use <code>SetupGet</code>:</p>
+
+<pre><code>vqmAdapter.SetupGet(a =&gt; a.VendorQualitativeMetric).Returns(vendorManagementProxy);
+</code></pre>
+
+<hr>
+
+<p>Update: I've just learnt that you can also use <code>Setup</code> too - see <a href="https://stackoverflow.com/questions/5767640/moq-setup-vs-setupget">Setup() vs SetupGet()</a> - according to that answer, which you use "is probably ... personal preference"</p>

@@ -1,0 +1,3 @@
+<p>Arrays are not dynamic in C. That said, you can access entries beyond the last one (given that an array variable is essentially a pointer). However, this is not safe. </p>
+
+<p>Also, you cannot delete "array entries". You can move the rest of the elements to occupy the respectively previous positions. However, you cannot actually delete the area occupied by the element since an array is a contiguous piece of memory.</p>

@@ -1,0 +1,99 @@
+<p>You can create your own stream operators <code>operator&lt;&lt;</code> and <code>operator&gt;&gt;</code> to manage the reading/writing of your <code>Record</code> structures from a stream.  Then you can run things through your vector of record, applying whatever filtering you desire (perhaps with <code>std::remove_if</code>, for the example in the question) and write it back similar to below...</p>
+
+<pre><code>#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+#include &lt;stdexcept&gt;
+#include &lt;sstream&gt;
+
+namespace {
+    template &lt;class Type&gt;
+    void WriteBinary(const Type&amp; data, std::ostream&amp; os)
+    {
+        const char *binaryData = reinterpret_cast&lt;const char*&gt;(&amp;data);
+        os.write(binaryData, sizeof(data));
+    }
+
+    template &lt;class Type&gt;
+    Type ReadBinary(std::istream&amp; is)
+    {
+        Type data;
+        is.read(reinterpret_cast&lt;char*&gt;(&amp;data), sizeof(data));
+        return data;
+    }
+}
+
+struct Record
+{
+    int               mVersion;
+    std::vector&lt;char&gt; mData;
+};
+
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Record&amp; record)
+{
+    WriteBinary(record.mData.size(), os);
+    WriteBinary(record.mVersion, os);
+
+    std::copy(record.mData.begin(), 
+              record.mData.end(), 
+              std::ostream_iterator&lt;char&gt;(os)); 
+
+    return os;
+}
+
+std::istream&amp; operator&gt;&gt;(std::istream&amp; is, Record&amp; record)
+{
+    if (std::char_traits&lt;char&gt;::not_eof(is.peek()))
+    {
+        typedef std::vector&lt;char&gt;::size_type size_type;
+
+        size_type length = ReadBinary&lt;size_type&gt;(is);
+        record.mVersion = ReadBinary&lt;int&gt;(is);
+
+        if (record.mVersion != 1)
+        {
+            throw std::runtime_error("Invalid version number.");
+        }
+
+        record.mData.clear();
+        record.mData.resize(length);
+        is.read(&amp;record.mData.front(), length);
+    }
+    else
+    {
+        // Read the EOF char to invalidate the stream.
+        is.ignore();
+    }
+
+    return is;
+}
+
+int main()
+{
+    // Create a Record
+    std::string str = "Hello";
+
+    Record rec;
+    rec.mVersion = 1;
+    rec.mData.assign(str.begin(), str.end());
+
+    // Write two copies of the record to the stream.
+    std::stringstream ss;
+    ss &lt;&lt; rec &lt;&lt; rec;
+
+    // Read all the records in the "file"
+    std::vector&lt;Record&gt; records((std::istream_iterator&lt;Record&gt;(ss)),
+                                std::istream_iterator&lt;Record&gt;());
+
+    std::cout &lt;&lt; "Read " &lt;&lt; records.size() &lt;&lt; " records." &lt;&lt; std::endl;
+
+    // Manipulate records here...then write all of them back to a file.
+    std::stringstream myNewFile;
+    std::copy(records.begin(), 
+              records.end(), 
+              std::ostream_iterator&lt;Record&gt;(myNewFile));
+
+    return 0;
+}
+</code></pre>

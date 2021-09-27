@@ -1,0 +1,5 @@
+<p>Visual Studio does some fancy work to integrate itself with Internet Explorer, making it possible to set breakpoints and debug bits of javascript within the Visual Studio IDE.</p>
+
+<p>I personally prefer using Firebug for my javascript debugging, so this isn't much of an issue for me. :-P</p>
+
+<p>One thing to be aware of, however, is that if this list is very large, there's a good possibility you're generating way more script blocks than you need to. You may want to consider offloading your javascript into static *.js files, which can be effectively cached, and then using "unobtrusive javascript" techniques to avoid the need for inline snippets of javascript code.</p>

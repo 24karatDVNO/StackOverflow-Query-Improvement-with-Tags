@@ -1,0 +1,10 @@
+<p>What you're doing is calling the async implementation of Download File.</p>
+
+<p>For simplicity you can use-</p>
+
+<pre><code>webClient.DownloadFile(new Uri("http://download1us.softpedia.com/dl/f4932a906a7dd98c7ff002b07e9bd94b/4e065004/100079174/software/portable/security/ccsetup307.zip"), @"ccsetup307.zip");
+</code></pre>
+
+<p>Without the events registring.</p>
+
+<p>If you want to use the async implementation, this means that when the file is downloaded the WebClient object will call the - <em>Completed</em> method - where you can do the Unzip ....</p>

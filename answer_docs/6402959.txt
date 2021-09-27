@@ -1,0 +1,5 @@
+<p>super refers to your class's superclass, not its parent view controller. </p>
+
+<p>A way to quickly do this is create a new init method that takes an instance of view controller A, use that to set the target of your button. </p>
+
+<p>The best way is to define a new protocol on view controller B. Make view controller A conform to it. On init of B, pass in a refernce to A to use as your delegate. Then on the button push in B call the desired method on the delegate. </p>

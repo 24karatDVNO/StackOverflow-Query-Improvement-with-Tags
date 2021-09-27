@@ -1,0 +1,5 @@
+<p>The names that you choose for your various subdirectories are really a matter of choice. Remember to pick names that will work for others, though.  Even if your project is small and personal, the habits you form will carry-over into projects that you share with development teams in the future.</p>
+
+<p>I would recommend that you choose /WEB-INF/fragments instead of /fragments, since files in /fragments can be served directly to a browser... which may not make sense if the file contains markup that is context dependent.  </p>
+
+<p>Files that are in /WEB-INF are accessible to your Java code but are not directly accessible from a browser.  Your code can read the files and use them... but the user will not be able to get to them by typing 'http://foo.com/WEB-INF/fragments/header.jspf.</p>

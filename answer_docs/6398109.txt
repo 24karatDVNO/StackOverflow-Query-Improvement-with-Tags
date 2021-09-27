@@ -1,0 +1,46 @@
+<pre><code>Try this out..  
+
+
+
+  string[] things = new string[] { "paul", "bob", "lauren", "007", "90", "-10" };
+
+        List&lt;int&gt; num = new List&lt;int&gt;();
+        List&lt;string&gt; str = new List&lt;string&gt;();
+        for (int i = 0; i &lt; things.Count(); i++)
+        {
+
+            int result;
+            if (int.TryParse(things[i], out result))
+            {
+                num.Add(result);
+            }
+            else
+            {
+                str.Add(things[i]);
+            }
+
+
+        }
+</code></pre>
+
+<p>Now Sort the lists and merge them back...</p>
+
+<pre><code>        var strsort = from s in str
+                      orderby s.Length
+                      select s;
+
+        var numsort = from n in num
+                     orderby n
+                     select n;
+
+        for (int i = 0; i &lt; things.Count(); i++)
+        {
+
+         if(i &lt; numsort.Count())
+             things[i] = numsort.ElementAt(i).ToString();
+             else
+             things[i] = strsort.ElementAt(i - numsort.Count());               
+               }
+</code></pre>
+
+<p>I jsut tried to make a contribution in this interesting question...</p>

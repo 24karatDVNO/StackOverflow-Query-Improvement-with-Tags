@@ -1,0 +1,23 @@
+<p>I want to extend the answer given by <a href="https://stackoverflow.com/users/139010/matt-ball">Matt Ball</a>. If you want to split that string and willing to use other than <code>String#split()</code> you can use <a href="http://commons.apache.org/lang/api-2.5/org/apache/commons/lang/StringUtils.html" rel="nofollow noreferrer">StringUtils</a> of <a href="http://commons.apache.org/lang/" rel="nofollow noreferrer">Apache Commons Lang</a>. It has various String utility methods. </p>
+
+<p>An example:</p>
+
+<pre><code>String strDate = "June-2008";
+String[] parts = StringUtils.split(strDate, '-');
+String month = parts[0]; // "June"
+String year = parts[1]; // 2008
+</code></pre>
+
+<p>Also if you want to get a <code>java.util.Date</code> object then <a href="http://joda-time.sourceforge.net/" rel="nofollow noreferrer">Joda Time</a> may helps you. I personally prefer this api rather <code>java.util.Date</code> as it is far more rich, easy-to-use, less error-pron.</p>
+
+<p>Now we can manipulate that String as:</p>
+
+<pre><code>String strDate = "June-2008";
+DateTimeFormatter formatter = DateTimeFormat.forPattern("MMMM-yyyy");
+DateTime dateTime = formatter.parseDateTime(strDate); // parse it
+Date javaDate = dateTime.toDate(); // a java.util.Date object
+int year = dateTime.getYear(); // 2008
+String month = dateTime.month().getAsText(); // June
+</code></pre>
+
+<p>Hope this will help you. Thanks.</p>

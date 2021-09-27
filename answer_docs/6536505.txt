@@ -1,0 +1,12 @@
+<p>in your build.yml file:</p>
+
+<pre><code>extensions:
+- rexml 
+</code></pre>
+
+<p>if using blackberry, replace rexml with rhoxml</p>
+
+<p>Assuming you've done this, replace your XPath with:</p>
+
+<pre><code>REXML::XPath.match(xmldoc, "//MP_HOST_NAME" )
+</code></pre>

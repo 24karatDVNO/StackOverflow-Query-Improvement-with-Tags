@@ -1,0 +1,5 @@
+<p>I'm guessing your compiler fails at parsing the <code>&lt;</code> sign as the opening bracket of template declaration. Try to tell it explicitly that it is a template, not a less-than operator:</p>
+
+<pre><code>template&lt;typename T3&gt;
+T3 B&lt;T1,T2&gt;::template C&lt;T3&gt;::m_c;
+</code></pre>

@@ -1,0 +1,9 @@
+<p>The issue seems to have been that the app thought it was in Portrait mode even though I had the .xib in Landscape mode.</p>
+
+<p>Fixed it with this little trick in the viewDidLoad of the mainProjectViewController:</p>
+
+<pre><code>CGRect landFrame = self.view.frame;
+landFrame.size.width = self.view.frame.size.height;
+landFrame.size.height = self.view.frame.size.width;
+self.view.frame = landFrame;
+</code></pre>

@@ -1,0 +1,5 @@
+<p>You overlooked raw_input=0x20 which is obviously an invalid pointer. This is in the helpful message you got in the debugger after the segfault.</p>
+
+<p>For general problems of this type, learn to use Valgrind’s memcheck, which gives you messages about where your program abused memory.</p>
+
+<p>Meanwhile I suggest you make sure you understand pass by value vs pass by reference (both pointer and C++ reference) and know when constructors, copy constructors and destructors are called.</p>

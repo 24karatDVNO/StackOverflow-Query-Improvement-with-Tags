@@ -1,0 +1,25 @@
+<p>You seem to be creating tags like this:</p>
+
+<pre><code>Tags = new List&lt;Tag&gt;
+{
+    new Tag{Id = 1}, 
+    new Tag{Id = 2}
+}
+</code></pre>
+
+<p>Giving only the Id. But in your model you have the Name property also specified as [Required], see:</p>
+
+<pre><code>[Required]
+public string Name { get; set; }
+</code></pre>
+
+<p>To fix, try including names for the tag. e.g.:</p>
+
+<pre><code>Tags = new List&lt;Tag&gt;
+{
+    new Tag{Id = 1, Name = "some name"}, 
+    new Tag{Id = 2, Name = "another tag name"}
+}
+</code></pre>
+
+<p>Alternatively, remove the <code>[Required]</code> attribute from the Name property. </p>

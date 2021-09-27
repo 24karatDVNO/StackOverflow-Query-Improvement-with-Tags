@@ -1,0 +1,9 @@
+<p>You can always generate the even fibo numbers only too...</p>
+
+<pre><code>def evenfib():
+    """ Generates the even fibonacci numbers """
+    a, b = 2, 0
+    while True:
+        a, b = b, a+4*b
+        yield a
+</code></pre>

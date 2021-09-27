@@ -1,0 +1,13 @@
+<p>While I am not sure, it looks like it may be a Rails 2 plugin you are trying to run on a Rails 3 app.  I would check the vendor/plugin directory to see if you can find any generators and if you can copy and paste them to lib/generators/ or lib/rails_generators/, as that is where Rails 3 may look as I have come to read.  If they don't exists there is your problem.  Not to mention last time I checked Rails 3 uses the command:</p>
+
+<blockquote>
+  <p>rails generate</p>
+</blockquote>
+
+<p>and not</p>
+
+<blockquote>
+  <p>ruby script/generate</p>
+</blockquote>
+
+<p>With the same syntax after this part.</p>

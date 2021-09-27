@@ -1,0 +1,32 @@
+<p>Basically you could wrap each "page" (5 items) and scroll it with jQueryTools Scrollable to achieve this: <a href="http://flowplayer.org/tools/scrollable/index.html" rel="nofollow">http://flowplayer.org/tools/scrollable/index.html</a></p>
+
+<p>(just arrange it properly and scroll <code>&lt;ul&gt;</code>'s instead of <code>&lt;div&gt;</code>'s for that matter)</p>
+
+<p>but it's better to understand how you do things like that in general.</p>
+
+<p>the way of doing such things is wrapping the date container inside a DIV that has overflow:hidden set, and then pulling the the container up [x] pixels as the wrapper's height.</p>
+
+<p>The HTML + CSS would be:</p>
+
+<pre><code>&gt; &lt;div class="wrapper" style="overflow:hidden; height:250px;"&gt;    // height is 5 x 50px per li for this purpose
+&gt;   &lt;ul class="datesContainer" style="position:relative;"&gt;
+&gt;   &lt;li&gt; some date &lt;/li&gt;
+&gt;   &lt;li&gt; another date &lt;/li&gt;
+&gt;   ...
+&gt;   &lt;/ul&gt;
+&gt; &lt;/div&gt;
+&gt; &lt;a id="goUp"&gt;Go Up&lt;/a&gt;
+</code></pre>
+
+<p>And the jQuery would be something like this:</p>
+
+<pre><code>&gt;   $("#goUp").click(function(){
+          newOffset = parseInt($(this).css("top"))-250
+          $(".datesContainer").animate("top",newOffset,500);
+    }
+</code></pre>
+
+<p>I've used constant numbers for this example, basically you get $(".wrapper").height() to make it work for any height.
+Also, you'll have to handle it when the user reaches the bottom of your list.</p>
+
+<p>Hope this helps!</p>

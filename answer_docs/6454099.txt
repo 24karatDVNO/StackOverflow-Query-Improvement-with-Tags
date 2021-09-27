@@ -1,0 +1,10 @@
+<p>Sure, just add them in the <code>format.js</code> responder block</p>
+
+<pre><code>respond_to do |format|
+  format.html { redirect_to companies_url }
+  format.js {
+    couple(:of)
+    additional_queries
+  }
+end
+</code></pre>

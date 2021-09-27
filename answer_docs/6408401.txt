@@ -1,0 +1,21 @@
+<p>For this you will need jQuery</p>
+
+<pre><code>
+//get the original text
+txt = $('#text-container').text();
+//split the whole text by the words "Text"
+// this way each string in the array arr will contain as its first member the number 
+// without the splitting text
+arr = txt.split('Text');
+answerText = '';
+for(i=0; i &lt; arr.size(); i++){
+    words=arr[i].split(' '); //split by spaces
+    //the first word will be the number
+    nr = words[0];
+    //then we look up the corresponding option, and substitute the number
+    words[0] = $('#opt_'+nr).text();
+    //and rebuild the original text
+    answerText += words.join(' ');
+}
+
+</code></pre>

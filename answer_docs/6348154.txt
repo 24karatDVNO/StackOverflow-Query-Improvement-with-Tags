@@ -1,0 +1,9 @@
+<p>Here is example of the code populating the dialog. May be you should use similar approach and then set up your buttons:</p>
+
+<pre><code>LayoutInflater li = LayoutInflater.from(ctx);
+View view = li.inflate(R.layout.promptdialog, null);
+//get a builder and set the view
+AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+builder.setTitle("Prompt");
+builder.setView(view);
+</code></pre>

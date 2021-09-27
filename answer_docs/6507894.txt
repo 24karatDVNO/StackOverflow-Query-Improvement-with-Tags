@@ -1,0 +1,19 @@
+<p>try this:</p>
+
+<pre><code>session_start();
+include_once ("include/header.php");
+if (!isset($_SESSION['name'])) {
+    header("Location:includeindex.php");
+    exit;
+}
+else {
+    TopNavigation("about Me -ECA236", "About Me", $_SESSION['name']);
+    echo "&lt;p&gt;Here is a little about me. I am a mother of twin girls who are 9&lt;/p&gt;";
+    echo "&lt;p&gt;I been married for 5 years but been with my husband for 11 years&lt;/p&gt;";
+    echo "&lt;p&gt;I am attending college for Computer Programming and Database Mangament&lt;/p&gt;";
+    echo "&lt;p&gt;After I get done with this degree I am want to go back for Web Design&lt;/p&gt;";
+    echo "&lt;p&gt;since half my classes are web design now. I enjoy camping,bon fires and&lt;/p&gt;";
+    echo "&lt;p&gt;playing video games, hanging out with friends and family.&lt;/p&gt;";
+    Footer();
+}
+</code></pre>

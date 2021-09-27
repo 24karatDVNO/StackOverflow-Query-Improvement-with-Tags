@@ -1,0 +1,13 @@
+<p>Add the line:</p>
+
+<pre><code>void Tree::add(Position&amp; value, Node*&amp; parent) 
+{
+    if (parent == NULL)
+    {
+        std::err &lt;&lt; "Error Null parent. Aborting\n";
+        exit(1);
+    }
+    Node* temp = new Node(value, parent);
+    parent-&gt;getChildren().push_back(temp);
+}
+</code></pre>

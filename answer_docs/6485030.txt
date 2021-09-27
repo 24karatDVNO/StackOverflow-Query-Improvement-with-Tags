@@ -1,0 +1,17 @@
+<p>How about if you remove </p>
+
+<pre><code>android:onClick="SaveRegistration"
+</code></pre>
+
+<p>from your layout and do it in your code, e.g.</p>
+
+<pre><code>Button myButton = this.findViewById(btnAddRegistration);
+myButton.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v) 
+            {
+                SaveRegistration(v);
+            }
+        }
+    );
+</code></pre>

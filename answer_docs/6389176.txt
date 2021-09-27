@@ -1,0 +1,126 @@
+<p>Personally I have always liked and used the <a href="http://fluentvalidation.codeplex.com/" rel="nofollow">FluentValidation.NET</a> library in all my projects. Not only that it is very powerful in terms of expressing validation rules but this library has an excellent integration with ASP.NET MVC. So I will try to provide a sample solution for this problem using it (only server side validation for the moment, later we can talk about unobtrusive client side validation if you want).</p>
+
+<p>So start a new ASP.NET MVC 3 project using the default template and install the <code>FluentValidation.MVC3</code> NuGet package (the current stable version is 2.0.0.0).</p>
+
+<p>Then let's define a view model:</p>
+
+<pre><code>public class MyViewModel
+{
+    public string Field1 { get; set; }
+    public string Field2 { get; set; }
+}
+</code></pre>
+
+<p>Now we can assume that if <code>button1</code> is clicked <code>Field1</code> is required and if <code>button2</code> is clicked <code>Field2</code> is required and if <code>button3</code> is clicked none of them are required. A fictional scenario but pretty close to your requirements.</p>
+
+<p>Now let's define two different fluent validators for this model corresponding each to <code>button1</code> and <code>button2</code>:</p>
+
+<pre><code>public class MyModelValidator1 : AbstractValidator&lt;MyViewModel&gt;
+{
+    public MyModelValidator1()
+    {
+        RuleFor(x =&gt; x.Field1)
+            .NotEmpty();
+    }
+}
+
+public class MyModelValidator2 : AbstractValidator&lt;MyViewModel&gt;
+{
+    public MyModelValidator2()
+    {
+        RuleFor(x =&gt; x.Field2)
+            .NotEmpty();
+    }
+}
+</code></pre>
+
+<p>Now because it is only at runtime that we know which button is clicked we need to apply the correct validator based on value in the request. So let's write a custom validator provider factory:</p>
+
+<pre><code>public class MyFactory : IValidatorFactory
+{
+    private readonly Func&lt;HttpContextBase&gt; _contextProvider;
+    public MyFactory(Func&lt;HttpContextBase&gt; contextProvider)
+    {
+        _contextProvider = contextProvider;
+    }
+
+    public IValidator GetValidator(Type type)
+    {
+        if (type == typeof(MyViewModel))
+        {
+            var context = _contextProvider();
+            if (!string.IsNullOrEmpty(context.Request["button1"]))
+            {
+                return new MyModelValidator1();
+            }
+            if (!string.IsNullOrEmpty(context.Request["button2"]))
+            {
+                return new MyModelValidator2();
+            }
+        }
+        return null;
+    }
+
+    public IValidator&lt;T&gt; GetValidator&lt;T&gt;()
+    {
+        return (IValidator&lt;T&gt;)GetValidator(typeof(T));
+    }
+}
+</code></pre>
+
+<p>and register it in <code>Application_Start</code>:</p>
+
+<pre><code>ModelValidatorProviders.Providers.Add(
+    new FluentValidationModelValidatorProvider(
+        new MyFactory(() =&gt; new HttpContextWrapper(HttpContext.Current))
+    )
+);
+</code></pre>
+
+<p>and that's pretty much all. Now what's left is trivial. </p>
+
+<p>A controller:</p>
+
+<pre><code>public class HomeController : Controller
+{
+    public ActionResult Index()
+    {
+        var model = new MyViewModel();
+        return View(model);
+    }
+
+    [HttpPost]
+    public ActionResult Index(MyViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+        return Content("Thanks for submitting", "text/plain");
+    }
+}
+</code></pre>
+
+<p>and a view:</p>
+
+<pre><code>@model MyViewModel
+
+@using (Html.BeginForm())
+{
+    &lt;div&gt;
+        @Html.LabelFor(x =&gt; x.Field1)
+        @Html.EditorFor(x =&gt; x.Field1)
+        @Html.ValidationMessageFor(x =&gt; x.Field1)
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        @Html.LabelFor(x =&gt; x.Field2)
+        @Html.EditorFor(x =&gt; x.Field2)
+        @Html.ValidationMessageFor(x =&gt; x.Field2)
+    &lt;/div&gt;
+
+    &lt;input type="submit" value="Submit with button 1" name="button1" /&gt;
+    &lt;input type="submit" value="Submit with button 2" name="button2" /&gt;
+    &lt;input type="submit" value="Submit with button 3" name="button3" /&gt;
+}
+</code></pre>

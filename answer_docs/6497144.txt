@@ -1,0 +1,13 @@
+<pre><code>@interface MyController... {
+  BOOL _sortAscending;
+}
+
+@implementation MyController
+
+(IBAction)swapSort {
+  _sortAscending = !_sortAscending;
+
+  NSSortDescriptor *Descriptor = [[[NSSortDescriptor alloc] initWithKey:@"Name" ascending:_sortAscending selector:@selector(localizedCaseInsensitiveCompare:)] autorelease];
+  //whatever else you need to do
+}
+</code></pre>

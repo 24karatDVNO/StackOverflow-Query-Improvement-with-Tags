@@ -1,0 +1,3 @@
+<p>Each new process gets a copy of the stack of the parent, so immediately after calling fork(), both parent and child have the same value for i -- but they don't have the <em>same</em> stack, just a copy... so changing i's value in one process has no effect on the other.</p>
+
+<p>If you want two parallel pieces of code to share the same memory, either use threads (and memory that's in the heap, not on the stack), or use an explicit shared memory region.</p>

@@ -1,0 +1,17 @@
+<p>Have you looked at reflection ? </p>
+
+<p><a href="http://java.sun.com/developer/technicalArticles/ALT/Reflection/" rel="nofollow">http://java.sun.com/developer/technicalArticles/ALT/Reflection/</a></p>
+
+<p>for example             </p>
+
+<pre><code>    Class classVar = Class.forName("java.lang.String");
+
+  // getDeclaredFields() returns all the constructors
+  Constructor cnstArray[] = classVar.getConstructors();
+
+  // getFields() returns the declared fields 
+  Field fldArray[] = classVar.getDeclaredFields();
+
+  // getMethods() returns the declared methods of the class.
+  Method mtdArray[] = classVar.getMethods();
+</code></pre>

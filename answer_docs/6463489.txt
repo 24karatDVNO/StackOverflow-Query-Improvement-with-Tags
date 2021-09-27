@@ -1,0 +1,7 @@
+<p>In the HBM File, i mentioned the generator as <code>&lt;generator class="native" /&gt;</code>, with which it was not working, then i tried with <code>&lt;generator class="increment"/&gt;</code>, I don't know the exact reason, but it worked properly with that.</p>
+
+<p>I feel the proper reason can be that the identifier generator was <code>POST_INSERT_INDICATOR</code>, which i feel means that the id will be generated after the object is being inserted into the database, whereas I was trying to generate the same before insetion, thats the reason it was failing.</p>
+
+<p>I even tried with other id generators also, <a href="http://www.roseindia.net/hibernate/hibernateidgeneratorelement.shtml" rel="nofollow">Refer This</a> , i tried <code>uuid</code>, <code>assigned</code>, <code>increment</code>, <code>sequence</code>, and <code>hilo</code>, they have worked properly, but <code>native</code> &amp; <code>identity</code>, failed with the same problem.</p>
+
+<p>Any updates to this answer are invited, as even i want to know the exact reason for this thing and will like to know, the exact reason.</p>

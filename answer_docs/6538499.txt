@@ -1,0 +1,3 @@
+<p>If possible you should refactor your servlets and move the logic out to a service class that doesn't rely on request/response so that you can call this from wherever you like.</p>
+
+<p>I did something similar two weeks ago - a report that was generated from the web app needed to be ran as a scheduled job. I moved all the code from a Spring controller (what was it doing there anyway?) into a service class and called that code from the controller and a scheduled Quartz job.</p>

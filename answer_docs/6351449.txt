@@ -1,0 +1,11 @@
+<p>For Windows 7 x64 and Cygwin 1.7.9 I needed to use /usr/bin/gitd as the args argument of cygrunsrv</p>
+
+<pre><code>cygrunsrv   --install gitd                          \
+            --path c:/cygwin/bin/bash.exe           \
+            --args /usr/bin/gitd                    \
+            --desc "Git Daemon"                     \
+            --neverexits                            \
+            --shutdown
+</code></pre>
+
+<p>Also, I needed to run bash as an Administrator to install the service.</p>

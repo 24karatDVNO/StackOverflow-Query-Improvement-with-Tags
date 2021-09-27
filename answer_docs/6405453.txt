@@ -1,0 +1,8 @@
+<p>In AS3 you hardly ever use the instance name of a DisplayObject. You would most likely pass the reference to the object.</p>
+
+<pre><code>private function clickHandler(e:MouseEvent):void 
+{
+    myArray.push(e.target);
+}
+addEventListener(MouseEvent.CLICK, clickHandler);
+</code></pre>

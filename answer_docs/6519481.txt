@@ -1,0 +1,7 @@
+<p>sub query would do the job for you</p>
+
+<pre><code>SELECT
+  (SELECT COUNT(brands) FROM data_table where brands BETWEEN 1 and 10 ) as '1-10',
+  ...
+  (SELECT COUNT(brands) FROM data_table where brands BETWEEN 90 and 100 ) as '90-100',
+</code></pre>

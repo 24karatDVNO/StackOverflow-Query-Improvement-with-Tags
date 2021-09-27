@@ -1,0 +1,8 @@
+<p>If you desperately need to make this automatic, then in <em>principle</em>, you could:</p>
+
+<ul>
+<li>use the Java instrumentation framework, adding a ClassFileTransformer to ensure that any class implementing your interface is redefined to have its constructors automatically add instances to your collection (look at something like the Bytecode Engineering Library, BCEL, if you were to go down this route);</li>
+<li>possibly easier but still quite a lot of work: use the JVM Tool Interface to write an agent that can query the heap on the fly for instances of your object.</li>
+</ul>
+
+<p>Either way, if the interface is yours, then introducing a programming convention whereby all instances of implementations of that interface are added to the collection is definitely easier, if more error-prone.</p>

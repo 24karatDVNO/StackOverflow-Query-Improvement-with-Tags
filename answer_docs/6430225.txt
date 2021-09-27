@@ -1,0 +1,40 @@
+<p>If I read your question correctly, you want a generalized way to call a query that used named parameters, passing in a list that contains the the name/value pairs to bind. </p>
+
+<p>This is pretty simple. I'm omitting the use of generics for clarity.</p>
+
+<pre><code>    String query="select p from Person p where name=:name and family=:family";
+    String[] parameterArray = new String[] {"name", "myName", "family","myFamily"}; 
+    List parameters = Arrays.asList(parameterArray);
+    List results = callQuery(session, query, parameters);
+
+public List callQuery(Session session, String query, List parameters) {
+      Query query = session.createQuery(query);
+      if (parameters != null &amp;&amp; !parameters.isEmpty()) {
+          for (int i = 0; i &lt; parameters.size(); i+=2) {
+            query.setParameter(parameters[i],parameters[i+1]);
+          }
+      }
+      return query.list();
+    }
+</code></pre>
+
+<p>An alternative is to use a Map, which makes iterating through the parameters to add them to the query a little cleaner; I also find it makes adding them to the collection to pass in to the generic method clearer, as well: </p>
+
+<pre><code>    String query="select p from Person p where name=:name and family=:family";
+    Map&lt;String,Object&gt; parameters = new HashMap&lt;String,Object&gt;();
+    parameters.put("name","myName");
+    parameters.put("family,"myFamily");
+    List results = callQuery(session, query, parameters);
+
+public List callQuery(Session session, String query, Map&lt;String,Object&gt; parameters) {
+      Query query = session.createQuery(query);
+      if (parameters != null &amp;&amp; !parameters.isEmpty()) {
+          for (Map.Entry&lt;String,Object&gt; entry : parameters) {
+            query.setParameter(entry.getKey(),entry.getValue());
+          }
+      }
+      return query.list();
+    }
+</code></pre>
+
+<p>I'd also recommend looking into NamedQueries over the use of inline strings, as they let you include the queries in your mapping xml/annotations and add some query syntax validation.</p>

@@ -1,0 +1,6 @@
+<p>The solution also depends on the quality of your data. If you can guarantee that a "[,,,,}" for example does not appear, you don't need a complicated regex.</p>
+
+<pre><code>[\[\{](,{2,})[\]\}]
+</code></pre>
+
+<p>would do it then. Also, you wanted to select only commas, so I only used brackets around them in this regex.</p>

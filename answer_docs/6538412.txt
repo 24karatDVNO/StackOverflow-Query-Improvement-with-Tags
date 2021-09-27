@@ -1,0 +1,22 @@
+<p>You may grep your disk for it.</p>
+
+<p>I usually add the same comment to all the configuration files i touch. Something like</p>
+
+<pre><code>## (pablo) /etc/inputrc
+...
+## eof
+</code></pre>
+
+<p>If i delete /etc/inputrc i can grep for it with:</p>
+
+<pre><code>fgrep -a -A 50 '## (pablo) /etc/inputrc' /dev/sda &gt;/some/file/outside/dev/sda
+</code></pre>
+
+<p>You may use the same technique looking for something you know is in the file, like some domain name you were serving.</p>
+
+<pre><code>-a     force text search
+-A 50  display 50 lines after the pattern matched
+-B 50  display 50 lines before the pattern matched
+</code></pre>
+
+<p>-B is usefull if you don't know exactly where the pattern will match.</p>

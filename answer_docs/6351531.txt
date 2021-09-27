@@ -1,0 +1,14 @@
+<p>You could create and Error class with properties specific to Errors and then you can create a strongly-typed List like this:</p>
+
+<pre><code>public class Error
+{
+    //Properties
+}
+
+List&lt;Error&gt; errors = new List&lt;Error&gt;();
+
+if(!Valid())
+{
+    errors.Add(new Error {Name = "Error", Description="Description"};
+}
+</code></pre>

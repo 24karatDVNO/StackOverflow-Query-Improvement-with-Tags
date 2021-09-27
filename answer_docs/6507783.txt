@@ -1,0 +1,5 @@
+<p>If you're prepared to do a bit of development, it can be done with HSQLDB, especially version 1.8.1.x which is smaller in size.</p>
+
+<p>Check the org.hsqldb.lib.ResourceStreamProvider class and modify it to use the streams that you provide for file names db.properties and db.script when the calls are made to its static getResourceAsStream method.</p>
+
+<p>Pretty simple, especially because the db.script and db.properties consist of text, which you can easily generate in the rest of your program.</p>

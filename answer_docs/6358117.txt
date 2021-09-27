@@ -1,0 +1,16 @@
+<p>This is a dirty solution, but it works</p>
+
+<pre><code>&lt;%@ page contentType="text/xml"%&gt;
+&lt;%
+    java.io.File f = new java.io.File(getServletContext().getRealPath("/WEB-INF/web.xml")); //your XML file HERE
+    char[] c = new char[(int)f.length()];
+    java.io.FileReader fr = new java.io.FileReader(f);
+    int i = 0;
+    int count = 0;
+    while((i = fr.read()) != -1){
+        c[count++] = (char)i;
+    }
+
+    out.print(c);
+%&gt;
+</code></pre>

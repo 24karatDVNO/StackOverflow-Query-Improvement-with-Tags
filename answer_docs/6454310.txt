@@ -1,0 +1,14 @@
+<p>EDIT:</p>
+
+<p>I think i understand, try this:</p>
+
+<pre><code>DECLARE @i as INT = 10
+SET @SQL + 'SELECT * FROM X INNER JOIN 
+(     
+    SELECT TOP 
+    ' +CAST(@i AS NVARCHAR(10))  + ' *     
+    FROM Y 
+) AS Z     
+ON     X.ID = Z.X_ID'
+EXEC sp_executesql  @SQL
+</code></pre>

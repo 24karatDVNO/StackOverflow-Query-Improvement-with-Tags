@@ -1,0 +1,12 @@
+<p>DataContract and DataMember most definitely <em>are</em> available in all versions of WP7.</p>
+
+<p>You do not need to specify int as the ancestor type because int is the default ancestor type.</p>
+
+<pre><code>public enum videoType  
+{
+  LongVideo = 1,
+  ShortVideo, 
+}
+</code></pre>
+
+<p>Since you can convert int to an int-based enum with simple cast, I suggest casting as int to save and casting back to your enum to load.</p>

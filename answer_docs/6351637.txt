@@ -1,0 +1,15 @@
+<p><code>viewWillAppear</code> and <code>viewDidAppear</code> are notoriously shaky on iOS.</p>
+
+<p>If you are working with <code>UITableView</code>s we always put the code we need to run before the table gets loaded into the </p>
+
+<pre><code>- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+</code></pre>
+
+<p>function. It's a slight hack but works very well as this is the first function out of the UITableViewDataSource protocol called.</p>
+
+<p>Alternatively, you can call</p>
+
+<pre><code>    [tmp viewDidAppear];
+</code></pre>
+
+<p>After pushing the view controller and before releasing <code>tmp</code> to force the function being called.</p>

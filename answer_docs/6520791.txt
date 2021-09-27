@@ -1,0 +1,24 @@
+<p>Make it a console application and put this into the code:</p>
+
+<pre><code>void ConsoleWindowVisible(bool show)
+{
+    DWORD dummy;
+    if
+    (
+        !show &amp;&amp; // Trying to hide
+        GetConsoleProcessList(&amp;dummy, 1) == 1 // Have our own console window
+    )
+        ShowWindow(GetConsoleWindow, SW_HIDE); // Hide the window
+    else // Trying to show or use parent console window
+        ShowWindow(GetConsoleWindow, SW_NORMAL); // Show the window
+}
+
+int main(int argc, char** argv)
+{
+    ConsoleWindowVisible(false);
+}
+</code></pre>
+
+<p>Cheers.</p>
+
+<p>gor.f.gyolchanyan@gmail.com</p>

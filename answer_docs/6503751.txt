@@ -1,0 +1,38 @@
+<p>You can try returning view with fill parent as its width which contains your imageview from your adapters getView() ...</p>
+
+<p>Or alse  you can do something like this</p>
+
+<p>getview function</p>
+
+<pre><code>public View getView(int position, View convertView, ViewGroup parent) {
+    LayoutInflater iteminflater = LayoutInflater.from(cont);
+    View gallaryitem = iteminflater .inflate(R.layout.gallaryitem, null);
+    ImageView imgView= (ImageView ) gallaryitem .findViewById(R.id.image);
+    imgView.setImageResource(Imgid[position]);
+    gallaryitem .setBackgroundResource(GalItemBg);
+    return gallaryitem ;
+    }
+</code></pre>
+
+<p>gallaryitem.xml</p>
+
+<pre><code>&lt;LinearLayout android:layout_width="fill_parent" 
+              android:layout_height="wrap_content" 
+              android:orientation="vertical" 
+              xmlns:android="http://schemas.android.com/apk/res/android" &gt;    
+       &lt;LinearLayout android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:orientation="horizontal" 
+                     android:layout_gravity="center_horizontal"   
+                     xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+           &lt;ImageView android:layout_width="wrap_content" 
+                      android:id="@+id/image" 
+                      android:layout_height="wrap_content"  
+                      android:src="@drawable/icon"   
+                      xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+           &lt;/ImageView&gt;
+       &lt;/LinearLayout&gt;
+&lt;/LinearLayout&gt;
+</code></pre>

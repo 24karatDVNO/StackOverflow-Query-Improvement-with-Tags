@@ -1,0 +1,8 @@
+<p>Implement <code>MKMapViewDelegate</code> and then try this:</p>
+
+<pre><code>- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [mapView setCenterCoordinate:locationManager.coordinate animated:NO];
+}
+</code></pre>
+
+<p>Replace <code>locationManager</code> with whatever the name of your <code>CLLocationManager</code> is.</p>

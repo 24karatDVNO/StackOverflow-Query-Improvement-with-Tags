@@ -1,0 +1,12 @@
+<p>an ugly way is to use evalf:</p>
+
+<pre><code>&gt;&gt;&gt; eval(str(a).replace("'",""))
+[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+</code></pre>
+
+<p>if you don't mind all your numbers in one array you could go:</p>
+
+<pre><code>&gt;&gt;&gt; a = [['1','2','3'],['4','5','6'],['7','8','9']]
+&gt;&gt;&gt; map(int,sum(a,[]))
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre>

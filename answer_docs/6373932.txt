@@ -1,0 +1,11 @@
+<p>You may want to try something like the following (assuming <code>ID</code> is already a column in <code>B</code>):</p>
+
+<pre><code>ALTER TABLE B MODIFY COLUMN ID INT AUTOINCREMENT, ADD PRIMARY KEY (ClientID, ID)
+</code></pre>
+
+<p>If <code>ID</code> is not yet in <code>B</code> you can instead use</p>
+
+<pre><code>ALTER TABLE B ADD COLUMN (ID INT AUTOINCREMENT), ADD PRIMARY KEY (ClientID, ID)
+</code></pre>
+
+<p>I think this will make <code>ID</code> have a separate increment counter for each different <code>ClientID</code>.</p>

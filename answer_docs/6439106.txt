@@ -1,0 +1,11 @@
+<p>It all depends on what you call a selected item. We need some more code to understand how you "selected" items in the first listview.</p>
+
+<p>But generally speaking, all you have to do is to build a new Adapter for the second list view that just lists the selected item. You could even recylcle the first adapter and the first view, just eliminating the items that are not selected from the adapter's list and calling </p>
+
+<pre><code>notifyDatasetChanged() 
+</code></pre>
+
+<p>on your first adapter to update your first list.</p>
+
+<p>Regards,
+ stéphane</p>

@@ -1,0 +1,5 @@
+<p>Easy way: Change the <code>getUserForUserId()</code> method in your DAO to do a fetch join on the two addresses, or just access the two address objects at least once while still in the transaction that called <code>getUserForUserId()</code>.</p>
+
+<p>Hard way: Read about detached objects in <a href="http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html/transactions.html" rel="nofollow">chapter 13 of the Hibernate manual</a> and use a low-level Hibernate method to reattach the User object (e.g. <code>merge()</code>). Of course, to do that you'll need a session, and your error message says you don't have one.</p>
+
+<p>The easy way supports what your code probably assumes: that it call <code>user.getShippingAddress()</code> anytime after a call to <code>getUserForUserId()</code>. </p>

@@ -1,0 +1,23 @@
+<p>Extend async and look into returning a result from doInBackground. onProgress update can dismiss your Progress dialog under control of the async task. Handle the result from doInBackground in onPostExecute. </p>
+
+<pre><code>//create the task
+theBackground = new Background();
+theBackground.execute("");
+--------
+
+private class Background extends AsyncTask&lt;String, String, String&gt;{
+        protected  String doInBackground(String...str ) {
+            publishProgress("@@0");
+                        //do a bunch of stuff
+                        publishProgress(@001);
+                        return("true");
+
+              }
+              protected void onProgressUpdate(String... str ) {
+               //do stuff based on the progress string and eventually
+               myProgressDialog.dismiss();
+               }
+               protected void onPostExecute(String result) {
+               }
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>Solved.  I had to add the static method as ptauzen <a href="https://stackoverflow.com/questions/6353142/how-to-bind-usercontrol-to-applications-viewmodel/6354623#6354623">suggested</a>, but also remove the DataContext binding statement from my xaml : </p>
+
+<pre><code>DataContext="{Binding Path=App.ViewModel}"
+</code></pre>
+
+<p>Because the MainPage sets the datacontext in the constructor, so because my user control is a child of the main page, it inherits the data context.  All I needed was to ensure the binding of my user controls properties were set up:</p>
+
+<pre><code>SelectedKey="{Binding SelectedKey}"
+</code></pre>

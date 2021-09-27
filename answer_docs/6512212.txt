@@ -1,0 +1,44 @@
+<p>I'm answering my own question to elaborate on CodeNaked's accurate answer. <strong>Add this to the problem XAML and everything works</strong> - ConvertBack is called and both FullName and PhoneExtension are saved as needed:</p>
+
+<pre><code>&lt;ComboBox.SelectedItem&gt;
+    &lt;MultiBinding Converter="{StaticResource combinedNameAndPhoneExtensionConverter}"&gt;
+        &lt;Binding Path="FullName" UpdateSourceTrigger="PropertyChanged"/&gt;
+        &lt;Binding Path="PhoneExtension" UpdateSourceTrigger="PropertyChanged"/&gt;
+    &lt;/MultiBinding&gt;
+&lt;/ComboBox.SelectedItem&gt;
+</code></pre>
+
+<p>Here is the combinedNameAndPhoneExtensionConverter code:</p>
+
+<pre><code>public class CombineNameAndPhoneExtensionMultiConverter : IMultiValueConverter
+{
+    public object Convert(object[] values,
+                          Type targetType,
+                          object parameter,
+                          System.Globalization.CultureInfo culture)
+    {
+        if (values[0] as string != null)
+        {
+            string fullName = (string)values[0];
+            string phoneExtension = (string)values[1];
+            string namePlusExtension = fullName + ", " + phoneExtension;
+            return namePlusExtension;
+        }
+        return null;
+    }
+
+    public object[] ConvertBack(object value,
+                                Type[] targetTypes,
+                                object parameter,
+                                System.Globalization.CultureInfo culture)
+    {
+        Contact c = (Contact)value;
+
+        string[] returnValues = { c.FullName, c.PhoneExtension };
+        return returnValues;
+    }
+
+}
+</code></pre>
+
+<p>Thanks CodeNaked for your fast reply!</p>

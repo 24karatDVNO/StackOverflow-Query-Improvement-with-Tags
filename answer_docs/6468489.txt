@@ -1,0 +1,15 @@
+<p>why not use a foreach and AddRange() after splitting the terms and saving it into a list.</p>
+
+<pre><code>List&lt;ItemsImLookingFor&gt; items = new List&lt;ItemsImLookingFor&gt;();
+
+// search for terms
+foreach(string term in searchTerms)
+{
+   // add users to list
+   items.AddRange(dbOrList(
+         item =&gt; item.Name.ToLower().Contains(str)).ToList()
+   );
+}
+</code></pre>
+
+<p>that should work for any amount of terms.</p>

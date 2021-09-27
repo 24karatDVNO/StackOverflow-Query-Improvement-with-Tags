@@ -1,0 +1,44 @@
+<p>This is a bit roundabout, but works.
+You need references to EnvDTE and Microsoft.VisualStudio.Shell.Immutable.10.0 as well as the usual bits.</p>
+
+<pre><code>using System.ComponentModel.Composition;
+using Microsoft.VisualStudio.ArchitectureTools.Extensibility;
+using Microsoft.VisualStudio.ArchitectureTools.Extensibility.Uml;
+using Microsoft.VisualStudio.Modeling.Validation;
+using Microsoft.VisualStudio.Uml.AuxiliaryConstructs;
+
+namespace Validation
+{
+  public class MyValidationExtensions
+  {
+    [Import]
+    public Microsoft.VisualStudio.Shell.SVsServiceProvider ServiceProvider { get; set; }
+
+    [Export(typeof(System.Action&lt;ValidationContext, object&gt;))]
+    [ValidationMethod(
+     ValidationCategories.Open
+     | ValidationCategories.Menu)]
+    public void ValidateClassNames
+      (ValidationContext context,
+      // This type determines what elements 
+      // will be validated by this method:
+       IModel elementToValidate)
+    {
+      IModelStore store = elementToValidate.GetModelStore();
+      EnvDTE.DTE dte = ServiceProvider.GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
+      //dynamic projects = dte.ActiveSolutionProjects;
+
+      foreach (EnvDTE.Project project in dte.Solution.Projects)
+      {
+        IModelingProject mp = project as IModelingProject;
+        if (mp.Store == store)
+        {
+          System.Windows.Forms.MessageBox.Show(project.FullName);
+        }
+      }
+
+    }
+    // Add more validation methods for different element types.
+  }
+}
+</code></pre>

@@ -1,0 +1,16 @@
+<p>Try</p>
+
+<pre><code>$(document).ready(function() {
+
+    $(".voteUp").click(function() {
+
+        $.post(voteAction({postid: this.id, type: 'up'}), function(data) {
+
+            $(this).children("span").html(data);
+
+        });
+
+        $(this).unbind('click');
+    });
+});
+</code></pre>

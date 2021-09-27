@@ -1,0 +1,15 @@
+<p>Given your error message, it's obvious that your query is failing. You've supressed errors with <code>@</code> on it, so the <code>or die(...)</code> never kicks in.</p>
+
+<p>Your <code>$table_name</code> in the query is undefined, so the query looks like</p>
+
+<pre><code>INSERT INTO (name, question) ...
+</code></pre>
+
+<p>which is incorrect SQL.</p>
+
+<p>The two major fixes you need:</p>
+
+<ol>
+<li>Remove the <code>@</code> supression on mysql_query(). It is almost NEVER acceptable to supress errors, particularly when dealing with a database.</li>
+<li>Define <code>$table_name</code> in your script, or change the variable inside the query string to a proper table name.</li>
+</ol>

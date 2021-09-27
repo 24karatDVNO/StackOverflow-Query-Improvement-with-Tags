@@ -1,0 +1,17 @@
+<p>A more pythonic way to write this block of code</p>
+
+<pre><code>for i in xrange(1,8):
+    splits = dataSet[i].split(',')
+    if(len(splits) == 5):
+        remove = splits[1]
+        splits[2] = splits[1] + splits[2]
+        splits.remove(splits[1])
+    print splits
+</code></pre>
+
+<p>would be</p>
+
+<pre><code>for row in dataSet:
+    name, data = row.split(',', 1)
+    print [name] + data.rsplit(',', 2)
+</code></pre>

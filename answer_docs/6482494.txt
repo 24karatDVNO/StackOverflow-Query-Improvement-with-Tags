@@ -1,0 +1,55 @@
+<p>Heres structured solution</p>
+
+<pre><code>$data = Array(
+    [abc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [id] =&gt; 1
+                    [title] =&gt; hello 12
+                    [meta_keyword] =&gt; 
+                    [meta_description] =&gt; 
+                    [tags] =&gt; sdfgdfg
+                    [status] =&gt; draft
+                    [body] =&gt; dsfdsf dfdsafsdfsdfsdf
+                    [photo] =&gt; images/blog/nari.jpg
+                    [raw] =&gt; nari
+                    [ext] =&gt; .jpg
+                    [views] =&gt; 0
+                    [video] =&gt; 
+                    [categoryid] =&gt; 5
+                    [subcatid] =&gt; 7
+                    [featured] =&gt; 
+                    [pubdate] =&gt; 2011-06-17 03:39:55
+                    [user_id] =&gt; 0
+                )
+
+            [1] =&gt; Array
+                (
+                    [id] =&gt; 2
+                    [title] =&gt; hello xyz
+                    [meta_keyword] =&gt; 
+                    [meta_description] =&gt; 
+                    [tags] =&gt; xcfasdfcasd
+                    [status] =&gt; draft
+                    [body] =&gt; dfdsafsdf dsfdsf dfdsafsdfsdfsdf
+                    [photo] =&gt; images/blog/nari.jpg
+                    [raw] =&gt; nari
+                    [ext] =&gt; .jpg
+                    [views] =&gt; 0
+                    [video] =&gt; 
+                    [categoryid] =&gt; 1
+                    [subcatid] =&gt; 2
+                    [featured] =&gt; 
+                    [pubdate] =&gt; 2011-06-17 03:43:12
+                    [user_id] =&gt; 0
+                )
+       )
+);
+
+extract($data);
+
+foreach($abc as $value){
+    echo $value['title']."&lt;br&gt;";
+}
+</code></pre>

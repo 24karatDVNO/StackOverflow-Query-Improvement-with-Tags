@@ -1,0 +1,6 @@
+<p>In MySQL you would do something like this:</p>
+
+<pre><code>UPDATE TotalItems t, ItemsTable i
+SET t.No_Items_Present = t.Total_Items - i.No_Of_Items
+WHERE t.Item_Name = i.Item_Name
+</code></pre>

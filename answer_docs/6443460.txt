@@ -1,0 +1,14 @@
+<p>It is not very clear from your question if you want to process the data on client side (browser etc.) or on server side for offline processing.</p>
+
+<p>For accessing and processing this data on server side, you can use curl/libcurl to pull data and decode it to an object in language of your choice. For example in php:</p>
+
+<pre><code>&lt;?php 
+$ch = curl_init(); 
+curl_setopt($ch, CURLOPT_URL, "https://dev.randomdomain.com/subdomain");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$output = curl_exec($ch);
+curl_close($ch);
+
+data_as_php_object = json_decode($output);
+?&gt;
+</code></pre>

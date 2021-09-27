@@ -1,0 +1,11 @@
+<p>It's impossible to say for sure without seeing more, but it appears that you can avoid the <code>memcpy</code>, and instead use a pointer to walk through the data.</p>
+
+<pre><code>struct_wld_basic_frag *frag = (struct_wld_basic_frag *)wld;
+
+for (i=0; i&lt;header.fragmentCount; i++)
+    errorlog.OutputSuccess(fragment_strings[frag[i].id], i);
+</code></pre>
+
+<p>For the moment, I've assumed an array of strings for the different fragment types, as recommended by @Chris and @Ates. Even at worst, that will improve readability and maintainability without hurting speed. At best, it might (for example) improve cache usage, and give a major speed improvement -- one copy of the code to call <code>errorlog.outputSuccess</code> instead of 30 separate copies could make room for a lot of other "stuff" in the cache. </p>
+
+<p>Avoiding copying data every time is a lot more likely to do real good though. At the same time, I should probably add that it's <em>possible</em> for this to cause a problem -- if the data isn't correctly aligned in the original buffer, attempting to use the pointer won't work.</p>

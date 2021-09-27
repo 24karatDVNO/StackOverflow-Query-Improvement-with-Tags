@@ -1,0 +1,36 @@
+<p>For what it's worth: I ran into a similar problem.</p>
+
+<p>My JAXB classes are automatically generated with xjc in a Maven config, so I can't add @XmlRootElement manually (code is regenerated with every build).</p>
+
+<p>I use the xml type as part of another xml type ánd as root element, so JAXB doesn't add the XmlRootElement annotation (<a href="http://weblogs.java.net/blog/kohsuke/archive/2006/03/why_does_jaxb_p.html" rel="nofollow">See this article</a>). </p>
+
+<p>Furthermore, I don't want to modify the xml complexType into an element (although this is probably the most usual solution). In that case I have to work with two Bookmark objects (one from the data model and one from the jaxb model), which is too confusing.</p>
+
+<p>So I overrode the default provider, the code:</p>
+
+<pre><code>@Provider 
+@Produces(MediaType.APPLICATION_XML) 
+public class CustomBodyWriter extends AbstractRootElementProvider {
+
+  public CustomBodyWriter(@Context Providers ps) {
+    super(ps, MediaType.APPLICATION_XML_TYPE);   
+  }
+
+  @Override
+  public boolean isWriteable(Class&lt;?&gt; type, Type genericType, Annotation annotations[], MediaType mediaType) {
+    return isSupported(mediaType);   
+  }
+
+  @Override
+  protected void writeTo(Object t, MediaType mediaType, Charset c, Marshaller m, OutputStream entityStream) throws JAXBException {
+    if (t instanceof BookmarkType) {
+      JAXBElement&lt;BookmarkType&gt; bookmark = new ObjectFactory().createBookmark((BookmarkType) t);
+      m.marshal(bookmark, entityStream);
+    } else {
+      m.marshal(t, entityStream);
+    }
+  }   
+}
+</code></pre>
+
+<p>Hope this can help someone. </p>

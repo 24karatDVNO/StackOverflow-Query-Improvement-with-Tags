@@ -1,0 +1,6 @@
+<p>According to the cXML Users Guide (http://xml.cxml.org/current/cXMLUsersGuide.pdf) on page 23 it states "PunchOut catalogs are made possible by Web server 
+applications, written in a programming language such as ASP (Active Server Pages), 
+JavaScript, or CGI (Common Gateway Interface), that manage buyers’ PunchOut 
+sessions.".  Based on that it sounds possible as they call out JavaScript, but they also call out the fact that it is done by Web server applications. I have not used a strictly JavaScript myself, just ASP and recently .NET.</p>
+
+<p>However, I'm not a JavaScript expert so YMMV.  The main thing to keep in mind that most punch-outs (especially from Ariba) will be initiated via an HTTP POST with the cXML document XML as a form value.  If you can use JavaScript to process that XML and send back a response without server side work, then you should be good to go.</p>

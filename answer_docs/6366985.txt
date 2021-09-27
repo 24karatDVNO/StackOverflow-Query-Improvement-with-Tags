@@ -1,0 +1,14 @@
+<p>The UIPopoverController is a view controller. 
+SO:
+display the table.view in the UIPopoverController.</p>
+
+<p>As far as adding functionality to a row press:</p>
+
+<pre><code>- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ // in here write what happens. if its row specific write:
+  /// if (indexPath.row == ROWNUMBER){method} (rows start at 0)
+}
+</code></pre>
+
+<p>and all of this goes in the .m file of the tableView you are presenting</p>

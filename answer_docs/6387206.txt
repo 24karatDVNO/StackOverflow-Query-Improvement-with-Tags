@@ -1,0 +1,54 @@
+<p>Made some small improvements to the script given by Alex, to fully suit my needs. Now the first thumbnail on each row doesn't get a left-margin, and the last thumbnail on each row doesn't get a right-margin, so that the thumbnails really make us of the full width of the container div. Also used jQuery's .outerWidth() instead of .width() to retrieve the width of the thumbnail, so that you can use borders etc. without compromising the calculation. Now the script also run as soon as the DOM is loaded, to calculate the proper margin from the beginning, and not only when the window is re-sized.</p>
+
+<p>Here's the new script:</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+$(document).ready(calculateThumbnailMargin);
+$(window).resize(calculateThumbnailMargin);
+
+function calculateThumbnailMargin() {
+
+    // Define a minimum margin
+    var minimumMargin = 20;
+
+    // Get the outer width of the thumbnail (including padding and border)
+    var thumbWidth = $('.video-thumbnail-container').outerWidth();
+
+    // Calculate how man thumbnails can fit on one row
+    var numberofdivs = $('#content-area').width() / thumbWidth;
+    numberofdivs = Math.floor(numberofdivs).toFixed(0);
+
+    if (numberofdivs &gt;= $('.video-thumbnail-container').size()) {
+        numberofdivs = $('.video-thumbnail-container').size();
+    };
+
+    // Calculate the remaining width of the row  
+    var widthleft = $('#content-area').width() - (thumbWidth * numberofdivs);
+
+    // Calculate the proper margin to use
+    var margin = (widthleft / (numberofdivs - 1)) / 2;
+
+    // Check that the margin is not less than the minimum margin
+    if (margin &lt; minimumMargin) {
+        // Use one less thumnail on each row
+        numberofdivs = numberofdivs - 1;
+
+        // Calculate the remaining width of the row  
+        widthleft = $('#content-area').width() - (thumbWidth * (numberofdivs));
+
+        // Calculate the proper margin to use
+        margin = (widthleft / (numberofdivs - 1)) / 2;
+    }
+
+    // Add the proper margin to each thumbnail
+    $('.video-thumbnail-container').attr('style', 'margin-left:' + margin + 'px; margin-right:' + margin + 'px');
+
+    // Remove the left-margin on the first thumbnail on each row and the right-margin on the last thumbnail on each row
+    for (i = 0; i &lt; $('.video-thumbnail-container').size(); i = i+numberofdivs) {
+        $(".video-thumbnail-container:eq(" + i + ")").css('marginLeft', 0);
+        $(".video-thumbnail-container:eq(" + (i + numberofdivs - 1) + ")").css('marginRight', 0);
+    }
+}
+</code></pre>
+
+<p></p>

@@ -1,0 +1,23 @@
+<p>Depending on how many properties you're talking about, your best bet could be just to type out the ones you DO want. As Jon Skeet notes, there's nothing pre-built in LINQ that does what you're describing, because it's a very unusual task.</p>
+
+<p>That being said, if you're dealing with so many properties that it's a huge pain to write -- e.g. something like...</p>
+
+<pre><code>return query.Select(q =&gt; new
+                   {
+                       Prop1 = q.Prop1,
+                       Prop2 = q.Prop2,
+                       //...
+                       Prop3000 = q.Prop3000
+                   });
+</code></pre>
+
+<p>...then there are two options that spring to mind:</p>
+
+<ul>
+<li>Use a script to generate the code for you - probably by using reflection to print a list of the class's properties and C&amp;Ping it into your code.</li>
+<li>Use reflection in your live code, using the <a href="http://msdn.microsoft.com/en-us/library/system.reflection.propertyinfo.aspx" rel="nofollow">PropertyInfo class</a> and filtering by <code>PropertyInfo.Name</code>.</li>
+</ul>
+
+<p>I've done both of these (for other reasons), so I know they work. However, I strongly recommend the first option if you can get it running. Using reflection in the live code will be slower, probably more error-prone, and more difficult to understand when another developer comes along. The only reason I used it was because the class I was working with came from somewhere else, and was subject to frequent changes.</p>
+
+<p>If you do use the first one, might want to keep the code in a separate helper class. Nobody wants a jillion lines of property-selection cluttering up an important method.</p>

@@ -1,0 +1,16 @@
+<p>On the mouse wheel side of things; you could bind to a "mouse wheel" event in javascript:</p>
+
+<p>Firefox: <a href="https://developer.mozilla.org/en/Gecko-Specific_DOM_Events#DOMMouseScroll" rel="nofollow">https://developer.mozilla.org/en/Gecko-Specific_DOM_Events#DOMMouseScroll</a></p>
+
+<p>IE: <a href="http://msdn.microsoft.com/en-us/library/ms536951%28v=vs.85%29.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms536951%28v=vs.85%29.aspx</a></p>
+
+<p>There are some jQuery plugins that could help normalise the differene mouse wheel implementations acorss browsers: <a href="http://plugins.jquery.com/plugin-tags/mousewheel" rel="nofollow">http://plugins.jquery.com/plugin-tags/mousewheel</a></p>
+
+<p>Depending on the amount of data, you could either preload the data in the background and then "on mouse wheel move" change your recordsets. Or if you have lots of data, load the data on an ajax call.</p>
+
+<p>Regarding loading the data into the recordset it's entirely possible. However I think you need to break your problem down further, as your question covers a few areas. Perhaps approaching in 2 parts:</p>
+
+<ol>
+<li>Attaching to mouse wheel events</li>
+<li>Changing your record sets in the client side (possibly doing an ajax call back in an update panel would be reasonably simple approach, but perhaps not that performant).</li>
+</ol>

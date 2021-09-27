@@ -1,0 +1,34 @@
+<p>I like your approach of evaluating columns instead of row-by-row, this seems to me that it would give you a performance boost.</p>
+
+<p>To add to your idea, why not create a function to validate a specific column. For the columns with multiple correct values, you just put your check statement into a switch statement or something inside of that function.</p>
+
+<p>Example:</p>
+
+<pre><code>//Example function validates a field that contains an integer value
+function validateField1($x)
+{
+
+   //if necessary you could parse apart the value before "switching" it.
+
+   if(isset($x))
+   {
+      switch($x)
+      {
+         case 1: //integer 1 is a valid value
+            return true;
+         case 3: //integer 3 is a valid value
+            return true;
+         default://for all other values return false
+            return false;
+      }
+   }
+}
+</code></pre>
+
+<p>This way you can evaluate the fields on a case by case basis.  In addition to that, if your validate function returns a false value you could programmatically edit the .csv file before uploading it to the database.</p>
+
+<p>I have no idea if this will work for you, but do let us know how it turns out!</p>
+
+<p>Regards,</p>
+
+<p>H </p>

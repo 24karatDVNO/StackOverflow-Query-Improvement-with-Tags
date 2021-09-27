@@ -1,0 +1,11 @@
+<p>The other answers have covered efficiency with the command line - coming from Coda like yourself, it took a little while to get used to, but once you're fluid with it, you're going to love it (especially when you have to do a reset).</p>
+
+<p>Here's how I rolled out my DVCS deployment recently, after doing (essentially) what you are. The only difference is that I use gitolite instead of GitHub for security reasons.</p>
+
+<p>The central git server has a repository - on the <code>master</code> branch, I'll check in a vanilla install if it is an open source project, or the latest working/stable code that I have. Then, I create a branch for each stage - so in your case, there's a branch for Live/Production and your local dev environment. </p>
+
+<p>I do my work off of the <code>dev</code> branch, making feature branches or hotfixes and merging them back up. Once everything is stable, I'll merge with the <code>prod</code> branch. I then use an SSH-based hook to connect to the remote server and initiate the pull, which is an alternative to your PHP script and is quite a bit more secure.</p>
+
+<p>Even if you didn't have the ability to install git on the server, you can still use the hooks to automate your deployment. I had to test extensively to make sure this was secure, so I suggest you do the same. Also, Apache needs to be setup to redirect any requests to the <code>.git</code> directory so that directory isn't readable.</p>
+
+<p><strong>Either way,</strong> git isn't the ideal web deployment system if you're not comfortable writing the hooks to get everything in place. If you have any reservations, continue uploading via FTP. At least you have version control now.</p>

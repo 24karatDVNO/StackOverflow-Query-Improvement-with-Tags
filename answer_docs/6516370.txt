@@ -1,0 +1,5 @@
+<p>Contrary to what others have said, I don' really see a benefit in using UTF-32 instead of UTF-8: When processing text, grapheme clusters (or 'user-perceived characters') are far more useful than Unicode characters (ie raw codepoints), so even UTF-32 has to be treated as a variable-length coding.</p>
+
+<p>If you do not want to use a dedicated library, I suggest using UTF-8 as on-disk, endian-agnostic representation and modified UTF-8 (which differs from UTF-8 by encoding the zero character as a two-byte sequence) as in-memory representation compatible with ASCIIZ.</p>
+
+<p>The necessary information for splitting strings into grapheme clusters can be found in <a href="http://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries" rel="nofollow">annex 29</a> and the <a href="http://www.unicode.org/Public/UNIDATA/auxiliary/GraphemeBreakProperty.txt" rel="nofollow">character database</a>.</p>

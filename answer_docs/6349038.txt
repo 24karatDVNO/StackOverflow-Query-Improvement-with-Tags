@@ -1,0 +1,20 @@
+<p>Why not just store one int field in your model? </p>
+
+<p>For example if my User model had</p>
+
+<pre><code> t.integer :qr_code
+</code></pre>
+
+<p>You could simply check inside your controller action:</p>
+
+<pre><code>def add_qr
+  user = User.find_by_id(params[:id])
+  if user.qr_code != params[:qr_code]-1
+    redirect_to(some_url)
+  else
+    user.qr_code+=1
+    user.save
+    #do whatever else you need to do and display view
+  end
+end
+</code></pre>

@@ -1,0 +1,17 @@
+<p>First of all you need to define your form:</p>
+
+<pre><code>using (Html.BeginForm()) 
+{
+     @HTML.DropDownList("SomeName", (SelectList)ViewBag.saan)
+     &lt;input type="submit" value="save" /&gt;
+}
+</code></pre>
+
+<p>Then in your post controller:</p>
+
+<pre><code>[HttpPost]
+public ActionResult checking(string SomeName)
+{
+   ...
+}
+</code></pre>

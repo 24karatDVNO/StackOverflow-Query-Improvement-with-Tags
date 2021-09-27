@@ -1,0 +1,30 @@
+<p>I'm going to go ahead and say that your issue is that you don't have good error messages, not that you've an undefined index.</p>
+
+<p>Follow the track to get to that point:</p>
+
+<ol>
+<li><code>$head=$matches[1];</code> is an undefined index.</li>
+<li><code>$matches</code> is retrieved by looking for the <code>head</code> of some HTML which is being parsed with a regexp (<strong>*<em>HUGE</em>*</strong> No-no by the way. You should really look into a legit HTML parser)</li>
+<li>That happens because there is a problem with whatever calls <code>_parseHtml</code>.</li>
+<li><code>_parseHtml</code> is called by <code>createDoc</code>.</li>
+<li>You're passing in <code>"&lt;h1&gt;Testing data &lt;/h1&gt;"</code> as HTML.</li>
+</ol>
+
+<p>All of that given, OF COURSE you are getting no index found, you're not passing in valid HTML, so it is unable to convert it. Try <code>"&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Testing data &lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;"</code> (note: your class does not accept <code>&lt;head /&gt;</code> as a valid head tag... that's a problem).</p>
+
+<p>And there are other areas where this class can be improved.</p>
+
+<ol>
+<li>You're using PHP4 style OOP. Unless PHP4 is part of the functional spec. this is a big no-no. You want _parseHtml to be private...</li>
+<li>At one point I noticed this:<br />
+&nbsp;&nbsp;&nbsp;&nbsp; <code>EOH;</code><br />
+&nbsp;&nbsp;&nbsp;&nbsp;        return $return;`<br />
+The probem is that Heredoc <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="nofollow">does not allow for indented closings</a>. It's in big, red letters. I think they mean it.</li>
+<li><code>createDocFromURL</code> does not allow for https</li>
+<li><code>$doc.=$this-&gt;htmlBody;</code> (in <code>createDoc</code>) is not consistent with the code immediately preceding and following it -- everything works with <code>get&lt;value&gt;</code> and that line is a direct access of a property.</li>
+<li>You have a f<strong>ot</strong>ter in your class (a typo in <code>getFotter</code>)</li>
+<li>If PHP 5 is an option, you should use <code>file_put_contents</code> in <code>write_file</code>.</li>
+<li>You have inconsistent naming of methods -- <code>write_file</code> v.s. <code>getHeader</code></li>
+</ol>
+
+<p>I'm not trying to knock you down, but most of these have a large potential for causing problems in the future. You really should consider them.</p>

@@ -1,0 +1,12 @@
+<p>Are there any other methods that are missing in LIME's Array implementation?</p>
+
+<p>Assuming at least the most basic <code>push()</code> and <code>indexOf()</code> is available, there's several ways you could do it.  How this is done would depend on whether this is destructive method or whether it should return a new array.  Assuming the same input as the standard <code>splice(index, howMany, element1, elementN)</code> method:</p>
+
+<ol>
+<li>Create a new array named <code>new</code></li>
+<li><code>push()</code> indexes 0 to <code>index</code> onto the <code>new</code> array</li>
+<li>Now stop at <code>index</code> and <code>push()</code> any new elements passed in. If LIME supports the standard <code>arguments</code> variable then you can loop through <code>arguments</code> with index > 2. Otherwise you'll need to pass in an array instead of a variable number of parameters.</li>
+<li>After inserting the new objects, continue looping through the input array's elements, starting at <code>index + howMany</code> and going until <code>input.length</code></li>
+</ol>
+
+<p>I believe that should get you the results you're looking for.</p>

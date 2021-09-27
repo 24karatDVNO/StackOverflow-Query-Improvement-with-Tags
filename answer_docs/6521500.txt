@@ -1,0 +1,16 @@
+<p>You should change it this way:</p>
+
+<pre><code>  TRANSFORM Nz(Count(Demographics.ID))+0 AS CountOfID
+  SELECT Demographics.State
+  FROM Demographics
+      LEFT JOIN ( Research
+         LEFT JOIN [Status]
+              ON Demographics.ID=[Status].ID
+             )
+          ON (Research.ID=Demographics.ID)
+          AND (Research.ID=[Status].ID)
+  WHERE ((([Status].Building_Status)='Complete'))
+ GROUP BY    Demographics.State,
+             [Status].Building_Status
+ PIVOT Research.Site In (1,2,3,4,5,6,7,8,9,10,11) 
+</code></pre>

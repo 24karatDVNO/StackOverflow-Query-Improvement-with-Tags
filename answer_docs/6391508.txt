@@ -1,0 +1,13 @@
+<p>Maps store by Key:Value pairs. In your code when you do </p>
+
+<pre><code>childRowMap.put("startDate","startDate"+x)
+</code></pre>
+
+<p>it is doing this:</p>
+
+<pre><code>childRowMap.put(Key,Value)
+</code></pre>
+
+<p>So basically you are setting the key startDate to be equal to startDate0 (when x is 0). When you loop through the second time, you are setting the key startDate to be equal to startDate1 (because x is 1). Now whenever you look up startDate, it will only have startDate1 stored because startDate0 was overwritten because you only have 1 Map.</p>
+
+<p>You can fix this by either reinitializing your Map every time you loop through or by using new and unique Key's to each Value you put in the Map.</p>

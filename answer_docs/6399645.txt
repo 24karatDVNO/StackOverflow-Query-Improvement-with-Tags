@@ -1,0 +1,38 @@
+<p>It saddened me to get reamed on this question. To show my Q was in good faith, I'm answering my own question with what was a simple solution. I created generate.php to run when a change was made to the content. No cache needed.</p>
+
+<pre><code>// the switch...
+$update_live = isset($_GET['update_live']) ? TRUE : FALSE;
+// $adminPath, $livePath, $adminUrl are set in an include and contains site config data...
+$tempfile = $adminPath . 'tempindex.html'; //a temp file...
+$livefile = $livePath . 'index.html'; //the static live file...
+$this_template = $adminUrl . 'main-index.php'; //the php template file...
+$username = "php_admin";
+$password = "123xyz456";
+
+if(!($update_live)){
+        $errors[] = "Did not submit from an edit page. You can only access this page by referral!";
+}else{
+        if(file_exists($tempfile)){
+                unlink($tempfile);
+        }
+        /* =3, $html = file_get_contents($this_template, false, $context);*/
+        $html = file_get_contents($this_template);
+        if($html === false){
+                $errors[] = "Unable to load template. Static page update aborted!";
+                exit();
+        }
+        if(!file_put_contents($tempfile, $html)){
+                $errors[] = "Unable to write $tempfile. Static page update aborted!";
+                exit();
+        }
+
+        if(!copy($tempfile, $livefile)){
+                $errors[] = "Unable to overwrite index file. Static page update aborted!";
+                exit();
+        }
+        if(!unlink($tempfile)){
+                $errors[] = "Unable to delete $tempfile. Static page update aborted!";
+                exit();
+        }
+}
+</code></pre>

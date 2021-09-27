@@ -1,0 +1,3 @@
+<p>Yes i am also agree to go with AsyncTask solution and as it is known as Painless Threading, user need to not to bother about Thread Management.</p>
+
+<p>For your case, just <strong>call the capturaConversao() method inside doInBackground()</strong> (i.e. do all data fetching operation from web inside the doInBackground method) and <strong>call the display method inside the onPostExecute()</strong> (i.e. do all display operation like display fetched values inside the listview or textview).</p>

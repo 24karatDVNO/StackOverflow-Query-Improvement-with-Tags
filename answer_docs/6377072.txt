@@ -1,0 +1,4 @@
+<p>not all dot net strings are interned at runtime
+that means that s.Length == 0 would be faster in those cases
+as it avoids an actual string comparison which results if one of two strings is not interned
+<a href="http://msdn.microsoft.com/en-us/library/system.string.isinterned.aspx" rel="nofollow">See String.IsInterned() on MSDN</a></p>

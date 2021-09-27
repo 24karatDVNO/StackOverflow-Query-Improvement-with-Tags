@@ -1,0 +1,11 @@
+<ol>
+<li><p>Convert field that you are using for the date to varchar type so it will play friendly with  any format</p></li>
+<li><p>Import CSV</p></li>
+<li><p>Convert the dates to a valid mysql date format using something like:</p></li>
+</ol>
+
+<pre>    UPDATE table SET field = STR_TO_DATE(field, '%c/%e/%Y %H:%i');</pre>
+
+<ol>
+<li>Then revert field type to date </li>
+</ol>

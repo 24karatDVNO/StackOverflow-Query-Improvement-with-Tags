@@ -1,0 +1,32 @@
+<p>Well it was solved with Jason McCreary's suggestion. It worked just without ^ and the rest of the code is the same as I had it before. </p>
+
+<p>I was trying to change the string VERSION=YEARMONTHDAY (which is in one of the lines of the $ks file). I mean that the file contains in one of its lines this:
+VERSION=20101203 (or any other date, but everytime with the same format)</p>
+
+<p>That string is going to be changed by a new one that matches to the last modification of the file stored in the variable $ks. ($ks is the name of the file)</p>
+
+<pre><code>    $last_modification = filemtime($ks);
+    $last_modification = date("Ymd", $last_modification);
+
+    // $last_modification (for instance suppose it is VERSION=20110622)
+    $last_modification="VERSION=" . $last_modification;
+
+    // Open the file in order to change the string
+    $file = $ks;
+    $fh = fopen($ks, 'r+');
+    $content = fread($fh, filesize($ks));
+
+    $new_content = preg_replace('/VERSION\=[0-9]{8}/', $last_modification, $content);
+    fclose($fh);
+
+    // Open the file in order to write inside it
+    $fh = fopen($ks, 'r+');
+    fwrite($fh, $new_content);
+    fclose($fh); 
+</code></pre>
+
+<p>So the final result is going to be: the file named $ks will have a line with VERSION=20110622 instead of the VERSION=20101203 (or any other older date) string.</p>
+
+<p>The code is working fine this way for me. Thank you all again, I don't know if I have to close this issue, as it is solved</p>
+
+<p>PD: Sorry for my english</p>

@@ -1,0 +1,8 @@
+<p>Add users list object to the model and use standard tag lib to build the html</p>
+
+<pre><code>&lt;select id="users" name="users"&gt;
+  &lt;c:forEach items="users" var="user"&gt;
+    &lt;option value="${user.id}"&gt;${user.name} [${user.email}]&lt;/option&gt;
+  &lt;/c:forEach&gt;
+&lt;/select&gt;
+</code></pre>

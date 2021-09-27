@@ -1,0 +1,23 @@
+<p>In your code :</p>
+
+<pre><code>$id = $_GET['id']; 
+$hashpass = $_GET['sequence']; 
+
+$id  = mysql_real_escape_string($id );
+$id = eregi_replace("`", "", $id);
+
+$hashpass = mysql_real_escape_string($hashpass);
+$hashpass = eregi_replace("`", "", $hashpass);
+</code></pre>
+
+<p>comment(remove these) These ::</p>
+
+<pre><code>$id = eregi_replace("`", "", $id);
+$hashpass = eregi_replace("`", "", $hashpass);
+</code></pre>
+
+<p>and then try, i dont think theres a need for the '`' replace after mysql_real_escape_string();</p>
+
+<p>and also add a "Else" in your if-else ladder, and echo some debug message.</p>
+
+<p>Hope that helps.</p>

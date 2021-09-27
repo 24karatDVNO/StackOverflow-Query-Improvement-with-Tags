@@ -1,0 +1,15 @@
+<p><a href="http://css3pie.com" rel="nofollow">CSS3Pie</a> is <em>by far</em> the best solution to getting rounded corners in IE6/7/8. The best thing about it is that it works with the standard CSS <code>border-radius</code>, so it's completely transparent to the user if they're using any other browser.</p>
+
+<p>I would heartily recommend it.</p>
+
+<p>It does have a few known issues, but you'll have the same or worse with all other solutions available.</p>
+
+<p>However, I would also heartily recommend not bothering to make all the frills in your site work with IE6. Sure, make the site <em>work</em> in that browser, but honestly, trying to get it looking the same in IE6 as it does in Chrome and Firefox is going to be a losing battle.</p>
+
+<p>[EDIT]</p>
+
+<p>One final thing: I note that your stylesheet uses the 'direct child' selector (<code>&gt;</code>) quite a lot - eg <code>.item &gt; div {...}</code>. Note that this selector type is not supported by IE6. Your stylesheets are going to fail badly in IE6 as things stand.</p>
+
+<p>The only way around this is to use just a space between your selectors, for 'any descendant'. This works, but does change the meaning of your CSS.</p>
+
+<p>IE6 also doesn't support <code>:first-child</code> or <code>:last-child</code>, both of which you've used. In fact, you'll have problems with both these in IE7 and IE8 too -- <code>:last-child</code> isn't supported at all in any version of IE except IE9, and while <code>first-child</code> is supported in IE7 and IE8, it has severe bugs if you use it in dynamic content.</p>

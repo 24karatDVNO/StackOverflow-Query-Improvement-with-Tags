@@ -1,0 +1,22 @@
+<p>Use the same datatable for editing. </p>
+
+<p>If you click edit button, store the selected value or index in the backing bean and</p>
+
+<ul>
+<li>render an output component like <code>h:outputText</code> if rowValue != selectedItem</li>
+<li>render an input component like <code>h:inputText</code> if rowValue == selectedItem</li>
+</ul>
+
+<p>in your dataTable.</p>
+
+<p>Here is an example:</p>
+
+<pre><code>&lt;h:dataTable value="#{myBean.itemList}" var="item"&gt;
+  &lt;h:column&gt;
+    &lt;h:outputText value="#{item.someValue}" 
+                  rendered="#{item != selectedItem}"/&gt;
+    &lt;h:inputText value="#{item.someValue}" 
+                 rendered="#{item == selectedItem}" /&gt;
+  &lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+</code></pre>

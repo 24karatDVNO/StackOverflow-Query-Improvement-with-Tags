@@ -1,0 +1,1 @@
+<p>I recently ran into this exact same problem.  As mentioned in <a href="http://social.msdn.microsoft.com/forums/en-US/sqldatabaseengine/thread/e2ee0a1e-a911-43df-b130-ae6fdb9e49d9/" rel="nofollow">this post</a>, the solution for me was to simply add an index on the self-referencing column (not the pk).  After that, the deadlocks completely disappeared.</p>

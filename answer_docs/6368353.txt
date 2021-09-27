@@ -1,0 +1,18 @@
+<p>A more serious answer is to use late binding. Late binding however requires that MS Excel is installed on the system running the program.:</p>
+
+<pre><code>Option Strict Off
+
+Public Class Form1
+
+Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Dim xl As Object = CreateObject("Excel.Application")
+    xl.visible = True
+    xl.Workbooks.Open("C:\junk\junk.xls")
+    Dim sht1 As Object = xl.Sheets(1) '1-based
+    Dim rng As Object = sht1.Range("A2", "A2") 'get the cell
+    MsgBox(rng.Value) 'show the value
+    Dim rng2 As Object = sht1.Range("B3", "B3") 'get the cell
+    rng2.Value = "Hello" 'set the value
+  End Sub
+End Class
+</code></pre>

@@ -1,0 +1,25 @@
+<pre><code>public String getFileNameWithoutExtension(URL url) {
+    String path = url.getPath();
+
+    if (StringUtils.isBlank(path)) {
+        return null;
+    }
+    if (StringUtils.endsWith(path, "/")) {
+        //is a directory ..
+        return null;
+    }
+
+    File file = new File(url.getPath());
+    String fileNameWithExt = file.getName();
+
+    int sepPosition = fileNameWithExt.lastIndexOf(".");
+    String fileNameWithOutExt = null;
+    if (sepPosition &gt;= 0) {
+        fileNameWithOutExt = fileNameWithExt.substring(0,sepPosition);
+    }else{
+        fileNameWithOutExt = fileNameWithExt;
+    }
+
+    return fileNameWithOutExt;
+}
+</code></pre>

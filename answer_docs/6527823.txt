@@ -1,0 +1,24 @@
+<p>Margin and padding are non-existent in flash. You can mimic them, that's true, but that will not make them any more tangible.</p>
+
+<p>The only peculiarity arise from measurement of a stroke.</p>
+
+<p>Otherwise, there is no bullshit. </p>
+
+<p>See thedifference</p>
+
+<ul>
+<li>DisplayObject.getRect(): <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/DisplayObject.html?filter_flex=4.1&amp;filter_flashplayer=10.2&amp;filter_air=2.6#getRect%28%29" rel="nofollow">http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/DisplayObject.html?filter_flex=4.1&amp;filter_flashplayer=10.2&amp;filter_air=2.6#getRect%28%29</a></li>
+<li>DisplayObject.getBounds(): <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/DisplayObject.html?filter_flex=4.1&amp;filter_flashplayer=10.2&amp;filter_air=2.6#getBounds%28%29" rel="nofollow">http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/DisplayObject.html?filter_flex=4.1&amp;filter_flashplayer=10.2&amp;filter_air=2.6#getBounds%28%29</a></li>
+</ul>
+
+<p><strong>If you want something pixel-precised, use fills only, not strokes.</strong></p>
+
+<p>Guess, what's the easiest way to draw a circle?
+Here you are:</p>
+
+<pre><code>graphics.lineStyle(40); 
+graphics.moveTo(100, 100);
+graphics.lineTo(100, 101);
+</code></pre>
+
+<p>A stroke in flash has cap style, joint method and thickness while remaining not space-consuming.</p>

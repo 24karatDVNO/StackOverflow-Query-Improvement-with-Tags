@@ -1,0 +1,62 @@
+<p>I guess it could be done this way:</p>
+
+<pre><code>void swap( char &amp;a, char &amp;b) {
+char c=a;
+a = b;
+b = c;
+}
+
+
+void get_Combination( string word, int d ) {
+if (d == word.size()) {
+    cout&lt;&lt;word&lt;&lt;endl;
+    return;
+}
+
+for (int i=d; i&lt; word.size(); ++i) {
+    swap(word[i],word[d]);
+    get_combination( word, d+1 );
+    swap(word[i],word[d]);
+}
+}
+</code></pre>
+
+<p>Explanation:
+U start by calling get_combination( word, 0). Now to find all the permutations of the string, each character at every position should appear at the first location in one or other permutation. Thus we start with d=0 and swap every character until the end of the string with the character at d. With the first character in place we repeat the process starting with the second character by calling get_combination(word,d+1). Also note the second swap which is needed to bring back the initially swapped characters to their original locations and then swapping the next character with the character at location d.</p>
+
+<p>Example:</p>
+
+<p>Given the string abc, here is the recursion tree, gc=get_combination </p>
+
+<pre><code>gc("abc",0)
+
+   gc(abc,1)
+
+      gc(abc,2)
+
+        cout&lt;&lt;"abc"
+
+      gc(acb,2)
+
+        cout&lt;&lt;"acb"
+
+   gc(bac,1)
+
+      gc(bac,2)
+
+        cout&lt;&lt;"bac"
+
+      gc(bca,2)
+
+        cout&lt;&lt;"bca"
+
+  gc(cba,1)
+
+      gc(cba,2)
+
+        cout&lt;&lt;"cba"
+
+      gc(cab,2)
+
+        cout&lt;&lt;"cab"
+</code></pre>

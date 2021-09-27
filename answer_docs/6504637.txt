@@ -1,0 +1,9 @@
+<p>What is the type of the field?</p>
+
+<p>You could specify database/table/field level character-sets. The default <code>latin-1</code> works in most scenarios.</p>
+
+<p>Otherwise, you would have to use plain text and store unicode strings like <code>&amp;#&lt;4-digit-unicode-value&gt;;</code> into it. Then when you print it out, just dump the unicode into HTML and it will show up as such.</p>
+
+<p>Here is a sample string in Pashto <code>&amp;#1578;&amp;#1585;&amp;#1575;&amp;#1601;&amp;#1610;&amp;#1705;&amp;#1610; &amp;#1662;&amp;#1610;&amp;#1690;&amp;#1608; &amp;#1705;&amp;#1744; &amp;#1583;&amp;#1585;&amp;#1744; &amp;#1578;&amp;#1606;&amp;#1607; &amp;#1605;&amp;#1683;&amp;#1607; &amp;#1575;&amp;#1608; &amp;#1669;&amp;#1608;&amp;#1575;&amp;#1585;&amp;#1604;&amp;#1587; &amp;#1606;&amp;#1608;&amp;#1585; &amp;#1660;&amp;#1662;&amp;#1610;&amp;#1575;&amp;#1606; &amp;#1588;&amp;#1608;&amp;#1604;.</code> which we store directy into the table. The charset used is <code>latin_charset_ci</code></p>
+
+<p>Good Luck!</p>

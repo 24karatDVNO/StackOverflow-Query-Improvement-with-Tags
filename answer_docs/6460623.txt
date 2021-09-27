@@ -1,0 +1,10 @@
+<p>It is not. You need to call <code>registerReceiver()</code> to start the receiver.</p>
+
+<p>Also, it depends on what your receiver does in respect to your application. If your receiver makes sense only within a specific Activity, then call <code>registerReceiver()</code>. If it's something that, say, looks for intents broadcasted from the system (like intents signaling that the OS has booted up), then you should declare your receiver in the manifest file as follows:</p>
+
+<pre><code>&lt;receiver android:name=".NameOfReceiver"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="INTENT_NAME" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt; 
+</code></pre>

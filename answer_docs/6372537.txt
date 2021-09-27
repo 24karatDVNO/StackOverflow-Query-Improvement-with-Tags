@@ -1,0 +1,9 @@
+<p>As Sorrow suggests: </p>
+
+<blockquote>
+  <p>Use a 'date field in which you set the last day the user has the access to the full functionality >(and on registering you set this date to be 30 days from registration).</p>
+</blockquote>
+
+<p>I only repost to highlight that this is the better option rather than storing when the trial begins, the code for checking the former is: <code>trial_expiry &gt; Time.now</code>, whereas the code to check the trial started date would have to be more convoluted, and makes it difficult to cater for different length trials. </p>
+
+<p>You can clear the expiry date when they purchase an account, no need to check a seperate field. Some kind of user level is still a good idea, but not necessary to the trial system.</p>

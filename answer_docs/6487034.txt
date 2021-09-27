@@ -1,0 +1,5 @@
+<p>The answer here was to switch back to the main context before the background context saves </p>
+
+<p>[self performSelectorOnMainThread:@selector(deletemainmoc) withObject:nil waitUntilDone:YES];</p>
+
+<p>and delete all the objects. then when it switches back to the background thread it saves and then you can merge into a clean context.</p>

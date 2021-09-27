@@ -1,0 +1,5 @@
+<p>Nevermind, I've misunderstood the purpose of clipRect. <a href="http://pixelwelders.com/blog/actionscript-3/2008/as3-bitmapdata-foibles/" rel="nofollow">http://pixelwelders.com/blog/actionscript-3/2008/as3-bitmapdata-foibles/</a>. Using a matrix for this is easy and solves the problem.</p>
+
+<pre><code>var mat:Matrix = new Matrix(1,0,0,1,-offsetX,-offsetY);
+bmd.draw(this,mat);
+</code></pre>

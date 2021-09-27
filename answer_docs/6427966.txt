@@ -1,0 +1,20 @@
+<p>Another one solution(note that i have used string data - so in your case you need to modify code to read data from a file):</p>
+
+<pre><code>data = """
+MemTotal:        3045588 kB
+MemFree:         1167060 kB
+Buffers:          336752 kB
+Cached:           721980 kB
+SwapCached:            0 kB
+Active:           843592 kB
+Inactive:         752920 kB
+Active(anon):     539968 kB
+Inactive(anon):   134472 kB
+"""
+
+res = {}
+
+for line in [x for x in d.split('\n') if x.strip() and ':' in x and 'kB' in x]:
+    details = line.split()
+    res[details[0][:-1]] = details[-2]
+</code></pre>

@@ -1,0 +1,1 @@
+<p>I think you are looking for connection pooling done at client side that makes connection to the database. The basic idea is that the establishing a new connection is costly as it involves setting up connection, setting up DB side objects, authentication etc. and hence reuse the connection objects.</p>

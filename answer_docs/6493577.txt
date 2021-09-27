@@ -1,0 +1,13 @@
+<p>You will have to create a dedicated FF/Selenium profile. <a href="http://girliemangalo.wordpress.com/2009/02/05/creating-firefox-profile-for-your-selenium-rc-tests/" rel="nofollow">Here</a> is a post to get you started. Once created, ensure that you save the exception (accepting the untrusted connection) within the profile.</p>
+
+<p>Once done, you can invoke FF in your scripts using the custom profile as follows</p>
+
+<pre><code>RemoteControlConfiguration settings = new RemoteControlConfiguration();
+File f = new File("C:\\selenium-profile"); //Path of your stored custom profile
+settings.setFirefoxProfileTemplate(f);
+SeleniumServer seleniumserver=new SeleniumServer(settings);
+seleniumserver.boot();
+seleniumserver.start();
+</code></pre>
+
+<p>This is in Java, but can be adapted to C#</p>

@@ -1,0 +1,18 @@
+<p>I haven't tried this, but <a href="https://stackoverflow.com/questions/1453112/overriding-module-caption-names-in-django-admin/3629378#3629378">here</a> there is a solution that should allow changing the app label while working with <code>syncdb</code>.</p>
+
+<pre class="lang-js prettyprint-override"><code>class model_module1(models.model):
+    [...]
+
+    class Meta:
+        app_label = "Cool module name"
+        db_table = "module1_model"
+
+class model_module2(models.model):
+    [...]
+
+    class Meta:
+        app_label = "Cool module name"
+        db_table = "module2_model"
+</code></pre>
+
+<p>This makes sense, since the name of the table is made explicit, so there is no <code>guessing</code> when running <code>syncdb</code>. The downside is that this two <code>Meta</code> options must be specified in every model of the app.</p>

@@ -1,0 +1,33 @@
+<p>Lots of redundant code you can get rid of and as mentioned a couple of times go with select case.</p>
+
+<p>Try:</p>
+
+<pre><code>Sub Macro_quaterly()
+    Dim rCell As Range
+
+    Select Case Sheet2.Range("B6").Value
+    Case 1, 2, 3
+        Set rCell = Range("D7")
+        Sheet2.Cells(6, 11) = "rrrrrrr"
+    Case 4, 5, 6, 7
+        Set rCell = Range("D7:E7")
+        Sheet2.Cells(6, 12) = "rddddddr"
+    Case 8, 9, 10, 11
+        Set rCell = Range("D7:F7")
+
+    Case Else
+
+    End Select
+
+    With rCell.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 255
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+
+    Set rCell = Nothing
+
+End Sub
+</code></pre>

@@ -1,0 +1,6 @@
+<pre><code>&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^www\.example\.com$ [NC]
+    RewriteRule ^(.*)$ http://test.example.com/ [L,R=302]
+&lt;/IfModule&gt;
+</code></pre>

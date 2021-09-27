@@ -1,0 +1,24 @@
+<p>create a function which turns that date string into an int? 
+i.e.</p>
+
+<pre><code>str2int("name 10 June") =&gt; 610
+str2int("name 15 Jan")  =&gt; 115
+
+int str2int(String s){
+    String[] elms = s.split("\\s+");
+    // ignore first argument which is name
+    int day = Integer.parseInt(elms[1]);
+    int month = month2int(elms[2]);
+    return day + month;
+}
+
+// month2int("Jan") =&gt; 100
+// month2int("Feb") =&gt; 200
+// .
+// .
+// month2int("Dec") =&gt; 1200
+
+// you get the idea :-)
+</code></pre>
+
+<p>use a comparator which compares those Strings like that..</p>

@@ -1,0 +1,18 @@
+<p>Try this. If you think the value can contain "True" then its better to convert to lowercase.</p>
+
+<pre><code>$(document).ready(function() {
+  if ($("input[name=contest_open]").val() == "true") {
+  var refreshId = setInterval(function()
+  {
+       $('#tweets').fadeOut("slow").fadeIn("slow");
+       $.get("/event", { event:$("input[name=event]").val(), }, function(data) {
+         console.log(data.success);
+         console.log(data.page_link);
+         console.log('Succesfully Loaded Data from JSON FORMAT GET');
+         $('#tweets').html(data.html);
+         $('#pagelink').html(data.page_link);
+       });      
+  }, 30000); 
+  }
+})
+</code></pre>

@@ -1,0 +1,25 @@
+<p>I post here a sample code I use to generate a sitemap.xml file on a website. You may find it useful.</p>
+
+<pre><code>    // Init XMLWriter
+    $writer = new XMLWriter();
+    $writer-&gt;openURI(APPLICATION_PATH . '/public/sitemap.xml');
+
+    // document head
+    $writer-&gt;startDocument('1.0', 'UTF-8');
+    $writer-&gt;setIndent(4);
+    $writer-&gt;startElement('urlset');
+    $writer-&gt;writeAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+    // Write something
+    // this will write: &lt;url&gt;&lt;loc&gt;http://www.mysite.com&lt;/loc&gt;&lt;/url&gt;
+    $writer-&gt;startElement('url');
+    $writer-&gt;writeElement('loc', 'http://www.mysite.com');
+    $writer-&gt;endElement();
+
+    // end urlset
+    $writer-&gt;endElement();
+    // end document
+    $writer-&gt;endDocument();
+</code></pre>
+
+<p>This will create a sitemap.xml file in the public directory. Make sure PHP has writing rights on the target directory. Usually, on Linux+Apache, giving writing rights to the www-data user on this directory does the trick.</p>

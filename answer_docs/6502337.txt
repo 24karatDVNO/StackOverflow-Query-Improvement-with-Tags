@@ -1,0 +1,37 @@
+<p>I would like to make a suggestion about option 1 that may elude some of its criticism. Instead of using boolean values for every possible permission, use a bit mask instead.</p>
+
+<h2>First an example</h2>
+
+<p>(responsible_mask INT)</p>
+
+<pre><code>def Roles
+
+    RESPONSIBILITES = [ :switchboard, :content_manager, :network_administrator, :financial_manager, :receives_contact_emails ]
+
+    def responsibilites=(responsibilites)
+        self.responsible_mask = ([*responsibilites].map(&amp;:to_sym) &amp; RESPONSIBILITES).map { |r| 2**RESPONSIBILITES.index(r) }.sum
+    end
+
+    def responsibilites
+        RESPONSIBILITES.reject { |r| ((responsible_mask || 0) &amp; 2**RESPONSIBILITES.index(r)).zero? }
+    end
+
+    def responsibilites_symbols
+        responsibilites.map(&amp;:to_sym)
+    end
+
+    def responsible?(responsibility="none")
+        responsibilities_symbols.includes?(responsibility.to_sym)
+    end
+end
+</code></pre>
+
+<p>It is easy to add more responsibilities at any time.  </p>
+
+<h1>And now why?</h1>
+
+<p>In my opinion, this is better practice.  I can't see a reason why I would create a form to add another responsibility (or privilege in your case) without also placing hooks in my code to use that responsibility.  I only need this information to determine if I should allow functionality; it has no other purpose.  Of course I still want an admin to be able to create roles and assign responsibilities to that role but it will always be that fixed set. </p>
+
+<p>It also makes SQL queries more complex–adding another join. Slower. Harder to debug.</p>
+
+<p>It is a pain to remember to build this table of static data when deloying to another server.</p>

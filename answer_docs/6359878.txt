@@ -1,0 +1,5 @@
+<p>Assuming PHP5, your I/O connection should throw an exception on the state of the connection, or hit a timeout, or otherwise be able to notify you of this. You handle the exception, and go from there.</p>
+
+<p>If you're looking for a system-wide notification (similar to the way Android does it, to let apps know that the state of networking has changed) I don't think there is such a thing.</p>
+
+<p>So, you need to wrap your reading/writing code in a <a href="http://php.net/manual/en/language.exceptions.php" rel="nofollow">try/catch block</a> to get it to notify you when there's a problem, and handle the situation in the catch section. Check the docs for the class/object you're using to do the reading/writing, and look for if/when it throws exceptions. It might only throw a generic I/O error when network connectivity is lost. In many cases this is sufficient, since usually all you care about is whether or not you can send data packets, and not necessarily "why". You can use that information to build in a basic retry function, or to prompt the user as to what they want to do about it.</p>

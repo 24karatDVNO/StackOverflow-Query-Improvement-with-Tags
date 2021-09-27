@@ -1,0 +1,12 @@
+<p>no it shouldn't - use_capture argument sets in which part of event processing is this event triggered </p>
+
+<ol>
+<li><p>part is capture ( use_capture = true )
+it is starting from window to the deepest element in tree</p></li>
+<li><p>part is bubbling
+it is starting ftom deepest element and goes to the window</p></li>
+</ol>
+
+<p>( in your case outer is first due to it is triggered in first part )</p>
+
+<p><a href="http://www.quirksmode.org/js/events_order.html" rel="nofollow">http://www.quirksmode.org/js/events_order.html</a></p>

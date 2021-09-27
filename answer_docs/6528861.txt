@@ -1,0 +1,6 @@
+<p>I'm surprised nobody suggested computed column.
+I do agree with Aaron re normalising data structure. One column should not have 2 dimensions and a type. This should be 3 columns. This should not be allowed in database.</p>
+
+<p>As for computed column - this will save on triggers. 
+In SQL Server, go into table, modify column QTY and set "Computed Column Specification" to desired function. 
+You can check more about computed columns here: <a href="http://msdn.microsoft.com/en-us/library/ms191250.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms191250.aspx</a></p>

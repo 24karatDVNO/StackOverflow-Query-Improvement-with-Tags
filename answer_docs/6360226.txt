@@ -1,0 +1,18 @@
+<p>I use this trick: ( sorry for bad English)</p>
+
+<p>First i bind my DataContext to my VM and add a Converter to it</p>
+
+<pre><code>&lt;Grid DataContext={Binding myvm, Converter={StaticResource mySwitchOfConverter}}
+</code></pre>
+
+<p>and in my converter i have something like this :</p>
+
+<pre><code>public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if(Util.SwitchContext == true)
+               return value;
+            return null;
+        }
+</code></pre>
+
+<p>Util.SwitchContext is a static property witch i'll set and unset it in my code.</p>

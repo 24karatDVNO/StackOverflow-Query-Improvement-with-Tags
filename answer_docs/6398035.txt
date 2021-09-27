@@ -1,0 +1,17 @@
+<p>Here is <em>my solution</em>. Hope it helps:</p>
+
+<pre><code>    Dim fileAContent As String = ""
+
+    Using strR As New IO.StreamReader(fileAPath)
+        fileAContent = strR.ReadToEnd
+    End Using
+
+    Using strW As New IO.StreamWriter(fileBPath, True)
+        strW.Write(fileAContent)
+        strW.Flush()
+    End Using
+</code></pre>
+
+<p>Second parameter of <strong>StreamWriter</strong> is the key. It will <strong>append</strong> content to the end of file.</p>
+
+<p>First read all lines from the first file and after that append all of them to second file.</p>

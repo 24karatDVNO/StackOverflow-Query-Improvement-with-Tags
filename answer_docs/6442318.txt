@@ -1,0 +1,3 @@
+<p>I would definitely change the key to a simple 3 int struct; a tuple may also be a nice idea. This should cause a substantial performance improvement, because it would remove any potential heap allocation from strings and the overhead associated with the string stream. </p>
+
+<p>Also, since you have thousands elements and no order constraints, an <code>unordered_map</code> may be a better container choice. </p>

@@ -1,0 +1,17 @@
+<p>I'm not sure if it will work with DataSets, but you could try using the <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.datagridviewrow.databounditem.aspx" rel="nofollow">DataBoundItem</a> property of each selected row to populate the new grid, something like:</p>
+
+<pre><code>public void Populate()
+    {
+        var selectedRows = GetRows(DataGridView_Old.SelectedRows);
+        DataGridView_New.DataSource = selectedRows
+                                      .Select(r =&gt; r.DataBoundItem).ToList();
+    }
+
+    public IEnumerable&lt;DataGridViewRow&gt; GetRows(DataGridViewSelectedRowCollection rows)
+    {
+        foreach (DataGridViewRow row in rows)
+        {
+            yield return row;
+        }
+    }
+</code></pre>

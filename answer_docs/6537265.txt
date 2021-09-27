@@ -1,0 +1,18 @@
+<p>I implemented an <strong>ActionFilterAttribute</strong> [SkipModelValidation] which avoids/eliminates unwanted model validation for search pages.</p>
+
+<p><strong>Ref:</strong> <a href="https://stackoverflow.com/questions/6048670/how-to-disable-validation-in-a-httppost-action-in-asp-net-mvc-3">How to disable validation in a HttpPost action in ASP.NET MVC 3?</a></p>
+
+<pre><code>public class SkipModelValidationAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //Get ModelState
+            ModelStateDictionary dict = ((Controller)filterContext.Controller).ModelState;
+
+            if (dict != null &amp;&amp; !dict.IsValid)
+                dict.Clear();
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
+</code></pre>

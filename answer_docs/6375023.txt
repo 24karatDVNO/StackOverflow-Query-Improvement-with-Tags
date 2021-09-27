@@ -1,0 +1,25 @@
+<p>I know your question has already been answered - but here is a more <em>Cocoa</em> way of writing it</p>
+
+<pre><code>NSString *userName = userName.text;
+NSString *userPass = passWord.text;
+
+// Use a block enumerator
+NSUInteger nameIdx = [names indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+    return ([obj isEqualToString:userName]);
+}];
+
+// Is the name in the array
+if (nameIdx == NSNotFound) {
+    // Name not in array - so set to zero
+    userValid = 0;
+    passValid = 0;
+} else {
+    userValid = 1;
+    // See if the corresponding password is correct
+    NSString password = [pass objectAtIndex:nameIdx];
+    if (![password isEqualToString:userPass]) {
+        passValid = 0;
+    } else {
+        passValid = 1;
+}
+</code></pre>

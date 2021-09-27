@@ -1,0 +1,20 @@
+<p>This much</p>
+
+<pre><code>class ArrayList{
+    public:
+        void add(int num);
+        void add(int num, int index);
+        void remove(int index);
+        void removeNum(int num);
+        string toString();
+        ArrayList(int init);
+    private:
+        void resize();
+        int size, cap;
+        int *myList[10];
+};
+</code></pre>
+
+<p>Should be in the .h file.</p>
+
+<p>Why? Because the declaration of a class (when you write <code>class ArrayList;</code>) is only enough when the size of the class is not needed (more specific cases are listed in the C++ standard). The definition of the class should appear in the same translation unit in which the class is used in a way in which it is required to be complete.</p>

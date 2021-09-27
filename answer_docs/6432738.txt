@@ -1,0 +1,40 @@
+<p>If your module is to be used by others, then it is better to make a widget which can be added to any layer (the homepage layer for example). That way each user can decide where your module comes into play.
+If you are using this module for yourself only, then you can just override the default routes (standard mvc functionallity).
+Look at my ExtendedRegistration module (Routes.cs) to see how it's done.</p>
+
+<p>Here I am overriding the standard Account/Register URL. There should be nothing preventing you from overriding the default HomeController.</p>
+
+<pre><code>public class Routes : IRouteProvider
+    {
+
+        public void GetRoutes(ICollection&lt;RouteDescriptor&gt; routes)
+        {
+            foreach (var routeDescriptor in GetRoutes())
+            {
+                routes.Add(routeDescriptor);
+            }
+        }
+
+        public IEnumerable&lt;RouteDescriptor&gt; GetRoutes()
+        {
+            return new[] {
+
+                    new RouteDescriptor {
+                    Priority = 19,
+                    Route = new Route(
+                        "Users/Account/Register",
+                        new RouteValueDictionary {
+                            {"area", "itWORKS.ExtendedRegistration"},
+                            {"controller", "Account"},
+                            {"action", "Register"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "itWORKS.ExtendedRegistration"}
+                        },
+                        new MvcRouteHandler())
+                }
+            };
+        }
+    }
+</code></pre>

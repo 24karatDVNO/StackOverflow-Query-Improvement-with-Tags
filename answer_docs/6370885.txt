@@ -1,0 +1,9 @@
+<p>Looking at this URL <a href="http://articles.slicehost.com/2008/5/27/ubuntu-hardy-nginx-rails-and-thin" rel="nofollow">http://articles.slicehost.com/2008/5/27/ubuntu-hardy-nginx-rails-and-thin</a> &amp; your configuration match perfect, I don't think of any problem, though I would like you to verify few things.</p>
+
+<p>Please verify the following stuffs:</p>
+
+<ol>
+<li>Change thin address to point to <code>127.0.0.1</code></li>
+<li>Make sure the firewall is OPEN for the port-number of thin &amp; 80 for TCP connection. Not by looking at the amazon console but by running <code>iptables</code> command.</li>
+<li>Finally, make sure, your public-dns is <code>CORRECT</code></li>
+</ol>

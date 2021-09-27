@@ -1,0 +1,8 @@
+<pre><code>$matches = array();
+preg_match('#\[tag\]([^\[]+)\[/tag\]#', "[tag]php[/tag] [tag]java[/tag] ", $matches)
+$matches == array("[tag]php[/tag] [tag]java[/tag] ", 'php','java');
+array_shift($matches);
+$matches == array('php','java');
+</code></pre>
+
+<p>Something along those lines, try incorporating that into your function</p>

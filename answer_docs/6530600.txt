@@ -1,0 +1,1 @@
+<p>this wont work. the <code>php</code> code runs on serverside, <code>js</code> - on client. so <code>php</code> is executed before the page is shown to the user. it means that first is executed <code>$_SESSION['historyClass'] = "trigger";</code> than <code>$_SESSION['historyClass'] = "trigger active";</code> and obviously the value will be <code>trigger active</code></p>

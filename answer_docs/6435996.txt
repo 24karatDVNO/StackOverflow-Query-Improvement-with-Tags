@@ -1,0 +1,11 @@
+<p>You can use <code>$.getJSON('ajax/test.json', function(data) {//your js code to use data});</code> this is particularly if your dataType is always json, or else <code>$.get('ajax/test.json', function(data) {//your js code to use data});</code> </p>
+
+<p>This two methods are shorthand methods for jquery ajax method</p>
+
+<pre><code>$.ajax({
+  url: serverUrl,
+  data: 'data you need to pass to server(query params)',
+  success: success function,
+  dataType: dataType of data returned by server (json, xml, html)
+});
+</code></pre>

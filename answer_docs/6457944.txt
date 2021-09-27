@@ -1,0 +1,5 @@
+<p>You shouldn't as long as your application root moves (i.e. in IIS) and your URLs all properly specified in helper methods, prefixed with "~" where appropriate.  </p>
+
+<p>For example, a URL in an MVC app that is specified like "~/images/foo.jpg"  will resolve to "www.someserver.com/images/foo.jpg" in your current scheme.  Under the new scheme, if properly re-rooted in IIS, it will resolve to "www.someserver.com/NEWFOLDER/images/foo.jpg".  </p>
+
+<p>If you've used absolute or strictly relative URLs, however, you may be out of luck.</p>

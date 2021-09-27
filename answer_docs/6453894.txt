@@ -1,0 +1,7 @@
+<p>I was experiencing similar problems when requesting valid JSON from the server.</p>
+
+<p>My server was serving the content-type of text/javascript</p>
+
+<p>I was not using the optional jQuery.ajax setting of 'dataType' so jQuery was interpretting the output a javascript (eg padded JSON), not neat JSON.</p>
+
+<p>Adding a dataType:'JSON' to the settings object passed to jQuery's ajax method solved the problem.</p>

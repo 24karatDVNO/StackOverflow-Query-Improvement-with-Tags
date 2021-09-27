@@ -1,0 +1,8 @@
+<p>I had this exact same error.  I was using mapped drives to copy data to SharePoint.  I found that my xml file on the SharePoint mapped drive (destination) was applied with encryption attributes recently applied to my pc (source).  </p>
+
+<p>I am still looking for a way to use robocopy or powershell to remove the encryption from the destination file programatically.</p>
+
+<p>To manually remove the attribute, navigate to the mapped drive, go to properties of the xml file, at the bottom in Attributes click Advanced, uncheck 'Encrypt contents..', apply.</p>
+
+<p>(**For those not sure how to see the attributes)
+Open explorer for your mapped drive, on the column header bar right click and choose attributes.  You can see the security applied.  E is encryption.</p>

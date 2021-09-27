@@ -1,0 +1,5 @@
+<p>No need to get PHP involved. Just <code>SELECT</code> using <code>GROUP BY</code>.</p>
+
+<pre><code>INSERT INTO subsalerts (memalertid, idMembers, emailid)
+    SELECT memalertid, $idMembers, $emailid FROM memlist WHERE listID IN ($idList) AND emailyes = 1 GROUP BY memalertid;
+</code></pre>

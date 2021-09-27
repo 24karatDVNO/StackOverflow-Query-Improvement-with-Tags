@@ -1,0 +1,6 @@
+<p>You should give us some code. The first thing that pops into my mind is that you need to make sure your method that accepts the connections from clients need to run in an infinite loop. For example:</p>
+
+<pre><code>while (true) {
+    acceptAndParseRequest();
+}
+</code></pre>

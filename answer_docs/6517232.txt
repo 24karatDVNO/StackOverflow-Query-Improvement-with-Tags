@@ -1,0 +1,17 @@
+<pre><code>&lt;select id="changeKlas" onChange="changeClass();"&gt;
+&lt;option value="red"&gt;Red&lt;/option&gt;
+&lt;option value="blue"&gt;Blue&lt;/option&gt;
+&lt;option value="green"&gt;Green&lt;/option&gt;
+&lt;option value="black"&gt;Black&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+function changeClass()
+{
+ var changeKlas = document.getElementById('changeKlas').value;
+alert(changeKlas);
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>// On change It will alert the SELECTED VALUE</p>

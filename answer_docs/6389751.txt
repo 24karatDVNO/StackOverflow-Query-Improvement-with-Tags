@@ -1,0 +1,10 @@
+<p>Make your whole query a varchar, then use dynamic execution.</p>
+
+<pre><code>declare @sqltorun as varchar(max)
+set @sqltorun = 'select *  from tableA a '
+if(@Category=='a')
+@sqltorun = @sqltorun + 'inner join tableB b on b.ID = a.ID   '
+else
+@sqltorun = @sqltorun + 'inner join tableB b on b.ID = a.ID '
+sp_executesql @sqltorun
+</code></pre>

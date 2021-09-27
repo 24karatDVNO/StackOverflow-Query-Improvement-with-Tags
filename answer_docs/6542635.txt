@@ -1,0 +1,36 @@
+<p>You said you are "having trouble separating the abbreviation of the company from the number of shares in the text file." What trouble, exactly? 
+To read in 2 columns of whitespace-separated data from a textfile, just do:</p>
+
+<pre><code>import fileinput
+for line in fileinput.input(yourinputfile):
+    (abbrev,shares) = line.split() # if you want 2 fixed columns
+    #... lookup name, price...
+    slist.append(STOCKINFO(name,price,abbrev,shares)) # or whatever processing
+</code></pre>
+
+<p>Sounds like what you want, I can't see any problem?
+(As the others said, delete all your code except for the parts that show the problem.)</p>
+
+<p>(Or if you wanted 4 fixed columns: (name,price,abbrev,shares) = line.split(maxsplit=4))
+(Or if you want 2-4 variable columns (with the last 2 being optional), you could use re.match, as below.)
+If none of this is what you want, explain why it is not!, show sample input, and explain the error/problem you see.</p>
+
+<pre><code>import re
+stocklist_pat = re.compile('(\S+)\s+(\S+)\s+(\S*)\s*(\S*)\s*')
+(name,price,abbrev,shares) = stocklist_pat.match(line).groups()
+</code></pre>
+
+<hr>
+
+<p>Not directly related to your specific question, a couple of other stylistic comments, to make your code more Pythonic:</p>
+
+<p>STOCKINFO has a 0-arg constructor, as well as two other 2-arg constructor-like methods newInfo() and otherInfo(). A 0-arg constructor doesn't make much sense since we know we're always going to immediately supply nm, pr, so define a 4-arg constructor and make ab,sh optional:</p>
+
+<pre><code>def __init__(self,nm,pr,ab=None,sh=None):
+    self.name = nm
+    self.price = pr
+    self.abbrev = ab
+    self.share = sh
+</code></pre>
+
+<p>Read about Python properties, it's easier than writing all those getters/setters (updateAbbrev/Share/Name/Price, getAbbrev/Share/Name/Price). "Python Is Not Java", for general style migration see the links at <a href="https://stackoverflow.com/questions/2447118/programming-in-python-vs-programming-in-java">Programming in Python vs. programming in Java</a>.</p>

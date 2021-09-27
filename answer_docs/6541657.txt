@@ -1,0 +1,3 @@
+<p>I suspect this is because the sql query generated produces duplicate applications as the roles were joined.</p>
+
+<p>The simplest way to avoid this is to use an ISet (HashedSet&lt;> implementation) instead of an ICollection (defined in Iesi.Collections.dll), these are designed so you will not get duplicates in the list.</p>

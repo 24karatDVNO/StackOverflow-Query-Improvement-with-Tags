@@ -1,0 +1,11 @@
+<p>What is the question?</p>
+
+<p>I would consider coverting and storing the raw sound data to a float array. Forwards vs backwards is just a matter of how you iterate through the array. I think slowing down, without changing pitch, requires dividing the file up into "granules" that get replayed.</p>
+
+<p>If you want to edit the sounds, you are talking about building a lot of GUI. Something like Audacity would be a good reference.</p>
+
+<p>I'm not sure how to read 32-bit encoded wav files. Maybe the Java implementation on the iPhone has this built in? Otherwise you may have to read up on RIFF/WAV headers in order to strip them from the raw data.</p>
+
+<p>If you want to use MP3, I think there's a fellow by the name of Freunhofer that you have to deal with in terms of licensing.</p>
+
+<p>Who came up with the requirements? Voice can be recorded at a lot lower fidelity and still be understandable.</p>

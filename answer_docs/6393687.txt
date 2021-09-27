@@ -1,0 +1,5 @@
+<p>You have more options, here are two:</p>
+
+<p>Each subform has some datacontext it binds to? Attach the IsTabStop of controls to some property for that and manage that as you change subforms.</p>
+
+<p>Eat the Tab keypress on the main control of you active subform. Register to the PreviewKeypress and if the key is a TAB, and the current control is the last of your subform put focus to the first and eat it with isHandled.</p>

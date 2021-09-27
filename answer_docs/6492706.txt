@@ -1,0 +1,23 @@
+<p>All you need to do is injecting the server root certificate to your JDK/JRE environments by using the following command line: -</p>
+
+<pre><code>keytool -importcerts -trustcacerts -file &lt;path_to_root_cer_file&gt; -alias &lt;the_server_alias&gt; -keystore &lt;your_keystore&gt;
+</code></pre>
+
+<p>The default [your_keystore] is</p>
+
+<pre><code> 1. &lt;JDK_HOME&gt;/jre/lib/security/cacerts
+ 2. &lt;JRE_HOME&gt;/lib/security/cacerts
+</code></pre>
+
+<p>The default password is <em>changeit</em>.</p>
+
+<p>When you call the web service, just mention the </p>
+
+<pre><code>"https://&lt;host&gt;:&lt;SSL_port&gt;/Path/To/Services"
+</code></pre>
+
+<p>I hope this may help to achieve your requirement.</p>
+
+<p>Regards,</p>
+
+<p>Charlee Ch.</p>

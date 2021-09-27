@@ -1,0 +1,28 @@
+<p>what you mean?
+Do you want to get Two's complement？</p>
+
+<p>if you mean that, maybe i can give you an example</p>
+
+<pre><code>import java.util.*;
+public class TestBina{
+static void printBinaryInt(int i){
+System.out.println("int:"+i+",binary:");
+System.out.print("  ");
+for(int j=31;j&gt;=0;j--)
+   if(((1&lt;&lt;j)&amp;i)!=0)
+    System.out.print("1");
+   else
+    System.out.print("0");
+  System.out.println();
+ }
+ public static void main(String [] args){
+  Random rand = new Random();
+  int i = rand.nextInt();
+  int j = rand.nextInt();
+  printBinaryInt(i);
+  printBinaryInt(j);
+  printBinaryInt(10);
+  printBinaryInt(-10);
+ }
+}  
+</code></pre>

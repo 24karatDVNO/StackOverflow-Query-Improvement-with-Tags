@@ -1,0 +1,7 @@
+<p>If you have the PowerShell Community Extensions which I would recommend if you are working with junctions you can do the following to determine if a folder is a junction or not:</p>
+
+<pre><code>Import-Module pscx
+if ((Get-Item *test_folder*).ReparsePoint){
+    Write-Host "YES"
+}
+</code></pre>

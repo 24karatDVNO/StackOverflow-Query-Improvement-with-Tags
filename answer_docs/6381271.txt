@@ -1,0 +1,18 @@
+<p>@louis; From my point of view use <code>position:absolute;</code> for a hole layout is not good. there are several reasons.</p>
+
+<p>1)<code>absolute position</code> div not consider height &amp; width which when means you resize your page then the elements are overlapping each other. Which mesh the page.</p>
+
+<p>2)suppose you have <code>vertical divs</code> with same <code>class</code> like <code>panel</code> . Then if you give them </p>
+
+<pre><code>.panel{
+position:absolute;
+top:20px;
+}
+</code></pre>
+
+<p>then what happens  all divs take <code>top:20px;</code> from top of page &amp; overlapping each other. Absolute position
+made everything is outside of the normal flow of layout.</p>
+
+<p><strong>for more check this link</strong></p>
+
+<p><a href="https://stackoverflow.com/questions/186044/is-it-considered-bad-practice-to-use-absolute-positioning">Is it considered bad practice to use absolute positioning?</a></p>

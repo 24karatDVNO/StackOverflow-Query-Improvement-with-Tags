@@ -1,0 +1,23 @@
+<p>You have to add the directory where you have your custom validators to your form elements prefix path. For example:</p>
+
+<pre><code>$elementPrefixPaths = 
+    array(
+        array(
+            array(
+                'prefix' =&gt; 'My_Validate_', 
+                'path' =&gt; 'My/Validate', // 'application/validators' in your case
+                'type' =&gt; 'validate',
+            )
+        )
+    );
+$form-&gt;addElementPrefixPaths($elementPrefixPaths);
+// or, if your're inside the form, 
+// $this-&gt;addElementPrefixPaths($elementPrefixPaths)
+// before any elements make use of the validator.
+</code></pre>
+
+<p>The 'path' should be in your include path. You have to do the same with your custom filters. Also there is a similar approach for custom decorators and elements (which use the method setPrefixPaths() instead).</p>
+
+<p>Read more <a href="http://framework.zend.com/manual/en/zend.form.elements.html#zend.form.elements.validators" rel="nofollow">here</a>.</p>
+
+<p>Your path is 'application/validators', but it would be better to follow ZF convention on class naming and path mirroring; as such you should put your validator in a directory such as 'My/Validate' You should follow this convention on all custom ZF extensions you develop (filters, helpers, plugins, etc). It will make your life easier in the long run. Also, as a final suggestion, don't use "My_" as your classes prefix, use something more personal, such as "Mem_" (considering your nickname).</p>

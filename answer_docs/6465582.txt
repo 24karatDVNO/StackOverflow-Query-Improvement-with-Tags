@@ -1,0 +1,23 @@
+<p>When you write to a DataOutputStream you write 8-bit bytes (sign is not important)</p>
+
+<pre><code>String filename = "text.dat";
+DataOutputStream dos = new DataOutputStream(new FileOutputStream(filename));
+for (int i = 0; i &lt; 4; i++)
+    dos.write(0xA9);
+dos.close();
+
+DataInputStream dis = new DataInputStream(new FileInputStream(filename));
+for (int i = 0; i &lt; 4; i++)
+    System.out.println(Integer.toHexString(dis.readUnsignedByte()));
+dis.close();
+</code></pre>
+
+<p>prints</p>
+
+<pre><code>a9
+a9
+a9
+a9
+</code></pre>
+
+<p>Java assumes a byte is signed by default, however its is just 8-bits of data and used correctly can be unsigned or mean whatever you want it to.</p>

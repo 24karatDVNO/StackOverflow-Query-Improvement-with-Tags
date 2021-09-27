@@ -1,0 +1,15 @@
+<p>Check out this post: <a href="https://stackoverflow.com/questions/2039454/xamlparseexception-driving-me-crazy">XAMLParseException driving me CRAZY!</a></p>
+
+<p>The bottom line is that often a XmlParseException is actually a TargetInvocationException which can be determined in the InnerException. That could be an anchor for further investigation. </p>
+
+<p>Use a:</p>
+
+<pre><code>try
+{
+}
+catch(Exception ex)
+{
+}
+</code></pre>
+
+<p>construct and set a breakpoint at the catch. Then inspect the ex variable in greater detail to see if it contains a InnerException that may give you more insight.</p>

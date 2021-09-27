@@ -1,0 +1,12 @@
+<p>Execution not execute after return statement</p>
+
+<p>change your code like this</p>
+
+<pre><code> function foo($i){
+ function bar($i){
+  return $i*4;
+ }
+ return bar($i)*4;     
+}
+echo foo(4);
+</code></pre>

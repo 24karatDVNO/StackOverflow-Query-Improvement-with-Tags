@@ -1,0 +1,3 @@
+<p>Here's a small twist to the previous recommendations, create a separate app that handles the service and bundle it within your Resources.  When you want to enable the service, instead of copying the file over to ~/Library/Services, create a symbolic link within the ~/Library/Services folder that points to the app you bundled in your Resources.</p>
+
+<p>This way if the user deletes your application, all that will be left behind is a symbolic link pointing to an invalid location. Does less arm than actually leaving the app behind and will have the added benefit that the service will no longer be available (since the info.plist will have been removed when the user deleted your app).</p>

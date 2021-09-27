@@ -1,0 +1,17 @@
+<p>This method worked perfectly (once I added __using System.Collections.Generic;.Once I did that all was fine</p>
+
+<pre><code>public void InitializeDropDown(string XmlFile, string xpath)
+{
+
+    string[] services = { "Google Weather", "Yahoo! Weather", "NOAA", "WeatherBug" };
+
+    IEnumerable&lt;string&gt; query = from service in services
+                                orderby service.Substring(0, 1) ascending
+                                select service;
+
+    foreach (string @string in query)
+        WeatherServicesCBO.Items.Add(@string);
+}
+</code></pre>
+
+<p>Now all I need to do is get the values from the XML document into a string array. Thanks everyone for your help (I you know of a way to get the data from XML file into string array share ;))</p>

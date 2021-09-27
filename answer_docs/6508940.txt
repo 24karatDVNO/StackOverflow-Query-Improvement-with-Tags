@@ -1,0 +1,24 @@
+<p>I think you should define a global boolean variable like this:</p>
+
+<pre><code>var isAnimating = false;
+</code></pre>
+
+<p>and then control your animation based on that variable. ex:</p>
+
+<pre><code>animateNews() {
+    if (isAnimating) {
+        //list animation
+    }
+}
+
+listResume () { isanimating = true; }
+
+listPause () { isanimating = false; }
+</code></pre>
+
+<p>and your animation would be like:</p>
+
+<pre><code>window.onload = function () { var t = setTimeout("animateNews", 40); }
+</code></pre>
+
+<p>I wouldn't use jQuery for that one, since jQuery uses a little CPU also if you begin animating stuff... You would need it if you want to grow boxes smoothly or to slide images (gallery, or something like that).</p>

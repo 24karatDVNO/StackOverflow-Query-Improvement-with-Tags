@@ -1,0 +1,11 @@
+<p>From MSDN for <a href="http://207.46.16.248/en-us/library/gg671236%28VS.103%29.aspx" rel="nofollow"><code>DbExtensions.Include()</code></a>.</p>
+
+<blockquote>
+  <p>The path expression must be composed
+  of simple property access expressions
+  together with calls to Select in order
+  to compose additional includes after
+  including a collection property.</p>
+</blockquote>
+
+<p>So I don't think using <code>Where()</code> is allowed. I'm not sure if you can do any filtering when it comes to <code>Include()</code>.</p>

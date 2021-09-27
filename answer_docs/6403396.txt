@@ -1,0 +1,19 @@
+<p>Fixed it.</p>
+
+<pre><code>$('.l').live('click', function() {
+    if ($('#ltb').length &gt; 0) return;
+    // rest of code here
+</code></pre>
+
+<p>It will also work if you replace <code>live</code> with <code>one</code>. I think the problem comes with creating two divs with the same <code>id</code> so this checks to see if it exists before creating one.</p>
+
+<p>From <a href="http://api.jquery.com/id-selector/" rel="nofollow">here</a>:</p>
+
+<blockquote>
+  <p>a document with more than one element
+  using the same ID is invalid.</p>
+</blockquote>
+
+<p>And more about <code>one</code> (used to bind an event once, found out about this a few days ago reading a jQuery pocket reference):</p>
+
+<p><a href="http://api.jquery.com/one/" rel="nofollow">http://api.jquery.com/one/</a></p>

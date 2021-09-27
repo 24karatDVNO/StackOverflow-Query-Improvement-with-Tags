@@ -1,0 +1,6 @@
+<p>If I understand your question correctly, then the answer is no. If a caller calls a function like this:</p>
+
+<pre><code>[a, b, c] = fname('foo');
+</code></pre>
+
+<p>then <code>fname</code> is required to return (at least) three outputs. There's no way to tell MATLAB that it should leave <code>b</code> and <code>c</code> alone if <code>fname</code> only returns one output.</p>

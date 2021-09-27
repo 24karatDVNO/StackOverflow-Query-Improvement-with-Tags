@@ -1,0 +1,10 @@
+<p>Member fields are initialized with default values for you. So, no you don't have to set if the value is default (<code>0</code> for <code>int</code>, <code>false</code> for <code>bool</code>, <code>null</code> for reference types). However <code>string.Empty</code> is not default value for <code>string</code>. So you need to set it to <code>string.Empty</code> if null doesn't work for you.</p>
+
+<p>The initial value of a field, whether it be a static field or an instance field, is the default value of the field's type.</p>
+
+<p>The default value of a variable depends on the type of the variable and is determined as follows:</p>
+
+<ul>
+<li>For a variable of a value-type, the default value is the same as the value computed by the value-type's default constructor</li>
+<li>For a variable of a reference-type, the default value is null</li>
+</ul>

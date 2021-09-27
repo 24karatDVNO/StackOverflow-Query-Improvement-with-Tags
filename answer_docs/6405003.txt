@@ -1,0 +1,25 @@
+<p>Working version .. display all images from a given web site using tag IMG src >
+code:</p>
+
+<pre><code>  import re
+  import urllib
+  print "Start"
+  url="http://www.deviantart.com"
+  data=urllib.urlopen(url)
+  out=data.read()
+  print 
+  title_regex = "/&lt;title&gt;(.+)&lt;\/title&gt;/i"
+  m = re.search("&lt;title&gt;(.+)&lt;\/title&gt;", out)
+  print "first",m
+  print "grop",m.group(1)
+
+  title_regex = "/&lt;title&gt;(.+)&lt;\/title&gt;/i"
+
+  pics = re.compile(r"&lt;IMG[^&gt;]*src=([^&gt;]*[^/])")#Change IMG tag 
+  allpics=pics.findall(out)
+  print "found",pics
+  for mypic in allpics:
+     print "&lt; IMG src=",mypic
+</code></pre>
+
+<p>thanks all </p>

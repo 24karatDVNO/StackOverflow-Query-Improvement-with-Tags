@@ -1,0 +1,14 @@
+<p>This seems to do the trick for me:</p>
+
+<pre><code>$$('.form-submit-calculate').each(function(calculator){
+
+            calculator.onclick = function(){
+                    alert('calculate');
+                    return false;
+                }
+
+
+        });
+</code></pre>
+
+<p>Feel free to tell me your better more elegant answer! (And why it is... I'm just hacking my way around Prototype right now, no idea what the best practices are.)</p>

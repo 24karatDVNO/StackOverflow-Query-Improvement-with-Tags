@@ -1,0 +1,30 @@
+<p>So to clarify:</p>
+
+<p>Company (has many) Member (has many) Method?</p>
+
+<blockquote>
+  <p>I presume that though 'Method' is a
+  child of 'Member', though not a child
+  of 'Company', that a navigational
+  property is not exposed in the same
+  was as for the 'Member' class?</p>
+</blockquote>
+
+<p>If this is the case, and you are missing a navigation property between Company and Member, then you need to create one. Assuming you are using the L2S designer to generate your model, make sure you have the relationship defined in your database.</p>
+
+<p>Once this is done we can move forward.</p>
+
+<p>Then you can interate your collections like so:</p>
+
+<pre><code>// model is IEnumerable&lt;Company&gt;
+
+foreach (var company in Model) {
+    // do something with company
+    foreach (var member in company.Members) {
+        // do something with member
+        foreach (var method in member.Methods) {
+            // do something with method
+        }
+    }   
+}
+</code></pre>

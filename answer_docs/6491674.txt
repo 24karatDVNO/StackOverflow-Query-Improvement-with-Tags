@@ -1,0 +1,18 @@
+<p>Remove the x in your link (and replace it by a white-space)</p>
+
+<pre><code>&lt;a href="" class="cancel" title="Cancel"&gt;&amp;nbsp;&lt;/a&gt;
+</code></pre>
+
+<p>Change your css to:</p>
+
+<pre><code>.cancel{
+    width:58px; /* width of image */
+    height:58px; /* height of image */
+    display:block; /* block so always the whole image will be shown */
+background:url(http://www.softicons.com/download/web-icons/light-grey-square-icons-by-axialis-team/png/16/Cancel.png) center no-repeat;
+
+
+}
+</code></pre>
+
+<p>Like this: <a href="http://jsfiddle.net/8rfyT/5/" rel="nofollow">http://jsfiddle.net/8rfyT/5/</a></p>

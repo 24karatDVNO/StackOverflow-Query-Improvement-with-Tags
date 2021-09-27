@@ -1,0 +1,15 @@
+<p>This will use indexes of <code>firstTable.t.EFF_DATE</code> and <code>secondTable.ACCT_DATE</code> (if you have indexes!).</p>
+
+<p>Any solution with calls to functions like <code>MONTH()</code>, <code>YEAR()</code> cannot effectively use such indexes.</p>
+
+<pre><code>SELECT st.*
+     , ( SELECT ft.RATE
+         FROM firstTable ft 
+         WHERE ft.EFF_DATE &lt;= st.ACCT_DATE            
+         ORDER BY ft.EFF_DATE DESC
+         LIMIT 1
+       ) AS RATE
+FROM secondTable st 
+</code></pre>
+
+<p><code>LIMIT 1</code> is the MySQL syntax. For SQL-Server use <code>SELECT TOP 1</code>.</p>

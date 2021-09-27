@@ -1,0 +1,12 @@
+<blockquote>
+  <p>Is it possible to connect to pointbase
+  from java script</p>
+</blockquote>
+
+<p>Javascript is not Java Script. </p>
+
+<p>Javascript is a client side language for manipulating webpages. It has almost no access to files (or databases).</p>
+
+<p>You need a server side language, like Java for connecting to the database. You may want use <a href="http://download.oracle.com/javase/tutorial/jdbc/" rel="nofollow">JDBC</a> (You would need the drivers for the <a href="http://download.oracle.com/docs/cd/E13155_01/wlp/docs103/db/pointbase.html#wp1058505" rel="nofollow">Pointbase</a>  database.</p>
+
+<p>You can "call" this server side program from javascript. How you do depends on your architecture. Do you already have a Java web app (a Java EE app) running? </p>

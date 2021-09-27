@@ -1,0 +1,9 @@
+<p>How about:</p>
+
+<pre><code>$("#loadbutton").click(function (event) {
+    event.preventDefault();
+    $(this).replaceWith("&lt;a href='/result.php'&gt;Result&lt;/a&gt;");
+});
+</code></pre>
+
+<p>Here's a working example: <a href="http://jsfiddle.net/WVwc6/" rel="nofollow">http://jsfiddle.net/WVwc6/</a></p>

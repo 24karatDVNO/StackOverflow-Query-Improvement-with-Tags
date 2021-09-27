@@ -1,0 +1,7 @@
+<p>Without seeing all the code it's hard to tell, but you can try adding after</p>
+
+<pre><code>        [todayListArray writeToFile:[self todayListPath] atomically:YES];
+        [self.tableView reloadData];
+</code></pre>
+
+<p>Also, you don't have to retain that button, and probably don't have to have it as a property</p>

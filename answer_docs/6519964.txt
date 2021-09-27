@@ -1,0 +1,21 @@
+<p>If you look at the source, you'll see a <a href="http://code.google.com/p/google-checkout-php-sample-code/source/browse/trunk/library/googleitem.php#83" rel="nofollow"><code>GoogleItem::SetMerchantPrivateItemData</code></a>, which simply sets the <code>GoogleItem::$merchant_private_item_data</code> property. Examining <a href="http://code.google.com/p/google-checkout-php-sample-code/source/browse/trunk/library/googleitem.php#189" rel="nofollow"><code>GoogleItem::GetXML</code></a> reveals <code>GoogleItem::$merchant_private_item_data</code> <a href="http://code.google.com/p/google-checkout-php-sample-code/source/browse/trunk/library/googleitem.php#201" rel="nofollow">can be a <code>MerchantPrivate</code></a> (which appears to be unimplemented, but you can write your own as long as it has a <code>MerchantPrivate::AddMerchantPrivateToXML(gc_XmlBuilder $xml)</code> method) or a string, which (after a pass through <code>htmlentities</code>) becomes the content of the <code>merchant-private-item-data</code> element. If you want to structure your private data with XML, you'll have to implement class <code>MerchantPrivate</code>.</p>
+
+<pre><code>class MerchantPrivate {
+    function AddMerchantPrivateToXML(gc_XmlBuilder $xml) {
+        $xml-&gt;Push('merchant-private-item-data');
+        $this-&gt;_addMyData($xml);
+        $xml-&gt;Pop('merchant-private-item-data');            
+    }
+
+    abstract protected function _addMyData($xml);
+}
+
+class ItemData extends MerchantPrivate {
+    public $userid, $period, $attribute;
+    function _addMyData(gc_XmlBuilder $xml) {
+        $xml-&gt;Element('userid', $this-&gt;userid);
+        $xml-&gt;Element('period', $this-&gt;period);
+        $xml-&gt;Element('attribute', $this-&gt;attribute);
+    }
+}
+</code></pre>

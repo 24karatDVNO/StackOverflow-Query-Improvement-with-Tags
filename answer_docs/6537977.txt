@@ -1,0 +1,9 @@
+<p>Hmm try this:</p>
+
+<p>First off, instead of <code>var3="value"</code>, use <code>echo -n value &gt; .var3</code> and write the value to a file. The dot before the name will make it "hidden", and <code>-n</code> stops echo from putting a newline after it. </p>
+
+<p>then at the end, instead of <code>echo "values are $var1 $var2 $var3"</code> do <code>echo "values are $(cat .var1) $(cat .var2) $(cat .var3)"</code>.  The <code>cat</code> command prints the file content to standard out.  </p>
+
+<p>=-)</p>
+
+<p>P.S. You can also use "named pipes". use <code>mkfifo</code> to make a named pipe.  One thing though, when you echo to a named pipe, you must start that as a job, or your script will hang till you read the contents [with cat]. So:  <code>echo val &gt; .named_pipe&amp;</code></p>

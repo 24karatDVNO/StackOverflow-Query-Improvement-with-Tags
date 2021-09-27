@@ -1,0 +1,8 @@
+<p>Try wrapping in an CData element:</p>
+
+<pre><code>var itemElement = new XElement("item", 
+    new XCData(
+        new XElement("abc", string.Format("{0:-10}{1:-10}{2:-10}", i.a, i.b, i.c))));
+</code></pre>
+
+<p>You need this, because whitespace is not considered significant by XML parsers by default. An alternative to using CData would be the <a href="http://www.simonstl.com/xmlprim/xmlupdate/atts.html" rel="nofollow">xml:space</a> attribute, which should also produce the desired result. See <a href="http://msdn.microsoft.com/en-us/library/ms256097.aspx" rel="nofollow">this MSDN page for</a> details.</p>

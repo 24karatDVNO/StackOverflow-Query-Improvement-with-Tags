@@ -1,0 +1,1 @@
+<p>My instinct would be to have your XSLT transformation generate an XML tree in the usual way, and then pipe this tree into a Java data binding tool to turn it into Java objects. (The tree, of course, never needs to be serialized as lexical XML; you can probably connect the components using SAX calls.).</p>

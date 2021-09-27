@@ -1,0 +1,3 @@
+<p>I would also like to get the number of rows for progress bar, but it seems I can't iterating twice is too much work for just showing progress ;)</p>
+
+<p>You can create a proxy class, which is a child of <code>NpgsqlDataReader</code> and where you re-implement iterator (extends <code>IEnumerable</code>), which will implicitly iterate over first up to 2 rows if you either <code>.Read()</code> or ask <code>.CountClass</code> - then it will give those 2 from it's cache before directly reading the rest.</p>

@@ -1,0 +1,87 @@
+<p><strong>New much better approach to solve this issue elegantly, and with less code!!!</strong></p>
+
+<p>With the following modifications, the User interface is much more responsive, no more double-clicking issues. :)</p>
+
+<p>Much, much less code that simply works!</p>
+
+<h2>Modifications to Row xml</h2>
+
+<p>Insert a Linear layout to wrap both the
+
+
+In this Linear layout, insert a tag named android:onClick="editCompanyClick"
+This is the click handler that will be called in the Activity.</p>
+
+<p>Insert a Linear layout to wrap the
+
+In this Linear layout, insert a tag named android:onClick="dialClick"
+This is the click handler that will be called in the Activity.</p>
+
+<h2>Modifications to Activity class</h2>
+
+<p><strong>Remove the previous code</strong></p>
+
+<pre><code>   listCompanies.setOnItemClickListener(new OnItemClickListener() { @Override public void    onItemClick(AdapterView arg0, View v, int position, long id) {
+
+            TextView company = (TextView) v.findViewById(R.id.textCompany);
+            ImageView dial = (ImageView) v.findViewById(R.id.imageButtonDTMFDial);
+
+            company.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(app, EditMenuNavigationActivity.class));
+                }
+            });
+
+            dial.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(app, InstructionsActivity.class));
+                }
+            });
+        }
+</code></pre>
+
+<p><strong>Insert the code</strong></p>
+
+<pre><code>public void dialClick(View v) {
+        startActivity(new Intent(app, InstructionsActivity.class));
+    }
+
+    public void editCompanyClick(View v) {
+        startActivity(new Intent(app, EditMenuNavigationActivity.class));
+record
+    }
+</code></pre>
+
+<p><strong>Row xml</strong></p>
+
+<pre><code> &lt;?xml version="1.0" encoding="utf-8"?&gt;
+   &lt;LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="?android:attr/listPreferredItemHeight"
+
+   android:padding="6dip" android:orientation="horizontal"&gt;
+    &lt;LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:id="@+id/linearLayout1" 
+        android:orientation="vertical"
+        android:onClick="editCompanyClick"
+        android:layout_weight="1"&gt;
+        &lt;!-- Company TextView  --&gt;
+        &lt;TextView android:singleLine="true" android:text="TIM" android:id="@+id/textCompany" android:ellipsize="marquee" android:layout_height="wrap_content" style="@android:style/TextAppearance.Medium" android:layout_width="match_parent" android:gravity="top"&gt;&lt;/TextView&gt;
+        &lt;!-- Description TextView  --&gt;
+        &lt;TextView android:singleLine="true" android:text="Chamar atendente" android:id="@+id/textDescription" android:ellipsize="marquee" android:layout_height="wrap_content" style="@android:style/TextAppearance.Small" android:layout_width="match_parent" android:gravity="bottom"&gt;&lt;/TextView&gt;
+    &lt;/LinearLayout&gt;
+    &lt;LinearLayout 
+        android:layout_height="match_parent" 
+        android:id="@+id/linearLayout2"
+        android:onClick="dialClick" 
+        android:layout_width="wrap_content" android:layout_gravity="right"&gt;
+        &lt;!-- DTMFDial ImageView --&gt;
+        &lt;ImageView android:layout_height="wrap_content" android:background="@drawable/icon" android:id="@+id/imageButtonDTMFDial" android:layout_gravity="right" android:layout_width="wrap_content"&gt;&lt;/ImageView&gt;
+    &lt;/LinearLayout&gt;
+   &lt;/LinearLayout&gt;
+</code></pre>

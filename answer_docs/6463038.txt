@@ -1,0 +1,3 @@
+<p>Refactoring your code to conform to MVC would mean creating a "view" (like  that represented your screen, and that view would have (for example) a <code>draw</code> method that took the "model" (a python object that contained all of the block states) and rendered that model to the screen.</p>
+
+<p>Now perhaps all that draw method would do to render to the screen is call a <code>renderToScreen(screenView)</code> method on every block object.  Or you might refactor that draw method into the view if you want to be more "pure".</p>

@@ -1,0 +1,13 @@
+<p>So, issue 1 - that collection in input is by reference, so when your inputs are updated, they are also are updated in the collection, thus the value always appears to be the default.</p>
+
+<p>What I would recommend is rather than storing the default values that way, store them as part of the element. On load you can loop through the elements and add the values to a "default" attribute. You could also add the default attribute server-side which would be better.</p>
+
+<p>Something like this:</p>
+
+<pre><code>&lt;input type='text' default='myval' value='myval'/&gt;
+var jInput = $('input');
+if(jInput.val() == jInput.attr('default'))
+...
+</code></pre>
+
+<p>I'm sure you get the idea.</p>

@@ -1,0 +1,6 @@
+<p>You need to join the two data sources.  With LINQ it looks like:</p>
+
+<pre><code>var query = from row in ds
+                        join row2 in ds2 on row.value equals row2.value
+                        select new { row.value, row.value2, row2.value3 };
+</code></pre>

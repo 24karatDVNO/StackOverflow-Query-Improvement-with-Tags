@@ -1,0 +1,9 @@
+<p>Try something like...</p>
+
+<pre><code> var query = from o in _context.Orders
+             join c in _context.Customers on o.CustomerId equals c.CustomerId
+             orderby o.ShippedDate descending
+             let OrderID = o.OrderID
+             let Customer = c.FirstName
+             select OrderID, Customer
+</code></pre>

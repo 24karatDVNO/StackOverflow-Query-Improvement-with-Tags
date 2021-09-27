@@ -1,0 +1,9 @@
+<p>At the architecture level, there are <em>two</em> approaches to solve this problem.</p>
+
+<p>The first is to ETL the data to your Warehouse <em>before</em> the business logic is applied against the data. I prefer this approach.</p>
+
+<p>Sometimes though, it's not possible to do this--i.e., the business logic is applied against the data before it is written to the OLTP (the source used to populate the Data Warehouse) so you have no choice. In this instance, this problem is usually referred to as a <strong><em>rapidly changing dimension</em></strong> problem. (My assumption here is that the data referred to in your question is stored in a Dimension Table rather than a Fact Table).</p>
+
+<p>There is a vast body of <a href="http://dylanwan.wordpress.com/data-warehouse-design/use-minidimension-to-handle-the-rapidly-changing-monster-dimension/" rel="nofollow">commentary</a> on this subject available on the Web. Among these sources, i recommend any of the articles (free) or books (not free) by <a href="http://www.kimballgroup.com/html/articles.html" rel="nofollow">Ralph Kimball</a>.</p>
+
+<p>The best way to reconcile a rapidly changing dimension is almost certainly fact specific; still, perhaps the most common technique is to c*reate a new dimension table* that stores the data applied against the new business logic. In other words, you would have in your DW schema a separate dimension table for for each business rule.</p>

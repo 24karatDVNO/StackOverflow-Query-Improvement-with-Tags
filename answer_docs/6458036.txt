@@ -1,0 +1,17 @@
+<p>I believe that the smart device framework used to include two different ways of achieving question 2 but they were removed when the compact framework got the ability to call "System.Diagnostics.Process.Start" in one if its later releases.</p>
+
+<p>However the compact framework version of Process.Start requires the two parameters (exe, filename) you mention above and cannot directly be called using just a file name. Even though the compact framework version was not as useful as the smart device framework code it was enough to lead to its removal from the main project.</p>
+
+<p>The older version of the smart device framework allowed a call directly to the file name and used pinvoke to fire up the file checking the registry for the associated program.</p>
+
+<pre><code>OpenNETCF.WinAPI.Core.ShellExecute("\\My Documents\\Test.pxl", "");
+</code></pre>
+
+<p>or I believe an alternative way was to call..</p>
+
+<pre><code>OpenNETCF.Diagnostics.Process.Start("\My Documents\Test.pxl")
+</code></pre>
+
+<p>The second method was still available in version 1.4 of which the source code is still available.  You can download them from <a href="http://opennetcf.com/CompactFramework/Products/SmartDeviceFramework/tabid/65/Default.aspx" rel="nofollow">OpenNetCF</a> (at the bottom of the page) and extract the code which they were using or even compile the dlls up yourself and call them from your project.</p>
+
+<p>Hope this helps in some way</p>

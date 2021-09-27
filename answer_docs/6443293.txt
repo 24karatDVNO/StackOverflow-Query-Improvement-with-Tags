@@ -1,0 +1,5 @@
+<p>It seems that the issue may be in the "SUM(t2.seconds)" parameter on your select.</p>
+
+<p>Try adding ISNULL(SUM(t2.seconds), 0).</p>
+
+<p>If that doesn't work, you might try a SQL IF statement or CASE and check a column on t2 for nulls.</p>

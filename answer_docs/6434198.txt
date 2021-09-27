@@ -1,0 +1,14 @@
+<p>If the string can be the actual value "null" then use</p>
+
+<pre><code>if(a.equals("null"))
+</code></pre>
+
+<p>If the object can be set to NULL then use</p>
+
+<pre><code>if(a == null)
+</code></pre>
+
+<p>The best thing is to combine them</p>
+
+<pre><code>if(a == null || a.equals("null"))
+</code></pre>

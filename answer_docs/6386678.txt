@@ -1,0 +1,12 @@
+<p>you can avoid casting all together with generic wildcards</p>
+
+<pre><code>private void myMethod(List&lt;? extends YourInterface&gt; myLists) {
+
+   for (YourInterface val : myLists) {
+       val.getMyOtherMethod(); // for example
+   }
+
+}
+</code></pre>
+
+<p>this has the advantage of other types being available that implement from <code>YourInterface</code> with that method</p>

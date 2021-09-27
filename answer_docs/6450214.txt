@@ -1,0 +1,13 @@
+<p>Replace in your code this line</p>
+
+<pre><code>if (reader.GetString(0) != 1)
+</code></pre>
+
+<p>with this</p>
+
+<pre><code>if (int.Parse(reader.GetString(0)) != 1)
+</code></pre>
+
+<p>Second,</p>
+
+<p>In your userLogin() method you are tryin to return a value whereas the reeturn type is void. Change the return type.</p>

@@ -1,0 +1,16 @@
+<p>One way would be:</p>
+
+<pre><code>SELECT 
+  count(*) AS totalNulls, 
+  0 as totalNumbers
+FROM MyTable AS t
+where t.MyField is null
+union 
+SELECT 
+  0 AS totalNulls, 
+  count(t.MyField) AS totalNumbers
+FROM MyTable AS t
+where t.MyField like '[0-9]';
+</code></pre>
+
+<p>The first row will contain the null count, the second row will contain the total count of t.MyField that contains digits.</p>

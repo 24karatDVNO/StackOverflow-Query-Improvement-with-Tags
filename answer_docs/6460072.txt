@@ -1,0 +1,8 @@
+<p>The most straightforward way would be to expose the functionality as some kind of RESTful web service. I.e., for applicants you would have <code>/db/applicant/</code> return a list of all applicants (or applicant IDs), and if <code>123</code> is an applicant ID you would retrieve <code>/db/applicant/123</code>. In the simplest way, you would retrieve a JSON object such as</p>
+
+<pre><code>{'first_name':'Joe', 'last_name':'Applicant', 'address':'123 Test Drive'}
+</code></pre>
+
+<p>Additionally, you could add a parameter that encodes the fields you're interested in, e.g. <code>/db/applicant/123?fields=first_name+last_name</code>.</p>
+
+<p>Using JSON (or XML if you feel it's worth the additional work) has the advantage over CSV or other alternatives in that the set of fields you return is extensible - i.e., if one client needs a <code>shoe_size</code> field, the response for the other one can include it and everything still works.</p>

@@ -1,0 +1,11 @@
+<p>Use try ... except</p>
+
+<pre><code>try:
+   unreadCount = re.search("UNSEEN (\d+)", conn.status("INBOX", "(UNSEEN)")[1][0]).group(1)
+   if int(unreadCount) &gt; 10:
+            print "restarting..."
+
+    time.sleep(50)
+except Exception:
+  pass
+</code></pre>

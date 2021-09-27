@@ -1,0 +1,16 @@
+<p>Try following,</p>
+
+<pre><code>  [DllImport("TradeEngine.dll",CallingConvention = CallingConvention.Cdecl)]
+            private static  extern void Mafonc(StringBuilder data);
+</code></pre>
+
+<p>Where your native method is,</p>
+
+<pre><code>extern "C" _declspec(dllexport) void Mafonc(std::string data)
+{
+    string xyz=data;
+
+}
+</code></pre>
+
+<p><strong>IJW</strong></p>

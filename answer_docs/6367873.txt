@@ -1,0 +1,13 @@
+<p>Using numeric ids is a bad idea, so let's say you've called your divs <code>div1</code> and <code>div2</code>.</p>
+
+<p>As you can't style #div1 or the image, the only thing you might try is setting a negative margin on #div2.  Try either one of:</p>
+
+<pre><code>#div1 { display: inline-block; width: 100px; margin-left: -100px }
+</code></pre>
+
+<p>Or, simply:</p>
+
+<pre><code>#div1 { margin-top: -100px }
+</code></pre>
+
+<p>Where the <code>100px</code> values are just arbitrary and you'll need to decide on appropriate values depending on what you're putting in <code>#div2</code></p>

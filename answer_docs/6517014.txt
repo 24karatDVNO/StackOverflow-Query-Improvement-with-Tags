@@ -1,0 +1,9 @@
+<p>Passing references around in .NET is essentially the same as Java. However.NET we have a few extra features. </p>
+
+<p>For example the out and the ref params can be used to return values passed as arguments. e.g. </p>
+
+<pre><code>    public void SaveProductFeature(ref SaveCollection save)
+    {
+       SaveCollection.Product.ProductId = Product.Save(SaveCollection.Product);
+    }
+</code></pre>

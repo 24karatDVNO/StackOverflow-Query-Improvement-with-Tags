@@ -1,0 +1,11 @@
+<p>Just use the following method to draw image from url:</p>
+
+<p>Drawable drawable_from_url(String url, String src_name) 
+throws java.net.MalformedURLException, java.io.IOException </p>
+
+<pre><code>{
+    return Drawable.createFromStream(((java.io.InputStream)new java.net.URL(url).awagetContent()), src_name);
+}
+</code></pre>
+
+<p>Just pass the string url to the method(and for src_name any string ) and it will return you a drawable object, then use setBckgroundDrawable() method of the imageview to set the background of the image.</p>

@@ -1,0 +1,7 @@
+<p>the header, if you use one, must precede ANY content.
+you are better off writing the css directly into the page (my first suggestion) or <em>maybe</em> using a temporary file if you can find a way to write it to the server and access it on the browser.</p>
+
+<p>otherwise, you have the problem of "how to I point my html document to a spontaneously generated css file with no content? there's no filepath!</p>
+
+<p>unless of course you use something like #CDATA or #PCDATA I think and BASE64 encode your document and thus embed it inside style tags.  I have seen this trick done with src attributes on img tags.  no filename, just straight data feed.  there are examples on the internet, but my browser has been zapping important entries from the bookmarks lately (firefox).
+good way to hide your source code, terrible for maintainability.</p>

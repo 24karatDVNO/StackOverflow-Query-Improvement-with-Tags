@@ -1,0 +1,14 @@
+<p>The issue stems from browsers and how they handle characters in right-to-left languages rather than the code that generates them. If you try</p>
+
+<pre><code>var kuwaitCulture = new System.Globalization.CultureInfo("ar-KW");
+Response.Write(Server.UrlEncode(amount.ToString("c", kuwaitCulture)));
+</code></pre>
+
+<p>you'll see that what gets returned clearly has the CurrencySymbol before the amount.</p>
+
+<p>To get around this you can force left-to-right rendering in the browser with the corresponding Unicode character. For example,</p>
+
+<pre><code>Response.Write('\u202A' + kuwaitCulture.NumberFormat.CurrencySymbol + '\u202C' + amount);
+</code></pre>
+
+<p>renders correctly as per your specification.</p>

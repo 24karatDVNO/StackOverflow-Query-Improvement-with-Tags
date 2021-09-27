@@ -1,0 +1,7 @@
+<p>Another way to fix this is to split the select... from... join into multiple select statements. Set the isolation level to read committed. Use table variable to pipe data from select to be joined to other. Use distinct to filter down inserts into these table variables.</p>
+
+<p>So if I've two tables A, B. I'm inserting/updating into A and then B. Where as the sql's query optimizer prefers to read B first and A. I'll split the single select into 2 selects. First I'll read B. Then pass on this data to next select statement which reads A.</p>
+
+<p>Here deadlock won't happen because the read locks on table B will be released as soon as 1st statement is done.</p>
+
+<p>PS I've faced this issue and this worked very good. Much better than my force order answer.</p>

@@ -1,0 +1,1 @@
+<p>Your <code>strdup()</code> function is not correct. The <code>sizeof(str)</code> in there is the <em>size of the <code>str</code> pointer</em> (probably 4 or 8 bytes), not the <em>length of the string</em>. Use the library provided <code>_strdup()</code> instead.</p>

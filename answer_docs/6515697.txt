@@ -1,0 +1,7 @@
+<p>you are setting mins to the string '00' in that case. So you are comparing a string to a number multiple times in the second line. Eventually setting mins to itself, '00'. </p>
+
+<pre><code>             mins = (parseFloat(time.substring(pos + 1, 5))                        ? parseFloat(time.substring(pos + 1, 5))
+                    : '00');
+             mins = (mins &gt;= 60 ? 59 : (mins &lt; 10 ? (mins &gt;= 6 ? 59 : mins.                        + '0') : mins));
+             mins = (hour == 24 ? 45 : 
+</code></pre>

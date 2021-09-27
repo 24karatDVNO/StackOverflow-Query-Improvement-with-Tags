@@ -1,0 +1,12 @@
+<p>Use <a href="http://api.jquery.com/live" rel="nofollow noreferrer"><code>.live()</code></a> or <a href="http://api.jquery.com/delegate" rel="nofollow noreferrer"><code>.delegate()</code></a> instead of <code>.click(...)</code>.</p>
+<blockquote>
+<h3><code>.live()</code>:</h3>
+<p><em>Attach a handler to the event for all elements which match the current selector, now and in the future.</em></p>
+<h3><code>.delegate()</code>:</h3>
+<p><em>Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.</em></p>
+</blockquote>
+<p>The event binding code would then look like</p>
+<pre><code>$('.row_delete').live('click', function(){...});
+// or
+$('#my_table_id').delegate('.row_delete', 'click', function(){...});
+</code></pre>

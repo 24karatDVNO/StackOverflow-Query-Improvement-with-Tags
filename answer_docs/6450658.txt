@@ -1,0 +1,6 @@
+<p>why to use regex?</p>
+
+<pre><code>&gt;&gt;&gt; line = "12-09-95 10:37:46,082 [3] INFO Foobar &lt;&gt; - 1995-Dec-09 10:37:47.189025 --- [5571467078570868736::TYPE    ::SOME PHRASE ::1995-Dec-09 10:37:47.165672::1995-Dec-09 10:37:47.188790::00:00:00.023117]"
+&gt;&gt;&gt; line.split('::')[2].strip()
+'SOME PHRASE'
+</code></pre>

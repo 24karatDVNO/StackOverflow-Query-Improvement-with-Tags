@@ -1,0 +1,6 @@
+<p>I'm pretty sure it is a scope issue. When you run the Register-ObjectEvent in the job, you are creating a new scope, a new runspace in fact. The scope terminates as soon as the command completes. Based on what you posted I think your job is kicking off the backup but the scope that registers the event terminates before it finishes so when you receive the job results you get nothing. To see the write host you need to keep the scope alive long enough to receive the event.  Or do something other than Write-Host such as writing a log file.  Here's an example from one of my demos:</p>
+
+<p>Register-ObjectEvent -InputObject $watcher -Eventname "Created" -SourceIdentifier "FolderChange" `
+-MessageData "A new file was created" -Action { 
+   "$(Get-Date) A new file was created: $($event.sourceEventArgs.fullpath)" | 
+  Out-File $env:temp\log.txt -append  }</p>

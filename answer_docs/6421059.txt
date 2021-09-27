@@ -1,0 +1,37 @@
+<p>I would guess that <code>.Include().ToList()</code> is probably not doing what you think it's doing.</p>
+
+<p>SubCategories probably aren't being mapped to the Category objects you pass to the view.</p>
+
+<p>Try mapping them manually with view models:</p>
+
+<p>e.g. </p>
+
+<pre><code>public class PageViewModel
+{
+    public PageViewModel()
+    {
+        this.Categories = new List&lt;Category&gt;();
+    }
+
+    public IEnumerable&lt;Category&gt; Categories {get;set;}
+}
+</code></pre>
+
+<p>...etc</p>
+
+<p>And in your code:</p>
+
+<pre><code>var viewModel = new PageViewModel();
+foreach (var category in db.Categories)
+{
+    var categoryVM = new CategoryViewModel();
+    foreach (var subcategory in category.SubCategories)
+    {
+        categoryVM.SubCategories.Add(....      
+    }
+}
+</code></pre>
+
+<p>...etc</p>
+
+<p>Do only one level first (to SubCategory) to confirm.</p>

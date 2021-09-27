@@ -1,0 +1,1 @@
+<p>Your timeout in <code>render()</code> holds a reference to a function, which in turn holds a reference to the renderer. Once the timeout has executed, and provided it doesn't set any more timeouts, there is no reference to the function, and there is no reference to the renderer, so it is clear to be garbage collected.</p>

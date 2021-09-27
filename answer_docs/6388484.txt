@@ -1,0 +1,6 @@
+<p>This is just a subset of your <a href="https://stackoverflow.com/questions/6387204/">data comparison in two files</a> question.</p>
+
+<p>Extracting my slightly hacky solution from there:</p>
+
+<pre><code>for i in 4 5 6 7; do join -e _ -j $i f f -o 1.1,1.2,1.3,0; done | sed '/_$/d'
+</code></pre>

@@ -1,0 +1,13 @@
+<p>The Debugger seems to ignore the fact that the exception generated here in actually caught by the binding engine. When you start your program outside Visual Studio, you should get the desired behaviour. </p>
+
+<p>To avoid having the debugger break on your validation, you could use</p>
+
+<pre><code>public int Valore
+{
+    get { //... }
+    [System.Diagnostics.DebuggerStepThrough()]
+    set { //... }
+}
+</code></pre>
+
+<p>Or, better yet, do not use exceptions for data validation, but have a look at the <a href="http://msdn.microsoft.com/library/system.componentmodel.idataerrorinfo.aspx" rel="nofollow">IDataErrorInfo interface</a>. After all, invalid user input is not exceptional, but the norm. =)</p>

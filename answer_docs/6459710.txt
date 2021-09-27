@@ -1,0 +1,27 @@
+<p>Worked it out.
+The return fragment can declare its own ID, naturally, and jQTouch will then treat it as though it were an original part of the document. I had previously assumed jQTouch didn't give a toss about what attributes I gave the fragment; I was wrong.</p>
+
+<p>This means that you could goTo it like any other portion of the document. It also means that you can bind a pageAnimationEnd handler on the return fragment either by ID or by class name and it will behave as expected. Thus:</p>
+
+<pre><code>&lt;div class="formResult"&gt;
+&lt;div class="toolbar"&gt;
+    &lt;a href="#contact" class="slide back"&gt;Back&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="info"&gt;
+    &lt;strong&gt;Thank You For Your Submission&lt;/strong&gt;&lt;br /&gt;
+    We have received your inquiry, and blah blah blah jibber jabber.
+&lt;/div&gt;
+</code></pre>
+
+<p></p>
+
+<p>And:</p>
+
+<pre><code>$('.formReturn').live('pageAnimationEnd', function(evt, info) {
+    if (info.direction == 'in') {
+        // Goal completion code
+    } else {
+        $(this).remove();
+    }
+});
+</code></pre>

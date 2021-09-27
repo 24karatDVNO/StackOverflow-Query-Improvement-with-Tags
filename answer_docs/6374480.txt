@@ -1,0 +1,9 @@
+<p>if you want to store the result in lower 32 bits:</p>
+
+<pre><code>(v &amp; 0xffffffff) ^ ((v &gt;&gt; 32))
+</code></pre>
+
+<p>if you want to store the result in higher 32 bits:</p>
+
+<pre><code>((v &amp; 0xffffffff) ^ ((v &gt;&gt; 32))) &lt;&lt; 32
+</code></pre>

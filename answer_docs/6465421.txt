@@ -1,0 +1,18 @@
+<p>If I recall correctly, Kernighan and Ritchie called it punctuation.
+Technically, it's just a token (or terminal, in compiler-speak), which
+can occur in specific places in the grammar, with a specific semantics
+in the language.  The distinction between operators and other punctuation
+is somewhat artificial, but useful in the context of C or C++, since
+some tokens (<code>,</code>, <code>=</code> and <code>:</code>) can be either operators or punctuation,
+depending on context, e.g.:</p>
+
+<pre><code>f( a, b );      //  comma is punctuation
+f( (a, b) );    //  comma is operator
+a = b;          //  = is assignment operator
+int a = b;      //  = is punctuation
+x = c ? a : b;  //  colon is operator
+label:          //  colon is punctuation
+</code></pre>
+
+<p>In the case of the first two, the distinction is important, since a user
+defined overload will only affect the operator, not punctuation.</p>

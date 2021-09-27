@@ -1,0 +1,15 @@
+<p>the <code>@font-face</code> css property allows you to specify a custom font by hosting it on your server and then specifying the url. You can implement it something like</p>
+
+<pre><code>@font-face {  
+    font-family: 'BPrelay';  
+    src: url('fontname.ttf');
+}  
+
+p { 
+    font-family: BPrelay, helvetica, arial, sans-serif;
+}  
+</code></pre>
+
+<p>You can also use services like <a href="http://www.google.com/webfonts" rel="nofollow">Google web fonts</a> or <a href="http://www.fontsquirrel.com/" rel="nofollow">fontsquirrel</a> to handle hosting and liscensing for you.</p>
+
+<p>You can also <a href="http://net.tutsplus.com/tutorials/design-tutorials/quick-tip-how-to-work-with-font-face/" rel="nofollow">provide a fallback to a local file</a> if the user has it - to save on bandwidth</p>

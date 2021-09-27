@@ -1,0 +1,3 @@
+<p>What you are basically looking for is <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Class.html#isAssignableFrom%28java.lang.Class%29" rel="nofollow">Class.isAssignableFrom(...)</a>. It will check if the current class is the same or a superclass of the as parameter given class.</p>
+
+<p>You have simply to iterate through your array and remove the attribute which is duplicate and add the new attribute to it.</p>

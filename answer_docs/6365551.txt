@@ -1,0 +1,19 @@
+<p>All whitespaces in a textarea are actually rendered as content (a bit like within a &lt;pre&gt; tag).</p>
+
+<p>So to avoid this, just start your dynamic content directly after closing the &lt;textarea ...&gt;:</p>
+
+<pre><code>&lt;textarea id ='box' autocomplete='off' 
+                &lt;?php 
+                    if (!$_SESSION['username']){
+                        echo "readonly='readonly'";
+                    }
+                ?&gt;
+            &gt;&lt;?php 
+                    if (!$_SESSION['username']){ 
+                        echo "Login to answer...";
+                    } 
+                    else {
+                        echo "Answer this problem...";
+                    }
+                ?&gt;&lt;/textarea&gt;
+</code></pre>

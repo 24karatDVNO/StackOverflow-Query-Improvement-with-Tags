@@ -1,0 +1,23 @@
+<pre><code>-(void) clickButton 
+{
+    NSLog(@"Clicked Button");
+    MyFirstController *myViewController = [[MyFirstController alloc] init];
+
+    [self.navigationController pushViewController:myViewController animated:YES];
+    [myViewController release];
+}
+</code></pre>
+
+<p>Then after go into the MyFirstController.m file and </p>
+
+<pre><code>- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+{
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
+    {
+        self.title = @"My First View";
+    }
+    return self;
+}
+</code></pre>
+
+<p>I hope it will help you.</p>

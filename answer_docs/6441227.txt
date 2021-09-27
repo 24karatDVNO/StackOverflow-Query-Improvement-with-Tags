@@ -1,0 +1,6 @@
+<p>The result you expected that is "to comma separated <em>integer</em> value", is in my opinion incorrect. However, if you are just looking for <strong>output representation</strong>, how about these lines of codes shown below? (Note, you can not parse the value return from valueToString to some data type long because it just does not make sense :) )</p>
+
+<pre><code>MaskFormatter format = new MaskFormatter("#,##,###");
+format.setValueContainsLiteralCharacters(false);
+System.out.println(format.valueToString(123455));
+</code></pre>

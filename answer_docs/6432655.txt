@@ -1,0 +1,9 @@
+<p>The answer to your question is "Yes", you need to import ~/OSI to /home/SVN/repo first.</p>
+
+<p>After you import that folder into SVN repository, then you can blow away your OSI directory and checkout a fresh workspace from the repository and continue with your next step.</p>
+
+<pre><code>% svn import ~/OSI file://home/SVN/repo/trunk
+% rm -rf ~/OSI
+% svn co file://home/SVN/repo/trunk/OSI
+% cd ~/OSI
+</code></pre>

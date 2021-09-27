@@ -1,0 +1,6 @@
+<pre><code>foreach (var control in
+       page.Controls.OfType&lt;BaseUserControl&gt;())
+{
+       var javascript = control.JavaScriptReference;
+}
+</code></pre>

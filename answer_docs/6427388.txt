@@ -1,0 +1,11 @@
+<p>Deleting cells from uitableview is easy. I recommend taking a look on the iPhoneCoreDataRecipes project from the apple developer docs.</p>
+
+<p>You will have to add a function called commitEditingStyle to your UITableViewDelegate, and add the edit button (self.editButtonItem in UITableViewController) to allow editing mode.</p>
+
+<pre><code>// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+    // Delete the object for the given index path
+    }
+}   
+</code></pre>

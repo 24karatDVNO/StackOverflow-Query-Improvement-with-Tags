@@ -1,0 +1,13 @@
+<p>Take a look at the <a href="http://msdn.microsoft.com/en-us/library/system.datetime.aspx" rel="nofollow">DateTime</a> structure documentation in MSDN.</p>
+
+<p>In particular, you can take a look at:</p>
+
+<ul>
+<li>TryParse and TryParseExact</li>
+<li>The comparison operators</li>
+<li>MinValue and MaxValue</li>
+</ul>
+
+<p>You can also put try..catch (ArgumentOutOfRangeException) around the DateTime values you are trying to use.  </p>
+
+<p>However, if you are consistently (or ever?) running into this kind of exception, I'd take a closer look at your design.  Unless you are doing some serious date-crunching, I don't know of any instance where I would be bumping into the min and max values.</p>

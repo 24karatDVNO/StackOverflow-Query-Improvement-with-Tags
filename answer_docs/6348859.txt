@@ -1,0 +1,3 @@
+<p>It sounds like your best bet is to use a condition.  Have a mutex and a condition.  Main initializes both, grabs the mutex, creates the thread, then goes to sleep on the condition.  Child grabs the lock (after main waits on the condition) does the work (or alternatively does the work then grab the lock), and then signals the condition (you can decide whether to release the lock before or after the signal--important bit is that you grabbed it).  Main then wakes up and continues processing.</p>
+
+<p>pthread_cond_wait() and friends is what you look at.</p>

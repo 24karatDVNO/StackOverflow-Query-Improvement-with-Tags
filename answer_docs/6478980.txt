@@ -1,0 +1,37 @@
+<p>If you can trust the <code>char*</code> and if it's amenable to simple calculations, try this:</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+enum Weekdays {
+      Sun = 'S' + 'u' + 'n',
+      Mon = 'M' + 'o' + 'n',
+      Tue = 'T' + 'u' + 'e',
+      Wed = 'W' + 'e' + 'd',
+      Thu = 'T' + 'h' + 'u',
+      Fri = 'F' + 'r' + 'i',
+      Sat = 'S' + 'a' + 't'
+};
+
+int main(void) {
+  char tmp[10];
+  printf("Enter day of the week: ");
+  fflush(stdout);
+  if (fgets(tmp, sizeof tmp, stdin)) {
+
+    enum Weekdays enumvalue =
+          tmp[0] + tmp[1] + tmp[2];
+
+    switch (enumvalue) {
+      default:    printf("Ohoh\n"); break;
+      case Sun:   printf("Sun: %d\n", Sun); break;
+      case Mon:   printf("Mon: %d\n", Mon); break;
+      case Tue:   printf("Tue: %d\n", Tue); break;
+      case Wed:   printf("Wed: %d\n", Wed); break;
+      case Thu:   printf("Thu: %d\n", Thu); break;
+      case Fri:   printf("Fri: %d\n", Fri); break;
+      case Sat:   printf("Sat: %d\n", Sat); break;
+    }
+  }
+  return 0;
+}
+</code></pre>

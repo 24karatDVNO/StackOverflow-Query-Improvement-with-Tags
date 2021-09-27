@@ -1,0 +1,9 @@
+<p>You should use some other markup language like <a href="http://daringfireball.net/projects/markdown/" rel="nofollow noreferrer">markdown</a> instead of HTML to prevent XSS. If you allow the a-Tag, user could still write stuff like:</p>
+
+<pre><code>&lt;a href="javascript:doSomethingEvil()"&gt;foo&lt;/a&gt;
+</code></pre>
+
+<p>And if you go on and try to find and filter stuff like that too, take a look at these nice examples: <a href="http://ha.ckers.org/xss.html" rel="nofollow noreferrer">http://ha.ckers.org/xss.html</a></p>
+
+<p><strong>EDIT:</strong>
+If  is really the only tag, you want to allow and you just want to have clickable links, why don't you try to recognize URLs in text instead of forcing the user to write HTML? Check out <a href="https://stackoverflow.com/questions/2536004/making-links-clickable-in-javascript">this SO question</a>.</p>

@@ -1,0 +1,7 @@
+<p>If you don't have a server side DB then FTP is really your only solution. Of course, you can hide all the FTP stuff from the user and just present them with a list of files to download and open. </p>
+
+<p>You will download the file to either the app's <code>Document</code> or <code>Library</code> folder depending on whether the user will ever need to access or move the file directly. If the user will interact directly, download to <code>Documents</code>. If not, then <code>Library</code>. </p>
+
+<p>Core Data is always the best choice for someone skilled at Core Data. Core Data is not just a persistence API but is actually primarily a data modeling/simulation API used to create the entire model layer of a Model-View-Controller design app (which the Apple API uses.) It makes it trivial to create complex data models that interface smoothly with UI. So, if you climb the learning curve, it is almost always the best option for the Apple API. </p>
+
+<p>Meanwhile, back in the real-world, you have constraints of existing skill sets and time-to-ship. <a href="https://stackoverflow.com/questions/5237943/creating-a-json-store-for-iphone/5249674#5249674">See this previous answer of mine for a breakdown of when to use either collections-to-plist, raw sql or Core Data.</a> </p>

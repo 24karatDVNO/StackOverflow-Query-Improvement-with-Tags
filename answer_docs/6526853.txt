@@ -1,0 +1,6 @@
+<p>Turns out it was giving me a bad request because there was a invisible carriage return or white space.  Trimming it off with:</p>
+
+<pre><code>url = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+</code></pre>
+
+<p>fixed my problems.</p>

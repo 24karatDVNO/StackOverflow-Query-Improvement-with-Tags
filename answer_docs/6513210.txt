@@ -1,0 +1,24 @@
+<p>Just map the servlet in <code>web.xml</code> on an URL pattern and let the form submit to that URL.</p>
+
+<p>E.g.</p>
+
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;login&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.LoginServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;login&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/login&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre>
+
+<p>with</p>
+
+<pre><code>&lt;form action="login" method="post"&gt;
+</code></pre>
+
+<h3>See also:</h3>
+
+<ul>
+<li><a href="https://stackoverflow.com/tags/servlets/info">Our Servlets wiki page</a> - contains a Hello World and several tutorial links (you'll really need it, this is pretty basic)</li>
+</ul>

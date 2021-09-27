@@ -1,0 +1,40 @@
+<p>I think this should work, though I have to admit I haven't tested it:</p>
+
+<pre><code># get the data - let the DB handle the ordering
+$sql = "SELECT status_number,prereq FROM t ORDER BY prereq, status_number"
+$res = mysql_query($sql);
+
+# initialize pre-loop stuff
+$status_array = array();
+$prev_prereq = '';
+
+# loop through the results
+while ($row = mysql_fetch_assoc($res))
+{
+  # check if the prereq is the same as the previous result, and if so...
+  if ($prev_prereq == $row['prereq'])
+  {
+    # look at the last element in the array
+    end($status_array);
+    $lastIndex = key($status_array);
+
+    # if it's not an array
+    if (! is_array($status_array[lastIndex]))
+    {
+      #  make it one that contains the value that was in that spot
+      $v = $status_array[lastIndex]
+      $status_array[lastIndex] = array();
+      status_array[$lastIndex][] = $v;
+    }
+
+    # then append the status to that array
+    status_array[$lastIndex][] = $row['status_number'];
+
+  } else
+  # just append the latest status the the end of the status array
+  {
+    $status_array[] = $row['status_number'];
+    $prev_prereq = $row['prereq'];
+  }
+}
+</code></pre>

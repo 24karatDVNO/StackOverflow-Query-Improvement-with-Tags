@@ -1,0 +1,8 @@
+<p>I would suspect that in the second case JSON is being returned you will need to do:</p>
+
+<pre><code>$.ajax({ url: link + "?" + Math.random(), success: function (response) {
+            $(response).each(function() {
+/*do something with data, firefox with firebug allows you to do console.log($this) which will show you the data in a window below the browser, Chrome also has a similar feature, alerting in an iterator is never a good idea.*/
+})
+}});
+</code></pre>

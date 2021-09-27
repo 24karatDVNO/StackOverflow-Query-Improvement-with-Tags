@@ -1,0 +1,40 @@
+<p>I can think of a few options. </p>
+
+<p>First, are you sure you need to expose the ID as part of the representation? Or is it enough to respond with the location of the new posted resource?</p>
+
+<p>Your client posts:</p>
+
+<pre><code>&lt;Resource&gt;&lt;Name&gt;New Resource&lt;/Name&gt;&lt;/Resource&gt;
+</code></pre>
+
+<p>And you respond:</p>
+
+<pre><code>HTTP/1.1 201 Created
+...
+Location: /resources/{new_resource_id}
+</code></pre>
+
+<p>Beyond that, I think it's OK to have some simple, well-understood conventions with your clients. I think most developers understand that an ID is likely to be system-generated (especially, since you're doing a POST and not a PUT). For less obvious cases, where you have arbitrary read-only fields (or other validation or display information), I think it may make sense to provide a link to metadata:</p>
+
+<pre><code>&lt;NewPersonForm&gt;
+    &lt;atom:link href="/people/new/metadata" rel="/rels/metadata" /&gt;
+    &lt;Name /&gt;
+    &lt;Department&gt;HR&lt;/Department&gt;
+&lt;/NewPersonForm&gt;
+</code></pre>
+
+<p>What the metadata looks like is up to you, but something along these lines might work for you:</p>
+
+<pre><code>&lt;Metadata&gt;
+    &lt;Element&gt;
+        &lt;Name&gt;Department&lt;/Name&gt;
+        &lt;IsReadOnly&gt;True&lt;/IsReadOnly&gt;
+    &lt;/Element&gt;
+&lt;/Metadata&gt;
+</code></pre>
+
+<p>That's a nice, format-neutral (it works well for both XML and JSON) way to provide information to the client, and if they really want to, they can program against it to build forms on the fly (I use it to provide validation information, language-specific labels, and data type information).</p>
+
+<p>I hope this helps.</p>
+
+<p>John</p>

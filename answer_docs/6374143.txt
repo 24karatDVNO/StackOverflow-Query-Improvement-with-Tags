@@ -1,0 +1,8 @@
+<p>The secret is that the actionPerformed() call is more like a callback.  </p>
+
+<p>This line registered your class with the object that generates the event.</p>
+
+<pre><code>seedButton.addActionListener(this);
+</code></pre>
+
+<p>It tells the seedButton to call your actionPerformed() method when it detects an event.</p>

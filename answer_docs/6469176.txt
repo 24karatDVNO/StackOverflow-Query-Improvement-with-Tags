@@ -1,0 +1,5 @@
+<p><code>String</code> stores characters as a <code>char[]</code>, so most likely <code>"c"</code> will be represented as <code>new char[] { 'c' }</code> within the <code>String</code> object.</p>
+
+<p>Since the <code>String</code> class is <code>final</code>, it means there is no subclass storing single-character strings in a <code>char c</code> field.</p>
+
+<p>Also, there is no concept of auto-boxing/unboxing for a single-character <code>String</code> to <code>char</code> -- as far as it is documented, so it is safe to assume single-character Strings are stored similar to any other type of String.</p>

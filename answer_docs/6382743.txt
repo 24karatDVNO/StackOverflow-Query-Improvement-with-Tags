@@ -1,0 +1,40 @@
+<p>It is more typical to test for rows that <em>fail</em> the business rule e.g. </p>
+
+<pre><code>SELECT DISTINCT *
+  FROM Table1
+ WHERE EXISTS (
+               SELECT T1.id1
+                 FROM Table1 AS T1
+                WHERE T1.id1 = Table1.id1
+                GROUP 
+                   BY T1.id1
+               HAVING COUNT(*) &gt; 3
+              );
+</code></pre>
+
+<p>The idea is that once you have decided which rows violate the business rule and have you have scrubbed the bad data, you want to put in place a constraint to ensure the rule is not violated in the future e.g. (notice the same query construct):</p>
+
+<pre><code>ALTER TABLE Table1 ADD
+   CONSTRAINT atmost_three_id2_values_for_a_single_id1
+      CHECK (NOT EXISTS (
+                         SELECT T1.id1
+                           FROM Table1 AS T1
+                          WHERE T1.id1 = Table1.id1
+                          GROUP 
+                             BY T1.id1
+                         HAVING COUNT(*) &gt; 3
+                        ));
+</code></pre>
+
+<p>Sadly, <a href="https://stackoverflow.com/questions/6368349/why-dont-dbmss-support-assertion/6372101#6372101">your SQL product of choice probably does not support subqueries in <code>CHECK</code> constraints</a>. You can 'design away' the need for a table-level constraint by adding a sequence number column, allowing you to use commonly-found <code>UNIQUE</code> and column-level <code>CHECK</code> constraints e.g. </p>
+
+<pre><code>CREATE TABLE Table1
+(
+ id1 INTEGER NOT NULL, 
+ id2 INTEGER NOT NULL, 
+ UNIQUE (id1, id2), 
+ seq INTEGER DEFAULT 1 NOT NULL
+    CHECK (seq BETWEEN 1 AND 3), 
+ UNIQUE (id1, seq)
+);
+</code></pre>

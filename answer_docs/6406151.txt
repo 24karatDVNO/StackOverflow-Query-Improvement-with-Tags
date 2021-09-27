@@ -1,0 +1,6 @@
+<pre><code>select 'artists' as type, name from artists where name like '%something%'
+union 
+select 'albums' , name from albums where ...
+union 
+select 'songs', name from songs where ...
+</code></pre>

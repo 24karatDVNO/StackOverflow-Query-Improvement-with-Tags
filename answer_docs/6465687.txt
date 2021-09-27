@@ -1,0 +1,33 @@
+<p>I have a quick solution for you. Please check if it works.. You should be able to optimize the logic, but I hope this will help you to make it working.</p>
+
+<pre><code>$pattern1 = '/\/\/\[langStart-en\][^n]*\/\/\[langEnd-en\]/';
+$pattern2 = '/\/\/\[langStart-ar\][^n]*\/\/\[langEnd-ar\]/';
+$pattern3 = '/\/\/\[langStart-fr\][^n]*\/\/\[langEnd-fr\]/';
+
+$lan= $_GET['lang'];
+$replace= '';
+$string = "whatever may be string";
+
+if ($lan=='EN')
+{
+$string = preg_replace($pattern2, $replace, $string);
+$string = preg_replace($pattern3, $replace, $string);
+
+}
+
+else if ($lan=='AR')
+{
+$string = preg_replace($pattern1, $replace, $string);
+$string = preg_replace($pattern3, $replace, $string);
+
+}
+
+else if ($lan=='FR')
+{
+$string = preg_replace($pattern1, $replace, $string);
+$string = preg_replace($pattern2, $replace, $string);
+}
+echo $string;
+</code></pre>
+
+<p>Please check and let me know if you find any issues.</p>

@@ -1,0 +1,18 @@
+<p>you cannot read session variable in client side. but you can write your session data to http header and you can read them from j2me applicaiton. </p>
+
+<p>in servlet</p>
+
+<pre><code>public class SetTestStartTime extends HttpServlet{
+public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    Long currentTimeMilliSeconds = System.currentTimeMillis();
+    request.getSession().setAttribute("time", currentTimeMilliSeconds);
+    response.addHeader("time", request.getSession().getAttribute("time"));
+}
+}
+</code></pre>
+
+<p>and in j2me</p>
+
+<pre><code>HttpConnection con = ....;
+String time = con.getHeaderField("time");
+</code></pre>

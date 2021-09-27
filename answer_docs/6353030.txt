@@ -1,0 +1,8 @@
+<p>So, is there a difference in performance in</p>
+
+<pre><code>lst[i].GetType().GetProperty(memberName).GetValue(lst[i],null)
+
+lst[i].GetType().InvokeMember(memberName, BindingFlag.GetProperty, null, lst[i], null)
+</code></pre>
+
+<p>?</p>

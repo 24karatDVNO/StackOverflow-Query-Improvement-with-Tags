@@ -1,0 +1,6 @@
+<p>I already use hierarchical data structure and i use this query to fetch same floor category</p>
+
+<pre><code>SELECT node.* ,count( parent.id ) -1 AS depth FROM pages node 
+JOIN pages parent ON node.lft BETWEEN parent.lft AND parent.rgt 
+WHERE ...[ Your clause Statment ]... GROUP BY node.id HAVING depth = 0
+</code></pre>

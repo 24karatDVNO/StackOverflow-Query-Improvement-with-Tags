@@ -1,0 +1,5 @@
+<p>I would agree with all the answers re. the merits of doing "select * from ..." </p>
+
+<p>However, if you <strong>really</strong> wanted to, you could do a "select *" into a temporary table, do an "alter table" to drop the column(s) you don't want, and then do a "select *" from the temporary table.</p>
+
+<p>Still... not very nice because the main point is that, should your table structure change (and get some extra columns), consumers of your selected data would now be getting more than they expect. "Select *" is, in most cases, just lazy coding.</p>

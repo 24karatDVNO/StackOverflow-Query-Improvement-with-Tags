@@ -1,0 +1,6 @@
+<pre><code>var sliderValue:Number = Math.round(puck.y-track.y+(puck.height/2));
+var sliderPercent:Number = (sliderValue / 115);
+var result = Math.abs((sliderPercent * 2) - 2);
+</code></pre>
+
+<p>Let me know if that works. I don't particularly understand the function above so that one might be better. In my code, 55 would give you 1.04 because its more than halfway to the full amount, which is in your case 0 instead of 2 being the full amount.</p>

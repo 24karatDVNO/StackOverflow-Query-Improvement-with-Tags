@@ -1,0 +1,11 @@
+<p>Since you are probably binding the ListCtrl with the event, the ListCtrl item gets passed inside the event;</p>
+
+<pre><code>list = event.GetEventObject()
+selected_string = list.GetStringSelection()
+</code></pre>
+
+<p>So now you have all ListCtrl methods available inside the event handler.</p>
+
+<p><a href="http://www.wxpython.org/docs/api/wx.Event-class.html" rel="nofollow">http://www.wxpython.org/docs/api/wx.Event-class.html</a></p>
+
+<p><a href="http://www.wxpython.org/docs/api/wx.TextCtrl-class.html" rel="nofollow">http://www.wxpython.org/docs/api/wx.TextCtrl-class.html</a></p>

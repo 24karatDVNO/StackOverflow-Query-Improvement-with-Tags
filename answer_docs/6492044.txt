@@ -1,0 +1,9 @@
+<p>It is possible to make the <code>&lt;a&gt;</code> element clickable by using jQuery. It goes along the line of:</p>
+
+<pre><code>$('#PageMenu li').click(function(e) {
+    window.location = $(this).find('a').attr('href');
+    e.preventDefault();
+});
+</code></pre>
+
+<p>Perhaps you might want to give the <code>&lt;li&gt;</code> element a CSS style for cursor, such as <code>cursor: pointer</code></p>

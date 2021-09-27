@@ -1,0 +1,14 @@
+<p>I'm not sure. try to add parent body.</p>
+
+<pre><code>var iframe = document.createElement("iframe")
+
+// add this
+iframe.style.display = 'none'; // if you want
+document.body.appendChild(iframe);
+// add this
+
+var doc = iframe.contentDocument || iframe.contentWindow.document;
+doc.open();
+doc.write("htmlcontent");
+doc.close();
+</code></pre>

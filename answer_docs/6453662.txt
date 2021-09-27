@@ -1,0 +1,15 @@
+<p>You may use the following code snippet:</p>
+
+<pre><code>new Thread(new Runnable() {
+    @Override
+    public void run()
+      {
+      org.openqa.selenium.server.SeleniumServer.main();
+      }
+}, "SeleniumServer").start();
+</code></pre>
+
+<p>Or much simpler in Groovy:</p>
+
+<pre><code>new Thread({ org.openqa.selenium.server.SeleniumServer.main(); }, "SeleniumServer").start()
+</code></pre>

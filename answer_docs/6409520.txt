@@ -1,0 +1,10 @@
+<p>This isn't bullet proof, but it should server you well. It will match a date anywhere in any String that "looks like" a date:</p>
+
+<pre><code>    String input = "hello world, good Day Thu Mar 03 07:13:56 GMT 2011 foo bar";
+    String regex = "(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d\\d \\d\\d:\\d\\d:\\d\\d [A-Z]{3} [12]\\d\\d\\d";
+    Matcher matcher = Pattern.compile(regex).matcher(input);
+    if (!matcher.find())
+        throw new IllegalArgumentException("Couldn't find a date");
+    String datestr = matcher.group();
+    Date date = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy").parse(datestr);
+</code></pre>

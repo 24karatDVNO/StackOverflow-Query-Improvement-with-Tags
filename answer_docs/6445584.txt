@@ -1,0 +1,7 @@
+<p>Use the builtin <a href="http://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_week" rel="nofollow">WEEK() function</a> to get the week number.
+You guys are over thinking it.</p>
+
+<pre><code>SELECT WEEK(myDate) AS wk, SUM(myInfo) As sumInfo FROM myTable GROUP BY WEEK(myDate) ORDER BY wk DESC
+</code></pre>
+
+<p>You can make it more advanced and <strong>CONCAT(YEAR(myDate),'-',WEEK(myDate))</strong> or overload WEEK() to specify the starting day in the week.</p>

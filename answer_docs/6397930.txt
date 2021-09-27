@@ -1,0 +1,13 @@
+<p>Ok simple enough.</p>
+
+<p>Since i iterate over the columns by reference i have to use 0 as index, since after the removal of the first column, the column count is already minus 1.</p>
+
+<p>Changing the loop to the following solves the problem:</p>
+
+<pre><code>    for( int i=0; i &lt; [columns count]; i++)
+    {
+        NSTableColumn *col = [columns objectAtIndex:0];
+        NSLog(@"removing column: %@", [col identifier]);
+        [_resultTableView removeTableColumn:col];
+    }
+</code></pre>

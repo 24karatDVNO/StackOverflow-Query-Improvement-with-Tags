@@ -1,0 +1,9 @@
+<p>The line</p>
+
+<pre><code>SELECT Series_ID, 1 AS Jan, 2 AS Feb, 3 AS Mar, 4 AS Apr, 5 AS May, 6 AS Jun, 7 AS Jul, 8 AS Aug, 9 AS Sep, 10 AS Oct, 11 AS Nov, 12 AS [Dec]
+</code></pre>
+
+<p>Indicates that we should select the literal value 1 and alias as Jan, literal value 2 and alias as Feb...  Instead, reference the column named 1 by wrapping in square brackets or double quotes</p>
+
+<pre><code>SELECT Series_ID, [1] AS Jan, [2] AS Feb, [3] AS Mar, [4] AS Apr, [5] AS May, [6] AS Jun, [7] AS Jul, [8] AS Aug, [9] AS Sep, [10] AS Oct, [11] AS Nov, [12] AS [Dec]
+</code></pre>

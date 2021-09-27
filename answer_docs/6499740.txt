@@ -1,0 +1,9 @@
+<p>I found a hack that kinda works. It turns out that if you change the hash right after history.pushState the location bar gets updated. Like:</p>
+
+<pre><code>        window.history.pushState(data, title, 'a/new/url');
+        window.location.hash = 'new';
+</code></pre>
+
+<p>changes the location bar to <a href="http://example.com/a/new/url#new" rel="nofollow">http://example.com/a/new/url#new</a>. Which introduces another problem because the hash becomes it's own history entry. So you'll need to listen to onHashChange anyway.</p>
+
+<p>It's a bit complicated, but there are some people who really, really hate hashbang urls and are very vocal about it. So it's worth it.</p>

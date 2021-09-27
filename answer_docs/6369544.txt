@@ -1,0 +1,53 @@
+<p>it depends on what you want to do before the dispose. There are many things like long running ops , ops that can throw exception etc that are not recommended.Do you want to trigger some execution OnDispose..</p>
+
+<p>You can somehow do it by doing the below but again I am not sure what you want to do so I will not recommend it . </p>
+
+<p>I normally have IDisposible where I am using unmanaged resources and instantiate the class in using() and do my ops there. 
+After the scope of using the Dispose will be called so in the using block I cna execute my code. 
+//have a destructor</p>
+
+<pre><code>~ MyClass() 
+{
+    //Do something here.
+   // Cleaning up code goes here
+}
+</code></pre>
+
+<p>This is translated to </p>
+
+<pre><code>protected override void Finalize()
+{
+   try
+   {
+      // Do something here. Dont throw exception here.
+      // Cleaning up .
+   }
+   finally
+   {
+      base.Finalize();
+   }
+}
+</code></pre>
+
+<p>If you class implemets IDisposible you can have the extra bit of code in you Dipose </p>
+
+<pre><code>protected virtual void Dispose(bool disposing)
+    {
+        //Do something before resource free up.
+        if (disposing) 
+        {
+            // free managed resources
+            if (managedResource != null)
+            {
+                managedResource.Dispose();
+                managedResource = null;
+            }
+        }
+        // free native resources if there are any.
+        if (nativeResource != IntPtr.Zero) 
+        {
+            Marshal.FreeHGlobal(nativeResource);
+            nativeResource = IntPtr.Zero;
+        }
+    }
+</code></pre>

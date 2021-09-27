@@ -1,0 +1,8 @@
+<p>That shadow is from the <code>UITableView</code> "Separator" dropdown in Interface Builder: "Single Line Etched". The best way to handle it is subclass <code>UITableViewCell</code> to prevent the cell from changing the highlight:</p>
+
+<pre><code>- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {}
+    [super setHighlighted:NO animated:animated];
+}
+</code></pre>
+
+<p>For more details, check out <a href="https://stackoverflow.com/questions/1184014/removing-text-shadow-in-uitableviewcell-when-its-selected">Removing text shadow in UITableViewCell when it&#39;s selected</a>.</p>

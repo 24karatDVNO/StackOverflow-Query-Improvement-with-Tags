@@ -1,0 +1,5 @@
+<p>I found an easy way to suppress the warning was to do the following:</p>
+
+<p><code>[(ONE_OF_FOUR_CLASSES *)[ONE_OF_FOUR_CLASSES alloc] initWithDelegate:self];</code></p>
+
+<p>This cast enables the compiler to realise the return value of the +(id)alloc call is not 'id' but is actually your ONE_OF_FOUR_CLASSES.</p>

@@ -1,0 +1,22 @@
+<p>Below is my tested variations from cwallenpoole and Craig. For the regexp - note that if "request=" does not exist, the result will be the entire string. user349433 was partly there too, a space before "request=" in the search works just as well:</p>
+
+<pre><code>SET serveroutput ON
+
+DECLARE
+  l_string             VARCHAR2(100) := '&lt;!-- accountId="123" activity="add" request="add user" --&gt;';
+  l_result_from_substr VARCHAR2(50);
+  l_result_from_regexp VARCHAR2(50);
+BEGIN
+
+  SELECT SUBSTR(l_string, instr(l_string, 'request="') + 9, instr(SUBSTR(l_string,instr(l_string, 'request="')), '"', 2)-1),
+    regexp_replace(l_string, '.* request="([^"]*)".*', '\1')
+  INTO l_result_from_substr,
+    l_result_from_regexp
+  FROM dual;
+
+  dbms_output.put_line('Result from substr: '||l_result_from_substr);
+  dbms_output.put_line('Result from regexp: '||l_result_from_regexp);
+
+END;
+/
+</code></pre>

@@ -1,0 +1,16 @@
+<p>I am not aware of such a c<code>array</code>zy function, but I know how you could do it:</p>
+
+<pre><code>//$array1 is first array, $array2 is second array
+
+foreach($array1 as $key =&gt; $value){
+    if (isset($value['remote_name'], $value['my_name']) &amp;&amp; $value['remote_name'] &amp;&amp; $value['my_name']){
+        $my_name = $value['my_name'];
+        if (isset($array2[$my_name])) {
+            $remote_name = $value['remote_name'];
+            $array2[$remote_name] = $array2[$my_name];
+            //cleanup
+            unset($array2[$my_name]);
+        }
+    }
+}
+</code></pre>

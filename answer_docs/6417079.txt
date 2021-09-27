@@ -1,0 +1,15 @@
+<p>Try: <code>http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html</code></p>
+
+<p>or: <code>http://httpd.apache.org/docs/2.2/mod/mod_substitute.html</code> if you want to change links in the html content returned to the browser.</p>
+
+<p>Here is an example of how I might do the rewrite I think you're after...</p>
+
+<p>RewriteRule ^(.<em>)/vision/(.</em>)$ $1/news/$2</p>
+
+<p>This may be to broad of a rewrite scope in which case this may be better...</p>
+
+<p><code>RewriteRule <a href="http://www.mywebsite.com/vision/" rel="nofollow">http://www.mywebsite.com/vision/</a>(.*)$ <a href="http://www.mywebsite.com/news/" rel="nofollow">http://www.mywebsite.com/news/</a>$1</code></p>
+
+<p>Also learning the basics of regex will be a needed skill for doing any complex rewriting IMO.</p>
+
+<p>Hope that helps.</p>

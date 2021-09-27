@@ -1,0 +1,8 @@
+<p>Instead of making the dot a background image of a <code>div</code>, I'd suggest just using it as an <code>image</code> tag and positioning it accordingly using margins.</p>
+
+<p>Something like:</p>
+
+<pre><code>&lt;div style="background: url('mainimage.gif'); width:513px; height:550px;"&gt;
+    &lt;img src="dot.gif" style="margin-top:274px; margin-left:-261px;" /&gt;
+&lt;/div&gt;
+</code></pre>

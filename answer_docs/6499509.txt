@@ -1,0 +1,4 @@
+<pre><code>array.join('||').replace(/(^|(\|\|))\$/g, '$1');
+</code></pre>
+
+<p>Join with <code>||</code>, then annihilate any <code>$</code> following either the beginning of the string or the separator. Works as long as your strings do not contain <code>||</code> (in which case, I think you have bigger problems).</p>

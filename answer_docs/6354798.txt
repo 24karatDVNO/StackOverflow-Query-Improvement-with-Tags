@@ -1,0 +1,22 @@
+<p>I don't know whether this suits your pattern, but for member function references, boost::bind and boost::phoenix already do what you want:</p>
+
+<pre><code> struct T 
+ {
+      void f(int) const {} 
+ };
+
+
+ T instance;
+ T* pointer = new T();
+ boost::shared_ptr&lt;T&gt; shared(new T());
+
+ boost::bind( &amp; T:f, instance, 1);              // stores instance by value
+ boost::bind( &amp; T:f, boost::ref(instance), 2);  // stores instance by ref
+ boost::bind( &amp; T:f, boost::cref(instance), 3); // stores instance by const ref
+
+ boost::bind( &amp; T:f, pointer, 4);               // dereferences the pointer
+
+ boost::bind( &amp; T:f, shared, 5);                // dereferences the smart pointer
+</code></pre>
+
+<p><sub>_You can even use typetraits to let boost::bind/phoenix know about your own smart pointer (or any type that you want dereferenced with operator* and operator-> when used)_</sub></p>

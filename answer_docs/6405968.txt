@@ -1,0 +1,13 @@
+<p>Something like</p>
+
+<pre><code>tabContainers.filter(window.location.hash).show();
+</code></pre>
+
+<p>inside your ready function, perhaps? Then the link example.org/path#tab2 will open the correct tab on pageload.</p>
+
+<p>EDIT: Oh, I think I misinterpreted the question a bit. Did you also want to be able to open a tab when your'e on the same page? Then you could use <a href="http://api.jquery.com/trigger/" rel="nofollow">trigger</a>:</p>
+
+<pre><code>&lt;a href="#tab3" onclick="$('#tab3').trigger('click');"&gt;My link text&lt;/a&gt;
+</code></pre>
+
+<p><em>(Actually it's very ugly to write inline JavaScript, but it might be the easiest way if you are dealing with a CMS for example.)</em></p>

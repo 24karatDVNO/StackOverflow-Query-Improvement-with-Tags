@@ -1,0 +1,27 @@
+<p>Add another input element which stores whether the button is clicked</p>
+
+<pre><code>&lt;div id="divElement"&gt;
+&lt;input type="hidden" name="buttonIsClicked" value="0" /&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>and set the event handler for the div.</p>
+
+<pre><code>$("#divElement").click( function() {
+  $(this).children("input[name=buttonIsClicked]").val(1);
+});
+</code></pre>
+
+<p>Adding the input element inside the div makes the code execute faster since it just has to search only under the div element and not the entire DOM. If you want to place the input element outside, then too you could make your code optimized by using</p>
+
+<pre><code>$(this).parent().find("input[type=buttonIsClicked]");
+</code></pre>
+
+<p>on form submission you could check this by </p>
+
+<pre><code>$(myFormElement).submit(function() {
+  if($(this).find("input[name=buttonIsClicked]").val() == 0)
+    return false;
+  //proceed here if the button div is clicked
+}
+</code></pre>

@@ -1,0 +1,8 @@
+<p>I'd like to quote the conclusion of this <a href="http://www.opengl.org/wiki/Transparency_Sorting" rel="nofollow noreferrer">article</a>:</p>
+<blockquote>
+<p>The upshot of this is simply that you can't simply render translucent objects in any order without special consideration. If you have enough translucent surfaces moving around in a sufficiently complex manner, you will find it very hard to avoid errors with acceptable realtime algorithms.</p>
+<p>It's largely a matter of what you are prepared to tolerate and what you know a priori about your scene content.</p>
+</blockquote>
+<p>I agree, most of it depends on what you are drawing.</p>
+<p>Keep in mind that fragment shaders has the <em>discard</em> keyword which is your friend: if you are alphing objects using textures, this would aid you to avoid sorting. I would notice that you could have the same problem in the future by rendering translucent/transparent objects in the same layer.</p>
+<p>Maybe, it would be better to implement sorted object tree in order to avoid to sort every object every frame. But it all depends on the objects organization and application constraints.</p>

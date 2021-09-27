@@ -1,0 +1,16 @@
+<p>Thank you @Rahul Vyas.  I didn't try your suggestion, but I still appreciate your input.  Ended up getting this issue resolved from help from the Apple Dev forums.</p>
+
+<p>The answer to this problem is, as it worked for me:</p>
+
+<pre><code>CGRect screenRect = [[UIScreen mainScreen] bounds];    
+UIGraphicsBeginImageContext(screenRect.size);
+CGContextRef context = UIGraphicsGetCurrentContext(); 
+[[UIColor blackColor] set]; 
+CGContextFillRect(context, screenRect);
+[imageView.layer renderInContext:context];
+UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+// Save image
+UIImageWriteToSavedPhotosAlbum(newImage, self, @selector(image:didFinishSavingWithError:contextInfo:), context);
+[picker dismissModalViewControllerAnimated:YES];
+</code></pre>

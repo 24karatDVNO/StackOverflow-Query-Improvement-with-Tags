@@ -1,0 +1,10 @@
+<p>The solution is to use <code>jstat</code>:</p>
+
+<pre><code>jstat -gccapacity -t 4994 5s
+</code></pre>
+
+<p>This line prints out the Garbage Collector capacity information, plus a timestamp for process 4994 every 5 seconds.</p>
+
+<p>You need to be the correct user to gain access to the VM, so for me the above command had to be run <code>sudo -u jboss jstat ...</code>.</p>
+
+<p>There's lots more information on <a href="http://download.oracle.com/javase/6/docs/technotes/tools/share/jstat.html" rel="nofollow">the documentation page</a>. </p>

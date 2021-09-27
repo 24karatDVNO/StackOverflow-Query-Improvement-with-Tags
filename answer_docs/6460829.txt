@@ -1,0 +1,24 @@
+<p>Well not sure what you mean exactly but it's easy to parse a json response from your request. You can use the google-gson library from <a href="http://code.google.com/p/google-gson/" rel="nofollow">here</a>. Once you've added the library to your project, you can do something like:</p>
+
+<pre><code>public static String ParseJSON(String theResponse, String tag){
+    try{
+          String tempResp = theResponse.toUpperCase();
+          String tempTag = tag.toUpperCase();
+          JSONObject outer = new JSONObject(tempResp);
+          String data = (String)outer.get(tempTag);
+          return data;
+        }
+        catch(JSONException e) {
+            Log.e(LOG_TAG, e.toString());
+        }
+}
+</code></pre>
+
+<p>This function will return the <code>data</code> of the <code>tag</code> passed as a parameter. So for example:</p>
+
+<pre><code>String response = "Result:OK, Message:HI"; 
+String msgData = ParseJSON(response, "Message");
+System.out.println(msgData); //this will print "HI"
+</code></pre>
+
+<p>Ryan</p>

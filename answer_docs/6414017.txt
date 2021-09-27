@@ -1,0 +1,9 @@
+<p>Why does your code intended for a Mozilla extension do checks for IE objects like "ActiveXObject"?
+Anyway, your code does not make much sense, your Mozilla branch never assigns to the variable named <code>ex</code>, yet you then call <code>replace(ex)</code>.
+Some more meaningful code would be</p>
+
+<pre><code>var resultFragment = xsltProcessor.transformToFragment(xml, content.document);
+content.document.replaceChild(resultFragment, content.document.documentElement);
+</code></pre>
+
+<p>But I am not sure that will work in general, in particular if content.document is of a different type than the result document of the XSLT (i.e. one being an HTML document, the other being an SVG document).</p>

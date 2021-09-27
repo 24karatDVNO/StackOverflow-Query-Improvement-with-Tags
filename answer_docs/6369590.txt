@@ -1,0 +1,35 @@
+<p>The best way would be to have an extra select element:</p>
+
+<pre><code>&lt;input type="radio" class="status" name="status" checked="checked"   value="New" /&gt;New
+&lt;input type="radio" class="status" name="status"  value="Used" /&gt;Used
+
+&lt;select id="used" style="display: none"&gt;
+    &lt;option&gt;Home Used Insurance1&lt;/option&gt;
+    &lt;option&gt;Home Used Insurance2&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select id="new"&gt;
+    &lt;option&gt;Home New Insurance1&lt;/option&gt;
+    &lt;option&gt;Home New Insurance2&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p>Then you could just show/hide each one when the radio box is checked:</p>
+
+<pre><code>$(".status").change(function(){
+
+    var $new = $("#new"),
+        $used = $("#used");
+
+    if( $(this).val() == "New" ){
+        $new.show();
+        $used.hide();
+    } else {
+        $new.hide();
+        $used.show();        
+    }
+
+});
+</code></pre>
+
+<p>Demo here: <a href="http://jsfiddle.net/BEC38/" rel="nofollow">http://jsfiddle.net/BEC38/</a></p>

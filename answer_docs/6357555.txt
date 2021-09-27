@@ -1,0 +1,27 @@
+<p>This is not possible with the standard methods of the navigation view helper, which is unfortunate, because it is a common case.</p>
+
+<p>However there are some case issues that the ZF developers should have in mind, probably that is why it is not implemented.
+Such case is if you want to show non-active branches to the second level.</p>
+
+<pre><code>Item 1 - active
+  Item 1.1 - active
+    Item 1.1.1 - active
+    Item 1.1.2
+  Item 1.2
+Item 2
+  Item 2.1
+  Item 2.2
+</code></pre>
+
+<p>You may also wish to have other case, show only main items, and only the active branch.</p>
+
+<pre><code>Item 1 - active
+  Item 1.1 - active
+    Item 1.1.1 - active
+    Item 1.1.2
+Item 2
+</code></pre>
+
+<p>I had that solved with rendering the whole menu and hiding the non-active branches with CSS.</p>
+
+<p>But you may wish to limit your markup so you have to make your custom renderer.</p>

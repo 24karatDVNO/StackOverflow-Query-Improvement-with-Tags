@@ -1,0 +1,29 @@
+<p>I'm not sure if this is exactly what you're asking for, but you can do something like this ... make a virtual accessor in your User model for a comment:</p>
+
+<pre><code>def with_comment
+  if params[:user][:comment]
+    @comment = self.comments.build params[:user][:comment]
+  else
+    @comment = self.comments.build 
+  end
+end 
+
+def with_comment=(comment)
+  self.comments.build comment
+end 
+</code></pre>
+
+<p>Then in app/views/users/registrations/new.html.erb:</p>
+
+<pre><code>&lt;%= form_for(resource.with_comment(params),
+             :as =&gt; resource_name,
+             :url =&gt; registration_path(resource_name)) do |f| %&gt;
+
+   &lt;% f.fields_for :with_comment, resource.with_comment do |cf| %&gt;
+      &lt;% cf.text_area :message %&gt;
+   ...
+</code></pre>
+
+<p>I haven't tested this but it's adapted from similar working code that I'm using.</p>
+
+<p>This is actually the user form with a comment added. I just let devise do its thing and try not to fight it.</p>

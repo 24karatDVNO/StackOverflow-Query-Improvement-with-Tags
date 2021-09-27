@@ -1,0 +1,5 @@
+<p>I had the same problem and managed to solve it by manually entering the proper output folder for the compiled tests in "Java build path" under the project properties. </p>
+
+<p>In my case, I wanted the tests to end up in ./target/test-classes.</p>
+
+<p>I think it didn't work at first because Eclipse put the compiled tests either in the wrong folder (.bin/classes) or the default output folder (./target/classes).</p>

@@ -1,0 +1,9 @@
+<p>Abstract classes let you carry around some code/data that you can then use in the inherited classes.  They are great for that, but use inheritance very sparingly.  Only inherit from a class if the new class is absolutely interchangeable with the abstract.</p>
+
+<p>Interfaces contain no code.</p>
+
+<p>I prefer to code to interfaces whenever possible.  I also like to keep those interfaces as small as possible.  This leaves me the flexibility to swap out the underlying impementation at a later time.</p>
+
+<p>If you code to an abstract class, it is harder to swap out the implementation at a later time.</p>
+
+<p>You can apply an interface (or several small interfaces) to the abstract class.  Sounds like this may be your best approach.</p>

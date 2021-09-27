@@ -1,0 +1,11 @@
+<p>I'd be using something like:</p>
+
+<pre><code>Imports Microsoft.Win32
+
+Sub SetNoDrives(value As Integer)
+    Dim RegPath As String = "SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer"
+    Using Key As RegistryKey = Registry.LocalMachine.OpenSubKey(RegPath)
+        Key.SetValue("NoDrives", value, RegistryValueKind.DWord)
+    End Using
+End Sub
+</code></pre>

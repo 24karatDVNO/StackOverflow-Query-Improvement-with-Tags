@@ -1,0 +1,11 @@
+<p>The $.ajax method is used to get data back from your server not show a dialog. You can have the ajax method show a dialog by doing something in the success action</p>
+
+<pre><code>$.ajax({
+   type: POST,
+   url: '/VCard.aspx’,
+   data: { name: 'Andreas' }, 
+   success: function (data, textStatus, jqXHR) {
+     /*open your dialog*/
+   }
+});
+</code></pre>

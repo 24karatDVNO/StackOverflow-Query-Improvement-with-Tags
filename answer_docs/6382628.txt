@@ -1,0 +1,44 @@
+<p>Try this:</p>
+
+<pre><code>&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="1dip"&gt;
+    &lt;LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:weightSum="4"
+        android:layout_height="wrap_content"&gt;
+        &lt;EditText
+            android:id="@+id/search_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" /&gt;
+        &lt;Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go"
+            android:layout_weight="1" /&gt;
+    &lt;/LinearLayout&gt;  &lt;!-- &lt;EditText android:id="@+id/testedit_txt" android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" android:layout_weight="3" /&gt; --&gt;
+    &lt;ListView
+        android:id="@+id/android:list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_weight="1"/&gt;
+    &lt;TextView
+        android:id="@+id/text1"
+        android:layout_width="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_height="wrap_content"
+        android:text="qwe" /&gt;
+    &lt;TextView
+        android:id="@+id/text2"
+        android:layout_width="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_height="wrap_content"
+        android:text="qwe" /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>

@@ -1,0 +1,28 @@
+<p>The reason why are you getting zero hits is because the way you index information and the way you query is different.</p>
+
+<p>When you index your information, you use <code>StandardAnalyzer</code> which internally uses <code>LowerCaseFilter</code>, and all your data sits lowercased inside the index.</p>
+
+<p>When you query, you construct "raw" query (using <code>TermQuery</code>) which isn't lowercasing your term value. If you would change line</p>
+
+<pre><code>Term t = new Term("content", "Alan");
+</code></pre>
+
+<p>into</p>
+
+<pre><code>Term t = new Term("content", "alan");
+</code></pre>
+
+<p>you would get desired result. Obviously, this is a bad approach - you want to achieve the same by parsing query and reusing the same analyzer, e.g.:</p>
+
+<pre><code>Query q = MultiFieldQueryParser.parse(
+                    Version.LUCENE_30,
+                    "content:Alan",
+                    new String[]{"content"},
+                    new BooleanClause.Occur[] {BooleanClause.Occur.SHOULD},
+                    analyzer
+);
+</code></pre>
+
+<p>You can probably use different type of query, but you got the idea.</p>
+
+<p>p.s. next time do not include information which is irrelevant to the problem (PDF stuff).</p>

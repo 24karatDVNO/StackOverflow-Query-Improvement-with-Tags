@@ -1,0 +1,30 @@
+<p>Through this together. It will let you know which checkbox was selected and it will also retain the check on form submit. </p>
+
+<pre><code>&lt;?php
+$message = '';
+$ch1_checked = false;
+$ch2_checked = false;
+if(isset($_POST['submit_button'])) {
+    // Form was submitted
+    $ch1_checked = isset($_POST['ch1']);
+    $ch2_checked = isset($_POST['ch2']);
+
+    if($ch1_checked &amp;&amp; $ch2_checked) {
+        $message .= 'Both were checked.';
+    } else if($ch1_checked) {
+        $message .= 'Checkbox 1 was checked.';
+    } else if($ch2_checked) {
+        $message .= 'Checkbox 2 was checked.';
+    } else {
+        $message .= 'Neither were checked.';
+    }
+}
+?&gt;
+
+&lt;?php echo $message; ?&gt;
+&lt;form id="my_form" action="test.php" method="post"&gt;
+    &lt;input type="checkbox" name="ch1" value="ch1" &lt;?php if($ch1_checked) echo 'checked'; ?&gt; /&gt;Checkbox 1&lt;br /&gt;
+    &lt;input type="checkbox" name="ch2" value="ch2" &lt;?php if($ch2_checked) echo 'checked'; ?&gt; /&gt;Checkbox 2&lt;br /&gt;
+    &lt;input type="submit" name="submit_button" value="Go!" /&gt;
+&lt;/form&gt;
+</code></pre>

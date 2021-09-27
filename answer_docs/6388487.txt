@@ -1,0 +1,6 @@
+<pre><code>1,2,3 |
+foreach { 
+    $count = $_;
+    gci -Path \\myserver-web$count\d$\IISLogs\ -include *.log -recurse | % { $dirName = $_.directoryname.Substring($_.directoryname.LastIndexOf("\")+1); $logname = $_.Name; $_ | Copy-Item -Destination $("D:\ServerLogsAndBackups\IIS\w"+$count+"\"+$dirname+"_"+$logName) -whatif }
+}
+</code></pre>

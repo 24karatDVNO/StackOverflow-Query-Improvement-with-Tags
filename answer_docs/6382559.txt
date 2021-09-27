@@ -1,0 +1,20 @@
+<p>Finally, I've implemented the following sollution in my NON-web application :</p>
+
+<pre><code>&lt;bean id="x509ContextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
+    &lt;constructor-arg value="ldap://hostname:389/DC=base,DC=com" /&gt;
+    &lt;property name="authenticationStrategy"&gt;
+        &lt;bean class="org.springframework.ldap.core.support.ExternalTlsDirContextAuthenticationStrategy"&gt;
+            &lt;property name="sslSocketFactory"&gt;
+                &lt;bean class="yourOwnSocketFactory"/&gt;
+            &lt;/property&gt;
+            &lt;property name="shutdownTlsGracefully" value="true" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p>where yourOwnSocketFactory takes the user's certificate to establish the TLS connection.</p>
+
+<p>A successfull TLS connection means the user is authenticated. That's the case with a well configured LDAP, which should check the user including certificate revokation list.</p>
+
+<p>Once the connection established, you have to recover the user's informations with a custom BindAuthenticator which could extract (X509PrincipalExtractor) Certificate DN (or other usefull info) to match the LDAP user.</p>

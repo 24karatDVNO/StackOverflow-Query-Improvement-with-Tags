@@ -1,0 +1,35 @@
+<p>Another version using the <strong>volatile</strong> keyword. I hate the <em>volatile</em> keyword. No sane people would bring this version to a professor because of the probable question: "What does <em>volatile</em> exactly do and how does it work??"</p>
+
+<pre><code>public class Singleton {
+
+    private volatile static Singleton singleton;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if(singleton == null) {
+            synchronized (Singleton.class) {
+                if(singleton == null) {
+                    singleton = new Singleton();
+                }
+            }
+        }
+        return singleton;
+    }
+}
+</code></pre>
+
+<ul>
+<li>Yes it's thread safe.</li>
+<li>Yes I check if singleton is null twice.</li>
+<li>Yes it's different from Benoit's because this version lazily instantiate the singleton. The singleton is created (and the block synchronized) only if an instance is actually needed and not when the class is loaded.</li>
+<li>Yes it's different from Charlie's because I synchronize only once ever. After the singleton is created I'll never synchronize again. Also, synchronizing a block instead of a method reduces the overhead.</li>
+</ul>
+
+<p>NOTE:</p>
+
+<ol>
+<li>It might not work with older version of Java. If you're java version is old, upgrade it. If you cannot, go with Benoit's that is thread safe as well.</li>
+<li>If you're not using threads, do not synchronize because it might reduce performances by a 100 times and go with Charlie's after removing the synchronized keyword.</li>
+<li>Please no drama.</li>
+</ol>

@@ -1,0 +1,11 @@
+<pre><code> sqlAdapt.Fill(ds, TableName);
+</code></pre>
+
+<p>What is TableName?  It looks like you are not using the command to fill the dataset to me.</p>
+
+<p>Try something like this:</p>
+
+<pre><code>DataSet dataset;
+
+sqlAdapt.Fill(dataset);
+</code></pre>

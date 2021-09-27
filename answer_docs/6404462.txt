@@ -1,0 +1,12 @@
+<p>Check out the javascript sdk documentation, they have a similar example of doing this. Try something like:</p>
+
+<pre><code>FB.api(
+    {
+      method: 'fql.query',
+      query: 'SELECT email FROM user WHERE uid='+FB.getSession().uid
+    },
+    function(response) {
+          alert('Email is ' +response[0].email);
+    }
+  );
+</code></pre>

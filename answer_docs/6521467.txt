@@ -1,0 +1,18 @@
+<p>As a comment mentioned, I would suggest the following: Either use a global style, or a class-specific one with the pseudo-class <code>:hover</code>.</p>
+
+<pre><code>tr:hover {
+  background-color: #fbf9e0;
+}
+
+/* or */
+tr.someClass:hover {
+  background-color: #fbf9e0;
+}
+</code></pre>
+
+<p>If you go that class route, make sure to add it to the object:</p>
+
+<pre><code>&lt;script&gt;
+  tr.className = 'someClass';
+&lt;/script&gt;
+</code></pre>

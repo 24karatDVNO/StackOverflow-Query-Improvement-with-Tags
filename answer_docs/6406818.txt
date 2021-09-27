@@ -1,0 +1,20 @@
+<p>You can do this using <code>$(window).resize()</code></p>
+
+<pre><code>$('div#first').addClass("right");
+
+$(window).resize(function() {
+
+    $('#first').toggleClass("right", $(this).width() &gt; '500');
+
+});
+</code></pre>
+
+<ol>
+<li>make sure the <code>div</code> gets the class with the <code>float</code>, so add it outside the resize function.</li>
+<li>when the window is resized, toggle the class on or off (i.e., float or no float) based on the size of the window.  In this case, toggle happens when window is greater than 500px.  Conversely, when it is smaller, the class is removed.</li>
+<li>set the width to whatever you prefer.</li>
+</ol>
+
+<p><a href="http://jsfiddle.net/jasongennaro/7qc8e/3/" rel="nofollow">http://jsfiddle.net/jasongennaro/7qc8e/3/</a></p>
+
+<p>Resize the window to see it work.</p>

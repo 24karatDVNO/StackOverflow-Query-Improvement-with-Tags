@@ -1,0 +1,15 @@
+<p>If you continued reading, the text is taken from this passage:</p>
+
+<blockquote>
+  <p>Under most circumstances, you should avoid calling any of the Collect methods; it is best to just let the garbage collector run on its own accord. <strong>However, since your application knows more about its behavior than the runtime does, you could help matters by explicitly forcing some collections.</strong> For example, it might make sense for your application to force a full collection of all generations after the user saves his data file. I imagine Internet browsers performing a full collection when pages are unloaded. You might also want to force a collection when your application is performing other lengthy operations; this hides the fact that the collection is taking processing time and prevents a collection from occurring when the user is interacting with your application.</p>
+</blockquote>
+
+<p>As stated in the article, if you know that right at this moment, a large number of objects became inaccessible, you could force a collection to ensure they don't add to the memory pressure more than necessary.</p>
+
+<p>The garbage collector will eventually run, and collect them, but in some distinct cases you know more about the current state of the memory than the collector does, and thus you could add specific calls to the garbage collector to encourage it to run.</p>
+
+<p>The best advice I can give is this:</p>
+
+<blockquote>
+  <p>The general rule is just that, a general rule, but as with all rules and guidelines, <em>you need to know when it is safe to break them</em>. If you don't, you shouldn't.</p>
+</blockquote>

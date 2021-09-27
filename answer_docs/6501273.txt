@@ -1,0 +1,7 @@
+<p>As from Matthew Flaschen's link, you could use the filter function like this:</p>
+
+<pre><code>    var searchRegex = new RegExp("Speed \\(mph","g");
+    var result = $('a').filter(function(i, el) {
+        return $(el).text().match(searchRegex);
+    });
+</code></pre>

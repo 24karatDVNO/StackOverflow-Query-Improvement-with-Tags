@@ -1,0 +1,5 @@
+<p>You should use <code>[savedSoundSettings isEqualToString:@"SoundsON"]</code>, instead of using the double equals operator. (<code>==</code>). </p>
+
+<p>Aside from that, it could be the fact that you are running this code inside of <code>viewDidLoad</code>. Try to run it inside of <code>viewWillAppear</code> instead.</p>
+
+<p>Finally, I recommend using camelcase names for settings keys, so it will be easier to type in the long run. (Think <code>soundsOn</code> instead of <code>SoundsON</code>.)</p>

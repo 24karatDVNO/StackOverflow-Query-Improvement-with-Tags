@@ -1,0 +1,9 @@
+<p>The only thing that makes any sense re. your statement that it works if you recompile it is that something is hashing the exe and interfering with it in some way. That something would 99 times out of a 100 be a virus scanner - but you say you don't have one?</p>
+
+<ol>
+<li>You build the exe. It has a hash of 0x1234.</li>
+<li>You run it. The virus scanner hashes it, allows it to run, then decides that it is doing something it doesn't like (such as broadcasting shutdown messages to all windows).</li>
+<li>You run it again. The virus scanner says "look that 0x1234 is starting up again; I'm going to patch it to stop it broadcasting shutdown messages, or maybe I'll just stop it running at all".</li>
+<li>You rebuild the exe. It has a new hash of 0x4321 (the hash changes solely because it has a new creation/modified date).</li>
+<li>Go back to 2.</li>
+</ol>

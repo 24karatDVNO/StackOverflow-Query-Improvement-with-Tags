@@ -1,0 +1,30 @@
+<p>If your html is like this</p>
+
+<pre><code> &lt;label for="li1"&gt;Uno&lt;/label&gt;
+ &lt;input type='radio' id='li1' value='li1'&gt;
+ &lt;label for="li2"&gt;Dos&lt;/label&gt;
+ &lt;input type='radio' id='li2' value='li2'&gt;
+</code></pre>
+
+<p>You can do this:</p>
+
+<pre><code>   $('[value=li2]').hide();
+   $('[value=li2]').prev('label').hide();
+</code></pre>
+
+<p>If you can wrap each label and radio button in a div like this:</p>
+
+<pre><code> &lt;div&gt;
+ &lt;label for="li1"&gt;Uno&lt;/label&gt;
+ &lt;input type='radio' id='li1' value='li1'&gt;
+ &lt;/div&gt;
+ &lt;div&gt;
+ &lt;label for="li2"&gt;Dos&lt;/label&gt;
+ &lt;input type='radio' id='li2' value='li2'&gt;
+ &lt;/div&gt;
+</code></pre>
+
+<p>Then you can just do this:</p>
+
+<pre><code>  $('[value=li2]').parent().hide();
+</code></pre>

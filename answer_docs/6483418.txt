@@ -1,0 +1,59 @@
+<p>If you want "extract the column value by name" on a plain bean instance, you can probably:</p>
+
+<ol>
+<li>use reflects and CASTs, which you(and me) don't like.</li>
+<li>use a ResultSetToJavaBeanMapper provided by most ORM libraries, which is a little heavy and coupled.</li>
+<li>write a scala compiler plugin, which is too complex to control.</li>
+</ol>
+
+<p>so, I guess a lightweight ORM with following features may satisfy you:</p>
+
+<ol>
+<li>support raw SQL</li>
+<li>support a lightweight,declarative and adaptive ResultSetToJavaBeanMapper</li>
+<li>nothing else. </li>
+</ol>
+
+<p>I made an experimental project on that idea, but note it's still an ORM, and I just think it may be useful to you, or can bring you some hint.</p>
+
+<p>Usage:</p>
+
+<p>declare the model:</p>
+
+<pre><code>//declare DB schema
+trait UserDef extends TableDef {
+  var name = property[String]("name", title = Some("姓名"))
+  var age1 = property[Int]("age", primary = true)
+}
+
+//declare model, and it mixes in properties as {var name = ""}
+@BeanInfo class User extends Model with UserDef
+
+//declare a object.
+//it mixes in properties as {var name = Property[String]("name") }
+//and, object User is a Mapper[User], thus, it can translate ResultSet to a User instance.
+object `package`{
+  @BeanInfo implicit object User extends Table[User]("users") with UserDef
+}
+</code></pre>
+
+<p>then call raw sql, the implicit Mapper[User] works for you:</p>
+
+<pre><code>val users = SQL("select name, age from users").all[User] 
+users.foreach{user =&gt; println(user.name)}
+</code></pre>
+
+<p>or even build a type safe query:</p>
+
+<pre><code>val users = User.q.where(User.age &gt; 20).where(User.name like "%liu%").all[User]
+</code></pre>
+
+<p>for more, see unit test:  </p>
+
+<p><a href="https://github.com/liusong1111/soupy-orm/blob/master/src/test/scala/mapper/SoupyMapperSpec.scala" rel="nofollow">https://github.com/liusong1111/soupy-orm/blob/master/src/test/scala/mapper/SoupyMapperSpec.scala</a>     </p>
+
+<p>project home:</p>
+
+<p><a href="https://github.com/liusong1111/soupy-orm" rel="nofollow">https://github.com/liusong1111/soupy-orm</a></p>
+
+<p>It uses "abstract Type" and "implicit" heavily to make the magic happen, and you can check source code of TableDef, Table, Model for detail.</p>

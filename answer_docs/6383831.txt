@@ -1,0 +1,12 @@
+<p>If you want to have a place where you can also customize your text field behavior (clearing the field but also adding css...) try this code:</p>
+
+<pre><code>$('ctl0_txtSearch').observe('click', respondToClick);
+
+function respondToClick(event) {
+  var element = event.element();
+  element.clear();
+  // ... do more customization here
+}
+</code></pre>
+
+<p>JS alone is enough to clear the field by just using the <code>onClick="javascript:this.value=''"</code> attribute of the input field itself.</p>

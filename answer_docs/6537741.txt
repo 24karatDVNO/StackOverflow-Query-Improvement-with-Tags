@@ -1,0 +1,41 @@
+<p>I am no longer using this class (I am requiring validations by the 3rd party instead), but I was actually able to get it to working by manually handling all the data types using the <code>XmlConvert</code> helpers:</p>
+
+<pre><code>public void ReadXml(XmlReader reader)
+{
+    string xml = reader.ReadElementContentAsString();
+    if (string.IsNullOrEmpty(xml))
+    {
+        this.NullableValue = null;
+    }
+    else
+    {
+        if (this.NullableValue is bool)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToBoolean(xml), typeof(T?));
+        else if (this.NullableValue is byte)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToByte(xml), typeof(T?));
+        else if (this.NullableValue is char)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToChar(xml), typeof(T?));
+        else if (this.NullableValue is DateTime)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToDateTime(xml), typeof(T?));
+        else if (this.NullableValue is decimal)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToDecimal(xml), typeof(T?));
+        else if (this.NullableValue is double)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToDouble(xml), typeof(T?));
+        else if (this.NullableValue is Guid)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToGuid(xml), typeof(T?));
+        else if (this.NullableValue is short)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToInt16(xml), typeof(T?));
+        else if (this.NullableValue is int)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToInt32(xml), typeof(T?));
+        else if (this.NullableValue is long)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToInt64(xml), typeof(T?));
+        else if (this.NullableValue is float)
+            this.NullableValue = (T?)Convert.ChangeType(XmlConvert.ToSingle(xml), typeof(T?));
+    }
+}
+
+public void WriteXml(XmlWriter writer)
+{
+    new XmlSerializer(typeof(T?)).Serialize(writer, this.NullableValue);
+}
+</code></pre>

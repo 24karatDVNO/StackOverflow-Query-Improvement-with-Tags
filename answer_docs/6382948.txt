@@ -1,0 +1,5 @@
+<p>Plugins <em>are</em> available to such elements; of course they are.  What you're seeing is that the plugin (like any other code) doesn't magically affect newly-created elements.  The way most jQuery plugins work is by making changes, sometimes minor and sometimes not-so-minor, to the DOM based on elements selected by a jQuery selector.</p>
+
+<p>One of the most common things to do in a callback function for the various jQuery ajax APIs is, in fact, to apply plugins as necessary to newly-loaded content.</p>
+
+<p>There are non-standard events in some browsers regarding DOM updates, so it could be possible to rig some event-driven way of performing such work. Personally I don't see why that would be better than creating appropriate wrappers around the ajax APIs to do that as needed based on the needs of your own application.</p>

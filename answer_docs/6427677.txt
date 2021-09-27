@@ -1,0 +1,16 @@
+<p>Assuming by default your html has both boxes and the "Other" box is hidden.</p>
+
+<pre><code>val = $('#myselect').val();
+
+switch( val ) {
+
+  case "Other":
+
+    $('#mybox').hide();
+
+    $('#myotherbox').show();
+
+    break;
+
+}
+</code></pre>

@@ -1,0 +1,98 @@
+<pre><code>&lt;?php
+$url = $_REQUEST['url'];
+$url = checkValues($url);
+
+function checkValues($value)
+{
+$value = trim($value);
+if (get_magic_quotes_gpc()) 
+{
+    $value = stripslashes($value);
+}
+$value = strtr($value, array_flip(get_html_translation_table(HTML_ENTITIES)));
+$value = strip_tags($value);
+$value = htmlspecialchars($value);
+return $value;
+}   
+
+function fetch_record($path)
+{
+$file = fopen($path, "r"); 
+if (!$file)
+{
+    exit("Problem occured");
+} 
+$data = '';
+while (!feof($file))
+{
+    $data .= fgets($file, 1024);
+}
+return $data;
+}
+
+$string = fetch_record($url);
+/// fecth title
+$title_regex = "/&lt;title&gt;(.+)&lt;\/title&gt;/i";
+preg_match_all($title_regex, $string, $title, PREG_PATTERN_ORDER);
+$url_title = $title[1];
+
+/// fecth decription
+$tags = get_meta_tags($url);
+
+// fetch images
+$image_regex = '/&lt;img[^&gt;]*'.'src=[\"|\'](.*)[\"|\']/Ui';
+preg_match_all($image_regex, $string, $img, PREG_PATTERN_ORDER);
+$images_array = $img[1];
+?&gt;
+&lt;div class="images"&gt;
+&lt;?php
+$k=1;
+for ($i=0;$i&lt;=sizeof($images_array);$i++)
+{
+    if(@$images_array[$i])
+    {
+        if(@getimagesize(@$images_array[$i]))
+        {
+            list($width, $height, $type, $attr) = getimagesize(@$images_array[$i]);
+            if($width &gt;= 50 &amp;&amp; $height &gt;= 50 ){
+
+            echo "&lt;img src='".@$images_array[$i]."' width='100' id='".$k."' &gt;";
+
+            $k++;
+
+            }
+        }
+    }
+}
+?&gt;
+&lt;!--&lt;img src="ajax.jpg"  alt="" /&gt;--&gt;
+&lt;input type="hidden" name="total_images" id="total_images" value="&lt;?php echo --$k?&gt;" /&gt;
+&lt;/div&gt;
+&lt;div class="info"&gt;
+
+    &lt;label class="title"&gt;
+        &lt;?php  echo @$url_title[0]; ?&gt;
+    &lt;/label&gt;
+    &lt;br clear="all" /&gt;
+    &lt;label class="url"&gt;
+        &lt;?php  echo substr($url ,0,35); ?&gt;
+    &lt;/label&gt;
+    &lt;br clear="all" /&gt;&lt;br clear="all" /&gt;
+    &lt;label class="desc"&gt;
+        &lt;?php  echo @$tags['description']; ?&gt;
+    &lt;/label&gt;
+    &lt;br clear="all" /&gt;&lt;br clear="all" /&gt;
+
+    &lt;label style="float:left"&gt;&lt;img src="prev.png" id="prev" alt="" /&gt;&lt;img src="next.png" id="next" alt="" /&gt;&lt;/label&gt;
+
+    &lt;label class="totalimg"&gt;
+        Total &lt;?php echo $k?&gt; images
+    &lt;/label&gt;
+    &lt;br clear="all" /&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>I hope this script works well.</p>
+
+<p>Source : <a href="http://www.99points.info/2010/07/facebook-like-extracting-url-data-with-jquery-ajax-php/" rel="nofollow">http://www.99points.info/2010/07/facebook-like-extracting-url-data-with-jquery-ajax-php/</a></p>

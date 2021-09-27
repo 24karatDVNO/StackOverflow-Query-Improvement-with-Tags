@@ -1,0 +1,8 @@
+<p>AFAIC, ADO.NET/SQL don't support nullable types this way.</p>
+
+<p>The last example looks closest to correct to me. What kind of issues are you having with it? If you are just getting a compile error related to types, type cast your value to object:</p>
+
+<pre><code>(object)DependencyID.Value;
+</code></pre>
+
+<p>Since both values on either side of <code>:</code> must be of the same type.</p>

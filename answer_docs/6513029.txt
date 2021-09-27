@@ -1,0 +1,3 @@
+<p>I'll guess that the div is too small when you make the window smaller. The likely reason is that reducing the window size makes scroll bars appear (even though they aren't shown) so the calculation of the window size is inside the scroll bars.</p>
+
+<p>One solution is to apply <code>body.style.display = 'none'</code> to the body, get the size of the window, then do <code>body.style.display = ''</code>.</p>

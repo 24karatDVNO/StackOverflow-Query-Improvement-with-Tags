@@ -1,0 +1,18 @@
+<p>Your program won't work for <code>n&gt;6</code>, as:</p>
+
+<pre><code>int[] count = new int[6];
+
+ for (i = 0; i &lt; n; i++)
+ {
+      for (j = 0; j &lt; t; j++)
+      {
+           if (item[i]==tra[j])
+           {
+                // this index is out of bounds when i&gt;=6
+                count[i]=counter++;
+           }
+      } 
+
+      counter=0;
+ }
+</code></pre>

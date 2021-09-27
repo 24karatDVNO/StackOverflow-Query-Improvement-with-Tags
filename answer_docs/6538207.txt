@@ -1,0 +1,6 @@
+<p>If like me you have to deal with a bunch of sql files in a hierarchy of folders, this one liner will combine them into a single file called out.sql which you can easily execute in SQL Management studio. It will only include files that END in .sql, and ignore files such as *.sqlsettings.</p>
+
+<p>Run it from the root folder of the hierarchy of .sql files. Be sure you have nothing of value in out.sql, as it will be replaced.</p>
+
+<pre><code>del out.sql &amp;&amp; for /f %f in ('dir /b /s ^| findstr /E \.sql') do type %f &gt;&gt; out.sql
+</code></pre>

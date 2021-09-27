@@ -1,0 +1,32 @@
+<p>This is a version that will work in <strong>Oracle 9i and up.</strong></p>
+
+<pre><code>create table foo (
+  key_column number,
+  val_column varchar2(4)
+);
+
+insert into foo values (1, 'aaaa');
+insert into foo values (1, 'bbbb');
+insert into foo values (1, 'cccc');
+insert into foo values (2, 'dddd');
+insert into foo values (2, 'eeee');
+insert into foo values (2, 'ffff');
+insert into foo values (2, 'gggg');
+
+
+    select key_column
+         , replace(max(sys_connect_by_path(val_column, ',')), ',') combined
+      from (select key_column
+                 , val_column
+                 , row_number() over (partition by key_column order by val_column) cur
+                 , row_number() over (partition by key_column order by val_column) - 1 prev
+              from foo) foo
+  group by key_column 
+connect by prior cur = prev and prior key_column = key_column
+start with cur = 1;
+
+   key_column | val_column
+  --------------------------
+            1 | aaaabbbbcccc
+            2 | ddddeeeeffffgggg
+</code></pre>

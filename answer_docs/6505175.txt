@@ -1,0 +1,13 @@
+<p>in duplicate column you want to put 'N' when the value is not unique.. means value of column Country having duplicate record then you want to put N (No)</p>
+
+<p>any way you can use following query easily to perform this task </p>
+
+<pre><code>update newTable  
+set DUPLICATE =
+case
+when country in (select country from newTable group by country having count(*) &gt; 1) then 
+'N' -- if you got my previous point then you have to edit this line with 'Y'
+else
+'Y'
+end;
+</code></pre>

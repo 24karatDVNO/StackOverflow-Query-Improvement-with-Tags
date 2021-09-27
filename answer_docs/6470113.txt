@@ -1,0 +1,113 @@
+<p>On unix, just </p>
+
+<pre><code> dd if=/dev/sr0 bs=512 count=32
+</code></pre>
+
+<p>or open /dev/sr0 in binary mode from code. On Windows, see this snippet (<a href="http://www.codeguru.com/cpp/w-p/system/misc/article.php/c5765" rel="nofollow">from this page</a>). It supports Win98/2k etc. The sample uses A:, but you can also specify 
+a physical drive for raw reading as <code>"\\\\.\\PhysicalDrive0"</code> or <code>"\\\\.\\PhysicalDrive1"</code> ... etc</p>
+
+<pre><code>// All msdos data structures must be packed on a 1 byte boundary
+#pragma pack (1)
+struct
+{
+    DWORD StartingSector ;
+    WORD NumberOfSectors ;
+    DWORD pBuffer;
+}ControlBlock;
+#pragma pack ()
+
+#pragma pack (1)
+typedef struct _DIOC_REGISTERS
+{
+    DWORD reg_EBX;
+    DWORD reg_EDX;
+    DWORD reg_ECX;
+    DWORD reg_EAX;
+    DWORD reg_EDI;
+    DWORD reg_ESI;
+    DWORD reg_Flags;
+} DIOC_REGISTERS ;
+#pragma pack ()
+
+char * ReadSectors(int drive, DWORD startinglogicalsector, int numberofsectors)
+{
+
+    char* buffer = (char*)malloc (512*numberofsectors);
+    HANDLE hDevice ;
+    DIOC_REGISTERS reg ;
+    BOOL  fResult ;
+    DWORD cb ;
+
+    // Creating handle to vwin32.vxd (win 9x)
+    hDevice = CreateFile ( "\\\\.\\vwin32",
+            0,
+            0,
+            NULL,
+            0,
+            FILE_FLAG_DELETE_ON_CLOSE,
+            NULL );
+
+    if ( hDevice == INVALID_HANDLE_VALUE )
+    {
+        // win NT/2K/XP code 
+        HANDLE hDevice; 
+        DWORD bytesread;
+
+        char _devicename[] = "\\\\.\\A:";
+        _devicename[4] += drive;
+
+        // Creating a handle to disk drive using CreateFile () function ..
+        hDevice = CreateFile(_devicename, 
+                GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 
+                NULL, OPEN_EXISTING, 0, NULL); 
+
+        if (hDevice == INVALID_HANDLE_VALUE) 
+            return NULL;
+
+        // Setting the pointer to point to the start of the sector we want to read ..
+        SetFilePointer (hDevice, (startinglogicalsector*512), NULL, FILE_BEGIN); 
+
+        if (!ReadFile (hDevice, buffer, 512*numberofsectors, &amp;bytesread, NULL) )
+            return NULL;
+    }
+    else
+    {
+        // code for win 95/98
+        ControlBlock.StartingSector = (DWORD)startinglogicalsector;
+        ControlBlock.NumberOfSectors = (DWORD)numberofsectors ;
+        ControlBlock.pBuffer = (DWORD)buffer ;
+
+        //-----------------------------------------------------------
+        // SI contains read/write mode flags
+        // SI=0h for read and SI=1h for write
+        // CX must be equal to ffffh for
+        // int 21h's 7305h extention
+        // DS:BX -&gt; base addr of the
+        // control block structure
+        // DL must contain the drive number
+        // (01h=A:, 02h=B: etc)
+        //-----------------------------------------------------------
+
+        reg.reg_ESI = 0x00 ;
+        reg.reg_ECX = -1 ; 
+        reg.reg_EBX = (DWORD)(&amp;ControlBlock);
+        reg.reg_EDX = drive+1;
+        reg.reg_EAX = 0x7305 ;
+
+        //  6 == VWIN32_DIOC_DOS_DRIVEINFO
+        fResult = DeviceIoControl ( hDevice, 
+                6,
+                &amp;(reg),
+                sizeof (reg),
+                &amp;(reg),
+                sizeof (reg),
+                &amp;cb, 
+                0);
+
+        if (!fResult || (reg.reg_Flags &amp; 0x0001)) return NULL;      
+    }
+
+    CloseHandle(hDevice); 
+    return buffer;
+}
+</code></pre>

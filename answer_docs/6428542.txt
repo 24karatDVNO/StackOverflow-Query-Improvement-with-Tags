@@ -1,0 +1,7 @@
+<p>I don't know why Java is so much faster here.  </p>
+
+<p>I compared it with the built in Arrays.sort() and it was 4x faster again. (It doesn't create any objects).</p>
+
+<p>Usually if there is a test where Java is much faster its because Java is much better at removing code which doesn't do anything. </p>
+
+<p>Perhaps you could use <code>memcpy</code> rather than a loop at the end.</p>

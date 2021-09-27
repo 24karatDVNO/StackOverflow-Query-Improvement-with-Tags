@@ -1,0 +1,3 @@
+<p>If they won't fit into memory, they won't fit into memory, and that's pretty much that. You can't memory map above your memory limit- a sort algorithm would need all the data at once.</p>
+
+<p>However, you could write a specialized sort algorithm. If you are sorting by byte, for example, you should be able to just loop through the file in chunks, count the occurrence of each byte, and then emit them in order. This could also work for if you're sorting each larger type as long as there are plenty of duplicates to be found.</p>

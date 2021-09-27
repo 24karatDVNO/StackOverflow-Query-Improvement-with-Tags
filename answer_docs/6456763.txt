@@ -1,0 +1,29 @@
+<p>This is the layout.xml I have put together for a listview with white background and black text.</p>
+
+<p>You need to set the colours list_bg and menu_text to white and black respectively in your res folder then call the layout and id in your activity.</p>
+
+<p>As far as populating a listview there is a good example here with downloadable code:</p>
+
+<p><a href="http://www.youtube.com/watch?v=Awu7Rlsez_k" rel="nofollow">http://www.youtube.com/watch?v=Awu7Rlsez_k</a></p>
+
+<pre><code>&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" 
+android:layout_width="fill_parent"
+android:layout_height="wrap_content" 
+android:background="@color/list_bg"&gt;
+
+&lt;TextView android:background="@color/list_bg"
+    android:textColor="@color/menu_text" 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:padding ="10dp"
+    android:textSize="22sp"
+    android:textStyle="bold" 
+    android:id="@+id/row" /&gt;
+
+&lt;ListView android:id="@+id/list_view" 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"/&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>

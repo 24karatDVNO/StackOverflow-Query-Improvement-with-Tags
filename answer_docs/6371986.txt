@@ -1,0 +1,6 @@
+<p>Linq to objects makes extensive use of delegates:</p>
+
+<pre><code>myAnimals.Where(animal =&gt; animal.CanSwim)
+</code></pre>
+
+<p>the parameter supplied to the Where method ( <code>animal =&gt; animal.CanSwim</code> ) is a lambda expression that converts to a delegate that is applied to all elements in myAnimals.</p>

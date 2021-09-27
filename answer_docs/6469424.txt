@@ -1,0 +1,21 @@
+<p>With the requirements that you're looking to see if the input string contains anything other than the digits 1..9:</p>
+
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; # create a pattern that will match any non-digit or a zero
+&gt;&gt;&gt; pat = re.compile(r"[\D0]")
+&gt;&gt;&gt; pat.search("12345")
+&gt;&gt;&gt; pat.search("123450")
+&lt;_sre.SRE_Match object at 0x631fa8&gt;
+&gt;&gt;&gt; pat.search("12345A")
+&lt;_sre.SRE_Match object at 0x6313d8&gt;
+&gt;&gt;&gt; def CheckError(s):
+...    if pat.search(s):
+...       print "ERROR -- contains at least one bad character."
+... 
+&gt;&gt;&gt; CheckError("12345")
+&gt;&gt;&gt; CheckError("12a")
+ERROR -- contains at least one bad character.
+&gt;&gt;&gt; CheckError("120")
+ERROR -- contains at least one bad character.
+&gt;&gt;&gt; 
+</code></pre>

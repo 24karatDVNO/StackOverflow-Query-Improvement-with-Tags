@@ -1,0 +1,20 @@
+<p>To just see the values of your $_POST superglobal, it would be easier to simply write:</p>
+
+<pre><code>print "&lt;pre&gt;"; var_dump($_POST); print "&lt;/pre&gt;";
+</code></pre>
+
+<p>That said, there are a couple of ways that you can pass which fields are machine generated.</p>
+
+<p>Option 1) Give the fields a unique prefix, such as:</p>
+
+<pre><code>&lt;select name="timeline_3576"&gt; //THIS is $eventID
+</code></pre>
+
+<p>Then one simply has to look through the $_POST values for the appropriate prefix, explode the string on the underscore and take the second value.  Bob's your uncle.</p>
+
+<p>Option 2) Build an array and pass that in a hidden field.</p>
+
+<pre><code>&lt;select name="3576"&gt; //code snipped
+&lt;select name="9999"&gt; //code snipped
+&lt;input type="hidden" name="timelines" value="3576,9999"&gt;
+</code></pre>

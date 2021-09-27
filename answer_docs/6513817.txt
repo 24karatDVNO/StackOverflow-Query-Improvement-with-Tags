@@ -1,0 +1,53 @@
+<p>I tested it out and this pretty much does the trick.  You obviously want to add error trapping and what not, but it does what you were after.  I'm using an array for the file types so you can add or remove to it with ease, and constants for the drive letters.  </p>
+
+<p>You can of course make it more robust like do a date/time compare instead of just an if exist, but this is good enough foundation.</p>
+
+<pre><code>' Build array of file types
+arrFileTypes = Split("PDF,XLS,ZIP,vbs,jpg", ",")
+
+Const sourceDrive = "C:"
+Const targetDrive = "P:"
+
+
+' Make initial call to get subfolders
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+ShowSubFolders objFSO.GetFolder("C:\test")
+
+' * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+' Subroutine to enumerate folder, called recursively
+' * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+Sub ShowSubFolders(Folder)
+
+    For Each Subfolder in Folder.SubFolders
+
+        ' Get a list of the files in the folder     
+        Set objFolder = objFSO.GetFolder(Subfolder.Path)
+        Set filesList = objFolder.Files
+
+        ' Loop each file and see if it is on the D:
+        For Each file In filesList
+
+            sourceFile = objFolder.Path &amp; "\" &amp; file.Name
+            targetFile = Replace(sourceFile, sourceDrive, targetDrive)
+
+            ' Loop allowed extension types
+            For Each extType In arrFileTypes
+
+                ' Extension match AND it is already there
+                If (UCase(Right(sourceFile, 3)) = UCase(extType)) And objFSO.FileExists(targetFile) Then
+                    WScript.Echo "The file already exists on the target " &amp; sourceFile
+                ' Extension match and it is NOT already there
+                ElseIf (UCase(Right(sourceFile, 3)) = UCase(extType)) And objFSO.FolderExists(replace(objFolder.Path, sourceDrive, targetDrive)) Then
+                    WScript.Echo "I would move the file, it isn't on target " &amp; sourceFile
+                    objFSO.MoveFile sourceFile, targetFile
+                End If
+            Next  
+
+        Next
+
+        ShowSubFolders Subfolder
+
+    Next
+
+End Sub
+</code></pre>

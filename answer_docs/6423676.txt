@@ -1,0 +1,13 @@
+<p>freeze the UI on orientation change.</p>
+
+<p>Add the following to the activity declaration in the manifest:</p>
+
+<pre><code>android:configChanges="orientation"
+</code></pre>
+
+<p>so it looks like</p>
+
+<pre><code>&lt;activity android:label="@string/app_name" 
+        android:configChanges="orientation|keyboardHidden" 
+        android:name=".your.package"&gt;
+</code></pre>

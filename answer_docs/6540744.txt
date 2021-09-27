@@ -1,0 +1,12 @@
+<p>I prefer to make a <code>&lt;DataTemplate&gt;</code> for the type of item and then let WPF figure it out.</p>
+
+<pre><code>&lt;DataTemplate DataType="{x:Type local:Task}"&gt;
+  &lt;StackPanel&gt;
+    &lt;TextBlock Text="{Binding Path=TaskName}" /&gt;
+    &lt;TextBlock Text="{Binding Path=Description}"/&gt;
+    &lt;TextBlock Text="{Binding Path=Priority}"/&gt;
+  &lt;/StackPanel&gt;
+&lt;/DataTemplate&gt;
+
+&lt;List ItemSource="{Binding MyListOfTaskItems"/&gt;
+</code></pre>

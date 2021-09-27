@@ -1,0 +1,21 @@
+<p>you could use: </p>
+
+<pre><code>$("#mytabs .shouldBehidden").hide();
+</code></pre>
+
+<p>Or I hope this code will clarify the potential methods and provided by jQuery Tools!</p>
+
+<pre><code>// Place the filter in the appropriate position
+$("#new-filter-tab").before(data.filter);
+$("#new-filter-pane").before(data.content);
+
+// Remove the existing Tabs instance
+$("ul.filter-tabs").removeData("tabs");
+// Recreate the Tabs
+$("ul.filter-tabs").tabs("div.filter-panes &gt; div");
+var filters = $("ul.filter-tabs").tabs();
+
+// And select the new filter
+var filterCount = filters.getTabs().length;
+filters.click(filterCount - 1);
+</code></pre>

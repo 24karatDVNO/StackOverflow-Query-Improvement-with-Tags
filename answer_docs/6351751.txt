@@ -1,0 +1,22 @@
+<pre><code>public  class Category
+    {
+        [Key]
+        public string IdCategory { get; set; }
+        public string Name { get; set; }
+        public string IdFather { get; set; }
+        public List&lt;Product&gt; Products { get; set; }
+        [Include]            
+        [Association("ParentChild", "IdCategory", "IdFather")]
+        public List&lt;Category&gt; Children { get; set; }
+
+
+
+
+        public Category()
+        {
+            Products = new List&lt;Product&gt;();
+            Children = new List&lt;Category&gt;();
+
+        }
+    }
+</code></pre>

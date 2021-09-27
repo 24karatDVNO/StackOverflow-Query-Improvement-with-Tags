@@ -1,0 +1,9 @@
+<p>You can set the contentInset to the height of the keyboard.</p>
+
+<p>Listen for the <code>UIKeyboardWillShowNotification</code> notification. Implement something like this:</p>
+
+<pre><code>CGFloat keyboardHeight = ... // The userInfo variable contains keyboard info.
+[textView setContentInsets:UIEdgeInsetsMake(0.0, 0.0, keyboardHeight, 0.0)];
+</code></pre>
+
+<p>That will scroll the text view automatically for you.</p>

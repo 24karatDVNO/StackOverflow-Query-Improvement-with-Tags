@@ -1,0 +1,44 @@
+<p>Yes, the whole thing gets treated as one big stream of characters:</p>
+
+<pre><code>pax$ cat a.hxx
+#warning START A
+#include "b.hxx"
+#include "c.hxx"
+#warning END.. A
+//==============
+
+pax$ cat b.hxx
+#warning START B
+#warning END.. B
+//==============
+
+pax$ cat c.hxx
+#warning START C
+#warning END.. C
+//==============
+
+pax$ cat d.cxx
+#warning START D
+#include "a.hxx"
+#warning END.. D
+//==============
+</code></pre>
+
+<p>&nbsp;</p>
+
+<pre><code>pax$ gcc -c -o d.o d.cxx
+d.cxx:1:2: warning: #warning START D
+In file included from d.cxx:2:
+a.hxx:1:2: warning: #warning START A
+In file included from a.hxx:2,
+                 from d.cxx:2:
+b.hxx:1:2: warning: #warning START B
+b.hxx:2:2: warning: #warning END.. B
+In file included from a.hxx:3,
+                 from d.cxx:2:
+c.hxx:1:2: warning: #warning START C
+c.hxx:2:2: warning: #warning END.. C
+In file included from d.cxx:2:
+a.hxx:4:2: warning: #warning END.. A
+d.cxx:3:2: warning: #warning END.. D
+</code></pre>

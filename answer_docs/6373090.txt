@@ -1,0 +1,3 @@
+<p>I suspect the talk of the input not being well-formed is a red herring. If the source document contains entity references then an element may contain multiple text node children, and your code is only reading the first of them. It needs to read them all.</p>
+
+<p>(I think there are easier ways of getting the text content of a Node in DOM. But I'm not sure, I never use the DOM if I can avoid it because it makes everything so difficult. You're much better off with JDOM or XOM.)</p>

@@ -1,0 +1,7 @@
+<p>Open php.ini. Look for the line that defines the location of your extensions. In my case (Windows machine), it goes like this:</p>
+
+<p><code>extension_dir = "C:\xampp\php\ext"</code></p>
+
+<p>This gives you the location where all your extensions are located. Open it and check whether your SQLite extensions are indeed there.</p>
+
+<p>Also, make sure your extensions are actually meant for a Mac computer. Their filename extension should be "dylib" or maybe "so" (not sure - I don't have a Mac), while "dll" is a Windows-specific dynamic library filename extension (AFAIK).</p>

@@ -1,0 +1,57 @@
+<p>Frankly I don't see why you need generate-id, as long as those names are unique then doing e.g.</p>
+
+<pre><code>&lt;xsl:for-each select="testresults/test/step"&gt;
+                    &lt;tr&gt;
+                      &lt;td bgcolor="#F2F5A9"&gt;                  
+                        &lt;a href="#{concat(parent::test/@testname, '_', @stepname)}"&gt;
+                        &lt;xsl:value-of select="@stepname" /&gt;
+                        &lt;/a&gt;                    
+                      &lt;/td&gt;                   
+
+                    &lt;/tr&gt;       
+                    &lt;/xsl:for-each&gt;             
+                    &lt;/table&gt;
+
+              &lt;h2&gt;Test Results&lt;/h2&gt;  
+
+                  &lt;xsl:for-each select="testresults/step/drilldown/taskresults/testResults/test"&gt;
+
+                &lt;h3&gt;
+                &lt;a name="{@testname}"&gt;
+                  &lt;xsl:value-of select="@testname" /&gt;
+                  &lt;/a&gt;
+                &lt;/h3&gt;
+
+                &lt;/xsl:for-each&gt;
+</code></pre>
+
+<p>should suffice.</p>
+
+<p>If you want to use generate-id then it only makes sense if you apply it to the same node.</p>
+
+<p>[edit] If you want to use generate-id then add <code>&lt;xsl:key name="k1" match="testresults/step/drilldown/taskresults/testResults/test" use="@testname"/&gt;</code> as a child of the xsl:stylesheet element, then change your code to e.g.</p>
+
+<pre><code>&lt;xsl:for-each select="testresults/test/step"&gt;
+                    &lt;tr&gt;
+                      &lt;td bgcolor="#F2F5A9"&gt;                  
+                        &lt;a href="#{generate-id(key('k1', concat(parent::test/@testname, '_', @stepname)))}"&gt;
+                        &lt;xsl:value-of select="@stepname" /&gt;
+                        &lt;/a&gt;                    
+                      &lt;/td&gt;                   
+
+                    &lt;/tr&gt;       
+                    &lt;/xsl:for-each&gt;             
+                    &lt;/table&gt;
+
+              &lt;h2&gt;Test Results&lt;/h2&gt;  
+
+                  &lt;xsl:for-each select="testresults/step/drilldown/taskresults/testResults/test"&gt;
+
+                &lt;h3&gt;
+                &lt;a name="{generate-id()}"&gt;
+                  &lt;xsl:value-of select="@testname" /&gt;
+                  &lt;/a&gt;
+                &lt;/h3&gt;
+
+                &lt;/xsl:for-each&gt;
+</code></pre>

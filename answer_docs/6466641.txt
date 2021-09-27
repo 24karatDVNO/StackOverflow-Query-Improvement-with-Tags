@@ -1,0 +1,32 @@
+<p>As you did not mention your DBMS, this is a solution for PostgreSQL:</p>
+
+<pre><code>SELECT groupid, 
+       string_agg(temp_data,'')
+FROM (
+  SELECT id,
+         groupid, 
+         data,
+         CASE 
+           WHEN data IS NULL 
+              THEN cast(max(rn) over (partition by groupid, data) as varchar)
+           ELSE data
+         END AS temp_data,
+         row_number() over (partition by groupid, data) as group_rn
+  FROM (
+    SELECT id,
+           groupid,
+           data,
+           CASE 
+             WHEN data IS NULL 
+                THEN row_number() over (partition by groupid,data)
+             ELSE NULL
+           END AS rn
+    FROM foo
+  ) t1
+  ORDER BY id
+) t2 
+WHERE group_rn in (0,1)
+GROUP BY groupid
+</code></pre>
+
+<p>If your DBMS supports ANSI windowing functions and has something similar like the string_agg() function then this should be portable to your DBMS as well.</p>

@@ -1,0 +1,3 @@
+<p>It could be a problem with apartments. I'm guessing here but if the object implementing <code>IConnectionPoint</code> is in a STA and wants to call back on another interface implemented by your code and your code does not process a message loop (i.e. if your thread is in an MTA which is the default for .NET 2.0 and forward) then the call back to your code hangs. </p>
+
+<p>Depending on the threading model of your code and the objects you are using you could try to apply <a href="http://msdn.microsoft.com/en-us/library/system.stathreadattribute.aspx" rel="nofollow"><code>STAThread</code></a> to your main method.</p>

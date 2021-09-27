@@ -1,0 +1,30 @@
+<p>I undestand. i have replaced right code into ProductService.So Productontroller class does not know anything about Category. </p>
+
+<pre><code>@Stateless
+@LocalBean
+public class ProductService implements ProductServiceInterface {
+
+@EJB
+private ProductFacade ejbFacade;
+
+@EJB
+CategoryService categoryService;
+
+@Override
+public Product add(Product product) {       
+    ejbFacade.create(product);
+
+    /** Create bidirectional relationship */ 
+    Category category = product.getCategory();
+    category.getProductList().add(product);
+    categoryService.update(category);
+
+    return product;
+}
+</code></pre>
+
+<p>}</p>
+
+<p>But how/in which layer to maintain relationships such as this if you use JPA /?and JSF? ...
+I meanm now i have CategoryService class in ProductService class likes a design issue in the sense of responsibility of the classes...?
+And… Should be relationships automatically maintened if I used Hibernate? (is this possible with attribute &lt;…. Inverse=”true”> ? )</p>

@@ -1,0 +1,3 @@
+<p>The calendar you ar looking for is the NSGregorianCalendar. Used with NSDateComponents and NSDate it is possible to create a custom calendar like the one shown in your link.</p>
+
+<p>You need a custom object for the tiles with a property of NSDate which is where you can get the label date from using NSDateComponents. You can also assign a method to the delegate so when your date cell object is touched it tells the delegate it was touched and you can then do what you want...</p>

@@ -1,0 +1,22 @@
+<p>I ended up using this..</p>
+
+<pre><code>&lt;?php      while (have_posts()) : the_post();
+//to check against expiration date; 
+$currentdate = date("Ymd");
+$expirationdate = get_post_custom_values('date');
+if (is_null($expirationdate)) {
+$expirestring = '30005050'; //MAKE UN-EXPIRING POSTS ALWAYS SHOW UP;
+} else {
+if (is_array($expirationdate)) {
+$expirestringarray = implode($expirationdate);
+}
+$expirestring = str_replace("/","",$expirestringarray);
+} //else
+if ( $expirestring &gt;= $currentdate ) { ?&gt;
+
+loop goes in here
+
+&lt;?php } ?&gt;
+</code></pre>
+
+<p>In all honesty I can't remember where I found it - but if someone can neaten it up that would be great!</p>

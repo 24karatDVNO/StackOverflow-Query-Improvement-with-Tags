@@ -1,0 +1,5 @@
+<p>I just had the same issue. In my case, I was moving files in my workspace into sub folders and pointing the groups at the subfolders. I believe this caused the corruption.</p>
+
+<p>Unfortunately I don't have an answer - although I tried a lot of things. Restoring a backup of the file over top the corrupted one didn't work. The xcdatamodel file must be have self-references of some kind. If you open it as a package and then open what's inside as a package, you'll see 2 files: "elements" &amp; "layout". If you copy these out and rename them to have a .plist extension you can see what's inside. Its a pretty tough slog through those plists (looks like an object archive) but you may see something obvious.</p>
+
+<p>In the end I restored my entire project directory to a new location, opened the project and was able to cut and paste the entities over to a brand new data model. Thank god for Time Machine!</p>

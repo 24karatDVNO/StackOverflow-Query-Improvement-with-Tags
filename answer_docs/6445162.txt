@@ -1,0 +1,32 @@
+<p>I had to implement a similar feature , here is what I did . I implemented the following outside <code>getview</code></p>
+
+<ul>
+<li>OnTouchListener - to listen to seekbar touch events</li>
+<li>OnKeyListener - to listen to dpad and trakball event for the seekbar</li>
+</ul>
+
+<p>I set these listeners for the seekbars from <code>getView</code></p>
+
+<p>Whenever the listeners were called , I would find the seekbars parent , then do the <code>findviewbyid</code> from the parent to the textview. </p>
+
+<p>So now I have the textview which I have to update, and the seekbar.  All I need to do was set the text from the array. </p>
+
+<p>here is some code to help you.</p>
+
+<p>private OnTouchListener touchListener = new OnTouchListener() {</p>
+
+<pre><code>    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+            View parent = (View) v.getParent();
+            TextView textView = (TextView) parent
+                    .findViewById(R.id.id_grade_tooltip);
+            if (textView == null) {
+            } else {
+                SeekBar seekBar = (SeekBar) v;
+                textView.setText(String.valueOf(seekBar.getProgress())
+                        + "%");
+            }
+            return false;
+    }
+};
+</code></pre>

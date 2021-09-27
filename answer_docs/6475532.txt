@@ -1,0 +1,24 @@
+<p>The jQuery html() method doesn't test true or false. Grab the value with html() and then test it against your values.</p>
+
+<p>Try this:</p>
+
+<pre><code>$(document).ready(function() {
+$("#box").html("message1");
+$("#box").click(function() {
+if ($("#box").html() == "message1")
+  {
+  $("#box").html("message2");
+  }
+else if ($("#box").html() == "message2")
+  {
+  $("#box").html("message3");
+  }
+else if ($("#box").html() == "message3")
+  {
+  $("#box").html("message1");
+  }
+});
+});
+</code></pre>
+
+<p>jsfiddle: <a href="http://jsfiddle.net/blineberry/GC9B4/" rel="nofollow">http://jsfiddle.net/blineberry/GC9B4/</a></p>

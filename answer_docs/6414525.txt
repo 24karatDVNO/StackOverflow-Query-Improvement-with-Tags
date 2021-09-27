@@ -1,0 +1,10 @@
+<p>The only thing missing in your code is a selector in <a href="http://api.jquery.com/index/" rel="nofollow">index()</a>.</p>
+
+<p>This fixes your problem :</p>
+
+<pre><code>$("select[name='type[]']").change(function() {
+    $("input[name='tvalue[]']").eq($(this).index("select")).val(this.value);
+}).change();
+</code></pre>
+
+<p><a href="http://jsfiddle.net/kreaus/GKrd9/12/" rel="nofollow"><strong>jsFiddle example</strong></a></p>

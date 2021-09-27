@@ -1,0 +1,17 @@
+<p>Not a very nice solution, but you could add a handler for the repeater's ItemDataBound event and set the Visible property of each item (except the first one) to false:</p>
+
+<p>markup:</p>
+
+<pre><code>&lt;asp:Repeater ID="repeater" runat="server"
+  OnItemDataBound="repeater_ItemDataBound"&gt;
+</code></pre>
+
+<p>code-behind:</p>
+
+<pre><code>private bool first = true;
+void repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+{
+    if (!first) e.Item.Visible = false;
+    first = false;
+}
+</code></pre>

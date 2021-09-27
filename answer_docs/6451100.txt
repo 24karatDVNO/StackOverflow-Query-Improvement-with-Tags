@@ -1,0 +1,5 @@
+<p>As I understand your query should look like this</p>
+
+<pre><code>SELECT * FROM cities WHERE siteid=0 AND LOCATE(CONCAT(',', id, ','),
+CONCAT(',', (SELECT cfgval FROM sitecfg WHERE cfg='affiliate_sitecityidlock' AND siteid=24))
+</code></pre>

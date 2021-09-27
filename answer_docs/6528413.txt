@@ -1,0 +1,29 @@
+<p>Sure, the simple way isn't that efficient, but is it <em>really</em> too slow?</p>
+
+<pre><code>In [1]: import random
+
+In [2]: timeit words = list(open("sowpods.txt"))
+10 loops, best of 3: 48.4 ms per loop
+
+In [3]: words = list(open("sowpods.txt"))
+
+In [4]: len(words)
+Out[4]: 267751
+
+In [5]: timeit random.choice([w for w in words if len(w.strip())==6])
+10 loops, best of 3: 62.5 ms per loop
+
+In [6]: random.choice([w for w in words if len(w.strip())==6])
+Out[6]: 'NAPKIN\r\n'
+</code></pre>
+
+<p>The one liner version only takes less than a 10th of a second on this computer</p>
+
+<pre><code>In [7]: timeit random.choice([w for w in open("sowpods.txt") if len(w.strip())==6])
+10 loops, best of 3: 91.2 ms per loop
+
+In [8]: random.choice([w for w in open("sowpods.txt") if len(w.strip())==6])
+Out[8]: 'REVEUR\r\n'
+</code></pre>
+
+<p>You can add a <code>.strip()</code> to that to get rid of the <code>'\r\n'</code> on the end</p>

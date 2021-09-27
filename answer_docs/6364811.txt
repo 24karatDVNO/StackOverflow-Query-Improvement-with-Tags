@@ -1,0 +1,13 @@
+<p>This is even simpler if you use the <a href="https://jetpack.mozillalabs.com/" rel="nofollow">Addon SDK</a>.</p>
+
+<pre><code>var storage = require("simple-storage").storage;
+if (storage.name) {
+  console.log (storage.name);
+}
+else {
+  console.log ("Storing!");
+  storage.name = "ryan";
+}
+</code></pre>
+
+<p>This will output "Storing!" the first time it's run, and "ryan" subsequent times.</p>

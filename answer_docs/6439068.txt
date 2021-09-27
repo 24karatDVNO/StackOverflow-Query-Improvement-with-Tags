@@ -1,0 +1,3 @@
+<p>Without knowing your code, I need to guess.</p>
+
+<p>The mysql-result-resource is a cursor to the concrete result. This means, that you can only access the current entry directly. You must iterate over the result (e.g. via <code>mysql_fetch_array()</code>) to access every single result item. If you can't call it twice, you probably have just one single item as the result of your query, because you can call it as many times as you want, but if you don't have any more rows to retrieve from the resource, it will always return <code>false</code>.</p>

@@ -1,0 +1,1 @@
+<p>You have to go higher up and use <code>getaddrinfo</code> instead of <code>inet_pton</code> (which doesn't handle IPv6 scopes) and instead of opaque buffers use <code>struct sockaddr_storage</code> and <code>struct sockaddr</code> pointers then you can immediately determine the family with <code>ss.ss_family</code> or <code>sa.sa_family</code> as appropriate.</p>

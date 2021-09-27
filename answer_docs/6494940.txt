@@ -1,0 +1,25 @@
+<p>You can achieve this using javascript by subscribing to the onchange event of a select box.</p>
+
+<p>Add a dropdown to switch between the search types</p>
+
+<pre><code>&lt;select id='search_field_selector'&gt;
+    &lt;option value='CustEmail'&gt;Email&lt;/option&gt;
+    &lt;option value='OrderID'&gt;Order ID&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p>Use javascript to set the search type based on the value of the select box</p>
+
+<pre><code>//bind the on change event to the select box
+document.getElementById('search_field_selector').addEventListener('change',
+    switchSearchType,false);
+
+//Switch the ID of the input when the select box changes
+function switchSearchType(e){
+    var target = document.getElementById('CustEmail');
+    if(!target){
+        target = document.getElementById('OrderID');
+    }
+    target.setAttribute('id',this.value);
+}
+</code></pre>

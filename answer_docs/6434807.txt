@@ -1,0 +1,10 @@
+<p>You can use a minimal regular expression if you first split on the period '.':</p>
+
+<pre><code>var x = 'p1-t123.jpg';
+alert(x.split('.')[0].match(/\d+$/));
+</code></pre>
+
+<p>Presuming that the image path only has one period. If not, you can likely trim the trailing stuff after the last period then grab the trailing digits:</p>
+
+<pre><code>alert( x.replace(/[^\d]+$/,'').match(/\d+$/));
+</code></pre>

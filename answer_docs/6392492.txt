@@ -1,0 +1,38 @@
+<p>I update the HTML (i've just added class "article" in the first level and close marker "a")</p>
+
+<pre><code>&lt;ul&gt;
+&lt;li class="article"&gt;
+    &lt;h3&gt;&lt;a class="title" href="page1.html"&gt;Post Title 1&lt;/a&gt;&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;img src="image.png" alt=""/&gt;
+            &lt;p&gt;Some text 1&lt;/p&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li class="article"&gt;
+    &lt;h3&gt;&lt;a class="title" href="page2.html"&gt;Post Title 2&lt;/a&gt;&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;img src="image.png" alt=""/&gt;
+            &lt;p&gt;Some text 2&lt;/p&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+
+<p></p>
+
+<p>and here the JS</p>
+
+<pre><code>$(document).ready(function() {
+
+    $(".article").each(function(){
+        var img = $(this).find('img');
+        var title = $(this).find('.title');
+        img.wrap("&lt;a href='"+ title.attr("href") + "'&gt;&lt;/a&gt;");
+    });
+});
+</code></pre>
+
+<p>NB : For this kind of stuff don't forget instruction "document ready"</p>

@@ -1,0 +1,14 @@
+<p>So we ended up implemented a different solution that while the results were not as good as using an INDEX, it still provided a nice speed boost of around 25%.</p>
+
+<p>We remove the JOIN and instead used an ORDER BY subquery:</p>
+
+<pre><code>SELECT * 
+FROM `table_a`
+WHERE table_a.col = 'value'
+ORDER BY (
+   SELECT date 
+   FROM table_b 
+   WHERE id = table_a.id
+) ASC
+LIMIT 0,20
+</code></pre>

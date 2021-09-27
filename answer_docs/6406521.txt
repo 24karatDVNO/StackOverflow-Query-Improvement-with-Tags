@@ -1,0 +1,5 @@
+<p>I found the solution.  The problem was that in loadScrollViewWithPage I was adding the ViewController to the UIScrollView and then modifying the ViewController.  By moving the addition of the ViewController to the end of loadScrollViewWithPage after I had finished modifying the controller the problem disappeared.
+    So I moved the following line to the end of loadScrollViewWithPage:</p>
+
+<pre><code>         [self.scrollView addSubview:controller.view];
+</code></pre>

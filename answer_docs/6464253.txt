@@ -1,0 +1,3 @@
+<p>Ok, thanks for the help but I think I've understood where the problem is. I've fixed the problem of running multiple applications adding SO_REUSEADDR before the bind in the jrtblib that the plugin I've done is using. Now it works because I had to add the option also to the rtcp socket, not only to the rtp one.
+Another problem is that I have misunderstood the use of the jrtplib. I was trying to use the same client to send and receive but this is not how the jrtplib is supposed to work.
+Using the same client to send and receive, I was forced to use the same port in all the clients and this created problems. Now that I start a dedicated plugin for sending and another one for receiving, everything works like a charm.</p>

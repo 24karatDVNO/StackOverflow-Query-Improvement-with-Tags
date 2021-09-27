@@ -1,0 +1,24 @@
+<p><strong>Just noticed you don't allow user to sudo :-) Well this answer will help others:</strong></p>
+
+<p>A little late the party but I've just done this:</p>
+
+<pre><code>namespace :deploy do
+  desc "Start the Thin processes"
+    task :start do
+      run "cd #{current_path} &amp;&amp; bundle exec sudo thin start -C /etc/thin/dankit.yml"
+    end
+
+    desc "Stop the Thin processes"
+    task :stop do
+      run "cd #{current_path} &amp;&amp; bundle exec sudo thin stop -C /etc/thin/dankit.yml"
+    end
+
+    desc "Restart the Thin processes"
+    task :restart do
+      run "cd #{current_path} &amp;&amp; bundle exec sudo thin restart -C /etc/thin/dankit.yml"
+    end
+
+end
+</code></pre>
+
+<p>Adding sudo to the <code>bundle exec sudo thin start</code> works.</p>

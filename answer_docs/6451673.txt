@@ -1,0 +1,40 @@
+<p>This answer assumes that you are trying to scroll in the report, by dragging.</p>
+
+<p><code>TReportPreviewer</code> is the <code>Form</code></p>
+
+<p><code>ReportViewer</code> is the <code>ppViewer</code></p>
+
+<p><code>Dragging</code> is a <code>Boolean</code></p>
+
+<p><code>SaveX, SaveY</code> are <code>Integer</code></p>
+
+<pre><code>procedure TReportPreviewer.ReportViewerMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Dragging := true;
+  SaveX := X;
+  SaveY := Y;
+end;
+
+procedure TReportPreviewer.ReportViewerMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  if Dragging then
+  begin
+    if ReportViewer.ScrollBox.Visible then
+      ReportViewer.ScrollBox.HorzScrollBar.Position := ReportViewer.ScrollBox.HorzScrollBar.Position - (X - SaveX);
+    if ReportViewer.ScrollBox.Visible then
+      ReportViewer.ScrollBox.VertScrollBar.Position := ReportViewer.ScrollBox.VertScrollBar.Position - (Y - SaveY);
+    SaveX := X;
+    SaveY := Y;
+  end;
+end;
+
+procedure TReportPreviewer.ReportViewerMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Dragging := false;
+end;
+</code></pre>
+
+<p>I tried using <code>ScrollBy</code> instead of moving the scrollbar position, but it seemed to reset for some reason.</p>

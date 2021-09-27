@@ -1,0 +1,4 @@
+<p>You need to use the PERSISTED option on a column when you use CREATE TABLE e.g.</p>
+
+<pre><code>CREATE TABLE test (col_a INT, col_b INT, col_c AS col_A * col_B PERSISTED)
+</code></pre>

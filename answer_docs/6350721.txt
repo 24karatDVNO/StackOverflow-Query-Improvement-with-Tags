@@ -1,0 +1,11 @@
+<p>If that's C# that you're writing, as you've commented, you'll want to start using parameters to avoid SQL injection.</p>
+
+<pre><code>string getMember= @"SELECT member_Id FROM members 
+                    WHERE member_Firstname like @userText
+                    OR    member_Lastname like  @userText;";
+
+MySqlCommand m = new MySqlCommand(getMember);
+m.Parameters.AddWithValue("@userText", tbMemberName.Text + "%");
+
+var reader = m.ExecuteReader();
+</code></pre>

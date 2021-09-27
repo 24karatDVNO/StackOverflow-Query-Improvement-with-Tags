@@ -1,0 +1,7 @@
+<p>there are many things that might cause the lag that you are experiencing. Your server might be able to process the requests fast enough, but if the connection between your client and the server is slow, then you'll see the obvious lag.</p>
+
+<p>The first thing you should try is to ping the server and see what response time you're getting. </p>
+
+<p>Secondly, rather than poll, you might want to consider an interrupt driven approach. This means that only when your server replies, will you send out your next request. This makes sense, so that many clients won't be flooding the server with requests till the point the server cannot cope. This is especially true, then the RTT (Round-Trip-Time) of your request is pretty long.</p>
+
+<p>Hope it helps. Cheers!</p>

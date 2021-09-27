@@ -1,0 +1,14 @@
+<p>you should put some " " around your form tags attributes, and give it an id!  </p>
+
+<p>just call your validate function as the first line in your button click handler :)</p>
+
+<pre><code> $("#submitbutton").click(function(e) {
+   if( validateFormOnSubmit($('#myform'))){
+       //do all the posting stuff
+
+   }
+   else{
+      e.preventDefault();
+      return false;
+    }
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Not sure why you need <code>eval</code>, but yes, your way will indeed create a global, i.e. bind to the window object. Try:</p>
+
+<pre><code>$(function(){
+
+    function pad2(number) {
+         return (number &lt; 10 ? '0' : '') + number
+    }
+    alert(pad2("10"));
+
+});
+</code></pre>

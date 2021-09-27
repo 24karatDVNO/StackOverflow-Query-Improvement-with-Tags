@@ -1,0 +1,9 @@
+<p>Doing an implicit cast is sort of like calling a member function -- also modifying rvalue refs seems to work.</p>
+
+<p>Tested the following in vc++10 and g++ 4.4.</p>
+
+<pre><code>struct b { int i; b(int x) : i(x) {} };
+struct a { int i; a() : i(0) { } operator b() { return i++ /* this works */, b(i); } };
+a f(a&amp;&amp; x) { return x.i++ /* this works */, x; }
+int main() { b b = f(a()); /* implicit operator b() cast; b.i will equal 2 */ }
+</code></pre>

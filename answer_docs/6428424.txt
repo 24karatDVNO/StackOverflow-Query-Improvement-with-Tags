@@ -1,0 +1,21 @@
+<p>Okay, here's the solution I found (in case anybody else needs it).</p>
+
+<p>Don't try to reference the parent's controls directly from VB. Instead, create a java function in the parent aspx (like this):</p>
+
+<pre><code>function HideModal()
+    {$find('ModalPopupExtender1').hide();}
+</code></pre>
+
+<p>Then, create a java function in the child aspx page like this:</p>
+
+<pre><code>function HideModal()
+    {parent.HideModal();}
+</code></pre>
+
+<p>Finally, create the following in the VB code-behind of the child aspx</p>
+
+<pre><code>        strScript = "&lt;script language=" &amp; Chr(34) &amp; "javascript" &amp; Chr(34) &amp; " id=" &amp; Chr(34) &amp; "MyClientScript" &amp; Chr(34) &amp; "&gt;HideModal();&lt;/script&gt;"
+        ClientScript.RegisterStartupScript(Me.GetType(), "HideModal", strScript)
+</code></pre>
+
+<p>Worked pretty good!</p>

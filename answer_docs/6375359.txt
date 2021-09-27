@@ -1,0 +1,14 @@
+<p>This subquery:</p>
+
+<pre><code>(SELECT Max(AsOfDate) FROM tblReviewScalars 
+ WHERE AsOfDate&lt;#4/19/2011#)
+</code></pre>
+
+<p>Is returning the max AsOfDate prior to 4/19/2011 for <strong><em>ALL</em></strong> loans, as opposed to the max AsOfDate for the loan in the current row.  You need to change the above subquery to this:</p>
+
+<pre><code>(SELECT Max(AsOfDate) FROM tblReviewScalars AS MaxPrior
+ WHERE MaxPrior.AsOfDate&lt;#4/19/2011# 
+   AND MaxPrior.LoanID=ReviewMain.LoanID)
+</code></pre>
+
+<p>Also, you need to get rid of the trailing comma on the line <code>AS [CreditRatingAt prior AsOfDate],</code> so that you have syntactically correct SQL.</p>

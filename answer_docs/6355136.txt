@@ -1,0 +1,11 @@
+<pre><code>   select 
+    *, (ISNULL(Table_Adresses.IdCellule, Table_Clients.IdCellule)) as IdCell
+    from Table_Tickets 
+    left join Table_Postes on Table_Postes.IdPoste = Table_Tickets.IdPoste
+    left join Table_Adresses on Table_Adresses.IdAdresse = Table_Postes.IdAdressePhysique
+    left join Table_Clients on Table_Clients.IdClient = Table_Tickets.IdClient
+    where idtypeticket=2 and 
+    isnull(bcloture,0)=0 and 
+    (ISNULL(Table_Adresses.IdCellule, Table_Clients.IdCellule)) =4 
+    order by IdCell
+</code></pre>

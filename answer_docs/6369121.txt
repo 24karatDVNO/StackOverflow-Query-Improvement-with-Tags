@@ -1,0 +1,15 @@
+<p>You don't need The Loop since you know the IDs of the posts (or pages).</p>
+
+<pre><code>&lt;?php 
+$thePostIdArray = array( '2', '4', '5');
+foreach ($thePostIdArray as $thePostId):
+    $thePost = get_post($thePostId);
+    &lt;?php if (!empty ($thePost)): ?&gt;
+        &lt;div class="post" id="post-&lt;?php echo $thePostId; ?&gt;"&gt;
+            &lt;?php $title =$thePost-&gt;post_title; ?&gt;
+            &lt;?php $content = $thePost-&gt;post_content; ?&gt;
+            &lt;h2&gt;&lt;span&gt;&lt;?php echo title ?&gt;&lt;/span&gt;&lt;/h2&gt;
+            &lt;?php echo $content; ?&gt; &lt;/div&gt;
+        &lt;?php endif;
+endforeach; ?&gt;
+</code></pre>

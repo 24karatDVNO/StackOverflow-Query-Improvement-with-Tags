@@ -1,0 +1,18 @@
+<p>I've only worked with Pervasive once or twice, but I can't imagine that the engine is that horrible that the problem would be a simple <code>LIKE</code> as you have it. The issue is more likely the subquery.</p>
+
+<p>I would try this instead:</p>
+
+<pre><code>UPDATE
+    I2
+SET
+    BVRTLPRICE01 = I1.BVRTLPRICE01
+FROM
+    INVENTORY I2
+INNER JOIN INVENTORY I1 ON
+    I1.CODE = REPLACE(LEFT(I2.CODE, 1), 'S', 'C') +
+              SUBSTRING(I2.CODE, 2, LENGTH(I2.CODE)))
+WHERE
+    I2.CODE LIKE 'S%'
+</code></pre>
+
+<p>Also, make sure that you're only joining on one row from I1 and not getting many rows for each row in I2.</p>

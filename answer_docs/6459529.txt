@@ -1,0 +1,9 @@
+<p>You can stop the propagation in the click of the checkbox like so</p>
+
+<pre><code>$('input[type=checkbox]').click(function(e){
+    e.stopPropagation();
+                e.preventDefault();
+});
+</code></pre>
+
+<p>check this <a href="http://jsfiddle.net/hZt2t/" rel="nofollow">jsfiddle</a></p>

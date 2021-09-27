@@ -1,0 +1,6 @@
+<p>My solution for "no where clause" typically is to supply a predicate as such:</p>
+
+<pre><code>WHERE 1 = 1
+</code></pre>
+
+<p>Since it always evaluates to true, it should have no impact when included, even alongside other predicate conditions. I have, however, seen it change the query execution plan in Microsoft SQL Server.</p>

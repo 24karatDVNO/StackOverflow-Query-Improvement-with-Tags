@@ -1,0 +1,12 @@
+<p>68 bytes?</p>
+
+<p>If the application does actually shut down, ie. has disappeared from the task manager 'Applications' and 'Processes', <em>and</em> the only effect of this 'leak' is to issue a debug message on early close, just turn the debug off and forget about it.</p>
+
+<p>It's likely an abberation of MFC shutdown, some struct that cannot be safely freed during shutdown and is left around for the OS to clean up.</p>
+
+<p>With the 99.9% of apps that are not continually restarted/stopped, a 68-byte leak on shutdown, even if it was not cleaned up, would not influence the operation of a Windows machine in any noticeable way between the reboot intervals enforced every 'Patch Tuesday'.</p>
+
+<p>I'm sure you have plenty more bugs with more serious effects to deal with.  If not, you can have some of mine!</p>
+
+<p>Rgds,
+Martin</p>

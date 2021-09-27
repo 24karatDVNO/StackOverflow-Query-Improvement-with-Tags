@@ -1,0 +1,9 @@
+<p>I think the best you can hope for is 80% automatic, which means you'll be doing over 1,000 manually best case.  You just need to be clever about the data that's there.  Read each line in and count the commas. If it's the right amount, write it out to a new file.  If it's too many, send it to the exception handler.</p>
+
+<p>Start with what you absolutely know about the data.  Is the first column a TimeStamp?  If you know that, you can go from "20 commas when there should be 18" to "19 commas when there should be 17".  I know that doesn't exactly lift your spirits but it's progress.  Is there a location, like a plant name, somewhere in there?  Maybe you can develop a list from the good data and search for it in the bad data.  If column 7 should be the plant name, go through your list of plant names and see if one of them exists.  If so, count the commas between that and the start and between that and the end (or another good comma location that you've established).</p>
+
+<p>If you have some unique data, you can regex to find it's location in the string and again, count commas before and after to see if it's where it should be.  Like if you have a Lat/Long reading or a part number that's in the format 99A99-999.</p>
+
+<p>If you can post five or ten rows of good data, maybe someone can suggest more specific ways to identify columns and their locations.</p>
+
+<p>Good luck.</p>

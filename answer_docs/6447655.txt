@@ -1,0 +1,8 @@
+<p>Additionally, you should check t.getDescription() before using .length() on it.</p>
+
+<pre><code>if(t.getDescription()!=null){
+(t.getDescription().length()&gt;0)?description.setText(t.getDescription()):description.setVisibility(GONE);}
+else { description.setVisibility(GONE);}
+</code></pre>
+
+<p>To avoid playing with String, insure that t->description always start as null instead of empty String. This can be done in Class constructor.</p>

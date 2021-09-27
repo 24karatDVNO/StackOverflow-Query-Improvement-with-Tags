@@ -1,0 +1,10 @@
+<p>AS David Heffernan Said befor. Char is 2 byte and also pChar point to a Unicode char in Delphi 2010. but the code of David has 2 problems</p>
+
+<ol>
+<li><p>If you want to get the international chars (unicode or utf8 strings) you can not use the AnsiChar</p></li>
+<li><p>If define params variable as Array [0..16384-1] of AnsiChar then you will lost your program performance. local variables will use the stack and define the params like as David defined will consume your stack space.</p></li>
+</ol>
+
+<p>for the answer you can use use your code by 1 simple changes. only define your header and params variable as PAnsiChar. you can put the other codes unchanged.</p>
+
+<p>header, params: PAnsiChar;</p>

@@ -1,0 +1,3 @@
+<p>If you want to upload your file to a server ("www.blahblah.com" in your example), then using the write to file methods is not the correct approach.  This is only for writing data to the local file system (or on a network share, but that doesn't apply to iPhones).</p>
+
+<p>If you want to transfer data to a webserver, you will need to have something on the server that will listen for a connection request, then it will need to accept the data which is transferred from your app.  You cannot just write a file to "www.blahblah.com" as you would to a file system</p>

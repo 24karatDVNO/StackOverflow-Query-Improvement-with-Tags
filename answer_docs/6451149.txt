@@ -1,0 +1,10 @@
+<p>not sure why you should have a array of delegate...</p>
+
+<p>if stuck, try the old API:</p>
+
+<pre><code>facebook = [[Facebook alloc] initWithAppId:@"YOUR_APP_ID"];
+[facebook dialog:@"stream.publish" andParams:fbArguments andDelegate:self];
+</code></pre>
+
+<p>easier, faster (for prototyping or light needs.
+if you want a specific answer to your issue, please provide more details (where do you initialize your fb object, where do you call FBSession from).</p>

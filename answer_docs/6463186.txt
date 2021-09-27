@@ -1,0 +1,10 @@
+<p><code>django-social-auth</code> provides views for authenticated with a particular backend (such as Google, Facebook, or Twitter).  Take a look at the code defined in <code>social_auth</code>'s URLconf: <a href="https://github.com/omab/django-social-auth/blob/master/social_auth/urls.py" rel="nofollow">https://github.com/omab/django-social-auth/blob/master/social_auth/urls.py</a></p>
+
+<p>Once you've got <code>social_auth</code> installed, if you want to log in with Twitter, you'd visit the <code>begin</code> url specifying the appropriate backend (e.g. /login/twitter/).  The <code>social_auth</code> app would then redirect your user to Twitter, at which point they'd authorize your app, then you'd get redirected back the <code>complete</code> url (e.g. /complete/twitter).</p>
+
+<p>If you wanted to associate a Twitter account with an existing user (that is, a User created via the <code>admin</code> app, or something like <code>django-registration</code>), you'd visit the <code>associate_begin</code> url (e.g. "/associate/twitter/").</p>
+
+<p>This all assumes that your root URLconf contains an entry like:</p>
+
+<pre><code>url(r'', include('social_auth.urls')),
+</code></pre>

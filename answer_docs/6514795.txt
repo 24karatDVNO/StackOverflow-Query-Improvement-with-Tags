@@ -1,0 +1,9 @@
+<p>ASP.NET renders a client-side function named <code>ValidatorEnable</code> that you can use to enable/disable a validator on the fly. Just called it from the CheckBox's click event:</p>
+
+<pre><code>$(function() {
+    $('#checkBoxID').click(function() {
+        var validator = document.getElementById('validatorId');
+        ValidatorEnable(validator, $(this).prop('checked'));
+    });
+});
+</code></pre>

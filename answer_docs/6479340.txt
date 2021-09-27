@@ -1,0 +1,23 @@
+<p>Using dynamic programming this can be solved in quadratic time (a naive approach would be in O(n³)).</p>
+
+<pre><code>def s(t):
+    n = len(t)
+    ss = [[0 for i in range(n+1)] for j in range(n+1)]
+    maximum = 0
+    max_end = 0
+    for i in range(n):
+        for j in range(i+1, n):
+            ss[i+1][j+1] = ss[i][j] + 1 if t[i] == t[j] else 0
+        tmp = max(ss[i+1])
+        if tmp &gt; maximum:
+            max_end, maximum = i+1, tmp
+    return t[max_end-maximum:max_end]
+</code></pre>
+
+<p>And for your example:</p>
+
+<pre><code>&gt;&gt;&gt; s("4 2 5 5 5 1 5 5 5 29 8".split(" "))
+['5', '5', '5']
+</code></pre>
+
+<p>Depending on the context though, a suffix tree might be quicker (probably up to O(n∙log n)).</p>

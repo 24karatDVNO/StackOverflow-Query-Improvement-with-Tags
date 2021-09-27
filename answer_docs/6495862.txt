@@ -1,0 +1,107 @@
+<p>Step by step configuration from working to non-working version of configuration helped out. Here's the server's web.config:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+  &lt;system.diagnostics&gt;
+    &lt;sources&gt;
+      &lt;source name="System.ServiceModel" switchValue="Information, ActivityTracing" propagateActivity="true"&gt;
+        &lt;listeners&gt;
+          &lt;add name="traceListener" type="System.Diagnostics.XmlWriterTraceListener" initializeData="c:\log\Traces.svclog" /&gt;
+        &lt;/listeners&gt;
+      &lt;/source&gt;
+    &lt;/sources&gt;
+  &lt;/system.diagnostics&gt;
+  &lt;connectionStrings&gt;
+    &lt;add name="PopulizerConnectionString" connectionString="Data Source=VM-LU4\SQLSERVER;Initial Catalog=Populizer;Integrated Security=True" providerName="System.Data.SqlClient" /&gt;
+  &lt;/connectionStrings&gt;
+  &lt;system.web&gt;
+    &lt;compilation debug="true" targetFramework="4.0"&gt;
+      &lt;assemblies&gt;
+        &lt;add assembly="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" /&gt;
+      &lt;/assemblies&gt;
+    &lt;/compilation&gt;
+  &lt;/system.web&gt;
+  &lt;system.serviceModel&gt;
+    &lt;bindings&gt;
+      &lt;basicHttpBinding&gt;
+        &lt;binding  name="ICommander_BindingConfiguration"
+                  closeTimeout="01:00:00"
+                  openTimeout="00:01:00"
+                  receiveTimeout="00:10:00"
+                  sendTimeout="00:01:00"
+                  allowCookies="false"
+                  bypassProxyOnLocal="false"
+                  hostNameComparisonMode="StrongWildcard"
+                  maxBufferSize="1048576"
+                  maxBufferPoolSize="524288"
+                  maxReceivedMessageSize="1048576"
+                  messageEncoding="Text"
+                  textEncoding="utf-8"
+                  transferMode="Buffered"
+                  useDefaultWebProxy="true"
+        &gt;
+          &lt;readerQuotas
+              maxDepth="32"
+              maxStringContentLength="1048576"
+              maxArrayLength="1048576"
+              maxBytesPerRead="4096"
+              maxNameTableCharCount="1048576"
+          /&gt;
+          &lt;security mode="None"&gt;
+            &lt;transport clientCredentialType="None" proxyCredentialType="None" realm="" /&gt;
+            &lt;message clientCredentialType="UserName" algorithmSuite="Default" /&gt;
+          &lt;/security&gt;
+        &lt;/binding&gt;
+        &lt;binding
+          name="ICommunicator_BindingConfiguration"
+          closeTimeout="01:00:00"
+          openTimeout="00:01:00"
+          receiveTimeout="00:10:00"
+          sendTimeout="00:01:00"
+          allowCookies="false"
+          bypassProxyOnLocal="false"
+          hostNameComparisonMode="StrongWildcard"
+          maxBufferSize="1048576"
+          maxBufferPoolSize="524288"
+          maxReceivedMessageSize="1048576"
+          messageEncoding="Text"
+          textEncoding="utf-8"
+          transferMode="Buffered"
+          useDefaultWebProxy="true"
+        &gt;
+          &lt;readerQuotas
+              maxDepth="32"
+              maxStringContentLength="1048576"
+              maxArrayLength="1048576"
+              maxBytesPerRead="4096"
+              maxNameTableCharCount="1048576"
+          /&gt;
+          &lt;security mode="None"&gt;
+            &lt;transport clientCredentialType="None" proxyCredentialType="None" realm="" /&gt;
+            &lt;message clientCredentialType="UserName" algorithmSuite="Default" /&gt;
+          &lt;/security&gt;
+        &lt;/binding&gt;
+      &lt;/basicHttpBinding&gt;
+    &lt;/bindings&gt;
+    &lt;services&gt;
+      &lt;service name="Populator.Commander"&gt;
+        &lt;endpoint contract="Private.ICommander" binding="basicHttpBinding" bindingConfiguration="ICommander_BindingConfiguration" /&gt;
+      &lt;/service&gt;
+    &lt;/services&gt;
+    &lt;behaviors&gt;
+      &lt;serviceBehaviors&gt;
+        &lt;behavior name="CommanderBehavior"&gt;
+          &lt;!-- To avoid disclosing metadata information, set the value below to false and remove the metadata endpoint above before deployment --&gt;
+          &lt;serviceMetadata httpGetEnabled="true" /&gt;
+          &lt;!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information --&gt;
+          &lt;serviceDebug includeExceptionDetailInFaults="true" /&gt;
+        &lt;/behavior&gt;
+      &lt;/serviceBehaviors&gt;
+    &lt;/behaviors&gt;
+    &lt;serviceHostingEnvironment multipleSiteBindingsEnabled="true" /&gt;
+  &lt;/system.serviceModel&gt;
+  &lt;system.webServer&gt;
+    &lt;modules runAllManagedModulesForAllRequests="true" /&gt;
+  &lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</code></pre>

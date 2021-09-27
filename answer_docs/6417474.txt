@@ -1,0 +1,6 @@
+<p>echo the who link instead of just the url and path. That way, you can choose not to display the link if there is no image.</p>
+
+<pre><code>if (!empty($event['gallery_image_1'][1]['t'])) {
+    echo "&lt;a href=\"" . $event['gallery_image_1'][1]['o'] . "\"&gt;&lt;img src=\"" . $event['gallery_image_1'][1]['t'] . "\" /&gt;&lt;/a&gt;";
+}
+</code></pre>

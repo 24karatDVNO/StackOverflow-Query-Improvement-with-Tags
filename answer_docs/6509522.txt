@@ -1,0 +1,10 @@
+<p>SELECT DISTINCT area
+FROM         ChuteXrefTbl
+UNION
+SELECT     'ALL' AS AvailableAreas</p>
+
+<p>got me the choice of "ALL" in my dropdown list of available areas. Then I just had to set my report up to run a stored procedure and used a IF ELSE to see if the incoming area was "ALL".</p>
+
+<p>This allows me to filter my report. </p>
+
+<p>Right now the only thing I wish I could figure out is why "ALL" gets added at the bottom of the list despite whether you reverse the above sql syntax or not.</p>

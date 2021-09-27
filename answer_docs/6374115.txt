@@ -1,0 +1,14 @@
+<p>Since we are using a self-signed certificate for dev purposes, I had to override the validation of the certificate.  My code was:</p>
+
+<pre><code>if (validateServerCertificate)
+        {
+            ServicePointManager.ServerCertificateValidationCallback += new RemoteCertificateValidationCallback(ValidateRemoteCertificate);
+        }
+private static bool ValidateRemoteCertificate(object sender,
+                                                  X509Certificate certificate,
+                                                  X509Chain chain,
+                                                  SslPolicyErrors policyErrors)
+    {
+        return true;
+    }
+</code></pre>

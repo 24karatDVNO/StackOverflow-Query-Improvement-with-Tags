@@ -1,0 +1,5 @@
+<p>This is a situation where you will get the best results by remembering that Jython is running on the JVM. Jython has full access to Java classes, so use the Java threading API to set up a separate computation thread. And if the CPU load is high enough that using more cores would help, Java (the jvm) will take care of that by itself.</p>
+
+<p>In some circumstances, with long running processes, people have used <code>jstack -l</code> to get the <code>nids</code> of running threads, and then use <code>taskset</code> to set the CPU affinity. The JVM <code>nid</code> is in hex and is the PID of the Linux process corresponding to a thread. Other OSes may have similar capabilities.</p>
+
+<p>In general, it is not necessary to do anything other than to make your Jython multithreaded. If you use the Python threading module you don't have access to the full Java threading featureset, but it does use JVM threads under the hood. Just remember to limit your access to global variables or you will end up recreating the Global Interpreter Lock. The Queue module can help with this.</p>

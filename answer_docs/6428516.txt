@@ -1,0 +1,10 @@
+<p>In your property sheet, you can capture the WM_KEYDOWN message and check for escape</p>
+
+<pre><code>BOOL CInfoPropertySheet::PreTranslateMessage(MSG* pMsg)
+{
+    switch(pMsg-&gt;message)
+    {
+        case WM_KEYDOWN:
+        {
+            if( pMsg-&gt;wParam == VK_ESCAPE )
+</code></pre>

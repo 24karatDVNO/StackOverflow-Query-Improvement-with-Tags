@@ -1,0 +1,12 @@
+<p>Well, likely not exactly what you are looking for, but <a href="http://en.wikipedia.org/wiki/Duplicate_code" rel="nofollow">clone detection</a> might be the right kind of idea.</p>
+
+<p>There are a variety of such detectors. Some work only one raw lines of text, and that might apply directly to you. </p>
+
+<p>Some work only on the works ("tokens") that make up the text, for some definition of "token".
+You'd have to define what you mean by tokens to such tools.</p>
+
+<p>But you seem to want something that discovers the <em>structure</em> of the text and then looks for repeating blocks with some parametric variation.  I think this is really hard to do, unless you know sort of what that structure is in advance.</p>
+
+<p>Our <a href="http://www.semanticdesigns.com/Products/Clone" rel="nofollow">CloneDR</a> does this for programming language source code, where the "known structure" is that of the programming language itself, as described specifically by the BNF grammar rules.   </p>
+
+<p>You probably don't want to Java-biased duplicate detection on semi-structured text.  But if you <em>do</em> know something about the structure of the documents, you could write that down as a grammar, and our CloneDR tool would then pick it up.</p>

@@ -1,0 +1,21 @@
+<p>That logic has to be specified somewhere. There's got to be some mapping from the hash <code>{:controller =&gt; 'users', :action =&gt; 'logout'}</code> to a url, and the place that's done in rails is the <code>routes.rb</code> file. In older versions of rails many <code>routes.rb</code> came with a default at the end:</p>
+
+<p><code>map.connect ':controller(/:action/(:id(.:format)))'</code></p>
+
+<p>Which would make it so that most any :controller, :action hash could be specified and then routed to <code>host.url/:controller/:action</code>.</p>
+
+<hr>
+
+<p>With the more modern versions resource-based routes are heavily favored, and controllers which don't follow rails' REST conventions (i.e. having only <code>:index,:show,:create,:new,:edit,:update,:destroy</code> methods) generally have to have their routes explicitly specified in some way. </p>
+
+<p>(Either with <code>map.resources :users, :collection =&gt; {:get =&gt; :logout}</code> or with <code>map.connect( 'some_url', :controller =&gt; 'users', :action =&gt; 'logout'})</code>)</p>
+
+<hr>
+
+<p>I'm guessing, but the reason they did that is probably that the actions of a controller are really just its public methods. </p>
+
+<p>It's frequently nice to have public methods in your controllers that aren't url-end-points for testing purposes. </p>
+
+<p>For instance, you could have <code>before_filter</code>s as public methods that you might want to test without having to use <code>@controller.send(:your_before_filter_method)</code> in your test code.</p>
+
+<p>So they whitelist the resource actions, and make the others unreachable by default. Let me look through the rails changelog and see if I'm right.</p>

@@ -1,0 +1,12 @@
+<p>Try this:</p>
+
+<pre><code>SELECT *
+  FROM database1.documents a LEFT JOIN 
+       (
+         SELECT  doc_id, COUNT(1) cnt_docs
+           FROM  database2.documents 
+          GROUP BY   doc_id
+       ) b
+    ON a.id = b.doc_id 
+   AND b.cnt_docs &lt; 3
+</code></pre>

@@ -1,0 +1,8 @@
+<p>I think you need to reshape your grids, griddata expects a list of points with coordinates in column form:</p>
+
+<pre><code>points = transpose(reshape((X,Y), (2,12)))
+pointsI = transpose(reshape((XI,YI), (2,12)))
+Z = reshape(X**2+Y**2, 12)
+
+print scipy.interpolate.griddata(points, Z, pointsI)
+</code></pre>

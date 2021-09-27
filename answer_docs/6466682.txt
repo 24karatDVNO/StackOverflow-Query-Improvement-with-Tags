@@ -1,0 +1,30 @@
+<p>I used Maxy-B's solution. My code, in particular, is a bit different so I thought to post it for posterity:</p>
+
+<h3>~/.vim/after/syntax/yaml.vim</h3>
+
+<pre><code>let b:current_syntax = ''
+unlet b:current_syntax
+syntax include @HTML syntax/html.vim
+
+syntax region htmlCode start=#^html:#hs=e+1 end=+^\w+he=s-1,me=s-1
+    \ contains=@HTML
+
+let b:current_syntax = ''
+unlet b:current_syntax
+syntax include @TEX syntax/tex.vim
+
+syntax region texCode start=#^tex:#hs=e+1 end=+^\w+he=s-1,me=s-1
+    \ contains=@TEX
+</code></pre>
+
+<p>This highlights the top-level YAML nodes <code>html</code> and <code>tex</code> with those respective types of code. It's not very dynamic, but it suits my purpose and this may serve as helpful guideline for someone doing something similar. It'll highlight the following as expected (or at least, as I expect it), for example:</p>
+
+<pre><code>regular:  # yaml
+   - yaml # yaml
+html: 
+    &lt;b&gt;hello&lt;/b&gt; # html
+tex:
+    \begin{document} # tex
+    \end{document} # tex
+the-end: may be necessary # yaml
+</code></pre>

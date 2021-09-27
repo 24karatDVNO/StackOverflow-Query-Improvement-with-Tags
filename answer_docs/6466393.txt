@@ -1,0 +1,8 @@
+<p>First of all there are two set in the query, secondly there is an error in the syntax ( the php code $_post and $_get should be concatinated along with rest of the string and there are both get and post method used in the same place which are not sent at the same time.if you use post for both Maybe this will work,</p>
+
+<pre>
+if (!empty($_POST['comment']))
+ {
+       mysql_query("UPDATE contacts SET opp=1,inforecall='".$_POST['comment']."' WHERE contact_id='".$_POST['id']."' ");
+
+}</pre>

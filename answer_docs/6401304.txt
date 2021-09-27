@@ -1,0 +1,3 @@
+<p>It is unlikely that high CPU usage be caused by some connection pool issues. It's probably a mistake within your application code. Did you monitored database connections — are they released and closed properly?</p>
+
+<p>By the way, I'd suggest you switch to the native connection pool built in Tomcat. It can be obtained as a standard Java EE resource from the pseudo-JNDI implemented in Tomcat.</p>

@@ -1,0 +1,58 @@
+<p>$(--selector--).load method has an additional callback parameter</p>
+
+<p><a href="http://api.jquery.com/load/" rel="nofollow">http://api.jquery.com/load/</a></p>
+
+<p>This is a function which is called once your AJAX response is completed.
+However script part which you return in AJAX response is never evaluated by default.</p>
+
+<p>You have to apply a little trick here. Please find an Update javascript module below which has a public method "evaluate". This method takes your script from AJAX response and evaluates it.</p>
+
+<pre><code>var Updater = function ()
+{
+    var module = {};
+
+    function doEvaluation(response)
+    {
+        var elem = document.createElement('div');
+        elem.innerHTML = response;
+        $(elem).find('script').each(
+            function ()
+            {
+                if (this.src)
+                {
+                    $('body').append(this);
+                }
+                else
+                {
+                    var content = $(this).html();
+                    eval(content);
+                }
+            });
+    }
+
+    module.evaluate = function (response, status)
+    {
+        if (status == "success")
+        {
+            doEvaluation(response);
+        }
+    }
+    return module;
+} ();
+</code></pre>
+
+<p>You can even attach a completely new javascript with it (if statement inside doEvaluation method). So what you need to do is add the module above so that it resides on your page. Secondly you have to modify your first AJAX call (which returns a PartialResult which is broken now) to something similar to this:</p>
+
+<pre><code>$('--selector--').load('--url--', Updater.evaluate);
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$.get('--url--', function(data, status, xhr) 
+{
+    /* other logic */
+    Updater.evaluate(data, status);
+});
+</code></pre>
+
+<p>and you are done. Please notice that updater below works only with jQuery AJAX calls. IF you are using MicrosoftAjax or MicrosoftMvcAjax its another story.</p>

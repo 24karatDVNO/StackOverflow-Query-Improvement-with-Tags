@@ -1,0 +1,15 @@
+<p>Two suggestions:</p>
+
+<p>A. Instead of <code>COUNT(*)</code>, do <code>COUNT(1)</code>. It's much faster.</p>
+
+<p>B. Use caching like for example the Pear Cache module. The idea is to cache the number of users in a file in the filesystem.</p>
+
+<p><strong>When to read from cache</strong>: When reading the number of users on the welcome page, check if it already exists in the cache; if found read from there, else run the DB query.</p>
+
+<p><strong>When to create the cache</strong>: each time the count is retrieved from the database, the cache is created and count stored in it.</p>
+
+<p><strong>When to invalidate cache</strong>: whenever a user account is created or destroyed, the cache is invalidated (removed). Therefore, the next time when any user lands on the welcome page, the DB query will run and the cache will be regenerated. All future requests will then read from the Cache unless another user is created or destroyed.</p>
+
+<p>I guess you might need some reading on Pear Cache but its easy and powerful.</p>
+
+<p>Hope this helps.</p>

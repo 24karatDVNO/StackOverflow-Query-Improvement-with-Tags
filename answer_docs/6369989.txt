@@ -1,0 +1,5 @@
+<p>That depends largely on what <em>exactly</em> the binary looks like ;p Xslt is <em>not</em> going to help much here; I would be using either a dedicated c# method that understands the structure (if it is specific to one task), or if a <em>general purpose</em> approach is needed (i.e. to cater for more than one scernario), then a proper serialization library to match your intended format.</p>
+
+<p>You should be prepared to spend lots of time working with streams, buffers and encoders.</p>
+
+<p>If you just want to serialize, and you don't care about the format - then use a pre-canned serializer; I suggest protobuf-net, as it works nicely alongside <code>XmlSerializer</code> allowing you to read from xml and write as binary, or read from binary and write as xml, etc. Likewise, since it is (by default) tree-based it has a direct correlation to xml (also tree-based).</p>

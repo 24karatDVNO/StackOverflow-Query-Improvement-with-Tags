@@ -1,0 +1,17 @@
+<p>Note also that although it's often said that:</p>
+
+<pre><code>function foo() {
+};
+</code></pre>
+
+<p>is just syntactic sugar for:</p>
+
+<pre><code>var foo = function() {
+};
+</code></pre>
+
+<p>it's actually <em>not quite true</em>.</p>
+
+<p>In the former case the named function is immediately available when the script is parsed regardless of the order of definitions in the file.</p>
+
+<p>In the latter, the anonymous function body is parsed immediately, but its assignment to a locally scoped variable doesn't happen <em>until that line of code is executed</em>.  This means that you can't call <code>foo()</code> in any code executed before then.</p>

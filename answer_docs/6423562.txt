@@ -1,0 +1,22 @@
+<p>If you have allocated the memory with new-operator, you can just return the pointer. Also, remember to use delete to the allocated memory. Good place for this would normally be in the destructor method (not in this case, since you only use the memory in the run-method).</p>
+
+<pre><code>void ThreadWorker::run()
+{
+  QStringList* file_list;
+  file_list = ds.get_file_names(_strPath);
+
+  //here we do something with file_list
+  //...
+
+  //Free the memory. You have to do this if the object pointed by file_list is not
+  //used anywhere else.
+  delete file_list;
+}
+
+QStringList* DirectorySearch::get_file_names(QString path)
+{
+  QStringList *file_names = new QStringList;
+  traverse(path, file_names);
+  return file_names;
+}
+</code></pre>

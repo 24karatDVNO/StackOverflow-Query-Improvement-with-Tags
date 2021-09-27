@@ -1,0 +1,8 @@
+<p><a href="http://codepad.org/YXu6884R" rel="nofollow">http://codepad.org/YXu6884R</a></p>
+
+<p>Here you go. See above for proof. The methodology from @azat is not explicit enough and is prone to risk if the elements of the array or sub array are re-arranged or if the key value for the super array changes.</p>
+
+<pre><code>$my_array = array( 123654 =&gt; array( 0 =&gt; '123456789123456789', 1 =&gt; '1', 2 =&gt; '06/24/2011', 3 =&gt; '06/24/2012', 4 =&gt; '12355.44', 5 =&gt; '55321.55' ) );
+
+echo $my_array['123654'][0];
+</code></pre>

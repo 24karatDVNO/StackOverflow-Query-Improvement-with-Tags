@@ -1,0 +1,16 @@
+<p>If you need to just capture STDOUT, doesn't assigning it to a variable do this?  For example:</p>
+
+<pre><code>megabyte=''
+# Create a 1 MiB string of NULL characters.
+for i in range(1048576):
+    megabyte += '\0'
+fh=open('zero.bin','w')
+# Write an 8 GiB file.
+for i in range(8192):
+    print(i)
+    # Suppress output of 'write()' by assigning to a variable.
+    discard=fh.write(megabyte)
+fh.close()
+</code></pre>
+
+<p>I was creating a large zero-filled file to zero free space on my hard drive and discovered that each call to handle.write(string) spit out the number of bytes written.  Assigning it to a vairable suppressed that output.</p>

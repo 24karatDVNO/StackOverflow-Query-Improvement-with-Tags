@@ -1,0 +1,17 @@
+<p>How are you setting <code>params[page]</code>? It needs to be passed in with the other parameters in your request in some way. </p>
+
+<p>Perhaps you need something like this in your controller:</p>
+
+<pre><code>@page = params[:page] || 1
+i = (@page - 1) * PER_PAGE + 1
+
+stream = open("#{base_url}key=XXXXXXXXXXXXX&amp;cx=XXXXXXXXXX&amp;q=#{search}&amp;start=#{i}&amp;alt=json")
+raise 'web service error' if (stream.status.first != '200')
+
+result = JSON.parse(stream.read)
+@new = result['items'].map{|r| r['link']}
+</code></pre>
+
+<p>In your view you need to make sure that you are passing the page via the query parameter in the link to fetch the next set of results. Most likely that you would want to return <code>@page + 1</code>.</p>
+
+<p>Handling pagination with non ActiveRecord objects depends on your pagination library. You might want to check out how <a href="http://pathfindersoftware.com/2008/06/how-to-use-will_paginate-with-non-activerecord-collectionarray/" rel="nofollow">will_paginate handles this</a>.</p>

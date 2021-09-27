@@ -1,0 +1,7 @@
+<p>I just want to add something about sockets internal work (TCP) that I know:</p>
+
+<p>All that <strong>server</strong> and <strong>client</strong> does, they sends pieces of data to each other. <strong>Server</strong> differs from the <strong>client</strong> only so that he is passive until any <strong>client</strong> don't send a connection request first. But if <strong>client</strong> want or forced to break the connection, all is need to do is stop send data to <strong>server</strong>. To gracefully close a connection <strong>client</strong> may send special data about this event, like saying "goodbay" by phone, but this is not absolutely required. Simply imagine phone call from you (<strong>client</strong>) to any service (<strong>server</strong>). You start conversation with "hello" and service worker responds. If you accidently press reset on your phone, call will lost. But service still continue his work. And you may make call it again. Nothing bad happens from that.</p>
+
+<p>All what you need to care about is stable and correct <strong>client</strong> and <strong>server</strong> work by itself. Check incorrect sending and receiving data. Try to reconnect when it needed from <strong>client</strong>. If some exception throws inside <strong>client</strong> it must be processed as needed and its normal situation when current connection was lost by such forced events.</p>
+
+<p>Everything else has already answered by <strong>Remy Lebeau</strong>.</p>

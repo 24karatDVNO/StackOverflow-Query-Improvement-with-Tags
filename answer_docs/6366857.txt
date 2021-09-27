@@ -1,0 +1,53 @@
+<p>That's interesting ~</p>
+
+<p>I have a simple idea for you.. However, I reckon the idea from Luke is my ideal solution</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;ul id='menu'&gt;
+    &lt;li&gt;&lt;a href='link1' id='default_item' level='1'&gt;item 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;ul&gt;&lt;li&gt;
+        &lt;a href='link2' level='2'&gt;&lt;div&gt;sub item 1&lt;/div&gt;&lt;/a&gt;
+        &lt;a href='link3' level='2'&gt;&lt;div&gt;sub item 2&lt;/div&gt;&lt;/a&gt;
+        &lt;/li&gt;&lt;/ul&gt;
+    &lt;/li&gt;
+    ...
+&lt;/ul&gt;
+</code></pre>
+
+<p>JAVASCRIPT:</p>
+
+<pre><code>var url = window.location.href; 
+// changing something link http://www.google.com/search?blabla=foo
+// into "search?blabla=foo"
+// that is sort-of normalisation
+url = url.replace(/^\w+\:\/\/[^\/]+?\//, '', url);
+
+$currA = $('#default_item');
+$('#menu').find('a').each(function(){
+    // getting the href of current 'a' element
+    var lnk = $(this).attr('href');
+    // also normalise your href 
+    lnk = lnk.replace(/^\w+\:\/\/[^\/]+?\//, '', lnk);
+
+    // well, we get the current a ~!
+    if(lnk == url){
+        $currA = $(this);
+    }
+}
+
+if($currA.attr('level') == 1){
+    var $li = $currA.parents('li:eq(0)');
+} else {
+    // manipulating your sub-item
+    $currA.addClass('active')
+    .find('div').css('display', 'block');
+
+    // getting the level-one li element
+    $li = $currA.parents('li:eq(1)');
+}
+
+// manipulating your menu items
+$li.addClass('nav_selected')
+.next().css('display', 'block');
+</code></pre>

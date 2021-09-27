@@ -1,0 +1,53 @@
+<p>I haven't done much with PHP, but you probably want that PHP that creates the table on it's own separate page, and then use AJAX to get the data whenever you want to refresh the table. If you use dojo you could do something like this.</p>
+
+<p>index.html</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript"&gt;
+    //call this function whenever you want to update the table
+    function updateTable()
+    {
+        dojo.xhrGet({
+            url: 'my_table.php',
+            handleAs: 'text',
+            load: function(data) {
+                dojo.byId('table').innerHTML = data;
+            });
+    }
+    &lt;/script&gt;
+    &lt;title&gt;Whats Up?&lt;/title&gt;
+&lt;/head&gt;
+&lt;body onload='updateTable()'&gt;
+    &lt;a href="Register.php"&gt;Register&lt;/a&gt; &lt;a href="login.php"&gt;Login&lt;/a&gt;
+
+&lt;div id='table'&gt;&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>my_table.php</p>
+
+<pre><code>&lt;?php
+    mysql_connect('localhost', 'root');
+    mysql_select_db('summerinstitute');
+    $query="SELECT * FROM students";
+    $result=mysql_query($query);
+    echo "&lt;table border=\"1\"&gt;";
+    while ($row = mysql_fetch_assoc($result)) {
+    echo "&lt;tr&gt;";
+    echo "&lt;td&gt;";
+    echo $row['fname'];
+    echo "&lt;/td&gt;";
+    echo "&lt;td&gt;";
+    echo $row['lname'];
+    echo "&lt;/td&gt;";
+    echo "&lt;td&gt;";
+    echo $row['username'];
+    echo "&lt;/td&gt;";
+    echo "&lt;td&gt;";
+    echo $row['Email'];
+    echo "&lt;/td&gt;";
+    echo "&lt;/tr&gt;";}
+    ?&gt;
+</code></pre>

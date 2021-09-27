@@ -1,0 +1,17 @@
+<p>Your configuration looks ok, may you need to clean the server first (if you use eclipse).</p>
+
+<p>Anyway: If you use spring then you can use the spring Framwork to access the JNDI ressource:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/jee
+    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd"&gt;
+
+    &lt;jee:jndi-lookup id="jndiEmailSession"
+         jndi-name="java:comp/env/email/Session" /&gt;
+&lt;/beans&gt;
+</code></pre>

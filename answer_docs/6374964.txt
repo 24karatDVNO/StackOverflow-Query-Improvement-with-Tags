@@ -1,0 +1,5 @@
+<p>I just fixed a similar bug by using IE8 and switching it into IE7 mode. You then get a more specific error message telling you which line of which file is failing.</p>
+
+<p>After that set a breakpoint so that the code stops just before the offending line (F12 to get to debugger tools, then choose the JS file you want from the 'scripts' dropdown and click to the left of the line number. Click 'start debugging' to make it use the breakpoints). </p>
+
+<p>As others have pointed out, this error could have many causes, but in my case, I had two IDs on the same page with one capitalised and one not. getElementById() was getting the wrong one. Only IE7 complained.</p>

@@ -1,0 +1,6 @@
+<p>The type inference scheme has gotten confused by the types available--specifically, by the type of cls.  If we write generic code:</p>
+
+<pre><code>def clser[A](cls: Class[A]) = allCatch opt cls.getConstructor(classOf[Project])
+</code></pre>
+
+<p>then it works perfectly okay.  But you're probably doing something else--I can't tell what because you didn't provide the code--and this results in a mismatch between the expected and actual types.</p>

@@ -1,0 +1,49 @@
+<p>It seems that you would like to compare 2 sheets after you have manually or melodramatically populated the values to. In this case the following code will do the job, but you have to modify the parts that will insert the column name before the boolean value</p>
+
+<pre><code>Dim objEX as new Excel.Application
+    objEX.Visible = True
+    ' Optional if you want to see what is
+    ' going on in EXCEL while your code is being executed.
+
+
+objEX.Workbooks.Open "C:\My Files\Filename.xls"
+'Make sure you put the right path of the excel workbook you want to open
+
+With objEX
+    .Sheets(1).Activate
+    .Range("a1").Select
+
+    .Sheets(2).Activate
+    .Range("a1").Select
+
+    .Sheets(3).Activate
+    .Range("a1").Select
+
+
+    'assuming the populated data starts at Cell A1
+    For i = 0 To 6      'because you have 6 rows
+        For j = 0 To 5  'because you have 5 columns
+            If .Sheets(1).ActiveCell.Offset(i, j).Value = .Sheets(2).ActiveCell.Offset(i, j).Value Then
+                .Sheets(3).ActiveCell.Offset(i, j).Value = "True"
+            Else
+                .Sheets(3).ActiveCell.Offset(i, j).Value = "False"
+            End If
+        Next
+    Next
+
+
+    .ActiveWorkbook.Save
+    'Saves the changes you have done
+
+    .ActiveWorkbook.Close
+    'Closes the workbook
+
+
+    .Quit
+    'Quits excel instance and releases the process from task manager
+
+End With
+
+    Set objEX = Nothing
+    'Garbage Collection and making sure memory is released to other processes.
+</code></pre>

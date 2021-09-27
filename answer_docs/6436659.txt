@@ -1,0 +1,5 @@
+<p>Maybe something like this does the trick:</p>
+
+<pre><code>UPDATE my_table a
+   SET child_count = SELECT count(path) FROM my_table b WHERE b.path LIKE a.path || '/%';
+</code></pre>

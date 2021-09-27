@@ -1,0 +1,15 @@
+<p>To achieve this you need to set the validate-variable within your model like this:</p>
+
+<pre><code># /app/models/album.php (or whatever you called your model)
+
+var $validate = array(
+    'albumname' =&gt; array(
+        'rule' =&gt; 'alphaNumeric',
+        'required' =&gt; true
+    )
+);
+</code></pre>
+
+<p>This will make sure that your fields are getting validated by CakePHP and if the validation isn't passed you get redirected to the form without anything being saved.</p>
+
+<p>Read more about validation in the Cookbook: <a href="http://book.cakephp.org/view/1143/Data-Validation" rel="nofollow">Data-Validation</a></p>

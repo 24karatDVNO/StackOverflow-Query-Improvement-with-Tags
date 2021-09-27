@@ -1,0 +1,3 @@
+<p>I have a pretty simple approach to these things - if it doesn't play nicely, just invent a view-model, i.e. an object layout designed to make mapping between your domain model and the UI plain sailing. This can also encourage you to <em>populate</em> your data in the correct shape for the view-model, rather than for the domain-model; and this often has decent savings in terms of reducing the number of columns (and sometimes rows) fetched, and (perhaps more importantly) avoiding multiple trips to the DB (by fetching <em>exactly</em> the right data, in one hit, in the right shape).</p>
+
+<p>From a view-model, you can then use simple data-binding techniques, as the data you want is now directly available as first-level values on the view-model.</p>

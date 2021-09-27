@@ -1,0 +1,5 @@
+<p>If you want to measure the time for the entire sort, then you must measure the time taken until the last processor finishes. You can accomplish this by taking the finishing time after an MPI_Barrier.</p>
+
+<p>A 60x speed difference between nodes means that you have poor load balancing. Some nodes are doing way more work than others, and if you want good performance you'll have to find a way to equalize the loads a bit more.</p>
+
+<p>If you're interested in parallel sorting then I recommend you read up on the <a href="http://www.allthingshpc.org/Publications/psort.pdf" rel="nofollow">PSort</a> algorithm and <a href="http://gauss.cs.ucsb.edu/code/psort/psort-1.0.tar.gz" rel="nofollow">source code</a>. It does a local sort then some minimal communication to figure out which processors should get which part, then a mass transfer of data to their destination processors. It has a minimum amount of communication overhead.</p>

@@ -1,0 +1,5 @@
+<p>I'm not familiar with that jQuery booking calendar, but from the looks of things the height on *div.DOP_FrontendBookingCalendar_Container* is being set to 400px inline (probably rendered by the jQuery plugin).</p>
+
+<p>The UI adjusts the parent container to 400px tall, but the children don't adjust the first time loading the page. Once you click to the next month it seems to recognize the parent's height and adjust accordingly.</p>
+
+<p>Might be as simple as setting the height of that element to 500px (or whatever is appropriate) to get the child elements to squeeze in the first time through.</p>

@@ -1,0 +1,5 @@
+<p>By default, SVN stores user credential in their corresponding home directory. When a server is restarted, it will not load your profile (in my case, /etc/profile) as pointed by Tobu. So to solve this problem, we simply need to set the HOME folder to the correct location. Modify your service script for your apps to include the following line:</p>
+
+<p><code>HOME=/&lt;&lt;user home folder location&gt;&gt;</code></p>
+
+<p>This solves my problem.</p>

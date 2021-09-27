@@ -1,0 +1,11 @@
+<p>In your Customer class:</p>
+
+<pre><code>public virtual IList&lt;Order&gt; Orders
+        {
+            get { return _orders; }
+        }
+
+private readonly IList&lt;Order&gt; _orders = new List&lt;Order&gt;();
+</code></pre>
+
+<p>also you can add public methods to add or remove items from Orders</p>

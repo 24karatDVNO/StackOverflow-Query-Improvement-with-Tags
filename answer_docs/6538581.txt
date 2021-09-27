@@ -1,0 +1,9 @@
+<pre><code>def module_loader(modname,g,l):
+    a = __import__(modname,g(),l(),[],-1)
+
+    for e in a.__dict__:
+        if not e.startswith("__"):
+            g()[e] = a.__dict__[e]
+
+module_loader('datetime', globals, locals)
+</code></pre>

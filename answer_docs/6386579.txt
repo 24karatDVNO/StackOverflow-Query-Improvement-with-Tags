@@ -1,0 +1,9 @@
+<p>Have you looked at <a href="http://drupal.org/project/views_bulk_operations" rel="nofollow">Views Bulk Operations</a>? I'm not completely sure this will work, but I've done simliar things with nodes in D6:</p>
+
+<ol>
+<li>Add a textfield to users (admin/config/people/accounts/fields), name it "Role".</li>
+<li>In uif, is there a way to map your "role" column to a field? Then do it here!</li>
+<li>Use VBO to select those with a specific "Role" field value, then add the real user role you want.</li>
+</ol>
+
+<p>I'm not 100% sure that step 2 works, but I would definitely give it a try.</p>

@@ -1,0 +1,28 @@
+<p>You will need to use a cursor and a while statement as far as I can tell... Some of these indexes may be off by one, but I think this should get you there...</p>
+
+<pre><code>DECLARE MY_CURSOR Cursor 
+FOR
+SELECT ID, SN, Types
+FROM Tbl1
+Open My_Cursor 
+DECLARE @ID int, @SN varchar(100), @types varchar(1000)
+Fetch NEXT FROM MY_Cursor INTO @ID, @SN, @types
+While (@@FETCH_STATUS &lt;&gt; -1)
+BEGIN
+  DECLARE @Pos int
+  WHILE @Pos &lt; LEN(@types)
+  BEGIN
+    DECLARE @type varchar(25)
+    DECLARE @nextpos int
+    set @nextpos = CHARINDEX(@types, ',', @pos)
+    SET @type = SUBSTRING(@types, @pos, @nextpos-@pos)
+    INSERT INTO tbl2 (ID, SN, type) VALUES (@ID, @SN, @Type)
+    SET @Pos = @nextpos+1
+  END
+
+
+FETCH NEXT FROMMY_CURSOR INTO @VAR1Number, @VAR2DateTime ,@VarLongText 
+END
+CLOSE MY_CURSOR
+DEALLOCATE MY_CURSOR
+</code></pre>

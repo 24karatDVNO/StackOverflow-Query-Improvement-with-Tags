@@ -1,0 +1,28 @@
+<p>getchar reads the input from input stream which is available only after ENTER key is pressed. till then you see only the echoed result from the console To achieve the result you want you could use something like this </p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;termios.h&gt;
+#include &lt;unistd.h&gt;
+
+int getCHAR( ) {
+    struct termios oldt,
+                 newt;
+    int            ch;
+    tcgetattr( STDIN_FILENO, &amp;oldt );
+    newt = oldt;
+    newt.c_lflag &amp;= ~( ICANON | ECHO );
+    tcsetattr( STDIN_FILENO, TCSANOW, &amp;newt );
+    ch = getchar();
+    putchar(ch);
+    tcsetattr( STDIN_FILENO, TCSANOW, &amp;oldt );
+    return ch;
+}
+void main() {
+    int c;
+    c = getCHAR();
+    while (c != 'b') {
+        putchar(c);
+        c = getCHAR();
+    }
+}
+</code></pre>

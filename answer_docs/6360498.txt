@@ -1,0 +1,8 @@
+<p><code>self.aString</code> is a syntactic sugar to <code>[self aString]</code>. Synthesize a property just create the <code>-aString</code> and <code>-setAString:</code> method (depending on the property you have chosen it while not be the trivial affectation).</p>
+
+<p>Now the question is whether to use the <code>.</code> notation. I suggest you not to use it.
+Why? First know that Objective-C aim to be just an addition to C. This mean that every valid C code is also a valid Objective-C code.</p>
+
+<p>Now look at what they have done with the dot notation. The last statement does not hold anymore. You wont distinguish between an access to a field of a C structure and sending objective-c method.</p>
+
+<p>So please don't use the dot notation. Prefer using the [self ..].       </p>

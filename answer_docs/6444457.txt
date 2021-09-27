@@ -1,0 +1,22 @@
+<p>Thanks for the following link:</p>
+
+<blockquote>
+  <p>i have found this but i am not able to use it in my build up.
+  <a href="http://ianserlin.com/index.php/2009/12/15/disabling-rollout-behavior-of-a-selected-item-in-a-flex-4-list/" rel="nofollow">http://ianserlin.com/index.php/2009/12/15/disabling-rollout-behavior-of-a-selected-item-in-a-flex-4-list/</a></p>
+</blockquote>
+
+<p>I had a similar issue; based on the data i had two types of normal states and after mouse-out, i wanted the renderer to identify which of the two states to revert to. I used the "override function" solution given in the above link to achieve the desired effect.</p>
+
+<p>My Solution:</p>
+
+<pre><code>            override protected function itemRenderer_rollOutHandler(event:MouseEvent):void {
+                if (data.index == 0) {
+                    this.currentState = "keyNormal";
+                }
+                else {
+                    this.currentState = "normal";
+                }
+            }
+</code></pre>
+
+<p>I just entered the above code in the  block in my custom ItemRenderer.</p>

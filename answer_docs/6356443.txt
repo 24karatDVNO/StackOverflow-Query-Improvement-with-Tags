@@ -1,0 +1,17 @@
+<p>If you use UTF-8 as source and then output it in html remember to set the correct headers and meta like this:</p>
+
+<pre><code> &lt;?php
+ header ('Content-type: text/html; charset=utf-8');
+ ?&gt;
+ &lt;html&gt;
+ &lt;head&gt;
+ &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+ &lt;/head&gt;
+</code></pre>
+
+<p>otherwise you have problems in displaying. </p>
+
+<p>No need to decode/encode anything as Pekka suggested you should not encode them in the first place but use a CData block. T
+hen if you set your header and meta correctly you just output them. Saves you a lot of work.</p>
+
+<p>In case your source is encode, just output it to the browser as is</p>

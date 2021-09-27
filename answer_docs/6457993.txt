@@ -1,0 +1,17 @@
+<p>Instead of "unmanaged resources", think "responsibilities".  When an object is described as holding "unamanged resources", what that really means is that:</p>
+
+<ol>
+<li>The class has the information and impetus necessary to do something to an outside entity.
+<li>If that action never gets done, something else won't work as well as it otherwise would (the effects may be minor or severe).
+<li>If the class is doesn't perform the action, nothing else will.
+</ol>
+
+<p>The most common situation where a class will have cleanup responsibilities is when some other entity has been asked to reserve something (be it a file, GDI handle, lock, array slot, memory block, communications channel, or whatever) until further notice.  If nothing tells that other entity that the thing it's reserved is no longer needed, it will never allow anything else to use it.</p>
+
+<p>If an object which has an important responsibility to perform some action gets swept away by the garbage collector before fulfilling its responsibility, the action will never get performed.  There are two ways this can be prevented:</p>
+
+<ol><li>If an object implements IDisposable, "someone" (either another object or a running procedure) should be slated to call Dispose method before it's abandoned.  Dispose shouldn't be thought of as destroying an object, but rather telling an object to carry out its final responsibilities so it may be safely abandoned.
+<li>Objects can ask the system to let them know when they've been abandoned, before they're swept away.  While such notifications can reduce the danger that a required action might never be performed, it is dangerous to rely upon them since they will often not come in a particularly timely fashion, and in some cases may never come at all.
+</ol>
+
+<p>Objects which provide for the second cleanup approach are called "managed resources".</p>

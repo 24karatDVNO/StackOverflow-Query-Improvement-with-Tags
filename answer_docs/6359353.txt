@@ -1,0 +1,3 @@
+<p>Well, you're running you're JVM with a 2GB heap on a machine with about 2GB ram, and the heap isn't the only thing in the JVM (or system for that matter) using memory. Might it be possible that a heap access is causing a page fault (forcing it to go into swap)? I wouldn't expect the JVM to puke in that scenario, but I suppose it's possible.</p>
+
+<p>EDIT: Sorry, misread that. 1GB heap, 2GB ram. I guess I have no idea, then.</p>

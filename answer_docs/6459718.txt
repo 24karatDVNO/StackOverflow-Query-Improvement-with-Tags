@@ -1,0 +1,15 @@
+<p>By your data and your desired output, I think you simply want this:</p>
+
+<pre><code>select ID, Year, SUM(Revenue)
+from YourTable
+GROUP BY ID, Year
+</code></pre>
+
+<p><strong>Update</strong></p>
+
+<p>Now, if your first data sample is already a <code>SELECT</code> query, you need to:</p>
+
+<pre><code>select ID, Year, SUM(Revenue)
+from (SELECT...) YourSelect
+GROUP BY ID, Year
+</code></pre>

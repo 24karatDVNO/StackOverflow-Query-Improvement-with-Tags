@@ -1,0 +1,20 @@
+<p>The stack overflow might be due to an error in your implementation of quick sort. If I understand your code correctly I find some strange lines within.</p>
+
+<p>Assuming that <code>quicksort(start, end)</code> sorts the subarray from index <code>start</code> to index <code>end</code> inclusively the following lines do not make much sense:</p>
+
+<pre><code>if (cmp.compare(incomingArray.get(start + ((end - start) / 2)), incomingArray.get(0)) &lt; 0) {
+    swap(incomingArray, (start + ((end - start) / 2)), 0);
+}
+</code></pre>
+
+<p>Here the index 0 comes into play which most of the time lies outside of <code>start</code> to <code>end</code>. The same with lines</p>
+
+<pre><code>swap(incomingArray, 0, end);
+</code></pre>
+
+<p>and </p>
+
+<pre><code>int leftBound = 0;
+</code></pre>
+
+<p>Fix the issues with your algorithm and try again.</p>

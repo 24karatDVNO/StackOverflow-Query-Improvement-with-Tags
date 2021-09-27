@@ -1,0 +1,85 @@
+<p>To avoid duplicate files, I usually append the date and time to the filename. This also has the advantage of allowing the user to keep multiple versions of the same report.</p>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>Public Sub ExportToExcel(objectToExport As Variant, _
+                         outPutType As AcOutputObjectType, _
+                         filename As String, _
+                         Optional outputFormat = acFormatXLS)
+    ' Construct the filename using the date and time '
+    Dim fnamebase As String
+    Dim ext As String
+    ext = Mid$(filename, InStrRev(filename, "."))
+    fnamebase = Left$(filename, Len(filename) - Len(ext)) _
+                &amp; Format(Now, "-yyyymmdd-hh\hmm")
+
+    ' check if there is another file with the same name '
+    ' append (1), (2) until we find a free slot '
+    Dim fname As String
+    Dim count As Integer
+    fname = fnamebase &amp; ext
+    Do While Len(Dir(fname)) &gt; 0
+        count = count + 1
+        fname = fnamebase &amp; "(" &amp; count &amp; ")" &amp; ext
+    Loop
+
+    ' Now we're fairly sure no identical filename exists '
+    DoCmd.OutputTo objectType:=outPutType, _
+                    ObjectName:=objectToExport, _
+                    outputFormat:=outputFormat, _
+                    OutputFile:=fname, _
+                    Encoding:=vbUnicode
+
+End Sub
+</code></pre>
+
+<p>You can now export queries and tables:</p>
+
+<ul>
+<li><p>Query to Excel 2007/2010 format (XLXS format only available in Access2007/2010):<br>
+<code>ExportToExcel "qrySupplierList",  acOutputQuery, "D:\suppliers.xlsx", acFormatXLSX</code></p></li>
+<li><p>A table to a Text file:<br>
+<code>ExportToExcel "Suppliers",  acOutputTable, "D:\suppliers.txt", acFormatTXT</code></p></li>
+</ul>
+
+<p>Now, <code>TransferSpreadSheet</code> is better at transfering tables to Excel, so you may prefer to use that one instead:</p>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>Public Sub ExportTableToExcel(tableName As String, _
+                              filename As String, _
+                              Optional spreadSheetType = acSpreadsheetTypeExcel8)
+    ' Construct the filename using the date and time '
+    Dim fnamebase As String
+    Dim ext As String
+    ext = Mid$(filename, InStrRev(filename, "."))
+    fnamebase = Left$(filename, Len(filename) - Len(ext)) _
+                &amp; Format(Now, "-yyyymmdd-hh\hmm")
+
+    ' check if there is another file with the same name '
+    ' append (1), (2) until we find a free slot '
+    Dim fname As String
+    Dim count As Integer
+    fname = fnamebase &amp; ext
+    Do While Len(Dir(fname)) &gt; 0
+        count = count + 1
+        fname = fnamebase &amp; "(" &amp; count &amp; ")" &amp; ext
+    Loop
+
+    ' Now we're fairly sure no identical filename exists '
+    DoCmd.TransferSpreadsheet TransferType:=acExport, _
+                              spreadSheetType:=spreadSheetType, _
+                              tableName:=tableName, _
+                              filename:=fname, _
+                              HasFieldNames:=True
+End Sub
+</code></pre>
+
+<p>An you use it like this:</p>
+
+<ul>
+<li><p>To export a Table to an Excel97 format:<br>
+<code>ExportTableToExcel "Supplier", "D:\Suppliers.xlx"</code></p></li>
+<li><p>To export it to XLSX format (from Access 2007/2010 only):
+<code>ExportTableToExcel "Supplier", "D:\Suppliers.xlsx", acSpreadsheetTypeExcel12Xml</code></p></li>
+</ul>

@@ -1,0 +1,116 @@
+<p>The simple usort won't work if you want to support more than one layer of children. There's simply no way to know how two arbitrary elements compare without other information.</p>
+
+<p>I didn't think about it much, so perhaps it doesn't work. But here's a sorting class:</p>
+
+<pre><code>class TopSort
+{
+  private $sorted, $unsorted;
+  private $history;
+
+  public function sort(array $unsorted)
+  {
+    $this-&gt;sorted = array();
+    $this-&gt;unsorted = $unsorted;
+    $this-&gt;history = array();
+
+    usort($this-&gt;unsorted, function($a, $b)
+    {
+      return $b['id'] - $a['id'];
+    });
+
+    foreach ($this-&gt;unsorted as $i =&gt; $a)
+      if ($a['parent_id'] == 0) $this-&gt;visit($i);
+
+    return array_reverse($this-&gt;sorted);
+  }
+
+  private function visit($i)
+  {
+    if (!array_key_exists($i, $this-&gt;history))
+    {
+      $this-&gt;history[$i] = true;
+      foreach ($this-&gt;unsorted as $j =&gt; $a)
+        if ($a['parent_id'] == $this-&gt;unsorted[$i]['id']) $this-&gt;visit($j);
+
+      $this-&gt;sorted[] = $this-&gt;unsorted[$i];
+    }
+  }
+}
+
+$sorter = new TopSort();
+$some_array = $sorter-&gt;sort($some_array);
+</code></pre>
+
+<p>The idea here is to first sort in reverse by id. Then build up a new array by inserting the deepest elements (those with no children) first. Since we initially sorted the array by reverse id, it should mean the entire thing is upside down. After reversing the array, it should be exactly like you want. (Of course one could unshift items onto the array to avoid the reverse operation, but that might be slower...)</p>
+
+<p>And this is <i>very</i> unoptimized as it iterates over the entire array many, many times. With a little rework, it wouldn't need to do that.</p>
+
+<p>Here's an alternative class that is more optimized:</p>
+
+<pre><code>class TopSort
+{
+  private $sorted;
+
+  public function sort(array $nodes)
+  {
+    $this-&gt;sorted = array();
+
+    # sort by id
+    usort($nodes, function($a, $b) {
+      return $a['id'] - $b['id'];
+    });
+
+    # build tree
+    $p = array(0 =&gt; array());
+    foreach($nodes as $n)
+    {
+      $pid = $n['parent_id'];
+      $id = $n['id'];
+
+      if (!isset($p[$pid]))
+        $p[$pid] = array('child' =&gt; array());
+
+      if (isset($p[$id]))
+        $child = &amp;$p[$id]['child'];
+      else
+        $child = array();
+
+          $p[$id] = $n;
+      $p[$id]['child'] = &amp;$child;
+      unset($child);
+
+      $p[$pid]['child'][] = &amp;$p[$id];    
+    }
+    $nodes = $p['0']['child'];
+    unset($p);
+
+    # flatten array
+    foreach ($nodes as $node)
+      $this-&gt;flatten($node);
+
+    return $this-&gt;sorted;
+  }
+
+  private function flatten(array $node)
+  {
+    $children = $node['child'];
+    unset($node['child']);
+    $this-&gt;sorted[] = $node;
+    foreach ($children as $node)
+      $this-&gt;flatten($node);
+  }
+}
+
+$sorter = new TopSort();
+$sorted = $sorter-&gt;sort($some_array);
+</code></pre>
+
+<p>It's a three step approach:</p>
+
+<ol>
+<li>Sort by id (usort)</li>
+<li>Build nested array structure.</li>
+<li>Flatten array in pre-order.</li>
+</ol>
+
+<p>By virtue of presorting by id, each group of children should be sorted correctly.</p>

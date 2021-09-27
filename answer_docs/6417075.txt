@@ -1,0 +1,24 @@
+<p>When I recreate what you've given in PHP</p>
+
+<pre><code>&lt;?php
+
+    $array = array(
+              'myfield' =&gt; 
+                array(
+                  0 =&gt; 
+                    array(
+                      'data' =&gt; '1')),
+              'myfieldb' =&gt; 
+                array(
+                  0 =&gt; 
+                    array(
+                      'data' =&gt; '2')));
+
+    echo $array['myfield'][0]['data'];
+
+?&gt;
+</code></pre>
+
+<p>It echo's fine.</p>
+
+<p>That error you're getting means that the key specified doesn't exist.  I would do a <code>print_r($data)</code> and see what you get.</p>

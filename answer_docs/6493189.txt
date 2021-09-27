@@ -1,0 +1,17 @@
+<p>Sometimes it’s good to sleep things over. This morning I had the idea that lead to the solution using Notepad++ (by the way this is a pretty decent editor).</p>
+
+<p>Since the tag 'img src=' occurs at least twice I tried to a find a pattern that is unique to the tag 'img src='  in question. I did not occur to me earlier that ending height=”1” for the tag in question is unique enough. With this I did not need to take into account the lines above and below as I assumed initially. Also I removed the border=”0” as this data belongs into CSS and not into the mark-up.
+Finally I got the search string I seeked for and  I entered is as follows (Search Mode: Regular Expression, checked)</p>
+
+<p>Strings:
+Search string:      </p>
+
+<pre><code>alt="(.*).jpg"(.*)width="1" height="1" /&gt;
+</code></pre>
+
+<p>Replace string: </p>
+
+<pre><code>alt="" width="1" height="1" /&gt;
+</code></pre>
+
+<p>With the result of 3937 hits, Bingo. (so my assumption for the total of 4500 files was quite close).</p>

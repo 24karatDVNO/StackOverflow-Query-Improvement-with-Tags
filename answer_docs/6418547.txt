@@ -1,0 +1,10 @@
+<p>Add <code>position: relative;</code> to your container if you want absolutely positioned elements inside it to be positioned relative to it:</p>
+
+<pre><code>#replace {
+  position: relative;
+  width: 950px;
+  height: 500px;
+}
+</code></pre>
+
+<p>Then set to top value of the item you want to position. One thing to note here, your #replace div is the container here, but it's smaller than the #content div, so when you position #modal, you're going to have to give it specific pixel values to get it centered over #content.</p>

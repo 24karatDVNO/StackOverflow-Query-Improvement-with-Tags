@@ -1,0 +1,23 @@
+<p>Simple, you store the timestamp of when the student first started the test and output it to each page. Then it's a simple matter of substracting current time from that timestamp to get elapsed time. </p>
+
+<p>However, depending on Javascript is a very bad way of ensuring that this timer gets started. A better method is to force the user to click on an actual link/button, WITHOUT involving Javascript. You record the timestamp on the server then that hit comes in, and after that everything's fine.</p>
+
+<p>start.php:</p>
+
+<pre><code>&lt;a href="page1.php"&gt;Start Test - Page 1&lt;/a&gt;
+</code></pre>
+
+<p>page1.php:</p>
+
+<pre><code>&lt;?php
+
+if(!isset($_SESSION['test_start_timestamp')) {
+    $_SESSION['test_start_timestamp'] = time();
+}
+?&gt;
+
+&lt;h3&gt;Question #1&lt;/h3&gt;
+etc...
+</code></pre>
+
+<p>The important thing is to never reset the timestamp value in the session once it's been set. Otherwise the test taker can simply click around until they reach a page where the counter's reset, and they can get more time for the test.</p>

@@ -1,0 +1,53 @@
+<p>I will assume that you are using some variables like:</p>
+
+<pre><code>Domain: gartz.com.br 
+Username: gartz
+</code></pre>
+
+<p>Go in your plesk panel and add SSH /bin/bash access to the user that you wan't to install gitolite repositorie.</p>
+
+<p>Now SSH login your server as <strong>root</strong> privileges. And type <code>su - gartz</code> you are now in your user bash.</p>
+
+<p>Type <code>pwd</code> it will show your <code>${HOME}</code> like: <code>/var/www/vhosts/gartz.com.br/</code></p>
+
+<p>go back to super user and add privileges to user can write your own home folder and add a git folder:</p>
+
+<pre><code>$ chown gartz:psacln /var/www/vhosts/gartz.com.br/
+$ su - gartz
+$ mkdir git
+</code></pre>
+
+<p>Now you have this: <code>/var/www/vhosts/gartz.com.br/git</code></p>
+
+<p>Download your gitolite to the git folder, then add a user with will have access to your git repositories only, like using suffix or preffix git: <code>adduser gartz.git</code></p>
+
+<p>Edit your passwd file to your git user have the same ids from the normal user and change the home to the correct git folder. (you will need root privileges again)</p>
+
+<pre><code>$ cat /etc/passwd | grep gartz
+</code></pre>
+
+<p>It will show something like this:</p>
+
+<pre><code>gartz:x:10004:2524::/var/www/vhosts/gartz.com.br:/bin/bash
+</code></pre>
+
+<p>Now edit your other user <code>gartz.git</code> to be like this:</p>
+
+<pre><code>gartz.git:x:10004:2524::/var/www/vhosts/gartz.com.br/git:/bin/bash
+</code></pre>
+
+<p>Add <code>.ssh</code> folder with authorized_keys for your rsa key. Then login your shell using your account like <code>gartz.git</code> install your gitolite now.</p>
+
+<pre><code>$ git clone git://github.com/sitaramc/gitolite
+$ cd gitolite/src
+$ ./gl-easy-install -q gitolite gitserver sitaram
+</code></pre>
+
+<p>Go to your own computer and clone your gitolite-admin:</p>
+
+<pre><code>$ git clone gartz.git@gartz.com.br:gitolite-admin
+</code></pre>
+
+<p>Change your config file, add your keys and repos, commit and push.</p>
+
+<p>You can do this for any domain you want. For more info installing git <a href="http://progit.org/book/ch4-8.html" rel="nofollow">http://progit.org/book/ch4-8.html</a></p>

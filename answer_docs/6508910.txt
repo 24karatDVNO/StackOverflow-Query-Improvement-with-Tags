@@ -1,0 +1,3 @@
+<p>If you are writing JSPs, then the URL of the JSP will include any subdirectories that you create. So if under ITC357 you create a subdirectory called "foo", and in that subdirectory you have a JSP called "bar.jsp", and your context name is "plugh", then the URL of that JSP will be "http://whateverserver.com/plugh/foo/bar.jsp".</p>
+
+<p>If you are using servlets, then it is up to your code to decide what to do with any URLs passed to it. You could map "http://whateverserver.com/plugh/foo/twisty.do" to "c:/program files/tomcat5/webapps/ITC357/WEB-INF/classes/foo/twisty.class", or you could map it to someplace totally different. (I prefer to map to a package name that matches the URL unless there's good reason to do otherwise.)</p>

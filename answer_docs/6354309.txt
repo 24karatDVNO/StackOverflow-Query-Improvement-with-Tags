@@ -1,0 +1,25 @@
+<p>I have also face same type of condition in my application but i have resolved it using the given code the code it is.</p>
+
+<p>I have create my progress dialog like this </p>
+
+<pre><code>final ProgressDialog dialogMatchList = ProgressDialog
+            .show(TennisAppActivity.mContext, "",
+                    "Loading. Please wait...", true);
+    dialogMatchList.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+    dialogMatchList.setIndeterminate(true);
+    dialogMatchList.setCancelable(true);
+</code></pre>
+
+<p>when progress dialog dismiss the blow function is called</p>
+
+<pre><code>dialogMatchList.setOnDismissListener(new OnDismissListener() {
+
+        public void onDismiss(DialogInterface arg0) {
+
+            list.setAdapter(new EfficientAdapter(getApplicationContext()));
+
+        }
+    });
+</code></pre>
+
+<p>I hope it is help,</p>

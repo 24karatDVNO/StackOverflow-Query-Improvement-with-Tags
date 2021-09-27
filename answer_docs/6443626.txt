@@ -1,0 +1,13 @@
+<p>You can try creating two <code>MediaPlayer</code>s with different stream types:</p>
+
+<pre><code>btPlayer = new MediaPlayer(...);
+wiredPlayer = new MediaPlayer(...);
+...
+btPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
+wiredPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+...
+</code></pre>
+
+<p>Of cause you'll need to put extra code to redirect <code>btPlayer</code> to bluetooth headset. For this you'll need to use <code>startBluetoothSco()</code> and <code>setBluetoothScoOn()</code>.</p>
+
+<p>Also note, that audio can be redirected to bluetooth headset only on <code>AudioManager.STREAM_VOICE_CALL</code>. But if you are using a2dp bluetooth device, you can redirect audio to this device in <code>AudioManager.STREAM_MUSIC</code> stream as well.</p>

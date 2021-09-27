@@ -1,0 +1,3 @@
+<p>My fix mentioned in the comments seems to work. The underlying problem is that the editorDataField property was only set when the user interacted with the combobox. </p>
+
+<p>I remedied that problem by setting it in the override public function set data() method. In this manner, as soon as a user touches it, it is set. </p>

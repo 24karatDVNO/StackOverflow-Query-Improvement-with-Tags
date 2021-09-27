@@ -1,0 +1,9 @@
+<p>There is nothing in the view for your products
+Try adding  a line</p>
+
+<pre><code>&lt;%: Html.EditorFor(model=&gt;mode.Products) %&gt; 
+</code></pre>
+
+<p>which will render an editor for your products - but you probably want to tailor it by creating a Products.ascx in EditorTemplates</p>
+
+<p>hope this helps.</p>

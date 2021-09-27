@@ -1,0 +1,5 @@
+<p>If you <strong>do need</strong> to load all the stuff, why not load it just once and serialize your acl object and keep it in session or cache ? </p>
+
+<p>Every time you need to access your ACL object, check if the cache or the session variable is set or not. If it is set, you can just avoid running the queries and just unserialize the object from session or cache.</p>
+
+<p>I agree this is a dirty solution, but it works and will not run the 117 queries each time.</p>

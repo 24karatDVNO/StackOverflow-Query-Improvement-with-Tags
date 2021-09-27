@@ -1,0 +1,13 @@
+<p>One solution is to use ListView control instead of a bunch of Textboxs. In the template of Listview, put Textbox control and bind it to your List object.</p>
+
+<p>Alternatively, create Textbox control on the fly.</p>
+
+<pre><code>for(int i=1; i&lt;=books.Count; i++)
+{
+  var textBoxCtrl = new TextBox()
+  textBoxCtrl.ID = "TextBox"+i.toString();
+  textBoxCtrl.Text = books[i];
+
+  Page.Controls.Add(textBoxCtrl);
+}
+</code></pre>

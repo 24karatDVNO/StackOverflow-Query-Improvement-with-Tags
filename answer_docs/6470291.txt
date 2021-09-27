@@ -1,0 +1,24 @@
+<p>In your setTimeout calls, 'this' is not equal to the element you think it is, it's equal to the DOMWindow.  Try this version instead as I found it to be simpler.</p>
+
+<pre><code>function gallery() {
+    var imgs = $('.cornerimg.');
+    var timer = 8000; // default starting time
+
+
+    var fade = function(element) {
+        setTimeout(function() {
+            element.addClass('cornerimgfocus');
+        }, timer);
+
+        timer += 8000;
+
+        setTimeout(function() {
+            element.removeClass('cornerimgfocus');
+        }, timer);
+    };
+
+    for (var i = 0; i &lt; imgs.length; i += 1) {
+        fade(imgs.eq(i));
+    }
+}
+</code></pre>

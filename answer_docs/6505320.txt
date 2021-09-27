@@ -1,0 +1,36 @@
+<p>In this case - and because I smell homework - you should use one base class <code>Player</code> and a subclass for each player type.</p>
+
+<p>Example:</p>
+
+<pre><code>public abstract class Player {
+ // some attributes and methods all players share
+
+ public abstract String whatTypeOfPlayer();
+}
+</code></pre>
+
+<hr>
+
+<pre><code>public WicketPlayer extends Player {
+ @Override
+ public String whatTypeOfPlayer() {
+   return "Wicket Player";
+ }
+}
+</code></pre>
+
+<hr>
+
+<p><strong>Bonus</strong> - then I'd use a factory to create players:</p>
+
+<pre><code>public PlayerFactory {
+ enum PlayerType {WICKETPLAYER, BATSMAN, BOWLER, ALLROUNDER}
+
+ public static Player createPlayer(PlayerType type, String name) {
+   switch(type) {
+     case WICKETPLAYER : return new WicketPlayer(name);
+     //...
+   }
+ }
+}
+</code></pre>

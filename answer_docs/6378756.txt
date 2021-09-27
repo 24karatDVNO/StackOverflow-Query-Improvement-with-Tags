@@ -1,0 +1,10 @@
+<p>I think liho1eye has it right in the comment.</p>
+
+<p>This really has nothing to do with .NET and more to do with what method you're using to pass the args to your program.</p>
+
+<p>Are you running it from a CMD.exe shell?</p>
+
+<p>The fix is to either get rid of the trailing backslash, or double it, like so:</p>
+
+<pre><code>-ci:"d:\TFS\iRMA-4.2-P1\Applications.JobExecutor\bin\x86\Debug\Image Cache\\" 
+</code></pre>

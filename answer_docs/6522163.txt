@@ -1,0 +1,8 @@
+<p>It looks like you are grabbing the page request querystring and adding it to the session container at some point.  Instead of grabbing the whole querystring and putting it in the seesion couldn't you just grab the part of the querystring you need and save it to a specfic session key?</p>
+
+<p>For instance: </p>
+
+<pre><code>Session["TitleTag"] = Request.QueryString["TitleTag"]
+</code></pre>
+
+<p>Then you can reference Session["TitleTag"] when you need it.  This way you don't have to parse the string and the data contained in the session is more self describing.</p>

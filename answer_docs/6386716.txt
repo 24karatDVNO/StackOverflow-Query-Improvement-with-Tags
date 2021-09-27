@@ -1,0 +1,33 @@
+<p>I can offer a way to know if the user clicked on a browser button (back, forward, closing browser, etc...). I couldn't find any way to figure out which button was clicked,
+But I hope it will help you.</p>
+
+<p>To know if the user clicked on a browser button, follow these steps:
+1. Register window.beforeunload event.
+2. In the handler, check event.clientY.
+3. If event.clientY is not defiend or event.clientY&lt;0, then you know the user clicked a browser button.</p>
+
+<p>For example: <br/>
+(You probably will have to change the code to fit it to your problem)</p>
+
+<pre>
+function beforeUnloadHandler(eventArg)
+{
+   var _e = window.event || eventArg;
+
+   // browser button click
+   if (isNaN(_e.clientY) || _e.clientY &lt; 0) 
+   {
+       // unload process will continue
+       // and unload event will be fired
+       return;
+   }
+
+   // a confirmation with 'test alert' text will appear
+   // if the user clicks 'Cancel', the unload process will stop 
+   // and unload event won't be fired.
+   return "test alert";
+}
+window.onbeforeunload = beforeUnloadHandler;
+</pre>
+
+<p>This code will work in all major browsers: chrome, ff, ie9,ie8,ie7,ie6, opera 11, opera 10, safari 3,4,5.</p>

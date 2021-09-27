@@ -1,0 +1,63 @@
+<p>My approach would be to change this into something the compiler is already good at: type checking.</p>
+
+<p>Based on the use of constants in your example I'm going to assume you have a known set of potential values, which suggests <code>enum</code>s.</p>
+
+<pre><code>public class MyRepo
+    private enum Preferred {
+        PATH("new_path"),
+        OTHER_THING("bar");
+
+        private String value;
+
+        Preferred(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+             return value;
+        }
+    }
+
+    private enum Legacy {
+        PATH("old_path"),
+        OTHER_THING("foo");
+
+        private String value;
+
+        Legacy(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+             return value;
+        }
+    }
+
+    public load(Node node){
+        migrateProperty(node, Legacy.PATH, Preferred.PATH);
+
+        //load the properties
+        loadProperty(node, Preferred.PATH);
+    }
+
+    public void migrateProperty(Node node, Legacy oldBusted, Preferred newHotness) {
+        if (node.hasProperty(oldBusted)) {
+            Property property = node.getProperty(oldBusted);
+            node.setProperty(newHotness, (Value) property);
+            property.remove();
+        }
+    }
+
+    public void loadProperty(Node node, Preferred path) {
+        //load the property from the node
+    }
+}
+</code></pre>
+
+<p>If this doesn't fit your needs, add some more info about your usage scenario and what the underlying problem is that you're trying to solve.</p>
+
+<hr>
+
+<p>If you're really set on accomplishing this via annotations, it appears there <em>is</em> a way. Java 6 has annotation processing APIs built into <code>javac</code>, which seem to effectively be plugins for the compiler. They can do what you're after plus a whole lot more, but they seem pretty esoteric, at least on first glance. This looks like a good intro: <a href="http://today.java.net/pub/a/today/2008/04/10/source-code-analysis-using-java-6-compiler-apis.html" rel="nofollow">http://today.java.net/pub/a/today/2008/04/10/source-code-analysis-using-java-6-compiler-apis.html</a></p>

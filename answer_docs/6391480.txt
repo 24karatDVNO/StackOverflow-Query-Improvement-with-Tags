@@ -1,0 +1,8 @@
+<p>When OpenCV was built using 'WITH_QT_OPENGL', above problem occures.</p>
+
+<p><strong>Solutions:</strong></p>
+
+<ol>
+<li>Build OpenCV without 'WITH_QT_OPENGL' option.  It will completely removes all errors.</li>
+<li>Or to work around- Re-attach the draw buffer (i.e. glDrawBuffer only with default buffer object or with framebuffer object (FBO) both FBO and texture/render buffer, you could valid this using 'glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);' )</li>
+</ol>

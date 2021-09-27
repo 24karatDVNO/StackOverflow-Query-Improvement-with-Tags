@@ -1,0 +1,11 @@
+<p>You will need to create a <code>robots.txt</code> file containing the following:</p>
+
+<pre><code>User-agent: *
+Disallow: /
+</code></pre>
+
+<p>and place it in <code>usr/local/psa/admin/htdocs</code>. Note that the location might vary depending on your installation.</p>
+
+<p>Afterwards, verify that the file served at <code>http://my.domain.com:8443/robots.txt</code> points to this file and has the same contents. Also make sure that <code>http://my.domain.com/robots.txt</code> (the port serving your public site [usually the implied port 80]) <em>does not</em> point to the same file. If it does then you site won't be indexed at all.</p>
+
+<p>This file will tell Google and other bots to not index the Plesk pages such as the login page. For more info about robots.txt check the <a href="https://www.google.com/support/webmasters/bin/answer.py?hl=en&amp;answer=156449&amp;ctx=cb&amp;src=cb&amp;cbid=-112hkfkbg6bjn&amp;cbrank=2" rel="nofollow">Google Help page about robots.txt</a> or <a href="http://www.google.com/support/webmasters/bin/answer.py?answer=164734" rel="nofollow">Remove a page or site from Google's search results</a>. Additionally you may want to add your domain to the <a href="https://www.google.com/webmasters/tools/" rel="nofollow">Google Webmaster Tools</a> and check that the Plesk pages have indeed been removed by checking the <a href="https://www.google.com/webmasters/tools/removals" rel="nofollow">removals page</a>.</p>

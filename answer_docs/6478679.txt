@@ -1,0 +1,45 @@
+<p>What you need here is in the "subprocess" module, which makes it simple to start processes and connect their input and output pipes </p>
+
+<p>To avoid blocking just do the input and output in separate processes. You can do that with "os.fork":</p>
+
+<p><pre><code>import os
+import subprocess
+execute = subprocess.Popen(
+    'execute',
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE
+)
+if os.fork():
+    #feed data into the input
+    while True:
+        input = ...
+        execute.stdin.write(input)
+else:
+    outGenerator=Out
+    #do something with the output
+    for outline in execute.stdout:
+        print outline<br>
+</pre></code></p>
+
+<p>Or you can split the input and output code into two files, then use something like this as the "<strong>main</strong>":</p>
+
+<p><pre><code>import os
+import subprocess
+generateInput = subprocess.Popen(
+    ['python','generateInput.py'],
+    stdout=subprocess.PIPE
+)
+execute = subprocess.Popen(
+    'execute',
+    stdin=generateInput.stdout,
+    stdout=subprocess.PIPE
+)
+generateOutput = subprocess.Popen(
+    ['python','generateOutput.py'],
+    stdin=execute.stdout
+)
+execute.communicate()</pre></code></p>
+
+<p>which is just the long way of saying </p>
+
+<p><pre><code>python generateInput.py | execute | python gnerateOutput.py</pre></code></p>

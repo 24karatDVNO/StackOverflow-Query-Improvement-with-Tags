@@ -1,0 +1,63 @@
+<p>I determined the problem.  The issue was that the EditText was inside the RelativeLayout...I think that messed with the padding, or perhaps the EditText's layout_height="wrap_content" meant that it extended vertically.  Here's the reworked XML:</p>
+
+<pre><code>    &lt;RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"&gt;
+    &lt;ImageButton
+        android:id="@+id/IBSearchOverlayMic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/aslctr_search_overlay_blackbutton"
+        android:src="@drawable/search_overlay_ic_microphone" /&gt;
+    &lt;ImageView
+        android:id="@+id/IVSearchOverlayDivider1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/IBSearchOverlayMic"
+        android:src="@drawable/search_overlay_division" /&gt;
+    &lt;ImageButton
+        android:id="@+id/IBSearchOverlaySearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/IVSearchOverlayDivider1"
+        android:background="@drawable/aslctr_search_overlay_blackbutton"
+        android:src="@drawable/search_overlay_ic_searchwhite" /&gt;
+    &lt;ImageView
+        android:id="@+id/IVSearchBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/IBSearchOverlaySearch"
+        android:layout_alignBottom="@id/IBSearchOverlaySearch"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/IBSearchOverlaySearch"
+        android:layout_centerVertical="true"
+        android:background="@drawable/search_overlay_searchbg" /&gt;
+    &lt;EditText
+        android:id="@+id/ETSearchOverlaySearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/IBSearchOverlaySearch"
+        android:layout_alignBottom="@id/IBSearchOverlaySearch"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/IBSearchOverlaySearch"
+        android:layout_marginTop="5dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginBottom="0dip"
+        android:paddingBottom="0dip"
+        android:maxLines="1"
+        android:scrollHorizontally="true" /&gt;
+    &lt;ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/IBSearchOverlaySearch"
+        android:layout_alignTop="@id/IBSearchOverlaySearch"
+        android:layout_alignBottom="@id/IBSearchOverlaySearch"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dip"
+        android:clickable="false"
+        android:focusable="false"
+        android:src="@drawable/search_actionbar_ic_searchcream" /&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>

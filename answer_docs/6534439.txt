@@ -1,0 +1,8 @@
+<p>A few possible options</p>
+
+<ul>
+<li>Perform the resizing in the background so it doesn't hold up the main thread.</li>
+<li>Cache the resized image after doing it so there is only a delay the first time (this could be used in conjunction with doing it in the background so there is no delay on the scrolling)</li>
+<li>Are you downloading the images?  If so, download a thumbnail first and display that.  Then if the image is selected, display the thumbnail scaled up to full screen which will look blocky, but then download the full-size image in the background and display that when it has loaded.</li>
+<li>If you aren't downloading the images, but they are included in the app, just include thumbnails as well and display them instead</li>
+</ul>

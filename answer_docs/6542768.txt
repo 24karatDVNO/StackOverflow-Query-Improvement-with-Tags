@@ -1,0 +1,43 @@
+<p>I'm just playing here, but one approach that might work for you is to provide your own <code>destroy</code> function and disambiguate the call in favour of it by adding a wrapper class around the Third_Party_Lib pointer...</p>
+
+<pre><code>#include &lt;iostream&gt;
+
+namespace Third_Party_Lib
+{
+    struct X { };
+    void destroy(X*) { std::cout &lt;&lt; "Third_Party_Lib::destroy()\n"; }
+}
+
+template &lt;typename T&gt;
+struct Wrap
+{
+    Wrap(const T&amp; t) : t_(t) { }
+    operator T&amp;() { return t_; }
+    operator const T&amp;() const { return t_; }
+    T t_;
+};
+
+namespace Mine
+{
+
+#if TEST_MODE
+    // this destroy will be called because it's a better match
+    // not needing Wrap::operator T&amp;...
+    void destroy(Wrap&lt;Third_Party_Lib::X*&gt;) { std::cout &lt;&lt; "Mine::destroy()\n"; }
+#endif
+
+    struct Q
+    {
+        Q(Third_Party_Lib::X* p) : p_(p) { }
+        ~Q() { destroy(Wrap&lt;Third_Party_Lib::X*&gt;(p_)); }
+        Third_Party_Lib::X* p_;
+    };
+}
+
+#if TEST_MODE    
+int main()
+{
+    Mine::Q q(new Third_Party_Lib::X);
+}
+#endif
+</code></pre>

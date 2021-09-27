@@ -1,0 +1,18 @@
+<p>-http://twitter.com/username (this is http)
+-https://twitter.com/username (this is https)
+-twitter.com/username (without http)
+-@username( with @)
+-username (without @)</p>
+
+<pre><code>var username  = "@test";
+    var r1 = new RegExp('^((?:http://)?|(?:https://)?)?(?:www\\.)?twitter\\.com/(\\w+)$', 'i');
+            if (r1.test(username) == false) {
+                var r2 = new RegExp('^@?(\\w+)$', 'j');
+                if (r2.test(username) == true)
+                    return true;
+                else
+                    return false;
+            } else {
+                return true;
+            }
+</code></pre>

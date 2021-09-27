@@ -1,0 +1,38 @@
+<p>Javascript in_array function</p>
+
+<blockquote>
+  <p>function in_array (needle, haystack, argStrict) {</p>
+  
+  <p>// Checks if the given value exists in the array  </p>
+  
+  <p>// *     example : in_array('vlado', {0: 'Kevin', vlado: 'van', 1: 'Zonneveld'});</p>
+  
+  <p>// *     returns : false   </p>
+  
+  <p>// *     example : in_array('van', ['Kevin', 'van', 'Zonneveld']);</p>
+  
+  <p>// *     returns : true</p>
+  
+  <p>var key = '',        strict = !! argStrict;</p>
+  
+  <p>if (strict) {</p>
+
+<pre><code>  for (key in haystack) {
+
+      if (haystack[key] === needle) { return true;}
+   }
+</code></pre>
+  
+  <p>} else {</p>
+
+<pre><code>  for (key in haystack) {
+
+    if (haystack[key] == needle) { return true; }
+
+  }
+</code></pre>
+  
+  <p>} 
+     return false;
+  }</p>
+</blockquote>

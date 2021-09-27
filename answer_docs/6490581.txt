@@ -1,0 +1,22 @@
+<p>Second option ( without grouping ) is by using internal row numbering, and limiting the row number to the first occurence.</p>
+
+<p><pre><code>set @gallery_id = '';
+set @num  = 1;</p>
+
+<p>SELECT *
+FROM gallery
+    INNER JOIN (
+        select id, picture, gallery_id
+        from (
+            select
+                id, 
+                picture, 
+                gallery_id,
+                @num := if(@gallery_id = gallery_id, @num + 1, 1) as row_number,
+                @gallery_id := gallery_id as dummy
+            from pictures
+        ) as pictureRows
+        where pictureRows.row_number = 1
+    ) as firstPicture ON firstPicture.gallery_id = gallery.id;</pre></code></p>
+
+<p>Hope this helps for you</p>

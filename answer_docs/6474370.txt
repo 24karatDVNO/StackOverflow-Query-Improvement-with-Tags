@@ -1,0 +1,16 @@
+<p>Try to put 2 glues, one at first one at last:</p>
+
+<pre><code>jpanelCases.setLayout(new BoxLayout(this.jpanelCases, BoxLayout.X_AXIS));
+
+jpanelCases.add(Box.createHorizontalGlue());
+
+db = Database.getInstance();
+List&lt;Category&gt; cats = db.getCategories();
+for(Category c : cats){
+            JPanel jp = new JPanel();
+            //addition of other components to the newly created panel here
+            jpanelCases.add(jp);
+}
+
+jpanelCases.add(Box.createHorizontalGlue());
+</code></pre>

@@ -1,0 +1,13 @@
+<p>This workaround only applies to WPF applications.  Currently Silverlight does not support the x:TypeArguments property that is required in the deriving control’s XAML root tag.</p>
+
+<p>If you must have Silverlight controls that derive from a generic base class you have to do some extra work.  Basically you need to have an extra class in the middle so that the UserControl would derive from a non-generic class</p>
+
+<p>Base class:  public class GenericBase : UserControl</p>
+
+<p>Middle class:  public class MiddleStringControl : GenericBase</p>
+
+<p>UserControl:  public class UserControlWithGenericBase : MiddleStringControl </p>
+
+<p>you may see this web page</p>
+
+<p><a href="http://blogs.msdn.com/b/wpfsldesigner/archive/2010/01/22/known-issue-controls-deriving-from-a-generic-base-class-must-be-in-separate-assembly.aspx" rel="nofollow">deriving-from-a-generic-base-class</a></p>

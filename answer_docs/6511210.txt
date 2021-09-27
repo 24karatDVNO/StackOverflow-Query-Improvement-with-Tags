@@ -1,0 +1,15 @@
+<p>to close this one up, the function should look like this ($i was in the wrong loop):</p>
+
+<pre><code>public function getArtistTracks(){
+    if( $tracks = getTracks() ){
+        $i = 0;
+        foreach ( $tracks['results'] as $track ){
+            // $artistName is an array of strings (defined as public)
+            $name[$this-&gt;artistName][$i] = $track['name'];
+            $i++;               
+        }
+    }
+
+    return $name;
+}
+</code></pre>

@@ -1,0 +1,12 @@
+<p>I found a way to make it works. I just added this to the activescaffold controller:</p>
+
+<pre><code>  def before_create_save(record)
+    record.device_attributes = params[:record][:device_attributes]
+  end
+
+  def before_update_save(record)
+    record.device_attributes = params[:record][:device_attributes]
+  end
+</code></pre>
+
+<p>It's not the cleaner way to do it, but i didn't find other way.</p>

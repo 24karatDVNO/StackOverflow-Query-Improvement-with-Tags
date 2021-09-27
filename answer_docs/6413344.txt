@@ -1,0 +1,9 @@
+<p>Unfortunately (or fortunately, it depends how you take a look at it), it is not easy to develop generic panes usable for several data structures. M is often tightly related to V, and V often contains some C.</p>
+
+<p>I tend to put the V pane and the corresponding M structure in the same package. You also need some central controlling displayer to display each individual panes. The C is shared between the central controlling displayer and the panes themselves. </p>
+
+<p>Now, if you need more structure in your project, you could <em>highjack</em> the <a href="http://struts.apache.org/2.2.1/index.html" rel="nofollow">Struts 2</a> framework to move all the C in some actions and have panes (the V) indicate what should be the next M/V to display. Struts is originally developed for web applications, but Struts 2 is now detached from the HttpServlet.</p>
+
+<p>I have not tried this myself, but I see some benefits. You could JUnit test screen sequences without actually display screens. Just create panes instances pane and invoke the listening methods with events (mouse click etc...). </p>
+
+<p>Just an idea.</p>

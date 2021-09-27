@@ -1,0 +1,9 @@
+<p>There is no COUNT DISTINCT in Access, try using a subquery:</p>
+
+<pre><code>SELECT ade.Office, Count(*) as DomainsCount FROM 
+(SELECT DISTINCT Office, Domain FROM [AD Employees]) ade
+GROUP BY ade.Office
+</code></pre>
+
+<p>(written quickly, might require fine tuning)<br>
+Note that if you save that query and then edit it in SQL view, Access has a strange behaviour, changing parentheses into squera brackets, and forcing you to re-edit the parentheses around the subquery before saving.</p>

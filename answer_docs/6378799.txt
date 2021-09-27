@@ -1,0 +1,9 @@
+<p>Try something like:</p>
+
+<pre><code>for(Item item : catalog.itemList) {
+    item.getProperty();
+    // ... and so on.
+}
+</code></pre>
+
+<p>as your <code>Catalog</code> class is not iterable, but it's itemList List is.</p>

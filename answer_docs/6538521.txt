@@ -1,0 +1,13 @@
+<p>For proper rounding:</p>
+
+<pre><code>    function roundNumber(number, digits) {
+        var multiple = Math.pow(10, digits);
+        var rndedNum = Math.round(number * multiple) / multiple;
+        return rndedNum;
+    }
+</code></pre>
+
+<p>For rounding up:</p>
+
+<pre><code>number.toFixed(4);
+</code></pre>

@@ -1,0 +1,8 @@
+<p>It might be that the defaults are different, are you setting the port when you initialise your driver </p>
+
+<pre><code>jdbc:jtds:&lt;server_type&gt;://&lt;server&gt;[:&lt;port&gt;][/&lt;database&gt;][;&lt;property&gt;=&lt;value&gt;[;...]]
+</code></pre>
+
+<p>Something like this <code>jdbc:jtds:sqlserver://nameofyourdatabaseserver.or.ipaddress:port/yourdatabasename</code></p>
+
+<p>Try using the full dns name for your server or the IP address</p>

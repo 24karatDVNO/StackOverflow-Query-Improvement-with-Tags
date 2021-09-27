@@ -1,0 +1,24 @@
+<p>I had the same problem.  I was using a join table and all I had with a row id field and two foreign keys.  I don't know the exact caused but I did the following</p>
+
+<ol>
+<li>Upgraded MySQL to community 5.5.13</li>
+<li>Rename the class and table</li>
+<li><p>Make sure I had hashcode and equals methods</p>
+
+<pre><code>@Entity 
+@Table(name = "USERGROUP")
+public class UserGroupBean implements Serializable {
+private static final long serialVersionUID = 1L;
+
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+@Column(name = "USERGROUP_ID")
+private Long usergroup_id;
+
+@Column(name = "USER_ID")   
+private Long user_id;
+
+@Column(name = "GROUP_ID")
+private Long group_id;
+</code></pre></li>
+</ol>

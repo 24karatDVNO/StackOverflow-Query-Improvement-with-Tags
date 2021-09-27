@@ -1,0 +1,5 @@
+<p>It's not easy to answer your question because there is a missing part that is concerned by the business requirements that often drive the design. I'm doing DDD since several years and what helps me much when making a model is a business langage (translated to UL) and the requirments I should take into account.</p>
+
+<p>I'm not sure you're concerned about the DDD but from your question I can say you're on the good tracks. For me the relationship between the Design and the Color could be effectively a ColoredDesign or ColouredDesign abstractions for example. Design and Color beeing just a part from which you're composing another abstraction that is important in you model. Thus your Fabric class is a very good thing you've introduced. It may contain a logic of creating a ColouredDesign objects, contains the constraints on how it should be constructed and so on. Then the client doesn't care about the creation logic and is not coupled to the creational constraints of the objects it consumes.</p>
+
+<p>So from the few details I can read in your question I think is a viable design. Maybe others have another point of view on that.</p>

@@ -1,0 +1,14 @@
+<p>you can either make a public var inside the class like this:</p>
+
+<pre><code>public var birmingham : MovieClip;
+</code></pre>
+
+<p>and use it afterwards or create a getter like this to read out information:</p>
+
+<pre><code>public function get birmingham() : MovieClip
+{
+   return this.getChildByName("birmingham") as MovieClip;
+}
+</code></pre>
+
+<p>in both cases you should be able to use birmingham.x</p>

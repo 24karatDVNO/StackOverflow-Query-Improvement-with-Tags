@@ -1,0 +1,10 @@
+<p>Basically onSaveInstanceState(Bundle outBundle) will give you a bundle.
+When you look at the Bundle class, you will see that you can put lots of different stuff inside it. At the next call of onCreate(), you just get that Bundle back as an argument.
+Then you can read your values again and restore your activity.</p>
+
+<p>Lets say you have an activity with an EditText. The user wrote some text inside it.
+After that the system calls your onSaveInstanceState().
+You read the text from the EditText and write it into the Bundle via Bundle.putString("edit_text_value", theValue).</p>
+
+<p>Now onCreate is called. You check if the supplied bundle is not null. If thats the case,
+you can restore your value via Bundle.getString("edit_text_value") and put it back into your EditText.</p>

@@ -1,0 +1,23 @@
+<p>Hera add a default value in the lsit...</p>
+
+<pre><code>&lt;asp:DropDownList ID="DropDownList1" runat="server" Width="146px"&gt;
+&lt;asp:ListItem Selected="True"&gt;Select One&lt;/asp:ListItem&gt;
+&lt;asp:ListItem&gt;Ceiling Speaker&lt;/asp:ListItem&gt;
+&lt;asp:ListItem&gt;Remote Microphone&lt;/asp:ListItem&gt;
+&lt;asp:ListItem&gt;Digital Source Player&lt;/asp:ListItem&gt;
+&lt;asp:ListItem&gt;Remote paging Console&lt;/asp:ListItem&gt;
+&lt;asp:ListItem&gt;Modular Mixer&lt;/asp:ListItem&gt;
+&lt;asp:ListItem&gt;Select One&lt;/asp:ListItem&gt;
+</code></pre>
+
+<p></p>
+
+<p>but try something like seleted item instead of  selectedvalue  beacuse u have'nt defined values in the list items..</p>
+
+<pre><code>    if (string.IsNullOrEmpty(DropDownList1.SeletedItem))  
+</code></pre>
+
+<p>For textbox also</p>
+
+<pre><code>  txtProductName = DropDownList1.SeletedItem).ToString();
+</code></pre>

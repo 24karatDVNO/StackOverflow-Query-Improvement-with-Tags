@@ -1,0 +1,17 @@
+<p>It will check when installing for required frameworks.  Read below, link to MSDN at the bottom.</p>
+
+<p>From MSDN:</p>
+
+<blockquote>
+  <p>Before installing an application on a client computer, ClickOnce will examine the client to ensure that it has certain requirements specified in the application manifest. These include the following:</p>
+  
+  <p>The minimum required version of the common language runtime, which is specified as an assembly dependency in the application manifest.</p>
+  
+  <p>The minimum required version of the Windows operating system required by the application, as specified in the application manifest using the  element. (See  Element (ClickOnce Application))
+  The minimum version of any and all assemblies that must be preinstalled in the global assembly cache (GAC), as specified by assembly dependency declarations in the assembly manifest.
+  ClickOnce can detect missing prerequisites, and you can install prerequisites by using a bootstrapper. For more information, see How to: Install Prerequisites with a ClickOnce Application.</p>
+</blockquote>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/h4k032e1%28v=VS.100%29.aspx" rel="nofollow">ClickOnce - Application Deployment Prerequisites</a></p>
+
+<p>Make sure you select your version of Visual Studio/.net at the top.</p>

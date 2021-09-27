@@ -1,0 +1,13 @@
+<p>How does the code sample fit into the rest of your source code?</p>
+
+<p>Rather than using</p>
+
+<pre><code>mydata += "&lt;option value='"+subid+"'&gt;"+subname+"&lt;/option&gt;";
+</code></pre>
+
+<p>in your .each function, you would be better off using</p>
+
+<pre><code>$("#fillsubject").append("&lt;option value='"+subid+"'&gt;"+subname+"&lt;/option&gt;");
+</code></pre>
+
+<p>I don't know what you're doing with <code>mydata</code> after the code sample you post, but since .post is asynchronous, <code>mydata</code> may have already been displayed to the user when your js gets the reply from your server.  If this is the case, then the suggestion above will work as expected.</p>

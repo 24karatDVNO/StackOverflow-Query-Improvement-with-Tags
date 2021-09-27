@@ -1,0 +1,18 @@
+<p>Sadly, I don't think Objective-C 2.0 properties will work for you because I don't think you can specify any kind of forwarding in the property declaration.</p>
+
+<p>You can't have one macro that will insert text in two different places. However, you can use two macros like so:</p>
+
+<pre><code>//This could also take the third argument and discard it, if you like
+#define FORWARDI(type, prop) - (type)prop;
+#define FORWARDM(type, prop, owner) - (type)prop { return owner.prop; }
+
+//In the header...
+FORWARDI(float, nPistons)
+
+//In the implementation...
+FORWARDM(float, nPistons, self.engine)
+</code></pre>
+
+<p>If you don't mind the methods not showing up in the header file (for example, if you will only use these methods inside the class's implementation itself), you can just as well use the implementation file macro by itself.</p>
+
+<p>This is agnostic to the type of the owner, but it should work with any expression.</p>

@@ -1,0 +1,9 @@
+<p>You need to end this line:</p>
+
+<pre><code>$db = mysql_select_db($db_name, $connection) or die(mysql_error())
+</code></pre>
+
+<p>change it to:</p>
+
+<pre><code>$db = mysql_select_db($db_name, $connection) or die(mysql_error());
+</code></pre>

@@ -1,0 +1,3 @@
+<p>I assume that java loaders execute on the other process. And .NET code just specifies correct arguments for the command line - then you can use environment variables for the whole process. </p>
+
+<p>Environment variables are global to the whole process (that is all threads will have access to them even newly created ones). Here's <a href="http://msdn.microsoft.com/en-us/library/z46c489x.aspx" rel="nofollow">how</a> to set a variable in C#.</p>

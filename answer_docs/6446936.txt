@@ -1,0 +1,18 @@
+<p>You don't refer to the unbound control from another class, it is not the right approach.</p>
+
+<p>Rather inform the other class when the unbound control is changed. You do that in the modified method of the checkbox control:</p>
+
+<pre><code>boolean modified()
+{
+    boolean ret = super();
+    ;
+    salesTableForm.parmSpecialAction(this.value());
+    return ret;
+}
+</code></pre>
+
+<p>In this case the <code>SalesTableForm</code> is informed of the change of the checkbox by calling a method <code>parmSpecialAction</code> (name arbitrarily chosen).</p>
+
+<p>The other route (you indicated in the question) would be to inform the class about the existence of the control and let the class call <code>control.value()</code> directly. However this will usually make the form and the class tightly coupled, which is not what we want. The controls belongs to the form where they were born and should not be passed around.  </p>
+
+<p>Ironically the <code>SalesTableForm.enableUpdateJournalButtons</code> method violates this rule, as it accepts button controls as parameters. The correct approach would be to calculate (and cache) the <code>enableWathever</code> values in getter functions, then let the form call the getters and enable or disable its own buttons. </p>

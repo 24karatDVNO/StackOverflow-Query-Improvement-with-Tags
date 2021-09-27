@@ -1,0 +1,11 @@
+<p>According to this discussion:
+<a href="http://groups.google.com/group/blacklight-development/browse_thread/thread/a22ee4636a70b485" rel="nofollow">http://groups.google.com/group/blacklight-development/browse_thread/thread/a22ee4636a70b485</a></p>
+
+<p>it used to be the other way around.</p>
+
+<p>You might be able to figure out how to reverse it by digging into what changes they made when they fixed it.</p>
+
+<p>Specifically this one has a hack that overrode plugin routes with app routes by loading the class inside of the Routing::RouteSet class
+<a href="http://robots.thoughtbot.com/post/159805560/tips-for-writing-your-own-rails-engine" rel="nofollow">http://robots.thoughtbot.com/post/159805560/tips-for-writing-your-own-rails-engine</a></p>
+
+<p>Obviously it's older rails - but I figured you might get some inspiration for your own needs :)</p>

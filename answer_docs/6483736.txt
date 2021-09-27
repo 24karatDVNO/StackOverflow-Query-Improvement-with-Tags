@@ -1,0 +1,15 @@
+<p>Doh... fixed - totally my own fault.</p>
+
+<p><strong>I had set up my html.dropdownlistfor like so</strong>
+@Html.DropDownListFor(x=>x.Name,</p>
+
+<p><strong>When it should've been like so:</strong>
+@Html.DropDownListFor(x=>x.DockTemplateColumn.Id,</p>
+
+<p>Setting the first argument to x=>x.DockTemplateColumn.Id (which uniquely identifies the items in my list) instead of x.Name fixed the issue straight away.</p>
+
+<p>Just thought I'd post it here in case someone else makes the same mistake I did.</p>
+
+<p><strong>edit</strong>
+Found the answer here: 
+<a href="https://stackoverflow.com/questions/4579598/c-mvc-3-using-selectlist-with-selected-value-in-view">C# mvc 3 using selectlist with selected value in view</a></p>

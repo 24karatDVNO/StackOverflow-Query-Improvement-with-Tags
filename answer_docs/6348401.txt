@@ -1,0 +1,8 @@
+<p>I can think of a few things.</p>
+
+<ol>
+<li>Make a wrapperclass for the IList that contains an extra boolean changed.</li>
+<li>Use some variable (a boolean for instance) that you make true when you do an add/remove/edit action, and make it false again when you did the redraw.</li>
+<li>Keep a copy of the list your're drawing (or only of some index that are present) and check if the 'incoming' and 'last drawed' list are the same</li>
+<li>Use an ObservableCollection</li>
+</ol>

@@ -1,0 +1,9 @@
+<p>Use this query.</p>
+
+<pre><code>SELECT
+  e.event_id,t.task_seq,a.name as 'script'
+FROM
+  EVENT e, TASK_HANDLER t
+WHERE
+  e.event_id = t.event_id
+</code></pre>

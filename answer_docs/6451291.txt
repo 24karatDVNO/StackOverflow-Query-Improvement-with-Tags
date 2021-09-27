@@ -1,0 +1,8 @@
+<p>Use target.prependJavaScript(). This is executed <em>before</em> the DOM replacement. While #appendJavaScript() is <em>after</em>.</p>
+
+<p>Additionally with 1.5-RC5 Wicket supports PubSub in its Javascript and it publishes an event for "/dom/node/removing" and "/dom/node/added" channels respectively before and after the DOM replacement.</p>
+
+<p>You can subscribe with (use IHeaderResponse to add this Javascript to your page):
+Wicket.Event.subscribe(channelName);</p>
+
+<p>where 'channelName' is either fully qualified name as the ones above or '*' which will listen for all channels.</p>

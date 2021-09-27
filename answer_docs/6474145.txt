@@ -1,0 +1,7 @@
+<p>If you add the following line to your AndroidManifest.xml in your activity then it will resize your layout so you can see it. It should work, but depends how you've got your layout arranged - you might get a weird effect!</p>
+
+<pre><code>&lt;activity name="myActivity"
+    android:windowSoftInputMode="stateVisible|adjustResize"&gt;
+    ...
+&lt;/activity&gt;
+</code></pre>

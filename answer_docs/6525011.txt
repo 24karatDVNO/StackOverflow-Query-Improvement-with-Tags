@@ -1,0 +1,36 @@
+<h3>Problem:</h3>
+<p>The Problem is caused by a typedef declared in the including file:</p>
+<p>File [main.c]:</p>
+<pre><code>#include &lt;glib.h&gt;
+//...
+#if (!GLIB_CHECK_VERSION(2,11,0))
+typedef pid_t GPid;
+#endif
+//...
+#include &quot;someheader.h&quot;
+//...
+</code></pre>
+<p>File [someheader.h]:</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &quot;unitid.h&quot;
+//...
+</code></pre>
+<p>File [unitid.h]:</p>
+<pre><code>typedef struct _unitID {
+    int sock;           // socket
+    unsigned long au;    // the AU ID
+} unitID;
+</code></pre>
+<p>The error with the first typedef cascades all the way into unitid.h, causing the strange behaviour. Because we're building with an older version of Glib, the typedef causes an error.</p>
+<h3>Solution</h3>
+<p>The solution was to add a platform check to handle the difference in how the two platforms deal with PIDs as can be seen in [main.c]:</p>
+<pre><code>//...
+#if (!GLIB_CHECK_VERSION(2,11,0))
+#ifdef WIN32
+  typedef void* GPid;
+#else
+  typedef int GPId;
+#endif
+#endif
+//...
+</code></pre>

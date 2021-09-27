@@ -1,0 +1,10 @@
+<p>This should give you the results:</p>
+
+<pre><code>SELECT MIN(`id`) `id_from`, MAX(`id`) as `id_to`, COUNT(1) `count_id`
+FROM `session`
+GROUP BY (FLOOR(IF(id&gt;0, id-1, id) / 10));
+</code></pre>
+
+<p>Please feel free to change the table and column names as per your schema.</p>
+
+<p>Hope this helps.</p>

@@ -1,0 +1,4 @@
+<pre><code>&lt;input type="hidden" name="xmlfile" value="&lt;?php echo htmlspecialchars($xml)" /&gt;
+</code></pre>
+
+<p>would do the trick. But if the XML is always the same, why not just put the file onto the server and read it there, rather than wasting bandwidth sending it each time?</p>

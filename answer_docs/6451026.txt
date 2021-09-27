@@ -1,0 +1,14 @@
+<pre><code>$('#foobox').animate({marginLeft: '354'}, 1000).data( 'open', true );
+</code></pre>
+
+<p>Give a data every time you open a div, then every time you open a div also check if all the other divs have <code>.data('open') == true</code>, if so you it means they are open, so close them and remove that data value.</p>
+
+<p><strong>EDIT</strong></p>
+
+<p>You could also store the opened element to a variable, like:</p>
+
+<pre><code>$('#foobox').animate({marginLeft: '354'}, 1000);
+$opened_element = $('#foobox');
+</code></pre>
+
+<p>Then when you open another box, simply close $opened_element. Probably it must be a global variable though, giving your code.</p>

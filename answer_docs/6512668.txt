@@ -1,0 +1,14 @@
+<p>Try adding .stop() to the chain of functions (http://api.jquery.com/stop/):</p>
+
+<pre>
+$('div.sidebar_content_con').hover(function () {
+    $(this).children('.sidebar_details_container').stop().slideDown(500, function() {
+        $(this).children('.sidebar_details, .sidebar_click').stop().fadeIn(500);   
+    });
+
+},function(){
+    $(this).children('.sidebar_details_container').stop().slideUp(500)
+    $('.sidebar_details, .sidebar_click').stop().fadeOut(500);                                                 
+});
+
+</pre>

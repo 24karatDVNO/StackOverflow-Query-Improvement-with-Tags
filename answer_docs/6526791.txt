@@ -1,0 +1,30 @@
+<p>Rolled into a self submitting page, something such as this should do;</p>
+
+<pre><code>&lt;?php 
+if($_POST['submit']){
+   $username=$_POST['username'];
+   $amount=$_POST['amount'];    
+   echo ("$username has invited $amount people");
+   print_form($amount); 
+}else{
+?&gt;
+&lt;form method="POST" action="&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;"&gt;
+   &lt;label for="username"&gt;Your Name&lt;/label&gt;
+   &lt;input type="text" name="username" /&gt;
+   &lt;label for="amount"&gt;Amount&lt;/label&gt;
+   &lt;select name="amount"&gt;
+       &lt;?php
+        for($i=1;$i&lt;=20;$i++){
+           $el.='&lt;option value="'.$i.'"&gt;'.$i.'&lt;/option&gt;';
+        }
+        print $el;      
+       ?&gt;
+   &lt;/select&gt;
+   &lt;input type="submit" name="submit" /&gt;
+&lt;/form&gt;
+&lt;?php } ?&gt;
+</code></pre>
+
+<p>Then its just a matter of creating the <code>print_form()</code> function and passing it the amount of times to print.</p>
+
+<p>You should maybe have a look at this thread also with regards '<a href="https://stackoverflow.com/questions/5338821/printing-contents-with-php">Printing contents with PHP</a>'</p>

@@ -1,0 +1,13 @@
+<p>I once did a project at my university to implement arithmetic operations on all kind of numbers (including Integer, Double etc...) or other data structures (such as Intervals or Complex Numbers etc...)</p>
+
+<p>The only way to achieve this is to implement a wrapper class for all the different types:</p>
+
+<pre><code>public interface NumberWrapper&lt;T&gt; {
+
+ public T add(T other);
+ public T substract(T other);
+ public T sin();
+}
+</code></pre>
+
+<p>We didn't find a framework to support us in any way.</p>

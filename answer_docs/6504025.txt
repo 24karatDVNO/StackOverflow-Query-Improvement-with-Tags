@@ -1,0 +1,3 @@
+<p>There seems to be a problem if you are using a <code>WordDelimiterFilterFactory</code>. The problem is described here <a href="http://www.mail-archive.com/solr-user@lucene.apache.org/msg30631.html" rel="nofollow">http://www.mail-archive.com/solr-user@lucene.apache.org/msg30631.html</a></p>
+
+<p>As described in the link above, one solution might be to add <code>preserveOriginal="1"</code> to your <code>WordDelimiterFilterFactory</code>. I tried this and it worked for me. However, (being new to SOLR) I don't know whether there are any drawbacks to this approach (apart from increasing the index size).</p>

@@ -1,0 +1,8 @@
+<p>You can do it via html like cloudlight suggest. But I have done it in another way using richtextboxcontrol. This is the link for the class file. 
+<a href="http://support.microsoft.com/kb/812425" rel="nofollow">http://support.microsoft.com/kb/812425</a>  </p>
+
+<p>I did receipt printing for POS machine before, I found it very easy to create a rtf file as my template. Then using the richtextboxcontrol, i read in the rtf file content, and replace the segment I want to changes.  </p>
+
+<p>For example, if name is a variable, in my rtf file, I would put something like <code>&lt;NAME&gt;</code>, after reading, all I need to do is to use string.replace.   </p>
+
+<p>Depends on how you customized it, I did it to the extend that I was able to change single variable and multiple lines of item using the same template.</p>

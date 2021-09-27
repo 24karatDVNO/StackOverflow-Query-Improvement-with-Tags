@@ -1,0 +1,16 @@
+<p>Pass a list of tuples in the form of <code>[(position1, [video1, video2, ...]), (position2,[...])]</code> --</p>
+
+<pre><code>list_of_credits =[]
+for position in positions:
+    list_of_videos=[]
+    for video in profile.videocredit_set.filter(position=position):
+        list_of_videos.append(video)
+    list_of_credits.append((position,list_of_videos))
+
+{% for item in list_of_credits %}
+    &lt;p&gt;&lt;b&gt;{{item.0}}&lt;/b&gt;&lt;/p&gt;
+    {% for video in item.1 %}
+        &lt;p&gt;{{video}}&lt;/p&gt;
+    {% endfor %}
+{% endfor %}
+</code></pre>

@@ -1,0 +1,11 @@
+<p>The demo has been removed but the code is still available.</p>
+
+<pre><code>$('.scrollPage').click(function() {
+   var elementClicked = $(this).attr("href");
+   var destination = $(elementClicked).offset().top;
+   $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 500 );
+   return false;
+});
+</code></pre>
+
+<p>The main reason this wouldn't work would be if you didn't manage to get a position for the destination element - so check var destination to see what value you get back...</p>

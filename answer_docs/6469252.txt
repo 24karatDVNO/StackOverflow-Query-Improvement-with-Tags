@@ -1,0 +1,3 @@
+<p>If you don't need partial results, you can use regular AJAX and just keep the connection open until the result is in (this is sometimes called <a href="http://en.wikipedia.org/wiki/Reverse_Ajax" rel="nofollow">Reverse Ajax</a>). You can implement this in PHP, no need to use Python (although Python is certainly up to the job as well).</p>
+
+<p>More important than the language is a web server that supports a high number of concurrent threads &ndash; most web servers work with a limited pool of threads. Longstanding connections  use up this pool. Therefore, either use a highly concurrent platform like <a href="http://nodejs.org/" rel="nofollow">node.js</a> or simply cache the result and thereby limit the number of concurrent, long-running threads.</p>

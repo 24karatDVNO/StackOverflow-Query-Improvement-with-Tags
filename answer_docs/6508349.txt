@@ -1,0 +1,14 @@
+<pre><code>sqlQuery(Race, paste("SELECT [PACE], AVG(PACE) FROM [Bill] UNION [STEVE] WHERE columnName["age"] &lt; 24"))
+</code></pre>
+
+<p>I'm not a master in SQL-server/T-SQL and I have no experience developing R, but in SQL the syntax is not so different from this.</p>
+
+<p>But you could separate the queries like this (I have no clue if the syntax is good):</p>
+
+<pre><code>sqlQuery(Race, paste("SELECT [PACE] FROM [Bill] UNION [STEVE] WHERE [PACE].age &lt; 24"))
+</code></pre>
+
+<p>then:</p>
+
+<pre><code>sqlQuery(Race, paste("SELECT AVG([PACE].age) FROM [Bill] UNION [STEVE]"))
+</code></pre>

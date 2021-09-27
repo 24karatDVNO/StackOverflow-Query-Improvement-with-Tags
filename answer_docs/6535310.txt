@@ -1,0 +1,10 @@
+<p>To actually write a "custom JSP tag" you need to import a J2EE framework library class(es) for JSP engine to specifically make a custom JSP tag e.g. javax.servlet.jsp.tagext.;
+The HTML documentation for that API system including the JSP engine can be found inside any J2EE compliant server.</p>
+
+<p>More than this! because the first answer did not tell you (important) , "almost all tags in JSP JSPX JSF pages whether thought to be proprietry server internal or custom built are actually a custom tag!", they simply use parts of the server JSP servlet(current thread) J2EE API, A good example is JSTL tags are simply truthfully only a custom tag set not anything different.</p>
+
+<p>Custom tag code has special "names of methods" in the tag(alike Java bean names) for tag attribute processing that relate in a special XML tag configuration file for the server domain called a Tag Library Descriptor (.tld extension).You must configure a TLD to the tag and its placement in the server and the tag names and the tags attributes(if any) for the custom tag to operate. Both JSTL or JSF proprietry or a programmers own custom tags all require a standard DTD TLD configuration file apart to the standard web.xml application configuration file.</p>
+
+<p>There are three main types of custom tag and all are used similar to XML syntax, 1. simple (no attributes and no wrapping content as a pair by start tag and end tag and is an empty(XML spec.) tag)  , 
+2. body content processing (may or may not have attributes on the tag but has a separate start and end tag to wrap page content) 
+3. is an empty tag alike the simple but has attributes to process and configure.</p>

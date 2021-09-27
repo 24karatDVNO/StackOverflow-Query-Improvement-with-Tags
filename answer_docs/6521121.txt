@@ -1,0 +1,14 @@
+<p>I can not see any error in your code, maybe it could be re-written like this.</p>
+
+<pre><code>$(".nav_button").hover(function(){
+  m = $(this).children("ul");
+  if (m.css("display") == "none"){
+   m.slideDown(300);
+  }
+  else{
+   m.slideUp(300);
+  }
+});
+</code></pre>
+
+<p>In this way you are looking the element only one time in the DOM</p>

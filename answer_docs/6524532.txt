@@ -1,0 +1,10 @@
+<p>Make velocity static and have a static method to update it. This way, you can still make instances of particle and update the velocity for all of them.</p>
+
+<pre><code>var particle = function() {
+  // particle stuff
+}
+particle.velocity = 1;
+particle.updateVelocity = function(newVelocity) {
+  this.velocity = newVelocity
+}
+</code></pre>

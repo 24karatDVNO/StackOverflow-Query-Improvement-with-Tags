@@ -1,0 +1,9 @@
+<p>I don't think there is a standard way to do it for every music player out there. At least for the Android music player you could do:</p>
+
+<pre><code>Intent i;
+i = new Intent("com.android.music.musicservicecommand");
+i.putExtra("command", "pause");
+context.sendBroadcast(i);
+</code></pre>
+
+<p>Another way to do it would be to set the stream volume for type "music" to 0, and play your announcement on another stream type.</p>

@@ -1,0 +1,11 @@
+<p>Your <code>Makefile</code> should look something like this.</p>
+
+<pre><code>hello.ko: hello.c
+  make ARCH=um -C "/home/abhijit/play/kernel/linux-2.6" M=`pwd` modules
+
+obj-m:= hello.o
+objs:= hello.o
+</code></pre>
+
+<p>and you should have a <code>module_init</code> and <code>module_exit</code> defined in your source file.
+Do you have these things?</p>

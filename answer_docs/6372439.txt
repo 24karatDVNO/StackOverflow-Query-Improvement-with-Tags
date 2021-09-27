@@ -1,0 +1,10 @@
+<p>The strings <code>"\n"</code> and <code>"/n"</code> are very different. The first has 1 character (plus a null terminator); the second has 2 characters (plus a null terminator).</p>
+
+<p>The character used for line termination is <code>'\n'</code>. <code>puts()</code> appends one such character automatically.</p>
+
+<p>The following statements do the same thing (they may return a different value, but that isn't used in the example below):</p>
+
+<pre><code>printf("full line\n");
+fputs("full line\n", stdout);
+puts("full line");
+</code></pre>

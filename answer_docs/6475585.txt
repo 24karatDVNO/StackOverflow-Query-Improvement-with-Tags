@@ -1,0 +1,5 @@
+<p>I recommend using console.log statements to see why something is unexpectedly null. Check the debugger to look at the stacktrace. That might help. It's impossible from what you've shown to tell you more. But stepping through or using console statements to see where things deviate in Firefox or Chrome and IE8 will help you solve this issue.</p>
+
+<p>One thing I've noticed is that IE 8 is much slower about rendering things so often when it's related to something null when it isn't in other browsers it might be because of an assumption about execution time. This may be an issue where you just need to defer JavaScript execution with a setTimeout or _.defer if you're using underscore.</p>
+
+<p>If you run into more trouble just update the question or leave a comment. </p>

@@ -1,0 +1,17 @@
+<p>An alternate approach that I use in my projects is to use alternate Ruby syntax for quoting, such as:</p>
+
+<pre><code>insert_after :homepage_products do
+  %(
+    &lt;h1&gt;Promotional Item&lt;/h1&gt;
+    &lt;% products=Product.find_by_sql('select * from products where id in (select product_id from products_taxons where taxon_id in (select id from taxons where name="Promotion"))') %&gt;
+    &lt;%= render 'shared/products', :products =&gt; products, :taxon =&gt; @taxon %&gt;
+  )
+end
+</code></pre>
+
+<p>Of course you can also put your code into a partial and supply the partial to the hook</p>
+
+<pre><code>insert_after :homepage_products, 'shared/hooks/_after_homepage_products'
+</code></pre>
+
+<p>It's also worth mentioning that in the latest spree versions this hook system is being deprecated in favor of the <a href="https://github.com/railsdog/deface" rel="nofollow">deface</a> gem.</p>

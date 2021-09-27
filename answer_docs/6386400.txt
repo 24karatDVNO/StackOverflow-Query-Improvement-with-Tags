@@ -1,0 +1,4 @@
+<p>I use snapshot in my system. It is not free, that's for sure, but the alternatives are not free either - blocking uses up resources too. Using rowlock does not always help.
+Also snapshot gives you a consistent point in time snapshot of your data; otherwise you are exposed to some subtle bugs.</p>
+
+<p>One more thing: you can get deadlocks even if you have only one table, examples here: <a href="http://sqlblog.com/blogs/alexander_kuznetsov/archive/2009/01/01/reproducing-deadlocks-involving-only-one-table.aspx" rel="nofollow">Reproducing deadlocks involving only one table </a></p>

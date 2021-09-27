@@ -1,0 +1,55 @@
+<p>There is a naming mistake. Here is a working copy of your code .
+<a href="http://jsfiddle.net/hXarY/" rel="nofollow">http://jsfiddle.net/hXarY/</a></p>
+
+<p>You can try using "<strong>firebug</strong>" to catch such errors if you do not already do.</p>
+
+<pre><code>function isVowel(aCharacter)
+    {
+        return ((aCharacter == 'a') || (aCharacter == 'A')||
+                (aCharacter == 'e') || (aCharacter == 'E')||
+                (aCharacter == 'i') || (aCharacter == 'I')||
+                (aCharacter == 'o') || (aCharacter == 'O')||
+                (aCharacter == 'u') || (aCharacter == 'U')||
+                (aCharacter == 'y') || (aCharacter == 'Y'));
+    }
+
+
+function myF(sString)  // this should be sString , not aString
+{
+    // variable to hold resultString
+    var resultString = '';
+
+    // variable to hold the current and previous characters
+    var currentCharacter = '';
+    var precedingCharacter = '';
+
+    // in the case of the first character in the string there is no
+    // previous character, so we assign an empty string '' to the variable at first
+    //precedingCharacter = '';
+
+    // TODO  part (ii)
+    // add code as directed in the question
+
+     var i = 0;
+    for( i; i &lt; sString.length; ++i)
+    {
+
+        currentCharacter = sString.charAt(i);
+        if (isVowel(currentCharacter) &amp;&amp; (!isVowel(precedingCharacter)))
+        {
+        resultString = resultString + 'ub';
+        }
+        resultString = resultString + currentCharacter;
+        precedingCharacter = currentCharacter;
+    } 
+
+    return resultString;
+}
+
+var string1 = "the cat sat on the mat"; 
+var result1 = myF(string1);
+document.write(string1);//THIS ISN'T GOING TO BE DISPLAYED, BUT WHY?
+
+document.write('&lt;BR&gt;');
+document.write(result1);
+</code></pre>

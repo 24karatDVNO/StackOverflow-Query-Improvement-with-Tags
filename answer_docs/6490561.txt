@@ -1,0 +1,14 @@
+<p>Do you mean something like this?</p>
+
+<pre><code>&lt;?php
+    $string = "[video:8:name,link]";
+    $string = trim($string, "[]");
+
+    $videoMetaData = explode(",", $string);
+    $nameArray = explode(":", $videoMetaData[0]);
+
+    $name = $nameArray[2];
+    $link = $videoMetaData[1];
+
+    echo "&lt;a href='".$link."'&gt;".$name."&lt;/a&gt;";
+</code></pre>

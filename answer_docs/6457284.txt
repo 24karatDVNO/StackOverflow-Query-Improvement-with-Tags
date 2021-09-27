@@ -1,0 +1,21 @@
+<p>If I understand your requirements correctly, you want this set up (ASCII art to the fore):</p>
+
+<pre><code>o----+-----&gt;|  A   |----+----&gt;|  B  |----&gt;o
+     |                  ^
+     |                  |
+     +------------------+
+</code></pre>
+
+<p>with the additional constraint that if process A closes up shop, process B should be able to continue with the input stream going to B.</p>
+
+<p>This is a non-standard setup, as you realize, and can only be achieved by using an auxilliary program to drive the input to A and B.  You end up with some interesting synchronization issues but it will all work remarkably well as long as your messages are short enough.</p>
+
+<p>The plumbing necessary to achieve this is notable - you'll need two pipes, one for the input to A and the other for the input to B, and the output of A will be connected to the input of B as well.</p>
+
+<pre><code>o----&gt;|  C  |----------&gt;|  A   |----+----&gt;|  B  |----&gt;o
+         |                          ^
+         |                          |
+         +--------------------------+
+</code></pre>
+
+<p>Note that C will be writing the data twice, once to A and once to B.  Note, too, that the pipe from A to B is the same pipe as the pipe from C to A.</p>

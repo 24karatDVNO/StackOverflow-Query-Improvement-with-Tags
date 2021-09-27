@@ -1,0 +1,10 @@
+<p>In my career I learned several assembly languages, you didn't mention which but it appears Intel x86 (segmented memory model as PaxDiablo pointed out). However, I have not used assembly since last century (lucky me!). Here are some of your answers:</p>
+
+<ol>
+<li>The EBP register is pushed onto the stack at the beginning because we need it further along in other operations of the routine. You don't want to just discard its original value thus corrupting the integrity of the rest of the application.</li>
+<li>If I remember correctly (I may be wrong, long time) it is the other way around, we are moving %esp INTO %ebp, remember we saved it in the previous line? now we are storing some new value without destroying the original one.</li>
+<li>Actually they are SUBstracting the value of four (4) FROM the contents of the %esp register. The resulting value is not stored on "four" but on %esp. If %esp had 0xFFF8 after the SUB it will contain 0xFFF4. I think this is called "Immediate" if my memory serves me. What is happening here (I reckon) is the computation of a memory address (4 bytes less).</li>
+<li>The value $0x8048490 I don't know. However, it is NOT being moved INTO %esp but rather INTO THE ADDRESS POINTED TO BY THE CONTENTS OF %esp. That is why the notation is (%esp) rather than %esp. This is kind of a common notation in all assembly languages I came about in my career. If on the other hand the right operand was simply %esp, then the value would have been moved INTO the %esp register. Basically the %esp register's contents are being used for addressing.</li>
+<li>It is a fixed value and the string on the right makes me think that this value is actually the address of the puts() (Put String) compiler library routine.</li>
+<li>"leave" is an instrution that is the equivalent of "pop %ebp". Remember we saved the contents of %ebp at the beginning, now that we are done with the routine we are restoring it back into the register so that the caller gets back to its context. The "ret" instruction is the final instruction of the routine, it "returns" to the caller.</li>
+</ol>

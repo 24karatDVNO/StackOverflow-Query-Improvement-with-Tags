@@ -1,0 +1,10 @@
+<p>Add partial class for your TableAdapter, and add method, or property, as you want, with this code: </p>
+
+<pre><code>        for (int i = 0; (i &lt; this.CommandCollection.Length); i = (i + 1))
+        {
+            if ((this.CommandCollection[i] != null))
+            {
+                ((global::Oracle.DataAccess.Client.OracleCommand)(this.CommandCollection[i])).BindByName = value;
+            }
+        }
+</code></pre>

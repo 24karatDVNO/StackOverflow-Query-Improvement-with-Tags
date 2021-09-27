@@ -1,0 +1,8 @@
+<p>If they have your database root password, they can do anything. SQL can most definitely select from other databases inside the same server, using the same mechanism as you do for referring to multiple tables:</p>
+
+<pre><code>select database1.table.field, database2.othertable.otherfield, etc...
+</code></pre>
+
+<p>Using 'root' to do your front-end facing stuff is NEVER a good idea. Especially if you're writing vulnerable code. Always created a dedicated user with JUST the privileges you need. A simple blog engine, for instance, does not need to the rights to alter a table, drop a database, or change privileges.</p>
+
+<p>Your logs would only show GET query parameters. If all the hacking with POST calls, the logs will not contain the actual data sent, so most likely you're SOL on that front. If you've got mysql binary logging enabled, there'll be a lot of every query executed.</p>

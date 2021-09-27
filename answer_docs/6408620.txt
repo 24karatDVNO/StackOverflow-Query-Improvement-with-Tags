@@ -1,0 +1,17 @@
+<p>You may be able to click a button on the form with the User32 dll if you know the forms handle.</p>
+
+<p>I use <a href="http://www.pinvoke.net/" rel="nofollow">PInvoke.net</a> to look up the methods</p>
+
+<p>In order to work out whether the screen has opened / closed you could create a windows hook that fires when a screen opens or closes. You will need to have a C++ library to do this as its not possible in c#, but you only need to create a small C++ assembly then reference it from your c#. You can check the title of a window when it opens to see if its the window you want, then you can get the window handle and see when it closes.</p>
+
+<p>Some information on how to implement hooks can be found here.</p>
+
+<p><a href="http://www.voidnish.com/Articles/ShowArticle.aspx?code=manipwindows" rel="nofollow">http://www.voidnish.com/Articles/ShowArticle.aspx?code=manipwindows</a></p>
+
+<p>The C++ assembly I used once is called GlobalCBTHook.</p>
+
+<p>Here is another link from code project that shows global window hooks</p>
+
+<p><a href="http://www.codeproject.com/KB/system/WilsonSystemGlobalHooks.aspx" rel="nofollow">http://www.codeproject.com/KB/system/WilsonSystemGlobalHooks.aspx</a></p>
+
+<p><strong>The link above is the one that got me started</strong></p>

@@ -1,0 +1,9 @@
+<pre><code> $string = "Today is - Friday and tomorrow is - Saturday";
+ $first_dash = strpos($string, '-');
+ $second_dash = strpos($string, '-', $first_dash+1);
+ $new_string = substr($string, $second_dash+1);
+</code></pre>
+
+<p><a href="http://www.php.net/manual/en/function.strpos.php" rel="nofollow">strpos</a></p>
+
+<p><a href="http://www.php.net/manual/en/function.substr.php" rel="nofollow">substr</a></p>

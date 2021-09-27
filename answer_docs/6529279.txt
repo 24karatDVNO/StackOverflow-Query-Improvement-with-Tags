@@ -1,0 +1,12 @@
+<p>the issue is likely your packaging/installation of your war and/or missing OSGi bundles...</p>
+
+<p>see this <a href="http://cmoulliard.blogspot.com/2009/03/servicemix-4-as-web-application-server.html" rel="nofollow">blog post</a> for info on using Servicemix as a web server...</p>
+
+<p>essentially something like this...</p>
+
+<pre><code>osgi:install -s war:file:/tmp/sample.war?Webapp-Context=sample
+</code></pre>
+
+<p>then you should be able to go to <a href="http://localhost:8080/sample" rel="nofollow">http://localhost:8080/sample</a></p>
+
+<p>also, <a href="http://fusesource.com/docs/esb/4.3/esb_deploy_osgi/UrlHandlers-War.html" rel="nofollow">this guide</a> should help explain the OSGi war commands a bit...</p>

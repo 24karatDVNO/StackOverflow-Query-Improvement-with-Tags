@@ -1,0 +1,12 @@
+<p>Ok, it seems like Xcode 4 creates plists with Dictionary as it's root type. If you want to use an array you have to open the .plist file in another text editor (probably doable in Xcode too) and change &lt; dict >&lt; /dict /> to &lt; array >.</p>
+
+<p>Also, it wasn't necessary to use an array at all. This also worked:</p>
+
+<pre><code>// Changed my array to a dictionary. 
+NSDictionary * posts;   
+
+// Get the cell text.
+NSString * cellText = [[NSString alloc] initWithFormat:@"%i", indexPath.row]; 
+// fill it with content
+post.textLabel.text = [posts valueForKey:cellText];
+</code></pre>

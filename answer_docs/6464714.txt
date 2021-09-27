@@ -1,0 +1,56 @@
+<p>I pretty much used @Asaf's solution, however I refined it a bit to hold true with remove operations as well:</p>
+
+<pre><code>class ConcurrentInsertionOrderSet extends ConcurrentSkipListSet{
+        Map&lt;Object, Integer&gt; orderMap;
+        final AtomicInteger increment = new AtomicInteger();
+        public ConcurrentInsertionOrderSet(final Map&lt;Object, Integer&gt; orderMap) {
+            super(new Comparator&lt;Object&gt;() {      
+                public int compare(Object o1, Object o2) {
+                    return (orderMap.get(o1).compareTo(orderMap.get(o2)));
+                }
+            });
+            this.orderMap = orderMap;
+        }
+
+        @Override
+        public boolean add(Object o) {
+            if (!orderMap.containsKey(o)) 
+                orderMap.put(o, increment.incrementAndGet());
+            return super.add(o);
+        }
+        @Override
+        public boolean remove(Object o) {
+            boolean b = super.remove(o);
+            if(b)
+                orderMap.remove(o);
+            return b;
+        }
+    }
+</code></pre>
+
+<p>And for Test:</p>
+
+<pre><code>public static void main(String[] str){
+        ConcurrentSkipListSet set  = new ConcurrentInsertionOrderSet(new ConcurrentHashMap());
+        set.add("d");
+        set.add("b");
+        set.add("a");
+        set.add("c");
+        set.add("b");
+        set.add("c");
+        set.add("g");
+        System.out.println(set);
+        set.remove("b");
+        System.out.println(set);
+        set.remove("c");
+        set.add("c");
+        System.out.println(set);
+    }
+</code></pre>
+
+<p>Output is a nice and consistent:<br>
+[d, b, a, c, g]<br>
+[d, a, c, g]<br>
+[d, a, g, c]<br></p>
+
+<p>But I guess @axel22 's concern about race condition still holds.</p>

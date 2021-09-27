@@ -1,0 +1,6 @@
+<p>Could you not do something like the following?</p>
+
+<pre><code>preg_match('/^Cookie: (\w\d)+/m', curl-getinfo($ch), $matches);
+</code></pre>
+
+<p>The regex isn't that good - it would likely need tightening up with regards to the subpattern I have there used.  However, I have just tested the regex and it works as intended.  Hope that helps.</p>

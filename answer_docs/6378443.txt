@@ -1,0 +1,36 @@
+<p>I am by <em>no means</em> a jQuery expert, so there may well be a better way to do this.  But I've written a simple function (I believe it's really a super-simple jQuery plugin) like this:</p>
+
+<pre><code>jQuery.fn.disabled = function (tf) {
+    $('input,textarea,checkbox,select',this).attr('disabled',tf);
+    if ( tf)
+        this.addClass('disabled');
+    else
+        this.removeClass('disabled');
+    return tf;
+}
+</code></pre>
+
+<p>Then you can call $('#select2').disabled( false ) when select1 is selected.  I.e.:</p>
+
+<pre><code>$(document).ready(function(){
+    $('#select1').change(function(){
+        $('#select2').disabled( $(this).val() == '' );
+    });
+    $('#select2').change(function(){
+        $('#select3').disabled( $(this).val() == '' );
+    });
+})
+</code></pre>
+
+<p>The advantage of the .disabled() function is twofold:
+ 1) It disables <em>and</em> un-disables, based on the value of the boolean passed to it, so you don't need to duplicate the "should this be enabled or disabled?" logic everywhere.
+ 2) It also "greys out" text, so if you wanted to wrap your  in a  or  with some descriptive text, you could call the function on the wrapping element, and the text would be greyed out, along with disabling the select (or any other input elements).</p>
+
+<p>For the greyed-out text to work properly, you also need a 'disabled' class in your CSS.  Mine is quite simply:</p>
+
+<pre><code>.disabled {
+    color: #808080;
+}
+</code></pre>
+
+<p>You may want something different to match your own theme.</p>

@@ -1,0 +1,89 @@
+<p>Try with the following sample code</p>
+
+<pre><code>@Override
+    private void showLogoutDialog() {
+
+
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(TaskList.this);
+        myAlertDialog.setTitle("test");
+        myAlertDialog.setCancelable(true);
+
+        myAlertDialog.setMessage("Do you want to logout?");
+        myAlertDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        arg0.dismiss();
+
+                          doLogout();
+
+                        /*Intent cameraIntent = new Intent(
+                                android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, 500);*/
+
+                        // finish();
+                    }
+                });
+
+        myAlertDialog.setNegativeButton("NO",
+                new DialogInterface.OnClickListener() {
+
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        arg0.dismiss();
+                    }
+                });
+        AlertDialog alert = myAlertDialog.create();
+
+        myAlertDialog.show();
+    }
+
+
+
+
+
+
+
+    public boolean onKeyDown( int keyCode,  KeyEvent event)
+     {
+      //  bLogout=false;
+
+         if (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; event.getRepeatCount()==0) 
+         {
+             if(!bTemp)
+             {
+                  showLogoutDialog();
+                  return false;
+
+             }
+
+             else
+             {
+                 bTemp=false;
+                 if(!bLogout)
+                 {
+                      return super.onKeyDown(keyCode, event);
+                 }
+                 else
+                 {
+                     bLogout=false;
+                     return true;
+                 }       
+             }
+
+         }
+         else 
+             return super.onKeyDown(keyCode, event);
+     }
+
+    /**
+     * 
+     */
+    void doLogout(){
+        // do logout related actions eg close database close inpu out putstream if exists,
+        finish();
+    }
+</code></pre>

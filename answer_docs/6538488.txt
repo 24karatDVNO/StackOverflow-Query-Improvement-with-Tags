@@ -1,0 +1,45 @@
+<p>How's this?</p>
+
+<pre><code>#!perl
+
+use strict;
+use warnings;
+
+my @starts = qw(5   5   44  44  44  64  104 580 632);
+my @ends =   qw(108 187 187 229 236 236 236 644 770);
+
+my @starts_new;
+my @ends_new;
+
+if ((scalar @starts) ne (scalar @ends)) {
+    die "Arrays are not of equal length!\n";
+}
+
+my %ranges;
+my $next_i = 0;
+for (my $i=0; $i &lt;= $#starts; $i=$next_i) {
+    # If nothing changes below, the next array item we'll visit is the next sequential one.
+    $next_i = $i + 1;
+
+    # Init some temp stuff.
+    my $start = $starts[$i]; # this one shouldn't change during this "for $i" loop
+    my $end = $ends[$i];
+    for (my $j=$i+1; $j &lt;= $#ends; $j++) {
+        if ($starts[$j] &lt;= $end) {
+            # This item further down the @starts array is actually less than
+            # (or equal to) the current $end.
+            # So, we need to "skip" this item in @starts and update
+            # $end to reflect the corresponding entry in @ends.
+            $next_i = $j +1;
+            $end = $ends[$j] if ($ends[$j] &gt; $end);
+        }
+    }
+    # We have a valid start/end pair.
+    push (@starts_new, $start);
+    push (@ends_new, $end);
+}
+
+for (my $i=0; $i &lt;= $#starts_new; $i++) {
+    print "$starts_new[$i], $ends_new[$i]\n";
+}
+</code></pre>

@@ -1,0 +1,22 @@
+<p>Let us say your collection is List where Person is a Custom Class you have defined.</p>
+
+<p>You should read a small subset of data from either a Service or Isolated Storage and set it as below.</p>
+
+<p>In the VirtualizedDataSource.cs file update the getter of "this" property as under</p>
+
+<pre><code> if (itemToReturn == null)
+ {
+      if (simpleCache.Count &gt;= CACHE_SIZE)
+      {
+        DataItem oldItem = simpleCache.Dequeue();
+        Debug.WriteLine("Purging\t" + oldItem.Index + "\t" + oldItem.Text);
+        oldItem.Text = "DEAD ITEM";
+      }
+
+      itemToReturn = **new Person();**
+      text += "\t" + itemToReturn.Text;
+      simpleCache.Enqueue(itemToReturn);
+ }
+</code></pre>
+
+<p>Hope this helps.</p>

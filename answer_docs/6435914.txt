@@ -1,0 +1,17 @@
+<p>Be sure to update the lines variable of your tableview after adding the new line.</p>
+
+<pre><code>CONTROLS: gr_table TYPE TABLEVIEW USING SCREEN &lt;your_screen_here&gt;.
+DATA: gt_data TYPE STANDARD TABLE OF &lt;your_type_here&gt;,
+      gs_data LIKE LINE OF gt_data.
+
+PROCESS BEFORE OUTPUT.
+DESCRIBE TABLE gt_data LINES gr_table-lines.
+LOOP AT gt_data INTO gs_data 
+        WITH CONTROL gr_table 
+              CURSOR gr_table-current_line.
+ENDLOOP.
+
+
+PROCESS AFTER INPUT.
+&lt;adding_the_new_line_somewhere_here&gt;
+</code></pre>

@@ -1,0 +1,3 @@
+<p>You could use the TPL in .NET 4 to handle this in a potentially simpler manner.  All you need to do is pass around an appropriate <code>TaskScheduler</code>.  With a <code>TaskScheduler</code> created from the UI context, any call can easily be wrapped into a <code>Task</code> that will execute on the UI thread as needed. </p>
+
+<p>For details, see my <a href="http://reedcopsey.com/2010/03/18/parallelism-in-net-part-15-making-tasks-run-the-taskscheduler/" rel="nofollow">blog post on the subject</a>.</p>

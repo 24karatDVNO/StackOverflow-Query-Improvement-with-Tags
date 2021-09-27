@@ -1,0 +1,7 @@
+<p>Have you tried cleaning your workspace or creating a new one?</p>
+
+<p>The rollback functionality (http://msdn.microsoft.com/en-us/library/dd380776.aspx) should return deleted files and remove newly added ones.  </p>
+
+<p>To test this you should be able to create a new workspace get latest from the changeset prior to rollback.  Then create a new workspace and get latest from the changeset checked in after the rollback.</p>
+
+<p>Creating the new workspaces is not required but is just used to rule out environmental/workspace issues.</p>

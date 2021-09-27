@@ -1,0 +1,32 @@
+<p>confusing what do you want to achieve here, do you want to:</p>
+
+<p>create array with value: temp0, temp1, temp2 ...</p>
+
+<pre><code>for($i=0;$i&lt;4;$i++){
+    array_push($array,"temp{$i}");
+}
+echo $array[3];
+</code></pre>
+
+<p>create array with value: 0, 1, 2, 3 ..</p>
+
+<pre><code>for($i=0;$i&lt;4;$i++){
+    array_push($array,$i);
+}
+echo $array[3];
+</code></pre>
+
+<p>create array with value based on your defined variable above ($temp0, $temp1 ...)</p>
+
+<pre><code>$temp0=3;
+$temp1=2;
+$temp2=1;
+$temp3=1;
+
+$array = array();
+for($i=0;$i&lt;4;$i++){
+    $val = "temp{$i}";
+    array_push($array,$$val);
+}
+echo $array[3];
+</code></pre>

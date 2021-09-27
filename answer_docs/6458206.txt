@@ -1,0 +1,3 @@
+<p>First, make sure you have an index on your "Field3" in your table "A", and if possible include "Field1", "Field2" (covering index).  You don't say which database you are running so it is hard to be precise in giving any better advice.</p>
+
+<p>If that still doesn't speed it up, try creating a temp table, then inserting all the "IN" values and then "INNER JOIN" or "WHERE EXISTS" that temp table to your table "A".  </p>

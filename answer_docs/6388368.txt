@@ -1,0 +1,15 @@
+<p>You can do something like this:</p>
+
+<pre><code>select sum(sumcol) FROM (
+    select sum(col) as sumcol from table1
+    union all
+    select sum(col) as sumcol from table2
+    union all
+    select sum(col) as sumcol from table3
+    ...
+    union all
+    select sum(col) as sumcol from table100
+);
+</code></pre>
+
+<p>This is done with much less memory consumption when you sum-up in union parts, too.</p>

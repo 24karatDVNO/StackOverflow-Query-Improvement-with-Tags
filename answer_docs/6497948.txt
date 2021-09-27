@@ -1,0 +1,18 @@
+<p>If you are creating a specific type of user, I would use the Rails STI to manage the different user types. Your user.rb still has all your validation on user creating and some permissions, but you would have a</p>
+
+<p>normal_user.rb</p>
+
+<pre><code>class NormalUser &lt; User
+end
+</code></pre>
+
+<p>admin_user.rb</p>
+
+<pre><code>class AdminUser &lt; User
+end
+</code></pre>
+
+<p>Your migration would be to add 'type' to the users table. Then any existing user you wanted to make an admin you would just find and set their type to 'AdminUser'. Any admin specific actions you need, you can just use </p>
+
+<pre><code>User.is_a?(AdminUser)
+</code></pre>

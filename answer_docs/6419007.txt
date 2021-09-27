@@ -1,0 +1,27 @@
+<blockquote>
+  <p>Can I use Redis as a queue but is not
+  the best way to save information,
+  maybe MongoDB is?</p>
+</blockquote>
+
+<p>You can(should) use Redis as your queue. It is going to be extremely fast.</p>
+
+<p>I also think it is going to be very good option to save the information inside Redis. Unfortunately Redis does not do any timing(yet). I think you could/should use <a href="https://stackoverflow.com/questions/4762016/node-js-workers-background-processes/4782762#4782762">Beanstalkd</a> to put messages on the queue that get delivered when needed(every x seconds). I also think cron is not that a very good idea because you would be needing a lot of them and when using a queue you could do your work faster(share load among multiple processes) also. </p>
+
+<p>Also I don't think you need that much memory to save everything in memory(makes site fast) because dataset is going to be relative simple. Even if you aren't able(smart to get more memory if you ask me) to fit entire dataset in memory you can rely on <a href="http://redis.io/topics/virtual-memory" rel="nofollow noreferrer">Redis's virtual memory</a>.</p>
+
+<blockquote>
+  <p>It seems pretty simple but needing to
+  have more than 1 server to guarantee
+  the server is down and make everything
+  work together is not so easy.</p>
+</blockquote>
+
+<p>Sharding/replication is what I think you should read into to solve this problem(hard). Luckily Redis supports replication(sharding can also be achieved). MongoDB supports sharding/replication out of the box. To be honest I don't think you need sharding yet and your dataset is rather simple so Redis is going to be faster:</p>
+
+<ul>
+<li><a href="http://redis.io/topics/replication" rel="nofollow noreferrer">http://redis.io/topics/replication</a></li>
+<li><a href="http://www.mongodb.org/display/DOCS/Sharding+Introduction" rel="nofollow noreferrer">http://www.mongodb.org/display/DOCS/Sharding+Introduction</a></li>
+<li><a href="http://www.mongodb.org/display/DOCS/Replication" rel="nofollow noreferrer">http://www.mongodb.org/display/DOCS/Replication</a></li>
+<li><a href="http://ngchi.wordpress.com/2010/08/23/towards-auto-sharding-in-your-node-js-app/" rel="nofollow noreferrer">http://ngchi.wordpress.com/2010/08/23/towards-auto-sharding-in-your-node-js-app/</a></li>
+</ul>

@@ -1,0 +1,3 @@
+<p>The solution for me was to set the HelloApp as the StartUp project and then right click on the HelloApp project and choose "Project Dependencies..." and then check the HelloService.Tests project (the HelloService project was already checked).  Now when I hit F5 the test project gets run (because HelloService.Tests already had a post-build event on it to run itself)</p>
+
+<p>My only concern is if creating a project dependency creates some kind of code dependency.  My guess is it doesn't but I'd like to know for sure.</p>

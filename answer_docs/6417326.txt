@@ -1,0 +1,40 @@
+<p>This appears to be a bug in ActiveSupport.</p>
+
+<p>Here's how to replicate it reliably, without resorting to pasting characters (which is often unreliable).</p>
+
+<p>The relevant codepoints are:</p>
+
+<pre><code>TM symbol = 0x2122
+registered symbol = 0xAE
+</code></pre>
+
+<p>Code:</p>
+
+<pre><code>$KCODE = 'u'
+tm_char = [0x2122].pack('U')
+r_char = [0xAE].pack('U')
+tm_char.mb_chars.rindex(/\W/)  # error: malformed utf-8
+r_char.mb_chars.rindex(/\W/)  # ok, but I expected 0 instead of nil
+tm_char.mb_chars.rindex(tm_char)  # ok. but we're not using a regexp
+</code></pre>
+
+<p>I suspect it has to do with TM being a 3-byte UTF-8 char, while "(R)" is a 2-byte:</p>
+
+<pre><code>tm_char.bytes.to_a.inspect
+r_char.bytes.to_a.inspect
+</code></pre>
+
+<p>The same thing happens with mdash (0x2014).</p>
+
+<p>Ruby 1.9.2 doesn't have this issue:</p>
+
+<pre><code>[0x2122].pack('U').mb_chars.rindex(/\W/)  # =&gt; 0
+[0x2014].pack('U').mb_chars.rindex(/\W/)  # =&gt; 0
+</code></pre>
+
+<p>Here's an ugly workaround to find the last non-word character along with its index. It even works correctly rather than ignoring the multibyte symbols.</p>
+
+<pre><code>mb_string = "#{tm_char} foo#{tm_char}".mb_chars
+match, rev_idx = mb_string.chars.to_a.reverse.each_with_index.detect{|e,idx| e =~ /[^a-zA-Z0-9]/ }
+idx = mb_string.size - rev_idx - 1  # =&gt; 5
+</code></pre>

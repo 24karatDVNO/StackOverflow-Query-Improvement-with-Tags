@@ -1,0 +1,8 @@
+<p>Virtual table you've created is designed to provide full text queries. It's not aimed to fast processing standard queries using PK in where condition.
+In this case there is no index on your _id column, so SQLite probably performs full table scan.
+Next problem is your query - it's totally inefficient. Try something like this (untested):</p>
+
+<pre><code>SELECT * FROM dictionary WHERE _id = (select max(_id) from dictionary where _id &lt; ?)
+</code></pre>
+
+<p>Next thing you can consider is redesign of your app. Instead of loading 1 row you, maybe you should get let's say 40, load them into memory and make background data loading when there is less than n to one of the ends. Long SQL operation will become invisible to user even if it'll last 3s instead of 0,3s</p>

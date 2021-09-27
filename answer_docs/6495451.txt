@@ -1,0 +1,10 @@
+<p>When using a function with <code>jQuery.filter()</code>,  the first parameter is the index, not the element. You can fix this by using <code>this</code> instead:</p>
+
+<pre><code>var newRows = $("#search-results-table").find("tr");
+
+var filteredRows = newRows.filter(function(n) {
+  return !$(this).hasClass('hideGroup');
+});
+</code></pre>
+
+<p>However, take a look at some of the other answers. They provide a much shorter solution.</p>

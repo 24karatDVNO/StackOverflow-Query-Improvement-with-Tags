@@ -1,0 +1,8 @@
+<p>It is displaying asper the GMT+4.30 time.It displays like that only.When you are converting that date to string using the DateFormatter it gives the same date(Whichever you want like start date as 01/05/2010 10:15:33 and end date as 01/05/2010 10:45:33).</p>
+
+<pre><code>NSDateFormatter * dateformatter= [[NSDateFormatter alloc]init];
+[dateformatter setDateFormat:@"dd/MM/yyyy hh:mm:ss"];
+NSString *dat = [dateformatter stringfromDate:My_StartDate];
+</code></pre>
+
+<p>then you will get the output as 01/05/2010 10:15:33</p>

@@ -1,0 +1,5 @@
+<p>The idea of deploying the same web-app several times in order to reduce administration burden is good. </p>
+
+<p>But in my opinion, this isn't an acceptable solution : suppose you deploy a web-app twice. Once for a TEST environment and a second time for a PRODUCTION environment. The web-app may encounter exceptions/errors (typically, memory-related issues) that may lead the whole Tomcat server to crash. In such a situation, problems that were encountered in one environment would cause the other one to be unavailable.</p>
+
+<p>Therefore, I would rather install as many Tomcat instances as different environment. </p>

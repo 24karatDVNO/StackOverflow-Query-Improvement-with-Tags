@@ -1,0 +1,23 @@
+<p>You could do</p>
+
+<pre><code>for(int i=0;i&lt;number_of_times;i++)
+{
+....
+    if(i == number_of_times - 1)
+       Thread.Sleep(5000);//time in millsecond, namespace System.Threading
+}
+
+for(int i=0;i&lt;number_of_times;i++)
+{
+....
+    if(i == number_of_times - 1)
+       Thread.Sleep(3000);
+}
+
+for(int i=0;i&lt;number_of_times;i++)
+{
+....
+}
+</code></pre>
+
+<p>But I wonder why you want to do such a thing.</p>

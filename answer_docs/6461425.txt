@@ -1,0 +1,7 @@
+<p>From <a href="http://dev.twitter.com/pages/tweet_button" rel="nofollow">http://dev.twitter.com/pages/tweet_button</a>, </p>
+
+<p>"The count box shows how many times the URL has been Tweeted."</p>
+
+<p>Your problem is you simply have the url and counturl mixed up. Change url to the short one, for display purposes - that's the one people will see. Use the counturl for the one with all the parameters, to ensure they go to the right place with the parameters intact.</p>
+
+<p>I suspect the reason your count kept showing zero tweets is because you have a different (unique) url as your primary url each time it is tweeted, so each tweet is the first time that url (including its parameters) was shared.</p>

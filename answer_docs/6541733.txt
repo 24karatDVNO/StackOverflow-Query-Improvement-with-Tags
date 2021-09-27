@@ -1,0 +1,123 @@
+<p>I had a similar issue. I don't think it is a bug in your code, I'm leaning toward a bug in how the SqlDependency works. I did the same this as you, but I incrementally tested it. If the select statement return 1-100 rows, then it worked fine. If the select statement returned 1000 rows, then I would get the SqlException (timeout).</p>
+
+<p>It is not a stack overflow issue (at least not in this client code). Putting a break point at the OnValueChanged event handler reveals that it does not get called again while the SubmitChanges call is hanging.</p>
+
+<p>It is possible that there is a requirement that the OnValueChanged call must return before you can call SubmitChanges. Maybe calling SubmitChanges on a different thread might help.</p>
+
+<p>My solution was to wrap the code in a big try/catch block to catch the SqlException. If it happens, then I perform the same query, but I don't use an SqlDependency and don't attach it to the command.  This does not hang the SubmitChanges call anymore. Then right after that, I recreate the SqlDependency and then make the query again, to reregister the dependency.</p>
+
+<p>This is not ideal, but at least it will process all the rows eventually. The problem only occurs if there are a lot of rows to be selected, and if the program is working smoothly, this should not happen as it is constantly catching up.</p>
+
+<pre><code>    public Constructor(string connString, CogTrkDBLog logWriter0)
+    {
+        connectionString = connString;
+        logWriter = logWriter0;
+
+        using (SqlConnection conn = new SqlConnection(connString))
+        {
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand("SELECT is_broker_enabled FROM sys.databases WHERE name = 'cogtrk'", conn))
+            {
+                bool r = (bool) cmd.ExecuteScalar();
+                if (!r)
+                {
+                    throw new Exception("is_broker_enabled was false");
+                }
+            }
+        }
+        if (!CanRequestNotifications())
+        {
+            throw new Exception("Not enough permission to run");
+        }
+
+
+        // Remove any existing dependency connection, then create a new one.
+        SqlDependency.Stop(connectionString);
+        SqlDependency.Start(connectionString);
+
+        if (connection == null)
+        {
+            connection = new SqlConnection(connectionString);
+            connection.Open();
+        }
+
+        if (command == null)
+        {
+            command = new SqlCommand(GetSQL(), connection);
+        }
+
+        GetData(false);
+        GetData(true);
+    }
+
+
+    private string GetSQL()
+    {
+        return "SELECT id, command, state, value " +
+        " FROM dbo.commandqueue WHERE state = 0 ORDER BY id";
+
+    }
+    void dependency_OnChange(object sender, SqlNotificationEventArgs e)
+    {
+        // Remove the handler, since it is only good
+        // for a single notification.
+        SqlDependency dependency = (SqlDependency)sender;
+        dependency.OnChange -= dependency_OnChange;
+
+        GetData(true);
+    }
+
+    void GetData(bool withDependency)
+    {
+        lock (this)
+        {
+            bool repeat = false;
+            do {
+                repeat = false;
+                try
+                {
+                    GetDataRetry(withDependency);
+                }
+                catch (SqlException)
+                {
+                    if (withDependency) {
+                        GetDataRetry(false);
+                        repeat = true;
+                    }
+                }
+            } while (repeat);
+        }
+    }
+
+    private void GetDataRetry(bool withDependency)
+    {
+        // Make sure the command object does not already have
+        // a notification object associated with it.
+        command.Notification = null;
+
+        // Create and bind the SqlDependency object
+        // to the command object.
+
+        if (withDependency)
+        {
+            SqlDependency dependency = new SqlDependency(command);
+            dependency.OnChange += dependency_OnChange;
+        }
+
+
+        Console.WriteLine("Getting a batch of commands");
+        // Execute the command.
+        using (SqlDataReader reader = command.ExecuteReader())
+        {
+            using (CommandQueueDb db = new CommandQueueDb(connectionString))
+            {
+                foreach (CommandEntry c in db.Translate&lt;CommandEntry&gt;(reader))
+                {
+                    Console.WriteLine("id:" + c.id);
+                    c.state = 1;
+                    db.SubmitChanges();
+                }
+            }
+        }
+    }
+</code></pre>

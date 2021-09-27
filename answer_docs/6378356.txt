@@ -1,0 +1,29 @@
+<p>Try this:</p>
+
+<pre><code>$(function(){
+    $("#select1").change(function(){
+        if($(this).val() == ""){
+            $("#select2").attr("disabled", true);
+            $("#select2").val("");
+            $("#select2").change();
+        } else {
+            $("#select2").attr("disabled", false);
+        }
+    });
+
+    $("#select2").change(function(){
+        if($(this).val() == ""){
+            $("#select3").attr("disabled", true);
+            $("#select3").val("");
+        } else {
+            $("#select3").attr("disabled", false);
+        }
+    });
+});
+</code></pre>
+
+<p>Working example @ </p>
+
+<blockquote>
+  <p><a href="http://jsfiddle.net/djajg/" rel="nofollow">http://jsfiddle.net/djajg/</a></p>
+</blockquote>

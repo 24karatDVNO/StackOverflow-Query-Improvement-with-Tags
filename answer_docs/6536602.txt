@@ -1,0 +1,11 @@
+<p>Your code is fine, if you want to be able to extend the PageInit, just override and call the base in the derived class.</p>
+
+<pre><code>public partial class _Default : BasePage
+{
+    protected override void Page_Init(object sender, EventArgs e)
+    {
+        base.Page_Init(sender, e);
+        //more code here
+    }
+}
+</code></pre>

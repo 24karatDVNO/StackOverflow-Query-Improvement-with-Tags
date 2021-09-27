@@ -1,0 +1,8 @@
+<p>I assume that your zebra rows aren't correct after you sort.</p>
+
+<p>You could just call enableZebraRows after you have sorted the table:</p>
+
+<pre><code>$("table").bind("sortEnd",function() {
+    enableZebraRows(tbody tr:odd td', 'alt');
+});
+</code></pre>

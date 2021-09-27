@@ -1,0 +1,30 @@
+<p>String resource can contain only strings no special characters no alphabets as tag name.</p>
+
+<p><strong>example</strong></p>
+
+<p><code>&lt;string name="mydata"&gt;Suuuuu&lt;/string&gt;</code> is valid</p>
+
+<p><code>&lt;string name="45645"&gt;Suuuuu&lt;/string&gt;</code>  is invalid</p>
+
+<p><strong>so first check whether your text is valid or not</strong></p>
+
+<p>Use the following code to get it work for you</p>
+
+<p><strong>Code</strong></p>
+
+<pre><code>boolean isValid = (Pattern.matches("[a-zA-Z]+", myText))
+
+if(isValid){
+int identifier = context.getResources().getIdentifier(myText, "string", "com.farragut.android.emsspeak");
+if (identifier &gt; 0) {
+    text2.setVisibility(View.VISIBLE);
+    text2.setText(context.getResources().getString(identifier));
+} else {
+    text2.setVisibility(View.GONE);
+}
+
+}
+</code></pre>
+
+<p>Thanks
+Deepak</p>

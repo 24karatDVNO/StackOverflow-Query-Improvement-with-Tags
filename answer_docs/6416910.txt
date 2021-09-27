@@ -1,0 +1,13 @@
+<p>So the solution I adopted for now, after much thrashing around, was to include the framework in the project. </p>
+
+<ol>
+<li>Create a group inside the Xcode project called Third Party.</li>
+<li>Link it to a folder called thirdparty.</li>
+<li>Go to the Add Files in Xcode and pick the framework.</li>
+<li>Drag it over to the dependencies.</li>
+<li>Run the tests, they pass!</li>
+</ol>
+
+<p>This is maybe preferable anyway because referencing it in /System/Library/Frameworks would present some versioning issues, and this can be setup very quickly. Furthermore, we have a continuous integration server, and having to get in there and sync versions whenever something changes is not so great.</p>
+
+<p>Thanks for checking it out, Derek.</p>

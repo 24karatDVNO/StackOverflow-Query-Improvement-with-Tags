@@ -1,0 +1,28 @@
+<p>Well,</p>
+
+<ul>
+<li>you can use a token (this 'token' is saved in a input type='hidden' name='token' value='token value' of HTML Element,to use later)</li>
+<li>check if the referer is of your form page</li>
+</ul>
+
+<p>the 'token',you check on hour of start downloading of pdf file.</p>
+
+<p>I don't can make this in asp.net,but you can take look to ASP.net.</p>
+
+<p>simple example code:</p>
+
+<pre><code>&lt;?
+$token = $_SESSION['token'] = md5(uniqid()); 
+echo "&lt;form method='POST' action=""&gt;&lt;input type='hidden' name='token' value='$token'&gt;
+      &lt;input type='submit' value='Go!'&gt;"; 
+
+if($_POST["token"] == $token) {
+    //show link pdf file
+}else {
+   die('Access denied');
+}
+
+?&gt;
+</code></pre>
+
+<p>I don't says what this is total security,says is an alternative.</p>

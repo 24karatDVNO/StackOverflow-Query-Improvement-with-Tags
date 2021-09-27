@@ -1,0 +1,15 @@
+<p>Without a bit of your code it is hard to say but I'm guessing you are putting your where clause together like this:</p>
+
+<pre><code>String value = "some.thing.or.other";
+String where = "FIELD = " + value;
+</code></pre>
+
+<p>Try building a parameterized where clause instead</p>
+
+<pre><code>String value = "some.thing.or.other";
+String where = "FIELD = ?";
+SQLiteDatabase db = fDbOpener.getReadableDatabase();
+Cursor results = db.query(TABLE_NAME, COLUMNS_LIST, where, new String[] { value }, null, null, null);
+</code></pre>
+
+<p>When you run the query method now, SQLite will substitute your value into the where clause specifically as a value - it won't try to interpret the value in any way so it can't mistake the full stops for syntax.</p>

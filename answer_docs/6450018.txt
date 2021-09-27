@@ -1,0 +1,11 @@
+<blockquote>
+  <p>I want to get the comments that either 1) current user has written, so something like: select * from comments where user_id = &lt;></p>
+</blockquote>
+
+<p>That's correct. What's wrong with that?</p>
+
+<blockquote>
+  <p>Get all comments that belong to a post that you have created. This is what I have, but I get multiple lines</p>
+</blockquote>
+
+<p>Well... you're supposed to. Looking at the schema it's indeed a post could contain many comments. The query given by tyrongower should do what you want.</p>

@@ -1,0 +1,5 @@
+<p><code>DateModified</code> is being asked to perform too many jobs: it is used to track both the file modification date <em>and</em> proof-of-existence for a given filename on a given date.</p>
+
+<p>You could add another column, <code>ScanId</code>, a foreign key to a new table <code>ScanDates</code> that records a scan id and the date the scan was run.</p>
+
+<p>That way, you could inspect all the results with a given <code>ScanId</code> and compare against any selected previous scan, and <em>also</em> keep track of the real modification dates of your files.</p>

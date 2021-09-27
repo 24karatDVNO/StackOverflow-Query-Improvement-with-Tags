@@ -1,0 +1,15 @@
+<p>I'm not sure I quite understand what you mean by bind without calling. But what you can do is pass the functions in as variables (for example func1, and func2)</p>
+
+<p>this way you can do something like:</p>
+
+<pre><code>$(document).ready(function() { 
+                      var func1 = ...;
+                      var func2 = ...;
+                      doSomething(func1,func2);
+}
+
+doSomething(f1,f2){
+   return f1()+f2("somedata");
+   // or whatever you wanna do
+}
+</code></pre>

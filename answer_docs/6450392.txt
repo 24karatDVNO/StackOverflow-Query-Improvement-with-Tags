@@ -1,0 +1,20 @@
+<p>In Scott Meyers "More Effective C++" Book he makes a very rational case for preferring prefix increment to postfix increment.  In a nutshell, in that language due to operator overloading facilities prefix increment is almost always faster.  Objective C doesn't support overloaded operators but if you have or ever will do any C++ or Objective-C++ programming then preferring prefix increment is a good habit to get into.</p>
+
+<p>Remember that most of the time ++n looks like:</p>
+
+<pre>
+n = n + 1
+[do something with n]
+</pre>
+
+<p>Whereas n++ looks like (if used as intended):</p>
+
+<pre>
+register A = n;  // copy n
+[do something with n]
+n = A + 1;
+</pre>
+
+<p>As you can see the postfix case has more instructions.  In simple for loops most compilers are smart enough to avoid the copy if it's obvious that the pre-increment n isn't going to be used but that case devolves to the prefix case.</p>
+
+<p>I Hope this makes sense.  In summary you should use prefix unless you really want the "side-effect" behavior of evaluate then increment that you get from the postfix version.</p>

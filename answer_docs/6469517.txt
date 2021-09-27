@@ -1,0 +1,8 @@
+<p>The underlining issue is validation should not be done client side. The clients browser can activate / deactivate anything and change any value.  </p>
+
+<p>If the user doe not have sufficient permissions do not render the button at all or (if design requires it) render a disabled button with no link so that the user could activate via dom manipulation but not click.</p>
+
+<pre><code>&lt;% if (((int) ViewData["permission"]) &gt;= 3) { // one of many ways to do this, perhaps not the best but quick. %&gt;
+   &lt;input type="button" /&gt;
+&lt;% } %&gt;
+</code></pre>

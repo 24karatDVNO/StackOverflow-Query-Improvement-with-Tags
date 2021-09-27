@@ -1,0 +1,9 @@
+<p>Generally speaking - a model should know stuff about it's own data. So anything related purely to a model's own data - should go in the model.</p>
+
+<p>Eg the hash_password and email-validation methods - a model should know how to validate or update it's own data-fields, so those should go in the model.</p>
+
+<p>However a controller should know about how to direct user actions appropriately and to load the correct models for views etc. </p>
+
+<p>EG the session-related method should go in the controller, because the session is used for storing the user's state (based on past actions).</p>
+
+<p>The "generate random string" method is very vague and may be used everywhere. I'd put that in a separate library possibly included in the model/controller as appropriate.</p>

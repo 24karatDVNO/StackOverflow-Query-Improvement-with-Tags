@@ -1,0 +1,6 @@
+<p>The javascripts and css references may fail to work depending on your referencing pattern. At places with runat tag the reference using ~ sign will work fine.
+At places where you do not use runat="server" then use this kind of referencing and it should work fine:</p>
+
+<pre><code>&lt;link rel="stylesheet" type="text/css" href='&lt;%= ResolveUrl("~/css/style.css") %&gt;' /&gt;
+&lt;script type="text/javascript" src="&lt;%= ResolveUrl("~/js/jquery-1.3.2.min.js") %&gt;"&gt;&lt;/script&gt;
+</code></pre>

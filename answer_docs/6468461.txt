@@ -1,0 +1,6 @@
+<p>The problem might be with the variation of the XMLHTTP object your're instantiating for oHTTP.</p>
+
+<p>Try this:<br /></p>
+
+<pre><code>set oHTTP = CreateObject("MSXML2.ServerXMLHTTP")
+</code></pre>

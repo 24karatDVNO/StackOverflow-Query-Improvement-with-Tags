@@ -1,0 +1,3 @@
+<p>One simple improvement you can make is to draw only the area that needs updated (if you can).  The <a href="http://doc.qt.nokia.com/latest/qpaintevent.html" rel="nofollow"><code>QPaintEvent</code></a> contains a rect for the changed area, and the <a href="http://doc.qt.nokia.com/latest/qpainter.html#drawImage" rel="nofollow"><code>QPainter::drawImage</code></a> has overloads that can take rects for the portion to draw.</p>
+
+<p>You might also look at the <a href="http://doc.qt.nokia.com/latest/qt.html#ImageConversionFlag-enum" rel="nofollow"><code>ImageConversionFlags</code></a> options for faster options.</p>

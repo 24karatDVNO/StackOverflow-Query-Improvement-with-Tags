@@ -1,0 +1,22 @@
+<p>While, as everyone is saying, it is an absolute necessity to escape your string before using it in a query, I think there is more be concerned with.</p>
+
+<p>This still allows non users to try different email addresses and see what the result will be.</p>
+
+<p>I recommend encrypting the email, and using the encrypted version of the email in the url.</p>
+
+<p>So when you send them the link:</p>
+
+<pre><code>$enc_key = 'SOME KEY I USE';
+$email = mysql_real_escape_string($email);
+$result = $db-&gt;query("SELECT AES_ENCRYPT('$email', '$enc_key') as email");
+$enc_email = mysql_fetch_assoc($result);
+$enc_email = $enc_email['email'];
+$url = "http://www.example.com/confirm.html?key=$enc_email";
+</code></pre>
+
+<p>then to check for the user on confirm you:</p>
+
+<pre><code>$enc_key = 'SOME KEY I USE';
+$enc_email = mysql_real_escape_string($_GET['key']);
+$result = $db-&gt;query("UPDATE users SET active = 1 WHERE AES_ENCRYPT(email, '$enc_key') = '$enc_email'");
+</code></pre>

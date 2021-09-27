@@ -1,0 +1,23 @@
+<p>Let the query do the work for you ... don't let a bunch of chatter requests do for you.</p>
+
+<pre><code>select
+      PreQuery.StateCode,
+      PreQuery.TotalRecords,
+      PreQuery.Male_Count,
+      PreQuery.Female_Count,
+      LC.*
+   from
+      ( select
+              au.stateCode,
+              count(*) as TotalRecords,
+              sum( if( su.Sex = 'M', 1, 0 )) as Male_Count,
+              sum( if( su.Sex = 'F', 1, 0 )) as Female_Count
+           from
+              All_users au
+           where 
+              au.StateCode = $secureStateCode
+           group by
+              au.StateCode ) PreQuery
+      join Location_Code LC
+         on PreQuery.StateCode = LC.StateCode
+</code></pre>

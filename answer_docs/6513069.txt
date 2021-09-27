@@ -1,0 +1,11 @@
+<p>Have you had a look at the source code for <code>Html.DisplayForModel()</code> (since ASP.NET MVC is open source)? Maybe it will give you some clues.</p>
+
+<p>Source code for ASP.NET MVC 3 RTM is here: <a href="http://aspnet.codeplex.com/releases/view/58781" rel="nofollow">http://aspnet.codeplex.com/releases/view/58781</a></p>
+
+<p>The bits you need to look at are <code>DisplayExtensions.cs</code> and <code>TemplateHelpers.cs</code> in <code>mvc3-rtm-sources\mvc3\src\SystemWebMvc\Mvc\Html</code></p>
+
+<p>The point is that you can already use <code>Html.DisplayForModel()</code> to render a control for each property of your model and you can see how it's done by looking at the source code, so you could easily tweak it.</p>
+
+<p>There's also <code>EditorExtensions.cs</code> which contains <code>Html.EditorForModel()</code> which gives you the edit version.</p>
+
+<p>The important thing about ASP.NET MVC is that you can swap out any part of it and write your own, so you can achieve pretty much anything.</p>

@@ -1,0 +1,8 @@
+<p>Notification (or even Solicit response message exchange patterns) are <strong>not</strong> supported in Java web services.<br>
+Having said that it should be possible to implement a subscribe/publish mechanism by exposing a web service endpoints to "listen" for notifications and subscribe its url at the notification registry.<br>
+The endpoint will receive all the events/notifications from the notification service and then do the processing as needed.<br>
+To implement the web service you can use<br>
+- cxf<br>
+- axis<br>
+- jax ws<br>
+- spring ws  etc take your pick. </p>

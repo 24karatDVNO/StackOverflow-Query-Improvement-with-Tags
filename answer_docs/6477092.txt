@@ -1,0 +1,24 @@
+<p>Do you mean something like this <a href="http://jsfiddle.net/NGLN/X2kJ6/5/" rel="nofollow">demo fiddle</a>?</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;span&gt;&lt;/span&gt;&lt;input type="text" /&gt;
+</code></pre>
+
+<p>CSS:</p>
+
+<pre><code>span {
+    background: url('images/ff.jpg') no-repeat 25px 25px;
+    position: absolute;
+    width: 75px;
+    height: 55px;
+    z-index: -1;
+}
+input {
+    background: transparent;
+}
+</code></pre>
+
+<p>Note that the text box is <strong>not</strong> inside the span to assure that the normal flow includes the (size of the) text box.</p>
+
+<p>Of course you have to give height to the text box to show the image. Or you could use a textarea element.</p>

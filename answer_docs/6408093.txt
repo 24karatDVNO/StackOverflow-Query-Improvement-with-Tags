@@ -1,0 +1,16 @@
+<p>This answer is not why your problem is, but I would like to recommend you to use the <a href="http://msdn.microsoft.com/en-us/library/ms596245.aspx" rel="nofollow">SpeechSynthesizer Class</a> like the following code.</p>
+
+<pre><code>        using (var speechSynthesizer = new SpeechSynthesizer())
+        {
+            speechSynthesizer.SelectVoice("Please enter your TTS engine name...");
+            speechSynthesizer.SetOutputToWaveFile("test.wav");
+            speechSynthesizer.Speak("test");
+        }
+</code></pre>
+
+<p>For using <code>SpeechSynthesizer Class</code>, you would have two advantages.</p>
+
+<ol>
+<li>not to need redistribute the <code>Speech Sdk 5.1</code> to clients due to the fact already included at the <code>.net framework(4, 3.5, 3.0)</code>.</li>
+<li>simpler to get the goal than you mentioned.</li>
+</ol>

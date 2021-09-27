@@ -1,0 +1,9 @@
+<p>This search query is wrong:</p>
+
+<pre><code>String query1 = "SELECT * FROM UserDetails WHERE UserName like'str1%'";
+</code></pre>
+
+<p>Rather, do this:</p>
+
+<pre><code>String query1 = "SELECT * FROM UserDetails WHERE UserName like'%?%'";
+</code></pre>

@@ -1,0 +1,12 @@
+<p>Full code:</p>
+
+<pre><code>    public ActionResult Edit(int id)
+    {
+        var log = db.tGlavnas.Single(lo =&gt; lo.RedniBroj == id);
+
+        ViewData["SelRealizator"] = from r in db.tGlavnas select new SelectListItem { Text = r.Realizator.ImeRealizatora, Value = r.Realizator.ImeRealizatora, Selected = (r.RealizatorID == id) };
+        return View(log);
+    }
+</code></pre>
+
+<p>I don't write Post method yet.</p>

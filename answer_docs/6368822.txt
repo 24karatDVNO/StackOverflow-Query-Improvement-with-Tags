@@ -1,0 +1,21 @@
+<p>You can use the <code>array_diff()</code> function:</p>
+
+<p>eg:</p>
+
+<pre><code>&lt;?php
+$array1 = array("a" =&gt; "1", "2", "3", "4");
+$array2 = array("b" =&gt; "2", "4");
+$result = array_diff($array1, $array2);
+
+print_r($result);
+?&gt;
+</code></pre>
+
+<p>this will give you the missing items in the second array:</p>
+
+<pre><code>Array
+(
+    [1] =&gt; 1
+    [2] =&gt; 3
+)
+</code></pre>

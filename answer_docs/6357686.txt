@@ -1,0 +1,44 @@
+<p>Based on the answers of iammilind and Luc Danton, here's what I've come up with:</p>
+
+<pre><code>class Base
+{
+private:
+  // only 'BaseClass' is allowed to derive from Base
+  Base() { }
+  friend class BaseClass;
+public:
+  typedef std::shared_ptr&lt;Base&gt; ptr_t;
+  typedef std::weak_ptr&lt;Base&gt; wptr_t;
+
+  enum class Type { foo, bar, baz };
+
+  Type x;
+  // ...
+};
+
+class BaseClass : public Base
+{
+private:
+  // make all the raw_Base types private
+  using Base::ptr_t;
+  using Base::wptr_t;
+  using Base::Type;
+};
+
+class Derived : public BaseClass
+{
+  // define as usual, and now all is well in the world.
+};
+
+// now, to test it
+class Derived2 : public Base { }; // fails
+
+Derived d;
+d.x = Derived::Type::foo; // fails
+d.x = Base::Type::foo; // works
+// Which is exactly what I wanted.
+</code></pre>
+
+<p>As far as I can tell, the only problem with this solution is that it adds a new and potentially confusing class. The class is defined in such a way that it can't really be misused – <code>Base</code> itself cannot be derived from except by <code>BaseClass</code>, but still, <code>BaseClass</code> is an unattractive piece of namespace-clutter.</p>
+
+<p>However, for the particular piece of code that I intend to use this in, I happen to be using the equivalent of <code>BaseClass</code> already to solve an unrelated problem. So this <code>BaseClass</code> technique suits my purposes just fine.</p>

@@ -1,0 +1,14 @@
+<p>Here's a good link using pip:  <a href="https://stackoverflow.com/questions/5688053/how-do-you-install-django-older-version-using-easy-install">how do you install django older version using easy_install?</a>, which essentially comes down to:</p>
+
+<p>pip install --upgrade django==1.2.5  (Which is the latest version of 1.2, AFAIK)</p>
+
+<p>Also, before upgrading, make sure you read:</p>
+
+<p><a href="https://docs.djangoproject.com/en/1.2/releases/1.2/" rel="nofollow noreferrer">https://docs.djangoproject.com/en/1.2/releases/1.2/</a></p>
+
+<p>and</p>
+
+<p><a href="https://docs.djangoproject.com/en/1.2/ref/contrib/csrf/#ref-csrf-upgrading-notes" rel="nofollow noreferrer">https://docs.djangoproject.com/en/1.2/ref/contrib/csrf/#ref-csrf-upgrading-notes</a></p>
+
+<p>As 1.2 implemented breaking changes for CSRF tokens.  Also, make sure your save and delete methods include **kwargs, as the multiple database change adds a kwarg to the save (and possibly the delete) method(s).
+If you run Activestate, you can use pypm install django==1.2.5 instead.  </p>

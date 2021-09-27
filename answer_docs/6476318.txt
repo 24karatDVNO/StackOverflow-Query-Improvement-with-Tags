@@ -1,0 +1,9 @@
+<p>If you want your document to validate in HTML5, you can use your original method. There's several things you need to do to make it work in IE &lt; 9:</p>
+
+<p>1) Clone the iframe, set the attributes, and then append to a container. Or create the iframe element from scratch. IE just won't let you set the attributes afterwards.</p>
+
+<p>2) Remove the original iframe.</p>
+
+<pre><code>    $('#facebook-like iframe').clone().attr({ 'frameBorder': '0', 'allowTransparency': 'true', 'scrolling': 'no' }).appendTo('#facebook-like');
+    $('#facebook-like iframe').first().remove();
+</code></pre>

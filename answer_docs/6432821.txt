@@ -1,0 +1,11 @@
+<p>this may break if you have multiple classes    </p>
+
+<pre><code>&lt;script&gt;
+$('li.classone').click(function() {
+    $('div.'+$(this).attr('class')).toggle();
+});
+$('li.classtwo').click(function() {
+    $('div.'+$(this).attr('class')).toggle();
+});
+&lt;/script&gt;
+</code></pre>

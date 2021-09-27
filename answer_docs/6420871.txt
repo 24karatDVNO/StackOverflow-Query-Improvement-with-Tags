@@ -1,0 +1,5 @@
+<p>If I understand correctly, you're asking for a regex to match "{some text here}" and "|some text here|".</p>
+
+<p><code>(\{.*?\}|\|.*?\|)</code> should do the trick; it matches anything (with a non-greedy quantifier) inside a pair of curly braces or anything (again non-greedy quantifier) inside a pair of vertical bars, with a pair of grouping parentheses so that you can look at or replace the match.</p>
+
+<p>Of course, if you don't want to match "{}" or "||" you can simply replace each asterisk (*) with a plus (+).</p>

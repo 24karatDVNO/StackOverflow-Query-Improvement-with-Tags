@@ -1,0 +1,28 @@
+<p>If you have an index on <code>ut</code>, this may benefit from the index:</p>
+
+<pre><code>WHERE ut &lt;= TIMESTAMPDIFF(MINUTE, lastcheck, NOW())
+</code></pre>
+
+<p>If you have an index on <code>lastcheck</code>, this may benefit from the index:</p>
+
+<pre><code>WHERE (NOW() - INTERVAL ut MINUTE) &gt;= lastcheck
+</code></pre>
+
+<hr>
+
+<p>Thinking more clearly, I don't think any of the two versions can beneficially use any index at all.</p>
+
+<p>The second perhaps (if the distinct values in <code>ut</code> are few compared to the rows of the table) would benefit from a JOIN to an auxilary table.</p>
+
+<pre><code>SELECT t.*
+FROM table t
+  JOIN 
+    ( SELECT 
+          ut 
+        , (NOW() - INTERVAL ut MINUTE) AS nowMinusInterval 
+      FROM table
+      GROUP BY ut
+    ) AS dt
+  ON t.ut = dt.ut
+WHERE dt.nowMinusInterval &gt;= t.lastcheck
+</code></pre>

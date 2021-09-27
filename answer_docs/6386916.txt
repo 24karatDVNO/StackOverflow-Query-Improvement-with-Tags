@@ -1,0 +1,24 @@
+<p>A very quick and dirty run at it using linqpad:</p>
+
+<pre><code>DateTime start = DateTime.Parse("03/30/2011");
+DateTime end = new DateTime(2011,04,05,23,59,59);
+
+var startNextMonthFirstDay = new DateTime(start.Year, start.Month+1, 1);
+
+var diffForStartMonth = (startNextMonthFirstDay - start);
+
+var totalDiff = (end-start);
+
+var diff = Math.Round(totalDiff.TotalDays);
+
+var diffForEndMonth = diff - diffForStartMonth.Days;
+
+
+Dictionary&lt;DateTime, int&gt; result = new Dictionary&lt;DateTime, int&gt;();
+result.Add(new DateTime(start.Year, start.Month, 1), diffForStartMonth.Days);
+result.Add(new DateTime(end.Year, end.Month, 1), (int)diffForEndMonth);
+
+//Dictionary&lt;DateTime,int&gt;{{new DateTime(2011,3,1),2},{new DateTime(2011,4,1),5}}
+
+result.Dump();
+</code></pre>

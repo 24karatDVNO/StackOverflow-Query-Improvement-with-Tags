@@ -1,0 +1,18 @@
+<p>You don't have to pass the course id and do a fetch again.Instead of that in the courseSelectItem's changedHandler use getSelectedRecord method.Whenever the select item is changed the getSelectedRecord method will have the corresponding course record.From the selected record get course name and set it into text item </p>
+
+<pre><code>        final TextItem courseNameItem = new TextItem("course.title", "Course Name");
+        courseNameItem.setShowDisabled(false);
+
+        SelectItem courseItem = new SelectItem ("course.id", "Course");
+        courseItem.setOptionDataSource(CoursesDS.getInstance());
+        courseItem.setDisplayField("course.title");
+
+        //Use changed handler
+        courseItem.addChangedHandler(new ChangedHandler() {
+
+                @Override
+                public void onChanged(ChangedEvent event) {
+courseNameItem.setValue(courseItem.getSelectedRecord().getAttributeAsString("course.title"));
+                }
+            });
+</code></pre>

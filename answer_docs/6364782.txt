@@ -1,0 +1,18 @@
+<p>Your line:</p>
+
+<pre><code>&lt;xsl:variable name="currentNode" select="$currentPage/*[position() = $currentCount]" /&gt;
+</code></pre>
+
+<p>is fine. You should ask (and check yourself) if <code>$currentPage/*</code> contains a node at position <code>$currentCount</code>.</p>
+
+<p>Moreover, you are writing "tried this but it didnt seem to work:". How did you check the variable value? Inside your template you are just defining the variable and there is no instruction to display its value. Can you try with:</p>
+
+<pre><code>&lt;xsl:copy-of select="$currentNode"/&gt;
+</code></pre>
+
+<p>or</p>
+
+<pre><code>&lt;xsl:value-of select="$currentNode"/&gt;
+</code></pre>
+
+<p>Still "tried this but it didnt seem to work:", it's just a "maybe" or the transformation is throwing you an error? Which kind of error? </p>

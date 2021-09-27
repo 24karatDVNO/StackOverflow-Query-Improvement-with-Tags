@@ -1,0 +1,11 @@
+<p>The three files in your .ssh folder:</p>
+
+<ul>
+<li><p><code>known_hosts</code> is just a list of hosts you've connected to. Its primary purpose is protecting you from man-in-the-middle attacks, where someone evil pretends to be the host you try to connect to. You might as well include it in your backups, but it won't make you lose access.</p></li>
+<li><p><code>id_rsa</code> is the private key. This is what you use to identify yourself. As the name says, it's private. Anyone who has it is, as far as this keypair is concerned, you. You should certainly back it up - but safely!</p></li>
+<li><p><code>id_rsa.pub</code> is the public key. This is what you actually give people. When you ssh somewhere using keypair authentication, it's the combination of the public key on the server and the private key from your client that authenticates you. Back it up too; without it, everything you're currently doing will keep working, but you wouldn't be able to pass it out to any more servers, so you'd be kinda stuck.</p></li>
+</ul>
+
+<p>As for empty passphrases, well, a lot of people do that. It's certainly not the most secure, but there are worse sins to commit. The passphrase is just an extra layer of protection. To be identified as you, you have to provide the private key (something you own) and the passphrase (something you know). In terms of avoiding getting locked out of an account, well, don't forget it and you won't have problems. An empty one gives you increased convenience, and no danger of forgetting it, at the cost of some security.</p>
+
+<p>Finally, most git hosting doesn't use ssh access exclusively. If you have an account with assembla that can be authenticated some other way, then you might have the ability to come back and add or swap out keypairs.</p>

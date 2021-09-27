@@ -1,0 +1,5 @@
+<p>Why would you have to carry the credentials all the time in the session?  According to the example you're following, they're being set in the proxy (when it's created).  </p>
+
+<p>If you're worried about having to cache the credentials for recreating the proxy as needed, then you can cache an instance of ChannelFactory, and then generate new proxies from that instance as needed.</p>
+
+<p>Regardless of what path yout take, the credentials are going to have to be stored somewhere, somehow, unless your application prompts the user for their credentials for every WCF operation.</p>

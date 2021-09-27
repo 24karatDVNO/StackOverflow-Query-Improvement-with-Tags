@@ -1,0 +1,9 @@
+<p>No, I'm not aware of a way to do that, and I think that stems from the <code>open</code> syscall in Linux which can't do that.</p>
+
+<p>The <a href="http://www.ruby-doc.org/core/classes/IO.html#M000889" rel="nofollow">RubyDoc</a> for <code>IO.new</code> states:</p>
+
+<blockquote>
+  <p>When the mode of original IO is read only, the mode cannot be changed to be writable. Similarly, the mode cannot be changed from write only to readable. If such a wrong change is directed, timing where the error actually occurs is different according to the platform.</p>
+</blockquote>
+
+<p>But I note that that doesn't explicity state what you can or can't do for read/write modes...</p>

@@ -1,0 +1,82 @@
+<p>This appears to be a bug in WPF 4, if not it's at least a breaking change from WPF 3.5. Take the following code for example:</p>
+
+<pre><code>&lt;Window x:Class="WpfSampleTestBed.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525"&gt;
+    &lt;StackPanel&gt;
+        &lt;TextBlock Text="{Binding Path=StartTime, StringFormat='{}From {0:hh\\:mm}'}" /&gt;
+
+        &lt;TextBlock x:Name="textBlock2"&gt;
+            &lt;TextBlock.Text&gt;
+                &lt;MultiBinding StringFormat="{}From {0:hh\\:mm} to {1:hh\\:mm}"&gt;
+                    &lt;Binding Path="StartTime" /&gt;
+                    &lt;Binding Path="EndTime" /&gt;
+                &lt;/MultiBinding&gt;
+            &lt;/TextBlock.Text&gt;
+        &lt;/TextBlock&gt;
+
+        &lt;TextBlock x:Name="textBlock3" Text="Three" /&gt;
+        &lt;TextBlock x:Name="textBlock4" Text="Four" /&gt;
+
+        &lt;TextBlock&gt;
+        &lt;TextBlock.Text&gt;
+            &lt;MultiBinding StringFormat="Three = {0}, Four = {1}"&gt;
+                &lt;Binding ElementName="textBlock3" Path="Text" /&gt;
+                &lt;Binding ElementName="textBlock4" Path="Text" /&gt;
+            &lt;/MultiBinding&gt;
+        &lt;/TextBlock.Text&gt;
+        &lt;/TextBlock&gt;
+    &lt;/StackPanel&gt;
+
+&lt;/Window&gt;
+</code></pre>
+
+<p>With the code behind like:</p>
+
+<pre><code>using System;
+using System.Windows;
+
+namespace WpfSampleTestBed {
+
+    public partial class MainWindow : Window {
+        public MainWindow() {
+            InitializeComponent();
+            this.DataContext = new Test() {
+                StartTime = TimeSpan.FromSeconds(90),
+                EndTime = TimeSpan.FromSeconds(100),
+            };
+        }
+    }
+
+    public class Test {
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+    }
+
+}
+</code></pre>
+
+<p>If you compile and run this code against .NET 3.5, the output (i.e. Window content) will look like this:</p>
+
+<blockquote>
+  <p>From 00:01:30 <br/>
+  From 00:01:30 to 00:01:40 <br/>
+  Three <br/>
+  Four <br/>
+  Three = Three, Four = Four <br/></p>
+</blockquote>
+
+<p>Taking the exact sample code/project and running it against .NET 4 you get:</p>
+
+<blockquote>
+  <p>From 00:01:30 <br/>
+  <br/>
+  Three <br/>
+  Four <br/>
+  Three = Three, Four = Four <br/></p>
+</blockquote>
+
+<p>I found one <a href="http://connect.microsoft.com/VisualStudio/feedback/details/615031/wpf-multibinding-and-stringformat" rel="nofollow">bug report</a> that may be related, but the author never responded so Microsoft closed the issue as 'Not Reproducible'.</p>
+
+<p>So it appears that depending on the how the child Bindings are used, the StringFormat may or may not work in .NET 4.</p>

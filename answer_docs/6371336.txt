@@ -1,0 +1,36 @@
+<p>I just found that the bug was in the save{} closure of the Controller class. The following is the code with the bug:</p>
+
+<pre><code>def save = {
+    resultsList.each{
+        def eventInstance = new Event(params + it)
+        if (eventInstance.save(flush: true)) {
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
+            redirect(action: "show", id: eventInstanceID)
+        }
+        else {
+            render(view: "create", model: [eventInstance: eventInstance])
+        }
+    }
+}
+</code></pre>
+
+<p>So the problem was that I was redirecting the action "show" inside the each{} closure. And for some reason that I'm still not sure, it was throwing an exception after the second iteration of the each{} loop. So all I had to do was to call the redirect method outside the each{} closure, like this:</p>
+
+<pre><code>   def save = {
+    def resultsList = eventService.lastFmVenues(params.artist)
+    def eventInstanceID
+    resultsList.each{
+        def eventInstance = new Event(params + it)
+        if (eventInstance.save(flush: true)) {
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
+            eventInstanceID = eventInstance.id
+        }
+        else {
+            render(view: "create", model: [eventInstance: eventInstance])
+        }
+    }
+    redirect(action: "show", id: eventInstanceID)
+}
+</code></pre>
+
+<p>I'm still curious why it was throwing the exception only after the second iteration, but anyway, the problem is solved. Thanks!</p>

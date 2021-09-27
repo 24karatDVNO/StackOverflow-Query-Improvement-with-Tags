@@ -1,0 +1,58 @@
+<p>Ok worked it out my self over the weekend</p>
+
+<p>1)</p>
+
+<pre><code>SELECT sum(value1), sum(value2) FROM TickData AS a,
+(SELECT USERID, PRODID, DATE(TIME) AS JUSTDATE, MAX(TIME) AS MTIME
+FROM TickData
+GROUP BY 1,2,3
+) AS b
+WHERE a.USERID = b.USERID
+AND a.TIME = b.MTIME
+AND STRFTIME('%Y-%m',a.TIME) = STRFTIME('%Y-%m','NOW')
+AND a.USERID = 1
+GROUP BY JUSTDATE
+</code></pre>
+
+<p>2)</p>
+
+<pre><code>SELECT sum(Mval) FROM TickData AS a,
+(SELECT USERID, PRODID, DATE(TIME) AS JUSTDATE,ID, MAX(value1) AS Mval
+FROM TickData
+GROUP BY 1,2,3
+) AS b
+WHERE a.USERID = b.USERID
+AND a.ID = b.ID
+AND STRFTIME('%Y-%m',a.TIME) = STRFTIME('%Y-%m','NOW')
+AND a.USERID = 2
+GROUP BY JUSTDATE
+</code></pre>
+
+<p>3)</p>
+
+<pre><code>SELECT sum(Mval) FROM TickData AS a,
+(SELECT USERID, PRODID, DATE(TIME) AS JUSTDATE,ID, MIN(value1) AS Mval
+FROM TickData
+GROUP BY 1,2,3
+) AS b
+WHERE a.USERID = b.USERID
+AND a.ID = b.ID
+AND STRFTIME('%Y-%m',a.TIME) = STRFTIME('%Y-%m','NOW')
+AND a.USERID = 2
+GROUP BY JUSTDATE
+</code></pre>
+
+<p>Edit:
+2 and 3 can be done with one query:</p>
+
+<pre><code>SELECT sum(Mval), sum(Mval2) FROM TickData AS a,
+(SELECT USERID, PRODID, DATE(TIME) AS JUSTDATE,ID, MAX(PL) AS Mval,MIN(PL) AS Mval2
+FROM TickData
+GROUP BY 1,2,3
+) AS b
+WHERE a.USERID = b.USERID
+AND a.TIME = b.MTIME
+AND STRFTIME('%Y-%m',a.TIME) = STRFTIME('%Y-%m','NOW')
+AND a.USERID = 2
+GROUP BY JUSTDATE
+</code></pre>

@@ -1,0 +1,23 @@
+<p>You are adding the tabController view as a subview, but you have not specified where it should be located within its parent view, or how it should be resized when the parent view changes size. Try the following:</p>
+
+<pre><code>- (void)viewDidLoad
+{
+    [super viewDidLoad]; // see note
+
+    self.tabController = [[UITabBarController alloc] init];
+    LoggedInFeedNavigationController *navController;
+    navController = [[LoggedInFeedNavigationController alloc]
+                      initWithAccount:self.account];
+    [self.tabController setViewControllers:
+        [NSArray arrayWithObject:navController]];
+
+    UIView *tabView = self.tabController.view;
+    [self.view addSubview:tabView];
+
+    tabView.frame = self.view.bounds;
+    tabView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                                UIViewAutoresizingFlexibleHeight);
+}
+</code></pre>
+
+<p>Note: you are not <a href="https://stackoverflow.com/questions/824695/do-i-always-have-to-call-super-viewdidload-in-the-viewdidload-method">required</a> to call <code>[super viewDidLoad]</code>, but if you <em>do</em> decide to call it, you should call it at the <a href="https://stackoverflow.com/questions/844195/super-viewdidload-convention">beginning</a> of your <code>viewDidLoad</code> method, and not at the end.</p>

@@ -1,0 +1,10 @@
+<p>That should set the text color, I just tried it and it works.  cell should be a UITableView though, does your ApplicationCell inherit from UITableView cell?
+Also if ApplicationCell is nil, I'm not sure whats going on with tempCell</p>
+
+<p>try</p>
+
+<blockquote>
+  <p>cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];</p>
+</blockquote>
+
+<p>and go from there</p>

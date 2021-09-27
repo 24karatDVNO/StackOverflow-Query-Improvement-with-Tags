@@ -1,0 +1,16 @@
+<p>You can create temporary table to store user selected items and when order get finalized you can upload all records to your inquiry or order table.</p>
+
+<p>Using temporary table you can easily update or delete any records</p>
+
+<p>Table: temporary_order</p>
+
+<p>Temp_id: $_SESSION['temp_id'] = any random value;</p>
+
+<pre><code>id  userid   product_id  quantity temp_id   date
+1   1        1            2        123456    2011-06-27 
+2   1        2            1        123456    2011-06-27
+3   2        1            2        789456    2011-06-27 
+4   2        2            3        789456    2011-06-27
+</code></pre>
+
+<p>You only need to pass temp_id to get user selected record from temporary table</p>

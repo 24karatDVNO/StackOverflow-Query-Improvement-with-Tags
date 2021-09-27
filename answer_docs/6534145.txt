@@ -1,0 +1,17 @@
+<p>The problem is in <code>getContext().getResources().getDisplayMetrics().density;</code> it wil give you same dencity always better use the following approach</p>
+
+<p>To get density Use the following code</p>
+
+<pre><code>DisplayMetrics metrics = new DisplayMetrics();    
+getWindowManager().getDefaultDisplay().getMetrics(metrics);    
+int screenDensity = metrics.densityDpi;
+</code></pre>
+
+<p>so your code will be</p>
+
+<pre><code>DisplayMetrics metrics = new DisplayMetrics();    
+    getWindowManager().getDefaultDisplay().getMetrics(metrics);    
+    float scale = metrics.densityDpi;
+
+canvas.drawRect(leftX-20*scale, leftY-20*scale, rightX+20*scale, rightY, mPaint); 
+</code></pre>

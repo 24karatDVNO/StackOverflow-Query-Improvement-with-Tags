@@ -1,0 +1,9 @@
+<p>I'm sure LarsTech's response will work, but going back to your original example, you can always loop through your DataTable (<em>dd</em>), looking at the DataRow collection.</p>
+
+<pre><code>Dim Names As New List(Of String)
+For Each R As DataRow In dd.Rows.Count
+    Names.Add(R.Item("FirstName").ToString)
+Next
+</code></pre>
+
+<p>Then you can just check the count of <em>Names</em> and if it's greater than 0, iterate over that collection.</p>

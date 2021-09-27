@@ -1,0 +1,7 @@
+<p>One place where style-based class names can be useful is if you have a fairly complicated set of styles that you want to apply to a lot of different things.</p>
+
+<p>CSS grid systems (e.g. <a href="http://960.gs" rel="nofollow">http://960.gs</a>) do this, because their styles are reasonably complicated (especially when fixes for Internet Explorer are taken into account), and they’re designed to be applied to a lot of different elements.</p>
+
+<p>If they didn’t use style-based class names, you’d need to either repeat the style rules from the class in several different places in your stylesheet, or stack all the selectors for the elements that want to use that style above it, neither of which are particularly easy to work with, maintenance-wise.</p>
+
+<p>But in general, CSS styles are designed to be simple enough that you don’t need to encapsulate a set of them.</p>

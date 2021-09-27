@@ -1,0 +1,18 @@
+<p><a href="http://jsfiddle.net/mplungjan/ZGbsY/" rel="nofollow">http://jsfiddle.net/mplungjan/ZGbsY/</a></p>
+
+<p>ClyFish did it while I was fiddling</p>
+
+<pre><code>var url1="http://blah-blah.com/search?par_one=test&amp;par_two=anothertest&amp;SearchableText=TO_REPLACE";
+
+var url2 ="http://blah-blah.com/search?par_one=test&amp;SearchableText=TO_REPLACE&amp;par_two=anothertest"
+
+var newWord = "foo";
+function replaceSearch(str,newWord) {
+  var regex = /SearchableText=[^&amp;]*/;
+
+  return str.replace(regex, "SearchableText="+newWord);
+}
+document.write(replaceSearch(url1,newWord))
+document.write('&lt;hr&gt;');
+document.write(replaceSearch(url2,newWord))
+</code></pre>

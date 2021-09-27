@@ -1,0 +1,7 @@
+<p>This is a common way to do this:</p>
+
+<pre><code>RewriteCond %{HTTP_HOST} ^www\.##domain##
+RewriteRule ^(.*)$ http://##domain##/$1 [R=301,L]
+</code></pre>
+
+<p>Replace <code>##domain##</code> with your domain. Add the <code>[NC]</code> flag if you wish.</p>

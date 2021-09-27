@@ -1,0 +1,5 @@
+<p>Well I feel dumb, thought I had tried it with the L and R swapped but I guess not, this worked perfect for both bits I tried.</p>
+
+<pre><code>RewriteCond %{THE_REQUEST} ^GET\ /.*/index\.(php|html)\ HTTP
+RewriteRule (.*)index\.(php|html)$ /$1 [L=301,R]
+</code></pre>

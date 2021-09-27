@@ -1,0 +1,21 @@
+<p>I got it working, although this is some of the worse code I've ever written...</p>
+
+<pre><code>Dim sr As StreamReader
+
+sr = New StreamReader("C:\test.html")
+
+Dim xactHTML As String = sr.ReadToEnd
+
+Dim left As Integer = xactHTML.IndexOf("Total&lt;/div&gt;")
+Dim chunk1 As String = xactHTML.Substring(left + 12)
+
+Dim right As Integer = chunk1.IndexOf("&lt;div style='position")
+Dim chunk2 As String = chunk1.Substring(0, right - 1)
+
+Dim xHTML As String = "&lt;xml&gt;" &amp; chunk2 &amp; "&lt;/xml&gt;"
+
+Dim e = XElement.Parse(xHTML)
+Dim a = e.Elements().ToArray()
+
+Dim damageAmmount As String = a(2).Value()
+</code></pre>

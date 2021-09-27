@@ -1,0 +1,17 @@
+<p>You could do something like this:</p>
+
+<pre><code>onfocusin: function (element) {
+    // remember the last active field
+    this.lastActive = element;
+},
+highlight: function (element, errorClass, validClass) {  
+    // highlight only the last active
+    if (this.lastActive &amp;&amp; (this.lastActive == element))
+        $(element).parent("td").parent("tr").css({
+             'border':'1px solid #c00',
+             'background':'#fff0f0'
+             });   
+}
+</code></pre>
+
+<p>Not sure what you mean by first.</p>

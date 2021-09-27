@@ -1,0 +1,10 @@
+<p>Your using the array adapter with Constructor Context and TextView ID, but your just passing it 0 as the text view resource id.</p>
+
+<p>See the API here : <a href="http://developer.android.com/reference/android/widget/ArrayAdapter.html#ArrayAdapter%28android.content.Context,%20int%29" rel="nofollow">ArrayAdapter</a></p>
+
+<p>Try:  </p>
+
+<pre><code>  ArrayAdapter&lt;String&gt; arrayadapter = new ArrayAdapter&lt;String&gt;(mContext, android.R.layout.simple_spinner_item);
+</code></pre>
+
+<p>or other resource of you choice</p>

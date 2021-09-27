@@ -1,0 +1,122 @@
+<p><strong>EDITED TO ADD BETTER ANSWER</strong></p>
+
+<p>From the comments, it looks like you want to compress a buffer -- an array of 16-bit ints by stripping off 4 bits and packing them together, right?</p>
+
+<p>This code should do the trick:</p>
+
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+typedef unsigned int   UINT32 ;
+typedef unsigned short UINT16 ;
+
+void compress( UINT16 *buf , int *cnt )
+{
+  UINT16 *src   = buf        ; // where we're copying from
+  UINT16 *tgt   = buf        ; // where we're copying to
+  UINT16 *limit = buf + *cnt ; // endpoint address
+  UINT16  bits  = 0x0000     ;
+  int     state = 0          ;
+
+  while ( src &lt; limit )
+  {
+    switch ( state )
+    {
+    case 0 :
+      bits    = (*src++ &amp; 0x0FFF ) &lt;&lt;  4 ;
+      state   = 1 ;
+      break ;
+    case 1 :
+      bits   |= (*src   &amp; 0x0F00 ) &gt;&gt;  8 ;
+      *tgt++  = bits ;
+      bits    = (*src++ &amp; 0x00FF ) &lt;&lt;  8 ;
+      state   = 2 ;
+      break ;
+    case 2 :
+      bits   |= (*src   &amp; 0x0FF0 ) &gt;&gt;  4 ;
+      *tgt++  = bits ;
+      bits    = (*src++ &amp; 0x000F ) &lt;&lt; 12 ;
+      state   = 3 ;
+      break ;
+    case 3 :
+      bits   |= (*src++ &amp; 0x0FFF ) ;
+      *tgt++  = bits ;
+      bits    = 0x000 ;
+      state   = 0 ;
+      break ;
+    }
+  }
+
+  if ( state != 0 )
+  {
+    *tgt++ = bits ;
+  }
+
+  // hand back the new size ;
+  *cnt = (tgt - buf ) ;
+
+  while ( tgt &lt; limit )
+  {
+    *tgt++ = 0x0000 ;
+  }
+
+  return ;
+}
+
+int main( int argc, char* argv[])
+{
+  UINT16 buf[] = { 0xF123 , 0xE456 , 0xD789 , 0xCABC , 0xBDEF , } ;
+  int    bufl  = sizeof(buf) / sizeof(*buf) ;
+
+  compress( buf , &amp;bufl ) ;
+
+  // buf now looks like { 0x1234 , 0x5678 , 0x9ABC , 0xDEF0 , 0x0000 }
+
+  return 0 ;
+}
+</code></pre>
+
+<p><strong>ORIGINAL ANSWER</strong></p>
+
+<p>If you actually wantg to <strong>read</strong> 16-bit structures from a file and that have 12 interesting bits and 4 unused (or not very interesting) bits, and you want to avoid bit-twiddling, you can use <em>bit fields</em>. </p>
+
+<p>Note that implementations get a <strong>lot</strong> of leeway under the standard for how this stuff works, so it's not portable in the least: you'll probably need to tweak structure alignment and possibly field order, depending on the underlying CPU. You'll note my use of <code>#pragma pack(2)</code> to coerce the structure into a 16-bit size &mdash; that works in Visual Studio 2010 C++. YMMV and all that.</p>
+
+<p>[You <em>sure</em> you don't want to just mask off the bits you don't want?]</p>
+
+<p>At any rate, once you deal with all that, something like the following code should work for you:</p>
+
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+#pragma pack(2) // necessary to get correct alignment
+typedef struct
+{
+    unsigned short unused :  4 ;
+    unsigned short value  : 12 ;
+} CHUNK ;
+#define BUFFER_CHUNKS ((size_t)8192)
+
+void process( FILE*input )
+{
+  CHUNK *buf    = (CHUNK*) calloc( BUFFER_CHUNKS , sizeof(CHUNK) ) ;
+  size_t bufl   = BUFFER_CHUNKS * sizeof(CHUNK) ;
+  int    chunks = 0 ;
+
+  while ( 0 &gt; (chunks=(int)fread( (void*)buf , sizeof(CHUNK) , BUFFER_CHUNKS , input ) ) )
+  {
+    for ( int i = 0 ; i &lt; chunks ; ++i )
+    {
+      int value = buf[i].value ;
+      printf( "%d: %d\n" , i , value ) ;
+    }
+  }
+
+  return ;
+}
+</code></pre>
+
+<p>Good Luck!</p>

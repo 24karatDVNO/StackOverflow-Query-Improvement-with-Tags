@@ -1,0 +1,3 @@
+<p>I googled around but it seems unclear.  Here's the heroku guide, which doesn't mention coffeescript.  <a href="http://devcenter.heroku.com/articles/node-js" rel="nofollow">http://devcenter.heroku.com/articles/node-js</a></p>
+
+<p>I think you can just run <code>coffee -c .</code> in your app`s git repo before you commit and push to heroku (script this as part of your deploy script), and then just use the .js code compiled by that process.  </p>

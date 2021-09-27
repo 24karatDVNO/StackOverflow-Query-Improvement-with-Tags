@@ -1,0 +1,10 @@
+<ol>
+<li><a href="https://stackoverflow.com/questions/4844535/why-do-you-have-to-call-urlconnectiongetinputstream-to-be-able-to-write-out-to-u">Why do you have to call URLConnection#getInputStream to be able to write out to URLConnection#getOutputStream?</a>
+In short you must call getInputStream() and close it. getResponseCode() is also working because it requires an established connection.</li>
+<li><p>You do not need to call </p>
+
+<p>connection.connect();
+which is redundant. </p></li>
+</ol>
+
+<p>You can get working sample from here: <a href="http://www.xyzws.com/Javafaq/how-to-use-httpurlconnection-post-data-to-web-server/139" rel="nofollow noreferrer">http://www.xyzws.com/Javafaq/how-to-use-httpurlconnection-post-data-to-web-server/139</a></p>

@@ -1,0 +1,52 @@
+<p>For anyone curious, this is what I came up with. Note that this is a module to a larger, long running program. Also, that it hasn't been reviewed, and is basically a bad hack anyway.</p>
+
+<pre><code>__attribute__((noinline)) static unsigned int volatile *get_mem(unsigned int addr) {
+    static void *map = 0 ;
+    static unsigned prevPage = -1U ;
+    static int fd = -1;
+    int poss_err = 0;
+    register unsigned page = addr &amp; ~MAP_MASK ;
+
+    if ( unlikely(fd &lt; 0) ) {
+        if ((fd = open("/dev/mem", O_RDWR | O_SYNC)) &lt; 0) {
+            longjmp(mem_err, errno);
+        }
+    }
+    if ( page != prevPage ) {
+        if ( map ) {
+            if (unlikely((munmap(map,MAP_SIZE) &lt; 0))) poss_err = 1;
+        }
+        if (unlikely((map = mmap(0, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, page )) == MAP_FAILED)) longjmp(mem_err, errno);
+
+        prevPage = page ;
+    }
+    return (unsigned int volatile *)((char *)map+(addr &amp; MAP_MASK));
+}
+
+static void set_reg(const struct reg_info * const r, unsigned int val)
+{
+    unsigned int volatile * const mem = get_mem(r-&gt;addr);
+    *mem = (*mem &amp; (~(r-&gt;mask &lt;&lt; r-&gt;shift))) | (val &lt;&lt; r-&gt;shift);
+}
+
+// This isn't in the final piece. There are several entry points into this module. Just an example
+
+static int entryPoint(unsigned int value){
+
+    if (setjmp(mem_err)!=0) {
+        // Serious error
+        return -1;
+    }
+
+    for (i=0; i&lt;n; i++) {
+        if (strlen(regs[i].name) == strlen(name) &amp;&amp;
+                strncmp(regs[i].name, name, strlen (name))==0) {
+
+            set_reg(&amp;regs[i], value);
+            return value;
+        }
+    }
+}
+</code></pre>
+
+<p>This obviously isn't an answer to the question, since it checks the condition on every call.</p>

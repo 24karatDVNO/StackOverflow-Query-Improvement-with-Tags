@@ -1,0 +1,60 @@
+<p>I would suggest to perform a merged-sort using basic unix tools: <br>
+a) sort your .CSV files by the columns common between each file,  sort -d" " -K? -K? -K? <br>
+b) Using the unix 'join' command to output records common between pairs of .CSV files. 
+The 'join' command only works with 2 files at a time, so you'll have to 'chain' the results for multiple data sources:<br></p>
+
+<pre><code>  # where 'x' is field number from file A, and 'y' is field number from file B
+  sort -kx "fileA" 
+  sort -ky "fileB"
+  join -1x -2y  "fileA" "fileB" &gt; file1
+
+  sort -kx "fileC"
+  join -1x -2y "file1" "fileC" &gt; file2
+
+  sort -kx "fileD"
+  join -1x -2y "file2" "fileD" &gt; file3
+  etc... 
+</code></pre>
+
+<p>This is very fast, and allows you to filter your .CSV files as if an impromptu database join occurred.</p>
+
+<p>If you have to write your own merge-sort in php:  (Read Here: <a href="http://en.wikipedia.org/wiki/Merge_sort" rel="nofollow">Merge Sort</a> )<br></p>
+
+<p>The easiest implementing to merge-sort of .CSV files is 2-stage:  a) unix sort your files, then B) 'merge' all the sources in parallel, reading in a record from each, looking for the case where your value in your common fields match all the other sources (JOIN in database terminology):<br>
+rule 1) Skip the record that is less than (&lt;) ALL the other sources. <br>
+rule 2) When a record's common value is equal to (==) ALL other sources do you have a match.  <br>
+rule 3) When a record's common value is equal to (==) is SOME of the other source, you can use 'LEFT-JOIN' logic if desired, otherwise skip that record from all sources.</p>
+
+<p>Pseudo code for a join of multiple files <br></p>
+
+<pre><code>read 1st record from every data source;
+while "record exists from all data sources"; do
+    for A in each Data-Source ; do
+        set cntMissMatch=0
+        for B in each Data-Source; do
+            if A.field &lt; B.field then
+               cntMissMatch+=1
+            end if
+        end for
+
+        if cntMissMatch == count(Data-Sources) then
+            # found record with lowest values, skip it
+            read next record in current Data-source; 
+            break;  # start over again looking for lowest
+        else 
+            if cntMissMatch == 0 then
+                we have a match, process this record;
+                read in next record from ALL data-sources ;
+                break; # start over again looking for lowest
+            else
+                # we have a partial match, you can choose to have
+                # 'LEFT-JOIN' logic at this point if you choose, 
+                # where records are spit out even if they do NOT 
+                # match to ALL data-sources. 
+            end if         
+        end if
+    end for       
+done
+</code></pre>
+
+<p>Hope that helps.</p>

@@ -1,0 +1,81 @@
+<p>In doctrine 2 the use of the magic getters and setters is discouraged. As you can see they can cause problems for managing associations. Below is an example of how to manage the association that you have in your User entity.    </p>
+
+<pre><code>namespace Whatever/Your/Namespace/Is;
+
+use \Doctrine\Common\ArrayCollection;
+
+class User
+{
+    /**
+     * @Column (type="integer")
+     * @Id
+     * @var integer
+     */
+     private $id;
+
+     /**
+      * @OneToMany(targetEntity="Country", mappedBy="user", cascade={"persist", "remove"})
+      * @var ArrayCollection
+     private $countries;
+
+     public function __construct()
+     {
+         $this-&gt;countries = new ArrayCollection();
+     }
+
+     public function getCountries()
+     {
+         return $this-&gt;countries;
+     }
+
+     public function setCountry(Country $country)
+     {
+         $this-&gt;country[] = $country;
+         $country-&gt;setUser($this);
+         return $this;
+     }
+
+     public function removeCountry(Country $country)
+     {
+         return $this-&gt;country-&gt;removeElement($country);
+     }
+}
+</code></pre>
+
+<p>and for Country</p>
+
+<pre><code>class Country
+{
+    /**
+     * @Id
+     * @Column(type="integer")
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @Column(length=100)
+     * @var string
+     */
+    private $country_name;
+
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="countries")
+     * @var User
+     */
+    private $user;
+
+    public function setUser(User $user)
+    {
+        $this-&gt;user = $user;
+        return $this;
+    }
+
+    public function getUser()
+    {
+        return $this-&gt;user;
+    }
+
+    // ...
+}
+</code></pre>

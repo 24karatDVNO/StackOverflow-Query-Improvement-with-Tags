@@ -1,0 +1,8 @@
+<p>Have you tried overriding the onReceive method and check for the intent? I have provided a quick example.</p>
+
+<pre><code>if(intent.getAction().compareTo("android.intent.action.PACKAGE_ADDED") != 0) { 
+    //do something cool;
+}
+</code></pre>
+
+<p>This should allow you to check the incoming intent and filter out what you don't want</p>

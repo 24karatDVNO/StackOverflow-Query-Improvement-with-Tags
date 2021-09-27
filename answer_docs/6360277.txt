@@ -1,0 +1,20 @@
+<p>You define parameters for the query, but I don't see anywhere those parameters are bound to actual data...</p>
+
+<p>Try some simple tests that replace the variables you're passing in as parameters with actual values, so you can isolate the problem:</p>
+
+<p>In other words, replace this:</p>
+
+<pre><code>com.Parameters.AddWithValue("@eng", english);
+com.Parameters.AddWithValue("@type", type);
+com.Parameters.AddWithValue("@thai", thai);
+</code></pre>
+
+<p>With something like this:</p>
+
+<pre><code>//I don't know the data types of your fields, so I'm guessing
+com.Parameters.AddWithValue("@eng", "Test1");
+com.Parameters.AddWithValue("@type", myEnum.Latin);
+com.Parameters.AddWithValue("@thai", "Test1a");
+</code></pre>
+
+<p>If that works, then your problem probably lies with the <code>english</code>, <code>type</code>, and <code>thai</code> variables and you'll want to make sure they're getting the data you think they should be getting.</p>

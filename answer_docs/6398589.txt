@@ -1,0 +1,6 @@
+<p>It's not real "Zend" question. It's more PHP &amp; design patterns question. </p>
+
+<p>Problem would be that you would need to switch the instances of the Mail Transport - you're looking for Dependency injection, maybe.... or Proxy or Facade design pattern. You need ONE PLACE where you will switch the class and it will change everywhere else. I'd set that in config and have a class that loads propper class name from config and returns new instance... something like this:</p>
+
+<pre><code>TransportSelector::getTransport()-&gt;send($mail);
+</code></pre>

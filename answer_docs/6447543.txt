@@ -1,0 +1,59 @@
+<p>This is my answer, which will not be the best answer because Pointy's response pointed me in the correct direction.  However, up votes still appreciated :)</p>
+
+<p>First, you need the script blocks which are not rendered.  I have 2 because a checkbox will toggle between which one is displayed:</p>
+
+<pre><code>     &lt;script type="myType" id="abc"&gt;
+   &lt;s:select name="selectName" list="#list1" listValue="%{prefix + '-' + name}" theme="simple"/&gt;         
+ &lt;/script&gt;
+ &lt;script type="myType" id="abc2"&gt;
+   &lt;s:select name="selectName" list="#list2" listValue="%{prefix + '-' + name}" theme="simple"/&gt;         
+ &lt;/script&gt; 
+</code></pre>
+
+<p>Next, I create a region which is blank in the html code</p>
+
+<pre><code>&lt;div id="innerRegion"&gt;
+                                           &lt;/div&gt;
+</code></pre>
+
+<p>Then, I need to put something on the screen when the page first comes up, so go with this:</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+$(document).ready(function(){
+   $('#innerRegion').html( $('#abc').html() )
+});
+</code></pre>
+
+<p> </p>
+
+<p>I needed to put this at the end of my document because onLoad was already being used by a parent page.  So I am saying abc is the correct default.</p>
+
+<p>Then I need logic to handle what happens when the checkbox is pushed:</p>
+
+<pre><code>   var buttonPressed = false; 
+
+   $(window).load(
+   function() 
+   { 
+     LocalInit();
+   });
+
+   function LocalInit() {     
+   $('#myForm input[name=buttonValue]').change(
+     function() 
+     {
+        buttonPressed = !buttonPressed;
+        if (buttonPressed == true)
+        {
+           $('#innerRegion').html( $('#abc2').html() )
+        } else
+        {           
+           $('#innerRegion').html( $('#abc').html() )
+        }
+        $('#dataId').href = document.location.href;            
+     }
+   );
+  }
+</code></pre>
+
+<p>I think what was tripping me up ultimately was that I was trying to force the s:select tag through jQuery functions when as you see above it did not turn out to be necessary.  I could just write the s:select as normal.</p>

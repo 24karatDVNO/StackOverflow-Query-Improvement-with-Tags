@@ -1,0 +1,7 @@
+<p>You need to zero-out <code>finalPrice</code> before entering your loop, otherwise it will increase [somewhat] exponentially with each iteration. </p>
+
+<pre><code>...
+finalPrice = 0;
+for (int i=0; i&lt;cart.size(); i++)
+...
+</code></pre>

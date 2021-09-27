@@ -1,0 +1,6 @@
+<p>If the 'last parameter' is of variable length, your second/third/n parameter woundn't be necessary 'cause would be contained into the first one according to your sample and would be ambigous:</p>
+
+<pre><code>T f(params A[] a, params B[] b)
+</code></pre>
+
+<p>b would be contained within a</p>

@@ -1,0 +1,7 @@
+<ul>
+<li><p>About having to install dependencies. If the developers need to install dependencies missing from public maven repositories, take into account that usually maven proxies have the ability to cache public repos. For instance, <a href="http://archiva.apache.org/docs/1.3.5/tour/proxy.html" rel="nofollow noreferrer">archiva has a proxying cache</a>. If the dependencies are your own project deliverables you should consider <a href="http://maven.apache.org/guides/mini/guide-releasing.html" rel="nofollow noreferrer">releasing and deploying with maven</a> to your company repo.</p></li>
+<li><p>About latest versions. You need to specify maven what version of dependencies should use. I would prefer editing my poms manually, anyway there's a <a href="https://stackoverflow.com/questions/30571/how-do-i-tell-maven-to-use-the-latest-version-of-a-dependency">variety of ways to achieve that</a>.</p></li>
+<li><p>The libraries should be part of the project, I think. If not standard libraries of glassfish, they should be included, for instance, in your war file as part of your project. If not standard but not part of your project (not the regular approach) consider managing this glassfish as a project on its own (own git/svn repo, own pom, own versions, own everything).</p></li>
+</ul>
+
+<p>Good luck.</p>

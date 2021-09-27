@@ -1,0 +1,48 @@
+<p>You could use a function:</p>
+
+<pre><code>&lt;?php
+    function defvar(&amp;$var) {
+        if (empty($var)) { $var = 'default value'; }
+    }
+
+    // testing
+    $set = 'test';
+    defvar($set);
+    echo $set;
+
+    defvar($notset);
+    echo $notset;
+?&gt;
+</code></pre>
+
+<p><strong>Output:</strong></p>
+
+<pre><code>test
+default value
+</code></pre>
+
+<hr>
+
+<p>Or if you prefer assignment:</p>
+
+<pre><code>&lt;?php
+    function setdefvar($var) {
+        if (empty($var)) { return 'default value'; }
+        else { return $var; }
+    }
+
+    // testing
+    $set = 'test';
+    $set = setdefvar($set);
+    echo $set;
+
+    $notset = setdefvar($notset);
+    echo $notset;
+?&gt;
+</code></pre>
+
+<p><strong>Output:</strong></p>
+
+<pre><code>test
+default value
+</code></pre>

@@ -1,0 +1,7 @@
+<p>It sounds like your relationship from Users -> Messages is to-one. Whenever you set the SentBy relation on a Message, it overwrites the previous Message relationship on the user.</p>
+
+<p>You need to make it a to-many relationship.</p>
+
+<p>On your object graph, it should look like this:</p>
+
+<p>User &lt;------>> Message</p>

@@ -1,0 +1,6 @@
+<p>We use this to include a DocTab in our NRGship for UPS labels. It gets inserted BEFORE the P1\n at the end of the UPS label.</p>
+
+<pre><code>"\nA17,1330,0,3,1,1,N,\"[date]     PACKAGE WEIGHT [weight] [units]\"\nA668,1330,0,4,1,1,N,\"[multi]\"\nA17,1360,0,3,1,1,N,\"SERVICE [service]\"\nA17,1390,0,3,1,1,N,\"TRACKING# [tracknum]\"\nA17,1420,0,3,1,1,N,\"PACKAGE SERVICE OPTION CHARGES [charges] [currency]\"\nA17,1450,0,3,1,1,N,\"REF 1: [ref1]\"\nA17,1480,0,3,1,1,N,\"REF 2: [ref2]\"\nA17,1540,0,3,1,1,N,\"TOTAL BILLED WEIGHT [totalbilledweight] [units]\"\nA17,1570,0,3,1,1,N,\"TOTAL SHIPMENT CHARGES [totalcharges] [currency]\"\nA17,1600,0,3,1,1,N,\"[negotiated]\"\n"
+</code></pre>
+
+<p>You may need to replace \n and \" in your coding. </p>

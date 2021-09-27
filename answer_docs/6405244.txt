@@ -1,0 +1,14 @@
+<p>ClientPortOptions and DaemonPortOptions are special cases since multiple
+clients/daemons can be defined.  This can be done via</p>
+
+<pre><code>CLIENT_OPTIONS(`field1=value1,field2=value2,...')
+DAEMON_OPTIONS(`field1=value1,field2=value2,...')
+</code></pre>
+
+<p>Note that multiple CLIENT_OPTIONS() commands (and therefore multiple
+ClientPortOptions settings) are allowed in order to give settings for each
+protocol family (e.g., one for Family=inet and one for Family=inet6).  A
+restriction placed on one family only affects outgoing connections on that
+particular family.</p>
+
+<p>Source: <a href="http://www.sendmail.com/sm/open_source/docs/configuration_readme/" rel="nofollow">http://www.sendmail.com/sm/open_source/docs/configuration_readme/</a> </p>

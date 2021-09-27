@@ -1,0 +1,5 @@
+<p>I've had similar requirements on <a href="http://bluedot.mobi/td" rel="nofollow">http://bluedot.mobi/td</a>.  Setting aside the caching issue for a moment, having a mapping framework that can be used offline is tricky - the best I'm aware of is the open source API OpenLayers.org.  They have recently done significant work on enabling mobile device support.  The big mapping APIs such as Google's javascript API restrict offline use and caching.</p>
+
+<p>There is some work currently being done with OpenLayers to utilize either localStorage and/or websql.  A working example is <a href="http://dev.openlayers.org/sandbox/jennier/openlayers/examples/local-storage-wms-simple.html" rel="nofollow">here</a>.  You can drill down to the source from there to see the different implementation methods.</p>
+
+<p>Note that with OpenLayers you'll likely want to tap into the svn trunk to get the latest developments.  It's a fast moving project.</p>

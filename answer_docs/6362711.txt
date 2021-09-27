@@ -1,0 +1,3 @@
+<p>Don't bind your data in the Page_Load event.  Create a separate method that does it, then in the Page Load, if !IsPostback, call it.</p>
+
+<p>The reason to perform the databinding is it's own method is because you'll need to call it if you're paging through the dataset, deleting, updating, etc, after you perform the task.  A call to a method is better than many instances of the same, repetitive, databinding code.</p>

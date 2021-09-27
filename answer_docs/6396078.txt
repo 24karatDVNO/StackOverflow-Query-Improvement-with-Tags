@@ -1,0 +1,30 @@
+<p>here's the proxy I define on my store</p>
+
+<pre><code>proxy: {
+    type: 'ajax',
+    batchActions: false,
+    reader: {
+        type: 'json',
+        root: 'data'
+    },
+    api: {
+        create: 'CreateOrder.json',
+        read: 'ReadOrder.json',
+        update: 'UpdateOrder.json',
+        destroy: 'DestroyOrder.json'
+    },
+    listeners: {
+        exception: function (proxy, response, operation) {
+            Ext.Msg.show({
+                title: response.statusText,
+                msg: Ext.decode(response.responseText).message,
+                buttons: Ext.Msg.OK,
+                icon: Ext.window.MessageBox.ERROR
+            });
+        }
+    }
+}
+</code></pre>
+
+<p>You could try out this library, which helps me
+<a href="http://extjs4ef4.codeplex.com/" rel="nofollow">extjs4efj</a></p>

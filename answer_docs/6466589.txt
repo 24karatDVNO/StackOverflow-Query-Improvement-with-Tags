@@ -1,0 +1,9 @@
+<p>not sure if this really works, but you could try to join the keywords table with itself for each searchterm, eg something like:</p>
+
+<pre><code>SELECT searchterm1.key_page_id as page_id FROM KEYWORDS searchterm1 
+INNER JOIN KEYWORDS searchterm2 
+ON (searchterm1.key_page_id = searchterm2.key_page_id) 
+WHERE searchterm1.key_name='purz' AND searchterm2.key_name='puzy';
+</code></pre>
+
+<p>you wouldn't even need to join with the PAGES table,  unless you need page_name returned as well</p>

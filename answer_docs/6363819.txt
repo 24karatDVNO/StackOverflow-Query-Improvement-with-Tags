@@ -1,0 +1,64 @@
+<p>There's a hack to allow ui-state-disabled for the accordion containers:</p>
+
+<pre><code>$("#myaccordion").accordion({
+autoHeight: false,
+navigation: true,
+create: function(event,ui){ 
+    $( "#container2" ).addClass("ui-state-disabled");
+    $( "#container3" ).addClass("ui-state-disabled");
+    $( "#container4" ).addClass("ui-state-disabled");
+    $( "#container5" ).addClass("ui-state-disabled");
+}
+});  
+
+    // Hack to implement the disabling functionnality
+
+        var accordion = $( "#myaccordion" ).data("myaccordion");
+        accordion._std_clickHandler = accordion._clickHandler;
+        accordion._clickHandler = function( event, target ) {
+        var clicked = $( event.currentTarget || target );
+        if (! clicked.hasClass("ui-state-disabled"))
+          this._std_clickHandler(event, target);
+        }; 
+</code></pre>
+
+<p>Then, you add in buttons in the container to direct movement to the next container (and do any necessary validations). For example - here's the js for a next button to do validation and open the next container:</p>
+
+<pre><code>$('#NextLink1').click(function () {
+        //verify uniqueness of username before proceeding.
+        var regexVal = /^([a-zA-Z0-9]+)$/;
+        if ($('#user_username').val() == "") {
+            $('#usererrormsg').text("You must provide a user name");
+            $('#usererrormsg').show();
+        } else if ($('#company_name').val() == "") {
+            $('#usererrormsg').text("You must provide a company name");
+            $('#usererrormsg').show();
+        } else if (regexVal.test($('#user_username').val())==false) {
+            $('#usererrormsg').text("User names must be alpha-numeric only. No special characters.");
+            $('#usererrormsg').show();
+        } else if ($("#user_user_picture").val() &amp;&amp; $("#user_user_picture").val().match(/(.png$)|(.jpg$)|(.jpeg$)|(.gif$)/i) == null )  {
+            $('#usererrormsg').text("Pictures must be png, jpg, jpeg, or gif format.");
+            $('#usererrormsg').show();      
+        } else {
+        //$.get('/users/isusernameunique?un='+$('#user_username').val(),function(data) {
+            $.post('/users/isusernameunique', {
+                'un': $('#user_username').val()
+            },function(data) {
+                //$('#uniqueuserresult').html(data);
+                if(data.msg == "dupe") {
+                    $('#usererrormsg').text("Someone stole your username! They must be unique. Please try again.");
+                    $('#usererrormsg').show();
+                    $('#user_username').focus();
+                } else {
+                    $('#usererrormsg').hide();
+                    $( "#container2" ).removeClass("ui-state-disabled");                    
+                    $('#container2h3').click();
+                    $( "#container1" ).addClass("ui-state-disabled");
+                }
+            }, "json");         
+        }
+
+        //$('#companydetailsh3').click();
+        return false;
+    });
+</code></pre>

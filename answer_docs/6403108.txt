@@ -1,0 +1,5 @@
+<p>1) I believe it's the first screen of your application, not the splash screen. This could include a loading screen (preferably with a ProgressBar) if you need to continue loading something. (<a href="http://forums.create.msdn.com/forums/p/79285/480074.aspx#480074" rel="nofollow">Related post</a>)</p>
+
+<p>2) I've seen an app do exactly this. The user launches the app and if there's no connection, it displays a message and closes the app. As long as the user is aware that the app will shutdown because a data connection is required (but not found), it should be okay. </p>
+
+<p>3) You can use <a href="http://msdn.microsoft.com/en-us/library/microsoft.phone.info.devicestatus.applicationcurrentmemoryusage%28v=VS.92%29.aspx" rel="nofollow">DeviceStatus.ApplicationCurrentMemoryUsage</a> to check the usage. (<a href="http://msdn.microsoft.com/en-us/library/ff941122%28v=VS.92%29.aspx" rel="nofollow">Example here</a>)</p>

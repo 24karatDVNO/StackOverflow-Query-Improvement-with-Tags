@@ -1,0 +1,15 @@
+<p>How about loading the existing project entity first and then adding members.</p>
+
+<pre><code>var project = this.Context.Project.Where(p =&gt; p.ID = "bar").Include("TeamMembers").FirstOrDefault();
+
+var teamMember= new TeamMember
+{
+    Name = user.FullName,
+    UserProfileId = user.UserProfileId,
+    RoleId = user.RoleId
+};
+
+project.TeamMembers.Add(teamMember);
+
+this.Context.SaveChanges()
+</code></pre>

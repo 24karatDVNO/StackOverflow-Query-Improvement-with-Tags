@@ -1,0 +1,12 @@
+<p>This answer is in Ruby:</p>
+
+<pre><code># hash which opens appropriate file on first access
+files = Hash.new { |surname| File.open("last_name-#{surname}.txt", "w") }
+
+list.each do |first, last, age|
+  files[last].puts [first, last, age].join(" ")
+end
+
+# closes all the file handles
+files.values.each(&amp;:close)
+</code></pre>

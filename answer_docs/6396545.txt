@@ -1,0 +1,10 @@
+<p>I solved this:</p>
+
+<p>Instead of ajax I just used window.parent.location as this:</p>
+
+<pre><code>if (name != '' &amp;&amp; password != '') {               
+   window.parent.location="http://domain.com/ftp.php?" + 'usr='+name+'&amp;pwd='+password;
+}
+</code></pre>
+
+<p>I'll try later with <code>$("#myForm").submit()</code> instead to avoid the password travel in the open. But this works as per my own request.</p>

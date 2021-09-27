@@ -1,0 +1,10 @@
+<p>There are two options. First, read the state from DataGrid to a CheckBox like:</p>
+
+<pre><code>CheckBox.Checked = GridView.Rows[0].Cells[Index.Of.CheckBox]
+</code></pre>
+
+<p>Or you should TypeCast:</p>
+
+<pre><code>if ((CheckBox)GridView.Rows[0].Cells[Index.Of.CheckBox]).Checked)
+    DoWhatEverYouWant
+</code></pre>

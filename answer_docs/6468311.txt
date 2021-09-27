@@ -1,0 +1,36 @@
+<p>So someone else mentioned to deploy it to your repository.  If you're already setup to deploy built artifacts to a repository this is easy, if not, check out <a href="http://maven.apache.org/plugins/maven-deploy-plugin/" rel="nofollow">http://maven.apache.org/plugins/maven-deploy-plugin/</a></p>
+
+<p>Next, you need to use a plugin to get the zip file checked out of the repository.  You could use shade, or the maven-dependency-plugin.  Let's assume maven-dependency-plugin <a href="http://maven.apache.org/plugins/maven-dependency-plugin/usage.html" rel="nofollow">http://maven.apache.org/plugins/maven-dependency-plugin/usage.html</a></p>
+
+<p>So add this to your maven pom file in the plugins section:</p>
+
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;unpack&lt;/id&gt;
+            &lt;phase&gt;process-sources&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;unpack&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;artifactItems&gt;
+                    &lt;artifactItem&gt;
+                        &lt;groupId&gt;my.artifact.group.id&lt;/groupId&gt;
+                        &lt;artifactId&gt;my-artifact&lt;/artifactId&gt;
+                        &lt;version&gt;My-version&lt;/version&gt;
+                        &lt;type&gt;zip&lt;/type&gt;
+                        &lt;overWrite&gt;false&lt;/overWrite&gt;
+                        &lt;outputDirectory&gt;${project.build.directory}/see&lt;/outputDirectory&gt;
+                    &lt;/artifactItem&gt;
+                &lt;/artifactItems&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+
+<p>Obviously you need to change the specifics of the artifact.  That will unzip your zip file into target/see.  If you want the actual zip file (which seems like what you were asking for but it's not clear), just change the goal from "unpack" to "copy-dependencies".  You might also have to remove the outputDirectory or change some other bit of the configuration.  Just play with it to get it where you need it, and see the page on the maven-dependency-plugin I mentioned above for more details.</p>
+
+<p>Hope that helps.</p>

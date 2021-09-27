@@ -1,0 +1,7 @@
+<p>What you want is not something MySQL does very well. Yhn mentioned some options.</p>
+
+<p>MySQL's <strong>FULLTEXT</strong> indexes are not popular for good reasons.</p>
+
+<p>Breaking your texts down to keywords and forming indexed tables of them that link back to the original items can work. But doing that, in essence, is like starting to build your own search engine.</p>
+
+<p>Much better search engines than you are likely to build are available. Yhn mentioned <strong>SOLR</strong>, which is very good, but I want to mention also <a href="http://sphinxsearch.com/" rel="nofollow"><strong>Sphinx Search</strong></a>, which I use. SOLR has some interesting features that Sphinx doesn't have, but I had the impression Sphinx is easier to learn and get started with. It's worth your consideration.</p>

@@ -1,0 +1,11 @@
+<pre><code>set @material = 'AD215BY';
+select a.WeekNumber
+        ,a.filedate
+        ,a.customer
+        ,coalesce(zf.material, @material) as Material
+        ,zf.Quantity
+from zfmon zf right outer join zfmonTemp a
+on zf.customer = a.customer
+        and zf.filedate = a.filedate
+        and zf.material = @material
+</code></pre>

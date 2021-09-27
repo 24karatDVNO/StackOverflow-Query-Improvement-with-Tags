@@ -1,0 +1,43 @@
+<p>James explained how to resolve the problem.</p>
+
+<p>But the reason auto_ptr was designed so that you can not do this:</p>
+
+<pre><code>show(new test(3,4));
+</code></pre>
+
+<p>Is because this is a bad idea.<br>
+Even this (if it were allowed):</p>
+
+<pre><code>show(std::auto_ptr&lt;test&gt;(new test(3,4)));
+</code></pre>
+
+<p>Would be a bad idea.<br>
+So you ask why.</p>
+
+<p>Well in the normal situation not a big deal.<br>
+Bu what happens when you have a function that takes more than one parameter.</p>
+
+<pre><code>show2(std::auto_ptr&lt;test&gt;(new test(3,4)), SomeObject());
+</code></pre>
+
+<p>Now the standard gurantees that all parameters will be fully evaluated before the call (even the construction of the auto_ptr). But it does not guarantee the evaluation order nor that the evaluation will not be interleaved.</p>
+
+<p>Thus it is possible for this evaluation:</p>
+
+<pre><code>  // Phsedu code for parameter evaluation
+  test*                      tmp1 = new test(3,4);
+  SomeObject const&amp;          tmp2 = SomeObject();
+  std::auto_ptr&lt;test&gt; const&amp; tmp3(tmp1);
+call(tmp3, tmp1)
+</code></pre>
+
+<p>This order is bad. Because if the constructor of SomeObject throws an exception you will leak tmp1 as it has not yet been assigned to the std::auto_ptr.</p>
+
+<p>This is why we auto_ptr was designed so that you have to give it a named variable.</p>
+
+<pre><code>std::auto_ptr&lt;test&gt;  tmp3(new test(3,4));
+SomeObject           tmp1;
+call(tmp3, tmp1)
+</code></pre>
+
+<p>Now if SomObject constructor throws the test object will be tidied up.</p>

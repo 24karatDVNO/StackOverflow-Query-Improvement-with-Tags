@@ -1,0 +1,15 @@
+<p>Your code does not leak.</p>
+
+<p>Also, your code could be compacted.  I find it odd that you're using <code>NSPredicate</code> to filter part of the array, and then looping again to find something else.  Why not just use the predicate to do both?</p>
+
+<pre><code>BOOL IsWordOf(NSString* myString, NSString* myWord)
+{
+    NSMutableCharacterSet *separators = [NSMutableCharacterSet punctuationCharacterSet];
+    [separators formUnionWithCharacterSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSArray *parse_array = [myString componentsSeparatedByCharactersInSet:separators];
+
+    NSPredicate *search = [NSPredicate predicateWithFormat:@"SELF.length &gt; 0 AND SELF ==[cd] %@", myWord];
+    NSArray *filtered = [parse_array filteredArrayUsingPredicate:search];
+    return [filtered count] &gt; 0;   
+}
+</code></pre>

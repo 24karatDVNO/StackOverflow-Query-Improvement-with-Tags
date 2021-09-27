@@ -1,0 +1,11 @@
+<p>From the last sentence of your question I guess you need that</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.type.makegenerictype.aspx" rel="nofollow">Type.MakeGenericType</a></p>
+
+<p>So you can do something like that:</p>
+
+<pre><code>Type generic = typeof(ObservableCollection&lt;&gt;);
+Type[] typeArgs = { typeof(ClassName) };
+Type constructed = generic.MakeGenericType(typeArgs);
+var obj = Activator.CreateInstance(constructed);
+</code></pre>

@@ -1,0 +1,7 @@
+<p>ideally you would use .live for this, but I'm not sure jquery 1.2 had it. Another thing you could do is run the bind operation again after you add the new elements. When you do it at document.ready, only elements already in the DOM will be bound to the event, so do the same thing after you add the items. (You might need to check that there is no double-binding or something). If there's a problem, you could add an extra class to the new items (say 'pendingbind') and then do a <br></p>
+
+<pre><code>$(".pendingbind").click(...)&lt;br&gt;
+$(".pendingbind").removeClass("pendingbind")
+</code></pre>
+
+<p>something like that</p>

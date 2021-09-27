@@ -1,0 +1,14 @@
+<p>Thank you very much for your posts! I found that I have to add a rule to make it work. Also I added touch to be able to repeat the makefile.</p>
+
+<pre><code>progs = prog1 prog2 prog3
+
+all: run_touch $(progs)
+
+run_touch:
+
+    touch *.cpp
+
+%:%.cpp
+
+    $(CC) $(CFLAGS) -o $@ $&lt; $(LDFLAGS)
+</code></pre>

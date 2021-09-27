@@ -1,0 +1,8 @@
+<p>Assuming you don't have anything else coming in with <code>result</code> you could also do:</p>
+
+<pre><code>success: function(result) {
+    $.each(result,function(i,e){
+      $('#content' + (i + 1)).html(e);
+    });
+  }
+</code></pre>

@@ -1,0 +1,10 @@
+<p>If tester is declared within the same class as that method, then simply like this:</p>
+
+<pre><code>private void deletetask_Click(object sender, EventArgs e)
+{
+    ScheduledTasks st = new ScheduledTasks(@"\\" + System.Environment.MachineName);
+    st.DeleteTask(tester);
+}
+</code></pre>
+
+<p>If it's not, where is it declared?</p>

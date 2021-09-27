@@ -1,0 +1,8 @@
+<p>Well </p>
+
+<ol>
+<li>rebelliard's answer is a possibility depending on your mapping</li>
+<li>you are not using explicit transactions (StuffHappens' answer)</li>
+<li>default flush mode is auto and that complicates things (Jamie Ide's answer)</li>
+<li>if by any change you make any queries using the nhibernate api the default behaviour is to flush the cache to the database first so that the results of those queries will match the session entity representation.</li>
+</ol>

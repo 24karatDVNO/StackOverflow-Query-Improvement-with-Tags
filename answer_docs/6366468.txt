@@ -1,0 +1,3 @@
+<p>Sorry to burst your bubble, but there's no sane way of doing that. Function names only exist for easy writing. As soon as the compiler gets hold of them, the names become garbled and then turned into function addresses only. The names (at least in C++) are meaningless at runtime.</p>
+
+<p>Your best bet is either a long chain of if / else statements OR possibly a dictionary that maps a string to a function pointer. But you'd have to set up that dictionary manually.</p>

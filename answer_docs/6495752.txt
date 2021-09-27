@@ -1,0 +1,26 @@
+<p>As you said this works only if mouse is in movement, otherwise the <code>&lt;Motion&gt;</code> event is not triggered. You can use a timer that is triggered after a timeout and only if the mouse is in the scrolling area. The following is just a pseudo-code which uses a <a href="http://code.activestate.com/recipes/577407-resettable-timer-class-a-little-enhancement-from-p/" rel="nofollow">resettable timer</a> I found in ActiveState:</p>
+
+<pre><code>TIMEOUT = 0.5
+timer = None
+
+def _on_timeout(event):
+    global timer
+    scroll_xy(event)
+    timer = TimerReset(TIMEOUT, _on_timeout, [event])
+    timer.start()
+
+def xy_motion(event):
+    global timer
+    if is_in_scrollable_area(event):
+        if timer is None:
+            timer = TimerReset(TIMEOUT, _on_timeout, [event])
+            timer.start()
+        else:
+            timer.reset()
+        scroll_xy(event)
+    elif timer is not None:
+        timer.cancel()
+        timer = None
+</code></pre>
+
+<p>Beware that these are just thoughts, I didn't check the code and probably there is a race condition on the <code>timer</code> variable and you should use a lock. </p>

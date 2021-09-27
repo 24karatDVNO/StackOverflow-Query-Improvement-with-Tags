@@ -1,0 +1,27 @@
+<p>I would recommend that you adopt the MVVM pattern (if you haven't already) and have your validation logic contained in the view model. Using this approach, you can either:</p>
+
+<ul>
+<li>Expose an IsValid property on the view model and bind it to the button; the property getter would return the result of your validation logic</li>
+<li>Expose an ICommand on the view model whose CanExecute method would return the result of your validation logic (recommended)</li>
+</ul>
+
+<p>A quick example:</p>
+
+<pre><code>public class DiscountViewModel : ViewModel // Base class implements INotifyPropertyChanged
+{
+  // Define all of your view model properties, i.e., DiscountAmount, DiscountPercent, etc.
+
+  ...
+
+  // Define a command
+
+  public ICommand OKCommand { get; }
+}
+</code></pre>
+
+<p>Then in your XAML view, you would add the following binding:</p>
+
+<pre><code>&lt;Button Command={Binding Path=OkCommand} Content="OK" /&gt;
+</code></pre>
+
+<p>Again, this is just a brief example that should help point you in the right direction. There are tons of great resources on the MVVM pattern available as well as resources for the WPF command pattern. Here is a good introductory resource that covers both: <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/magazine/dd419663.aspx</a></p>

@@ -1,0 +1,8 @@
+<p>I was also frustrated by this limitation. I came up with "cancel" type functionality by creating an input button inside the form, with a url tag as the action to set the browser location to. That way the validation on the form will only fire for submit, but not for our special cancel button. I was not able to make it skip validation for one button or the other when both were of type <code>submit</code>. With this solution the client side validation will work properly as well. </p>
+
+<pre><code>&lt;sx:form validate="true" action="someAction"&gt;
+     &lt;sx:submit value="Save Changes" theme="simple"/&gt; |
+     &lt;sx:url action="umhome"  id="cancel"&gt;&lt;/sx:url&gt;
+     &lt;input type="button" value="Cancel" onclick="return window.location = '&lt;sx:property value="%{#cancel}"/&gt;'; "/&gt;
+&lt;/sx:form&gt;
+</code></pre>

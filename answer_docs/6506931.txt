@@ -1,0 +1,24 @@
+<p>I am working on Excel at the moment but I think your problem is similar in nature.</p>
+
+<p>From the code below I can extract the XML code of the row and then store it.</p>
+
+<pre><code>private string GetContents(uint rowIndex)
+{
+    return GetExistingRow(rowIndex).OuterXml;
+}
+
+private Row GetExistingRow(uint rowIndex)
+{
+    return SheetData.
+            Elements&lt;Row&gt;().
+            Where(r =&gt; r.RowIndex == rowIndex).
+            FirstOrDefault();
+}
+</code></pre>
+
+<p>please note the SheetData object is extracted as</p>
+
+<pre><code>this.SheetData = WorksheetPart.Worksheet.GetFirstChild&lt;SheetData&gt;()
+</code></pre>
+
+<p>I hope this helps.</p>

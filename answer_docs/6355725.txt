@@ -1,0 +1,5 @@
+<p>It is possible to edit a cookie, in fact it's not just possible but easy. You should always assume users have this ability.</p>
+
+<p>In general it's best to store the values encrypted with a key which you only store on the server. That way can see the cookie, however they can't alter it because they don't have the private key on the server. That would be my recommendation at least.</p>
+
+<p>You could also only store a UUID in the cookie, and then store the persistent info (such as login name, login time etc) in the database.</p>

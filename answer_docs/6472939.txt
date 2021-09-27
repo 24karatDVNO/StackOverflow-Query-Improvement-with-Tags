@@ -1,0 +1,11 @@
+<p>I think the webkit video player just starts the video player intent, you could call it directly with an intent ACTION_VIEW, with "video/*" mime type. For example:</p>
+
+<pre><code>    Intent newIntent = new Intent(android.content.Intent.ACTION_VIEW);
+    newIntent.setDataAndType(Uri.fromFile(file),mimeType);
+    newIntent.setFlags(newIntent.FLAG_ACTIVITY_NEW_TASK);
+    try {
+        context.startActivity(newIntent);
+    } catch (android.content.ActivityNotFoundException e) {
+        Toast.makeText(_context, "No app for this type of file.", 4000).show();
+    }
+</code></pre>

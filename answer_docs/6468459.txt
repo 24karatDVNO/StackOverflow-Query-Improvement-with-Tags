@@ -1,0 +1,5 @@
+<p>I prefer to specify the base class - especially if you think you might use the same class for different symbols in the library.</p>
+
+<p><strong>EG</strong> if you just define the symbol's class in the "Class" property, you will run into issues later if you try to assign a different symbol that class as well.</p>
+
+<p>It makes your code more re-useable if you use the base class and then add the symbol to the stage using <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getDefinitionByName%28%29" rel="nofollow">getDefinitionByName</a>.</p>

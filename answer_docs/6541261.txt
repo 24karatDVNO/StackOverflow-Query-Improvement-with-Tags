@@ -1,0 +1,11 @@
+<p>Your WHERE clause should come after the JOINs.</p>
+
+<pre><code>SELECT * 
+    FROM searchengine 
+        INNER JOIN keywords 
+            ON searchengine.id=keywords.id 
+    WHERE id IN (" . implode(',', $ids) . ") 
+       OR id IN (" . implode(',', $ids2) . ")
+    ORDER BY (relevant-irrelevant) DESC, (rating/votes) DESC, report ASC,  LENGTH(description) DESC, title ASC 
+    LIMIT $page, $limit
+</code></pre>

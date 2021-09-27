@@ -1,0 +1,14 @@
+<p>scripts/ is a directory on the same level as your pom.xml. That is...</p>
+
+<pre><code>/myproject
+  pom.xml
+  /scripts
+    hello.scala
+</code></pre>
+
+<p>So from same directory as pom.xml, try...</p>
+
+<pre><code>&gt;mkdir scripts
+&gt;echo 'println("hello")' &gt;&gt; scripts/hello.scala
+&gt;mvn scala:script -DscriptFile=bob/hello.scala
+</code></pre>

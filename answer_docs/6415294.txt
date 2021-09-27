@@ -1,0 +1,11 @@
+<p>Something along these lines maybe?</p>
+
+<pre><code>SELECT Qid, COUNT(*) AS TagsInCommon FROM Questions
+WHERE Tags IN (
+  SELECT DISTINCT Tags FROM Questions WHERE Qid=1
+)
+GROUP BY Qid
+ORDER BY TagsInCommon DESC
+</code></pre>
+
+<p>I'm not sure about the field names but you get the idea...</p>

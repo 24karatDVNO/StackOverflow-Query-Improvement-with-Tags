@@ -1,0 +1,15 @@
+<p>I worked with my coworker who actually created the view.</p>
+
+<p>The view had joins and where clauses. He was using a syntax like this:</p>
+
+<pre><code> AND b.end_dt = '30-JUN-2012'
+</code></pre>
+
+<p>When he changed the format to use a todate function it worked.</p>
+
+<pre><code> AND b.end_dt = TO_DATE('06/30/2012','MM/DD/YYYY')
+</code></pre>
+
+<p>Now the old way worked perfectly fine in Oracle, it only barfed when being passed through the linked server in SQL Server. </p>
+
+<p>Now we know.</p>

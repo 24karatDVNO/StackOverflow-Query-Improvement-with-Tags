@@ -1,0 +1,38 @@
+<p>It looks that you are seeking for GlobalHook. Please have a look at <a href="http://msdn.microsoft.com/en-us/library/ms644990%28v=vs.85%29.aspx" rel="nofollow">SetWindowsHookEx</a> Native Api. You can easily write your <a href="http://pinvoke.net/default.aspx/user32/SetWindowsHookEx.html" rel="nofollow">Pinvoke</a> statements.
+Here is an example from <a href="http://pinvoke.net/default.aspx/user32/SetWindowsHookEx.html" rel="nofollow">pinvoke.net</a></p>
+
+<pre><code>using System.Windows.Forms;
+public class MyClass
+{
+     private HookProc myCallbackDelegate = null;
+
+     public MyClass()
+     {
+     // initialize our delegate
+     this.myCallbackDelegate = new HookProc(this.MyCallbackFunction);
+
+     // setup a keyboard hook
+     SetWindowsHookEx(HookType.WH_KEYBOARD, this.myCallbackDelegate, IntPtr.Zero, AppDomain.GetCurrentThreadId());
+     }
+
+     [DllImport("user32.dll")]
+     protected static extern IntPtr SetWindowsHookEx(HookType code, HookProc func, IntPtr hInstance, int threadID);
+
+     [DllImport("user32.dll")]
+     static extern int CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+     private int MyCallbackFunction(int code, IntPtr wParam, IntPtr lParam)
+     {
+    if (code &lt; 0) {
+        //you need to call CallNextHookEx without further processing
+        //and return the value returned by CallNextHookEx
+        return CallNextHookEx(IntPtr.Zero, code, wParam, lParam);
+    }
+     // we can convert the 2nd parameter (the key code) to a System.Windows.Forms.Keys enum constant
+     Keys keyPressed = (Keys)wParam.ToInt32();
+     Console.WriteLine(keyPressed);
+    //return the value returned by CallNextHookEx
+    return CallNextHookEx(IntPtr.Zero, code, wParam, lParam);
+     }
+}
+</code></pre>

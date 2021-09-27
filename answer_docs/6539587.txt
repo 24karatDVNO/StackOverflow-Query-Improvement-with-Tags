@@ -1,0 +1,51 @@
+<p>Live Example:</p>
+
+<ul>
+<li><a href="http://jsfiddle.net/8HWqG/27/" rel="nofollow">http://jsfiddle.net/8HWqG/27/</a></li>
+</ul>
+
+<p>HTML:</p>
+
+<pre><code>&lt;div data-role="page" id="home"&gt;
+    &lt;div data-role="header"&gt;
+        &lt;h1&gt;Title&lt;/h1&gt;
+        &lt;a data-role="back" href="/app/Post"&gt;Back&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-inline="true"&gt;
+        &lt;a href="#" data-role="button" data-inline="true" class="active buttonWidth"&gt;Button1&lt;/a&gt;
+        &lt;a href="#" data-role="button" data-inline="true" class="buttonWidth buttonRight"&gt;Button2&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="myHr"&gt;Title&lt;/div&gt;
+    &lt;div class="pageInfo"&gt;...&lt;/div&gt;
+    &lt;div data-role="content"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>CSS:</p>
+
+<pre><code>.buttonWidth {
+    width:48%; /* make buttons span longer, increase the width but keep it 48% or below */
+    /* Optional Margin/Padding for Buttons */
+    margin-top: 1px;
+    padding-top:1px;
+}
+
+.buttonRight {
+    float:right;
+}
+
+.myHr{
+    width:100%;
+    margin:0;
+    margin-top: -6px;
+    padding:0;
+    padding-top: -6px;
+    line-height:1em;
+    font-size:1em;
+}
+.pageInfo{
+    width:100%;
+    margin:0;
+    padding:0;
+}
+</code></pre>

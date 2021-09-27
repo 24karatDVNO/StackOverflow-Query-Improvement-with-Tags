@@ -1,0 +1,11 @@
+<p>Check out the "Retrieving Managed or Unmanaged Packages" section of the Force.com Migration Tool Guide. It's this type of syntax:</p>
+
+<pre><code>&lt;target name="retrieveNamedPackage"&gt;
+&lt;sf:retrieve
+username="${sf.username}"
+password="${sf.password}"
+serverurl="${sf.serverurl}"
+retrieveTarget="projectFolder"
+packageNames="mySourcePackage"/&gt;
+&lt;/target&gt;
+</code></pre>

@@ -1,0 +1,15 @@
+<p>Thanks for your answer and comment, i fix it. </p>
+
+<p>The problem was in the service  command line , i use this command </p>
+
+<pre><code>"C:\mongodb\bin\mongod" --bind_ip 127.0.0.1 --logpath "C:\data\db\mongodb.log" --logappend --dbpath "C:\data\db" --port 27100 --install 
+</code></pre>
+
+<p>instead of</p>
+
+<pre><code>"C:\mongodb\bin\mongod" --bind_ip myIPadress --logpath "C:\data\db\mongodb.log" --logappend --dbpath "C:\data\db" --port 27100 --install
+</code></pre>
+
+<p>In the php code <code>new Mongo("mongodb://".$_host.":".$_port,true)</code> , $host = myIPadress </p>
+
+<p>That why it was working in command line and not in the php code, it must be the same IPadress, don't use localhost or something like that if you don't use a default <code>new Mongo()</code> </p>

@@ -1,0 +1,9 @@
+<p>I think there are a couple of approaches you could use to simplify this.</p>
+
+<p>Firstly instead of the hybrid view, why not make up a view-model class. This will contain your hybrid data, but will be a pure poco class. Its much safer to bind to, as you control what fields are exposed.</p>
+
+<p>Having a controller method for each ascx is not such a bad thing, but if you prefer one, and to wrap the page in one Form, you can either use button type="submit" (rather than input type=submit) or javascript to tell which button was pressed and which bit of the posted viewdata to map back to your EF classes.</p>
+
+<p>Another approach, and given that you have already taken a dependency on javascript, this is the one I would favour:</p>
+
+<p>I'd attempt to decouple the page into the independent partials, give each one a pair of controller methods (Get and Post) and assemble the page by requesting each partial with Ajax type calls. Your sticking point here will depend on whether an update in one cascades into others : if the interdependence is fixed and acyclic this will be pretty easy to resolve otherwise you might need to develop some sort of light messaging framework - or just allow some types of update to trigger a full page refresh.</p>

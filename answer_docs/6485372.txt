@@ -1,0 +1,14 @@
+<p>You use "global" view instead your row view. Try like that:</p>
+
+<pre><code> @Override
+ protected void onListItemClick(ListView l, View v, int position, long id) {
+   super.onListItemClick(l, v, position, id);
+
+    CheckBox checkbox = (CheckBox) v.findViewById(R.id.checkbox); 
+    if (checkbox.isChecked() == false) {
+        checkbox.setChecked(true); 
+    } else {
+        checkbox.setChecked(false); 
+    }
+ }
+</code></pre>

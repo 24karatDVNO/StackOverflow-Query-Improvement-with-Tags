@@ -1,0 +1,26 @@
+<p>With </p>
+
+<pre><code>Persons["John"];
+</code></pre>
+
+<p>you are using the indexer on the whatever type the Persons underlying object is, in this case the List. What you want is possible by two ways, and probably more, but these are my ideas at the moment:</p>
+
+<p>First approach: you can create a special collection List (lets say PersonList : List) which would override the indexer, and in the constructor pass the Company instance, so that in the override implementation you can query the customer instance.</p>
+
+<blockquote>
+<pre><code>public class PersonList: List&lt;Person&gt;
+{
+    public new Person this[string name]
+    {
+         get
+         {
+             return company.GetMyPerson(name);
+         }
+    }
+}
+</code></pre>
+</blockquote>
+
+<p>Second approach: you create an indexer on Company class directly, and have something like c["John"]</p>
+
+<p>Now about these approaches -> First one looks better from my point of view, because it violates less design principles. Querying the company with indexer for persons in the second approach is not really nice ... </p>

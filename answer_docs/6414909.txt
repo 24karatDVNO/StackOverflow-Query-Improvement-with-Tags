@@ -1,0 +1,25 @@
+<p>You can differentiate between iPhone and iPad with</p>
+
+<pre><code>if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+{
+     // The device is an iPad running iPhone 3.2 or later.
+}
+else
+{
+     // The device is an iPhone or iPod touch.
+}
+</code></pre>
+
+<p>and you can differentiate between portrait and landscape with</p>
+
+<pre><code>if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+{
+     // The device is in landscape.
+}
+else
+{
+     // The device is in portrait.
+}
+</code></pre>
+
+<p>Now combine this to get the customization as you like.</p>

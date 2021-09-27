@@ -1,0 +1,14 @@
+<pre><code>public static double pow(final double a, final double b) 
+{
+
+final int x = (int) (Double.doubleToLongBits(a) &gt;&gt; 32);
+
+final int y = (int) (b * (x - 1072632447) + 1072632447);
+
+return Double.longBitsToDouble(((long) y) &lt;&lt; 32);
+}
+</code></pre>
+
+<p>you can also find information about it</p>
+
+<p><a href="http://today.java.net/pub/a/today/2007/11/06/creating-java-me-math-pow-method.html" rel="nofollow">Creating a Java ME Math.pow() Method</a></p>

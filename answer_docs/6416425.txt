@@ -1,0 +1,12 @@
+<p>The click function is being applied to the rows with that class at the page load.</p>
+
+<p>You have to use the live() method to get that working:</p>
+
+<p><a href="http://api.jquery.com/live/" rel="nofollow">http://api.jquery.com/live/</a></p>
+
+<p>With live you can make that all the elements that match a given pattern during the entire life of the page have the same behavior.</p>
+
+<pre><code>$('.row_delete').live('click',function(){...})
+</code></pre>
+
+<p>That should do it.</p>

@@ -1,0 +1,4 @@
+<p>If you run it through jslint, it'll squawk at you for not including the radix parameter. Yes, the radix is optional, but probably should be included every time. A number starting with 0 is assumed to be octal unless otherwise specified.</p>
+
+<pre><code>var foo = parseInt("08", 10);
+</code></pre>

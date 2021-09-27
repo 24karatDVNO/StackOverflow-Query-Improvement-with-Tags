@@ -1,0 +1,37 @@
+<p>Not sure what you'd call this design pattern.  But I read once that whenever you find yourself doing repetitive blocks of code for different types (as you're doing) that you are better off putting that functionality into <em>the objects themselves</em>.  </p>
+
+<p>You can break it out like this:</p>
+
+<pre><code>private const NumberOfPanelsToShow = 4;
+private int panelCount = 0;
+
+private void addToPanel(IPanelAddable element, PanelList panelTypeList) {
+  if(panelCount &lt; NumberofPanelsToShow) {
+    element.addToPanelTypeList(panelTypeList);
+    panelCount++;
+  }
+}
+</code></pre>
+
+<p>IPanelAddable can be an interface that defines the addToPanelTypeList method (or whatever).  Then in your original method:</p>
+
+<pre><code>if (model.Train)
+{
+    addToPanel(TheType.Train);
+}
+if (model.Car)
+{
+    addToPanel(TheType.Car);
+}
+if (model.Hotel)
+{
+    addToPanel(TheType.Hotel);
+}
+</code></pre>
+
+<p>Actually you want to avoid the above, simplify the above /w a base class, etc....  Then your TheType.* objects would obviously need to implement the "addToPanelTypeList" method:</p>
+
+<pre><code>panelTypeList.Add(this);
+</code></pre>
+
+<p>You can use interfaces or inheritance to achieve the same goal...</p>

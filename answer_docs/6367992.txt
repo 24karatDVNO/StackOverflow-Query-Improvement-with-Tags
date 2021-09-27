@@ -1,0 +1,14 @@
+<p>Use this to get both, values</p>
+
+<pre><code>Map&lt;String, Object&gt; map = ...; 
+</code></pre>
+
+<p>here is the loop,</p>
+
+<pre><code>  for (Map.Entry&lt;String, Object&gt; entry : map.entrySet()) 
+    {    
+     String key = entry.getKey();    
+     Object value = entry.getValue();  
+       // ...
+     } 
+</code></pre>

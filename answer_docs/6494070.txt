@@ -1,0 +1,27 @@
+<p>Ok, here is my solution (sort of):</p>
+
+<p>First, I could not do it in Qt Creator, its regex capabilities seem to be not so good at the moment. So I used vim. </p>
+
+<p>I opened all the affected files as vim buffers, then recorded the following macro:</p>
+
+<pre><code>qa:%s/\v(#include\s+)@&lt;!"([^"]*)"/tr(\0)/g&lt;CR&gt;:bn&lt;CR&gt;q
+</code></pre>
+
+<p>This does the following: </p>
+
+<pre><code>qa                                       // start recording into register "a"
+%s/\v(#include\s+)@&lt;!"([^"]*)"/tr(\0)/g  // search and replace as specified
+&lt;CR&gt;                                     // (hit enter)
+:bn                                      // jump to the next buffer
+&lt;CR&gt;                                     // (hit enter)
+q                                        // end recording macro
+</code></pre>
+
+<p>The regex is vim-regex with \v that makes more natural (less escaping). In short, it uses a negative lookbehind as I originally wanted, with a slightly different syntax.</p>
+
+<p>Now, I only had to run this macro for as many buffers I had open (in command mode): </p>
+
+<pre><code>78@a
+</code></pre>
+
+<p>The problem (and this is why it's only a "sort of" solution) is that whenever vim encounters a buffer where the regex fails (i.e. no string literals in the file) it stops repeating the macro. I couldn't find out how to fix that. Fortunately I had only a few files like that, so I could get away with manually re-running the above command to start repeating the macro again. </p>

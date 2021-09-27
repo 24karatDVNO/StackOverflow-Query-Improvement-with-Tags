@@ -1,0 +1,18 @@
+<p>Is JOGL on a Maven repository ? You should upload it to yours if it's not publicly available.</p>
+
+<p>Then it's the usual:</p>
+
+<pre><code># Example of artifact definition, granted that JOGL's group id jogl, 
+# and the artifact id is jogl.
+#
+# I put up 1.0 as version too. 
+JOGL = "jogl:jogl:jar:1.0"
+
+...
+compile.using JOGL
+</code></pre>
+
+<p>You can also install JOGL locally and point to it:  </p>
+
+<pre><code>compile.using _("lib/*")
+</code></pre>

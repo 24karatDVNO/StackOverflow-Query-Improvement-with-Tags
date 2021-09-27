@@ -1,0 +1,14 @@
+<p>You can also use XPath syntax.</p>
+
+<p>here is an example:</p>
+
+<pre><code>string inputArtist = "Pink Floyd";
+var doc = XDocument.Load("test.xml");
+XmlNode cdTitleNode = doc.SelectSingleNode("//cd[artist='" + inputArtist + "']/title");
+
+string outputTitle = cdTitleNode.InnerText;
+</code></pre>
+
+<p>There is an excellent XPATH simulator on <a href="http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm" rel="nofollow">http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm</a> to try you Xpath expressions. </p>
+
+<p>You can also found a good tutorial there, but a fast search on the web will result in many web pages explaining all about XPath usage and syntax.</p>

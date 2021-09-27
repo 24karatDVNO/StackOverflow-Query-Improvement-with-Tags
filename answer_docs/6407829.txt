@@ -1,0 +1,31 @@
+<pre><code>Resources res = getResources(); // Resource object to get Drawables
+    TabHost tabHost = getTabHost(); // The activity TabHost
+
+    Intent intent = new Intent(this, a0.class);
+    tabHost.addTab(tabHost.newTabSpec("")
+            .setIndicator("", res.getDrawable(R.drawable.ic_tab_main))
+            .setContent(intent));
+
+    Intent intent2 = new Intent(this, c0.class);
+    tabHost.addTab(tabHost
+            .newTabSpec("")
+            .setIndicator("", res.getDrawable(R.drawable.ic_tab_setup))
+            .setContent(intent2));
+
+    Intent intent3 = new Intent(this, d0.class);
+    tabHost.addTab(tabHost
+            .newTabSpec("")
+            .setIndicator("", res.getDrawable(R.drawable.ic_tab_third))
+            .setContent(intent3));
+    Intent intent4 = new Intent(this, e0.class);
+    tabHost.addTab(tabHost
+            .newTabSpec("")
+            .setIndicator("", res.getDrawable(R.drawable.ic_tab_setting))
+            .setContent(intent4));
+
+    tabHost.setCurrentTab(0);
+
+    // Set tabs Colors
+    tabHost.setBackgroundColor(Color.BLACK);
+    tabHost.getTabWidget().setBackgroundColor(Color.BLACK);
+</code></pre>

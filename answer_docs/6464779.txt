@@ -1,0 +1,11 @@
+<p>I got the solution to this, it is due to the Isolation level in Mysql, all i had to do was</p>
+
+<pre><code>Set the default transaction isolation level transaction-isolation = READ-COMMITTED
+</code></pre>
+
+<p>And i am using Django for this i had to add this in the django database settings  </p>
+
+<pre><code>'OPTIONS': {
+                "init_command": "SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED"
+                }
+</code></pre>

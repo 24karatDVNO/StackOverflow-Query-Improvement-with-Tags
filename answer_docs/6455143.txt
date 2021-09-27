@@ -1,0 +1,3 @@
+<p>Will the values of the attributes, once taken from the environment, be the same for all those classes? If so, you'd probably be better off just keeping a <code>dict</code> of those environmental attributes at module level. (Or, as someone else suggested, use a module to populate and store the environmental variables.)</p>
+
+<p>If not, my suggestion would be to use create a class method that you would use to populate a dictionary of the environmental variables in your classes the first time <code>__init__</code> is called for each of them.</p>

@@ -1,0 +1,5 @@
+<p>I would look into using product aggregate functions. You'll have to compile them yourself though, Oracle doesn't include them as system functions. <a href="http://radino.eu/2010/11/17/product-aggregate-function/" rel="nofollow">http://radino.eu/2010/11/17/product-aggregate-function/</a></p>
+
+<p>If it's just for this one case where cost or quantity are used, then you could also just use subqueries, or temporary transaction based tables.</p>
+
+<p>I'd provide you with a query example, but unfortunately don't have an Oracle instance accessible presently.</p>

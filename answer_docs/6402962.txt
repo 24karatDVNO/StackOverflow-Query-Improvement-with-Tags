@@ -1,0 +1,7 @@
+<p>You might be better off by letting view controller <code>A</code> be a delegate on view controller <code>B</code>.</p>
+
+<p><code>A</code> can set the delegate property on <code>B</code> when after loading it but before pushing it into view, and when B needs to call the required method, it can just call it on the delegate object.</p>
+
+<p>That makes the coupling between the controllers looser, and if you let the delegate conform to a protocol, you can keep <code>B</code>'s knowledge of <code>A</code> to a minimum.</p>
+
+<p>It's better design, if you ask me.</p>

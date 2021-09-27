@@ -1,0 +1,9 @@
+<p>I would start by establishing were the 15 seconds are spent:
+1. Server side
+2. Client side</p>
+
+<p>You can use a browser plugin like Page Speed (http://code.google.com/intl/da-DK/speed/page-speed/) to measure various aspects of your page. In case a major part of the 15 seconds is used server side for rendering the page you can narrow down what takes so long with a profiler tool or tracing statements in the code.</p>
+
+<p>Your issue sounds a little bit like an issue with how the RadGrid handles filtering. You say that the generated SQL and database performance is fine. Does the filter expression (e.g. doe) get translated to a SQL where clause? I would suspect that the Grid selects all records from the DB and than applies the filter.</p>
+
+<p>Kr, Bernd.</p>

@@ -1,0 +1,26 @@
+<p>Think of values in object like pointers.</p>
+
+<p><code>person</code> is an object where the <code>content</code> property points to the <code>$content</code> value in the closure.  When you do <code>person.content = somethingElse</code> then you are setting the <code>content</code> property of the person object to point to <code>somethingElse</code> instead.</p>
+
+<p>Taking the closure out of it, this illustrates the same thing:</p>
+
+<pre><code>var a = 'a';
+var b = 'b';
+
+var obj = { a: a }
+alert(obj.a) // "a"
+
+obj.a = b;
+alert(obj.a) // "b"
+alert(a) // "a"
+</code></pre>
+
+<p>Setting an objects property to a new object, never does anything to the object that used to be assign there.  It simply points to a new and different object instead.</p>
+
+<p>The only way to assign this inner private variable is from inside the closure, like say in a <code>setContent</code> method.</p>
+
+<pre><code>return {
+  getContent: function() { return $content; },
+  setContent: function(val) { $content = val; }
+};
+</code></pre>

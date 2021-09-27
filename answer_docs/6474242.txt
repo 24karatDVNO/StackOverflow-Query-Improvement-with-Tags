@@ -1,0 +1,21 @@
+<pre><code>$.ajax({
+  type: "POST",
+  url: "GetEEs.aspx/GetNextEEs",
+  data: "{recordID:" + lastItem + "}",
+  contentType: "application/json; charset=utf-8",
+  dataType: "json",
+  success: function (msg, textStatus, jqXHR) {
+    var jObject = jQuery.parseJSON(msg.d);
+    ddl.length = 0;
+    $.each(jObject.d, function () {
+      $.each(this, function (index, item) {
+        addItemToDDL(ddl, item.Display, item.Value);
+      });
+    });
+  },
+  error: function (xhr, ajaxOptions, thrownError) {
+    alert(xhr.status);
+    alert(thrownError);
+  }
+});
+</code></pre>

@@ -1,0 +1,11 @@
+<pre><code>&gt;&gt;&gt; a = {'a': 1, 'b': 2, 'c': 3}
+&gt;&gt;&gt; b = {'b': 2, 'c': 3, 'd': 4, 'e': 5}
+&gt;&gt;&gt; keys = set(a.keys()).symmetric_difference(set(b.keys()))
+&gt;&gt;&gt; result = {}
+&gt;&gt;&gt; for k in keys: result[k] = a.get(k, b.get(k))
+... 
+&gt;&gt;&gt; result
+{'a': 1, 'e': 5, 'd': 4}
+</code></pre>
+
+<p>Whether this is less messy than your version is debatable, but at least it doesn't re-implement symmetric_difference.</p>

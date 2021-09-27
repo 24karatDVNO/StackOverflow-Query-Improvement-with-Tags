@@ -1,0 +1,10 @@
+<p>This is most probably a result of an bad execution plan stored for the specific proc.</p>
+
+<p>The problem (simplified) is that SQL server tries to optimize the usage of execution plans based on the parameters passed. This can then lead to horrendous performance in some cases.</p>
+
+<p>Heres some reading to explain it further.</p>
+
+<p><a href="http://blogs.msdn.com/b/queryoptteam/archive/2006/03/31/565991.aspx" rel="nofollow">http://blogs.msdn.com/b/queryoptteam/archive/2006/03/31/565991.aspx</a><br>
+<a href="http://elegantcode.com/2008/05/17/sql-parameter-sniffing-and-what-to-do-about-it/" rel="nofollow">http://elegantcode.com/2008/05/17/sql-parameter-sniffing-and-what-to-do-about-it/</a></p>
+
+<p>On the bright side, its very simple to fix by copying the passed parameters in the proc to local variables.</p>

@@ -1,0 +1,10 @@
+<ol>
+<li>Do you want to find each station's most recent scan? </li>
+<li>Or do you want to find every station that was  online (or not online)  during the most recent scan?</li>
+</ol>
+
+<p>I'd have a master list of workstations, first of all.  Then I'd have a master list of scans. And then I'd have the scans table that holds the results of the scans. </p>
+
+<p>To answer #1, you'd would use a subquery or inline view that returns for each workstation its id and max(scandate) and then you'd join that subquery back to scans table to pull out the scan row for that workstation id whose scandate matched its max(scandate).</p>
+
+<p>To answer #2, you'd look for all workstations where exists a record (or where not exists a record, <em>mutatis mutandis</em>) in the scans table where scandate = the max(date) in the master scans list.</p>

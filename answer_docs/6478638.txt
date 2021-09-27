@@ -1,0 +1,15 @@
+<p>You could use variable argument lists:</p>
+
+<pre><code>void set(std::size_t count, std::size_t n, ...) {
+  va_list v;
+  va_start(v, n);
+
+  for (int i = 0; i &lt; count; i++)
+  {
+    int* value = va_arg(vl, int*);
+    // ...
+  }
+
+  va_end(v);
+}
+</code></pre>

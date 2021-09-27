@@ -1,0 +1,20 @@
+<p>To make sure your requests are not interfering with each other, you can create an iframe for each request and target that.</p>
+
+<p>this can be done with DOM
+    var cnt=0;</p>
+
+<pre><code>var ifr = document.createElement("iframe");
+ifr.name="ifr"+(cnt++);
+ifr.style.display="none"
+document.getElementById("iframeContainer").appendChild(ifr);
+document.forms[0].target=ifr.name;
+document.forms[0].submit()
+</code></pre>
+
+<p>or jQuery</p>
+
+<pre><code>cnt++
+$("#iframeContainer").append('&lt;iframe src="about:blank" name="ifr'+cnt+'"&gt;&lt;/iframe&gt;');
+$("#hiddenform").attr("target","ifr"+cnt);
+$("#hiddenform").submit();
+</code></pre>

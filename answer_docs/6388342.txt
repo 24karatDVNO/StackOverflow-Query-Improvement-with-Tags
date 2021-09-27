@@ -1,0 +1,7 @@
+<p>You are out of luck for a easy-straight forward answer.</p>
+
+<p>If you control the server that the XML file is coming from, you should make the changes on it to support pagination of the results instead of sending the complete document.</p>
+
+<p>If you don't control the server, you could set up one to proxy the results and do the pagination for the application on the server side.</p>
+
+<p>The last option is the process the file in chunks. This would mean, processing sub-strings of the text. Just take a sub-string of the first x characters, parse it and then do something with the results. If you needed more you would process the next x characters.  This could get very messy fast (as XML doesn't really parse nicely in this manner) and just downloading a document with 10k elements and loading it into memory is probably going to be taxing/slow/expensive (if downloading over a 3G connection) for mobile devices.</p>

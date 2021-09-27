@@ -1,0 +1,39 @@
+<p>1) <strong>No reaction to click</strong>: Try to add the action in code. If it works, something was wrong with connecting up the IBAction.</p>
+
+<pre><code>[self.barButton setTarget:self];
+[self.barButton setAction:@selector(IBActionHandler:)];
+</code></pre>
+
+<p>As a backup, you can also try to add the button in code:</p>
+
+<pre><code>UIBarButtonItem *barButton = [[UIBarButtonItem alloc] 
+    initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+                         target:self
+                       selector:@selector(IBActionHandler:)];
+self.navigationItem.rightBarButtonItem = barButton;
+[barButton release];
+</code></pre>
+
+<hr>
+
+<p>2) <strong>Invisible button</strong> - I think your button is a custom UIButton, so it is transparent. The title is not visible because you have to set it like this:</p>
+
+<pre><code>[footerButton setTitle:@"Forgot Login" forState:UIControlStateNormal];
+</code></pre>
+
+<p>If you want a regular rounded angle button you have to set the frame <strong>after</strong> creating it.</p>
+
+<pre><code>UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect]; 
+// Careful, this button is autoreleased.
+[footerButton setFrame:CGRectMake(200, 40, 100, 40)];
+</code></pre>
+
+<p>BTW, something might also be wrong with your CGRects. The footerView should perhaps also be properly initialized with a frame, and you might have to implement </p>
+
+<pre><code> -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+</code></pre>
+
+<p>as well.</p>
+
+<p>PS: To go with a standard UITableViewController might actually be a good idea.
+Happy coding!  </p>

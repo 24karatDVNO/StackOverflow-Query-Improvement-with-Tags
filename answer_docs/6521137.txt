@@ -1,0 +1,10 @@
+<p>This should solve the status problem:</p>
+
+<pre><code>SELECT
+    First.firstnames firstname
+    Last.lastnames lastname
+    ( SELECT status FROM status ORDER BY RAND() LIMIT 1 ) status
+FROM 
+    ( SELECT firstnames FROM firstnames ORDER BY RAND()  LIMIT 5 ) First
+    JOIN ( SELECT lastnames FROM lastnames ORDER BY RAND()  LIMIT 5 ) Last
+</code></pre>

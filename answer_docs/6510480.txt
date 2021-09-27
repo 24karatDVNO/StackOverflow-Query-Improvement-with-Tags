@@ -1,0 +1,3 @@
+<p>You have the same class name ("EditButton") on both your button and the <code>div</code> that contains it. That means the jQuery click handler is being fired twice for a click on the button - once for the button itself, and once for the containing <code>div</code>.</p>
+
+<p>To fix this, you can either remove or change the class from the parent <code>div</code>, or check the <code>event.target</code> in the event handler function, to see if the button was clicked or not.</p>

@@ -1,0 +1,5 @@
+<p>for those interested code below is whats needed to get the desired effect</p>
+
+<pre><code>CGAffineTransform transforms = CGAffineTransformConcat(animatedImage.transform,CGAffineTransformMakeRotation(M_PI/2));
+animatedImage.transform = transforms;
+</code></pre>

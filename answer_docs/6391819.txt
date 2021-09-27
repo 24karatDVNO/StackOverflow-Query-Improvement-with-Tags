@@ -1,0 +1,16 @@
+<p>I don't know what livequery is, but what about this:</p>
+
+<pre><code>function swapEditView(){
+    var temp = $('#data-edit-id').html();
+    $('#data-edit-id').html($('#data-view-id').html());
+    $('#data-view-id').html(temp);
+}
+
+$('#data-edit-id').click(function(){
+    swapEditView();
+});
+
+$('#data-view-id').click(function(){
+    swapEditView();
+});
+</code></pre>

@@ -1,0 +1,14 @@
+<p>With HTML5 in modern browsers you can use <code>&lt;input type="number"&gt;</code> (see <a href="http://diveintohtml5.info/forms.html#type-number" rel="nofollow">Dive Into HTML5</a> for some examples). You'll need a fallback for older browsers though, so here you go. This works in all major browsers. It won't prevent the user from pasting or dragging in non-numeric content, however.</p>
+
+<p>jsFiddle: <a href="http://jsfiddle.net/JCUT2/" rel="nofollow">http://jsfiddle.net/JCUT2/</a></p>
+
+<pre><code>var textBox = document.getElementById("foo");
+
+textBox.onkeypress = function(e) {
+   e = e || window.event;
+   var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
+   if (/\D/.test(String.fromCharCode(charCode))) {
+       return false;
+   }
+};
+</code></pre>

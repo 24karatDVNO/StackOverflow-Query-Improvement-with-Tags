@@ -1,0 +1,11 @@
+<p>There is no difference in terms of result unless , in the second one is not of datatype <code>string</code>.</p>
+
+<p>The first one <code>"$string"</code> in php is parsed to get "valueofstring". PHP eliminates the strain for concatinating strings when you have to insert a string literal.</p>
+
+<pre><code>"something" . $string . "somethingelse" 
+"something{$string}somethingelse"
+</code></pre>
+
+<p>both are the same.</p>
+
+<p>For clarity in longer strings it is adviced you use with the braces <code>{}</code> as <code>"{$string}"</code>. </p>

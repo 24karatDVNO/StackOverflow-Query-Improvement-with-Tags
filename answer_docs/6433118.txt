@@ -1,0 +1,12 @@
+<p>Perhaps you could create an error interface like IErrorHandler and pass that into a public method called Validate on you model class assuming its a partial  class and you can seperate your data model from your rules.</p>
+
+<p>With the interface you could create a class in your contoller that wraps the ModelState error handler. So the inteface might have AddError and in that metghod tou just delegate to your local modelstate.</p>
+
+<p>So your method might be something like:</p>
+
+<pre><code>IErrorHandler errorHandler = CreateErrorHandler();
+model.Validate(errorHandler);
+
+if(errorHandler.IsValid())
+... do something
+</code></pre>

@@ -1,0 +1,46 @@
+<p>I wrote the following function for a user who was used to entering 6 and 8 digit dates in input masks by just typing a string of numbers with no delimiter.  You should be able to modify it for your purposes:</p>
+
+<pre><code>'---------------------------------------------------------------------------
+' Purpose   : Enables entry of 8-digit dates with no delimiters: 12312008
+' Usage     : Set OnChange: =DateCtlChange([Form].[ActiveControl])
+'  8/ 6/09  : Allow entry of 6-digit dates with no delimiters
+'               (year 2019 and 2020 must still be entered as 8-digit dates)
+'---------------------------------------------------------------------------
+Function DateCtlChange(DateCtl As TextBox)
+Dim s As String, NewS As String
+
+    On Error GoTo Err_DateCtlChange
+
+    s = DateCtl.Text
+    Select Case Len(s)
+    Case 6
+        If s Like "######" Then
+            If Right(s, 2) &lt;&gt; "19" And Right(s, 2) &lt;&gt; "20" Then
+                NewS = Left(s, 2) &amp; "/" &amp; Mid(s, 3, 2) &amp; "/" &amp; Mid(s, 5, 2)
+            End If
+        End If
+    Case 8
+        If s Like "########" Then
+            NewS = Left(s, 2) &amp; "/" &amp; Mid(s, 3, 2) &amp; "/" &amp; Mid(s, 5, 4)
+        End If
+    End Select
+    If IsDate(NewS) Then
+        DateCtl.Text = NewS
+        DateCtl.SelStart = Len(DateCtl.Text)
+    End If
+
+
+Exit_DateCtlChange:
+    Exit Function
+Err_DateCtlChange:
+    Select Case Err.Number
+    'Error 2101 is raised when we try to set the text to a date 
+    '    that fails the date control's validation
+    Case 2101    'The setting you entered isn't valid for this property.
+        'Log error but don't show user
+    Case Else
+        'Add your custom error logging here
+    End Select
+    Resume Exit_DateCtlChange
+End Function
+</code></pre>

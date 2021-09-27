@@ -1,0 +1,7 @@
+<p>Filter dates using the <code>YEAR</code> and <code>MONTH</code> functions.</p>
+
+<pre><code>SELECT *
+FROM Sales
+WHERE YEAR(Sales.PurchaseDate) = @year
+AND MONTH(Sales.PurchaseDate) = @month
+</code></pre>

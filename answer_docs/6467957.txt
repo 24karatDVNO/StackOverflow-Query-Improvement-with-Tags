@@ -1,0 +1,9 @@
+<p>You probably want to use a a function like:</p>
+
+<pre><code>function toggle(itemsInList) {
+    for (var i = 0; i &lt; itemsInList.length; ++i) {
+        itemsInList[i].style.display = (itemsInList[i].style.display == "block") ? "none" : "block";
+    }
+
+}
+</code></pre>

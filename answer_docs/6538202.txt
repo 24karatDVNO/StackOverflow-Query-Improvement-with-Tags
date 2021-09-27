@@ -1,0 +1,5 @@
+<p>Try this:</p>
+
+<pre><code>Amenites_TBLs.Join(AmenitesContact_TBLs , c =&gt; c.AmenitesCodeID , p =&gt; p.AmenitesCodeID,(p,o) =&gt;
+new{ AmenitiesCode = c.AmenitesCode,CountryCode = c.CountryCode,Director = p.Where(a =&gt; a.TypeOfContact.StartsWith("Dir")).ContactName });
+</code></pre>

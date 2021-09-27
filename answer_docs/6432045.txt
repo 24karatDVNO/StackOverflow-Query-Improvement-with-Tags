@@ -1,0 +1,20 @@
+<p>A <code>dict</code> subclass that attempts index-based access of keys but fails over to default key access might do the job. Something along the lines of:</p>
+
+<pre><code>from collections import OrderedDict
+
+class IndexableDict(OrderedDict):
+    def __getitem__(self, key):
+        """Attempt to return based on index, else try key"""
+        try:
+            _key = self.keys()[key]
+            return (_key, super(IndexableDict, self).__getitem__(_key))
+        except (IndexError, TypeError):
+            return super(IndexableDict, self).__getitem__(key)
+
+d = IndexableDict(spam='eggs', messiah=False)
+d['messiah'] ## False
+d[1] ## ('messiah', False)
+d[0] ## ('spam', 'eggs')
+</code></pre>
+
+<p><strong>EDIT:</strong> This will break if you use integers as keys.</p>

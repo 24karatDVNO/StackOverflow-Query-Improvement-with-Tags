@@ -1,0 +1,7 @@
+<p>I'm not sure what's in your array, if it's one dimensional it will only populate on field
+Try to set the AutoGenerateColumns to true</p>
+
+<pre><code> myDataGrid.DataSource = vals;
+ myDataGrid.AutoGenerateColumns= true
+ myDataGrid.DataBind();
+</code></pre>

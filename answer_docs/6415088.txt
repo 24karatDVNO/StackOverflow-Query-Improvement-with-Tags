@@ -1,0 +1,26 @@
+<p>This works OK for me with Django 1.2 and sqlite and mysql.  I think your db scheme is wrong.  Try it on a fresh db and check if it is working.</p>
+
+<p>(Check your code - keep in mind that <code>type</code> is a python built_in.  Did you use <code>type</code> instead of <code>self.type</code> somewhere?).</p>
+
+<p>The code I used:</p>
+
+<pre><code># models.py
+class Page(models.Model):
+    name = models.CharField(max_length=128)
+    type = models.CharField(max_length=128, default="news")
+    allow_add_news = models.BooleanField(default=True)
+
+class News(models.Model):
+    name = models.CharField(max_length=128)
+    chapter   = models.ForeignKey(Page, 
+     verbose_name='Main chapter', 
+     limit_choices_to={'type__in':['news','speech']}, 
+     related_name='news'
+    )
+
+    add_chapters = models.ManyToManyField(Page, blank=True, null=True, 
+            verbose_name='Show also on', 
+            limit_choices_to={'allow_add_news':True},
+            related_name="added_news"
+    )
+</code></pre>

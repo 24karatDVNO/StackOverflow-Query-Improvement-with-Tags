@@ -1,0 +1,34 @@
+<p>this is generic function</p>
+
+<pre><code>    var indexCloneTableLastRowSelect = 1;
+    var indexCloneTableLastRowInput = 1;
+    var forEachElementItrateOnce = 1;
+function cloneTableLastRow_(tableID_) {
+
+
+    tableID_ = '#' + tableID_;
+    // copy|clone last row 
+    $(tableID_).append($(tableID_ + " tr:last").clone());
+    $(tableID_ + " tr:last").each(function (){
+
+        $(tableID_ + " tr:last select").attr("name", function() {
+            if (forEachElementItrateOnce == 1){
+                indexCloneTableLastRowSelect++;
+            }            
+            this.name = this.name.replace(/[0-9]+$/, indexCloneTableLastRowSelect);
+            this.id = this.id.replace(/[0-9]+$/, indexCloneTableLastRowSelect);
+            forEachElementItrateOnce = 0;
+        })
+        $(tableID_ + " tr:last input").attr("name", function() {
+            if (forEachElementItrateOnce == 1){
+                indexCloneTableLastRowInput++;
+            }
+            this.name = this.name.replace(/[0-9]+$/, indexCloneTableLastRowInput);
+            this.id = this.id.replace(/[0-9]+$/, indexCloneTableLastRowInput);
+            forEachElementItrateOnce = 0;
+        })
+
+    })
+    forEachElementItrateOnce = 1;
+}
+</code></pre>

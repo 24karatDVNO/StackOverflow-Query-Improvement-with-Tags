@@ -1,0 +1,27 @@
+<p>In case you want to simply transpose your matrix -e.g. to get new matrix where rows are cols from initial matrix while columns equal to the initial matrix rows values then you can use:</p>
+
+<pre><code>initMatr = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9]
+           ]
+map(list, zip(*initMatr))
+
+
+&gt;&gt;&gt; [
+     [1,4,7],
+     [2,5,8],
+     [3,6,9]
+    ]
+</code></pre>
+
+<p>OR in case you want to rotate matrix left then:</p>
+
+<pre><code>map(list, zip(*map(lambda x: x[::-1], initMatr)
+
+&gt;&gt;&gt; [
+       [3,6,9],
+       [2,5,8],
+       [1,4,7]       
+    ]
+</code></pre>

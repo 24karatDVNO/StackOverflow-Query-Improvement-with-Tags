@@ -1,0 +1,64 @@
+<p>Ok, I finally figured it out after only 2 straight days of banging my head against the wall. </p>
+
+<p>I'll try to give as much info as possible so that if someone finds this in the same situation I was in, they'll find this useful.</p>
+
+<pre><code>[earlz@earlzarch ~]$ cat /etc/odbc.ini
+[AVP1]
+Description=ODBC connection via FreeTDS
+Driver=/usr/lib/libtdsodbc.so
+Server=192.168.0.100
+UID=sa
+PWD=pass
+Port=1232
+ReadOnly=No
+[earlz@earlzarch ~]$ cat /etc/odbcinst.ini
+[TDS]
+     Description     = v0.60 with protocol v7.0
+     Driver          = /usr/lib/libtdsodbc.so
+     Driver64 = /usr/lib
+     Setup           = /usr/lib/libtdsS.so
+     Setup64 = /usr/lib
+     CPTimeout       =
+     CPReuse         =
+     FileUsage       = 1
+[earlz@earlzarch ~]$ cat /etc/freetds/freetds.conf
+[global]
+        tds version = 8.0
+        initial block size = 512
+        swap broken dates = no
+        swap broken money = no
+        try server login = yes
+        try domain login = no
+        cross domain login = no
+        # If you get out-of-memory errors, it may mean that your client
+        # is trying to allocate a huge buffer for a TEXT field.
+        # Try setting 'text size' to a more reasonable limit
+        text size = 64512
+
+[TDS]
+        host = 192.168.0.100
+        port = 1232
+        tds version = 8.0
+</code></pre>
+
+<p>and if your lucky, after that:</p>
+
+<pre><code>[earlz@earlzarch ~]$ isql -v AVP1
+[S1000][unixODBC][FreeTDS][SQL Server]Unable to connect to data source
+[01000][unixODBC][FreeTDS][SQL Server]Adaptive Server connection failed
+[ISQL]ERROR: Could not SQLConnect
+[earlz@earlzarch ~]$ isql -v AVP1 sa pass
++---------------------------------------+
+| Connected!                            |
+|                                       |
+| sql-statement                         |
+| help [tablename]                      |
+| quit                                  |
+|                                       |
++---------------------------------------+
+SQL&gt;
+</code></pre>
+
+<p>I did not have to set any kind of environmental variables and I didn't have to manually compile anything either with Arch Linux 64bit (date April 7th, 2010). After getting isql to work, Rails immediately connected to the database also. Now I just have to figure out why <code>db:schema:load</code> isn't working, but thats another question :) </p>
+
+<p>Also, notice the only real difference between this set of files and the last is in <code>/etc/odbc.ini</code> I set the <code>Driver</code> field to be the actual file name of a driver rather than named for some configuration entry. </p>

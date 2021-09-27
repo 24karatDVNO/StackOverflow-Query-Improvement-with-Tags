@@ -1,0 +1,11 @@
+<p>you could use Linq to find the entry:</p>
+
+<pre><code>var foundKey = e.Keys.FirstOrDefault(k =&gt; k.Key.Equals('ImageContentId'));
+</code></pre>
+
+<p>Then the ternary expression to get the value:</p>
+
+<pre><code>int? imageId = foundKey == null ? (int?)null : Convert.ToInt32(foundKey.Value);
+</code></pre>
+
+<p>However, what type is the Value? If you're sure it's an <code>int</code>, you can cast it, rather than calling <code>Convert.ToInt32</code>. Also, <code>Convert.ToInt32</code> returns 0 for some cases where you might want <code>(int?)null</code>.</p>

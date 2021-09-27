@@ -1,0 +1,27 @@
+<p>Not sure if this is easier/better way to add a script but here is what I found:</p>
+
+<ul>
+<li><a href="http://api.jquery.com/jQuery.getScript/" rel="nofollow noreferrer">http://api.jquery.com/jQuery.getScript/</a></li>
+<li><a href="https://stackoverflow.com/questions/610995/jquery-cant-append-script-element/3603496#3603496">Can&#39;t append &lt;script&gt; element</a></li>
+</ul>
+
+<p>(Untested) Maybe (using your post: <a href="https://stackoverflow.com/questions/6514718/combining-jquery-mobile-and-mathjax-on-a-mobile-site/6530201#6530201">Combining jQuery Mobile and MathJax on a mobile site?</a>)</p>
+
+<pre><code>$('#page_id').live('pageshow', function(event, ui) {
+    $.getScript('http://path_to_mathjax/MathJax.js', function() { 
+        callback(); 
+    });
+});
+
+var mathjax_loaded = false;
+function callback()
+{
+    if(mathjax_loaded)
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    else
+    {
+        MathJax.Hub.Startup.onload();
+        mathjax_loaded = true;
+    }
+}
+</code></pre>

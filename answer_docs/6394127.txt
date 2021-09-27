@@ -1,0 +1,26 @@
+<p>I'd make another layout for the iframe pages, something like <code>app/views/layouts/iframe.html.erb</code>, that doesn't have your usual headers and footers, may have different CSS, etc.</p>
+
+<p>Then you just need to make your controller actions use that layout when rendering, as appropriate. You can do that when if you call render explicitly, like this:</p>
+
+<pre><code>render "show", :layout =&gt; "iframe"
+</code></pre>
+
+<p>But it's probably simpler to set it at the controller level:</p>
+
+<pre><code>class SomeController &lt; ApplicationController
+    layout "iframe", :only =&gt; "show"
+end
+</code></pre>
+
+<p>You could also put your logic for choosing the correct layout (whatever it is -- I'm assuming that isn't really the thrust of the question) into a method:</p>
+
+<pre><code>class SomeController &lt; ApplicationController
+    layout :current_layout
+
+private
+    def current_layout
+        # Return the correct layout for the current request.
+        params[:iframe] ? "iframe" : "application"
+    end
+end
+</code></pre>

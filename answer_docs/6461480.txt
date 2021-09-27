@@ -1,0 +1,3 @@
+<p>A method missing from the header wouldn't cause this problem. Because Objective-C is dynamic, it will check if the instance implements that method at runtime, so as long as the method exists it will work. You would just get a compiler warning at build time. </p>
+
+<p>Try deleting the line [self connectWeb] from your button delegate method and copy/pasting it from your viewDidLoad (or retyping it). From the error you're getting, it sounds like there might be an extra character in your statement. This happens to me from time to time, because I use synergy to share my keyboard &amp; mouse between multiple computers.</p>

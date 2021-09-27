@@ -1,0 +1,23 @@
+<p>I have run into this issue and I have not yet come up with an ideal solution.  Here is what I normally do.</p>
+
+<pre><code>&lt;a href="#" id="loadsContentOrError"&gt;Click Me&lt;/a&gt;
+
+$(function() {
+    $("#loadsContentOrError").click(e){
+        e.preventDefault();
+        $.ajax({
+            url: '&lt;%: Url.Action("Error") %&gt;',
+            success: function(html) {
+                html = $(html);
+                if(html.find('.errorMessage').length &gt; 0) {
+                    $('#divToLoadContentTo").append(html);
+                } else {
+                    $('#divToLoadContentTo").html(html);
+                }
+            }
+        });
+    });
+});
+</code></pre>
+
+<p>This is pretty rough but it gives you a good starting point.</p>

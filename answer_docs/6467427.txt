@@ -1,0 +1,11 @@
+<p>You are trying to allocating "runningprocesses" array every time in the for loop. That is why it would have only one object at the end of for loop. Try replacing this code. </p>
+
+<pre><code>NSArray * processes = [[UIDevice currentDevice] runningProcesses];
+runningprocesses = [[NSMutableArray alloc] init];
+for (NSDictionary * dict in processes){
+    NSString *process = [dict objectForKey:@"ProcessName"];
+    [runningprocesses addObject:process];
+}
+</code></pre>
+
+<p>This should work.</p>

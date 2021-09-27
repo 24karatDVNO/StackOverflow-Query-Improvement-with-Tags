@@ -1,0 +1,3 @@
+<p>This behavior should work just fine through the command line; or, I should say that any CakePHP function called through the command line should work just as it would through the browser. As long as your system allows it, PHP does the same thing despite the origin of the request.</p>
+
+<p>If you are looking to separate command line functionality from Web functionality, then you may try Googling for creating a command line only dispatcher. Then, you can add some code to your controller that will only respond if the request is made from the command line. I do this for CRON jobs for my apps.</p>

@@ -1,0 +1,8 @@
+<p>As of Flex 4.5 (possibly earlier) there's a specific fault code on the fault event for timeout errors:</p>
+
+<p>In your fault handler:</p>
+
+<pre><code>if(faultEvent.fault.faultCode == "Client.Error.RequestTimeout"){
+  trace("TIMEOUT ERROR");
+}
+</code></pre>

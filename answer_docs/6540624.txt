@@ -1,0 +1,7 @@
+<p>This is kind of an unusual question and there may very well be other options, but here's my couple of ideas.</p>
+
+<ol>
+<li><a href="https://stackoverflow.com/questions/3312722/nhibernate-how-to-map-a-property-to-a-subselect">Use a formula</a>. The property wouldn't be updateable but in your situation i think that's fine (mark property as read only).</li>
+<li>I think you will have to do a hbm.xml file for this, but you can <a href="http://nhforge.org/doc/nh/en/index.html#querysql-load" rel="nofollow noreferrer">use your own query for the loader query in nhibernate</a>.</li>
+<li>Figure out what Subselect on the JoinPart does in fluent nhibernate? Doubt this will work but worth a try</li>
+</ol>

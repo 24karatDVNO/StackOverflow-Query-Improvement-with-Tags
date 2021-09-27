@@ -1,0 +1,7 @@
+<p>you should look into <a href="http://us2.php.net/manual/en/function.simplexml-load-string.php" rel="nofollow">simplexml_load_string()</a> as I'm pretty sure it would make your life a lot easier. It returns a StdObject that you can use like so:</p>
+
+<pre><code>$xml = simplexml_load_string(&lt;your huge xml string&gt;);
+foreach ($xml-&gt;hpt_mobile-&gt;CATALOG-&gt;sA as $value){
+    // do things with sA children 
+}
+</code></pre>

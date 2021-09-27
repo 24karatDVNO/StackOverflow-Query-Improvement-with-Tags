@@ -1,0 +1,19 @@
+<p>The repeated calls to <code>me.getGroup()</code> would bug me enough to pull them out into a local variable:</p>
+
+<pre><code>  String lastGroup = "";
+  for(MenuElem me : menuA) {
+    String thisGroup = me.getGroup();
+    if(thisGroup != null &amp;&amp; !thisGroup.equals(lastGroup)) {
+        lastGroup = thisGroup;
+        MenuElem separ = new MenuElem();
+        separ.setCaption(lastGroup);
+        separ.setGroupHead(true);
+        menuTevekenysegekGrouped.add(separ);
+        menuTevekenysegekGrouped.add(me);
+    } else {
+        menuTevekenysegekGrouped.add(me);
+    }
+  }
+</code></pre>
+
+<p>This is only going to fix your problem if in fact <code>me.getGroup()</code> returns different values (sometimes null) on multiple calls with the same <code>me</code>, but it might make it easier to debug, and certainly makes it easier to read.</p>

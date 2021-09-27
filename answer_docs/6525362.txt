@@ -1,0 +1,16 @@
+<p>I don't follow what the algorithm is trying to do, but the Javascript version of clockwise looks like it can only ever return [].  There are two return paths.  One calls clockwise, the other returns [] so the only way out of that function is to return [].  That's not how your python version works.</p>
+
+<p>I haven't looked at reversed and zip, but there is a logic difference in the javascript version of clockwise.  In the javascript version, you remove the first item in the array, then reverse and zip, then put the first item back on the array and call clockwise on the whole thing.  In the Python version, you remvoe the first item in the array, call clocks and reverse on only the item without the first version, then add the first one back on afterwards.  Very different logic.  The Python version is much more likely to end.</p>
+
+<p>I haven't looked at the other functions reverse and zip, but this looks like a more faithful javascript version of clockwise:</p>
+
+<pre><code>function clockwise(r) {
+    if (r.length &gt; 0) {
+        var a = clockwise(reversed(zip(r.slice(1))));   // call clockwise on array starting at index 1
+        a.splice(0,0,r[0]);                             // put first value in original array back onto the beginning of the result
+        return (a);                                     // return new array
+    } else {
+        return [];
+    }
+}
+</code></pre>

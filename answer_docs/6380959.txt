@@ -1,0 +1,10 @@
+<p>Logging doesn't happen "automatically" in that you always have to tell the system what to log (no matter where you are logging to).  The "automatic" part is that you can log items using variables.  For example, log4net (and other logging engines) allows you to log an exception and even the entire stack trace to the log repository of your choice.  In this way, you could log all types of errors without writing out the text of the error by hand.  However, you still need to put the <code>logger.Error(...</code> statement in your <code>catch</code> block.</p>
+
+<p>You can also use the built-in string format to fill your messages from custom sources.  For example, I have an application that creates accounts.  I have an INFO log message that logs who is getting created.  I do this by building a string in a manner similar to this:</p>
+
+<pre><code>logger.Info("Creating account for {0}", textblockUserName.Text);
+</code></pre>
+
+<p>where the textblock contains the username of the person being created.  That way I have one entry that differs every time it is written.  This makes your logging more agile but it still comes down to adding an entry that writes to the logger.</p>
+
+<p>If you want to imitate what Microsoft does with the information they write to the event log, this is the way to do it.  Microsoft doesn't have any automated system that tracks what they are doing.  They have to specifically tell their applications what to log and when.  You will need to do the same thing in your application.</p>

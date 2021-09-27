@@ -1,0 +1,14 @@
+<p>No need for regexp, loop over the lines instead and split on <code>=</code>. A bit verbose perhaps...</p>
+
+<pre><code>#!/usr/bin/python
+
+with open("auth") as fd:
+    for line in fd:
+        if 'Auth' in line:
+            auth=line.split('=')[-1].strip()
+            found=True
+        if found:
+            auth.join(line.strip())
+
+*873hdyjsbcvuei73hckwoxnaodbc8dnskc8HU1mKRqxh6yEU-9tqx148GqC7h90_190ZzxpEZOHAH5HTptliylRXvMPyqPyijMNu21bOA6ZhvZFuL8YNB3KF63YuV0n5TFJd1-rMI2LQIdPMVBnsxnEGrLIeFOugAFCZ_3OelAc4XjeKdDvIowxkNnvaooXT4kxtkQWzieA3JRKy3Y-Lbi7E0qiXC99GtHVDh5VWvdTs2LCv3wnRULtLp6ZCoToZ8qoUWMzU9PZldsKSnE
+</code></pre>

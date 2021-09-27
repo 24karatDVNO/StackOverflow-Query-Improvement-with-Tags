@@ -1,0 +1,4 @@
+<p>You can do it all with sed, e.g.</p>
+
+<pre><code>cat f1 | sed -ne "s/^.*isaPDAVersion[^{]*{\([^,]*,[^,]*,[^,]*,[^,]*\).*$/\1/p"
+</code></pre>

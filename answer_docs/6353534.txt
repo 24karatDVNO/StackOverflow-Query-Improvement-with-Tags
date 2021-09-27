@@ -1,0 +1,33 @@
+<p>If you are talking about managing views means remove a view on button click or any key event
+you have use layout. you can add or remove views to/from layouts</p>
+
+<h2>Remove View from layout</h2>
+
+<pre><code> layout.removeView(view);
+        layout.removeViewInLayout(view);
+        layout.removeViewAt(index);
+        layout.removeAllViews();
+</code></pre>
+
+<h2>Add view to layout</h2>
+
+<pre><code>layout.addView(child, index);
+       layout.addView(child);
+</code></pre>
+
+<h2>start an activity</h2>
+
+<pre><code>Intent i = new Intent(this, ActivityToBeOpen.class);
+        startActivity(i);
+</code></pre>
+
+<p>or</p>
+
+<pre><code>                    Intent i = new Intent();
+
+        i.setClassName("application packagename",
+                "packagename.ActivityName");
+        i.putStringArrayListExtra(CFMConstant.IMAGE_LIST_FOR_GRID_VIEW,
+                fullImagePathList());
+        startActivity(i);
+</code></pre>

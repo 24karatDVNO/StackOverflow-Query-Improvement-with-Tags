@@ -1,0 +1,5 @@
+<p>I have worked on several projects with multiple file appenders configured just like yours. To my knowledge <strong>there is no way to define a common appender configuration</strong> and then share that among multiple appenders. It probably has something to do with how log4net interprets the XML tags into Properties on the appenders. (And I have looked closely at the <a href="http://logging.apache.org/log4net/release/config-examples.html#ForwardingAppender" rel="nofollow"><code>ForwardingAppender</code></a>, but it's not built for that).</p>
+
+<hr>
+
+<p>Is there any reason other than "don't repeat yourself" (<a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself" rel="nofollow">DRY</a>) that you want to clean up the configuration? If your app.config (or web.config) is getting out of hand, you can use a <a href="http://logging.apache.org/log4net/release/manual/configuration.html#reading" rel="nofollow">separate</a> configuration file.</p>

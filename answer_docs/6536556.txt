@@ -1,0 +1,7 @@
+<p>you have to provide more context</p>
+
+<p>if your javascript is running within browser and you want to check if file exists on client's computer - you can't</p>
+
+<p>if you want to check Image folder on server - you could do AJAX request for that image and then check if HTTP response code is 200 although that would also blow up your traffic and is not a great choice</p>
+
+<p>best option would be to do AJAX request that will invoke a check on server side like /check?image_name=file.jpg</p>

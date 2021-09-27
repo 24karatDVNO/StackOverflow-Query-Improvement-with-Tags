@@ -1,0 +1,6 @@
+<p>If I understand your question, it's 1 row at a time.  The example code is from their result set extractor which calls this interface.  </p>
+
+<pre><code>while (rs.next()) {
+   this.rch.processRow(rs);
+}
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Try this:</p>
+
+<pre><code>$(function(){
+    $("li").click(function(){
+         $(this).addClass("complete");
+            if($("li.complete").length &gt;= 4){
+                 $("#done").addClass("active");
+            };
+    });
+});
+</code></pre>

@@ -1,0 +1,17 @@
+<p>Change </p>
+
+<pre><code>// create the filter checkboxes based on all the class names
+$.each(arrayUniqueClasses, function() {
+   $('&lt;div class="filter-options"&gt;&lt;input type="checkbox" checked="checked" value="'+this+'" class="filter-checkbox" id="filterID'+this+'" /&gt;'+this+'&lt;\/div&gt;').appendTo('.filters');
+});
+</code></pre>
+
+<p>To</p>
+
+<pre><code>// create the filter checkboxes based on all the class names
+$.each(arrayUniqueClasses, function() {
+   $('&lt;div class="filter-options"&gt;&lt;input type="checkbox" checked="checked" value="'+this+'" class="filter-checkbox" id="filterID'+this+'" /&gt;'+this.replace('-',' ')+'&lt;\/div&gt;').appendTo('.filters');
+});
+</code></pre>
+
+<p>A simple <code>.replace()</code></p>

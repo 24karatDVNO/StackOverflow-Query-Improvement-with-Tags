@@ -1,0 +1,7 @@
+<p>If you want play video from url ,then You can use android's default player for play video.</p>
+
+<p>Uri u1 = Uri.parse("URL to video file");
+Intent i = new Intent(Intent.ACTION_VIEW);
+i.setData(u);<br>
+i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(i);</p>

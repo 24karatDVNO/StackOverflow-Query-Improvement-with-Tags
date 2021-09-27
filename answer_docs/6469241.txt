@@ -1,0 +1,73 @@
+<p>I also posted this question on <strong><em><a href="http://social.microsoft.com/Forums/en-US/crmdevelopment/thread/93d273f7-6846-473b-8561-2c1c50ad28e2" rel="nofollow">MS Forum</a></em></strong> where I got following reply by Pat.</p>
+
+<pre><code>While it is somewhat limited, there is some direction regarding the caching of service connectivity in the SDK:
+
+Performance Best Practises - Caching
+
+The two primary suggestions being to:
+
+    1. Cache the IServiceConfiguration class
+    2. Monitor your WCF security token and refresh it before it expires 
+</code></pre>
+
+<p>Based on that advise, I endedup using following classes from the API sample code. Please let me know if anyone has feedback or right/wrong/better advise on this.</p>
+
+<p>As far management of AppPool is concerned, I still looking for info.</p>
+
+<hr>
+
+<pre><code>1. ManagedTokenOrganizationServiceProxy
+2. AutoRefreshSecurityToken
+3. DeviceIdManager
+</code></pre>
+
+<p>I added following connection string to web.config</p>
+
+<pre><code>&lt;add name="XrmConnectionString" connectionString="ServiceUri=http://&lt;MACHINE&gt;:&lt;PORTt&gt;/&lt;ORG&gt;/XRMServices/2011/Organization.svc; Domain=&lt;DOMAIN&gt;; Username=&lt;USERNAME&gt;; Password=&lt;PASSWORD&gt;" /&gt;
+</code></pre>
+
+<p>Then I created following class to create connection.</p>
+
+<pre><code>/// &lt;summary&gt;Provides server connection information.&lt;/summary&gt;
+public class ServerConnection
+{
+    private static readonly ILog log = LogManager.GetLogger(typeof(ServerConnection));
+
+    #region Public methods
+    /// &lt;summary&gt;
+    /// Obtains the OrganizationServiceProxy connection for the target organization's
+    /// Uri and user login credentials from theconfiguration.
+    /// &lt;/summary&gt;
+    public static OrganizationServiceProxy getServiceProxy() {
+        ManagedTokenOrganizationServiceProxy serviceProxy = null;
+        log.Debug("in getServiceProxy");
+        try {
+            CrmConnection crmConnection = new CrmConnection("XrmConnectionString");
+            serviceProxy = new ManagedTokenOrganizationServiceProxy(crmConnection.ServiceUri, crmConnection.ClientCredentials);
+            log.Debug("ManagedTokenOrganizationServiceProxy created = " + serviceProxy);
+            serviceProxy.EnableProxyTypes();
+        } catch (Exception e) {
+            log.Fatal(e, e);
+            throw;
+        }
+        log.Debug("Returning serviceProxy");
+        return serviceProxy;
+    }
+
+    #endregion
+}
+</code></pre>
+
+<p>Following MVC code consumes the connection:</p>
+
+<pre><code>public ActionResult Index() {
+    XrmVrcServiceContext context = null;
+    try {
+        context = new XrmVrcServiceContext(ServerConnection.getServiceProxy());
+    } catch (Exception e) {
+        log.Error(e, e);
+        throw;
+    }
+    return View(context.new_XYZEntitySet.ToList());
+}
+</code></pre>

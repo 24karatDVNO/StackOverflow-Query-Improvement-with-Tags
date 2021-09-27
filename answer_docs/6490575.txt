@@ -1,0 +1,3 @@
+<p>This is an infinite loop, thus the thread would wait infinitely until an exception (most likely an <code>InterruptedException</code>) occurs. </p>
+
+<p>That example doesn't make much sense by itself, normally you'd do something after the wait() and then wait for the next notify from another thread. You'd then use <code>while(true)</code> to indefinitely wait for the notification, do some stuff, then wait again until the application throws an exception or some condition to break the loop is met.</p>

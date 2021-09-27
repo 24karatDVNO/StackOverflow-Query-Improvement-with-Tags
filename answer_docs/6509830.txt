@@ -1,0 +1,13 @@
+<p>A slight alternative to JosephStyons answer in case you don't prefer an inline query inside a case statement. </p>
+
+<pre><code>SELECT
+    CASE 
+        WHEN ig.Guid IS NOT NULL THEN 'Invalid'
+        WHEN [SomeColumn] = '2322' THEN 'No'
+        ELSE 'Yes'
+    END AS [Test]
+FROM 
+     YourTable yt
+     LEFT JOIN INVALID_GUIDS ig
+     ON yt.SomeColumn = ig.GUID
+</code></pre>

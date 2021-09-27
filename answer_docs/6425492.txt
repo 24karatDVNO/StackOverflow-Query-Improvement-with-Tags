@@ -1,0 +1,5 @@
+<p><a href="http://drdobbs.com/windows/208403238" rel="nofollow noreferrer">http://drdobbs.com/windows/208403238</a></p>
+<blockquote>
+<p>Looking through the code you'll see that it uses the TcpListener class to listen for incoming client connections. Once a client connects the code checks the request for the following value: <code>&lt;policy-file-request/&gt;</code></p>
+<p>Silverlight automatically sends this text to the policy file socket once it connects. If the request contains the proper value the code writes the contents of the client access policy back to the client stream (see the OnReceiveComplete() method). Once the policy file is received, Silverlight parses it, checks that it allows access to the desired port, and then accepts or <strong>rejects the socket call that the application is trying to make</strong>.</p>
+</blockquote>

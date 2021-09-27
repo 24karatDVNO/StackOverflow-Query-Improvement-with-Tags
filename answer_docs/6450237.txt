@@ -1,0 +1,13 @@
+<p>Check out <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.backgroundworker.aspx" rel="nofollow">BackgroundWorker</a></p>
+
+<pre><code>var bw = new BackgroundWorker();
+bw.DoWork += (s, e) =&gt; e.Result = getAllBoxers();
+bw.RunWorkerCompleted += (s, e) =&gt;
+    {
+        var boxers = e.Result as List&lt;Boxer&gt;;
+        dgvBoxers.DataSource = boxers;
+    };
+bw.RunWorkerAsync();
+</code></pre>
+
+<p>Make sure to never do anything that affects the GUI in the <code>DoWork</code> because WinForms isn't thread safe.</p>

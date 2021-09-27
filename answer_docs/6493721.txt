@@ -1,0 +1,19 @@
+<pre><code>from django import template
+from django.utils.encoding import force_unicode
+register = template.Library()
+
+def truncate(value, arg = None):
+    if arg:
+        return force_unicode(value)[:arg]
+    return value
+
+register.filter('truncate', truncate)
+</code></pre>
+
+<p>Also some other options(haven't try them ... made my own wheel):</p>
+
+<ol>
+<li><a href="http://djangosnippets.org/snippets/163/" rel="nofollow">http://djangosnippets.org/snippets/163/</a></li>
+<li><a href="http://djangosnippets.org/snippets/194/" rel="nofollow">http://djangosnippets.org/snippets/194/</a></li>
+<li><a href="http://djangosnippets.org/snippets/1471/" rel="nofollow">http://djangosnippets.org/snippets/1471/</a></li>
+</ol>

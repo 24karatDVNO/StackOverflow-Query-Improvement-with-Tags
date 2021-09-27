@@ -1,0 +1,32 @@
+<p>Are you tied to a specific serializer? protobuf-net supports that use-case, for example:</p>
+
+<pre><code>[DataContract]
+class MyClass
+{
+    [DataMember(Order = 1)]
+    private MyCompoundClass _someCompoundField;
+
+    [DataMember(Order = 2)]
+    private int _someOtherField;
+
+    private void SaveState()
+    {
+        using (Stream stream = GetStream())
+        {
+            ProtoBuf.Serializer.Serialize(stream, this);
+        }
+    }
+
+    private void LoadState()
+    {
+        using (Stream stream = GetStream())
+        {
+            ProtoBuf.Serializer.Merge(stream, this);
+        }
+    }
+}
+</code></pre>
+
+<p>Note the addition of <code>Order = n</code> on the member-attributes; that is because protobuf uses numeric identifiers on fields/properties, and needs a way to choose them. You can also use the project-specific <code>[ProtoContract]</code>/<code>[ProtoMember(n)]</code> attributes, but it works with the WCF ones too (as shown).</p>
+
+<p>(<code>Merge</code> is also available on the non-generic 2.0 API - but you pass <code>this</code> in as an argument to <code>Deseroalize</code> instead)</p>

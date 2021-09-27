@@ -1,0 +1,14 @@
+<pre><code>   SELECT a.cat_id, 
+          a.cat_name, 
+          a.cat_description, 
+          b.subcat_name, 
+          b.subcat_description 
+     FROM trade_categories a 
+LEFT JOIN trade_subcategories b ON a.cat_id = b.cat_id
+    WHERE a.cat_name NOT LIKE '%catty%' 
+      AND a.cat_description NOT LIKE '%catty%'
+      AND (b.cat_id IS NULL
+        OR b.subcat_name NOT LIKE '%catty%' AND b.subcat_description NOT LIKE '%catty%')
+</code></pre>
+
+<p>Or, if the results of the two queries have been stored in (temporary) tables, you could use <a href="https://stackoverflow.com/questions/6380312/how-to-subtract-a-query-result-from-another-query-result-in-mysql/6381364#6381364">@Abhay</a>'s solution on them.</p>

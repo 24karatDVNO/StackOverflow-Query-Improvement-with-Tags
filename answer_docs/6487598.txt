@@ -1,0 +1,11 @@
+<p>Try this code, it should append a reply div after the parent 'roar' div that the clicked button is in:</p>
+
+<pre><code>$('.btn-reply').click(function () {
+    var replyHtml = '..build inner html string for the reply here..'
+    $('&lt;div /&gt;' {
+        className: 'newreply'
+    }).html(replyHtml).insertAfter($(this).parents('.roar'));
+});
+</code></pre>
+
+<p>You will need to do any set up of the newreply div in the javascript. E.g. adding click events</p>

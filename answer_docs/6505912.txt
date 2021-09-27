@@ -1,0 +1,20 @@
+<p>This will only give you an array woth the first row in your mapping table, meaning it will contain 1 and 20 (category and product).</p>
+
+<p>$in = mysql_fetch_array($current_sql);</p>
+
+<p>You would want to iterate through it to get all categories in order to get the right functionality. BUT:</p>
+
+<p>You'd be better off joining your product_categories into the same query, and keep some sort of boolean value to indicate which ones are already selected. The way you are doing it now won't work at all. </p>
+
+<pre><code>SELECT c.*, IFNULL(pc.category, 0, 1) as checked FROM `categories` c
+LEFT JOIN `product_categories` pc ON pc.category = c.ID AND product = {$_GET['id']}
+</code></pre>
+
+<p>then you can check </p>
+
+<pre><code>if ($resultset['checked'])
+</code></pre>
+
+<p>Because it would be 1 if part of product_category, and 0 if not.</p>
+
+<p>But be sure to escape your parameters or use prepared statements as somebody suggested in the comments.</p>

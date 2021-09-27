@@ -1,0 +1,11 @@
+<p>Assuming you can get the "random position" yourself, my thought would be to use something like the following:</p>
+
+<pre><code>import org.apache.commons.lang.StringUtils;
+
+public List&lt;String&gt; mergeAt(ArrayList&lt;String&gt; input, int offset) {
+    List&lt;String&gt; result = new ArrayList&lt;String&gt;();
+    result.add(StringUtils.join(input.subList(0, offset), '');
+    result.add(StringUtils.join(input.subList(offset, input.size()), '');
+    return result;
+}
+</code></pre>

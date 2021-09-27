@@ -1,0 +1,19 @@
+<p>You'll have to bind your functionalities to the keypress/keydown event of the document (depending on the browser, see <a href="https://stackoverflow.com/questions/492865/jquery-keypress-event-not-firing">this other question</a>), and check which key was pressed:</p>
+
+<pre><code>function checkKey(e){
+  switch (e.keyCode) {
+    case 37: //left arrow
+      //back();
+      break;
+    case 39: //right arrow
+      //next();
+      break;      
+  }
+}
+
+if ($.browser.mozilla) {
+  $(document).keypress (checkKey);
+} else {
+  $(document).keydown (checkKey);
+}
+</code></pre>

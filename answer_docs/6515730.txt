@@ -1,0 +1,11 @@
+<p>This isn't a fancy single query, but it does the trick:</p>
+
+<pre><code>CREATE TABLE tmp as SELECT * FROM tblspecialtable ORDER BY date DESC;
+DELETE FROM tblspecialtable WHERE 1;
+INSERT INTO tblspecialtable SELECT * FROM tmp GROUP BY specialid;
+DROP TABLE tmp;
+</code></pre>
+
+<p>The first line creates a temporary table where the values are ordered by date, most recent first.  The second makes room in the original table for the fixed values.  The third consolidates the values, and since the GROUP BY command goes from the top down, it takes the most recent first.  The final line removes the temporary table.  The end result is the original table containing unique values of specialid with only the most recent dates.</p>
+
+<p>Also, if you are programatically accessing your mysql table, it would be best to check if an id exists first, and then use the update command to change the date, or else add a new row if there is no existing specialID.  Also, you should consider making specialID UNIQUE if you don't want duplicates.</p>

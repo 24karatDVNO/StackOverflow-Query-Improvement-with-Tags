@@ -1,0 +1,14 @@
+<p>I felt like this was a common problem, so I wrote some code to help out with it.  You can add what your getter is dependent on in the Bindable metadata.  So:</p>
+
+<p>[Bindable(event="derivedChanged",dependentProperty="a")]
+ [Bindable(event="derivedChanged",dependentProperty="b")]
+ public function get derived():int
+ {
+     return a+b;
+ }</p>
+
+<p>It's custom code, written to use Parsley's metadata processing, but you could use it without Parsley--it just would be a normal method call and wouldn't look as nice.</p>
+
+<p>Check it out: <a href="http://frishy.blogspot.com/2011/06/binding-dependencies.html" rel="nofollow">http://frishy.blogspot.com/2011/06/binding-dependencies.html</a></p>
+
+<p>-Ryan</p>

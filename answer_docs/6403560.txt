@@ -1,0 +1,74 @@
+<p>I know, you write, that you can go through all resources and compare sizes with the bitmap size. But I don't know, if you thought it same way as I did, so this may help you or someone else.</p>
+
+<p>So this is the way I did it. At first I load sizes (in bytes) for all drawable images.</p>
+
+<pre><code>String defType = "drawable";
+String drawableDirPrefix = "res/drawable";
+SparseArray&lt;SparseArray&lt;String&gt;&gt; resourceDirs = new SparseArray&lt;SparseArray&lt;String&gt;&gt;();
+
+ZipInputStream apk = null;
+try {
+    apk = new ZipInputStream(new FileInputStream(getPackageResourcePath()));
+
+    ZipEntry entry = null;
+    while ((entry = apk.getNextEntry()) != null) {
+        String resourcePath = entry.getName();
+        if (resourcePath.startsWith(drawableDirPrefix)) {
+            int firstSlashPos = resourcePath.indexOf('/');
+            int lastSlashPos = resourcePath.lastIndexOf('/');
+            int dotPos = resourcePath.lastIndexOf('.');
+
+            String resourceDir = resourcePath.substring(firstSlashPos + 1, lastSlashPos);
+            String resourceName = resourcePath.substring(lastSlashPos + 1, dotPos);
+            int resourceId = getResources().getIdentifier(resourceName, defType, getPackageName());
+            int resourceSize = (int) entry.getSize();
+
+            SparseArray&lt;String&gt; resourceInfo = resourceDirs.get(resourceId);
+            if (resourceInfo == null) {
+                resourceInfo = new SparseArray&lt;String&gt;();
+                resourceInfo.append(resourceSize, resourceDir);
+                resourceDirs.append(resourceId, resourceInfo);
+            } else {
+                resourceInfo.append(resourceSize, resourceDir);
+            }
+        }
+    }
+} catch (IOException e) {
+    Log.e("tag", "Error", e);
+} finally {
+    if (apk != null) {
+        try {
+            apk.close();
+        } catch (IOException e) {
+            Log.e("tag", "Error", e);
+        }
+    }
+}
+</code></pre>
+
+<p>Then, when I want to know the folder, I can compare the bitmap size to loaded sizes.</p>
+
+<pre><code>InputStream bitmapStream = null;
+try {
+    int bitmapId = R.drawable.icon;
+    bitmapStream = getResources().openRawResource(bitmapId);
+    int bitmapSize = bitmapStream.available();
+
+    String bitmapDir = resourceDirs.get(bitmapId).get(bitmapSize);
+    Log.i("tag", bitmapDir);
+} catch (Exception e) {
+    Log.e("tag", "Error", e);
+} finally {
+    if (bitmapStream != null) {
+        try {
+            bitmapStream.close();
+        } catch (IOException e) {
+            Log.e("tag", "Error", e);
+        }
+    }
+}
+</code></pre>
+
+<p>Well, this will work only if the images have different sizes. Or you can compare other things, like width, height, etc.</p>
+
+<p>May be it is not, what you are looking for, but at least it satisfied my needs.</p>

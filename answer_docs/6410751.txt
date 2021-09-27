@@ -1,0 +1,10 @@
+<p>Did you ever alloc/create the myModel object? </p>
+
+<p>I'm guessing that you didn't, and you're just trying to use the class as a 'methods' class that doesn't store anything (I know there's a name for it, but I'm self taught so my terminology is pretty horrible!)</p>
+
+<p>You <em>can</em> do this in objective-c, but you've got to use different syntax. Instead of using minus signs for the method declaration, use "+":</p>
+
+<pre><code>+(double)generateRandomNumber;
+</code></pre>
+
+<p>and now your method should be usable!</p>

@@ -1,0 +1,7 @@
+<p>In Silverlight you must not block the UI thread, otherwise the application won't be able to process any user input, networking and bunch of other things. It will also freeze the browser window. All in all a really bad user experience.</p>
+
+<p>The suggested way to program this is to use callbacks, which means your code gets split into several pieces (either several methods, or delegates).</p>
+
+<p>Take a look at the async CTP for Visual Studio (http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=9983) which makes some of this much easier. It allows you to write the code almost like you did, and the compiler does all the splitting into callbacks for you.</p>
+
+<p>If you really need to block, then you could start a background thread in SL and do it there, but then you have to remember that the callbacks from async APIs (like BeginSaveChanges) will be executed on a different thread (depend on the API, sometimes it's the UI thread, sometimes it's another background thread).</p>

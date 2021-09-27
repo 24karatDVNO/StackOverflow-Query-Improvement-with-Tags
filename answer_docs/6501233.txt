@@ -1,0 +1,15 @@
+<p>By using ProcessCmdkey Solves the Problem: </p>
+
+<pre><code> protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {       
+           if (keyData == Keys.Numpad0)
+                {
+                    Numpad0.PerformClick();
+                    return true;
+                }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+</code></pre>
+
+<p>Thanks</p>

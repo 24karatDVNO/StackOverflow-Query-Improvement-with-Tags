@@ -1,0 +1,8 @@
+<p>After trial and error and advice from the gpg and libgcrypt mailing lists, the list packets command does truncate the leading zeros from the mpi value and as a result you would have to pre-pend the mpi values with zero(s) when:</p>
+
+<ul>
+<li>the length of the hex string is a odd number (pre-pend with one zero) or</li>
+<li>the mpi is a negative value (pre-pend with two zeros).</li>
+</ul>
+
+<p>As a further note, it is not wise to use list packets to get mpi values as it does not reliably gets you mpi values as it is supposed to be a debugging command which is subject to change. The best way that I have found to get the mpi values for both the public and private keys is to directly parse the binary export of the key by using export key command with RFC4880 to decode it.</p>

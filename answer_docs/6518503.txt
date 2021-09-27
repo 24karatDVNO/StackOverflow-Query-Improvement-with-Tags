@@ -1,0 +1,3 @@
+<p>Other answers have covered the ground regarding automatic session timeout.</p>
+
+<p>If you want to <strong>keep the session alive</strong> if the users moves the mouse / presses the keyboard, you can implement an event listener (client side) and let it submit a "heartbeat" request (simple dummy <code>GET</code> request to a valid endpoint) to the server in order to reset the timeout on the session. Thus, the session will be active for another 30 minutes.</p>

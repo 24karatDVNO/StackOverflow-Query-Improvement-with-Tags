@@ -1,0 +1,3 @@
+<p>Yes, this is allowed, and <code>ivector</code> will contain 10 elements. And no, it should not be <code>9</code> because the end iterator should be <em>one step past the end</em>. If you know what ranges are, that range would be represented by this range: <code>[beginning, end)</code>. That is to say, include the first one, and go right up to but don't include the last one.</p>
+
+<p>Because the STL (C++ standard library <em>cough</em>) is all templates, anything that supports the operators <code>++</code> and <code>*</code> (dereference operator) can be passed as iterators to the vector constructor. This property amazingly makes the same code work for both pointers and <code>vector</code> iterators. Standard library design at its best.</p>

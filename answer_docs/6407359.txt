@@ -1,0 +1,6 @@
+<p>The answer is that the geometry options need to be in quotes, I wasn't seeing the proper results because an exception was being thrown by the improper geometry specifier. This code:</p>
+
+<pre><code>result = dialog.activate(geometry = "first+50+20")
+</code></pre>
+
+<p>works fine.</p>

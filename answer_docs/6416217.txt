@@ -1,0 +1,19 @@
+<p>You have to access an index from the array, and then a value by specifying a key from the object.</p>
+
+<p>This works just fine for me: <a href="http://jsfiddle.net/98Sda/" rel="nofollow">http://jsfiddle.net/98Sda/</a>.</p>
+
+<pre><code>var day = 2;
+var lang = 'en-us';
+
+var weekdaysLegend = [
+{'it-it':'Lunedì', 'en-us':'Monday'}, 
+{'it-it':'Martedì', 'en-us':'Tuesday'},
+{'it-it':'Mercoledì', 'en-us':'Wednesday'},
+{'it-it':'Giovedì', 'en-us':'Thursday'}, 
+{'it-it':'Venerdì', 'en-us':'Friday'},
+{'it-it':'Sabato', 'en-us':'Saturday'}, 
+{'it-it':'Domenica', 'en-us':'Sunday'}
+];
+
+alert(weekdaysLegend[day][lang]);
+</code></pre>

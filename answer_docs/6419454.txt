@@ -1,0 +1,13 @@
+<p>@Bystrik Jurina,</p>
+
+<p>I often get involved in projects which involve conversions between disparate data formats. Most answers have focused on testing a B-tree or similar algorithm, but it seems that you're looking for a more general answer.</p>
+
+<p>Most of my work is based on the command line. It may sounds like a contradiction, but one of the first tools I use is visualization. I'll write some methods to write out my data structures in a format that's easy to consume. This can (and usually does) include something that's visually clear. But often it also means something that I could easily parse with a smaller test program, or even import into Excel.</p>
+
+<p>I'll start by focusing on the basic outline, and write a program that does the bare minimum of what I need to accomplish. If it's a multi-step process, this might mean implementing one step at a time and validating the results of each step before moving on. Or writing something that works only in specific cases, and then expanding the set of cases where it's expected to work. At first you can validate that the code works in the limited set of cases, such as for known input data. As the project moves forward, you can start logging warnings for cases you might not have tested, or for unexpected types of input data. This has drawbacks, but is a nice approach when you're dealing with a known set of input data</p>
+
+<p>Validation techniques can include formal test cases, or informal programs that work to challenge your assumptions. It could mean writing a basic driver program to exercise the "core" routines. A good example would be to add a record to a database, then read it back and compare the original object against the one loaded from the database.</p>
+
+<p>If you have trouble wrapping your head around the way a program functions, think about what it needs to accomplish. It might be easier to writing code that tests the way different inputs produce different outputs. Producing visualizations is a good help, because the act of deciding how to display the data can make you think about different conditions and focus in on the most critical parts of your data structures.</p>
+
+<p>Often I've found that building a visualization brings me to admit that the way the data is being stored just isn't very clear. For a B-tree, the representation isn't very flexible. But for other cases, you may be using parallel arrays when a nested tree of objects would be more natural.</p>

@@ -1,0 +1,7 @@
+<p>According to <a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP" rel="nofollow">the docs</a>:</p>
+
+<blockquote>
+  <p>If set, and the activity being launched is already running in the current task, then instead of launching a new instance of that activity, all of the other activities on top of it will be closed and this Intent will be delivered to the (now on top) old activity as a new Intent.</p>
+</blockquote>
+
+<p>So it doesn't clear the entire activity stack, only any other activities that were on top of an old instance of the activity being launched.</p>

@@ -1,0 +1,47 @@
+<p>Here is the answer to the question, i some how managed to remove item from the dropped list. all u have to do is call this function $("#strength").droppable({ drop: fn });, which inturn calls "fn" that does removes the items from the dropped list.</p>
+
+<pre><code>&lt;script type="text/javascript" language="javascript"&gt;
+    $(function () {
+
+        var fn = function (event, ui) {
+            var self = $(this);
+            var itemID = ui.draggable.attr("id");
+            if (itemID &gt; 0) {
+                var itemval = document.getElementById(itemID).innerHTML;
+                $("#" + itemID).remove();
+                document.getElementById(itemID).style.display = 'none';
+                $("#" + itemID).remove();
+
+                var newitemtoadd;
+                newitemtoadd = '&lt;li id="' + itemID + '" class="ui-state-highlight ui-draggable ui-droppable"&gt;' + itemval + '&lt;/li&gt;';
+
+                $("ul#strength").append(newitemtoadd);
+                $("#strength li").draggable({
+                    connectToSortable: "#opportunity",
+                    helper: "clone",
+                    revert: "invalid"
+                });
+            }
+        };
+
+
+        $("#opportunity").sortable({
+            revert: false
+        });
+
+
+        $("#strength li").draggable({
+            connectToSortable: "#opportunity",
+            helper: "clone",
+            revert: "invalid"
+        });
+
+        $("#strength").droppable({ drop: fn });
+
+        $("ul, li").disableSelection();
+
+    });
+
+
+&lt;/script&gt;
+</code></pre>

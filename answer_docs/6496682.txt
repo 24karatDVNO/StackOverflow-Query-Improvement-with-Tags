@@ -1,0 +1,9 @@
+<p>Looking at your comment, I think what you want is this -</p>
+
+<pre><code>UPDATE Invent
+SET Advanced = ISNULL(Item_Pending,0) -
+    ISNULL(Total_items,0) - ISNULL(Items_Pres,0) 
+WHERE Item_Name = "'" + DropItemName.SelectedValue + "'";
+</code></pre>
+
+<p>The <code>DropItemsName.SelectedValue</code> seems to be the value you are substituting from your UI code.</p>

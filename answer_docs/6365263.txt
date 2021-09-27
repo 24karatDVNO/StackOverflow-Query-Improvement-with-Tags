@@ -1,0 +1,7 @@
+<p>I was debugging this same issue just recently. I ran into a lot of explanations that an update had changed the default value for the Date columns. Solutions presented were to set a new, real default value, save, then clear it out again. Others suggested converting to Text and converting back.</p>
+
+<p>In my case I was able to identify the column was not a Date field but a Lookup field. I was pulling my hair until I ran across <a href="http://www.sharepointboris.net/2010/03/cannot-get-the-list-schema-column-property-from-the-sharepoint-list/" rel="nofollow">this blog post</a>. It mentioned this problem could happen with Lookup columns which pull data from Calculated columns. That's exactly what my problem was. Except it worked when it was first created. It wasn't until after a user accidentally deleted the Lookup column and we recreated it. That's when the trouble started.</p>
+
+<p>Interestingly we have another Lookup column bound to the same list to a different calculated column but it does not trigger the error.</p>
+
+<p>I did a more thorough write-up and explanation on my own blog <a href="http://vikingerik.wordpress.com/2011/06/14/sharepoint-2007-export-to-excel-failure/" rel="nofollow">detailing the steps</a> we went through until we solved it.</p>

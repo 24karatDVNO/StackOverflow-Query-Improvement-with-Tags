@@ -1,0 +1,46 @@
+<p>I'd use JavaScript solution. I made simple example:</p>
+
+<p>In <code>*.xsl</code> file, after <code>&lt;/table&gt;</code> element:</p>
+
+<pre><code>&lt;script&gt;
+&lt;![CDATA[
+
+var td_elements=document.getElementsByTagName("td");
+var td_elements_with_values=[];
+
+for(var i=0; i&lt;td_elements.length; ++i)
+{
+   if(td_elements[i].className=="value")
+      td_elements_with_values.push(td_elements[i]);
+}
+
+var td_elements_with_values_length = td_elements_with_values.length;
+
+function highlight()
+{
+   var number = parseFloat(document.getElementById("number").value);
+   var find_greater = document.getElementById("greater").checked;
+
+   for (var i=0; i&lt;td_elements_with_values_length; ++i)
+   {
+      var value=parseFloat(td_elements_with_values[i].firstChild.nodeValue);
+      if(find_greater)
+      {
+         if(number&lt;value)td_elements_with_values[i].style.color="red";
+         else td_elements_with_values[i].style.color="black";
+      }
+      else if(number&gt;value)td_elements_with_values[i].style.color="red";
+      else td_elements_with_values[i].style.color="black";
+}
+]]&gt;
+&lt;/script&gt;
+&lt;form&gt;
+   &lt;label for="number"&gt;Define number&lt;/label&gt;&lt;br/&gt;
+   &lt;input type="text" id="number"/&gt;&lt;br/&gt;
+   &lt;input type="radio" id="greater" name="greater_or_less" checked="checked"/&gt;
+   &lt;label for="greater"&gt;greater&lt;/label&gt;&lt;br/&gt;
+   &lt;input type="radio" id="less" name="greater_or_less"/&gt;
+   &lt;label for="less"&gt;less&lt;/label&gt;&lt;br/&gt;
+   &lt;input type="button" value="highlight" onclick="highlight()"/&gt;
+&lt;/form&gt;
+</code></pre>

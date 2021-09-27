@@ -1,0 +1,25 @@
+<p>As a simple example, this should give you a brief idea of how those system calls work together.</p>
+
+<pre><code>void spawn(char *program,char *argv[]){    
+     if(pipe(pipe_fd)==0){
+          char message[]="test";
+          int write_count=0;
+
+          pid_t child_pid=vfork();
+
+          if(child_pid&gt;0){
+               close(pipe_fd[0]); //first close the idle end
+               write_count=write(pipe_fd[1],message,strlen(message));
+               printf("The parent process (%d) wrote %d chars to the pipe \n",(int)getpid(),write_count);
+               close(pipe_fd[1]);
+          }else{
+               close(pipe_fd[1]);
+               dup2(pipe_fd[0],0);
+
+               printf("The new process (%d) will execute the program %s with %s as input\n",(int)getpid(),program,message);
+               execvp(program,argv);
+               exit(EXIT_FAILURE);
+          }
+     }
+}
+</code></pre>

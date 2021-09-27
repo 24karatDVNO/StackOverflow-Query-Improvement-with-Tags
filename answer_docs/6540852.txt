@@ -1,0 +1,7 @@
+<p>The problem was that wxmpl had no call to <code>HasPage</code> --  the entirety of the changes above didn't matter, after all.  Adding in this code in class <code>FigurePrintout</code> fixed the issue with not printing:</p>
+
+<pre><code>def HasPage(self, page):
+    return page &lt;= 1
+</code></pre>
+
+<p>Yep... two lines.  Based on the documentation for the wxPython printing framework, the default is <code>return page == 1</code>, but wxmpl returns 0 as the first page in it's override of <code>GetPageInfo</code>.  So the printer didn't think it had a page to print.</p>

@@ -1,0 +1,14 @@
+<p>When you call GetReaderAtBodyContents() it will do exactly that: get a Reader for the whole  message, starting at the Body contents. When you reach the end of your body content, xreader.Read() is continuing to read the rest of the message and hitting the close tag for the body. You need to modify your while loop to stop the reader from hitting this. Try this:</p>
+
+<pre><code>int startDepth = xreader.Depth;
+
+while (xreader.Read())
+{
+    if (xreader.Depth == startDepth &amp;&amp; xreader.NodeType == XmlNodeType.EndElement)
+    {
+        break;
+    }
+}
+</code></pre>
+
+<p>If there's a more elegant way of doing this, please share!</p>

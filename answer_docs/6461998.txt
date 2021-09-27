@@ -1,0 +1,15 @@
+<p>mask your clip:</p>
+
+<pre><code>var someMask:Sprite = new Sprite();
+someMask.graphics.beginFill(0x000000,0);
+someMask.graphics.drawRect(0,0,100,100);
+someMask.graphics.endFill();
+this.addChild(someMask);
+
+someClipYouWantToMask.mask = someMask;
+</code></pre>
+
+<p>or set its scrollRect prop</p>
+
+<pre><code>someClipYouWantToMask.scrollRect(new rectangle(0,0,100,100));
+</code></pre>

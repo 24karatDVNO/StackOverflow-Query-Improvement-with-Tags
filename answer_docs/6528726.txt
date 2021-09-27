@@ -1,0 +1,13 @@
+<pre><code>$(document).ready(function() {
+  function toggleOptions() {      
+      if ($("#toggleMe :input").filter(function() {
+          return $(this).val();
+    }).size() &gt; 0) {
+              $("#toggleMe").show();
+    } else {
+              $("#toggleMe").hide();
+    }
+  }
+  toggleOptions();
+});
+</code></pre>

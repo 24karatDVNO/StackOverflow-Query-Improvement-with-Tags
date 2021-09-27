@@ -1,0 +1,13 @@
+<p>I think your problem is that you're quoting the zero - this is making it a string. make a table like this:</p>
+
+<pre><code>CREATE TABLE [horsestats] (
+[horseID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+[name] VARCHAR(30)  NULL,
+[flatrating] INTEGER DEFAULT 0 NULL
+);
+</code></pre>
+
+<p>and it seems to work. alternatively, run an unquoted version of your <code>update</code> command:</p>
+
+<pre><code>UPDATE horsestats SET horsestats.flatrating=0 WHERE horsestats.flatrating='0';
+</code></pre>

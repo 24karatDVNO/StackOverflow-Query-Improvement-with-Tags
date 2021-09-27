@@ -1,0 +1,36 @@
+<p>I created an interface call <code>IAppResources</code> with a method called <code>AddResourceDictionary(ResourceDictionary rd)</code>. This interface got used in the Modules to load up ResourceDictionaries, and got implemented in the application to take resource dictionaries and add them to the Application's MergedDictionaries</p>
+
+<p>There might be a better way out there, but this worked for me :)</p>
+
+<p><strong>Common Interface</strong></p>
+
+<pre><code>public interface IAppResources
+{
+    void AddResourceDictionary(ResourceDictionary resourceDictionary);
+}
+</code></pre>
+
+<p><strong>Module uses Interface to load Resources</strong></p>
+
+<pre><code>[ImportingConstructor]
+public MyModule(IAppResources appResources)
+{
+    appResources.AddResourceDictionary(new MyModuleResources());
+}
+</code></pre>
+
+<p><strong>Application implements Interface to load Resources</strong></p>
+
+<pre><code>[Export(typeof(IAppResources ))]
+public class AppResources: IAppResources 
+{
+    #region IAppResources Members
+
+    void IAppResources.AddResourceDictionary(ResourceDictionary resource)
+    {
+        App.Current.MainWindow.Resources.MergedDictionaries.Add(resource);
+    }
+
+    #endregion
+}
+</code></pre>

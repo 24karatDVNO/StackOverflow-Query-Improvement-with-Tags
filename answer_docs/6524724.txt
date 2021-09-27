@@ -1,0 +1,19 @@
+<p>You can use glob-style patterns in <code>if</code> conditionals in bash:</p>
+
+<pre><code>if [[ $string != *"@"* ]] ; then
+    echo You have entered an invalid e-mail address!
+    exit 1
+else
+    # do something
+fi
+</code></pre>
+
+<p>I'd go a step further and require at least one character at either side of the <code>@</code>:</p>
+
+<pre><code>if [[ $string != *?"@"?* ]] ; then
+    echo You have entered an invalid e-mail address!
+    exit 1
+else
+    : # do something
+fi
+</code></pre>

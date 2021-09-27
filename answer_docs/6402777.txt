@@ -1,0 +1,12 @@
+<p>If your HTML block is consistent you could of course use a simple regex for <em>extraction</em>:</p>
+
+<pre><code>preg_match_all('#&lt;option\s+value="([^"]+)"&gt;([^&lt;]*)#i')
+// requires to strip trailing whitespace from the name in $matches[2]
+</code></pre>
+
+<p>But if you want to actually fetch content from real-world HTML then it's easier to use a DOM parser like phpQuery or <a href="http://querypath.org/" rel="nofollow">QueryPath</a> for simplicity:</p>
+
+<pre><code>foreach (qp($html)-&gt;find("option") as $opt) {
+    echo $name = $opt-&gt;text(),  $opt-&gt;attr("value");
+}
+</code></pre>

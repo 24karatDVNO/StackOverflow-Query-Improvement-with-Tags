@@ -1,0 +1,28 @@
+<p>I'm not sure what you're trying to do here.  You're passing your "birthday" as a string, not as an instance of 'Date.'</p>
+
+<p>If you want birthday to be a Date you'd need to do this:</p>
+
+<pre><code>public class Phone
+{
+    public int Number {get; set;}
+    public string Name {get; set;}
+    public Date Birthday {get; set;}
+    public string Address {get; set;}
+
+    public Phone(int number, Date birthday, string name, string address) 
+    { /* your implementation here */ }
+}
+</code></pre>
+
+<p>If you wanted to pass a string to your Phone constructor for the birthday, you'd need something on the Date Struct to convert it:</p>
+
+<pre><code>public Phone(int, number, string birthday, string name, string address)
+{
+    Number = number;
+    Birthday = Date.FromString(birthday);
+    Name = name;
+    Address = address;
+}
+</code></pre>
+
+<p>and that <code>Date.FromString(string date)</code> would be a method in your Struct.</p>

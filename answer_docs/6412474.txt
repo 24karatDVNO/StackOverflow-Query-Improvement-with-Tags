@@ -1,0 +1,10 @@
+<p>I think that the decision of splitting the data in databases instead of schemes  is highly dependable on if such products will always be used together and no other way, I mean, if it makes sense to think of such of products as one, or if they're two completely different products being used together.</p>
+
+<p>Since you say that in the future you plan to use the add-on for other products as well I think the best solution would be to split the data across separate databases, 'cause later you're gonna face at least one of these scenarios:</p>
+
+<ul>
+<li>You install the add-on for another product and it contains information (at least the db-schema) for the current product.</li>
+<li>You will have to install the separate the add-on database every time with each other product.</li>
+</ul>
+
+<p>Each of these make it hard to maintain... So I recommend to separate databases for the scenario you mention.</p>

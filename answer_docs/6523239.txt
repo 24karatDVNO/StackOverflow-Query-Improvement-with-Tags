@@ -1,0 +1,9 @@
+<p>I think the [request_header] is a single value, so I would use the following regex:</p>
+
+<pre><code>preg_match('/Cookie: ([[:graph:]]+)/', curl-getinfo($ch)['request_header'], $matches);
+echo $matches[1];
+</code></pre>
+
+<p>Tested with <a href="http://www.quanetic.com/Regex" rel="nofollow">http://www.quanetic.com/Regex</a></p>
+
+<p>Reference: <a href="http://www.php.net/manual/en/regexp.reference.character-classes.php" rel="nofollow">http://www.php.net/manual/en/regexp.reference.character-classes.php</a></p>

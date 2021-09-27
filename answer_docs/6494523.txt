@@ -1,0 +1,21 @@
+<p>This is riddled with syntax errors. I don't know what languages you're used to programming in, but jScript is clearly not one of them. First off, length(x) is not a global method. If you wanna get the length of an array, you use <code>array.length</code>. Next the syntax for for...in in js is <code>for (x in array) { ... }</code>. Also, if you want to reference a variable as an array, you have to declare it as such ( <code>var array = [];</code> ). Finally, to access the elements of an array, you use <code>array[x]</code>, not array(x). Try this instead: </p>
+
+<pre><code>&lt;SCRIPT type="text/javascript"&gt;
+
+var candidateArray = ['Mr R Green...', 'Ms O Brown...', 'Ms Y Black...', 'Mr G White...', 'Ms B Grey....','Ms I Blue....', 'Mr V Pink....'];
+var onlineVotesArray = [21,47,23,11,56,47,30];
+var paperVotesArray = [12,4,20,11,5,4,17];
+
+var totalVotesArray = [];
+var x = 0;
+var lengthPaperVotesArray = paperVotesArray.length;
+for (x in paperVotesArray){
+    totalVotes = onlineVotesArray[x] + paperVotesArray[x];
+    totalVotesArray[x] = totalVotes;
+    x = x + 1;
+}
+
+document.write(totalVotesArray);
+
+&lt;/SCRIPT&gt;
+</code></pre>

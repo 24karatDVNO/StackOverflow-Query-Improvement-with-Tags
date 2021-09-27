@@ -1,0 +1,10 @@
+<p>You can either use drharris' solution which seems more general and "clearer" or you can use anonymous delegates:</p>
+
+<pre><code>MyComClass cl = new MyComClass();
+
+cl.MyEvent += new MyComClassDelegate(delegate(MyEventArgs args){ RealHandler(cl, args);})
+</code></pre>
+
+<p>Now your RealHandler will receive the original arguments and the object that raised the event.</p>
+
+<p>This is not something one wants to type a lot but it might be an alternative if you only have a few places where you create the classes and add the event handlers.</p>

@@ -1,0 +1,13 @@
+<p>You could try something like this, so that you can change any/all of the clip settings:</p>
+
+<pre><code>function changeClipTo(t,r,b,l,elementID) {
+
+var clipString = "rect(" + t + "px " + r + "px " + b + "px " + l + "px)";
+document.getElementById(elementID).style.clip = clipString;
+
+}
+</code></pre>
+
+<p>That way you can have any click event supply your desired values such as onclick="changeClipTo(0,50,10,0,'someElement');" or href="javascript:changeClipTo(0,50,10,0,'someElement');"</p>
+
+<p>If you don't know the dimensions ahead of time, then you could use the onclick/href to call a function which determines the value you need, then call changeClipTo() from that function, passing in the computed value(s).</p>

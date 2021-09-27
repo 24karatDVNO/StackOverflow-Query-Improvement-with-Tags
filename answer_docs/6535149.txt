@@ -1,0 +1,23 @@
+<p>hmm.. I am not sure but can't this be protected against with normal c++ also?</p>
+
+<pre><code>class Mutex;
+class Lock {
+    Lock(Mutex *mutex);
+};
+
+int main() {
+    Lock /* lock */ (&amp;mtx);
+    return 0;
+}
+</code></pre>
+
+<p>I get this compiler warning when compiling with DJGPP:</p>
+
+<pre><code>C:\df&gt;gxx -c a.cpp
+a.cpp: In function 'int main()':
+a.cpp:8:30: error: 'mtx' declared as reference but not initialized
+</code></pre>
+
+<p>It compiles fine if I uncomment "lock" and add a mutex variable.</p>
+
+<p>So if your "mtx" variable is a pointer. What happens if you change it and pass it as "&amp;mtx" instead.</p>

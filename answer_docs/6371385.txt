@@ -1,0 +1,4 @@
+<p>I've been looking for "active windows change event grabber" as well. What I use in mean time (and might be helpful for you) is combination of <a href="http://www.semicomplete.com/projects/xdotool/xdotool.xhtml" rel="nofollow">xdotool</a> and <a href="http://www.xfree86.org/4.2.0/xwininfo.1.html" rel="nofollow">xwininfo</a>.</p>
+
+<pre><code>xwininfo -id "$(xdotool getactivewindow)"
+</code></pre>

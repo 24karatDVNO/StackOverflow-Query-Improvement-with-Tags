@@ -1,0 +1,7 @@
+<p>Maybe</p>
+
+<pre><code>RewriteBase /
+RewriteRule ^(.*)(?=\.php/?)?$ /$1.php?myvar=0 [QSA,L]
+</code></pre>
+
+<p>could help. Your log files are really golden in this case.</p>

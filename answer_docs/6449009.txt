@@ -1,0 +1,12 @@
+<p>Check out your /etc/hosts configuration.
+You have to mention master domain name and same for slave.</p>
+
+<p>For eg:
+127.0.0.1       localhost.localdomain   localhost
+107.108.206.64  master ABC-ubuntu
+107.108.208.24  slave  XYZ-ubuntu
+107.108.87.81   slave1 QWE-ubuntu</p>
+
+<p>Because during reduce processing , it search for XYZ-ubuntu host name instead of slave.</p>
+
+<p>Also, your hosts config should be same in all. </p>

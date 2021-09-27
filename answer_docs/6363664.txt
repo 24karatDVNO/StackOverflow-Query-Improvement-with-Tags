@@ -1,0 +1,3 @@
+<p>All that does is to require that the elements, of type <code>T</code>, be comparable with other objects of the same type (<code>Comparable&lt;T&gt;</code>). The reason that that's used instead of <code>Comparable&lt;?&gt;</code> is that the latter simply says comparable with <em>some type</em>.</p>
+
+<p>But since the priority queue holds objects of type <code>T</code> only, and thus compares other objects of type <code>T</code> only, it's fair to require that <code>T</code> be comparable with other objects of the same type.</p>

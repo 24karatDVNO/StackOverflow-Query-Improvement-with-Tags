@@ -1,0 +1,14 @@
+<p>You will likely have to create your own modal overlay display it when you show the dialog.</p>
+
+<pre><code>&lt;div class="customoverlay" /&gt;
+</code></pre>
+
+<p>You will need to create a stylesheet class for a div file that spreads it across the parent container, sets its <code>zindex</code> to a number higher than anything else in that layout unit except for the dialog, and you will probably want to set its <code>opacity</code> to a value of your choosing.</p>
+
+<p>In the javascript that displays your dialog you will also need to make a jQuery call to display your overlay as well.</p>
+
+<pre><code>exampleDialog.show();
+jQuery('.customoverlay').css('display', 'inline');
+</code></pre>
+
+<p>The javascript that hides your dialog you will want to do the same thing as above except set the <code>display</code> style to <code>none</code>.</p>

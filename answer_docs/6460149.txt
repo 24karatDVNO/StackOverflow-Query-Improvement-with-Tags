@@ -1,0 +1,42 @@
+<p>please describe better you scenario.</p>
+
+<p>What you need do</p>
+
+<p>some time ago i need do something how that was so i build an simple javascript's routine across serialize async call in one sync call. maybe you could used that added one variant </p>
+
+<p>for example that let me show how that work</p>
+
+<p>first register all async or sync routines 
+second register end callback
+third register call's to routines with yours parameters
+fourth thrown process</p>
+
+<p>in your case it neccesary added one call routine and that routine should be UoW of user actions. 
+Now the main problem is not call to routine in and order of execution if not track changes done by the user</p>
+
+<p>first register all async or sync routines 
+second register end callback
+third register call's to routines with yours paramter
+  --register your first routine
+  --register BlockUi //maybe for not accept more changes in the view
+  --register UiWriter // UoW of change done by user
+  --register you last routine
+fourth thrown process</p>
+
+<p>in real code that is one call dummy's function</p>
+
+<p>function Should_Can_Serializer_calls()
+{<br>
+  RegisterMethods(model);<br>
+  model.Queue.BeginUnitProcess(); //clear stack of execution, y others
+  model.Queue.AddEndMethod(SucessfullEnd);  // callback to end routine
+  model.AbstractCall("func1",1,"edu",15,""); //set routine how first to execute
+  model.AbstractCall("BlockUi"); //track changes and user's actions
+  model.AbstractCall("UiWork"); //track changes and user's actions
+  model.AbstractCall("func2","VALUE"); //set second routine for execute
+  model.Process(); //throw call
+}</p>
+
+<p>Now the methods should be async for themselves for this you could use that library <a href="http://devedge-temp.mozilla.org/toolbox/examples/2003/CCallWrapper/index_en.html" rel="nofollow">http://devedge-temp.mozilla.org/toolbox/examples/2003/CCallWrapper/index_en.html</a></p>
+
+<p>so, what do you want do?</p>

@@ -1,0 +1,13 @@
+<p>Although <code>pull</code> is convenient, it hides what's actually going on and can make tracking down issues a bit difficult. So, rather than using <code>pull</code>, use <code>fetch</code> and then <code>merge</code>:</p>
+
+<pre><code>git fetch dropbox
+(if you are not already on master) git checkout master
+git merge dropbox/master
+</code></pre>
+
+<p>The advantage of this is that in between the <code>fetch</code> and the <code>merge</code> you can <code>log</code> to see what you've pulled:</p>
+
+<pre><code>git log dropbox/master
+</code></pre>
+
+<p>As for your 'entry notuptodate', try <a href="https://stackoverflow.com/questions/1248029/git-pull-error-entry-foo-not-uptodate-cannot-merge">Git pull: error: Entry foo not uptodate. Cannot merge</a>.</p>

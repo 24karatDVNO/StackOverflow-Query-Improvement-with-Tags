@@ -1,0 +1,5 @@
+<p>You can use a <a href="https://stackoverflow.com/questions/787789/any-recommendations-for-a-css-minifier">CSS Minifier</a>.</p>
+
+<p>This has to be done server side to be useful.</p>
+
+<p>You should also employ some form of cache control; for example, send far distant expiry headers and append the last modified time to the file as a GET param. That way, when you update your file, the client's browser will download it. If you don't modify it, your end user will only download it once (until expiry).</p>

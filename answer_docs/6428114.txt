@@ -1,0 +1,5 @@
+<p>I have a very similar problem. It does not seem to do with codecs, as I made a separate test case that runs fine with the same video. There’s a <a href="https://stackoverflow.com/questions/6416511">related question</a> that says the problem might be in playing the same assets using <code>MPMoviePlayerController</code>. That got me on the right track (sort of).</p>
+
+<p>In my case the trouble stem from using the assets in an <code>AVPlayer</code> during the export. I was not able to find the exact combination that causes the export to drop the audio track – in the separate test project the export runs fine even though the asset plays in <code>AVPlayer</code> at the same time. After several hours of trying to find the exact cause I gave up and simply popped the asset out of the player using <code>replaceCurrentItemWithPlayerItem:nil</code> during export. It’s a hack, but it works.</p>
+
+<p><code>AVFoundation</code> is a very powerful framework, but God I wish it wasn’t so finicky or at least logged more errors instead of silently producing garbage.</p>

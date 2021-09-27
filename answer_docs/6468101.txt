@@ -1,0 +1,19 @@
+<p>Try this attribute on your junit task:</p>
+
+<pre><code>printsummary="yes"
+</code></pre>
+
+<p>For a slick javadoc-like html report, change your formatter to:</p>
+
+<pre><code>&lt;formatter type="xml" /&gt;
+</code></pre>
+
+<p>and then create the reports with a target that calls this:</p>
+
+<pre><code>&lt;junitreport&gt;
+&lt;fileset dir="${report.dir}/tmp"&gt;
+      &lt;include name="TEST-*.xml" /&gt;
+&lt;/fileset&gt;
+&lt;report format="frames" styledir="${junitxslt.dir}" todir="${report.dir}/html" /&gt;
+&lt;/junitreport&gt;
+</code></pre>

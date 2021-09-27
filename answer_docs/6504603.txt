@@ -1,0 +1,10 @@
+<p>Managed to figure this out myself. The <code>before_filter :format_for_mobile</code> was before authenticate user, that fixed the /login issue.</p>
+
+<p>For /logout, I had to do the following:</p>
+
+<pre><code># controllers/sessions_controller.rb
+
+class SessionsController &lt; Devise::SessionsController
+  before_filter :format_for_mobile, :except =&gt; :destroy
+end
+</code></pre>

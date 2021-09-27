@@ -1,0 +1,3 @@
+<p>Your solution isn't really flexible. What if you want to further specialize those pages (think about tags for SEO, extra elements for navigation panels and all that stuff...).</p>
+
+<p>Create sub-classes for each page, which (among other things) will update the title. Then load_page could instantiate the appropriate class.</p>

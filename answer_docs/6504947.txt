@@ -1,0 +1,5 @@
+<p>ScrollView can only have one child and will throw an IllegalStateException if you try to add more than one. Typical practice is a ScrollView with another view inside it containing the views over which you wish to scroll.</p>
+
+<p>Having said that, you appear to be getting a different sort of IllegalStateException so I'm not 100% sure that this is the issue.</p>
+
+<p>In my view, though, the real solution is to not dynamically populate a ScrollView but instead use a ListView, which is explicitly intended for just this sort of thing. It's a little more work but very rewarding in terms of performance and scalability.</p>

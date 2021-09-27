@@ -1,0 +1,15 @@
+<p>Found my own answer:</p>
+
+<p>the solution is to edit the supersized core js file. In the file, after this bit of code: </p>
+
+<pre><code>$('#supersized-loader').hide();     //Hide loading animation
+element.fadeIn('fast');         //Fade in background
+resizenow();
+</code></pre>
+
+<p>I added my own line: </p>
+
+<pre><code>$('#content').delay('fast').fadeIn('fast');
+</code></pre>
+
+<p>Worked like magic!</p>

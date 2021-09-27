@@ -1,0 +1,20 @@
+<p>You added the parameters, opened the connection but forgot to execute the command. Put</p>
+
+<pre><code>command.ExecuteNonQuery();
+</code></pre>
+
+<p>before your alert box.</p>
+
+<p>As an added bonus you'll probably want to wrap things in a using statement. This will ensure your objects are disposed of properly and your connection is closed;</p>
+
+<pre><code>using (MySqlConnection connection = new MySqlConnection(MyConString))
+{
+    using (MySqlCommand command = connection.CreateCommand())
+    {
+       command.Connection = connection;
+       /// the rest of your database code goes here
+       command.ExecuteNonQuery();
+}
+
+MessageBox.Show("Data Saved");
+</code></pre>

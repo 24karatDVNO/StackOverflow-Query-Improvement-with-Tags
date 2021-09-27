@@ -1,0 +1,13 @@
+<p>Here's the messy solution I was talking about..</p>
+
+<pre><code>select
+    a.SectionID, a.SectionTitle, a.SectionLevel, a.ParentID, a.PageOrder
+from
+    section a
+    left outer join section b on b.SectionID=a.ParentID
+    left outer join section c on c.SectionID=b.ParentID
+order by
+    c.PageOrder, b.PageOrder, a.PageOrder
+</code></pre>
+
+<p>As I mentioned in the comment, better to do it in code.. this is only for 3 levels (you could make it more by adding another outer join and order by clause).</p>

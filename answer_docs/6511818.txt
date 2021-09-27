@@ -1,0 +1,18 @@
+<p>Fun question.</p>
+
+<p>1) To get the page results for the persons name
+    Variety of ways but I recommend WebClient to URL <a href="http://www.canada411.ca/search/?stype=si&amp;what=Smith%2C+John" rel="nofollow">http://www.canada411.ca/search/?stype=si&amp;what=Smith%2C+John</a> substituting the words "Smith" and "John" with appropriate URL encoded values</p>
+
+<p>2) With the result returned load into an XML Reader object</p>
+
+<p>3) Using LINQ to XML or another format such as XPATH gather all Div Elements with class = "listing"</p>
+
+<p>4) For each Element 3 above using LINQ to XML or an XDocument to read the values from the node and store into instance variables accordingly. Some parsing logic will be required.</p>
+
+<p>5) Insert the new record into your database or update an existing record</p>
+
+<p>6) Repeat for all listing nodes</p>
+
+<p>If all the information above doesn't make sense to you then I'm afraid there isn't a simple answer. Easiest way is to use some government sponsored free web service if you can find one and get the results back in a consistent manner.</p>
+
+<p>Keep in mind any changes to their page layout, class names etc will break your code. Highly unreliable way to gathering information but might work for an initial database load etc.</p>

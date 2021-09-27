@@ -1,0 +1,10 @@
+<blockquote>
+  <p>When the future date is reached I would like to update a certain table value</p>
+</blockquote>
+
+<p>Why not just write your code to select the appropriate value based on the date, e.g.</p>
+
+<pre><code> SELECT IF(activation_date&lt;NOW(), old_value, new_value) AS value
+ FROM yourTable
+ WHERE...
+</code></pre>

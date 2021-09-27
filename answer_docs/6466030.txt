@@ -1,0 +1,47 @@
+<p>The <a href="http://www.codeproject.com/KB/datetime/TimePeriod.aspx" rel="nofollow">Time Period Library for .NET</a> includes the class <strong>Year</strong> with support of fiscal time periods.</p>
+
+<p>You can define a fiscal time calendar with a custom year base month. The following sample uses October as the start of the fiscal year:</p>
+
+<pre><code>// ------------------------------------------------------------------------
+public class FiscalTimeCalendar : TimeCalendar
+{
+  // ----------------------------------------------------------------------
+  public FiscalTimeCalendar() :
+    base( new TimeCalendarConfig
+      {
+        YearBaseMonth = YearMonth.October,  //  October year base month
+        YearWeekType = YearWeekType.Iso8601, // ISO 8601 week numbering
+        YearType = YearType.FiscalYear// treat years as fiscal years
+      } )
+  {
+  } // FiscalTimeCalendar
+} // class FiscalTimeCalendar
+</code></pre>
+
+<p>And that's the usage:
+Collapse</p>
+
+<pre><code>// ----------------------------------------------------------------------
+public void FiscalYearSample()
+{
+  FiscalTimeCalendar calendar = new FiscalTimeCalendar(); // use fiscal periods
+
+  DateTime moment1 = new DateTime( 2006, 9, 30 );
+  Console.WriteLine( "Fiscal Year of {0}: {1}", moment1.ToShortDateString(),
+                     new Year( moment1, calendar ).YearName );
+  // &gt; Fiscal Year of 30.09.2006: FY2005
+  Console.WriteLine( "Fiscal Quarter of {0}: {1}", moment1.ToShortDateString(),
+                     new Quarter( moment1, calendar ).QuarterOfYearName );
+  // &gt; Fiscal Quarter of 30.09.2006: FQ4 2005
+
+  DateTime moment2 = new DateTime( 2006, 10, 1 );
+  Console.WriteLine( "Fiscal Year of {0}: {1}", moment2.ToShortDateString(),
+                     new Year( moment2, calendar ).YearName );
+  // &gt; Fiscal Year of 01.10.2006: FY2006
+  Console.WriteLine( "Fiscal Quarter of {0}: {1}", moment1.ToShortDateString(),
+                     new Quarter( moment2, calendar ).QuarterOfYearName );
+  // &gt; Fiscal Quarter of 30.09.2006: FQ1 2006
+} // FiscalYearSample
+</code></pre>
+
+<p>The library includes also the classes <strong>Halfyear</strong> and <strong>Quarter</strong> with support of fiscal time periods.</p>

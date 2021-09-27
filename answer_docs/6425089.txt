@@ -1,0 +1,3 @@
+<p>I don't think Apple allows that, I'm afraid.</p>
+
+<p>But maybe you could create an invisible view (<code>view.opaque = FALSE; view.alpha = 0;</code>) that's placed just above the aforementioned button which receives touches as the first responder (so that you get the event) and then forwards it to the next (the keyboard). However, I don't know if it's possible to place a view above the keyboard, even "illegally".</p>

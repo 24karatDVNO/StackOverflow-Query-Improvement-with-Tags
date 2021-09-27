@@ -1,0 +1,5 @@
+<p>Unfortunately dates are very locale specific. strtotime() does not observe all of the niceties of the locale (and date_parse is a simple wrapper around strtotime). e.g. today is 21/06/2011 in the UK, and 06/21/2011 in the US. </p>
+
+<p>A more robust solution is to use the <a href="http://www.php.net/manual/en/class.datetime.php" rel="nofollow">DateTime</a> class and its <a href="http://www.php.net/manual/en/datetime.createfromformat.php" rel="nofollow">createFromFormat</a> method.</p>
+
+<p>However, IME, unless you are sourcing the input data from a consistent machine generated source, a better solution is to use a tool which facilitates <a href="http://jqueryui.com/demos/datepicker/" rel="nofollow">input in a consistent format</a></p>

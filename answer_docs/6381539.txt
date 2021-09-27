@@ -1,0 +1,13 @@
+<p>In the Front End, Create one DataTable and add the Records do you want to Insert into the DataTable. Then do the Steps below:</p>
+
+<pre><code>  DataSet ds = new DataSet();
+  dt.TableName = "AddTable";        //dt is the DataTable you have Created to Insert
+  ds.Tables.Add(dt);
+</code></pre>
+
+<p>And pass this DataSet as a Parameter to the Insert SP like</p>
+
+<pre><code> ds.GetXml();
+</code></pre>
+
+<p>This method will insert the records in faster manner.</p>

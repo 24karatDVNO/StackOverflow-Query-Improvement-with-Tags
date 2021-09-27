@@ -1,0 +1,10 @@
+<pre><code>window.onhashchange = null;
+
+window.location.hash = "this_should_not_concern_you";
+
+window.onhashchange = function() {
+    window.onhashchange = function() {alert('chunky bacon')};
+};
+
+window.location.hash = "this_should";
+</code></pre>

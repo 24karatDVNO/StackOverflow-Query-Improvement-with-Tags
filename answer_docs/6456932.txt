@@ -1,0 +1,87 @@
+<p>This might be something for more than StackOverflow- more for the core team.</p>
+
+<p>It seems that <em>either</em> ActiveResource is being stupid about how it talks to a RESTful client, <em>or</em> ActiveRecord is being stupid about how it listens to one (Or, the alternative, and much more likely option, these two things just fundamentally <em>can't</em> talk to one another.)</p>
+
+<p>To wit: Given User, Service, and Group above, my front-end, upon placing a PUT request on the back-end server at /users/1.xml the back-end logs the following parameters (some values removed for conciseness):</p>
+
+<pre><code>{"user"=&gt;
+  {"created_at"=&gt;2011-06-23 02:58:15 UTC, 
+   "id"=&gt;1, 
+   "name"=&gt;"John Metta", 
+   "updated_at"=&gt;2011-06-23 02:58:15 UTC, 
+   "managed_groups"=&gt;[], 
+   "services"=&gt;[
+     {"created_at"=&gt;2011-06-23 02:58:15 UTC, 
+      "id"=&gt;1, 
+      "updated_at"=&gt;2011-06-23 02:58:15 UTC, 
+      "user_id"=&gt;1}
+   ], 
+   "groups"=&gt;[
+     {"created_at"=&gt;2011-06-23 02:56:37 UTC, 
+      "id"=&gt;1, 
+      "updated_at"=&gt;2011-06-23 02:56:37 UTC,  
+      "user_id"=&gt;nil, 
+      "users"=&gt;[
+        {"created_at"=&gt;2011-06-23 03:36:28 UTC, 
+         "id"=&gt;6, 
+         "name"=&gt;"Jefferey", 
+         "updated_at"=&gt;2011-06-23 03:36:28 UTC}, 
+        {"created_at"=&gt;2011-06-23 02:59:36 UTC, 
+         "id"=&gt;2, 
+         "name"=&gt;"George", 
+         "updated_at"=&gt;2011-06-23 03:05:13 UTC}
+       ]
+     }, 
+     {"created_at"=&gt;2011-06-23 02:56:37 UTC, 
+      "id"=&gt;1, 
+      "name"=&gt;"Site Admin", 
+      "updated_at"=&gt;2011-06-23 02:56:37 UTC, 
+      "user_id"=&gt;nil, 
+      "users"=&gt;[
+        {"created_at"=&gt;2011-06-23 03:36:28 UTC, 
+         "id"=&gt;6, 
+         "name"=&gt;"Jefferey", 
+         "updated_at"=&gt;2011-06-23 03:36:28 UTC}, 
+        {"created_at"=&gt;2011-06-23 02:59:36 UTC, 
+         "id"=&gt;2, 
+         "name"=&gt;"George", 
+         "updated_at"=&gt;2011-06-23 03:05:13 UTC}, 
+        {"created_at"=&gt;2011-06-23 02:58:15 UTC, 
+         "id"=&gt;1, 
+         "name"=&gt;"John Metta", 
+         "updated_at"=&gt;2011-06-23 02:58:15 UTC}
+       ]
+     }
+   ]
+  },
+  "id"=&gt;"1"}
+</code></pre>
+
+<p>So, I can see a few issues with ActiveResource (or, more likely, how I am trying to <em>use</em> ActiveResource), but the main is this:</p>
+
+<p>Since ActiveResource seems to know nothing about associations, it just bundles everything up in a dumb fashion. In otherwords, ActiveResource dumbly says "Duh, you have a list of groups, so I'll call it a 'groups'" instead of knowing that, in order for this to actually work, it should be saying "Hrm, you have a list of groups, and Group is another model, I'll call it groups_attributes so that it can be rebuilt into a list of groups on the other end.</p>
+
+<p>Now, before I get flamed, I understand that 'groups_attributes' is an ActiveRecord vocabulary word, not a general REST word, so if ActiveResource started using it, it would break, say, my other back-end which runs on Scala.</p>
+
+<p><em>However</em>, given that Rails should be able to work with Rails, and given that ActiveResource has to be dumb about it, then it seems that ActiveRecord should be able to figure out that "This incoming RESTful model has objects contained that map to known models that are referenced, let's try to create those models and make it work.</p>
+
+<h2>Workable Solution:</h2>
+
+<p>I haven't thought about this enough to feel comfortable assuming that ActiveRecord should <em>always</em> automatically try to map an incoming parameter set's included MODEL-named parameters to a MODEL. That will require some more testing and thought. However, my solution has been to catch that incoming parameter set in the users_controller with something like the following:</p>
+
+<pre><code>  …
+  begin
+    groups = []
+    params[:user][:groups].each do |g|
+      groups &lt;&lt; Group.find(g[:id])
+    end
+    params[:user][:groups] = groups
+  rescue
+    # Do something not incredibly stupid here
+  end
+  …
+</code></pre>
+
+<p>Which seems to grab things relatively cleanly. My fear is that this seems pretty bulky for Rails-- which usually has much more elegant solutions to things-- and that I'm missing something basic.</p>
+
+<p>(In the interest of completion, I realize that there are other problems with that parameter string, such as: Since I bundle the group with the user, and the user with the group, I'm passing a ton of data around necessarily (like, the entire group, and all it's users) when I pass the user around. This needs some sort of proxy- like a list of Group IDs or something. More likely, my ActiveResource models should have methods wrapping those objects. I'm considering those problem outside the scope of this issue.)</p>

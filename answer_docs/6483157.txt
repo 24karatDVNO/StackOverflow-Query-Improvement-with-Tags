@@ -1,0 +1,10 @@
+<p>@rjb:
+After the 1000px has reached the png stops repeating- you'll only see black color but it will appear continuous since the bottom most pixel of the png is black.(of course you know this!)
+So I'd suggest adding a background position fixed instead. So the gradient will seem never ending and black color will not span the rest of the page...
+Ex:</p>
+
+<pre>
+body {
+    background: #000 url(http://i.stack.imgur.com/PnLYK.png) repeat-x fixed;
+}
+</pre>

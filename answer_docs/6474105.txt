@@ -1,0 +1,11 @@
+<p>You could try</p>
+
+<pre><code>$route['cp/roles/:num'] = "cp/roles";
+</code></pre>
+
+<p>and then instead of passing a variable in your function you use</p>
+
+<pre><code>$this-&gt;uri-&gt;segment(3);
+</code></pre>
+
+<p>or the number that correspond to the segment.</p>

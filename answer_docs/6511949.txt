@@ -1,0 +1,9 @@
+<p>In this case everything looks right (assuming <code>NEURON_LIBRARY</code> is not defined since you're building under the <code>app</code> template, although Windows v. Linux act differently in this regard).</p>
+
+<p><code>qmake</code> is known not to pick up all the changes that it ought to so I'd recommend re-running qmake and then your make variant (e.g. make, gmake, nmake):</p>
+
+<pre><code>$ qmake
+$ nmake
+</code></pre>
+
+<p>In some cases, you'll actually need to do a <code>clean</code> (or delete the relevant object files) before everything will be able to link correctly.</p>

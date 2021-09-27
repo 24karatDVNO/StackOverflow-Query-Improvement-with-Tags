@@ -1,0 +1,33 @@
+<p>This is almost soved, this piece of script will take the items of the array buttons (can add as many as you want), space them around the ellipse you set (origin + radius), and tween them around it according to the speed you set. The only problem is the spacing isn't even and some are close and some far apart and I don't understand why.</p>
+
+<pre><code>var angle:Number = 0;
+var originX:Number = 200;
+var originY:Number = 200;
+var radiusX:Number = 267.5;
+var radiusY:Number = 100;
+var steps:Number = 360;
+var speed:Number = 3.1415/steps;
+var buttons:Array = new Array(this.age,this.ethnicity,this.sex,this.social,this.ability,this.orientation,this.faith);
+
+for (i=0;i&lt;buttons.length;i++) {
+buttons[i].onEnterFrame = function() {
+    moveButtons(this);
+    controllButtons(this);
+};
+buttons[i]._order = (360/buttons.length) * (i+1);
+}
+function moveButtons(e) {
+    e._anglePhase = angle+e._order;
+    e._x = originX+Math.sin(e._anglePhase)*radiusX;
+    e._y = originY+Math.cos(e._anglePhase)*radiusY;
+}
+
+function controllButtons(e) {
+    angle += speed;
+    if (angle&gt;=360) {
+        angle -= 360;
+    }
+}
+</code></pre>
+
+<p>Please note I got the base of this script from <a href="http://www.actionscript.org/forums/showthread.php3?t=161830&amp;page=2" rel="nofollow">http://www.actionscript.org/forums/showthread.php3?t=161830&amp;page=2</a> converted it to AS2 and made it work from an array.</p>

@@ -1,0 +1,31 @@
+<p>Try</p>
+
+<pre><code>public BottomToolbar(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+    initView(context);
+}
+
+public BottomToolbar(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    initView(context);
+}
+
+public BottomToolbar(Context context) {
+    super(context);
+    initView(context);
+}
+
+public void initView(Context context) {
+    LayoutInflater layoutInflater = (LayoutInflater) context
+        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    View view = layoutInflater.inflate(R.layout.toolbar, this);
+    this.context = context;
+    circleSpinner = (Spinner) findViewById(R.id.spinner1);
+    ArrayAdapter&lt;CharSequence&gt; adapter = ArrayAdapter.createFromResource(
+        context, R.array.circlesarray,
+        android.R.layout.simple_spinner_item);
+ adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    circleSpinner.setAdapter(adapter);
+    }
+}
+</code></pre>

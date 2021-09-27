@@ -1,0 +1,34 @@
+<p>You can set <code>Target="#{FileUpload1}-file"</code> on the <code>&lt;extTooltip&gt;</code>. </p>
+
+<p>The following example demonstrates the full scenario.</p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>&lt;%@ Page Language="C#" %&gt;
+
+&lt;%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %&gt;
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head runat="server"&gt;
+    &lt;title&gt;Ext.NET Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ext:ResourceManager runat="server" /&gt;
+
+    &lt;form runat="server"&gt;
+        &lt;ext:FileUploadField ID="FileUpload1" runat="server" ButtonOnly="true" ButtonText="Select"&gt;
+            &lt;ToolTips&gt;
+                &lt;ext:ToolTip runat="server" Title="Browse" Html="Browse" Target="FileUpload1-file" /&gt;
+            &lt;/ToolTips&gt;
+        &lt;/ext:FileUploadField&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Wrapping the string <code>FileUpload1</code> with <code>#{}</code> will ensure the client-side .ID (.ClientID) is used to reference the correct instance of the <code>&lt;ext:FieldUploadField&gt;</code> object. </p>
+
+<p>Hope this helps.</p>

@@ -1,0 +1,83 @@
+<p>This is my helper class to write and PDF---</p>
+
+<pre><code>public class PDFMerge {
+
+    private MergeDocument document = null;
+
+
+
+    public PDFMerge(File template) throws Exception {
+
+        if (templatePdfFile == null)  {
+            throw new Exception( );
+                document = new MergeDocument(template.getAbsolutePath(), new MergeOptions(true));
+        }
+
+
+           }
+
+    public MergeDocument mergePDF(String pdfformid, String url,
+            ) {
+
+        Calendar cal = Calendar.getInstance();
+
+        if (document != null) {
+
+                               //hidden fields on PDF form 
+
+
+                if (document.getForm().getFields().getFormField("url_to_submit") != null) {
+                    document.getForm().getFields().getFormField("url_to_submit")
+                            .setValue(url);
+
+                }
+
+
+                //Date fields to prepopulate before rendered on browser
+
+                if (document.getForm().getFields().getFormField("date.mm") != null) {
+                    document
+                            .getForm()
+                            .getFields()
+                            .getFormField("date.mm")
+                            .setValue(
+                                    String.valueOf(cal.get(Calendar.MONTH) + 1));
+
+                }
+
+                if (document.getForm().getFields().getFormField("date.dd") != null) {
+                    .....
+
+                }
+
+                if (document.getForm().getFields().getFormField("date.yyyy") != null) {
+                    ....
+                }
+
+
+
+
+            }
+        }
+                //document is drawn into byte array in servlet to send to output stream.
+
+        return document;
+
+    }
+
+
+}
+</code></pre>
+
+<p>On servlet/caller (struts action) side ----</p>
+
+<pre><code>PDFMerge pdfmerge = new PDFMerge(form.getTemplateFile());
+MergeDocument mergedPDF = printTool.mergePDF(String
+.valueOf(form.getFormId()), URL);
+
+
+byte[] pdfArray = mergedPDF.draw();
+</code></pre>
+
+<p>This byte array is forwarded onto JSP to be rendered.
+It doesnt display buttons correctly.</p>

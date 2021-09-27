@@ -1,0 +1,9 @@
+<p>Ah, this works:</p>
+
+<pre><code>Factory.define :task do |t|
+  t.association :user
+  t.after_create {|t| t.user.tasks &lt;&lt; t}
+end
+</code></pre>
+
+<p>John, your approach would work but I actually couldn't use what you described because in my test the tasks need to also reference another (unmentioned) model and I don't see a way of referencing it in the <code>user_with_tasks</code> factory definition.</p>

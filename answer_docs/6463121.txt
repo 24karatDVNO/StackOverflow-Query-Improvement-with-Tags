@@ -1,0 +1,24 @@
+<p>Well, you really don't need any of this nesting.</p>
+
+<p>Just load the stylesheet from original document.  You don't need to load it dynamically:</p>
+
+<pre><code>&lt;link type="text/css" rel="stylesheet" media="all" href="C:\wamp\www\css\jquery.lightbox-0.5.css"&gt;  
+</code></pre>
+
+<p>Note: it would be best if the href was a relative path.</p>
+
+<p>Now, condense the JS to just one <code>live</code> click :</p>
+
+<pre><code>$(document).ready(function () {
+
+   $("a.links, a.glinks").live('click', function (event) {
+       event.preventDefault();
+       var link = $(this).attr("href") + " #content";
+       var target_div = $(this).hasClass('glinks') ? "#content2" : "#content";
+
+       $(target_div).load(link, function () {
+           $(this).find('#gallery a').lightBox(); 
+       });
+   });
+});
+</code></pre>

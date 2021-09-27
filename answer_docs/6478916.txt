@@ -1,0 +1,20 @@
+<pre><code>Button b2 = (Button)findViewById(R.id.second);
+    Log.e("main2", "main2");
+    b2.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+         Intent myintent=new Intent(second.this,third.class);
+         startActivity(myintent);
+          }
+      });        
+
+@Override
+public void onBackPressed() 
+{
+    Intent myintent=new Intent(second.this,first.class);
+    second.this.finish();
+    startActivity(myintent);
+    super.onBackPressed();
+}
+</code></pre>
+
+<p>just try this.</p>

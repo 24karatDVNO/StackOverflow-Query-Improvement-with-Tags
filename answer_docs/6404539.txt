@@ -1,0 +1,3 @@
+<p>It shouldn't be too hard to make the necessary adjustments.  If you look at PHP's <a href="http://www.php.net/manual/en/ref.mysql.php" rel="nofollow">MySQL functions</a> vs the <a href="http://us2.php.net/manual/en/class.mysqli.php" rel="nofollow">MySQLi functions</a> functions the main difference is that MySQLi is an object-oriented interface. Converting back to the regular MySQL functions is usually quite easy, for example: <code>$rs-&gt;affected_rows</code> becomes <code>mysql_affected_rows($rs)</code>.</p>
+
+<p>As @hexa pointed out, there are a couple things in MySQLi that the old interface doesn't support, such as prepared queries.  If the tutorial involves those, it's not that hard to convert them to regular queries, it's just a bit of a hassle.</p>

@@ -1,0 +1,14 @@
+<blockquote>
+  <p>a) For eg: if you see the main page(daily deals,escapes,purchases,settings) - did they use a window with a black background image &amp; then added tableview to it for the four options? each tableviewrow has different images. Is that how it could be done?
+  Also if you notice the four options are scrollable but the heading livingsocial stays static &amp; looks different from the native UI. How was that done?</p>
+</blockquote>
+
+<p>That app uses a custom made UINavigationController (for the static bar at the top, that can accommodate the title of the view and different buttons depending on the view currently showing, namely a back button for returning to the main view) and UITableView with custom made cells.</p>
+
+<blockquote>
+  <p>b) If you look at sign in page (in settings) - they have two textfields &amp; a sign in button inside a window. For the last element (Don't have an account?), is that again a tableview inside a scrollableview?</p>
+</blockquote>
+
+<p>No, I think that's a UIButton, that just happens to look like an isolated cell. Also, that view doesn't look like its scrollable.</p>
+
+<p>I'm not familiarized with Titanium, so I can't give you any directions there. But keep in mind that using custom controls usually takes more effort than simply using apple's own default.</p>

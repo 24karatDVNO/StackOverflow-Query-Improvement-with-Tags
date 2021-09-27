@@ -1,0 +1,11 @@
+<p>See this; it might be beneficial:</p>
+
+<pre><code>#!/bin/sh
+echo "ENTER DATA BASE NAME:"
+read dbname
+echo "ENTER DATABASE USER NAME:"
+read dbuser
+echo "ENTER DATASE PASSWORD:"
+read dbpassword
+mysqldump -u $dbuser -p$dbpassword $dbname&gt;$dbname".sql"
+</code></pre>

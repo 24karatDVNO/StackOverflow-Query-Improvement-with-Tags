@@ -1,0 +1,26 @@
+<p>Setting <code>riskType</code> inside your function is local to that function and will not affect the value in the global.  You need to tell your function to use the global by putting <code>global riskType</code> before code that tries to modify it.  </p>
+
+<p><code>None</code> should be capitalized.  </p>
+
+<p>I believe you meant to set riskType to a string and therefore those values should be quoted.</p>
+
+<p>Python has an <code>elif</code> for <code>else if</code>.</p>
+
+<p>The corrected code:</p>
+
+<pre><code># Global Variables
+riskCode = 0
+estimatePrice = 0
+riskType = None
+
+def defineType(riskCode):
+    global riskType
+    if riskCode == 1:
+        riskType = "High"
+    elif riskCode == 2:
+        riskType = "Moderate"
+    elif riskCode == 3:
+        riskType = "Low"
+    elif RiskCode == 4:
+        riskType = "No"
+</code></pre>

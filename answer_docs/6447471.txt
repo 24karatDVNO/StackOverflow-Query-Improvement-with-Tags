@@ -1,0 +1,7 @@
+<p>My guess: on roll over you show a clip, that overlaps your button.
+Hence, you get an immediate roll out on the button. 
+Which in turn causes your button to recieve roll over again.
+That causes a recursive stack overflow. :)</p>
+
+<p>If the above holds true, just disable mouse on MySmiles. 
+Both mouseChidren and mouseEnabled.</p>

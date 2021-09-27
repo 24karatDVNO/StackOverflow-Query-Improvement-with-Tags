@@ -1,0 +1,7 @@
+<p>Are you talking about hosting web services or calling web services?</p>
+
+<p>If you're hosting, aren't you hosting in a Servlet container? All of the major Java frameworks work within modern Servlet containers. And the jars specific to the framework do all of the annotation processing, not the Servlet container. The only real requirement is Java 5 so that you have access to annotations at all.</p>
+
+<p>If you have to use Java 1.4, then you should just use an ancient action framework like Struts 1 (which I wouldn't wish on anybody). Otherwise, you're back to raw servlets, which isn't completely awful to create web services.</p>
+
+<p>Of course if you're not using Servlets at all, then basically nothing out there is going to help you since Servlets are the dominant Java web paradigm.</p>

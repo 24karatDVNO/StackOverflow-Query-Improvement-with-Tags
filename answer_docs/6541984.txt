@@ -1,0 +1,39 @@
+<p><strong>This answer makes the assumption that by sidebar you mean the select combo box</strong></p>
+
+<p>The original version called </p>
+
+<pre><code>function createMarker(latlng, name, html)
+</code></pre>
+
+<p>which adds the option to the select box. </p>
+
+<p>You are no longer calling createMarker, but are instead calling </p>
+
+<pre><code>function bindInfoWindow(marker, map, infoWindow, html)
+</code></pre>
+
+<p>which only adds the 'click' listener, but doesn't do anything else (like adding the option to the select_html variable). </p>
+
+<p>You could just modify your loop:</p>
+
+<pre><code>for (var i = 0; i &lt; markers.length; i++) {
+      var name = markers[i].getAttribute("name");
+      var address = markers[i].getAttribute("address");
+      var confirmed = markers[i].getAttribute("confirmed");
+      var point = new google.maps.LatLng(
+          parseFloat(markers[i].getAttribute("lat")),
+          parseFloat(markers[i].getAttribute("lng")));
+      var html = "&lt;b&gt;" + name + "&lt;/b&gt;";
+      var icon = customIcons[confirmed] || {};
+      var marker = new google.maps.Marker({
+        map: map,
+        position: point,
+        icon: icon.icon,
+        shadow: icon.shadow
+      });
+      bindInfoWindow(marker, map, infoWindow, html);
+
+      // I have been added so I populate the select combo box. 
+      select_html += '&lt;option&gt; ' + name + '&lt;\/option&gt;';
+}
+</code></pre>

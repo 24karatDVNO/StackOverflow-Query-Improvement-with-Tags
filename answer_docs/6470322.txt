@@ -1,0 +1,70 @@
+<p>Now, I understand my problem. Thank you very much to give your suggestion.
+Here is my updated code.</p>
+
+<pre><code>    public class GameView extends SurfaceView{
+    private Bitmap BG_image;
+    private SurfaceHolder holder;
+    int x=100;
+    private int srcX=100;
+    private int srcY=100;
+    int distance=50;
+
+    public GameView(Context context) {
+
+        super(context);
+        holder = getHolder();
+        holder.addCallback(new SurfaceHolder.Callback() {
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+
+                Canvas c = holder.lockCanvas(null);
+                onDraw(c);
+                holder.unlockCanvasAndPost(c);
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format,
+
+                    int width, int height) {
+            }
+        });
+        BG_image = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
+        Bitmap.createScaledBitmap(BG_image, BG_image.getWidth(), BG_image.getHeight(), false);
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        // TODO Auto-generated method stub
+        x = (int) ev.getX();        
+        if(x-srcX&gt;0)
+            srcX += distance;
+        else if(x-srcX&lt;0)
+            srcX -= distance;
+
+        if(srcX&lt;=100)
+            srcX = 100;
+        else if(srcX&gt;250)
+            srcX = 250;     
+        Log.w("ev.getX : srcX",x+" : "+srcX);
+        SurfaceHolder holder=getHolder();
+        Canvas myCanvas=holder.lockCanvas(null);
+        onDraw(myCanvas);
+        holder.unlockCanvasAndPost(myCanvas);
+        return super.onTouchEvent(ev);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        // TODO Auto-generated method stub  
+        Paint paint = new Paint();
+        canvas.drawColor(Color.BLACK);
+        canvas.drawRect(new Rect(0,0,getWidth(),getHeight()),paint);
+        canvas.drawBitmap(BG_image, srcX-BG_image.getWidth()/2, srcY, null);
+    }
+}
+</code></pre>

@@ -1,0 +1,13 @@
+<p>Can I suggest that a gradual fade out is better than a delay. In which case, try the following instead of your <code>visibility: "hidden"</code> code</p>
+
+<pre><code>$(this).find('ul:first').fadeOut('slow');
+</code></pre>
+
+<p>A small tip: When you're displaying/hiding elements using jQuery, you only need use the following:</p>
+
+<pre><code>hide(), show(), toggle()
+fadeIn(), fadeOut(), fadeToggle()
+slideIn(), slideOut(), slideToggle()
+</code></pre>
+
+<p>Setting <code>display</code> and <code>visibility</code> CSS properties is futile.</p>

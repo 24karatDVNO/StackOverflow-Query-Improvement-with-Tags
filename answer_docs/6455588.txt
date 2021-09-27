@@ -1,0 +1,10 @@
+<p>You need to create a click listener for the button and in that, create the intent and put a String extra which you get from the valueTV text.</p>
+
+<pre><code>submit.setOnClickListener(new OnClickListener() {
+    public void onClick(View arg0) {
+        Intent i = new Intent();
+    i.putExtra("value", valueTV.getText());
+    startActivity(i);
+}
+});
+</code></pre>

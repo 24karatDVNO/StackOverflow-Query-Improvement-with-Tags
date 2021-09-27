@@ -1,0 +1,10 @@
+<p>I was looking for a similar problem/solution, but my problem was little diferent. I know this was not your issue, but looks fair to share my solution. When I tried to do</p>
+
+<pre><code>    event.currentTarget.stop(); // AS1&amp;AS2 -&gt; BAD swf to import
+</code></pre>
+
+<p>with the content of a loader, my Flash IDE showed me this error: </p>
+
+<p>"Property stop not found on flash.display.AVM1Movie and there is no default value."</p>
+
+<p>This happened to me because the swf I imported was created using AS1, and not AS3 as the main movie ( so I decompiled the swf to a fla and recompiled using as3, it was an output from After Effects). Now I know AVM1 and AVM2 are classes that represent actionscript 1 and 2 files.</p>

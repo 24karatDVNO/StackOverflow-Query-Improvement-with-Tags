@@ -1,0 +1,14 @@
+<p>You need to wrap this in $(document).ready  a la:</p>
+
+<pre><code>$(document).ready(function(){
+  $("#search").autocomplete('func.php');
+  $("#c_name").autocomplete('func.php');
+
+  $("#search").keypress(function(event) {
+      if (event.which === 13) {
+          findItem('search');
+          return false;
+      }
+  });
+});
+</code></pre>

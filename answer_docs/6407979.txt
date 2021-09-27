@@ -1,0 +1,7 @@
+<p>Ok, I figured it out.</p>
+
+<p>When looking at the c declaration of the function we can see that all of the parameters are sent in by reference or via pointers. So I just altered the pinvoke declaration so that all parameters where ref.</p>
+
+<pre><code>[DllImport("ftapi.dll", EntryPoint = "ft_showdir", CallingConvention = CallingConvention.Cdecl)]
+private static extern Int32 ft_showdir(ref ft_admission admis, ref ft_shwpar par, ref ft_fileinfo[] buf, int bufsize, ref ft_err errorinfo, ref ft_options options);
+</code></pre>

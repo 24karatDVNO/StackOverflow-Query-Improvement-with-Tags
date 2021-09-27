@@ -1,0 +1,4 @@
+<pre><code>-(void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+</code></pre>
+
+<p>...gives you the pre-made cell (usually a NSTextFieldCell) which you can then color. Don't need to return it - Apple has already made it and is about to use it, just modify the object as you see fit. Works great.</p>

@@ -1,0 +1,3 @@
+<p>Ensure you have integrated TopLink with WebLogic JTA, (have set the server platform to weblogic, have set a weblogic jta data-source).</p>
+
+<p>You also should be using Session.getActiveUnitOfWork() or acquireUnitOfWork(), and should not call uow.commit().</p>

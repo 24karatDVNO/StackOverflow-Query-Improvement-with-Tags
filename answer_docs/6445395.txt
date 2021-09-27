@@ -1,0 +1,48 @@
+<p>I found the solution.</p>
+
+<p>EditPreferences.java:</p>
+
+<pre><code>final Preference listpref = getPreferenceScreen().findPreference("listPref");
+        listpref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() 
+        {
+         public boolean onPreferenceChange(Preference p, Object newValue) 
+         {
+          String color = (String) newValue;
+
+          if (color.equals("color1"))
+          {
+              RemoteViews updateViews = new RemoteViews(EditPreferences.this.getPackageName(), R.layout.main);
+              updateViews.setTextColor(R.id.widget_textview, Color.rgb(208, 202, 202));
+              updateViews.setTextColor(R.id.widget_textview2, Color.WHITE);
+              updateViews.setTextColor(R.id.widget_textview3, Color.rgb(176, 175, 175));
+             // updateViews.setImageViewBitmap(R.id.ImageView01, ((BitmapDrawable)EditPreferences.this.getResources().getDrawable(R.drawable.forestbg)).getBitmap());
+              updateViews.setImageViewResource(R.id.ImageView01, R.drawable.blacktrans);            
+              ComponentName thisWidget = new ComponentName(EditPreferences.this, HelloWidget.class);
+              AppWidgetManager manager = AppWidgetManager.getInstance(EditPreferences.this);
+              manager.updateAppWidget(thisWidget, updateViews);
+ }
+          else if (color.equals("color2"))
+          {
+              RemoteViews updateViews = new RemoteViews(EditPreferences.this.getPackageName(), R.layout.main);
+              updateViews.setTextColor(R.id.widget_textview, Color.rgb(23, 81, 11));
+              updateViews.setTextColor(R.id.widget_textview2, Color.rgb(232, 232, 107));
+              updateViews.setTextColor(R.id.widget_textview3, Color.rgb(23, 81, 11));
+              updateViews.setImageViewBitmap(R.id.ImageView01, ((BitmapDrawable)EditPreferences.this.getResources().getDrawable(R.drawable.goldgreenbg)).getBitmap());
+              // updateViews.setImageViewResource(R.id.ImageView01, R.drawable.goldgreenbgf);           
+              ComponentName thisWidget = new ComponentName(EditPreferences.this, HelloWidget.class);
+              AppWidgetManager manager = AppWidgetManager.getInstance(EditPreferences.this);
+              manager.updateAppWidget(thisWidget, updateViews);
+  }
+  return true;
+         }
+        });
+public void onStart(Intent intent, int startId) {
+          getPrefs();
+}
+     private void getPrefs() {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            ListPreference = prefs.getString("listPref", "nr1");
+     }
+</code></pre>
+
+<p>This way it is working perfectly.</p>

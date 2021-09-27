@@ -1,0 +1,5 @@
+<p>Generally, something like this is not going to succeed at all; most resource managers by default won't let a transaction go on for that long, and if they did (and if multiple resource managers are involved) then depending on the amount of data that is being updated/modified, the act of committing a transaction could take a <em>very</em> long time.</p>
+
+<p>If you are just looking to block out database access during your process, you are better off setting a flag in the database and then having other functions in your application fail if the flag is set.</p>
+
+<p>The scope of your application can affect where the flag is stored; if you only have one instance running, you can store the flag in memory, but if there are multiple instances, you probably have to check the database every time.</p>

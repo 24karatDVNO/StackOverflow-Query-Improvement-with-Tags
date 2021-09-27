@@ -1,0 +1,17 @@
+<p>How about using regular expressions instead?</p>
+
+<pre><code>private void TextBox5_Validating(object sender, System.EventArgs e)
+{
+    String AllowedChars = @"^a-zA-Z0-9.$";
+    if(Regex.IsMatch(TextBox5.Text, AllowedChars))
+    {
+         e.Handled = true;
+    }
+    else
+    {
+         e.Handled = false;
+    }
+}
+</code></pre>
+
+<p>Or something along these lines....</p>

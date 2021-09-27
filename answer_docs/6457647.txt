@@ -1,0 +1,17 @@
+<p>Here is a fiddle with what you want :</p>
+
+<p><a href="http://jsfiddle.net/g9ZZr/1/" rel="nofollow">http://jsfiddle.net/g9ZZr/1/</a></p>
+
+<pre><code>$('.next').click(function() {
+   var $nxt = $(this);
+   var $titlex = $nxt.parent().next().children();
+
+  //The data you receive from your webservice.
+  var myArray = ['title1','title2','title3','title4','title5'];
+  $titlex.each(function(index,elem)
+  {
+     $(elem).html(myArray[index]);
+  });
+
+});
+</code></pre>

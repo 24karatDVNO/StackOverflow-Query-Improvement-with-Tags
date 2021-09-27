@@ -1,0 +1,5 @@
+<p>I think the best place to start is the <a href="http://kohanaframework.org/3.1/guide/kohana/flow" rel="nofollow">guide page on request flow</a>. Kohana is basically an HTTP request handler with some fancy class and config file autoloading. Personally, this is what I like most about it.</p>
+
+<p>Because the request handler lives in <code>index.php</code>, if you want to respond to URLs without that string in them, you need to use the example .htaccess file to instruct your webserver to redirect requests to that file.</p>
+
+<p>You need to also get your head around MVC if you've not used it before; it's mostly about separating the code which does the important work from the code which just prints out HTML.</p>

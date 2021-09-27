@@ -1,0 +1,2 @@
+<p>That sounds correct to me.  But you should also think whether or not those two methods should have default settings for Transaction propagation. See <a href="http://static.springsource.org/spring/docs/1.2.x/api/org/springframework/transaction/annotation/Propagation.html" rel="nofollow">here</a> and decide if it should be 'REQUIRED' or 'SUPPORTS' ?
+example: @Transactional(propagation = Propagation.REQUIRED)</p>

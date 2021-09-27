@@ -1,0 +1,9 @@
+<p>Why not this?</p>
+
+<pre><code>List&lt;string&gt; list = collection.Select(control =&gt; 
+    SearchForControl(control, someOtherParameters).InnerText).ToList();
+</code></pre>
+
+<p>You don't need two selects.</p>
+
+<p>If you do need to wrap things like in your second case I would put the dots at the beginning of the line so you can see the line is a continuation.</p>

@@ -1,0 +1,12 @@
+<p>I've figured it out, too bad I did not concentrate on the CSS part of my application sooner. I am using the GridFilters extenstion and it comes with GridFilters.css file. In my version, line number 46->48 which is this:</p>
+
+<pre><code>li.x-menu-list-item div {
+    display: inline;
+}
+</code></pre>
+
+<p>got me in trouble, overriding the month/year menu's position. Really thought that it's one of my JS scripts that is causing this because it has been working for months like this and suddently the month/year chooser stopped working.</p>
+
+<p>It's all good now, I've commented out those lines and gridfilters are also working/displaying as it should. </p>
+
+<p>Thanks for the interest.</p>

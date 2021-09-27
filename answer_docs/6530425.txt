@@ -1,0 +1,33 @@
+<p>The difference is basically the same as the declaration of a function argument - <code>func(int a)</code> and the specification of a named argument in a function call - e.g. <code>func(a=1)</code>.</p>
+
+<p>Here is a small example that illustrates the difference between the two. The following declaration specifies a new command with with a single parameter. The parameter has both an <code>id</code> and a <code>name</code>. The <code>id</code> is used later, whereas the <code>name</code> is only used in a few views and can be disregarded here. So this is really just <code>showName(String header)</code>.</p>
+
+<pre><code>&lt;extension
+    point="org.eclipse.ui.commands"&gt;
+&lt;command
+    categoryId="com.rcpcompany.training.demo33.providers.ui.category.demoCommands"
+    description="Shows the name of the current resource"
+    id="com.rcpcompany.training.demo33.providers.ui.commands.showName"
+    name="&amp;amp;Show Name"&gt;
+    &lt;commandParameter
+        id="header"
+        name=”Header“ /&gt;
+&lt;/command&gt;
+&lt;/extension&gt;
+</code></pre>
+
+<p>Here we have a use of the same command with a value for the <code>header</code> argument. So this is <code>showName(header="The selected resource is....")</code>.</p>
+
+<pre><code>&lt;menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar"&gt;
+&lt;toolbar id="com.rcpcompany.training.demo33.providers.ui.toolbar1"&gt;
+    &lt;command
+        commandId="com.rcpcompany.training.demo33.providers.ui.commands.showName"&gt;
+    &lt;parameter
+        name="header"
+        value="The selected resource is...." /&gt;
+    &lt;/command&gt;
+&lt;/toolbar&gt;
+&lt;/menuContribution&gt;
+</code></pre>
+
+<p>Note that it is the <code>id</code> attribute of the parameter declaration that is the <code>name</code> attribute of the parameter use... So it is <code>header</code> and not <code>Header</code>.</p>

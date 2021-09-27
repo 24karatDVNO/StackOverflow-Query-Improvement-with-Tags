@@ -1,0 +1,8 @@
+<p>Assuming that you are speaking about the following code snippet:</p>
+
+<pre><code>if (this == anObject) {
+    return true;
+}
+</code></pre>
+
+<p>It makes sense to use the == operator, since it will be only true when both strings are pointing to the same memory address. This is probably done in java.lang.String to optimize string comparison when string literals are used. You can check <a href="http://www.javaranch.com/journal/200409/ScjpTipLine-StringsLiterally.html" rel="nofollow">http://www.javaranch.com/journal/200409/ScjpTipLine-StringsLiterally.html</a> for detailed description of how string literals are pooled in Java.</p>

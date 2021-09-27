@@ -1,0 +1,7 @@
+<p>Why not use hash algorithm? Given the number is a 4-bytes integer, any decent hash algorithm will give you what you need, just convert to ASCII as a string.</p>
+
+<p>You can find a list of standard hash algorithms <a href="http://en.wikipedia.org/wiki/List_of_hash_functions" rel="nofollow">here</a>.</p>
+
+<p><strong>after your edit</strong></p>
+
+<p>For using keys in your BTree (originally I read that as license keys, that's why I mentioned translating to ASCII) - there's no reason whatsoever not to use the destination IP in its entirety as a key (Be it IPv4 or IPv6, the most is 128 bits, very reasonable). Otherwise you cannot ensure uniqueness that you require unless you have some assumptions or knowledge on the network topography.</p>

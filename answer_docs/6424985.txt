@@ -1,0 +1,36 @@
+<blockquote>
+  <p>Hi, Akram Shahda below is my solution</p>
+</blockquote>
+
+<pre><code>  &lt;asp:TemplateField HeaderText="Scoring" HeaderStyle-Width="12%"&gt;
+                                &lt;ItemTemplate&gt;
+                                                                                     &lt;asp:DropDownList ID="ddlY_N_NA" Visible='&lt;%#SetVisibility(DataBinder.Eval(Container.DataItem,"IsTextBox"))%&gt;'
+                                                    runat="server" CssClass="Qdropdown"&gt;
+                                                &lt;/asp:DropDownList&gt;
+                                                &lt;asp:TextBox onkeypress="return isNumberKey(event);" ID="txtAudit" Visible='&lt;%#Convert.ToBoolean(Eval("IsTextBox"))%&gt;'
+                                                    MaxLength="10" runat="server" CssClass="Qinputbox" Width="54px" ValidationGroup="txt"&gt;&lt;/asp:TextBox&gt;
+                                                &lt;asp:HiddenField ID="hdnTextBoxCondition" Value='&lt;%#SetTextBoxVisibility(Eval("IsTextBox"),Eval("TextBoxConditions"))%&gt;'
+                                                    Visible='&lt;%#Eval("IsTextBox")%&gt;' runat="server" /&gt;
+
+                                &lt;/ItemTemplate&gt;
+                            &lt;/asp:TemplateField&gt;
+</code></pre>
+
+<p>In the code behind I have written the methods which will set the visibility</p>
+
+<pre><code>  public bool SetVisibility(object value)
+{
+    if (Convert.ToBoolean(value))
+        return false;
+    else
+        return true;
+}
+public string SetTextBoxVisibility(object value, object condition)
+{
+
+    if (Convert.ToBoolean(value))
+        return Convert.ToString(condition);
+    else
+        return "";
+}
+</code></pre>

@@ -1,0 +1,11 @@
+<p>First thing is that you need mod_rewrite for Apache to be enabled to be able to use it. See if you have it enabled in /etc/apache2/mods-enabled, and if you don't see a rewrite.load link there what you need to do is:</p>
+
+<pre><code>sudo a2enmod rewrite
+</code></pre>
+
+<p>then restart the Apache:</p>
+
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre>
+
+<p>Then, as mentioned by kiamlaluno, you need to enable Clean URLs, and install Pathauto and Token modules.</p>

@@ -1,0 +1,11 @@
+<pre><code>var ciContact = data.split(", ");
+var checkboxes = $('input:checkbox[name="ciContact[]"]');
+
+for (var j = 0; j &lt; ciContact.length; j++){
+    checkboxes
+        .filter('[value="'+ciContact[j]+'"]')
+        .attr("checked","checked");
+}
+</code></pre>
+
+<p>You can <a href="http://jsfiddle.net/Shef/td6KL/" rel="nofollow">see it in action here</a></p>

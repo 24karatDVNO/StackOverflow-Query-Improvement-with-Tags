@@ -1,0 +1,9 @@
+<p>For the subquery to return a "yes" if results returned (and empty string if not):</p>
+
+<pre><code>SELECT IF(condition = 1, 'yes', '') AS isTrue FROM table WHERE some_condition_goes_here
+</code></pre>
+
+<p>That would work if you're joining on some column, which you don't specify in the subquery you showed.  The join would go in the WHERE clause replacing "some_condition_goes_here".  So something like:</p>
+
+<pre><code>WHERE table.id = some_other_table.tableid
+</code></pre>

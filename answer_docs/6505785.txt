@@ -1,0 +1,11 @@
+<p>this is because you have an error here</p>
+
+<pre><code>$(this).attr("href",$(this).attr('href')+'&amp;minSquaredAverage'=value
+</code></pre>
+
+<p>it should be</p>
+
+<pre><code>$(this).attr("href",$(this).attr('href')+'&amp;minSquaredAverage=value');
+</code></pre>
+
+<p>otherwise you try to sum a string.</p>

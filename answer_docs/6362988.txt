@@ -1,0 +1,5 @@
+<p>As noted by T.J. Crowder, what you have works, but you will want to be aware of the context of <code>this</code>.  Substituting <code>event.target</code> for <code>this</code> will give you the actual element that was clicked.</p>
+
+<p>As a demonstration, I have included below a fiddle that will alert the node (tag) type and text content of the clicked element.  The <code>&lt;div&gt;</code>, <code>&lt;ul&gt;</code>, and <code>&lt;li&gt;</code>s all have different colored borders to help you visually determine what you are actually clicking on.</p>
+
+<p><a href="http://jsfiddle.net/Ender/JU6YP/" rel="nofollow">Live demo -></a></p>

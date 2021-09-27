@@ -1,0 +1,83 @@
+<pre><code>import re
+
+pseudo_file = """
+&gt; &lt;Enzymologic: Ki nM 1&gt;
+ 257000
+
+&gt; &lt;Enzymologic: IC50 nM 1&gt;
+n/a
+
+&gt; &lt;ITC: Delta_G0 kJ/mole 1&gt;
+n/a
+
+&gt; &lt;Enzymologic: Ki nM 1&gt;
+5000
+
+&gt; &lt;Enzymologic: EC50/IC50 nM 1&gt;
+1000"""
+
+searchtxt = "nzymologic: Ki nM 1&gt;", "&lt;Enzymologic: IC50 nM 1&gt;"
+
+regx_AAA = re.compile('([^:]+: )([^ \t]+)(.*)')
+
+tu = tuple(regx_AAA.sub('\\1.*?\\2.*?\\3',x) for x in searchtxt)
+
+model = '%%-%ss  %%s\n' % len(searchtxt[0])
+
+regx_BBB = re.compile(('%s[ \t\r\n]+(.+)[ \t\r\n]+'
+                       '.+?%s[ \t\r\n]+(.+?)[ \t]*(?=\r?\n|\Z)') % tu)
+
+
+print 'tu   ==',tu
+print 'model==',model
+print 'regx_BBB.findall(pseudo_file)==\n',regx_BBB.findall(pseudo_file)
+
+
+
+with open('woof.txt','w') as f:
+    f.write(model % searchtxt)
+    f.writelines(model % x for x in regx_BBB.findall(pseudo_file))
+</code></pre>
+
+<p>result</p>
+
+<pre><code>tu   == ('nzymologic: .*?Ki.*? nM 1&gt;', '&lt;Enzymologic: .*?IC50.*? nM 1&gt;')
+model== %-20s  %s
+
+regx_BBB.findall(pseudo_file)==
+[('257000', 'n/a'), ('5000', '1000')]
+</code></pre>
+
+<p>and content of file 'woof.txt' is:</p>
+
+<pre><code>&gt; &lt;Enzymologic: Ki nM 1&gt;  &gt; &lt;Enzymologic: IC50 nM 1&gt;
+257000                    n/a
+5000                      1000
+</code></pre>
+
+<p>To obtain <strong>regx_BBB</strong>, I first compute a tuple <strong>tu</strong> because you want to catch a line <strong>> </strong> but there is only <strong>"> "</strong> in <strong>searchtxt</strong></p>
+
+<p>So, the tuple <strong>tu</strong> introduces <strong>.*?</strong> in the strings of <strong>searchtxt</strong> in order that the regex <strong>regx_BBB</strong> is able to catch lines  CONTAINING <strong>IC50</strong> and not only the lines strictly EQUAL to the elements of <strong>searchtxt</strong></p>
+
+<p>Note that I put strings <code>"nzymologic: Ki nM 1&gt;"</code>  and <code>"&lt;Enzymologic: IC50 nM 1&gt;"</code> in <strong>searchtxt</strong>, other than the ones you utilize, to show that the regexes are build so that the result is obtained yet. </p>
+
+<p>The only condition is that there must be at least ONE character before the <strong>':'</strong> in each of the  strings of <strong>searchtxt</strong></p>
+
+<p>.</p>
+
+<h2>EDIT 1</h2>
+
+<p>I thought that in the file, a line <code>'&gt; &lt;Enzymologic: IC50 nM 1&gt;'</code> or <code>'&gt; &lt;Enzymologic: EC50/IC50 nM 1&gt;'</code> should always follow a line <code>'&gt; &lt;Enzymologic: Ki nM 1&gt;'</code>     </p>
+
+<p>But after having read the answer of others, I think it is not evident (that's the common problem of questions: they don't give enough information and precisions)</p>
+
+<p>If every line must be catched independantly, the following simpler regex regx_BBB can be used:</p>
+
+<pre><code>regx_AAA = re.compile('([^:]+: )([^ \t]+)(.*)')
+
+li = [ regx_AAA.sub('\\1.*?\\2.*?\\3',x) for x in searchtxt]
+
+regx_BBB = re.compile('|'.join(li).join('()') + '[ \t\r\n]+(.+?)[ \t]*(?=\r?\n|\Z)')
+</code></pre>
+
+<p>But the formatting of the recording file will be harder. I am tired to write a new complete code without knowing what is precisely wanted</p>

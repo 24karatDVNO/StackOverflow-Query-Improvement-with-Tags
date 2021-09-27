@@ -1,0 +1,14 @@
+<p>would be easier if you did it this way...</p>
+
+<pre><code>public class MessageQueue {
+
+    private static final MessageQueue INSTANCE= new MessageQueue();
+
+    public static MessageQueue getINSTANCE() {
+        return INSTANCE;
+    }
+
+    private MessageQueue() {
+    }
+}
+</code></pre>

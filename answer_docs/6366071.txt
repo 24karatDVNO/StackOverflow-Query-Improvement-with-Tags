@@ -1,0 +1,34 @@
+<p>Your question is not that clear, but I think the following function would be helpful..</p>
+
+<pre><code>    function wrapData($jqr){
+        if(typeof $jqr == 'string') {$jqr = $($jqr)}
+        var data = {};
+        $jqr.find('select,input:text,input:hidden,textarea,input:password').each(function(){
+            var $t = $(this);
+            var name = $t.attr('name')||$t.attr('id');
+            data[name] = $t.val();
+        });
+        $jqr.find('input:checkbox').each(function(){
+            var $t = $(this);
+            var name = $t.attr('name')||$t.attr('id');
+            if($t.is(':checked')){
+                data[name] = true;
+            } else {
+                data[name] = false;
+            }
+        });
+        $jqr.find('input:radio').each(function(){
+            var $t = $(this);
+            var name = $t.attr('name')||$t.attr('id');
+            if($t.is(':checked')){
+                data[name] = $t.val();
+            }
+        });
+        return data;
+    }
+
+$('#submit').click(function(){ var data = wrapData('#all_inputs')
+   /* you can then send the parameters to your server */ })
+</code></pre>
+
+<p>Hope that helps you.</p>

@@ -1,0 +1,11 @@
+<p>The tyranny of validation is not always a good thing. If you have to use a doctype/schema that doesn't allow <code>&lt;iframe&gt;</code> and also a service that requires <code>&lt;iframe&gt;</code> then you're stuck. </p>
+
+<p>The nonsense is that (a) iframe works just great cross-browser and (b) since the XHTML 1.x specs were determined <code>&lt;iframe&gt;</code> has gained a new lease of life in HTML5, where it is a fully valid element with lots of new functionality.</p>
+
+<p>Also, it's almost certain that you're serving your pages with a text/html content type, which means that browsers aren't treating your markup in the same way as the validator, and therefore the results of the validator are essentially futile.</p>
+
+<p>If, regardless, you really <em>have</em> to conform, then you will have to not use <code>&lt;iframe&gt;</code>. </p>
+
+<p>All that said, I don't think it is necessary to use <code>&lt;iframe&gt;</code> with Google Maps. One option may be to use an <code>&lt;object&gt;</code> instead. But I am using Google Maps (V2 JavaScript API) without either, just with the map element embedded directly in the container page. Seems to work fine.</p>
+
+<p>I'm not using Drupal 7, though. I don't know what extra constraints that may be applying.</p>

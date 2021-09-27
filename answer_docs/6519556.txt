@@ -1,0 +1,26 @@
+<p>Looks like NOT LIKE statement is the key for performance. I managed to run the query in 160ms by limiting the distance.</p>
+
+<p>But a problem occurs here:</p>
+
+<p>If I don't use NOT LIKE statement, it selects the same person twice or more because of the recursive selection.</p>
+
+<p>For example;</p>
+
+<pre><code>;WITH transitive_closure(member_a, member_b, distance, path_string) AS
+
+(SELECT member_a, member_b, 1 AS distance, CAST(member_a as varchar(MAX)) + '.' + CAST(member_b as varchar(MAX)) + '.' AS path_string
+      FROM Member_Contact_Edges
+      WHERE member_a = @source AND contact_durum=1 -- source
+
+UNION ALL
+
+SELECT tc.member_a, e.member_b, tc.distance + 1, CAST(tc.path_string as varchar(MAX)) + CAST(e.member_b as varchar(MAX)) + '.' AS path_string
+      FROM Member_Contact_Edges AS e
+      JOIN transitive_closure AS tc ON e.member_a = tc.member_b
+      WHERE tc.member_b &lt;&gt; e.member_b AND tc.distance&lt;4 AND e.contact_durum=1
+)
+
+SELECT distance, path_string FROM transitive_closure
+      WHERE member_b=@target AND distance &lt; 4 -- destination
+      ORDER BY member_a, member_b, distance;
+</code></pre>

@@ -1,0 +1,10 @@
+<p>I had the exact same problem. Not being an expert on python I debugged the script using a print-statement on line 350 like this:</p>
+
+<pre><code>for changelist in changelists:
+    print changelist # &lt;-- here
+    files = run_marshal('p4 -G describe -s "' + changelist['change'] + '"')
+</code></pre>
+
+<p>This revealed my problem - I had used an alias like <code>p4='p4 -C utf8'</code> to pass charset to perforce. So when I run it from the command line the alias was processed and the <code>describe</code> command worked like a charm, but when invoked from python the alias was not processed. I just hacked the script by replacing <code>'p4'</code> with <code>'p4 -C utf8'</code> in the two places in the python script.</p>
+
+<p>You problem might be the same or a diffrent one, but hopefully this will help you debugg it quickly!</p>

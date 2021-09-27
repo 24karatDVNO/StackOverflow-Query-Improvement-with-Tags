@@ -1,0 +1,6 @@
+<p>I can think of two options here.</p>
+
+<ol>
+<li><p>Since you already know that you're receiving "#12:00:00AM" when the field is not filled in, check if the value you receive is "#12:00:00AM".</p></li>
+<li><p>Prior to passing the value to your stored procedure, create a new DateTime object.  Compare the value you're receiving against the value in the new DateTime object.</p></li>
+</ol>

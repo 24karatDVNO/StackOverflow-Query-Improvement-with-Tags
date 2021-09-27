@@ -1,0 +1,15 @@
+<p>You can try the following code, i tried it and it was working</p>
+
+<pre><code>string searchKeyword = "eng";
+string fileName = "Some file name here";
+string[] textLines = File.ReadAllLines(fileName);
+List&lt;string&gt; results = new List&lt;string&gt;();
+
+foreach (string line in textLines)
+{
+    if (line.Contains(searchKeyword))
+    {
+        results.Add(line);
+    }
+}
+</code></pre>

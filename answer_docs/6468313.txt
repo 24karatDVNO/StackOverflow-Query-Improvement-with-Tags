@@ -1,0 +1,10 @@
+<pre><code>List&lt;MyClass&gt; source = getSource();
+
+List&lt;IGrouping&lt;KeyType, MyClass&gt;&gt; groups = source
+  .GroupBy(x =&gt; x.prop)
+  .ToList();
+
+List&lt;KeyType&gt; keys = groups
+  .Select(g =&gt; g.Key)
+  .ToList();
+</code></pre>

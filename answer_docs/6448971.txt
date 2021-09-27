@@ -1,0 +1,11 @@
+<p>You can't have <em>variable default argument values</em>, you'll have to solve this in code:</p>
+
+<pre><code>function outputCalendarByDateRange($client, $startDate = null, $endDate = null) {
+    $startDate = $startDate ? $startDate : date('Y-m-d');
+    $endDate = $endDate ? $endDate : date('Y-m-d', strtotime('+3 days'));
+
+    ...
+}
+</code></pre>
+
+<p>Calling this function without the second and third argument will use the current date/current date +3, calling it with arguments you can specify your own values.</p>

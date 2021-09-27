@@ -1,0 +1,10 @@
+<p>This outputs the first character of myString:        </p>
+
+<pre><code>    NSString *myString = @"The text I want to access.";
+    NSMutableArray *myArray = [[NSMutableArray alloc] initWithCapacity:[myString length]];
+
+    for ( i = 0; i &lt; [myString length]; i++ )
+            [myArray addObject:[NSNumber numberWithChar:[myString characterAtIndex:i]]];
+
+NSLog( @"First character: %c", [[myArray objectAtIndex:0] charValue] );
+</code></pre>

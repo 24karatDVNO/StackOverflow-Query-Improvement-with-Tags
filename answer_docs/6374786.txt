@@ -1,0 +1,17 @@
+<p>Pass the language parameter in the url, and parse this parameter in <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.page.initializeculture.aspx" rel="nofollow noreferrer">InitializeCulture</a> to set the <code>CurrentUICulture</code>. You can use querystring or routing for the language parameter.</p>
+
+<p>In addition to url, you can use other <a href="http://msdn.microsoft.com/en-us/library/75x4ha6s.aspx" rel="nofollow noreferrer">state management</a> options as fallbacks to decide the language. However, it is usually good to be able to reset the state with a url.</p>
+
+<p>For the "switch language" button in ASP.NET, you can use:</p>
+
+<ul>
+<li><code>&lt;asp:Hyperlink&gt;</code>, with the language
+parameter in NavigateUrl </li>
+<li><code>&lt;asp:LinkButton&gt;</code>, with
+Response.Redirect in the event
+handler</li>
+</ul>
+
+<h3>See Also:</h3>
+
+<p><a href="https://stackoverflow.com/questions/82380/best-way-to-handle-urls-in-a-multilingual-site-in-asp-net">Best way to handle URLs in a multilingual site in ASP.net</a></p>

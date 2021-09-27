@@ -1,0 +1,35 @@
+<p>here is a simple function for this</p>
+
+<pre><code>public static void go2Call(Context context, String phoneNo) {
+
+    Intent intent = null;
+    Uri destUri = null;
+    /*
+     * http://developer.android.com/guide/appendix/g-app-intents.html
+        &lt;uses-permission id="android.permission.CALL_PHONE" /&gt;
+        tel: phone_number
+     */
+
+    if(DEBUG)Log.d(TAG, "go2Call -&gt;" + "phoneNo:"+phoneNo);
+    phoneNo = PhoneNumberUtils.convertKeypadLettersToDigits(phoneNo);
+    if(DEBUG)Log.d(TAG, "go2Call -&gt;" + "phoneNo(normalized):"+phoneNo);
+
+
+    if ( !TextUtils.isEmpty(phoneNo) ) {
+
+        destUri = Uri.parse("tel:" + phoneNo);
+    }
+
+    if (destUri!=null) {
+        intent = new Intent( Intent.ACTION_VIEW, destUri );
+    }
+
+        if ( intent!=null &amp;&amp; isIntentAvailable(context, intent) ) {
+            context.startActivity(intent);
+        }
+        else {
+            // TODO: display error msg
+            Log.w(TAG, "error pr intent not available! -&gt;" + "phoneNo:"+phoneNo);
+        }
+    }
+</code></pre>

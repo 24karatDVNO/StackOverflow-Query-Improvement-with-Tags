@@ -1,0 +1,6 @@
+<p>You can open an email intent and bind onClick event on textView.</p>
+
+<pre><code>Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+emailIntent.setType("plain/text");
+startActivity(emailIntent); 
+</code></pre>

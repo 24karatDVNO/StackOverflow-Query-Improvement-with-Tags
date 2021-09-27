@@ -1,0 +1,14 @@
+<p>@Rahul Bhatia</p>
+
+<p>there is one more solution we can use..</p>
+
+<pre><code>select v.venuename, 
+       min(v.costperday) 
+ from venues v  
+ where v.venuecapacity &gt;= 120 
+ Group By v.venuename
+ having min(v.costperday) = (
+       select min(costperday)
+       from venues 
+       where venuecapacity &gt;= 120 );  
+</code></pre>

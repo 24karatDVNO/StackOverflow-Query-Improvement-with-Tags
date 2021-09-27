@@ -1,0 +1,33 @@
+<p>What I think you need to do is break your images down into the following categories</p>
+
+<ol>
+<li>The main cake image.</li>
+<li>The accessories that go behind.</li>
+<li>The accessories that go in front.</li>
+</ol>
+
+<p>Now each image will need its own div.  For instance, on the last one, the flowers that are behind need to be their own image, while the flowers in front need to be their own image.</p>
+
+<p>Then just set the cake at z-index 2, the behind flowers at z-index 1, and the flowers in front at z-index 3.  I recommend you use absolute positioning to position the flowers to the correct location.  If you set the containing div that these images are in to position relative, the absolute positioning of the accessories will be relative to the top left corner of the containing div.</p>
+
+<p>Below is some example html and css that might help.</p>
+
+<pre><code>&lt;div id="cake-container"&gt;
+   &lt;div id="main-cake"&gt;
+   &lt;/div&gt;
+   &lt;div id="accessories-front"&gt;&lt;/div&gt;
+   &lt;div id="accessories-back"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+#cake-container {
+   position: relative;
+}
+
+#main-cake {
+  z-index: 2;
+}
+
+#accessories-front {z-index: 3}
+#accessories-back {z-index: 1}
+</code></pre>

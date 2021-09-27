@@ -1,0 +1,4 @@
+<p>Inside your <code>$("#FormAddComment")</code> submit function this will insert the <code>&lt;li&gt;</code> </p>
+
+<pre><code>$(this).closest('.CommentReplies').find('li:last').prepend('&lt;li&gt;Comment 3&lt;/li&gt;');
+</code></pre>

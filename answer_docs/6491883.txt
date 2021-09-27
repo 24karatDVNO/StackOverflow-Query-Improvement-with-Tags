@@ -1,0 +1,27 @@
+<pre class="lang-js prettyprint-override"><code>function getJson(treeNode) {
+    treeNode.expandChildNodes();
+    var json = {};
+    var attributes = treeNode.attributes;
+    for(var item in attributes){
+        if (item == 'src' || item == 'text') {   //only use required attributes
+            json[item] = attributes[item];
+        }
+    }
+    json.children = [];
+    if(treeNode.childNodes.length &gt; 0){
+        for (var i=0; i &lt; treeNode.childNodes.length; i++) {
+            json.children.push(getJson(treeNode.childNodes[i]));
+        }
+    }
+    return json;
+}
+
+// To use above function:
+var comp = Ext.getCmp('tree-panel'); //id of the tree panel
+var myJSON = getJson(comp.getRootNode());
+console.log(Ext.encode(myJSON.children));
+</code></pre>
+
+<p>Can't think about creating XML. I'll make it on server side..</p>
+
+<p>Hope someone could also work on it.</p>

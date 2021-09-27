@@ -1,0 +1,23 @@
+<p>First, look into defining your UI in XML if that's possible.</p>
+
+<p>Take a look at <a href="http://developer.android.com/guide/topics/resources/drawable-resource.html#StateList" rel="nofollow">State List Drawable Resource</a>. You can define what image to use when a view is pressed, highlighted, etc. After defined, you can then use your XML file like any other resource.</p>
+
+<p>Example:
+    XML file saved at res/drawable/button.xml:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;selector xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;item android:state_pressed="true"
+          android:drawable="@drawable/button_pressed" /&gt; &lt;!-- pressed --&gt;
+    &lt;item android:state_focused="true"
+          android:drawable="@drawable/button_focused" /&gt; &lt;!-- focused --&gt;
+    &lt;item android:drawable="@drawable/button_normal" /&gt; &lt;!-- default --&gt;
+&lt;/selector&gt;
+
+This layout XML applies the state list drawable to a Button:
+
+&lt;Button
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:background="@drawable/button" /&gt;
+</code></pre>

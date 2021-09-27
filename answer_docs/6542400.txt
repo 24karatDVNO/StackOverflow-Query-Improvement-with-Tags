@@ -1,0 +1,1 @@
+<p><code>malloc</code> does not initialize the allocated memory to <code>\0</code>. Have you tried using <code>calloc</code> instead? I suspect the seg faults are due to the <code>res[i] != NULL</code> comparison.</p>

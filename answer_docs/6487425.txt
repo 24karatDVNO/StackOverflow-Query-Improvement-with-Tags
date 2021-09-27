@@ -1,0 +1,7 @@
+<p>You could use <code>NSFileManager fileExistsAtPath:</code> but from the docs:</p>
+
+<blockquote>
+  <p>/* The following methods are of limited utility. Attempting to predicate behavior based on the current state of the filesystem or a particular file on the filesystem is encouraging odd behavior in the face of filesystem race conditions. It's far better to attempt an operation (like loading a file or creating a directory) and handle the error gracefully than it is to try to figure out ahead of time whether the operation will succeed.</p>
+</blockquote>
+
+<p>So probably just try to get the resource, if it fails, fetch and then retry.</p>

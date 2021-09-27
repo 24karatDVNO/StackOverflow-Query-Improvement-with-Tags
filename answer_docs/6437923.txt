@@ -1,0 +1,4 @@
+<p>You may not need the third check, as if .default_params is nil, val will be evaluated nil too (if it started nil, this is no problem; if it was already populated, you might want to keep the third guard there :-)</p>
+
+<pre><code>val = current_facebook_user.client.default_params if current_facebook_user &amp;&amp; current_facebook_user.client &amp;&amp; current_facebook_user.client.default_params
+</code></pre>

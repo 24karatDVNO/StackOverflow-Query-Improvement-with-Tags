@@ -1,0 +1,5 @@
+<blockquote>
+  <p>The system() call also tries to automatically flush the web server's output buffer after > each line of output if PHP is running as a server module.</p>
+</blockquote>
+
+<p>This means you would only get the last line of output from the return value. The example in the system() manual page shows that and it suggests to use passthru() to get raw output. I usually use exec() though.</p>

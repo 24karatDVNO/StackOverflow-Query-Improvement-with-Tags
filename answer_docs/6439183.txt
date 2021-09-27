@@ -1,0 +1,24 @@
+<p>I have found a better solution is to use the jquery.ui autocomplete.  You can then easily add courses.  I have used it before very succesfully in similar scenarios.  You also get the advantage that you can make ajax calls for big lists.</p>
+
+<p>Here is some sample jquery code that fetches a list from the server based on what the user types in a textbox (routeList is the box that will show the list of courses, routeId is a hidden field that contains the id of the selected route):</p>
+
+<pre><code>$("#routeList").autocomplete({
+    source: function (request, response) {
+        $("#ajax_loader").show();  //Gets the whirly graphic going
+        $("#routeId").val("0");
+        var postData = { term: request.term };
+
+        var jqxhr = $.post("/Ajax/RouteAutoComplete", $.postify(postData), function (data) {
+            $("#ajax_loader").hide();
+            response(data);
+        });
+    }
+    ,
+    minLength: 1,
+    select: function (event, ui) {
+        $("#routeId").val(ui.item ? ui.item.id : "0");
+    }
+});
+</code></pre>
+
+<p>When you post back, if routeId=0, then you can add a new course based on the text in routeList</p>

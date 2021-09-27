@@ -1,0 +1,5 @@
+<p>You are definitely on the right track. You need some identifier (a static string) that need to be resolved to translated message at runtime.</p>
+
+<p>Theoretically you could add something like "getLocalizedMessage(CultureInfo ci)" to your custom exception class, but this doesn't work very well with distributed applications.</p>
+
+<p>Just stick to what you come up already. L10n sometimes requires some redundancy but you can't help it.</p>

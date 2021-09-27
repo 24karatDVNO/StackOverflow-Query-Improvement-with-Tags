@@ -1,0 +1,19 @@
+<p>OpenGL does not support text rendering directly. You have a variety of options:</p>
+
+<ol>
+<li>Some OS bindings, such as <strong>WGL</strong> and
+<strong>AGL</strong>, do have limited font support
+(mostly they render system fonts
+into bitmaps for use in Open GL).</li>
+<li>The <strong>GLUT</strong> toolkit (and similar
+toolkits) also has some font support
+(bitmap and stroke).</li>
+<li>You can use a
+library such as <strong>FreeType</strong> (mostly a
+font renderer, you still may wish to
+use something like <strong>Pango</strong> for text
+layout).</li>
+<li>You can use simple <strong>textured
+quads</strong> (this is effectively what
+Quake 1 did).</li>
+</ol>

@@ -1,0 +1,29 @@
+<p>Using a multidimensional array might not be your best bet.  I would consider a Map where the key is the column name and the value is an object array or a list.</p>
+
+<p>Something like...</p>
+
+<pre><code>final int numberOfRows = 20;
+Map&lt;String, Object[]&gt; table = new LinkedHashMap();
+
+
+table.put("columnA", new Object[numberOfRows]);
+table.put("columnB", new Object[numberOfRows]);
+table.put("columnC", new Object[numberOfRows]);
+
+table.get("columnA")[0] = "column A row 1";
+table.get("columnA")[1] = "column A row 2";
+</code></pre>
+
+<p>or with a list...</p>
+
+<pre><code>   final int numberOfRows = 20;
+    Map&lt;String, List&gt; table = new LinkedHashMap();
+
+
+    table.put("columnA", new ArrayList(numberOfRows));
+    table.put("columnB", new ArrayList(numberOfRows));
+    table.put("columnC", new ArrayList(numberOfRows));
+
+    table.get("columnA").add(0, "column A row 1");
+    table.get("columnA").add(1, "column A row 2");
+</code></pre>

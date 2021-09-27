@@ -1,0 +1,10 @@
+<p>Ok, I kept trying out different options and found that by putting the code above in index.php file, and adding:</p>
+
+<pre><code>realpath(APPLICATION_PATH . '/../public_html/articles/wordpress'),
+</code></pre>
+
+<p>to my include_path helped, but I also had to change my siteurl in wordpress options to include the wordpress sub directory, for some reason this was incorrectly set.</p>
+
+<p>Considering there were two unknown factors contributing to this problem I don't think it would've been possible for someone to troubleshoot with the small amount of information given.</p>
+
+<p>Future questions will be given more thought. apologies. </p>

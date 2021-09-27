@@ -1,0 +1,7 @@
+<p>Because <code>INSERT DELAYED</code> is only supported by <code>MyISAM</code>, it is not an option for many users.</p>
+
+<p>We use <a href="http://forge.mysql.com/wiki/MySQL_Proxy" rel="nofollow">MySQL Proxy</a> to defer the execution of queries matching a certain signature.</p>
+
+<p>This will require a custom Lua script; <a href="http://forge.mysql.com/tools/search.php?t=tag&amp;k=mysqlproxy" rel="nofollow">example scripts are here</a>, and <a href="http://fmpwizard.blogspot.com/search/label/Lua" rel="nofollow">some tutorials are here</a>.</p>
+
+<p>The script will implement a Queue data structure for storage of query strings, and pattern matching to determine what queries to defer.  Once the queue reaches a certain size, or a certain amount of time has elapsed, or whatever event X occurs, the query queue is emptied as each query is sent to the server.</p>

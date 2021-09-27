@@ -1,0 +1,26 @@
+<p>i did not use state, but i use the idea of dummy text to have width. thanks </p>
+
+<p>my code :</p>
+
+<pre><code>                Rectangle{
+                id:messageBoxCadre
+                width: (modelData.messageLength&gt;25)? (wrapper.width - 20): messageBox.width+10
+                height: messageBox.height+5
+                color: modelData.myMessage ? "#aa84b2":"#380c47"
+                radius: 10
+
+                Text {
+                    id:messageBox
+                    width: (modelData.messageLength&gt;25)? (wrapper.width - 20): dummy_text.dummy_text
+                    text: '&lt;b&gt;&lt;font color=purple&gt;'+modelData.message+'&lt;/font&gt;&lt;/b&gt; '
+                    wrapMode: "WordWrap"
+                }
+
+                Text {
+                      id: dummy_text
+                      text: '&lt;b&gt;&lt;font color=purple&gt;'+modelData.message+'&lt;/font&gt;&lt;/b&gt; '
+                      visible: false
+                  }
+
+            }
+</code></pre>

@@ -1,0 +1,18 @@
+<p>You should write a <code>clean_field_name</code> method and in it capture the error and raise a <code>ValidationError</code> e.g</p>
+
+<pre><code>class MyForm(forms.Form):
+    ...
+    # rest of the form
+    ...
+
+    def clean_address(self):
+        address = self.cleaned_data['address']
+        try:
+            address = geo_clean(address)
+        except GQueryError,e:
+            raise forms.ValidationError("ooops you are so wrong, %s!"%e)
+
+        return address
+</code></pre>
+
+<p>Read <a href="https://docs.djangoproject.com/en/dev/ref/forms/validation/#cleaning-a-specific-field-attribute" rel="nofollow">how to clean specific fields</a></p>

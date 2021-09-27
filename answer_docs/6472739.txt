@@ -1,0 +1,28 @@
+<p>This is working for me:</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script src='json.js'&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script&gt;
+var obj = {"action": "nothing"};
+var jsonString = "jsonString=" + JSON.stringify(obj);
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("POST","whereIPutThePHP.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.setRequestHeader("Content-Length",jsonString.length);
+
+xmlhttp.onreadystatechange = function() 
+{           
+      if(xmlhttp.readyState === 4 &amp;&amp; (xmlhttp.status === 200)){
+          alert(xmlhttp.responseText);
+      } 
+}
+xmlhttp.send(jsonString);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

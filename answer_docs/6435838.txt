@@ -1,0 +1,7 @@
+<p>One way to do it is to use JAX-WS (Java 6) to expose a method as a web service.</p>
+
+<p>The JAX-WS stack allows for automatically generating the correct WSDL at runtime.</p>
+
+<p>The .NET team can then take that WSDL, and use standard tools to create a mock implementation of that WSDL.  This mock implementation is then used as the actual .NET implementation, and you then use standard tools to generate the WSDL for <em>that</em> web service.</p>
+
+<p>You now have to web services with the same semantics each with their own WSDL.</p>

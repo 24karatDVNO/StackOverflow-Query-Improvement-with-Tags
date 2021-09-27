@@ -1,0 +1,12 @@
+<p>Though everyone else seems to agree that it is a very bad idea (for a variety of reasons, all of which are somewhat true), I don't see anything <em>fundamentally</em> wrong with returning a <code>string const&amp;</code>.</p>
+
+<p>Doing so</p>
+
+<ul>
+<li>is technically legitimate and will work just fine (it merely lays down a "contract" that the deriving classes must fulfill in some yet-unspecified way)</li>
+<li>is probably an insignificant micro-optimization (which also is likely none different from RVO in an optimized build), but it does not hurt either... insofar, so what</li>
+<li>does not allow the caller to modify the name, which makes sense (the caller is not competent to do so, it's why he had to ask in the first place!) -- this is semantically actually a good thing</li>
+<li>will work regardless of the actual yet-unknown implementation, even with temporaries (since for <em>const</em> references, the standard extends the lifetime of local variables to the lifetime of the reference)</li>
+</ul>
+
+<p>So, although kind of unusual, if it does what you want (especially making explicit that the caller may not modify the string), I see no absolute reason not to do it.</p>

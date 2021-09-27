@@ -1,0 +1,3 @@
+<p>By default, the release configuration does not build a .pdb file (which contains the symbols that cannot be loaded).  You can enable this option in your project properties.  Also be aware that your code will be optimized, by default.  This can affect breakpoints, so often, when I am debugging release builds, I will create several breakpoints (Since your symbols cannot be loaded, this is not your problem... yet).</p>
+
+<p>If you are running the on the same computer that built the program, then it will usually find the .pdb file and source code.  If not, make sure that the .pdb file is in the same directory as your .exe so the runtime/debugger can find the symbols.</p>

@@ -1,0 +1,3 @@
+<p>It can happen due to a couple things. First off is if the plugin has been loaded before. If so and if the plugin developers wrote some code to support it, the new plugin can be swapped in without a restart because the plugin already exists in the namespace.  </p>
+
+<p>Second, is if the plugin is not making calls that require access to the core of browser. If the plugin does not need to than it can be bootstrapped in without a restart. Access to the chrome is a big reason to need to restart, see this <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=564667" rel="nofollow">bug</a> in Firefox.</p>

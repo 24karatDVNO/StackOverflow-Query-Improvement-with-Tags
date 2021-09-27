@@ -1,0 +1,19 @@
+<p>I found a workaround that does not require placing the cxf.xml file under the Ant lib directory.</p>
+
+<pre><code>URL wsdlURL = null;
+
+try {
+wsdlURL = new URL("http://sasdk1/protex-sdk/v5_0/project?wsdl");
+ } catch (MalformedURLException e) {
+ // TODO Auto-generated catch block
+e.printStackTrace();
+System.exit(-1);
+}
+
+QName SERVICE_NAME = new QName(
+            "urn:protex.company.com:sdk:v5.0:project",
+            "ProjectApiService");
+Service service = Service.create(wsdlURL, SERVICE_NAME);
+
+ProjectApi projectApi = service.getPort(ProjectApi.class);
+</code></pre>

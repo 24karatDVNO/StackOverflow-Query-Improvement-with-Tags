@@ -1,0 +1,36 @@
+<p>Not sure if this is the best approach but this is what I am doing.  I have a folder structure similar to this:</p>
+
+<pre><code>   /Content
+    layout.css
+   /Content/Images
+   /Content/Themes/ThemeUSA
+                   layout.css
+   /Content/Themes/ThemeUSA/Images
+</code></pre>
+
+<p>Then I use Helper Extensions to return the correct path for example for an image:    </p>
+
+<pre><code>&lt;img src="@Url.Image(Model.EnhImg)" alt="@Model.EnhImgAlt" /&gt;
+</code></pre>
+
+<p>where</p>
+
+<pre><code>public static string Image(this UrlHelper helper, string fileName)
+{
+    string sLocation = Content() + "images/" + fileName;
+    return helper.Content(sLocation);
+}
+
+private static string Content()
+{
+    string sLocation = "~/content/";
+    string sTheme = (string)HttpContext.Current.Session["Theme"];
+    if (!String.IsNullOrEmpty(sTheme))
+    {
+        sLocation += "themes/" +sTheme + "/";
+    }
+    return sLocation;
+}
+</code></pre>
+
+<p>Images in the theme folders have the same name as in the default folder. Same thing for stylesheets.</p>

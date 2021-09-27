@@ -1,0 +1,15 @@
+<p>Got it. Created a PHP function that is called onLoad. Included below. Note the first entry is ignored as it is already displayed in the HTML section of the code</p>
+
+<pre><code>function displayData()
+{
+$ii = 0;
+$result = mysql_query("SELECT * FROM rock WHERE userID = '$_SESSION[userID]'"); //Get the data in the concern table where userID matches
+while($onfile = mysql_fetch_array($result)) //Set the data into an array
+{
+    if($ii &gt; 0)
+    {
+        echo ("add3CellRow('rock',20,20,20,20, '$onfile[albumName]','$onfile[albumArtist]');");
+    }
+    $ii += 1;
+}
+</code></pre>

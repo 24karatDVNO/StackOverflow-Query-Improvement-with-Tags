@@ -1,0 +1,30 @@
+<p>I had a simiar question a while ago <a href="https://stackoverflow.com/questions/6017164/save-load-2-xdocuments-to-from-one-stream">here</a> about saving 2 XML files in one file.</p>
+
+<p>See my <a href="https://stackoverflow.com/questions/6017164/save-load-2-xdocuments-to-from-one-stream/6028948#6028948">answer</a> with code.</p>
+
+<p><em>"I ended up writing my own Stream, which can be thought of as a multistream. It allows you to treat one stream as multiple streams in succession. i.e. pass a multistream to an xml parser (or anything else) and it'll read up to a marker, which says 'this is the end of the stream'. If you then pass that same stream to another xml parser, it'll read from that marker, to the next one or EOF"</em></p>
+
+<p>Your basic usage would be:</p>
+
+<pre><code>Writing:
+    Open File Stream
+    Create MultiStream passing in File Stream in constructor
+    Write data file to multistream
+    Call write end of stream marker on multistream
+    Write 2nd data file to multistream
+    Call write end of stream marker on multistream
+    Save picture to multistream
+    Close multistream
+    Close file stream
+
+Reading:
+    Open File Stream
+    Create MultiStream passing in File Stream in constructor
+    Read data file
+    Call advance to next stream on multistream
+    Read 2nd data file
+    Call advance to next stream on multistream
+    Read image (Image.FromStream() etc.)
+    Close multistream
+    Close file stream
+</code></pre>

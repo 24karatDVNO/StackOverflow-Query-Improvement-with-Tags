@@ -1,0 +1,10 @@
+<p>The call <code>$("#functionslist").jqGrid({/*parameters*/);</code> convert the empty <code>&lt;table&gt;</code> to a grid having columns, capture, pager and so on. You should make the call <strong>once</strong> and not repeat it on every tab activation.</p>
+
+<p>Exactly in the same way the methods <code>navGrid</code> and <code>navButtonAdd</code> should be called <strong>only once</strong>.</p>
+
+<p>So you should decide what should be done if the user select the tab having jqGrid. You can for example call</p>
+
+<pre><code>$("#functionslist").trigger('reloadGrid', [{current:true}]);
+</code></pre>
+
+<p>(see <a href="https://stackoverflow.com/questions/3807623/jqgrid-paging-question/3808014#3808014">here</a> for details)</p>

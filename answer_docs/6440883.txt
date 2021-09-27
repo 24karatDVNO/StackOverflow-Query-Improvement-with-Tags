@@ -1,0 +1,3 @@
+<p>Sounds like a good strategy, but you don't need the <code>multiprocessing</code> module for it, but rather the <code>subprocess</code> module. <code>subprocess</code> is for running child processes from a Python program and interacting with them (stdio, stdout, pipes, etc.), while <code>multiprocessing</code> is more about distributing <em>Python code</em> to run in multiple processes to gain performance through parallelism.</p>
+
+<p>Depending on the responsiveness strategy, you <em>may</em> also want to look at <code>threading</code> for launching subprocesses from a thread. This will allow you to wait on one subprocess while still being responsive on the queue to accept other jobs.</p>

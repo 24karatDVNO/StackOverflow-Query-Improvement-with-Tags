@@ -1,0 +1,31 @@
+<p>You have a typo, try with:</p>
+
+<pre><code>class EmailScraper
+
+  EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  def EmailScraper.scrape(doc)
+    email_addresses = []
+    File.open(doc) do |file|
+      while line = file.gets
+        temp = line.scan(EmailRegex)
+
+        temp.each do |email_address|
+          puts email_address
+          email_addresses &lt;&lt; email_address
+        end
+
+      end
+    end 
+    return email_addresses
+  end
+end
+
+
+if EmailScraper.scrape("email_tests.txt").empty?
+  puts "Empty array"
+else
+  puts EmailScraper.scrape("email_tests.txt")
+
+end
+</code></pre>

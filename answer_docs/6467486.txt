@@ -1,0 +1,11 @@
+<p>You should move your <code>alloc-init</code> statement outside the <code>for</code> loop. Here is the following code</p>
+
+<pre><code>runningprocesses = [[NSMutableArray alloc] init];
+NSArray * processes = [[UIDevice currentDevice] runningProcesses];
+
+for (NSDictionary * dict in processes)
+{
+    NSString *process = [dict objectForKey:@"ProcessName"];
+    [runningprocesses addObject:process];
+}
+</code></pre>

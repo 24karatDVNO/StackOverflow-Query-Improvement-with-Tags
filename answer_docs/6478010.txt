@@ -1,0 +1,1 @@
+<p>This is an <em>error</em> in DLLs. It's risky in EXEs. If <code>CMyClass::Foo()</code> is called during the initialization of another object with static storage duration (such as <code>CMyClass::CMyClass</code> initializing the singleton), that call may precede the initialization of <code>g_hMutex</code>. There's no global order in which objects are initialized.</p>

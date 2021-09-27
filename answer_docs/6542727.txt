@@ -1,0 +1,8 @@
+<p>Figured out what was wrong. I needed to change the CGPoint I got from the touches into GL point like this:</p>
+
+<pre><code>CGPoint location = [touch locationInView: [touch view]];
+</code></pre>
+
+<p>location = [[CCDirector sharedDirector] convertToGL: location];</p>
+
+<p>Silly me. Should have thought about this before.</p>

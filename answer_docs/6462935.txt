@@ -1,0 +1,101 @@
+<p>This includes adding and removing rows with a live updating price. [ <a href="http://see.weareinto.com/7sbk" rel="nofollow">download</a> ]</p>
+
+<pre><code>&lt;html&gt;
+
+    &lt;head&gt;
+
+        &lt;script src="http://www.google.com/jsapi" type="text/javascript"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;google.load("jquery", "1");&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;
+
+            $(document).ready(
+                function() 
+                {
+                    $('.add-row').click(
+                        function()
+                        {
+                            addRow();
+                            return false;
+                        }
+                    );
+
+                    addRow();
+                }
+            );
+
+
+            function addRow()
+            {
+                var newRow = '&lt;li class="deposit"&gt;&lt;input class="price"&gt; &lt;a href="#" class="remove"&gt;Remove&lt;/a&gt;&lt;/li&gt;';
+
+                $('.deposits').append(newRow);
+                $('.deposit:last .price').select();
+
+                setListeners();
+            }
+
+            function removeRow(val)
+            {
+                $(val).parents('.deposit').remove();
+
+                sumDeposits();
+            }
+
+            function setListeners()
+            {
+                $('.price').each(
+                    function()
+                    {
+                        $(this).keyup(
+                            function() 
+                            {
+                                sumDeposits();
+                            }
+                        );
+                    }
+                );
+
+                $('.remove').each(
+                    function()
+                    {
+                        $(this).click(
+                            function() 
+                            {
+                                removeRow(this);
+                            }
+                        );
+                    }
+                );
+            }
+
+
+            function sumDeposits()
+            {
+                var total = 0;
+
+                $('.price').each(
+                    function()
+                    {
+                        total += Number( $(this).val() );
+                    }
+                );
+
+                $('.total').html(total);
+            }
+
+        &lt;/script&gt;
+
+    &lt;/head&gt;
+
+    &lt;body&gt;
+
+        &lt;h3&gt;Total is &lt;span class="total"&gt;N/A&lt;/span&gt;&lt;/h3&gt;
+
+        &lt;p&gt;&lt;a href="#" class="add-row"&gt;Add&lt;/a&gt;&lt;/p&gt;
+
+        &lt;ul class="deposits"&gt;&lt;/ul&gt;
+
+    &lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>

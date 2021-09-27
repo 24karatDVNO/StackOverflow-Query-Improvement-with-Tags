@@ -1,0 +1,13 @@
+<p>I'd say that extending the <code>UsernamePasswordAuthenticationFilter</code> and overriding <code>attemptAuthentication()</code> is a good way. In <code>attemptAuthentication()</code> you can check both DB data and LDAP data. You can load user info using the <code>UserDetailsService</code> like <a href="http://www.codercorp.com/blog/spring/security-spring/writing-custom-userdetailsservice-for-spring-security.html" rel="nofollow">this</a>.</p>
+
+<p>Another way is (as you suggested yourself) extending the <code>AbstractAuthenticationProcessingFilter</code> and running your filter after the FORM_LOGIN filter like this:</p>
+
+<pre><code>&lt;http ...&gt;
+    ...
+    &lt;custom-filter after="FORM_LOGIN_FILTER" ref="myAuthenticationProcessingFilter" /&gt;
+&lt;/http&gt;
+</code></pre>
+
+<p>A good idea probably is to make 2 separate filters for LDAP and DB authentication and running one after the other. This way you can turn any of them off if you need to.</p>
+
+<p><a href="http://static.springsource.org/spring-security/site/docs/3.0.x/reference/ns-config.html#filter-stack" rel="nofollow">This</a> part of the spring docs will help you on custom filters.</p>

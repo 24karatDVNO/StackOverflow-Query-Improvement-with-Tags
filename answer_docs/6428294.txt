@@ -1,0 +1,6 @@
+<p>You can get the activities that the tabhost is running, with this:</p>
+
+<pre><code>YourActivity act = (YourActivity) getLocalActivityManager().getActivity(TABKEY_1);
+</code></pre>
+
+<p>then call any method you have in that activity. TABKEY_1 is just the name for the tab that you give when you initialized the tabhost. </p>

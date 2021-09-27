@@ -1,0 +1,5 @@
+<p>I think the answer depends on whether your generated stuff should be generated along with the current classes or in a completely different process.</p>
+
+<p>If it is a different process, look at the Xpands answer - <a href="https://stackoverflow.com/questions/4561542/emf-generate-non-java-code/4563730#4563730">EMF generate non-Java Code</a></p>
+
+<p>Otherwise look at JET as this is used to generate the rets of the artifacts from ecore. It is not pretty - Java within Java will never be readable - but it is pretty easy to add to the existing generate from <code>.genmodel</code> process. </p>

@@ -1,0 +1,28 @@
+<p>The specification describes <code>uflow()</code> in the following way (27.6.3.4.3.[15-17]):</p>
+
+<ul>
+<li>Requires: The constraints are the same as for underflow(), except that the result character be transferred from the pending sequence to the backup sequence, and the pending sequence shall not be empty before the transfer.</li>
+<li>Default behavior: Calls underflow(). If underflow() returns traits::eof(), returns traits::eof(). Otherwise, returns the value of traits::to_int_type(*gptr()) and increment the value of the next pointer for the input sequence.</li>
+<li>Returns: traits::eof() to indicate failure.</li>
+</ul>
+
+<p>In C++, this look would look like:</p>
+
+<pre><code>if (traits::eq_int_type(this-&gt;underflow(), traits::eof())
+    return traits::eof();    
+return *fetch_gptr_and_inc();
+</code></pre>
+
+<p>We cannot call <code>underflow()</code> on the decorated object directly, because it's not accessible.
+In addition, we don't want to fetch our own gptr(), but the decorated one.
+However, we can achieve this indirectly by calling <code>sgetc()</code> and <code>sbumpc</code>:</p>
+
+<pre><code>template&lt;typename char_type, class traits_type&gt;
+typename forwarding_basic_streambuf&lt;char_type, traits_type&gt;::int_type
+forwarding_basic_streambuf&lt;char_type, traits_type&gt;::uflow()
+{   
+    if (traits_type::eq_int_type(this-&gt;m_fwd-&gt;sgetc(), traits_type::eof()))
+        return traits_type::eof();
+    return this-&gt;m_fwd-&gt;sbumpc();
+}
+</code></pre>

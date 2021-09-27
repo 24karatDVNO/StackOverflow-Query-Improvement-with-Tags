@@ -1,0 +1,13 @@
+<p>Since you have clarified that your targets are in different projects, i.e. different build files, you will have to use the <code>ant</code> or <code>subant</code> tasks instead of <code>antcall</code>. The <code>subant</code> task has a parameter called <code>failonerror</code> which you can set to false so that a failure will not stop the top-level build. I don't know if it is possible to pass back to the top-level build the information that a sub-project build has actually failed its tests.</p>
+
+<p>If your targets were all in the same project you could change your junit tasks so that they don't fail if a test fails, but instead set a property to indicate that a failure has occurred:</p>
+
+<pre><code>&lt;junit failureProperty="test.failed"&gt; ... &lt;/junit&gt;
+</code></pre>
+
+<p>Then you can make your mainbuild target fail after generating the JUnit report:</p>
+
+<pre><code>&lt;fail if="test.failed"&gt; ... &lt;/fail&gt;
+</code></pre>
+
+<p>I learned this from the book "Ant in Action".</p>

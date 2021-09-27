@@ -1,0 +1,10 @@
+<p>Sorry to answer my own question but Justin French confirmed what I suspected. There is no current facility to do this in Formtastic. He suggested a wrapper, which I implemented as follows:</p>
+
+<pre><code>def validated_form_for(record_name_or_array, *args, &amp;proc)
+  options = args.extract_options!
+  options.reverse_merge!({:validate =&gt; true})
+  semantic_form_for(record_name_or_array, options, &amp;proc)
+end
+</code></pre>
+
+<p>This handles the case where you want forms that are automatically client-side validated, but wish to be able to override it on a case by case basis.</p>

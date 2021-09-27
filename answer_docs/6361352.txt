@@ -1,0 +1,13 @@
+<h3>Need more info</h3>
+
+<hr>
+
+<ol>
+<li>What is the character encoding on your database?  That <code>&amp;</code> or <code>;</code>, may be something other than the typical ASCII.</li>
+<li>It's possible that PHP/Joomla is double-encoding your string.  Look at the browser's page source and find the text in the produced HTML.  Instead of <code>What&amp;rsquo;s</code>, it might just be one of the following:
+<ol>
+<li><code>What&amp;amp;rsquo&amp;59;s</code></li>
+<li><code>What&amp;38;rsquo&amp;59;s</code></li>
+<li><code>What&amp;#38;rsquo&amp;#59;s</code></li>
+</ol></li>
+</ol>

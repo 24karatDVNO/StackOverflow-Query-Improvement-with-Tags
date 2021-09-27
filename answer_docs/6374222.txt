@@ -1,0 +1,3 @@
+<p>Referring to this question: <a href="https://stackoverflow.com/q/3653009/34796">Entity Framework and Connection Pooling</a></p>
+
+<p>In short, you should wrap your queries in a <code>using()</code> statement to ensure that they are garbage collected after each query execution.</p>

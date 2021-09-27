@@ -1,0 +1,6 @@
+<p>Why not put the delimiters inside the pattern to change ?</p>
+
+<pre><code>Pattern userName = Pattern.compile(".*(\\$@.+\\$@).*");
+</code></pre>
+
+<p>Then change the transform filter to remove the start and end patterns when changing into the URL...</p>

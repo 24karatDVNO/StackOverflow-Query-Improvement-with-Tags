@@ -1,0 +1,9 @@
+<p>Another option would be using <a href="http://sputility.codeplex.com/" rel="nofollow">SPUtility.js</a> (full disclosure, I maintain this open source library). It depends on Prototype.js so you may not be interested since you are using jQuery.</p>
+
+<p>It supports hiding and/or disabling many different field types.. including people pickers:</p>
+
+<pre><code>// make a people field read only
+SPUtility.GetSPField('Assigned To').MakeReadOnly();
+// hide the people field
+SPUtility.GetSPField('Assigned To').Hide();
+</code></pre>

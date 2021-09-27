@@ -1,0 +1,7 @@
+<p>If you are copying and pasting, you could just make a class level method in a called combine that returned a new instance.</p>
+
+<pre><code>public A combine(A target)
+{
+return new A {Prop1 = target.Prop1, Prop2 = this.Prop2 };
+}
+</code></pre>

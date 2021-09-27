@@ -1,0 +1,4 @@
+<p>This absolutely fried my noodle (because all of this is highly counter intuitive) but I managed to come up with the following. I hope it helps someone:</p>
+
+<pre><code>self.fields['business'].queryset = Business.objects.filter(financialproduct__id=fpID.id) 
+</code></pre>

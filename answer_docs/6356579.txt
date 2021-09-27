@@ -1,0 +1,7 @@
+<p>You're missing the from clause in your SQL. It should be like:</p>
+
+<pre><code>SELECT Hostel.hostel_id, Hostel.hostelname, Hostel.address, hosteltypes.Hosteltypename
+FROM Hostel 
+JOIN hosteltypes ON ( hosteltypes.hosteltype_id =  Hostel.hosteltype_id )
+JOIN hostelrooms ON ( hostelrooms.hostel_id = Hostelhostel_id )
+</code></pre>

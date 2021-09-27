@@ -1,0 +1,4 @@
+<p>I didn't test this yet but something like this might work:</p>
+
+<pre><code>(from user in users where IsCompleted &amp;&amp; user.IsCompleted select user).Union(from user in users where IsInCompleted &amp;&amp; !user.IsCompleted select user).Distinct()
+</code></pre>

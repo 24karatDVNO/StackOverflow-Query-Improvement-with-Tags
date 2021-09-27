@@ -1,0 +1,1 @@
+<p>EF will not help you with this. It can help you with mapping general subscriptions to specialized types via table per hierarchy inheritance (but Linq-to-sql can do it as well) but it will not allow you mapping related entities as parameters of the derived subscription type. It would require custom database views and stored procedures for modifications.</p>

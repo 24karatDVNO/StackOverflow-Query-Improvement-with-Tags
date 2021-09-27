@@ -1,0 +1,9 @@
+<p>before your code is run, add the following to your php script:</p>
+
+<pre><code>&lt;?php
+$getAgre = ( isset($_GET['age']) &amp;&amp; strlen($_GET['age'])&gt;0 )? $_GET['age'] : 'null';
+echo '&lt;script&gt;var age = '. $getAge .';&lt;/script&gt;';
+?&gt;
+</code></pre>
+
+<p>edit: make sure you have some security checking before displaying the content of $_GET['age'] and your JS would be better when your event in <strong>.slider()</strong> checked whether variable <strong>get</strong> exists</p>

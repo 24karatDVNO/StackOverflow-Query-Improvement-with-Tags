@@ -1,0 +1,20 @@
+<p>Quick attempt, which gets the results you've posted in your question (except the 1st 3 rows are not NULL). Assumes that VALUE field is unique and in ascending order:</p>
+
+<pre><code>-- Create test TABLE with 38 values in
+DECLARE @T TABLE (Value INTEGER)
+DECLARE @Counter INTEGER
+SET @Counter = 1
+WHILE (@Counter &lt;= 38)
+    BEGIN
+        INSERT @T VALUES(@Counter)
+        SET @Counter = @Counter + 1
+    END
+
+-- This gives the results   
+SELECT t1.VALUE, x.Val
+FROM @T t1
+    OUTER APPLY(SELECT SUM(VALUE) FROM (SELECT TOP 4 VALUE FROM @T t2 WHERE t2.VALUE &lt;= t1.VALUE ORDER BY t2.VALUE DESC) x) AS x(Val)
+ORDER BY VALUE
+</code></pre>
+
+<p>At the very least, you should see the kind of direction I was heading in.</p>

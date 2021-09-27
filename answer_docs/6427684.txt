@@ -1,0 +1,20 @@
+<p>You can check if your <code>EditText</code> widget has been focused (usually when user touches it on the screen). </p>
+
+<pre><code>findViewById(R.id.editText1).setOnFocusChangeListener(this);
+</code></pre>
+
+<p>and then implement the listener (in this case within the same class)</p>
+
+<pre><code>public void onFocusChange(View arg0, boolean arg1) {
+        switch(arg0.getId()){
+        case R.id.editText1:
+            if(arg1){
+                // has focus
+            }
+            else{
+                // doesn't
+            }
+            break;          
+        }
+    } 
+</code></pre>

@@ -1,0 +1,21 @@
+<p>You could use <a href="http://www.w3.org/TR/xforms11#action-setvalue" rel="nofollow">the setvalue action</a> and the <a href="http://www.w3.org/TR/xforms11#evt-valueChanged" rel="nofollow">xforms-value-changed</a> event:</p>
+
+<pre><code>&lt;xf:input bind="foo"&gt;
+    &lt;xf:label&gt;First control:&lt;/xf:label&gt;
+    &lt;xf:setvalue ev:event="xforms-value-changed" bind="bar" value="context()" /&gt;
+&lt;/xf:input&gt;
+
+&lt;xf:input bind="bar"&gt;
+    &lt;xf:label&gt;Second control:&lt;/xf:label&gt;
+    &lt;xf:setvalue ev:event="xforms-value-changed" bind="foo" value="context()" /&gt;
+&lt;/xf:input&gt;
+</code></pre>
+
+<p>Alternatively, you could use <a href="http://www.w3.org/TR/xforms11#model-prop-calculate" rel="nofollow">the calculate attribute</a> on <a href="http://www.w3.org/TR/xforms11#structure-bind-element" rel="nofollow">the bind element</a>:</p>
+
+<pre><code>&lt;xf:bind nodeset="instance('bar')/slave" calculate="instance('foo')/master" /&gt;
+</code></pre>
+
+<p>Note that this second approach would have the effect of making the control(s) that bind to the node read-only, which may not be your intention.</p>
+
+<p><strong>EDIT:</strong> Looks like I completely misunderstood your question. Ignore me, sorry.</p>

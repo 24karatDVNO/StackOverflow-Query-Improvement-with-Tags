@@ -1,0 +1,33 @@
+<p>Unless it is absolutely imperative, I would recommend using a good old fashioned variable for this particular task, not a constant.</p>
+
+<p>If you do want to use a constant:</p>
+
+<pre><code>define('MAIL_TO', 'mailto@gmail.com');
+define('MAIL_FROM', 'mailfrom@gmail.com');
+
+$subject = 'Test email';
+$message = "Hello World!\n\nThis is my first mail.";
+$headers = "From: " . MAIL_FROM . "\r\nReply-To: webmaster@example.com";
+
+$mailResult = mail(MAIL_TO, $subject, $message, $headers);
+</code></pre>
+
+<p>FYI:</p>
+
+<pre><code>// Constants can also be retrieved with the constant() function
+$mailTo = constant('MAIL_TO');
+
+// ...which is the same as...
+$mailTo = MAIL_TO;
+</code></pre>
+
+<p>With use of constants:</p>
+
+<pre><code>$mailTo   = 'mailto@gmail.com';
+$mailFrom = 'mailfrom@gmail.com';
+$subject  = 'Test email';
+$message  = "Hello World!\n\nThis is my first mail.";
+$headers  = "From: " . $mailFrom . "\r\nReply-To: webmaster@example.com";
+
+$mailResult = mail($mailTo, $subject, $message, $headers);
+</code></pre>

@@ -1,0 +1,20 @@
+<p>This is an old question, with an answer that was never selected.</p>
+
+<p>Ways to update an arrayref</p>
+
+<ul>
+<li><p>Element by array reference:</p>
+
+<pre><code>$row-&gt;[0] = 'foo';
+$row-&gt;[1] = 'bar';
+$row-&gt;[2] = 'baz';
+</code></pre></li>
+<li><p>List assignment:</p>
+
+<pre><code>($row-&gt;[0], $row-&gt;[1], $row-&gt;[2]) = ('foo','bar','baz');
+</code></pre></li>
+<li><p>Array list assignment:</p>
+
+<pre><code>@{$row} = ('foo','bar','baz');
+</code></pre></li>
+</ul>

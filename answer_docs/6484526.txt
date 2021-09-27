@@ -1,0 +1,12 @@
+<p>You want to group on singular tag names, not on whole lists of tags, which is what you are currently doing. Try this:</p>
+
+<pre><code>var tags =
+    (from p in posts
+    from tag in p.Tags
+    group tag by tag into g
+    select new {Tag = g.Key, Count = g.Count()})
+.OrderByDescending(o =&gt; o.Count)
+.Take(number);
+</code></pre>
+
+<p>Though this should do what you are asking for, it won't fix the compile error you're getting. That's somewhere else.</p>

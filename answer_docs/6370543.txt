@@ -1,0 +1,7 @@
+<pre><code>data.Join(
+    zipList,
+    hal =&gt; hal.zip,
+    zlKvp =&gt; zlKvp.Key,
+    (hal, zlKvp) =&gt; new {hal,zlKvp} //hal and KeyValuePair from zipList
+);
+</code></pre>

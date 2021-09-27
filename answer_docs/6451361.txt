@@ -1,0 +1,21 @@
+<p>Definitely.</p>
+
+<p>The first thing you want to do is bind an event handler to your submit event on the form using the <code>$.submit()</code> handler. Next you'll want to iterate over each of the checked input elements:</p>
+
+<pre><code>$('form').submit(function() {
+    var action = $('#SelectedAction option:selected', this).val();
+    $('table input:checkbox:checked').each(function(i){
+       return doMyCustomFunction(this, action);
+    });
+}
+</code></pre>
+
+<p>Your custom function ("<code>doMyCustomFunction()</code>" in my example) should return either true or false depending on whether you wanted to submit your form or not.</p>
+
+<p>By way of a practical example, it might look something like this:</p>
+
+<pre><code>function doMyCustomFunction(el, formAction) {
+   console.info('The element ID is ' + el.id + ' and the action is ' + formAction);
+   return true;
+}
+</code></pre>

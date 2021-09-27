@@ -1,0 +1,10 @@
+<p>I am not sure what you want to achieve here, well you can try this one, hope it helps!!</p>
+
+<pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+ if (string &amp;&amp; [string length] &amp;&amp; [textField.text length] &lt;= 6) {
+ return NO;
+ }
+
+ return YES;
+}
+</code></pre>

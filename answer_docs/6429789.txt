@@ -1,0 +1,5 @@
+<p>Like everyone said, your not really talking about unit testing. You're talking about functional testing. I'd think hard about what your real goals are. What is driving this push for automated testing? Does the application have configuration issues(i.e. its hard to configure so some parts work and others don't). This might justify building a smoke test suite in selenium targeting your pain pages and test cases. This will also help detect regression bugs. </p>
+
+<p>As for the legacy concerns. No application is beyond help. If you are running front end tests in selenium then it doesn't matter how the code is written as long as its parseable HTML.</p>
+
+<p>As for your actual server side code. You just gotta roll <a href="http://en.wikipedia.org/wiki/Andy_Dufresne" rel="nofollow">Andy Dufresne</a> style. As you fix bugs and add functionality code with Test Driven Development principles in mind. Rework code that relates to your changes and add unit tests. You'd be surprised at how fast a legacy app can come around if you keep chipping away at it.  </p>

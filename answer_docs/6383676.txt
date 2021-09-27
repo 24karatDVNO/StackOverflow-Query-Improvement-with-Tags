@@ -1,0 +1,14 @@
+<p>try this in your way                       </p>
+
+<pre><code> Dictionary&lt;int, string&gt; recentDic=new Dictionary&lt;int,string&gt;();
+            recentDic.Add(1,"vijay");
+            recentDic.Add(2,"ajay");
+
+            if (recentDic.Count &gt;= 2)
+            {
+                int last = recentDic.Keys.Last();
+                recentDic.Remove(last);
+                recentDic.Add(last, "rahul");
+
+            }
+</code></pre>

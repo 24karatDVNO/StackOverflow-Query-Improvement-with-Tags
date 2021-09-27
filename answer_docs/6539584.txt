@@ -1,0 +1,9 @@
+<p>I think you were looking for this?</p>
+
+<pre><code>def call_me
+    Proc.new
+end
+
+proc = call_me { "blah" }
+proc.call   #=&gt; "blah"
+</code></pre>

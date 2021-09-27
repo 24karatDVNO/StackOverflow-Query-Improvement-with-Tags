@@ -1,0 +1,36 @@
+<p>This is how the site in question has been made:</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;body&gt;
+    &lt;div class="tail-top"&gt;
+        &lt;div class="tail-top1"&gt;
+            &lt;div class="tail-bottom"&gt;
+                &lt;div class="main"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>CSS:</p>
+
+<pre><code>.tail-top {
+    background: url("images/bg.gif") repeat-x scroll center top #FFFFFF;
+}
+.tail-top1 {
+    background: url("images/top.jpg") no-repeat scroll center top transparent;
+}
+.tail-bottom {
+    background: url("images/bot.gif") repeat-x scroll center bottom transparent;
+}
+
+.main {
+    margin: 0 auto;
+    text-align: left;
+    width: 979px;
+}
+</code></pre>
+
+<p>Basically the idea is that the header and footer bars repeat for the whole screen's width using background-image with repeat-x and the content area is on top of them and has margin: 0 auto and some width to set it in middle of the page acting as a wrapper.</p>

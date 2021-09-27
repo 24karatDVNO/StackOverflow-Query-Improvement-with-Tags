@@ -1,0 +1,3 @@
+<p>Although it's not a valid char, @Ant shows that encoding-decoding returns the original. This is probably because UTF-16 is a very simple&amp;direct encoding, coinciding with Java's 16bit char representation.</p>
+
+<p>If we experiment with UTF-8 instead, the encoding should throw a fatal error. There is no way for UTF-8 to encode half of a surrogate pair.</p>

@@ -1,0 +1,9 @@
+<blockquote>
+  <p>So i wanted to use fork to execute maybe 4-5 class methods at once so that the whole process is that much fast..</p>
+</blockquote>
+
+<p>As many others have already mentioned, you probably want to use threads rather than fork here. There is a lot more overhead with fork than there is with spawning a new thread.</p>
+
+<p>What others have not said is that spawning a thread or a process does not guarantee a speedup. For example, you might will get a slowdown rather than a speedup if you spawn many more CPU-bound threads at once than the number of available CPUs. What happens is that each of those threads compete with the others for their turn on the limited number of CPUs. A thread will run a little bit of time and then be swapped out for another.</p>
+
+<p>It's a good idea to make the number of active threads less than the number of CPUs available. Even if you do that, you can still run into trouble when some other CPU-bound application happens to be running at the same time.</p>

@@ -1,0 +1,14 @@
+<ol>
+<li><p><strong>Performance/Caching</strong> : Improve the speed of your "queries"
+that get your data <strong>OR</strong> implement
+an aggressive caching strategy. I'm
+assuming you're writing a web app
+with a technology stack that
+supports caching.
+<a href="http://memcached.org/" rel="nofollow">memcached</a>
+is a good general purpose caching
+library that works with lots of web
+app stacks. If you have to rely on scraping the data from competitor websites a cron job or task queue that can handle this at a regular interval would help.</p></li>
+<li><p><strong>Automatic Updating</strong> : effectively what you're talking about is continuous polling ajax, where you would have a continuous connection open from client to server and respond to new data by injecting the html into your page. Take a look at <a href="http://socket.io/" rel="nofollow">socket.io</a>, it provides an abstraction that allows for continuous polling via a number of transport methods (long polling xhr, flash, web sockets, etc..) and it supports all recent browsers (including IE 5.5 and up).</p></li>
+<li><p><strong>Rendering</strong> : Take a look at the <a href="http://documentcloud.github.com/underscore/#template" rel="nofollow">template</a> function which is part of <a href="http://documentcloud.github.com/underscore/" rel="nofollow">underscore.js</a>, it's a decent way to create a reusable markup template (ie: your table rows structure) and pass it some JSON to be rendered into a markup string. You can then use a library like jQuery or Prototype to inject the markup.</p></li>
+</ol>

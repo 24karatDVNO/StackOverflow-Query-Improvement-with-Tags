@@ -1,0 +1,20 @@
+<p>if you what to download through form you need to do as many form as blob you have</p>
+
+<pre><code>{% for file in blob_files %}
+&lt;tr&gt;
+    &lt;td&gt;{{ loop.index }}&lt;/td&gt;
+    &lt;td&gt;{{ file.filename }}&lt;/td&gt;
+    &lt;td&gt;{{ file.content_type }}&lt;/td&gt;
+    &lt;td&gt;{{ file.creation }}&lt;/td&gt;
+    &lt;td&gt;{{ file.size }}&lt;/td&gt;
+    &lt;td&gt;
+        &lt;form id="show_blob" name="show_blob" method="post" action="{{ download_blob }}"&gt;
+        &lt;input type="submit" name="download" value="Download"/&gt;
+        &lt;input type="hidden" name="blobkey" value="{{ file.key() }}" /&gt;
+        &lt;/form&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+{% endfor %}
+</code></pre>
+
+<p>or you can do it by ordinary A tag like this <code>&lt;a href = '/get/{{ file.key() }}'&gt;</code></p>

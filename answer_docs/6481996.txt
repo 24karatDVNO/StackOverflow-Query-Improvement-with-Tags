@@ -1,0 +1,9 @@
+<blockquote>
+  <p>Text data gets retrieved from database into a textarea holder before doing word replacement. I then access textarea value, replace the words, then append updated text to body.</p>
+</blockquote>
+
+<p>The most effiecient (and most secure) way to do this is to replace the words, server-side, before ever sending the data.</p>
+
+<p>Then your JS (which the user can modify!) has to do nothing but display the information.</p>
+
+<p>Depending on traffic/volume, it may pay to even have sanitized versions of the text, stored in the database.</p>

@@ -1,0 +1,25 @@
+<p>So, Finally got this working right (or close enough to right).  As was mentioned in the comments from Brad, you should search your disk for PST files as well as what I have here.  This method ONLY affects PST files that the user has open in Outlook, and NOT all PST files on their computer.  What was happening was as I mentioned in my Edit, objOutlook.Session.RemoveStore was changing the value of objNS.Folders, which would break my first For loop.  You need to do this outside of your enumartion loop, otherwise it breaks and misses some (as well as mislabels some when remapping them).  Also, outside of that loop objFolder needed to be redefined as a MAPIFolder object, or else you get the Type Mismatch errors when trying to remove  Working sample is:</p>
+
+<pre><code>' Enumerate PST filesand build arrays
+objTextFile.Write("Enumerating PST files" &amp; vbCrLf)
+For Each objFolder in objNS.Folders
+If GetPSTPath(objFolder.StoreID) &lt;&gt; "" Then
+    count = count + 1
+    pstFiles = GetPSTPath(objFolder.StoreID)
+    pstName = objFolder.Name
+    pstFolder = objFolder
+    objTextFile.Write(count &amp; "  " &amp; pstFiles &amp; vbCrLf)
+    ReDim Preserve arrNames(count)
+    arrNames(count) = pstName
+    ReDim Preserve arrPaths(count)
+    arrPaths(count) = pstFiles
+    'objOutlook.Session.RemoveStore objFolder
+End If
+Next
+
+For Each pstName in arrNames
+set objFolder = objNS.Folders.Item(pstName)
+objNS.RemoveStore objFolder
+Next
+set objFolder = Nothing
+</code></pre>

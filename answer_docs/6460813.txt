@@ -1,0 +1,7 @@
+<p>Not totally familiar with the object that you're using, but it's using javascript "anonymous functions" to create an object that contains a chunk of code so it can be passed around like a variable.  It can later be called by appending the () onto the end.</p>
+
+<p>See:  <a href="http://helephant.com/2008/08/23/javascript-anonymous-functions/" rel="nofollow">http://helephant.com/2008/08/23/javascript-anonymous-functions/</a></p>
+
+<p>Probably the most common use of this sort of thing is for setting a callback function, that is, when you call a function on router, when that function completes, it will finish by calling whatever you bound to it in the first place.</p>
+
+<p>Say I'm using a generic javascript library (such as colorbox) to pop up a dialog on the screen and prompt the user for information.  Once that gets done, or if the user closes the box without entering anything, I want the box to do something custom.  I don't want to have to dig around in colorbox's source code to do this, so they allow places for all sort of callback functions.  Say when the users enters the information and hits a button, it'll close the colorbox, submit ajax, and refresh the underlying page.</p>

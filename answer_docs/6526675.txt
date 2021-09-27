@@ -1,0 +1,27 @@
+<blockquote>
+  <p>What I want to do, is search for ONE record which has the max latitudinal and max longitudinal value</p>
+</blockquote>
+
+<p>But there almost certainly won't be ONE record that has both the max lat and the max long. What is your desired result when one place is further north but another place is further east?</p>
+
+<p>Are you looking for the ‘most north-easterly’ place per city? In which case:</p>
+
+<pre><code>SELECT * FROM places WHERE city='ST. JOHNS'
+ORDER BY MAX(lat+lng) DESC LIMIT 1;
+</code></pre>
+
+<p>and similarly with <code>MIN</code> and/or <code>lat-lng</code> for the other diagonal directions.</p>
+
+<p>To get the most north-easterly for each city, you have a ‘per-group maximum’ problem, which is a common SQL trouble. See eg <a href="https://stackoverflow.com/questions/755918/simple-query-to-grab-max-value-for-each-id">this question</a> for discussion. An example of most-northeasterly-place-per-city:</p>
+
+<pre><code>SELECT p0.*
+FROM places AS p0
+LEFT JOIN places AS p1 ON p1.city=p0.city AND p1.lat+p1.lng&gt;p0.lat+p0.lng
+WHERE p1.city IS NULL
+</code></pre>
+
+<p>However these computed-order queries are unindexable so likely inefficient unless you actually add an indexed column for lat+lng.</p>
+
+<p>Then you have the problem of trying to fit all four queries (the NE, SE, SW and NW versions) into the same query. The best way to solve this problem is usually not to: Do four separate queries. Typically, the various contortions you get yourself into trying to squeeze the four separate operations into one query leave you with something less efficient and much less readable than four separate queries.</p>
+
+<p>In any case I don't really see where any of this gets you. If you are trying to draw a minimal non-rectangular poly around a set of map points, you would have to select every point for a city and use a <a href="http://softsurfer.com/Archive/algorithm_0109/algorithm_0109.htm#Convex%20Hull%20Algorithms" rel="nofollow noreferrer">convex hull algorithm</a> or a quadtree of some sort. Far too involved to do in SQL.</p>

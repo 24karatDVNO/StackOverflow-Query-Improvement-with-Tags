@@ -1,0 +1,9 @@
+<p>you could use <code>.Distinct()</code> with your own comparer class </p>
+
+<pre><code>class MyComparer : IEqualityComparer&lt;YourRowClass&gt;
+</code></pre>
+
+<p>then use it like</p>
+
+<pre><code>yourList.Distinct(MyComparer())
+</code></pre>

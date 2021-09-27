@@ -1,0 +1,7 @@
+<p>A data entry application/UI needs to be as easy to use as possible. If it is being used by truckers in rough environments, potentially in bright sunlight, with drivers wearing gloves, etc then the UI needs to be big, and extremely easy to use. By "big" I mean a typical smart phone sized screen should have, for example, the PSI number in large text in the middle of the screen and up/down rockers above/below (for portrait) or left/right for landscape. This way its easy to read, easy to manipulate and almost foolproof.</p>
+
+<p>The UI can then be something as simple as two image views (up/down) rockers and a text view to display the current reading, and maybe an OK button. Put this in a separate activity and have that activity fill the parent view, ideally the whole screen.</p>
+
+<p>Thus instead of a single UI view, perhaps you should consider multiple Activities for each sub screen and have a "home" activity that pictorially shows what has been gathered, what data has still to be gathered, and perhaps an indication of a problem - depending on your application's requirements/purpose.</p>
+
+<p>Opinion: if the inspection is very procedural (left front tire, left rear tractor tire, left outer rear trailer tire, left inner trailer tire, etc) then the UI should "flow" in accordance with that procedure.</p>

@@ -1,0 +1,7 @@
+<p>Having spent some more time looking into this last night it turns out it is because dailymile.com are returning a page with the wrong host/certificate pair.</p>
+
+<p>After the user logs in Facebook is redirecting to a page hosted on www.dailymile.com and the certificate being presented is for api.dailymile.com.</p>
+
+<p>I found the following blog post explains how to get the Android WebView to ignore the error.</p>
+
+<p><a href="http://damianflannery.wordpress.com/2010/09/28/android-webview-with-https-loadurl-shows-blankempty-page/" rel="nofollow">http://damianflannery.wordpress.com/2010/09/28/android-webview-with-https-loadurl-shows-blankempty-page/</a></p>

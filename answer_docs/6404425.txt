@@ -1,0 +1,10 @@
+<p>I've used extensive subselects and joins as filterclauses. I'm not sure if your filterclause is 100% correct (I'm no sql wizard, but I'm not sure you can combine a variable and a select in an IN clause), I would write it as follows:</p>
+
+<p>[side].UserId = @UserId OR [side].UserId IN (select 
+RepresentsUserId from [Contact] where ConnectionStatus = 5 and UserId = @UserId)</p>
+
+<p>or maybe even</p>
+
+<p>[side].UserId IN (select @UserId UNION select RepresentsUserId from [Contact] where ConnectionStatus = 5 and UserId = @UserId)</p>
+
+<p>In any case, if your sql is correct, this should work. Subselects and inner joins are supported in sync framework filter clauses.</p>

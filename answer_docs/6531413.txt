@@ -1,0 +1,13 @@
+<pre><code>-(void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
+        MKZoomScale currentZoomScale = mapView.bounds.size.width / mapView.visibleMapRect.size.width;
+        NSLog(@"current zoom scale is %f",currentZoomScale);
+}
+</code></pre>
+
+<p>To get the current zoomlevel you can use <code>getZoomLevel</code> method of <code>mapview</code>
+like this:</p>
+
+<pre><code>NSLog(@"i am class regiondidchange   %f", [mapView getZoomLevel]);
+</code></pre>
+
+<p>how i can affect accordingly to circle radius in map.</p>

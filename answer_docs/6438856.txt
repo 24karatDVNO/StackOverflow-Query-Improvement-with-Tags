@@ -1,0 +1,4 @@
+<p>The expression you pass wo jquery is a standard string and has no access to the current scope's variables. You'll have to build the string yourself:</p>
+
+<pre><code>$(".jquery_image img:not([id='"+jTitle+"'])").hide();
+</code></pre>

@@ -1,0 +1,3 @@
+<p>Have you setup the relationships properly? Does Event belongTo Worker? Look at setting <code>$this-&gt;Firm-&gt;recursive = 2</code> just before your read and it should fetch them if the relationships are set up correctly.</p>
+
+<p>Also look into the <a href="http://book.cakephp.org/view/1323/Containable" rel="nofollow">Containable behaviour</a>.</p>

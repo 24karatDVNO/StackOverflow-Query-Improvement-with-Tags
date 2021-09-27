@@ -1,0 +1,7 @@
+<p>You can store the element in a variable and insert it as desired. This method lends itself well to templating (making a template popup that you can insert a string or whatever into):</p>
+
+<pre><code>var myPopup = "&lt;div class='my_popup'&gt;Some Helpful Whatnot&lt;/div&gt;";
+$('#some_link_id').live('mouseenter', function() {
+    $('#some_link_id').append(myPopup);
+});
+</code></pre>

@@ -1,0 +1,7 @@
+<p>The backend may need to wait on IO before it can fully produce the page. Modules can begin compressing the start of the message before the backend is entirely done writing it. </p>
+
+<p>To understand why this is useful, you need to understand how ngnix is structured. ngninx is a server that relies on <strong>non-blocking input and output</strong>. Normally, a server will use blocking input and output: it will listen on a connection, and when a connection is found, it will process the page. In order to increase throughput, multiple threads are spawned, called 'workers'. </p>
+
+<p>Contrast this to ngnix: It continually asks the kernel, "Are any of my IO requests ready?" This allows it to handle the same amount of pages with 1) less overhead from all the different processes, and 2) lower memory usage. It has some downsides, however. For extremely low-volume applications, ngnix may use more CPU than a blocking server. Second, it's much less portable. Windows uses an entirely different model for non-blocking IO.</p>
+
+<p>Getting back to your original question, compressing the beginning of a page is useful because it can be ready for the rest of the page when it's done accessing a database or reading from a disk or what-have-you.</p>

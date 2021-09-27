@@ -1,0 +1,15 @@
+<p><strike>Well you actually do want to retain the <code>UIWindow</code>. New projects by default retain it and there is nothing wrong with that.</strike> I see that <code>MessageView</code> is inheriting directly from <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIView_Class/UIView/UIView.html" rel="nofollow"><code>UIView</code></a> and that has a window property that is set once it is added to a window(or a subview of a window). Also look at <code>willMoveToWindow:</code> and <code>didMoveToWindow</code>. Now never think that you can not create a property just because you do not want to retain something because that is what the <code>assign</code> keyword is for.</p>
+
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+
+
+@interface MessageView : UIView {
+    UILabel *messageLabel;
+    UIWindow *window;
+}
+
+@property (nonatomic, retain) UILabel *messageLabel;
+@property (nonatomic, assign) UIWindow *window;
+
+@end
+</code></pre>

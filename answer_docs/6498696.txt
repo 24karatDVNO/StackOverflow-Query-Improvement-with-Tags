@@ -1,0 +1,11 @@
+<p>pseudocode:</p>
+
+<pre><code>ON EVENT WINDOW_MOUSEOUT
+    IF event_cookie.is_present &amp;&amp; event_cookie == EVENT_MOUSEOUT THEN
+        BREAK
+    ELSE
+        add_cookie(EVENT_MOUSEOUT)
+        do_whatever_you_need_to_do_on_first_event()
+    END IF
+END EVENT
+</code></pre>

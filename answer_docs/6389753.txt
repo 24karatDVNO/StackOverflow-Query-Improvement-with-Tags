@@ -1,0 +1,3 @@
+<p>A9 on its own - or as in this case surrounded by low-bytes (i.e. in the range 00-7F) cannot be part of a UTF-8 sequence.  Take a look at <a href="http://en.wikipedia.org/wiki/UTF-8" rel="nofollow">the wikipedia entry</a> for example, and you'll see that all high-bytes (80-FF) occur as part of a multi-byte UTF-8 sequence.</p>
+
+<p>So - some of the data in your file is other non-UTF-8 stuff - possibly meta-data.</p>

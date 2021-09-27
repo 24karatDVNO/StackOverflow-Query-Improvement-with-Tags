@@ -1,0 +1,115 @@
+<p>use the javascripit date object?</p>
+
+<p><b>EDITING Per @Joe's suggestion</b></p>
+
+<pre><code>    //initialize date object
+
+   function CheckAndChangeImage() {
+    var d = new Date();
+    var currentHour = d.getHours(); //note 0-23
+    var currentDay = d.getDate();
+    var currentMonth = d.getMonth();
+    var currentYear = d.getYear();  // 2011 == 111
+
+    if (currentHour &gt;= 21 &amp;&amp; currentDay &gt;= 17 &amp;&amp; currentMonth &gt;= 5 &amp;&amp; currentYear &gt;= 111 ) 
+     { 
+         //do something on late night (21,22,23 hundread hrs)
+         document.getElementById('thePicture').src = 'lateNight.png';
+      }
+  /* commented out, per OP edit 
+  else
+     { 
+        //do something else
+       document.getElementById('thePicture').src = 'OtherPicture.png';
+      } */
+  }
+
+ setInterval(CheckAndChangeImage,60000); //60,000 milliseconds in a minute`
+</code></pre>
+
+<p>this will check that it is equal too or greater than 21hrs on the users machine and the date is after today. the <code>setInterval(function,ms)</code> checks every minute so if the user comes to your site at 20:59 it should still change at 21:00. You mentioned the picture needs to be changed once and never again. This solution is very ugly. I would suggest setting up a cron on the local machine to run at 21:00 and update the time site wide. Perhaps PHP could do this, but PHP is not my language of choice. I would likely use python and/or bash for this task. But you could likely accomplish it in Perl. I would suggest an X/HTML parser. </p>
+
+<p>more on the date object</p>
+
+<blockquote>
+  <p>getDate()   Returns the day of the
+  month (from 1-31)<br>
+      getDay()    Returns the day of the week (from 0-6)<br>
+      getFullYear()   Returns the year (four digits)<br>
+      getHours()  Returns the hour (from 0-23)<br>
+      getMilliseconds()   Returns the milliseconds (from 0-999)<br>
+      getMinutes()    Returns the minutes (from 0-59)<br>
+      getMonth()  Returns the month (from 0-11)<br>
+      getSeconds()    Returns the seconds (from 0-59)<br>
+      getTime()   Returns the number of milliseconds since midnight Jan 1,
+  1970<br>
+      getTimezoneOffset() Returns the time difference between GMT and local
+  time, in minutes<br>
+      getUTCDate()    Returns the day of the month, according to universal time
+  (from 1-31)<br>
+      getUTCDay() Returns the day of the week, according to universal time
+  (from 0-6)<br>
+      getUTCFullYear()    Returns the year, according to universal time
+  (four digits)<br>
+      getUTCHours()   Returns the hour, according to universal time (from
+  0-23)<br>
+      getUTCMilliseconds()    Returns the milliseconds, according to
+  universal time (from 0-999)<br>
+      getUTCMinutes() Returns the minutes, according to universal time
+  (from 0-59)<br>
+      getUTCMonth()   Returns the month, according to universal time (from
+  0-11)<br>
+      getUTCSeconds() Returns the seconds, according to universal time
+  (from 0-59)<br>
+      getYear()   Deprecated. Use the getFullYear() method instead<br>
+      parse() Parses a date string and returns the number of milliseconds
+  since midnight of January 1, 1970<br>
+      setDate()   Sets the day of the month (from 1-31)<br>
+      setFullYear()   Sets the year (four digits)<br>
+      setHours()  Sets the hour (from 0-23)<br>
+      setMilliseconds()   Sets the milliseconds (from 0-999)<br>
+      setMinutes()    Set the minutes (from 0-59)<br>
+      setMonth()  Sets the month (from 0-11)<br>
+      setSeconds()    Sets the seconds (from 0-59)<br>
+      setTime()   Sets a date and time by adding or subtracting a specified
+  number of milliseconds to/from
+  midnight January 1, 1970<br>
+      setUTCDate()    Sets the day of the month, according to universal time
+  (from 1-31)<br>
+      setUTCFullYear()    Sets the year, according to universal time (four
+  digits)<br>
+      setUTCHours()   Sets the hour, according to universal time (from
+  0-23)<br>
+      setUTCMilliseconds()    Sets the milliseconds, according to universal
+  time (from 0-999)<br>
+      setUTCMinutes() Set the minutes, according to universal time (from
+  0-59)<br>
+      setUTCMonth()   Sets the month, according to universal time (from
+  0-11)<br>
+      setUTCSeconds() Set the seconds, according to universal time (from
+  0-59)<br>
+      setYear()   Deprecated. Use the setFullYear() method instead<br>
+      toDateString()  Converts the date portion of a Date object into a
+  readable string<br>
+      toGMTString()   Deprecated. Use the toUTCString() method instead<br>
+      toLocaleDateString()    Returns the date portion of a Date object as a
+  string, using locale conventions<br>
+      toLocaleTimeString()    Returns the time portion of a Date object as a
+  string, using locale conventions<br>
+      toLocaleString()    Converts a Date object to a string, using locale
+  conventions<br>
+      toString()  Converts a Date object to a string<br>
+      toTimeString()  Converts the time portion of a Date object to a
+  string<br>
+      toUTCString()   Converts a Date object to a string, according to
+  universal time<br>
+      UTC()   Returns the number of milliseconds in a date string since
+  midnight of January 1, 1970, according
+  to universal time<br>
+      valueOf()   Returns the primitive value of a Date objecti<br></p>
+</blockquote>
+
+<p><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date" rel="nofollow">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date</a> provides and overview of the date object</p>
+
+<p>so too does w3schools
+<a href="http://www.w3schools.com/jsref/jsref_obj_date.asp" rel="nofollow">http://www.w3schools.com/jsref/jsref_obj_date.asp</a></p>

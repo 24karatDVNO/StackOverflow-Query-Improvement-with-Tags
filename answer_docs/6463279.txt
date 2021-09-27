@@ -1,0 +1,9 @@
+<p>I would say store the url in a hidden field like:</p>
+
+<pre><code>&lt;input id="hidUrl" type="hidden" value="&lt;?php echo $url ?&gt;"/&gt;
+</code></pre>
+
+<p>And then change your javascript so it uses the value:</p>
+
+<pre><code>window.location = $("#hidUrl").val();
+</code></pre>

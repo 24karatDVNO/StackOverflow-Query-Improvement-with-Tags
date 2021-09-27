@@ -1,0 +1,9 @@
+<p>You'll get better performance using jQuery's <code>.delegate()</code> rather than  <code>.live()</code>.</p>
+
+<pre><code>$('.box').delegate('img','hover', function( event ) {
+    if( event.type === 'mouseenter' )  
+        $(this).stop().animate({ opacity: 1.0 }, 500);
+    else
+        $(this).stop().animate({ opacity: 0.3 }, 500)
+});
+</code></pre>

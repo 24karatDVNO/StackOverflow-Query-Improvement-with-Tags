@@ -1,0 +1,6 @@
+<p>When I used MySqlParameter, it was working with a ? character, not with the @ character. This might your problem here; eg:</p>
+
+<pre><code>new MySqlParameter("?MachineSimulatorDb");
+</code></pre>
+
+<p>But Andomar is probably correct that you can't use a MySqlParameter to feed the name of the new database.</p>

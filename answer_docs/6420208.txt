@@ -1,0 +1,27 @@
+<p>Let me propose the following mappings that take a number of hex digits
+from user input or visual selection, create appropriate pattern, and
+start a search for it.</p>
+<pre class="lang-none prettyprint-override"><code>nnoremap &lt;silent&gt; &lt;expr&gt; &lt;leader&gt;x/ SearchHexBytes('/', 0)
+nnoremap &lt;silent&gt; &lt;expr&gt; &lt;leader&gt;x? SearchHexBytes('?', 0)
+vnoremap &lt;silent&gt; &lt;leader&gt;x/ :call SearchHexBytes('/', 1)&lt;cr&gt;/&lt;cr&gt;
+vnoremap &lt;silent&gt; &lt;leader&gt;x? :call SearchHexBytes('?', 1)&lt;cr&gt;?&lt;cr&gt;
+
+function! SearchHexBytes(dir, vis)
+    if a:vis
+        let [qr, qt] = [getreg('&quot;'), getregtype('&quot;')]
+        norm! gvy
+        let s = @&quot;
+        call setreg('&quot;', qr, qt)
+    else
+        call inputsave()
+        let s = input(a:dir)
+        call inputrestore()
+    endif
+    if s =~ &quot;[^ \t0-9A-Fa-f]&quot;
+        echohl Error | echomsg 'Invalid hex digits' | echohl None
+        return
+    endif
+    let @/ = join(split(s, '\s\+'), '\%(\s*\|\n0x\x\+:\s*\)')
+    return a:dir . &quot;\r&quot;
+endfunction
+</code></pre>

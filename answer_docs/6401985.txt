@@ -1,0 +1,20 @@
+<p>There are two things you can do:</p>
+
+<ul>
+<li>Make sure the datatypes are the same on both sides of a comparison: ie compare with <code>10</code> (a number), not <code>'10'</code> (a char type) - it will make less work for the DB</li>
+<li>In cases like this, I create a view, which means the calculation to be made just once, even if you refer to it more than once in the query</li>
+</ul>
+
+<p>If these two points are incorporated into you code, you get:</p>
+
+<pre><code>CREATE VIEW geoNamesDistance AS
+SELECT SQL_NO_CACHE DISTINCT 
+       geonameid, 
+       name, 
+       (6367.41 * SQRT(2 * (1-Cos(RADIANS(latitude)) * Cos(0.704231626533) * (Sin(RADIANS(longitude))*Sin(-0.0669560660943) + Cos(RADIANS(longitude)) * Cos(-0.0669560660943)) - Sin(RADIANS(latitude)) * Sin(0.704231626533)))) AS Distance 
+  FROM geoNames;
+
+SELECT * FROM geoNamesDistance
+WHERE Distance &lt;= 10
+ORDER BY Distance;
+</code></pre>

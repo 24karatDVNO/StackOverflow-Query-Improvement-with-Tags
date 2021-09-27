@@ -1,0 +1,9 @@
+<blockquote>
+  <p>My colleage also said someone could modify javascript to bypass validation. With the session velidation on server side, is this kind of hack possible, is this meaningful? </p>
+</blockquote>
+
+<p>You are confusing validation with session/authentication.  One has nothing to do with the other.  And yes, modifying (or completely disabling) JavaScript gets around client side validation.  You should consider client side validation something to <em>help</em> the user.  It should not be relied on for your business logic, since it can be tampered with.</p>
+
+<p>So, server-side validation is also a must.</p>
+
+<p>If you really-really want to make sure the client takes advantage of the niceties of your client side validation, use a 'noscript' block to let them know "hey, JavaScript is disabled.  For an improved user experience, please re-enable JavaScript"</p>

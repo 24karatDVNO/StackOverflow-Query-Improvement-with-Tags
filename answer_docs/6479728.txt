@@ -1,0 +1,12 @@
+<p>OK. Problem wasn't in my query. It was connected to printing result. Function tried to print <em>user</em> instead of <em>username</em>, so every <em>user</em> had to be fetch from database.<br>
+<strong>Was</strong></p>
+
+<pre><code>def __unicode__(self):
+    return "%s" % self.user
+</code></pre>
+
+<p><strong>Should be</strong>  </p>
+
+<pre><code>def __unicode__(self):
+    return self.username
+</code></pre>

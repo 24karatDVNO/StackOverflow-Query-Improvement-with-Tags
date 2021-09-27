@@ -1,0 +1,5 @@
+<p>First, you'll need to make sure that you've implemented </p>
+
+<p><code>- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component</code></p>
+
+<p>once that is done you'll need to update the data that is driving your UIPickerView whenever a new row is selected in the first component, then call <code>reloadComponent:</code> on the picker view, passing in the component (in this case 1).</p>

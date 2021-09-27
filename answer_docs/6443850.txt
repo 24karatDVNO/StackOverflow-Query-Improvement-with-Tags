@@ -1,0 +1,19 @@
+<p>You can't use the same <code>id</code> on several elements in the same document, it should be unique, use <code>class</code> instead</p>
+
+<pre><code>&lt;span class='myLink'&gt;some text&lt;/span&gt;
+</code></pre>
+
+<p>and</p>
+
+<pre><code>$('.myLink').click(function() {
+        var divOverlay= jQuery('&lt;div id="divOverlay"&gt;text on overlay &lt;/div&gt;');
+        var off=$(this).offset();
+        divOverlay.css(
+        {
+            left:(off.left)+'px',
+            top:(off.top-200)+'px'
+        });
+        divOverlay.appendTo(document.body)
+
+    });
+</code></pre>

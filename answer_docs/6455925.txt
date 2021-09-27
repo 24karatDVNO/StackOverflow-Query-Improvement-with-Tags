@@ -1,0 +1,4 @@
+<p>Print fild 1 with awk - countries</p>
+
+<pre><code>awk 'BEGIN {RS="";FS="\n"} {print $1 &gt; "countries"} {for (i=2;i&lt;=NF;i++) print $i &gt; "cities"}' source.txt 
+</code></pre>

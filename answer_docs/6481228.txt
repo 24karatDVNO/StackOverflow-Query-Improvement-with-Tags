@@ -1,0 +1,14 @@
+<p>Short Answer - NO.</p>
+
+<p>I drilled down to the source at GWT 2.3 and AFAIK it easier to build your own composite from <code>TabBar</code> and <code>StackLayoutPanel</code> than start fighting this implementation.</p>
+
+<p>Just to save you an effort it cannot be centered easily too. 
+I am sorry it is like this.</p>
+
+<p>it all hardcoded... </p>
+
+<pre><code>private static final int BIG_ENOUGH_TO_NOT_WRAP = 16384;
+private final FlowPanel tabBar = new FlowPanel(); 
+...
+tabBar.getElement().getStyle().setWidth(BIG_ENOUGH_TO_NOT_WRAP, Unit.PX);
+</code></pre>

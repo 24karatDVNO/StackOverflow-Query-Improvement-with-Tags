@@ -1,0 +1,11 @@
+<p>If u are using spring autowiring and hibernateTemplate</p>
+
+<p>please make sure that you are not creating more than one instance of HibernateTemplate, ie</p>
+
+<pre><code>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring/applicationContext.xml");
+Object o=context.getBean("hibernateTemplate");
+</code></pre>
+
+<p>The object <code>o</code> has to be cached somewhere and returned when your app code is asking for instance of hibernatetemplate.</p>
+
+<p>Thanks</p>

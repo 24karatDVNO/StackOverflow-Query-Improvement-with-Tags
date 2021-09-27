@@ -1,0 +1,11 @@
+<p>You need some joins:</p>
+
+<pre><code>SELECT watchedItems.id
+FROM watchedItems
+left join globalItems on watchedItems.bidGroupID = bidGroups.bidGroupID 
+left join bidGroups on watchedItems.aid = globalItems.aid
+WHERE (watchedItems.bidGroupID IS NULL OR bidGroups.bidGroupQty &gt; 0)
+AND watchedItems.maxPrice &gt; globalItems.currentPrice
+</code></pre>
+
+<p>You were getting duplicates because there were three rows in the bidGroups table.</p>

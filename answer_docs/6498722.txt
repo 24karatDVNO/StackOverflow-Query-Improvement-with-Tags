@@ -1,0 +1,10 @@
+<p>I ended up ditching the scripting engine code and going native-Quercus:</p>
+
+<pre><code>QuercusEngine engine = new QuercusEngine();
+engine.getQuercus().getModuleContext().addModule("LogFunction", new LogFunction());
+engine.setOutputStream(os);
+engine.getQuercus().init();
+engine.execute(phpCode);
+</code></pre>
+
+<p>This works OK.  It at least has fairly predictable behaviour. </p>

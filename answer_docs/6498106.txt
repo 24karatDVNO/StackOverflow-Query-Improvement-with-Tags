@@ -1,0 +1,4 @@
+<p>You can try telling structuremap what instance of IProvider you want for service1 with the name like this:</p>
+
+<pre><code>For&lt;IService&gt;().Use&lt;Service&gt;().Named("core").Ctor&lt;IProvider&gt;().Is(y =&gt; y.GetInstance&lt;IProvider&gt;("core"));
+</code></pre>

@@ -1,0 +1,14 @@
+<p>If you already have a controller and you are able to send your onclick to that controller and are able to send the product id to it simply do:</p>
+
+<p><code>
+$prod_id = $this->getRequest()->getParam('product_id');<br/>
+$product = Mage::getModel('catalog/product')->load($prod_id);<br/>
+$param = array( 'product' => $product->getId(),
+                                                'options' => '',
+                                                'qty'     => 1
+                                              );<br/>
+$cart = Mage::getModel('checkout/cart')->init();<br/>
+$cart->addProduct($product, new Varien_Object($param));<br/>
+Mage::getSingleton('checkout/session')->setCartWasUpdated(true);<br/>
+$cart->save();
+</code></p>

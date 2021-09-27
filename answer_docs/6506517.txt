@@ -1,0 +1,13 @@
+<p>The correct solution best fulfills the requirements and the requirements of every situation will be unique. This is probably the simplest way to go about it:</p>
+
+<ul>
+<li>Create a large one dimensional array
+populated with "real" random values.</li>
+<li>"seed" your pseudo-random generator by
+calculating the starting index with
+system time.</li>
+<li>Iterate through the array and return
+the value for each call to your
+function.</li>
+<li>Wrap around when it reaches the end.</li>
+</ul>

@@ -1,0 +1,36 @@
+<p>I would personally use a session variable and count down how many times the form needs to be completed. Unfortunately that would cause to page to reload after each form entry, but this allows you to have as many amount of forms as your user requests, without a screen scrolling down a few pages to create all the forms on one page.</p>
+
+<p>At the start of your code before you displaying anything to the browser :</p>
+
+<pre><code>&lt;?php 
+session_start ();
+?&gt;
+</code></pre>
+
+<p>And where you receive your count for looping:</p>
+
+<pre><code>&lt;?php 
+if (!isset($_SESSION['yourAppName'])) 
+}
+    $_SESSION['yourAppName'] = $pplno;
+} else {
+    $_SESSION['yourAppName']--;
+}
+if ($_SESSION['yourAppName'] &gt; 0) { 
+    ?&gt;
+&lt;form action=''&gt;
+    &lt;input type="text" name="cpr" size="9" value="&lt;?php echo $cpr;?&gt;" maxlength="9"&gt;CPR 
+    &lt;input type="text" name="pplno" size="30" maxlength="25"&gt;Number Of People 
+    &lt;input type="text" name="gcpr" size="9" maxlength="9"&gt;dad CPR 
+    &lt;input type="reset" value="clear" name="clear"&gt; 
+    &lt;input type="submit" value="join" name="join"&gt; 
+    &lt;input type="submit" value="Proceed"&gt;
+&lt;/form&gt;
+&lt;?php 
+} else {
+    // code when all forms are filled in
+}
+?&gt;
+</code></pre>
+
+<p>remember to have your form return to the same page. This code is only to guide you, don't expect it to work without some editing. :)</p>

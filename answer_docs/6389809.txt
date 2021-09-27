@@ -1,0 +1,11 @@
+<p>I found the answer - it's in the order of execution. I thought one of the triggers wasn't being fired - in this case the Index_Change_Trans trigger - but in fact it was. I didn't see the results, however, because this trigger is relying on entries in the Docs table. </p>
+
+<pre><code>INSERT INTO 
+DOCID_SYNC (IS_DOC_ID, CRTN_DT, SYNC_STATUS_CDE)
+SELECT DOCID, GETDATE(), "N" FROM DOCS
+WHERE Transnum = (SELECT Inserted.TransNum from Inserted)
+</code></pre>
+
+<p>So, in cases where the Trans table was updated before the Docs table, the run of the Trans trigger would not show an update in the Docid_Sync table - since at this point there were no entries in the Docs table with the appropriate Transnum value. In these cases, the Docid_Sync table only has one entry, the result of the Docs trigger.</p>
+
+<p>In other instances, the Docs table is updated first, and then the Trans table. In these instances, the Docid_Sync table has two entries - one as the result of the Docs trigger, and another as the result of the Trans trigger.</p>

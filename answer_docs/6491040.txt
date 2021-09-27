@@ -1,0 +1,44 @@
+<p>OK, I solved this in a different way. Rather than trying to pass around <code>InvokeOperation</code> I recoded it thus:</p>
+
+<pre><code>public void CodeIsUnique(string code, Action&lt;bool, Exception&gt; action)
+{
+    return ObjectContext.CodeIsUnique(code, op =&gt;
+        {
+            if (op.HasError)
+            {
+                action(false, op.Error);
+                op.MarkErrorAsHandled();
+            }
+            else
+            {
+                action(op.Value, null);
+            }
+        }, null);
+}
+</code></pre>
+
+<p>This meant that the view model code became:</p>
+
+<pre><code>this.ObjectInterface.CodeIsUnique(currentObject.Code, (result, error) =&gt;
+    {
+        if (error != null)
+        {
+            // Deal with error
+        }
+        else if (!result)
+        {
+            // Code is not unique set error state.
+        }
+    }
+</code></pre>
+
+<p>and the test code could become:</p>
+
+<pre><code>public void CodeIsUnique(string code, Action&lt;bool, Exception&gt; action)
+{
+    bool isUnique = !_list.Any(o =&gt; string.Compare(o.Code, code) == 0);
+    action(isUnique, null);
+}
+</code></pre>
+
+<p>Therefore the code works as expected and I don't need to create an <code>InvokeOperation</code>.</p>

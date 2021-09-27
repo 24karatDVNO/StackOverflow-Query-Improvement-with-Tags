@@ -1,0 +1,9 @@
+<p>First steps with any network issue are</p>
+
+<ol>
+<li>Can you PING the remote host from the local host</li>
+<li>If not, the remote host is down or a firewall is blocking the two</li>
+<li>If you can, can you TELNET to the relevent port on the remote host from the local</li>
+<li>If not, maybe nothing is listening on that port or the firewall is blocking it</li>
+<li>If you can TELNET but the remote host isn't responding to the expected connection, it may be a protocol issue (eg trying to send HTTP to a database listener)</li>
+</ol>

@@ -1,0 +1,36 @@
+<p>This XSLT:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+
+    &lt;xsl:template match="*"&gt;
+        &lt;xsl:apply-templates/&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="FinalBusinessDetails"&gt;
+        &lt;xsl:copy&gt;
+            &lt;xsl:apply-templates select="@*|node()"/&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="ns0:BusinessIdDetails"&gt;
+        &lt;xsl:copy&gt;
+            &lt;xsl:apply-templates select="@*"/&gt;
+            &lt;ns0:FinalBusinessIdDetails&gt;
+                &lt;xsl:apply-templates/&gt;
+            &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+
+    &lt;xsl:template match="text()"&gt;
+        &lt;xsl:value-of select="."/&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>Produces this result:</p>
+
+<pre><code>&lt;FinalBusinessDetails&gt;
+    &lt;BusinessIdDetails xmlns="http://www.portal.nv.gov/FinalCorporationDetails" xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;:NV0511201142:NV0511201143:NV20111227759:NV20111227763:NV20111227763:NV20111227759::NV20111227802&lt;/ns0:FinalBusinessIdDetails&gt;
+    &lt;/BusinessIdDetails&gt;
+&lt;/FinalBusinessDetails&gt;
+</code></pre>

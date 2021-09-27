@@ -1,0 +1,19 @@
+<p>From Wikipedia:
+Traditionally, XML APIs are either:</p>
+
+<pre><code>tree based - the entire document is read into memory as a tree structure for random 
+access by the calling application
+event based - the application registers to receive events as entities are encountered 
+within the source document.
+
+StAX was designed as a median between these two opposites. In the StAX metaphor,
+the  programmatic  entry point is a cursor that represents a point within the 
+document. The application moves the cursor forward - 'pulling' the information from 
+the parser as it needs. This is different from an event based API - such as SAX - 
+which 'pushes' data to the application - requiring the application to maintain state 
+between events as necessary to keep track of location within the document.
+</code></pre>
+
+<p>So for 100M and more - I preffer SAX - if it possible use instead StAX.</p>
+
+<p>But I tryed your code with file size 2,6GB on JVM64. Without problem. So I suppose that problem not for size of file but for may be for data.</p>

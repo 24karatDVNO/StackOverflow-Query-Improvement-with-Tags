@@ -1,0 +1,16 @@
+<p>You can include the whole method body in your <code>try</code> block.</p>
+
+<p>In your <code>catch</code> part you can have multiple <code>catch</code> blocks to handle different types of exceptions:</p>
+
+<pre><code> @catch (NSException * e) {
+   ....
+ }
+ @catch (OtherException * e) {
+    ....
+ }
+ @finally {
+    NSLog(@"finally");
+ }
+</code></pre>
+
+<p>so you could also discern exactly which line failed based on the specific exception raised, if you ever need it.</p>

@@ -1,0 +1,9 @@
+<p>In case when each line started with 5 digits and space:</p>
+
+<pre><code>res = [line[6:] for line in open(fileName, 'r')]
+
+f = open(fileName, 'w')
+for line in res:
+    f.write(line+'\n')
+f.close()
+</code></pre>

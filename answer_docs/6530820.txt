@@ -1,0 +1,30 @@
+<p>That's how you can simply do it in shell. You should write it in script yourself.</p>
+
+<pre><code>&gt;&gt;&gt; text = '''this is sentence 1. and that is sentence
+              2. and sometimes sentences are good.
+              when that's sentence 4, there's a good reason. and that's 
+              sentence 5.'''
+&gt;&gt;&gt; for line in text.split('.'):
+...     if 'and' in line:
+...         print line
+... 
+ and that is sentence 2
+ and sometimes sentences are good
+ and that's sentence 5
+</code></pre>
+
+<p>Here I splitted <code>text</code> with <code>.split('.')</code> and iterated, then controlled with word <code>and</code> and if it contains, printed it.</p>
+
+<p>You should also consider that this is <strong>case-sensitive</strong>. You should consider many things on your solution, such as things ending with <code>!</code> and <code>?</code> are also sentences (but sometimes they aren't)</p>
+
+<blockquote>
+  <p>This is a sentence (ha?) or do you think (!) so?</p>
+</blockquote>
+
+<p>is going to be splitted as</p>
+
+<ul>
+<li>This is a sentence (ha</li>
+<li>) or do you think (</li>
+<li>) so</li>
+</ul>

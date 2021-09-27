@@ -1,0 +1,10 @@
+<p>You can define a pseudo-noop mapping that will work for all modes:</p>
+
+<pre><code>function s:Save()
+    update
+    return ""
+endfunction
+inoremap &lt;expr&gt; &lt;C-s&gt; &lt;SID&gt;Save()
+nnoremap &lt;expr&gt; &lt;C-s&gt; &lt;SID&gt;Save()
+&lt;...&gt;
+</code></pre>

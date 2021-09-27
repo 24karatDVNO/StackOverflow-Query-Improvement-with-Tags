@@ -1,0 +1,13 @@
+<p>Use this function</p>
+
+<pre><code>function amount( value ) {
+    value = value.toString();
+    var o = '';
+    do {
+        var s = value.substr( -3 );
+        value = value.substr( 0, value.length - 3 );
+        o = (value.length?',':'')+s+o;
+    } while( value.length );
+    return '$'+o;
+}
+</code></pre>

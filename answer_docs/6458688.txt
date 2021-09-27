@@ -1,0 +1,13 @@
+<p>Have a look at the answer i posted on this thread:</p>
+
+<p><a href="https://stackoverflow.com/questions/6456090/android-google-map-finding-distance/6456161#6456161">android google map finding distance</a></p>
+
+<p>It uses the Google directions API but you still get the data you require, and uses Lat/Lon for the request. You would also need to add:</p>
+
+<pre><code>JSONObject duration = steps.getJSONObject("duration");
+
+        String sDuration = duration.getString("text");
+        int iDuration = duration.getInt("value");
+</code></pre>
+
+<p>in order to get the duration, make sure you put it after JSONObject steps = legs.getJSONObject(0);</p>

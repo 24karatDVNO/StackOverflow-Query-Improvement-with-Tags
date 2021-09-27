@@ -1,0 +1,16 @@
+<p>I've found an error on my code. Correct setters methods could be:</p>
+
+<pre><code>- (void)setPosition:(Point2D *)pos
+{
+    [pos retain];
+    [position release];
+    position = pos;
+}
+
+- (void)setVector:(Vector2D *)vec
+{
+    [vec retain];
+    [vector release];
+    vector = vec;
+}
+</code></pre>

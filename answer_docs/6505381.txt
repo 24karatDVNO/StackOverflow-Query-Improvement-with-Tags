@@ -1,0 +1,4 @@
+<p>It depends on how the security is implemented (Basic Authentication, Form login,....).
+Most HTTP libraries in Java (ex: <a href="http://hc.apache.org/" rel="nofollow">Apache HttpComponents</a>) support various security mechanism. </p>
+
+<p>Fooling the site into thinking you're a browser will not get you in. If you want (but I don't think it's required), you can "fool" the site into thinking you're a browser by setting the appropriate User Agent in the HTTP header. (although this alone will not bypass the security)</p>

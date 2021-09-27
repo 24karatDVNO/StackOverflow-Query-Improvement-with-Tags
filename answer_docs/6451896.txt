@@ -1,0 +1,3 @@
+<p>In downloadFiles() you show the dialog, then start a number of threads and after they've been started the dialog got dismissed. I don't think this is what you want as the dialog gets closed right after the last thread is started and not after the last thread has finished. </p>
+
+<p>The dismissProgressDialog() method must be called after the last thread has finished its work. So at the end of the code run in the thread you have to check whether other threads are still running or whether you can dismiss the dialog as no other threads are running. </p>

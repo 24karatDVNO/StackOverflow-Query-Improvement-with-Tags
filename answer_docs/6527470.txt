@@ -1,0 +1,6 @@
+<p>It sounds as through there's a DateTimePicker involved, and there's a validated date already in <code>Item(2,i)</code></p>
+
+<p>Try this:</p>
+
+<pre><code> txtEnterDate.Text = DateTime.Parse(tblView.Item(2, i).Value);
+</code></pre>

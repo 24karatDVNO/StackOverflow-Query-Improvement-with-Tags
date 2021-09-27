@@ -1,0 +1,10 @@
+<p>You don't even need to tinker with the z-index. An element lower in the source will overlay content before it. Set your elements to <code>position: relative</code> and append an absolutely positioned div with width and height set to 100% - this will effectively overlay it.</p>
+
+<p>Get yourself Chrome (or Firebug) and play with <a href="http://api.jquery.com/append/" rel="nofollow"><code>$.append()</code></a> in the console:</p>
+
+<pre><code>$('*').css('position', 'relative').append('&lt;div style="position:absolute; width:100%; height:100%; background: #F00; opacity:0.5;"&gt;&lt;/div&gt;');
+</code></pre>
+
+<p>This will position every element on your site relatively, then append an absolutely positioned div with a red background. You should see every single element on your site being overlayed by it.</p>
+
+<p>Of course this is going to explode, a little, but it gives you an idea of how easy to use this technique is.</p>

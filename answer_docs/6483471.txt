@@ -1,0 +1,22 @@
+<p>Very similar to: <a href="https://stackoverflow.com/questions/6446749/mod-rewrite-is-ignoring-rules-in-subdirectories/6455015#comment-7581685">mod_rewrite is ignoring rules in subdirectories</a></p>
+
+<p>Unfortunately, the rules you have got will not work (to be precise: they actually work -- URL got rewritten .. but then after Apache sees <code>[L]</code> flag it goes to another iteration .. where it gets rewritten again .. and again -- entering endless loop which Apache has to break at some point).</p>
+
+<p>You have to add some condition which will break the iteration completely. There few possible ways of doing it (depends on the rest of your rules, you can read a bit more here -- <a href="https://stackoverflow.com/questions/6478346/performance-impact-of-order-of-rewrite-rules-when-using-apache-mod-rewrite/6481199#6481199">performance impact of order of rewrite rules when using apache mod_rewrite</a> ).</p>
+
+<p>I have modified the rule by adding 2 more conditions which makes it to rewrite ONLY IF destination DOES EXIST.</p>
+
+<pre><code>RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^(.*)\.domain\.com$
+RewriteCond %{DOCUMENT_ROOT}/%1%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/%1%{REQUEST_URI} -d
+RewriteRule (.*) %1/$1 [L,QSA]
+</code></pre>
+
+<p>So .. how it works. We will use this URL as an example: <code>http://home.domain.com/kaboom.txt</code>.</p>
+
+<ol>
+<li>If file <code>domain.com/home/kaboom.txt</code> DOES NOT exist -- nothing happends.</li>
+<li>If such file DOES exist -- URL gets internally rewritten to <code>http://home.domain.com/home/kaboom.txt</code> (the full URL). Apache goes to next iteration. There it checks does  <code>domain.com/home/home/kaboom.txt</code> exists. Most likely not (unless you have subfolders with the same name as sub-domain) and no more rewriting occurs -- job is done.</li>
+</ol>

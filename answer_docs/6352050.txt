@@ -1,0 +1,23 @@
+<p>Merge-sort's philosophy is to merge results from smaller segments into bigger ones.</p>
+
+<p>In merge-sort, first you merge 2 elements (2 arrays of 1 element) into a sorted array of 2 elements, and then merge 2 sorted arrays of 2 elements into a sorted array of 4 elements (because the 2 arrays are sorted, you only need to traverse and compare, smaller elements always come first in both arrays in an ascending sort), and then merge 2 sorted arrays of 4 elements into a sorted array of 8 elements.</p>
+
+<pre>
+|   |   |   |   |   |   |   |   |
+|sorted |       |       |       |
+|sorted         |               |
+|sorted                         |
+</pre>
+
+<p>Now, you only need to find the largest and the smallest, thus, you only need to find the largest and smallest in 2 elements. Compare the 2 largest elements from 2 arrays of 2 elements and find the larger, and then compare the 2 largest elements from 2 arrays of 4 elements and find the larger, and so forth. (Same for the small side.)</p>
+
+<pre>
+|   |   |   |   |   |   |   |   |
+|S     L|       |       |       |
+|Smllst    Lrgst|               |
+|only need to care about S & L  |
+</pre>
+
+<p>In other words, you no longer sort the whole array, but find the largest and smallest and merge results to get the final answer.</p>
+
+<p><sub>I think it is a little bit like quick-select to quick-sort, by the way.</sub></p>

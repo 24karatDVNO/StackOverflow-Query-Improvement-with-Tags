@@ -1,0 +1,15 @@
+<p>There are typical three parts to a solution:</p>
+
+<ul>
+<li>the language files</li>
+<li>the static text for Controls</li>
+<li>the dynamic text.</li>
+</ul>
+
+<p>The language files are just plain Java properties files - see the <code>java.text</code> package. When you change language, you "just" open a new Locale.</p>
+
+<p>The static text for Controls - e.g. Button and Labels - are often handled by associating a key to each Control that should be able to change language. When you want to change language, you recursively go through the Controls, lookup the new text in the current locale and set the new value...</p>
+
+<p>The dynamic text is... everything else... This is usually handled by using format string - see String.format(...) - again retrieved from the current locale.</p>
+
+<p>And of cause there are other things that might be dependent on the current language - e.g. icons, images, media clips, etc....</p>

@@ -1,0 +1,13 @@
+<p>Do you need to declare the var pin outside of the .each?
+then set it to new inside the .each.</p>
+
+<pre><code>var pin;
+ var mylist = [];
+ $.each(data, function (i, item) {
+     try {
+         pin = new Pushpin(x, y);
+         pin.site = item;
+         mylist.push(pin);
+     } catch (e) { alert (e); }
+ });
+</code></pre>

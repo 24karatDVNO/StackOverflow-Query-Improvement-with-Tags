@@ -1,0 +1,16 @@
+<pre><code>DECLARE @string varchar(20),@Num varchar(20),@str varchar(20),@i AS INT
+SET @string = 'AB78KH013Hj9';
+SET @i = 0
+SET @num = @string
+SET @str = @string
+
+WHILE @i &lt;= len(@string)
+BEGIN
+    SET @str =  REPLACE(@str,SUBSTRING(@str,PATINDEX('%[^a-z]%',@str),1),'')
+    SET @num =  REPLACE(@num,SUBSTRING(@num,PATINDEX('%[^0-9]%',@num),1),'')
+    SET @i = @i + 1
+END
+
+PRINT @Num
+PRINT @str
+</code></pre>

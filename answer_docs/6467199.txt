@@ -1,0 +1,7 @@
+<p>Don't load the glib library before calling g_thread_init.</p>
+
+<p>When I removed the <code>NativeLibrary.getInstance("glib-2.0");</code> line of code, the thread system initialized and the call to the <code>LibSoda.INSTANCE.getFlavors()</code> succeeded!</p>
+
+<p>I'm not entirely sure why this worked. I know accessing the <code>gthread-2.0</code> library will implicitly load GLib, but I don't know why loading GLib explicitly first causes the <code>g_thread_init</code> call to be ignored. </p>
+
+<p>I'll gladly change which answer is accepted to an answer which explains why the above worked.</p>

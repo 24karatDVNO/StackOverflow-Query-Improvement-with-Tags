@@ -1,0 +1,14 @@
+<p>substitute</p>
+
+<pre><code> DateTime b = Convert.ToDateTime(BeginDate);
+    DateTime e = Convert.ToDateTime(EndDate);
+</code></pre>
+
+<p>with</p>
+
+<pre><code> DateTime b, e;
+  if(!DateTime.TryParse(BeginDate,out b))
+      b = YOurDefaultBeginDate;
+  if(!DateTime.TryParse(EndDate,out e))
+      e = YOurDefaultEndDate;
+</code></pre>

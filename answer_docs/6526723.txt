@@ -1,0 +1,18 @@
+<p>input buffer has <code>a....</code></p>
+
+<p>your <code>scanf</code> tries to read an int:</p>
+
+<pre>
+     a....
+     ^
+     oops : cannot be int. stop scanfing
+</pre>
+
+<p>and on the next loop the <code>a</code> is still there.</p>
+
+<p><code>scanf</code> is notoriously difficult to use correctly, but you <strong>must</strong> always check its return value:</p>
+
+<pre><code>int chk;
+chk = scanf(...); /* pseudo-code */
+if (chk != EXPECTED_VALUE) { /* HANDLE ERROR! */ }
+</code></pre>

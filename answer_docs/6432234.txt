@@ -1,0 +1,3 @@
+<p>All you have to do is implement some principles of code reuse.</p>
+
+<p>Move each of the respective work units into classes/libraries rather than services.  Create a single service referencing the end result libraries.  Your service intention is likely a timer of some sort, and possibly exposing API endpoints.  Create the single service and activate the necessary classes from 3 unique timers (if needed - you might get away with a single timer activating 3 different class methods). Wrap events or API endpoints in a similar fashion.  A services should contain little or no "business" logic, it should derive that work from referenced business libraries.  Follow that practice and your question will mostly answer it's self.</p>

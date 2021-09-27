@@ -1,0 +1,7 @@
+<p>If you can use the first line to figure out how to order the columns programmatically, you'll be in good shape.  I don't think there's a good way to do this automatically or directly in MySQL.  Second, you can load the data without rearranging it, just set the column names in your SQL:</p>
+
+<p><code>LOAD DATA INFILE 'file.txt' INTO TABLE table (col3, col1, col2, col4)</code></p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.1/en/load-data.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.1/en/load-data.html</a></p>
+
+<p>Might need <code>FIELDS TERMINATED BY ','</code> to change from TSV to CSV as the default format. </p>

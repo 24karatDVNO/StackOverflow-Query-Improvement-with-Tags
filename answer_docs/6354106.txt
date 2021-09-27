@@ -1,0 +1,6 @@
+<p>Add the preloaded database to your project (to the Resources folder). This will be deployed with your application, and can be found at runtime in the main bundle path.</p>
+
+<p>Since the user will never write content to it but only read from it, you should be able to open it straight from there. You can get the path for it using:</p>
+
+<pre><code>NSString *databasePath = [[NSBundle mainBundle] pathForResource:@"ReadOnlyDatabase" ofType:@"sqlite"];
+</code></pre>

@@ -1,0 +1,14 @@
+<p>To get rid off unwanted characters use following code:</p>
+
+<pre><code>$_GET['title'] = 'abc__.!d';
+
+$title = preg_replace('/[^a-zA-Z0-9\s]+/', ' ', $_GET['title']); // "abc d"
+</code></pre>
+
+<p>Now, just redirect to correct URL (if needed)</p>
+
+<pre><code>if ($_GET['title'] != $title) {
+    header('Location: ....');
+    die('Redirect to ...URL...');
+}
+</code></pre>

@@ -1,0 +1,22 @@
+<p>I was able to get this working by changing the value of <a href="http://www.php.net/manual/en/filesystem.configuration.php#ini.default-socket-timeout" rel="nofollow">"<code>default_socket_timeout</code></a> using <a href="http://ca2.php.net/ini_set" rel="nofollow"><code>ini_set</code></a>. The problem appears to be the that the server is trying to keep the connection alive.</p>
+
+<pre><code>$url = 'http://www.atm-mi.it/_layouts/atm/apps/PublishingRSS.aspx?web=388a6572-890f-4e0f-a3c7-a3dd463f7252&amp;c=News%20Infomobilita';
+
+ini_set('default_socket_timeout', 1);
+
+$dom_document = new DOMDocument;
+$dom_document-&gt;load($url);
+</code></pre>
+
+<p>Alternatively, you could consider using <a href="http://ca2.php.net/curl" rel="nofollow">cURL</a> which is much more flexible.</p>
+
+<pre><code>$url = 'http://www.atm-mi.it/_layouts/atm/apps/PublishingRSS.aspx?web=388a6572-890f-4e0f-a3c7-a3dd463f7252&amp;c=News%20Infomobilita';
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$dom_document = new DOMDocument;
+$dom_document-&gt;loadXml(curl_exec($ch));
+
+curl_close($ch);
+</code></pre>

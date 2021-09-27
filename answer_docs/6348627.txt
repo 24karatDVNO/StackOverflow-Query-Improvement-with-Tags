@@ -1,0 +1,12 @@
+<p>Well and if you dont want to use Lists, I made this method:</p>
+
+<pre><code>public String[][] removeRowFrom2dArray(String[][] array, int row){
+    int rows = array.length;
+    String[][] arrayToReturn = new String[rows-1][];
+    for(int i = 0; i &lt; row; i++)
+        arrayToReturn[i] = array[i];
+    for(int i = row; i &lt; arrayToReturn.length; i++)
+        arrayToReturn[i++] = array[i];
+    return arrayToReturn;
+}
+</code></pre>

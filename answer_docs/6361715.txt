@@ -1,0 +1,6 @@
+<p>Change your condition to:</p>
+
+<pre><code>strrpos($_SERVER['REQUEST_URI'], '/games/mahjong/mahjong.php') === strlen($_SERVER['REQUEST_URI']) - strlen('/games/mahjong/mahjong.php')
+</code></pre>
+
+<p>This will make sure the request uri ends with that string.</p>

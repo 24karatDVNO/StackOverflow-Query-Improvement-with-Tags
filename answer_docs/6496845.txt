@@ -1,0 +1,16 @@
+<p>Ok I have managed to do that following the  Zoltán suggestions. Anyway I admit I would have preferred a more structured answer, and that is why I am answering my own question with a brief summary of the solution. </p>
+
+<p>basically the idea is that a view plugin implements the ViewPart interface. Because of this it can actually invoke the following methods</p>
+
+<pre><code>getSite().getWorkbenchWindow().getSelectionService()
+</code></pre>
+
+<p>in order to get the workbench selection service. You can therefore invoke the SelectionService method</p>
+
+<pre><code>addSelectionListener(ISelectionListener listener)
+</code></pre>
+
+<p>passing as parameter your own ISelectionListener which can be the same ViewPart you are implementing. You just have to implement the ISelectionListener interface and thus provide an implementation of the selectionChanged method</p>
+
+<pre><code>public void selectionChanged(IWorkbenchPart sourcepart, ISelection selection)
+</code></pre>

@@ -1,0 +1,24 @@
+<p>Check this code.....frame parameters are(x,y,width,height)</p>
+
+<pre><code>    int numberOfTextfields = 11;
+    int textfieldHeight = 40;
+    int textfieldWidth = 200;
+
+
+    // Create the UIScrollView
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,textfieldWidth,numberOfTextfields*textfieldHeight)];
+
+
+    // Create all the textfields
+    NSMutableArray *textfields = [NSMutableArray arrayWithCapacity:
+                                  (NSUInteger)numberOfTextfields];
+    for(int i = 0; i &lt; numberOfTextfields; i++) {
+        UITextField *field = [[UITextField alloc] initWithFrame:
+                              CGRectMake(0,i*textfieldHeight,textfieldWidth,textfieldHeight)];
+        field.borderStyle=UITextBorderStyleRoundedRect;
+        [scrollView addSubview:field];
+        [textfields addObject:field];
+    }
+    [self.view addSubview:scrollView];
+    [super viewDidLoad];
+</code></pre>

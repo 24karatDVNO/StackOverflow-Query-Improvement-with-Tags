@@ -1,0 +1,9 @@
+<p>You can traverse the DOM and modify the Text with the following JavaScript:</p>
+
+<pre><code>var li = document.getElementsByClassName('time');
+for (var i = 0; i &lt; li.length; i++) {
+   li[i].getElementsByTagName('a')[0].innerText = 'new text';
+}
+</code></pre>
+
+<p>Demo: <a href="http://jsfiddle.net/KFA58/" rel="nofollow">http://jsfiddle.net/KFA58/</a></p>

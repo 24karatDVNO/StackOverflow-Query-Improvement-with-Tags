@@ -1,0 +1,10 @@
+<p>You should modify the client application so it closes its connections when they are not needed.</p>
+
+<p>Leaving connections open for a long time is usually counter-productive, it's often done as a (misguided, premature) optimisation. It causes problems because:</p>
+
+<ul>
+<li>Connections are not stateless, and unexpected state causes problems</li>
+<li>Connections get closed by the server after a while, or from network problems, leading to "morning bugs".</li>
+</ul>
+
+<p>It is much better to close connections as soon as you're finished with them, in the general case.</p>

@@ -1,0 +1,20 @@
+<pre><code>process (clk)
+begin
+  if(rising_edge(clk)) then
+    currentstate &lt;= nextstate;
+  end if;
+end process;
+</code></pre>
+
+<p>Hi</p>
+
+<p>the above process is problematic but not due to the sensitivity list. It is ok to only declare clk for sequential process. Both simulation and synthesis tools won't have problems with it. clk is the fastest changing/transitioning signal after all in your code.</p>
+
+<p>However, you should use an (preferrably) asynchronous reset. Of course, vendors nowadays say that for FPGA design, resets are not even necessary; they happen at boot time. Or they propose a synchronous reset.</p>
+
+<p>Still, an asynchronous reset is valuable for a board-based environment.</p>
+
+<p>In short: add a reset to your design and fix its behavior properly.</p>
+
+<p>Kind regards
+Nikolaos Kavvadias</p>

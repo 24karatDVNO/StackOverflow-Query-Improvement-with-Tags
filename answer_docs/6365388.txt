@@ -1,0 +1,13 @@
+<p>There is one issue (at least). The following:</p>
+
+<pre><code>array(':value', $countries)
+</code></pre>
+
+<p>is actually an array, where:</p>
+
+<ul>
+<li>first element is <code>:value</code> string,</li>
+<li>second element is the result of <code>ORM::factory('country')-&gt;getActive('array')</code>,</li>
+</ul>
+
+<p>But I am not an expert in Kohana 3.1's validation - I heard it has changed since 3.0.</p>

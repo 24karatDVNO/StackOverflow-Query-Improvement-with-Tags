@@ -1,0 +1,14 @@
+<p>I have found several similar issues with silverlight: 
+<a href="https://stackoverflow.com/questions/1201351/get-mac-address-in-silverlight">Get MAC address in Silverlight</a></p>
+
+<p>It looks there is no way to get mac address due to .net security settings except we do the following: </p>
+
+<ol>
+<li>Add Active-X Host site to "Trusted"</li>
+<li>Call on client machine:
+C:\Windows\Microsoft.NET\Framework\v2.0.50727\caspol.exe -machine
+-quiet -addgroup Trusted_Zone -site acitve-x-host-site FullTrust -name
+SecutityException -description "..."</li>
+</ol>
+
+<p>Finally I decided to rewrite Active-X to C++\ATL one. </p>

@@ -1,0 +1,11 @@
+<p>An alternative which works if one only wants to use a few library functions: Create a wrapper for everything that you use.</p>
+
+<pre><code>// wrapper.cc
+A* A_create() {
+    return new A();
+}
+
+// and so on
+</code></pre>
+
+<p>This way you don't have to modify your library, but it's definitely some extra typing.</p>

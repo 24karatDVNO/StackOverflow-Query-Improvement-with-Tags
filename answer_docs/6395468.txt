@@ -1,0 +1,7 @@
+<p>Without more code:</p>
+
+<ol>
+<li>An array in memory just prior to what ext points to overran its storage and corrupted a type of "header" that malloc() uses to track the size of the memory for subsequent calls to free() (think of ((size_t *)ext)[-1] holding the size from the malloc).
+<li>You used a negative array index into ext[negative] that did the same corruption.
+<li>ext somehow gets modified.
+</ol>

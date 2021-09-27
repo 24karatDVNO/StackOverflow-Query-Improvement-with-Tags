@@ -1,0 +1,3 @@
+<p><code>ISingleResult&lt;T&gt;</code> inherits from <code>IEnumerable&lt;T&gt;</code>.  As long as 'T' represents MyObject, you should be able to iterate through the sequence.  If 'T' is a different type, I would put a constructor on MyObject that takes the DB type and creates a MyObject from it.</p>
+
+<p>Have you tried dropping a breakpoint after the SPROC call to see what the debugger says about the object you get back?</p>

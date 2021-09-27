@@ -1,0 +1,5 @@
+<pre><code>SELECT pr.realname, count(b.id)   
+FROM profiles pr LEFT JOIN bugs b ON pr.userid = b.reporter   
+GROUP BY pr.userid, pr.realname
+WHERE pr.userid in (1,4 ) -- set your user ids here where report needs to be generated dynamically etc.
+</code></pre>

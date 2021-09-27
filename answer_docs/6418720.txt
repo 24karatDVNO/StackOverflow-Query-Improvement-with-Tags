@@ -1,0 +1,32 @@
+<p>I wouldn't make <code>status</code> a dictionary.  Instead I would just store the <code>timestamp</code> for each <code>status</code> key in your <code>jarid</code> dictionary.  Better explained with an example...</p>
+
+<pre><code>def search_jarids(jarid):
+    stored_jarid = storage[jarid]
+    entry = "jarid: %s" % jarid
+    for status in stored_jarid:
+        entry += " %s: %s" % (status, stored_jarid[status])
+    return entry
+
+with open("yourlog.log", 'r') as log:
+    lines = log.readlines()
+
+storage = {}
+
+for line in lines:
+    line = line.strip()
+    jarid_tag, jarid, status_tag, status, timestamp_tag, timestamp = line.split(" ")
+
+    if jarid not in storage:
+        storage[jarid] = {}
+
+    status_tag = status_tag[:-1]
+    storage[jarid][status_tag] = timestamp
+
+print search_jarids("462c6d11-9151-11e0-a72c-00238bbdc9e7")
+</code></pre>
+
+<p>Would give you:</p>
+
+<p><code>jarid: 462c6d11-9151-11e0-a72c-00238bbdc9e7 nack: 00:00:10,338 recv: 00:00:08,018</code></p>
+
+<p>Hope it gets you started.</p>

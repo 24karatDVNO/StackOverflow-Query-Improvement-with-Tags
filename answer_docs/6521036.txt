@@ -1,0 +1,8 @@
+<p>The keyword <code>this</code> is simply a reference -- within an instance of a class -- to itself.  </p>
+
+<p>There are two common uses of "this" in Android.  These aren't particular to Android, but are valid in Java in general.</p>
+
+<ol>
+<li><p><code>this.getResources()</code> says to call the <code>getResources()</code> method on <code>this</code> instance.  The <code>this</code> portion of it is usually unnecessary and used implicitly.</p></li>
+<li><p><code>Foo.this.getResources()</code> could be called from an inner class.  This could be handy if the inner class defines <code>getResources()</code> also, but you want the version defined in the other class.</p></li>
+</ol>

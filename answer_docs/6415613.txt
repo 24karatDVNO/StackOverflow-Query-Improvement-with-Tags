@@ -1,0 +1,2 @@
+<pre><code>perl -e 'use Tie::File;tie @array,'Tie::File',$ARGV[0] || die;s|(return\s+)(\d+)(.*)|$2&gt;1?$1.($2+1).$3:$1.$2.$3|e for (@array);untie @array;' FILENAME
+</code></pre>

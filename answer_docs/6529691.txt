@@ -1,0 +1,18 @@
+<p>You can target the div you're after, if you refactor a little. (Maybe I'm missing the issue here, but my solution is pretty straight forward).</p>
+
+<p><a href="http://jsfiddle.net/8nXvX/" rel="nofollow">http://jsfiddle.net/8nXvX/</a></p>
+
+<pre><code>&lt;div class="actions"&gt;
+    &lt;div&gt;&lt;a href="#"&gt;Add&lt;/a&gt;
+        &lt;p&gt;Some content&lt;/p&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;a href="#"&gt;Add&lt;/a&gt;
+        &lt;p&gt;Some content&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+  $(".actions a").click(function(){
+    $(this).next('p').slideToggle("slow");
+    return false;
+  });
+</code></pre>
+
+<p>I suppose it depends where you're generating that <code>&lt;a&gt;</code>. If it's a going to hide the entire MySQL result set, or is it going to show/hide each row one at a time?</p>

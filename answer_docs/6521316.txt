@@ -1,0 +1,10 @@
+<p>You can report progress based on two values:</p>
+
+<ul>
+<li><p>prob_time -- the most probable amount of time the action will take to complete;</p></li>
+<li><p>max_time -- the maximum amount of time you are willing to wait before considering that the action failed; </p></li>
+</ul>
+
+<p>You can make the progress bar get to a certain point(e.g. 80%) in prob_time, then to 100% in (max_time-prob_time).</p>
+
+<p>If the action completes faster that max_time, you make the progress jump to 100% and report "Success", otherwise report "Failure"</p>

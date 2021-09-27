@@ -1,0 +1,29 @@
+<p>I like the idea to break the request into many smaller ones into the client part.</p>
+
+<p>The problem was just to find a smart way for splitting a large string (just one line) 
+into chunks in order to add records to the table progressively using <code>appendChild</code> and <code>.setTimeout</code>.</p>
+
+<p>The solution is summarized in this code:</p>
+
+<pre>
+$.ajax({
+        url: "myUrl",
+        cache: true,
+        async: true,
+        success: function(data){
+            setContenentInTable(data);
+        }
+});
+
+function setContenentInTable(data){
+var chunkLength             =   2500;
+var chunkNum                =   Math.floor(data.length/chunkLength);
+for(var i=0,i less chunkNum+1;i++){
+     var contentChunk   =   iovContent.slice(start,stop);
+     setTimeout(function(x){
+         $('.myTable01').append(x);
+     contentChunk, 300*i}
+}
+</pre>
+
+<p></p>

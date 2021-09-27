@@ -1,0 +1,15 @@
+<p>Note that this:</p>
+
+<pre><code>std::pair&lt;std::string,std::string&gt; key;
+edMap.insert(make_pair(key,d));
+</code></pre>
+
+<p>will will fail to insert anything if there is already a key with the same value present. </p>
+
+<p>This, on the other hand:</p>
+
+<pre><code>std::pair&lt;std::string,std::string&gt; key;
+edMap[key] = d;
+</code></pre>
+
+<p>will either create a new item in the map, or overwrite the previous value, if one existed.</p>

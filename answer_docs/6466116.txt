@@ -1,0 +1,24 @@
+<p>Put all your error messages into an array, and loop through the $_POST. If the input field is empty, then echo the error message:</p>
+
+<pre><code>&lt;?php
+$errorMsgs = array(
+  'studentName' =&gt; 'You did not enter a student name',
+  ...
+);
+
+$errors = '';
+
+foreach($_POST as $field)
+{
+  if(empty($field))
+  {
+    $errors .= $errorMsgs[$field] . '&lt;br/&gt;';
+  }
+}
+
+if(strlen($errors))
+{
+  echo $errors;
+  exit();
+}
+</code></pre>

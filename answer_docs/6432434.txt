@@ -1,0 +1,17 @@
+<pre><code>${$xml-&gt;getName()} = array();
+    foreach($xml-&gt;children() as $child) 
+    {
+      if (count($child-&gt;children() &gt; 0) 
+      {
+         foreach ($child-&gt;children as $childnode)
+         {
+           $ages[$childnode-&gt;getName()] = (string)$childnode;
+         }
+      }
+      else {
+          $ages[$child-&gt;getName()] = (string)$child;
+      }
+   }
+</code></pre>
+
+<p>This will only work if it is 1 level deep, if it is going to be more levels you should write a function, that will cycle through it level by level.</p>

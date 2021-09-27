@@ -1,0 +1,7 @@
+<p>Use <code>sed</code> utility.
+See below as per <a href="http://www.unix.com/shell-programming-scripting/34704-removing-character-using-sed.html" rel="nofollow">examples</a>:</p>
+
+<pre><code>sed 's/%//' file &gt; newfile
+echo "82%%%" | sed 's/%*$//'
+echo "68%" | sed "s/%$//" #assume % is always at the end.
+</code></pre>

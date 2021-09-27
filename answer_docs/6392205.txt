@@ -1,0 +1,37 @@
+<p>The comment in the code below fixed it. Instead of the retain count going to 0 it was cleaned from the heap.</p>
+
+<p>.h</p>
+
+<pre><code>@property (nonatomic, retain) NSObject *subParser;
+</code></pre>
+
+<p>.m</p>
+
+<pre><code>- (void)parser:(NSXMLParser *)parser 
+    didStartElement:(NSString *)elementName
+    namespaceURI:(NSString *)namespaceURI 
+    qualifiedName:(NSString *)qualifiedName
+    attributes:(NSDictionary *)attributeDict {
+
+    if([elementName isEqualToString:@"NewParser"]) {
+        MySubParser *aParser = [[NSXMLParser alloc] init];
+        self.subParser = aParser;
+        [aParser release];
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser 
+    didEndElement:(NSString *)elementName 
+    namespaceURI:(NSString *)namespaceURI 
+    qualifiedName:(NSString *)qName {
+
+    if([elementName isEqualToString:@"NewParser"]) {
+        [self.subParser release];
+        subParser = nil;  //FIXED by changing to self.subParser = nil;
+    }
+}
+
+- (void) dealloc {
+    [super dealloc];
+}
+</code></pre>

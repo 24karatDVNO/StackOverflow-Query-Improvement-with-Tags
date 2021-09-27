@@ -1,0 +1,15 @@
+<p>You can try something like this:</p>
+
+<pre><code>CustomUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Gioni"];
+
+// If no cell is available, create a new one using the given identifier.
+if (cell == nil) {
+    cell = [[[CustomUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Gioni"] autorelease];
+}
+else
+{
+     [cell resignFirstResponderForObjectInCell];
+}
+</code></pre>
+
+<p>This way you will know when your cell (the one with your special identifier) is going to be reused... so it means it's off the screen. You can make it resign first responder status before remaking another one like it.</p>

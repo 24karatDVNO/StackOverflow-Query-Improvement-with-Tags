@@ -1,0 +1,11 @@
+<p>It seems I was wrong in assuming the triangle formed and used to calculate the movement required to get to the x, y coordinates would always automatically use the Y axis as the side opposite of the 'Angle', and istead the coordinates were backwards for Quadrant 2 and 4, Thanks for the other feedback though!</p>
+
+<p>Here's the updated code:</p>
+
+<pre><code>if((int)Angle!=0){
+        if(Quadrant==2 || Quadrant==4) Angle=90-Angle; //The unit circle triangle is flipped otherwise, causing x and y to be switched
+        buffY= sin(Angle / 180 * M_PI)/ (1.f/(Speed*Time));  
+        buffX= sin((180-Angle-90)/ 180 * M_PI)/ (1.f/(Speed*Time));}
+</code></pre>
+
+<p>by doing 90-Angle i'm switching the angles used to find the X, and Y side of the imaginary triangle....</p>

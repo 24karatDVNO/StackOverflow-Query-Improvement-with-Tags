@@ -1,0 +1,22 @@
+<pre><code>strComputer = "." 
+
+Set objWMIService = GetObject("winmgmts:\\" &amp; strComputer &amp; "\root\CIMV2") 
+Set colItems = objWMIService.ExecQuery( _
+    "SELECT * FROM Win32_LogicalDisk where DeviceID='c:'",,48) 
+
+For Each objItem in colItems 
+
+if len(objItem.VolumeName)&gt;0 then
+
+Wscript.Echo "-----------------------------------" &amp; vbCrLf _
+        &amp; "VolumeName:" &amp; vbTab &amp; objItem.VolumeName  &amp; vbCrLf _
+        &amp; "-----------------------------------" &amp; vbCrLf _
+        &amp; "FreeSpace:" &amp; vbTab _
+        &amp; FormatNumber((CDbl(objItem.FreeSpace)/1024/1024/1024))  &amp; vbCrLf _
+        &amp; "Size:" &amp; vbTab &amp; vbTab _
+        &amp; FormatNumber((CDbl(objItem.Size)/1024/1024/1024))  &amp; vbCrLf _
+        &amp; "Occupied Space:" &amp; vbTab _
+        &amp; FormatNumber((CDbl(objItem.Size - objItem.FreeSpace)/1024/1024/1024)) 
+   end if
+Next
+</code></pre>

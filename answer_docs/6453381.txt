@@ -1,0 +1,14 @@
+<p>Use requestAnimFrame instead of setInterval. More info on <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/" rel="nofollow">http://paulirish.com/2011/requestanimationframe-for-smart-animating/</a></p>
+
+<p>I tested this with faster blur reduction on my FF5 and it seems to perform fine.</p>
+
+<pre><code>(function animloop(){
+  blurImage();
+  requestAnimFrame(animloop);
+})();
+
+function blurImage(){
+    stackBlurImage( "image1", "output", amount, true );
+    amount=amount-4;
+}
+</code></pre>

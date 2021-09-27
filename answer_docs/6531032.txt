@@ -1,0 +1,22 @@
+<p>You can use the class <strong>Week</strong> of the <a href="http://www.codeproject.com/KB/datetime/TimePeriod.aspx" rel="nofollow">Time Period Library for .NET</a>:</p>
+
+<pre><code>Imports Itenso.TimePeriod
+
+Module GetStartOfWeekDemo
+
+    Sub Main()
+
+        Console.WriteLine("Week start " &amp; GetStartOfWeek(2011, 4))
+        Console.ReadKey()
+
+    End Sub
+
+    Public Function GetStartOfWeek(ByVal year As Integer, ByVal weekOfYear As Integer) As DateTime
+
+        Dim week As Week = New Week(year, weekOfYear)
+        Return week.Start
+
+    End Function
+
+End Module
+</code></pre>

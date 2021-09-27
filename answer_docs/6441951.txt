@@ -1,0 +1,14 @@
+<pre><code>function fn(id) {
+    var x = /^(\+|-)?\d+$/;
+    if (x.test(id)) {
+        //integer
+        return true;
+    }
+    else {
+        //not an integer
+        return false;
+    }
+}
+</code></pre>
+
+<p>Test fiddle: <a href="http://jsfiddle.net/xLYW7/" rel="nofollow">http://jsfiddle.net/xLYW7/</a></p>

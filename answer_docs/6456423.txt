@@ -1,0 +1,6 @@
+<p>I haven't tested this, but perhaps something along these lines:</p>
+
+<pre><code>string colItem = comboControl.SelectedItem;
+
+string formatedString = colItem.Substring(0 , ( colItem.IndexOF("(") -1 ) ) ;
+</code></pre>

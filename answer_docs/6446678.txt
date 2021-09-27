@@ -1,0 +1,13 @@
+<p>I have the same issue and I manage to get my own url helper working pretty well. Basically, I have something like this :</p>
+
+<pre><code>def base_url
+     "http://" + @actual_subdomain + "/"
+end
+</code></pre>
+
+<p>And every others helper taht I wrote map to this one. Like ;</p>
+
+<pre><code>def category_url category
+    base_url + category.slug
+end
+</code></pre>

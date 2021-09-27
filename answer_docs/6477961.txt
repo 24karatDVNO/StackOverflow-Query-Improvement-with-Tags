@@ -1,0 +1,3 @@
+<p>Who says you need to do that?  It's just caching the results of the JNDI lookup. Under certain circumstances, JNDI lookups <em>can</em> be slow, so caching them may be a good idea.</p>
+
+<p>I'd find out if you really need to do this, though. The JNDI lookups may be fast enough on their own. If so, then take the <code>serviceCache</code> out.</p>

@@ -1,0 +1,6 @@
+<blockquote>
+<p>Creating a new unitData() every time changes the hash of the unitData object being passed?</p>
+<p>There is no implementation of GetHashCode(), DistributorMonthlyComparisonData is just a collection of properties.</p>
+</blockquote>
+<p>The default implementation of <code>GetHashCode()</code> makes no guarantees about its return value. So, if you have no custom implementation for it, you should not have any expectations about it.</p>
+<p>When you define equality for a type (by overriding <code>Equals</code>) you have to override <code>GetHashCode</code> as well, and guarantee that objects that compare equal have the same hash code.</p>

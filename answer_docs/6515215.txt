@@ -1,0 +1,5 @@
+<p>As far as tcp socket vs. https there's likely little difference in security.  Since the socket is less 'standard' it may have marginally more protection because a simple off-the-shelf browser + standard http[s] might not work.  However it's really more obscurity than security.</p>
+
+<p>You have to think about 2 things:
+Privacy:  ensuring others can't see the data in transport.  something like SSL should cover this.
+Authentication:  The server trusting that the client is who it says it is.  That's the harder problem.  If you require a 'password' of some sort it helps but of course you have to manage the password etc.  That's a big topic in itself.  </p>

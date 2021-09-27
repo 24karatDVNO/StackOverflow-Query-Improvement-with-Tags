@@ -1,0 +1,30 @@
+<p>I like the other answer as a "direct" answer to the question but to show some alternate to what you are doing for others I think you can simplfy the plugin as:</p>
+
+<pre><code>&lt;div id="mystuff"&gt;hi&lt;/div&gt;
+&lt;div id='answer'&gt;empty&lt;/div&gt;
+
+$.fn.myplugin = function() {
+    this.live('click', function() {
+        $('#answer').text('here');
+    });
+}
+$('#mystuff').myplugin();
+</code></pre>
+
+<p>as shown in this example: <a href="http://jsfiddle.net/FgUEB/" rel="nofollow">http://jsfiddle.net/FgUEB/</a>, thus the "this" gets the selector and you can then attach the "live click" - without the complexity of the .each - which, IF you do it the way you have it (with the selector fixed of course) will put the event on the elements multiple times if it has several - which is implied by the .each you have in your example.</p>
+
+<pre><code>jQuery.fn.newMethod = function(){
+    return this.each(function(){
+        alert(typeof this);
+    });
+};
+</code></pre>
+
+<p>The reference this keyword within the inner function (in the alert) refers to the current HTML element. Since it is NOT a jQuery object it won't have access to the jQuery methods (although, you can wrap it in the jQuery object to get those methods back as jQuery(this).</p>
+
+<pre><code>jQuery.fn.newMethod = function(){
+    return this.each(function(){
+        jQuery(this).css({'background-color':'red'});//each inner element
+    });
+};
+</code></pre>

@@ -1,0 +1,13 @@
+<p>You're looking for abstract classes or interfaces (implements).</p>
+
+<p>The other thing is you might want to do instead of doing "CreateShot01", "CreateShot02", etc. is this:</p>
+
+<pre><code>public void globalShoot (int limit, type? x, type? y, type? angle, type? velocity, type? bulletID, type? delay) {
+    for (int i = 0; i &lt; limit; i++) {
+        this.wait(delay);
+        doShooting(x, y, angle, velocity, bulletID);
+    }
+}
+</code></pre>
+
+<p>or something like that. :)</p>

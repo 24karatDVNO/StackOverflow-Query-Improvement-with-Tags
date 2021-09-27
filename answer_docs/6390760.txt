@@ -1,0 +1,7 @@
+<p>Both forms of <code>multiply</code> crash in Visual Studio with a stack overflow, when <code>b</code> is negative.</p>
+
+<p>So, the answer is, neither form is correct.  Likely what is happening in <code>gcc</code> is that, due to some quirk <em>(not a bug!)</em> the compiler is optimizing away the tail-recursion in the first example but not the second.</p>
+
+<hr>
+
+<p>As a side note, even if you change it to <code>b &gt; 0 ? --b : ++b</code>, you are still not multiplying by the sign of <code>b</code> (eg. <code>multiply(-1, -1) == -1</code>)</p>

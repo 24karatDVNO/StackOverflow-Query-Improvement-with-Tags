@@ -1,0 +1,4 @@
+<pre><code>$('#foo', this).dosmth();
+</code></pre>
+
+<p>This will search within the context of the <code>div</code> and not the whole DOM, which will make the selector faster. This only makes sense to use when the DOM is large, otherwise, just use the normal selector: <code>$('#foo').dosmth();</code></p>

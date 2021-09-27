@@ -1,0 +1,28 @@
+<pre><code>public boolean initDay()
+    {
+        LinearLayout layoutVertical = (LinearLayout) findViewById(R.id.liVLayout);
+        LinearLayout rowLayout=null;
+
+        LayoutParams param = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT,1);
+
+        for (i = 0; i&lt;6; i++) 
+        {
+            rowLayout = new LinearLayout(this);
+            rowLayout.setWeightSum(7);
+            layoutVertical.addView(rowLayout,param);
+            for(j=0;j&lt;7;j++)
+            {
+                pBtnDay[i][j]=new Button(this);
+                rowLayout.addView(pBtnDay[i][j],param);
+                pBtnDay[i][j].setClickable(true);
+                pBtnDay[i][j].setOnClickListener({
+                public void onClick(View v){
+TextView t = (TextView)findViewById(R.id.textV);   
+         t.setText(view.getText());
+
+});
+            }
+        }
+        return true;
+    }
+</code></pre>

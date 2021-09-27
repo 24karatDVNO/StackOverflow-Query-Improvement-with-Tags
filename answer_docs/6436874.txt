@@ -1,0 +1,4 @@
+<p>Try grouping by category. Haven't tested this, but something like:</p>
+
+<pre><code>SELECT Id, Category, Title FROM articles GROUP BY Category ORDER BY RAND() LIMIT 0,20
+</code></pre>

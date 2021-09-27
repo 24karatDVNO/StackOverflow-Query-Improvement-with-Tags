@@ -1,0 +1,8 @@
+<pre><code>area_codes = 
+  Address.find_by_sql(
+    "SELECT DISTINCT user_id, area_code FROM addresses"
+  ).index_by(&amp;:user_id)
+User.find(:all).map{ |u| [u, area_codes[u.id]] }
+</code></pre>
+
+<p>if you want all of them in one piece.</p>

@@ -1,0 +1,13 @@
+<pre><code>$app_id = "your application id";
+$canvas_page = "your canvas page link";
+$message = "Inviting you to my application";
+$requests_url = "http://www.facebook.com/dialog/apprequests?app_id=" 
+. $app_id . "&amp;redirect_uri=" . urlencode($canvas_page)
+. "&amp;message=" . $message;
+if (empty($_REQUEST["request_ids"])) {
+  echo("&lt;script&gt; top.location.href='" . $requests_url . "'&lt;/script&gt;");
+} else {
+  echo "Request Ids: ";
+  print_r($_REQUEST["request_ids"]);
+}
+</code></pre>

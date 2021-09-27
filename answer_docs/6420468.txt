@@ -1,0 +1,8 @@
+<p>@KilZone: Thanks for the reply. I haven't tried your code, but the string that was being fetched from the database was showing properly in the brower, but when i checked it by viewing the source, the string was having <code>&amp;quot;</code> instead of double quote.</p>
+
+<p>So I just used the below code to replace, and it solved my problem.</p>
+
+<pre><code>json_decode(str_replace("&amp;quot;","\"",$item-&gt;extra_fields))
+</code></pre>
+
+<p>Thank you everyone for the reply.</p>

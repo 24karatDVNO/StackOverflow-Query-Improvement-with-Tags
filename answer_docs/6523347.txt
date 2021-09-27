@@ -1,0 +1,6 @@
+<p>I assume you are missing a using statement in your extension class.</p>
+
+<pre><code>using System.Web.Mvc.Html;
+</code></pre>
+
+<p>The <code>CheckBox</code> extension method is within that namespace. <code>HtmlHelper</code> itself is located in <code>System.Web.Mvc</code> which is probably used.</p>

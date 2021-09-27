@@ -1,0 +1,34 @@
+<p>In order to tie it in more directly with the postback model I wrap mine with some C#</p>
+
+<p>C# Extension Method</p>
+
+<pre><code>public static string GetPostBackLink (this Control c, string argument = "") {
+ return c.Page.ClientScript.GetPostBackEventReference(ctl, argument, true) + ";";
+}
+</code></pre>
+
+<p>ASPX</p>
+
+<pre><code>&lt;asp:LinkButton id="lnkDoThis" runat="server" onclick="lnkDoThis_Click" 
+      style="display: none;"&gt;&lt;/asp:LinkButton&gt;
+
+&lt;asp:HiddenField id="hdnParamHolder" runat="server" /&gt;
+</code></pre>
+
+<p>JS</p>
+
+<pre><code>function DoSomething(param) { 
+ $("[id$='hdnDealTemp']").val(param);
+ &lt;%= lnkDoThis.GetPostBackLink() %&gt; 
+}
+</code></pre>
+
+<p>CodeBehind</p>
+
+<pre><code>protected void lnkDoThis_Click (object sender, EventArgs e) { 
+ var myParam = hdnParamHolder.Value;
+ // Do server actions here
+}
+</code></pre>
+
+<p>As for the opening in a second window ... I am not sure I follow when you want this to happen? If it is after the postback you will need to read from the hdnParamHolder control when the page reloads. </p>

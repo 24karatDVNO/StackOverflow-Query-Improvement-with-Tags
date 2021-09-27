@@ -1,0 +1,8 @@
+<p>I have found a solution to my problem. From Java I call the following command:</p>
+
+<pre><code>ffmpeg -i myvideo.mkv
+</code></pre>
+
+<p>Then I read the commands output and filter the lines which start with <code>Stream #</code>.</p>
+
+<p>This works on all my files with multiple audio tracks.</p>

@@ -1,0 +1,5 @@
+<p>Seeing as how Craig mentioned he's using CRM 2011, I felt I'd clarify that for Option 3 of Cole's suggestion, you can also use SOAP Xml against the Organization Service, or just use the REST endpoint and both will be supported. So long as you utilize CRM's Xrm.Page object to display the data on the form and don't do any other DOM manipulation, you should be fully supported.</p>
+
+<p>Another Option, "Option 2b" we'll call it would be to add fields to the form for the data you want to be loaded, then add a plugin registered to the Retrieve of the case entity that would populate those fields on the fly for you. No redundancy other than the fields on the form at that point.</p>
+
+<p>I would personally recommend Option 2b if possible because there will not be any lag in loading the data onto the form, and it provides for minimal data redundancy, minimal service calls, and the least amount of additional customizations.</p>

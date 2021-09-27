@@ -1,0 +1,12 @@
+<p>I'm not sure if it is possible to extend the class definition after loading because I've never tried, but have you tried simply casting the loaded object and then not calling super() again? That is, inside the loader function type:</p>
+
+<pre><code>obj:Judo = Judo(LoaderInfo(e.target).content)
+</code></pre>
+
+<p>This article may be helpful: <a href="http://www.parorrey.com/blog/flash-development/as3-loading-external-swf-into-movieclip-using-loader-class-in-flash-actionscript3/" rel="nofollow">http://www.parorrey.com/blog/flash-development/as3-loading-external-swf-into-movieclip-using-loader-class-in-flash-actionscript3/</a></p>
+
+<hr>
+
+<p>That said, I probably wouldn't structure the code in this way and just avoid the situation you're describing with a different structure. Like, one approach would be instead of making the loaded object into a Judo object I would initialize a separate Judo object and then pass it the loaded object. The old "has-a" vs. "is-a" distinction.</p>
+
+<p>Another approach that accomplishes the same thing would be for the containing class to not do the loading and simply create a new Judo object, passing the filename into the constructor. Then the Judo object does the loading.</p>

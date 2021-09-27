@@ -1,0 +1,25 @@
+<p>You can also use <a href="http://msdn.microsoft.com/en-us/library/ms178581.aspx" rel="nofollow">Session variables</a> to set a value on one page:</p>
+
+<pre><code>class Default : Page
+{
+    // ...other code
+
+    Session["myValue"] = "5";
+}
+</code></pre>
+
+<p>And then pick it up on the receiver page with:</p>
+
+<pre><code>class TargetPage : Page
+{
+    // other code...
+    int x; 
+    try {
+        x = int.Parse(Session["myValue"]);
+    } catch {}
+
+    // do something with x
+}
+</code></pre>
+
+<p>The good thing about <code>Session</code> variables is that you can use any data type/object, and it's hidden from the user, i.e. not visible in the URL.</p>

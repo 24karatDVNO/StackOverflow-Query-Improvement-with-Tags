@@ -1,0 +1,39 @@
+<p>I don't exactly know what you want. But definitely you cannot render other action with views as a part of the current action.</p>
+
+<p>However, you could write private methods on the controller for setting up the variables and include the corresponding common partials in your view files.</p>
+
+<p>This is an example:</p>
+
+<pre><code>class UsersController &lt; ...
+  def show
+    @user = current_user
+
+    setup_user_friends_widget(@user)
+  end
+
+  private
+
+  def setup_user_friends_widget(for_who)
+    @use_user_friends_widget= true
+
+    @friends = for_who.friends
+  end
+end
+
+# in your view users/show.html.erb
+
+&lt;%- if @use_users_friend_widget %&gt;
+  &lt;%= render :partial =&gt; "shared/widgets/user_friends"
+&lt;%- end %&gt;
+
+# in shared/widgets/_user_friends
+
+&lt;%- @friends.each do |friend| %&gt;
+  # use the instance variables directly because you have to call the setup_user_friends_widget method before you could use this widget.
+  # so you are safe to use the instance variables instead of passing them from render :partial
+
+  ...
+%&gt;
+</code></pre>
+
+<p>In this way, you could extract those common-things out to private methods on controllers and those methods automatically have access to params, sessions, cookies if you need them.</p>

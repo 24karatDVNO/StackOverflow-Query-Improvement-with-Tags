@@ -1,0 +1,13 @@
+<p>Using the SmtpClient against your SMTP server you're soliciting a service. Your application should only specify whether to use Windows authentication (which will be Kerberos or NTLM depending on how your intranet is configured) or credential specification, and whether to use SSL.</p>
+
+<p>As for application authentication, you can reference <a href="http://msdn.microsoft.com/en-us/library/system.security.principal.windowsidentity.aspx" rel="nofollow">WindowsIdentity</a> from <a href="http://msdn.microsoft.com/en-us/library/system.security.principal.windowsidentity.getcurrent.aspx" rel="nofollow">System.Security.Principal.WindowsIdentity.GetCurrent()</a>. More specifically, you can use the <a href="http://msdn.microsoft.com/en-us/library/system.security.principal.windowsidentity.isauthenticated.aspx" rel="nofollow">IsAuthenticated</a> property.</p>
+
+<p>Before you attempt any call to the SMTP server, if you want to use Windows authentication, try something like this:</p>
+
+<pre><code>SmtpClient client = new SmtpClient(server, port);
+client.Credentials = CredentialCache.DefaultNetworkCredentials;
+</code></pre>
+
+<p>Then let the SMTP server authorize whether the user can actually perform the attempted action.</p>
+
+<p>If you want to say, disable an action button because the SMTP server would reject the user attempted action and you're trying to be proactive and prevent he user from doing something he can't do, then that rejection must be deterministic prior to hitting the SMTP server (i.e. you would not simply rely on the SMTP server to tell you this; you would need some sort of business security layer in place).</p>

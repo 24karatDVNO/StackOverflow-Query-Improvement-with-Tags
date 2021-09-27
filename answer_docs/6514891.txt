@@ -1,0 +1,14 @@
+<p>I solved issues by seeing errors as Justin Cave said. For any one who have the same issue, i run following scripts to solve issue</p>
+
+<pre><code>SQL&gt; connect / as sysdba
+Connected.
+SQL&gt; grant execute on dbms_pipe to wb_prod;
+
+Grant succeeded.
+
+SQL&gt; grant execute on sys.dbms_system to wb_prod;
+
+Grant succeeded.
+</code></pre>
+
+<p>Which solved problem.</p>

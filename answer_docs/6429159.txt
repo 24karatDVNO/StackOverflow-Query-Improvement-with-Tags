@@ -1,0 +1,23 @@
+<p>You cannot just "magically" find all pages that exist on the domain, unless there is a sitemap (which won't exist most of the time).</p>
+
+<p>Here is what you can do
+1. Brute force - This is a bad idea as it will just take a very very long time.
+2. Regex over source code - Look for regular expressions within  tags</p>
+
+<p>2 is your best bet, as it will provide all links on that page. I would consider adding a recursive functionality so that you "spider" out and perform the same regex operation on all pages found in the seed.</p>
+
+<p>Here is the algorithm</p>
+
+<blockquote>
+  <ol>
+  <li><p>Start with a seed (ie: www.yahoo.com)</p></li>
+  <li><p>Perform regex on the source code of this page, and store all links in a
+  data structure</p></li>
+  <li><p>Recursively call #1 on each link found in #2. You might want to
+  restrict this to only links that live
+  on the seed domain (ie: start with or
+  contain www.yahoo.com), as well as excluding links to pages that you've already visited</p></li>
+  </ol>
+</blockquote>
+
+<p>A tree datastructure with a visitor design pattern would be ideal for this type of implementation.</p>

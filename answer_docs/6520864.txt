@@ -1,0 +1,3 @@
+<p>From what I can tell it sounds like you are using one mega query to pull the main data and then storing that in a gridview and then querying the gridview columns to create more data.</p>
+
+<p>If this is true a better approach would be to have separate queries for each set of data rather than trying to retrieve it out oa gridview once its been databound and lost some of its meaning </p>

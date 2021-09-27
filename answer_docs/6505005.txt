@@ -1,0 +1,20 @@
+<p>You would need to set the scale factor of the image correctly. Please check the scale property in <a href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UIImage_Class/Reference/Reference.html" rel="nofollow">UIImage</a> </p>
+
+<blockquote>
+  <p>If you load an image from a file whose
+  name includes the @2x modifier, the
+  scale is set to 2.0. If the filename
+  does not include the modifier but is
+  in the PNG or JPEG format and has an
+  associated DPI value, a corresponding
+  scale factor is computed and reflected
+  in this property. You can also specify
+  an explicit scale factor when
+  initializing an image from a Core
+  Graphics image. All other images are
+  assumed to have a scale factor of 1.0.</p>
+</blockquote>
+
+<p>So you can read your image as above, get the <code>CGImage</code> from it and create a new UIImage using <code>+ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</code>.</p>
+
+<p>A nicer way could be to check the DPI of your retina image and make it 144dpi with a graphics program. According to the scale property documentation this might work, too.</p>

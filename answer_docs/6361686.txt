@@ -1,0 +1,24 @@
+<p>strpos(); only search for that string, and in both cases, string is found
+strpos(); isn'T exact search !</p>
+
+<pre><code>// We're NOT on the home page
+if (strpos($_SERVER['REQUEST_URI'], "/games/mahjong/mahjong.php?layout") &gt;= 0) {
+  $style = "display: inline";
+}
+else {
+  $style = "display: none";
+}
+</code></pre>
+
+<p>or you can use</p>
+
+<pre><code>// We're NOT on the home page
+if (isset($_GET['layout'])) {
+  $style = "display: inline";
+}
+else {
+  $style = "display: none";
+}
+</code></pre>
+
+<p>this might help</p>

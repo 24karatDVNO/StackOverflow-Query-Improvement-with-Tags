@@ -1,0 +1,11 @@
+<p>Found the problem:</p>
+
+<pre><code>m_ToggleTemplate = new ControlTemplate();
+</code></pre>
+
+<p>Should have been:</p>
+
+<pre><code>m_ToggleTemplate = new ControlTemplate(typeof(ToggleButton));
+</code></pre>
+
+<p>Apparently if you don't set the type of the ControlTemplate, it only partially works.</p>

@@ -1,0 +1,3 @@
+<p>You maybe better served by something like jquery slideshow (http://jquery.malsup.com/cycle/)to deal with your transitions.</p>
+
+<p>A loop like that might never allow for event management to occur, and might be responsible for why your click events do not seem to trigger.  They may be waiting for the loop to complete before they would be handled. So in effect you have created an infinite loop and your events are qued waiting. </p>

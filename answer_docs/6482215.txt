@@ -1,0 +1,8 @@
+<p>When I visit your site in Chrome I get a bunch of console.log information. try removing all console.log() code (it's not supported in IE so it'll break all your javascript).</p>
+
+<p>Alternatively you could add this code to the top of your page to handle any browser that doesn't support console.log().</p>
+
+<pre><code>if(typeof(console) === 'undefined') {
+    console = {}
+}
+</code></pre>

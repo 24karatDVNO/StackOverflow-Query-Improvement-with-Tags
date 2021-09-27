@@ -1,0 +1,30 @@
+<p>To get the last login date, that will need either its own pre-select by person, or select max() from login detail on the current employee as a FIELD select.  That's why you are getting multiple rows... every login date will create a new "distinct" entry...  Try</p>
+
+<p>As for your "Order By" clause... Since you are ordering by the admin unit id group first, then employee IDs within that group, the latest login date will never matter as that is the lowest point, and since no duplicate employees, no impact.</p>
+
+<p>Otherwise, you can change the order based on the prequery's LastLogin column descending...</p>
+
+<pre><code>SELECT DISTINCT
+      ta.comp_name, 
+      emp.emp_fname, 
+      emp.date_registered, 
+      PreQuery.LastLogin
+   FROM 
+      tb1_admin_detail ta
+
+         join tb1_employee_personalinfo emp
+            on ta.unit_id = emp.unit_id
+            and emp.Active = 1
+
+            join ( select login.emp_id, 
+                          max( login.login_date ) as LastLogin
+                      from 
+                         tb1_employee_login_detail login
+                      group by
+                         login.emp_id ) PreQuery
+               on emp.emp_id = PreQuery.emp_ID
+
+   order BY 
+      ta.unit_id, 
+      emp.emp_id
+</code></pre>

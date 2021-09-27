@@ -1,0 +1,5 @@
+<p>If it is an instance variable, just use <code>valueForKey:</code>.   If it is a local variable, you are out of luck.  If it is a global, you can do it, but it is ugly, slow and beg's the question of "why?!".</p>
+
+<hr/>
+
+<p>You'll have to provide more information as to what you are trying to do.  By definition a local variable is only valid within the scope within which it is defined.  Given that, it is hard to imagine a situation where you would need to access a local variable symbolically where there isn't also a better/cleaner/easier way.</p>

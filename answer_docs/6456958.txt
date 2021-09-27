@@ -1,0 +1,9 @@
+<p><code>System.out.println("I was born :+ YearsOfBirth.");</code></p>
+
+<p>This results in the String literal "I was born :+ YearsOfBirth." being printed out. It's not quite what you want. Perhaps this, is what you meant:</p>
+
+<p><code>System.out.println("I was born :"+ YearsOfBirth);</code></p>
+
+<p>This time, the variable <code>YearsOfBirth</code> is converted to a String and concatenated with "I was born :" to provide the desired result.</p>
+
+<p>In Java, when ever you apply the concatenation operator (+) on two objects, and one of them happens to be a String, then the other will be converted to a String object (the value might not make sense), and a new String object will be returned. Also, literals in double-quotes are often Strings.</p>

@@ -1,0 +1,18 @@
+<p>Not sure what language your using to do this.</p>
+
+<p>But most languages have an indexof function.</p>
+
+<p>var mystring - "cccctestoooabcccc";
+var i = mystring.indexof("test");
+var x = mystring.indexof("abc");</p>
+
+<p>With those indexs you can use a function like substring(startindex, endindex);</p>
+
+<p>Although, you will have to add or subtract the length of your string (test or abc)
+Because the the index is of the first character location.
+So
+i = 4 and x = 11
+you'd would want to pull the substring between ((i + "test".length), x)
+Hopefully pull the substring "ooo"</p>
+
+<p>This is rough, but should give you the general idea.</p>

@@ -1,0 +1,14 @@
+<p>Ok, now I see.. we are registering in this way:</p>
+
+<pre><code>public class ComponentsInstaller : IWindsorInstaller
+{
+    public void Install(IWindsorContainer container, IConfigurationStore store)
+    {
+        var allTypesFromBinDir = AllTypes.FromAssemblyInDirectory(new AssemblyFilter(HttpRuntime.BinDirectory));
+
+        container.Register(allTypesFromBinDir
+            .BasedOn&lt;IComponentService&gt;()
+            .WithService.FromInterface());
+    }
+}
+</code></pre>

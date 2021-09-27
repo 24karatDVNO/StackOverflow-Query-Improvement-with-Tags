@@ -1,0 +1,11 @@
+<pre><code>{"status": "success", "msg": "Dish1 flagged"}{"status": "success", "msg": "Dish2 flagged"}
+</code></pre>
+
+<p>Is not valid JSON.</p>
+
+<pre><code>[{"status": "success", "msg": "Dish1 flagged"}, {"status": "success", "msg": "Dish2 flagged"}]
+</code></pre>
+
+<p>Would be valid.</p>
+
+<p>Since you can control the server make sure it only responds with a valid JSON payload for these requests. If the issue is that you are concatenating multiple requests' responses together then please show your request handling code so we can help you stop doing that.</p>

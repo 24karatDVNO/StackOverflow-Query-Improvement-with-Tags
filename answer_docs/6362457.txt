@@ -1,0 +1,31 @@
+<p>Python test performing same multiplication 100 million times against the same random numbers.</p>
+
+<pre><code>&gt;&gt;&gt; from timeit import timeit
+&gt;&gt;&gt; setup_str = 'import scipy; from scipy import random; scipy.random.seed(0)'
+&gt;&gt;&gt; N = 10*1000*1000
+&gt;&gt;&gt; timeit('x=random.randint(65536);', setup=setup_str, number=N)
+1.894096851348877 # Time from generating the random #s and no opperati
+
+&gt;&gt;&gt; timeit('x=random.randint(65536); x*2', setup=setup_str, number=N)
+2.2799630165100098
+&gt;&gt;&gt; timeit('x=random.randint(65536); x &lt;&lt; 1', setup=setup_str, number=N)
+2.2616429328918457
+
+&gt;&gt;&gt; timeit('x=random.randint(65536); x*10', setup=setup_str, number=N)
+2.2799630165100098
+&gt;&gt;&gt; timeit('x=random.randint(65536); (x &lt;&lt; 3) + (x&lt;&lt;1)', setup=setup_str, number=N)
+2.9485139846801758
+
+&gt;&gt;&gt; timeit('x=random.randint(65536); x // 2', setup=setup_str, number=N)
+2.490908145904541
+&gt;&gt;&gt; timeit('x=random.randint(65536); x / 2', setup=setup_str, number=N)
+2.4757170677185059
+&gt;&gt;&gt; timeit('x=random.randint(65536); x &gt;&gt; 1', setup=setup_str, number=N)
+2.2316000461578369
+</code></pre>
+
+<p>So in doing a shift rather than multiplication/division by a power of two in python, there's a slight improvement (~10% for division; ~1% for multiplication).  If its a non-power of two, there's likely a considerable slowdown.</p>
+
+<p>Again these #s will change depending on your processor, your compiler (or interpreter -- did in python for simplicity).</p>
+
+<p>As with everyone else, don't prematurely optimize.  Write very readable code, profile if its not fast enough, and then try to optimize the slow parts.  Remember, your compiler is much better at optimization than you are.</p>

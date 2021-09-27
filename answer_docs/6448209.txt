@@ -1,0 +1,3 @@
+<h1>MySQL</h1>
+<p>Either would likely work for your purposes, but your database seems relatively rigid in its structure, something which SQL deals well with. As such, I would recommend <strong>MySQL</strong>. A many-to-many relationship is relatively easy to implement and access, as well.</p>
+<p>You may take a tiny bit of a performance hit, but in my experience, this is generally not extremely noticeable with smaller scale applications (i.e. databases with less than <em>millions</em> of entries). I do agree with @Jonas Elfström's comment, however: you should have an abstraction layer between your application and the database, so that should scaling become an issue, you can address it without too many problems.</p>

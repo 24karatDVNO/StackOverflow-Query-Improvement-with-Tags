@@ -1,0 +1,34 @@
+<p>IMHO to do it right:</p>
+
+<ol>
+<li><p>bindView() is not necessary. use newView</p></li>
+<li><p>Every value must be declared in String[] from. </p></li>
+<li><p>if you want to make any operations on TextViews you should use setViewText(TextView v, String text) method (thanks piotrpo)</p></li>
+</ol>
+
+<p>4.If you want do operations on ImageViews use that code (eg you want different images for incoming and outgoing calls)</p>
+
+<pre><code>class IconicAdapter5 extends SimpleCursorAdapter
+{
+    private int source = 0;
+
+    @Override
+    public void setViewImage (ImageView v, String value) 
+    {
+         if (v.getId() == R.id.imageViewType) 
+            {
+                 if(value.equals("1") == true)
+                 {
+                    source= (R.drawable.sym_call_incoming);
+                 }
+
+                 if(value.equals("2") == true)
+                 {
+                    source= (R.drawable.sym_call_outgoing);
+                 }
+             }
+         v.setImageResource(source);
+    }
+</code></pre>
+
+<p>}</p>

@@ -1,0 +1,11 @@
+<p>If you use OOP, you can structure your application with three core elements:</p>
+
+<ol>
+<li><code>Main -&gt; MovieClip</code></li>
+<li><code>Album -&gt; MovieClip</code></li>
+<li><code>Photo -&gt; Loader</code></li>
+</ol>
+
+<p><code>Main</code> will control loading an <code>Album</code>, which will queue and load instances of <code>Photo</code>. When an <code>Album</code> is closed, contained instances of <code>Photo</code> can be removed, and the currently queued <code>Photo</code>(s) can be ignored.</p>
+
+<p>I have <a href="http://junk.projectavian.com/?f=album.zip" rel="nofollow">got you started here</a>.</p>

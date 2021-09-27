@@ -1,0 +1,1 @@
+<p>If the sender is sending binary data you are barking up the wrong tree with a Reader in the first place. Use DataInputStream.readInt() to read the DWORD, then DataInputStream.readFully() to read the data. And throw all that terrible looping/counting code away.</p>

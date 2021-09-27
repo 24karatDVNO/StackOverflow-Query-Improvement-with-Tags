@@ -1,0 +1,10 @@
+<p>First, your select statement is returning a list of Guid's not single Guid.  If you really just want one, you should call one of this methods:
+- First(): if you you might have several, this will take the first one, and throw an error if you there are none
+- FirstOrDefault(): if you might have several or none, this will take the first one, or default to an empty Guid if there is none
+- Single(): if there will be exactly one, this will take that one, and will throw an exception if there are none or more than one
+- SingleOrDefault(): if there will be zero or one, this will take that one, or default to an empty Guid if there is none, or will throw an exception if there are several.</p>
+
+<pre><code>context.ApplicationId = 
+DataBaseEntities.Applications.Where(a =&gt; a.Name == applicationName)
+.Select(a =&gt; a.Id).Single().ToString(); 
+</code></pre>

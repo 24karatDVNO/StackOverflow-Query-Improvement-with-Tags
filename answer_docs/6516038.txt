@@ -1,0 +1,3 @@
+<p>You could potentially create your own partial subclass of <code>Activity</code> where it overrides <code>onCreate()</code>, <code>onStart()</code>, etc and manually calls a static/singleton instance of your global receiver as appropriate. After that, just derive your own activities' implementations from that subclass.</p>
+
+<p>However, I'm assuming the reason you want to do this is that the "receiver" actually contains or otherwise represents some globally available state or resource - if you can find a way to implement your application without having any global state (and just passing it along as payload for an activity call, for instance), that would be best.</p>

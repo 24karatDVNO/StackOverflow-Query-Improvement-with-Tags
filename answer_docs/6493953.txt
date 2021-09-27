@@ -1,0 +1,1 @@
+<p>Cc and Bcc are no headers which do anything on SMTP level. You should implement it yourself, by sending the mail to individual recipients (multiple RCPT TO commands on SMTP level) or stick to using your local sendmail instead, as your sendmail client does implement Bcc and Cc header handling.</p>

@@ -1,0 +1,16 @@
+<p>i thinks you are using selenium.type("asasas").</p>
+
+<p>this will not fire any events. it just paste the value in the DOM element using .value or .innerHTML ect..</p>
+
+<p>so the quick approach would be , type native keys</p>
+
+<p>use, selenium.focus("locator");
+selenium.keyPressNative("17");</p>
+
+<p>if you want to enter a whole string than a single character, there are many client programmatic approaches</p>
+
+<p>for example to enter a string of numbers 12345</p>
+
+<p>for(char ch : "12345".toCharArray()) {
+ selenium.keyPressNative(String.valueOf((int)ch));
+}</p>

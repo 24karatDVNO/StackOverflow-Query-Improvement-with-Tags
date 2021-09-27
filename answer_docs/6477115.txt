@@ -1,0 +1,7 @@
+<p>You could change your code to:</p>
+
+<p>cmd.Parameters.AddWithValue("geom", geom.AsBinary());</p>
+
+<p>All geometry objects in SharpMap implement the AsBinary() and AsText() methods, which will return the binary/text representation of the geometry. In your insert statement, you are using geometry::STGeomFromWKB(), which expects binary input. Hence, pass the byte array returned by AsBinary method as the parameter's value.</p>
+
+<p>The DbType obviously would be VarBinary.</p>

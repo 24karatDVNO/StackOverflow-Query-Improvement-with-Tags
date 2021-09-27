@@ -1,0 +1,12 @@
+<p>Here a like something to get you started:</p>
+
+<pre><code>HTML : 
+&lt;input type="button" value="A" /&gt;
+&lt;input type="button" value="B" /&gt;
+&lt;input type="button" value="C" /&gt;
+&lt;input type="button" value="D" /&gt;
+&lt;textarea id="toBeFill"&gt;&lt;/textarea&gt;
+
+Javascript using JQuery:
+$("input[type=button]").live('click',function(){ $('#toBeFill').text($('this').val()); })
+</code></pre>

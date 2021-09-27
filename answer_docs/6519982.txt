@@ -1,0 +1,49 @@
+<p>I haven't worked with MyGeneration before but you can do this easily using <a href="http://www.thecodegenerator.com" rel="nofollow">CodeGenerator</a>. The template would look something like this:</p>
+
+<h3>XSL Template</h3>
+
+<p></p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0" xmlns:P="http://Schemas.QuantumConceptsCorp.com/CodeGenerator/Project.xsd" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xdt="http://www.w3.org/2005/xpath-datatypes"&gt;
+    &lt;xsl:output method="text" version="1.0" encoding="UTF-8" indent="no"/&gt;
+
+    &lt;xsl:template match="P:Project"&gt;
+        &lt;xsl:text&gt;
+namespace  &lt;/xsl:text&gt;
+        &lt;xsl:value-of select="@RootNamespace"/&gt;
+&lt;xsl:text&gt;.DataObjects
+{&lt;/xsl:text&gt;
+        &lt;xsl:for-each select="P:TableMappings/P:TableMapping[@Exclude='false']"&gt;
+            &lt;xsl:text&gt;
+    public partial class &lt;/xsl:text&gt;
+            &lt;xsl:value-of select="@ClassName"/&gt;
+            &lt;xsl:text&gt;  
+    {
+        private string TableName  { get { return "&lt;/xsl:text&gt;
+            &lt;xsl:value-of select="@ClassName"/&gt;
+            &lt;xsl:text&gt;"; } }
+    }
+    &lt;/xsl:text&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<h3>Result</h3>
+
+<pre><code>namespace [Your.Namespace]
+{
+    public class [TableName1]
+    {
+        public string TableName { get { return "[TableName1]"; } }
+    }
+
+    //...other tables
+
+    public class [TableNameN]
+    {
+        public string TableName { get { return "[TableNameN]"; } }
+    }
+}
+</code></pre>
+
+<p><strong>Edit:</strong> You can also have it output one table per file - it sounds like that's what you're after.</p>

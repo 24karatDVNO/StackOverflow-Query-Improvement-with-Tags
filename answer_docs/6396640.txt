@@ -1,0 +1,16 @@
+<p>I think you need to use Bundle and static global variable and onActivityResult(). If you want to edit client with previous client to new client . Suppose you have "ClientList" Activity and "EditClient" Activity</p>
+
+<p>Write into "EditClient" Activity</p>
+
+<pre><code>Bundle extras = getIntent().getExtras();
+  if (extras != null) 
+  {
+      String name = extras.getString(ClientList.KEY_Client);//ClientList.KEY_Client is global static variable of "ClientList" Activity.
+
+      if (name != null) 
+      {
+          nameText.setText(name);//"nameText" is a EditText object represent EditText view
+      }
+
+  }
+</code></pre>

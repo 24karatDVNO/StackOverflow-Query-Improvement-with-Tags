@@ -1,0 +1,38 @@
+<p>I would already bind the ajax call inside of the loadData block to a method on success. I have fabricated and tested (FF 5.0 &amp; IE 9) the following code snippet and the success method is called (you need to create the 'test.html' file):</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+$(function()
+{
+    $('a').click(function()
+    {
+        loadData();
+        return false;
+    });
+
+    function loadData()
+    {
+        $.ajax({
+          url: "test.html",
+          context: document.body,
+          success: loadDataSuccess()
+        });
+    }
+
+    function loadDataSuccess()
+    {
+        alert('success!');
+        $(window).scrollTop(0);
+    }
+});
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href="bla.html"&gt;Test&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>The only thing I noticed was that 'e.preventDefault' would not stop me from following the link so I changed that to 'return false'.</p>

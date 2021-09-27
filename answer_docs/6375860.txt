@@ -1,0 +1,19 @@
+<p>u have been using autorelease array
+so u have to retain this if u want</p>
+
+<p>u dont like this </p>
+
+<p>then do alloc and init then </p>
+
+<p>add male,female...</p>
+
+<p>temp = [[NSArray arrayWithObjects:@"Male", @"Female", nil]retain];</p>
+
+<ul>
+<li><p>(NSString *)pickerView:addData titleForRow:(NSInteger)row
+                            forComponent:(NSInteger)component {</p>
+
+<p>return [temp objectAtIndex:row];</p></li>
+</ul>
+
+<p>}</p>

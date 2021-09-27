@@ -1,0 +1,31 @@
+<p>Create a bean to store data</p>
+
+<h2>Example</h2>
+
+<pre><code>public class NameDetails {
+    String firstName = null;
+    String middleName = null;
+NameDetails(String firstName, String middleName){
+    this.firstName = firstName;
+    this.middleName=middleName;
+}
+String getFirstName(){
+    return firstName;
+}
+String getMiddleName(){
+    return middleName;
+}
+}
+</code></pre>
+
+<p>Add data to that bean using</p>
+
+<pre><code>NameDetails name1 = new NameDetails("arun","kumar");
+..
+...
+</code></pre>
+
+<p>Create array of Bean Objects. use this array for listview</p>
+
+<pre><code>{name1 , name2, name3, name4} 
+</code></pre>

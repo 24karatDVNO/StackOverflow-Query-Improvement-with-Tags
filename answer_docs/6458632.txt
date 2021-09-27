@@ -1,0 +1,6 @@
+<p>datum == "none" is wrong.  You want</p>
+
+<pre><code>datum.equals("none");
+</code></pre>
+
+<p>The string == operator compares only the pointer locations, not the actual value of the String.  So it will work in some situations (if datum was set with a constant string) but not when dynamically created.</p>

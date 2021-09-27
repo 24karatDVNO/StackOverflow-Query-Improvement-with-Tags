@@ -1,0 +1,1 @@
+<p>Actually when an array/hash goes out of scope,its <code>values</code>(the reference in keys are just taken as string so won't impact the <code>refcount</code>) will decrease their <code>refcount</code>,and if reaches <code>0</code>,the operation will performe recursively.</p>

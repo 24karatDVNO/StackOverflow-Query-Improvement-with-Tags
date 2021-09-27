@@ -1,0 +1,15 @@
+<p>You can parse a date like this (<code>mm/dd/yyyy</code>):</p>
+
+<pre><code>new Date(Date.parse("06/07/2011"))
+</code></pre>
+
+<p>and use the <code>.getDay</code> function. You could do this:</p>
+
+<pre><code>// parse data
+var regexp = /(\d{2})\/(\d{2})\/(\d{2})/.exec("07/06/11");
+
+//form date
+var date = new Date(Date.parse(regexp[2] + "/" + regexp[1] + "/20" + regexp[3]));
+
+alert(date.getDay()); // 2 -&gt; Tuesday (starts at 0 = Sunday)
+</code></pre>

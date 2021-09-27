@@ -1,0 +1,38 @@
+<p>Generally the idea is to isolate users of your service from changes in your implementation. Therefore, you do not expose your implementation types on the wire. Image the situation where you decide to rename an enum value. If the service consumer does not update their implementation you will have introduced a breaking change as the service user will be sending the old enum value to you which will not deserialize correctly. </p>
+
+<p>In addition you may find that not all of the enum values are applicable to users of your service (maybe they are used internally)</p>
+
+<p>So, yes, you should translate enum values just like other types</p>
+
+<p>If you give your enums explicit numeric values you could translate between them using casts</p>
+
+<pre><code>class Program
+{
+    static void Main(string[] args)
+    {
+        Internal i = Internal.Too;
+
+        External e = (External) i;
+
+        Console.WriteLine(e);
+    }
+
+}
+
+enum Internal
+{
+    One = 1,
+    Too = 2
+}
+
+[DataContract]
+enum External
+{
+    [EnumMember]
+    One = 1,
+    [EnumMember]
+    Two = 2
+}
+</code></pre>
+
+<p>However, you would have to be careful that they did not become out of sync</p>

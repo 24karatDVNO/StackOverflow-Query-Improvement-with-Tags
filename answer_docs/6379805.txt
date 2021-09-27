@@ -1,0 +1,14 @@
+<p>Use a trimmed copy if you want to ignore spaces.  Make sure to only trim strings, else your lookup of <code>4</code> will fail:</p>
+
+<pre><code>var arr = [ 4, "  Pete", 8, "  John" ];
+var trimmedArr = jQuery.map(arr, function(item)
+{
+    return typeof item == "string" ? jQuery.trim(item) : item;
+});
+
+$("span:eq(0)").text(jQuery.inArray("John", trimmedArr));
+$("span:eq(1)").text(jQuery.inArray(4, trimmedArr));
+$("span:eq(2)").text(jQuery.inArray("Karl", trimmedArr));
+</code></pre>
+
+<p><a href="http://jsfiddle.net/gilly3/9RbZT/" rel="nofollow">This method works (jsFiddle)</a>.</p>

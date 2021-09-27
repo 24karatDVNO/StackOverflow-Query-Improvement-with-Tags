@@ -1,0 +1,31 @@
+<p>You can also use the <a href="http://msdn.microsoft.com/en-us/library/ms752300.aspx#Path_Syntax" rel="nofollow">"/" binding path syntax</a> in WPF in combination with a CollectionView: </p>
+
+<pre><code>&lt;Window ... xmlns:local="..."&gt;
+  &lt;Window.DataContext&gt;
+    &lt;local:MyViewModel ... /&gt;
+  &lt;/Window.DataContext&gt;
+
+  &lt;Window.Resources&gt;
+    &lt;CollectionViewSource x:Key="ItemsView" Source="{Binding Path=Items}" /&gt;
+  &lt;Window.Resources&gt;
+
+  &lt;ListView ItemsSource="{Binding Source={StaticResource ItemsView}}"&gt;
+    ...
+  &lt;/ListView&gt;
+
+  &lt;Grid DataContext="{Binding Source={StaticResource ItemsView}, Path=/}"&gt;
+    ...
+  &lt;/Grid&gt;
+&lt;/Window&gt;
+</code></pre>
+
+<p>To quickly explain this setup:</p>
+
+<ul>
+<li>The window's datacontext is set to an instance of a view model</li>
+<li>A CollectionViewSource is created as a resource and uses a collection exposed by the view model as its source</li>
+<li>The listview's ItemsSource is bound directly to the CollectionView (exposed by CollectionViewSource)</li>
+<li>The Grid (which would contain your form elements) is bound to the CurrentItem of the CollectionView via the <a href="http://msdn.microsoft.com/en-us/library/ms752300.aspx#Path_Syntax" rel="nofollow">"/" binding path syntax</a>; each time an item is selected in the list view, the Grid's datacontext is automatically set to the currently selected item</li>
+</ul>
+
+<p>I prefer this type of binding over having to reference specific elemetns and properties and relying on the built in power of WPF's binding and CollectionView classes.</p>

@@ -1,0 +1,14 @@
+<p>You should be able to do it by modifying the config spec of your view (assuming you are in Base ClearCase, not UCM)</p>
+
+<pre><code>element .../aNewBranch /main/LATEST
+element /path/... /main/0 -mkbranch aNewBranch
+</code></pre>
+
+<p>Note the order: </p>
+
+<ul>
+<li>first try to select the <code>LATEST</code> version of the "<code>aNewBranch</code>",  </li>
+<li>then select <code>version 0</code> with possibility of making a branch if there is a checkout</li>
+</ul>
+
+<p>See <a href="http://publib.boulder.ibm.com/infocenter/cchelp/v7r0m0/index.jsp?topic=/com.ibm.rational.clearcase.tutorial.doc/a_how_configspec_works.htm" rel="nofollow">How a ConfigSpec works</a> and <a href="https://publib.boulder.ibm.com/infocenter/cchelp/v7r1m0/index.jsp?topic=/com.ibm.rational.clearcase.cc_ms_admin.doc/r_mstrshp_rqst_config_spec.htm" rel="nofollow">Writing a ConfigSpec</a> for more.</p>

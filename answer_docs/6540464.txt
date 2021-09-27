@@ -1,0 +1,9 @@
+<p>You can take a look at audacity source AudioIO.cpp, which uses portmixer (also worth taking a look).</p>
+
+<p>You can look in portmixer to see how to start an audio io stream in windows.  There are also a lot of good tutorials online like <a href="http://www.planet-source-code.com/vb/scripts/ShowCode.asp?txtCodeId=4422&amp;lngWId=3" rel="nofollow">this one</a>.</p>
+
+<p>Although the windows wave API starts the audio thread for you the best practice is to have another thread to read/parse/decode the audio file you want to mix and fill up a buffer that is accessible by the audio thread callback.  Portaudio/SDL/Open AL are just a layer on top of the windows sound hosts (MME/Direct Sound), so this is still true if you use one of them.</p>
+
+<p>But if you're feeling really lazy or just want a fast proof of concept it is possible to do the buffer filling from the audio file in the main thread.</p>
+
+<p>With regards to the mic input, when you specify the stream details you can say which device inputs you want, and these are given to you as an array of ints/floats, which you can send directly to the output array.  In your case you want to mix (add) the audio file.</p>

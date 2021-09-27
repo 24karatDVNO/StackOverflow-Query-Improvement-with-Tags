@@ -1,0 +1,2 @@
+<p>Yeah using a log for debugging is simplest, however if you do have messages that need to be displayed during the background processing for whatever reason, you can use the
+onProgressUpdate() method, as noted above by Flo. You can trigger this method whenever you need to write a message, by calling publishProgress() from within DoInBackground().  Message content or processing statuses can easily be passed via private variables in the ASyncTask which are accessible to both the Background method and the UI methods.</p>

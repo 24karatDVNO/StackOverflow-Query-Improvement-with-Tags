@@ -1,0 +1,17 @@
+<p>I don't think an array is what you're looking for.  It's a pointer to the size of the array, not a pointer to an array of sizes.  Try this:</p>
+
+<pre><code>[DllImport(@"IcaCert.dll", EntryPoint = "CreateCert2", CallingConvention = CallingConvention.Cdecl)]
+public unsafe static extern bool CreateCert2WithArrays(
+byte* data, uint dataSize,
+byte* result, ref uint resultSize);
+
+byte[] arrayIn= Encoding.UTF8.GetBytes(source);
+
+uint arrayInSize = (uint)arrayIn.Length;
+byte[] arrayOut = new byte[100];
+uint arrayOutSize = (uint)arrayOut.Length; 
+CreateCert2WithArrays (arrayIn, (uint) arrayIn.Length, arrayOut, ref arrayOutSize);
+uint[] arrayOutSize = new uint[1];
+arrayOut = new byte[(int)arrayOut];
+CreateCert2WithArrays (arrayIn, (uint) arrayIn.Length, arrayOut, ref arrayOutSize);
+</code></pre>

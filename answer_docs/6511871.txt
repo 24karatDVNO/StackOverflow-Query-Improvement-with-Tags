@@ -1,0 +1,14 @@
+<p>I'm surprised that your php server has to gather user credit card data and post it.  I would expect the flow to be more like:</p>
+
+<p>Customer indicates he wants to buy your product</p>
+
+<p>Either 
+  - you display a form asking for credit card details - the form has the action attribute set to the credit card gateway's server (weird case) 
+OR 
+  - your php server redirects the user to a form hosted by the credit card gateway, passing your merchant id or similar.</p>
+
+<p>When the credit card gateway is done collecting the user's details, their web server redirects the user back to a predefined page on your own web server.  That page then goes and gets the xml (curl request or similar) from the cc gateway and makes sure that they actually paid for what they wanted.</p>
+
+<p>Based on the results of the xml you redirect the user to "thanks for the purchase" or "your purchase failed" pages.</p>
+
+<p>Most payment gateways (and most consumers) don't want Joe's web store to have access to their full credit card details.  So most payment gateways provide their own forms that you redirect the user to (on SSL servers), so you don't actually have to collect/handle/be liable for the misuse of your customers' credit card numbers.</p>

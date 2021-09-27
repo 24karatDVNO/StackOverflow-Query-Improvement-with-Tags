@@ -1,0 +1,16 @@
+<p>Well guys first look at the query which is returning the wrong results:</p>
+
+<pre><code>SELECT  
+        e.*
+FROM    CustomerEmails e 
+WHERE   EXISTS 
+        (
+            SELECT  Email 
+            FROM    CustomerEmailIds c 
+            WHERE   ( ISNULL(e.[From],'') + '/' + ISNULL(e.[To],'') ) LIKE  '%'+c.Email+'%' 
+        )
+</code></pre>
+
+<p>There is no issue in this query, the issue is that some of the emails in CustomerEmailIds table are <strong>invalid emails which are ('.','@','0','-')</strong> &amp; that's why the query is returning all the CustomerEmails where these invalid emails exists.</p>
+
+<p><strong>Thanks to <a href="http://www.linkedin.com/profile/view?id=25754073&amp;authType=name&amp;authToken=u48j&amp;locale=en_US&amp;pvs=pp&amp;trk=ppro_viewmore" rel="nofollow">Kev Riley</a>!</strong> the persons who helped me find out the cause of this issue <a href="http://ask.sqlservercentral.com/questions/74719/find-a-string-within-a-string-sql-takes-too-much-time" rel="nofollow">here</a>!</p>

@@ -1,0 +1,6 @@
+<p>you dont specify the table so nhibernate takes <code>Set</code> as the tablename. <code>Set</code> is a reserved word in most datasbases. You can try to escape it</p>
+
+<pre><code>&lt;class name="Set" table="`Set`"&gt;
+</code></pre>
+
+<p>i'm not sure if i used the correct backticks though</p>

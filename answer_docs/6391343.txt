@@ -1,0 +1,28 @@
+<p>Is <code>yield return</code> what you're looking for?</p>
+
+<p><code>using</code> will call Dispose() and Close() when it reaches the closing brace, but I think the question is how to achieve this particular structure of code.</p>
+
+<p>Edit: Just realized that this isn't exactly what you're looking for, but I'll leave this answer here since a lot of people aren't aware of this technique.</p>
+
+<pre><code>static IEnumerable&lt;string&gt; GetLines(string filename)
+{
+    using (var r = new StreamReader(filename))
+    {
+        string line;
+        while ((line = r.ReadLine()) != null)
+            yield return line;
+    }
+}
+
+static void Main(string[] args)
+{
+    Console.WriteLine(GetLines("file.txt").Count());
+
+    //Or, similarly: 
+
+    int count = 0;
+    foreach (var l in GetLines("file.txt"))
+        count++;
+    Console.WriteLine(count);
+}
+</code></pre>

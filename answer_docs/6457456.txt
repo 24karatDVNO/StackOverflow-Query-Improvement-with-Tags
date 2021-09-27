@@ -1,0 +1,16 @@
+<p>If I understand your question, which I don't think I do, this is simple. It appears to be a set of very poorly designed tables (Language doing more than one thing, for example). And it appears that the Language table has two types of records: a) The Entity records, which have type='Entity' and b) Field records, which have type='Field'. </p>
+
+<p>At any rate, the way I would approach it is to treat the Language table as if it were two tables:</p>
+
+<pre><code>select ef.fid, Entities.value, Fields.value
+from entityfields ef
+  inner join language Entities
+    on Entities.id = ef.id
+    and Entities.type = 'Entity'
+  inner join language Fields
+    on Fields.id = ef.id
+    and Fields.Type = 'Field'
+order by 2, 3
+</code></pre>
+
+<p>First stab, anyway. That should help  you get the answer.</p>

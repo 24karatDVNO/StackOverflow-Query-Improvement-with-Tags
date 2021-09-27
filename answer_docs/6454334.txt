@@ -1,0 +1,9 @@
+<p>I have an addition to joschi's answer:<br>
+If you don't know <em>mybigsentence</em> but you want to search for arbitrary repeated strings of a minimum length (I assume a length of 10 characters in my example) you could do it with GNU <code>egrep</code> like this:</p>
+
+<pre><code>egrep -on '([a-z]{10,})\1' myfile
+</code></pre>
+
+<p>This will return the line number (<code>-n</code>) of the match and the match itself (<code>-o</code>) but not the whole line (which you would get without <code>-o</code>).</p>
+
+<p>But that will only work with the GNU version of <code>grep</code>.</p>

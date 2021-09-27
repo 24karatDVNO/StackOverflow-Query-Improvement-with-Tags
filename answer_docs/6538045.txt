@@ -1,0 +1,24 @@
+<p>I ran into this same issue and what fixed it for me was to name my UserControl then reference that name in the binding.</p>
+
+<p>Here is the syntax:</p>
+
+<p><strong>{Binding ElementName=SomeTextBox, Path=Text}</strong></p>
+
+<p><strong>Bind to the “Text” property of the element XAML 
+element with name=”SomeTextBox” or x:Name=”SomeTextBox”.</strong></p>
+
+<p>So here is my user control:</p>
+
+<pre><code>&lt;UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
+             x:Class="SupportReports.Workflow.Portfolio.PortfolioManager"
+             mc:Ignorable="d"
+             Name="PortfolioManagerControl"
+             &gt;
+</code></pre>
+
+<p>And here is the nested dataTemplate that binds to my command in my main view model</p>
+
+<pre><code>&lt;cmd:EventToCommand Command="{Binding ElementName=PortfolioManagerControl, Path=DataContext.PortfolioManagerProjectSelectedCommand}" CommandParameter="{Binding Text, ElementName=ProjectName}" /&gt;
+</code></pre>

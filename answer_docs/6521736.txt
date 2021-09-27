@@ -1,0 +1,4 @@
+<p>You'll have to define your own delegate rather than Func.  The following will work perfectly here:</p>
+
+<pre><code>public delegate TResult ParamsFunc&lt;TResult&gt;(params object[] args);
+</code></pre>

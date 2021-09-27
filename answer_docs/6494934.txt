@@ -1,0 +1,20 @@
+<p>What you need to get is an access token. This is a key which allows you continued access to the account until your the token expires or the user cancels it.</p>
+
+<p>When you first authenticate if you have set the required permissions you get an authtoken which you can store and use to initiale further calls.</p>
+
+<pre><code>var client = new FacebookClient("my_access_token");
+dynamic result = client.Get("19292868552_118464504835613");
+string id = result.id;
+string fromName = result.from.name;
+string fromCategory = result.from.category;
+string message = result.message;
+int likes = result.likes;
+foreach (dynamic comment in result.comments.data) {
+    string commentId = comment.id;
+    string commentMessage = comment.message;
+}
+</code></pre>
+
+<p>see this article for details about the process:</p>
+
+<p><a href="http://benbiddington.wordpress.com/2010/04/23/facebook-graph-api-getting-access-tokens/" rel="nofollow">http://benbiddington.wordpress.com/2010/04/23/facebook-graph-api-getting-access-tokens/</a></p>

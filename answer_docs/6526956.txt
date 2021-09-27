@@ -1,0 +1,14 @@
+<blockquote>
+  <p>I have a simple table that I want to fade out, replace the contents of the table, then fade back in</p>
+</blockquote>
+
+<p>Well there's your problem. <code>.replaceWith()</code> doesn't replace the content of the table, it <strong>replaces the table itself</strong>.</p>
+
+<p><em>This should work:</em></p>
+
+<pre><code>$('#testTable')
+    .fadeOut(500, function(){$(this).html( /*content*/ )})
+    .fadeIn(500);
+</code></pre>
+
+<p><em><strong>fiddle: <a href="http://jsfiddle.net/9bkAy/" rel="nofollow">http://jsfiddle.net/9bkAy/</a></em></strong></p>

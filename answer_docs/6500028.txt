@@ -1,0 +1,23 @@
+<p>The query </p>
+
+<pre><code>SELECT password 
+FROM users 
+WHERE email = 'mail@gmail.com'
+   AND ( activation = 1 OR activation = 2)
+</code></pre>
+
+<p>is equivalent to:</p>
+
+<pre><code>SELECT password 
+FROM users 
+WHERE email = 'mail@gmail.com'
+   AND activation IN (1, 2)
+</code></pre>
+
+<p>so, you could also have:</p>
+
+<pre><code>$stmt = $db-&gt;
+  prepare('SELECT password FROM users WHERE email=? AND activation IN (?,?)'); 
+</code></pre>
+
+<p>No difference in performance, just a bit shorter. It may be helpful if you have not two but a lot of OR conditions for the same field.</p>

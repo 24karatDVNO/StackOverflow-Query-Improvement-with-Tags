@@ -1,0 +1,3 @@
+<p>This depends very much on the particular compiler version. For instance, GCC 4.4 basically just had some macro switches for your <code>-std=c++0x</code> option to do the namespace labelling appropriately, but would always end up pulling the actual code from <code>tr1_impl/unordered_map</code>, while GCC 4.6 has two entirely separate implementations, one in <code>tr1/unordered_map.h</code> and one in <code>bits/unordered_map.h</code> -- and the respective base class implementations in <code>.../hashtable.h</code> do in fact differ; the C++0x version has <code>std::forward</code>s everywhere etc.</p>
+
+<p>Short answer: It depends.</p>

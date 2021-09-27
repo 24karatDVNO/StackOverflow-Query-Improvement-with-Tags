@@ -1,0 +1,24 @@
+<p>You are not supposed to use the same ID more than once in a document.</p>
+
+<p>Anyway this function could do it:</p>
+
+<pre><code>function getFieldByForm(anyForm, fieldId) {
+    if(typeof(anyForm) == "string")
+        anyForm = $("#" + anyForm);
+    return anyForm.find("#" + fieldId);
+}
+</code></pre>
+
+<p>You can call the funcion on any of this two ways:</p>
+
+<pre><code>getFieldByForm($("form[name='f1']"), "quantity");
+</code></pre>
+
+<p>or</p>
+
+<pre><code>getFieldByForm("formId", "quantity");
+</code></pre>
+
+<p>For the second one you need the forms to have ID.</p>
+
+<p><a href="http://jsfiddle.net/paska/NkpPu/" rel="nofollow">Here you have a working example.</a></p>

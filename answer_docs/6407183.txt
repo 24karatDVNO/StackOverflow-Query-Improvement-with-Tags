@@ -1,0 +1,21 @@
+<p>You can assign a class to the bookmark link. See the below example:</p>
+
+<p><strong>HTML</strong></p>
+
+<pre><code>&lt;a name="bookmark1" class="bookmark"&gt;Bookmark One&lt;/a&gt;
+
+&lt;a href="#bookmark1"&gt;Link to BM#1&lt;/a&gt;
+</code></pre>
+
+<p><strong>CSS</strong></p>
+
+<pre><code>a:hover{
+    color: red;
+}
+
+a.bookmark:hover{
+    color: blue;
+}
+</code></pre>
+
+<p>That way your normal links will hover RED (in this example) and your bookmark links will hover BLUE.</p>

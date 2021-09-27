@@ -1,0 +1,23 @@
+<p>You can make <strong>static</strong> method, that returns Page object</p>
+
+<pre><code>public static function CreatePageWithExtraAttribute($uid, $slug, $extra) {
+    $page = new Page($uid,$slug);
+    //your code here
+    return $page;
+}
+</code></pre>
+
+<p>Or make a static method that querys database for example</p>
+
+<pre><code>public static function CreatePage($extra) {
+    list($uid,$slug) = SomeDatabaseManager::GetUidSlug();
+    $page = new Page($uid,$slug);
+    //your code here
+    return $page;
+}
+</code></pre>
+
+<p>Then use it </p>
+
+<pre><code>$page=Page::CreatePageWithExtraAttribute($title)
+</code></pre>

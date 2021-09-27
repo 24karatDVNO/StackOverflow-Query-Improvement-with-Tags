@@ -1,0 +1,14 @@
+<p>Can you just add these properties to the listview?</p>
+
+<pre><code>ScrollViewer.CanContentScroll = "True" 
+ScrollViewer.VerticalScrollBarVisibility="Visible" &lt;!-- or "Auto"   --&gt;
+</code></pre>
+
+<p>Everything else looks ok to me.  You have the 3 rows, 2 of which are absolute, the other stretching. You also have the listview in the 2nd row, so it should stretch with it.</p>
+
+<p>if that doesn't work, try wrapping the ListView in a scrollviewer</p>
+
+<pre><code>&lt;ScrollViewer&gt;
+    &lt;ListView/&gt;
+&lt;/ScrollViewer&gt;
+</code></pre>

@@ -1,0 +1,38 @@
+<p>There are many paths in a 3x3 grid. </p>
+
+<ul>
+<li>Most paths end at the corners (that
+only requires 3 cells to have been
+visited). </li>
+<li>Then some end at the edges
+(those require 5 cells to have been
+visited).</li>
+<li>There are very few
+paths that end at the center (they
+require all 8 surrounding cells to
+have been visited).</li>
+</ul>
+
+<p>Two paths that are common up to a cell only increment your 'visited' counter for those cells once. For example, paths A-B-C-D and A-B-C-E increment A, B, and C only once. Your code does not really count visits in distinct paths - to do that, you would need to substitute</p>
+
+<pre><code>void visit(int x, int y, int level) {
+   ...
+   visited[x][y] += 1;
+   ...
+      visit(x + i, y + j, level + 1);
+   ...
+}
+</code></pre>
+
+<p>with </p>
+
+<pre><code>int visit(int x, int y, int level) {
+   ...
+   int child_paths = 1; // do not increment visited[x][y] yet
+   ...
+      child_paths += visit(x + i, y + j, level + 1);
+   ...
+   visited[x][y] += child_paths;
+   return child_paths;
+}
+</code></pre>

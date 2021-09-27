@@ -1,0 +1,6 @@
+<pre><code>class MyForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'login_text'}))
+    password = forms.CharField(widget=forms.TextInput(attrs={'class':'password_text'}))
+</code></pre>
+
+<p>This may be your solution. Css is passed as an attribute of the form field, so you don't need to explicitly declare it into your html.</p>

@@ -1,0 +1,12 @@
+<p>On <code>Onload ()</code> event of a page you can insert a function that will automatically assign references to the JavaScript files you want to load in asynchronous manner after page loading.</p>
+
+<pre><code>function afterLoad(){
+  var element1 = document.createElement(“script”);
+  element1.src = “somefile.js”;
+  element1.type=”text/javascript”;
+  element1.async=true;
+  document.getElementsByTagName(“head”)[0].appendChild(element1);
+}
+</code></pre>
+
+<p>For more info check out <a href="http://www.tutkiun.com/2010/07/load-javascript-after-pageload.html" rel="nofollow">http://www.tutkiun.com/2010/07/load-javascript-after-pageload.html</a></p>

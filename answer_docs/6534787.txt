@@ -1,0 +1,10 @@
+<p>Does this work?</p>
+
+<pre><code>$(document).ready(function() {
+   $('div.jShadow div &gt; ul &gt; li:odd').each(function(){
+       $(this).css('min-height', $(this).prev().height() + 'px');
+    });
+ });
+</code></pre>
+
+<p>See fiddle <a href="http://jsfiddle.net/YXWVe/1/" rel="nofollow">http://jsfiddle.net/YXWVe/1/</a></p>

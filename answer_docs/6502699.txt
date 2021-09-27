@@ -1,0 +1,36 @@
+<p>try the following which should work. I only kept the relevant part.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+
+var map;
+
+function initialize() {
+
+  var myLocation = new google.maps.LatLng(52.13206069538749, -106.63635849952698);
+  var mapOptions = {
+    zoom: 12,
+    center: myLocation,
+    mapTypeControl: true,
+    navigationControl: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map =  new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+  google.maps.event.addListener(map, 'click', function(event) {
+
+    marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map
+    });
+    addClickEvent(marker);
+  });
+}
+
+function addClickEvent(marker){
+    google.maps.event.addListener(marker, 'dblclick', function(event) {
+        marker.setMap(null);
+    });
+}
+
+&lt;/script&gt;
+</code></pre>

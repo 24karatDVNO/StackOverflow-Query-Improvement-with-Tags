@@ -1,0 +1,9 @@
+<p>heres the changes that you need to do:
+//both the view and the editext should be declared as final and the findViewById method needs a layout on which it is to be called</p>
+
+<ul>
+<li>final View layout = View.inflate(this, R.layout.alertbox, null);
+<ul>
+<li>final EditText placeText = (EditText) layout.findViewById(R.id.strtplace);</li>
+</ul></li>
+</ul>

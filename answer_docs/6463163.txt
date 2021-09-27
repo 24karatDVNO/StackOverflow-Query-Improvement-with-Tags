@@ -1,0 +1,12 @@
+<p>Since you are retaining the instance of <code>ATextController</code> and reusing it, you will have to execute the following snippet in <code>viewWillAppear:</code> - </p>
+
+<pre><code>NSString *navDate = self.title;
+NSString *null = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@", navDate] ofType:@"html"];
+if(null != nil){
+    [webArchView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@", navDate] ofType:@"html"]isDirectory:NO]]]; }
+else {
+    [webArchView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"error" ofType:@"html"]isDirectory:NO]]];
+}
+</code></pre>
+
+<p>The reason being that <code>viewDidLoad</code> is called once when the view controller loads its view. <code>viewWillAppear:</code> will be called every time the view is about to come on screen.</p>

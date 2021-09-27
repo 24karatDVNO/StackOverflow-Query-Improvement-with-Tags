@@ -1,0 +1,22 @@
+<p>You can read the "size", "width", and sometimes the "orientation" properties of the window object.  Set an event listener to fire a javascript event when the "resize" event happens.</p>
+
+<p>As far as I know, though, you can't actually <em>control</em> the rotation.</p>
+
+<p>Here's a demo: (I posted it to my web page, <a href="http://douglassims.org/rotation.html" rel="nofollow">http://douglassims.org/rotation.html</a>)</p>
+
+<pre><code>&lt;head&gt;
+
+  &lt;script&gt;
+
+  function checkRotation() {document.getElementById('orientationlabel').innerHTML='Orientation: ' + window.orientation + ' Width: ' + screen.width + ' Height: '+screen.height;} 
+  function load() {window.addEventListener('resize', checkRotation, false);}
+  &lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body onload='load();'&gt;
+  &lt;center&gt;
+  &lt;h2 id=orientationlabel&gt;Nothing yet&lt;/h2&gt;
+
+&lt;/body&gt;
+</code></pre>

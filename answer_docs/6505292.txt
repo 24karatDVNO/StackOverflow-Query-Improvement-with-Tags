@@ -1,0 +1,20 @@
+<p>i use handler thread runnable.</p>
+
+<pre><code>handler =new Handler();
+         runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                elapsetime.setText(time+" Secs");
+                time--;
+                if(time&lt;1){
+                    handler.removeCallbacks(runnable);
+                }else{
+                handler.postDelayed(this, 1000);
+                }
+            }
+
+        };
+
+        handler.postDelayed(runnable, 1000);
+</code></pre>

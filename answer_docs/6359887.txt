@@ -1,0 +1,7 @@
+<p>I solved this by adding</p>
+
+<pre><code>[self.navigationController setNavigationBarHidden:YES];
+[self.navigationController setNavigationBarHidden:NO animated:YES];
+</code></pre>
+
+<p>at the start of viewDidLoad. This caused it to somehow reset and move the view. I can't really see an animation going on though. I think the root of the problem might lie in the fact that I'm switching from portrait mode to landscape mode and that somehow messes with the bar.</p>

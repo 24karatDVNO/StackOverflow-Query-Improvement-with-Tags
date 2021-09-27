@@ -1,0 +1,9 @@
+<p>Just another method, purely for your interest:</p>
+
+<pre><code>/^(.|()\d\d){N-1}\2/
+</code></pre>
+
+<p>This works in flavours of regex where back referencing with <code>\N</code> fails to match if the Nth group to which it refers failed to match. The expression can only successfully match if the second group was matched, which in turn can only happen if \d\d matches.  For example, N = 15:</p>
+
+<pre><code>/^(.|()\d\d){14}\2/
+</code></pre>

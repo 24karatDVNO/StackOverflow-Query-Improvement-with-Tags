@@ -1,0 +1,9 @@
+<p>You said it yourself: cron.  Cron runs happily in the terminal (Applications->Utilities->Terminal), and in Terminal you can do a "man cron" for details.</p>
+
+<p>For what you want to do, it seems you just need a cron entry that looks like:</p>
+
+<p>0 * * * * <em>synchronize-script-name.sh</em></p>
+
+<p>where <em>synchronize-script-name.sh</em> is the name of your script, and this will run it on the hour.</p>
+
+<p>The crontab command lets you edit the crontab for any user (assuming you have su privilege, otherwise you can only edit your own)</p>

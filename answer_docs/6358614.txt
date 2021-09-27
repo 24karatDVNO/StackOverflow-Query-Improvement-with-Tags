@@ -1,0 +1,7 @@
+<p>Try this</p>
+
+<pre><code>declare @result varchar(max)
+
+select @result = COALESCE(@result + ', ', '') + name
+from table
+</code></pre>

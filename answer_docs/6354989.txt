@@ -1,0 +1,5 @@
+<p>Hi just to add bit more, 
+1). ID or NAME is native to browser and all the others CSS, XPATH, Javascript are foreign to the browser( ie.. they have to rely on their respective engines). so native is always first choice.
+2). you can not make use of all the features of CSS or XPATH ( ie.. browser support issues with different versions of CSS or XPATH). 
+3). XPATH is problematic with IE7. (so i had write every element location paths using CSS only)
+4). IE7 failing to find very basic CSS path sometimes (css=table.nav td.name), so i had to change that to javascript coding (dom=document.findElementsByTagName('td')[0])</p>

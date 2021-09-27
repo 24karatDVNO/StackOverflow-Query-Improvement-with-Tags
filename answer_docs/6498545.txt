@@ -1,0 +1,5 @@
+<p>Use a MatchEvaluator to provide the replacement value.  Alternate with <code>(i++ % 2)</code></p>
+
+<pre><code>int i = 0;
+Regex.Replace(s, "%", m =&gt; (i++ % 2) == 0 ? "[" : "]");
+</code></pre>

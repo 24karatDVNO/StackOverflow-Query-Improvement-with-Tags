@@ -1,0 +1,10 @@
+<h3>Dynamically load CSS file, using pure JavaScript</h3>
+<hr />
+<pre><code>var filename = &quot;matrix.css&quot;;
+var css      = document.createElement(&quot;link&quot;);
+
+css.setAttribute(&quot;rel&quot;, &quot;stylesheet&quot;);
+css.setAttribute(&quot;type&quot;, &quot;text/css&quot;);
+css.setAttribute(&quot;href&quot;, filename);
+document.getElementsByTagName(&quot;head&quot;)[0].appendChild(css);
+</code></pre>

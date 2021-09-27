@@ -1,0 +1,35 @@
+<p>I've been using Codeigniter for a long time and I'd do the following with your functions as far as placement goes:</p>
+
+<pre><code>hash_password              //returns hash password. 
+</code></pre>
+
+<p>I'd put something like a password hasher in a library or helper file so I could call it from my controller like:</p>
+
+<pre><code>// pretend library I'd make for tasks like hashing etc
+$this-&gt;load-&gt;library('passwords');
+// transform posted password into it's hashed version   
+$password = $this-&gt;password_library-&gt;hash_password($this-&gt;input-&gt;post('password'));
+</code></pre>
+
+<p>I'm assuming you want to hash/salt the password and store it in your database in that example</p>
+
+<pre><code>valid_email               //validates email format and return true or false
+</code></pre>
+
+<p>This is already in form_validation, so...</p>
+
+<pre><code>is_logged                //check if session has a variable, returns true or false
+</code></pre>
+
+<p>This should also connect to a authentication library</p>
+
+<pre><code>generate_random_string  //generates and hashes a random string
+</code></pre>
+
+<p>Again, this would come from a library or helper.</p>
+
+<p>SO WHEN DO YOU USE A MODEL?</p>
+
+<p>Me, I use models exclusively for in/out on the database. All my queries go in there. I usually have my model's functions return data objects so I can loop through them in my views.</p>
+
+<p>Controllers call your data from your models, then dump everything into your views. Outside functionality always goes into libraries and helpers. I like to do the "MY_library" and extend Codeigniter's own stuff - especially with forms and the html helper etc.</p>

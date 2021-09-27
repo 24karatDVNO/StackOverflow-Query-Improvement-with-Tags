@@ -1,0 +1,32 @@
+<p>How about this?  (If I understood your question)</p>
+
+<p>(I haven't actually run it - just a thought - so... could be errors, or I could have blatantly missed something.  But - for the moment, my tired head thinks it would work :)</p>
+
+<pre><code>$num_topics = 5;
+$stories_per = 5;
+$stories = array();  //array to store story ids
+
+//select 5 topics
+$query = mysql_query("SELECT * FROM topics ORDER BY RAND() LIMIT ".$num_topics);
+
+//run repeat as many times as you want stories
+for($i=0; $i&lt;$stories_per; $i++) {
+
+    //repeat through each selected topic
+    while($row = mysql_fetch_array($query)) {
+
+        $q_addon = "";
+        foreach($stories as $value) {
+            $q_addon .= "id &lt;&gt; '".$value."' AND ";
+        }
+
+        //find a story not yet chosen for each topic
+        $q = mysql_query("SELECT storyid FROM stories_topics WHERE ".$q_addon." topicid='".$row['id']."' LIMIT 1");
+
+        //add that id to your $stories array
+        $tmp_id = mysql_result($q,0,'storyid');
+        array_push($stories, $tmp_id);
+
+    }
+}
+</code></pre>

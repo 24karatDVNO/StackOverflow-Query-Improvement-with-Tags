@@ -1,0 +1,13 @@
+<p>Because no one else get with better solution I´ll write here mine. As I wrote in Edit in question there were problem with SelectionMode as CellRange. I still don´t know how to "fix" it with this mode but I figure out how to do it with ListBox mode.</p>
+
+<p>So in flexgrid change mode to ListBox. Then you can use this in your copy method:</p>
+
+<pre><code>foreach (C1.Win.C1FlexGrid.Row item in _c1FlexGrid.Rows.Selected)
+{
+    if (!item.Visible)
+       item.Selected = false;
+}
+Clipboard.SetDataObject(_c1FlexGrid.Clip);
+</code></pre>
+
+<p>I hope that this help someone else too :)</p>

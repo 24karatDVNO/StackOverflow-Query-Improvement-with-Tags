@@ -1,0 +1,13 @@
+<p>Perhaps your image is not part of the Simulator bundle, so the loading fails and your <code>UIImageView</code> will be blank.</p>
+
+<p>Do the connection between image and <code>UIImageView</code> in code and it should show the image.</p>
+
+<p>Like:</p>
+
+<pre><code>UIImage *image = [UIImage imageNamed: @"cell.png"];
+</code></pre>
+
+<p>Once you have an <code>UIImage</code> you can then set <code>UIImageView</code> this way:</p>
+
+<pre><code>[imageView setImage:image];
+</code></pre>

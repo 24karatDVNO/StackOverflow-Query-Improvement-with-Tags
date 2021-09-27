@@ -1,0 +1,18 @@
+<p>Try these lines instead:</p>
+
+<pre><code>Options +FollowSymlinks
+# Activate Rewrite Engine
+RewriteEngine on
+# Force trailing slash to be present (only if such file does not exist)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*[^/])$ /$1/ [R=301,QSA]
+# Rewrite rule to real php file (only if such folder does not exist)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z0-9\-_]+)/([a-z0-9\-_]+)/$ /index.php?p=$1&amp;other[]=$2 [NC,QSA,L]
+</code></pre>
+
+<p>Please note, the last line will only work for URLs of this structure: <code>/foo/bar/</code>. It will not work with <code>/foo/bar</code> (this should never happen as we have special Redirect rule to add trailing slash) as well as with longer URLs like <code>/foo/bar/meow/</code> -- you would need to duplicate and modify last 2 lines.</p>
+
+<p>Also, if there is a folder that matches URL (e.g. <code>foo/bar/</code>) then rule will not work as well.</p>
+
+<p>These rules were tested and confirmed to be working. Let me know if you need any modifications.</p>

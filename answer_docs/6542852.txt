@@ -1,0 +1,30 @@
+<p>I'm not sure about the language you are using - if C# you cannot use 'Object' as the class name.  </p>
+
+<p>First creating a custom object (the 'object' data type):</p>
+
+<pre><code>public class MyObject {
+    public int pos_x;
+    public int pos_y;
+}
+</code></pre>
+
+<p>...fair enough, a very basic class that holds coordinates. Next you want to create an array of MyObject. To do that, you declare your array <em>type</em> as <code>MyObject[]</code> and provide an optional size:  </p>
+
+<pre><code>MyObject[] myObjArray = new MyObject[10]; // this gives a zero-based array of 10 elements, from 0-9
+</code></pre>
+
+<p>Now, you have the task of filling the array. The most common method would be to use a counter variable that counts from 0 to 9, the same elements we have in our array:</p>
+
+<pre><code>for (int i=0; i&lt;=9; i++)
+{
+    myObjArray[i] = new MyObject();
+
+    // you can also assign the variables' values here
+    myObjArray[i].pos_x = GetNextXVal(); // get the X value from somewhere
+    myObjArray[i].pos_y = GetNextYVal(); // get the y value from somewhere
+}  
+</code></pre>
+
+<p>Depending on your language, I'm sure we can point you to some good tutorials, books, or other references to help you get started.  </p>
+
+<p>Happy coding!</p>

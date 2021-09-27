@@ -1,0 +1,5 @@
+<p>You should always do validation on the server, due to the issues you mention; javascript turned off or modified.</p>
+
+<p>Note that many of the auto post back abilities also use Javascript, so much of that won't work, either. You'll have to decide how you want to proceed there. Likely just presenting everything, and having the server filter out inappropriate things for their selections.</p>
+
+<p>You might use a <code>&lt;noscript&gt;</code> element to inform the user that the form in question is not designed for non-javascript browsers, and strongly encourage them to enable it. You can even hide the whole form by default and only show it in the <code>Ready()</code> function, so it only works with javascript, basically. (keeping in mind you are still validating everything server-side to account for malicious modifications)</p>

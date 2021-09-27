@@ -1,0 +1,38 @@
+<p>Works great! However I made a small change to allow for the input and output files to be specified on the command line:</p>
+
+<pre><code>int main(int argc, char **argv)
+{
+    FILE *fout = NULL;
+    FILE *fin = NULL;
+    const char *optstring = "i:o";
+    char ch;
+    int argind = 1;
+
+    if(argc &lt; 5)
+    {
+            fprintf(stderr,"Usage: bin2array -i &lt;input_file&gt; -o &lt;output_file&gt;\n");
+            return 2;
+    }
+
+    while((ch = getopt(argc,argv,optstring)) != -1)
+    {
+            switch(ch)
+            {
+            case 'i':
+                    argind++;
+                    fprintf(stderr,"File: %s\n",argv[argind]);
+                    fin = fopen(argv[argind],"rb");
+                    argind++;
+                    break;
+            case 'o':
+                    argind++;
+                    fprintf(stderr,"File: %s\n",argv[argind]);
+                    fout = fopen(argv[argind],"wt");
+                    argind++;
+                    break;
+            }
+    }
+
+    ....
+}
+</code></pre>

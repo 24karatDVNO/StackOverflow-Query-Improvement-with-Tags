@@ -1,0 +1,22 @@
+<p>A form is just a method of gathering data. Behind the scenes, when a form is submitted, the browser gathers all the data in the form and submits it to your server as either a POST or a GET request.</p>
+
+<p>To simulate the form submission, you simply need to assemble all of the data in a way that your server will recognize it.</p>
+
+<p>The easy way to do it is like this:</p>
+
+<pre><code>&lt;?php
+    header( "Location: http://yourdomain.com/checkout.php?&lt;data&gt;" );
+?&gt;
+</code></pre>
+
+<p>Replace  with your form data like this: If you have a form field named 'city' and the value is 'MyTown', and a 'zipcode' field with a value of '12345'  will be:</p>
+
+<pre><code>city=MyTown&amp;zipcode=12345
+</code></pre>
+
+<p>Your code will then be:</p>
+
+<pre><code>header( "Location: http://yourdomain.com/checkout.php?city=MyTown&amp;zipcode=12345" );
+</code></pre>
+
+<p>In this way, you can submit your form data to the server without ever presenting a form to the user.</p>

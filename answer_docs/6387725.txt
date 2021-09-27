@@ -1,0 +1,31 @@
+<p>Name your textboxes tbxGA, tbxGB, tbxGC, and tbxGD, and use this code to write to a range.</p>
+
+<pre><code>Private Sub cmdWrite_Click()
+
+    Dim i As Long, j As Long
+    Dim ctl As Control
+    Dim lCnt As Long
+    Dim aOutput() As String
+    Dim lTotal As Long
+
+    For i = 65 To 68
+        Set ctl = Me.Controls("tbxG" &amp; Chr$(i))
+        lTotal = lTotal + Val(ctl.Text)
+    Next i
+
+    ReDim aOutput(1 To lTotal, 1 To 1)
+
+    For i = 65 To 68
+        Set ctl = Me.Controls("tbxG" &amp; Chr$(i))
+        For j = 1 To Val(ctl.Text)
+            lCnt = lCnt + 1
+            aOutput(lCnt, 1) = "G" &amp; Chr$(i) &amp; j
+        Next j
+    Next i
+
+    Sheet1.Range("A1").Resize(UBound(aOutput, 1), UBound(aOutput, 2)).Value = aOutput
+
+    Unload Me
+
+End Sub
+</code></pre>

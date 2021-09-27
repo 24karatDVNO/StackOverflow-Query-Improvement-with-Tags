@@ -1,0 +1,8 @@
+<p>Nevermind i just found out.</p>
+
+<pre><code>GLfloat matrix[16]; 
+glGetFloatv (GL_MODELVIEW_MATRIX, matrix);
+const float position_x = matrix[12];
+const float position_y = matrix[13];
+const float position_z = matrix[14];
+</code></pre>

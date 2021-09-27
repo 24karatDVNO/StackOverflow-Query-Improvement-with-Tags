@@ -1,0 +1,4 @@
+<p>You can use the 'e' option of preg_replace as an alternative.</p>
+
+<pre><code>echo preg_replace('#\[user=(\d+)\]#e','"&lt;a href=\"user.php?id=$1".getUserNameByUserId($1)."&lt;/a&gt;"',$bbcode);
+</code></pre>

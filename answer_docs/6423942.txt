@@ -1,0 +1,3 @@
+<p><code>finish()</code> does cause the <code>Activity</code> to stop as the next step in its lifecycle. But at the point you call it, it's still in the process of another lifecycle step: <code>onCreate()</code>. It will not exit, somehow, immediately in the middle of a method.</p>
+
+<p>That's the answer, but, better would be to redesign your code a bit. This is probably not the cleanest way to handle it if you're dealing with questions like this.</p>

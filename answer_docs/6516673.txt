@@ -1,0 +1,18 @@
+<p>Assuming you have already cloned the remote repo and you're on the <code>master</code> branch, you could do the following:</p>
+
+<p>Do the second thing first:</p>
+
+<p><code>git branch new-branch</code></p>
+
+<p>Then revert changes on master:</p>
+
+<ol>
+<li><code>git revert &lt;commit-id-you-want-reverted&gt;</code> (repeat for each bad commit)</li>
+<li><code>git push origin HEAD:master</code></li>
+</ol>
+
+<p>Later, cherry-pick them back:</p>
+
+<p><code>git cherry-pick &lt;commits-from-new-branch&gt;; git push origin HEAD:master</code></p>
+
+<p>I <em>think</em> that'll work, but I haven't tried it myself. YMMV. I think simply pulling the changes back (without cherry-picking) won't work because they'll have the original commit IDs and git might know that it doesn't need to pull them in...then again, maybe with a new HEAD it <em>will</em> work. Try it and see :)</p>

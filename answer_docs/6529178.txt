@@ -1,0 +1,6 @@
+<p>How and where are you setting your <code>DataContext</code>?</p>
+
+<p>Try setting the <code>BindingMode</code> to <code>TwoWay</code></p>
+
+<pre><code>&lt;ListBox Margin="5" x:Name="RemoveLookup" ItemsSource="{Binding Path=LocationObjectResults Mode=TwoWay}"&gt;
+</code></pre>

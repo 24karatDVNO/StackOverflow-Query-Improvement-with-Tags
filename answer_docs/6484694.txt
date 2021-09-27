@@ -1,0 +1,12 @@
+<p>checkboxes:</p>
+
+<pre><code>&lt;input type="checkbox" name="theoptions[]" value="1"&gt; Option 1...
+&lt;input type="checkbox" name="theoptions[]" value="2"&gt; Option 2...
+&lt;input type="checkbox" name="theoptions[]" value="3"&gt; Option 3..
+</code></pre>
+
+<p>.</p>
+
+<p>If user will submit checked 2 &amp; 3 then $_REQUEST['theoptions'] will be array( 2, 3 )</p>
+
+<p>To store in mysql you can create table for selected options for concrete user or implode() that array to store somethin like "2,3" or "2|3"</p>

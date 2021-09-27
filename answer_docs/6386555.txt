@@ -1,0 +1,10 @@
+<p>Use this </p>
+
+<p>PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+            notifyIntent, android.content.Intent.FLAG_ACTIVITY_NEW_TASK);</p>
+
+<p>instead of this</p>
+
+<p>PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);</p>
+
+<p>and check the results</p>

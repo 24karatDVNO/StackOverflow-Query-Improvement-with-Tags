@@ -1,0 +1,15 @@
+<p>"A simple countdown timer and a few other things and it was all working, but in order to try and fix an issue with the countdown timer I moved that section of code from within the Start Button onClick into the onCreate of the activity"</p>
+
+<p>If this is true, then most likely the code which you moved to the onCreate method tries to use something which is not initialized in the onCreate method, but it was initialized in the start button onClick method. Look for something like this in your code.</p>
+
+<p>About the code. This is far from efficient:</p>
+
+<pre><code>if (oneMinuteRemaining == 60){
+    oneminrem.start();
+}
+if (oneMinuteRemaining == 30){
+    oneminrem.start();
+}
+</code></pre>
+
+<p>You should use 'else if' after the first 'if' instead.</p>

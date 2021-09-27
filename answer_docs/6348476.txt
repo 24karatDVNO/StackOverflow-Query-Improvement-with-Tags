@@ -1,0 +1,17 @@
+<p>If you want to do the replacement "in place" (meaning you don't want to use another, temporary, file) then you would do so with a <a href="http://msdn.microsoft.com/en-us/library/33wz7kas.aspx" rel="nofollow noreferrer">FileStream</a>.</p>
+
+<p>You have a couple of options, you can <a href="http://msdn.microsoft.com/en-us/library/system.io.filestream.read.aspx" rel="nofollow noreferrer"><code>Read</code></a> through the file stream until you find the text that you're looking for, then issue a <a href="http://msdn.microsoft.com/en-us/library/system.io.filestream.write.aspx" rel="nofollow noreferrer"><code>Write</code></a>.  Keep in mind that <code>FileStream</code> works at the byte level, so you'll need to take character encoding into consideration. <a href="http://msdn.microsoft.com/en-us/library/744y86tc.aspx" rel="nofollow noreferrer"><code>Encoding.GetString</code></a> will do the conversion.</p>
+
+<p>Alternatively, you can search for the text, and note its position.  Then you can open a FileStream and just <a href="http://msdn.microsoft.com/en-us/library/system.io.filestream.seek.aspx" rel="nofollow noreferrer"><code>Seek</code></a> to that position.  Then you can issue the <code>Write</code>.</p>
+
+<p>This may be the most efficient way, but it's definitely more challenging then the naive option.  With the naive implementation, you:</p>
+
+<ul>
+<li>Read the entire file into memory (<a href="http://msdn.microsoft.com/en-us/library/system.io.file.readalltext.aspx" rel="nofollow noreferrer"><code>File.ReadAllText</code></a>)</li>
+<li>Perform the replace (<a href="http://msdn.microsoft.com/en-us/library/xwewhkd1.aspx" rel="nofollow noreferrer"><code>Regex.Replace</code></a>)</li>
+<li>Write it back to disk (<a href="http://msdn.microsoft.com/en-us/library/system.io.file.writealltext.aspx" rel="nofollow noreferrer"><code>File.WriteAllText</code></a>)</li>
+</ul>
+
+<p>There's no second file, but you are bound by the amount of memory the system has.  If you know you're always dealing with small files, then this could be an option.  Otherwise, you need to read up on character encoding and file streams.</p>
+
+<p>Here's another SO question on the topic (including sample code): <a href="https://stackoverflow.com/questions/3104324/editing-a-text-file-in-place-through-c">Editing a text file in place through C#</a> </p>

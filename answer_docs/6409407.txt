@@ -1,0 +1,5 @@
+<p>You should be able to do this using <a href="http://download.oracle.com/javase/6/docs/api/java/sql/ResultSetMetaData.html" rel="nofollow">ResultSetMetaData</a>:</p>
+
+<pre><code>ResultSetMetaData rsmd = resultSet.getMetaData();
+String column = rsmd.getColumnName(index);
+</code></pre>

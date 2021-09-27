@@ -1,0 +1,23 @@
+<pre><code>SELECT wposts.ID AS ID
+FROM doxy_posts AS wposts
+  LEFT JOIN doxy_postmeta AS postmeta
+    ON wposts.ID = postmeta.post_id
+    AND postmeta.meta_key = 'z_latitude'
+WHERE wposts.post_type = 'post' 
+  AND postmeta.post_id IS NULL
+ORDER BY wposts.post_date DESC
+</code></pre>
+
+<p>or:</p>
+
+<pre><code>SELECT wposts.ID AS ID
+FROM doxy_posts AS wposts
+WHERE wposts.post_type = 'post' 
+  AND NOT EXISTS
+        ( SELECT * 
+          FROM doxy_postmeta AS postmeta
+          WHERE wposts.ID = postmeta.post_id
+            AND postmeta.meta_key = 'z_latitude'
+        ) 
+ORDER BY wposts.post_date DESC
+</code></pre>

@@ -1,0 +1,30 @@
+<p>you are close just is missing a first step for give title and description to the video</p>
+
+<p>for example</p>
+
+<p>1 step) ask for title and description</p>
+
+<p>send this to the controller and call to the method</p>
+
+<pre><code>@upload_info = YouTubeIt::Client.new.upload_token(params[:first_step], videos_url)
+</code></pre>
+
+<p>and this has to call to second step</p>
+
+<p>2 step) the form that do you had</p>
+
+<pre><code> &lt;% form_tag @upload_info[:url], :multipart =&gt; true do %&gt;
+   &lt;%= hidden_field_tag :token, @upload_info[:token] %&gt;
+   &lt;%= label_tag :file %&gt;
+   &lt;%= file_field_tag :file %&gt;
+   &lt;%= submit_tag "Upload video" %&gt;
+ &lt;% end %&gt;
+</code></pre>
+
+<p>I going to give you a gist with real example</p>
+
+<p><a href="https://gist.github.com/1051122" rel="nofollow">https://gist.github.com/1051122</a></p>
+
+<p>for the last question you can initialize the client in your application_controller.rb, you can see it in the gist</p>
+
+<p>I hope that it help you, good luck!</p>

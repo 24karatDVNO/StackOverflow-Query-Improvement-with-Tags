@@ -1,0 +1,5 @@
+<p>I would vote for Ryan's answer, since he both gave you the right jquery syntax for 'looping' (not really a loop, which is part of the beauty of jquery) and intuited what you meant to do, I presume-- unless you really did just want the last child element's html.  Since you also asked what you were doing wrong, some things to notice about his terse correction might include:</p>
+
+<p>The use of "this" instead of creating a placeholder variable with the confusing (and perhaps reserved?) name "children."  'this' is holding the value of each child.  </p>
+
+<p>The use of +=.  Rather than overwriting on each iteration, this allows you to grab each value and add it to your pile of values (what you're storing in new_html).</p>

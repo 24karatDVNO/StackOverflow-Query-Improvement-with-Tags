@@ -1,0 +1,27 @@
+<p>Sorry guys silly mistake  </p>
+
+<p>I was passing non-object value in Dictionary</p>
+
+<p>Now using this Dictionary<br>
+<code>[[NSDictionary alloc] initWithObjectsAndKeys:self,@"target",[NSValue valueWithPointer:@selector(circleBtnAct:)],@"action",nil]</code></p>
+
+<pre><code>-(void)myMethod{
+//some code
+    SEL myFunction = @selector(myFunction:);
+    [obj refresh:[[NSDictionary alloc] initWithObjectsAndKeys:self,@"target",[NSValue valueWithPointer:@selector(circleBtnAct:)],@"action",nil]
+                  action:circleBtnAct];
+    [addContactView addSubview:myWorldView];
+//some code
+}
+</code></pre>
+
+<p><strong>second class</strong></p>
+
+<pre><code>-(void)refresh:(id)sender action:(SEL)action{
+//some code
+    [btn addTarget:[sender objectForKey:@"target"] action:[[sender objectForKey:@"action"] pointerValue] forControlEvents:UIControlEventTouchDown];
+//some code
+}
+</code></pre>
+
+<p>Thanks All</p>

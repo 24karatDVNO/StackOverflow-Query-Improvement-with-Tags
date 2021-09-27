@@ -1,0 +1,3 @@
+<p>You should show the Stack trace which would be more useful. </p>
+
+<p>As of now i think the problem would be <code>StreamReader</code> in the using block which on dispose is closing both the reader and the underlying stream</p>

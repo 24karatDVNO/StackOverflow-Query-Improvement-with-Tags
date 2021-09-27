@@ -1,0 +1,35 @@
+<p>Original Poster here; here is my approach refined so far:</p>
+
+<p>I can add (or monkey-patch) the bool operator <code>__nonzero__</code> onto the with objects, returning whether they are enabled.  Then, when objects are mutually exclusive, I can have:</p>
+
+<pre><code>with res1 or res2 or res3 or res4:
+   ...
+</code></pre>
+
+<p>When an resource is togglable, I can create an empty <em>withable</em> that is a nop; <em>wither</em> seems a nice name for it:</p>
+
+<pre><code>class sither:
+   @classmethod
+   def __enter__(cls): pass
+   @classmethod
+   def __exit__(cls,*args): pass
+
+...
+
+with res1 or wither, res2 or wither:
+   ...
+</code></pre>
+
+<p>I can also use this keeping the toggling out of the withable objects:</p>
+
+<pre><code>with res1 if res1enabled else wither, res2 if res2enabled else wither:
+   ..
+</code></pre>
+
+<p>Finally, those I have most control over, I can integrate the enabled checking into the class itself such that when used and not enabled, they are nop:</p>
+
+<pre><code>with res1, res2, res3:
+   ...
+</code></pre>
+
+<p>The <code>with</code> statement is absolutely adorable, it just seems a bit unentrenched yet.  It will be interesting to see what finesse others come up with in this regard...</p>

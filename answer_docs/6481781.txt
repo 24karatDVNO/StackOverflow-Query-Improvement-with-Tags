@@ -1,0 +1,20 @@
+<p>You might try with style for the middle BG.</p>
+
+<p>Can you try this? You might need slight adustments of other style attributes.
+If you show the left and right image here, I can help you with exact code.</p>
+
+<pre><code>.bg{
+   background-image:url("path_to_repeating_bg");background-repeat:repeat-x;width:auto}
+}
+
+&lt;div id="banner" style="clear:both"&gt;
+   &lt;div style="float:left"&gt;
+      &lt;img src="&lt;left_img_path&gt;" /&gt;
+   &lt;/div&gt;
+   &lt;div class="bg" style="float:left;width:auto"&gt;  
+   &lt;/div&gt;
+   &lt;div style="float:left"&gt;
+      &lt;img src="&lt;right_img_path&gt;" /&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>

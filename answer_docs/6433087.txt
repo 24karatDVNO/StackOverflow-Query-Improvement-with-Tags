@@ -1,0 +1,7 @@
+<p>I dont think the SPSite connect through the IIS, and if SharePoint isn't set up to respond to localhost (done in the Central Administration) you wont be able to connect to that url. IIS works a bit different here since it relays the signals to "localhost" to the "web application instance".</p>
+
+<p>Start by checking in your SharePoint Central Administration. Go to "Configure alternate access mappings" in the "System Settings" section. Here you have your SharePoint instances, there are three properties which you can see directly in the list; 'Internal URL', 'Zone' and 'Public URL for Zone'.</p>
+
+<p>If the Internal URL isn't set to Localhost you wont be able to use that connection you suggested. It bay be improper to change this to another url as well, so simply try to set your  SPSite site = new SPSite("http://yourinternalurl:11523"); to whatever's in that box! :)</p>
+
+<p>Cheers</p>

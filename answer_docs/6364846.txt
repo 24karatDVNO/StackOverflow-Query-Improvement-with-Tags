@@ -1,0 +1,38 @@
+<p>What dou you think about this solution?</p>
+
+<p>EDIT: Replace User with AssignmentSheet and Task with Assignment for this example to fit the original question.</p>
+
+<p>Some routes:</p>
+
+<pre><code># routes.rb
+put "assignment_usage/assignment_sheet/:assignment_sheet_id/assignment/:assignment_id" =&gt; "assignment_usage#create"
+  delete "assignment_usage/assignment_sheet/:assignment_sheet_id/assignment/:assignment_id" =&gt; "assignment_usage#destroy"
+</code></pre>
+
+<p>And the controller code:</p>
+
+<pre><code># app/controllers/assignment_usage_controller.rb
+class AssignmentUsageController &lt; ApplicationController
+  before_filter :load_instances
+
+  # PUT /assignment_usage/assignment_sheet/:assignment_sheet_id/assignment/:assignment_id
+  def create
+    @assignment.assignment_sheets &lt;&lt; @assignment_sheet
+    redirect_to(@assignment_sheet, :notice =&gt; "Assignment has been successfully added.")
+  end
+
+  # DELETE /assignment_usage/assignment_sheet/:assignment_sheet_id/assignment/:assignment_id
+  def destroy
+    @assignment.assignment_sheets.delete @assignment_sheet
+    redirect_to(@assignment_sheet, :notice =&gt; "Assignment has been successfully removed.")
+  end
+
+  private
+  def load_instances
+    @assignment_sheet = AssignmentSheet.find(params[:assignment_sheet_id])
+    @assignment       = Assignment.find(params[:assignment_id])
+  end
+end
+</code></pre>
+
+<p>Maybe it is a little bit more clear to use a seperate resource for this.</p>

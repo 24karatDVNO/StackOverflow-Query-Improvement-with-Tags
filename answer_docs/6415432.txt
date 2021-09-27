@@ -1,0 +1,5 @@
+<p>if you need strict memory alignment than what <code>malloc</code> offers. </p>
+
+<p><code>malloc</code> usually would return a pointer aligned in such away that it may be used with any of the primitive types (usually 8 bytes).</p>
+
+<p>However, sometimes you need memory aligned on other boundaries, In this case, you would need <code>memalign</code>.</p>

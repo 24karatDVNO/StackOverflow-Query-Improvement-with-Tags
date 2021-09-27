@@ -1,0 +1,14 @@
+<p>Thanks to amol and Warung Nasi 49. Although I couldn't find the best way, I manage to get almost expected result:</p>
+
+<pre><code>Ext.onReady(function(){
+    Ext.ux.mask = new Ext.LoadMask(Ext.getBody(), {msg: "Loading..."});
+    Ext.ux.mask.show();   // Show the mask
+
+    // All components are loaded eg. viewport, tabpanel, button etc...
+
+    setTimeout(function(){
+        Ext.ux.mask.hide(); 
+    }, 2000);
+
+});
+</code></pre>

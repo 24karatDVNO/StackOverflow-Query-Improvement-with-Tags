@@ -1,0 +1,7 @@
+<p>This will get urls from url() (css), href and src attributes (links, imgs, scripts):</p>
+
+<pre><code>#(?:href|src)="([^"]+)|url\(["']?(.*?)["']?\)#i
+</code></pre>
+
+<p>They will be captured in group 1 and 2.
+Be aware that some urls can be relative, so you have to make them absolute before calling them.</p>

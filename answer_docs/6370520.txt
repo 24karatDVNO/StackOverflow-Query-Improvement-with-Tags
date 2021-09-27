@@ -1,0 +1,7 @@
+<p>I don't know the Fortify tool, but I know that in this case it is wrong. Using $table$ is an acceptable way of modifying SQL using iBATIS, i.e. the replacement value will get replaced in the actual SQL generated rather than added as a parameter.</p>
+
+<p>As far as I know this is the only way of using dynamic table names.</p>
+
+<p><strong>Edit</strong>: Just checked the Fortify tool and <a href="https://www.fortify.com/vulncat/en/vulncat/java/sql_injection_ibatis_data_map.html" rel="nofollow">found this</a>. What they are worried about is SQL injection. Read the page for more information.</p>
+
+<p>What you need to do is just make sure that the value that is getting passed in by the code as the "table" parameter does not come from the user, i.e. any user of the system would not be able to modify the table parameter at all.</p>

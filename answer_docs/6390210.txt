@@ -1,0 +1,19 @@
+<p>The <code>effect</code> method doesn't queue up exactly like the rest of the animate calls, but it takes a callback as a parameter which would be run after the effect is finished. You can do this instead:</p>
+
+<pre><code>$('#bunda').animate({
+    marginTop: '+=200',
+    marginLeft: '+=150'
+}, 1300).animate({
+    marginTop: '-=50',
+    marginLeft: '+=100',
+    'background-color': 'darkred'
+}, 1000).effect('shake', {
+    times: 3,
+}, 50, function () {
+    $('#bunda').animate({
+        marginTop: '+=300'
+    }, 500);
+});
+</code></pre>
+
+<p>Example: <a href="http://jsfiddle.net/CCw9U/" rel="nofollow">http://jsfiddle.net/CCw9U/</a></p>

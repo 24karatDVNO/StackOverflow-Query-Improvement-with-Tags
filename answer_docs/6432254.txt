@@ -1,0 +1,13 @@
+<p>I'm not sure I fully understand how your controller works, but regardless you should be able to get the product, size, and category. You probably have already got them if you were able to set their IDs. In your controller just set the product, size, and category to a variable. </p>
+
+<p>So, in your controller:</p>
+
+<pre><code>@category = YourCategory
+@product = YourProduct
+@size = YourSize
+</code></pre>
+
+<p>Then in your form somewhere you can just do something like:</p>
+
+<pre><code>&lt;%=h @category.name %&gt;
+</code></pre>

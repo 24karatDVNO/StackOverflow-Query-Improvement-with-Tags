@@ -1,0 +1,5 @@
+<p>An .APK file is simply a .ZIP file with a predefined directory/file layout, there is no "conversion" (unless you're simply talking about changing the extension).</p>
+
+<p>ProGuard can be used to obfuscate code, but there's no "standard" way of encoding/encrypting the XML files. You could encrypt/decrypt them manually yourself, but you'd be introducing a great amount of overhead at runtime for decryption, and many standard interfaces would not work because they expect the standard plan-text XML format. You're looking at a great deal of code to accomplish what you're asking. This is all assuming you're loking to encrypt your strings.xml, etc.</p>
+
+<p>If you're looking to encrypt custom XML data files, there's a thread with some good suggestions <a href="http://groups.google.com/group/android-developers/browse_thread/thread/c0b4697cd59dd880" rel="nofollow">here</a>.</p>

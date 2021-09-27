@@ -1,0 +1,9 @@
+<blockquote>
+  <p>Is there a way to specify class type of a map's value in json-lib?</p>
+</blockquote>
+
+<p>Nope.  Same when deserializing to a <code>List&lt;CustomType&gt;</code>, even if you told it what type you want with the <code>toBean</code> call.</p>
+
+<p>After the call to <code>toBean</code>, the values in the collection will be <code>DynaBeans</code>.  You have to iterate through the collection values and morph them into the preferred types.  The morphing can be done manually, a field at a time, or in a more automatic fashion with a <code>net.sf.ezmorph.Morpher</code> registered in the <code>MorpherRegistry</code>.</p>
+
+<p>WARNING: Even with this approach, you have to be careful about how you reference the value before you morph it to an instance of the target type.  The compiler (and thus the runtime) thinks the value is of the parameterized type (if using generics), and so it will gladly try to use it as that type.  This of course causes a ClassCastException (even if your code doesn't do any explicit type casting).  So, when accessing the values, just get to them by declaring a reference of type <code>Object</code> and using it.  Don't try to use the values in any other way without the explicit <code>Object</code> type reference.  (You'll know what I'm talking about when you write the code and see the errors.  I'm too busy to code an example, right now.)</p>

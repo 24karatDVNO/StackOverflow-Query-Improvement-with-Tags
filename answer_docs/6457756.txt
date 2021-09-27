@@ -1,0 +1,9 @@
+<p>You could specific the <code>action:</code> method programatically as you have done with your <code>UIBarButtonItem</code>.</p>
+
+<p>Implement <strong>action</strong> method in the class of object which you specified with <code>target:</code>.</p>
+
+<pre><code>-(void) didTapSearch:(id) sender
+{
+  UIBarButtonItem *searchBtn = (UIBarButtonItem*)sender;
+}
+</code></pre>

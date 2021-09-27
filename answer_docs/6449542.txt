@@ -1,0 +1,11 @@
+<p>if you want to handle only .js format from action you can specify <code>respond_to :js</code> like this: <br /></p>
+
+<pre><code>class SomeController &lt; ApplicationController
+  respond_to :js
+  def some_action
+  ...
+  end
+end
+</code></pre>
+
+<p>..and this action will respond only to .js format. Or you can use <code>request.xhr?</code> in your action to verify incoming format.</p>

@@ -1,0 +1,38 @@
+<p>I did try the imlib2 but it seemed difficult to convert openNi XnRGB24Pixel type to the data stream imlib2 is looking for. Imlib2 seems to work more easily with files (e.g imageName.jpg) rather than data streams in the memory. I then moved to try out openCV and here is the code I got and edited from an openni-discussion page [link here]. </p>
+
+<p>void generateJpeg(const xn::ImageMetaData&amp; g_imageMD){</p>
+
+<pre><code>    //opencv to convert image to jpeg
+    printf("Converting image to jpeg.\n");
+    cv::Mat colorArr[3]; 
+    cv::Mat colorImage; 
+    const XnRGB24Pixel* pPixel; 
+    const XnRGB24Pixel* pImageRow; 
+    pImageRow = g_imageMD.RGB24Data();
+
+
+    colorArr[0] = cv::Mat(g_imageMD.YRes(),g_imageMD.XRes(),CV_8U); 
+    colorArr[1] = cv::Mat(g_imageMD.YRes(),g_imageMD.XRes(),CV_8U); 
+    colorArr[2] = cv::Mat(g_imageMD.YRes(),g_imageMD.XRes(),CV_8U); 
+
+    for (int y=0; y&lt;g_imageMD.YRes(); y++){ 
+        pPixel = pImageRow; 
+        uchar* Bptr = colorArr[0].ptr&lt;uchar&gt;(y); 
+        uchar* Gptr = colorArr[1].ptr&lt;uchar&gt;(y); 
+        uchar* Rptr = colorArr[2].ptr&lt;uchar&gt;(y); 
+
+        for(int x=0;x&lt;g_imageMD.XRes();++x , ++pPixel){ 
+                Bptr[x] = pPixel-&gt;nBlue; 
+                Gptr[x] = pPixel-&gt;nGreen; 
+                Rptr[x] = pPixel-&gt;nRed; 
+        } 
+
+        pImageRow += g_imageMD.XRes(); 
+    } 
+
+    cv::merge(colorArr,3,colorImage); 
+     IplImage bgrIpl = colorImage;    
+    cvSaveImage("image.jpg",&amp;bgrIpl);
+
+}
+</code></pre>

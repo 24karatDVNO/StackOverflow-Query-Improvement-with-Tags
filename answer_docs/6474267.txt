@@ -1,0 +1,7 @@
+<p>If those were my classes, and I needed the delegate to communicate back to the parent, I would create an event on the delegate and set the parent up as a listener.  That has several benefits:</p>
+
+<ul>
+<li>It allows the same delegate to be shared among multiple parents.  This could be useful if the delegate represents a finite resource ("port 1234") or if the delegate is expensive to instantiate.</li>
+<li>The parent can control whether or not they care about the delegate's behavior.  Don't care?  Don't register interest in the event.</li>
+<li>Fewer maintenance considerations (as Boris pointed out above)</li>
+</ul>

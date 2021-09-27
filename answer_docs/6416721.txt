@@ -1,0 +1,7 @@
+<p>I've written a similar protocol-specification using XML. (Available <a href="http://multri.net/about/protocol.xml" rel="nofollow">here</a>.)</p>
+
+<p>I think it is a good match, since it captures the hierarchal nature of specifying messages / network packages / fields etc. Order of fields are well defined and so on.</p>
+
+<p>I even wrote a code-generator that generated the message sending / receiving classes with methods for each message type in XSLT.</p>
+
+<p>The only drawback as I see it is the verbosity. If you have a really simple structure of the specification, I would suggest you use some simple home-brewed format and write a parser for it using a parser-generator of your choice.</p>

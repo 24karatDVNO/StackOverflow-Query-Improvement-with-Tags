@@ -1,0 +1,11 @@
+<p>In C# data is by default <a href="http://msdn.microsoft.com/en-us/library/490f96s2.aspx" rel="nofollow">referenced</a> (not copied, unless it is a <a href="http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx" rel="nofollow">struct</a> (ValueType)), so if you assign a variable in one place with another object it is a reference which is created.</p>
+
+<p>Example:</p>
+
+<pre><code>class C {}
+var a = new C();
+var b = a;
+//a and b points to the same object
+</code></pre>
+
+<p>Anyways you can use pointer in C# in an <a href="http://msdn.microsoft.com/en-us/library/chfa2zb8.aspx" rel="nofollow">unsafe</a> context (though not recommended).</p>

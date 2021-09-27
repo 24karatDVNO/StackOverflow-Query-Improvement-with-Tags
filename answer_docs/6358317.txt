@@ -1,0 +1,19 @@
+<pre><code>var str="&lt;div id="nDiv"&gt;xxx&lt;/div&gt;"
+</code></pre>
+
+<p>Before looking further, is this part of the issue? I'm not sure what it does, but it's not valid unless you escape the inner quotation marks.</p>
+
+<p>Anyway, I'm not sure exactly what your code is doing, but what you want to do should look something like this:</p>
+
+<pre><code>// Get a container element for wherever you're going to add these divs
+var container = document.getElementById("con");
+
+function createDiv() {
+  var div = document.createElement("div");
+  // assign properties to div
+  div.onclick = someFunction;
+  container.appendChild(div);
+}
+</code></pre>
+
+<p><a href="http://jsfiddle.net/9fR64/" rel="nofollow">jsFiddle example</a></p>

@@ -1,0 +1,19 @@
+<p>An important part of the interview process is asking about and verifying assumptions. Although your description states the file is structured as an integer followed by letters, the example you give shows the integers in increasing order. If that's the case, you can avoid all of the LINQ craziness and implement a much more efficient solution:</p>
+
+<pre><code>var results = new Dictionary&lt;char, List&lt;int&gt;&gt;();
+
+foreach (var line in File.ReadAllLines(@"input.txt"))
+{
+    var split = line.Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
+    var num = int.Parse(split[0].TrimEnd(':'));
+
+    for (int i = 1; i &lt; split.Length; i++)
+    {
+        char letter = split[i][0];
+        if (!results.ContainsKey(letter))
+            results[letter] = new List&lt;int&gt;();
+
+        results[letter].Add(num);
+    }
+}
+</code></pre>

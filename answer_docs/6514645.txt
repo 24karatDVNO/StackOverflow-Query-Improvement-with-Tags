@@ -1,0 +1,38 @@
+<p>I simply decided to make my own static mapper.  Not an ideal, or even great solution, but it works.  It can definitely be made more abstract, but I figure it's a band-aid until AutoMapper is fixed.  My solution:</p>
+
+<pre><code>public static class GameMapper
+{
+    public static Game Map(IGameRepository repo, AdminGameEditModel formData, Game newGame)
+    {
+        newGame.GameID = formData.GameID;
+        newGame.GameTitle = formData.GameTitle;
+        newGame.GenreID = formData.GenreID;
+        newGame.LastModified = DateTime.Now;
+        newGame.ReviewScore = (short)formData.ReviewScore;
+        newGame.ReviewText = formData.ReviewText;
+        newGame.Cons = String.Join("|", formData.Cons);
+        newGame.Pros = String.Join("|", formData.Pros);
+        newGame.Slug = formData.Slug;
+
+        if (newGame.Platforms != null &amp;&amp; newGame.Platforms.Count &gt; 0)
+        {
+            var oldPlats = newGame.Platforms.ToArray();
+
+            foreach (var oldPlat in oldPlats)
+            {
+                newGame.Platforms.Remove(oldPlat);
+            }
+        }
+
+        foreach (var platId in formData.PlatformIDs)
+        {
+            var plat = repo.GetPlatform(platId);
+            newGame.Platforms.Add(plat);
+        }
+
+        return newGame;
+    }
+}
+</code></pre>
+
+<p>Unfortunately, I can't make the third parameter an <code>out</code> parameter due to my need to overwrite existing entity data during updating.  Again, it's definitely not a pretty, or even good solution, but it does the job.  I'm sure the OO gods will smite me at a later date.</p>

@@ -1,0 +1,5 @@
+<p>In case anyone is interested:</p>
+
+<p>I haven't found an answer to the question. I suspect it has something to do with the way the linked Group objects are stored in a Hibernate <code>PersistentSet</code> (although <code>PersistentSet</code> and the <code>HashSet</code> backing it are both serializable). I have given up on debugging - time is money.</p>
+
+<p>I worked around the problem by adding an additional field to my User entity, <code>Set&lt;String&gt; groupIds</code>. I fill up this set in <code>User.writeObject</code>, which is called when User is serialized. On the receiving side, I clear out the groups set, and then manually search for the groups based on the IDs stored in the groupIds field. I then add the groups to the user's group set. It's cumbersome, and it requires that I have first synchronized the groups in order to be able to reassign them - but it works.</p>

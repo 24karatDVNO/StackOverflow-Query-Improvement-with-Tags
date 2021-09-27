@@ -1,0 +1,18 @@
+<p>You would have to create another route,
+something like:</p>
+
+<pre><code>routes.MapRoute( "UrlByParam", //Route Name
+"{controller}/{action}/{url}", //Url Pattern
+new { controller = "DefaultController", action = "DefaultAction" }); //Defaults
+</code></pre>
+
+<p>And you also have to encode your URL,
+so,</p>
+
+<pre><code>http://website/controller/method/http://otherurl.com
+</code></pre>
+
+<p>would become</p>
+
+<pre><code>http://website/controller/method/http%3A%2F%2Fotherurl.com
+</code></pre>

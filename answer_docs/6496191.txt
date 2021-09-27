@@ -1,0 +1,26 @@
+<p>This is how I've been approaching this problem. </p>
+
+<pre><code>REQUEST
+PUT /resource # (or POST)
+Accept: application/xml
+Content-Type: application/xml
+
+&lt;Resource&gt;
+    &lt;Blah/&gt;
+&lt;/Resource&gt;
+
+RESPONSE
+HTTP 1.1 200 OK # (or 201 Created)
+Content-Type: application/xml
+Content-Location: /resource
+
+&lt;Resource&gt;
+    &lt;Blah/&gt;
+&lt;/Resource&gt;
+</code></pre>
+
+<p>I could be wrong on the use of Content-Location in the response (HTTP 1.1 spec says its use is undefined for PUT and POST), but that's what I've been using. I'd be interested to know how others are doing this.</p>
+
+<p>In general, I don't think there's a problem with returning content with a POST or a PUT.</p>
+
+<p>John</p>

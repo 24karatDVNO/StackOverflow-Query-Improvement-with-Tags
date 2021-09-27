@@ -1,0 +1,23 @@
+<p>It seems you didn't close with parens in the right place. Did you mean this?</p>
+
+<pre><code>class ModelManager{
+  def getModel(model: String) = {
+    model match{
+      // snip
+    }
+  } // end method here
+
+  def deleteInstance(model:String, uid: Long) = {
+    Model.all(getModel(model)).filter("uid", uid).get().delete()
+  }    
+} 
+</code></pre>
+
+<p>It does not look like you're trying to define a recursive method... Then you're likely to have other issues to resolve as you need a method that returns Class[_] not a combination of <code>Boolean</code> and <code>Class[_]</code> (which would be <code>Any</code>). So may be this would work better?</p>
+
+<pre><code>def getModel(model: String): Class[_] = {
+  model match{
+    case "menu" =&gt; classOf[Menu]
+    case "articles" =&gt; classOf[Articles]
+} // end method here
+</code></pre>

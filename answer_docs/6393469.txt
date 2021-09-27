@@ -1,0 +1,28 @@
+<p>As Nawaz said and you can make it easier if you use a hexadecimal codes</p>
+
+<pre><code>enum Things
+{
+   Something =     0x00000001   //0000 0001
+   SomethingElse = 0x00000002;  //0000 0010
+   SomethingX    = 0x00000004;  //0000 0100
+   SomethingY    = 0x00000008;  //0000 1000
+   SomethingZ    = 0x00000010;  //0001 0000 // instead of 16
+   SomethingZ2   = 0x00000020;  //0010 0000 // instead of 32
+   SomethingZ3   = 0x00000040;  //0100 0000 // instead of 64
+   SomethingZ4   = 0x00000080;  //1000 0000 // instead of 128
+};
+</code></pre>
+
+<p>Or even better use a macro:</p>
+
+<pre><code>#define BITMASK(x) (1&lt;&lt;(x))
+
+enum Things
+{
+   Something =    BITMASK(0)   //0000 0001
+   SomethingElse = BITMASK(1) ;  //0000 0010
+   SomethingX    = BITMASK(2) ;  //0000 0100
+   SomethingY    = BITMASK(3) ;  //0000 1000
+   SomethingZ    = BITMASK(4) ;  //0001 0000 
+};
+</code></pre>

@@ -1,0 +1,3 @@
+<p>This is just blind shot but <code>AuthorizationManager</code> is used to authorize users and it is called after authentication but you have your service configured with default <code>WsHttpBinding</code> - it uses message security with Windows authentication. Windows authentication doesn't work between computers which are not part of the same domain.</p>
+
+<p>I would start with <code>basicHttpBinding</code> which defaults to no security (no authentication). If it works then you can think about what security do you expect.</p>

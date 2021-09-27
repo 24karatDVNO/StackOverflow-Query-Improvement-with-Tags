@@ -1,0 +1,9 @@
+<p>You could try something like:</p>
+
+<pre><code>File f = new File(Environment.getExternalStorageDirectory() + "/somedir");
+if(f.isDirectory()) {
+    ....
+</code></pre>
+
+<p>Might also want to check f.exists() because if it exists and isDirectory() returns false then you will have a problem. There is also isReadable()... have a look at the documentation: 
+<a href="http://developer.android.com/reference/java/io/File.html" rel="nofollow">http://developer.android.com/reference/java/io/File.html</a></p>

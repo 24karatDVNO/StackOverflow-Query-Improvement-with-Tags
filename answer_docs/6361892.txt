@@ -1,0 +1,12 @@
+<pre><code>var rows = from row in dtcols.Cast&lt;DataRow&gt;()
+           where !avlcols.Exists(x =&gt; x.ColName.Equals(row["field_name"].ToString(),StringComparison.OrdinalIgnoreCase))
+           select row;
+foreach(var row in rows)
+{
+    avlcols.Add(new Column()
+    {
+        ColName = row["field_name"].ToString(),
+        ColWidth = row["field_width"].ToString()
+    });
+}
+</code></pre>

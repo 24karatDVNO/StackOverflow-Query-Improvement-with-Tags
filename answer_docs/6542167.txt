@@ -1,0 +1,9 @@
+<p>"the factory method is for multiple concrete classes that have the exact same implementation as the abstract base class [interface] and do not add their own properties."</p>
+
+<p>No, speaking more practical, than theorical, the factory method can provide you with objects of concrete classes, in which the concrete classes, must have some common methods and interfaces, but, also some additional specific attributes.</p>
+
+<p>Sometimes I use a method that creates the same class object every time I called, and I need to call it several times, and sometimes I use a method that create several different class objects, and that maybe be confusing, maybe another question. </p>
+
+<p>And, your further comment about a switch sentence, with many options, when using the factory pattern, you usually provide an identifier for the concrete class / concrete object. This can be a string, an integer, an special type id, or an enumerated type.</p>
+
+<p>You could use an integer / enum ID instead, and use a collection to lookup for the concrete class.</p>

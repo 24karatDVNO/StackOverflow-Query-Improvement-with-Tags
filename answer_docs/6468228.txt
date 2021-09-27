@@ -1,0 +1,6 @@
+<p>I can't see your domain class structure but i would think by removing the '()' from the end of correctanswers.answera(); that it should work because it's not a method.  I'm assuming that a 'correctanswers' as a single 'ansera' domain class. </p>
+
+<pre><code>def correctanswers = Correct.executeQuery("from Correct answers where answers.lpicid=" + lpicid);
+
+def correcta = correctanswers.answera;
+</code></pre>

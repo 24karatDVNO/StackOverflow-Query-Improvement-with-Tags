@@ -1,0 +1,1 @@
+<p>You will need a mutex and a conditional variable.  Mutex will protect your job queue and when receiving threads add a job to the queue it will signal the condition variable.  The worker threads will wait on the condition variable and will wake up when it is signaled. </p>

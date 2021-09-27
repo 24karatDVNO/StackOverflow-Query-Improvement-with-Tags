@@ -1,0 +1,23 @@
+<p>The “IsDiscriminated” method is part of the “DefaultAutomappingConfiguration” class.
+By overriding this class you can alter the way classes are mapped:</p>
+
+<pre><code>public class MyAutomappingConfiguration : DefaultAutomappingConfiguration
+{
+    public override bool ShouldMap(Type type)
+    {
+        return type.Namespace != null &amp;&amp;
+               type.Namespace.Contains("Models");
+    }
+
+    public override bool IsDiscriminated(Type type)
+    {
+        return type == typeof(Code);
+    }
+}
+</code></pre>
+
+<p>Note: The ShouldMap is overriden aswell as the use of this configuration class prevents the usage of the “Where” clause in the mapping 
+It is passed to the mapping process like so:            </p>
+
+<pre><code>  AutoMap.Assemblies(new MyAutoMappingConfig(), assembliesToMap.ToArray()).                 Conventions.AddFromAssemblyOf&lt;BaseEntity&gt;();
+</code></pre>

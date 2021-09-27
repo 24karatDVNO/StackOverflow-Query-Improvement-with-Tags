@@ -1,0 +1,11 @@
+<pre><code>tv_obj_long.setText("" + location.getLongitude());
+tv_obj_lat.setText("" + location.getLatitude());</code></pre>
+
+<p>The easiest way.</p>
+
+<p>Another approach:</p>
+
+<pre><code>tv_obj_long.setText(String.ValueOf(location.getLongitude()));
+tv_obj_lat.setText(String.valueOf(location.getLatitude()));</code></pre>
+
+<p>The textView expects String as parameter in setText() method, you put INTEGER..it is normal to crash.</p>

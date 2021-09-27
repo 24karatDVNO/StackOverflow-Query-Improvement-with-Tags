@@ -1,0 +1,6 @@
+<p>Try This: </p>
+
+<pre><code>var employee = (from e in db.Employees 
+where e.Contacts.Select(x =&gt; x.EmployeeID).Contains(e.ID) 
+select e);
+</code></pre>

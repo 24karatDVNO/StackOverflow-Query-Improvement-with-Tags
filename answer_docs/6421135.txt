@@ -1,0 +1,13 @@
+<p>Image tag not have href attribute they have src attribute for image tag.</p>
+
+<p>Please check on its parent object, if it has either id or class attribute you can use any one of the following.</p>
+
+<p>if the parent (for example consider div) has id.</p>
+
+<pre><code>$("div#your-id img").removeAttr('src')
+</code></pre>
+
+<p>if the parent has class.</p>
+
+<pre><code>$("div.your-class img").removeAttr('src')
+</code></pre>

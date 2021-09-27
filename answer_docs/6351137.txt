@@ -1,0 +1,27 @@
+<p>Figured it out!</p>
+
+<pre><code>function ajax(){
+    if (navigator.standalone) return;
+    for (var i= document.links.length; i--&gt;0;) {
+        document.links[i].onclick= function() {
+            if(this.getAttribute("class") == "noeffect") return;
+            var req= new XMLHttpRequest();
+            req.onreadystatechange= function() {
+                if (this.readyState!==4) return;
+                document.body.innerHTML= this.responseText;
+                ajax();
+            };
+            req.open('GET', this.href, true);
+            req.send();
+            return false;
+        };}
+    }
+
+
+
+window.onload= function() {
+    window.scrollTo(0, 0.9);
+    ajax();
+
+};
+</code></pre>

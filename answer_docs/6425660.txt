@@ -1,0 +1,13 @@
+<p>It is the problem with JS.. You could use</p>
+
+<pre><code>html, body {overflow-x: hidden;}
+</code></pre>
+
+<p>and make sure you display the scrollbar when you resize to something less than min-width.</p>
+
+<pre><code>$(window).resize(function(){
+  if($(window).width() &lt; (your_container_width or fixed width that you define) )
+    $(html).css("overflow-x","scroll");
+    $(body).css("overflow-x","scroll");
+});
+</code></pre>

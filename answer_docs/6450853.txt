@@ -1,0 +1,10 @@
+<p>I ran into a similar problem. (I'm using rvm). I think I ran some code like:</p>
+
+<p>The number after <code>libmysqlclient</code> may be different. And the path may be different for you too, but the concept should be similar.</p>
+
+<blockquote>
+  <p>sudo install_name_tool -change
+  libmysqlclient.18.dylib
+  /usr/local/mysql/lib/libmysqlclient.18.dylib
+  ~/.rvm/gems/ruby-1.9.2-p136\@rails3tutorial/gems/mysql2-0.2.7/lib/mysql2/mysql2.bundle</p>
+</blockquote>

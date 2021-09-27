@@ -1,0 +1,80 @@
+<p>Alright, if anyone is looking for an answer to this here is the solution I came up with!  The basic set up is that I have a <code>FrameLayout</code> that contains a <code>ViewFlipper</code> and I add <code>GridView</code>s to the <code>ViewFlipper</code> based on how many items I have to show.  The I detect a swipe on the <code>FrameLayout</code> and switch between the <code>GridView</code>s in the <code>ViewFlipper</code>.  I still need to be able to click items in the <code>GridView</code> so I can't just consume the events in the <code>FrameLayout</code> but the <code>GridView</code> consumes any events that it gets so I had to intercept the events before they got to the <code>GridView</code> and give them to my <code>GestureDetector</code>.</p>
+
+<pre><code>public class PagedGrid extends FrameLayout
+{
+    private Context _context;
+    private ViewFlipper _flipper;
+    private GestureDetector _gestureDetector;
+
+    public PresentationsGrid(Context context, AttributeSet attrs, int defStyle)
+    {
+        super(context, attrs, defStyle);
+
+        LayoutInflater.from(context).inflate(R.layout.presentation_grid, this, true);
+
+        _flipper = (ViewFlipper)findViewById(R.id.flipper);
+        _gestureDetector = new GestureDetector(new GestureListener());
+
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        setClickable(true);
+
+        _context = context;
+
+        // ... Add Pages ...
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event)
+    {
+        return _gestureDetector.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        _gestureDetector.onTouchEvent(event);
+        return false;
+    }
+}
+</code></pre>
+
+<p>Then I subclassed the <code>GridView</code> to keep track of its state and pass events back sensibly.</p>
+
+<pre><code>public class UnNomableGridView extends GridView
+{
+    private boolean _wasDown;
+
+    public UnNomableGridView(Context context)
+    {
+        super(context);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        if(!_wasDown &amp;&amp; event.getActionMasked() == MotionEvent.ACTION_DOWN)
+        {
+            super.onTouchEvent(event);
+            _wasDown = true;
+            return true;
+        }
+        else if(_wasDown &amp;&amp; event.getActionMasked() == MotionEvent.ACTION_UP)
+        {
+            super.onTouchEvent(event);
+            _wasDown = false;
+            return true;
+        }
+        else if(_wasDown &amp;&amp; event.getActionMasked() == MotionEvent.ACTION_CANCEL)
+        {
+            super.onTouchEvent(event);
+            _wasDown = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+</code></pre>

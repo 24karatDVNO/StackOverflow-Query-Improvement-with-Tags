@@ -1,0 +1,6 @@
+<p>KMC's code should update your table.</p>
+
+<p>The only thing I can think of is that in your connection string, you have
+AttachDbFilename=|DataDirectory|\Database.mdf;</p>
+
+<p>But it looks like you are connecting to a SQLExpress instance.  Try removing this and from the conn string.  When the ExecuteNonQuery is called, the changes are immediate.</p>

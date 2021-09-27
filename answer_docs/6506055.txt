@@ -1,0 +1,6 @@
+<p>You can't. They are going to have to be two statements no matter how you look at it. You could use a trigger to emulate the feel of doing a single <code>INSERT</code>, but that's got pretty bad code smell IMO.</p>
+
+<p>If you just want to send the statements on a single command, terminate the first with a semi-colon and send it as one batch to a <code>SqlCommand</code>.</p>
+
+<pre><code>new SqlCommand("INSERT INTO Table1 (ID) SELECT 1; INSERT INTO Table2 (SomeField) SELECT 'Some value.';", some_db_connection).ExecuteNonQuery();
+</code></pre>

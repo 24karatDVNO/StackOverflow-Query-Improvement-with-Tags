@@ -1,0 +1,4 @@
+<p>I would suggest disabling is not that user friendly, i see the user is selecting button and has a lot of time in between before the next operation happens and tats why he ends up clicking multiple times. In this case as soon as soon capture the click you can show circular progress dialog , that shows user something is in happening and he wont be able to click button also.
+Dismiss the dialog once you have set the counter 
+or second case about to open the dialog                                                                   ProgressDialog dialog = ProgressDialog.show(MyActivity.this, "", 
+                        "Loading. Please wait...", true);                                                 then dialog.dismiss() once ur done </p>

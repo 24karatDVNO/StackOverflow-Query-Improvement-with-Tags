@@ -1,0 +1,15 @@
+<p>Use this code in your web.config and set timeout to whatever you want to. The default timeout is 20 mins.</p>
+
+<pre><code>&lt;configuration&gt;
+  &lt;system.web&gt;
+     &lt;sessionState 
+         timeout="100" 
+     /&gt;
+  &lt;/system.web&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>From your code behind you can use following</p>
+
+<pre><code>Session.TimeOut=100;
+</code></pre>

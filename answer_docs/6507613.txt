@@ -1,0 +1,13 @@
+<p>For Single User</p>
+
+<pre><code>function getUser(userId,callback){
+ redis.hgetall('user:'+ userId +':profile',function(err,profile){
+        if(err) throw err;
+        callback(profile);  
+    });
+}   
+
+getUser(1,function(profile){
+    console.log(profile);
+});
+</code></pre>

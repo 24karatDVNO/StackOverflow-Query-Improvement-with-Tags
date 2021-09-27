@@ -1,0 +1,26 @@
+<p>Depending on the scope and how you define the function it can be a <strong>Function Declaration</strong>, <strong>Function Expression</strong>, or <strong>Function Statement</strong>. These three function types are treated and loaded differently. Among them, only function declarations require a name. So two other types can be defined without a name. These three types are also different in they way they are assigned to a variable with the function name.</p>
+
+<ol>
+<li><p><strong>Function Declaration</strong> : is defined in the top scope and is not used in another expression/statement (e.g., it is not assigned to a variable)</p>
+
+<pre><code> function foo(){}
+</code></pre>
+
+<p>The function object is assigned to the variable <code>foo</code> in the global scope.</p></li>
+<li><p><strong>Function Expression</strong> : is defined in another expression/statement.</p>
+
+<pre><code> var bar = function foo(){}
+</code></pre>
+
+<p>The function object is assigned to the variable <code>foo</code> but in the inner scope (i.e., the scope inside the function)</p></li>
+<li><p><strong>Function Statement</strong> : they are allowed to be anywhere where plain Statements are allowed. </p>
+
+<pre><code>if (true) {
+  function foo(){ }
+}
+</code></pre>
+
+<p>The function object is assigned to the variable <code>foo</code> in the outer scope (i.e., the scope contains the function definition).</p>
+
+<p>For more information look at this address: <a href="http://kangax.github.com/nfe/" rel="nofollow">http://kangax.github.com/nfe/</a></p></li>
+</ol>

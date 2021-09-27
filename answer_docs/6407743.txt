@@ -1,0 +1,12 @@
+<p>I assume that you are actually on a UNIX (like) system, so the shell will replace the <code>*.cpp</code> wildcard specification into actual filenames. Other systems may behave differently, though I doubt it.</p>
+
+<p>You have stored your files in a directory structure, so simply saying <code>*.cpp</code> will only match the file in the current directory, where you invoke g++ - in your case presumably just main.cpp.</p>
+
+<p>If you want to cover all the other files with wildcards as well, you'd have to specify them on the command line as well. In your case:</p>
+
+<pre><code>g++ *.cpp Utilities/*.cpp Utilities/data/*.cpp
+</code></pre>
+
+<p>If that is actually easier than simply naming all the files, I can't judge.</p>
+
+<p><strong>EDIT:</strong> as others have said, the best way to compile/build non-trivial programs is of course using <code>make</code> or some comparable build tool.</p>

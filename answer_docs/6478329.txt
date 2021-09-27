@@ -1,0 +1,60 @@
+<p>What do you mean with a named array?</p>
+
+<p>a_1 in your case will be x[0].</p>
+
+<p>Closed you can get is this:</p>
+
+<pre><code>    int a1[], a2[];
+    int aa[][] = { (a1 = new int[] { 1 }), a2 = new int[] { 2, 3 } };
+</code></pre>
+
+<p>But the array of arrays hardly add value here.
+If you just want to init a multidimensional array, do it like this:</p>
+
+<pre><code>    int ba[][] = { { 1 }, { 2, 3 }, { 2, 3, 4 }, { 2, 3, 4 } };
+</code></pre>
+
+<p>You can also fill it with the same value using <code>Arrays</code>, sadly it only support the first level.</p>
+
+<pre><code>    int c1[] = new int[5];
+    Arrays.fill(c1, 5);
+    int ca[][] = { Arrays.copyOf(c1, 5),
+                   Arrays.copyOf(c1, 5),
+                   Arrays.copyOf(c1, 5) };
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code>    int da[][] = new int[5][5];
+    for (int i = 0; i &lt; da.length; i++) {
+        Arrays.fill(da[i], 5);
+    }
+</code></pre>
+
+<p>Or possibly:</p>
+
+<pre><code>    int ea[][] = new int[5][5];
+    for (int i = 0; i &lt; ea.length; i++) {
+        for (int j = 0; j &lt; ea[i].length; j++) {
+            ea[i][j] = 5;
+        }
+    }
+</code></pre>
+
+<p>With foreach:</p>
+
+<pre><code>    int fa[][] = new int[5][5];
+    for (int[] is : fa) {
+        Arrays.fill(is, 5);
+    }
+</code></pre>
+
+<p>and:</p>
+
+<pre><code>    int ga[][] = new int[5][5];
+    for (int[] is : ga) {
+        for (int i : is) {
+            i = 5;
+        }
+    }
+</code></pre>

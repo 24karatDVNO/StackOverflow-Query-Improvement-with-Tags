@@ -1,0 +1,15 @@
+<p>After MUCH testing, I found that every time the dialog was created and closed, the remaining form and it's elements remained in the DOM.  Subsequent calls to the dialog would fire on the old form which is why the datepicker, validation and submission stopped working.</p>
+
+<p>To fix the issue, I just replaced this line on the Close event for the dialog function:</p>
+
+<pre><code>$(this).dialog("destroy");
+</code></pre>
+
+<p>...with this one:</p>
+
+<pre><code>$(this).dialog("destroy").remove();
+</code></pre>
+
+<p>This new line destroys the dialog and then removes the div that was holding the dialog from the DOM (in the case of the code above, referenced by the variable "dialogDiv").</p>
+
+<p>All problems solved!</p>

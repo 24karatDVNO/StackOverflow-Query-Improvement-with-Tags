@@ -1,0 +1,10 @@
+<p>Where are you selecting them? If it's in a PL/SQL block you can just <code>select *</code> (not something generally recommended!) in your cursor or <code>into</code> something and just ignore the bits you don't want. If you're doing this in SQL*Plus to check what's in there you could just hide the columns from the output:</p>
+
+<pre><code>column column1 noprint
+column column2 noprint
+column column3 noprint
+
+select * from plsqltable;
+</code></pre>
+
+<p>Otherwise, why not create a view at the same time you create the table, in the same procedure, since you presumably know the column names at that point? Or if you can't modify that proc then use something like @Joel Slowik's approach in a separate procedure to recreate a view based on the current table definition.</p>

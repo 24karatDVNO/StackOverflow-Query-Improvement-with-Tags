@@ -1,0 +1,52 @@
+<p>At last, I had to use Reflection. For DataGrid:</p>
+
+<pre><code>private void OnAutoGenerateColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+    {
+        //Need to get an array, but should always just have a single DisplayColumnAttribute
+        var atts = e.PropertyType.GetCustomAttributes(typeof(DisplayColumnAttribute),true);
+
+        foreach (DisplayColumnAttribute d in atts)
+        {
+            DataGridTextColumn col = (DataGridTextColumn)e.Column;
+
+            //Make sure that we always have the base path
+            if(col.Binding.Path.Path!="")
+            {
+                col.Binding = new Binding()
+                {
+                    Path = new PropertyPath(col.Binding.Path.Path + "." + d.DisplayColumn)
+                };
+            }
+
+            //Only do the first one, just in case we have more than one in metadata
+            break;
+        }
+
+    } 
+</code></pre>
+
+<p>And for Telerik RadGridView:  </p>
+
+<pre><code>var column = e.Column as GridViewDataColumn;
+if (column == null)
+{
+    return;
+}
+
+// Need to get an array, but should always just have a single DisplayColumnAttribute  
+var atts = column.DataType.GetCustomAttributes(typeof(DisplayColumnAttribute), true);
+
+foreach (DisplayColumnAttribute d in atts)
+{
+    // Make sure that we always have the base path
+    if (column.DataMemberBinding.Path.Path != "")
+    {
+        column.DataMemberBinding = new Binding()
+        {
+            Path = new PropertyPath(column.DataMemberBinding.Path.Path + "." + d.DisplayColumn)
+        };
+     }
+     // Only do the first one, just in case we have more than one in metadata
+     break;
+ }
+</code></pre>

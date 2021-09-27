@@ -1,0 +1,1 @@
+<p>Personally I think the simplest way to do this is to use a dataflow to bring the excel file into a staging table and do any clean up if need be. Then as the next step inmteh control flow have an Execute SQl task that does the update. Or if you need either an update or an insert if the record is new, use a Merge statement in the Execute SQl task. </p>

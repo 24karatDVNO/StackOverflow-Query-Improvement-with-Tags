@@ -1,0 +1,3 @@
+<p>OnDestroy() is not guaranteed to run.  If say a user is using a task killer, it may sudo kill -9 the thing, and not run.  Other people on SO have also said there are situations where even Android won't call it.  It's supposed to be called right before android kills it to free up memory.  </p>
+
+<p>It would probably be best if you put that logic to close in OnPause() and then again initialized in OnResume(). </p>

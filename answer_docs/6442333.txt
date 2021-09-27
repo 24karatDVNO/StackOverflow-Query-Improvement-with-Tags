@@ -1,0 +1,7 @@
+<p>Is this document in the same domain, or a different domain as the security domain your javascript is running in.</p>
+
+<p>If it's in the same domain, you have a couple options to explore.</p>
+
+<p>You could load the page using an XMLHttpRequest, or <a href="http://api.jquery.com/jQuery.get/" rel="nofollow">JQuery.get</a>, and parse the data you're looking for out of the HTML with an ugly regular expression.</p>
+
+<p>Or, if you're feeling <em>really</em> clever, you can load the target document into a <a href="https://github.com/tmpvar/jsdom" rel="nofollow">jsdom</a> object, <a href="http://www.learningjquery.com/2009/04/better-stronger-safer-jquerify-bookmarklet" rel="nofollow">jQuerify</a> it, and then use the resulting jquery object to access the date you're looking for with a simple selector.</p>

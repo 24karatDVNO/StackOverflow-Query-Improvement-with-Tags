@@ -1,0 +1,10 @@
+<p>I will make a <strong>guess</strong> based on QT documentation.</p>
+
+<p>If your value is NULL you can create a property as if it was a group as below but this won't allow you to <strong>edit</strong> it. If not then create a property as you have been doing and set its value as usual.</p>
+
+<pre><code>//Create a property
+QtVariantProperty *nullType = variantManager-&gt;addProperty(
+      QtVariantPropertyManager::groupTypeId(), "Your property name");
+</code></pre>
+
+<p><a href="http://doc.qt.nokia.com/solutions/4/qtpropertybrowser/qtvariantpropertymanager.html#groupTypeId" rel="nofollow">groupTypeId</a> seems to allow QVariant::Invalid.</p>

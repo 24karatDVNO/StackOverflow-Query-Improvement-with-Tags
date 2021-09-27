@@ -1,0 +1,9 @@
+<pre><code>$('#checkboxid').click(function(){
+ $.ajax({ url: 'your_url_for_receiving_data',
+type: 'POST',
+data: { checkbox: $('#checkboxid').attr('checked') },
+success: function(o) { alert('saved'); }
+});
+</code></pre>
+
+<p>just create code behind in mvc2 where you will get value from request and save it to db</p>

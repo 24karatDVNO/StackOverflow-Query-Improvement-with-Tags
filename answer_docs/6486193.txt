@@ -1,0 +1,5 @@
+<p>WIF doesn't care whether the app. is ASP.NET or ASP MVC. Just bind your app. to ADFS using FedUtil and it will work. FedUtil just changes the web.config.</p>
+
+<p>You'll lose your current authentication pages (in the sense they won't be invoked) but the rest of the app. is untouched and will work as per normal.</p>
+
+<p>If your app. is not currently claims-based, you'll have to make changes to consume the claims.</p>

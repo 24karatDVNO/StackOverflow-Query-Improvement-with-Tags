@@ -1,0 +1,24 @@
+<p>I don't think there is a framework provided API for this. You can use categories to deal with this.</p>
+
+<pre><code>@interface UIImageView (Resizing)
+- (void)resizeToPercentSizeOfOriginal:(CGFloat)percentage; // any value between 0 and 100
+@end
+
+@implementation UIImageView (Resizing)
+
+- (void)resizeToPercentSizeOfOriginal:(CGFloat)percentage {
+    if ( percentage &lt; 0 || percentage &gt; 100.0 ) {
+        // Deal with it.
+    }
+
+    CGSize currentSize = self.frame.size;
+    CGSize expectedSize = CGSizeMake(currentSize.width * percentage, currentSize.height * percentage);
+    CGRect theFrame = self.frame;
+    frame.size = expectedSize;
+    self.frame = theFrame;
+}
+
+@end
+</code></pre>
+
+<p>You can put this in <code>UIImageView+Resizing.h</code> and <code>UIImageView+Resizing.m</code> and import the header to use the method.</p>

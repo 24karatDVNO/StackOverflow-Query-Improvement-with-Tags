@@ -1,0 +1,21 @@
+<p>It sounds like you're looking for the fetch command</p>
+<p><a href="http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html" rel="nofollow noreferrer">git-fetch</a></p>
+<blockquote>
+<p>Fetches named heads or tags from one or more other repositories, along with the objects necessary to complete them.</p>
+<p>The ref names and their object names of fetched refs are stored in .git/FETCH_HEAD. This information is left for a later merge operation done by git merge.</p>
+</blockquote>
+<p>In practice fetch gets all the named commits from the remote repository. This means that when going to origin, origin/master would be updated to point to the latest change on origin, but your local master is not merged, or changed to reflect these changes.</p>
+<p>I'm assuming you're working on (local) master, which is a remote tracking branch of origin/master. You're branch names could differ, but the process is still the same.</p>
+<p>You could now create a temp branch to do checks on origin/master by doing</p>
+<pre><code>git checkout -b temp_branch_name origin/master
+</code></pre>
+<p>which will create the temp branch, which now points to the latest history on the remote repository.</p>
+<p>When you've finished testing and want to integrate, you can either do</p>
+<pre><code>git checkout master
+git merge origin/master
+</code></pre>
+<p>which will perform a normal merge (as pull would've done) or</p>
+<pre><code>git checkout master
+git rebase origin/master
+</code></pre>
+<p>if you prefer rebasing your changes, to get a linear history.</p>

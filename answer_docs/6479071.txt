@@ -1,0 +1,3 @@
+<p>The code as written will not get into a situation where someone closes the handle while someone is waiting on it because you never close the handle. The handle will be closed after the process terminates, but you're not waiting on it (that particular handle) then by definition. </p>
+
+<p><code>HANDLE</code> doesn't have a non-trivial destructor so it will not close itself. Which of course can be problematic in and of itself, but that's a different problem from closing the handle too soon which you seem to be concerned about. I would suggest you take a step back and make sure you understand what you're trying to accomplish.</p>

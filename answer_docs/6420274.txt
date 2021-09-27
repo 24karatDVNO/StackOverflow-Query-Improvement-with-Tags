@@ -1,0 +1,7 @@
+<p>There are a couple of options.</p>
+
+<p>The easiest, if possible, is to place your menu at the bottom of the page and then move it up via absolute positioning. This is because IE sucks at z-index and the easiest way to trick it is to have the html code generate as the last item (placing it on top of all other html). </p>
+
+<p>This will however not work with Flash, silverlight or java-applets which will still sneak on top.</p>
+
+<p>Alternatively you can (however i like the first option more) place an IFRAME under your menu filling out the area you want it to cover. This "fixes" most of IE's whacky ideas about positional elements. But like i said, if you can move your menu to the bottom of the html page, then that is your best bet.</p>

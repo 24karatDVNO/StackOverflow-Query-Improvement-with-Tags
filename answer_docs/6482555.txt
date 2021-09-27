@@ -1,0 +1,5 @@
+<p>you're trying to sort on a 1024 length varchar? that's a lot of potential work to do...</p>
+
+<p>can you get away with perhaps sorting for the first 10 characters? I haven't tested this in MySQL, but if you created a <code>fld1_short</code> field that was varchar(10) and populate it with the first 10 characters of <code>fld1</code>, <strong>and</strong> create an index on it, it might give better performance.</p>
+
+<p>You might want to read up on the <a href="http://dev.mysql.com/doc/refman/5.0/en/order-by-optimization.html" rel="nofollow">MySQL doco</a> regarding <code>ORDER BY</code> optimisation - you could well be hitting your <code>sort_buffer_size</code> and/or <code>read_rnd_buffer_size</code> settings, given the amount of data you're working with.</p>

@@ -1,0 +1,10 @@
+<p>Usually for embedded assets, I have a static class that holds them.  I don't remember the exact syntax off of the top of my head, but it goes something like this.</p>
+
+<pre><code>public class EmbeddedAssets
+{
+    [Embed(source="myfont.tff")]
+    private static const superFont:WhateverAFontObjectIs;
+}
+</code></pre>
+
+<p>And then you put EmbeddedAssets in a directory closer to the top of your directory heirarchy.  This allows you to only have the "Embed" metadata in one place in your application making it easier to change as well as not littering the rest of your code with temporal asset locations.</p>

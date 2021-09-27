@@ -1,0 +1,16 @@
+<p>I use this function to load JavaScript files asynchronously:</p>
+
+<pre><code>function loadJS(url) {
+    var js = document.createElement('script');
+    js.src = url;
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(js);
+}
+</code></pre>
+
+<p>Then just call it like this:</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+    loadJS("http://pathToJSFile");
+&lt;/script&gt;   
+</code></pre>

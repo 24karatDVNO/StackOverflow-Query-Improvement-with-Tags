@@ -1,0 +1,13 @@
+<p>Your code works (gives output) if you are using a main method that looks like this:</p>
+
+<pre><code>public static void main(String[] args) {
+    Restaurant r = new Restaurant();
+    new Thread(r).start();
+    new Thread(r).start();
+    new Thread(r).start();
+}
+</code></pre>
+
+<p>The program will run for a while, and will then halt since it will wait for more "requests", it's not stuck in a deadlock. A deadlock requires two different locks, and you only got one in your code.</p>
+
+<p>Note that you still might have logical "flaws/bugs"</p>

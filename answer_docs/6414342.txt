@@ -1,0 +1,6 @@
+<p>Say your table name is "table1" then</p>
+
+<pre><code>select * from
+(select * from table1 where Year in (select max(Year) from table1)) abc
+where Month not in (select min(Month) from abc) 
+</code></pre>

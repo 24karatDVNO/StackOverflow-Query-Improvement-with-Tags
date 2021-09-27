@@ -1,0 +1,6 @@
+<p>Just for reference, the way to do this turned out to be creating a standard installer and then solving the default install paths by using a batch script and passing through to setup.exe the TARGETDIR param.</p>
+
+<pre><code>setup.exe TARGETDIR="C:\App"
+</code></pre>
+
+<p>Thanks all for your answers!</p>

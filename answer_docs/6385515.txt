@@ -1,0 +1,8 @@
+<p>Adding to the previous answers,
+dont include all the Javascript files in the header itself.... This will just delay the DOM loading. Split the files before including and include it near the respective element in the body on which it is going to act. </p>
+
+<p>Ofcourse you could include the minified version of JS libraries in the header. </p>
+
+<p>Usage of Closure methods for variable scoping in javascript... and also usage of minimum number of global variables does matter for inc in preformance. </p>
+
+<p>And use <code>google's closure compiler</code> or something similar to minify your js. </p>

@@ -1,0 +1,1 @@
+<p>As Suraj said, nope, not possible. What is your intention by this however? If each subclass defines its own set of fields, You could force a getFields method, returning a Set of objects implementing another interface (and / or Enum). Or just going by names, are you needing the reflexions API (i.e. getClass().getDeclaredFields() )?</p>

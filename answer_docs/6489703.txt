@@ -1,0 +1,26 @@
+<p>Aaahhh, the old centered div (without fixed width) problem. There are many solutions, but they    work with various success on different browsers.</p>
+
+<p>The only one that worked for me on all browsers was a list (<code>&lt;ul&gt;&lt;li&gt;</code>) with a left and right of 50%.</p>
+
+<p>You put your data inside the <code>&lt;li&gt;&lt;/li&gt;</code></p>
+
+<pre><code>#parent {
+    width: 100%;
+}
+
+#parent ul {
+    margin: 0;
+    position: relative;
+    list-style: none;
+    float: left;
+    left: 50%;
+    padding: 0
+}
+
+#parent ul li {
+    position: relative;
+    float: right;
+    right: 50%;
+    padding: 0;
+}
+</code></pre>

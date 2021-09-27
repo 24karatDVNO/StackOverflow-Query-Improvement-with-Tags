@@ -1,0 +1,25 @@
+<p>I first thought databinding the height of your user control to the height of the row through a common property might work, however it occured to me that you cannot bind the height of a row as RowDefinition subclasses DependencyObject, but the SetBinding method is defined in FrameworkElement.</p>
+
+<p>That said, one option may be to programatically find the height of the row and bind the control height to that. </p>
+
+<p>Example Property</p>
+
+<pre><code>private int controlHeight;
+public int ControlHeight
+{
+  get 
+  {
+     int row = Grid.GetRow(this.myControl);
+     return myGrid.RowDefinitions[row].Height;
+   }
+   set
+   {
+       controlHeight = value;
+       //Implement property changed event etc here if needed
+    }
+ } 
+</code></pre>
+
+<p>If you want to ensure that the control size will scale dynamically (other than on load), additional code will be needed to update the property and notify the UI.  You could also check the height of the grid and divide by the number of columns in this property, although that might not be as scalable.</p>
+
+<p>Note because you are using colSpan you may need to divide the row height by 2.</p>

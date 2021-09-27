@@ -1,0 +1,8 @@
+<p>I dont know about MacOSX. But in Linux ubuntu i need to write a file in etc/udev/rules.d location . file name 90-android.rules 
+With Content </p>
+
+<p>SUBSYSTEM=="usb", SYSFS{idVendor}=="0bb4", SYMLINK+="android_adb", MODE="0666"
+SUBSYSTEM=="usb", SYSFS{idVendor}=="18d1", SYMLINK+="android_adb", MODE="0666"
+SUBSYSTEM=="usb", SYSFS{idVendor}=="22b8", SYMLINK+="android_adb", MODE="0666"</p>
+
+<p>Search same on the google. you will get something related</p>

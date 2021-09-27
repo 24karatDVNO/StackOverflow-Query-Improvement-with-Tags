@@ -1,0 +1,6 @@
+<p>I would actually remove the voteUp and add votedUp.</p>
+
+<pre><code>$(this).removeClass('voteUp').addClass('votedUp');
+</code></pre>
+
+<p>If you want to toggle a class, possibly just toggle 'votedUp', not 'voteUp votedUp'. If you have a click event assigned to 'voteUp', simply adding on 'votedUp' in your toggle won't remove that click bind.</p>

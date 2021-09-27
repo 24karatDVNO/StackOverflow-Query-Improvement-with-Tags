@@ -1,0 +1,10 @@
+<p>You can use jQuery template as DanielB suggested, you code will look cleaner and *probably easier to maintain but think about adding yet another script which is in beta mode to your application. Is it worth it?</p>
+
+<p>I work this way, 
+if HTML must be dynamic via jQuery or it is small chunk of code like <code>&lt;div&gt;Hello&lt;/div&gt;</code>, i would use selector.append().</p>
+
+<p>if it is HTML code like in your example i would stick to keeping it on HTML page as it is.</p>
+
+<p>To me it really a question of what you should do with HTML next. </p>
+
+<p>For example i've been using jQuery templates in online chat application i've been working on which did in fact helped me with maintenance.</p>

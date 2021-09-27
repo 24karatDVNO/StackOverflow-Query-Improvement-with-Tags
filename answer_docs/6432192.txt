@@ -1,0 +1,6 @@
+<p>Have you tried chaining the two effects together?  Break them up into two animate() functions and then chain them in the order you want:</p>
+
+<pre><code>$(el).fadeIn('slow').animate({"left" : "60%"}, 1000).animate({"height:"351" }, 1000);
+</code></pre>
+
+<p>Each animate() function runs in sequence, so you can do any number of effects one after the other.</p>

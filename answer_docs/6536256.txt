@@ -1,0 +1,20 @@
+<p>First thing that comes to mind are in order:</p>
+
+<p>1) url-helper not loaded
+2) htaccess is blocking treating your directory as a controller</p>
+
+<p>Solutions</p>
+
+<p>1) Add url in config/autoload.php
+eg </p>
+
+<pre><code>$autoload['helper'] = array('url');
+</code></pre>
+
+<p>2) Add files to the htaccess exeptions
+eg</p>
+
+<pre><code>RewriteEngine on
+RewriteCond $1 !^(index\.php|files)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+</code></pre>

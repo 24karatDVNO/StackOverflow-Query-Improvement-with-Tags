@@ -1,0 +1,14 @@
+<pre><code>&lt;script&gt;
+ $("select #myselectid").change(function () {
+   var str = "";
+   var value = $(this).val();
+   if (value == 'yes') {
+     $('conent1').hide();
+     $('conent2').show();
+   }
+   else {
+     $('conent1').show();
+     $('conent2').hide();
+   }
+ });
+</code></pre>

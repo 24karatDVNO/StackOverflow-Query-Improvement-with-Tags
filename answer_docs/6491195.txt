@@ -1,0 +1,8 @@
+<p>This shows date which follow American standard time string but by this reason you don't get any problem in making your logic.Also </p>
+
+<pre><code>[df setDateFormat:@"dd/MM/yyyy hh:mm:ss"];
+</code></pre>
+
+<p>this format using 12 hour format (means 2:03 pm and 2:03 am) and date object never use am and pm for showing date object value but when you convert it correctly then it gives you right date and time. </p>
+
+<p>If you feel you get any problem then use different locale for that.</p>

@@ -1,0 +1,13 @@
+<p>Without answering your "clone/copy" question, your code have a small bug.  My version of your code is:</p>
+
+<pre><code>class A(object):
+    def f(self):
+        print "Test!"
+
+a = A()
+a.f()
+
+X = type('A', (object, ), dict(A.__dict__))
+x = X()
+x.f()
+</code></pre>

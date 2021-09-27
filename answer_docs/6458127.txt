@@ -1,0 +1,3 @@
+<p>You have a zero missing (there are 86400000 milliseconds in a day), but other than that your approach looks fine (assuming that <code>lastTime</code> is just a stored value from <code>System.currentTimeMillis()</code>).  <code>AlarmManager</code> uses absolute times for the trigger time.</p>
+
+<p>If the phone has been turned off for more than 3 days then when you restore the alarm it will be overdue and will fire immediately.  One thing to be aware of is that if you restore a repeating alarm in this way and it's been 5 days since it last fired, then when you restore it using a date in the past it will fire immediately (the overdue day 3 alarm) and then fire again after one more day (the day 6 alarm).  You may want to adjust for this.</p>

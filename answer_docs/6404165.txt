@@ -1,0 +1,42 @@
+<p>There is no reason you are forced to use strings, that is just the basic <code>NotifyPropertyChanged</code> event mechanism.  For example, the <a href="http://www.davidhayden.com/blog/dave/archive/2008/03/12/PrismWPFGuidanceReferenceImplementationMicrosoftPatternsPractices.aspx" rel="nofollow">Prism Framework</a> provides a simple wrapper that takes the a Linq `Expression> as an argument and uses reflection to get the property name (beware though; I have in one instance seen this cause a performance problem when used on a property that was updated many times in a short time period).</p>
+
+<p>You could easily write a wrapper like this yourself without the need for using the entire Prism framework like so:</p>
+
+<pre><code>class NotificationObject : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler PropertyChanged = delegate { };
+    protected virtual void OnPropertyChanged( ProeprtyChangedEventArgs e )
+    {
+        PropertyChanged( this, e );
+    }
+
+    protected void RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; propertyExpression )
+    {
+        // you'll want to add some error checking here
+        var name = ((MemberExpression)propertyExpression).Member.Name;
+        OnPropertyChanged( new PropertyChangedEventArgs( name ) );
+    }
+}
+</code></pre>
+
+<p>Now you can use it by simply passing in the property:</p>
+
+<pre><code>class Whatever : NotificationObject
+{
+    private string _foo = String.Empty;
+    public string Foo
+    {
+        get { return _foo ?? String.Empty; }
+        set
+        {
+            if( !_foo.Equals( value ) )
+            {
+                _foo = value;
+                RaisePropertyChanged( this.Foo );
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>Now if you ever refactor the property <code>Foo</code> you don't have to worry about updating a string as well.  This doesn't solve the problem on the other side though.  A DependencyProperty would, but you have the string issue internally, which IMP is preferable because it is only a duplication in one place (in the class) as opposed to <em>n</em> number of duplications externally.  It's not perfect, but it helps.</p>

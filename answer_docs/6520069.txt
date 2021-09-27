@@ -1,0 +1,3 @@
+<p>I may be wrong, but you are assigning autoreleased objects to the count and maxCount. Shouldn't they be retained or copied? </p>
+
+<p>Your code doesn't leak, but after finishing the block the NSNumber objects should quickly get deallocated.</p>

@@ -1,0 +1,14 @@
+<p>There isn't a way to specifically set the Loader to size your loaded swf upon completion of a load.</p>
+
+<p>If you always want your loaded swf to be 100% of the stage's width and height, you WOULD need to do a stage resize listener and resize it inside the event handler. If you want it to initialize at 100%, you could do the following inside the <strong>loaded swf</strong>:</p>
+
+<pre><code>import flash.events.Event
+
+addEventListener (Event.ADDED_TO_STAGE, onAddedToStage);
+
+function onAddedToStage (e:Event):void{
+    removeEventListener (Event.ADDED_TO_STAGE, onAddedToStage)
+    this.width = stage.stageWidth;
+    this.height = stage.stageHeight;
+}
+</code></pre>

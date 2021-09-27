@@ -1,0 +1,20 @@
+<p>You can use this function to validate if the number:</p>
+
+<pre>
+    public static int validateInteger(String number)
+    {
+        int i = -1;
+
+        try {
+            i = Integer.parseInt(number);
+        }
+        catch (NumberFormatException nfe)
+        {}
+        catch (NullPointerException npe)
+        {}
+
+        return i;
+    }
+</pre>
+
+<p>If the function returns a value less than zero, then it is not a valid positive number.</p>

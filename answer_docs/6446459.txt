@@ -1,0 +1,14 @@
+<p>Try using jQuery's <code>slideUp</code> and <code>slideDown</code> instead of reinventing the wheel.</p>
+
+<pre><code>$(document).ready(function () {
+
+    $('.nav li').hover(function(){
+        $(this).find('ul.item1_sub, ul.item2_sub').slideDown();
+    },function(){
+        $(this).find('ul.item1_sub, ul.item2_sub').slideUp();
+    });
+
+});
+</code></pre>
+
+<p>Fiddle: <a href="http://jsfiddle.net/maniator/Laa7G/" rel="nofollow">http://jsfiddle.net/maniator/Laa7G/</a></p>

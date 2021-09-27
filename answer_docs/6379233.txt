@@ -1,0 +1,43 @@
+<p>Maybe try this:</p>
+
+<pre><code>if(strcasecmp(trim($row['status']), "DONE") != 0) {
+</code></pre>
+
+<p>Or try the while loop</p>
+
+<pre><code>function validatePostValues($alt_response = 'Default', $post_value = NULL) {
+    if((isset($post_value)) &amp;&amp; (strlen(trim($post_value)) &gt; 0)) {
+        $return_value = stripslashes(strip_tags($post_value));
+
+        $return_value = str_replace('"', '', $return_value);
+        $return_value = str_replace("'", "", $return_value);
+    } else {
+        $return_value = $alt_response;
+    }
+    return $return_value;
+}
+$vidcode  = validatePostValues('Invalid URL', $_POST['vidcode']);
+$vidtitle = validatePostValues('No Title', $_POST['vidtitle']);
+
+$db_handle = mysql_connect($server, $user_name, $password); 
+$db_found  = mysql_select_db($database, $db_handle);
+$SQL       = "SELECT * FROM table WHERE videocode = '$vidcode' ";
+$result    = mysql_query($SQL);
+
+if(mysql_num_rows($result)) {
+    // Loop through the results
+    while($row = mysql_fetch_assoc($result)) {
+        // Added for debugging, enclose w/ PIPE for
+        // whitespace check
+        echo "Status is: |".$row['status']."|&lt;br /&gt;\n";
+
+        // Check if its been processed
+        if($row['status'] != "Done"){
+            // CODE HERE IS STILL GETTING EXECUTED 
+            // EVEN WHEN $row['status'] IS "Done"
+            echo "Row: ".print_r($row,true)."&lt;br /&gt;\n";
+        }
+    }
+}
+mysql_close($db_handle);
+</code></pre>

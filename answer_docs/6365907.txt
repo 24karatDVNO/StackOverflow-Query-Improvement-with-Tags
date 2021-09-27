@@ -1,0 +1,21 @@
+<p>If I understand what you want, you should look at the <code>RewriteMap</code> directive of <code>mod_rewrite</code>.</p>
+
+<p>It enable you with the rnd format to map a given URL to a random value from a set: </p>
+
+<p>Configuration: </p>
+
+<pre><code>##
+##  map.txt 
+##
+
+static   www1|www2|www3|www4
+dynamic  www5|www6
+</code></pre>
+
+<p>and rewriting </p>
+
+<pre><code>RewriteMap serveurs rnd:/chemin/vers/fichier/map.txt
+
+RewriteRule ^/(.*\.(png|gif|jpg)) http://${serveurs:static}/$1 [NC,P,L]
+RewriteRule ^/(.*) http://${serveurs:dynamic}/$1 [P,L] 
+</code></pre>

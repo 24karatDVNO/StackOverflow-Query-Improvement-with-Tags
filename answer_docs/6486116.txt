@@ -1,0 +1,5 @@
+<p>Yes, your DB is sorting the priority in lexicographic order. The easiest solution is to map those string priorities to integer priorities and sort on that - as @jdc suggested.</p>
+
+<p>I'd probably tend to stay away from storing the priorities in a separate table just so you dont have to do a join, and just store the numerical priority in a new column. </p>
+
+<p>But the idea is the same.</p>

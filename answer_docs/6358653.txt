@@ -1,0 +1,3 @@
+<p>This is probably not the optimal solution but I have had similar issues with Tomcat 6 before now. At the time I was using Ant, so I wrote an Ant script which would deploy to Tomcat locally and in the process it would stop / start Tomcat where necessary (Tomcat was deployed as a service so I could use <a href="http://technet.microsoft.com/en-us/library/cc736564%28WS.10%29.aspx" rel="nofollow">NET STOP / NET START commands</a>). This included deleting the old expanded WAR folder.</p>
+
+<p>I think there probably are better options, but this worked for me.</p>

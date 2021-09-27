@@ -1,0 +1,18 @@
+<blockquote>
+  <p>is there any upload limit in the mobile ?</p>
+</blockquote>
+
+<p>No, there isn't</p>
+
+<blockquote>
+  <p>The problem is since I am uploading a huge video?</p>
+</blockquote>
+
+<p>Shouldn't be. However there may be problems with the way you are doing it. There could be 2 possible problems here (that I'm able to sense):</p>
+
+<ol>
+<li>You are performing the upload operation on the main thread (deadly sin !).</li>
+<li>With a long video you are experiencing a connectivity problem.</li>
+</ol>
+
+<p>For any of these to detect, see what the logcat has to say ! Post the output here if you can.</p>

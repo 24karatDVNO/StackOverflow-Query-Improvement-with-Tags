@@ -1,0 +1,6 @@
+<p><code>new WorkerEventArgs(_Event)</code>: where do you dispose it?</p>
+
+<pre>public virtual void OnWorkerEvent(String _Event)
+{
+    if (WorkerEvent != null) WorkerEvent(this, <b><i>new WorkerEventArgs(_Event)</i></b> );
+}</pre>

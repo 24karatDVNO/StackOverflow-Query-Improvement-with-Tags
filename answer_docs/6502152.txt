@@ -1,0 +1,21 @@
+<p>Not too sure with oracle - been a long time since i used it.  But from memory it wasn't to dissimilar from mssql.</p>
+
+<pre><code>UPDATE newTable 
+SET DUPLICATE = 'Y'
+WHERE Country IN (
+   SELECT COUNT(Country)
+   FROM newTable
+   GROUP BY Country
+   HAVING Count(Country) &gt; 1
+)
+
+
+UPDATE newTable 
+SET DUPLICATE = 'N'
+WHERE Country IN (
+   SELECT COUNT(Country)
+   FROM newTable
+   GROUP BY Country
+   HAVING Count(Country) = 1
+)
+</code></pre>

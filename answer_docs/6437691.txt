@@ -1,0 +1,5 @@
+<p>Try adding android:scaleType="fix_xy" to the imageview. Another error I found in your code is that you are getting the height and width in a wrong way. Try this:</p>
+
+<pre><code>imageView.getLayoutParams().height;
+imageView.getLayoutParams().width;
+</code></pre>

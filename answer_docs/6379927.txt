@@ -1,0 +1,8 @@
+<p>The simplest thing I can think of would be to redirect the user to the script with the new GET variable.</p>
+
+<pre><code>if( $_GET['abc'] == 1 ) {
+    header( 'Location: '.$_SERVER['PHP_SELF'].'?abc=2' );
+}
+</code></pre>
+
+<p>If you would like to do this without exiting the running PHP script, take a look at <a href="http://php.net/manual/en/book.curl.php" rel="nofollow">cURL</a>.</p>

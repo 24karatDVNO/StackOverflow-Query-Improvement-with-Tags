@@ -1,0 +1,14 @@
+<p>Try this code</p>
+
+<pre><code>Select 
+    ID,
+    dense_rank() over(order by substring(data,2,len(data))*1) as rowid,
+    position,
+    data 
+from 
+    @t 
+where 
+    data is not null
+group by 
+    ID,RowID,position,data
+</code></pre>

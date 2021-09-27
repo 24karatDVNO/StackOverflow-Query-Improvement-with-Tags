@@ -1,0 +1,15 @@
+<p>I couldn't get any of these answers to work in Firefox 5 using the latest CDN from jquery. I needed to know if one of the children of the div had key events so I resorted to this:</p>
+
+<pre><code>$(document).keypress(function(e){
+    if(!$(e.target).parents().is("#testdiv")) return;
+    /* do child-of-div specific code here */
+}
+</code></pre>
+
+<p>If the target is the current div (and it has focus), i'd imagine you could do something like this:</p>
+
+<pre><code>$(document).keypress(function(e){
+    if(!$(e.target).is("#testdiv")) return;
+    /* do div specific code here */
+}
+</code></pre>

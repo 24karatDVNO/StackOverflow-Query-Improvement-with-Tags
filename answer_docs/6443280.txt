@@ -1,0 +1,50 @@
+<p>Actually there is an elegant way to do this in one query, if you do not mind to run some extra miles. Please note that this is just a sketch, I have not run it, you'll probably have to correct a few typos in it.</p>
+
+<pre><code>create or replace package yo_package is
+  type word_t  is record (word varchar2(4000));
+  type words_t is table of word_t;
+end;
+/
+
+create or replace package body yo_package is
+
+  function table_function(in_cur in sys_refcursor, pattern in varchar2) 
+  return words_t
+    pipelined parallel_enable (partition in_cur by any)
+  is
+    next varchar2(4000);
+    match varchar2(4000);
+    word_rec word_t;
+  begin
+    word_rec.word = null;
+
+    loop
+
+    fetch in_cur into next;
+    exit when in_cur%notfound;
+
+    --this you inner loop where you loop through the matches within next
+    --you have to implement this 
+    loop
+        --TODO get the next match from next     
+        word_rec.word := match;
+        pipe row (word_rec);    
+    end loop;
+
+    end loop;
+
+  end table_function;
+
+end;
+/
+
+
+select  *
+from table(
+    yo_package.table_function(
+        cursor(
+            --this is your first select
+            select column1 from table1 where regexp_like(column1, pattern)
+        )
+    ) 
+</code></pre>

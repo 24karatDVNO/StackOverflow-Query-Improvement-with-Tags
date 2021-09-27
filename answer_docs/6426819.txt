@@ -1,0 +1,6 @@
+<p>As Graham noted, most probably you have wrong VirtualHost configuration.</p>
+
+<p>Double check that there is two different VH with right ServerName and that you don't use * (wildcard) in ServerName and ServerAlias that may overlap with subdomain or it goes AFTER subdomain.
+Apache only search for first VH that matches, so if you have something like *.example.com above any other subdomain like forum.example.com would not work.</p>
+
+<p>Also mod_wsgi is recommended by django documentation, consider switching to it. </p>

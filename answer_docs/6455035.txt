@@ -1,0 +1,13 @@
+<p>Yes! Finally the solution to my problem has hit me. All I need to do is modify my above production to:-</p>
+
+<pre><code>rule:
+    RULE user_string '{' buncha_replacements '}'    [* rule(%2, 1) *]
+    |
+    RULE user_string RATIONAL '{' buncha_replacements '}'  [* rule(%2, 1*%3) *]
+    ;
+
+user_string:
+    STRING | SCALE ;
+</code></pre>
+
+<p>This is a pretty elegant solution compared to what I mentioned in my problem text. If anybody has any better solution then please do comment.</p>

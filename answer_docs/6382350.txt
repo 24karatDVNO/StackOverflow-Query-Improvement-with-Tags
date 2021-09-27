@@ -1,0 +1,5 @@
+<p>Without much context it's hard to give an advice, but I think you would want to have something like AspectJ (which really nicely integrates with Spring).</p>
+
+<p>In this case, you would create aspect that will attach to all relevant method calls, catch underlying exception, and decide to rethrow or to log it. It would probably be <code>@Around</code> advice.</p>
+
+<p>I , however, question merrits of such approach as if exception is recoverable, there is no need to do anything different between dev and prod environments. It will only complicate testing.</p>

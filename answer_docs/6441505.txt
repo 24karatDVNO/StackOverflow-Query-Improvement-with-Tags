@@ -1,0 +1,10 @@
+<p>You could use the <code>$.ajax()</code> method instead, as you can control what HTTP verb it will use.</p>
+
+<pre><code>$.ajax({
+   type: "POST",
+   url: "/return_result",
+   success: function(msg){
+      alert( "response: " + msg );
+   }
+});
+</code></pre>

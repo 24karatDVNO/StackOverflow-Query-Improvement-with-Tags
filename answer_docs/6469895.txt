@@ -1,0 +1,3 @@
+<p>It looks like you are including DebugUtil.h in more than one translation unit, then linking those objects together. However, DebugUtil.h provides a definition for the DebugMessage function, so that definition exists in all of the translation units that incorporated the header. As a result, when you link the objects, the linker rightly complains that the symbol is multiply defined.</p>
+
+<p>Change DebugUtil.h so that it declares DebugMessage via a prototype, but does not provide a definition, and place the definition of DebugMessage in a .c file which you will compile and link with your other objects.</p>

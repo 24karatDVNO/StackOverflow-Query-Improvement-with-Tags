@@ -1,0 +1,10 @@
+<p>You can add the following code somewhere above what you have now, which will add a trigger event to the actual click event in browsers that don't let you click() directly. Please note that this type of functionality is often wrapped up in a library such as jquery or prototype.</p>
+
+<pre><code>if(typeof HTMLElement!='undefined'&amp;&amp;!HTMLElement.prototype.click) {
+    HTMLElement.prototype.click=function() {
+        var evt = this.ownerDocument.createEvent('MouseEvents');
+        evt.initMouseEvent('click', true, true, this.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+        this.dispatchEvent(evt);
+    }
+}
+</code></pre>

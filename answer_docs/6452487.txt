@@ -1,0 +1,44 @@
+<p><strike>Send a message (event) to the worker thread that changes a boolean, indicating that the worker thread should end/cancel itself.</strike></p>
+
+<p><strong>Edit</strong>: I was a bit quick reading your question, missing the important part. While trying to make up I found this interesting article which might help:</p>
+
+<p><a href="http://ondotnet.com/pub/a/dotnet/2003/02/18/threadabort.html" rel="nofollow">http://ondotnet.com/pub/a/dotnet/2003/02/18/threadabort.html</a></p>
+
+<p>It does work when simulating a long running process with Thread.Sleep(), being at work I dont have time right now to write code to test it on a proper application/long running task.</p>
+
+<pre><code>class Program
+{
+    static void Main(string[] args)
+    {
+        Thread thread = new Thread(new ThreadStart(Foo));
+        thread.Start();
+        Console.ReadKey();
+        thread.Abort(); // cause ThreadAbortException to be thrown    
+        Console.ReadKey();
+    }
+
+    static void Foo()
+    {
+        try
+        {
+            while( true )
+            {
+                Console.WriteLine("Long running process...");
+                Thread.Sleep(100000);
+            }
+        }
+        catch( ThreadAbortException ex )
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally 
+        {
+            Console.WriteLine("Thread Closing ...");
+        }
+    }
+}
+</code></pre>
+
+<p>The problem with this approach is - it uses Thread.Abort() - which interrupts the thread no matter what it is doing. This can lead to left open handles, memory leaks, etc. So while it may help it would most likely be very unwise to use.</p>
+
+<p>Ian Griffiths supposes that another way to (force) cancel a thread would be to run it in its own, seperate process: <a href="http://www.interact-sw.co.uk/iangblog/2004/11/12/cancellation" rel="nofollow">http://www.interact-sw.co.uk/iangblog/2004/11/12/cancellation</a> which you can kill whenever without affecting your process's internal state.</p>

@@ -1,0 +1,8 @@
+<p>Only with awk.</p>
+
+<pre><code>awk '
+NR==FNR {a[int($5+0.5)] = $0; next}
+a[int($5+0.5)] {$0 = a[int($5+0.5)] " " $0; print $6,$7,$1,$2,$8,$9,$10}' file1 file2
+</code></pre>
+
+<p>If you need it to be sorted, pipe the output into <code>sort</code></p>

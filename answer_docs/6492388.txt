@@ -1,0 +1,8 @@
+<p>How about splitting the input on whitespace and print each element if a <code>(</code> is not present?
+Something like this perhaps</p>
+
+<pre><code>perl -lane 'foreach $_ (@F[1..scalar(@F)]) {print if not m/\(/}'
+cdbs,
+debhelper
+smthelse
+</code></pre>

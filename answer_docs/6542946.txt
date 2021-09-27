@@ -1,0 +1,1 @@
+<p>There is another solution. Don't use ipc:// sockets. Instead use something like tcp://127.0.0.101:10001. On most UNIXes that will be almost as fast as IPC because the OS recognizes that it is a local connection and shortcuts the full IP stack processing.</p>

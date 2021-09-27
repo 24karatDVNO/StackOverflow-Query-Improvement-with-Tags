@@ -1,0 +1,17 @@
+<pre><code>if (reader.GetString(0) != "1")            
+    { return false; }            
+else            
+    { return true; }
+</code></pre>
+
+<p>Trying to compare an <code>int</code> and a <code>string</code> won't really work.
+you can also do</p>
+
+<pre><code>if (Convert.ToInt32(reader.GetString(0)) != 1)            
+    { return false; }            
+else            
+    { return true; }
+</code></pre>
+
+<p>However, in some cases this might not work.
+And in addition, I'd rather use <code>GetSqlString</code> and convert it instead of using <code>GetString</code> because I had too many problems with <code>null</code>s when I was coding.</p>

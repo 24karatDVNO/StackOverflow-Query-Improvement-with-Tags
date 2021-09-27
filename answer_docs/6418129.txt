@@ -1,0 +1,7 @@
+<p>The following algorithm is worst case <code>O(n * n)</code> and average case just a bit superlinear.  It hits that worst case when there are a lot of long common substrings.</p>
+
+<p>Consider the set of substrings that can be formed by starting at an arbitrary point in your string.  Build a trie of those substrings that ends in a pointer to a location in the original string once there is only one possible match.  You have to work on this trie for each of the n substrings, but you only have to follow it out through the longest common substring that string has with any other.</p>
+
+<p>Once you've built this data structure, do a recursive walk through the trie looking looking to pair a substring with its complement.  The structure of the trie should make this pairing very efficient since you only have to pair up opposing substrings, and not substrings with all of the other places in the string it might be.</p>
+
+<p>If certain characters are common while their complements are uncommon, you might be able to improve performance by lazily building the trie.</p>

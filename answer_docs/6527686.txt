@@ -1,0 +1,12 @@
+<p>The file libmysqlclient_r.so.15 is in the mysql shared-compat package. The example below is using a specific mirror and it's for 32 bit generic linux. You can find the right package for your platform at <a href="http://dev.mysql.com/downloads/mysql/" rel="nofollow">http://dev.mysql.com/downloads/mysql/</a></p>
+
+<pre><code>$ wget http://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-shared-compat-5.5.13-1.linux2.6.i386.rpm/from/http://mysql.mirrors.pair.com/
+$ yum install --nogpgcheck MySQL-shared-compat-5.5.13-1.linux2.6.i386.rpm
+</code></pre>
+
+<p>That default installation path is the same that the mysql2 gem used. </p>
+
+<p>On OS X, I know I always have to update the library location in the gem manually. That same trick should work fine on linux. Adjust names and paths to match your platform:</p>
+
+<pre><code>$ sudo install_name_tool -change libmysqlclient.16.dylib /usr/local/mysql/lib/libmysqlclient.16.dylib ~/.rvm/rubies/ruby-1.8.6-p399/lib/ruby/gems/1.8/gems/mysql-2.7/lib/mysql.bundle
+</code></pre>

@@ -1,0 +1,9 @@
+<p>it's a bit of an usual approach of trying to 'grab' the active outlook object... Especially, if there isn't an active object.  A more standard approach is something to the effect of:</p>
+
+<pre><code>outlookApplication = new Application();
+outlookNamespace = m_OutlookApplication.GetNamespace("mapi");
+
+// If an outlook app is already open, then it will reuse that
+// session. Else it will perform a fresh logon.
+outlookNamespace.Logon(accountName, password, true, true);
+</code></pre>

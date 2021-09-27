@@ -1,0 +1,17 @@
+<p>If I understand correctly, you want to support selecting checkboxes by clicking on an associated element, and to submit the form on click. I would suggest a) Use a <code>&lt;label&gt;</code> element in place of <code>&lt;a&gt;</code> as they can be associated with inputs by id and b) don't use numeric, duplicate <code>id</code> attributes.</p>
+
+<pre><code>&lt;form name="checkboxlist" action="#"&gt;
+    &lt;input type="checkbox" id="a" name="pageCB" value="1"/&gt;
+    &lt;label for="a"&gt;Click here&lt;/label&gt;
+    &lt;input type="checkbox" id="b" name="pageCB" value="2"/&gt;
+    &lt;label for="b"&gt;Click here&lt;/label&gt;
+&lt;/form&gt;    
+
+&lt;script&gt;
+    $(document).ready(function() {
+        $('input:checkbox').change(function(){
+            $(this).parent('form').submit();
+        });
+    });
+&lt;/script&gt;
+</code></pre>

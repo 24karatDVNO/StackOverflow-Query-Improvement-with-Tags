@@ -1,0 +1,4 @@
+<p>I think you mean you want to put all the type=0 at the front and all the type=1 at the back, and also sort by text where type=1.</p>
+
+<pre><code>items.OrderBy(item =&gt; item.Type).ThenBy (item =&gt; type == 0 ? "" : item.Text)
+</code></pre>

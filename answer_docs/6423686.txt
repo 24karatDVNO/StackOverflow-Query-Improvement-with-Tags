@@ -1,0 +1,7 @@
+<p>When you have virtual method or Instance method and you compiles them. 
+Your method will have callvirt token and will be called by CLR as callvirt, unless static method will have call token and will be called directly.</p>
+
+<p>Callvirt will led the method to be called as virtual at runtime.</p>
+
+<p>At runtime, CLR will examine your method whether its object has been instantiated. And CLR also examine whether your method has been overriden by its derived type. If it is not overriden, your method will be called.
+If Yes, then its derived's method will be called.</p>

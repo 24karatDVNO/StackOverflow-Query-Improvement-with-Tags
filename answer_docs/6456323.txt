@@ -1,0 +1,30 @@
+<p>I think that you need to use a separate query per article tag:</p>
+
+<pre><code>// Use a LinkedHashSet to retain the result order if that is important
+def results = new LinkedHashSet()
+
+results.addAll(Article.findAll("from Article as article \
+  where article.categoryName = :categoryName \
+  and article.id != :id",
+  [
+    categoryName:myArticle.categoryName,
+    id:myArticle.id,
+  ])
+
+myArticle.tags.each {
+ results.addAll(Article.executeQuery(
+   "select distinct article from Article as article, \
+   Tag as tag \
+   where tag.name = :tag \
+   and tag in elements(article.tags) \
+   and article.id != :id",
+   [
+     tag:it.name,
+     id:myArticle.id,
+   ]))
+}
+
+def relatedArticles = results as List
+</code></pre>
+
+<p>This is obviously worthwhile doing when you have a lot of content in the system and wish to avoid loading the entire database for a single page request. Other improvements include specifying max and offset parameters to the queries.</p>

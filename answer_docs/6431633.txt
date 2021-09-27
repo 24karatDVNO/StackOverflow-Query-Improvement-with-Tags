@@ -1,0 +1,8 @@
+<p>If you only have one category assigned to the product, you can do this within your <code>channel:entries</code> loop:</p>
+
+<pre><code>{categories limit="1"}
+&lt;p class="pfloatRight"&gt;&lt;a href="{path="product/index"}"&gt;Back to {category_name}&lt;/a&gt;&lt;/p&gt;
+{/categories}
+</code></pre>
+
+<p>If you're using multiple categories per-product, then you'd have to use an add-on (or custom code) that stores the URL history for you (like <a href="http://devot-ee.com/add-ons/page-history/" rel="nofollow">this one</a>) and retrieve the last-visited page that way.</p>

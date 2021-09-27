@@ -1,0 +1,33 @@
+<p>You could leverage inheritance and have your tests defined in an abstract base class with a factory method to create your selenium instance, then inherit this for each type of browser you want to model. The tests will then be run for each inherited class with the appropriate browser. Using NUnit as an example:</p>
+
+<pre><code>public abstract class AbstractTests
+{
+    protected abstract DefaultSelenium CreateSelenium();
+
+    [Test]
+    public void TestSomethingA()
+    {
+        DefaulSelenium selenium = CreateSelenium();
+
+        //Do some testing with selenium.
+    }
+}
+
+[TestFixture]
+public class IETests : AbstractTests
+{
+    protected override DefaultSelenium CreateSelenium()
+    {
+        return new DefaultSelenium("iexplore");
+    }
+}
+
+[TestFixture]
+public class FirefoxTests : AbstractTests
+{
+    protected override DefaultSelenium CreateSelenium()
+    {
+        return new DefaultSelenium("firefox");
+    }
+}
+</code></pre>

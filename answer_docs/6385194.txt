@@ -1,0 +1,7 @@
+<p>You must escape all <code>/</code> as well:</p>
+
+<pre><code>var str = "http://gaurav.com";
+var patt1 = /^http\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$/;
+//------------------^-^---------------------------------^
+console.log(str.match(patt1));
+</code></pre>

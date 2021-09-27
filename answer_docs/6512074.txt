@@ -1,0 +1,32 @@
+<p>Thanks for your help everyone.
+I just buildet a solution with my new know how. I hope someone else will find some help with it.</p>
+
+<pre><code>   public class DeleteButtonController implements ActionListener {
+    private OceanGui view;
+
+    public DeleteButtonController(OceanGui view) {
+        this.view = view;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        try {
+            OceanObject obj = (OceanObject) view.getObjects().getSelectedItem();
+            int index = view.getModel().getIndexOfClosestOceanObject(
+                    obj.getPosition()[0], obj.getPosition()[1]);
+            view.getModel().delOceanObject(index);
+
+            view.getObjects().removeAllItems();
+            Iterator&lt;OceanObject&gt; iterator = view.getModel().getOceanObjects()
+                    .iterator();
+            while (iterator.hasNext()) {
+                view.getObjects().addItem(iterator.next());
+            }
+
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "No more OceanObjects in Ocean.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+}
+</code></pre>

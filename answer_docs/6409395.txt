@@ -1,0 +1,9 @@
+<p>With standard JDBC, you can get the result set's <a href="http://download.oracle.com/javase/6/docs/api/java/sql/ResultSetMetaData.html" rel="nofollow">metadata</a>:</p>
+
+<pre><code>ResultSetMetaData metadata = resultSet.getMetaData() 
+</code></pre>
+
+<p>This object can then be queried for the column name (by index):</p>
+
+<pre><code>String columnFiveName = metadata.getColumnName(5)
+</code></pre>

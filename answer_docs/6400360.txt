@@ -1,0 +1,39 @@
+<p>Just wrote this code for fun and maybe learn something in the process.
+It should set any property to null if that property contains a method called Set that returns bool, and its current value is false.  By setting the values to false, it should solve the serializer issue.
+Any suggestions:</p>
+
+<pre><code>public static void RemoveUnsetObjects(object currentObject)
+{
+    var type = currentObject.GetType();
+    if (currentObject is IEnumerable)
+    {
+        IEnumerable list = (currentObject as IEnumerable);
+        foreach (object o in list)
+        {
+            RemoveUnsetObjects(o);
+        }
+    }
+    else
+    {
+        foreach (var p in type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
+        {
+            var propertyValue = p.GetValue(currentObject, null);
+            if (propertyValue == null)
+                continue;
+                    var setPropInfo = p.PropertyType.GetProperty("Set", typeof(bool));
+            if (setPropInfo != null)
+            {
+                var isSet = (bool)setPropInfo.GetValue(propertyValue, null);
+                if (!isSet)
+                {
+                    p.SetValue(currentObject, null, null);
+                }
+            }
+            else
+            {
+                RemoveUnsetObjects(propertyValue);
+            }
+        }
+    }
+}
+</code></pre>

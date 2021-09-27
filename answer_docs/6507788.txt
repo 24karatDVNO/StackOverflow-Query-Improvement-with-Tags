@@ -1,0 +1,17 @@
+<p>I implemented the first answer and liked this option best because it is one function for all accordion panels. But, I noticed that I kept getting an error when trying to (re)close the same accordion panel - it would halt the script at this line in the ScrollTo plugin:</p>
+
+<pre><code>attr[key] = val.slice &amp;&amp; val.slice(-1) == '%' ? 
+</code></pre>
+
+<p>The val was returning empty, so I found another answer here that said to check for it empty and added / replaced this function - so it works now.</p>
+
+<pre><code>else{
+var val = targ[pos];
+// Handle percentage values
+if(val) {
+    attr[key] = val.slice &amp;&amp; val.slice(-1) == '%' ?
+    parseFloat(val) / 100 * max
+    : val;
+    }
+}
+</code></pre>

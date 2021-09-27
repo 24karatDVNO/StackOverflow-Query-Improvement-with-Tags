@@ -1,0 +1,10 @@
+<p>Hmm, well, apparently CakePHP questions aren't of much interest to the world at large: only 8 views in 2 days :(</p>
+
+<p>In any case I investigated a bit further and discovered that, while the &lt;nocache&gt; tags don't let you surround variables to make them dynamic, they DO allow you to make non-caching calls to elements or helpers.  I therefore extracted the relevant part of my page into an element, and populated the data array by calling a helper function.</p>
+
+<p>This did mean that I had to access the model from inside the helper with</p>
+
+<pre><code>$this-&gt;Modelname =&amp; ClassRegistry::init("Modelname");
+</code></pre>
+
+<p>and I'm not sure this is necessarily the respectful CakePHP and/or MVC way of doing things, but at least it's some way towards a solution!      </p>

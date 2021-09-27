@@ -1,0 +1,11 @@
+<p>This is a config that works for us</p>
+
+<pre><code>RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php
+</code></pre>
+
+<p>If it does not work for you, there could be hundred of reasons, starting form insufficient permissions and ending with custom IIS configuration, etc.</p>
+
+<p>Try to follow Troubleshooting section of documentation, try to start from enable logging and test some basic rewrites.</p>

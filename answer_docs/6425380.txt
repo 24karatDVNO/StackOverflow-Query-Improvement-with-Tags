@@ -1,0 +1,4 @@
+<pre><code>db.iolog.find({$where:"this.firstname.toLowerCase()==\"telMan\".toLowerCase()"});
+DBObject ref = new BasicDBObject();
+ref.append("firstname", new BasicDBObject("$where","this.firstname.toLowerCase()=="+firstname+".toLowerCase()"));
+</code></pre>

@@ -1,0 +1,12 @@
+<p>You have to find the completed course related to the started course, and if there is no completed course, count 1.</p>
+
+<pre><code>SELECT startedCourse.School AS School, 
+       SUM(CASE WHEN completedCourse IS NULL THEN 1 ELSE 0 END) AS NotCompleted
+FROM MyTable startedCourse
+    LEFT OUTER JOIN MyTable completedCourse
+        ON startedCourse.Status = 'S'
+        AND completedCourse.Status = 'C'
+        AND startedCourse.Course = completedCourse.Course
+WHERE startedCourse.Date = ?
+GROUP BY startedCourse.School
+</code></pre>

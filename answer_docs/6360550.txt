@@ -1,0 +1,13 @@
+<p>Investigating this problem further (basically because I didn't want to improve lots of scripts just because of that), I've come to the point that there is a strong conflict between PHP and Postfix developers, which is not fixed until now. You can read wide info here:</p>
+
+<p><a href="http://www.mail-archive.com/postfix-users@postfix.org/msg03226.html" rel="nofollow">http://www.mail-archive.com/postfix-users@postfix.org/msg03226.html</a></p>
+
+<p><em>Postfix expects EOL to be LF when picking up mail from sendmail on unix and 
+replaces that with CRLF when sending. <strong>When it gets CRLF it still replaces the 
+LF and we get CRCRLF</strong>.</em></p>
+
+<p>It explains broken headers. To solve this, you must exactly know how your Postfix and PHP/mail system works. If you experience problems like described above, just use "\n" instead of "\r\n". If you program a complicated system which could run on both Windows/Unix, just introduce an extra param like $eeol="\r\n"; which will be put instead of direct "\r\n" tag and that way could be easily configured for any system.</p>
+
+<p>I suppose that's the approach Postfix author recommends:</p>
+
+<p><em>It would be really good if PHP application programmers formatted email messages in a consistent manner. For example, they could use a variable that contains the END-OF-LINE terminator, instead of hard-coding LF or CRLF line terminators all over the place.</em></p>

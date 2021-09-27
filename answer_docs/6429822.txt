@@ -1,0 +1,3 @@
+<p>The general answer is no: in Oracle you can never use a column alias at the level where it is defined, except in <code>order by</code> clauses.</p>
+
+<p>However, your query has other issues, since you're getting the <code>lag</code> value of a constant. @Tony Andrew's query seems like what you actually want.</p>

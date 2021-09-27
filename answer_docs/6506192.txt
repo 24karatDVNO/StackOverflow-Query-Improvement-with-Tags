@@ -1,0 +1,12 @@
+<p>URLs consist of two parts, the first part is the domain (I think) and what matters here is the second which is called the query string. (the 1st part is mandatory, the 2nd is not).</p>
+
+<p>this is an example:</p>
+
+<pre><code>http://your-domain-here/stuff?page=1
+</code></pre>
+
+<p>Now <code>page</code> is a query string variable. You have to notice the <code>?</code> which separates the two parts of the Url, I don't see one in your URL, so IMO, MVC routing engine will try to match this whole Url with a registered route (which will not be found).</p>
+
+<p>No, I would say, you don't have to create a new route, new routes are created when we're in need of a new "Path" but in your case you only need to improve the URL to separate the route off the query string.</p>
+
+<p>Hope that helps.</p>

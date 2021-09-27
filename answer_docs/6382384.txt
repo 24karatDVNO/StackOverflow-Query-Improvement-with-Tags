@@ -1,0 +1,3 @@
+<p>There are no "standard way" to manage application wide data in RCP. I usually use the <code>org.eclipse.ui.services</code>extension point (see the description of this) to setup a service all components can use, but an OSGi service is a likely alternative.</p>
+
+<p>Or you can get very simple and just use a common static class :-)</p>

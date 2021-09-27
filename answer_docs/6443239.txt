@@ -1,0 +1,23 @@
+<p>I know this question is a few months old now, but I was looking for something similar and came up with a solution.</p>
+
+<p>In my scenario I have a type Parent which has a single child of type Child and a collection called OtherChildren of type AnotherChild.  My summary has the Id and Name properties of the Parent, the Name of the Child and the count of the OtherChildren collection.</p>
+
+<p>IIUC your Movie object has a collection of MovieGenres and you want a summary which has some information about the movie plus the count of its genres.  I think this is similar to selecting Parent Name and count of OtherChildren into a summary object.</p>
+
+<p>This worked for me:</p>
+
+<pre><code>ParentSummary parentSummary = null;
+Child child = null;
+IList&lt;AnotherChild&gt; otherChildren = null;
+
+var result = session.QueryOver&lt;Parent&gt;()
+  .JoinAlias(x =&gt; x.Child, () =&gt; child)
+  .JoinAlias(x =&gt; x.OtherChildren, () =&gt; otherChildren)
+  .SelectList(list =&gt; list
+      .SelectGroup(x =&gt; x.Id).WithAlias(() =&gt; parentSummary.Id)
+      .SelectGroup(x =&gt; x.Name).WithAlias(() =&gt; parentSummary.Name)
+      .SelectGroup(() =&gt; child.Name).WithAlias(() =&gt; parentSummary.ChildName)
+      .SelectCount(x =&gt; x.OtherChildren).WithAlias(() =&gt; parentSummary.OtherChildrenCount))
+  .TransformUsing(Transformers.AliasToBean&lt;ParentSummary&gt;())
+  .List&lt;ParentSummary&gt;();
+</code></pre>

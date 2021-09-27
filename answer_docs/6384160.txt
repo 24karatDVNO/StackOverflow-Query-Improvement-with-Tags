@@ -1,0 +1,5 @@
+<p>store the data in the session, and save the data when the user performs logout</p>
+
+<p>(if the user does not logout it will not be saved, but that should not be a problem)</p>
+
+<p>edit: if the users does not login/logout, you have to catch when the session dies and save the data then. when evaluating the data you have to compensate for how long the session lives before it dies, e.g. 5 mins or whatever, and subtract it. will give you a ballpark figure, not exact time the user looked at the site.</p>

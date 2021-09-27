@@ -1,0 +1,5 @@
+<p>Indeed from your Excel-DNA add-in you only have access to the Excel COM object model and not the VSTO extensions.  However, the VSTO assemblies just talk to Excel through the COM interface, so in theory you should be able to do the same from your Excel-DNA add-in, perhaps after adding some helper classes.</p>
+
+<p>I suggest you could try to figure out how to create the list object from VBA, perhaps by recording and inspecting some macros that do what you would like to. If you are able to manipulate Excel the way you want from VBA, you can certainly do the same from your Excel-DNA add-in.</p>
+
+<p>A possible issue is that I believe some of the object model is exposed only through the COM dispatch interface. Such methods won't be visible through the interop assembly and might have to called via reflection, from VB.NET or with the "dynamic" support in C# 4. Once you are able to make the right calls from VBA, I'm happy to help figure out how to do it from your Excel-DNA add-in.</p>

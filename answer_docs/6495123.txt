@@ -1,0 +1,13 @@
+<p>Each store within Magento can set it's own theme so you might have more than one to consider. Also certain pages like CMS, category or product pages can choose their own theme to override the store and global settings.</p>
+
+<p>To find the <em>package</em> and <em>theme</em> that corresponds to the folder <code>app/design/frontend/PACKAGE/THEME</code> use;</p>
+
+<pre><code>Mage::getStoreConfig('design/package/name', $storeId)
+</code></pre>
+
+<p>and;</p>
+
+<pre><code>Mage::getStoreConfig('design/theme/default', $storeId)
+</code></pre>
+
+<p>If calling from a PHP file external to Magento then you'll need to <code>include 'app/Mage.php';</code> first. The <code>$storeId</code> value can be either an int as used internally or the store code saved in <em>System > Configuration > Manage Stores</em> - there is usually at least a "default" value.</p>

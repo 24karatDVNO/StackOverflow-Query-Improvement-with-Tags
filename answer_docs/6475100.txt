@@ -1,0 +1,19 @@
+<p>From reading the query, it looks like you want call Categories, and for each category, you want a count of Krits (approved) for the respective categories, and when there are none, you still want the Category, but show the count of 0...</p>
+
+<p>Try this</p>
+
+<pre><code>select
+      cat.*,
+      COALESCE( kc.KritCount, 0 ) as KritCount
+   from 
+      Categories cat
+         left join ( select k.CategoryID, 
+                            count(*) KritCount
+                        from 
+                           Krits k
+                        where
+                           k.approved = '1'
+                        group by 
+                           k.CategoryID ) kc
+            on cat.id = kc.CategoryID
+</code></pre>

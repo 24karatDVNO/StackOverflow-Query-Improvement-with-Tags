@@ -1,0 +1,28 @@
+<p>I use <a href="http://hernan.amiune.com/labs/jQuery-Tooltip-Plugin/jQuery-Tooltip-Plugin.html" rel="nofollow">this</a> lib with some customizations. You can replace line 77  </p>
+
+<pre><code>$tooltipC.html($tooltip.data("title"));
+</code></pre>
+
+<p>of <a href="http://hernan.amiune.com/static/labs/jqtooltip/jquery.tooltip.js" rel="nofollow">this</a> file with the following line:</p>
+
+<pre><code>$tooltipC.html(options.content);
+</code></pre>
+
+<p>And than you can use it as follows:</p>
+
+<pre><code>$('.tooltip-target').each(function () {
+        $(this).tooltip({
+            cssClass: "tooltip",
+            content: $($(this).attr("rel")).html()
+        });
+    });
+</code></pre>
+
+<p>As you can see in my project for every tooltip target I set attribute rel with the selector of control with html for tootlip. As follows:</p>
+
+<pre><code>&lt;img src="help.ico" class="tooltip-target" rel="#helpTooltip" /&gt;
+&lt;div style="display:none" id="helpTooltip"&gt;
+    Some html content for tooltip
+    &lt;a href="help.html"&gt;Details..&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>

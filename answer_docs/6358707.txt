@@ -1,0 +1,8 @@
+<p>That's not how tab view controllers work. You can implement this method in your app delegate (after making it the delegate for the UITabeBarController)....</p>
+
+<pre><code>- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+</code></pre>
+
+<p>Then call a reset method (or similar) on your view controller to pop back to the root view controller.</p>
+
+<p>This is not how you normally work with UITabBarControllers however....</p>

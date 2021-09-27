@@ -1,0 +1,8 @@
+<p>Defining the event on <code>$('TABLE TBODY TR TD').click(function()</code> isn't going to work, because you want the event to change when the checkbox is clicked, not the cell.</p>
+
+<p>You can either:</p>
+
+<ol>
+<li>Define a class on the checkbox inputs, and in the <code>click</code> function, figure out which one was clicked and change the appropriate background color</li>
+<li>Define a unique id on each of the checkboxes, but that would require adding a <code>click</code> function to each of the ids (which just means you're writing duplicate code, and isn't very clean)</li>
+</ol>

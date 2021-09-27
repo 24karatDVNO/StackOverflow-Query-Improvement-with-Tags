@@ -1,0 +1,70 @@
+<p>First off, I wonder why you're using three different procs (and I assume three different tables) for this. A hierarchical table, such as:</p>
+
+<p>(using ints instead of the preferred primary key type <code>uniqueidentifier</code> for simplicity's sake)</p>
+
+<p>Test table:</p>
+
+<pre><code>create table menu_item
+(
+id int primary key 
+,parent_id int foreign key references menu_item(id)
+,[description] nvarchar(512)
+,sort_order int not null default 0 
+);
+</code></pre>
+
+<p>Populate the table with some test data</p>
+
+<pre><code>insert into menu_item (id, parent_id, [description],sort_order) 
+select 0, null, 'Menu Root', 0
+union all
+select 1, 0, 'Item 1', 0 
+union all 
+select 2, 0, 'Item 2', 1
+union all
+select 3, 0, 'Item 3', 2
+union all
+select 4, 1, 'Item 1.1', 0
+union all
+select 5, 1, 'Item 1.2', 1
+union all
+select 6, 4, 'Item 1.1.1', 0
+union all
+select 7, 4, 'Item 1.1.2', 1
+union all
+select 8, 2, 'Item 2.1', 0
+</code></pre>
+
+<p>And the stored proc to retrieve the hierarchy in the correct order.</p>
+
+<pre><code>/*
+Retrieve part of the menu hierarchy from table menu_item.
+*/
+create procedure menu_item_get_hierarchy
+as
+    set nocount on;
+
+    with menu_hierarchy as
+    (
+        select id, parent_id, 0 as [level], cast('000000' as nvarchar(max)) as sort_key
+        from menu_item m1
+        where parent_id is null
+
+        union all
+
+        select m.id, m.parent_id, [level]+1, cast(sort_key + '.' + right('000000'+cast(m.sort_order as nvarchar(6)),6) as nvarchar(max))
+        from menu_item m
+        inner join menu_hierarchy h
+        on m.parent_id = h.id
+    )
+    select  menu_item.[description], menu_hierarchy.*
+    from menu_item inner join menu_hierarchy 
+    on menu_item.id=menu_hierarchy.id
+    order by sort_key, [description]
+</code></pre>
+
+<p>The only part about this that I don't like is using the string operators to generate the <code>sort_path</code> column as it's pretty inefficient, but I can't think of a better way to do that off of the top of my head, and the number of rows you're likely to have in a nav system shouldn't cause a performance issue. I'm sure someone will chime in with some insight or alternatives.</p>
+
+<p>There are many other ways to store a heirarchy in a single table, but this one is the easiest to maintain as you only need to provide an parent id when you're inserting, and the foreign key relationship prevents orphaned nodes.</p>
+
+<p>Hope this helps.</p>

@@ -1,0 +1,9 @@
+<p>You can do it in two steps with</p>
+
+<pre><code>$place = 'Left';
+$size = 500;
+$string = preg_replace('/(?&lt;=class="image)\W(?=")/',$place,$string);
+$string = preg_replace('/(?&lt;=style="width:)[0-9]+(?=")/',$size,$string);
+</code></pre>
+
+<p>Note: <code>(?=...)</code> is called a lookahead.</p>

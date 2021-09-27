@@ -1,0 +1,9 @@
+<p>You <em>can</em> specify the delete-cascade option in NH:</p>
+
+<pre><code>&lt;bag name="Comments" cascade="all-delete-orphan" order-by="DateTimePosted desc" where="Approved=1"&gt;
+    &lt;key column="PhotoId" on-delete="cascade"/&gt;
+    &lt;one-to-many class="Comment" /&gt;
+&lt;/bag&gt;
+</code></pre>
+
+<p>You probably should make it inverse. Then I wonder where your FK_Comments_Photos column is specified.</p>

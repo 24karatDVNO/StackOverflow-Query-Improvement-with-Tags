@@ -1,0 +1,7 @@
+<p>You forgot to add <code>.</code> after <code>$recipient_Email</code>.</p>
+
+<pre><code> mysql_query("INSERT INTO landed (priKey, flightNumber, arrivalStatus, recipientEmail, confirmStatus)
+    VALUES ('', '".$flight_Number."','".$arrival_Status."', '".$recipient_Email."' ,'')")
+</code></pre>
+
+<p>Escape variables using <a href="http://php.net/manual/en/function.mysql-real-escape-string.php" rel="nofollow">mysql_real_escape_string</a> otherwise query will if any other variable contain single quote in it and your queries are inviting someone for <a href="http://php.net/manual/en/security.database.sql-injection.php" rel="nofollow">SQL Injection</a>.</p>

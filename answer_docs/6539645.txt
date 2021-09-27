@@ -1,0 +1,21 @@
+<p>@Prashant's response gave me the inspiration for this, and it's very similar, but I believe will solve your problem.</p>
+
+<p>If the other process must match a certain filename pattern</p>
+
+<ul>
+<li>Rename the file to something that
+won't match first, a very cheap/fast
+operation</li>
+<li>Rename it back when finished</li>
+</ul>
+
+<p>If it matches every file in a given folder</p>
+
+<ul>
+<li>Move it to another folder (also a very cheap operation in most filesystems)</li>
+<li>Move it back when finished.</li>
+</ul>
+
+<p>If the other process had already locked your file (even for read) then your process would fail, and you can make that graceful. If not you should be safe.</p>
+
+<p>There is still a race condition possibility, of course, but this should be much safer than what you are doing.</p>

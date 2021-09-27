@@ -1,0 +1,20 @@
+<pre><code>try {
+            StringBuffer inLine = new StringBuffer();
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            SAXParser sp = spf.newSAXParser();
+            XMLReader xr = sp.getXMLReader();
+            MyXMLHandler myExampleHandler = new MyXMLHandler();
+            xr.setContentHandler(myExampleHandler);
+            InputStream in = this.getResources().openRawResource(
+                    R.raw.myxmlfile);
+            xr.parse(new InputSource(in));
+            MyXMLHandler parsedExampleDataSet = myExampleHandler;
+            inLine.append(parsedExampleDataSet.toString());
+            in.close();
+        } catch (Exception e) {
+            System.out.println(&quot;XML Pasing Excpetion = &quot; + e);
+            Log.i(TAG, e.toString());
+        }
+</code></pre>
+<p>here is compete code available have a look <a href="http://www.androidpeople.com/xml-parsing" rel="nofollow noreferrer">Android XML Parsing Tutorial - Using SAXParser</a></p>
+<p>Happy coding :):) :Pragna</p>

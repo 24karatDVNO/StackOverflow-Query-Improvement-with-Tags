@@ -1,0 +1,17 @@
+<p>A solution to your problem is</p>
+
+<pre><code>regexStr = r'(%s)' % searchString
+</code></pre>
+
+<p>where searchString will replace %s</p>
+
+<p>In Python it is often better to use this construct than regular concatenation. (meaning str1 + str2 + ... )
+Especially as you don't have to care about converting ints doubles and so on.</p>
+
+<p>More on the subject here: <a href="http://diveintopython.net/native_data_types/formatting_strings.html" rel="nofollow">3.5. Formatting Strings</a></p>
+
+<p>The r should not be part of the string, it only tells the python interpreter what kind of string it is:</p>
+
+<pre><code>r('hello\n')  # Raw string =&gt; (hello\n)
+u'unicodestring'
+</code></pre>

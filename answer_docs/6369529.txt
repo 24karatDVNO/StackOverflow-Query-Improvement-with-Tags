@@ -1,0 +1,18 @@
+<p>for new button add id to this radio button-   </p>
+
+<pre><code>&lt;input type="radio" class="status" name="status" checked="checked" id="new"  value="New" /&gt;New    
+
+
+$('#new).click(function(){   
+     $('#Insurance_type option').each(function(i, option){
+        if($(option).text().indexOf('new Insurance') &lt; 0){
+             $(option).remove();
+        }
+
+   })
+
+});
+</code></pre>
+
+<p>do it for other radio buttons.<br>
+not tested, but i think this should work.  </p>

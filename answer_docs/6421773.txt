@@ -1,0 +1,13 @@
+<p>maybe , it is like this. 
+and for example , T is your class...</p>
+
+<pre><code>foreach (PropertyInfo propertyInfo in (typeof(T)).GetProperties()){
+    foreach (object attribute in propertyInfo.GetCustomAttributes(true))
+    {
+        if ( attribute is OnlyShowIfValueIsNonZero )
+        {
+           ......
+        }
+    }
+}
+</code></pre>

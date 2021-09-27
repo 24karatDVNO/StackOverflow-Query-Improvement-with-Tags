@@ -1,0 +1,5 @@
+<p>Start out by identifying what's going on when the SP is working slowly - is the bottleneck your disk or perhaps network related?</p>
+
+<p>You can follow Brent Ozar's great guide on using perfmon to identify just that: <a href="http://www.brentozar.com/archive/2006/12/dba-101-using-perfmon-for-sql-performance-tuning/" rel="nofollow">http://www.brentozar.com/archive/2006/12/dba-101-using-perfmon-for-sql-performance-tuning/</a></p>
+
+<p>Once you know where the bottleneck is at, it becomes a lot easier to identify the core issue. Is the SP joining to any other tables? Is there a noneven distribution of joined data causing greater amounts of disk IO at certain rows compared to others?</p>

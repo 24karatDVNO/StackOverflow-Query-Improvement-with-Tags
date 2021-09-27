@@ -1,0 +1,14 @@
+<p>No while defining macros u should take care of one thing
+that macro should not call itself (reccursively) either directly
+or indirectly.</p>
+
+<p>I know two static variables consuming 8 bytes will be expansive for u.</p>
+
+<p>I have solution over it </p>
+
+<pre><code>#define FID_STRS2(x) #x
+#define FID_STRE(x) FID_STRS2(x)
+#define FID_DECL(n, v) static int FIDN_##n = v;static const char *FIDS_##n = FID_STRE(v)
+</code></pre>
+
+<p>Just rename them going reccursive</p>

@@ -1,0 +1,13 @@
+<p>The source for pig_cassandra shows</p>
+
+<pre><code>export PIG_OPTS=$PIG_OPTS" -Dudf.import.list=org.apache.cassandra.hadoop.pig"
+cat "$cwd/../build/bootstrap.pig" - | $PIG_HOME/bin/pig $*
+</code></pre>
+
+<p>Checking out pig ...</p>
+
+<p><a href="http://wiki.apache.org/pig/ParameterSubstitution" rel="nofollow">http://wiki.apache.org/pig/ParameterSubstitution</a></p>
+
+<p>Did you try </p>
+
+<p><code>-param argument=Value script.pig</code> </p>

@@ -1,0 +1,16 @@
+<p>the '&amp;' is the a bitwise operator. <code>returns 1</code> not a boolean.
+Well,if you are looking do a comparison use the "==" operator.</p>
+
+<p>replace </p>
+
+<pre><code>if ($strength &amp; 1) {
+    $consonants .= 'BDGHJLMNPQRSTVWXZ';
+}
+</code></pre>
+
+<p>by </p>
+
+<pre><code>if ($strength == 1) {
+    $consonants .= 'BDGHJLMNPQRSTVWXZ';
+}
+</code></pre>

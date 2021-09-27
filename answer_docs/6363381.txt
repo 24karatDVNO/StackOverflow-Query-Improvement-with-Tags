@@ -1,0 +1,14 @@
+<p>Use + as delimiters
+    <code>sed -e 's+/+\t+g</code>'</p>
+
+<pre><code>echo 'path/to/something' | sed -e 's+/+\t+g'
+
+// path     to     something
+</code></pre>
+
+<p><strong>Edit:</strong>
+a simpler way to extract the path of a file:</p>
+
+<pre><code>dirname /path/to/file.txt
+#output /path/to
+</code></pre>

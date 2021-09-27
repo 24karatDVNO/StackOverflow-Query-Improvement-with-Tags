@@ -1,0 +1,31 @@
+<p>The Enumerable class also has a ToList member function that I usually use for this.  <a href="http://msdn.microsoft.com/en-us/library/bb342261.aspx#Y944" rel="nofollow">http://msdn.microsoft.com/en-us/library/bb342261.aspx</a></p>
+
+<p>Also, when using Linq to Sql, I always check the result for null. If I expect a list, check that the count is greater than zero before converting to list.</p>
+
+<pre><code>public List&lt;MyObject&gt; GetObjects()
+{
+  List&lt;MyObject&gt; objects = null; // no need to "new" here
+  using (DatabaseDataContext context = new DatabaseDataContext())
+  {
+    var tmp = context.GetObjectsFromDB();
+    if (tmp != null) 
+    {
+      if (tmp.Count() &gt; 0)
+      {
+        objects = (List&lt;MyObject&gt;)tmp.ToList();
+      }
+    }
+  }
+  return objects;
+}
+</code></pre>
+
+<p>Similarly, if you only expect a single result, use</p>
+
+<pre><code>myObject = (MyObject)tmp.ToSingle();
+</code></pre>
+
+<p>Lastly, you may want to consider wrapping this function in a try-catch block and catch SqlException and handle errors appropriately.</p>
+
+<p>I am only mentioning the additional error handling due to experience developing applications 
+that can crash if you don't have the additional error handling code!</p>

@@ -1,0 +1,5 @@
+<p>Don't forget you must <a href="http://www.singingeels.com/Articles/Dynamically_Created_Controls_in_ASPNET.aspx" rel="nofollow">re-create all dynamic controls on postback</a></p>
+
+<p>Your <code>Page</code> is just a class remember and it is instantiated once per request, if it doesn't recreate these controls as well as the associated handlers on the postback request then you won't get anything happen..</p>
+
+<p>You need to recreate these controls prior to <code>Page_Load</code>, you can do this in <code>Page_Init</code> or override the <code>CreateChildControls</code> method.</p>

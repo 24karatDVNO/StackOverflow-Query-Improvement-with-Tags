@@ -1,0 +1,18 @@
+<p>try this one</p>
+
+<pre><code>function Appending() {
+    var id = document.getElementById("default-id").value;
+    id++;
+    $.post("addForm.php", {
+        idEl: id
+    }, function(html) {
+        $('#vrWrapper').append(html);
+    });
+
+    document.getElementById("default-id").value = id;
+}
+
+function removeInput(id) {
+    $("#" + id).remove();
+}
+</code></pre>

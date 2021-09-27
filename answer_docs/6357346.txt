@@ -1,0 +1,6 @@
+<p>I haven't found an actual solution but have implemented a work around.</p>
+
+<p>When I set the property on my object to the submitted value from the TEXTAREA, I perform a regular expression replacement on the text to convert whatever characters are returned from the browser to '\n' which appears to work as a line break in all browsers I checked (IE8, Chrome &amp; FireFox). Here is the code I'm using (in .NET):</p>
+
+<pre><code>cleanValue = Regex.Replace(value, "(\\n|\\\\n|\\r|\\\\r)+", "\n", RegexOptions.IgnoreCase);
+</code></pre>

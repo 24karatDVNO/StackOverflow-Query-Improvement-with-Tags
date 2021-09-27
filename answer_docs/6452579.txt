@@ -1,0 +1,10 @@
+<p>You should use the <code>val()</code> jquery function. Also you can directly use the <code>keypress()</code> function in this scenario.</p>
+
+<pre><code>$(".foo").keypress(function(e){
+
+   $(this).val('bar'); 
+
+});
+</code></pre>
+
+<p><strong>Note</strong>: this will work given the fact that '.foo' will select the combobox itself and that 'bar' is the value of at least one of the options within it.</p>

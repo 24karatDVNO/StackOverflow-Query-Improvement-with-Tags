@@ -1,0 +1,13 @@
+<p>I think, you can use just one function (based on previous answer's functions):</p>
+
+<pre><code>- (void) fadeIn:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:2];
+    [UIView  setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(fadeIn:finished:context:) ];
+    [view1 setAlpha:mod(1-view1.alpha)];
+    [UIView commitAnimations];
+}
+</code></pre>
+
+<p>The alplha must not be a negative value, so a mod must be applied</p>

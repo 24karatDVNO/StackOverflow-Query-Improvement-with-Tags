@@ -1,0 +1,31 @@
+<p>Cheers Guys, </p>
+
+<p>I ended up adding two extra 'columns' generated from the source data, that I could use in the Report Arguments, e.g. Supposing the user selects Start Date = "May 2008" End Date = "Feb 2009". What's really needed in the query is start date of 2008-05-01 00:00:01 to 2009-02-28 23:59:59, this will do this on the fly and use user friendly dates:</p>
+
+<pre><code>Select DISTINCT 
+'YearMonth' =
+  CASE
+     WHEN MONTH(dtwhen) = 01 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Jan'
+     WHEN MONTH(dtwhen) = 02 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Feb'
+     WHEN MONTH(dtwhen) = 03 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Mar'
+     WHEN MONTH(dtwhen) = 04 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Apr'
+     WHEN MONTH(dtwhen) = 05 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' May'
+     WHEN MONTH(dtwhen) = 06 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Jun'
+     WHEN MONTH(dtwhen) = 07 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Jul'
+     WHEN MONTH(dtwhen) = 08 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Aug'
+     WHEN MONTH(dtwhen) = 09 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Sep'
+     WHEN MONTH(dtwhen) = 10 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Oct'
+     WHEN MONTH(dtwhen) = 11 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Nov'
+     WHEN MONTH(dtwhen) = 12 THEN LEFT(CONVERT(varchar, dtwhen, 20),4)+' Dec'
+     ELSE LEFT(CONVERT(varchar, dtwhen, 20),4)+'Jan' -- DPT
+  END,
+  CAST(CAST(YEAR(dtwhen) AS varchar) + '-' + CAST(MONTH(dtwhen) AS varchar) + '-01 00:00:01' AS DateTime) AS MonthBegin,
+--Add a date column storing the exact date at the end of the selected month
+-- E.g. Jan 2004 becomes Jan 29th 23:59:59
+-- It basically adds 1 month to the exact beginning of next month, then rolls back 2 seconds..
+DATEADD(SECOND,-2,DATEADD(MONTH,1,CAST(CAST(YEAR(dtwhen) AS varchar) + '-' + CAST(MONTH(dtwhen) AS varchar) + '-01 00:00:01' AS DateTime))) AS MonthEnd
+FROM Feedback
+ORDER BY MonthBegin DESC
+</code></pre>
+
+<p>Key point to note is in SSRS you can display the varchar field to the user ("May 2005") and use the other, calculated, underlying datetime value (2005-05-01 00:00:01) in your query.</p>

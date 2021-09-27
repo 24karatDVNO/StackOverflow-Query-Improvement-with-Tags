@@ -1,0 +1,14 @@
+<p>I'm writing this answer because most of the help came from comments to questions, and not always from the authors of the answers. I already upvoted the answers that helped me most, and I'm making this a community wiki to not abuse the knowledge of others. (If you want to upvote this answer, consider also upvoting Billy's and Dietrich's answers too: they were the most helpful authors to me.)</p>
+
+<p>There are two problems to address when values written from a thread need to be visible from another thread:</p>
+
+<ul>
+<li>Caching (a value written from a CPU could never make it to another CPU);</li>
+<li>Optimizations (a compiler could optimize away the reads to a variable if it feels it can't be changed).</li>
+</ul>
+
+<p>The first one is rather easy. On modern Intel processors, there is a concept of cache coherence, which means changes to a cache propagate to other CPU caches.</p>
+
+<p>Turns out the optimization part isn't too hard either. As soon as the compiler cannot guarantee that a function call cannot change the content of a variable, even in a single-threaded model, it won't optimize the reads away. In my examples, the compiler doesn't know that <code>sleep</code> cannot change <code>i</code>, and this is why reads are issued at every operation. It doesn't need to be <code>sleep</code> though, any function for which the compiler doesn't have the implementation details would do. I suppose that a particularly well-suited function to use would be one that emits a memory barrier.</p>
+
+<p>In the future, it's possible that compilers will have better knowledge of currently impenetrable functions. However, when that time will come, I expect that there will be standard ways to ensure that changes are propagated correctly. (This is coming with C++11 and the <code>std::atomic&lt;T&gt;</code> class. I don't know for C1x.)</p>

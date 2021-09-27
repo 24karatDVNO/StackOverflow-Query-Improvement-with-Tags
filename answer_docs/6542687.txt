@@ -1,0 +1,7 @@
+<p>I modified 2 lines and added ForceInit. It should be safe but unconfirmed.</p>
+
+<pre><code>Plugin(const std::string&amp;n) : name(n){ static std::list&lt;Plugin*&gt; plugins; this-&gt;plugins=&amp;plugins; if(n.length()==0) return; plugins.push_back(this); }
+static std::list&lt;Plugin*&gt;* ForceInit() { Plugin d(""); return plugins; }
+
+std::list&lt;Plugin*&gt;&amp; plugins = *Plugin::ForceInit(); //global name plz
+</code></pre>

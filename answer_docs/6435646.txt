@@ -1,0 +1,11 @@
+<p>No, i tried it with emptying the div and redraw the complete diagram with jqPlot. That doesn't help either.
+I did it like this:</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>$('#diagramContainer').empty();
+targetPlot = $.jqplot('#diagramContainer',
+    toDraw, diagramOptions);
+</code></pre>
+
+<p>Doing this lots of times with many data leads also to memory leaks.</p>

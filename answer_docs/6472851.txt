@@ -1,0 +1,13 @@
+<p>Pure Bash:</p>
+
+<pre><code>declare -a a=( $( cat $1 ) )    # IDs into an array
+result="${a[*]}"                # array to string, blank as separator
+result=\'${result// /\', \'}\'  # substitute blanks with ', ' / add first, last '
+
+echo -e "${result}"
+</code></pre>
+
+<p>This gives:</p>
+
+<pre><code>'41aeb908-dfc7-4cf8-8285-31ca184dc1c5', 'da877ffa-49bc-4f07-b692-4873870fcb37', 'a555cdd0-e100-42cb-a355-140de7958b36'
+</code></pre>

@@ -1,0 +1,33 @@
+<p>Posible solution:       </p>
+
+<pre><code>//this nekohtml  
+DOMParser parser = new DOMParser();  
+parser.parse(archivo);  
+
+
+//this xerces  
+OutputFormat format = new OutputFormat(parser.getDocument());   
+format.setIndenting(true);  
+
+//print xml for console 
+//XMLSerializer serializer = new XMLSerializer(System.out, format); 
+
+//save xml in string var 
+OutputStream outputStream = new ByteArrayOutputStream(); 
+XMLSerializer serializer = new XMLSerializer(outputStream, format); 
+
+//process
+serializer.serialize(parser.getDocument()); 
+
+
+String xmlText = outputStream.toString();  
+
+System.out.println(xmlText); 
+
+//to generate a file output use fileoutputstream instead of system.out 
+//XMLSerializer serializer = new XMLSerializer(new FileOutputStream(new File("book.xml")), format);  
+</code></pre>
+
+<p>Url: <a href="http://totheriver.com/learn/xml/xmltutorial.html#6.2" rel="nofollow">http://totheriver.com/learn/xml/xmltutorial.html#6.2</a></p>
+
+<p>See <strong><em>e) Serialize DOM to FileOutputStream to generate the xml file "book.xml"</em></strong> .</p>

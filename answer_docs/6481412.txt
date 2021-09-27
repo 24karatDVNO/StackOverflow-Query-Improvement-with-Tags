@@ -1,0 +1,13 @@
+<p>it seems you want to extract all the ip address and port numbers and concatenate it like </p>
+
+<p>ipaddress:port </p>
+
+<p>So try this </p>
+
+<pre><code>foreach($dom_results as $dom) {
+  $ip = $dom-&gt;tr-&gt;td[1]-&gt;span;
+  $port = $dom-&gt;tr-&gt;td[2];
+  $address = $ip . ":". $port;
+  echo $address . "&lt;br /&gt;";
+}
+</code></pre>

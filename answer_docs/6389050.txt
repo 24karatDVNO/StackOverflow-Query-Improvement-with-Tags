@@ -1,0 +1,31 @@
+<p>You can use a custom Hibernate Configuration subclass to capture the SQL that's generated at startup. I'm not sure what the best way to access it later would be - perhaps a public static field in the class.</p>
+
+<p>Here's the code (put it under src/java):</p>
+
+<pre><code>package com.yourcompany.yourapp;
+
+import org.codehaus.groovy.grails.orm.hibernate.cfg.GrailsAnnotationConfiguration;
+import org.hibernate.HibernateException;
+
+public class DdlCapturingConfiguration extends GrailsAnnotationConfiguration {
+
+   @Override
+   public String[] generateSchemaCreationScript(Dialect d) throws HibernateException {
+      String[] sql = super.generateSchemaCreationScript(d);
+      // do something with the sql
+      return sql;
+   }
+}
+</code></pre>
+
+<p>and you'd register it in <code>grails-app/conf/DataSource.groovy</code> like this:</p>
+
+<pre><code>dataSource {
+   pooled = true
+   driverClassName = ...
+   username = ...
+   password = ...
+   dialect = ...
+   configClass = com.yourcompany.yourapp.DdlCapturingConfiguration
+}
+</code></pre>

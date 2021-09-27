@@ -1,0 +1,8 @@
+<p>I assume you mean "holds some value" like in "the variable has been created so it exists", right? Otherwise, your approach works perfectly fine.</p>
+
+<p>If you want to check whether a variable exists in javascript, you have to check its parent object for the property - otherwise the script will fail. Each object in javascript belongs to a parent object, even if it seems to be global (then, it belongs to the window object). So, try something like:</p>
+
+<pre>
+  if (window.DEST_VALUE) 
+    // do something
+</pre>

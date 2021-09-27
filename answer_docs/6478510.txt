@@ -1,0 +1,11 @@
+<p>You cannot really change the whole URL in the location bar without redirecting (think of the security issues!).</p>
+
+<p>However you can change the <code>hash</code> part (whats after the <code>#</code>) and read that: <code>location.hash</code></p>
+
+<p><strong>ps.</strong> prevent the default <code>onclick</code> redirect of a link by something like:</p>
+
+<pre><code>$("#link").bind("click",function(e){
+  doRedirectFunction();
+  e.preventDefault();
+})
+</code></pre>

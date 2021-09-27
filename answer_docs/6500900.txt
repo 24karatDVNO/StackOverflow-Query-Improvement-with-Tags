@@ -1,0 +1,41 @@
+<p>I tried using this wizard and the data and log files were exactly the same size for me. I am wondering if the source database has been shrunk since the copy (it may have been done by a background job, a maintenance plan, or another user), or if you are using any compression products (within SQL or within Windows). Also if you can determine which objects are taking up more space, it may shed light on things. Please note the two commented spots where you'll have to hardcode the old and new database name.</p>
+
+<pre><code>DECLARE 
+    @old_db SYSNAME = N'old_db_name',
+    @new_db SYSNAME = N'new_db_name';
+
+WITH [old] AS
+(
+    SELECT 
+        t = OBJECT_SCHEMA_NAME([object_id], DB_ID(@old_db)) 
+            + '.' + OBJECT_NAME([object_id], DB_ID(@old_db)),
+        r = row_count,
+        s = used_page_count
+    FROM old_db_name.sys.dm_db_partition_stats -- change this line!
+    WHERE index_id IN (0,1)
+    AND OBJECT_SCHEMA_NAME([object_id], DB_ID(@old_db)) &lt;&gt; 'sys'
+),
+[new] AS
+(
+    SELECT 
+        t = OBJECT_SCHEMA_NAME([object_id], DB_ID(@new_db)) 
+            + '.' + OBJECT_NAME([object_id], DB_ID(@new_db)),
+        r = row_count,
+        s = used_page_count
+    FROM new_db_name.sys.dm_db_partition_stats -- change this line!
+    WHERE index_id IN (0,1)
+    AND OBJECT_SCHEMA_NAME([object_id], DB_ID(@new_db)) &lt;&gt; 'sys'
+)
+SELECT
+    [old].t, [new].t,
+    [old_rc] = SUM([old].r), [old_kb] = SUM([old].s*8),
+    [new_rc] = SUM([new].r), [new_kb] = SUM([new].s*8),
+    spot = CASE WHEN COALESCE(SUM([old].r), -1) &lt;&gt; COALESCE(SUM([new].r), -1)
+        OR COALESCE(SUM([old].s*8), -1) &lt;&gt; COALESCE(SUM([new].s*8), -1) THEN
+            ' &lt;----------' ELSE '' END
+FROM
+    [old] FULL OUTER JOIN [new]
+    ON [old].t = [new].t
+GROUP BY [old].t, [new].t
+ORDER BY [old].t, [new].t;
+</code></pre>

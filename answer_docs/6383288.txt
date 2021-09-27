@@ -1,0 +1,9 @@
+<p>Did you try retaining when fetching so nobody releases your object while you're using it?</p>
+
+<pre><code>NSMutableArray* delegates = [[calendarRequestLog objectForKey:date] retain];
+if(delegates != nil) {
+     if([delegates containsObject:delegate]) // crash
+          [delegates removeObject:delegate];
+}
+[delegates release];
+</code></pre>

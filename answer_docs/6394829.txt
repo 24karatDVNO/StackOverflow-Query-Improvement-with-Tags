@@ -1,0 +1,17 @@
+<p>"no scraping intended" - You are intending to scrape. =)</p>
+
+<p>The only reasonable ethics-based reasons one should not take it from their website is:</p>
+
+<ol>
+<li>They may wish to display advertisements or important security notices to users</li>
+<li>This may make their statistics inaccurate</li>
+</ol>
+
+<p>In terms of hammering their site, it is probably not an issue. But if it is:</p>
+
+<ul>
+<li>You probably wish to scrape the minimal amount necessary (e.g. make the minimal number of HTTP requests), and not hammer the server too often.</li>
+<li>You probably do not wish to have all your apps query the website; you could have your own website query them via a cronjob. This will allow you better control in case they change their formatting, or let you throw "service currently unavailable" errors to your users, just by changing your website; it introduces another point of failure, but it's probably worth it. This way if there's a bug, people don't need to update their apps.</li>
+</ul>
+
+<p>But the best thing you can do is to talk to the website, asking them what is best. They may have a hidden API they would allow you to use, and perhaps have allowed others to use as well.</p>

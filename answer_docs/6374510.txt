@@ -1,0 +1,7 @@
+<p>You are unable to do this without hacking because Salesforce want it so that you don't require over-explicit setup of any app you create - they want you to make it data-independent and in fact it may fail a security review if it is data dependent. It will also likely cause you headaches in correctly unit testing the app.</p>
+
+<p>My suggestion would be to have a set of custom pages which are linked to on the home page for a user which display if they have no current values (so the first thing they see on the home page when they login for the first time is a "Hey, before you use this app you need to do some configuration through this handy wizard" and then block access to other areas of the app (i.e. display warning messages on other pages) if the app has not had this data setup.</p>
+
+<p>That way you are not hacking and are providing a nice user experience around the extra setup.</p>
+
+<p>Paul</p>

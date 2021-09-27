@@ -1,0 +1,38 @@
+<p>I guess you could do something along the lines of (untested):</p>
+
+<pre class="lang-sql prettyprint-override"><code>SELECT
+    *
+FROM (
+    SELECT
+        id, comment, time
+    FROM
+        table
+    ORDER BY
+        time DESC
+    LIMIT 5
+)
+ORDER BY
+    time ASC
+</code></pre>
+
+<hr>
+
+<p><strong>UPDATE</strong><br>
+Apparently, the "derived table must have its own alias" (<a href="https://stackoverflow.com/questions/tagged/mysql-error-1248?sort=newest">error #1248</a>). Other answers have already done this, so I'll jump on the bandwagon. Below you'll find the revised (and tested) query:</p>
+
+<pre class="lang-sql prettyprint-override"><code>SELECT
+    derived.*
+FROM (
+    SELECT
+        id, comment, time
+    FROM
+        table
+    ORDER BY
+        time DESC
+    LIMIT 5
+) AS derived
+ORDER BY
+    derived.time ASC
+</code></pre>
+
+<p>By the way, this is <a href="http://dev.mysql.com/doc/refman/4.1/en/ansi-diff-subqueries.html" rel="nofollow noreferrer">supported as of MySQL 4.1</a>.</p>

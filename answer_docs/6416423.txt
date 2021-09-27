@@ -1,0 +1,5 @@
+<p>It doesn't look like there's a way to do this without simply changing the config file when you update the version number. That said, what you're asking for shouldn't be too difficult to automate if you can live with a restart/reload.</p>
+
+<p>If you're using git, (or really any VCS,) you could use commit hooks to trigger a simple shell script to find and replace the line in the config file, run <code>nginx -t -c /etc/nginx/nginx.conf</code>, and restart the server.</p>
+
+<p>I wish there was an existing NGINX module to do what you're asking, so I'm putting that on my todo list, but for most use cases this should probably be a reasonably acceptable hack.</p>

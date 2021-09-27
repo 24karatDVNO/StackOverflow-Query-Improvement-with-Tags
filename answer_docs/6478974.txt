@@ -1,0 +1,32 @@
+<p>You can make any-sized background image span the entire height of a web page and have a smooth transition.</p>
+
+<p>Consider the <a href="http://jsfiddle.net/MnEnz/" rel="nofollow">following jsFiddle example</a>:</p>
+
+<pre><code>body {
+    background: #000 url(http://i.stack.imgur.com/PnLYK.png) repeat-x center top;
+}
+</code></pre>
+
+<p>I'm using the <code>background</code> <a href="http://reference.sitepoint.com/css/background" rel="nofollow">shorthand property</a> to specify both the <code>background-color</code> and <code>background-image</code> properties into a single rule.</p>
+
+<p>I could just as easily have written the following rules, accomplishing the same effect:</p>
+
+<pre><code>body {
+    background-color: #000;
+    background-image: url(http://i.stack.imgur.com/PnLYK.png);
+    background-repeat: repeat-x;
+    background-position: center top;
+}
+</code></pre>
+
+<p>The <a href="http://i.stack.imgur.com/PnLYK.png" rel="nofollow">PNG</a> itself is only 1 x 1,000 pixels (W x H) in size, but <strong>will accommodate an area of unlimited width or height</strong>.</p>
+
+<p>The actual height of your image isn't significant &mdash; rather, <strong>it's the bottom color of the image matched to the CSS background-color <em>combined with repeating</em> that enables the gradient to appear to continue forever</strong>.</p>
+
+<p>What makes this simple technique work, is to specify the bottom-most color in your image (<code>#000</code> in my example) as the <code>background-color</code> and allow the <code>background-image</code> to repeat horizontally along the X axis (<code>repeat-x</code>).</p>
+
+<p>So when the background-image ends, the background-color takes over and ensures a smooth transition without a hard cut-off.</p>
+
+<hr>
+
+<p><em>To illustrate how this technique works, try replacing <strong>#000</strong> in the example with a different color, say <strong>#ffc</strong>, and you'll be able to see where the background image stops and the background color takes over.</em> </p>

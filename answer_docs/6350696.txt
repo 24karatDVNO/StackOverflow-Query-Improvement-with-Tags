@@ -1,0 +1,27 @@
+<pre><code>// if you keyup in fromCurrencyValue or btcValue it will trigger the click on convertFromButton
+$("#fromCurrencyValue, #btcValue").bind("keyup", function() {
+  $('#convertFromButton').click();
+});
+</code></pre>
+
+<p>But keep in mind that $.post is by default async, so if one request asked later is answer before the other, you will have unwanted behavior.</p>
+
+<p><strong>Edit</strong></p>
+
+<p>When posting the value use this:</p>
+
+<pre><code>var xhr; // make it global
+
+/*
+  Your code goes here
+*/
+if (xhr)
+  xhr.abort(); // if there's a xhr request abort it
+
+xhr = $.post(...)
+/*
+  The rest of your code
+*/
+</code></pre>
+
+<p>So you wont get the unwanted behavior :)</p>

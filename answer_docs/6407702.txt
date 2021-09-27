@@ -1,0 +1,12 @@
+<p>Instead of</p>
+
+<pre><code>self.dataSource = [TTListDataSource
+                   dataSourceWithItems:tableItems.items];
+</code></pre>
+
+<p>why don't you just do this?</p>
+
+<pre><code>self.dataSource = tableItems;
+</code></pre>
+
+<p>You may also want to look into creating a model to go with your dataSource - that is, a class that extends TTModel (or TTURLRequestModel, since you're making a URL request).</p>

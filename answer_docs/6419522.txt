@@ -1,0 +1,12 @@
+<p>If the possible fragment type values are all contiguous, and you don't want to do anything much more complex than printing a string upon matching, you can just index into an array, e.g.:</p>
+
+<pre>
+  const char* typeNames[] = {"Texture Bitmap Name", "Texture Bitmap Info", ...};
+
+  /* for each frag.id: */
+  if (LOWER_LIMIT &lt;= frag.id && frag.id &lt; UPPER_LIMIT) {
+    printf("[%i] %#02x - %s\n", i, frag.id, typeNames[frag.id-LOWER_LIMIT]);
+  } else {
+   /* complain about error */
+  }
+</pre>

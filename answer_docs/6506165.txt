@@ -1,0 +1,7 @@
+<p>Why don't you just call <code>reader.readAll()</code> and then iterate over that List? </p>
+
+<pre><code>List&lt;String[]&gt; records = reader.readAll();
+for (String[] record : records) {
+  //do something with each record
+}
+</code></pre>

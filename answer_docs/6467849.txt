@@ -1,0 +1,7 @@
+<pre><code>DECLARE @s VarChar(100) = '\myserver\mydir1\dir2\test.txt';
+
+DECLARE @length Int = LEN(@s),
+        @position Int = CHARINDEX('\', REVERSE(@s));
+
+SELECT SUBSTRING(@s, 1, @length - @position);
+</code></pre>

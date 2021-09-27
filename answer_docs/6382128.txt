@@ -1,0 +1,9 @@
+<p>We can also use strtr()</p>
+
+<pre><code>preg_match_all('/[\w\']{5}[\w\']+/', $s, $matches);
+$dict = array();
+foreach($matches[0] as $m){
+    $dict[$m] = substr($m, 0, 5).str_repeat('+', strlen($m) - 5);
+}
+$s = strtr($s, $dict);
+</code></pre>

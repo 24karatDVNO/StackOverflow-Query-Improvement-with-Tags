@@ -1,0 +1,15 @@
+<p>You can assign a value to a final variable but the compiler must be sure you will not access the variable before it is assigned and you will not reassign it.
+Your problem in this case is that you have code that will execute in sequence and an event that will not. The onClick function will execute some time in the future.
+Maybe you want this:</p>
+
+<pre><code>final TextBox txtbxHello = new TextBox();
+Button btnSubmit = new Button("Submit");
+btnSubmit.addClickHandler(new ClickHandler() {
+    public void onClick(ClickEvent event) {
+        final Verifier verifier = txtbxHello.getValue();
+        Token accessToken = service.getAccessToken(requestToken,verifier);
+    }
+});
+</code></pre>
+
+<p>But on the other hand TextBox.getValue() returns a String and you try to assign it to a Verifier variable. I think you are misunderstanding the API of that library.</p>

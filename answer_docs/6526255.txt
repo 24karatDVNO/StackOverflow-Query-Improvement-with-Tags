@@ -1,0 +1,5 @@
+<p>If you stored only the last X results as opposed to everything, it would probably be do-able.  Might slow things down, but it'd work.  Any time you're writing more data and reading more data, there's going to be an impact.  Proper DBA methods such as indexing and query optimizing can help, but no matter what you use there's going to be an affect.</p>
+
+<p>I'd personally look at storing just a default view for the user in a DB and use the session to keep track of the rest.  Sure, when you login there'd be no history.  But you could take advantage of that to highlight a set of special pages that you think are important or relevant to steer the user to.  A highlight system of sorts.  Faster, easier, and more user-friendly.</p>
+
+<p>As for bias, you could write a set of keywords for each record and array sort them accordingly.  Wouldn't be terribly difficult using PHP.</p>

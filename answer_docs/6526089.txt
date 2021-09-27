@@ -1,0 +1,10 @@
+<p>MySQL auto-increment are always numeric. There are a couple approaches you could take:</p>
+
+<ul>
+<li>Implement your own incrementing in your app</li>
+<li>Implement auto-increment with your alphanumeric key using a trigger</li>
+<li>Use MySQL auto-increment, and then have your app convert the number to alphanumeric for display purposes.</li>
+<li>As above, but use a view to have MySQL convert. (This would be one-way, as I don't believe MySQL supports instead-of triggers; see <a href="http://bugs.mysql.com/bug.php?id=16525" rel="nofollow">http://bugs.mysql.com/bug.php?id=16525</a>)</li>
+</ul>
+
+<p>As you probably realize, you can convert your sequence to a number and back; the 'a' through 'z' are just 0 through 250,000; if you go to double-a, that's 260,000. You've got base-26 system, multiplied by 10,000.</p>

@@ -1,0 +1,74 @@
+<p>You can see what's going on better by profiling the VM itself.</p>
+
+<p>A block being yielded an excessive number of times is the culprit here. If you use perftools' profiler for the VM, using the instructions listed under "Profiling the Ruby VM and C extensions" at <a href="https://github.com/tmm1/perftools.rb" rel="nofollow">https://github.com/tmm1/perftools.rb</a> (note: this is more or less vanilla perftools, not perftools.rb)</p>
+
+<pre><code>Removing _init from all stack traces.
+Total: 3883 samples
+    1321  34.0%  34.0%     3883 100.0% rb_yield_0
+     273   7.0%  41.1%      274   7.1% _IO_str_pbackfail
+     191   4.9%  46.0%      191   4.9% __i686.get_pc_thunk.bx
+     171   4.4%  50.4%      171   4.4% _init
+     131   3.4%  53.7%     3880  99.9% rb_eval
+     122   3.1%  56.9%      347   8.9% st_lookup
+     105   2.7%  59.6%      423  10.9% new_dvar
+      93   2.4%  62.0%      326   8.4% rb_newobj
+      89   2.3%  64.3%       89   2.3% _setjmp
+      77   2.0%  66.3%      400  10.3% str_new
+      67   1.7%  68.0%      357   9.2% dvar_asgn_internal
+      63   1.6%  69.6%      204   5.3% malloc
+      62   1.6%  71.2%     3820  98.4% rb_str_each_char
+      58   1.5%  72.7%      187   4.8% rb_ary_store
+      55   1.4%  74.1%       55   1.4% rb_memcmp
+      55   1.4%  75.5%     3883 100.0% rb_yield
+# rest snipped for brevity
+</code></pre>
+
+<p>As you can see, <code>rb_yield_0</code> is accounting for over a third of the activity, so even if you could optimize everything else, you'd still be slower than if you were using <code>String#count</code>.</p>
+
+<p>You can also confirm this by doing a benchmark where you're just creating a block that doesn't do anything.</p>
+
+<pre><code>require 'pp'
+require 'benchmark'
+
+def create_genome
+  "gattaca" * 100
+end
+
+ZILLION = 100000
+
+def mainly_execute_a_trivial_block(sequence)
+  ZILLION.times do
+    sequence.length.times() {}
+  end
+end
+
+def execute_an_empty_loop_instead(sequence)
+  ZILLION.times do
+    i = 0
+    max = sequence.length
+    until i == max
+      i += 1
+    end
+  end
+end
+
+sequence = create_genome
+
+puts RUBY_VERSION
+
+Benchmark.bm do |benchmark|
+  benchmark.report do
+    pp mainly_execute_a_trivial_block(sequence)
+  end
+  benchmark.report do
+    pp execute_an_empty_loop_instead(sequence)
+  end
+end
+</code></pre>
+
+<p>gives</p>
+
+<pre><code>      user     system      total        real
+  5.700000   0.000000   5.700000 (  5.727715) # mainly_execute_a_trivial_block
+  1.920000   0.000000   1.920000 (  1.942096) # execute_an_empty_loop_instead
+</code></pre>

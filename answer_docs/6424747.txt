@@ -1,0 +1,14 @@
+<pre><code>select
+    mshiptype_name,
+    timeslot_name,
+    timetable_name
+from
+    paymentoption
+    natural join membertopaymentoption
+    natural join mshiptypes
+    natural join timetables        
+    natural join timeslottotimetables
+    natural join timeslots
+where
+    member_Id = 1
+</code></pre>

@@ -1,0 +1,3 @@
+<p>If validation is being performed on the client-side already, then I would add any server-side validation in the business layer. For this purpose, you may need to resort to custom code in some cases, but data annotations may be very helpful for many of the common validations. If you aren't using a framework that already supports data annotations, it's not difficult to write a bit of code to iterate over your objects and find the fields with these annotations to trigger them.</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx</a></p>

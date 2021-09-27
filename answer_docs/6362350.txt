@@ -1,0 +1,19 @@
+<p>Everything you do currently results in a memory leak, since you never <code>delete[]</code> anything.</p>
+
+<p>First off, yes, make the dimensions variable. Second, either return a pointer to the newly allocated heap storage and <em>remember to delete it in the caller</em>, or return a <em>smart container</em> object.</p>
+
+<p>A <code>std::vector&lt;unsigned char&gt;</code> would do nicely:</p>
+
+<pre><code>std::vector&lt;unsigned char&gt; get_image(const std::string &amp; filename, size_t &amp; width, size_t &amp; height)
+{
+  // determine width and height
+
+  /* ... */
+
+  std::vector&lt;unsigned char&gt; result(width * height, 0);
+
+  // read into &amp;result[0], vector guarantees contiguous storage
+
+  return result;
+}
+</code></pre>

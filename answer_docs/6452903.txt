@@ -1,0 +1,13 @@
+<p>This doesn't address all of the issues that you might need to consider, but here is a different way to think about your script:</p>
+
+<pre><code>my @regexes = (
+    qr/(...)/,
+    qr/(...)/,
+);
+
+for my $r (@regexes){
+    my $letter = 'a';
+    my @matches = map { $_ =~ $r ? $1 : () } @results;
+    print join(' ', $_, $letter ++), "\n" for @matches;
+}
+</code></pre>

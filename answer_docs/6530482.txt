@@ -1,0 +1,57 @@
+<p>Building a Service</p>
+
+<p>First of all, we need to create the Service in the AndroidManifest.xml file. Remember, that every Activity, Service, Content Provider you create in the code, you need to create a reference for here, in the Manifest, if not, the application will not recognize it.</p>
+
+<pre><code>&lt;service android:name=".subpackagename.ServiceName"/&gt;
+</code></pre>
+
+<p>In the code, we need to create a class that extends from “Service”</p>
+
+<pre><code>public class ServiceName extends Service {
+
+    private Timer timer = new Timer();
+
+    protected void onCreate() {
+
+        super.onCreate();
+
+        startservice();
+
+    }
+
+}
+</code></pre>
+
+<p>This is a way to create Services, there are others ways, or the way I use to work with them. Here, we create a Timer, that every X seconds, calls to a method. This is running until we stop it. This can be used, for example, to check updates in an RSS feed. The “Timer” class is used in the startservice method like this</p>
+
+<pre><code>private void startservice() {
+
+    timer.scheduleAtFixedRate( new TimerTask() {
+
+    public void run() {
+
+        //Do whatever you want to do every “INTERVAL”
+
+    }
+
+    }, 0, INTERVAL);
+
+; }
+</code></pre>
+
+<p>Where INTERVAL, is the time, every time the run method is executed.</p>
+
+<p>To stop the service, we can stop the timer, for example, when the application is destroyed (in onDestroy())</p>
+
+<pre><code>private void stopservice() {
+
+    if (timer != null){
+
+    timer.cancel();
+
+    }
+
+}
+</code></pre>
+
+<p>So, this application will be running in the background...</p>

@@ -1,0 +1,7 @@
+<p>Another possible hack:</p>
+
+<pre><code>$('a[href^="link"]').sort(function(){return Math.random()-0.5}).eq(0).click()
+</code></pre>
+
+<p>The above code will shuffle the links, and return the first one.
+Then you can trigger 'click' of the returned element</p>

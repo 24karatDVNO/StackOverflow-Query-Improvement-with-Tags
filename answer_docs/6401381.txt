@@ -1,0 +1,7 @@
+<p>There are a number of options, not all of them may be appropriate for your particular project:</p>
+
+<ul>
+<li>Don't use a single file for all the data. Divide the map in smaller "rooms" and store each one in its own file. Load only the "room" the player starts in and preemptively load neighboring "rooms" and unload old ones.</li>
+<li>Reduce the number of tiles you need to store. Use procedural generation to create an area's layout.
+If you have a 10x10 room with the floor made of a single tile type then don't store 100 separate tiles but instead use a specific marker that says "this area has a 10x10 floor with this tile". If it's a wall then save the start and end positions and the texture type. If you have a multi-tile doodad in the middle of an open field and it's position is not relevant to the story then position it randomly in the field (and save the seed for the random number generator in the map file so next time it will appear in the same place).</li>
+</ul>

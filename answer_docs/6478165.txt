@@ -1,0 +1,7 @@
+<p>copying <a href="https://stackoverflow.com/questions/6477714/why-my-page-cannot-display-e-instead-showing/6477864#6477864">my answer</a> to the question <a href="https://stackoverflow.com/q/6477714/112968">Why my page cannot display é, instead, showing �</a></p>
+
+<blockquote>
+  <p>make sure your file does not have a BOM (byte order mark) at its beginning. i had this problem recently, and even though the file was saved as utf8 (checked several times), the BOM confused firefox and it wrongly displayed umlauts (i had html  tags set to the correct encoding and http headers)</p>
+</blockquote>
+
+<p>my website worked fine on localhost too, but broke on my webhost</p>

@@ -1,0 +1,11 @@
+<p>Have you tried using a ViewModel so it is not trying to bind to a navigation property?</p>
+
+<p>something like:</p>
+
+<pre><code>public class UserViewModel
+{
+    public int UserID { get; set; }
+    public string Username { get; set; }
+    public string CountryName { get; set; }
+}
+</code></pre>

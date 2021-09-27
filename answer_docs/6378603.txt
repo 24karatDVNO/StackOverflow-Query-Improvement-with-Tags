@@ -1,0 +1,14 @@
+<p>Attributes of XML nodes are not readily available as DOM object properties. Use <code>getAttribute</code></p>
+
+<p><strong>Sample:</strong> <a href="http://jsfiddle.net/mendesjuan/6Pdmw/" rel="nofollow">http://jsfiddle.net/mendesjuan/6Pdmw/</a></p>
+
+<pre><code>var node = document.createElement('div');
+node.innerHTML = "&lt;meta property='prop1' content='cont1'&gt;"+
+                 "&lt;meta property='prop2' content='cont2'&gt;";
+var metas = node.getElementsByTagName('meta');    
+for (var i = 0; i &lt; metas.length; i++) {
+    var meta = metas[i];
+    alert(meta.getAttribute("property"));
+    alert(meta.getAttribute("content"));
+}
+</code></pre>

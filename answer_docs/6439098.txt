@@ -1,0 +1,9 @@
+<p>You can use <a href="http://php.net/strval" rel="nofollow">http://php.net/strval</a> to force the variable to be a string:</p>
+
+<pre><code>$this -&gt; db -&gt; where('user_name', strval($user_name));
+</code></pre>
+
+<p>You can also try:</p>
+
+<pre><code>$this -&gt; db -&gt; where('user_name', "$user_name");
+</code></pre>

@@ -1,0 +1,6 @@
+<p>I think you want</p>
+
+<pre><code>file.read( reinterpret_cast&lt;char*&gt;(&amp;features[0]),  size );
+</code></pre>
+
+<p>You also need to make certain that <code>size</code> is a multiple of <code>sizeof(FeaturePoint)</code>.  Otherwise, you will read slightly too much.</p>

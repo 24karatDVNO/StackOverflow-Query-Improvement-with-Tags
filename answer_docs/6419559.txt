@@ -1,0 +1,10 @@
+<p>You can try overiding </p>
+
+<pre><code>public Object onRetainNonConfigurationInstance() {
+
+    //object returned here can always be recovered in getLaststNonConfigurationInstance()
+    return something;
+}
+</code></pre>
+
+<p>and use <code>getLastNonConfigurationInstance()</code> to get the state back.</p>

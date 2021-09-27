@@ -1,0 +1,5 @@
+<p>So you are trying to split it to avoid conflicts while checkin in svn? If yes, then you're not solving the root cause but the effects of it.</p>
+
+<p>If it is so big that every time you checkin, you're likely to run into conflicts, the try refactoring them to smaller files with meaningful names. And then use @Ivaylo's solution. Every resource is complied to a class, ASP.Net website model simply hides it from you.</p>
+
+<p>If you create a file called Resource1.resx in App_GlobalResources, you do get Resources.Resource1 as a class in your codebehind.</p>

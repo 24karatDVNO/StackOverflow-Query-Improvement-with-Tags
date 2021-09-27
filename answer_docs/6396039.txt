@@ -1,0 +1,17 @@
+<p>If there were, it would be system dependent: for <a href="http://msdn.microsoft.com/en-us/library/ms739168%28v=vs.85%29.aspx" rel="nofollow">Windows</a> </p>
+
+<blockquote>
+  <p>The backlog parameter is limited
+  (silently) to a reasonable value as
+  determined by the underlying service
+  provider. Illegal values are replaced
+  by the nearest legal value. There is
+  no standard provision to find out the
+  actual backlog value.</p>
+</blockquote>
+
+<p><a href="http://linux.die.net/man/2/listen" rel="nofollow">Linux</a> states it a little differently but you would need to go through the sysctl interface (or possibly /proc).</p>
+
+<p>In any case, it would appear you would need to execute some system specific code.</p>
+
+<p>I believe most implementations will just use their maximum value if the specified value is "too big" so this may not be a concern for your application? </p>

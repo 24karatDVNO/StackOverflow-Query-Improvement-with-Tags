@@ -1,0 +1,25 @@
+<p>Why not have a  with the background class applied on it and the  with transparent background and no borders inside?</p>
+
+<p>css:</p>
+
+<pre><code>.img_textbox_back
+{
+  background-image: url(images/ff.jpg);
+  background-position: 25px 25px;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 50px;
+}
+
+.img_textbox
+{
+   background-color:transparent;
+}
+</code></pre>
+
+<p>html:</p>
+
+<pre><code>&lt;div class="img_textbox_back"&gt;
+    &lt;input class="img_textbox" /&gt;
+&lt;/div&gt;
+</code></pre>

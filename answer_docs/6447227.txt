@@ -1,0 +1,1 @@
+<p>I figured it out. The problem was that my test database was not populated with any <code>Products</code>, so the <code>each</code> block was never executing. Fixed it by using Factory Girl to make sure there was data in the test database beforehand.</p>

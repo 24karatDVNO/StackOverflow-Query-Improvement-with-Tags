@@ -1,0 +1,8 @@
+<p>It is possible you have some postprocessing being done by Apache: I'd check that you don't have compression turned on in Apache.</p>
+
+<p>I'd also try this: remove the last php tag at the end to make sure there is no output coming after the PNG data. And as previously pointed out, make sure there is absolutely NO whitespace before the first php tag.</p>
+
+<pre><code>&lt;?php 
+header('Content-type: image/png');
+echo $PngImageBlob;
+</code></pre>

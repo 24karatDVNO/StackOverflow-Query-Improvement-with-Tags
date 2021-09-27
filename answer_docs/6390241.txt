@@ -1,0 +1,8 @@
+<p>I prefer a different overload for Expression.Call using <code>MethodInfo</code>, here is a simple example I have working.</p>
+
+<pre><code>Expression constant = Expression.Constant(new string[] { "a", "b" });
+MethodInfo methodInfo = typeof(Enumerable).GetMethods().FirstOrDefault(c =&gt; (c as MethodInfo).Name == "DefaultIfEmpty");
+methodInfo = methodInfo.MakeGenericMethod(typeof(string));
+
+MethodCallExpression methodExpression = Expression.Call(methodInfo, constant);
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Try this:    </p>
+
+<pre><code>class Employee &lt; ActiveRecord::Base
+  acts_as_audited
+  has_many :appointments, :dependent =&gt; :destroy
+  has_many :appointment_uddss, :through =&gt; :appointments
+  has_many :uddss, :through =&gt; :appointment_uddss
+
+  scope :with_udds, where("udds.name IS NOT NULL").includes(:udds)
+end
+</code></pre>

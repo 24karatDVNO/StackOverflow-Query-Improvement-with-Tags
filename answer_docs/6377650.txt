@@ -1,0 +1,11 @@
+<p>you could store the id in the surrounding p tag</p>
+
+<pre><code>&lt;p id="post-234"&gt;
+
+&lt;/p&gt;
+</code></pre>
+
+<p>and extract it from there using e.g. jQuery</p>
+
+<pre><code>$(this).closest("p").attr("id").split("-")[1] --&gt; the ID
+</code></pre>

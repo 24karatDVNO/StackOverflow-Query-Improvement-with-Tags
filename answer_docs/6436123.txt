@@ -1,0 +1,25 @@
+<pre><code> **String gender = "";**  
+
+ Button regmalebtn = (Button) findViewById(R.id.regmalebtn);
+  regmalebtn.setOnClickListener(this);
+
+  Button regfemalebtn = (Button) findViewById(R.id.regfemalebtn);
+  regfemalebtn .setOnClickListener(this);
+
+   public void onClick(View v) 
+   {
+      switch(v.getId())
+      {
+          case R.id.regmalebtn:
+                               gender = "M";
+                               break;
+
+         case R.id.regfemalebtn: 
+                              gender = "F";
+                              break;
+
+         default:
+                              break;
+     }
+   }
+</code></pre>

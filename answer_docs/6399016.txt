@@ -1,0 +1,19 @@
+<p>Depends on what screen you need it in, but I guess you need it in the details/edit screen?
+The most simple method is creating a template in your app, called:</p>
+
+<p>/templates/admin//staff/change_form.html</p>
+
+<p>In this template place the following:</p>
+
+<pre><code>{% extends 'admin/change_form.html' %}
+{% block content %}
+{% if not add and original.photo %}
+&lt;img src="{{original.photo.url}}" alt="Photo" /&gt;
+{% endif %}
+{{ block.super }}
+{% endblock %}
+</code></pre>
+
+<p>This places the image above the rest of the content if in edit modus (so no image in add mode).</p>
+
+<p>If you need it in the list you can add a custom function to your admin.py as well returning the HTML snippet for showing the photo.</p>

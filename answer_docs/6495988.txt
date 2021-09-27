@@ -1,0 +1,19 @@
+<p>I would guess that a cached version was loaded. You could disable caching for this page:</p>
+
+<p>in Page_Load:</p>
+
+<pre><code>Response.Cache.SetCacheability(HttpCacheability.NoCache);
+</code></pre>
+
+<p>or via adding this meta-tag to your aspx-page:</p>
+
+<pre><code>&lt;meta http-equiv="pragma" content="no-cache" /&gt;
+</code></pre>
+
+<p>or via adding the <a href="http://www.hunlock.com/blogs/Mastering_The_Back_Button_With_Javascript" rel="nofollow">window.onbeforeunload</a> event to the aspx-page:</p>
+
+<pre><code>window.onbeforeunload = function () {
+   // This function does nothing.  It won't spawn a confirmation dialog
+   // But it will ensure that the page is not cached by the browser.
+}
+</code></pre>

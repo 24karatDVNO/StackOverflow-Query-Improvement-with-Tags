@@ -1,0 +1,23 @@
+<p>Your parent node and child nodes are switched. You child node is:</p>
+
+<pre><code>var contentNode:XML = xml.Menu.menuArr.HeadMenuItem[1].subMenu.subMenuItem[1].objects[0];
+</code></pre>
+
+<p>Which would trace the following with a <code>contentNode.toXMLString()</code>:</p>
+
+<pre><code>&lt;objects&gt;
+  &lt;IObject&gt;object3_LIST3&lt;/IObject&gt;
+&lt;/objects&gt;
+</code></pre>
+
+<p>Since the docs state: "If child1 is provided, but it does not exist in the XML object, the XML object is not modified and undefined is returned." <a href="http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/XML.html#insertChildAfter%28%29" rel="nofollow">http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/XML.html#insertChildAfter%28%29</a></p>
+
+<p>The problem could be that you are asking the child node to look for its parent node, which it can't find, and so the original is unmodified. Try the following:</p>
+
+<pre><code>var parentNode:XML = xml.Menu.menuArr.HeadMenuItem[1].subMenu.subMenuItem[1].objects[0];
+var contentNode:XML = xml.Menu.menuArr.HeadMenuItem[1].subMenu.subMenuItem[1].objects.IObject[0];
+xml = parentNode.insertChildAfter( contentNode, xmlString );
+trace(xml);
+</code></pre>
+
+<p>All I did was switch the content of the parentNode and contentNode XML objects.</p>

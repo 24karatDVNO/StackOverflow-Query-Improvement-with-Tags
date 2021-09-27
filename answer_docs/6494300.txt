@@ -1,0 +1,3 @@
+<p>There is no XAML only solution for this in Silverlight 4.  In Silverlight 5 you could use a Markup Extension, though that's still code you would have to write.  In Silverlight 4 you could use a Behavior as well.</p>
+
+<p>My suggestion is to expose a property on your ViewModel which provides the null functionality.  Then you wouldn't have to use a Converter, though the property you're binding to would work as you would like.</p>

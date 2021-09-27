@@ -1,0 +1,8 @@
+<p>If you are using <a href="http://docs.jquery.com/Plugins/Validation" rel="nofollow">this validation plugin</a>, then this should do the trick:</p>
+
+<pre><code>$(".selector").validate({
+   onfocusout: false
+});
+</code></pre>
+
+<p>This tells the valididation plugin to not validate on focusout. There are <a href="http://docs.jquery.com/Plugins/Validation/validate#options" rel="nofollow">a bunch of options</a> that you can pass to the plugin to get it to behave differently.</p>

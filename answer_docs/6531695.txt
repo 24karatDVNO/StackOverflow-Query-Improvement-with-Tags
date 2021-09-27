@@ -1,0 +1,9 @@
+<p>In CPython, <code>id</code> is the pointer to the object in memory.</p>
+
+<pre><code>&gt;&gt;&gt; a = [1,2,3]
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; id(a) == id(b)
+True
+</code></pre>
+
+<p>So, if you have multiple references to the same object (and on some corner cases, small strings are created only once and also numbers smaller than 257) it will not be unique</p>

@@ -1,0 +1,11 @@
+<p>use regular expressions: <a href="http://php-regex.blogspot.com/" rel="nofollow">http://php-regex.blogspot.com/</a> and <a href="http://networking.ringofsaturn.com/Web/regex.php" rel="nofollow">http://networking.ringofsaturn.com/Web/regex.php</a> are good places to start learning</p>
+
+<p>or use this solution:</p>
+
+<pre><code>$exploded = explode($INPUT_STRING, " ");
+$date_explode = explode($exploded[0],"-");
+$time_explode = explode($exploded[1],":");
+if (empty($date_explode[0])||empty($date_explode[1])||empty($date_explode[2])||empty($time_explode[0])||empty($time_explode[1])||empty($time_explode[2])) {
+die ("ERROR! Not correct input format!");
+}
+</code></pre>

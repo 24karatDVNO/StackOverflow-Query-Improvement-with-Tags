@@ -1,0 +1,7 @@
+<p>if you're against using a service for whatever reason you can have it thread off, then get the data when the user calls the application to the front.</p>
+
+<p>you can use the onStart, onPause, onResume functions as well as making the application single instance so when you run it again, it mearly pulls it up from memory (assuming Android doesn't kill it for some reason).</p>
+
+<p>You can use ongoing notification to prevent it from being killed in the background and moveTaskToBack.</p>
+
+<p>But as pentium10 says, the intended way to handle background processes is through a service which gathers the data you are looking for, then when the activity comes back to the front, it gets the data from the service and displays it.</p>

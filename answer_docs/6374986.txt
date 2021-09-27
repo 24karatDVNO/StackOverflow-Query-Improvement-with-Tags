@@ -1,0 +1,7 @@
+<p>The solution for this is to check the IsMissing property on the dataset field:</p>
+
+<p>Set the row's "Hidden" property to - </p>
+
+<p>=IIF(Fields!FieldThatShouldBeThere.IsMissing,true,false)</p>
+
+<p>Frank</p>

@@ -1,0 +1,20 @@
+<blockquote>
+  <p>I vaguely heard of checksum
+  comparison.</p>
+</blockquote>
+
+<p>Checksums work well for comparison of byte by byte exactness. If that's what you are looking for, then read the bytes of each document into a stream and use a <code>SHA256Managed</code> or <code>MD5CryptoServiceProvider</code> to generate a checksum for each file. If the two checksums are the same, then the two documents are most likely the same.</p>
+
+<p>MD5 is not suitable for security purposes (<a href="http://en.wikipedia.org/wiki/MD5" rel="nofollow noreferrer">http://en.wikipedia.org/wiki/MD5</a> - see "Security") but it should be fine for comparison purposes where you are in control of both documents. Also keep in mind that checksums are not 100% unique, so there is always the remote possibility of collision.</p>
+
+<blockquote>
+  <p>I have one that is generated from a
+  template document where some sections
+  are removed dynamically through
+  bookmarks and block sections from the
+  template.</p>
+</blockquote>
+
+<p>However, if you are comparing section by section, then you may need to open the document up as more than raw bytes and deal with it in a structured fashion, e.g. section by section. You can programmatically open a .docx file using c# (using a variety of means); perhaps you can then perform a checksum against the contents of each section?</p>
+
+<p>This thread talks about creating/manipulating .docx files using c#: <a href="https://stackoverflow.com/questions/10412/how-can-a-word-document-be-created-in-c">How can a Word document be created in C#?</a>. The same tools could be used to read one.</p>

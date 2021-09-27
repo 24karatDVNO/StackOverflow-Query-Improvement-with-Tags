@@ -1,0 +1,24 @@
+<p>Since you tagged this with the <code>google-maps</code> keyword, you can also the Geocoding API directly from within Google Maps (example is for Gmaps API V3):</p>
+
+<pre><code>    gmaps.geocoder.geocode({ 'address': address }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var marker = new google.maps.Marker({
+                map: gmaps.map,
+                position: results[0].geometry.location,
+            });
+
+            marker.setTitle(address);
+
+            gmaps.bounds.extend(results[0].geometry.location);
+            gmaps.map.fitBounds(gmaps.bounds);
+
+            if(typeof(callback) === 'function') {
+                callback(marker);
+            }
+        } else {
+            console.log("Geocode was not successful for the following reason: " + status);
+        }
+    });
+</code></pre>
+
+<p>This snippet will fetch the address' geometry location, and plots it in the map (which lives in gmaps.map). It'll also make sure that all markers fit within the bounds of the map.</p>

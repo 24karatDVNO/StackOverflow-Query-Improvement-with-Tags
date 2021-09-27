@@ -1,0 +1,17 @@
+<p>Print out numOpenList. This is how you set it.</p>
+
+<pre><code>        NumOpenList = "SELECT COUNT([FORMAT NUMBER]) " &amp; _ 
+  "FROM(ALL_COMPLAINTS) " &amp; _ 
+  " join (SELECT * FROM dbo.ProductPartNumbers(' " &amp; _ 
+  arrayProducts(y) &amp; _ 
+  " ')) on EPA_PRD_CODE like '%' + [FORMAT NUMBER] + '%' " 
+</code></pre>
+
+<p>Now, set a breakpoint and get the actual string. Then check to make sure you have an equal number of ( and ). I am betting you will find more of one of the other. Fix it and your code is fixed.</p>
+
+<p>If I am correct, you are probably blowing up here:</p>
+
+<pre><code>NumOpenListData = GlobalFunctions.GlobalF.GetDevSQLServerDataSet(NumOpenList) 
+</code></pre>
+
+<p>Or in the actual GetDevSqlServerDataSet function in your GlobalFunctions library.</p>

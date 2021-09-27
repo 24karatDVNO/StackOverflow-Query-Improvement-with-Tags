@@ -1,0 +1,39 @@
+<p>Okay, I tried your versions, but unfortunately I couldn't make them work, since there was some scaling and PDF locating stuff that made me (and your code suggestions) badly confused. But by testing them, I learned again a lot of python, thanks!</p>
+
+<p>I managed finally to find a solution that isn't very exact but satisfies my needs. Here is how I did it.</p>
+
+<p>In my version, one km is divided by a suitable integer constant named STEP_PART. The bigger is STEP_PART, the more accurate the axis values are (and if it is too big, the axis becomes messy to read). For example, if STEP_PART is 5, the accuracy is 1 km / 5 = 200 m, and ticks are put to every 200 m.</p>
+
+<pre><code>STEP_PART = 5             # In the start of the program.
+
+height = 6.42             # These are actually given elsewhere,
+width = 4.37              # but just as example...
+
+vHeight = range(0, int(STEP_PART*height), 1)  # Make tick vectors, now in format
+                                              # 0, 1, 2... instead of 0, 0.2...
+vWidth = range(0, int(STEP_PART*width), 1)    # Should be divided by STEP_PART 
+                                              # later to get right values.
+</code></pre>
+
+<p>To avoid making too many axis labels (0, 1, 2... are enough, 0, 0.2, 0.4... is far too much), we replace non-integer km values with string "". Simultaneously, we divide integer km values by STEP_PART to get right values.</p>
+
+<pre><code>for j in range(len(vHeight)):
+    if (j % STEP_PART != 0):
+        vHeight[j] = ""
+    else:
+        vHeight[j] = int(vHeight[j]/STEP_PART)
+
+for i in range(len(vWidth)):
+    if (i % STEP_PART != 0):
+        vWidth[i] = ""
+    else:
+        vWidth[i] = int(vWidth[i]/STEP_PART)
+</code></pre>
+
+<p>Later, after creating the graph and axes, ticks are put in that way (x axis as an example). There, x is the actual width of the picture, got with shape() command (I don't exactly understand how... there is quite a lot scaling and stuff in the code I'm modifying).</p>
+
+<pre><code>xt = np.linspace(0,x-1,len(vWidth)+1) # For locating those ticks on the same distances.
+locs, labels = mpl.xticks(xt, vWidth, fontsize=9) 
+</code></pre>
+
+<p>Repeat for y axis. The result is a graph where is ticks on every 200 m's but data labels on the integer km values. Anyway, the accuracy of those axes are 200 m's, it's not exact but it was enough for me. The script will be even better if I find out how to grow the size of the integer ticks...</p>

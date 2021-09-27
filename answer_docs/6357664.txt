@@ -1,0 +1,10 @@
+<p>try just setting the src attribute to the url of the dynamic image url</p>
+
+<pre><code>&lt;script language="javascript" type="text/javascript"&gt;
+$(document).ready(function () {
+    $('#images').click(function () {
+        $(this).attr("src", "/en/form/Image");
+        return false;
+    });
+});
+</code></pre>

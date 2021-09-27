@@ -1,0 +1,12 @@
+<p>Assuming 0 indexing, the following code will return the index of the element if it exists, or -1 if it is not contained in the list:</p>
+
+<pre><code>def index(L, v):
+    if L == []:
+        return -1
+    elif L[0] == v:
+        return 0
+    rv = index(L[1:], v)
+    if rv &lt; 0:
+        return rv
+    return rv + 1
+</code></pre>

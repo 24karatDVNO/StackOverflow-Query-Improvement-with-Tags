@@ -1,0 +1,10 @@
+<p>The problem was caused by the fact the column was used as part of a <code>CompositeId</code>.</p>
+
+<p>I could not use <code>CustomType</code> on the column alone, because its ignored if the column is also defined as part of a <code>CompositeId</code>.</p>
+
+<p>The solution is the use the <code>Type</code> method on the <code>KeyProperty</code> definition.</p>
+
+<pre><code>  mapping.CompositeId()
+                .KeyProperty(x =&gt; x.Name)
+                .KeyProperty(x =&gt; x.TimeStampUtc, k =&gt; k.Type("DateTime2"));
+</code></pre>

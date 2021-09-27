@@ -1,0 +1,9 @@
+<p>The above solution didn't worked for me. Below is the alternate solution.</p>
+
+<pre><code>URLRequestDefaults.authenticate = false;
+URLRequestDefaults.setLoginCredentialsForHost("bazinga.xyz.com", "madhur", "sharma");
+var req:URLRequest = new URLRequest("http://bazinga.xyz.com/MyHtml/index.html");
+htmlControl.htmlLoader.load(urlRequest);
+</code></pre>
+
+<p>See related question <a href="https://stackoverflow.com/questions/6359670/urlrequestdefaults-setlogincredentialsforhost-not-setting-the-user-pwd-in-autho">URLRequestDefaults.setLoginCredentialsForHost not setting the user &amp; pwd in authorization header</a></p>

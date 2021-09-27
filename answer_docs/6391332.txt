@@ -1,0 +1,5 @@
+<p>If you are constrained to this architecture, one idea is to write a stored procedure on the server that accepts a large chuck of row data in one call.  It could then write out the row data to a file for a future bulk-insert, or it could attempt to insert the rows directly.</p>
+
+<p>This also has the benefit of speeding things up over high latency connections to the server.</p>
+
+<p>Also, if you use parameterized statements, you can avoid having to escape strings etc.</p>

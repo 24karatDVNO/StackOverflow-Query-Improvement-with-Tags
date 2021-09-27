@@ -1,0 +1,12 @@
+<p>I would strongly recommend the use of BooleanQuery with stnadard QueryParser:</p>
+
+<pre><code>BooleanQuery booleanQuery = new BooleanQuery();
+
+FuzzyQuery field1Query = new FuzzyQuery(new Term("field1", searchTerm), 0.3f, 1, 10);
+FuzzyQuery field2Query = new FuzzyQuery(new Term("field2", searchTerm), 0.3f, 1, 10);
+
+booleanQuery.add(field1Query , BooleanClause.Occur.SHOULD);
+booleanQuery.add(field1Query , BooleanClause.Occur.SHOULD);
+</code></pre>
+
+<p>This way you can perform search on exactly the fields you want and adjust it to produce fine tuned results. Assuming that is your ultimate goal.</p>

@@ -1,0 +1,28 @@
+<pre><code>function format_minutes($value)
+{
+    $hours = intval($value / 60);
+    $minutes = $value % 60;
+
+    if ($hours != 0) {
+        $str = $hours . ' hour';
+
+        // Handle pluralisation.
+        if (abs($hours) != 1) {
+            $str .= 's';
+        }
+    }
+
+    // Always show minutes if there are no hours.
+    if ($minutes != 0 || $hours == 0) {
+        $str .= ' ' . $minutes . ' minute';
+
+        // Handle pluralisation.
+        if (abs($minutes) != 1) {
+            $str .= 's';
+        }
+    }
+
+    // There will be a leading space if hours is zero.
+    return trim($str);
+}
+</code></pre>

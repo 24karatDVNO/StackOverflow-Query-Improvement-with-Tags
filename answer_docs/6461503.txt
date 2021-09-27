@@ -1,0 +1,19 @@
+<p>I had the exact same issue with this otherwise perfect plugin. After a bit of fumbling, I settled for a solution using the <code>after</code> callback to automatically reset the <code>z-index</code>. It should be doable using <code>cssAfter</code> as well.</p>
+
+<pre><code>$(document).ready(function() {
+    $('#slideshow').cycle({ 
+        // options there,
+        after: onAfter
+    });
+});
+
+
+function onAfter(out)
+{
+    // Dyamically set the greater z-index for the current slide.
+    // Works with any number of slides.
+
+    $(this).css('z-index', Number($(out).css('z-index'))+1);
+    $(out).css('z-index', Number($(out).css('z-index'))-1);
+};
+</code></pre>

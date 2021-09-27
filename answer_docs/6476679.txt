@@ -1,0 +1,3 @@
+<p>Well first of all the flash is probably due to the DirectX device initialization that happens when the XNA window is restored from minimization or when the device is initially created; there are events that can capture these events. I don't know what are you doing when pressing the left key, but I would check to make sure that you are not causing another device initialization to happen.</p>
+
+<p>Key events are the ones contained in <a href="http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphicsdevicemanager_members.aspx" rel="nofollow">GraphicsDeviceManager</a>, especially the resetting events. Make sure that when the device is resetting, no input is handled.</p>

@@ -1,0 +1,18 @@
+<p>You can change the content of the portlets with something like this example:</p>
+
+<p><a href="http://jsbin.com/imese4/2" rel="nofollow">http://jsbin.com/imese4/2</a></p>
+
+<p>You could use load() instead of .html() (used in the example for simplicity).</p>
+
+<pre><code>$(".portlet").each(function(element){
+      $(this).children(".portlet-content").load("content.php?id="+element);
+});
+</code></pre>
+
+<p>To edit the content do something like this:</p>
+
+<pre><code>$(".portlet-edit").click(function(element){
+  s=prompt('Enter your content','Content');
+  $(this).parent().children(".portlet-content").html("edited:" + s);
+});
+</code></pre>

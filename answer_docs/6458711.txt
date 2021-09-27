@@ -1,0 +1,3 @@
+<p>I think your issue is with Object equality in Java.  Like others have mentioned, you should use <code>equals()</code>.  It is possible that the compiler for your class creates a shared string for each instance of a literal (like "none").  This would cause <code>==</code>, which checks to see if two variables point to the same object, if the string was assigned from within the class.  Then when you use your JSP page, the "none" string is provided by an external class, causing it to be a different object.</p>
+
+<p>The moral of the story is to use 'equals()' to compare strings.</p>

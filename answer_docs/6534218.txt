@@ -1,0 +1,9 @@
+<p>Try using the following syntax to get all the cells that contains values in the sheet regardless of the auto-filter on/off or the actual filter used.</p>
+
+<p>I think this is what you're looking for:</p>
+
+<pre><code>Worksheet currSheet = excelApp.ActiveWorkbook.ActiveSheet;
+object[,] objData = (object[,])currSheet.UsedRange.Value2;
+</code></pre>
+
+<p>the <code>Value2</code> member holds the underline content of the cell/Range. if you're looking for the visible string displayed to the user, use <code>Text</code> property.</p>

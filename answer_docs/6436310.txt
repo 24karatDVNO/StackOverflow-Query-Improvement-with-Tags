@@ -1,0 +1,17 @@
+<p>Not sure that this would help, but you can try to use the following code to get dictionary and then work with it(write to files, compare and etc):</p>
+
+<pre><code>res = {}
+with open('c:\\tst.txt') as f:
+    lines = f.readlines()
+    for i,line in enumerate(lines):
+        line = line.strip()
+        if (i == 0 and line):
+            key = line
+            res[key] = []
+        elif not line and i+1 &lt; len(lines):
+            key = lines[i+1].strip()
+            res[key] = []
+        elif line and line != key:
+            res[key].append(line)
+print res
+</code></pre>

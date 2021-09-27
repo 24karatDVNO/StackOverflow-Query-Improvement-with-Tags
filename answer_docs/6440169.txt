@@ -1,0 +1,9 @@
+<p>This is a trick to create variable length buffers with C. Make the last element 1 byte long, and allocate more. For this structure, allocating an <code>ngx_hash_elt_t</code> could be done like the following, for example:</p>
+
+<pre><code>ngx_hash_elt_t* alloc_hash_elt(int name_len)
+{
+    return malloc(sizeof(ngx_hash_elt_t) - 1 + name_len);
+}
+</code></pre>
+
+<p>The extra space you allocate can now be safely used by the <code>name</code> element.</p>

@@ -1,0 +1,16 @@
+<p>Here's a version that does everything you want without re-inventing the wheel.</p>
+
+<pre><code>void formatPercentCommon(std::string&amp; percent, const std::string&amp; value, Config&amp; config)
+{   
+     std::stringstream fmt(value);
+     double temp;
+     fmt &gt;&gt; temp;
+     temp = (temp/config.total)*100;
+     fmt.str("");
+     fmt.seekp(0);
+     fmt.seekg(0);
+     fmt.precision( 2 );
+     fmt &lt;&lt; std::fixed &lt;&lt; temp;
+     percent = fmt.str();
+}
+</code></pre>

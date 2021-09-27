@@ -1,0 +1,10 @@
+<p>You can use <code>reduce</code> rather than use recursion. Here's a one-liner:</p>
+
+<pre><code>function index(obj, indexList) {
+    return indexList.reduce(function(obj,x){return obj[x]}, obj);
+}
+
+function indexWithMask(mask) {
+    return index(obj, mask.slice(1,-1).split('}{'));
+}
+</code></pre>

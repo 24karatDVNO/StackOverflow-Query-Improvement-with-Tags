@@ -1,0 +1,5 @@
+<p>To keep the barrier to entry low, since threads often result in more headaches than usefulness for beginner programmers.  Flash is often used by people who simply wanted the WOW factor, and so adobe probably took the political decision to minimize the amount of support they would have to provide.</p>
+
+<p>Ideally, they would support <a href="http://en.wikipedia.org/wiki/Futures_and_promises" rel="nofollow">futures/promises</a> (which I discovered by reading about the Io language), basically, asynchronous functions.  As RJ Owen mentioned, something like web workers to run in background threads and not block the ui thread would be ideal.</p>
+
+<p>But really at the low level, this is potentially hard for Adobe to do, because the execution model is tightly coupled to the graphics capabilities.  From a basic understanding of the architecture, the flash player vm only reads precompiled bytecodes, running in the single threaded model, so adobe would have to radically change something for this to work.</p>

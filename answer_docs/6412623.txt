@@ -1,0 +1,18 @@
+<p>Anonymous types are marked internal, so you can't access them from a different assembly.  You can use an ExpandoObject instead although the default creation syntax doesn't work inline which can be annoying.  However, the opensource framework <a href="http://code.google.com/p/impromptu-interface" rel="nofollow">impromptu-interface</a> has a syntax for <a href="http://code.google.com/p/impromptu-interface/wiki/UsageBuilder#Typical_ImpromptuBuilder" rel="nofollow">creating it inline</a>.</p>
+
+<pre><code>using ImpromptuInterface.Dynamic;
+using System.Dynamic;
+...
+public IEnumerable&lt;dynamic&gt; GetMenuItems()
+   {
+       var @new = Builder.New&lt;ExpandoObject&gt;();
+
+       dynamic menuItems = new[]{
+                   @new.Object(Title:"Home"),
+                   @new.Object(Title:"Categories")
+                };
+
+       return menuItems; 
+
+   }
+</code></pre>

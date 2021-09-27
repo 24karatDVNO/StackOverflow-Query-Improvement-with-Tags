@@ -1,0 +1,5 @@
+<p>Not knowing what you want this for, it's hard to tell.</p>
+
+<p>But anyway, yes you can create a collection but in order to track and store references to the <code>TestInterface</code> objects, you must control their creation.</p>
+
+<p>The easiest way would be to have a <code>TestInterfaceFactory</code> (see <a href="http://en.wikipedia.org/wiki/Abstract_Factory" rel="nofollow">AbstractFactory</a> pattern), this is also a good place to keep the <code>store</code> collection with the instance references.</p>

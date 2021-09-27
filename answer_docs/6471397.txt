@@ -1,0 +1,50 @@
+<pre><code>// main.as
+package{
+  // good practice is to declare all imports in one spot and at the top of the class.
+  import flash.display.*;
+  public class Main extends Sprite{ 
+    public function Main(){
+      var square_commands:Vector.&lt;int&gt; = new Vector.&lt;int&gt;(5,true); 
+          square_commands[0] = 1;//moveTo 
+          square_commands[1] = 2;//lineTo 
+          square_commands[2] = 2; 
+          square_commands[3] = 2; 
+          square_commands[4] = 2; 
+
+      var square_coord:Vector.&lt;Number&gt; = new Vector.&lt;Number&gt;(10,true); 
+          square_coord[0] = 20; //x 
+          square_coord[1] = 10; //y 
+          square_coord[2] = 50; 
+          square_coord[3] = 10; 
+          square_coord[4] = 50; 
+          square_coord[5] = 40; 
+          square_coord[6] = 20; 
+          square_coord[7] = 40; 
+          square_coord[8] = 20; 
+          square_coord[9] = 10; 
+
+
+      // notice we are passing the parameters to the constructor of the Fill class
+      var fill = new Fill(square_commands, square_coord);
+    }
+  }
+}
+
+
+
+// Fill.as
+package{
+  import flash.display.*;
+  public class Fill extends Sprite{
+
+    // A function with the same name of the class file is the constructor.
+    // A constructor will be called every time the new operator is called like I did in main.
+    public function Fill(a:Vector.&lt;int&gt;,b:Vector.&lt;Number&gt;){
+      graphics.beginFill(0x442266);//set the color
+      graphics.drawPath(a, b);
+    }
+  }
+}
+</code></pre>
+
+<p><a href="http://www.adobe.com/devnet/actionscript/articles/oop_as3.html" rel="nofollow">I suggest you read up on OOP and learn it if you are going to do lots of coding.</a></p>

@@ -1,0 +1,3 @@
+<p>You could use a messaging system such as RabbitMQ, or any other one, and have the applications listen to a channel in the system.  Then an administrative application could send a message to the user applications forcing them to shut down.</p>
+
+<p>If the changes aren't breaking changes, you might want to look at something like ClickOnce which allows you to publish updates to applications while the users are running them, though users will be running old versions of the application until it restarts.</p>

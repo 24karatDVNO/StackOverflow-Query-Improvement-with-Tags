@@ -1,0 +1,9 @@
+<p>You can create a <code>List&lt;ClassA&gt;</code> and the set the object of <code>ClassB</code>, as the reference variable will be of type <code>ClassA</code>, then u can call the method you need to call.</p>
+
+<pre><code>List&lt;ClassA&gt; list = new ArrayList&lt;ClassA&gt;();
+ClassA object = new ClassB();
+list.add(object);
+setCustomerHandler(list);
+</code></pre>
+
+<p>This will help you.</p>

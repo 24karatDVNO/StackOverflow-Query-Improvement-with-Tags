@@ -1,0 +1,5 @@
+<p>You should use it this way:</p>
+
+<p>String args[] = new String[]{editTextSearch.getText().toString()};</p>
+
+<p>Cursor selCur= myDataBase.rawQuery("SELECT * FROM drinks WHERE name like '%?%'", args);</p>

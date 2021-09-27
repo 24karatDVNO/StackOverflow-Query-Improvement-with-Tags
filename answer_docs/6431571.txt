@@ -1,0 +1,7 @@
+<p>You said the import doesn't work while deployed on GAE, so why not simply do something like this?</p>
+
+<pre><code>try:
+    from google.appengine.tools.dev_appserver import HardenedModulesHook
+
+HardenedModulesHook._WHITE_LIST_C_MODULES += ['_counter']
+</code></pre>

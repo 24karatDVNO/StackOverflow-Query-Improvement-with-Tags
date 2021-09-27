@@ -1,0 +1,30 @@
+<p>I guess you're loading that string into a webview, don't you?</p>
+
+<pre><code>    /**
+ * Embeds the youtube HTML data into the webview
+ */
+- (void)embedYouTubeIntoWebview:(UIWebView *)webView 
+                        withURL:(NSString *)url 
+                        inFrame:(CGRect)frame {
+  webView.delegate = self;
+  NSString *embedHTML =
+    @"\
+  &lt;html&gt;&lt;head&gt;\
+  &lt;style type=\"text/css\"&gt;\
+  body {\
+  background-color: transparent;\
+  color: white;\
+  }\
+  &lt;/style&gt;\
+  &lt;/head&gt;&lt;body style=\"margin:0\"&gt;\
+  &lt;embed id=\"yt\" src=\"%@\" type=\"application/x-shockwave-flash\" \
+  width=\"%0.0f\" height=\"%0.0f\"&gt;&lt;/embed&gt;\
+  &lt;/body&gt;&lt;/html&gt;";
+  NSString *html =
+    [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+
+  [webView loadHTMLString:html baseURL:nil];
+}
+</code></pre>
+
+<p>Remember that this won't work with the emulator. You need to test it in real device.</p>

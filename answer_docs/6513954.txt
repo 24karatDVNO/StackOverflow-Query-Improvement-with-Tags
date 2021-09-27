@@ -1,0 +1,25 @@
+<p>I ran into a similar issue like this, and built a quick workaround using CouchDB-Python (which is a great library). It's not a pretty solution (goes against the principles of CouchDB), but it works.</p>
+
+<p>CouchDB-Python gives you the function "Query", which allows you to "execute an ad-hoc temporary view against the database". You can read about it <a href="http://packages.python.org/CouchDB/client.html" rel="nofollow">here</a></p>
+
+<p>What I have is that I store the javascript function as a string in python, and the concatenate it with variable names that I define in Python. </p>
+
+<p>In some_function.py</p>
+
+<pre><code>variable = value
+
+# Map function (in javascript)
+map_fn = """function(doc) {
+     &lt;javascript code&gt;
+     var survey_match = """ + variable + """;
+     &lt;javascript code&gt;
+"""
+
+# Iterates through rows
+for row in db.query(map_fn):
+     &lt;python code&gt;
+</code></pre>
+
+<p>It sure isn't pretty, and probably breaks a bunch of CouchDB philosophies, but it works. </p>
+
+<p>D</p>

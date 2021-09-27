@@ -1,0 +1,18 @@
+<pre><code>&lt;PARAM NAME="IP" VALUE=&lt;%=value_from_codebehind%&gt; &gt;
+</code></pre>
+
+<p><strong>codebehind:</strong></p>
+
+<pre><code>//define string named value_from_codebehind
+public string value_from_codebehind;
+</code></pre>
+
+<p>after that u can assign values to the <code>value_from_codebehind</code></p>
+
+<pre><code>value_from_codebehind = "\"passing_value\"";
+</code></pre>
+
+<p>and this <code>"passing_value"</code> with quotas will go to <code>&lt;%=value_from_codebehind%&gt;</code>, i.e. u will get</p>
+
+<pre><code>&lt;PARAM NAME="IP" VALUE="passing_value" &gt;
+</code></pre>

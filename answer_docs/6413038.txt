@@ -1,0 +1,7 @@
+<p>Here's a problem: You have target #1 that builds a bunch of stuff, then target #2 that copies it.</p>
+
+<p>You run your Ant script in test mode, it pretends to do target #1. Now it comes to target #2 and there's nothing to copy. What should target #2 return? Things can get even more confusing when you have <code>if</code> and <code>unless</code> clauses in your ant targets.</p>
+
+<p>I know that Make has a command line parameter that tells it to run without doing a build, but I never found it all that useful. Maybe that's why Ant doesn't have one.</p>
+
+<p>Ant does have a <code>-k</code> parameter to tell it to keep going if something failed. You might find that useful.</p>

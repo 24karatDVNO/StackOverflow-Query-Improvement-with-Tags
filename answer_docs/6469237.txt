@@ -1,0 +1,24 @@
+<pre><code>  &lt;div&gt; 
+
+        &lt;% using (Html.BeginForm("Post-FormActionName", "Controllername"))
+           {
+        %&gt;             
+
+             &lt;div class="fieldsColumn"&gt;
+
+              &lt;label&gt;Name: *&lt;/label&gt;
+                &lt;%=Html.TextBoxFor("Name")%&gt;
+
+        &lt;/div&gt;
+
+            &lt;div class="fieldsColumn"&gt;
+
+              &lt;input id="submit" type="submit" value="Save"/&gt;
+
+        &lt;/div&gt;
+
+
+        &lt;%}%&gt;      
+
+&lt;/div&gt;
+</code></pre>

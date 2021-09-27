@@ -1,0 +1,17 @@
+<p>It's likely to be a type issue, and how the codeigniter or perhaps SQL is dealing with the integer. </p>
+
+<p>Since you know username is going to be a string, cast everything to a string. I believe the following should fix any problems here;</p>
+
+<pre><code>$this -&gt; db -&gt; where('user_name', (string) $user_name);
+</code></pre>
+
+<p>If you expect objects may also be passed to this object, you'd best do a conditional:</p>
+
+<pre><code>if(is_object($user_name)) {
+     $user_name = $user_name-&gt;__toString();
+} else {
+     $user_name = (string) $user_name;
+}
+</code></pre>
+
+<p>Put that, of course, at the start of the function, before you select the database.</p>

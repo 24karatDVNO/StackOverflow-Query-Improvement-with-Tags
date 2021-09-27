@@ -1,0 +1,6 @@
+<p>Thank you for your Hint.</p>
+
+<p>I fond out, that the Problem was not a leak, but the memory Allocation was too big when scaling down Big Images in "resizedImageWithContentMode:" That made the App crash.</p>
+
+<p>I changed the Image scaling to use the Image I/O framework. 
+Now it works fine.</p>

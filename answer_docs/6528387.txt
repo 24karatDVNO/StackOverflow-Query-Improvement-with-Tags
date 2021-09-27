@@ -1,0 +1,21 @@
+<p>Depending on the array you can use <code>array_walk</code> or <code>array_walk_recursive</code>.</p>
+
+<p>Something like this should work.</p>
+
+<p>This is for 5.3+;</p>
+
+<pre><code>array_walk_recursive($posts, function(&amp;$value) {
+    $value = Inflector::slug($value);
+});
+</code></pre>
+
+<p>If you wanted to limit it to a certain field you could also do something like this:</p>
+
+<pre><code>array_walk_recursive($posts, function(&amp;$value, $key) {
+if ($key == 'title') {
+    $value = Inflector::slug($value);
+  }
+});
+</code></pre>
+
+<p>I haven't used Cake in a while but like Rob Wilkerson said, you might find that the <code>Set</code> class could make lighter work of this.</p>

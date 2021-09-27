@@ -1,0 +1,31 @@
+<p>I believe you're actually not using the proper dependencies. ZK actually have Maven repositories as described <a href="http://books.zkoss.org/wiki/ZK_Installation_Guide/Setting_up_IDE/Maven/Use_ZK_Maven_Repository" rel="nofollow">here</a>.</p>
+
+<p>You need to check which dependencies you need. For example for zkex, you would need something like:</p>
+
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.zkoss.zk&lt;/groupId&gt;
+        &lt;artifactId&gt;zkex&lt;/artifactId&gt;
+        &lt;version&gt;${zk.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
+
+<p>You will also need to add the ZK Maven repositories:</p>
+
+<pre><code>    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;zk repository&lt;/id&gt;
+            &lt;url&gt;http://mavensync.zkoss.org/maven2&lt;/url&gt;
+        &lt;/repository&gt;
+        &lt;!-- If Using ZK EE or ZK PE Respository (not evaluation version), you need to add login info into ~/.m2/settings.xml --&gt;
+        &lt;repository&gt;
+            &lt;id&gt;ZK PE Evaluation&lt;/id&gt;
+            &lt;url&gt;http://mavensync.zkoss.org/zk/pe-eval&lt;/url&gt;
+        &lt;/repository&gt;
+        &lt;repository&gt;
+            &lt;id&gt;ZK EE Evaluation&lt;/id&gt; 
+            &lt;url&gt;http://mavensync.zkoss.org/zk/ee-eval&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+</code></pre>
+
+<p>Good luck! :-)</p>

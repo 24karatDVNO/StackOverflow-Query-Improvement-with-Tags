@@ -1,0 +1,10 @@
+<pre><code>SELECT `pos` FROM  `shop_artciles` a, `shop_texts` b WHERE `a.manufacturer` = 
+             '$keyManufacturer'  AND `b.text` = '$ketText' AND `a.pos` = `b.pos`
+</code></pre>
+
+<p>Here there are 3 conditions in the <code>WHERE</code> clause and the result is the rows that match all three conditions. Think this is what you want. You can try <code>joins</code> in you are interested. </p>
+
+<pre><code>SELECT `a.pos` FROM `shop_artciles` AS a LEFT JOIN `shop_texts` AS b ON 
+             `a.pos`= `b.pos` WHERE`a.manufacturer` = '$keyManufacturer'  
+                                         AND `b.text` = '$ketText'
+</code></pre>

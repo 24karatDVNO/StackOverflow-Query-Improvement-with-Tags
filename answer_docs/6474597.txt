@@ -1,0 +1,3 @@
+<p>Another option would be to have both your buttons do a ajax post.  You can check if the form is valid first by going form.valid() see <a href="http://docs.jquery.com/Plugins/Validation/valid" rel="nofollow">docs</a>.  The ajax post success call for the "close" option would also close the box.</p>
+
+<p>Update:  You could also have the submit buttons set a field somewhere on the page and have your success handler read that field to determine if it should close the box or not.  Getting a little hacky, but it would work.</p>

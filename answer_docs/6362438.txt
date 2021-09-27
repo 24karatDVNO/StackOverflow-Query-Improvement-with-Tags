@@ -1,0 +1,11 @@
+<p>Consider encapsulating all the functionality related to reading and "handling" the data in a class.</p>
+
+<p>It should take the file path as a std::string in the constructor. </p>
+
+<p>Creating the file handle, allocating the memory and reading can then be done in a separate function (something like <code>Init</code>). This gives you the ability to create the object when you know the file path but do the time-consuming part (the reading part) later, when you actually need it.</p>
+
+<p>You can expose whatever information is necessary to the outside users (like the height or width).</p>
+
+<p>The class destructor will be responsible for closing the file handle (which can be done earlier, if needed) and de-allocating the data.</p>
+
+<p>You can use new and delete with your class or, better yet, use a smart pointer with your class and not just with the image data part. You can also use it "on the stack" and have its destructor called automatically when out of scope.</p>

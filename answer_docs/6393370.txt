@@ -1,0 +1,49 @@
+<p>You can't do this I don't think - you need to have the mappings together. This might actually be a bug as the wiki claims that it can be done - however the example given is just relying on the name of the properties to do the mapping, not the includes bit. At least that is how I understand it.</p>
+
+<p>If you look at <a href="http://automapper.codeplex.com/wikipage?title=Lists%20and%20Arrays" rel="nofollow">http://automapper.codeplex.com/wikipage?title=Lists%20and%20Arrays</a> and change the name of the properties in the Source and Dest (I make them Value 3 and Value4 to really mix things up) then explictly add your mappings.</p>
+
+<pre><code>    Mapper.CreateMap&lt;ChildSource, ChildDestination&gt;()
+            .ForMember( x =&gt; x.Value4, o =&gt; o.MapFrom( y =&gt; y.Value2 ) );
+        Mapper.CreateMap&lt;ParentSource, ParentDestination&gt;()
+            .Include&lt;ChildSource, ChildDestination&gt;()
+            .ForMember( x =&gt; x.Value3, o =&gt; o.MapFrom( y =&gt; y.Value1 ) );
+</code></pre>
+
+<p>Then it seems to fail.</p>
+
+<pre><code>        ChildSource s = new ChildSource()
+        {
+            Value2 = 1,
+            Value1 = 3
+        };
+
+        var c = s.MapTo&lt;ChildDestination&gt;();
+        var c2 = s.MapTo&lt;ParentDestination&gt;();
+
+        Assert.AreEqual( c.Value3, s.Value1 );
+        Assert.AreEqual( c.Value4, s.Value2 );
+        Assert.AreEqual( c2.Value3, s.Value1 );
+        Assert.AreEqual( c.Value4, s.Value2 );
+</code></pre>
+
+<p>Other Notes</p>
+
+<p>Also the Include needs to be the child not the parent. The prototype actually states this</p>
+
+<pre><code>    public IMappingExpression&lt;TSource, TDestination&gt; Include&lt;TOtherSource, TOtherDestination&gt;()
+        where TOtherSource : TSource
+        where TOtherDestination : TDestination
+</code></pre>
+
+<p>From what I have read you should create your child mapping first, though that might have been an old issue.</p>
+
+<pre><code>Mapper.CreateMap&lt;ChildSource, ChildDest&gt;();
+</code></pre>
+
+<p>Then your parent</p>
+
+<pre><code>Mapper.CreateMap&lt;ParentSource, Parent Dest&gt;()
+       .Include&lt;ChildSource, ChildDest&gt;();
+</code></pre>
+
+<p>Sourced from <a href="http://automapper.codeplex.com/wikipage?title=Lists%20and%20Arrays" rel="nofollow">http://automapper.codeplex.com/wikipage?title=Lists%20and%20Arrays</a></p>

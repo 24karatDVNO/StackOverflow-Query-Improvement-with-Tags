@@ -1,0 +1,31 @@
+<p>Try this:</p>
+
+<pre><code>&lt;?php
+
+ $querystr = "
+    SELECT wposts.* 
+    FROM $wpdb-&gt;posts wposts, $wpdb-&gt;postmeta wpostmeta
+    WHERE wposts.ID = wpostmeta.post_id 
+    AND wpostmeta.meta_key = 'date' 
+    AND wpostmeta.meta_value &lt; CURRENT_DATE
+    AND wposts.post_status = 'publish' 
+    AND wposts.post_type = 'post' 
+    ORDER BY wposts.post_date DESC, wpostmeta.meta_value DESC
+ ";
+
+ $pageposts = $wpdb-&gt;get_results($querystr, OBJECT);
+
+ ?&gt;
+</code></pre>
+
+<p>I'm assuming that the meta-value for the meta-key 'date' is stored in the mysql format ('YYYY-MM-DD'). If not, you may try using the <a href="http://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html" rel="nofollow" title="Date-Time">mysql date time functions</a> to format it accordingly.</p>
+
+<p>You can then use the following code to display the posts.</p>
+
+<pre><code> &lt;?php if ($pageposts): ?&gt;
+ &lt;?php global $post; ?&gt;
+ &lt;?php foreach ($pageposts as $post): ?&gt;
+ &lt;?php setup_postdata($post); ?&gt;
+ &lt;h2&gt;&lt;?php echo $post-&gt;title; ?&gt;&lt;/h2&gt;
+ &lt;?php endif; ?&gt;
+</code></pre>

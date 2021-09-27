@@ -1,0 +1,56 @@
+<p>The handling of answering is missing in the following code, but you have control of only one right answer</p>
+
+<pre><code>class Question
+  def initialize(text)
+    @text = text
+    @answers = []
+    @correct = nil #index of the correct answer inside @answers
+  end
+  def self.define(text, &amp;block)
+    raise ArgumentError, "Block missing" unless block_given?
+    q = self.new(text)
+    q.instance_eval(&amp;block)    
+    q
+  end
+  def wrong( answer )
+    @answers &lt;&lt; answer
+  end
+  def right(answer )
+    raise "Two right answers" if @correct
+    @answers &lt;&lt; answer
+    @correct = @answers.size
+  end
+  def ask()
+    puts @text
+    @answers.each_with_index{|answer, i|
+      puts "\t%2i %s?" % [i+1,answer]
+    }
+    puts "correct is %i" % @correct
+  end
+end
+
+def question( text, &amp;block )
+  raise ArgumentError, "Block missing" unless block_given?
+  Question.define(text, &amp;block)
+end
+</code></pre>
+
+<p>Now you can define your question with block syntax:</p>
+
+<pre><code>question( 'Who was the first president of the USA?' ) {
+  wrong 'Fred Flintstone'
+  wrong 'Martha Washington'
+  right 'George Washington'
+  wrong 'George Jetson'
+}.ask
+</code></pre>
+
+<p>You may use also another definition of questions:</p>
+
+<pre><code>q = Question.new( 'Who was the first president of the USA?' )
+q.wrong 'Fred Flintstone'
+q.wrong 'Martha Washington'
+q.right 'George Washington'
+q.wrong 'George Jetson'
+q.ask
+</code></pre>

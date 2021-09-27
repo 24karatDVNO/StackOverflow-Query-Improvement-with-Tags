@@ -1,0 +1,6 @@
+<p>You have to test your Query string and the host name:</p>
+
+<pre><code>RewriteCond %{QUERY_STRING} NewsID=30888 [NC]
+RewriteCond %{HTTP_HOST}    ^(www\.)?old-domain\.com$ [NC]
+RewriteRule ^/(.*)          http://www.new-domain.com/$1 [L,R] 
+</code></pre>

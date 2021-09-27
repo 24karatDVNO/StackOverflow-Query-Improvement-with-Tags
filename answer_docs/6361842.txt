@@ -1,0 +1,7 @@
+<p>It is certainly possible, but you won't be able to recompile for WPF. You'd need to create brand new project files (csproj) for WPF or convert the existing ones manually.</p>
+
+<p>In addition, you'd have to target WPF 4, since the Silverlight toolkit makes heavy use of the VisualStateManager. Or you could get the VisualStateManager from the WPF toolkit, and target WPF 3.5 SP1.</p>
+
+<p>There are going to be several supporting classes and/or class members in the Silverlight toolkit, which are not needed in WPF. Such as controls that mimic the IsMouseOver property using MouseEnter/MouseLeave events. These would need to be removed and updated to leverage the WPF version.</p>
+
+<p>After doing all that, it should compile for WPF. You may run into some issues during runtime though, due to quirks with differences in the frameworks. Each of these would have to addressed individually.</p>

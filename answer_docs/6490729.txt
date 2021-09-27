@@ -1,0 +1,20 @@
+<p>(This is my first action on S.O. so please don't shout at me when I'm doing things wrong.)</p>
+
+<p>Did you concider preparing a workbook + sheet with the desired event code (Test1.xls-Sheet1). Then, in the target workbook (Test2.xls), copy that prepared sheet. The code in the target workbook would look like</p>
+
+<pre><code>Sub Demo1()
+  Workbooks.Open "Test1.xls"
+  Sheets("Sheet1").Copy After:=Workbooks("Test2.xls"). _
+     Sheets(Workbooks("Test2.xls").Worksheets.Count)
+  Workbooks("Test2.xls").Activate
+End Sub
+</code></pre>
+
+<p>This obviously is a workaround but it works instantly.</p>
+
+<p>A second option could be to prepare the 'workbook-with-one-sheet' and save it as a (sheet) template in D:\Documents and Settings\User\Application Data\Microsoft\Excel\XLSTART. In that case the code can be</p>
+
+<pre><code>Sub Demo2()
+  Sheets.Add Type:="Test1"
+End Sub
+</code></pre>

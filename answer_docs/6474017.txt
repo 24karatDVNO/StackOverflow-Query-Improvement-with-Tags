@@ -1,0 +1,14 @@
+<p>Couple things about your answer:</p>
+
+<ol>
+<li>Jeff Atwood used "-r" and you used "--root".  I'm not sure if that makes a difference or not</li>
+<li>The other difference is that you added a "\ in front of "C:\Program Files.....  According to Subversion docs that does make a difference. (see below)</li>
+</ol>
+
+<blockquote>
+  <p>sc create svnserve binpath= "c:\svnserve\svnserve.exe --service --root c:\repos" displayname= "Subversion" depend= tcpip start= auto</p>
+  
+  <p>If any of the paths include spaces, you have to use (escaped) quotes around the path, like this:</p>
+  
+  <p>sc create svnserve binpath= "\"C:\Program Files\Subversion\bin\svnserve.exe\" --service --root c:\repos" displayname= "Subversion" depend= tcpip start= auto</p>
+</blockquote>

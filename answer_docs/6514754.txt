@@ -1,0 +1,13 @@
+<p>The asterisk <code>*</code> is more general than the hat <code>^</code>. As a type modifier, <code>T*</code> means C++-pointer, and <code>T^</code> means CLI-reference. However, the other use of the symbol for the <strong>dereference operator</strong> applies to both types, and the indirect-call operator <code>-&gt;</code> does likewise:</p>
+
+<pre><code>T * x = new T;
+T ^ y = gcnew T;
+
+*x = 5;
+*y = 6;
+
+x-&gt;foo();
+y-&gt;foo();
+</code></pre>
+
+<p>The idea is that dereferencing is a general concept that's independent of the particular type of reference, so the same symbol can be used to minimize syntax proliferation.</p>

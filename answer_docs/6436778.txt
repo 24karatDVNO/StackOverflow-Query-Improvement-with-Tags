@@ -1,0 +1,6 @@
+<p>This will set the href of a link with id <code>link-id</code> to a UTC value of UNIXTIME:</p>
+
+<pre><code>$(document).ready(function() { $("#link-id").attr("href", "view.php?time=" + ((new Date()).getTime() + (new Date()).getTimezoneOffset() * 60000 ))});
+</code></pre>
+
+<p>Edit: Fixed code and wording.</p>

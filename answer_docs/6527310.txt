@@ -1,0 +1,16 @@
+<p>1) That would be <em>a</em> way and probably a preferred way, though not necessarily the <em>only</em> way.</p>
+
+<p>Also, the reference does not need to be owned by the ServerThread. Since ServerMain is likely a singleton, I have found in situations like this that it makes sense to give that Singleton a static variable which references itself. Then, from any ServerThread, you could do</p>
+
+<pre><code>class ServerThread extends Thread
+{
+    public void someMethod()
+    {
+        ServerMain.serverMain.whatever();
+    }
+}
+</code></pre>
+
+<p>2) Yes, that <strong>will</strong> cause problems. Read the <a href="http://download.oracle.com/javase/tutorial/essential/concurrency/" rel="nofollow">Java Concurrency Trail</a>, specifically the parts about synchronization. This is a topic too broad to cover easily in an answer here. But for a quick and dirty answer, check out synchronized methods. If you just make the method that handles this list access synchronized, then it will be safe. Of course, depending on your needs, locking the list access might take away any performance gain from your threads.</p>
+
+<p>3) It doesn't necessarily have to, but it generally does. "TCP socket" is even more likely than "UDP socket", but both work. If you want a dedicated and reliable connection for an entire, prolonged transaction, you should probably use TCP. TCP makes guarantees that data was received and that it was received in a certain order.</p>

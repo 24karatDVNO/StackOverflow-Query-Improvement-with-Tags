@@ -1,0 +1,94 @@
+<p>Checkout the <a href="http://en.wikipedia.org/wiki/Soundex#External_links" rel="nofollow">Soundex</a> algorithm on wikipedia, you haven't specified a language, but there are links to example implementations in multiple languages there.  Obviously, this will give you a string hash thats the same for similar sounding words, and you want an integer, but you could then apply the string->integer hashing method they use in <a href="http://www.boost.org/doc/libs/1_46_1/doc/html/hash/reference.html#boost.hash_combine" rel="nofollow">Boost.Hash</a>.</p>
+
+<p><strong>Edit:</strong> To clarify, here is an example C++ implementation...</p>
+
+<pre><code>#include &lt;boost/foreach.hpp&gt;
+#include &lt;boost/functional/hash.hpp&gt;
+
+#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+char SoundexChar(char ch)
+{
+    switch (ch)
+    {
+        case 'B':
+        case 'F':
+        case 'P':
+        case 'V':
+            return '1';
+        case 'C':
+        case 'G':
+        case 'J':
+        case 'K':
+        case 'Q':
+        case 'S':
+        case 'X':
+        case 'Z':
+            return '2';
+        case 'D':
+        case 'T':
+            return '3';
+        case 'M':
+        case 'N':
+            return '5';
+        case 'R':
+            return '6';
+        default:
+            return '.';
+    }
+}
+
+std::size_t SoundexHash(const std::string&amp; word)
+{
+    std::string soundex;
+    soundex.reserve(word.length());
+
+    BOOST_FOREACH(char ch, word)
+    {
+        if (std::isalpha(ch))
+        {
+            ch = std::toupper(ch);
+
+            if (soundex.length() == 0)
+            {
+                soundex.append(1, ch);
+            }
+            else
+            {
+                ch = SoundexChar(ch);
+
+                if (soundex.at(soundex.length() - 1) != ch)
+                {
+                    soundex.append(1, ch);
+                }
+            }
+        }
+    }
+
+    soundex.erase(std::remove(soundex.begin(), soundex.end(), '.'), soundex.end());
+
+    if (soundex.length() &lt; 4)
+    {
+        soundex.append(4 - soundex.length(), '0');
+    }
+    else if (soundex.length() &gt; 4)
+    {
+        soundex = soundex.substr(0, 4);
+    }
+
+    return boost::hash_value(soundex);
+}
+
+int main()
+{
+    std::cout &lt;&lt; "Color = " &lt;&lt; SoundexHash("Color") &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Colour = " &lt;&lt; SoundexHash("Colour") &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "Gray = " &lt;&lt; SoundexHash("Gray") &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Grey = " &lt;&lt; SoundexHash("Grey") &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>

@@ -1,0 +1,5 @@
+<p>How are you getting the file names?</p>
+
+<p>I suspect one of them has an attached trailing newline and you really try to open <code>".../something.bir\n"</code> rather than <code>".../something.bir"</code></p>
+
+<p>I suggest you write a <code>trim</code> function (or two: <code>ltrim</code> and <code>rtrim</code>) and process the filename before opening it.</p>

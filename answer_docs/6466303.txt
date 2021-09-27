@@ -1,0 +1,37 @@
+<p>I have tried something like this:</p>
+
+<pre><code>declare @tagtestresultcomment table
+(
+id int
+, comment varchar(50)
+,LastUpdatedDate datetime
+)
+
+--==== Populate table
+
+insert into @tagtestresultcomment(id,comment,LastUpdatedDate)
+
+select 1,'My name is Arthur','2011-06-09 00:00:00' union all
+
+select 2,'My name is DW','2011-06-19 00:00:00' union all
+
+select 2,'Arthur is my brother','2011-06-21 00:00:00' union all
+
+select 1,'I have a sister named DW','2011-06-21 00:00:00' union all
+
+select 3,'I am Muffy','2011-06-14 00:00:00' union all
+
+select 3,'I like sports','2011-06-14 00:00:00'
+
+-- SELECT stmt
+
+select * from @tagtestresultcomment t 
+join
+(
+select id, MAX(lastupdateddate) as LastUpdatedDate from @tagtestresultcomment group by id
+) m
+
+on t.id = m.id 
+
+and t.LastUpdatedDate = m.LastUpdatedDate
+</code></pre>

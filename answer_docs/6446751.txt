@@ -1,0 +1,11 @@
+<p>The way you've declared myList it has a fixed size; <code>*myList = temp;</code> isn't doing what you want it to.</p>
+
+<p>Declare myList simply as int *myList;</p>
+
+<p>In the constructor, use <code>myList = new int[10];</code></p>
+
+<p>Everywhere you have <code>*myList[...]</code> change it to <code>myList[...]</code></p>
+
+<p>In resize, <code>int temp[cap*2]</code> needs to be <code>int *temp = new int[cap * 2]</code> and <code>*myList = temp</code> needs to be <code>myList = temp</code></p>
+
+<p>You'll still have a memory leak, but that should get you started.</p>

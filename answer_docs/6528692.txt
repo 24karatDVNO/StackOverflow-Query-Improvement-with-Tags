@@ -1,0 +1,9 @@
+<p>If results <em>per executor</em> are required, the following should suffice:</p>
+
+<pre><code>SELECT executors, SUM(hours)
+FROM logs
+WHERE executors LIKE '%floris%'
+OR executors LIKE '%rosa%'
+OR executors LIKE '%lotte%'
+GROUP BY executors
+</code></pre>

@@ -1,0 +1,15 @@
+<p>for fellow googlers out there, here's the answer to the <em>original</em> question</p>
+
+<p>Assume we have a function that adds two arrays together:</p>
+
+<pre><code>function array_plus($a, $b) {
+    foreach($b as $k =&gt; $v)
+        $a[$k] = (isset($a[$k]) ? $a[$k] : 0) + $v;
+    return $a;
+}
+</code></pre>
+
+<p>this is how to apply this function to a set of arrays</p>
+
+<pre><code>$sum = array_reduce($months, 'array_plus', array());
+</code></pre>

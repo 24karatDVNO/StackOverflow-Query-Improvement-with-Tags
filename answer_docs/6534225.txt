@@ -1,0 +1,21 @@
+<p>An idiomatic way to achieve this is by using an <code>Executor</code> in conjunction with a <code>CompletionService</code>.  This allows you to map many units of work to a fixed size pool of threads and also provides an elegant mechanism for blocking until all work is complete.</p>
+
+<p>Note that your concern about how using a thread pool might impact efficiency is not really an issue: The main overhead is in creating individual threads, which you were doing anyway; the additional object creation overhead in creating a pool will be negligible.</p>
+
+<pre><code>// Create fixed thread pool and wrap in a CompletionService to allow for easy access to completed tasks.
+// We don't have an explicit result for each Runnable so parameterise the service on Void.
+CompletionService&lt;Void&gt; cs = new ExecutorCompletionService&lt;Void&gt;(Executors.newFixedThreadPool(3));
+
+// Create units of work for submission to completion service.
+Runnable[] runnables = ...
+
+// Submit runnables.  Note that we don't care about the result so pass in null.
+for (Runnable r : runnables) {
+  cs.submit(r, null);
+}
+
+// Take each *completed* result in turn, blocking until a completed result becomes available.
+for (int i=0; i&lt;runnables.length; ++i) {
+  Future&lt;Void&gt; completed = cs.take();
+}
+</code></pre>

@@ -1,0 +1,67 @@
+<p>The program below will output</p>
+
+<p>&lt;div&gt;Average Response Time server is critical because its value 282 &amp;gt; 0 ms. &lt;br/&gt;[Threshold Details : Critical if value &amp;gt; 0, Warning if value = 0, Clear if value &amp;lt; 0]&lt;/div&gt; </p>
+
+<pre><code>package test;
+
+import java.io.StringReader;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.apache.xerces.dom.DocumentImpl;
+import org.cyberneko.html.parsers.DOMFragmentParser;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
+import org.xml.sax.InputSource;
+
+public class TestHTMLDOMFragment {
+    private static final String PARSE_TEXT = "&lt;div&gt;Average Response Time server is critical because its value 282 &gt; 0 ms. &lt;br&gt;[Threshold Details : Critical if value &gt; 0, Warning if value = 0, Clear if value &lt; 0]&lt;/div&gt;";
+
+    public static void main(String[] argv) throws Exception {
+        DOMFragmentParser parser = new DOMFragmentParser();
+
+        // output the elements in lowercase, nekohtml doesn't do this by default
+        parser.setProperty("http://cyberneko.org/html/properties/names/elems","lower");
+
+        // if this is set to true (the default, you dont need to specifiy this)
+        // then neko html wont and an html,head and body tags to the response.
+        parser.setFeature("http://cyberneko.org/html/features/document-fragment",true);
+
+        Document document = new DocumentImpl();
+        DocumentFragment fragment = document.createDocumentFragment();
+
+        // parse the document into a fragment
+        parser.parse(new InputSource(new StringReader(PARSE_TEXT)), fragment);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        // don't display the namespace declaration
+        transformer.setOutputProperty("omit-xml-declaration", "yes");
+        DOMSource source = new DOMSource(fragment);
+        StreamResult result = new StreamResult(System.out);
+        transformer.transform(source, result);
+
+    }
+}
+</code></pre>
+
+<p>The comments in the code above show the parser settings i've used. </p>
+
+<p>I've also used the org.cyberneko.html.parsers.DOMFragmentParser as you <em>may</em> also be parsing text that is just an html fragment</p>
+
+<p>I'm using nekohtml 1.9.14</p>
+
+<p>If you use maven, here's the pom.xml dependencies section...</p>
+
+<pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;net.sourceforge.nekohtml&lt;/groupId&gt;
+        &lt;artifactId&gt;nekohtml&lt;/artifactId&gt;
+        &lt;version&gt;1.9.14&lt;/version&gt;
+        &lt;type&gt;jar&lt;/type&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>

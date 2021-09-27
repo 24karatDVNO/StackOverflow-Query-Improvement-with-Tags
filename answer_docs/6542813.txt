@@ -1,0 +1,12 @@
+<p>You should be able to do that using a batch request, composited of one request posting the new OrderItem, and one request to update the link towards other entity. It should be something similiar to the following.</p>
+
+<p>[Uri]/$batch</p>
+
+<p>[1] POST [Uri]/Order(1)/Order_Item</p>
+
+<p>[2] POST [Uri]/Item(1)/Order_Item/$link</p>
+
+<p>It seems that you are using Fiddler. You can also use WCF Data Service Client and do the same job, and get an idea on how the request looks like in Fiddler.</p>
+
+<p>Information on how to use $batch request:
+<a href="http://msdn.microsoft.com/en-us/library/dd744839.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/dd744839.aspx</a></p>

@@ -1,0 +1,18 @@
+<p>OK, I probably see what's problem here. It should work:</p>
+
+<pre><code>jQuery(document).ready(function() {
+  jQuery('#mycarousel').each(function(){
+    $(this).jcarousel({
+      easing: 'backout',
+      animation: 1000,
+      vertical: true,
+      scroll: 1,
+      itemVisibleInCallback: {
+        // this line binds actual element ("this" from actual function)
+        // as "this" for callback function
+        onBeforeAnimation: function(){ itemVisibleIn.apply(this,arguments); }
+      }
+    });
+  });
+});
+</code></pre>

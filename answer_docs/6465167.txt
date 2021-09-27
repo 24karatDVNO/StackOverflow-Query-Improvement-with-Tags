@@ -1,0 +1,9 @@
+<p>Ok I managed a solution so here goes:</p>
+
+<p>Instead of a custom filter I use a regular Adapter that I update in a onPostExcecute after a asynctask has gotten the new data. On the result I create a new adapter and set it to the autocompletetextview. Also I only perform new searches on 2 chars just to keep the traffic down. </p>
+
+<p>The trick is to get the autocomplete to actually show something since it has no data when the user starts to type. By setting a new adapter and performing .showDropdown it worked, but the data was not filtered to the actual typed data because the user would type more chars after the initial 2. </p>
+
+<p>This was resolved by setting the autocompletetextview text to the text that it has, thus forcing a refresh of the filtering and dropdown data. The key here is to use text from afterTextChange (I am using a textchange listener) use setText and then call setSelection(newText.length()) to place the cursor on the correct place. </p>
+
+<p>The problem that I filed here has not been resolved as I'm doing the datastuff in a new way, it seems that handling the autocomplete data inside the filter is not a good idea because it is threaded and expects immutable data when working, as far as I can tell.</p>

@@ -1,0 +1,8 @@
+<p>The Query should be like,</p>
+
+<pre><code>SELECT Item.ItemLookUpcode, (Item.Quantity - ItemDynamic.Qunatity) as Quantity
+FROM Item, ItemDynamic
+WHERE Item.ItemID = ItemDynamic.ItemID 
+</code></pre>
+
+<p>For more on SQL Query you can visit to <a href="http://ektaraval.blogspot.com/search/label/SQL%20Server" rel="nofollow">http://ektaraval.blogspot.com/search/label/SQL%20Server</a></p>

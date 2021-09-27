@@ -1,0 +1,3 @@
+<p>There can only be one implementation of equals per <code>Object</code> as it's overriding the inherited method from <code>java.lang.Object</code>.  I think you need to decide on what equality means for <code>Foo</code> - is A the only significant field; if so just use that.  Your alternative is to wrap <code>Foo</code> and provide a custom <code>equals</code> method for the <code>WrappedFoo</code> Object.  You can then store <code>WrappedFoo</code> in the <code>Set</code>.</p>
+
+<p>From a design perspective it sounds like there should be two Objects here - one which is a value class for A and one which is a value class for B.  You can use composition if you need a single Object to represent A and B.</p>

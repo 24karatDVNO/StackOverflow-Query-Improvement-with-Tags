@@ -1,0 +1,6 @@
+<pre><code> DECLARE @currentmonthstart datetime
+
+ SET @currentmonthstart = DATEADD(DD, -DATEPART(DD, GETDATE())+1, getdate())
+
+ PRINT @currentmonthstart
+</code></pre>

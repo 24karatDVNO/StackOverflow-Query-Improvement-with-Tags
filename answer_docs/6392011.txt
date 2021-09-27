@@ -1,0 +1,16 @@
+<p>Simple solution. I think</p>
+
+<pre><code>tokens = [re.split(r'\b', line.strip()) for line in input if line != '\n'] #remove blank lines
+</code></pre>
+
+<p>becomes</p>
+
+<pre><code>tokens = [line.strip() for line in input if line != '\n']
+</code></pre>
+
+<p>then I am able to go with no need for <code>str()</code> or <code>unicode()</code> As far as  I can tell.</p>
+
+<pre><code>if tokens[i].isupper(): #do stuff
+</code></pre>
+
+<p>The word token and the re.split on word boundaries is legacy of when I was messing with nltk earlier this week. But ultimately I am processing lines, not tokens/words. This may change. but for now this seems to work. I will leave this question open for now, in the hope of alternative solutions and comments. </p>

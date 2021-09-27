@@ -1,0 +1,3 @@
+<p>A segmentation fault occurs when a process tries to overwrite a page in memory which it doesn't own; Unless you run a long way over the end of you're buffer you aren't going to trigger a seg fault.</p>
+
+<p>The stack is located somewhere in one of the blocks of memory owned by your application. In this instance you have just been lucky if you haven't overwritten something important. You have overwritten perhaps some unused memory. If you were a bit more unlucky you might have overwritten the stack frame of another function on the stack.</p>

@@ -1,0 +1,19 @@
+<p>Either you implement a compare-method for your object:</p>
+
+<pre><code>- (NSComparisonResult)compare:(Person *)otherObject {
+return [self.birthDate compare:otherObject.birthDate];
+ }
+
+ NSArray *sortedArray;
+ sortedArray = [drinkDetails sortedArrayUsingSelector:@selector(compare:)];
+</code></pre>
+
+<p>or usually even better: (The default sorting selector of NSSortDescriptor is compare:)</p>
+
+<pre><code>NSSortDescriptor *sortDescriptor;
+sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"birthDate"
+                                          ascending:YES] autorelease];
+NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+NSArray *sortedArray;
+sortedArray = [drinkDetails sortedArrayUsingDescriptors:sortDescriptors];
+</code></pre>

@@ -1,0 +1,12 @@
+<p>If I understand what you're trying to do, you need to:</p>
+
+<ol>
+<li>Move the scope of <code>current</code></li>
+<li>Move the binding of the click event on <code>input.show</code> elements to outside the click of <code>input.click</code> elements:</li>
+</ol>
+
+<p><strong>Demo:</strong> <a href="http://jsfiddle.net/JAAulde/VmXU9/65/" rel="nofollow">http://jsfiddle.net/JAAulde/VmXU9/65/</a></p>
+
+<p>Ideally, you'd close the scope over all of this to avoid introducing <code>current</code> as global, and you'd check that <code>current</code> had been changed from its initial setting before operating on it:</p>
+
+<p><strong>Demo:</strong> <a href="http://jsfiddle.net/JAAulde/VmXU9/66/" rel="nofollow">http://jsfiddle.net/JAAulde/VmXU9/66/</a></p>

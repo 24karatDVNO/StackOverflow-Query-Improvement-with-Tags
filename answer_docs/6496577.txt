@@ -1,0 +1,29 @@
+<p>What if instead of appending, you do something like....</p>
+
+<pre><code>&lt;div id="myDiv"&gt;
+    &lt;img id="myImg" style="display: none"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>...</p>
+
+<pre><code>function loadImg(url){
+    $("#myImg").attr("src", url).load(function(){
+        if(url == $(this).attr(url)){
+            // The currently requested image has loaded.  Show it.
+            $(this).show();
+        }
+        else{
+            // Finished loading an image that we don't need anymore.  Do nothing.
+        }
+    });
+}
+</code></pre>
+
+<p>So if you called:</p>
+
+<pre><code>loadImg("a.jpg");
+loadImg("b.jpg");
+</code></pre>
+
+<p>a.jpg might or might not finish first, but it doesn't matter because once a.jpg finishes, nothing happens.</p>

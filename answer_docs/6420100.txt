@@ -1,0 +1,26 @@
+<p>I know I'm a bit late to this party, but I thought I'd weigh in.</p>
+
+<p>There are a number of non-reflection-based approached you could use here.</p>
+
+<p>This <code>DisplayMethod</code> call that you pass the journal to isn't the constructor of your form (otherwise it'd be called <code>New</code>) so I assume that it is a method that figures out which form to load to display the journal.</p>
+
+<p>If so, you could simply add the generic parameter to this method call like so:</p>
+
+<pre><code>Public Sub DisplayForm(Of ParentT)(Journal As Journal(Of ParentT))
+   Dim JournalParentType = GetType(ParentT)
+   '...
+End Sub
+</code></pre>
+
+<p>Since you're using IoC you could even go one step further. Something like this:</p>
+
+<pre><code>Public Sub DisplayForm(Of ParentT)(Journal As Journal(Of ParentT))
+   Dim form = ioc.Resolve(Of IForm(Of ParentT))
+   form.DataSource = Journal.Parent
+   form.Show()
+End Sub
+</code></pre>
+
+<p>Of course you would need to define your own <code>IForm(Of T)</code> interface to make this work - but now there is no reflection required.</p>
+
+<p>Another approach would be to have a <code>Journal</code> base class of <code>Journal(Of ParentT)</code> and have a <code>ParentType</code> property on Journal. Alternatively you could have an <code>IJournal</code> interface that does the same thing.</p>

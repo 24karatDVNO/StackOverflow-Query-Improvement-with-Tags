@@ -1,0 +1,16 @@
+<p>You didn't mention <strong>which version</strong> of SQL Server you're using - if you're on SQL Server 2005 or newer, you could use this CTE (Common Table Expression):</p>
+
+<pre><code>;WITH ChildRows AS
+(
+   SELECT A.Id, COUNT(b.Id) AS 'BCount'
+   FROM
+      dbo.TableA A
+   INNER JOIN
+      dbo.TableB B ON B.TableAId = A.Id
+)     
+SELECT A.*, R.BCount
+FROM dbo.TableA A
+INNER JOIN ChildRows R ON A.Id = R.Id
+</code></pre>
+
+<p>The inner <code>SELECT</code> lists the <code>Id</code> columns from <code>TableA</code> and the count of the child rows associated with those (using the <code>INNER JOIN</code> to <code>TableB</code>) - and the outer <code>SELECT</code> just builds on top of that result set and shows all fields from table A (and the count from the B table)</p>

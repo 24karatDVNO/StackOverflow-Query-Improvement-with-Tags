@@ -1,0 +1,16 @@
+<p>You can use reflection to get this info. Below is a snippet that should get you started.</p>
+
+<pre><code>protected void GetStringLength(object objDog) {
+    // loop through each property in object
+    foreach (PropertyInfo pi in objDog.GetType().GetProperties())
+    {
+        // for each object property, get the SringLength tag (if there is one)
+        foreach (Attribute attribute in Attribute.GetCustomAttributes(pi, typeof(StringLengthAttribute), true))
+           {
+                // we'll assume there is only one 
+                var stringLenVal = (attribute as StringLengthAttribute).MaximumLength;
+                break;
+           }
+    }
+}
+</code></pre>

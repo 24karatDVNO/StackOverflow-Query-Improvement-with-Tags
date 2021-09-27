@@ -1,0 +1,11 @@
+<p>That is most likely a firewall/port forwarding issue.</p>
+
+<p>Did I understand you correctly: Your client application connects to the database server directly?</p>
+
+<p>You should check which port you are using to connect to the database server.
+Then check if the web server has an active firewall and if so, configure it properly to accept connections on that port.</p>
+
+<p>You can always easily check if a port is open and reachable by using telnet:</p>
+
+<p>On the command line type telnet MY_IP MY_PORT.
+If a connection can be established the port is open.</p>

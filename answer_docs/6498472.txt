@@ -1,0 +1,41 @@
+<p>i think if you provide a separate interface class for Dispatcher, say <code>DispatcherInterface</code> following your name convention, the cyclic dependency should be gone, since now you can create third components (like <code>DispatcherCommProviderInterface</code>) the implementations of this interface can know about both Comm and Dispatcher, but both Comm nor Dispatcher will not know anything about such DispatcherCommProvider implementations (at most they will know about their interface)</p>
+
+<p>Interfaces:</p>
+
+<pre><code>// does not know anything about DispatcherCommProviderInterface  or CommInterface 
+class DispatcherInterface {
+public:
+    receive() = 0;  // callback
+}
+
+// does not know anything about DispatcherCommProviderInterface  or DispatcherInterface
+class CommInterface {
+public:
+    send() = 0;  // call
+}
+
+
+class DispatcherCommProviderInterface {
+public:
+    CommInterface* getComm() = 0;  
+    DispatcherInterface* getDispatcher() = 0; 
+    void setComm(CommInterface*) = 0;  
+    void setDispatcher(DispatcherInterface*) = 0;
+}
+</code></pre>
+
+<p>Implementations:</p>
+
+<pre><code>class CommA : public CommInterface {
+public:
+    send() {/*implementation using some DispatcherCommProviderInterface  */};
+}
+
+
+class Dispatcher : public DispatcherInterface  {
+public:
+    receive() {/*implementation using some DispatcherCommProviderInterface  */};  // callback
+}
+</code></pre>
+
+<p>now your dependency injection strategy only needs to take care of creating the appropiate DispatcherCommProviderInterface implementation (and probably wiring it to the Comm and Dispatcher instances)</p>

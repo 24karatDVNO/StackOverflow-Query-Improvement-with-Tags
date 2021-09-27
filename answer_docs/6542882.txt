@@ -1,0 +1,16 @@
+<p>If you implement <code>IEquatable&lt;T&gt;</code>, you will basically override the <code>Object.Equals()</code> method. According to MSDN you should explicitly override the Object.Equals method. You can then do something like:</p>
+
+<pre><code>void Add (MyClass testCls)
+{
+    var myCls = myList.Where(x =&gt; x.Equals(testCls)).Select(x =&gt; x).FirstOrDefault();
+
+    if (myCls == null)
+    {
+            // then myList does not contain the object you want to add
+            myList.Add(testCls);
+    }
+}
+</code></pre>
+
+<p>For more on <code>IEquatable&lt;T&gt;</code>: <a href="http://msdn.microsoft.com/en-us/library/ms131187.aspx" rel="nofollow">MSDN IEquatable(T)</a><br>
+The advantage to this is that you are actually checking against the <code>Type</code> property of other list contents - if that is what you are looking to do.</p>

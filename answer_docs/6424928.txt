@@ -1,0 +1,14 @@
+<p>you have posted this question in sql server, I have a answer in oracle database system (don't know whether it will run in sql server as well or not)</p>
+
+<p>this is as follow-</p>
+
+<pre><code>select [desired column list] from 
+    (select b.*, count(*) over (partition by b.foreignkey) c_1
+      from b
+     where b.foreignkey in (select a.id from a) )
+
+where c_1 &lt; 3 ;
+</code></pre>
+
+<p>i hope it should work on sql server as well...
+if not please let me update ..</p>

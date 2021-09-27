@@ -1,0 +1,40 @@
+<p>That would be something like</p>
+
+<p>ForecastModel.qml</p>
+
+<pre><code>XmlListModel {
+    source: "http://www.google.com/ig/api?weather=&amp;hl=fr"
+    query: "/xml_api_reply/weather/forecast_information"
+    XmlRole { name: "city"; query: "city/@data/string()" }
+}
+</code></pre>
+
+<p>ForecastView.qml</p>
+
+<pre><code>ListView {
+    x: 145; y: 325; width: 594; height: 48;
+    delegate: Text {
+        font.family: "Univers LT Std"; color: "#c8c8c8"; width: parent.width; font.pixelSize: 30
+        text: city
+        anchors.centerIn: parent.centerIn
+    }
+}
+</code></pre>
+
+<p>main.qml</p>
+
+<pre><code>import QtQuick 1.0
+
+Item {    
+    width: 800
+    height: 480
+
+    ForecastModel {
+        id: forecastModel
+    }
+
+    ForecastView {
+        model: forecastModel
+    }
+}
+</code></pre>

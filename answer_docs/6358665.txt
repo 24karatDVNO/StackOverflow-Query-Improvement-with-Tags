@@ -1,0 +1,18 @@
+<p>If you need to store both an 8 byte pointer <em>and</em> a "type" field then you have no choice but to use at least 9 bytes, and on a 64-bit system alignment will likely pad that out to 16 bytes.</p>
+
+<p>Your data structure should look <em>something</em> like:</p>
+
+<pre><code>typedef struct {
+    union {
+        void   *any_pointer;
+        double  any_double;
+        long    any_long;
+        int     any_int;
+    } any;
+    char        my_type;
+} any;
+</code></pre>
+
+<p>If using C++0x consider using a <a href="http://en.wikipedia.org/wiki/C++0x#Strongly_typed_enumerations" rel="nofollow">strongly typed enumeration</a> for the <code>my_type</code> field.  In earlier versions the storage required for an <code>enum</code> is implementation dependent and likely to be more than one byte.</p>
+
+<p>To save memory you could use (compiler specific) directives to request optimal packing of the data structure, but the resulting mis-aligned memory accesses may cause performance issues.</p>

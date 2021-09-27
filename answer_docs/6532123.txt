@@ -1,0 +1,35 @@
+<p>I had the same problem and i resolved with this .htaccess file</p>
+
+<pre><code># Mod Rewrite active
+&lt;IfModule mod_rewrite.c&gt;
+    # Set base path
+    RewriteEngine On
+    RewriteBase /Workspace/codeigniter/
+
+    # Denied access to system directory
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    # Denied access to application directory
+    RewriteCond %{REQUEST_URI} ^application.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    # Check for error request
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+&lt;/IfModule&gt;
+
+# Mod Rewrite inactive
+&lt;IfModule !mod_rewrite.c&gt;
+    ErrorDocument 404 /index.php
+&lt;/IfModule&gt; 
+</code></pre>
+
+<p>Remember to set </p>
+
+<pre><code>$config['index_page'] = '';
+$config['uri_protocol'] = 'AUTO';
+</code></pre>
+
+<p>in the config/config.php file and to change the path of the "RewriteBase" var.</p>

@@ -1,0 +1,11 @@
+<blockquote>
+  <p>What I am not understanding is how to
+  step into the different levels of my
+  XML</p>
+</blockquote>
+
+<p>Would like to know a better way, but currently my approach is just to parse once as a single doc, with the nested levels using multiple getChild's.<br>
+i.e.:</p>
+
+<pre><code>item.getChild(LOCAL).getChild(ADMINAREA).setEndTextElementListener(new EndTextElementListener(){
+</code></pre>

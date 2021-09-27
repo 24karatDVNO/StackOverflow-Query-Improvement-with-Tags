@@ -1,0 +1,19 @@
+<p>The <code>watermark</code> functions gets declared when the DOM is ready to be manipulated (inside <code>$(document).ready(function()</code>, therefor won't be available the moment your <code>index.js</code> gets included.</p>
+
+<p><strong>EDIT:</strong></p>
+
+<p>You kind of <em>have to</em> make the call to <code>watermark</code> after the DOM is ready to be manipulated, since it uses elements in the DOM. A solution would be to declare your <code>watermark</code> function outside the <code>$(document).ready(function()</code>, and then call it from <code>index.js</code> inside a <code>$(function() {</code> (shorthand for <code>$(document).ready()</code>):</p>
+
+<p>functions.js:</p>
+
+<pre><code>watermark = function(elemId, text, hoverClass, normalClass, parentId){ 
+   // function logic
+}
+</code></pre>
+
+<p>index.js:</p>
+
+<pre><code>$(function() {
+   new watermark("footer_contact_name", "Name", "footer_form_text_active", "footer_form_text", "footer_form_field_1");
+}
+</code></pre>

@@ -1,0 +1,8 @@
+<p>because <code>tgt_name_str = map_name, ",", "TARGET" , ", " , tgt_name</code> is a tuple.</p>
+
+<p>replace by:</p>
+
+<pre><code>tgt_name_str = ''.join([map_name, ",", "TARGET" , ", " , tgt_name])
+# or
+tgt_name_str = map_name + "," + "TARGET" + ", " + tgt_name
+</code></pre>

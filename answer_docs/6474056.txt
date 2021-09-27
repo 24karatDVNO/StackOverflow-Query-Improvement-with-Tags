@@ -1,0 +1,3 @@
+<p>I'm not really sure that there is a convention.  I had a pretty ugly logging system up until just recently.  Now I use <a href="https://github.com/wr0ngway/lumber" rel="nofollow">lumber</a> to integrate <a href="http://log4r.rubyforge.org/" rel="nofollow">log4r</a> with Rails.  That really made logging much nicer because I now have named loggers (e.g., logger matches the class name -- great for filtering output) and I can control log levels on a per-logger (i.e., per-class) basis.</p>
+
+<p>There's also a <a href="https://github.com/wr0ngway/log4r-gelf" rel="nofollow">GELF adapter</a> for log4r if you want to use graylog2 to aggregate your logs.</p>

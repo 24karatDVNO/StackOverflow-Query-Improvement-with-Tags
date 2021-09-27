@@ -1,0 +1,5 @@
+<p>Ok first thing you have to do is make your main view implement the delegate for signout successful. In this you got to reset all the data and views which will be recreated/repopulated when a new user signs in. </p>
+
+<p>Inorder to achieve this you can analyse your code/logic as to what is created on a new user sign in and reset all these in the delegate method for sign out. This is way to generic an answer but resetting the data is the way to do it. </p>
+
+<p>Alternatively you can recreate your main view when sign in is successful i.e. remove the main view and on sign in success create it afresh for the new user.</p>

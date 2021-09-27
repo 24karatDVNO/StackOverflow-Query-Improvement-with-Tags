@@ -1,0 +1,9 @@
+<p>Since for some reason I still can't get .offset() to work the way it should, or scrollLeft(). I just decided to do this a very round about way.</p>
+
+<pre><code> $('.container').click(function(){
+     var num = parseInt( $(this).attr('rel') );
+     var left = $('.container').width() * num-1;
+     var top  = $('.container').css('top');
+     //do something with these values
+ });
+</code></pre>

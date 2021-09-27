@@ -1,0 +1,5 @@
+<p>Before refactoring your code on a purely syntactic level (which is covered in examples above), it might be useful to evaluate what you're doing with the code on a functional level</p>
+
+<p>Check out your condition_x variables.  I think you might be using the same variable for two different things (both type-wise and logically) - usually a bad idea in a weakly typed language.  It looks to me as if the user sets a condition to true or false, and then that condition is assigned the output - is the output boolean? is it related to the original value of that variable?  Rethinking this might lead to more understandable code.  </p>
+
+<p>It is also difficult to evaluate how this can be refactored without seeing what goes in to condition_x - since these might have commonalities.</p>

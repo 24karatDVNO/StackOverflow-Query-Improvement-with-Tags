@@ -1,0 +1,6 @@
+<p>In IE browsers, the answer is YES!</p>
+
+<p>I've done a benchmark (similar to Mike Blandford) and found out that
+when you call document.getElementById() in IE browser, it traverses the DOM until it finds an element with desired id, instead of keeping an id-to-element map/hashtable. (hideous, I know).</p>
+
+<p>Thus, creating an array, as you offered will be an EXTREME performance improvement.</p>

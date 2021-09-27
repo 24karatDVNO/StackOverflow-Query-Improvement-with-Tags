@@ -1,0 +1,17 @@
+<pre><code>select u.U_ID, s.ID
+into #temp
+from UID as u
+  inner join STID as s on (u.Priority=s.Priority and u.Impact=s.Impact)
+and s.Priority is not null
+
+insert into #temp
+select u.U_ID, p.ID
+from UID as u
+  inner join PRID as p on (u.Priority=p.Priority)
+and u.U_ID not in (select U_ID from #temp)
+
+Select * from #temp
+order by U_ID
+
+Drop Table #Temp
+</code></pre>

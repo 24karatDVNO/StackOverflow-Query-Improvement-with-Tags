@@ -1,0 +1,6 @@
+<p>If you're crashing when you receive the memory warning, that usually means that something gets deallocated, but it's pointer isn't set to nil, you try to access it, and Crash!</p>
+
+<p>Errors like this can be hard to track down. A few types:
+You can play around with XCode instruments (using Build&amp;Profile in XCode 4) - specifically the Zombies one, which 'keeps dead objects around (as Zombies)', but let's you know when they get accessed.
+Another useful one is a watchpoint. Once the simulator is running, right click a variable in console, and say 'Watch this address'. Then any line of code that causes a change to that memory location will cause a breakpoint when it occurs.
+Another thing to try is just to run through all your ivars, inits, and deallocs, and make sure you really did get every case.</p>

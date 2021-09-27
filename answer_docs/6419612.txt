@@ -1,0 +1,3 @@
+<p>Assuming a large number of bits in your parsing distance then you have to bit pack.
+Think circular buffers to enable continuous operation.
+Low bit error rate premise and high entropy data (ie a byte may take all values not just a few symbols) then a union based decoding should be better. Either prep bits with shifts before the union or define eight unions one shift apart and call them as required.</p>

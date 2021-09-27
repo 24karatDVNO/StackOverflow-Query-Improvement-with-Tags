@@ -1,0 +1,19 @@
+<p>i use this helper function to set up my default enter behaviour:</p>
+
+<pre><code>function SetFormDefaultButton(formId, buttonId) {
+
+
+    var formSelector = "#{0}".format(formId);
+    var buttonSelector = "#{0}".format(buttonId);
+
+    $(formSelector).find('input, select').live('keypress', function (event) {
+
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            $(buttonSelector).click().focus();
+
+            return false;
+        }
+    });
+}
+</code></pre>

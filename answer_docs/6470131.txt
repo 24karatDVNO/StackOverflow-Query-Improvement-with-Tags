@@ -1,0 +1,28 @@
+<blockquote>
+  <p>Can standard library provided by one compiler be compiled with other
+  compilers?</p>
+</blockquote>
+
+<p>Assuming that the library is standards conforming, yes (I know this is kind of chicken-and-egg).</p>
+
+<blockquote>
+  <p>When we say a particular compiler is standard conformant, does
+  it automatically mean that the stdlib
+  which comes with it is also
+  standard-conformant? Or it simply
+  means that this compiler can compile
+  standard-conformant code written by
+  us, programmers?</p>
+</blockquote>
+
+<p>Yes, although I'm not aware of any fully confirming compiler. Note that standards conforming for us as programmers is <em>different</em> from the standard library. For example the implementation is allowed to use identifiers containing <code>__</code> (double underscore).</p>
+
+<blockquote>
+  <p>Can I use standard library provided by one compiler, in my
+  project which uses a different
+  compiler to compile the project? Is
+  portability same as
+  standard-conformance?</p>
+</blockquote>
+
+<p>You should be able to <em>compile</em> and use such a library. You almost certainly wouldn't be able to use any compiled library files (static or dynamic) file because name mangling would be different.</p>

@@ -1,0 +1,40 @@
+<p>Formatted ur Json this way, you can get the "total_votes" value like this</p>
+
+<pre><code>success: function(e) {
+    console.log(e[0].total_votes);
+
+}
+
+ [
+    {
+        "total_votes": 1,
+        "options": [
+            {
+                "id": 40,
+                "vote_count": 0,
+                "users": []
+            },
+            {
+                "id": 41,
+                "vote_count": 1,
+                "users": [
+                    {
+                        "photo": "xxxxxxxxxxx.png",
+                        "name": "XXXXX",
+                        "id": 1
+                    }
+                ]
+            },
+            {
+                "id": 42,
+                "vote_count": 0,
+                "users": [
+                    {}
+                ]
+            }
+        ]
+    }
+]
+</code></pre>
+
+<p>check out <a href="http://jsfiddle.net/tsegay/WR2ZT/17/" rel="nofollow">here</a></p>

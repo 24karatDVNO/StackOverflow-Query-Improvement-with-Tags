@@ -1,0 +1,5 @@
+<p>If you're running on a Linux (or other UNIXy) system (probably, if you're talking about PIDs), there's a whole swag of stuff made available under the <a href="http://en.wikipedia.org/wiki/Procfs" rel="nofollow"><code>procfs</code> file system</a>, assuming it's available to you.</p>
+
+<p>You can nose around in <code>/proc/self</code> for the current process, or <code>/proc/&lt;PID&gt;</code> for another process.</p>
+
+<p>For memory and CPU usage, I'd start with the <code>statm</code>, <code>status</code> and <code>stat</code>. See <a href="http://www.kernel.org/doc/man-pages/online/pages/man5/proc.5.html" rel="nofollow">here</a> for a more detailed description.</p>

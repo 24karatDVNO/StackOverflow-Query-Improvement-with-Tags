@@ -1,0 +1,3 @@
+<p>This seems related to the <a href="http://en.wikipedia.org/wiki/Edge_cover" rel="nofollow">minimum edge cover problem</a>, with the additional constraint that there can only be one edge per node, and that you're trying to minimize the cost rather than the number of edges. Maybe you can find some answers by searching for that phrase.</p>
+
+<p>Failing that, your problem <em>can</em> be phrased as an <a href="http://en.wikipedia.org/wiki/Integer_linear_programming#Integer_unknowns" rel="nofollow">integer linear programming problem</a>, which is NP-complete, which means that you might get dreadful performance for even medium-sized problems. (This does not necessarily mean that the problem itself is NP-complete, though.)</p>

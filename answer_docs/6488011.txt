@@ -1,0 +1,6 @@
+<p>I think the best solution is to find all patterns that match '*.asp" , and from that throwing out any results that begin with "http:" . Since you don't know regular expressions (and presumably your teammates don't either, if you have them), a non-regexp solution will be the most clear.</p>
+
+<p>For example:</p>
+
+<pre><code>[s for s in list_of_strings if s.endswith(".asp") and not s.startswith("http://")]
+</code></pre>

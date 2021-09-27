@@ -1,0 +1,20 @@
+<p>The best way for you to do this effectively and <strong>across all browsers</strong> is to actually hide the checkbox and create a clickable element that toggles the hidden field value in javascript. There is a <a href="http://jqueryui.com/demos/button/#checkbox" rel="nofollow">jQuery UI button method</a> of doing this.</p>
+
+<p>Alternatively, here's some jQuery Pseudocode if yo want to get you started if you want to do it yourself:</p>
+
+<pre><code>&lt;input type="hidden" name="terms" value="off" class="checkbox"/&gt;
+&lt;span class="toggler off"&gt;Toggle Text, image, or just blank&lt;/span&gt;
+
+$('.toggler').click(function() {
+    $input =  $(this).closest('input.checkbox');
+    if($(this).hasClass('off')) {
+        $input.val('on');
+        $(this).removeClass('off');
+    } else {
+        $input.val('off');
+        $(this).addClass('off');
+    }
+});
+</code></pre>
+
+<p>Get this working correctly and it will look/work the same across all browsers.</p>

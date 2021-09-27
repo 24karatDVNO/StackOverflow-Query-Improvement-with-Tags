@@ -1,0 +1,21 @@
+<p>Have you heard of the YQL Console and datatables.org? It provides access to a lot of Yahoo (and other) data tables using REST requests returning XML or JSON objects. There is a nice options table you can easily access using Python's urllib. Consider the following example:</p>
+
+<pre><code>&gt;&gt;&gt; import urllib2
+&gt;&gt;&gt; import json
+&gt;&gt;&gt; url='http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20yahoo.finance.options%20WHERE%20symbol%3D\"goog\"%20AND%20expiration%3D\"2011-08\"&amp;format=json&amp;env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&amp;callback='
+&gt;&gt;&gt; req = urllib2.Request(url)
+&gt;&gt;&gt; response = urllib2.urlopen(req)
+&gt;&gt;&gt; result = json.loads(response.read())
+</code></pre>
+
+<p>result is an json object containing all options for GOOG with a 2011-08 expiration. If you look closely in the url, you'll see the symbol for Google and the expiration date. This can be easily modified programmatically.</p>
+
+<pre><code>&gt;&gt;&gt; result['query']['results']['optionsChain']['option'][0]
+{u'strikePrice': u'400', u'lastPrice': u'110.10', u'vol': u'1', u'type': u'C', u'symbol': u'GOOG110820C00400000', u'openInt': u'9', u'ask': u'90.5', u'changeDir': None, u'bid': u'87', u'change': u'0'}
+&gt;&gt;&gt; result['query']['results']['optionsChain']['option'][10]
+{u'strikePrice': u'490', u'lastPrice': u'21.20', u'vol': u'350', u'type': u'C', u'symbol': u'GOOG110820C00490000', u'openInt': u'56', u'ask': u'21.3', u'changeDir': u'Down', u'bid': u'20.8', u'change': u'-6.9'}
+</code></pre>
+
+<p>Note you can also return the results in XML.</p>
+
+<p>Google "yql consol", click on the first link. On the right side, click the link that says "Show Community Tables". Scroll down to Yahoo. Click on yahoo.finance.options. You should be able to figure out the rest :)</p>

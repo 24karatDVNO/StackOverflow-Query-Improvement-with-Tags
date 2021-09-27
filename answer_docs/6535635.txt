@@ -1,0 +1,14 @@
+<p>If you want to use innerHTML, here is how to convert the XML markup for the first Element into a string</p>
+
+<pre><code>//Where oXML is the xml document or xml object
+var XMLString;
+oXML=oXML.getElementsByTagName('content')[0].firstChild;
+//nodeType 1-Element,2-Attr,3-Text.....
+while(oXML.nodeType!=1){oXML=oXML.nextSibling;}
+//code for IE and Mozilla, Firefox, Opera, etc. respectively
+XMLString=(oXML.xml)?oXML.xml:(new XMLSerializer()).serializeToString(oXML);
+myDiv.innerHTML=XMLString;
+</code></pre>
+
+<p>The while... is used to find the first element within the content tag, skipping text nodeType. 
+Firefox adds the text nodeType, IE6 does not when no text is within the text node.</p>

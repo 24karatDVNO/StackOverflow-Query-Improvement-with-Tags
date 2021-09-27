@@ -1,0 +1,11 @@
+<p>Your code has Undefined Behavior. That means it can do anything or nothing. Depending on your compiler and OS etc., it could crash.</p>
+
+<p>That said, with many if not most compilers your code <em>will not even compile</em>.</p>
+
+<p>That's because you have <code>void main</code>, while both the C standard and the C++ standard requires <code>int main</code>.</p>
+
+<p>About the only compiler that's happy with <code>void main</code> is Microsoft&rsquo;s, Visual C++.</p>
+
+<p>That's a <strong>compiler defect</strong>, but since Microsoft has lots of example documentation and even code generation tools that generate <code>void main</code>, they will likely never fix it. However, consider that writing Microsoft-specific <code>void main</code> is one character more to type than standard <code>int main</code>. So why not go with the standards?</p>
+
+<p>Cheers &amp; hth.,</p>

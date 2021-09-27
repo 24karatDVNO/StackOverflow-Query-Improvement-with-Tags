@@ -1,0 +1,8 @@
+<p>In such a case, I would simply do:</p>
+
+<pre><code>if (collResv.repeatability is None or
+    collResv.somethingElse):
+    # do:
+    collResv.rejected = True
+    collResv.rejectCompletely()
+</code></pre>

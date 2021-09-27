@@ -1,0 +1,22 @@
+<p>Normally, one would apply <code>filter</code> to two arguments:</p>
+
+<ol>
+<li>a function</li>
+<li>a list (or other iterable object)</li>
+</ol>
+
+<p><code>filter</code> applies the function to each object in the list and return a list of all the objects for which the function returned <code>True</code>.</p>
+
+<p>In your second example, your first argument is a function, as expected. But your second argument is not a list &mdash; it is a string "2341" (the result of looking up "Alice" in the dictionary). </p>
+
+<p>(<strong>Edit</strong>: I got this next part wrong initially. Thanks to other posters for getting it right.) Filter treats the string like a list, applying the function to each character and keeping only those characters for which it returned <code>True</code> (none of them), resulting in an empty string.  Now if you look back at your first example, it has the same problem, and it is only (bad?) luck that the answer was what you expected.</p>
+
+<p>As another poster suggested, perhaps you want to apply your function more directly. In the first example:</p>
+
+<pre><code>(lambda x: x)(dict['Alice'])
+</code></pre>
+
+<p>In the second example:</p>
+
+<pre><code>(lambda x: x=="2341")(dict['Alice'])
+</code></pre>

@@ -1,0 +1,12 @@
+<p>Assuming ID can give you the last 4 rows.</p>
+
+<pre><code>SELECT SUM([SUM])
+FROM
+    (
+    SELECT TOP 4 [SUM] FROM myTable ORDER BY ID DESC
+    ) foo
+</code></pre>
+
+<p>Each time you query it, it will read the last 4 rows.</p>
+
+<p>If this is wrong (e.g. you want the sum of each consecutive 4 rows), then please give sample output</p>

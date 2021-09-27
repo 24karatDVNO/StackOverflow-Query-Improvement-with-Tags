@@ -1,0 +1,14 @@
+<p>Not sure if this is exactly what you're trying to do but check this demo out.</p>
+
+<p>Demo: <a href="http://jsfiddle.net/wdm954/xy8VC/3/" rel="nofollow">http://jsfiddle.net/wdm954/xy8VC/3/</a></p>
+
+<p>Basically what I'm doing is applying the <b>dim</b> class to everything that is not in focus (excluding the label tags in this example). This allows only the focused field to be at full opacity.</p>
+
+<p><em>EDIT: Changed my code a little to include a <code>keyup</code> event which allows this to work with tabbing.</em></p>
+
+<pre><code>$('.sectionBox').bind('click keyup', function() {
+    $(this).removeClass('dim')
+    .children().removeClass('dim')
+    .not(':focus, label').addClass('dim');
+});
+</code></pre>

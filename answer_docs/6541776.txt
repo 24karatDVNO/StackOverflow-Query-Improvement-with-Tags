@@ -1,0 +1,9 @@
+<p><Blockquote>
+REM if all jar files contains in ./lib dir: <br/>
+setlocal enabledelayedexpansion<br>
+for /r "./lib" %%a in (*.jar) do (set "CP=%%a;!CP!")</p>
+
+<p>REM start your second class<br/>
+java -cp %CP% your.package.ClassB</p>
+
+<p></Blockquote></p>

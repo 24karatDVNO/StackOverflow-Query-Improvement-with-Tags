@@ -1,0 +1,44 @@
+<p>don't forget to override clone.  it's also a good idea to override toString for debugging.</p>
+
+<p>here's an example of one of my custom events:</p>
+
+<pre><code>package com.mattie.events
+{
+//Imports
+import flash.events.Event;
+
+//Class
+public class SearchFieldEvent extends Event
+    {
+    //Constants
+    public static const SEARCH_COMPLETE:String = "search complete";
+
+    //Variables
+    public var totalResults:uint;
+    public var duration:uint;
+    public var searchText:String;
+
+    //Constructor
+    public function SearchFieldEvent(type:String, totalResults:uint = 0, duration:uint = 0, searchText:String = "") 
+        {
+        super(type);
+
+        this.totalResults = totalResults;
+        this.duration = duration;
+        this.searchText = searchText;
+        }
+
+    //Override clone
+    public override function clone():Event
+        {
+        return new SearchFieldEvent(type, totalResults, duration, searchText);
+        }
+
+    //Override toString
+    public override function toString():String
+        {
+        return formatToString("SearchFieldEvent", "type", "totalResults", "duration", "searchText");
+        }
+    }
+}
+</code></pre>

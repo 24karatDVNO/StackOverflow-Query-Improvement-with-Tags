@@ -1,0 +1,3 @@
+<p>Firstly, your terminology is very loose. What do you mean by "the value for one of the tags"? Is the offending character in an element name, or in text content?</p>
+
+<p>You can solve the problem by escaping non-ASCII characters if you must, for example the "registered trademark sign" becomes <code>&amp;#xae;</code>. However, this shouldn't be necessary. It would be better to address the root cause of the problem, which is that the creator of the document and its recipient have different ideas about its encoding. There's something in your configuration that causes this miscommunication, and I have no possible way of knowing what it might be.</p>

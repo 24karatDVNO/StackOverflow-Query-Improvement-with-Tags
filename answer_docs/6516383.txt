@@ -1,0 +1,14 @@
+<p>You can sanitize with using CGI namespace too.</p>
+
+<pre><code>require 'CGI'
+str = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;"
+p str
+p CGI::escapeHTML str
+</code></pre>
+
+<p>Run this script, we get following result.</p>
+
+<pre><code>$ ruby sanitize.rb
+"&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;"
+"&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Hello&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;"
+</code></pre>

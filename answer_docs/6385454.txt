@@ -1,0 +1,10 @@
+<pre><code>function get_combinations($exp){
+
+    $max = pow(10, $exp) - 1;
+
+    for ($i = 0; $i &lt;= $max; $i++) $comb[] = str_pad($i, $exp, '0', STR_PAD_LEFT);
+
+    return $comb;
+
+} 
+</code></pre>

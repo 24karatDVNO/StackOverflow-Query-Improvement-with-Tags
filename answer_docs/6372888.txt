@@ -1,0 +1,10 @@
+<p>write a piece of javascript like this</p>
+
+<pre><code>$("#MyImageID").live("hover", function{}(
+   $.post("RestfulServiceURL", function (data){
+      $("#HoverDiv").html(data); 
+   });
+)};
+</code></pre>
+
+<p>Data is the link of the larger image. If its being pulled from the database you have to create a mvc method that kicks out the mime type of an image, or use a ashx file, or resful wcf service to serve up the image. </p>

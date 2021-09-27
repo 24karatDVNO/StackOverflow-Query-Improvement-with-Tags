@@ -1,0 +1,6 @@
+<p>If your cursor is not getting any values, it might mean that the database doesn't have any values. Also one error I noticed in your code is that after you get the database values into a cursor, you have to call</p>
+
+<pre><code>c.moveToFirst();
+</code></pre>
+
+<p>to move the cursor pointer to the first record. If you do not move the pointer, it is by default pointing to the position -1. Only after that can you call c.getString(1) to get the values.</p>

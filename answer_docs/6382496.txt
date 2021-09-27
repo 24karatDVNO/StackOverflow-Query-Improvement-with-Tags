@@ -1,0 +1,3 @@
+<p><code>packet</code> is declared as <code>Packet*</code>. Since in <code>Packet</code> it's not public - you can't do that.</p>
+
+<p>Generally, I think changing access permissions of interface functions when inheriting is not such a good idea. If a function is hidden - there probably was a reason for that. If there's none - change at the parent object.</p>

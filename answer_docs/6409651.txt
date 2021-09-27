@@ -1,0 +1,3 @@
+<p>Unfortunately the metadata for the file (column number &amp; types) is evaluated at the start of the package run rather than each loop. I don't believe that there is any way to change this. </p>
+
+<p>The only suggestion I can make is to implement a custom file reader as a script component that populates the correct subset of the superset of possible columns. I've implemented something similar in the past and this works well.</p>

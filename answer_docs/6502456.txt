@@ -1,0 +1,9 @@
+<p>It's an ugly solution but simple:</p>
+
+<pre><code>If @B = 0 begin
+   ...your sql query without the B = @B
+end
+else if @B &lt;&gt; 0 begin
+   ... your sql query with the B = @B
+end
+</code></pre>

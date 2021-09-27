@@ -1,0 +1,24 @@
+<p>Apache supports different modules to rewrite/redirect requested URIs:</p>
+
+<ul>
+<li><a href="http://httpd.apache.org/docs/2.2/mod/mod_alias.html" rel="nofollow">mod_alias</a> with <code>Alias</code> and <code>AliasMatch</code> for internal rewriting, as well as <code>Redirect</code> and <code>RedirectMatch</code> for external redirecting</li>
+<li><a href="http://httpd.apache.org/docs/2.2/mod/mod_rewrite.html" rel="nofollow">mod_rewrite</a> with <code>RewriteRule</code> for internal rewriting and external redirecting</li>
+</ul>
+
+<p>The main difference between the mod_alias and mod_rewrite directives is that mod_alias’s <code>Alias</code> and <code>Redirect</code> directives work with path prefix patterns while the other directives (i.e. <code>AliasMatch</code>, <code>RedirectMatch</code>, and <code>RewriteRule</code>) work with regular expressions.</p>
+
+<p>A path prefix pattern is always always matched when it’s a qualified prefix of the requested path and the remaining path segments are automatically appended to the target path. Here’s an example:</p>
+
+<pre><code>Redirect /foo/bar http://other.example/quux
+</code></pre>
+
+<p>If <code>/foo/bar</code> is requested, it’s getting redirected to <code>http://other.example/quux</code>; likewise <code>/foo/bar/baz</code> is getting redirected to <code>http://other.example/quux/baz</code>. <code>Alias</code> works alike but just internally.</p>
+
+<p>In opposite to that, <code>AliasMatch</code>, <code>RedirectMatch</code>, and <code>RewriteRule</code> work with regular expressions and can be used not just to match path prefixes. Here’s an example:</p>
+
+<pre><code>RedirectMatch ^/foo/bar$ http://other.example/quux
+</code></pre>
+
+<p>If <code>/foo/bar</code> is requested, it’s getting redirected to <code>http://other.example/quux</code> (just like the <code>Redirect</code> example above). But if <code>/foo/bar/quux</code> is requested, it’s not getting redirected as <code>^/foo/bar$</code> doesn’t match <code>/foo/bar/quux</code>.</p>
+
+<p>Futher differences between mod_alias and mod_rewrite are that mod_rewrite can also examine other parts of the URI except the path and even HTTP request header fields. It does also allow more complex operations with multiple conditions.</p>

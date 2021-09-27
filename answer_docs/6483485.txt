@@ -1,0 +1,33 @@
+<p>You can create a dynamic proxy page like this: </p>
+
+<pre><code>    using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.UI;
+
+public partial class TestPage : Page
+{
+    private WebRequest _request;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string text;
+        string url = Request["UrlToGet"];
+        _request = (HttpWebRequest)
+            WebRequest.Create(url);
+        using (WebResponse response = _request.GetResponse())
+        {
+            using (StreamReader reader =
+                new StreamReader(response.GetResponseStream()))
+            {
+                text = reader.ReadToEnd();
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>all you need to do is put the requested url in your QueryString or in the post data
+and you will get the content of the page inside the string text</p>

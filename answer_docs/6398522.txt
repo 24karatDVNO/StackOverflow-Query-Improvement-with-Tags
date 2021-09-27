@@ -1,0 +1,7 @@
+<p>Placing a ruby file in the folder of your app doesn't automatically load up your Rails app. You need to explicitly load the <code>config/environment.rb</code> file to load the Rails app.</p>
+
+<p>If your test.rb is in the root of your app, you can do something like</p>
+
+<pre><code>require File.expand_path("../config/environment", __FILE__)
+# Access your models here
+</code></pre>

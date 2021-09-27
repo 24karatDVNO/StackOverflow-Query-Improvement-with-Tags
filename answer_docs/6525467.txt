@@ -1,0 +1,8 @@
+<blockquote>
+  <p>tested other image functions, some
+  work &amp; some don't:</p>
+</blockquote>
+
+<p>Many image functions use JAI. So given the message <code>Could not initialize class javax.media.jai.JAI</code> it makes sense those functions would not work either.  First I would make sure the class path did not get mucked up (missing jar, too many jars, etc..). That is the most common cause of problems. </p>
+
+<p>But <code>java.lang.NoClassDefFoundError</code> errors are <a href="http://mindprod.com/jgloss/runerrormessages.html#NOCLASSDEFFOUNDERROR" rel="nofollow">a pain to figure out</a>. Just guesswork, but looking closer it might be initialization problem <code>Caused by: java.lang.ExceptionInInitializerError</code>. I know JAI reads some property files from the jars when starting up. Maybe they are not accessible for some reason (missing, permissions, ..)? I am not running Centos. So that is my best guess for now.</p>

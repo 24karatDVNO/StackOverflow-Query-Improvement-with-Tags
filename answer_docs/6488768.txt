@@ -1,0 +1,40 @@
+<p>I doubt you're going to get a serious parsing answer for your custom format. If you NEED to have the value inputted that way, I'd look up some info on regular expressions. If that's not powerful enough for you, there are some fairly convienient parser-generators you can use. </p>
+
+<p>Alternatively, the much more realistic idea would be something like this:</p>
+
+<p>(NOTE: Haven't tried this at all... didn't even put it in VS... but this is the idea...)</p>
+
+<pre><code>int rows = 0;
+string rowsInput = "";
+do {
+    Console.Write("Number of rows:");
+    rowsInput = Console.ReadLine();
+} while (!Int32.TryParse(rowsInput, out rows);
+
+int columns = 0;
+string columnsInput = "";
+do {
+    Console.Write("Number of columns:");
+    string columnsInput = Console.ReadLine();
+} while (!Int32.TryParse(columnsInput, out columns);
+
+List&lt;List&lt;int&gt;&gt; values = new List&lt;List&lt;int&gt;&gt;();
+
+for (int i = 0; i &lt; rows; i++)
+{
+    bool validInput = false;
+    do {
+        Console.Write(String.Format("Enter comma-delimited integers for row #{0}:", i.ToString()));
+        string row = Console.ReadLine();
+        string[] items = row.split(',');
+        int temp;
+        validInput = (items.Length == columns) &amp;&amp; (from item in items where  !Int32.TryParse(item, out temp) select item).count() == 0;
+        if (validInput)
+        {
+            values.add(
+                    (from item in items select Convert.ToInt32(item)).ToList()
+            );
+        }
+    } while (!validInput);
+}
+</code></pre>

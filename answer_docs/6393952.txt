@@ -1,0 +1,32 @@
+<p>Move these lines:</p>
+
+<pre><code>STRING_LEN_MAX_DB=255
+TEXT_FIELD_LEN=15
+</code></pre>
+
+<p>out of the config loop.</p>
+
+<p>So your enviroment.rb looks like:</p>
+
+<pre><code># Load the rails application
+require File.expand_path('../application', __FILE__)
+
+# Be sure to restart your server when you modify this file
+# Initialize the rails application
+IRC07::Application.initialize! do |config|
+end
+STRING_LEN_MAX_DB=255
+TEXT_FIELD_LEN=15
+</code></pre>
+
+<p>And if that dosn't work try:
+    # Load the rails application
+    require File.expand_path('../application', <strong>FILE</strong>)</p>
+
+<pre><code># Be sure to restart your server when you modify this file
+# Initialize the rails application
+IRC07::Application.initialize! do
+  STRING_LEN_MAX_DB=255
+  TEXT_FIELD_LEN=15
+end
+</code></pre>

@@ -1,0 +1,16 @@
+<p>For that usage the return statement must be of the same type. In your case this it's not. I would test if the user exists and and then decide wether to return an error code or message in the service or the registration. And make a boolean out of your test variable.</p>
+
+<pre><code>ResponseObject o;//wether SOAP, RPC-XML, JSON, XML
+
+if(ExistLogin(login)/*must return boolean*/)
+{
+    o = createExistAnswerForService(login);
+}
+else
+{
+    o = createUserAddedAnswerForService(login, name, password);
+}
+return o;
+</code></pre>
+
+<p>In the response you can give the user information if the call was successful or not. I won't create an error class since it is no error but a validation fault. Always use error to catch them not to communicate with the user. Otherwise code will be confusing to others.</p>

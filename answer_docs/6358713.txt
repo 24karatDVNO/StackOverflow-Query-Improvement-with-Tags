@@ -1,0 +1,16 @@
+<p>You can do this in emacs.</p>
+
+<p>Open your file (<code>C-x C-f</code>) and do <code>M-x replace-regexp</code>.
+Let's say the name of the variable is <code>Variable</code>.</p>
+
+<p>Your regexp query would replace <code>\(V\)ariable</code> for <code>\,(downcase \1)ariable</code>.</p>
+
+<p>The <code>\,</code> tells emacs the following statement is a lisp expression.</p>
+
+<p>Additionally, if you wanted to replace the m_ at the same time you could do replace <code>m_\(V\)ariable</code> for <code>\,(downcase \1)ariable</code>.</p>
+
+<p>This <strong>will</strong> take care of all instances in a file at the same time and emacs does remember your last replace-regexp query so you do not have to retype it for multiple files. Furthermore, there is a way using DIRED mode to do the replace-regexp on multiple files at the same time.</p>
+
+<p>Open up a directory on DIRED mode (<code>C-x C-f DIR_NAME</code>), mark the files you want by going over them (you can navigate using <code>n</code> and <code>p</code>) by pressing <code>m</code>. Once the files you want to process are marked press <code>Q</code> (capital-case). You will get the same regexp prompt as if you did a single file, enter the regexp, <code>RET</code>, the replacement, and <code>RET</code>. It will open up each file at a time, press <code>!</code> for every file to replace all reg-exps in that file.</p>
+
+<p>After that, you still have to save the files. Which you can do with <code>C-s</code> and then <code>!</code>.</p>

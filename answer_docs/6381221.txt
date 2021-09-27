@@ -1,0 +1,5 @@
+<p>This is a bug I reported a while back regarding failed bluetooth connects (512 to be exact) and a memory leak leading to "referencetable overflow. I'll dig up the link when I'm back at my PC =)</p>
+
+<p>Link: <a href="http://code.google.com/p/android/issues/detail?id=8676" rel="nofollow">http://code.google.com/p/android/issues/detail?id=8676</a></p>
+
+<p>Solution: avoid failed bluetooth connects by performing a Bluetooth discovery first to see if the device is in range. If so, cancel discovery and connect to it.</p>

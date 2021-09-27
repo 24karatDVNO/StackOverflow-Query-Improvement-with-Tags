@@ -1,0 +1,30 @@
+<p>The following script will do it for you:</p>
+
+<p>In short, it takes the difference between some date during that time and compare it with current date, and then use that difference on an interval to update the current time.</p>
+
+<pre><code>var t = $('#time').text().split(":");
+
+var d = new Date(2011, 01, 01 , t[0], t[1], t[2],0);
+var d1 = new Date();
+
+var diff = d.getTime()-d1.getTime();
+
+
+window.setInterval(function(){
+
+ d1 = new Date();
+ d1.setTime(d1.getTime()+diff);
+    $('#time').text(ze(d1.getHours())+":"+ze(d1.getMinutes())+":"+ze(d1.getSeconds()));
+},1000);
+
+
+function ze(num) {   
+    if (num.toString().length&lt;=1){
+     return "0"+num;   
+    }else{
+     return num;   
+    }   
+}
+</code></pre>
+
+<p><strong>working example: <a href="http://jsfiddle.net/niklasvh/xsVD4/" rel="nofollow">http://jsfiddle.net/niklasvh/xsVD4/</a></strong></p>

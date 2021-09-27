@@ -1,0 +1,6 @@
+<p>An undefined variable means it does not exists. You can just wrap it inside <a href="http://php.net/isset" rel="nofollow"><code>isset()</code></a> to do what you want to do:</p>
+
+<pre><code>&lt;?php if( isset( $errors ) ): ?&gt;
+</code></pre>
+
+<p>Isset is one of the few language constructs that work on unset variables without giving a warning / error. Another one is <a href="http://php.net/empty" rel="nofollow"><code>empty()</code></a>.</p>

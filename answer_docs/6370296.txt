@@ -1,0 +1,9 @@
+<p>Looks OK to me, I'm doing something similar albeit I'm adding my initial fragment from the activity using <code>add</code> rather than having it loaded by referencing it in the layout. There might be a bug there. FYI I'm using the compatibility library.</p>
+
+<p>Might be worth trying:</p>
+
+<p>1) Add the transaction to the back stack to see if that makes a difference, it seems like you may want that functionality anyway.</p>
+
+<p>2) Give your fragment in the layout an id or tag, then use that to perform a <code>remove</code> and <code>add</code> fragB instead.</p>
+
+<p>3) Try loading your fragA from code instead and see if that makes a difference.</p>

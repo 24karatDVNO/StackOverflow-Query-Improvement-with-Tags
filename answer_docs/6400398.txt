@@ -1,0 +1,9 @@
+<p>A <code>char</code> is a single character. When we do <code>char*</code> or <code>char[]</code> it allows us to store multiple chars on the the computer. This also means, you cannot access non-pointer chars like an array as you attempted to do (since arrays are essentially convient form of pointers when it comes to storing stuff).</p>
+
+<p>You can change your code to the following:</p>
+
+<pre><code>union mytypes1_t {
+    unsigned long mylong;
+    char *mychar;
+} mytypes1;
+</code></pre>

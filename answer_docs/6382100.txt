@@ -1,0 +1,12 @@
+<p>You're on the right track. You want to subclass NSView. From there you can either implement the -(void)drawRect method to do your own custom drawing, or you can add subviews, or both.</p>
+
+<pre><code>//add some subviews
+NSTextField * textField = [[[NSTextField alloc] initWithFrame:self.bounds] autorelease];
+[self addSubview:textField];
+
+
+NSButton * button = ...
+[self addSubview:button];
+</code></pre>
+
+<p>You can also use the Interface Builder (now built in to XCode 4) to design the widget, and then hook up the parts with code.</p>

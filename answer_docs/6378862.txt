@@ -1,0 +1,14 @@
+<pre><code>if (this == o) return true;
+</code></pre>
+
+<p>The above statement is redundant. </p>
+
+<p>More specifically, it's simply checking to see if you are comparing an object <strong>to itself</strong> ... so it can skip the code below it. For example: </p>
+
+<pre><code>Foo f = new Foo();
+f.equals(f); //the if (this == o) would be true. References the same thing.
+</code></pre>
+
+<p>Note: As an aside, if one overrides equals, one should override hashcode() to maintain the general contract for hashcode() - equal objects must have the same hashcode (the reverse is not true since two objects could have the same hash but not be equal.)</p>
+
+<p><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals(java.lang.Object" rel="nofollow">http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals(java.lang.Object</a>)</p>

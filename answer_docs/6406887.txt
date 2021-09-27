@@ -1,0 +1,12 @@
+<p>For illustrative purposes let's say your div has <code>id="d"</code>, then you could do:</p>
+
+<pre><code>var d = document.getElementById('d'),
+    dWider;
+d.style.maxWidth = '9999em';
+d.style.overflow = 'visible';
+dWider = d.offsetWidth &gt; 100;
+d.style.maxWidth = '100px';
+d.style.overflow = 'hidden';
+</code></pre>
+
+<p>Then the var <code>dWider</code> will be true if the text overflows and false if it doesn't.</p>

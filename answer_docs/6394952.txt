@@ -1,0 +1,16 @@
+<p>as @Jon Skeet suggested I think better to use first option for regex and apply following code in catch block<br/>
+Pattern p=Pattern.compile("\[.*\]");<br/>
+Matcher m=p.matcher(e.getMessage());<br/>
+int end=0;<br/>
+while(m.find()){<br/>
+end=m.end();<br/>
+System.out.println(m.start()+" "+m.end());<br/>
+}<br/></p>
+
+<p>System.out.println(e.getMessage());<br/>
+System.out.println(e.getMessage().substring(end));<br/>
+then it gives following output</p>
+
+<p>0 47 <br/>
+[Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'tty'.<br/>
+Invalid object name 'tty'.<br/></p>

@@ -1,0 +1,28 @@
+<p>Aspx section:</p>
+
+<pre><code> &lt;asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="return javascriptFunction()" OnClick"Button_Click"/&gt;
+</code></pre>
+
+<p>JavaScript section:</p>
+
+<pre><code> function javascriptFunction()
+ {
+      //Get the asp.net server controls using the following code
+       var textbox=document.getElementById('&lt;%=txtID.ClientID %&gt;');
+
+       var label=document.getElementById('&lt;%=lblID.ClientID %&gt;');
+
+      if(textbox.value=="")
+      {
+         label.innerHTML="this is a required field";
+         return false;// This will stop at client side and skip server side execution
+      }
+      else
+      {
+         return true;//This will execute the server side event
+      }
+
+ }
+</code></pre>
+
+<p>hope this helps...</p>

@@ -1,0 +1,21 @@
+<p>It looks like your problem is somewhere else. I wrote the following code:</p>
+
+<pre><code>XmlDocument document = new XmlDocument();
+document.LoadXml("&lt;directory level=\"Beginner\"&gt;&lt;cel row=\"0\" column=\"0\" visible=\"no\"&gt;2&lt;/cel&gt;&lt;/directory&gt;");
+
+string directoryLevel = "Beginner";
+string amountOfRows = "0";
+string amountOfColumns = "0";
+
+string xpath = "//directory[@level='" + directoryLevel+ "']/cel[@row='" + amountOfRows + "' and @column='" + amountOfColumns+ "']";
+XmlNode node = document.SelectSingleNode(xpath);
+
+Console.WriteLine(node.OuterXml);
+</code></pre>
+
+<p>The output was:</p>
+
+<pre><code>&lt;cel row="0" column="0" visible="no"&gt;2&lt;/cel&gt;
+</code></pre>
+
+<p>Conclusion: the xpath expression works as expected.</p>

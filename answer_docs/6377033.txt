@@ -1,0 +1,13 @@
+<p>Before you try to extract data from the response, take a look at the response value thru script debugger/data viewer in filemaker advanced. If you have response data and it's not working, then maybe the XML syntax is a bit more verbose and the CF can't parse it out.  It works with XML structured like this:</p>
+
+<pre><code>&lt;Element&gt;Data&lt;/Element&gt; 
+</code></pre>
+
+<p>but not</p>
+
+<pre><code>&lt;Element id="123"&gt;Data&lt;/Element&gt;
+</code></pre>
+
+<p>For optimum performance, use a plugin like Troi URL to request the data.</p>
+
+<p>Far better than calling the API and importing pipe data.</p>

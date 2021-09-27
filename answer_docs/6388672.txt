@@ -1,0 +1,3 @@
+<p>You can get an array of (all) Orders using the <code>$this-&gt;Order-&gt;find('all', array('recursive' =&gt; 2));</code> in your controller. Each order also contains the related Parts information.</p>
+
+<p>Imo customer information should be part of the Order, not of Part. Also you might want Orders to consist of multiple Parts.</p>

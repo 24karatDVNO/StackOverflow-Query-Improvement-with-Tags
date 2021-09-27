@@ -1,0 +1,6 @@
+<p>Bandwidth usage no.  It is only tracked in billing and that currently has no open API.  You can track bandwidth usage yourself if you funnel every request thru programmable API that can capture the size of data they're pushing out.  (Incoming data is now free).</p>
+
+<p>Number of instances, yes.  Two ways to do this: 
+1) If done from "outside" of your deployment, you can use Service Management API to navigate to a specific Deployment and call this method: <a href="http://msdn.microsoft.com/en-us/library/ee460804.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ee460804.aspx</a></p>
+
+<p>2) If done inside a role, you can use RoleEnvironment.Roles["role-name"].Instances.Count</p>

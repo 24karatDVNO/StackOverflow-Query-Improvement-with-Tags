@@ -1,0 +1,10 @@
+<p>I don't know anything about gem that you are looking for, but you can find all methods within a class using <code>instance_methods</code>:</p>
+
+<pre><code>class Foo
+  def bar
+  end
+end
+
+irb(main):005:0&gt; Foo.instance_methods - Object.instance_methods
+=&gt; [:bar]
+</code></pre>

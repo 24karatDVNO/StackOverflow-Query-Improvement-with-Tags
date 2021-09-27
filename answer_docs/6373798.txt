@@ -1,0 +1,5 @@
+<p>In the 10 million times run, odds are good the HotSpot compiler detected a "heavily used" piece of code and compiled it into machine native code.</p>
+
+<p>JVM bytecode is interpreted, which leads it susceptible to more interrupts from other background processes occurring in the JVM (like garbage collection).</p>
+
+<p>Generally speaking, these kinds of benchmarks are rife with assumptions that don't hold.  You cannot believe that a micro benchmark really proves what it set out to prove without a lot of evidence proving that the initial measurement (time) isn't actually measuring your task and possibly some other background tasks.  If you don't attempt to control for background tasks, then the measurement is much less useful.</p>

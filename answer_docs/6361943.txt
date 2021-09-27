@@ -1,0 +1,5 @@
+<p>The ugly brute-force solution won't work.  </p>
+
+<p>Time one grep through your documents and extrapolate the time it takes for 300k greps (and possibly try parallelizing it if you have many machines available), is it feasible?  My guess is that 300k searches won't be feasible.  E.g., greping one search through ~50 Mb of files took me about ~5s, so for 10 Gb, you'd expect ~1000s, and then repeating 300k times means you'd be done in about 10 years with one computer.  You can parallelize to get some improvements (limited by disk io on one computer), but still will be quite limited.  I assume you want the task to be finished in hours rather than months, so this isn't likely a solution.</p>
+
+<p>So you are going to need to index the documents somehow.  Lucene (say through pythonsolr) or Xapian should be suitable for your purpose.  Index the documents, then search the indexed documents.</p>

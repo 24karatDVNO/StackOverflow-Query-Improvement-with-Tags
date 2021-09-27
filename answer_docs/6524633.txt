@@ -1,0 +1,20 @@
+<p>Assuming it is the first column you're sorting by, I found this works:</p>
+
+<pre><code>function sortAlpha(a,b){
+    return a.innerHTML &gt; b.innerHTML ? 1 : -1;
+};
+
+$(function() {
+    $('table#thisOne tr').sort(sortAlpha).appendTo('table#thisOne');
+});
+</code></pre>
+
+<p>..to sort this table:</p>
+
+<pre><code>&lt;table id="thisOne"&gt;
+    &lt;tr&gt;&lt;td&gt;Zebra&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Bees&lt;/td&gt;&lt;td&gt;11&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Apples&lt;/td&gt;&lt;td&gt;101&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Carrots&lt;/td&gt;&lt;td&gt;19&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;    
+</code></pre>

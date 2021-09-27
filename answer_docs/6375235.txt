@@ -1,0 +1,11 @@
+<p>The obvious problem that I see is the following line.</p>
+
+<pre><code>if (*string1 == *string2 == '\0') { return 0; }
+</code></pre>
+
+<p>This will not work as expected. This will not return zero if they are equal. If <code>string1</code> and <code>string2</code> are equal then <code>*string1 == *string2</code> is true, or equivalent to non-zero value and thus will never be equal to <code>\0</code>. This condition should be</p>
+
+<pre><code>if ((*string1 == '\0') &amp;&amp; (*string2 == '\0')) {}
+</code></pre>
+
+<p>And do not use ternary operators in this way, as they lead to less less readable code.</p>

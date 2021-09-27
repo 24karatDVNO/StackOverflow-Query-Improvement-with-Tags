@@ -1,0 +1,18 @@
+<pre><code>SHOW DATABASES;
+</code></pre>
+
+<p>This will give you a list of databases that you have access to.  root has access to all of them (in most installations).</p>
+
+<p>to see the tables:</p>
+
+<pre><code>SHOW TABLES IN `myDB`;
+</code></pre>
+
+<p>to see those tables structures you can do multiple things</p>
+
+<pre><code>SHOW CREATE TABLE `myDB`.`myTable`; /* This shows a executable query that can be used to recreate the table structure */
+
+or
+
+SHOW COLUMNS FROM `myTable` IN `myDB`; /* This shows a list of columns */
+</code></pre>

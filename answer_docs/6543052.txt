@@ -1,0 +1,27 @@
+<p>In the first case you actually pass the value to the PHP script, where <code>&lt;?php echo $test; ?&gt;</code> is parsed by PHP parser and replaced by the value of <code>$test</code> PHP variable.</p>
+
+<p>In the second case you just include '<code>&lt;?php echo $test; ?&gt;</code>' string into JS file and this is not parsed.</p>
+
+<p>My suggestion is: pass this value the way you are passing now, but properly reference it from the external JS file. For example you can invoke some function defined in JS file, passing the parameter from PHP file.</p>
+
+<p>There is also the ugly way of doing that, such as making your server treat JS files as PHP files, but I am not recommending it.</p>
+
+<p>Some example:</p>
+
+<p>If you include in your PHP file:</p>
+
+<pre><code>&lt;script type="text/javascript" src="foo.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;myHappyFunction("&lt;?php echo $test; ?&gt;")&lt;/script&gt;
+</code></pre>
+
+<p>and in your JS file (<em>foo.js</em>):</p>
+
+<pre><code>(function(){
+    var myHappyFunction = function(myParameter){
+        alert(myParameter);
+    };
+    window['myHappyFunction'] = myHappyFunction; // pass outside scope
+})();
+</code></pre>
+
+<p>you should see <code>$test</code> value being alerted when the script executes (assuming I did not make a mistake writing this ;)).</p>

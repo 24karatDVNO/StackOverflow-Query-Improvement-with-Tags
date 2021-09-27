@@ -1,0 +1,8 @@
+<p>There is a great example in the Apple Sample code that does this (alas not using PXSourceList).</p>
+
+<p><a href="https://developer.apple.com/library/mac/#samplecode/AnimatedTableView/Introduction/Intro.html#//apple_ref/doc/uid/DTS40008863" rel="nofollow noreferrer">Animated TableView Sample</a></p>
+
+<p>Also look at this answer for commentary and links to some sample code: 
+<a href="https://stackoverflow.com/questions/1058639/how-to-display-indeterminate-nsprogressindicator-in-the-nsoutlineview">How to display indeterminate NSProgressIndicator in the NSOutlineView?</a></p>
+
+<p>In essence, as their is no NSProgressIndicatorCell class, you need to create a subview containing an NSProgressIndicatorView and display it at the appropriate row in your tableview.</p>

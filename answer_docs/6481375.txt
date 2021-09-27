@@ -1,0 +1,6 @@
+<p>Have you show_errors PHP configuration enabled?
+Try placing some lines like 
+echo "[1]";
+echo "[2]"; 
+etc to discover where your script terminates (debug a bit);
+AND NEVER, NEVER USE _POST and _GET variables in SQL queries directly (use mysql_real_escape_string to escape their values)... or your script will be vulnerable to SQL injection attacks!!!</p>

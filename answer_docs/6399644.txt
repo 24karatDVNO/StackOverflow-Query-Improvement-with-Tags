@@ -1,0 +1,7 @@
+<p>Well, the link you have posted contains information about how to specify login, password and so on :) just look at the notes section, all possible options are listed.</p>
+
+<p>User is not created because your function is not called, simple as that. You need to register a hook.
+Add this line before ?> :</p>
+
+<pre><code>register_activation_hook( __FILE__ ,'myplugin_activate');
+</code></pre>

@@ -1,0 +1,16 @@
+<p>another possibility is storing the Strings in a <a href="http://en.wikipedia.org/wiki/Trie" rel="nofollow">trie</a>, and have a '$' sign indicate the end of each string. use doubly linked pointers for each step, and hold a double linked pointer from each '$' (end of name) to its number (in an array or a list). </p>
+
+<p>now, when you want to get a phone from name:</p>
+
+<pre><code>find the '$' indicating the end of the word for this string.
+it is connected to a number in a list - that is your number.
+</code></pre>
+
+<p>when you want to get a name from a phone:</p>
+
+<pre><code>find the number, it is connected to a '$' sign.
+follow the up-links all the way to the root, this will get you the name (reversed). 
+reverse it and you are done.
+</code></pre>
+
+<p>also, as I said in the comment (regarding the double map approach): assuming your strings are pretty large, and the map holds a pointer/reference to the string (and not the actual string), you can assume the storage space needed will not be double, but something much better.</p>

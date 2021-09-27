@@ -1,0 +1,9 @@
+<p>.Net CLR strings are [internally] UTF-16 encoded. ADO.Net, at least with SQL Server, handles the translation between the native string format in the database and the UTF-16 encoding used in the .Net CLR.</p>
+
+<p>I suspect that that's true with Oracle's ADO.Net provider as well.</p>
+
+<p>However, Console.WriteLine() is doing its own thing. You can get (or set) the input encoding via Console.InputEncoding and get/set the output encoding via Console.OutputEncoding.</p>
+
+<p>On my machine, Console.WriteLine() displays accented characters properly. The default output encoding on my machine is System.Text.SBCSCodePageEncoding. It's using the IBM 437 aka Windows 1252 code page. And it's using the default raster font 'Terminal'.</p>
+
+<p>If the font your are using doesn't support (at least) the C0 Control and Basic Latin and C1 Controls and Latin-1 Supplement (ISO 8859-1), you're unlikely to have success with accented characters. the IBM 437/Windows 1252 code page is mostly ISO 8859-1, except that code points 0x80 to 0x9F (the C1 control characters) have been assigned glyphs.</p>

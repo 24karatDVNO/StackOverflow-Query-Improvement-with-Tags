@@ -1,0 +1,3 @@
+<p>To expand on <a href="https://stackoverflow.com/questions/6431002/database-pk-fk-design-for-future-effective-date-entries/6431131#6431131">matt b's answer</a>, your discussion of the problem domain makes it pretty clear that what your design is calling out for is a "position" table. An employee's reviews continue to be relevant to that employee even after they move into a new position. Also, in every corporation I've experienced, the concept of an employee's tenure is related to their entire history at the company, not just the current position. </p>
+
+<p>It's generally good practice to look at any complex updates needed as a sign that the design needs to change. </p>

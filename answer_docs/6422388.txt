@@ -1,0 +1,8 @@
+<p>Just return an object at the end of your include file:</p>
+
+<pre><code>$foo = 1;
+$bar = 2;
+return array('foo' =&gt; $foo, 'bar' =&gt; $bar)
+</code></pre>
+
+<p>Then, <a href="http://docs.php.net/manual/en/function.include.php#example-130" rel="nofollow">include</a> will return the array returned in the module.</p>

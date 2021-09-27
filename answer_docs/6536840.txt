@@ -1,0 +1,3 @@
+<p>I don't know for sure but I think it looks like they intercept calls being made to winsock and modify them to be proxyaware. So effectively every time you create a network call out of your program it gets caught by your proxy-prog which passes it on to winsock with proxying information added.</p>
+
+<p><a href="https://stackoverflow.com/questions/4277027/ip-or-winsock-interception">IP or winsock interception?</a> seems to ask a very similar question so exploring the answer on that might give you the answer. That is just about trying to read a network connection but some of the googling I've done does suggest that a Layered Service Provider could be what you need and that Detours might also be something to look at.</p>

@@ -1,0 +1,6 @@
+<p>You can find information about the different encodings for certificates here: <a href="http://www.gtopia.org/blog/2010/02/der-vs-crt-vs-cer-vs-pem-certificates/" rel="nofollow">http://www.gtopia.org/blog/2010/02/der-vs-crt-vs-cer-vs-pem-certificates/</a></p>
+
+<p>Try to convert your certificate from der format to pem. </p>
+
+<pre><code>openssl x509 –in input.crt –inform DER –out output.pem
+</code></pre>

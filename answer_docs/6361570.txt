@@ -1,0 +1,13 @@
+<p>Just a reminder for the impatient who didn't read all the way to the end of oldbeamer's question and are also looking to use .pbxkeys instead of .dict:</p>
+
+<p>If you are wanting to add multi-action keybindings to your pbxkeys file, the XML formatting goes like this:</p>
+
+<pre><code>    &lt;key&gt;...&lt;/key&gt;
+    &lt;array&gt;
+            &lt;string&gt;action1:&lt;/string&gt;
+            &lt;string&gt;action2:&lt;/string&gt;
+            &lt;string&gt;etc:&lt;/string&gt;
+    &lt;/array&gt;
+</code></pre>
+
+<p>You can edit the .pbxkeys directly using a text editor to add custom multi-action keybindings this way.</p>

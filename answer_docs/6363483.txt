@@ -1,0 +1,17 @@
+<ol>
+<li>If I calculated correctly 1.6sec, 4 3 5 5 6 # 9 6 7 5 3</li>
+<li><p>There are many options, one which comes to mind:</p>
+
+<pre><code>var KeyMap = new Dictionary&lt;char, List&lt;char&gt;&gt;
+             {
+                 { '1', new List&lt;char&gt;(), },   // at least on my phone 1 has no characters assigned
+                 { '2', new List&lt;char&gt; { 'a', 'b', 'c' } },
+               ...
+             };
+</code></pre>
+
+<p>Basically each button on the phone is map to a list of assigned characters. You can then provide some UI to configure the dictionary (make sure no double mappings etc.)</p></li>
+<li><p>Assuming you are using Visual Studio: Have a look around for ASP.NET MVC tutorials on the net. There are plenty around.</p></li>
+</ol>
+
+<p>You should encapsulate the core of your application (button mapping and calculation of times and sequences) so that you can use it with any UI you like.</p>

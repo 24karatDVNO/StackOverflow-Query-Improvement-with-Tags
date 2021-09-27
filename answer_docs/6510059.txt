@@ -1,0 +1,9 @@
+<p>See the <a href="http://dev.mysql.com/doc/refman/5.5/en/group-by-functions.html#function_group-concat" rel="nofollow">GROUP_CONCAT()</a> function.</p>
+
+<pre><code>SELECT b.book_id, b.book_title, b.link_src, 
+  GROUP_CONCAT( CONCAT(a.firstname, ' ',a.lastname) ) AS authors 
+FROM books AS b
+JOIN author_to_books AS atb ON b.book_id = atb.book_id
+JOIN authors AS a ON atb.author_id = a.author_id
+GROUP BY b.book_id
+</code></pre>

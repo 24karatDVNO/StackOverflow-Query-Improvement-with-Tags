@@ -1,0 +1,64 @@
+<p><code>array_combine</code> will use one array for the keys and one for the values: <a href="http://www.php.net/manual/en/function.array-combine.php" rel="nofollow">http://www.php.net/manual/en/function.array-combine.php</a></p>
+
+<pre><code>$keys = array ( 
+  'love',
+  'home',
+  'google',
+  'money' 
+);
+$vals = array ( 
+ 111,
+ 222,
+ 333, 
+ 444, 
+ 555, 
+ 666, 
+ 777, 
+ 888
+);
+$output = array_combine($keys, $vals);
+</code></pre>
+
+<p>This is not random, though.  Random requires a loop:  </p>
+
+<pre><code>$output = array();
+foreach ($keys as $k) {
+ $output[$k] = $vals[array_rand($vals)];
+}
+
+
+   /* output: 
+Array
+(
+    [love] =&gt; 666
+    [home] =&gt; 555
+    [google] =&gt; 222
+    [money] =&gt; 777
+)
+*/
+</code></pre>
+
+<p>Codepad: <a href="http://codepad.org/7c55LvXg" rel="nofollow">http://codepad.org/7c55LvXg</a></p>
+
+<p>Another approach, using <code>shuffle</code> to mix the arrays up.  This seems to yield the nicest results:</p>
+
+<pre><code>shuffle($keys);
+shuffle($vals);
+$output = array();
+while (count($keys) &gt; 0 &amp;&amp; count($vals) &gt; 0) {
+  $key = array_pop($keys);
+  $output[$key] = array_pop($vals);
+}
+
+/* output: 
+Array
+(
+    [love] =&gt; 555
+    [money] =&gt; 777
+    [home] =&gt; 444
+    [google] =&gt; 333
+)
+*/
+</code></pre>
+
+<p>Codepad for the last one: <a href="http://codepad.org/BpM8RzD3" rel="nofollow">http://codepad.org/BpM8RzD3</a></p>

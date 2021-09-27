@@ -1,0 +1,3 @@
+<p>I've done SHA256 in C# (see System.Security.Cryptography).  However, I don't believe a hash is supposed to be decodable.  The intent is to hash something sensitive (like a password) and then apply that same hash routine to another value and compare the two hashes.  </p>
+
+<p>You appear to be looking for an encryption algorithm (AES for example).  This is also available in System.Security.Cryptography as are a number of other algorithms.</p>

@@ -1,0 +1,18 @@
+<p>Of course you can. Any reason as to why you would think otherwise?
+You can have a class implemented multiple interfaces for a class. If C# didn't support methods outside of the interface... you wouldn't be able to do that.</p>
+
+<pre><code>interface A{
+    void DoA();
+}
+
+interface B{
+    void DoB();
+}
+
+class C: A, B
+{
+    void DoA();
+    void DoB();
+    void DoC();
+}
+</code></pre>

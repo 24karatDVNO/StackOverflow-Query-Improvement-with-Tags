@@ -1,0 +1,3 @@
+<p>Equals methos as you call it is comparing the address of the references ( aka pointers ) and since your objects are probably loaded into two different memory locations the result is false.</p>
+
+<p>You should write your own method to compare the structures at higher level, for example you first compare the height and width and if it's the same then you compare the pixels, probably the Image class could help you anyway but Equals is available from the object class so won't help you.</p>

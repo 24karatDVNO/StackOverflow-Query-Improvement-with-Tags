@@ -1,0 +1,7 @@
+<p>Here i assume u have compulsary one customer ,account products</p>
+
+<pre><code>
+NSString *productCount=[NSString stringWithFormat:@"%i",[[[[wholeArray valueForKey:@"Customer"] valueForKey:@"account"] valueForKey:@"Products"] count]];
+
+NSLog(@"count is : %@ \n\n",productCount);  
+</code></pre>

@@ -1,0 +1,9 @@
+<blockquote>
+  <p>On using the breakpoint i found that cell for row at index path methid is called again and my array tries to reload data again.</p>
+</blockquote>
+
+<p>That's right. If you don't understand that, you don't understand how a table view works. The cells are created on demand and reused; the same cell might be reused again and again for different rows of the table as the user scrolls. That means that you must prepare <em>all</em> the data <em>beforehand</em>, and simply fetch it on demand for any section/row requested.</p>
+
+<p>To put it another way, MVC: model-view-controller. Your model is your data. <code>tableView:cellForRowAtIndexPath:</code> is view; you must not modify the model during this, because when and how often it is called depends entirely on the needs of the view.</p>
+
+<p>Another thing is that you should not be making a separate array of image views. An image view is view. If you want to store a list of something, store a list of the names of the images or something.</p>

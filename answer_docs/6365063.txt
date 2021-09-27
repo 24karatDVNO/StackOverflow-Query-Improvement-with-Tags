@@ -1,0 +1,24 @@
+<p>Isn't set a reserved keyword? Try qualifying it with "" or []</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="AdminProject"
+                   namespace="AdminProject.Business.Entity"&gt;
+
+  &lt;class name="[Set]"&gt;
+    &lt;id name="IdSet"&gt;
+      &lt;generator class="identity"/&gt;
+    &lt;/id&gt;
+    &lt;property name="IdProject" /&gt;
+    &lt;property name="IdSetState" /&gt;
+    &lt;property name="IdPriority" /&gt;
+    &lt;property name="Unit" /&gt;
+    &lt;property name="NumDisc" /&gt;
+    &lt;property name="NumSet" /&gt;
+  &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt; 
+</code></pre>
+
+<p>SQL CE reserved keywords:
+<a href="http://msdn.microsoft.com/en-us/library/aa258313(v=sql.80).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/aa258313(v=sql.80).aspx</a></p>

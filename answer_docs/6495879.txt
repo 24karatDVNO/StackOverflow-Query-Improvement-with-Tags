@@ -1,0 +1,9 @@
+<p>For your given data, I'd do it like this:</p>
+
+<pre><code>set([el[el.find('[')+1:-1] for el in compare]).intersection(name)
+</code></pre>
+
+<p>The output is:</p>
+
+<pre><code>set(['bark', 'dentla', 'group'])
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Replace with the following code, you will know what exactly is going wrong in your code:</p>
+
+<pre><code>PatientInfo *info = [copyListOfItems objectAtIndex:indexPath.row];
+if((nil != info) &amp;&amp; ([info isKindOfClass:[PatientInfo class]))
+{
+    if([info respondsToSelector:@selector(nric)])
+    {
+        cell.textLabel.text = info.nric;
+    }
+}
+</code></pre>

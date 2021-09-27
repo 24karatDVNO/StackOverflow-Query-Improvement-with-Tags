@@ -1,0 +1,15 @@
+<p>after your setContentView:</p>
+
+<pre><code>final EditText yourEditText= (EditText)findViewById(R.id.yourIDEditText);
+    yourEditText.setOnClickListener(new View.OnClickListener() 
+    {
+           @Override
+           public void onClick(View v) 
+           {
+               yourEditText.setText("");
+           }
+
+ });
+</code></pre>
+
+<p>With this, every time the user clicks all content is cleaned.</p>

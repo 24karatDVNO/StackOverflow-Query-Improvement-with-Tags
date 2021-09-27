@@ -1,0 +1,26 @@
+<p>Have you tried an orders_controller_decorator.rb?</p>
+
+<pre><code>OrdersController.class_eval do
+  before_filter :show_survey, :only =&gt; :populate
+  def new_survey
+    #regular stuff
+
+    respond_to do |format|
+      format.html do
+        #if you've already been through this process, skip the before_filter
+        redirect_to(new_order_line_item_url(session[:order_line_item])) and return if session[:order_line_item]
+        #otherwise point to the form and store the order data in session 
+        session[yeahyougetthepoint]
+        render 'new_survey' 
+      end
+    end
+  end
+  def create_survey
+    #regular stuff
+    respond_to do |format|
+      format.html {redirect_to new_order_line_item(session[:order_line_item]}
+  end
+end
+</code></pre>
+
+<p>I'm not 100% sure of the 'add_to_cart' process, but that could be easily deduced by digging through the whole thing in a log. It's a little weird putting your own flow into Spree, but it definitely can be done.</p>

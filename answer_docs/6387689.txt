@@ -1,0 +1,6 @@
+<p>I believe the problem is simply that you're separating the style directives for TabContainer with a comma, not a semicolon. That is, try changing that line to:</p>
+
+<pre><code>var tc = new dijit.layout.TabContainer({style: 'width:100%; height:100%' }, 'clientData');
+</code></pre>
+
+<p>Since you are setting it to 100% width and height of the parent container, you also need to make sure the ctrlPanel div has a size (if you haven't already).</p>

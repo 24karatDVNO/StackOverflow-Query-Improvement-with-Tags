@@ -1,0 +1,63 @@
+<p>Are you trying to drag a report file into the Viewer? if so biased on the following advice:</p>
+
+<ul>
+<li><a href="http://delphi.about.com/od/adptips2005/qt/dropontimage.htm" rel="nofollow noreferrer">How to Drop Images from Windows Explorer to a TImage control</a></li>
+<li><a href="https://stackoverflow.com/questions/5397158/delphi-drag-drop-with-listview">Delphi - Drag &amp; Drop with ListView</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/bb774303%28VS.85%29.aspx" rel="nofollow noreferrer">WM_DROPFILES Message</a></li>
+</ul>
+
+<p>You can achieve this by using the following code:</p>
+
+<pre><code>procedure TMainForm.FormCreate(Sender: TObject);
+begin
+   //Tell Windows that the Report Viewer accepts files
+   ShellAPI.DragAcceptFiles(ppViewer1.Handle,True);
+   Application.OnMessage   := ApplicationMessage;
+end;    
+
+procedure TMainForm.ApplicationMessage(var Msg: TMsg; var Handled: Boolean);
+begin    
+    if (Msg.hwnd = ppViewer1.Handle) and (Msg.message = WM_DROPFILES) then
+    begin
+        Handled := ReportFileDrop(Msg);
+    end;
+end;
+
+function TMainForm.ReportFileDrop(var Msg: TMsg):Boolean ;
+ var
+    numFiles : longInt;
+    buffer : array[0..MAX_PATH] of char;
+    l_file:String;
+    l_filemsg:TWMDROPFILES;
+ begin
+    Result := False;
+
+    //Convert the TMsg into a TWMDROPFILES record 
+    l_filemsg.Msg    := Msg.message;
+    l_filemsg.Drop   := Msg.wParam;
+    l_filemsg.Unused := Msg.lParam;
+    l_filemsg.Result := 0;
+
+    numFiles := DragQueryFile(l_filemsg.Drop, $FFFFFFFF, nil, 0) ;
+    if numFiles &gt; 1 then
+    begin
+      ShowMessage('You can drop only one file at a time!') ;
+    end
+    else
+    begin
+      try
+          DragQueryFile(l_filemsg.Drop, 0, @buffer, sizeof(buffer)) ;
+          l_file := buffer;
+
+          //Only try and load the report if the file has the correct extension
+          if (Length(l_file) &gt; 0) and (ExtractFileExt(LowerCase(l_file)) = '.rtm') then
+          begin
+             //Load the Report
+             Result := True;
+          end;
+      except
+          //Handle errors
+      end;
+    end;
+ end;
+</code></pre>

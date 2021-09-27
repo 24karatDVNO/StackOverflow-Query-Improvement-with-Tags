@@ -1,0 +1,12 @@
+<p>I think the logic in your code is wrong. It is a bit convoluted and hard to follow. I would recommend rewriting it a bit to be simpler. Something like this might help get you started. It collects all the windows, putts all the tabs into the <code>tabs</code> var.</p>
+
+<pre><code>var tabs = [];
+chrome.windows.getAll({ populate: true}, function(windows) {
+  var localTabs = windows.reduce(function(a, b){
+    return a.tabs.concat(b.tabs);
+  });
+  tabs = localTabs.filter(function(element){
+    return !element.incognito;
+  });
+})
+</code></pre>

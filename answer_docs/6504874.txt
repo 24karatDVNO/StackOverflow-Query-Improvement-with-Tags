@@ -1,0 +1,3 @@
+<p>NHibernate 3.2 comes with its own mapping configuration (Conform).  FluentNHibernate only works with NHibernate 3.1 as a result of this, you can't use 3.2 (I had the same problem).  So you'll have to manually download 3.1 and reference that unless NuGet allows you to use 3.1 directly.</p>
+
+<p>Your other option is to remove all references to 3.2 and then install FluentNHibernate from NuGet, then the dependency resolver will kick in and automatically include NHibernate 3.1 for you.</p>

@@ -1,0 +1,4 @@
+<p>You need to escape your <code>.</code> like this `.' so it doesn't match any character.</p>
+
+<pre><code>description.replace(/\.(?=[A-Z])/g, '&lt;br /&gt;&lt;br /&gt;');
+</code></pre>

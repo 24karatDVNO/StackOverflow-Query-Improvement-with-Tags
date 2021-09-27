@@ -1,0 +1,14 @@
+<p>Instead of UIImageView you can take custom UIButton and assign same image to button and you will get touchupInside event of that button. Just assign button.tag = indexpath.row so you can get which cell's Button pressed. </p>
+
+<pre><code>-(IBAction)ButtonPressed:(id)sender{
+     UIButton *btnSelected = sender;
+     switch(btnSelected.tag){
+       case: 0
+       ///Cell 0's Button Pressed. 
+       break;
+       ......
+       ......
+}
+</code></pre>
+
+<p>Hope this help.</p>

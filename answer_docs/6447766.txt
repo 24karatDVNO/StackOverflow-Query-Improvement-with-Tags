@@ -1,0 +1,3 @@
+<p>I recently found that String#count is faster than splitting up the string by <a href="https://stackoverflow.com/questions/6387428/why-is-counting-letters-faster-using-stringcount-than-using-stringchars-in-ruby">over an order of magnitude</a>. </p>
+
+<p>Unfortunately, String#count only accepts a string, not a regular expression. Also, it would count two adjacent spaces as two things, rather than a single thing, and you'd have to handle other white space characters seperately.</p>

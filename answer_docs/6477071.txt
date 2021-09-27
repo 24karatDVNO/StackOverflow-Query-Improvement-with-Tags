@@ -1,0 +1,5 @@
+<p>Must your calculation happen when the user clicks within the DataGridView? If your calculation is based upon the data within the grid then you would be better off using the <code>CellValueChanged</code> or <code>CellValidateEvents</code> to trigger the calculation.</p>
+
+<p>It wasn't 100% clear from your question whether you did or did not want the calculation to happen on the up and down keypress. The reason it is unclear is the the <code>CellClick</code> event does <strong>not</strong> occur on an up or down arrow keypress, so that should not be a problem.</p>
+
+<p>If you want to calculate on these keypresses you could either use the <code>CellEnter</code> event or handler the <code>KeyPress</code> - the advantage of the keypress is that you can check there which key was actually pressed if needed.</p>

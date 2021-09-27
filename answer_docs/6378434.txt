@@ -1,0 +1,3 @@
+<p>Sorry, this isn't exactly an "answer" but need 4 more points before I can post a comment. I wanted to get it out here though, and maybe save someone else a lot of the trouble that I just went through.</p>
+
+<p>I discovered that if you only have one xsd, it will get merged into the wsdl when using just the DefaultWsdl11Definition but if you use an <code>&lt;sws:dynamic-wsdl&gt;</code> block to generate the wsdl it just creates a reference to the xsd file which may or may not be what you want. It didn't work for me when trying to use a .NET client to hit the service.</p>

@@ -1,0 +1,1 @@
+<p>Well, it's unlikely anyone else will have this particular problem, but the solution was to have an Objective-C sentinel class called from a plain C function, both with unique names per build, called by each library. The sentinel class ensures there is only one instance with its name at runtime.</p>

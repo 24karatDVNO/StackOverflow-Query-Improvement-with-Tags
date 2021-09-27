@@ -1,0 +1,16 @@
+<p>use this method</p>
+
+<pre><code>@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+           Log.d("click","backButtonclicked");
+           SingleHouse.this.startActivity(new Intent(SingleHouse.this, RentPage.class));
+           moveTaskToBack(false);
+           return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+</code></pre>
+
+<p>implement this.Here the activity is SingleHouse.I moved back to the first activity called RentPage</p>

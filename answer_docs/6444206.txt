@@ -1,0 +1,12 @@
+<p>My guess would be that you are living in the UK. </p>
+
+<p>PHP is configured to use the local timezone of your country. This results in a time of 1:00: GMT + 1 hour for the Daylight Savings.</p>
+
+<p>There are 2 possible solutions:</p>
+
+<ul>
+<li>Substract one hour from the timestamp you're using</li>
+<li>Configure your script to use GMT. Use the function @pekka mentioned to do this.</li>
+</ul>
+
+<p>I suggest the first solution; your script might need to pretty print individual times, along with the intervals, which you want to have converted to your local timezone.</p>

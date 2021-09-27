@@ -1,0 +1,7 @@
+<p>I've successfully compared uppercase by casting varchars as varbinary, since uppercase and lowercase compare as equal in SQL</p>
+
+<p>SELECT * 
+FROM Table
+WHERE CAST(SUBSTRING(ColumnName,1,3) as varbinary) = CAST(SUBSTRING(UPPER(ColumnName), 1,3) as varbinary)</p>
+
+<p>One problem with this is that if you have a name like O'Reilly, it will return true.</p>

@@ -1,0 +1,10 @@
+<p>Use the eq to get only the desired item ;)</p>
+
+<pre><code>$('.ccc').click(function(index) {
+  var index = $(this).index(); //here is the trick
+  var $title = $(this);
+  var $flag =  $title.parent().prev().children('.aaa:eq('+index+')').children('.bbb'); //and here our new selector
+  var flag = $flag.text();
+  alert(flag);
+});
+</code></pre>

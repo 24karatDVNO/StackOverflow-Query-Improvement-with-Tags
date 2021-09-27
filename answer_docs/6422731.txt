@@ -1,0 +1,1 @@
+<p>null in c# is something different than NULL in the SQL context, the SQL NULL in C# is exposed not as string but as <code>DbNull.Value</code> which makes sense, if it was not like that how would you check for db null? comparing a string <code>"NULL"</code> would not have been the same...</p>

@@ -1,0 +1,7 @@
+<p>My thought is reduce the amount of bound data on the initial page and institute paging. Unless this is a "report", the user does not need to see every row at one time.</p>
+
+<p>Another possibility is you have the page set to also use viewstate for the grid. If so, you are consuming time in the bind to create the viewstate prior to rendering (at least in the default situation).</p>
+
+<p>Beyond that, I agree with @n8wrl that you need to troubleshoot by isolating whether it truly is the rendering that is the issue. I would probably do this through tracing rather than turning things off, but you do have to make sure the problem is the rendering. Another control, like a repeater, may work, but I only see this as a benefit with something like CSS, which reduces the amount of tagged data to produce output.</p>
+
+<p>Compressing the response stream in IIS can also speed things up. Rendering time will still be the same, but you will eliminate the time to send the HTML to the browser, which is at least part of your problem.</p>

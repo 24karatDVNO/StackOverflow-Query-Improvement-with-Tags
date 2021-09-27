@@ -1,0 +1,11 @@
+<p>Only possible flaw I see right now could be inside the <code>Work</code> class: Ensure it creates its own copy of the buffer contents immediately in the constructor as it will be overwritten once new data arrives. Other than that it should work as expected (hard to judge without specific work to be done, etc.).</p>
+
+<p>Also there shouldn't be an issue using the array when a pointer to the array's elements' type is required as the array is essentially just a pointer (code wise):</p>
+
+<pre><code>char data[1024];
+char *pdata = data; // now data as well as pdata point to the first element
+// data[0] is the same as using *(pdata + 0)
+// data[1] is the same as using *(pdata + 1)
+</code></pre>
+
+<p>If there's some compiler warning or error, post the exact message. The only real difference between both variants to access arrays is that the compiler will know he'll get a poiner to a whole array instead of a single instance when using <code>char variable[]</code> instead of <code>char *variable</code>.</p>

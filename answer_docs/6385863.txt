@@ -1,0 +1,10 @@
+<p>You can use <a href="http://pear.php.net/package/File_Gettext/redirected" rel="nofollow">PEAR File_Gettext</a>. The code would then be:</p>
+
+<pre><code>$mocreator = new File_Gettext_MO();
+$mocreator-&gt;load('/path/to/mo/file/file.mo');
+
+foreach ($mocreator-&gt;strings as $key =&gt; $value) {
+  echo "Key is $key \n";
+  echo "Value is $value \n";
+}
+</code></pre>

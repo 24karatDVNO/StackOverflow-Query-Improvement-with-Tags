@@ -1,0 +1,6 @@
+<pre><code>FrameworkElementFactory cp = new FrameworkElementFactory(typeof(ContentPresenter));
+cp.SetValue(ContentPresenter.NameProperty, "Contents");
+
+// try adding this line
+cp.SetValue(ContentPresenter.ContentSourceProperty, "Content");
+</code></pre>

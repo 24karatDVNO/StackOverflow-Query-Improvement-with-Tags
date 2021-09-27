@@ -1,0 +1,3 @@
+<p>Backgroundworker is mainly used to update ui without making it freeze.</p>
+
+<p>It's the job of the main thread to pass the variables around to other background worker threads. You can use the runworkercompleted to wait for the populating to complete and access the list. If you want to access the data while the lists are getting populated use the report progress event to read the partially populated list and pass it to other worker threads.</p>

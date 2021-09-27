@@ -1,0 +1,18 @@
+<p>This problem can be solved by namespaces or/and static class.<br>
+Easiest way is to wrap these functions in class with static methods.<br>
+After that you'll be able not only to include them both, but also to use <a href="http://php.net/manual/en/function.spl-autoload-register.php" rel="nofollow">autoload</a>-functions and forget about 'include'.</p>
+
+<pre><code>class Class1
+{
+    public static function install()
+    {}
+}
+
+class Class2
+{
+    public static function install()
+    {}
+}
+</code></pre>
+
+<p><a href="http://groups.google.com/group/php-standards/web/psr-0-final-proposal?pli=1" rel="nofollow">More about namespaces and autoload</a></p>

@@ -1,0 +1,16 @@
+<p>You can have a variable which type is a pointer to a funcion so when you call it, are you call the function or the function pointed by the variable with the same name? It is ambiguous. I think it's illegal. There is no problem for example in java, because there you can't have a variable that points to a function so the use of the parenthesis disambiguate if you are referring the function or the variable.</p>
+
+<pre><code>typedef void (*functiontype)();
+functiontype func;
+
+void f1 () {
+    ...
+}
+void func () {
+    ...
+}
+void main() {
+    func = &amp;f1;
+    func();
+}
+</code></pre>

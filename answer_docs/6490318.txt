@@ -1,0 +1,34 @@
+<p>The problem, as Jay Douglass pointed out, is that the member variable "openCrossInfo" from the original page isn't persisted to the new, "postback" page.</p>
+
+<p>The solution was:</p>
+
+<ol>
+<li>create and initialize the objects in the original page ("if !IsPostBack"), save the initialized objects to the Session, then </li>
+<li>restore them from the Session for the subsequent page:</li>
+</ol>
+
+<p><br></p>
+
+<pre><code>protected void Page_Load(object sender, EventArgs e)
+{
+    scoringInfo = new ScoringInfo();
+    if (!IsPostBack)
+    {
+        // 1st time, use current date/time; create new data
+        leagueInfo = new List&lt;LeagueInfoRec&gt;();
+        openCrossInfo = new List&lt;OpenCrossInfoRec&gt;();
+        laneUniqueIds = new List&lt;string&gt;();
+        updateGui(DateTime.Now);
+        Session["leagueInfo"] = leagueInfo;
+        Session["openCrossInfo"] = openCrossInfo;
+        Session["laneUniqueIds"] = laneUniqueIds;
+    }
+    else
+    {
+        // Subsequent callbacks: retrieve state
+        leagueInfo = (List&lt;LeagueInfoRec&gt;)Session["leagueInfo"];
+        openCrossInfo = (List&lt;OpenCrossInfoRec&gt;)Session["openCrossInfo"];
+        laneUniqueIds = (List&lt;string&gt;)Session["laneUniqueIds"];
+    }
+}
+</code></pre>

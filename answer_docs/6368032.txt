@@ -1,0 +1,33 @@
+<p>I do this slightly differently, I do:</p>
+
+<p>This in my functions.php:</p>
+
+<pre><code>    // header
+    register_sidebar( array (
+    'name' =&gt; 'Header Widget Area',
+    'id' =&gt; 'header_widget_area',
+    'before_widget' =&gt; '&lt;li id="%1$s" class="widget-container %2$s"&gt;',
+    'after_widget' =&gt; "&lt;/li&gt;",
+    'before_title' =&gt; '&lt;h3 class="widget-title"&gt;',
+    'after_title' =&gt; '&lt;/h3&gt;',
+    ) );
+
+    // Single Post Sidebar
+    register_sidebar( array (
+    'name' =&gt; 'Single Widget Area',
+    'id' =&gt; 'single_widget_area',
+    'before_widget' =&gt; '&lt;li id="%1$s" class="widget-container %2$s"&gt;',
+    'after_widget' =&gt; "&lt;/li&gt;",
+    'before_title' =&gt; '&lt;h3 class="widget-title"&gt;',
+    'after_title' =&gt; '&lt;/h3&gt;',
+  ) );
+</code></pre>
+
+<p>I then call them like so in which ever template I'm using them:</p>
+
+<pre><code>&lt;?php if ( is_sidebar_active('header_widget_area') ) : ?&gt;
+        &lt;?php dynamic_sidebar('header_widget_area'); ?&gt;
+&lt;?php endif; ?&gt;
+</code></pre>
+
+<p>Let me know if you need more help.</p>

@@ -1,0 +1,6 @@
+<p>Looks like you have to put double quotes around your object names. So you'll want to do this:</p>
+
+<pre><code>String q = "SELECT  \"Description\" FROM \"" + DBtable + "\"  WHERE   Source = \"" + source + "\" ";
+</code></pre>
+
+<p>Note the double quotes preceded by the escape character '\'</p>

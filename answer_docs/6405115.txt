@@ -1,0 +1,15 @@
+<p>A few things: you cannot do <code>portfolio.html#</code> (that is a hashtag) but you can do regular jQuery <code>selectors</code> inside the <code>load</code>. If you want to get the <code>div</code> with <code>id</code> of <code>photos</code> then use <code>load('portfolio.html #photos')</code> That is not a hash tag, that is a selector, just to make things clear.</p>
+
+<p>Another thing: a lot of your <code>HTML</code> does not match your jQuery selectors at all. For example, you reference <code>div#piece-content</code> but I don't see that in your <code>DOM</code>. Same with <code>div.thumb-text</code>, it looks like you want <code>$('div.thumb').children('a.thumb-text')</code> instead.</p>
+
+<p>Thirdly: assuming <code>div.piece-content</code> is the main div you were talking about, simply calling a <code>fadeOut</code> from what I understand, will not work. It will simply set its opacity to 0 and then it will load content into it. You should do your <code>fadeOut()</code>, then load the content <em>then</em> call <code>fadeIn()</code></p>
+
+<pre><code>$('div.thumb-text').click(function() {    
+    var href = $(this).attr('href');
+        $('div#piece-content').fadeOut("slow", function(){
+            $(this).load('portfolio.html #' +href', {}, function() {
+                $(this).fadeIn();
+            });
+    })
+});
+</code></pre>

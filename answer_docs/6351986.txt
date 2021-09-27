@@ -1,0 +1,13 @@
+<p>Other answers are correct, but here's another spin - create an interface that <code>extends</code> Iterator:</p>
+
+<pre><code>interface DoublyIterator&lt;E&gt; extends Iterator&lt;E&gt; {
+    boolean hasPrev();
+}
+
+class MyDoublyIterator&lt;E&gt; implements DoublyIterator&lt;E&gt; {
+    // ... implement methods
+}
+
+DoublyIterator&lt;String&gt; di = new MyDoublyIterator&lt;String&gt;();
+di.hasPrev();
+</code></pre>

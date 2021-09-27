@@ -1,0 +1,18 @@
+<p>I think your problem may be related to the way you are (not) checking that the conditions still apply after you get the semaphore, or that the checking conditions are themselves wrong.</p>
+
+<p>You have:</p>
+
+<pre><code>    while(sharedData-&gt;evenSwap || sharedData-&gt;oddSwap)
+    {
+        // obtain lock on the shared vector
+        int commandCheck = sem_wait(&amp;(sharedData-&gt;swapSem));
+        perror("semaphore lock");
+        // if lock was obtained
+        if (commandCheck == 0)
+        {
+            sharedData-&gt;oddSwap = false;
+</code></pre>
+
+<p>After you get the semaphore, you should probably validate that either <code>sharedData-&gt;evenSwap</code> or <code>sharedData-&gt;oddSwap</code> is still true, relinquishing the semaphore if not.  This is a standard idiom; you check, lock and recheck, because the status may have changed between the original check and the time you gain the lock.</p>
+
+<p>Under this hypothesis, the <code>perror()</code> calls alter the timing of the processes, allowing the conditions to stay unchanged for longer than when the <code>perror()</code> calls are not present.  So, there is a timing problem here, somewhere.</p>

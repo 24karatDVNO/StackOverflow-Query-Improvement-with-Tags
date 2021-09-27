@@ -1,0 +1,9 @@
+<p>You could use <code>return false;</code> as the last statement in the click-handler. That or use both <code>event.preventDefault()</code> and <code>event.stopPropagation()</code> (<code>return false</code> is equal to the both of them together, preventing the default behaviour for that element <em>and</em> preventing the event from bubbling up through the DOM).</p>
+
+<p>References:</p>
+
+<ul>
+<li><a href="http://api.jquery.com/event.preventDefault/" rel="nofollow noreferrer"><code>event.preventDefault()</code></a></li>
+<li><a href="http://api.jquery.com/event.stopPropagation/" rel="nofollow noreferrer"><code>event.stopPropagation()</code></a></li>
+<li><a href="https://stackoverflow.com/questions/1357118/javascript-event-preventdefault-vs-return-false">event.preventDefault() vs. return false</a> (at Stack Overflow)</li>
+</ul>

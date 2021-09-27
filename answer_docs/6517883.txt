@@ -1,0 +1,5 @@
+<p>AFAIK CSS is really only valid in header, but also, to both CSS and JS, they should be in the head so that by the time anything in the page requires them, they are definitely available. </p>
+
+<p>For example, if you have a JS function call in the body of the page, but that function has not been declare before hand, then of course, you will get a script error.</p>
+
+<p>In terms of performance, I'm not aware of any performance increases by having them in the head, but I could be wrong here. You can sometimes get performance improvement from some scripts by having them at the bottom of the page, but this is just because other content is rendered before hand (rather than the browser stalling rendering whilst loading external resources)</p>

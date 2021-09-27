@@ -1,0 +1,10 @@
+<p>Try this:</p>
+
+<pre><code>$ids    = array( 1, 2, 3 );
+$db-&gt;fetchCol( 'SELECT id FROM some_table WHERE id IN (' . str_repeat( '?,', sizeof( $ids )-1 ) . '?)', $ids );
+</code></pre>
+
+<p>you can alse do something like this:</p>
+
+<pre><code>$db-&gt;fetchCol( 'SELECT id FROM some_table WHERE id IN (' . $db-&gt;quoteInto( '?', $ids ) . ')' );
+</code></pre>

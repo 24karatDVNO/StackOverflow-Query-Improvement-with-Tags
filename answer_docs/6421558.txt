@@ -1,0 +1,7 @@
+<p>In ES5 you can use <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some" rel="nofollow"><code>Array.some()</code></a> to drill into nested Objects in an array:</p>
+
+<pre><code>var products = [{name:'Trampoline'}, {name:'Net'}, {name:'Tent'}, {name:'Hoop'}];
+var found_ladder = products.some(function(val, idx) {
+    return val.name === 'Ladder';
+});
+</code></pre>

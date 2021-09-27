@@ -1,0 +1,20 @@
+<p>Interfaces seems to be cumbersome for serialization/deserialization processes. You might need to add another public member to the class that uses a concrete type and mark the interface property as xml ignore. This way  you can deserialize the object without loosing your contract base.</p>
+
+<p>Something like the following:</p>
+
+<pre><code>[Serializable]
+public class Prototype
+{
+    public virtual long Id { get; private set; }
+    public virtual string Name { get; set; }   
+    [XMLIgnore]
+    public virtual IList&lt;AttributeGroup&gt; AttributeGroups { 
+        get { return this.AttributeGroupsList; } 
+    }
+    public virtual List&lt;AttributeGroup&gt; AttributeGroupsList { get; private set;}
+}
+</code></pre>
+
+<p>For more information about deserialization attributes please check <a href="http://msdn.microsoft.com/en-us/library/3dkta8ya.aspx" rel="nofollow">XmlAttributes Properties</a>.</p>
+
+<p>Regards,</p>

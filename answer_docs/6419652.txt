@@ -1,0 +1,15 @@
+<p>First, capture the output and return value of the function.</p>
+
+<pre><code>ob_start();
+$name = function_name();
+$output = ob_get_clean();
+</code></pre>
+
+<p>Next, decide whether or not you want to output it.</p>
+
+<pre><code>if ($name !== false) {
+    echo $output;
+}
+</code></pre>
+
+<p>You weren't clear what you wanted to do with the return value if it wasn't <code>false</code> or if it was actually the output of the function that you wanted to send to the page.</p>

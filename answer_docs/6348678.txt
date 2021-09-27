@@ -1,0 +1,6 @@
+<p>Is the time zone always at the end of the string?  (The time zone doesn't appear at all when I try.)</p>
+
+<p>If it is, you can use the <a href="http://www.w3schools.com/jsref/jsref_slice_string.asp" rel="nofollow">slice method</a> to remove the last four characters of the string (space + 3-character time zone).</p>
+
+<pre><code>document.write(mydate.toLocaleString().slice(0,-4));
+</code></pre>

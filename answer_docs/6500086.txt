@@ -1,0 +1,11 @@
+<p>You'll have to sort the array first, then call <code>indexesOfObjectsPassingTest</code> for the sorted indices. <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/NSArray.html#//apple_ref/doc/uid/20000137-SW28" rel="nofollow">sortedArrayUsingComparator</a>: is one of the easier methods of sorting an array, it takes a block just like the <code>indexesOfObjectsPassingTest</code> method. </p>
+
+<pre><code>NSArray arrayToFilter = [originalArray sortedArrayUsingComparator: ^(id a, id b) 
+{ 
+  if (a.someValue &gt; b.someValue) return NSOrderedAscending; 
+  if (a.someValue &lt; b.someValue) return NSOrderedDescending;
+  return NSOrderedSame;
+}];
+</code></pre>
+
+<p>Then you can perform your existing filtering on the <code>arrayToFilter</code></p>

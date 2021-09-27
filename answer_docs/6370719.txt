@@ -1,0 +1,15 @@
+<pre><code>INSERT INTO AnotherTable
+SELECT  [IdModel]
+        , [IdMotor]
+FROM    (        
+          SELECT  [IdModel] = ID
+          FROM    ATable
+          WHERE   Kind = 'MODEL'
+        ) md
+        CROSS APPLY
+        (
+          SELECT  [IdMotor] = ID
+          FROM    ATable
+          WHERE   Kind = 'MOTOR'
+        ) mt          
+</code></pre>

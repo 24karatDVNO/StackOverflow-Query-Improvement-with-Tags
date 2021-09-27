@@ -1,0 +1,13 @@
+<p>I think this is pretty specific to your use of the measurement. </p>
+
+<p>One thing I can think of is applying a <a href="http://en.wikipedia.org/wiki/Kalman_filter#The_Kalman_filter" rel="nofollow">Kalman Filter</a> on the two measurements, the coarse-resolution-with-high-absolute-accuracy measurement takes the role of the prediction step, and the fine-resolution-with-low-absolute-accuracy measurement can take the role of the update step. </p>
+
+<p>The Kalman filter automatically incorporates your confidence in each measurement in the form of <a href="http://en.wikipedia.org/wiki/Kalman_filter#Estimation_of_the_noise_covariances_Qk_and_Rk" rel="nofollow">Noise Covariance matrices</a>. </p>
+
+<p>Actually it may make more sense to use two observation update steps and no prediction steps as this part of the wikipedia article suggests:</p>
+
+<blockquote>
+  <p>Typically, the two phases alternate, with the prediction advancing the state until the next scheduled observation, and the update incorporating the observation. However, this is not necessary; if an observation is unavailable for some reason, the update may be skipped and multiple prediction steps performed. Likewise, if multiple independent observations are available at the same time, multiple update steps may be performed (typically with different observation matrices Hk).</p>
+</blockquote>
+
+<p>The Kalman filter would be most useful if you are trying to keep an estimate of time expired from several readings over time. If its just a one time thing you can combine them in a simpler fashion.</p>

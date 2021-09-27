@@ -1,0 +1,10 @@
+<p>Use the POST jQuery's method. Here's an example</p>
+
+<pre><code>$.post('URL-TO-POST-DATA', {'parameter1': 'value', 'parameter2': 'value'}, function(data_received){
+/** Here goes your callback function **/ alert(data_received);
+});
+</code></pre>
+
+<p><a href="http://api.jquery.com/jQuery.post/" rel="nofollow">More information about POST method</a></p>
+
+<p>Don't forget one thing. jQuery will not receive nothing if you don't use echo on PHP (instead of return). <strong>You MUST use echo in PHP, don't forget it.</strong></p>

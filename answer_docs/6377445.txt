@@ -1,0 +1,3 @@
+<p>As Yuck said, SQL Server string functions pretty limited. You'll eventually run into a wall where your best bet is to resort to non-SQL solutions. </p>
+
+<p>If you absolutely need to store HTML with embedded styles are you currently have, but also have the flexibility to revise your data model, you might want to consider adding a second database column to your table. The second column would store the style-free version of the HTML. You could parse out the styling at the application layer. That would make it a lot easier to view the contents in future reports and other scenarios. </p>

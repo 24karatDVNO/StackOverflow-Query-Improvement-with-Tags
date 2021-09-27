@@ -1,0 +1,16 @@
+<p>This is Python, same pattern ought to work in Java:</p>
+
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; re.compile('[0-9a-z]*[0-9][0-9a-z]*[a-z][0-9a-z]*|[0-9a-z]*[a-z][0-9a-z]*[0-9][0-9a-z]*', re.I)
+&lt;_sre.SRE_Pattern object at 0x830fbd0&gt;
+&gt;&gt;&gt; p=_
+&gt;&gt;&gt; for s in '1a1b23nh', 'bc112w', 'abc', '123':
+...  print s, p.match(s)
+... 
+1a1b23nh &lt;_sre.SRE_Match object at 0xb73a3d78&gt;
+bc112w &lt;_sre.SRE_Match object at 0xb73a3d78&gt;
+abc None
+123 None
+</code></pre>
+
+<p>on 2nd thought, better add '$' at the end, or it will match 'ab12/'</p>

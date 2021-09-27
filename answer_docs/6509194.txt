@@ -1,0 +1,7 @@
+<p>By default it fires on the blur/change event, but if you enable intermediateChanges, it will fire for every keyup.</p>
+
+<pre><code>&lt;div name="Phone" id="wokPhone" invalidMessage="Please enter phone number"
+    dojoType="dijit.form.ValidationTextBox" regExp="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"         
+    label="  Phone Number :" maxLength="10" intermediateChanges="true"&gt;
+&lt;/div&gt;
+</code></pre>

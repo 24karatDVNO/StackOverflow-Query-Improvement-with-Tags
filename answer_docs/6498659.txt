@@ -1,0 +1,28 @@
+<p>You can use:</p>
+
+<ol>
+<li>get_class_methods() and get_object_vars() functions or </li>
+<li>ReflectionClass <a href="http://www.php.net/manual/en/class.reflectionclass.php" rel="nofollow">http://www.php.net/manual/en/class.reflectionclass.php</a></li>
+</ol>
+
+<p>See example with the first method:</p>
+
+<pre><code>&lt;?php
+
+class Test {
+    public $public_property       = 'public_property';
+    protected $protected_property = 'protected_property';
+    private $private_property     = 'private_property';
+
+    public function public_method() {}
+    protected function protected_method() {}
+    private function private_method() {}
+}
+
+$instance = new Test();
+
+// Show public methods
+print_r(get_class_methods($instance));
+// Show public properties
+print_r(get_object_vars($instance));
+</code></pre>

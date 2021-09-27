@@ -1,0 +1,67 @@
+<p>Alright so <a href="http://www.c-sharpcorner.com/UploadFile/b942f9/5950/" rel="nofollow">mix-ins through extension methods</a> are going to be my preferred route.  I couldn't figure out how to use dynamic proxies in vb.net (seemed to require libraries with lots of documentation that didn't cover specifically what I needed).  Dynamic proxies also seems to be a bit dirtier of a solution than using extension methods.  Composition would have been what I defaulted to if the previous two didn't work.</p>
+
+<p>So one problem with extension methods, is that the code gets a little dirtier if you want to hold variables.  Not much though.  Another problem is that all the extension methods must be defined in modules, so the code might look a little goofy to a new eye.  I will solve this by defining my interface and module with the corresponding extension method in the same file.</p>
+
+<p>finally, here's some sample vb.net code if you don't want to see a full fledged example through the link.</p>
+
+<pre><code>Imports System.Runtime.CompilerServices 'for extension methods
+
+Public Interface ISword
+End Interface
+Public Interface IThrowingStar
+End Interface
+
+Module ExtensionMethods
+
+    &lt;Extension()&gt;
+    Public Sub swingSword(ByVal hasASword As ISword)
+        Console.WriteLine("Sword has been swung")
+    End Sub
+
+    &lt;Extension()&gt;
+    Public Sub throwStar(ByVal hasAStar As IThrowingStar)
+        Console.WriteLine("Star has been thrown")
+    End Sub
+
+End Module
+
+Public Class RedNinja
+    Inherits Ninja
+    Implements IThrowingStar, ISword
+
+    Public Sub New()
+    End Sub
+
+End Class
+
+Public MustInherit Class Ninja
+
+    private curHealth as Integer
+
+    Public Sub New()
+        curHealth = 100
+    End Sub
+
+    Public Function getHP() As Integer
+        Return curHealth
+    End Function
+
+End Class
+
+Module Module1
+
+    Sub main()
+
+        Console.WriteLine("Type any character to continue.")
+        Console.ReadKey()
+
+        Dim a As New RedNinja
+        a.swingSword() 'prints "Sword has been swung"
+        a.throwStar()  'prints "Star has been thrown"
+
+        Console.WriteLine("End of program - Type any key to exit")
+        Console.ReadKey()
+
+    End Sub
+End Module
+</code></pre>

@@ -1,0 +1,26 @@
+<p>From the sounds of it you probably want a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/CountDownLatch.html" rel="nofollow">CountDownLatch</a>. Assuming you know the number of threads/participants, you simply create one for that many and then when your thread is done count down and await the latch:</p>
+
+<pre><code>final int workers = …
+final CountDownLatch latch = new CountDownLatch(workers);
+
+void doSomething() throws InterruptedException {
+  …
+  latch.countDown();
+  latch.await(); // blocks, throws InterruptedException
+}
+</code></pre>
+
+<p>Compared to <code>CyclicBarrier</code>, <code>CountDownLatch</code> is not reusable, you only use it once. It does however separate the waiting and the releasing concerns, so you can for instance have another thread that allows the threads through.</p>
+
+<p>All that said, if you do need a <code>CyclicBarrier</code> a slight variation on the above code <em>should</em> work:</p>
+
+<pre><code>final int workers = …
+final CyclicBarrier barrier = new CyclicBarrier(workers);
+
+void doSomething() throws InterruptedException, BrokenBarrierException {
+  …
+  latch.await(); // blocks, throws InterruptedException, BrokenBarrierException
+}
+</code></pre>
+
+<p>however, if any thread is interrupted or <code>barrier.reset()</code> is called then barrier is broken and the exception is thrown.</p>

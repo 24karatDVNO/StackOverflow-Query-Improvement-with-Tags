@@ -1,0 +1,112 @@
+<p>The correct method of doing this is to use a control template on the textbox. Something like below. I used this inside a class that inherits from textbox and called it ButtonBox. I then inherit others from this such as DateBox, DateTimeBox, SqlServerConnectBox etc.</p>
+
+<pre><code>    xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+
+&lt;TextBox.Template&gt;
+    &lt;ControlTemplate TargetType="{x:Type TextBoxBase}"&gt;
+        &lt;mwt:ListBoxChrome 
+            Background="{TemplateBinding Panel.Background}"
+            BorderBrush="{TemplateBinding Border.BorderBrush}"
+            BorderThickness="{TemplateBinding Border.BorderThickness}"
+            RenderMouseOver="{TemplateBinding UIElement.IsMouseOver}"
+            RenderFocused="{TemplateBinding UIElement.IsKeyboardFocusWithin}"
+            Name="Bd"
+            SnapsToDevicePixels="True"&gt;
+
+            &lt;DockPanel&gt;
+                &lt;Button DockPanel.Dock="Right" Name="myButton" Padding="3,0" Click="myButton_Click"&gt;...&lt;/Button&gt;
+                &lt;ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"&gt;&lt;/ScrollViewer&gt;
+            &lt;/DockPanel&gt;
+        &lt;/mwt:ListBoxChrome&gt;
+        &lt;ControlTemplate.Triggers&gt;
+            &lt;Trigger Property="UIElement.IsEnabled"&gt;
+                &lt;Setter Property="Panel.Background" TargetName="Bd"&gt;
+                    &lt;Setter.Value&gt;
+                        &lt;DynamicResource ResourceKey="{x:Static SystemColors.ControlBrushKey}" /&gt;
+                    &lt;/Setter.Value&gt;
+                &lt;/Setter&gt;
+                &lt;Setter Property="TextElement.Foreground"&gt;
+                    &lt;Setter.Value&gt;
+                        &lt;DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" /&gt;
+                    &lt;/Setter.Value&gt;
+                &lt;/Setter&gt;
+                &lt;Trigger.Value&gt;
+                    &lt;s:Boolean&gt;False&lt;/s:Boolean&gt;
+                &lt;/Trigger.Value&gt;
+            &lt;/Trigger&gt;
+        &lt;/ControlTemplate.Triggers&gt;
+    &lt;/ControlTemplate&gt;
+&lt;/TextBox.Template&gt;
+</code></pre>
+
+<p>Edit: I've change the method I was using so that it inherits from control and not textbox. This works well because the control just consists of a border, a textbox and a button. I was getting focus issues with the above solution. This is new template, I have called my control a ButtonBox</p>
+
+<pre><code>&lt;Style TargetType="{x:Type local:ButtonBox}"&gt;
+    &lt;Setter Property="Border.BorderThickness" Value="1"&gt;&lt;/Setter&gt;
+    &lt;Setter Property="Border.BorderBrush"&gt;
+        &lt;Setter.Value&gt;
+            &lt;LinearGradientBrush StartPoint="0,0" EndPoint="0,20" MappingMode="Absolute"&gt;
+                &lt;LinearGradientBrush.GradientStops&gt;
+                    &lt;GradientStop Color="#FFABADB3" Offset="0.05" /&gt;
+                    &lt;GradientStop Color="#FFE2E3EA" Offset="0.07" /&gt;
+                    &lt;GradientStop Color="#FFE3E9EF" Offset="1" /&gt;
+                &lt;/LinearGradientBrush.GradientStops&gt;
+            &lt;/LinearGradientBrush&gt;
+        &lt;/Setter.Value&gt;
+    &lt;/Setter&gt;
+    &lt;Setter Property="Control.Template"&gt;
+        &lt;Setter.Value&gt;
+            &lt;ControlTemplate TargetType="{x:Type local:ButtonBox}"&gt;
+                &lt;mwt:ListBoxChrome 
+                    Background="{TemplateBinding Panel.Background}"
+                    BorderThickness="{TemplateBinding Border.BorderThickness}"
+                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                    RenderMouseOver="{TemplateBinding UIElement.IsMouseOver}"
+                    RenderFocused="{TemplateBinding UIElement.IsKeyboardFocusWithin}"
+                    Name="Bd"
+                    SnapsToDevicePixels="True"&gt;
+                    &lt;DockPanel&gt;
+                        &lt;Button
+                            DockPanel.Dock="Right"
+                            Name="PART_Button"
+                            Height="0"
+                            Style="{x:Null}"
+                            Margin="0"
+                            Padding="3,0"
+                            Content="{TemplateBinding local:ButtonBox.ButtonContent}"
+                            IsTabStop="False"&gt;                                
+                        &lt;/Button&gt;
+                        &lt;TextBox
+                            BorderBrush="{x:Null}"
+                            BorderThickness="0"
+                            Margin="0"
+                            Name="PART_ContentHost"
+                            IsReadOnly="{TemplateBinding TextBox.IsReadOnly}"
+                            Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, Path=Text}"&gt;                                
+                        &lt;/TextBox&gt;
+                        &lt;!-- ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Margin="1"&gt;&lt;/ScrollViewer --&gt;
+                    &lt;/DockPanel&gt;
+                &lt;/mwt:ListBoxChrome&gt;
+                &lt;ControlTemplate.Triggers&gt;
+                    &lt;Trigger Property="UIElement.IsEnabled"&gt;
+                        &lt;Setter Property="Panel.Background" TargetName="Bd"&gt;
+                            &lt;Setter.Value&gt;
+                                &lt;DynamicResource ResourceKey="{x:Static SystemColors.ControlBrushKey}" /&gt;
+                            &lt;/Setter.Value&gt;
+                        &lt;/Setter&gt;
+                        &lt;Setter Property="TextElement.Foreground"&gt;
+                            &lt;Setter.Value&gt;
+                                &lt;DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" /&gt;
+                            &lt;/Setter.Value&gt;
+                        &lt;/Setter&gt;
+                        &lt;Trigger.Value&gt;
+                            &lt;s:Boolean&gt;False&lt;/s:Boolean&gt;
+                        &lt;/Trigger.Value&gt;
+                    &lt;/Trigger&gt;
+                &lt;/ControlTemplate.Triggers&gt;
+            &lt;/ControlTemplate&gt;
+        &lt;/Setter.Value&gt;
+    &lt;/Setter&gt;
+    &lt;Setter Property="IsTabStop" Value="False"&gt;&lt;/Setter&gt;
+&lt;/Style&gt;
+</code></pre>

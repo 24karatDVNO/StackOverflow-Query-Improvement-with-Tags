@@ -1,0 +1,9 @@
+<p>A solution I found works nicely is as follows</p>
+
+<p><code>font_size = (max_font_size - min_font_size) * (Math.sin(1.5*(X)) + minsize</code></p>
+
+<p>where X is the normalized value you wish to map onto font size</p>
+
+<p><code>X = (this_value-min_value)/(max_value-min_value)</code></p>
+
+<p>this increases size differential for the lower 3 quartiles of the range, such as to minimize the effect of high outliers </p>

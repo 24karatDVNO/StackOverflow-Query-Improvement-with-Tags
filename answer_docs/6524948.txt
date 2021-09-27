@@ -1,0 +1,8 @@
+<p>The error is that strlen() has a literal string as input rather than the variable; you missed to prepend value with a $.</p>
+
+<p>Replace your echo with this:</p>
+
+<pre><code>echo $value . " " . strlen($value) . "&lt;br /&gt;";
+</code></pre>
+
+<p>Hope it helps.</p>

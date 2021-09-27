@@ -1,0 +1,11 @@
+<p>Your code snippet will result in a term query where Zend Search will generate a set of tokens which will be tried against all the index fields. This is because if you pass a string to find() it is passed into the Query_Parser().</p>
+
+<p>You will need to specifically create a Phrase Query for this situation.</p>
+
+<p>It would look something like:</p>
+
+<pre><code>   $query = new Zend_Search_Lucene_Search_Query_Phrase(array('Summer', '2009'));
+   $index-&gt;find($query);
+</code></pre>
+
+<p><a href="http://framework.zend.com/manual/en/zend.search.lucene.query-api.html" rel="nofollow">http://framework.zend.com/manual/en/zend.search.lucene.query-api.html</a> contains more information.</p>

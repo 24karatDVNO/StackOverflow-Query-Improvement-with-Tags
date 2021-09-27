@@ -1,0 +1,8 @@
+<p>A few thoughts which may be useful:</p>
+
+<ul>
+<li>To make sure your threading code works I would test by using some computation that is known to parallelize well (nothing immediately comes to mind as an example). Then you can test the single and multi-threaded implementations and make sure your overall threaded application works as expected.</li>
+<li>Are you sure that your algorithm parallelizes well or even at all? As Steve mentions CPU bound computations are best suited for parallelism while your code looks like a mix of CPU and IO. Depending what <code>getNode()</code> does you may be IO bound which will limit what you can gain by use a multi-threaded algorithm. Profiling and benchmarking your code will help determine where your best gains from optimization can be applied.</li>
+<li>Don't use <code>volatile</code> for multi-threaded synchronization as the other poster(s) mentioned. It may indeed work for you now but there is no guarantee that it won't break in the future. Consider the worst case scenario of it breaking subtly sometime months from now that slightly corrupts all your simulation results but not enough to be obvious.</li>
+<li>The for "wait" loop is also suspect and should be changed for a proper threaded wait. When a thread is "waiting" in this loop it is eating up CPU time which could be better put to use by doing real work in another thread. If this wait loop is only being used 10% of the time your gains, if any, would be small but there is no guarantee its usage will always be this small.</li>
+</ul>

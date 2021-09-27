@@ -1,0 +1,13 @@
+<p>roles array does not have memory allocated by simply declaring it.</p>
+
+<p>private String[] roles = new String[1];  // if you know only one element</p>
+
+<p>public MyLoginBean() {<br>
+     String[] blah  = {"User"}; </p>
+
+<p>or</p>
+
+<p>private String[] roles;</p>
+
+<p>public MyLoginBean() {<br>
+     String[] blah  = new String[] {"User"}; </p>

@@ -1,0 +1,7 @@
+<pre><code>from b in db.branches
+let location = b.Location
+where location != null ?
+    b.Location.Equals(b.Location, Query.Location ?? b.Location, StringComparison.OrdinalIgnoreCase) : // if Query.Location is null then select all
+    false // to select nothing in this case
+select b;
+</code></pre>

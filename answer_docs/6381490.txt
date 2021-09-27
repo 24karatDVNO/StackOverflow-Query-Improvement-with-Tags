@@ -1,0 +1,27 @@
+<p>One option is to use inline views for each table you want to count</p>
+
+<pre><code>SELECT `UserName`, `Job2User`.`Job2UserCount`, `Place2User`.`Place2UserCount`
+FROM `Users`
+ ` 
+LEFT JOIN
+(SELECT
+
+ COUNT(`Job2User`.`UserID`) Job2UserCount ,
+ UserID
+FROM
+ Job2User
+ GROUP BY 
+  `UserID` )Job2User
+ON `Job2User`.`UserID`=`Users`.`UserID
+LEFT JOIN
+(SELECT
+
+ COUNT(`Place2User`.`UserID`) Place2UserCount,
+ UserID
+FROM
+ Job2User
+ GROUP BY 
+  `UserID` )Place2User
+ON `Place2User`.`UserID`=`Users`.`UserID` 
+GROUP BY `UserName`; 
+</code></pre>

@@ -1,0 +1,72 @@
+<p>Realised that it wasn't the tween causing most of the problems that it was the gotoandplay because i had my stop(); calls on the same frame as the markers on that movieclip causing them to get stuck.</p>
+
+<p>Did have some trouble with tween (the rollout jumped back to the rollover position if its tweens were called mid tween) but I decided to push the tweens to an array making them globally accessible and purge the array onmotionfinished then in the rollout check to see if the array contains anything and if so kill off the old tweens first. </p>
+
+<p>Final product:</p>
+
+<pre><code>    buttons[i].onRollOver = function() {
+    circle.active = this;
+    var oppX:Number = Stage.width-this._x;
+    var oppY:Number = Stage.height-this._y;
+    if (oppX-209.8&lt;=20) {
+        var difference:Number = Math.abs(20-(oppX-209.8));
+        oppX += difference;
+    } else if (oppX+209.8&gt;=780) {
+        var difference:Number = Math.abs(780-(oppX+209.8));
+        oppX -= difference;
+    }
+    if (oppY-172.1&lt;=20) {
+        var difference:Number = Math.abs(20-(oppY-172.1));
+        oppY += difference;
+    } else if (oppY+172.1&gt;=580) {
+        var difference:Number = Math.abs(580-(oppY+172.1));
+        oppY -= difference;
+    }
+    var TweenX:Tween = new Tween(circle, "_x", mx.transitions.easing.Strong.easeOut, circle._x, oppX, 1, true);
+    var TweenY:Tween = new Tween(circle, "_y", mx.transitions.easing.Strong.easeOut, circle._y, oppY, 1, true);
+    TweenY.onMotionFinished = function () {
+        tweens.length = 0;
+    }
+    tweens.push(TweenX,TweenY);
+    circle.gotoAndPlay("out");
+    myColor = new Color(this);
+    myColor.setTint(153,255,0,30);
+    for (MovieClip in buttons) {
+        delete buttons[MovieClip].onEnterFrame;
+        if (buttons[MovieClip] != this) {
+            buttons[MovieClip].enabled = false;
+            myColor = new Color(buttons[MovieClip]);
+            myColor.setTint(255,255,255,80);
+            myColor = new Color(buttons[MovieClip]._line);
+            myColor.setTint(255,255,255,80);
+        }
+    }
+};
+buttons[i].onRollOut = function() {
+    if (tweens.length != 0) {
+        tweens[0].stop();
+        tweens[1].stop();
+        delete tweens[0];
+        delete tweens[1];
+        tweens.length = 0;
+    }
+    circle.gotoAndPlay("in");
+    var TweenX:Tween = new Tween(circle, "_x", mx.transitions.easing.Strong.easeOut, circle._x, 400, 0.5, true);
+    var TweenY:Tween = new Tween(circle, "_y", mx.transitions.easing.Strong.easeOut, circle._y, 300, 0.5, true);
+    TweenY.onMotionFinished = function() {
+        circle._x = 400;
+        circle._y = 300;
+        for (MovieClip in buttons) {
+            buttons[MovieClip].enabled = true;
+        }
+    };
+    for (MovieClip in buttons) {
+        buttons[MovieClip].onEnterFrame = function() {
+            moveButtons(this);
+            controlButtons(this);
+        };
+        myColor = new Color(buttons[MovieClip]);
+        myColor.setTint(255,255,255,0);
+    }
+};
+</code></pre>

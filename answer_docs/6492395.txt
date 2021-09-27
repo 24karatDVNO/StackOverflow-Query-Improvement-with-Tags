@@ -1,0 +1,19 @@
+<p>I would personally re-write that as follows:</p>
+
+<pre><code>// listen to every click on a checkbox
+$('input[type="checkbox"].status').click(function(e){
+    e.stopPropagation();
+
+    // if the checkbox is checked
+    if($(this).is(':checked')){
+        // increase counter
+        statusCounter++;
+    }else{
+        // decrease counter
+        statusCounter--;
+    }
+</code></pre>
+
+<p>It shouldn't alter the functionality at all, but it may help simplify things and make finding the problem a little easier.</p>
+
+<p>I also noticed that it isn't a complete piece of code. You are missing <code>});</code> at the end. Could you provide all of your JS? It may be a different piece of script that is causing the problem.</p>

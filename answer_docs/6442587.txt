@@ -1,0 +1,5 @@
+<p>This isn't really an answer to the "why", but I managed to find out <em>how</em> to fix it myself:</p>
+
+<p>Instead of copying environmental variables from the current process, if I copy them with <a href="http://msdn.microsoft.com/en-us/library/bb762270%28v=vs.85%29.aspx" rel="nofollow"><code>CreateEnvironmentBlock</code></a>, then it works.</p>
+
+<p>I still haven't figured out what's causing it, though...</p>

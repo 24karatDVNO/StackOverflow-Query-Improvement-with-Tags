@@ -1,0 +1,3 @@
+<p>Some debugging revealed that firefox doesn't do actual requests if an expire time is set in the future.</p>
+
+<p>It'll only start doing requests when the expire time is in the past. This means that the usual manner of getting 304's doesn't work because they never actually get requested.</p>

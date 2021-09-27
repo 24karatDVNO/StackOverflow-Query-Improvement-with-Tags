@@ -1,0 +1,12 @@
+<p>Rather then calling intent you can just set the desired tab selected.
+Use </p>
+
+<pre><code>intent.putExtra("tabIndex", index);
+</code></pre>
+
+<p>and call the activity. Now in the calling Activity's <code>onCreate()</code> or <code>onResume()</code> use</p>
+
+<pre><code>int index = getIntent().getExtraInt("tabIndex", -1);
+if(index != -1)
+    tabHost.setCurrentTab(index);
+</code></pre>

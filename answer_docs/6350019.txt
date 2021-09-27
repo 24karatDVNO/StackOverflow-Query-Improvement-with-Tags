@@ -1,0 +1,6 @@
+<p>On more recent versions of TinyMCE (notably the one currently on the Moxiecode Full Featured example used in the example above) it seems you need to add a .click into the script to select the text area after the backspace, so you might need to use something like: </p>
+
+<pre><code>browser.frame(:id, "content_ifr").send_keys [:control, "a"], :backspace
+browser.frame(:id, "content_ifr").click
+browser.frame(:id, "content_ifr").send_keys("Hello World")
+</code></pre>

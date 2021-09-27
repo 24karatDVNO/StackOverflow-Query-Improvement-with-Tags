@@ -1,0 +1,7 @@
+<p>You must escape the \ and the '.
+When you need the ' in the result, why not define the result with "</p>
+
+<pre><code>puts "this doesn't work".gsub /'/, "\\\\'" #=&gt; "this doesn\'t work"
+</code></pre>
+
+<p>\ must be escaped anyway.</p>

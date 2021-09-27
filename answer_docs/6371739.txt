@@ -1,0 +1,12 @@
+<p>Using <code>extends</code> in a generic class declaration:</p>
+
+<ol>
+<li>Restricts the types that can be used as parameter to those that descend from the extended class.</li>
+<li>Allows the generic class to invoke the methods declared in the extended class.</li>
+</ol>
+
+<p>The '?' keyword is used in methods when the code at hand doesn't care about the specific type of the type parameter, but cares only about an lower (extends) or upper (super) bound on it. </p>
+
+<p>Wikipedia <a href="http://en.wikipedia.org/wiki/Java_%28programming_language%29/Wildcard" rel="nofollow">explains</a> the net effects of the different constructs in a very pragmatic way.</p>
+
+<p>To understand why several different constructs are needed to specify generics, you'd have to read about <a href="http://en.wikipedia.org/wiki/Covariance_and_contravariance_%28computer_science%29" rel="nofollow">covariance and contravariance</a>, which are the theoretical names of the rules for static type safety in the presence of generics.</p>

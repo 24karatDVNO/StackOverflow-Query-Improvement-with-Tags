@@ -1,0 +1,40 @@
+<p>why don't you use <strong>one</strong> RelativeLayout <a href="http://developer.android.com/resources/articles/layout-tricks-efficiency.html" rel="nofollow">for efficiency</a></p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="125dp"&gt;
+    &lt;TextView android:text="00:00:00" android:id="@+id/timer"
+        android:textSize="28dp" android:gravity="center_vertical|center_horizontal"
+        android:textColor="#000000" android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp" /&gt;
+    &lt;View android:id="@+id/separator1" android:background="#000000"
+        android:layout_width="fill_parent" android:layout_height="1dp"
+        android:layout_below="@+id/timer" android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp" /&gt;
+    &lt;TextView android:text="cal" android:id="@+id/cal1"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#000000" android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp" android:layout_marginBottom="15dp"
+        android:layout_alignParentRight="true" android:layout_below="@+id/separator1" /&gt;
+    &lt;TextView android:text="0" android:id="@+id/cal"
+        android:textSize="20dp" android:textColor="#000000"
+        android:layout_marginRight="7dp" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_toLeftOf="@+id/cal1"
+        android:layout_alignBaseline="@+id/cal1" /&gt;
+    &lt;View android:id="@+id/separator2"
+        android:layout_alignParentRight="true" android:layout_marginRight="100dp"
+        android:layout_width="1dp" android:layout_height="fill_parent"
+        android:layout_marginBottom="15dp" android:layout_below="@+id/separator1"
+        android:background="#000000" /&gt;
+    &lt;TextView android:text="Km/hr" android:id="@+id/pace1"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#000000" android:layout_marginRight="7dp"
+        android:layout_alignBaseline="@+id/cal1" android:layout_toLeftOf="@+id/separator2" /&gt;
+    &lt;TextView android:text="0" android:id="@+id/pace"
+        android:textSize="17dp" android:textColor="#000000"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginRight="7dp" android:layout_alignBaseline="@+id/cal1"
+        android:layout_toLeftOf="@+id/pace1" /&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>

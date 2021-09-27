@@ -1,0 +1,26 @@
+<p>The string concatenation on the line</p>
+
+<pre><code>'numberposts' =&gt; $my_current_count . $current_sort
+</code></pre>
+
+<p>is not equivalent to creating multiple array elements as in</p>
+
+<pre><code>'numberposts' =&gt; $my_current_count,
+'orderby' =&gt; 'title',
+'order' =&gt; 'asc'));
+</code></pre>
+
+<p>In the first instance, <code>numberposts</code> becomes a string containing information about the sort.
+In the second instance, <code>numberposts</code> only contains the current count.</p>
+
+<p>A better option may be:</p>
+
+<pre><code>$orderoption="&lt;TITLE HERE&gt;";
+$order_dir="&lt;SORT OPTION HERE&gt;";
+$myposts = get_posts(
+array(
+    'cat' =&gt; "$cat,-$catHidden",
+    'numberposts' =&gt; $my_current_count,
+    'orderby' =&gt; $orderoption,
+    'order' =&gt; $order_dir));
+</code></pre>

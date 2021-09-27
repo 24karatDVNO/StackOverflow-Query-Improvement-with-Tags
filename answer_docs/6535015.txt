@@ -1,0 +1,12 @@
+<p>I don't know about navigating to a page, but showing a control inside a tooltip is definitely possible.</p>
+
+<p>For example:</p>
+
+<pre><code>&lt;Button Content="I have a tooltip which contains a control"&gt;
+  &lt;ToolTipService.ToolTip&gt;
+    &lt;ToolTip&gt;
+       &lt;abc:MyUserControl /&gt;
+    &lt;/ToolTip&gt;
+  &lt;/ToolTipService.ToolTip&gt;
+&lt;/Button&gt;
+</code></pre>

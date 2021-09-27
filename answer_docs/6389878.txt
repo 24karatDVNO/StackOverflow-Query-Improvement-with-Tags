@@ -1,0 +1,13 @@
+<p>Similar questions : <a href="https://stackoverflow.com/questions/609273/convert-an-image-to-grayscale-in-html-css">Convert an image to grayscale in HTML/CSS</a> and <a href="https://stackoverflow.com/questions/562135/how-do-you-convert-a-color-image-to-black-white-using-javascript">How do you convert a color image to black/white using Javascript?</a></p>
+
+<p>However, for a simple solution <strong>and for a fadeIn/fadeOut effect</strong>... use 2 images (or images as sprite). </p>
+
+<p>Put the B&amp;W under the one in color (position:absolute) and do some jquery...</p>
+
+<pre><code>$('img.over').mouseover({function(){
+   $(this).fadeOut(slow);
+});
+$('img.over').mouseout({function(){
+   $(this).fadeIn(slow);
+});
+</code></pre>

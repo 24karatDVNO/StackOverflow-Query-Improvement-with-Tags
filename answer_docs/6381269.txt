@@ -1,0 +1,23 @@
+<p>The rotation matrices look like this (assuming column vector representation):</p>
+
+<pre><code>[   1      0       0   ]
+[   0    cos(a)  sin(a)] = Rx(a)
+[   0   -sin(a)  cos(a)] 
+
+[ cos(a)   0    -sin(a)]
+[   0      1       0   ] = Ry(a)
+[ sin(a)   0     cos(a)]
+
+[ cos(a) sin(a)   0    ]
+[-sin(a) cos(a)   0    ] = Rz(a)
+[   0      0      1    ]
+</code></pre>
+
+<p>Multiplying 'local' means that the matrix goes on the right.  Multiplying 'global' means the matrix goes on the left.  So your rotation is <strong>Ry(35°)*Rx(35°)</strong>.  Or approximately:</p>
+
+<pre><code>[ .819  .329 -.469 ]
+[  0    .019  .574 ]
+[ .574 -.470  .671 ]
+</code></pre>
+
+<p>The Euler rotation order XYZ means <strong>Rx(ax)*Ry(ay)*Rz(az)</strong>.  So, if you plug in the numbers <strong>Rx(40.524°)*Ry(-28.024°)*Rz(-21.881)</strong>, you get approximately (within round-off error) the same matrix (I did try it, just to make sure).</p>

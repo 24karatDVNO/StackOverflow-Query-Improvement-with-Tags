@@ -1,0 +1,55 @@
+<p>Here is a program that traverses the linked list and compares the names of adjacent elements. I have taken the liberty of renaming a couple of things, but otherwise the code for the data structures is the same as yours.</p>
+
+<pre><code>#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+
+typedef struct Info_ {
+    char name[100];
+} Info;
+
+typedef struct Element_ {
+    Info info;
+    struct Element_* next;
+} Element;
+
+void print_comparisons(Element* elm)
+{
+    assert(elm);
+
+    Element* cur = elm;
+    Element* next = cur-&gt;next;
+    for (; next; cur = next, next = next-&gt;next) {
+        if (strcmp(cur-&gt;info.name, next-&gt;info.name) == 0)
+            printf("Same name\n");
+        else
+            printf("Diff name\n");
+    }
+}
+
+int main()
+{
+    Info a; a.name[0] = 'A'; a.name[1] = '\0';
+    Info b; b.name[0] = 'B'; b.name[1] = '\0';
+    Info c; c.name[0] = 'B'; c.name[1] = '\0';
+    Info d; d.name[0] = 'D'; d.name[1] = '\0';
+    Element na; na.info = a;
+    Element nb; nb.info = b;
+    Element nc; nc.info = c;
+    Element nd; nd.info = d;
+
+    na.next = &amp;nb;
+    nb.next = &amp;nc;
+    nc.next = &amp;nd;
+    nd.next = NULL;
+
+    print_comparisons(&amp;na);
+}
+</code></pre>
+
+<p>The output of the program:</p>
+
+<pre><code>Diff name
+Same name
+Diff name
+</code></pre>

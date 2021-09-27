@@ -1,0 +1,35 @@
+<p>create an xml in your layout folder</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"&gt;
+
+        &lt;WebView android:id="@+id/wv1"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:background="@color/white" /&gt;
+
+        &lt;WebView android:id="@+id/wv2"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:background="@color/white"/&gt;
+
+    &lt;/FrameLayout&gt;
+</code></pre>
+
+<p>in your activity</p>
+
+<pre><code>final String mimeType = "text/html";
+final String encoding = "utf-8";
+String nBody = "PUT YOUR HTML HERE" ;
+WebView wv1 = (WebView)findViewById(R.id.wv2);
+wv1.setBackgroundColor(Color.WHITE);
+wv1.setInitialScale(65);
+WebSettings webSettings1 = wv1.getSettings();
+webSettings1.setUseWideViewPort(true);
+webSettings1.setDefaultFontSize(12);
+wv1.loadDataWithBaseURL(null, nBody, mimeType, encoding, null);
+</code></pre>

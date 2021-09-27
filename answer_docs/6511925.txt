@@ -1,0 +1,69 @@
+<p>Solved:</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;style type="text/css"&gt;
+        .portrait {float:left;margin: 0 20px 0 0;width:323;height:181;overflow:hidden;}
+        .portrait img {width:323;height:181;}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="portrait"&gt;
+    &lt;img src="1.jpg" alt="" /&gt;
+    &lt;img src="2.jpg" alt="" /&gt;
+    &lt;img src="3.jpg" alt="" /&gt;
+    &lt;img src="4.jpg" alt="" /&gt;
+    &lt;img src="5.jpg" alt="" /&gt;
+&lt;/div&gt;
+&lt;div class="portrait"&gt;
+    &lt;img src="1.jpg" alt="" /&gt;
+    &lt;img src="2.jpg" alt="" /&gt;
+    &lt;img src="3.jpg" alt="" /&gt;
+    &lt;img src="4.jpg" alt="" /&gt;
+    &lt;img src="5.jpg" alt="" /&gt;
+&lt;/div&gt;
+&lt;script src="jquery-1.6.1.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+$(function (){  
+
+    var itemInterval = 600;
+    var currentItem = 1;
+    var infiniteLoop = false;
+
+    function startLoop(element){
+        element.children('img').eq(0).hide();
+        infiniteLoop = setInterval(function(){
+            element.children('img').eq(currentItem).hide();
+            currentItem = ++currentItem % element.children('img').length;
+            foo = element.children('img').eq(currentItem).attr('src');
+            element.children('img').eq(currentItem).show();
+        }, itemInterval);
+    }
+    function stopLoop(){
+        infiniteLoop &amp;&amp; clearInterval(infiniteLoop); // shorthand for: if (infiniteLoop) { clearInterval(infiniteLoop) }
+    }
+    function resetLoop(element){
+        element.children('img').eq(0).show();
+        element.children('img').eq(1).show();
+        element.children('img').eq(2).show();
+        element.children('img').eq(3).show();
+        element.children('img').eq(4).show();
+        currentItem = 1; // reset counter
+    }
+
+    $('.portrait').hover(function() {
+        currentP = $(this);
+        startLoop(currentP);
+    },
+    function() {
+        stopLoop();
+        // reset to first image
+        resetLoop($(this));
+    });
+
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

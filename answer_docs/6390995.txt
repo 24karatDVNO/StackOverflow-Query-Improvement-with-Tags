@@ -1,0 +1,20 @@
+<p>You should probably do this,</p>
+
+<pre><code>- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    // Process the photo taken
+
+    // unlink this view controller as the delegate
+    picker.delegate = nil; 
+
+    // Create the 2nd controller and show - this doesn't work and the child controller is not visible for some reason
+    ChildController *child = [[ChildController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:child animated:NO];
+    [child release];
+
+    // Dismiss the UIImagePickerController 
+    [self dismissModalViewControllerAnimated:YES];                          
+}   
+</code></pre>
+
+<p>This way you add <code>child</code> to the navigation hierarchy and dismiss the image picker. A single animation will show the image picker being dismissed to reveal <code>child</code> controller.</p>

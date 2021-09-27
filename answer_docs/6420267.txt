@@ -1,0 +1,7 @@
+<p>Try this:</p>
+
+<pre><code>SELECT Foo
+From Bar
+WHERE ((@Door IS NULL AND Door = '0000') 
+       OR (Door = @Door))
+</code></pre>

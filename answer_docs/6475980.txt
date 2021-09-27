@@ -1,0 +1,8 @@
+<p>Newaz, I need to see your <code>RootEntity</code> and <code>Company</code> entity.</p>
+
+<p>Also, I was having hard time understanding your provided code though -</p>
+
+<ol>
+<li>Why you need that "if" condition? and what will happen if that if is not true?</li>
+<li><code>entityManager.flush();</code> you don't have to do this, if i understand correctly, you are using spring and <code>@Transactional</code> automatically closes/flushes transaction when invoked method is finished.</li>
+</ol>

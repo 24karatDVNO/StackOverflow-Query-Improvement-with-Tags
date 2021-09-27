@@ -1,0 +1,22 @@
+<p>The constructor could have only a small number of parameters, the ones required for proper object initialization. You could then have a number of properties that can be set after the object has been constructed. You can set default values for those properties in the constructor and the client can set the ones he/she requires.</p>
+
+<pre><code>class Person
+{  
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+        Address = "Unknown";
+        Email = "Unknown";
+    }
+
+    public string Name {get; private set;}
+    public int Age {get; private set;}
+
+    public string Email {get; set;}
+    public string Address {get; set;}
+}
+
+Person p = new Person("John Doe", 30);
+p.Email = "john.doe@example.org";
+</code></pre>

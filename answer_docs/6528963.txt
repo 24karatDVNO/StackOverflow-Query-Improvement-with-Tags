@@ -1,0 +1,3 @@
+<p>As with most things in programming look at the source -> java.lang.String.</p>
+
+<p>All Strings are instances of java.lang.String there is no special case. Each and every java.lang.String includes a char[] and some integers to hold the start and end indexes. Note the char[] is shared between Strign instances such as when one does a String.substring() the original char[] is not cloned or copied it is shared but the start/end indexes are updated.</p>

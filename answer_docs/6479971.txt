@@ -1,0 +1,24 @@
+<blockquote>
+  <p>Sometimes it wants it and sometimes
+  not.</p>
+</blockquote>
+
+<p>In the following case, it is not necessary, because the generic type is declared/defined as part of the class definition:</p>
+
+<pre><code>public class Example&lt;T&gt; {
+
+    public T generateItem() { return null; };
+
+}
+</code></pre>
+
+<p>In the following case, it is necessary, because the generic type is <strong>NOT</strong> declared/defined as part of the class definition (or elsewhere):</p>
+
+<pre><code>public class Example {
+
+    public &lt;T&gt; T generateItem() { return null; };
+
+}
+</code></pre>
+
+<p>The rule is: is it declared somewhere in the context or not? That's it!</p>

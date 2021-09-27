@@ -1,0 +1,27 @@
+<p>The idea of a controller spec is to check whether the actions are setting instance variables, and redirecting/rendering as needed. To set up the spec, you would normally create an object or a mock, set attributes/stubs, and then call the action, passing a params hash if necessary.</p>
+
+<p>So for example <em>(air code)</em>:</p>
+
+<pre><code>describe MyController do
+  before(:each) do
+    @project = mock_model(Project)
+    Project.stub(:find_by_id) {@project}
+    @batch = mock_model(Batch)
+    Batch.stub(:new) {@batch}
+  end
+
+  it "should redirect to project_batch_url on success" do
+    @batch.stub(:save) {true)
+    post :create, :batch =&gt; { :some_key =&gt; :some_value }, :tasks =&gt; { :task_ids =&gt; [1,2,3] }
+    response.should redirect_to(project_batch_url(@project,@batch))
+  end
+
+  it "should render :new on failure" do
+    @batch.stub(:save) {false)
+    post :create, :batch =&gt; { :some_key =&gt; :some_value }, :tasks =&gt; { :task_ids =&gt; [1,2,3] }
+    response.should render_template("new")
+  end
+end
+</code></pre>
+
+<p>You can find lots more information about this in the <a href="http://relishapp.com/rspec/rspec-rails" rel="nofollow">RSpec Rails docs</a>.</p>

@@ -1,0 +1,16 @@
+<p>Normally this would be done with the Event structure of ActionScript (this is an incredibly simple example):</p>
+
+<pre><code>// in OauthConnection.init as the last line
+dispatchEvent( new Event( "eventName" ) );
+
+//around your example aboe.
+oauthConnection.addEventListener( "eventName", eventHandler );
+busyOn();
+init();
+
+// later in the class.
+function eventHandler( evt:Event ):void
+{
+    busyOff();
+}
+</code></pre>

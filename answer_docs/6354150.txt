@@ -1,0 +1,22 @@
+<p>There is also an alternative method using negative margins. The HTML is the same, and you add negative margins to the left and right elements, and add positive margins to the center, allowing you to have the center <code>div</code> stretch all the way to the outside edges of the side <code>div</code>s.</p>
+
+<pre><code>[class^=grid_]{
+    float:left;
+}
+.grid_1{
+    width:50px;
+    margin-right: -50px;
+    background-color:red;
+}
+.grid_2{
+    width: 80%;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color:cyan;
+}
+.grid_3{
+    width:50px;
+    margin-left: -50px;
+    background:red;
+}
+</code></pre>

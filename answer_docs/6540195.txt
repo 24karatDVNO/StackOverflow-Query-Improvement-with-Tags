@@ -1,0 +1,6 @@
+<p>Assuming your form data stored in <code>$start</code> :</p>
+
+<pre><code>if ($start &amp;&amp; !preg_match("/(0?\d|1[0-2]):(0\d|[0-5]\d) (AM|PM)/i", '$start')) :
+        $errors-&gt;add('submit_error', __('&lt;strong&gt;ERROR&lt;/strong&gt;: The time is incorrect', 'appthemes'));
+        endif;
+</code></pre>

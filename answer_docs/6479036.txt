@@ -1,0 +1,27 @@
+<p>Are you just looking for a script that asks you for confirmation before continuing?  You can do that with echo and read:</p>
+
+<pre><code>#!/usr/bin/env bash
+cmd="some command"
+echo -n "press enter to execute: $cmd"
+read
+$cmd
+</code></pre>
+
+<p>You can even wrap that up into a general utility function:</p>
+
+<p>function exec_with_confirm () {
+      cmd="$@"
+      echo -n "press enter to execute: $cmd "
+      read
+      $@
+    }</p>
+
+<pre><code>exec_with_confirm ls -l
+exec_with_confirm du -sk .
+</code></pre>
+
+<p>This only goes so far, it won't work with shell meta-characters, to handle those you'd need to modify the function to take a string and pass it to bash -c, and send it quoted strings.</p>
+
+<p>If your intent is just to have a confirmation before execution, this should solve that.</p>
+
+<p>If your intent is to have it be placed on your next command line, then this won't do that.</p>

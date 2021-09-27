@@ -1,0 +1,17 @@
+<p>This is possible only if you are sure that dialog class implementation is MFC based and the class is exported from Tools.dll. You can try inspect your .dll with <a href="http://www.dependencywalker.com/" rel="nofollow">Dependency Walker</a> utility.<br>
+Please note the compiler mangles constructor name. This is what I got for the following declaration.</p>
+
+<pre><code>class __declspec(dllexport) TestDialog : public CDialog
+{
+public:
+    TestDialog()
+        :CDialog(10)
+    {
+
+    }
+};
+</code></pre>
+
+<p>Mangled constructor name: ??_7TestDialog@@6B@</p>
+
+<p>Probably you will be able to recreate dialog class header based on the results of your inspection. You should also make sure you have the same version of MFC both for Tools.dll and your application.</p>

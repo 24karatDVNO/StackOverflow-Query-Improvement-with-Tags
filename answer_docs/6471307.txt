@@ -1,0 +1,5 @@
+<p>I'm not sure why just by glancing at the code, but perhaps you could try retrieving the boxArea.InnerHTML, appending the appropriate HTML string to it, and setting the boxArea.InnerHTML to the result.</p>
+
+<p>Something like:</p>
+
+<p>boxArea.InnerHTML = boxArea.InnerHTML + "&lt;div class='largeBox'&gt;&lt;/div&gt;";</p>

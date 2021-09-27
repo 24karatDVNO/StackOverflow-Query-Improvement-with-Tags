@@ -1,0 +1,7 @@
+<p>@clockworkgeek had the answer to the first part of my question.</p>
+
+<p>The problem was that my <code>joinLeft()</code> was retrieving text values from the attribute options, while I should have been retrieving integer values when using <code>'type => 'options'</code>.</p>
+
+<p>Once I changed my <code>joinLeft()</code> to only retrieve integer values from <code>customer_entity_int</code> (actually a simpler join), the filtering and display worked flawlessly - thank you sir.</p>
+
+<p>I will re-post my second issue (about SQL errors caused by permissions) as a separate question.</p>

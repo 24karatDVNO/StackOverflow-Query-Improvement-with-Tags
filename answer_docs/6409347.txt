@@ -1,0 +1,7 @@
+<p>Hi guys what I understood is that u need to know when app goes in background and how to detect it and if I am wrong plz correct me----</p>
+
+<ol>
+<li><p>The user can go in background if ur app does not provide any way by pressing Back key or    Home Key.</p></li>
+<li><p>You need to use methods "dispatchKeyEvent(KeyEvent event)" to get home key event or back key event and after getting the event you can execute your task.</p></li>
+<li><p>you can even restrict user from pressing any key but u can not control the home key.</p></li>
+</ol>

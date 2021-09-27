@@ -1,0 +1,38 @@
+<p>The <code>r</code> modifier builds a <em>raw</em> string. It tells Python not to convert backslash escape sequences to special characters, such as <code>\t</code> or <code>\n</code>, for built-in strings. It has nothing to do with regular expression escape sequences.</p>
+
+<pre><code>&gt;&gt;&gt; len('\t')  # tab character only
+1
+&gt;&gt;&gt; len(r'\t') # backslach character followed by a tee
+2
+</code></pre>
+
+<p>However, regular expression syntax has its own set of escaping rules which often collide with the escape rules of built-in Python strings. The <code>r</code> keyword helps us only deal with one.  For example the first string below is a regular expression text that matches word characters, so is the second one because Python converts <code>\\</code> to <code>\</code> for built-in strings unless the <code>r</code> keyword is provided.</p>
+
+<pre><code>&gt;&gt;&gt; re.compile(r'\w') == re.compile('\\w')
+True
+</code></pre>
+
+<p>In your case <code>r'(foobar)'</code> is exactly equivalent to <code>'(foobar)'</code> because there is no backslash sequence to escape. This string is a regular expression <em>text</em> only in your mind. The <code>r</code> keyword does not tell Python to interpret the string that way. Python only knows about regular expression <em>objects</em> which you build with <code>re.compile()</code> or which are inherently compiled with methods like <code>re.findall()</code>.</p>
+
+<p>Compiling regular expression objects have its own set of rules different from built-in string escape sequence rules and regex rules are not related to the <code>r</code> keyword. The regular expression compiler does not understand its special meaning, only the Python interpreter does.</p>
+
+<p>In your case the <code>r</code> keyword in <code>"r'(foobar)'"</code> has no special treatment, because it is directly passed to the regex compiler. You are effectively building a regular expression that searches a string beginning with <code>"</code>, followed by <code>r</code> and so on. That's why two expressions differ.</p>
+
+<pre><code>&gt;&gt;&gt; re.compile(r'(foobar)') == re.compile('"r(foobar)"') # your expressions
+False
+</code></pre>
+
+<p>The usage of the <code>r</code> keyword has no effect here:</p>
+
+<pre><code>&gt;&gt;&gt; re.compile(r'(foobar)') == re.compile('(foobar)')
+True
+&gt;&gt;&gt; re.compile(r'"r(foobar)"') == re.compile('"r(foobar)"')
+True
+</code></pre>
+
+<p>For more information:</p>
+
+<ul>
+<li><a href="http://docs.python.org/reference/lexical_analysis.html#string-literals" rel="nofollow">http://docs.python.org/reference/lexical_analysis.html#string-literals</a></li>
+<li><a href="http://docs.python.org/library/re.html#regular-expression-syntax" rel="nofollow">http://docs.python.org/library/re.html#regular-expression-syntax</a></li>
+</ul>

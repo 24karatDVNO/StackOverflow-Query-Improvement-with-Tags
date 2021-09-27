@@ -1,0 +1,7 @@
+<p><code>&lt;?php $item = $this-&gt;getItem() ?&gt;</code></p>
+
+<p>Try adding this before your <code>getProductThumbnail()</code> call.</p>
+
+<p>You may also want to try:</p>
+
+<p><code>&lt;img src="&lt;?php echo $this-&gt;getProductThumbnail()-&gt;resize(50); ?&gt;" alt="&lt;?php echo $this-&gt;htmlEscape($this-&gt;getProductName()) ?&gt;" /&gt;&lt;/a&gt;</code></p>

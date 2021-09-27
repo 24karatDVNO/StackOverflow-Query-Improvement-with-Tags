@@ -1,0 +1,11 @@
+<p>Create <code>UserControl</code> call it something sensible like <code>WaitAnim1</code>.</p>
+
+<p>The sample you point to overuses Grids.  The outer grid represent in your case the UserControl. Do the following to make your usercontrol from that original code:-</p>
+
+<ul>
+<li>copy the <code>xmlns:sys="clr-namespace:System;assembly=mscorlib"</code> namespace to your UserControl element.</li>
+<li>copy the whole <code>Grid.Resources</code> to <strong>directly</strong> under the <code>&lt;UserControl&gt;</code> tag and rename <code>Grid.Resources</code> to <code>UserControl.Resources</code></li>
+<li>copy whole <code>&lt;Grid x:Name="LayoutRoot" &gt;</code> element from the source code and replace the one in your usercontrol with it.</li>
+</ul>
+
+<p>You now have a usercontrol that when displayed will show the animation.  </p>

@@ -1,0 +1,21 @@
+<p>Assuming the tabs correspond to the two subclasses</p>
+
+<pre><code>class Post
+  # the two subclasses. Each instance will only be using one or the other
+  belongs_to :section_foo
+  belongs_to :section_bar
+
+  accepts_nested_attributes_for :section_foo
+  accepts_nested_attributes_for :section_bar
+end
+</code></pre>
+
+<p>And in the view (probably once per tab)</p>
+
+<pre><code>= form_for @post do |f|
+  = f.select :section_id, SectionFoo.all # etc
+  = fields_for @post.build_section_foo do |s|
+    = s.text_field :bla_bla_bla
+</code></pre>
+
+<p>That should get you 85% of the way there. You might need some :reject_if bidness on the accepts_* to avoid creating a new section <em>and</em> assigning an old section.</p>

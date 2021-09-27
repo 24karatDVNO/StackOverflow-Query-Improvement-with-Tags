@@ -1,0 +1,14 @@
+<p>This is very much possible.</p>
+
+<p>Ex: (paste this into your browser console on this page to show the effect)</p>
+
+<pre><code>$(window).scroll(function () { 
+    var threshold = 0; // how many pixels past the viewport an element has to be to be removed.
+    $('.answer').each(function () { 
+        if($(this).offset().top + $(this).height() + threshold &lt; $(window).scrollTop()) {       
+            $(this).remove() 
+        } 
+    });
+    // handle loading scroll up the same way you're adding new content as you scroll down. 
+});
+</code></pre>

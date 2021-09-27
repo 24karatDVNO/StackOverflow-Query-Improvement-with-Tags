@@ -1,0 +1,9 @@
+<pre><code>var scripts = document.getElementsByTagName('script');
+for (var index = 0; index &lt; scripts.length; index++) {
+    var script = scripts[index];
+    if (script.src.indexOf("my.js") != -1) {
+        //found the script, do what you want with the parent node here
+        alert(script.parentNode.id);
+    }
+}
+</code></pre>

@@ -1,0 +1,30 @@
+<p>The way I went about solving this was by using a <code>ViewFlipper</code>.  I am rather surprised no one had mentioned this before.</p>
+
+<p>I changed my XML around to look like this:</p>
+
+<pre><code>&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/hsv1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"&gt;
+        &lt;ViewFlipper android:id="@+id/dataTableFlipper"
+                 android:layout_width="fill_parent" android:layout_height="fill_parent"&gt;
+
+                &lt;TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent" 
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dataTable"
+                            android:stretchColumns="*"&gt;
+                &lt;/TableLayout&gt;
+                &lt;TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent" 
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dataTable2"
+                            android:stretchColumns="*"&gt;
+                &lt;/TableLayout&gt;
+        &lt;/ViewFlipper&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+
+<p>This way I could manage each page of the table as separate <code>TableLayouts</code>.  </p>
+
+<p>Declaring the <code>ViewFlipper</code>programmatically allowed me to use <code>ViewFlipper.showNext()</code> to alternate between the two tables.  Works like a charm!</p>

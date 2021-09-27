@@ -1,0 +1,3 @@
+<p>Most likely you're not using the correct encoding. If you already know your output encoding, use the <code>charset</code> argument of the <a href="http://php.net/manual/en/function.htmlentities.php" rel="nofollow"><code>html_entities</code> function</a>.</p>
+
+<p>If you haven't settled on an internal encoding yet, take a look at the <a href="http://uk3.php.net/manual/en/function.iconv-set-encoding.php" rel="nofollow">iconv</a> functions; <code>iconv_set_encoding("internal_encoding", "UTF-8");</code> might be a good start.</p>

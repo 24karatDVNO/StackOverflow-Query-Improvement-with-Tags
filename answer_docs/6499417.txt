@@ -1,0 +1,15 @@
+<p>Change</p>
+
+<pre><code>cout&lt;&lt;'\t'&lt;&lt;'('&lt;&lt;second&lt;&lt;')';
+</code></pre>
+
+<p>to</p>
+
+<pre><code>cout&lt;&lt; setw(16) &lt;&lt; '(' &lt;&lt; second &lt;&lt; ')';
+</code></pre>
+
+<p>and <code>#include &lt;iomanip&gt;</code></p>
+
+<p>Printing a <code>\t</code> character is just liking pressing the <kbd>tab</kbd> key on your keyboard: it moves it to the next tab stop, not a particular tab stop.</p>
+
+<p>Using <code>std::setw</code> you can specify a particular width.</p>

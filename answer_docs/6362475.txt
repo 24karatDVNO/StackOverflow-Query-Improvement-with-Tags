@@ -1,0 +1,21 @@
+<p>I recommend using IIS URL Rewriter with the following rule:</p>
+
+<pre><code>&lt;rewrite&gt;
+&lt;rules&gt;
+&lt;rule name="Rewrite Tab" stopProcessing="true"&gt;
+&lt;match url="^([a-z0-9/]+)/tabid/([0-9]+)/([a-z0-9/]+)$" ignoreCase="true"/&gt;
+&lt;action type="Rewrite" url="default.aspx?tabid={R:1}"/&gt;
+&lt;/rule&gt;    
+&lt;/rules&gt;
+&lt;/rewrite&gt;
+</code></pre>
+
+<p>This will rewrite </p>
+
+<p>/Category/Subcategory/tabid/123/Default</p>
+
+<p>to</p>
+
+<p>/default.aspx?tabid=123</p>
+
+<p>You might also be able to modify DNN's internal rewrite engine rules.</p>

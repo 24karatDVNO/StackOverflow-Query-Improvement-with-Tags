@@ -1,0 +1,10 @@
+<p>I have found the solution of my problem.
+Problem was in version_id, I have added a unsaved-value to mapping file of CR_ResidenceRegion.</p>
+
+<pre>
+&ltversion name="VersionId" column="version_id" type="Int64" unsaved-value="0" />
+</pre>
+
+<p>I think they changed the default value of unsaved-value.</p>
+
+<p>Thanks everyone for help</p>

@@ -1,0 +1,16 @@
+<p>First, change the <code>&lt;a name=</code> bit to <code>&lt;a id=</code>. The <code>name</code> attribute is a deprecated attribute originally used to do anchor links. It was replaced by the <code>id</code> attribute.</p>
+
+<p>Then:</p>
+
+<pre><code>$('#formLink1').click(function(){
+    $a = $(this);
+    if ($a.text() == 'Add Item') {
+        $('#theForm').show();
+        $a.text('Cancel');
+    } else {
+        $('#theForm').hide();
+        $a.text('Add Item');
+    }
+    return false;
+});
+</code></pre>

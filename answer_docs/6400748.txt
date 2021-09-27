@@ -1,0 +1,12 @@
+<p>Rowgroup on Category.
+Columngroup on Country.</p>
+
+<p>Inside the cell you should be able to have 2 placeholders with the second one in brackets. The first expression should be:</p>
+
+<pre><code>=Sum(iif(Fields!Week.Value = "this", Fields!Count.Value, 0))
+</code></pre>
+
+<p>The second one should be:</p>
+
+<pre><code>=Sum(iif(Fields!Week.Value = "last", Fields!Count.Value, 0))
+</code></pre>

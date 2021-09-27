@@ -1,0 +1,8 @@
+<p>You have an extra close parenthesis on explode.</p>
+
+<p>The is no need for the loop you can limit the number of results form explode:</p>
+
+<pre><code>list(,$result) = explode(" ",$tobesplit, 2);
+
+echo $result;
+</code></pre>

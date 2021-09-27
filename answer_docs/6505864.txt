@@ -1,0 +1,16 @@
+<p>Further testing and usage of bleeding edge, i.e. snapshots gave me something that works for now.</p>
+
+<p>That is:<br>
+ - upgraded Selenium to 2.0rc3<br>
+ - upgraded htmlunit to 2.9 SNAPSHOT !!!  </p>
+
+<p>And some more experimenting around:  </p>
+
+<pre><code>final HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.FIREFOX_3_6);  
+</code></pre>
+
+<p>The Firefox version now works for submit type buttons but fails for javascript actions. This could also be due to me using Firefox_3_6 version driver while using Firefox 4.0.1. browser.  </p>
+
+<p>The IE version_8 hangs on click().  </p>
+
+<p>But, the plain HtmlUnitDriver() works! </p>

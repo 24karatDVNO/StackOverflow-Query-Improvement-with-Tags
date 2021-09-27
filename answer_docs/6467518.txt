@@ -1,0 +1,5 @@
+<p>As an idea:</p>
+
+<p>Put those ddls in an UpdatePanel and set AutoPostBack to true on them. Then in the OnChange event handler for each of the two first ddl's clear the items collection of the following.</p>
+
+<p>Fill the items in the ddl's in the OnPreRender event - but only if the list is empty - and make the contents to be filled corresponding to the selected item of the previous ddl.</p>

@@ -1,0 +1,13 @@
+<p>You should load your property file once in your application and defining it as <code>static</code> public constant that you can access directly in your constructor:</p>
+
+<pre><code>public class Foo {
+
+   public static final PropertyFile pFile = ...
+
+   public Foo() {
+      super(pFile.getProperty("..."));
+      ...
+   }     
+
+}
+</code></pre>

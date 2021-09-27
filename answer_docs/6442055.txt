@@ -1,0 +1,37 @@
+<p>Not sure that it is the best solution, but should work:</p>
+
+<pre><code>        var data = new Dictionary&lt;int, List&lt;int&gt;&gt;();
+        data[1] = new List&lt;int&gt; { 2 };
+        data[2] = new List&lt;int&gt; { 3 };
+        data[3] = new List&lt;int&gt; { 4, 5 };
+        data[4] = null;
+        data[5] = new List&lt;int&gt; { 6, 7 };
+        data[6] = new List&lt;int&gt; { 8 };
+        data[7] = null;
+        data[8] = null;
+
+        var allparents = new Dictionary&lt;int, int&gt;(data.Count);
+
+        foreach (var node in data) {
+            if (node.Value != null) {
+                foreach (var child in node.Value) {
+                    allparents[child] = node.Key;
+                }
+            }
+        }
+
+        int root = data.Keys.Except(allparents.Keys).First();
+        int maxdepth = 1;
+        foreach (int child in allparents.Keys) {
+            int depth = 1;
+            int parent = child;
+            while (parent != root) {
+                ++depth;
+                parent = allparents[parent];
+            }
+            if (depth &gt; maxdepth) {
+                maxdepth = depth;
+            }
+        }
+        Console.WriteLine(maxdepth);
+</code></pre>

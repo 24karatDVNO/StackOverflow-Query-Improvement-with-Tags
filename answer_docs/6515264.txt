@@ -1,0 +1,17 @@
+<p>Your mysqli statement object was not correctly created, because the <code>INSERT</code> statement is invalid.  You're missing the <code>VALUES</code> keyword:</p>
+
+<pre><code>$insert_query = $db_usag_down-&gt;prepare("INSERT INTO Applicant VALUES (?, ?, ?, ?, ?, ?)");
+
+//
+Check the error status of your `mysqli` object with `mysqli-&gt;error();`
+if (!$insert_query) {
+  echo $db_usag_down-&gt;error();
+}
+</code></pre>
+
+<p>You will have other problems too.  You have more data types listed in your <code>bind_param</code> than you have variables to bind.</p>
+
+<pre><code>// You have six params, so you should have only six characters in the data types:
+// Assumes $full_status is an integer
+$insert_query-&gt;bind_param('issssi', $account_id, $first_name, $last_name, $email, $country, $full_status);
+</code></pre>

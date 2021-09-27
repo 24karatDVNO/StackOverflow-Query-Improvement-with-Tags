@@ -1,0 +1,10 @@
+<p>I finally solved this by creating my own "version 0" cookie. When doing so it seems like the second cookie doesn´t get created, or atleast my own cookie gets picked up instead. So in my while loop, the code now looks like this:</p>
+
+<pre><code>Cookie cookie = cooks.next();
+sb.append("$Version=0; ");
+sb.append(cookie.getName()+"="+cookie.getValue());
+if (cooks.hasNext()) {
+    sb.append(";");
+}
+sb.append("; $Path=/");
+</code></pre>

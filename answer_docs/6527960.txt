@@ -1,0 +1,16 @@
+<p>The problem you're getting in is that Alfresco first creates an empty file with all the meta-data and then updates the file with the associated content. </p>
+
+<p>So you can do 2 things:</p>
+
+<p>1: create a rule which is triggered on update, instead on create/inbound</p>
+
+<p>2: create a rule which triggers a Javascript file, which will do the transformation and will check on the content size.
+Hence it's better to create a rule which checks the content on size.
+Create a JavaScript file in Data Dictionary/Scripts.
+Check the <a href="http://wiki.alfresco.com/wiki/3.4_JavaScript_API#ScriptNode_API" rel="nofollow">JavaScript API</a>
+Something like this: </p>
+
+<pre><code>if (document != null &amp;&amp; document.size &gt; 0){
+document.transformDocument("application/rtf");
+}
+</code></pre>

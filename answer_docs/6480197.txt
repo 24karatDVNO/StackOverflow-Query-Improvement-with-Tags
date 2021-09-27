@@ -1,0 +1,56 @@
+<p>URL is invalid, or my country is blocked </p>
+
+<p><strong>put this BEFORE onCreate():</strong></p>
+
+<pre><code>private TextView outtext;
+private String HTML;
+</code></pre>
+
+<p><strong>And add lines between comments into onCreate like this:</strong></p>
+
+<pre><code>@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        /*FROM HERE*/
+        outtext= (TextView) findViewById(R.id.textview1); //change id if needed!!!
+
+            try { 
+            getHTML();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }       
+        outtext.setText("" + HTML);
+        /*TO HERE*/
+    }
+</code></pre>
+
+<p><strong>now this is the method you will use to download content:</strong></p>
+
+<pre><code> private void getHTML() throws throws ClientProtocolException, IOException 
+
+        {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpContext localContext = new BasicHttpContext();
+            HttpGet httpGet = new HttpGet("http://www.weather.noaa.gov/pub/data/observations/metar/stations/KORD.txt"); //URL!
+            HttpResponse response = httpClient.execute(httpGet, localContext);
+            String result = "";
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                result += line + "\n";
+                HTML = result;
+            }
+
+        }
+</code></pre>
+
+<p><strong>You also need to set permission in AndroidManifest.xml to use internet:</strong></p>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET"&gt;&lt;/uses-permission&gt;
+</code></pre>
+
+<p>Also this is NOT the best way to do this. When you open your app it will freeze until it loads from website, so you should use <a href="http://developer.android.com/reference/android/os/AsyncTask.html" rel="nofollow">AsyncTask</a> to help you out there.</p>

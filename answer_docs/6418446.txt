@@ -1,0 +1,6 @@
+<p>while this suggestion is what I've done for 2005, and I'm not sure if 2008 makes it any easier, in 2005 what I would do is add an "All" row to my data set for the drop down with some unique key that the real data set couldn't have (like a GUID full of zeros). Then in my where clause of the SQL I'd have something like </p>
+
+<pre><code>((@StudentCategory = '{00000000-0000-0000-0000-000000000000}') OR (@StudentCategory = Student_Category))
+</code></pre>
+
+<p>When the value is "All" then the condition would be true without filtering records, and when that's false, the records would be filtered by the Student_Category.</p>

@@ -1,0 +1,9 @@
+<p>You can also use the group by function instead of the distinct.  This allows you to include aggregate functions in your query that provide additional information.</p>
+
+<pre><code>SELECT comment_author_email, count(1)
+FROM  `wp_comments`
+WHERE comment_author_email != ''
+GROUP BY comment_author_email
+</code></pre>
+
+<p>This will return one row per unique comment_author_email value and the number of times it occurs.</p>

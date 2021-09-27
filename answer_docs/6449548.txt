@@ -1,0 +1,5 @@
+<p>Have you tried bumping up your index settings for the import? That can increase import performance significantly. sort_buffer_size is for any table type, myisam_sort_buffer_size is for MyISAM tables. innodb_buffer_pool_size is sort of your "key cache" for Innodb. Bump those up for the import depending on your table type. What you are trying to do is avoid file sorting during index creation.</p>
+
+<p>You may be able to get your import/index time down to 10-15 minutes or less. It's not throttling, but it will significantly shorten the impact period.</p>
+
+<p>Or, if you are using MyISAM tables, maybe a MERGE table is an option? Create a new table, perform the import, than add the new table to the MERGE table. There will be no impact on the database during import. Aside from the server performing a task.</p>

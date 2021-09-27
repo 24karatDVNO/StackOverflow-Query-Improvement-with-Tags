@@ -1,0 +1,33 @@
+<p>I spent some time figuring out if I could come up with a variation that would work since you cannot set a default value for System.State in the way you can other fields.  I probably went through 50 or so variations before I came up with something that works.  Granted, it is not ideal but it would solve your problem after the initial creation.</p>
+
+<p>You could, inside each of the transition states, add your when clauses.  For my example I was using the priority field and doing something like:</p>
+
+<pre><code>&lt;State value="Proposed"&gt;
+  &lt;FIELDS&gt;
+    &lt;FIELD refname="Microsoft.VSTS.Common.ResolvedDate"&gt;
+      &lt;EMPTY /&gt;
+    &lt;/FIELD&gt;
+    ...
+    &lt;FIELD refname="System.State"&gt;
+      &lt;WHEN field="Microsoft.VSTS.Common.Priority" value="2"&gt;
+        &lt;READONLY /&gt;
+      &lt;/WHEN&gt;
+    &lt;/FIELD&gt;
+  &lt;/FIELDS&gt;
+&lt;/State&gt;
+</code></pre>
+
+<p>You would have to add your clauses of course to the other states: active, closed and Resolved.  </p>
+
+<p>Once you do that, create a new Requirement.  When you create a new requirement you have two options:</p>
+
+<p>You can either set all the options to yes, set state to proposed and save.  Then go back and set them to no and save.</p>
+
+<p>Or</p>
+
+<p>Change your custom fields all to default to yes.
+Create Requirement and save. Edit it, switch all the values to no, Save.</p>
+
+<p>Either way you choose to go, once this initial hurdle is over with the requirement creation.  It will act how you wanted it to.  In other words, if any of the values are no then it will make state readonly.</p>
+
+<p>That was the best I could come up with given the restriction for the System.State field.</p>

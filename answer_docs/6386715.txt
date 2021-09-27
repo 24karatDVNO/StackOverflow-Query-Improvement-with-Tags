@@ -1,0 +1,21 @@
+<p>If the div is in the DOM, jQuery can't find it in HTML.
+If you load the script on an event, you can use jQuery.live like this</p>
+
+<pre><code>$( 'element' ).live( 'click', function(){
+     $("#" + "riga_79").load("/RigaMovimento/Details/79");
+});
+</code></pre>
+
+<p>maybe this could work (didn't test it)</p>
+
+<pre><code>$( 'body' ).live( 'load', function() {
+    $("#" + "riga_79").load("/RigaMovimento/Details/79");
+});
+</code></pre>
+
+<p>otherwise use the <a href="http://brandonaaron.net/code/livequery/docs" rel="nofollow">livequery plugin</a> like this:</p>
+
+<pre><code>$("#" + "riga_79").livequery(function(){
+     $(this).load("/RigaMovimento/Details/79");
+});
+</code></pre>

@@ -1,0 +1,15 @@
+<p>Not sure what you're trying to accomplish, and a <em>big</em> caveat that this won't work on all HTML (see <a href="https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454">here</a>), but the following might do the trick:</p>
+
+<pre><code>#!/opt/perl/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+my $html = 'foobar&lt;p&gt;lol&lt;/p&gt;&lt;div&gt;something&lt;/div&gt;blahblah';
+
+my @fragments = split(m{&lt;div\b[^&gt;]*&gt;.*?&lt;/div&gt;}is, $html);
+say foreach @fragments;
+</code></pre>
+
+<p>see <a href="http://perldoc.perl.org/functions/split.html" rel="nofollow noreferrer"><code>perldoc -f split</code></a> and <a href="http://perldoc.perl.org/perlre.html" rel="nofollow noreferrer"><code>perldoc perlre</code></a> for more info.</p>

@@ -1,0 +1,7 @@
+<p>Best approach would actually be to do this in a Transactional Stored Procedure at the Database.</p>
+
+<p>This would then allow you in the SP to get the last order number and create and return a new one.</p>
+
+<p>This would probably involve inserting a 'blank' order with the newly created ID, and then your PHP would update rather than insert when it comes to using it.</p>
+
+<p>Doing it in a SP with a Transaction will protect the DB while fetching so nothing can affect the table while it works out and creates the new order, this will ensure no duplicates are formed.</p>

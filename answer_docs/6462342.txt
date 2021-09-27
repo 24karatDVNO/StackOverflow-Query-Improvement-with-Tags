@@ -1,0 +1,3 @@
+<p>I don't think you can alter what is shared when you enable file sharing by using the <code>UIFileSharingEnabled</code> key in <code>Info.plist</code>.</p>
+
+<p>However I suggest that you revamp your content so that application specific content go into the <code>Library</code> folder such as the database file and other non-user stuff. You might want to go through <a href="http://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/RuntimeEnvironment/RuntimeEnvironment.html#//apple_ref/doc/uid/TP40007072-CH2-SW10" rel="nofollow"><code>this</code></a> for identifying which folders are backed up by iTunes.</p>

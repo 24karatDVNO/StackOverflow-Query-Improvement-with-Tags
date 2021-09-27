@@ -1,0 +1,18 @@
+<p>Experience tells me that (outside of America) users cannot be trusted to enter their city name in correctly, i.e. as your code would like to match it to. However, postcodes are reliably entered as users are familiar with getting this part of their address right.</p>
+
+<p>Are you doing flat rate or weight/location with checks on dimensions? This complicates matters considerably.</p>
+
+<p>If your calculations are simple then you can use post/zip codes with existing built in methods, e.g. standard table rates will require a CSV loaded up in shop-view of <em>admin->system->shipping</em> methods:</p>
+
+<pre><code>Country County/State    Postcode    Weight (and above)  Delivery Price
+USA     *           12345       1           10
+USA     *           16384       1           10
+USA     *           65536       1           10
+USA     *           32768       1           10
+</code></pre>
+
+<p>If you want to do the same with code of your own that pattern matches part of the post/zip code then a starting point is to copy the existing Flatrate.php out of core and into local.</p>
+
+<p>From here you can use <code>$order-&gt;getShippingAddress()-&gt;getPostcode()</code> and do your own calculations on that.</p>
+
+<p>With a similar approach you could do cities too, although you must appreciate that not everyone in a city puts their 'city' entry in correctly, certainly not in Title Case.</p>

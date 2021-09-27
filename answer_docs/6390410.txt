@@ -1,0 +1,14 @@
+<p>You have to build an expression tree like this. </p>
+
+<pre><code>Type entityType = typeof(T);
+var px = Expression.Parameter(entityType,"x");
+var ex = Expression.Property(px, propertyName);
+
+var lx = Expression.Lambda&lt;Expression&lt;Func&lt;T&gt;&gt;(ex,px);
+
+var q //.. Entity Query
+
+q = q.OrderBy(lx);
+</code></pre>
+
+<p>You should replace T with your type, this is not generics example. </p>

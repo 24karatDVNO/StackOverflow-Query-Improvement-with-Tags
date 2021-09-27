@@ -1,0 +1,14 @@
+<p>It's a little hard to tell what's going on here, but I think the key will be to take advantage of generics like so:</p>
+
+<pre><code>public IConcreteDataCollection&lt;T&gt; GetConcreteData&lt;T&gt;()
+{
+    return ...;
+}
+</code></pre>
+
+<p>If I understand your question correctly, this will allow you to say:</p>
+
+<pre><code>var t = factory.GetConcreteData&lt;IngrediantType&gt;(); 
+</code></pre>
+
+<p>You will need to change almost every class in your code to use generics.</p>

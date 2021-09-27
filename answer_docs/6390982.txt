@@ -1,0 +1,21 @@
+<p>Most common patterns do not allow for this. However, you can allow custom allocator plugins, which the Standard has for it's containers, that will allow for these semantics. This is a brief sample-</p>
+
+<pre><code>class Allocator {
+    File* Allocate(...) {
+        return fopen(...);
+    }
+};
+class MyStdinAllocator {
+    File* Allocate(...) {
+        return ...;
+    }
+};
+template&lt;typename MyAllocator = Allocator&gt; class File {
+    File* ptr;
+    Allocator alloc;
+    File(..., const Allocator&amp; allocref)
+    : alloc(allocref) {
+        ptr = alloc.Allocate(...);
+    }
+};
+</code></pre>

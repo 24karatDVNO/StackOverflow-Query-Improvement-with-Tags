@@ -1,0 +1,12 @@
+<pre><code>&lt;?php
+$output = parse_url("http://www.dailymotion.com/video/x4xvnz_the-funny-crash-compilation_fun");
+
+// The part you want
+$url= $output['path'];
+$parts = explode('/',$url);
+$parts = explode('_',$parts[2]);
+
+echo $parts[0];
+</code></pre>
+
+<p><a href="http://php.net/manual/en/function.parse-url.php" rel="nofollow">http://php.net/manual/en/function.parse-url.php</a></p>

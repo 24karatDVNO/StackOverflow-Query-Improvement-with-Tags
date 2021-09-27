@@ -1,0 +1,19 @@
+<p>If I understand correctly I think you'd want to use the 'virtual' keyword on abstract methods you want to override?</p>
+
+<p>If you are talking about the error that says something like "some method hides inherited member, add the new keyword if hiding was intended", then virtual on the base method and override on the inheriting method will do:</p>
+
+<pre><code>public abstract class BaseClass
+{
+    public virtual void SomeMethod()
+    {
+    }
+}
+
+
+public abstract class InheritingClass : BaseClass
+{
+    public override void SomeMethod()
+    {
+    }
+}
+</code></pre>

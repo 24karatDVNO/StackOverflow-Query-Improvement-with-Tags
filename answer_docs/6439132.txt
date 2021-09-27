@@ -1,0 +1,3 @@
+<p>Responding to an onClick is a user event, the LocationListener onLocationChanged is also an event. If you trigger the user event before the LocationListener event, there will be no position available to display.</p>
+
+<p>My suggestion is to call startActivityForResult on another activity in the button onClick handler, the 2nd activity has all the LocationManager &amp; LocationListener code in it, in the onLocationChanged event handler you pass the position back to the 1st activity.</p>

@@ -1,0 +1,4 @@
+<p>'Non-entity queries' aren't actually a thing. What you've written is an 'Invoke' operation. You just need to call it differently from the client.</p>
+
+<pre><code>context.GetTop5ActiveUsersByManagementMessages(GetActiveUsersCallback, null)
+</code></pre>

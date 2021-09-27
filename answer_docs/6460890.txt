@@ -1,0 +1,29 @@
+<p>In XSLT 2.0 life seems a bit easier. You can use the <code>xsl:value-of</code> directly (eventually specifying also a separator):</p>
+
+<pre><code>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns="http://www.portal.nv.gov/FinalCorporationDetails"
+    xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"
+    xpath-default-namespace="http://www.portal.nv.gov/FinalCorporationDetails"
+    version="2.0"&gt;
+
+    &lt;xsl:output method="xml" indent="yes"/&gt;
+    &lt;xsl:strip-space elements="*"/&gt;
+
+    &lt;xsl:template match="node()|@*"&gt;
+        &lt;xsl:copy&gt;
+            &lt;xsl:apply-templates select="node()|@*"/&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+
+    &lt;xsl:template match="BusinessIdDetails"&gt;
+        &lt;xsl:copy&gt;
+            &lt;ns0:FinalBusinessIdDetails&gt;
+                &lt;ns0:NVBusinessId&gt;
+                    &lt;xsl:value-of select="//NVBusinessId/text()"/&gt;
+                &lt;/ns0:NVBusinessId&gt;
+            &lt;/ns0:FinalBusinessIdDetails&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>

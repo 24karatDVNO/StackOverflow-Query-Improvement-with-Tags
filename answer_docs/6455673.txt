@@ -1,0 +1,21 @@
+<p>Split creates an array out of a string using a character as a delimiter. 
+so that is not really what you want, since you're trying to keep the end of the string, including what would be the natural delimiter. </p>
+
+<p>substr removes the first n characters of a string. 
+so you could do</p>
+
+<pre><code>var remove_string = 'http://example.com/#tags/'
+path.substr(remove_string.length); 
+</code></pre>
+
+<p>and it would work just fine.</p>
+
+<p>Replace finds a given regular expression and replaces it with the second argument.
+so you could also do (note that the regular expression is contained within / /)</p>
+
+<pre><code>path = path.replace(/^http:\/\/example.com\/#tags\//,"")
+</code></pre>
+
+<p>A little uglier because of the escaping of characters but a bit more succinct. </p>
+
+<p>Also as a previous poster did you could just pass the string to be matched to replace instead of the regex. </p>

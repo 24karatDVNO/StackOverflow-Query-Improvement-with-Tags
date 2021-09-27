@@ -1,0 +1,6 @@
+<p>in .htaccess file in <strong>somedomain.com</strong> dir U can put:</p>
+
+<pre><code>Options +FollowSymLinks
+RewriteEngine On
+RewriteRule (.*) http://somedomain.com/subdirectory/$1 [r=301,nc]
+</code></pre>

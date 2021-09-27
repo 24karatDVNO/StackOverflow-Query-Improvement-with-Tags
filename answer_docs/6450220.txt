@@ -1,0 +1,12 @@
+<p>If your cell value change every milisecond, you may have performance issues (or loops) with a vba event macro like Craig T showed.</p>
+
+<p>You should probably add some checks on the update frequency and if you need to disable vba event, use :</p>
+
+<pre><code>Application.EnableEvents = False
+' Coding to skip these events
+Application.EnableEvents = True
+</code></pre>
+
+<p>Regards,</p>
+
+<p>Max</p>

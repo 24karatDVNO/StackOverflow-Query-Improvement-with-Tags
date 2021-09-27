@@ -1,0 +1,26 @@
+<p>StaxMan is correct that the type of the JSON array in Java is <code>List</code> (with <code>ArrayList</code> as implementation), assuming that the JSON is deserialized similar to </p>
+
+<pre><code>Map&lt;String, Object&gt; map = JSONParser.defaultJSONParser().parse(Map.class, jsonInput);
+</code></pre>
+
+<p>It is easy to determine such things by simply inspecting the types.</p>
+
+<pre><code>Map&lt;String, Object&gt; map = JSONParser.defaultJSONParser().parse(Map.class, jsonInput);
+System.out.println(map);
+
+for (String key : map.keySet())
+{
+  Object value = map.get(key);
+  System.out.printf("%s=%s (type:%s)\n", key, value, value.getClass());
+}
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>{arguments=[hello], method=whoIs, server=clients}
+arguments=[hello] (type:class java.util.ArrayList)
+method=whoIs (type:class java.lang.String)
+server=clients (type:class java.lang.String)
+</code></pre>
+
+<p>Also, <a href="http://code.google.com/p/svenson/wiki/ParsingJSON" rel="nofollow">the svenson documentation on basic JSON parsing</a> describes that "[b]y default, arrays will be parsed into <code>java.util.List</code> instances".</p>

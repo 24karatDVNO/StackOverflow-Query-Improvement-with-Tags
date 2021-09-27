@@ -1,0 +1,17 @@
+<p>Try this, splits the data at a space, and then sees if the query is in the array.</p>
+
+<pre><code>$query="red";
+$FileName = "search.txt";
+$fh = fopen($FileName, 'r') or die("Can't open file");
+$data = fread($fh, filesize($FileName));
+$items = explode(" ", $data);
+$Pos = array_search ($query, $items);
+if($Pos !== FALSE)
+{
+    echo "Found";
+}
+else
+{
+    echo "Not Found";
+}
+</code></pre>

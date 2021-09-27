@@ -1,0 +1,17 @@
+<p>You can easily do it with jquery, here is an example,</p>
+
+<pre><code>$(document).ready(function(){
+
+  $('#blue').click(function(event) {
+    $('#text').css('background-color','blue');
+  });
+
+  $('#grey').click(function(event) {
+    $('#text').css('background-color','grey');
+  });
+
+});
+&lt;div id="text" style="background-color:grey;" &gt;Hello World&lt;/div&gt;
+&lt;div id="blue" style="cursor:pointer" &gt;blue&lt;/div&gt;
+&lt;div id="grey" style="cursor:pointer" &gt;grey&lt;/div&gt;
+</code></pre>

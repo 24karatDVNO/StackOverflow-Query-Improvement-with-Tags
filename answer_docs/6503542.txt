@@ -1,0 +1,31 @@
+<p>This is one way to do it:</p>
+
+<pre><code>&lt;system.serviceModel&gt;
+  &lt;services&gt;
+    &lt;service behaviorConfiguration="Service1Behavior" name="WcfTest.Service1"&gt;
+      &lt;endpoint address="" contract="WcfTest.IService1" binding="wsHttpBinding" /&gt;
+      &lt;endpoint address="/basic/" binding="basicHttpBinding" contract="WcfTest.IService1" /&gt;
+      &lt;endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" /&gt;
+    &lt;/service&gt;
+  &lt;/services&gt;
+  &lt;behaviors&gt;
+    &lt;serviceBehaviors&gt;
+      &lt;behavior name="Service1Behavior"&gt;
+        &lt;serviceMetadata httpGetEnabled="true" /&gt;
+        &lt;serviceDebug includeExceptionDetailInFaults="true" /&gt;
+      &lt;/behavior&gt;
+    &lt;/serviceBehaviors&gt;
+  &lt;/behaviors&gt;
+&lt;/system.serviceModel&gt;
+</code></pre>
+
+<p>In the above example I put <code>wsHttpBinding</code> at the root address <a href="http://server/service1.svc" rel="nofollow">http://server/service1.svc</a> while <code>basicHttpBinding</code> can be found at <a href="http://server/service1.svc/basic/" rel="nofollow">http://server/service1.svc/basic/</a>.  Note that you will not be able to see <a href="http://server/service1.svc/basic/" rel="nofollow">http://server/service1.svc/basic/</a> in a browser but that does not mean that it is not there.</p>
+
+<p>To add a reference to the <code>wsHttpBinding</code> endpoint in Visual Studio just add a service reference as you would normally do.  To add a reference to the <code>basicHttpBinding</code> endpoint, go to the advanded settings dialog of the "Add service reference" screen and choose "Add Web Reference".  </p>
+
+<p>Note that to generate the client proxies for the <code>basicHttpBinding</code> endpoint you have to use <a href="http://server/service1.svc" rel="nofollow">http://server/service1.svc</a> and <strong>not</strong> <a href="http://server/service1.svc/basic/" rel="nofollow">http://server/service1.svc/basic/</a> when adding the web reference.  But if you take a closer look at the generated .config file on the client you will see that it uses the /basic/ endpoint as it should:</p>
+
+<pre><code>&lt;endpoint address="http://server/Service1.svc/basic/"
+    binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IService1"
+    contract="Service1Reference.IService1" name="BasicHttpBinding_IService1" /&gt;
+</code></pre>

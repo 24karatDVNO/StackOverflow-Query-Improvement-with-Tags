@@ -1,0 +1,1 @@
+<p>Perhaps you want <code>preg_replace</code>. It would then be: <code>$str = preg_replace('#&lt;img.+?&gt;#is', '', $str)</code>, although it should be noted that for any non-trivial HTML processing you must use an XML parser, for example using <code>DOMDocument</code></p>

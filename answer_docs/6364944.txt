@@ -1,0 +1,29 @@
+<p>After reading about the different loader strategies, I figured my problem had to be with instantiating a dijit in some javascript code before the file had been loaded. </p>
+
+<p>Turned out the offending line was here:</p>
+
+<pre><code>dojo.provide("widget.DatePicker");
+
+dojo.require("dijit._Widget");
+dojo.require("dijit._Templated");
+dojo.require("dijit.Dialog");
+
+dojo.declare("widget.DatePicker", [dijit._Widget, dijit._Templated],  {
+
+    ...
+
+    //private fields
+    _dialogBox:new dijit.Dialog({
+        title: "Warning!"
+    }),
+
+    ...
+
+});
+</code></pre>
+
+<p>I fixed it by moving the instantiation into the <code>postCreate</code> function so as to be sure the widget and all "require"s would be loaded.</p>
+
+<p>I'm still not 100% sure why the standard loader would exhibit this problem, because by my understanding it loads things synchronously; whereas the XD loader loads asynchronously.  My guess is that during the widget lifecycle, the widget attributes get created before the widget's "require"s are loaded.  But that doesn't explain why the XD loader would work in this situation...</p>
+
+<p>If someone can explain why the XD loader works, when the standard loader fails in this situation, I would gladly accept that answer.  Otherwise, I'll accept my answer because it does fix the problem.  </p>

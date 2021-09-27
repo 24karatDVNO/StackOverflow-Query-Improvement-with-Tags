@@ -1,0 +1,30 @@
+<p>Following from anydot's suggestion above here's the answer:</p>
+
+<p>Before starting the thread, create a shared queue</p>
+
+<pre><code>use threads;
+use Thread::Queue;
+use threads::shared;
+my $queue:shared = Thread::Queue-&gt;new();
+</code></pre>
+
+<p>In the input event, create some shared data to enqueue</p>
+
+<pre><code>        my %data:shared = ();
+
+        $data{PASS_VCPRJ_COUNT} = () = $_[ARG0] =~ /^\d+.*vcproj.*0 error.*\d+ warning/g;
+        $data{DONE_VCPRJ_COUNT} = () = $_[ARG0] =~ /^\d+.*vcproj.*d+ error.*\d+ warning/g;
+        $queue-&gt;enqueue(\%data) if($data{DONE_VCPRJ_COUNT} ne 0 || $data{PASS_VCPRJ_COUNT} ne 0);
+</code></pre>
+
+<p>Then in the screen update code, dequeue it, here non-blocking</p>
+
+<pre><code>if (defined(my $item = $queue-&gt;dequeue_nb()))
+    {
+    foreach my $key(%$item)
+    {print "$key       $item-&gt;{$key}\n";}
+    }
+</code></pre>
+
+<p>There are other ways, I'm sure but this works for me.
+Many thanks.</p>

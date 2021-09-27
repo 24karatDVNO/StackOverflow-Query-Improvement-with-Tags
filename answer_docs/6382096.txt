@@ -1,0 +1,42 @@
+<p>This is just a collection of relevant Oracle documentation that answers to my question. I accepted Phil's answer as I found the right section of documentation based on that.</p>
+
+<p>From chapter <a href="http://docs.oracle.com/cd/E11882_01/appdev.112/e23094/xdb05sto.htm" rel="nofollow noreferrer">7 XML Schema Storage and Query: Basic</a> of <a href="http://docs.oracle.com/cd/E11882_01/appdev.112/e23094/toc.htm" rel="nofollow noreferrer">Oracle XML DB Developer's Guide 11g Release 2 (11.2)</a>:</p>
+
+<blockquote>
+  <p><strong>Working with Time Zones</strong></p>
+  
+  <p>The following XML Schema data types allow for an optional time-zone indicator as part of their literal values.</p>
+  
+  <ul>
+  <li><code>xsd:dateTime</code></li>
+  <li><code>xsd:time</code></li>
+  <li><code>xsd:date</code></li>
+  <li><code>xsd:gYear</code></li>
+  <li><code>xsd:gMonth</code></li>
+  <li><code>xsd:gDay</code></li>
+  <li><code>xsd:gYearMonth</code></li>
+  <li><code>xsd:gMonthDay</code></li>
+  </ul>
+  
+  <p>By default, XML schema registration maps <code>xsd:dateTime</code> and <code>xsd:time</code> to SQL data type <code>TIMESTAMP</code> and all the other data types to SQL data type <code>DATE</code>. SQL data types <code>TIMESTAMP</code> and <code>DATE</code> do not permit a time-zone indicator.</p>
+  
+  <p>If your application needs to work with time-zone indicators, then use attribute <code>SQLType</code> to specify the SQL data type as <code>TIMESTAMP WITH TIME ZONE</code>. This ensures that values containing time-zone indicators can be stored and retrieved correctly. For example:</p>
+
+<pre><code>&lt;element name="dob" type="xsd:dateTime"
+      xdb:SQLType="TIMESTAMP WITH TIME ZONE"/&gt;
+&lt;attribute name="endofquarter" type="xsd:gMonthDay"
+       xdb:SQLType="TIMESTAMP WITH TIME ZONE"/&gt;
+</code></pre>
+  
+  <p><strong>Using Trailing Z to Indicate UTC Time Zone</strong></p>
+  
+  <p>XML Schema lets the time-zone component be specified as <code>Z</code>, to indicate UTC time zone. When a value with a trailing <code>Z</code> is stored in a SQL <code>TIMESTAMP WITH TIME ZONE</code> column, the time zone is actually stored as <code>+00:00</code>. Thus, the retrieved value contains the trailing <code>+00:00</code>, not the original <code>Z</code>. For example, if the value in the input XML document is <code>1973-02-12T13:44:32Z</code>, the output is <code>1973-02-12T13:44:32.000000+00:00</code>.</p>
+</blockquote>
+
+<p>See also:</p>
+
+<ul>
+<li><a href="http://docs.oracle.com/cd/E11882_01/appdev.112/e23094/xdb05sto.htm#ADXDB4514" rel="nofollow noreferrer">Oracle XML Schema Annotations</a></li>
+<li><a href="http://docs.oracle.com/cd/E11882_01/appdev.112/e23094/xdb05sto.htm#ADXDB4527" rel="nofollow noreferrer">Mapping XML Schema Data Types to SQL Data Types</a></li>
+<li><a href="http://docs.oracle.com/cd/E11882_01/appdev.112/e23094/xdb05sto.htm#g1048807" rel="nofollow noreferrer">Table 7-9 Mapping XML Schema Date and Time Data Types to SQL</a></li>
+</ul>

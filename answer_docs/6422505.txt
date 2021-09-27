@@ -1,0 +1,6 @@
+<p>You can try below as well.</p>
+
+<pre><code>Select CHARINDEX(@var1,REMARKS), 
+SUBSTRING (REMARKS, CHARINDEX(@var1,REMARKS) ,500), * 
+From XPTO where REMARKS like @var1 + '%' and REMARKS like '%' + @var2
+</code></pre>

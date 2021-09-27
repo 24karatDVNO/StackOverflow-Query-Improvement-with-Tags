@@ -1,0 +1,27 @@
+<p>Try the following:</p>
+
+<pre><code>DECLARE @StartDate DATETIME
+DECLARE @EndDate DATETIME
+SET @StartDate = '2011/06/01'
+SET @EndDate = '2011/06/31'
+
+SELECT   
+    (DATEDIFF(dd, @StartDate, @EndDate) + 1)  - 
+    (DATEDIFF(wk, @StartDate, @EndDate) * 5)  -
+    (
+        CASE 
+           WHEN DATENAME(dw, @StartDate) in 
+               ('Sunday', 'Tuesday', 'Wednesday', 'Turesday', 'Saturday') 
+           THEN 1 
+           ELSE 0 
+        END
+    )  -
+    (
+        CASE 
+           WHEN DATENAME(dw, @EndDate) in 
+               ('Sunday', 'Tuesday', 'Wednesday', 'Turesday', 'Saturday') 
+           THEN 1 
+           ELSE 0 
+        END
+    )
+</code></pre>

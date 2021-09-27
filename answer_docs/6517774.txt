@@ -1,0 +1,11 @@
+<p>This part of your css causes the problem:</p>
+
+<pre class="lang-css prettyprint-override"><code>.greeting img {
+  border: none;
+  /* curved border radius */
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 7px #777;
+  -moz-box-shadow: 3px 3px 7px #777;
+}
+</code></pre>

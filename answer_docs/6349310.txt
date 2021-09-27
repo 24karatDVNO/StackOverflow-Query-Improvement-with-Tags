@@ -1,0 +1,19 @@
+<pre><code>class Account : IAccount    
+    {         
+    public string SomeMethod()         
+    {            
+     return "Test";         
+    }     
+    } 
+</code></pre>
+
+<p>Tell your class to implement the interface. Using the Interface.Method name explicitly implements the method (but i'm not sure why or how) and you need to make them public.</p>
+
+<p>You want to use Interface.Method to explicitly implement an interface requirement when the class already has a member of the same name</p>
+
+<pre><code>class MyClass : IAccount
+{
+   public int SomeMethod() {}
+   public string IAccount.SomeMethod() {}
+}
+</code></pre>

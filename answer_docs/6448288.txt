@@ -1,0 +1,8 @@
+<p>I had the same trouble, nothing seemed to fix it so I used the <code>print</code> version:</p>
+
+<pre><code>ob_start();
+debug_print_backtrace();
+$bt = ob_get_clean();
+</code></pre>
+
+<p>not elegant, but the hanging problem disappeared.</p>

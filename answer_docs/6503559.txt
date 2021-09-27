@@ -1,0 +1,16 @@
+<p>I found the solution<br>
+keep it here, if someone will need same thing once</p>
+
+<pre><code>MPMediaQuery *everything = [[MPMediaQuery alloc] init];
+
+    NSArray *itemsFromGenericQuery = [everything items];
+
+    for (MPMediaItem *song in itemsFromGenericQuery) 
+    {            
+        if ([savedUrl isEqual:[song valueForProperty:MPMediaItemPropertyAssetURL]])
+        {
+            ownMediaItemCollection = [MPMediaItemCollection collectionWithItems: [NSArray arrayWithObject:song]];
+        }
+    }
+    [everything release];
+</code></pre>

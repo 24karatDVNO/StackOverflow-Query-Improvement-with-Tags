@@ -1,0 +1,3 @@
+<p>This type of loop is known as a <a href="http://download.oracle.com/javase/1,5.0/docs/guide/language/foreach.html" rel="nofollow">foreach</a> loop in Java.  Basically, it's shorthand for saying, "for each item in this array/collection/iterable, do ..."</p>
+
+<p>The shorthand is nice, but the downside, as you have run into, is that you don't have access to the index or iterator inside the loop when you use this form.  So you should either separately track the index (like you're already trying to do, see Terrell's answer for the correct way), or use standard loop syntax, e.g. <code>for(int i=0; i&lt;mProject.length; i++)</code></p>

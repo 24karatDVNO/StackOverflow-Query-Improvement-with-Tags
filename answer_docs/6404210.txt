@@ -1,0 +1,31 @@
+<p>You can try smth like that:</p>
+
+<pre><code>//split h1 content by spaces
+
+
+function color_header(str) {
+    var words = str.split(' ');
+    var words_num = words.length;
+
+    if (words_num &gt; 1) {
+        var first_color_words = Math.floor(words_num / 2);
+    } else {
+        return str;
+    }
+
+    str = '&lt;span class="color-1"&gt;';
+    for (var i = 0; i &lt; words_num; i += 1) {
+        str += words[i];
+        if (i === first_color_words - 1) {
+            str += '&lt;/span&gt;&lt;span class="color-2"&gt;';
+        }
+        if (i !== (words_num - 1)) {
+            str += ' ';
+        }
+    }
+    str += '&lt;/span&gt;';
+    return str;
+}
+</code></pre>
+
+<p>Function receives string with title, and returnes html string like <code>&lt;span class="color-1"&gt;part 1&lt;/span&gt;&lt;span class="color-2"&gt; part 2&lt;/span&gt;</code>. If there is only 1 word in title - returns initial string</p>

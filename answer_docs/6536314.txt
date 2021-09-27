@@ -1,0 +1,18 @@
+<p>There are a lots of mistakes in your code,
+You were initially returning a structure pointer whereas your function declaration says int.</p>
+
+<pre><code> struct arco *compDist(const void *a, *void const *b, i, j){
+  struct arco *ia = (struct arco *)a;
+  struct arco *ib = (struct arco *)b;
+  return(if(ia-&gt;arco[i].dist &gt; ib-&gt;arco[j].dist)? *ia : *ib)
+}
+</code></pre>
+
+<p>Also a comparison like</p>
+
+<pre><code>if(*ia &gt; *ib)
+</code></pre>
+
+<p>is invalid, you can't just compare two structures, in c++, you could overload the '>' operator but you can't do the same in c as far as i know.</p>
+
+<p>That should work but i can't guarantee it as i have no idea how you've defined your structure arco.</p>

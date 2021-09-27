@@ -1,0 +1,25 @@
+<p>This is a basic Htaccess for what you want:</p>
+
+<pre><code># Just Province
+RewriteRule ^p-([a-z0-9]+)/?$ page.php?provinces =$1 [L,NC]
+
+# Province and City
+RewriteRule ^p-([a-z0-9]+)/c-([a-z0-9]+)/?$ page.php?provinces =$1&amp;city=$2 [L,NC]
+
+# Province, City and Listing
+RewriteRule ^p-([a-z0-9]+)/c-([a-z0-9]+)/([a-z0-9]+)-listings/?$ page.php?provinces =$1&amp;city=$2&amp;type=$3 [L,NC]
+
+# Province, City, Listing, Price
+RewriteRule ^p-([a-z0-9]+)/c-([a-z0-9]+)/([a-z0-9]+)-listings/([a-z0-9-]+)/?$ page.php?provinces =$1&amp;city=$2&amp;type=$3&amp;price=$4 [L,NC]
+
+# Province, City, Listing, Price, Beds
+RewriteRule ^p-([a-z0-9]+)/c-([a-z0-9]+)/([a-z0-9]+)-listings/([a-z0-9-]+)/([0-9]+)-bed/?$ page.php?provinces =$1&amp;city=$2&amp;type=$3&amp;price=$4&amp;beds=$5 [L,NC]
+
+# Province, City, Listing, Price, Beds, Bathrooms
+RewriteRule ^p-([a-z0-9]+)/c-([a-z0-9]+)/([a-z0-9]+)-listings/([a-z0-9-]+)/([0-9]+)-bed/([0-9]+)-bath/?$ page.php?provinces =$1&amp;city=$2&amp;type=$3&amp;price=$4&amp;beds=$5&amp;bathrooms=$6 [L,NC]
+</code></pre>
+
+<p>Instead of adding extra Htaccess to account for the optional city and price, you could just pass <code>any</code>:</p>
+
+<pre><code>mysite.com/p-ontario/c-any/house-listings/any/1-bed/1-bath
+</code></pre>

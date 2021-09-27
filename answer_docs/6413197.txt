@@ -1,0 +1,46 @@
+<p>It's been a while since this question was posted, but here's how I did multiple tld generation with TLDGen. I started from your question, since the guys over at the project used your answer as a reference :).</p>
+
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.7&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;includes&gt;
+            &lt;include&gt;**&lt;/include&gt;
+        &lt;/includes&gt;
+        &lt;doclet&gt;org.tldgen.TldDoclet&lt;/doclet&gt;
+        &lt;docletArtifacts&gt;
+            &lt;!-- listing all dependencies for tldgen: 
+            the tldgen library, commons-logging, commons-io, 
+            commons-lang, geronimo-jsp_2.1_spec, log4j, saxon, stax
+            not sure if they have to be listed here, will have to check; if I
+            don't set them I get class not found errors, but I'm guessing I 
+            have a misconfiguration --&gt;
+        &lt;/docletArtifacts&gt;
+        &lt;show&gt;private&lt;/show&gt;
+        &lt;additionalparam&gt;
+            -htmlFolder ${basedir}/target/docs
+            -tldFolder ${basedir}/src/main/java/META-INF
+            -license NONE
+        &lt;/additionalparam&gt;
+        &lt;useStandardDocletOptions&gt;true&lt;/useStandardDocletOptions&gt;
+        &lt;author&gt;false&lt;/author&gt;
+        &lt;encoding&gt;utf-8&lt;/encoding&gt;
+    &lt;/configuration&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.xml.bind&lt;/groupId&gt;
+            &lt;artifactId&gt;jsr173_api&lt;/artifactId&gt;
+            &lt;version&gt;1.0&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;phase&gt;generate-resources&lt;/phase&gt;                            
+            &lt;goals&gt;
+                &lt;goal&gt;javadoc&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>

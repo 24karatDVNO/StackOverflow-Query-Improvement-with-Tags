@@ -1,0 +1,35 @@
+<p>My code in this answer will show you how a good way to move your objects. (same system your using now)
+You could easily adapt this to your system.
+<a href="https://stackoverflow.com/questions/6247730/movement-of-objects-in-a-simulation/6255259#6255259">Movement of Objects in a simulation</a></p>
+
+<p>Now to reflect off the wall just reverse the x or y velocity depending on what wall it hit.</p>
+
+<pre><code>vx *= -1; // if you hit the left or right side of the stage.
+vy *= -1; // if you hit the top or bottom of the stage.
+</code></pre>
+
+<p>Note: There is an issue with bouncing things off the wall like this. Every once in a while when you bounce the object will oscillate and get stuck bouncing off the wall ever frame.</p>
+
+<p>The easiest way around this (with the code your using) is when you check for a collision with the stage boundaries make sure you take into account the size of the object.</p>
+
+<p>Something like this.</p>
+
+<pre><code>if(x - width &lt; 0)
+{
+     x = width;
+     // we would now want to change the velocity.
+     vx *= -1;
+}
+
+if( x + width &gt; stage.stageWidth)
+{
+     x = stage.stageWidth - width;
+     // we would now want to change the velocity.
+     vx *= -1;
+}
+</code></pre>
+
+<p>same basic thing for the y axis.
+Hope this helps.</p>
+
+<p>Edit: by the way if your wanting to do billiard balls you really should use vectors. They will save you some headaches when you go to do collision detection against fast moving objects.</p>

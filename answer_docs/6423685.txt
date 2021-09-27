@@ -1,0 +1,28 @@
+<p>add a style to your css file</p>
+
+<pre><code>.hidden {display:none;}
+</code></pre>
+
+<p>and now use in your jquery code as follows </p>
+
+<pre><code>$('#prac_slider li a').click(function(){
+    if($(this).attr('class') != 'active') {
+        $('#loadingimage').removeClass('hidden');
+        $('#prac_slider li a').removeClass('active').animate({ "opacity" : 0.5 });
+        $(this).addClass('active').animate({ "opacity" : 1 });
+        var $permalink = $(this).attr('href');
+        $('#practitioner').fadeOut(1000, function(){
+            $(this).load($permalink + ' #pracLoad',function(){
+            $(this).fadeIn();
+        })
+        $('#loadingimage').addClass('hidden');
+        });
+    }
+    return false;
+});
+</code></pre>
+
+<p>and finally have a image like this</p>
+
+<pre><code>&lt;img src=""images/loading.gif" class="hidden" id="loadingimage" /&gt;
+</code></pre>

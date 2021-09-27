@@ -1,0 +1,3 @@
+<p>Just a guess, but as far as I seen the overlays were used rather for JSON type data. Here your try to perform marshaling for browser API object. I'm not sure if it is going to work this way. Especially that JSNI have restrictions of types being passed.</p>
+
+<p>Maybe you could try storing WebSocket as a field in native part, and delegate methods to that field. But this is just a blind guess. </p>

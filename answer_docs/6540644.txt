@@ -1,0 +1,16 @@
+<p>I'm not sure what this bit does:</p>
+
+<pre><code>if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    [UIApplication sharedApplication] ;
+    return NO;
+    }
+</code></pre>
+
+<p>The line <code>[UIApplication sharedApplication];</code> creates and returns the singleton application instance. You aren't doing anything with it.</p>
+
+<p>Also, both <code>if</code> statements are identical, so only the first will ever be hit and the method returns <code>NO</code>. There is no default returned value, which is bad for a non-void function. Try this instead:</p>
+
+<pre><code>- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
+}
+</code></pre>

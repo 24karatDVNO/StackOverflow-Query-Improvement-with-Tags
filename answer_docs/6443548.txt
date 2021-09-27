@@ -1,0 +1,37 @@
+<p>You can put logic like this in a generator:</p>
+
+<pre><code>def take(seq, n):
+    """ gets n items from a sequence """
+    return [next(seq) for i in range(n)]
+
+def getblocks(lines):
+    # `it` is a iterator and knows where we are in the list of lines.
+    it = iter(lines)
+    for line in it:
+        try:
+            # try to find the header:
+            sec, heading, num = line.split()
+            num = int(num)
+        except ValueError:
+            # didnt work, try the next line
+            continue
+
+        # we got a header, so take the next lines
+        yield take(it, num) 
+
+#test
+data = """
+Section1 Heading  3
+Line 1
+Line 2
+Line 3
+
+Maybe some irrelevant lines
+
+Section2 Heading 2
+Line 1
+Line 2
+""".splitlines()
+
+print list(getblocks(data))
+</code></pre>

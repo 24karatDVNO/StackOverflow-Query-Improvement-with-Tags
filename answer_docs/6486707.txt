@@ -1,0 +1,11 @@
+<pre><code>cd folder
+for file in $(find . -type f -name '*.csv')
+do
+    echo $file
+    awk -F"," '{printf("%s,%s,%s\n", $1, $11, $12)}' $file &gt; /tmp/${file}.$$
+    #awk -F"," '/^(\".+?\"),[0-9]+?,"X",-99,-99,-99,-99,-99,-99,-99,([0-9]+),([0-9]+)/ {printf("%s,%s,%s\n", $1, $11, $12)}' $file &gt; /tmp/${file}.$$
+    #mv /tmp/${file}.$$ ${file}
+done
+</code></pre>
+
+<p>Comment first awk and uncomment second awk, if you need the regular exp. Uncomment last mv after testing.</p>

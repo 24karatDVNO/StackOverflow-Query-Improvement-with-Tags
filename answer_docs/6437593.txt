@@ -1,0 +1,7 @@
+<p>Autoload and the include family functions both have their place.  </p>
+
+<p>Autoload is intended for lazy loading of modules in an OO based script (namely classes and interfaces) and is invoked when you use new or statically call a method of a class that hasn't yet been loaded.  This triggers autoload to run a function that attempts to load (typically via include) the class or interface in question.  The advantage of this approach is that classes are only loaded as and when they are needed.  Any class that doesn't get used doesn't get loaded.  </p>
+
+<p>Autoload cannot be used for loading program fragments that aren't a class or an interface, for those items you still need the include family.  </p>
+
+<p>As for having to add an autoload function to every script that needs to autoload?  In this case you put the autoload function in its own file and include it in the scripts that need to autoload.  :)</p>

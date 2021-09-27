@@ -1,0 +1,27 @@
+<p>
+
+    </p>
+
+<pre><code>&lt;application android:icon="@drawable/icon" android:label="@string/app_name"&gt;
+    &lt;activity android:name=".CoaActivity"
+              android:label="@string/app_name"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN" /&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+    &lt;activity android:name=".MainMenu" 
+        android:theme="@android:style/Theme.NoTitleBar"&gt;
+    &lt;/activity&gt;
+    &lt;activity android:name=".favorites"&gt;&lt;/activity&gt;
+    &lt;activity android:name=".FoodMenu"&gt;&lt;/activity&gt;
+    &lt;activity android:name=".Info"&gt;&lt;/activity&gt;
+    &lt;activity android:name=".Restaurants"&gt;&lt;/activity&gt;
+    &lt;activity android:name=".Home"&gt;&lt;/activity&gt;
+    &lt;activity android:name=".RestaurantInfo"&gt;&lt;/activity&gt;
+&lt;/application&gt;
+</code></pre>
+
+<p></p>
+
+<p>favorites, foodmenu, info, restaurants, home have their own tabs. But restaurant info doesnt have its own tab. And when i try to run restaurant info by an intent I have the exception.</p>

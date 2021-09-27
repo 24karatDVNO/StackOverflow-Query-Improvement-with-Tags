@@ -1,0 +1,9 @@
+<p>List comprehensions is your best friend :).</p>
+
+<pre><code>&gt;&gt;&gt; headers = ['Date', 'Temp', 'Descrip', 'ID', 'Lat', 'Long', 'FID']
+&gt;&gt;&gt; replace = ['Date', 'ID', 'FID']
+&gt;&gt;&gt; [i+"_" if i in replace else i for i in headers]
+['Date_', 'Temp', 'Descrip', 'ID_', 'Lat', 'Long', 'FID_']
+</code></pre>
+
+<p>Of course you can change <code>i+"_"</code> to <code>"".join((i, "_"))</code> for performance reasons, I write it like this for readability.</p>

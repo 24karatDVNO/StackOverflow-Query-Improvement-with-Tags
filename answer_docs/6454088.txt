@@ -1,0 +1,9 @@
+<p>You can call preventDefault() on pressing key on inputs, something like this:</p>
+
+<pre><code>$('input[type="button"]').keypess(function (e) { 
+    var kk = navigator.appName == 'Netscape' ? e.which : e.keyCode;
+    if (kk == 13) {
+        e.preventDefault(); 
+    }
+});
+</code></pre>

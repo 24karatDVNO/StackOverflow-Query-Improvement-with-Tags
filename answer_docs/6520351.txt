@@ -1,0 +1,17 @@
+<p>you can test following query also...</p>
+
+<p>I have oracle in my machine that's why I can run and say only oracle queries..</p>
+
+<p>please check whether this will work on sql server also or not and tell me about ...</p>
+
+<pre><code>select * from 
+     (Select lag (col1) over (order by col1)|| '-' || col1  as col1
+      col2 + lag (col2) over (order by col1) as Col2 
+     From mytable
+     )
+where col2 is not null;
+</code></pre>
+
+<p>in oracle lag () function used to fatch last row values.. and if it is first row then this function will give null values.. so that by appling addition on null values you will get null only </p>
+
+<p>by this concept we will get desired output...</p>

@@ -1,0 +1,21 @@
+<p>How I would write it concisely, if I just needed 1 element's worth of lookahead:</p>
+
+<pre><code>SEQUENCE_END = object()
+
+def lookahead(iterable):
+    iter = iter(iterable)
+    current = next(iter)
+    for ahead in iter:
+        yield current,ahead
+        current = ahead
+    yield current,SEQUENCE_END
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code>&gt;&gt;&gt; for x,ahead in lookahead(range(3)):
+&gt;&gt;&gt;     print(x,ahead)
+0, 1
+1, 2
+2, &lt;object SEQUENCE_END&gt;
+</code></pre>

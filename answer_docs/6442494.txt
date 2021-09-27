@@ -1,0 +1,19 @@
+<p>You could create a small .net application to populate the table when needed. Here is an example in vb. It can be easily translated into c# by googling vb to C# converter. Just copy and paste the code into the converter.</p>
+
+<pre><code>    Dim myConnection As SqlConnection
+    Dim myCommand As SqlCommand
+    Dim i as Integer 
+
+    'Connect to database
+    myConnection = New SqlConnection("server=localhost;uid=sa;pwd=;database=yourdb") 
+    myConnection.Open()
+
+    'Insert rows, you may be able to use a for loop to make inserting easier
+    myCommand = New SqlCommand("INSERT INTO yourtable VALUES( 12, _
+    'IT Manager')",100,300,myConnection)
+    i=myCommand.ExecuteNonQuery()
+
+    'Close the connection
+
+    myConnection.Close()
+</code></pre>

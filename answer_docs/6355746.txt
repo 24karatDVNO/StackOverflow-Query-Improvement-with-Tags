@@ -1,0 +1,22 @@
+<p>from the top of my head :</p>
+
+<pre><code>select c_started.courseID, c_started.courseDate as StartDate, c_completed.courseDate as CompletedDate, 
+case 
+ when c_completed.courseDate IS NULL then 'incomplete'
+ Else 'completed'
+end as courseStatus
+from tbCourses as c_started
+left join tbCourses as c_completed on c_started.courseID = c_completed.courseID 
+and c_started.courseDate &lt; c_completed.courseDate
+where c_started.Status = 'S'
+</code></pre>
+
+<p>Would give you something like the following :</p>
+
+<p>courseID -- StartDate -- CompletedDate --   courseStatus</p>
+
+<p>course1 -- 2010-01-12 -- 2010-02-25      --  completed</p>
+
+<p>course2 -- 2011-01-21 -- NULL            --  incomplete</p>
+
+<p>course3 -- 2010-10-15 -- NULL            --  incomplete</p>

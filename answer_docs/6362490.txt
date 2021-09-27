@@ -1,0 +1,13 @@
+<p>you could use querystring to specify which press release to show.</p>
+
+<p>here's how to parse the querystring: <a href="https://stackoverflow.com/questions/901115/get-query-string-values-in-javascript">How can I get query string values in JavaScript?</a></p>
+
+<p>assuming you use the function from the aforementioned link it would be something like:</p>
+
+<p>on home:</p>
+
+<p><code>&lt;a href="press.html?pr=monkeysattack"&gt;Monkeys attack small children.&lt;/a&gt;</code></p>
+
+<p>on press.html:</p>
+
+<p><code>$(function() { $('.pr').not('# + getParameterByName('pr')).hide(); }</code></p>

@@ -1,0 +1,9 @@
+<p>Since there are no answers (or am I too impatient?), there is.. not a solution but rather a workaround I have found.</p>
+
+<p>Actually, what I would have wanted is a deep search that is parameterizable (which unfortunately does not exist, though I suppose you could do it recursively yourself).</p>
+
+<p>So.. the workaround is: I make the windows I don't want invisible.</p>
+
+<p>Strangely and interestingly enough, this is easily doable from outside your application, simply call the ShowWindow ( <a href="http://www.pinvoke.net/default.aspx/user32/ShowWindow.html" rel="nofollow">http://www.pinvoke.net/default.aspx/user32/ShowWindow.html</a> ) function and hide the window that you don't want to take into account. You could reset it later to its original state if you don't want to change the target application.</p>
+
+<p>Anybody who has a better solution: by all means, please tell me!</p>

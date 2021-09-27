@@ -1,0 +1,6 @@
+<p>Have a class setup like <code>.selected{background-color:red}</code> That defines the different background color you want to view. Then when you render the page, since you already know which tab it is, you just render the selected tab with that class attached. If you are rendering the tab content through ajax you can just find all tabs with class "selected" and then add the class to the selected tab
+$("#topmenu li").live("click", function()
+{
+    $("#topmenu").find(".selected").removeClass("selected");
+    $(this).addClass("selected");
+});</p>

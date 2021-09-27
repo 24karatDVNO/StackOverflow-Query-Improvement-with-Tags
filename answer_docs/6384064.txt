@@ -1,0 +1,48 @@
+<p>I downloaded the source code from Managed Fusion and added the project to my solution.</p>
+
+<p>I searched and found this bit of code below that appends the QueryString. I updated the code by adding a new method to remove the querystring CODE and affix a FIXED one.</p>
+
+<p>I also added a Setting to control the FIXED Value assigned to the CODE.</p>
+
+<pre><code>  private Uri AppendQueryString(Uri substituedUrl, Uri existingUrl)
+    {
+        string append = existingUrl.Query.TrimStart('?');
+
+        if (!String.IsNullOrEmpty(append))
+        {
+            UriBuilder builder = new UriBuilder(substituedUrl);
+
+            if (String.IsNullOrEmpty(builder.Query) || builder.Query == "?")
+                builder.Query = append;
+            else
+                builder.Query = builder.Query.TrimStart('?') + "&amp;" + append;
+
+            return AppendFixedQueryString(builder.Uri, existingUrl);
+        }
+
+        return AppendFixedQueryString(substituedUrl, existingUrl);
+    }
+</code></pre>
+
+<p>ADDED NEW METHOD</p>
+
+<pre><code>    private Uri AppendFixedQueryString(Uri substituedUrl, Uri existingUrl)
+    {
+        string append = string.Format("CODE={0}", Settings.Default.CODE);
+
+
+        if (!String.IsNullOrEmpty(append))
+        {
+            UriBuilder builder = new UriBuilder(substituedUrl);
+            builder.Query = Regex.Replace(builder.Query, @"CODE=([0-9]+)", String.Empty);
+            if (String.IsNullOrEmpty(builder.Query) || builder.Query == "?")
+                builder.Query = append;
+            else
+                builder.Query = builder.Query.TrimStart('?').Trim("&amp;".ToCharArray()) + "&amp;" + append;
+            return builder.Uri;
+        }
+        return substituedUrl;
+    }
+</code></pre>
+
+<p>With this modification. even if the user explictly types CODE=123 at the URL it will just be ignored and a fixed CODE value will be assigned</p>

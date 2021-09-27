@@ -1,0 +1,33 @@
+<p>If you'd designed your class to have accessors and mutators, rather than public access to raw variables, then this would be easy.</p>
+
+<p>Original code:</p>
+
+<pre><code>class user {
+   private $FirstName = '';
+
+   public function getFirstName() {
+      return $this-&gt;FirstName;
+   }
+}
+</code></pre>
+
+<p>Solution code:</p>
+
+<pre><code>class user {
+   private $FirstName = '';
+
+   public function getFirstName() {
+      return utf8_encode($this-&gt;FirstName);
+   }
+}
+</code></pre>
+
+<p>I suggest moving towards this approach.</p>
+
+<p>Otherwise no, the object cannot do it automatically.</p>
+
+<hr>
+
+<p><strong>Edit</strong></p>
+
+<p><code>__set</code> and <code>__get</code> might be the most appropriate way to implement this. I'm not too familiar with them, and it doesn't really matter: the point I'm making here is to use accessors and mutators... however you end up implementing them.</p>

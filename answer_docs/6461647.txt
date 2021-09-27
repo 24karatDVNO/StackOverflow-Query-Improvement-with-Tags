@@ -1,0 +1,4 @@
+<pre><code>update customers_basket 
+set products_id = CONCAT('S', RIGHT(products_id,CHAR_LENGTH(products_id)-1))
+WHERE LEFT(products_id,1) = 'U'
+</code></pre>

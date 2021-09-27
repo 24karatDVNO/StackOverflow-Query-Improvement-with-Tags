@@ -1,0 +1,23 @@
+<p>I figured I had to make a class level button and view to update the function of the button from the new form.</p>
+
+<pre><code>        try{
+        LinearLayout layout = (LinearLayout) findViewById(R.id.contacteditll);
+        LinearLayout layout2 = (LinearLayout) layout.findViewById(R.id.numbersll);
+
+        LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        tempView = vi.inflate(R.layout.form, null);
+        numberEntryViews.add(tempView);
+
+        layout2.addView(tempView);
+        btn = (ImageButton) tempView.findViewById(R.id.form_button);
+        //TODO: Work from here. Ask on Stack Overflow.
+        btn.setOnClickListener(this);
+    }
+    catch (Exception e)
+    {
+        e.printStackTrace();
+        Log.d(TAG, "Failed to inflate");
+    }
+</code></pre>
+
+<p>btn is class level and is updated on every click. Removes function from the last button which makes sense in my case.</p>

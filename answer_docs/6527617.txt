@@ -1,0 +1,12 @@
+<p>How about something like this:</p>
+
+<pre><code>$("#buttonId").click(function() {
+   var numElements =  $(".newjobz").length;
+   var randomContent = $(".newjobz").eq(Math.floor(Math.random() * numElements)).html();
+   $("#divToChange").html(randomContent); 
+});
+</code></pre>
+
+<p>You could shorten this by getting rid of the variable declarations and doing it all on one long line, but I broke it up to make it more readable.</p>
+
+<p>That will take the HTML from a random <code>div</code> with <code>class</code> "newjobz" and overwrite the HTML of the <code>div</code> with <code>id</code> "divToChange" with it.</p>

@@ -1,0 +1,20 @@
+<p>I've not tried this, but it might work!</p>
+
+<p>Create your UIWebView and load the first html file from your bundle</p>
+
+<pre><code>NSString *file = [[NSBundle mainBundle] pathForResource:@"a" ofType:@"html"];
+NSString *html = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+[webView loadHTMLString:[NSString stringWithFormat:@"&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;%@&lt;/body&gt;&lt;/html&gt;", html] baseURL:baseURL];
+webView.delegate = self;
+</code></pre>
+
+<p>Then get when the user taps a link</p>
+
+<pre><code>-(BOOL)webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
+    if (inType == UIWebViewNavigationTypeLinkClicked) {
+        // Find which link is selected, get the file and load it into the UIWebView
+    }
+
+    return YES;
+}
+</code></pre>

@@ -1,0 +1,63 @@
+<p>Ok another one: this time you also know the component's extension points. with a visitor-like pattern</p>
+
+<pre><code>public interface IHasExtensions
+    {
+        List&lt;Extension&gt; Extensions { get; }
+        void Extend (Extension ext);
+    }
+
+    public class Component : IHasExtensions
+    {
+        List&lt;Extension&gt; exts = new List&lt;Extension&gt; ();
+
+        public List&lt;Extension&gt; Extensions
+        {
+            get { return exts; }
+        }
+
+        public void Extend (Extension ext)
+        {
+            exts.Add (ext);
+        }
+
+        void Draw() { }
+    }
+
+    public abstract class Extension
+    {
+        readonly protected Component _Component;
+
+        public Extension(Component component)
+        {
+            _Component = component;
+        }
+    }
+
+    public class SearchExtension : Extension
+    {
+        public SearchExtension (Component component) : base (component)
+        {
+
+        }
+    }
+
+    public class SelectionExtension : Extension
+    {
+        public SelectionExtension (Component component) : base (component)
+        {
+
+        }
+    }
+
+    public class test_fly
+    {
+        void start ()
+        {
+            Component c = new Component ();
+            c.Extend (new SearchExtension (c));
+            c.Extend (new SelectionExtension (c));
+
+            var exts = c.Extensions; // I Know the extensions now
+        }
+    }
+</code></pre>

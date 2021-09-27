@@ -1,0 +1,16 @@
+<p>If textbox is accessible on page it is very simple to get its ID. Might be you are doing mistake somewhere.</p>
+
+<p>ForExample:
+I have a textbox and label </p>
+
+<pre><code>  &lt;asp:Label ID="lblCode" runat="server" Text="Code"&gt;&lt;/asp:Label&gt;
+  &lt;asp:TextBox ID="tbCode" runat="server" &gt;&lt;/asp:TextBox&gt;
+</code></pre>
+
+<p>Their IDs can be easily accessible...</p>
+
+<pre><code>        string ID = tbCode.ID;
+        string LableID = lblCode.ID;
+</code></pre>
+
+<p>If you can explain your question little more than we can help you in right direction..</p>

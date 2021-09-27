@@ -1,0 +1,18 @@
+<p>No built-in switch for this I suppose. Maybe you can place a generic marker to your template which is always replaced with a browsebox:</p>
+
+<p>In the template:</p>
+
+<pre><code>&lt;div class="pagebrowser&gt;###MYPAGEBROWSER###&lt;/div&gt;
+</code></pre>
+
+<p>In tt_news setup: </p>
+
+<pre><code>plugin.tt_news {
+     genericmarkers {
+         MYPAGEBROWSER &lt; plugin.tt_news.pageBrowser
+         MYPAGEBROWSER {
+               (some config goes here) 
+         }
+     }
+}
+</code></pre>

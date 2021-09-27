@@ -1,0 +1,18 @@
+<p>There are two ways:</p>
+
+<pre><code>SELECT 'window.location.href = "http://www.google.com/"' REGEXP '[[:&lt;:]]=[[:&gt;:]]';
+</code></pre>
+
+<p>OR</p>
+
+<pre><code>SELECT 'window.location.href = "http://www.google.com/"' REGEXP ' = ';
+</code></pre>
+
+<p>Please note that both the above assume that there will be a space before and after the equals sign. If there might be no spaces before or after equals, you can try:</p>
+
+<pre><code>SELECT 'window.location.href = "http://www.google.com/"' REGEXP '[^=]+=[^=]+';
+</code></pre>
+
+<p>I'm not sure about the last one but it should work.</p>
+
+<p>Hope it helps!</p>

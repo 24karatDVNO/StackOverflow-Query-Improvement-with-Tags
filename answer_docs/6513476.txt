@@ -1,0 +1,3 @@
+<p>There are two sub query in my solution: SELECT Book.title, (SELECT Author.name FROM Author WHERE Author.isbn = Book.isbn AND Author.rank = '1') AS author1, (SELECT Author.name FROM Author WHERE Author.isbn = Book.isbn AND Author.rank = '2') AS author2 FROM Book;</p>
+
+<p>is there any way to improve performance? using, join, procedure, or other way? thanks</p>

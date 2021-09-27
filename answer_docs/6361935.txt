@@ -1,0 +1,5 @@
+<p>For historical reasons, the standard E-Mail encoding is ISO-8859-1.</p>
+
+<p>To send your characters properly, you must either encode the E-mail explicitly as UTF-8 as shown here: <a href="https://stackoverflow.com/questions/1500690/php-send-utf-8-mail-without-pearmail-pearmail-mime">PHP Send UTF-8 mail without PEAR::Mail PEAR::Mail_Mime</a></p>
+
+<p>Alternatively, you could use <code>utf8_decode()</code> to turn the text into ISO-8859-1. That will, however, work only for western characters (= those covered by ISO-8859-1) - using UTF-8 all the way is the <em>much</em> better alternative.</p>

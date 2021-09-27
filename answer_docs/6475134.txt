@@ -1,0 +1,20 @@
+<p>I would definitely name the callback that you're passing to <code>FB.login</code> for the sake of readability:</p>
+
+<pre><code>promptLogin = (login_level, callback) -&gt;
+  responseHandler = (response) -&gt;
+    if response.session
+      if response.perms
+        callback true, response
+      else
+        callback false, response
+        # showAlert 'Please accept the permissions.', 'Error'
+    else # no session
+      callback false, response
+      # showAlert 'Please accept the permissions', 'Error'
+    return
+
+  FB.login responseHandler, perms: 'email,publish_stream'
+  return
+</code></pre>
+
+<p>The extra <code>return</code>s at the end of each function may or may not matter, depending on the API. Just be aware of your implicit returns.</p>

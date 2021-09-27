@@ -1,0 +1,5 @@
+<p>Use a function to convert the format as needed.</p>
+
+<p>I'm not an expert on MySQL, but <a href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_str-to-date" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_str-to-date</a> looks promising.</p>
+
+<p>If you can't do that in the load command directly, you may try creating a table that allows you to load all the values as <code>VARCHAR</code> and then to do an insert into your <code>game</code> table with a select statement with the appropriate conversion instead.</p>

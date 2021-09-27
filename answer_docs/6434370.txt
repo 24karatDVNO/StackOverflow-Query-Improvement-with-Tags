@@ -1,0 +1,7 @@
+<p>Try it and see. You might be surprised.</p>
+
+<p>I would expect it to defer to the POSIX layer; i.e. it writes to the "current directory". Surprisingly, on iOS, the current directory is / and not /var/mobile/Applications/SOME-GUID-ABCDEF/MyApp.app (or wherever it's installed to these days) or its parent. In GDB, you can try something like <code>print (char*)getcwd((char*)0,(size_t)0)</code> (note that this leaks...).</p>
+
+<p>You can also try <code>[NSData dataWithContentsOfFile:@"MyImage.png"]</code> or <code>var/mobile/Applications/.../MyApp.app/MyImage.png</code> (omitting the leading / to make it a relative path) to see if it looks in your app's bundle directory.</p>
+
+<p>Either way, I'd avoid relying on it in case Apple decides to change behaviour in future OS versions.</p>

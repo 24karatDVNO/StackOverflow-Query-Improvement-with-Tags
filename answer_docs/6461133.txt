@@ -1,0 +1,9 @@
+<p><code>int</code> is value type, meaning its value is copied each time you use it and not its reference. The best way to make this work is make reference type around int:</p>
+
+<pre><code>class IntRef
+{
+    public int Val;
+}
+</code></pre>
+
+<p>You will need to always use <code>IntRef.Val</code> and passing the <code>IntVal</code> itself around will retain the reference.</p>

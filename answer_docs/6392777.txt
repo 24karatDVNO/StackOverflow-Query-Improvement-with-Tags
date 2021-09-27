@@ -1,0 +1,12 @@
+<p>You have to do the following:</p>
+
+<p>1) Put response.on('end', function() { ... do the output ... });  for the https.request
+Don't output data in the response.on('data', ...);</p>
+
+<p>2) Use Connection:keep-alive  , "close" will cause very poor performance issue.  I have done lot of testing and I can confirm this.</p>
+
+<p>Other than that: </p>
+
+<p>3) In your options , set the agent, and set agent.maxSockets to a larger number if you need concurrency.  default is only 5.</p>
+
+<p>4) You should consider to make your own routine to handle https.request timeout.  (please go to github/joyent and search for it.  basically use setTimeout to emit a timeout error).</p>

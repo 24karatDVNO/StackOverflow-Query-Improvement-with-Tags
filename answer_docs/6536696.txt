@@ -1,0 +1,27 @@
+<p>You could pass the values as an XML parameter to the stored procedure.</p>
+
+<pre><code>&lt;Ids&gt;
+    &lt;Id&gt;1&lt;/Id&gt;
+    &lt;Id&gt;2&lt;/Id&gt;
+    &lt;Id&gt;3&lt;/Id&gt;
+    &lt;Id&gt;4&lt;/Id&gt;
+&lt;/Ids&gt;
+</code></pre>
+
+<p>and assign this to a Table Variable;</p>
+
+<pre><code>DECLARE @IdsToSearch table(id int);
+INSERT INTO @IdsToSearch (id)
+SELECT Ids.Id.value('.','INT') FROM @xml.nodes('/Ids/Id') as Ids(Id)
+</code></pre>
+
+<p>and this can then be used in your sql;</p>
+
+<pre><code>SELECT @nDBNum = Num
+    FROM Num_members
+GROUP BY Num
+  HAVING SUM(CASE WHEN Part_No IN (SELECT id FROM @IdsToSearch) THEN 1 ELSE 0 END) = @nCount
+     AND COUNT(*) = @nCount
+</code></pre>
+
+<p>This assumes you are using Sql Server 2005/2008</p>

@@ -1,0 +1,10 @@
+<p>Modules are singletons (no matter how many times it's imported, it's only actually imported once, and that once is shared), so what I often do for this use case is to create a modules named, say, "shared.py", and put the data I want shared across other modules in it.  Then, in those other modules:</p>
+
+<pre><code>import shared
+# Use a shared variable/object
+print shared.Amode
+# Changes to the shared data are seen in all modules where it's imported.
+shared.Amode = aNewValue
+</code></pre>
+
+<p>This has the nice effect of keeping all my shared data in its own namespace, "shared".</p>

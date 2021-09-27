@@ -1,0 +1,12 @@
+<pre><code>var selectArray = $('table tr td &gt; select').map(function() {
+    return $(this).val();
+}).get();
+
+var inputArray = $('table tr td &gt; input:text').map(function() {
+    return $(this).val();
+}).get();
+</code></pre>
+
+<p>This might do what you want.</p>
+
+<p><a href="http://jsfiddle.net/MbMAx/" rel="nofollow">JSFiddle Example</a></p>

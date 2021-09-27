@@ -1,0 +1,23 @@
+<p>Not exactly sure  what you are hoping to accomplish, but if your are trying to call a clientside vbscript from a clientside javascript then here is an example which may guide you:</p>
+
+<pre><code> &lt;%
+ Response.Write ("&lt;" &amp; "script type=""text/VBScript""&gt;"&amp; vbcrlf)
+ Response.Write ("&lt;!--"&amp; vbcrlf)
+ Response.Write ("  sub VBFunc()"&amp; vbcrlf)
+ Response.Write ("      Msgbox( ""Hello From VBScript"")"&amp; vbcrlf)
+ Response.Write ("  end sub"&amp; vbcrlf)
+ Response.Write ("//--&gt;"&amp; vbcrlf)
+ Response.Write ("&lt;" &amp; "/script&gt;"&amp; vbcrlf)
+ Response.Write ("&lt;" &amp; "script type=""text/javascript""&gt;"&amp; vbcrlf)
+ Response.Write ("&lt;!--"&amp; vbcrlf)
+ Response.Write ("  if (confirm(""File Already Exists! Do you want to continue?""))"&amp; vbcrlf)
+ Response.Write ("  {"&amp; vbcrlf)
+ Response.Write ("      VBFunc();"&amp; vbcrlf)
+ Response.Write ("  }else{"&amp; vbcrlf)
+ Response.Write ("      alert('you clicked Cancel');"&amp; vbcrlf)
+ Response.Write ("  }"&amp; vbcrlf)
+ Response.Write (" //--&gt;"&amp; vbcrlf)
+ Response.Write ("&lt;" &amp; "/script&gt;"&amp; vbcrlf)
+
+%&gt;
+</code></pre>

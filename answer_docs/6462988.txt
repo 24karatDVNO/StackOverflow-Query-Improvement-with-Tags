@@ -1,0 +1,47 @@
+<p>Here is a working solution.  </p>
+
+<p>Here is the HTML: </p>
+
+<pre><code>&lt;select onchange="javascript:local.drop1Change(this);" &gt;
+    &lt;option value="-"&gt;select item&lt;/option&gt;
+    &lt;option value="1"&gt;1&lt;/option&gt;
+    &lt;option value="2"&gt;2&lt;/option&gt;
+    &lt;option value="3"&gt;3&lt;/option&gt;
+&lt;/select&gt;
+&lt;div id="workArea"&gt;&lt;/div&gt;
+</code></pre>
+
+<p>then some javascript: </p>
+
+<pre><code>&lt;script src="/Scripts/jquery-1.5.1.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    var local = {};
+    local.changeInner = function (containerId, ctrl) {
+    var target = $("#" + containerId);
+    target.empty();
+    var len = $(ctrl).val();
+    for (q = 0; q &lt; len; q = q + 1) {
+        var el = document.createElement("input");
+        target.append(el);
+    }
+    target.append(ctrl);
+};  
+local.drop1Change = function (ctrl) {
+    var selectedValue = $(ctrl).val();
+    var len = selectedValue;
+    var area = $("#workArea");
+    area.empty();
+    for (x = 0; x &lt; len; x=x+1) {
+        var container = document.createElement("div");
+        var el = document.createElement("input");
+        container.id = "container" + x;
+        var s1 = document.createElement("span");
+        $(s1).html('&lt;select style="margin:2px 2px 2px 2px;"      
+         onchange="javascript:local.changeInner(\'' + container.id + '\', this);"&gt;   &lt;option value="1" selected&gt;1&lt;/option&gt;&lt;option value="2"&gt;2&lt;/option&gt;&lt;option value="3"&gt;3&lt;/option&gt;&lt;/select&gt;');
+        $(container).append(el);
+        $(container).append(s1);
+        area.append(container);
+    }
+};
+&lt;/script&gt;
+</code></pre>

@@ -1,0 +1,3 @@
+<p>The issue turned out to be very simple, just not readily apparent until going through all the columns. It turns out that the shipment ID was duplicated through every row as it hit the upper limit for the int datatype. This is why joins were returning every record.</p>
+
+<p>After switching the datatype to bigint and reimporting, everything worked great. Thanks all for looking into it.</p>

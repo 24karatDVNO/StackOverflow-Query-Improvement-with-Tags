@@ -1,0 +1,10 @@
+<p>Matches a whitespace followed by a non-whitespace and removes those whitespaces.</p>
+
+<pre><code>Regex.Replace(input, @"(\s)(\S)", @"$2");
+</code></pre>
+
+<p>It kind of looks like it's a string with an added space after each character. If it's so then you could get the original string by retrieving only the even indexed characters in the string.</p>
+
+<pre><code>var input = "H e l l o   W o r l d ";
+var res = String.Join("", input.Where((c, i) =&gt; (i % 2) == 0));
+</code></pre>

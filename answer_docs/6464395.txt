@@ -1,0 +1,25 @@
+<p>i used the below code for exiting the application.This maybe useful for u</p>
+
+<pre><code>   @Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(HomeActivity.this);
+        alertbox.setIcon(R.drawable.info_icon);
+        alertbox.setTitle("Are you sure..! You want to exit?");
+        alertbox.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {                       
+                finish();
+            }
+        });
+
+        alertbox.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+            }
+        });
+
+        alertbox.show();
+    }
+    return super.onKeyDown(keyCode, event);
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>It's quick and simple</p>
+
+<pre><code>var str="/image/picture.jpg";
+var elems = str.split("/");
+elems.splice(elems.length-1, 0, "original")
+document.write(elems.join("/");
+</code></pre>
+
+<p>Note I'm using the splice method with a first argument of the length of the array - 1.  This puts the string "original" in the second to last position in the final path, not matter how long the URL you pass in.  If this isn't the desired behavior, you can change the code to read <code>elems.splice(2, 0, "original")</code>.  This would put the string "original" in the second position in the path, no matter how long the URL is.</p>

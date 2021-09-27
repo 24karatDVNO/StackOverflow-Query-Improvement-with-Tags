@@ -1,0 +1,17 @@
+<p>Assuming that you're on a *nix platform and that you have the process ID (i.e. you spawned the process yourself used some other method to infer its <code>pid</code>), using <a href="http://linux.die.net/man/2/kill" rel="nofollow"><code>kill(2)</code></a> should work:</p>
+
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;signal.h&gt;
+
+void main() {
+    /* ... */
+    pid_t pid = ???;
+    kill(pid, SIGTERM);
+}
+</code></pre>
+
+<p>It will only work under certain conditions, though:</p>
+
+<blockquote>
+  <p>For a process to have permission to send a signal it must either be privileged (under Linux: have the CAP_KILL capability), or the real or effective user ID of the sending process must equal the real or saved set-user-ID of the target process. In the case of SIGCONT it suffices when the sending and receiving processes belong to the same session.</p>
+</blockquote>

@@ -1,0 +1,12 @@
+<p>Windowing functions were invented for this:</p>
+
+<pre><code>SELECT SomeID, ModifiedUser, ModifiedDate FROM
+( SELECT SomeID, ModifiedUser, ModifiedDate,
+  row_number() over (PARTITION BY SomeID ORDER BY ModifiedDate DESC) AS rn
+) AS subqry
+WHERE rn=1;
+</code></pre>
+
+<p>If you want all rows in case of a tie, replace <code>row_number</code> by <code>rank</code>.</p>
+
+<p>You don't mention choice of RDBMS. MySQL does not yet have this capability. Many others do.</p>

@@ -1,0 +1,18 @@
+<p>You can indeed mass-assign protected fields.  Here's how to do it.  In your model define the following:</p>
+
+<pre><code>def attributes_protected_by_default
+  default = [ self.class.inheritance_column ]
+end
+</code></pre>
+
+<p>What you are doing here is overriding the base method:</p>
+
+<pre><code># The primary key and inheritance column can never be set by mass-assignment for security reasons.
+def self.attributes_protected_by_default
+  default = [ primary_key, inheritance_column ]
+  default &lt;&lt; 'id' unless primary_key.eql? 'id'
+  default
+end
+</code></pre>
+
+<p>...to include only the <code>inheritance_column</code> excluding the <code>id</code>, or <code>primary_key</code> column.  At this point you can now mass-assign the ID for that model.</p>

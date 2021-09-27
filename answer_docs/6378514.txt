@@ -1,0 +1,19 @@
+<p>Without knowing anything about the table involved, I am making a guess based on the names of fields in the query.  My guess is that the most restrictive portion of the query is the <code>guid=...</code> portion.  It also appears from the structure of the query that the contents of that field is not completely well defined (sometimes it may have the md5 hash value and sometimes not).  If this is correct, then it seems likely that the use of <code>md5(guid) = '...'</code> will mean that it cannot efficiently restrict on that portion of the query.  </p>
+
+<p>So if possible, it seems like it would make the search more efficient if you had a field that always contained the md5 hash value of the guid field.  Then that field could be indexed and provide a much more efficient lookup for that portion of the query.  </p>
+
+<p>To try to clarify, consider just this query:</p>
+
+<pre><code>SELECT SQL_CALC_FOUND_ROWS wp_rb_posts.* 
+FROM wp_rb_posts WHERE
+   (guid = '956e208f101562f6654e88e9711276e4') OR
+   (MD5(guid) = '956e208f101562f6654e88e9711276e4')) 
+</code></pre>
+
+<p>Assuming that MySQL does not allow indexes using scalar functions (which I don't think it does and if I'm wrong then this entire answer is pointless), then that query would require a full table scan computing <code>md5(guid)</code> on each record.  Whereas the following query could be optimized much better (assuming an index existed on both fields:</p>
+
+<pre><code>SELECT SQL_CALC_FOUND_ROWS wp_rb_posts.* 
+FROM wp_rb_posts WHERE
+   (guid = '956e208f101562f6654e88e9711276e4') OR
+   (md5_guid = '956e208f101562f6654e88e9711276e4') 
+</code></pre>

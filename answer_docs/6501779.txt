@@ -1,0 +1,40 @@
+<pre><code>protected void B1(object s, EventArgs e)
+{
+if (FileUpload1.HasFile)
+{
+
+string FTSI = @"c:\temp\doc\";
+string FP = folder_to_save_in + FileUpload1.FileName;
+
+FileUpload1.SaveAs(FP);
+
+
+Word.ApplicationClass wordApplication = new Word.ApplicationClass();
+
+
+object oNO = System.Reflection.Missing.Value;
+object oFP = FP;
+Word.Document doc = wordApplication.Documents.Open(ref oFP,
+ref oNO, ref oNO, ref oNO, ref oNO, ref oNO,
+ref oNO, ref oNO, ref oNO, ref oNO, ref oNO,
+ref oNO, ref oNO, ref oNO, ref oNO, ref oNO);
+
+
+string newfilename = folder_to_save_in + FileUpload1.FileName.Replace(".doc", ".html");
+object oNF = newfilename;
+object oFR = Word.WdSaveFormat.wdFormatHTML;
+object oEN = Microsoft.Office.Core.MsoEncoding.msoEncodingUTF8;
+object oEN = Word.WdLineEndingType.wdCRLF;
+
+wordApplication.ActiveDocument.SaveAs(ref oNF, ref oFR, ref oNO,
+ref oNO, ref oNO, ref oNO, ref oNO, ref oNO, ref oNO,
+ref oNO, ref oNO, ref oNO, ref oNO,
+ref oNO, ref oNO, ref oNO);
+
+
+Label1.Text = "Uploaded file successfully!";
+
+doc.Close(ref oNO, ref oNO, ref oNO);
+}
+}
+</code></pre>

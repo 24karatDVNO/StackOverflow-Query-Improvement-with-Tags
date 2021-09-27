@@ -1,0 +1,31 @@
+<p>In the code where you take the <code>DataGridView</code> cell information the Value property is giving you the ValueMember for the comboBox cell rather than the DisplayMember in the comboBox. Instead you need to access the FormattedValue (which you can actually use for all your cells).</p>
+
+<p>Here is some code showing how to do this (along with some other small improvements):</p>
+
+<pre><code>for (int i = 0; i &lt; dataGridView1.RowCount; i++)
+{
+    if (!dataGridView1.Rows[i].IsNewRow)
+    {
+        for (int j = 0; j &lt; dataGridView1.ColumnCount; j++)
+        {        
+            DataGridViewCell cell = dataGridView1[j, i];
+            MessageBox.Show(cell.FormattedValue.ToString());                    
+        }
+    }
+}
+</code></pre>
+
+<p>There I just take the FormattedValue and display it with a MessageBox but for you you can simply assign it to your cell.</p>
+
+<p>I've also used a slightly more compact syntax for the loops, and added in a check for the NewRow of the grid (which can contain null values which might break things).</p>
+
+<hr>
+
+<p>Also, one useful thing to know is that once you have the cell, you can get the actual type of the cell like so:</p>
+
+<pre><code>if (cell is DataGridViewComboBoxCell)
+</code></pre>
+
+<p>And that gives you more options to work with when solving problems. As a final option you can even access the EditingControl (the actual DropDown in a ComboBoxColumn) and again this gives a lot more options.</p>
+
+<p>You shouldn't need this in your case, but they are useful to know about.</p>

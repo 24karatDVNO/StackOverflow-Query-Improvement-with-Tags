@@ -1,0 +1,24 @@
+<p>You could use the CSS position property to position the dot over the image.  If position is set to 'absolute', the element will be positioned with respect to its first positioned ancestor.  For example:</p>
+
+<pre><code>&lt;?php
+echo '
+    &lt;style&gt;
+    #mydiv {
+        position: relative;
+        margin: auto;
+        display: block;
+        width: 600px;
+    }
+    #dot {
+        position: absolute;
+        left: 300px;
+        top: 300px;
+    }
+    &lt;/style&gt;';
+
+echo '&lt;div id="mydiv"&gt;';
+echo '&lt;img id="myimg" src="myimage.jpg"&gt;';
+echo '&lt;img id="dot" src="dot.png"&gt;';
+echo '&lt;/div&gt;';
+?&gt;
+</code></pre>

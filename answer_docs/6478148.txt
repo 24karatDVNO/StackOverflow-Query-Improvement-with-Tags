@@ -1,0 +1,9 @@
+<p>When you pass a method like <code>this.mouseMove</code> as a callback function, it's no longer tied to the instance - so <code>this</code> will be the global object. To fix the scope, you can pass the instance in a closure, like so:</p>
+
+<pre><code>function myClass (x,y) {
+    var mouseX=x;
+    var mouseY=y;
+    var that = this;
+    $(document).mousemove(function() { that.mouseMove() });
+}
+</code></pre>

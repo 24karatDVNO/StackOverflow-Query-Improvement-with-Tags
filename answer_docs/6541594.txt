@@ -1,0 +1,21 @@
+<p>As <a href="https://stackoverflow.com/users/69083/guffa">Guffa</a> <a href="https://stackoverflow.com/questions/6541440/what-when-does-a-call-to-the-jquery-ajax-method-return/6541501#6541501">stated</a>, <code>$.ajax()</code> works asynchronically. Thus, you have to specify a <em>callback</em> that will be called when the request has returned a response, rather than to just use whatever <code>$.ajax()</code> returns.</p>
+
+<p>There are a couple of different callback methods you can specify:</p>
+
+<ul>
+<li><code>complete</code> - runs when you recieve a response, regardless of its status.</li>
+<li><code>success</code> - runs when you recieve a response with a successful status code (usually 200).</li>
+<li><code>error</code> - runs when you recieve a response with an error code (for example 404 or 500).</li>
+</ul>
+
+<p>To do something with the response body after a successful request, you should do something like</p>
+
+<pre><code>$.ajax({
+    ...
+    success: function(body) {
+        alert('This is the method body:' + body);
+    }
+});
+</code></pre>
+
+<p>Read up in the <a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow noreferrer">documentation</a> on the different methods to see what more parameters you can use.</p>

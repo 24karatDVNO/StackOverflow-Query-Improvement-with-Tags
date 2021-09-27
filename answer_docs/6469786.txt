@@ -1,0 +1,19 @@
+<p>In a SQL Stored Procedure you could do the following</p>
+
+<pre><code>DECLARE @PartHTML VARCHAR(MAX)
+DECLARE @FullHTML VARCHAR(MAX)
+
+DECLARE CURSOR HTMLCursor FOR (SELECT FieldWithHTML FROM TableWithHTML)
+OPEN CURSOR HTMLCursor
+
+FETCH NEXT FROM HTMLCursor INTO @PartHTML
+
+While (@@FETCH_STATUS &lt;&gt; -1)
+BEGIN
+    SET @FullHTML = @FullHTML + @PartHTML + CHAR(13)
+    FETCH NEXT FROM HTMLCursor INTO @PartHTML
+
+END
+CLOSE HTMLCursor
+DEALLOCATE HTMLCursor
+</code></pre>

@@ -1,0 +1,4 @@
+<p>Additionally to my comment to your question.</p>
+
+<p>First, try to avoid using Threads in such a way. Use AsyncTask instead.
+On it's preExecute show some dialog to the user, that you are loading a list, on it's doInBackground put your logic that will return new list, and in postExecute just dismiss the dialog and proceed.</p>

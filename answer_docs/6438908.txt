@@ -1,0 +1,15 @@
+<p>If you have the array already, you can use the PHP function called <code>shuffle()</code>:</p>
+
+<p><a href="http://php.net/manual/en/function.shuffle.php" rel="nofollow">http://php.net/manual/en/function.shuffle.php</a></p>
+
+<p>if not, build the array like this:</p>
+
+<pre><code>&lt;?php
+    $max = 24;
+    $num_array = array();
+    for($i=0;$i&lt;=$max;$i++) $num_array[] = $i;
+    shuffle($num_array);
+?&gt;
+</code></pre>
+
+<p><strong>Update:</strong> I've never seen the range function used before (by KingCrunch). Much better to use that one!</p>

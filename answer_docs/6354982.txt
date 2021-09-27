@@ -1,0 +1,22 @@
+<p>You can materialize a one-row table with zero for all columns. This is a slight pain to achieve in Access (ACE, Jet, whatever) because it doesn't support row constructors and the  <code>FROM</code> must resolve to a base table. In other words, you'll need a table that is guaranteed to always contain at least one row. </p>
+
+<p>This isn't a problem for me because my databases always include auxilliary tables e.g. a <a href="http://web.archive.org/web/20070611150639/http://sqlserver2000.databases.aspfaq.com/why-should-i-consider-using-an-auxiliary-calendar-table.html" rel="nofollow noreferrer">calendar table</a>, a sequence table of integers, etc. For exmaple, to materialize a table one-row, all-zeros table using my 3000 row Calendar table:</p>
+
+<pre><code>SELECT DISTINCT 0 AS c
+  FROM Calendar;
+</code></pre>
+
+<p>I can then <code>UNION</code> my query with my materialized table but include an <a href="http://en.wikipedia.org/wiki/Relational_algebra#Antijoin" rel="nofollow noreferrer">antijoin</a> to ensure the all-zeros row only appears in the resultset when my query is the empty set:</p>
+
+<pre><code>SELECT c 
+  FROM T       
+UNION 
+SELECT 0
+  FROM Calendar
+ WHERE NOT EXISTS (
+                   SELECT c 
+                     FROM T
+                  );
+</code></pre>
+
+<p>Note the use of <code>UNION</code> allows me to remove the <code>DISTINCT</code> keyword and the <code>AS</code> clause ("column alias") from the materialized table.</p>

@@ -1,0 +1,37 @@
+<p>Little bit amendment for the code provided by Lieven, it works now...</p>
+
+<pre><code>SELECT  a.staff_key
+        , SUM(CASE WHEN a.type = 'Sick' THEN 
+                        a.days_applied ELSE 0 END) as sick_total_day       
+        , SUM(CASE WHEN a.type = 'Othert' THEN
+                        a.days_applied ELSE 0 END) as othert_total_day       
+        , SUM(CASE WHEN a.type = 'Otherv' THEN 
+                        a.days_applied ELSE 0 END) as otherv_total_day       
+FROM    
+(
+            SELECT  staff_key
+                    , days_applied
+                    , from_date
+                    , to_date
+                    , type = 'Sick'
+            FROM    Tleave_sick_leave
+            UNION ALL
+            SELECT  staff_key
+                    , days_applied
+                    , from_date
+                    , to_date
+                    ,type = 'Othert'
+            FROM    Tleave_other_leave
+            UNION ALL
+            SELECT  staff_key
+                    , days_applied
+                    , from_date
+                    , to_date
+                    ,type = 'Otherv'
+            FROM    Tleave_vleave
+) a
+WHERE staff_key = '131' AND 
+      from_date&gt;='2011/4/1 00:00:00' AND 
+      to_date&lt;='2011/4/30 00:00:00'
+GROUP BY staff_key
+</code></pre>

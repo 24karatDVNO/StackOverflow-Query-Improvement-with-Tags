@@ -1,0 +1,18 @@
+<p>Try something like this</p>
+
+<p>1: Create a public function in your code behind page.
+   i.e.</p>
+
+<pre><code>Public Function ResolveUrl(objValue as object) as String
+     Dim sPath as String = Page.ResolveUrl(cstr(objValue))
+     Return sPath  
+End Function  
+</code></pre>
+
+<p>2: Change code in web-page:  </p>
+
+<p><code>NavigateUrl=&lt;%# ResolveUrl(Container.DataItem("pageName")) %&gt;</code>  </p>
+
+<p>3: Ensure your page name is in the format "<em>~/FolderPath/File.aspx</em>" the ~ tells the asp.net engine to map the page from the root directory of your solution.</p>
+
+<p>Hope this helps.</p>

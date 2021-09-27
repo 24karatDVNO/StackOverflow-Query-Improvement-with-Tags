@@ -1,0 +1,7 @@
+<p>It really depends what the number <code>866568508</code> represents.  Is this nanoseconds?  Or microseconds?  Or is this in the units of some other number, such as <code>QueryPerformanceFrequency</code>?  So let's say <code>866568508</code> represents <code>866568508</code> ticks of an <code>n</code> Hertz clock.  Then, the amount of time in seconds represented by <code>866568508</code> is <code>866568508/n</code>.  This is <code>866568508*1e6/n</code> microseconds.</p>
+
+<p>So, your idea of getting microseconds by using the last 6 digits is not necessarily correct.  Since you say you usually have 9 digits, n could be <code>1e9</code> (i.e., you have nanosecond resolution).  In this case, you can get microseconds from <code>866568508</code> by doing <code>866568508*1e6/1e9 =</code>866568508/1e3`.</p>
+
+<p>But, as I said, all this depends upon you knowing what the resolution is.</p>
+
+<p>From some quick google search, it seems like <a href="http://www.decompile.com/cpp/faq/windows_timer_api.htm" rel="nofollow"><code>QueryPerformanceFrequency</code></a> should give you the frequency.</p>

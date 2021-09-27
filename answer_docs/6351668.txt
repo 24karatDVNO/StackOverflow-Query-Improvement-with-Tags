@@ -1,0 +1,8 @@
+<p>I'm assuming you're using SimpleXML here</p>
+
+<pre><code>$nsMedia = $xml-&gt;children('http://search.yahoo.com/mrss/');
+$group = $nsMedia-&gt;group;
+$nsYt = $group-&gt;children('http://gdata.youtube.com/schemas/2007');
+$duration = $nsYt-&gt;duration;
+echo $duration['seconds'];
+</code></pre>

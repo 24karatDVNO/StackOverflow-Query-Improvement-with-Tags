@@ -1,0 +1,31 @@
+<p>Your code example is quite confusing and does not compile. However, to answer your question about the <code>List&lt;T&gt;.this</code> syntax:</p>
+
+<p>This is called <strong>explicit interface implementation</strong>. You use this to implement an interface but hide it from the public signature of the class. Here is a small example:</p>
+
+<pre><code>public class Foo : IDisposable {
+  public void Dispose() {
+  }
+}
+
+public class Bar : IDisposable {
+  public void Close() {
+  }
+  void IDisposable.Dispose() {
+    Close();
+  }
+}
+</code></pre>
+
+<p>Both classes implement <code>IDisposable</code> but to dispose a <code>Bar</code> you will have to call <code>Close</code>. You can also cast it to <code>IDisposable</code> and then call <code>Dispose</code>.</p>
+
+<pre><code>var foo = new Foo();
+foo.Dispose();
+
+var bar = new Bar();
+bar.Close();
+((IDisposable) bar).Dispose();
+</code></pre>
+
+<p>For classes <code>Foo</code> and <code>Bar</code> it may not be important if the cleanup method is called <code>Dispose</code> or <code>Close</code> but for a <code>File</code> class you may prefer to <code>Close</code> it instead of <code>Dispose</code> it. Other uses is to hide an interface you have to implement to participate in an interaction between objects but you don't want to be visible to consumers of your class. Or you can use it to work around implementing multiple interfaces with conflicting methods.</p>
+
+<p>You can read about <a href="http://msdn.microsoft.com/en-us/library/ms173157.aspx" rel="nofollow">explicit interface implementation</a> on MSDN.</p>

@@ -1,0 +1,7 @@
+<p>You can fetch the data you need in XML format from <a href="http://gdata.youtube.com/feeds/api/videos?q=something&amp;orderby=viewCount&amp;max-results=1&amp;v=2" rel="nofollow noreferrer">YouTube's API</a>.</p>
+
+<p>(Note: <a href="https://stackoverflow.com/questions/3284996/youtube-api-search">The results may differ from the HTML website</a>)</p>
+
+<p>Then parse the XML with anything you want, e.g. Perl's <a href="http://search.cpan.org/perldoc?XML::LibXML::XPathContext" rel="nofollow noreferrer">XML::LibXML::XPathContext</a>. It's a bit fiddly though, if you haven't used that module before.</p>
+
+<p>Once you have the video URL, you can pass it to youtube-dl.</p>

@@ -1,0 +1,23 @@
+<p>dunno if you still need an answer, but again here comes some additional info that may help
+<br/><br/>
+if you want to <strong>keep cookies sync'ed</strong> </p>
+
+<pre><code>// ensure any cookies set by the dialog are saved
+CookieSyncManager.getInstance().sync();
+</code></pre>
+
+<p>and if you want to <strong>clear Cookies</strong></p>
+
+<pre><code>public static void clearCookies(Context context) {
+        // Edge case: an illegal state exception is thrown if an instance of 
+        // CookieSyncManager has not be created.  CookieSyncManager is normally
+        // created by a WebKit view, but this might happen if you start the 
+        // app, restore saved state, and click logout before running a UI 
+        // dialog in a WebView -- in which case the app crashes
+        @SuppressWarnings("unused")
+        CookieSyncManager cookieSyncMngr = 
+            CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookie();
+    }
+</code></pre>

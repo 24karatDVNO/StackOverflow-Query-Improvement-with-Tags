@@ -1,0 +1,10 @@
+<p>You've several issues imho. One is that you're going to end up with a seq scan no matter what you do.</p>
+
+<p>But I think your more crucial issue here is that you've an unnecessary join:</p>
+
+<pre><code>SELECT profile.* FROM TempResult
+WHERE 
+     (RowNum &gt;= @FirstRow)
+     AND 
+     (RowNum &lt;= @LastRow)
+</code></pre>

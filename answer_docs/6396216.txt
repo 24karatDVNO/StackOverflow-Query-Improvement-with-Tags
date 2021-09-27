@@ -1,0 +1,6 @@
+<p>More details would be useful, but in all likelihood, add a do nothing and stop rule for your folder <strong>before the WP rules</strong>:</p>
+
+<pre><code>RewriteEngine On
+RewriteBase /
+RewriteRule ^folder - [L]
+</code></pre>

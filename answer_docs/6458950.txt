@@ -1,0 +1,31 @@
+<p>You could try something like this ... untested, but I've seen similar queries.<br>
+Let me know if it works...</p>
+
+<pre><code>SELECT "Fruits",
+    SUM(CASE WHEN r.order_date 
+        BETWEEN DATE_TRUNC('DAY', LOCALTIMESTAMP) AND DATE_TRUNC('DAY', LOCALTIMESTAMP) + INTERVAL '1 DAY' 
+        THEN 1 ELSE 0 END) AS daily, 
+    SUM(CASE WHEN r.order_date 
+        BETWEEN DATE_TRUNC('MONTH', LOCALTIMESTAMP) AND DATE_TRUNC('MONTH', LOCALTIMESTAMP) + INTERVAL '1 MONTH' 
+        THEN 1 ELSE 0 END) AS monthly, 
+    SUM(CASE WHEN r.order_date 
+        BETWEEN DATE_TRUNC('YEAR', LOCALTIMESTAMP) AND DATE_TRUNC('YEAR', LOCALTIMESTAMP) + INTERVAL '1 YEAR' 
+        THEN 1 ELSE 0 END) AS yearly, 
+    SUM(CASE WHEN r.order_date &gt;= '01-01-2011 00:00:00' THEN 1 ELSE 0 END) AS lifetime 
+FROM reports AS r
+    ,(SELECT "ID",
+             CASE
+                WHEN tof."TypeOfFruits" = 'A' THEN 'Apple' 
+                WHEN tof."TypeOfFruits" = 'P' THEN 'Pear' 
+                WHEN tof."TypeOfFruits" = 'G' THEN 'Grapes' 
+                ELSE 'Other'
+             END AS "Fruits" FROM "TypeOfFruits" ) AS "tof"
+WHERE r.id = tof."ID" 
+GROUP BY "Fruits"
+ORDER BY CASE 
+    WHEN "Fruits" = 'Apple' THEN 1 
+    WHEN "Fruits" = 'Pear' THEN 2 
+    WHEN "Fruits" = 'Grapes' THEN 3 
+    ELSE 4 
+END
+</code></pre>

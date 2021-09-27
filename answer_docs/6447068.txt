@@ -1,0 +1,9 @@
+<p>I eventually found a solution. I created use a dummy tag to wrap the plain text (or even the html that is produced by other templates), and then I created a function that I pass into the template invocation that can strip out the dummy tag. I invoke it like this: <code>{{html $data.clean($item)}}</code>. The "clean" function needs access to the content being returned by the inner template, which I found to be <code>$item.wrapped[0]</code>. Once I had that content, I could get its inner html to return from the clean function.</p>
+
+<p>I'm concerned about whether I'm supposed to be accessing <code>$item.wrapped</code> though.</p>
+
+<p>Ultimately, I may just try refactoring my code to not require this dummy tag and the cleaning function.</p>
+
+<p>This solution can be found here: <a href="http://jsfiddle.net/bernardchen1/nmzWt/" rel="nofollow">http://jsfiddle.net/bernardchen1/nmzWt/</a></p>
+
+<p>Edit: there is another solution to call appendTo to attach the template html to another DOM element, and then grab the data back out.</p>

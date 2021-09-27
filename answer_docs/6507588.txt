@@ -1,0 +1,12 @@
+<p>You have a function "int_to_words" to transform "int" value into a text value in this post:
+<a href="http://www.php.net/manual/en/function.strval.php#41988" rel="nofollow">http://www.php.net/manual/en/function.strval.php#41988</a></p>
+
+<p>After that, you just have to iterate into all values</p>
+
+<pre><code>for(i = 0; i &lt; 100; i++) {
+    $item = 'energy_rating_'.int_to_words($i);
+    if($_product-&gt;getAttributeText($item) != null){
+      echo "&lt;div class=\"energy_rating_$i\"&gt;&lt;img src=\"http://www.justhome.co/skin/frontend/default/just2011/images/assets/".$_product-&gt;getAttributeText($item).".jpg\"&gt;&lt;/div&gt;";
+    }
+}
+</code></pre>

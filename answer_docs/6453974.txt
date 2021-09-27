@@ -1,0 +1,36 @@
+<p>I was about to ask a similar question, which I reproduce here for search purposes (the answer is below) :</p>
+
+<hr>
+
+<p>I have a working copy of the source of a project using subversion.  Now, suppose I have two different issues to fix on the same file while I don't have access to the svn server for whatever reason.  I don't want the two fixes to be mixed up in a global patch : for the sake of clarity I would like to have a patch for each fix.  So I would like to be able to "svn diff" between the original revision, the firstly modified revision and the last revision, which have not been committed to the server — or alternatively said, to be able to commit each revision independently.</p>
+
+<p>How do you do that ?  Is there a way to flag revisions locally with svn ?</p>
+
+<hr>
+
+<p>Then I found this question and maverick's reply triggered a new keyword : "clone".  Looking for "svn clone" I found out that a good answer could be to use "git-svn" (NB : a dash for the name, but no dash for the command : "git svn"), then use git locally.  I let you google on that, but to make things short :</p>
+
+<pre><code>git svn --username=skippy clone http://svn.example.org/projects/myproject -T trunk localdir
+</code></pre>
+
+<p>Apply first patch :</p>
+
+<pre><code>git add path/to/modified/file
+git commit
+</code></pre>
+
+<p>Apply second patch :</p>
+
+<pre><code>git add path/to/modified/file
+git commit
+</code></pre>
+
+<p>Then get your revision IDs :</p>
+
+<pre><code>git log --oneline|head
+</code></pre>
+
+<p>And to see modifications added by revision a1b2c3 :</p>
+
+<pre><code>git diff a1b2c3d{^,}
+</code></pre>

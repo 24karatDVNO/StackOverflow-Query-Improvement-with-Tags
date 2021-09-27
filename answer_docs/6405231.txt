@@ -1,0 +1,9 @@
+<p>The error you see has nothing to do with your intent extras.
+Your trying to access an EditText but what you get is something different (or vice versa, not sure).</p>
+
+<p>Take a look at yaraby.y.yaraby.onCreate(yaraby.java:49) (Line 49) and make sure you are casting to the right type. Probably you have something like this there:</p>
+
+<pre><code>var = (EditText) findViewById(R.id.yourWidgetId)
+</code></pre>
+
+<p>Problem is what you get is in fact not an EditText.</p>

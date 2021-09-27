@@ -1,0 +1,7 @@
+<p>I would recommend using jQuery or another similar library. This will help to ensure cross browser compatibilty, and simplify your coding. With jQuery you can do it like this...</p>
+
+<pre><code>// create something, and appendTo something else
+$('&lt;li /&gt;').appendTo('body')
+// select something, and append something else to it
+$('li').append( $('&lt;input /&gt;').attr({type:'checkbox'}) )
+</code></pre>

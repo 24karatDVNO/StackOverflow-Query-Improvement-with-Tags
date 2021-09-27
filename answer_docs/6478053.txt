@@ -1,0 +1,5 @@
+<p>If you are NOT binding to a data source, then you can just use <code>comboBox1.SelectedIndex</code> to get the index. </p>
+
+<p>If you are binding to a data source, e.g. a <strong>DataSet</strong> with a <strong>DataTable</strong> named <strong>dt1</strong>, then you can use <code>dt1.Rows.Count - 1</code> to get the index corresponding to the order of <strong>ComboBoxItem</strong>. You cannot get the selected index of a <strong>ComboBoxItem</strong> directly if you have it binded to a data source.</p>
+
+<p>If the order of your data source (e.g. <strong>DataTable</strong>) is not in the same ordering as the <strong>ComboBoxItem</strong>, then you should convert your <strong>DataTable</strong> to a <strong>DataView</strong> with sorting, and bind your <strong>ComboBox</strong> to your <strong>DataView</strong>. <code>(DataView.ToTable as DataTable).Rows.Count - 1</code> will get the correct ordering, hence, Index, of the <strong>ComboBoxItem</strong>.</p>

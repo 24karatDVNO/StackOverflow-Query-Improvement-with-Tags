@@ -1,0 +1,13 @@
+<p>The second sample is passing a reference to the function itself instead of the result. If you want to invoke it inline, you can do it like this:</p>
+
+<pre><code>  previousWinner((function (response) {
+        alert(response);
+        //Check to see if user is a winner
+        if (!response) {
+            //Check likes
+            hasUserLiked();
+        }
+    })());
+</code></pre>
+
+<p>EDIT: And in cases "webmethods", by which I assume you mean AJAX calls, you are passing a reference to the function to be used as a callback when the request returns. That's what makes it asynchronous (the A in AJAX).</p>

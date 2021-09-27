@@ -1,0 +1,13 @@
+<p>You will, as Francois said, have to create a route for each category.  This can be slightly simplified with a simple array as below:</p>
+
+<pre><code>$categories = array('cat1','cat2','etc...');
+
+foreach($categories as $cat)
+{
+    $routes["$cat/(:any)"] = "category/$cat/\$1"
+}
+</code></pre>
+
+<p>A possible alternative is to use a pre-controller hook in which you could query your database to see if the segment is a category and then direct the request appropriately.</p>
+
+<p>If you'll have a lot of categories or they will be added to and updated frequently, I'd recommend the second option, otherwise, maintaining a simple array isn't too bad.</p>

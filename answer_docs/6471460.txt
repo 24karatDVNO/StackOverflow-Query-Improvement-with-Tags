@@ -1,0 +1,28 @@
+<p>Here is my Ruby Approach:</p>
+
+<pre><code>require 'open-uri'
+
+class HTMLScraper
+    def initialize(page)
+      @src = page
+      open(@src) do |x|
+          @html = x.read
+      end
+    end
+    def parseLinks
+      links = @html.scan(/&lt;a\s+href\s*=\s*"([^"]+)"[^&gt;]*&gt;\s*([^&lt;]+)\s*&lt;\/a&gt;/ui)
+      puts "Link(s) Found:"
+      i = 0
+      while i &lt; links.length
+        puts "\t#{links[i]}"
+        i += 1
+      end
+    end
+  end
+
+url = "http://stackoverflow.com/questions"
+test = HTMLScraper.new(url)
+test.parseLinks
+</code></pre>
+
+<p>This will give to you an array of arrays, in which the first item of each (inner) array is the url, and the second is the title. Hope this helps and note the <code>u</code> switch on the regex, it's to avoid encoding problems. </p>

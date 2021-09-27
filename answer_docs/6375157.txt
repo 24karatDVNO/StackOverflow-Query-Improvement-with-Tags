@@ -1,0 +1,11 @@
+<p>Well you can try creating and appending scripts. But I am not sure if that is what you 're after performance wise, since it will make as many requests as the number of files plus add the overhead of creating and appending elements.</p>
+
+<pre><code>var myScript = document.createElement("script");
+myScript.src = "/js/test.js";
+myScript.type= "text/javascript";
+
+document.getElementsByTagName("body")[0].appendChild(myScript);
+</code></pre>
+
+<p>or you can try something like this
+<a href="http://www.webreference.com/programming/javascript/mk/" rel="nofollow">http://www.webreference.com/programming/javascript/mk/</a></p>

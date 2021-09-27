@@ -1,0 +1,6 @@
+<p>I assume that <code>p.gatherName(p)</code> is probably returning nil / ''.</p>
+
+<p>You could do something like this :</p>
+
+<pre><code>&lt;%= select_tag "name", options_for_select([["select" , "0" ]] + @names.select {|p| p.gatherName(p) &amp;&amp; !p.gatherName(p).empty?}.collect{|p| [p.gatherName(p),p.id]}) %&gt;
+</code></pre>

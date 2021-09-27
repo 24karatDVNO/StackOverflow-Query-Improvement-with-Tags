@@ -1,0 +1,4 @@
+<p>The simplest way is to embed your tableView (and your other views, since you apparently have more than one view on screen) in a <code>UIScrollView</code>.</p>
+
+<p>Then when you present the popup window on screen, calculate an offset to scroll to by getting your popup window's size, 
+then slide up the tableView using <code>[scrollView setContentOffset:MyOffset animated:YES]</code>. </p>

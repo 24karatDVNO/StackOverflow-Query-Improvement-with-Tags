@@ -1,0 +1,33 @@
+<p>If you play around with a DOM inspector for a bit, you'll find that <code>.author</code> is coming out with a height of 52px or so. The extra 4px appears to be coming from the <code>line-height</code>. Setting <code>line-height</code> to 0:</p>
+
+<pre><code>.scream .author {
+    float: left;
+    line-height: 0;
+}
+</code></pre>
+
+<p>Fixes the layout: <a href="http://jsfiddle.net/ambiguous/8KzdD/" rel="nofollow">http://jsfiddle.net/ambiguous/8KzdD/</a></p>
+
+<p>Or, you can float the image to the left as well:</p>
+
+<pre><code>.scream .author {
+    float: left;
+}
+.scream .author img {
+    float: left;
+}
+</code></pre>
+
+<p>That will remove the image from the local flow and make the <code>line-height</code> irrelevant: <a href="http://jsfiddle.net/ambiguous/8KzdD/1/" rel="nofollow">http://jsfiddle.net/ambiguous/8KzdD/1/</a></p>
+
+<p>Yet another option is to ditch the clearing <code>&lt;div&gt;</code> and use <code>overflow:hidden</code> on the outer <code>&lt;div&gt;</code>:</p>
+
+<pre><code>.scream {
+    background: #F4F4F4;
+    width: 944px;
+    height: 48px;
+    overflow: hidden;
+}
+</code></pre>
+
+<p>This will leave the <code>&lt;div class="author"&gt;</code> with their 52px height but the effect won't be visually noticeable: <a href="http://jsfiddle.net/ambiguous/8KzdD/2/" rel="nofollow">http://jsfiddle.net/ambiguous/8KzdD/2/</a></p>

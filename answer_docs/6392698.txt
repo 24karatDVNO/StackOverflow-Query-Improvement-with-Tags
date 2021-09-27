@@ -1,0 +1,8 @@
+<p>There are two approaches I can think of.</p>
+
+<ol>
+<li><p>If it's all stand alone applications on the same computer, just create an empty file on disk when you start running, and any other instance attempting to start should look for the same file and if it exists, exit.</p></li>
+<li><p>If you can't share a "lock" file described above then can you set a record in a database table? All instances could check for the record existing (timestamp?) and then act accordingly.</p></li>
+</ol>
+
+<p>Either way you need a central shared resource to act as a lock</p>

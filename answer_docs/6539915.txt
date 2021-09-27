@@ -1,0 +1,8 @@
+<p>This idea will make sure the whole line is correct.  E.G. It will not match the line unless it is correct.</p>
+
+<pre><code>^(regexThatOnlyMatchesASingleCorrectInstance)*$
+</code></pre>
+
+<p>This starts at the beginning of the line <code>^</code> and matches as many as it can <code>+</code> of <code>regexThatOnlyMatchesASingleCorrectInstance</code> and ensures that the end of the string <code>$</code> is found right after the last one.</p>
+
+<p>Of course this will only work when there is a <code>~</code> at the end of the string.  For the <code>~</code> part, use this:  <code>(?:~|$)</code> so that you it doesn't require the delimiter at the end of the string.</p>

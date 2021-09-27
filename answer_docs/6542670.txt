@@ -1,0 +1,6 @@
+<p>You aren't using <code>fields_for</code> properly. The first argument has to the association to use for the nested fields. The second one then can be a collection of/single model(s) to use for the value of the association.</p>
+
+<pre><code>= routine.semantic_fields_for :exercise_routines, exercise_routine do |f|
+</code></pre>
+
+<p>Also I would suggest not hiding the first local <code>exercise_routine</code> with the form builder local inside the block. And I would use the <code>@routine.exercise_routines.each do |exercise_routine|</code> form instead of the <code>for</code> loop.</p>

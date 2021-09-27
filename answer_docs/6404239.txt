@@ -1,0 +1,7 @@
+<p>To change the volume, if you don't use a "Control" (see the Java Sound Tutorials), there is the option of directly modifying the samples themselves.</p>
+
+<p>In your innermost loop, convert the bytes in the innermost buffer into a sample (if it is WAV 16-bit encoding, then you need to put the two bytes together to make the single SHORT value), then multiply that value by a float that ranges from 0 to 1, where 0 is the quietest and 1 leaves the sound at full volume. Then take the result and break it back down into two bytes and pass it along.</p>
+
+<p>Do you need the code to do this? There are several other posts here where folks convert from bytes to INTs or Float and back.</p>
+
+<p>Hmmm. This question is pretty old. Well maybe my answer will help someone new to the same problem.</p>

@@ -1,0 +1,3 @@
+<p>A few different things could be happening. First self.navigationController is likely either dealloced or not of type NavigationController. Stick a break point on the push and do
+po self.navigationController 
+in the gdb console to be sure. It will either say something like invalid object which means its released or it will tell you the object type. Make sure it either is or extends UINavigationController. Secondly have a look at the detailViewController in gdb the same way and make sure it is a valid UIViewController. One of these two objects is your culprit.</p>

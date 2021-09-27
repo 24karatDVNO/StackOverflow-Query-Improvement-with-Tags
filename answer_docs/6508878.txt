@@ -1,0 +1,10 @@
+<p>Bind to the change event by type: accordionchange.</p>
+
+<pre><code>$( ".selector" ).bind( "accordionchange", function(event, ui) {
+  //use this variables to decide what new content to put in your right hand side
+  ui.newHeader // jQuery object, activated header
+
+});
+</code></pre>
+
+<p><a href="http://docs.jquery.com/UI/Accordion#event-change" rel="nofollow">http://docs.jquery.com/UI/Accordion#event-change</a></p>

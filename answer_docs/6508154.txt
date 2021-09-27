@@ -1,0 +1,12 @@
+<p>\d will match 0 by default, so the only need is to modify your regex to match negative values, to do so you can simply use:</p>
+
+<pre><code>import re
+re.findall(r'[+-]?\d+', ' 1 sd  2 s 3 sfs 0 -1')
+</code></pre>
+
+<p>OR</p>
+
+<pre><code>import re
+re.findall(r'(?&lt;!\S)[+-]?\d+(?!\S)', '234 +1 -10 23jjj ssf54 sdg5dfgdf') 
+&gt;&gt;&gt; ['234', '+1', '-10']
+</code></pre>

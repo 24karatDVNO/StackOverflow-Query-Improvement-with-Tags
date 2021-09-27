@@ -1,0 +1,16 @@
+<p>I am trying to get the bitmap of partially hidden controls.</p>
+
+<p>I used code before that did the drawing, but included windows overlapping it. So.. maybe you want to try this.
+The WM_PRINTCLIENT should (in my understanding) redraw all inside the control, even if it is not really visible.</p>
+
+<pre><code>const int WM_PRINT = 0x317, WM_PRINTCLIENT = 0x318, PRF_CLIENT = 4,
+PRF_CHILDREN = 0x10, PRF_NON_CLIENT = 2,
+COMBINED_PRINTFLAGS = PRF_CLIENT | PRF_CHILDREN | PRF_NON_CLIENT;
+SendMessage(handle, WM_PRINTCLIENT, (int)hdc, COMBINED_PRINTFLAGS);
+//GDIStuff.BitBlt(hdc, 0, 0, width, height, hdcControl, 0, 0, (int)GDIStuff.TernaryRasterOperations.SRCCOPY);
+</code></pre>
+
+<p>The before code is commented out now. It is based on the code found here: <a href="https://stackoverflow.com/questions/2292391/pocket-pc-draw-control-to-bitmap">Pocket PC: Draw control to bitmap</a> (accepted answer). It is basically the same as Tim Robinson suggests in this thread.</p>
+
+<p>Also, have a look here
+<a href="http://www.tcx.be/blog/2004/paint-control-onto-graphics/" rel="nofollow noreferrer">http://www.tcx.be/blog/2004/paint-control-onto-graphics/</a></p>

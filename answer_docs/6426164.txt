@@ -1,0 +1,12 @@
+<p>You can use the $.map method to merge your data to create a right response</p>
+
+<pre><code>success: function(data){
+    var result = $.map(data, function(item){
+        return {
+            label: item.name,
+            value: item.id
+        }
+    });
+    response(result);
+}
+</code></pre>

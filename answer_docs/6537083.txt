@@ -1,0 +1,6 @@
+<p>Well i did what's specified here <a href="https://github.com/ambethia/recaptcha/issues/30" rel="nofollow">https://github.com/ambethia/recaptcha/issues/30</a> and worked out perfectly for me </p>
+
+<pre><code>Changing client_helper.rb line 39 to:
+return (html.respond_to?(:html_safe) &amp;&amp; html.html_safe) || html
+fixes the issue.
+</code></pre>

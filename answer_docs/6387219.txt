@@ -1,0 +1,24 @@
+<p>You can add a static function to initialise your static vector:</p>
+
+<pre><code>class AbstractClass
+{
+    private:
+        // Add this
+        static vector&lt;Resource*&gt; CreateResources();
+
+    protected:
+        static vector&lt;Resource*&gt; lResource;
+};
+
+vector&lt;Resource*&gt; AbstractClass::lResource = CreateResources();
+
+vector&lt;Resource*&gt; AbstractClass::CreateResources()
+{
+    vector&lt;Resource*&gt; resources;
+
+    resources[RES0] = new Resource();
+    resources[RES1] = new Resource();
+
+    return resources;
+}
+</code></pre>

@@ -1,0 +1,13 @@
+<p>Just close the for loop inside each conditional:</p>
+
+<pre><code>{% if 'latest' in request.GET %}
+    {% for object in object_list|slice:"22" %}
+        {{ object.name }}
+    {% endfor %}
+
+{% else %}
+    {% for object in object_list|slice:"10" %}
+        {{ object.name }}
+    {% endfor %}
+{% endif %}
+</code></pre>

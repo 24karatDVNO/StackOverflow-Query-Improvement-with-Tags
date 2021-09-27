@@ -1,0 +1,16 @@
+<p>Old school JavaScript:</p>
+
+<pre><code>function replaceLinkText(className, newContents) {
+  var items = document.getElementsByTagName('LI');
+  for (var i=0; i&lt;items.length; i++) {
+    if (items[i].className == className) {
+      var a = items[i].getElementsByTagName('A'); 
+      if (a[0]) a[0].innerHTML = newContents;
+    }
+  }
+}
+
+replaceLinkText("time", "Review Time");
+</code></pre>
+
+<p>Note that modern browsers support <code>getElementsByClassName()</code>, which could simplify things a bit.</p>

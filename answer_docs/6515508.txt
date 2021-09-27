@@ -1,0 +1,20 @@
+<p>example using itertools.groupby. <strong>This only works if the rows are already grouped by id</strong></p>
+
+<pre><code>from csv import DictReader
+from itertools import groupby
+from operator import itemgetter
+
+filename = 'test.csv'
+
+# the context manager ensures that infile is closed when it goes out of scope
+with open(filename) as infile:
+
+    # group by id - this requires that the rows are already grouped by id
+    groups = groupby(DictReader(infile), key=itemgetter('id'))
+
+    # loop through the groups printing a list for each one
+    for i,j in groups:
+        print [i, map(itemgetter(' serial_no'), list(j))]
+</code></pre>
+
+<p>note the space in front of <code>' serial_no'</code>. This is because of the space after the comma in the input file</p>

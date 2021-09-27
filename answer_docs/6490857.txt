@@ -1,0 +1,48 @@
+<p>To style the mouse pointer, you need to use the <code>cursor</code> CSS style. </p>
+
+<pre><code>.normalpointer {
+    cursor:default;
+}
+</code></pre>
+
+<p>This works in all browsers. (There are some pointer types that can be styled which do have cross-browser issues in older browsers, but <code>default</code> definitely works everywhere)</p>
+
+<p>Disabling the ability to select text is slightly more complex: you need to do a few things, because browser support is varied.</p>
+
+<p>For browsers that support doing it via CSS, you need the following:</p>
+
+<pre><code>.unselectable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+</code></pre>
+
+<p>ie <code>user:select:none;</code> plus a bunch of browser-specific variants on the same. Some of those browser-specific variants can probably be dropped now, as support has improved, but if you keep them anyway, you'll be able to support people who haven't upgraded their browsers in a while.</p>
+
+<p>I believe the above also works in IE9, but older versions of IE definitely don't support it. For those, you need to add the following attribute to the element you want to make unselectable: <code>unselectable="on"</code></p>
+
+<p>Thus, an unselectable div in all browsers would look like this:</p>
+
+<pre><code>&lt;div class='unselectable' unselectabnle='on'&gt;....&lt;/div&gt;
+</code></pre>
+
+<p>(with the class referencing the stylesheet above)</p>
+
+<p>An alternative to the <code>user-select</code> CSS style would be to use <code>::selection</code> CSS. This allows you to style how text looks when it's selected. You could use this for example to set the selection text to look the same as normal text, which would allow the text to still be selected, while not being actually visibly changed:</p>
+
+<pre><code>.myclass::selection {
+    background: transparent;
+}
+</code></pre>
+
+<p>again, you may need some vendor-specific stylesheets for to support older versions of some browsers -- eg:</p>
+
+<pre><code>.myclass::-moz-selection {
+    background: transparent;
+}
+</code></pre>
+
+<p>Hope that helps.</p>

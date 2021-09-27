@@ -1,0 +1,11 @@
+<p>You could use an html-select instead of an ASP.NET-DropDownList:</p>
+
+<pre><code>&lt;select ID="DropDownList1" runat="server" /&gt;
+</code></pre>
+
+<p>You could access the selected value in following way:</p>
+
+<pre><code>If Not Request(DropDownList1.ClientID) Is Nothing Then
+    Dim selectedValue = CInt(Request(DropDownList1.ClientID))
+End If
+</code></pre>

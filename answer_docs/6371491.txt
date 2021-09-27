@@ -1,0 +1,15 @@
+<p>You can do this:</p>
+
+<pre><code>options.timer = setTimeout(functions.someFunction, options.timerInterval);
+</code></pre>
+
+<p>But... the more robust way to do it is like this:</p>
+
+<pre><code>options.timer = setTimeout(function () {
+    functions.someFunction();
+}, options.timerInterval);
+</code></pre>
+
+<p>The second version is better because in JavaScript, the special variable <code>this</code> is dynamically scoped, which means that it will take the value from the scope it is evaluated in, not the scope it was defined in. Do a google search for "understanding javascript this" to find out more.</p>
+
+<p>On a related note, ES5 introduces <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind" rel="nofollow"><code>Function.prototype.bind</code></a> to deal with <code>this</code> problem.</p>

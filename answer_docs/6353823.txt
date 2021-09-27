@@ -1,0 +1,13 @@
+<p>Steps:  </p>
+
+<ol>
+<li>Install Apache Ant (http://www.youtube.com/watch?v=XJmndRfb1TU , this video will help you to do that) and also refer <a href="http://ant.apache.org/" rel="nofollow">http://ant.apache.org/</a> for more info and download ant  </li>
+<li>Download the ZXing source from ZXing homepage and extract it (For More info :http://code.google.com/p/zxing/source/browse/trunk/android/)  </li>
+<li>With the use of Windows Commandline (Run->CMD) navigate to the extracted directory   </li>
+<li>Type  'ant -f core/build.xml' or  'ant -f android/build.xml'   </li>
+<li>Enter Eclipse -> new Android Project  </li>
+<li>Right-click project folder -> Properties -> Java Build Path -> Library -> Add External JARs  </li>
+<li>If the Barcode Scanner is installed on your Android device, you can have it scan for you and return the result, just by sending it an Intent. For example, you can hook up a button to scan a QR code in this way    </li>
+<li>It will have the product code Stored in the String value 'contents'<br>
+Have fun with BarCode by implementing it in your own way :-)  </li>
+</ol>

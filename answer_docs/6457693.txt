@@ -1,0 +1,31 @@
+<blockquote>
+  <ol>
+  <li>Can I have more than one HTTP servers on a Server Hardware?</li>
+  </ol>
+</blockquote>
+
+<p>Yes. You can have at most one server listening on a given port for a given IP address, but a single hardware server can have multiple IP addresses, and for each address, you can choose the port.</p>
+
+<p>Port 80 is the default for HTTP and port 443 is the default for HTTPS, but you can change the port.</p>
+
+<p>In a URL like this: <code>http://www.example.com/</code>, port 80 is implied, but you could force the browser to connect to another port using <code>http://www.example.com:8080/</code> (here port 8080), if the server you want to connect to is listening on that port.</p>
+
+<p>In addition, when it comes to HTTP (1.1), you can have multiple hosts using the same IP address and port. For example, if both <code>www.example.com</code> and <code>www.example.net</code> resolve to <code>10.0.0.1</code>, when getting <code>http://www.example.com/</code> and <code>http://www.example.net/</code>, the browser will connect to <code>10.0.0.1</code> on port 80 for both, but will indicate with hosts it wants to distinguish the two requests. (Doing this with HTTPS is slightly more complex.) This feature is called name-based virtual hosts in Apache Httpd.</p>
+
+<blockquote>
+  <ol>
+  <li>is it true that web servers like Apache or Tomcat can only be HTTP servers?</li>
+  </ol>
+</blockquote>
+
+<p>Generally, yes, but that's more arguable. Strictly speaking, Apache Httpd and Apache Tomcat could listen to other ports at the same time as the one they usually listen to. In fact, in addition to port 80 (the default for Apache Httpd), Apache Httpd does this often with HTTPS (it can listen to both HTTP and HTTPS at the same time). Apache Tomcat also opens other listening sockets in addition to its default (port 8080), often use for internal communication or configuration purpose. They're effectively servers of other protocols. I guess you could tweak both to make them listen to other protocols on other ports, but I don't have any specific example in mind.</p>
+
+<p>For various reasons, although both Apache Httpd and Apache Tomcat are web servers, Apache Tomcat tends to listen to port 8080 by default. This is mainly due to the fact that Apache Tomcat is usually run as a non-root user on unix machines, so it can't use a privileged port (&lt;1024, 80 being one of them). In most configurations, Apache Httpd starts as root so can open port 80, but then runs its processes as a normal user. There are a number of ways to make Apache Tomcat handle requests on port 80 (typically, port forwarding or using Apache Httpd as a front-end). This is something that's normally done when setting up the server in testing/production (it's not necessarily useful during the development of your application).</p>
+
+<blockquote>
+  <p>if it's true, then how many of them can run on a single port?</p>
+</blockquote>
+
+<p>You can only have one server for one combination of address and port.</p>
+
+<p>This being said, there is a more advanced feature (which I hesitate to mention, because it might confuse you even more) called "port unification", whereby the server decides which protocol to use upon reception of the first packet from the client (it tries to guess the protocol from the way the first bytes sent by the client work). This can only work for protocols that expect the client to talk first (HTTP, TLS/SSL, ... but not IMAP, SSH, POP3, SMTP, ...). This is rather unusual. It also leads to more awkward configurations because some protocols are inevitably using a non-standard port. I really wouldn't worry about this at all until you understand much better how the whole concept of ports and protocols work.</p>

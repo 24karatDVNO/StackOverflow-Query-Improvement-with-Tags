@@ -1,0 +1,14 @@
+<p>I manage this by turning off formatting in Eclipse (you must be using Helios or higher) by using the statement <code>//formatter: off</code> (and turning it on after).  <a href="https://stackoverflow.com/questions/1820908/how-to-turn-off-the-eclipse-code-formatter-for-certain-sections-of-java-code">This SO question</a> will give you more information on that.</p>
+
+<p>I also place all my initial SQL statements (CREATE, Triggers, etc.) inside a static <code>String</code> array.  This way all your statements can be run with this code in your onCreate:</p>
+
+<pre><code>public static final String[] SQL_CREATE_TABLES = new String[] { TABLE_1, TABLE_2};
+
+@Override
+public void onCreate(SQLiteDatabase db) {
+     for (String sql : SQL_CREATE_TABLES)
+         db.execSQL(sql);
+}
+</code></pre>
+
+<p>The SQL statements could also be placed in the <code>strings.xml</code> resource file, but I don't think that would help maintain readability or maintainability.</p>

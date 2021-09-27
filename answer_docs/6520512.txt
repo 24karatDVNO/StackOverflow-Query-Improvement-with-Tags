@@ -1,0 +1,5 @@
+<p>Another way to go is to use a custom Location Strategy. I am doing this in my current project and it works fine. </p>
+
+<p>In your particular case you can write a custom strategy that checks if the id attribute of each element starts with the locator string (the static part in your example) and return this element if that is so.</p>
+
+<p>I think this approach is much cleaner.</p>

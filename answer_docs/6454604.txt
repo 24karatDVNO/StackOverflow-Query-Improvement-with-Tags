@@ -1,0 +1,29 @@
+<p>This code is in VB.NET but I believe this will do what you want?</p>
+
+<pre><code>    Dim sr As streamreader = Nothing
+    Dim sw As StreamWriter = Nothing
+    Dim LineString As String = ""
+    Dim LineNum As Integer = 0
+    Try
+        sr = New StreamReader("C:\scratch\input.txt")
+        sw = New StreamWriter("c:\scratch\output.txt")
+        Do Until sr.EndOfStream
+            LineString = sr.ReadLine
+            LineNum += 1
+
+            If LineNum Mod 2 = 0 Then
+                'don't output 2nd line
+            ElseIf LineNum Mod 5 = 0 Then
+                'don't output 5th line
+            Else
+                'write it 
+                sw.WriteLine(LineString)
+            End If
+        Loop
+    Catch ex As Exception
+        MsgBox("Error - " &amp; ex.Message)
+    Finally
+        If Not IsNothing(sr) Then sr.Close()
+        If Not IsNothing(sw) Then sw.Close()
+    End Try
+</code></pre>

@@ -1,0 +1,6 @@
+<p>The <code>Stroke</code> property is of type <code>Brush</code>, for which <code>SolidColorBrush</code> is a subclass. If you want to access a property of <code>SolidColorBrush</code>, you need to cast the value of <code>Stroke</code> to a <code>SolidColorBrush</code>:</p>
+
+<pre><code>Color currentColor = ((SolidColorBrush)Three.Stroke).Color;
+
+if (currentColor == Colors.Yellow) {}
+</code></pre>

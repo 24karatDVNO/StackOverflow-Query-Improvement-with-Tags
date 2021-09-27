@@ -1,0 +1,3 @@
+<p>First, reading a mime message from a servlet can be done using the standard HttpServletResponse methods getParameter("abc"). However to get the raw message, do as you have done and access the request body via the InputStream.</p>
+
+<p>In JavaMail, the constructor to javax.mail.internet.MimeMessage contains a parameter for a mime-encoded InputStream. That should be able to parse the message for you.</p>

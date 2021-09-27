@@ -1,0 +1,10 @@
+<p>For the <code>os</code> module you can use the <code>nt</code> module which provides some of the same functions as <code>os</code> including <code>stat</code>, <code>remove</code>, and <code>mkdir</code>.  (It also includes others like <code>environ</code>, <code>getcwd</code>, <code>chdir</code>,and <code>popen</code>.)</p>
+
+<p>For example:</p>
+
+<pre><code>» import nt
+» nt.getcwd()
+'C:\\Program Files\\Microsoft Visual Studio 10.0\\Common7\\IDE'
+</code></pre>
+
+<p>However, the implementation is incomplete so, unfortunately, it does not have <code>path</code> or <code>walk</code>.  For those, you might need to use .NET's <code>System.IO</code> as <a href="https://stackoverflow.com/questions/1699856/c-or-other-net-equivalents-of-core-python-modules-for-ironpython/1700001#1700001">gimel suggests</a>.</p>

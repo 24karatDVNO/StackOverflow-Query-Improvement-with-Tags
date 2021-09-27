@@ -1,0 +1,17 @@
+<p>If you are using .NET 4.0, you can use the <code>.Zip</code> extension method on <code>IEnumerable&lt;T&gt;</code> to associate your three lists together. </p>
+
+<p>C#</p>
+
+<pre><code>var output
+    = list1.Zip(list2, (a, b) =&gt; new { a, b })
+           .Zip(list3, (x, c) =&gt; new { First = x.a, Second = x.b, Third = c });
+</code></pre>
+
+<p>VB</p>
+
+<pre><code>Dim output 
+     = list1.Zip(list2, function (a, b) new With { .a = a, .b = b }) _
+            .Zip(list3, function (x, c) new with { .First = x.a, .Second = x.b, .Third = c })
+</code></pre>
+
+<p>This will result in a sequence of anonymous typed objects, having the properties <code>First, Second, Third</code>. The iteration of the lists will be deferred until needed, which would be at the point you bind the data to your control.</p>

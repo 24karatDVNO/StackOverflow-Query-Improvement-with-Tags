@@ -1,0 +1,19 @@
+<p>You can't print out a bit map like that. As @Joe says the char's are the individual color components but any zero will terminate the string and there are many other problems trying to print the bytes from an NSData like that.</p>
+
+<p>Assuming the RGBA color space, the way I'd approach it is like this;</p>
+
+<pre><code>struct {
+    char red;
+    char green;
+    char blue;
+    char alpha;
+} color;
+color *bitmap = (color *)[data bytes];
+for(int i = 0;i &lt; [data length] / sizeof(color);i++) {
+    NSLog(@"%d, %d, %d, %d", colors[i].red, colors[i].green, colors[i].blue, colors[i].alpha);
+}
+</code></pre>
+
+<p>If your image is not in the RGBA color space then you will need to adjust the color struct to match it.</p>
+
+<p>Also, this code was not compiled but typed from my mind to this post. No promise is made that it won't reformat your hard drive. Please think before copy and paste.</p>

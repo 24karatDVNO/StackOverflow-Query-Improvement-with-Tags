@@ -1,0 +1,10 @@
+<p>BadCredentialsException means the password check failed. Looks like a misconfiguration of the password hashing algorithm - is the <code>algorithm</code> attribute set correctly?</p>
+
+<p>The default is</p>
+
+<pre><code>algorithm = 'SHA'
+</code></pre>
+
+<p>but it should be overridden in your <code>SecurityConfig.groovy</code> if you use a different approach.</p>
+
+<p>btw - you should be upgrading to <a href="http://grails.org/plugin/spring-security-core" rel="nofollow">http://grails.org/plugin/spring-security-core</a> :)</p>

@@ -1,0 +1,11 @@
+<blockquote>
+  <p>Browser1 --> Web App --> Web Service
+  --> do action on other site (new Browser --> open url --> Fill in URL
+  --> press ok --> catch response --> process answer)</p>
+</blockquote>
+
+<p>if the part of your system that creates a "new browser" is running as a service, either as a Windows Service, a self-hosted WCF service process, or something inside of IIS; then more than likely you won't get GUI events because there is no GUI.  GUI event handlers, amongst other things, require a Windows Message Pump which is not available in these scenarios.</p>
+
+<p>try hosting your service under say a Windows Forms host to see, I suspect it will work.</p>
+
+<p>If you must have your system under IIS or a Windows Service (non-GUI) then you could always communicate to a surrogate host process which has a message pump where it could do all the browsing stuff for you. once complete your "answer" could be sent back to the web app </p>

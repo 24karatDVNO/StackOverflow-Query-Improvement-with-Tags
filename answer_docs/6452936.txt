@@ -1,0 +1,23 @@
+<p>If I understand your question:</p>
+
+<pre><code> if (isset($favourites)) {
+    foreach ($favourites as $fav) { 
+       // i am a favorite
+    }
+ } else {
+       // i am not a favorite
+ }
+</code></pre>
+
+<p>If you have the list of links already, which it looks like you do with <code>$j</code>:</p>
+
+<pre><code>foreach ($j as $jj) { 
+   if (isset($favorites[$j])) { 
+      // i am a favourite
+   } else { 
+      // i am not a favourite
+   }
+}
+</code></pre>
+
+<p>done.</p>

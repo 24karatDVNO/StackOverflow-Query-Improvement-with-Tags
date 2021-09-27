@@ -1,0 +1,10 @@
+<p>Can you use a function-like macro to implement "do something" in the context of the calling function, and then do a normal call to the function pointer? (Yes, standard disclaimers about macros, esp. function-like macros apply...)</p>
+
+<p>For example something like:</p>
+
+<pre><code>#define CALL_FUNC(fp,ARG1,ARG2) do {&lt;do something&gt;;fp(ARG1,ARG2);} while (0)
+</code></pre>
+
+<p>And then in the application, replace where you de-reference the function pointer with the macro.</p>
+
+<p>It's not clear to me from the original question if <code>foo</code> or <code>bar</code> is the function called through the function pointer, so you might need to adjust the macro, but the general approach stays the same.</p>

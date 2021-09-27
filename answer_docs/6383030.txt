@@ -1,0 +1,19 @@
+<p>Dee, you should make a question. I'm presuming you got problems with 'namespaces'. Try to define de variable first, with a superclass type, then in those conditionals just give a value. Like this:</p>
+
+<pre><code>    function makeABox(e):void {
+        var newBox:somesuperclass;
+        if (e.name == "seri1") {
+            newBox = new karo1();
+        } else if (e.name == "seri2") {
+            newBox = new karo2();
+        } else {
+            newBox = new zemin1();
+        }
+        ust_bar.addChild(newBox);
+        newBox.x = i*60;
+        newBox.y = s*60;
+    }
+</code></pre>
+
+<p>This is actionsscript3? If is, you probably need e.currentTarget.name.
+Hope this helps.</p>

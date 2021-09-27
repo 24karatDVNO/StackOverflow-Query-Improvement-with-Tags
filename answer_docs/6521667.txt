@@ -1,0 +1,5 @@
+<p>Why dont you use the Geocoder to receive the LatLng values?</p>
+
+<pre><code>Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+List&lt;Address&gt; adr = geocoder.getFromLocationName(locationName, maxResults);
+</code></pre>

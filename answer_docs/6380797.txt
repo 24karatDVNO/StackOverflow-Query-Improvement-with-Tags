@@ -1,0 +1,13 @@
+<p>Use jQuery load to load the content in the next tab when they click.</p>
+
+<pre><code>$(".tab a").click(function(){
+      qAns = $(this).attr('id'); 
+      $(this).children(".tab-content").load("content.php", {anwser: qAns});
+});
+</code></pre>
+
+<p>Use something like this to change the tab to the next one:</p>
+
+<pre><code>var selected = $("#tabs").tabs("option", "selected");
+$("#tabs").tabs("option", "selected", selected + 1);
+</code></pre>

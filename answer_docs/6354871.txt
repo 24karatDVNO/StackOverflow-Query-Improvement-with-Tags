@@ -1,0 +1,7 @@
+<p>There was no problem with the MessageContract which was used in response. The problem was with the input parameter to the OperationContract.</p>
+
+<p>When I looked at the old WSE3 web service proxy method (<code>WebMethod</code>) and created the <code>OperationContract</code> for it in WCF service, the <code>OparationContract</code> I created did not accept any parameter. </p>
+
+<p>While investigating this issue, I used the <code>svcutil.exe</code> to create .NET classes from the WSDL of the old WSE3 service. When I looked into the specific <code>OperationContract</code> I came to know that I need to create a <code>MessageContract</code> which will be used as request parameter to the <code>OperationContract</code>. So I created a <code>MessageContract</code> without any <code>MessageBodyMember</code>. When I used it, the problem got resolved.</p>
+
+<p>Obviously, if we compare the <code>OperationContract</code> signature with the ASMX <code>WebMethod</code> signature, they dont match since we have introduced input parameter. But this works. I do not know how and why. <strong>It would be great if someone explains why it works.</strong> </p>

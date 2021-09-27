@@ -1,0 +1,32 @@
+<p>You will need to initialize/destroy the sortable each time you want to do some sorting, and each time you will initialize it you will do for the type of elements you want..</p>
+
+<p>So, add a different class to each type of elements you want grouped..</p>
+
+<pre><code>    &lt;div class="sortable"&gt;
+        &lt;div class="process"&gt;Process A&lt;/div&gt;
+        &lt;div class="process"&gt;Process B&lt;/div&gt;
+        &lt;div class="process"&gt;Process C&lt;/div&gt;
+
+        &lt;div class="file"&gt;File A&lt;/div&gt;
+        &lt;div class="file"&gt;File B&lt;/div&gt;
+        &lt;div class="file"&gt;File C&lt;/div&gt;   
+    &lt;/div&gt; 
+</code></pre>
+
+<p>And in your script use</p>
+
+<pre><code>function InitSortable() {
+    $('.sortable &gt; div').mousedown(function(){
+        $(this).closest('.sortable').sortable({
+            items:'.'+this.className,
+            stop:function(){
+                $(this).sortable('destroy');
+            }
+        });
+    });
+}  
+
+$(InitSortable);
+</code></pre>
+
+<p>Demo at <a href="http://jsfiddle.net/gaby/h6aPj/" rel="nofollow">http://jsfiddle.net/gaby/h6aPj/</a></p>

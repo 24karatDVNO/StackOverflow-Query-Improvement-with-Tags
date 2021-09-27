@@ -1,0 +1,18 @@
+<p>I like pairwise:</p>
+
+<pre><code>from itertools import izip, tee
+
+def pairwise(iterable):
+    a, b = tee(iterable)
+    next(b)
+    return izip(a, b)
+
+def is_alternating_signs(iterable):
+    return all(x &lt; 0 &lt; y or x &gt; 0 &gt; y for x, y in pairwise(iterable))
+</code></pre>
+
+<p>If there are no zeros in <code>iterable</code> this also works:</p>
+
+<pre><code>def is_alternating_signs(iterable):
+    return all((x &lt; 0) == (0 &lt; y) for x, y in pairwise(iterable))
+</code></pre>

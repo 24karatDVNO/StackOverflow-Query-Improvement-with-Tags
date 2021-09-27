@@ -1,0 +1,96 @@
+<p>I just did something like this for our company's blog which uses wordpress. This is good for us because our wordress blog hasn't changed in years, but the others are right in that if your html changes a lot, parsing becomes a cumbersome solution.</p>
+
+<p>Here is what I recommend: </p>
+
+<p>Using Nuget install RestSharp and HtmlAgilityPack. Then download fizzler and include those references in your project (http://code.google.com/p/fizzler/downloads/list).</p>
+
+<p>Here is some sample code I used to implement the blog's search on my site.</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using Fizzler.Systems.HtmlAgilityPack;
+using RestSharp;
+using RestSharp.Contrib;
+
+namespace BlogSearch
+{
+    public class BlogSearcher
+    {
+        const string Site = "http://yourblog.com";
+
+        public static List&lt;SearchResult&gt; Get(string searchTerms, int count=10)
+        {            
+            var searchResults = new List&lt;SearchResult&gt;();
+
+            var client = new RestSharp.RestClient(Site);
+            //note 10 is the page size for the search results
+            var pages = (int)Math.Ceiling((double)count/10);
+
+            for (int page = 1; page &lt;= pages; page++)
+            {
+                var request = new RestSharp.RestRequest
+                                  {
+                                      Method = Method.GET,
+                                      //the part after .com/
+                                      Resource = "page/" + page
+                                  };
+
+                //Your search params here
+                request.AddParameter("s", HttpUtility.UrlEncode(searchTerms));
+
+                var res = client.Execute(request);
+
+                searchResults.AddRange(ParseHtml(res.Content));
+            }
+
+            return searchResults;
+        }
+
+        public static List&lt;SearchResult&gt; ParseHtml(string html)
+        {            
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(html);
+            var results = doc.DocumentNode.QuerySelectorAll("#content-main &gt; div");
+
+            var searchResults = new List&lt;SearchResult&gt;();
+            foreach(var node in results)
+            {
+                bool add = false;
+                var sr = new SearchResult();
+
+                var a = node.QuerySelector(".posttitle &gt; h2 &gt; a");
+                if (a != null)
+                {
+                    add = true;
+                    sr.Title = a.InnerText;
+                    sr.Link = a.Attributes["href"].Value;
+                }
+
+                var p = node.QuerySelector(".entry &gt; p");
+                if (p != null)
+                {
+                    add = true;
+                    sr.Exceprt = p.InnerText;
+                }
+
+                if(add)
+                    searchResults.Add(sr);
+            }
+
+            return searchResults;
+        }
+
+
+    }
+
+    public class SearchResult
+    {
+        public string Title { get; set; }
+        public string Link { get; set; }
+        public string Exceprt { get; set; }
+    }
+}
+</code></pre>
+
+<p>Good luck,
+Eric</p>

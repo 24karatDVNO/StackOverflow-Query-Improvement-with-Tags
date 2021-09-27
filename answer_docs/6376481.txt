@@ -1,0 +1,64 @@
+<p>You can use the following algorithm:</p>
+
+<ul>
+<li>count the working days of the starting week (max 7 iterations)</li>
+<li>count the weeks between start/end and multiple the weeks with the working days</li>
+<li>count the working days of the end week (max 7 iterations)</li>
+</ul>
+
+<p>The sample uses the classes <strong>Week</strong> and <strong>DateDiff</strong> of the <a href="http://www.codeproject.com/KB/datetime/TimePeriod.aspx" rel="nofollow">Time Period Library for .NET</a></p>
+
+<pre><code>// ----------------------------------------------------------------------
+public int CountWorkingDays( DateTime start, DateTime end, IList&lt;DayOfWeek&gt; workingDays )
+{
+  if ( workingDays.Count == 0 )
+  {
+    return 0;
+  }
+
+  Week startWeek = new Week( start );
+  Week endWeek = new Week( end );
+  int dayCount = 0;
+
+  // start week
+  DateTime currentDay = start.Date;
+  while ( currentDay &lt; startWeek.End )
+  {
+    if ( workingDays.Contains( currentDay.DayOfWeek ) )
+    {
+      dayCount++;
+    }
+    currentDay = currentDay.AddDays( 1 );
+  }
+
+  // between weeks
+  DateDiff inBetweenWeekDiff = new DateDiff( startWeek.End, endWeek.Start );
+  dayCount += inBetweenWeekDiff.Weeks * workingDays.Count;
+
+  // end week
+  currentDay = endWeek.Start.Date;
+  while ( currentDay &lt; end )
+  {
+    if ( workingDays.Contains( currentDay.DayOfWeek ) )
+    {
+      dayCount++;
+    }
+    currentDay = currentDay.AddDays( 1 );
+  }
+
+  return dayCount;
+} // CountWorkingDays
+</code></pre>
+
+<p>Usage:</p>
+
+<pre><code>// ----------------------------------------------------------------------
+public void CountWorkingDaysSample()
+{
+  DayOfWeek[] workingDays = new [] { DayOfWeek.Monday, DayOfWeek.Tuesday };
+  DateTime start = new DateTime( 2011, 3, 1 );
+  DateTime end = new DateTime( 2011, 5, 1 );
+  Console.WriteLine( "working days: {0}", CountWorkingDays( start, end, workingDays ) );
+  // &gt; working days: 19
+} // CountWorkingDaysSample
+</code></pre>

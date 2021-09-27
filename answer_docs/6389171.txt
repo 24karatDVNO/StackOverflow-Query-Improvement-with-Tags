@@ -1,0 +1,2 @@
+<p>Since you are creataing the vector of "resource pointer" and  not reserving the spaces for object in advance ,your sysetem might crash in future.  Why?
+        Vector create a block of memory  when you insert element and uses the same block until it hits its capcity. Once it hits its capcality and you inset a new element, vector will allocate a new memory (twice as previous allocated memory) and copies all the existing elements into new memory.  Since this is a vector of "pointers", it is going to invaliadate all the refernces. </p>

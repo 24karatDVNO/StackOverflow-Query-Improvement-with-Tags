@@ -1,0 +1,11 @@
+<p>Either mark your thread MTA (provided it's not the UI thread which has to be STA) or use a different wait mechanism.  For example, you could use one wait handle, with a task count:</p>
+
+<pre><code>int taskCount = 0;
+
+// Launch a thread
+Interlocked.Increment(ref taskCount);
+
+// A thread terminates
+if (Interlocked.Decrement(ref taskCount) == 0)
+    doneEvent.Set();
+</code></pre>

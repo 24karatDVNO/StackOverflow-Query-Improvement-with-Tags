@@ -1,0 +1,7 @@
+<p>Found <a href="http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/" rel="nofollow">this article</a> that seems to fit the bill.  The long and short of it is to use </p>
+
+<pre><code>- (UIImage *)
+  resizedImageWithContentMode:(UIViewContentMode)contentMode
+                       bounds:(CGSize)bounds
+         interpolationQuality:(CGInterpolationQuality)quality;
+</code></pre>

@@ -1,0 +1,30 @@
+<p>For the record, I'm having the same problem. Have you found a solution?</p>
+
+<p><strong>Edit:</strong>
+I have managed to nail it down to the two if-statements below. If I comment out either of the if-statements, Proguard succeeds and does not throw the <code>NullPointerException</code>. </p>
+
+<pre><code>boolean externalStorageAvailable = false;
+boolean externalStorageWriteable = false;
+...
+if (!externalStorageAvailable) {
+    throw new IOException("External storage is not available");
+}
+if (!externalStorageWriteable) {
+    throw new IOException("Could not get write access to external storage");
+}
+</code></pre>
+
+<p>And if I invert and the boolean values and assign them to new variables, Proguard also succeeds. That works for me.</p>
+
+<pre><code>boolean externalStorageAvailable = false;
+boolean externalStorageWriteable = false;
+...
+boolean notAvailable = !externalStorageAvailable;
+boolean notWritable = !externalStorageWriteable;
+if (notAvailable) {
+    throw new IOException("External storage is not available");
+}
+if (notWritable) {          
+    throw new IOException("Could not get write access to external storage");
+}
+</code></pre>

@@ -1,0 +1,5 @@
+<p>You probably want to manually reduce the buffer size on your audio stream to something small (500ms) when the seek occurs (NetStatus.SEEK), then increase the buffer size after it is full while the audio is already playing.  </p>
+
+<p>The issue could simply be that your audio stream has a large buffer (i.e. 30 seconds) that takes 5 seconds to fill before playback begins.</p>
+
+<p>Most of the time, people start with small buffers, then increase them as they fill. That way, your media starts quickly, but slowly fills a larger buffer in the background while you are watching / listening. </p>

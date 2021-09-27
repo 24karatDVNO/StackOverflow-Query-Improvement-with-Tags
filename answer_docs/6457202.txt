@@ -1,0 +1,4 @@
+<p>Basically all normalization methods in Bioconductor are based on the AffyBatch class. Therefore, you have to read your textfile (probably a matrix) and create an AffyBatch manually:</p>
+
+<pre><code>AB &lt;- new("AffyBatch", exprs = exprs, cdfName = cdfname, phenoData = phenoData,...)
+</code></pre>

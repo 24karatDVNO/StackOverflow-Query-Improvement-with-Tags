@@ -1,0 +1,21 @@
+<p>As you found it often pays to measure but I what I think your manager may have been referring to is somthing like this.</p>
+
+<p>This is typically much faster</p>
+
+<pre><code>SELECT SomeFields FROM oelinhst_sql
+WHERE
+  datetimeField &gt; '1/1/2011'
+  and
+  datetimeField &lt; '2/1/2011'
+</code></pre>
+
+<p>than this</p>
+
+<pre><code>SELECT SomeFields FROM oelinhst_sql
+WHERE
+  Month(datetimeField) = 1
+  and
+  year(datetimeField) = 2011
+</code></pre>
+
+<p>even though the rows that are returned are the same</p>

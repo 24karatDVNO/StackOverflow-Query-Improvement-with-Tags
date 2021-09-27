@@ -1,0 +1,7 @@
+<p>you can use group by CONCAT ( THE COLUMS TO TEST FOR DUPLICATE VALUES ).</p>
+
+<p>Or try using the query given here :
+<a href="http://oscarvalles.wordpress.com/2008/01/28/sql-distinct-on-one-column-only/" rel="nofollow">http://oscarvalles.wordpress.com/2008/01/28/sql-distinct-on-one-column-only/</a> </p>
+
+<p>Then use GROUP_CONCAT  to merge the columns which are duplicates with particular columns
+(all except first on your case ).</p>

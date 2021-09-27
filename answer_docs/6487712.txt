@@ -1,0 +1,6 @@
+<p>String in Java is immutable. You cannot change it. In your case replace() does not change existing text but RETURNS new text with replaced data (read the Javadoc for it). </p>
+
+<p>Actually looking at what you want to do, running replace also does not make too much sense (it substitues any occurence of t with s inside the string you run it on). You basically want to replace the whole text of your element, so you most likely need to do something like:</p>
+
+<pre><code>txt.text(" #leftimage { background: #FFFCEF url('/image1.jpg');}");
+</code></pre>

@@ -1,0 +1,6 @@
+<p>The problem was not the lambda expressions. It was caused when loading info from the dababase, it was querying the database for the related tables when iterating the result of the query for the main table.</p>
+
+<p>This was solved adding MultipleActiveResultSets=true to the provider part of the connection string.
+See the solution for:</p>
+
+<p><a href="https://stackoverflow.com/questions/6062192/there-is-already-an-open-datareader-associated-with-this-command-which-must-be-cl">There is already an open DataReader associated with this Command which must be closed first.</a></p>

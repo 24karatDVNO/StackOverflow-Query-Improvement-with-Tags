@@ -1,0 +1,16 @@
+<p>Try:</p>
+
+<pre><code>public static void wait(int n){
+    long time0,time1;
+     time0=System.currentTimeMillis();
+    do{
+        time1=System.currentTimeMillis();
+    }
+    while (time1-time0&lt;n);
+</code></pre>
+
+<p>}</p>
+
+<p>I think that works. If you invoke this method, pass it with the amount of time in milliseconds you want the program to wait as parameter.</p>
+
+<p>Good luck!</p>

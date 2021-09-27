@@ -1,0 +1,22 @@
+<pre><code>$("li").hover(function()
+{
+    //mouse over
+    var s = $(this).children("a").children("span");
+
+    for(element in s)
+    {
+        if(element.hasClass("title"))
+        {
+            //add glow to element
+        }
+    }
+},
+function()
+{
+    //remove glow here in a similar way
+});
+</code></pre>
+
+<p>Also note that if your markup is consistent then you can just select the first element instead of looping through them all so you would simply add the glow to s[0]</p>
+
+<p>I think find maybe even more suited for your purpose instead of chaining the children() calls. <a href="http://api.jquery.com/find/" rel="nofollow">http://api.jquery.com/find/</a></p>

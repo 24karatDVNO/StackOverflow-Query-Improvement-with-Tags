@@ -1,0 +1,5 @@
+<p>I believe the truncation problem could be on the logging, not on the actual data stored in Core Data.</p>
+
+<p>Can you confirm by posting the code you are using to log the output?</p>
+
+<p>I say this because I've noticed that when logging some of my longer NSString fields, Core Data description will only display ~50 characters or so, which might lead you to think it is truncating the data, but it's actually just truncating the description of it.</p>

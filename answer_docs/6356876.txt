@@ -1,0 +1,19 @@
+<p>You create a datasource in Tomcat or somewhere else which is a pool of connections.  You take a connection from that pool and then release it when you're done with it.  Tomcat example (in context.xml):</p>
+
+<pre><code>&lt;Resource auth="Container" driverClassName="com.mysql.jdbc.Driver"
+        maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/yourname"
+        password="..." type="javax.sql.DataSource"
+        url="jdbc:mysql://localhost:3306/mydb?characterEncoding=utf8"
+        username="..."/&gt;
+</code></pre>
+
+<p>This creates a pool with a JNDI name 'jdbc/yourname'.  You can get this from Spring like this:</p>
+
+<pre><code>&lt;jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/yourname" /&gt;
+</code></pre>
+
+<p>This will create a DataSource object that you can inject into your Java code as needed.</p>
+
+<p>Or there are plenty of JNDI lookup examples on the web to do this programmatically instead of declaratively.</p>
+
+<p>There are also loads of pool implementations, like c3po.</p>

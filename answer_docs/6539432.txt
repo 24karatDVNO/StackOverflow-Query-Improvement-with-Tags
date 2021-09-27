@@ -1,0 +1,16 @@
+<p>Well, you could make Titles a struct and make the constructor either public or internal.  In that way, every time a client gets a copy of the Titles instance through the Title property, they will be getting the value, not the reference.  They could modify that value, but to apply that change to the internal state of your object, they would need to be able to set the value back again through the Title property.  They can't, because you have the Title setter marked private.</p>
+
+<p>You will have to do the same when you change a value internally.  For example:</p>
+
+<pre><code>// Your constructor...
+public Messenger()
+{
+    Titles t = new Titles();
+    t.ForSuccesses = "blah";
+    Title = t;
+}
+</code></pre>
+
+<p>You can do this internally because you have access to the private setter for the Title property.</p>
+
+<p>The main downside is that it might confuse the clients of your framework a bit because it looks like you can set the values of the Titles instance, but there is no real way for them to commit that change back to the Messenger class.</p>

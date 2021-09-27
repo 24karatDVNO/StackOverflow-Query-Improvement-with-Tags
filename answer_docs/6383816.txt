@@ -1,0 +1,11 @@
+<pre><code>find src -newer src/final.xml -print
+</code></pre>
+
+<p>will print all files what are "newer" as final.xml</p>
+
+<p>or</p>
+
+<pre><code>n=$(find src -newer src/final.xml | grep -c '.') &amp;&amp; echo Here is $n newer files
+</code></pre>
+
+<p>will do <code>echo</code> only when here is ANY newer file, otherwise the echo will be not executed</p>

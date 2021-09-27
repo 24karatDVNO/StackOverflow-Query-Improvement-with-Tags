@@ -1,0 +1,7 @@
+<p>The purpose of a message inspector is to allow you to modify the message before or after the rest of the service model layer processes it</p>
+
+<p>BeforeSendReply is called after the operation has been invoked already, AfterReceiveRequest is called before the operation is invoked.</p>
+
+<p>The behavior you are seeing is that your message inspector is being fired after the operation. You are then firing another operation which then ends up calling your message inspector again. BeforeSendReply is often used to manipulate the response message to some format that WCF has problems with generating using its default serialization, etc. Its not going to be able to give you the behavior you are looking for</p>
+
+<p>To decide on which operation is invoked you normally implement an <a href="http://msdn.microsoft.com/en-us/library/system.servicemodel.dispatcher.idispatchoperationselector.aspx" rel="nofollow">IDispatchOperationSelector</a>. The specific idea of this extension point looks like it will be exactly what you need</p>

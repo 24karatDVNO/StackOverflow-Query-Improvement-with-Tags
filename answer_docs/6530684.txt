@@ -1,0 +1,14 @@
+<p>You can't have a union or query on a non-existent object at compile time (compiling to a query plan just before execution).</p>
+
+<p>So there is no way to refer to a non-existent table in the same batch</p>
+
+<p>The pattern you have to use is like this: dynamic SQL is a separate batch</p>
+
+<pre><code>IF OBJECT('tempdb..#temp1') IS NOT NULL
+  EXEC ('SELECT * FROM #temp1')
+ELSE IF OBJECT('tempdb..#temp3') IS NOT NULL
+  EXEC ('SELECT * FROM #temp3')
+ELSE IF OBJECT('tempdb..#temp3') IS NOT NULL
+  EXEC ('SELECT * FROM #temp3')
+...
+</code></pre>

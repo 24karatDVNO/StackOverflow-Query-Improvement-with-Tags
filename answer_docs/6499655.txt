@@ -1,0 +1,16 @@
+<p>You'd need something like</p>
+
+<pre><code>&lt;html&gt;
+
+&lt;body style="height: 100%; overflow: hidden"&gt;
+
+&lt;div id="realbody" style="height: 100%: overflow: auto"&gt;
+    ... page goes here ...
+&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+
+<p>This way you disable scroll bars on the actual page body, and all the scrolling tags place "inside" the document on the "realbody" div. With suitable styling on #realbody, you can make the backgrounds stretch as you need them.</p>

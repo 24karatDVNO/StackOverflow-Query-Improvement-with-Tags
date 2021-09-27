@@ -1,0 +1,1 @@
+<p>Oddly enough, the issue was due to a post_max_size that was set too high. Yes, too high. I had to drop it down to what's written in the core php.ini file. I had it set to 20000M across different accounts to just make sure it's practically unlimited, so I had to drop that to 128M (as per the core php.ini max) and it worked. </p>

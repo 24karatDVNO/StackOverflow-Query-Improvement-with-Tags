@@ -1,0 +1,17 @@
+<p><a href="http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/color.html" rel="nofollow">http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/color.html</a></p>
+
+<p>The above link will guide you to a page to change the color scheme for the Nimbus look and feel. To change the color scheme, at least 3 properties need to be changed. Within the page, there is a link to another page that contains all the properties in the Nimbus look and feel, if you require more changes to the look and feel.</p>
+
+<p>If you need to retrieve the color scheme for the Metal look and feel, you can use the below piece of code to see all the properties in the Metal look and feel. You will need to identify the correct color properties in this list and then retrieve the colors to be assigned into the 3 properties in the Nimbus look and feel.</p>
+
+<pre><code>UIDefaults uiDefaults = UIManager.getDefaults();
+Enumeration enum = uiDefaults.keys();
+while (enum.hasMoreElements())
+{
+    Object key = enum.nextElement();
+    Object val = uiDefaults.get(key);
+    System.out.println("[" + key.toString() + "]:[" +
+        (null != val ? val.toString() : "(null)") +
+        "]");
+}
+</code></pre>

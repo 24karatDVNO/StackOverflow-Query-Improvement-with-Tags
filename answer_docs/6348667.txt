@@ -1,0 +1,25 @@
+<p>Problem fixed:</p>
+
+<p>Solved by adding the toolbar as a dockeditem of the carousel, instead of having it as a dockeditem in the container that contains the carousel.</p>
+
+<p>Like this:</p>
+
+<pre><code>      this.myCarousel = [{
+            xtype: 'carousel',
+              cls: 'card',
+              listeners: {
+                    cardswitch: function(container, newCard, oldCard, index){
+                    this.dockedItems.items[0].setTitle(newCard.myName);
+                }
+            },
+            items: cards,
+            dockedItems: [{
+                 xtype: 'toolbar',
+                 dock: 'top',
+                 title: "A title",
+                 items: []
+            }]
+}];
+</code></pre>
+
+<p>So now when I swipe, I get "myName" set to the title of the toolbar</p>

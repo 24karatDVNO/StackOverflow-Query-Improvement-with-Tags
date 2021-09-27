@@ -1,0 +1,11 @@
+<p>The dataset should be bound to the series using f.ex.</p>
+
+<pre><code>Chart1.Series["Series1"].Points.AddXY(xVal, yVal);
+</code></pre>
+
+<p>Besides you should change your Series declaration to:</p>
+
+<pre><code>&lt;asp:Series Name="Series1" ChartArea="ChartArea1" &gt;
+</code></pre>
+
+<p>to get your series rendered on the chart.</p>

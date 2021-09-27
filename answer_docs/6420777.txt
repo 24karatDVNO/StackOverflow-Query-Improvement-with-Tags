@@ -1,0 +1,9 @@
+<p>I try to debug your code and I suppose that code is right and does exactly what your describe. But it shows misleading message due to small bug: you execute update query and increment counter to one and after you select this value and use it in calculation. You should use old value in calculation, not a new one. Isn't it?</p>
+
+<p>To fix this you may remove following useless lines:</p>
+
+<pre><code>$query2 = "SELECT * FROM manager_users_logins_hacking WHERE userID = '".$userID."'";
+$result2 = mysqli_query($dbc,$query2);
+$row2 = mysqli_fetch_array($result2);
+$failedLogins = $row2['failedLogins'];
+</code></pre>

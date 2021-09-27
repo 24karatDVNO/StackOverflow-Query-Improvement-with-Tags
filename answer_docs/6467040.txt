@@ -1,0 +1,57 @@
+<p>Your question is a little ambiguous, but based on what you've said I believe this is what your approach should look like:</p>
+
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;inttypes.h&gt;
+
+typedef struct {
+    uint32_t length, width;
+} box_t;
+
+bool box_size_from_cost(uint32_t icost, box_t* obox) {
+    if(icost &gt; ((50 * 2500) + (50 * 1200)))
+        return false;
+
+    uint32_t width     = 0;
+    uint32_t length[2] = { 0 };
+    uint32_t cost[2]   = { 0 };
+
+    for(; length[0] &lt;= 1000; length[0]++, cost[0] += 120) {
+        for(length[1] = length[0], cost[1] = cost[0]; width &lt;= 1000; width += 2, length[1]++, cost[1] += 250) {
+            if(cost[1] == icost) {
+                if(obox != NULL) {
+                    obox-&gt;width  = width;
+                    obox-&gt;length = length[1];
+                }
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+int main(int argc, char** argv) {
+    if(argc &lt; 2) {
+        printf("Usage: box &lt;cost&gt;\n");
+        return EXIT_FAILURE;
+    }
+
+    uint32_t cost;
+    if(sscanf(argv[1], "%"SCNu32, &amp;cost) == EOF) {
+        printf("Error: Invalid cost parameter.\n");
+        return EXIT_FAILURE;
+    }
+
+    box_t box;
+    if(!box_size_from_cost(cost, &amp;box)) {
+        printf("No box size costs %"PRIu32".\n", cost);
+        return EXIT_FAILURE;
+    }
+
+    printf("A box of size %.1fx%.1f costs %"PRIu32".\n", (box.width * 0.1), (box.length * 0.1), cost);
+    return EXIT_SUCCESS;
+}
+</code></pre>

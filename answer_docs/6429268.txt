@@ -1,0 +1,13 @@
+<p>I read more about UUIDs and since they allow application wide unique IDs I was able to do "inheritance" style of database.</p>
+
+<p>I used my own prefix at the start of the every table name to avoid reserved table name collisions such as object. You can use any kind of prefix, for example: my_ and to use it like: my_object. All tables should use prefixes in this example.</p>
+
+<p>So I created table Objects. It has the id field with Binary(36) type. Cake recognizes it as UUID field. Then I used 1:1 identifying relationships and inherited other tables from it, which I wanted to interact with others. </p>
+
+<p>So I created 1:1 identifying relationship to Comments, Videos, Pictures table so that the table had the identifying foreign key being also a primary key. </p>
+
+<p>Then I created Mappings table to which I used two 1:1 non-identifying relationships without primary key. This means this was really HABTM relationship to self.</p>
+
+<p>Now this let me to "inherit" other tables from Objects table, like News table with again 1:1 identifying relationship. Then it was possible to link Comments, or anything other that has the 1:1 identifying relationship to Object, to News table by using the Mappings table.</p>
+
+<p>I hope this will help others who are pondering this kind of solution aswell.</p>

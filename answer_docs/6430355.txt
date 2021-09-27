@@ -1,0 +1,18 @@
+<p>The technique described by Brian Chess et. al. in the following paper might be of use in this case. In short you override the javascript setter that is used to process the incoming JSON.</p>
+
+<p><a href="https://www.fortify.com/downloads2/public/JavaScript_Hijacking.pdf" rel="nofollow">https://www.fortify.com/downloads2/public/JavaScript_Hijacking.pdf</a></p>
+
+<blockquote>
+  <p>When the JSON array arrives on the
+  client, it will be evaluated in the
+  context of the malicious page. In
+  order to witness the evaluation of the
+  JSON, the malicious page has redefined
+  the JavaScript function used to create
+  new objects. In this way, the
+  malicious code has inserted a hook
+  that allows it to get access to the
+  creation of each object and transmit
+  the object's contents back to the
+  malicious site.</p>
+</blockquote>

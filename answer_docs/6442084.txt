@@ -1,0 +1,12 @@
+<p>This is not possible, since the CSS apply to the entire page. To achieve what you want, you should divide your page into different sections, by giving a unique ID to each section for example. This way you can apply separate styles to separate sections of your page.</p>
+
+<p>For example your navigation div could have <code>id="navigation-bar"</code>, then in the CSS you will write:</p>
+
+<pre><code>#navigation-bar {
+
+  /* styles here will apply only to navigation-bar and elements inside it */
+
+}
+</code></pre>
+
+<p>And so on...</p>

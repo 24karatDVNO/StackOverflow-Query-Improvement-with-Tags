@@ -1,0 +1,10 @@
+<p>In pure Javascript you can iterate over the child nodes and pull out any nodes that have the nodeName option. Quick example:</p>
+
+<pre><code>var select = document.getElementById('whateverIdToYourSelect');
+
+var arr = [];
+for (var i = 0, l = select.childNodes.length; i &lt; l; i++) {
+    if (select.childNodes[i].nodeName === 'OPTION') arr.push(select.childNodes[i].innerHTML);
+}
+alert(arr) // [Contents,Of,Each,Option]
+</code></pre>

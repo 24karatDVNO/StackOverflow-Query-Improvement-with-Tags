@@ -1,0 +1,8 @@
+<p>Reading your question again, here's some suggestions based on what I think you're looking for.</p>
+
+<ol>
+<li><p>Make sure your document is valid HTML before you continue. Safari on iOS supports HTML 5, so I'd suggest targeting that, unless your platform targets something different already.</p></li>
+<li><p>If you just want it to run well in iOS Safari, then code for that. If you want it to look similarly in other browsers, however, then it may be necessary to look at styles targeting the iOS device (via width/height). See <a href="http://davidbcalhoun.com/2010/using-mobile-specific-html-css-javascript" rel="nofollow">http://davidbcalhoun.com/2010/using-mobile-specific-html-css-javascript</a> (It seems hacky, but based on some research a week ago, this still seems to be the suggested route.)</p></li>
+<li><p>You've got CSS that shouldn't be in there if you want to target multiple browsers. overflow:hidden and set pixel widths.</p></li>
+<li><p>Generally, I'd say you'll want to tweak your markup as well. List items or headers would be much better than just simple breaks.</p></li>
+</ol>

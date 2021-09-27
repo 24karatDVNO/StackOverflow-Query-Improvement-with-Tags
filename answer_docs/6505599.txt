@@ -1,0 +1,14 @@
+<p>Here you go:</p>
+
+<pre><code>var $radioList = $('input[type="radio"]');
+$('input[type="radio"]').change(function() {
+    var $r1 = $radioList.filter('[name="r1"]:checked');
+    var $r2 = $radioList.filter('[name="r2"]:checked');
+    if($r1.length &gt; 0 &amp;&amp; $r2.length &gt; 0) {
+        $('div').hide();
+        $('.' + $r1.val() + $r2.val()).show();
+    }
+});
+</code></pre>
+
+<p>And <a href="http://jsfiddle.net/Y3xX4/" rel="nofollow">here</a> is jsFiddle test case</p>

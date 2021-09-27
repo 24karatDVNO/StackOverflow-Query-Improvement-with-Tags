@@ -1,0 +1,31 @@
+<p>I too upgraded to 10.6, actually I got a new mac and migrated my system over, then I installed <em>phpmyadmin 3.4.2</em> and was getting messages about not being able to login as well as message about needing mcrypt. I re-installed PHP, now I'm running <em>PHP Version 5.3.6</em>. </p>
+
+<p>I had Navicat on my system and was able to log into mysql database without issue. I tried resetting my mysql password, but that would not take. Not sure why. I had no valuable data so I re-installed MySQL, now I'm running <em>MYSQL 5.5.13</em>.</p>
+
+<p>Still I could not login with phpMyAdmin - however thanks to new MySQL I was no longer seeing message about needing encyption, but I was getting a #1045 error on phpmyadmin.  I guess it was telling me I had wrong password. Actually I had never set a password! I guess phpMyAdmin didn't like that as it would not allow me to login without a pw.  (as you can see from this post I am not well versed in linux/unix, but I am one persistent fellow!  this took me three nights.)  </p>
+
+<p>I entered these in Terminal to set a password, then phpmyadmin worked!</p>
+
+<p>1) Need to first stop the MYSQL server, enter this in Terminal, then hit enter:</p>
+
+<pre><code>/etc/rc.d/init.d/mysql stop
+</code></pre>
+
+<p>2) Then set a password or new password. Needless to say replace 'whatever…" with your password of choice by entering this line in Terminal, and hit enter.</p>
+
+<pre><code>UPDATE mysql.user SET Password=PASSWORD('whateverfornew') WHERE User='root';
+</code></pre>
+
+<p>3) Now flush the privileges by entering this line in Terminal, and hit enter:</p>
+
+<pre><code>FLUSH PRIVILEGES;
+</code></pre>
+
+<p>4) Now restart MySQL by entering this line in Terminal, and hit enter:</p>
+
+<pre><code>/etc/rc.d/init.d/mysql start 
+</code></pre>
+
+<p>5) Now login to your phpmyadmin with username "root" and your new password.</p>
+
+<p>Yep, I know this is rudimentary and I have no idea if I am following best practices but for those of us who are new to Mac / Unix and want to get phpmyadmin, mysql etc running this worked for me.  Personally I found a lot of forums but most already assume that reader is comfortable using terminal and Unix commands…which I am not - I just wanted a working development zone.</p>

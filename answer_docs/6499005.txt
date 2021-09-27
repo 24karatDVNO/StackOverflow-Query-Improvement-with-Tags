@@ -1,0 +1,3 @@
+<p>I don't think this is possible, at least with NSKeyedArchiver. Since the keys <a href="http://developer.apple.com/library/ios/#documentation/cocoa/reference/foundation/Classes/NSKeyedArchiver_Class/Reference/Reference.html" rel="nofollow">must be unique</a> within each scope hierarchy, it would be impossible to guarantee that without reading the archive in first. The result would be a corrupt archive if you just inserted a node with a new archived object, and the key for that node already existed earlier in the archive.</p>
+
+<p>Obviously, if you wrote your own implementation of the NSCoder protocol you could make it work however you like. Writing a NSCoder is non-trival however.</p>

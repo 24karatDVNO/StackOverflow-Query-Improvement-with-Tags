@@ -1,0 +1,20 @@
+<p>Thanks @nonty for suggestion. It works well. For benefits of others, here's my full code to change tab settings in CDT editor.</p>
+
+<pre><code>    public void run(IAction action) {
+    if(action.isChecked())
+    {
+        IPreferenceStore ps = new ScopedPreferenceStore(new InstanceScope(), "org.eclipse.cdt.core");
+        ps.setValue("org.eclipse.cdt.core.formatter.tabulation.size",  8);
+        ps.setValue("org.eclipse.cdt.core.formatter.indentation.size", 8);
+        ps.setValue("org.eclipse.cdt.core.formatter.use_tabs_only_for_leading_indentations", true);
+        ps.setValue("org.eclipse.cdt.core.formatter.tabulation.char", "tab"); //=mixed/space/tab
+
+        // To check if the value
+        // int tabWidth = ps.getInt("org.eclipse.cdt.core.formatter.tabulation.size");
+        // String tabFormat = ps.getString("org.eclipse.cdt.core.formatter.tabulation.char");
+        // MessageDialog.openInformation(null, "CDT Tab Width", "CDT tab width: " + tabWidth + " format: " + tabFormat);
+    }
+}
+</code></pre>
+
+<p>Now all I need to do is make sure each Editor tab remembers it's Tab settings and automatically switch back when tab changes. Where do I start... doh!</p>

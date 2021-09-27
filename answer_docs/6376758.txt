@@ -1,0 +1,24 @@
+<p>Side comment on:</p>
+
+<p>"""
+generate a bitmap image of an entire string, and doesn't require you to work per-character 
+...
+Calculate the screen coordinate for the top-left corner of the label, and have your font rendering system produce the bitmap of the entire label in one go. That should speed things up about fourfold (since you assume 4 characters per label).
+"""</p>
+
+<p>Freetype or no, you could certainly compute a bitmap image for each label, rather than each character, but that would require one of:</p>
+
+<ul>
+<li><p>storing thousands of different textures, one for each label</p>
+
+<ul>
+<li>It <em>seems</em> like a bad idea to store that many textures, but maybe it's not.</li>
+</ul>
+
+<p>or</p></li>
+<li><p>rendering each label, for each point, at each screen update.</p>
+
+<ul>
+<li>this would certainly be too slow.</li>
+</ul></li>
+</ul>

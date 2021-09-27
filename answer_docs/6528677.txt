@@ -1,0 +1,21 @@
+<p>This <a href="https://stackoverflow.com/questions/1647736/t-sql-group-by-with-like-is-this-possible">question</a> shows you how to use <code>GROUP BY</code> with <code>LIKE</code>... then you can do something like this : </p>
+
+<pre><code>SELECT
+  CASE
+    WHEN executors LIKE '%floris%'   THEN 'floris'
+    WHEN executors LIKE '%rosa%' THEN 'rosa'
+    WHEN executors LIKE '%lotte%' THEN 'lotte'
+  END AS exec
+, SUM(hours) AS hrs
+FROM logs
+GROUP BY 
+  CASE
+    WHEN executors LIKE '%floris%'   THEN 'floris'
+    WHEN executors LIKE '%rosa%' THEN 'rosa'
+    WHEN executors LIKE '%lotte%' THEN 'lotte'
+  END
+</code></pre>
+
+<p>Then you can match the sum of hours with exec on the different rows.</p>
+
+<p>That question I linked to shows you more advanced methods to in case you need to do more of those...</p>

@@ -1,0 +1,3 @@
+<p>Base template have access to context of its inherited templates, <code>{{ score }}</code> will work. You should of course handle the situation when there is no score provided.</p>
+
+<p>If you want this code only for a particular page, you can define <code>{% block head_ext %}{% endblock %}</code> in base template and override it in child template. It's ok to call <code>$(document).ready()</code> more than once.</p>

@@ -1,0 +1,10 @@
+<p>This is the exact problem one has when trying to programmatically parse languages like Chinese where there are no spaces between words.  One method that works with those languages is to start by splitting text on punctuation.  This gives you phrases.  Next you iterate over the phrases and try to break them into words starting with the length of the longest word in your dictionary.  Let's say that length is 13 characters.  Take the first 13 characters from the phrase and see if it is in your dictionary.  If so, take it as a correct word for now, move forward in the phrase and repeat. Otherwise, shorten your substring to 12 characters, then 11 characters, etc. </p>
+
+<p>This works extremely well, but not perfectly because we've accidentally put in a bias towards words that come first.  One way to remove this bias and double check your result is to repeat the process starting at the end of the phrase.  If you get the same word breaks you can probably call it good.  If not, you have an overlapping word segment.  For example, when you parse your sample phrase starting at the end you might get (backwards for emphasis)</p>
+
+<pre><code>words with string a Isis th
+</code></pre>
+
+<p>At first, the word Isis (Egyptian Goddess) appears to be the correct word. When you find that "th" is not in your dictionary, however, you know there is a word segmentation problem nearby.  Resolve this by going with the forward segmentation result "this is" for the non-aligned sequence "thisis" since both words are in the dictionary.</p>
+
+<p>A less common variant of this problem is when adjacent words share a sequence which could go either way.  If you had a sequence like "archand" (to make something up), should it be "arc hand" or "arch and"?  The way to determine is to apply a grammar checker to the results.  This should be done to the whole text anyway.</p>

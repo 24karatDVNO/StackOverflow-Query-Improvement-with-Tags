@@ -1,0 +1,22 @@
+<p>you can "hide" git much like the "git achievement" project does. This will enable you to add scripts that look like git commands. Your basic flow should be:</p>
+
+<pre><code>git pull --rebase
+</code></pre>
+
+<p>so that history is linear like what they are used to in SVN's update. But you must tell them that they may need to get rid of conflicts and tell them about or alias <code>git add -A &amp;&amp; git rebase --continue</code>. I suggest turning on rerere and sharing those resolutions across the team with a script attached to the "alias" you're going to make for this.</p>
+
+<p>Next, hide commit with something like this:</p>
+
+<pre><code>git add -A
+git commit -m "message"
+git pull --rebase
+git push origin &lt;current branch&gt; # or set up tracking and omit the last 2 args
+</code></pre>
+
+<p>These should fail gracefully on conflicts as well.</p>
+
+<p>here is the link to git achievements:</p>
+
+<p><a href="http://benjamin-meyer.blogspot.com/2010/03/git-achievements.html" rel="nofollow">http://benjamin-meyer.blogspot.com/2010/03/git-achievements.html</a></p>
+
+<p>Although I think this is not helping them in the long run, I hope this helps for now.</p>

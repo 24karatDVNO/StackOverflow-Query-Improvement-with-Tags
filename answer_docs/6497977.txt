@@ -1,0 +1,14 @@
+<p>Have a look at <a href="http://api.jquery.com/prevAll/" rel="nofollow">prevAll</a> (or <a href="http://api.jquery.com/nextAll/" rel="nofollow">nextAll</a>, depending on which direction you mean by "ahead").</p>
+
+<p>You could probably do something like:</p>
+
+<pre><code>$('.active').each(function(index, item) {
+  $(this).prevAll().each(function(prevIndex, prevItem) {
+    if (prevIndex &lt; 10) {
+      // ... do something with prevItem
+    }
+  });
+});
+</code></pre>
+
+<p>You might have to (e.g.) reverse the order to get the elements immediately before <code>.active</code></p>

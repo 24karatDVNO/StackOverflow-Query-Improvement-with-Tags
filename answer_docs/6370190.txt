@@ -1,0 +1,138 @@
+<p>I made some work to find a solution for very similar question. The result is the stored procedure that takes IDs of merging records, leaves first of them, updates all foreign keys in related tables and deletes the rest.</p>
+
+<p>For example about topicstarter question. Let's assume we have theese tables:</p>
+
+<pre><code>[Sectors]
+ID Name
+10  'SectorA'
+20  'Sector A'
+30  'Sector B'
+40  'sector a'
+
+[RelatedRecords]
+ID, SectorID, SomeField
+1,  10        'value 1'
+2,  20        'value 2'
+3,  30        'value 3'
+4,  40        'value 4'
+</code></pre>
+
+<p>(ID must be the primary key, SectorID must be the foreign key) and we want to merge records 10, 20, 40 leaving record 20. To do this we should call:</p>
+
+<pre><code>dbo.MergeRecords '20, 10, 40', 'Sectors'
+</code></pre>
+
+<p>and the result will be:</p>
+
+<pre><code>[Sectors]
+ID Name
+20  'Sector A'
+30  'Sector B'
+
+[RelatedRecords]
+ID, SectorID, SomeField
+1,  20        'value 1'
+2,  20        'value 2'
+3,  30        'value 3'
+4,  20        'value 4'
+</code></pre>
+
+<p>If there are no related tables then only deletion will be performed. This solution covers the case when you have single-valued primary key (3NF as I remember).</p>
+
+<p>So here is the stored procedure code:</p>
+
+<pre><code>-- =============================================
+-- Description: Merging table records.
+-- First record will be leaved, other will be deleted.
+-- Depended foreign keys in all tables will be updated.
+-- Example:
+-- exec MergeRecords '1, 2, 3', 'SomeRecords'
+-- =============================================
+CREATE PROCEDURE [dbo].[MergeRecords]
+    @Id nvarchar(max),      -- Comma-separated IDs
+    @PKTable nvarchar(50)   -- Name of a table where merge records in
+AS
+BEGIN
+    SET NOCOUNT ON; 
+
+    declare @PKField nvarchar(50),
+            @FKTable nvarchar(50),
+            @FKField nvarchar(50)
+
+    declare @updateSql nvarchar(max),
+            @deleteSql nvarchar(max)
+
+    declare @firstId nvarchar(max),
+            @otherId nvarchar(max)
+
+    set @firstId = LEFT(@Id, CHARINDEX(',', @Id) - 1)
+    set @otherId = RIGHT(@Id, LEN(@Id) - CHARINDEX(',', @Id))
+
+    -- Primary key name
+    select @PKField = ccu.COLUMN_NAME 
+        from INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc
+        join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE ccu on ccu.CONSTRAINT_NAME = tc.CONSTRAINT_NAME
+        where tc.CONSTRAINT_TYPE = 'PRIMARY KEY'
+        and tc.TABLE_NAME = @PKTable
+
+    -- Loop foreign keys
+    declare constraints_cursor cursor local fast_forward
+    for select 
+            --tc.CONSTRAINT_NAME, 
+            --ccu_pk.TABLE_NAME PK_TABLE_NAME, 
+            --ccu_pk.COLUMN_NAME PK_COLUMN_NAME, 
+            ccu_fk.TABLE_NAME FK_TABLE_NAME, 
+            ccu_fk.COLUMN_NAME FK_COLUMN_NAME
+
+        from INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc 
+        join INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc on rc.CONSTRAINT_NAME = tc.CONSTRAINT_NAME
+        join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE ccu_fk on ccu_fk.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+        join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE ccu_pk on ccu_pk.CONSTRAINT_NAME = rc.UNIQUE_CONSTRAINT_NAME
+
+        where ccu_pk.TABLE_NAME = @PKTable
+        and tc.CONSTRAINT_TYPE = 'FOREIGN KEY'
+
+        --Example, @PKTable = 'SomeRecords'
+        --CONSTRAINT_NAME                           PK_TABLE_NAME   PK_COLUMN_NAME  FK_TABLE_NAME               FK_COLUMN_NAME
+        --FK_SomeRecords_SomeRelatedRecords1        SomeRecords     Id              SomeRelatedRecords          FirstSomeRecordId
+        --FK_SomeRecords_SomeRelatedRecords2        SomeRecords     Id              SomeRelatedRecords          SecondSomeRecordId
+        --FK_SomeRecords_AnotherRelatedRecords      SomeRecords     Id              AnotherRelatedRecords       SomeRecordId
+
+    open constraints_cursor 
+    fetch next from constraints_cursor 
+    into @FKTable, @FKField
+
+    while @@fetch_status = 0
+    begin
+        -- Update foreign keys
+        set @updateSql = '
+            update @FKTable
+            set @FKField = @firstId
+            where @FKField in (@otherId)'
+
+        set @updateSql = replace(@updateSql, '@FKTable', @FKTable)
+        set @updateSql = replace(@updateSql, '@FKField', @FKField)
+        set @updateSql = replace(@updateSql, '@firstId', @firstId)
+        set @updateSql = replace(@updateSql, '@otherId', @otherId)
+        exec sp_executesql @updateSql
+
+        fetch next from constraints_cursor 
+        into @FKTable, @FKField
+    end
+
+    close constraints_cursor
+    deallocate constraints_cursor 
+
+    -- Delete other records 
+    set @deleteSql = 
+        'delete from @PKTable
+        where @PKField in (@otherId)'
+
+    set @deleteSql = replace(@deleteSql, '@PKTable', @PKTable)  
+    set @deleteSql = replace(@deleteSql, '@PKField', @PKField)
+    set @deleteSql = replace(@deleteSql, '@otherId', @otherId)
+    exec sp_executesql @deleteSql
+
+    select 0    
+END
+</code></pre>

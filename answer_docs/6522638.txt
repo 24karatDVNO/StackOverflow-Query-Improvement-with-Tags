@@ -1,0 +1,7 @@
+<p>From a technical standpoint, this is accomplished the same was as including a static JS file in your own website - through the use of a script tag.  The only difference being that the source for your JS file is on a different domain than your website.  </p>
+
+<p>As for the actual <em>contents</em> of the JS file, that is much harder to give advice on since your question is so oblique.  The only thing I can suggest is that </p>
+
+<p>1)  You cannot depend on the site including any dependent libraries, such as jQuery</p>
+
+<p>2)  Pollute the global namespace as little as possible.  Ideally it will only be a single object in the global namespace, with all your code living underneath.</p>

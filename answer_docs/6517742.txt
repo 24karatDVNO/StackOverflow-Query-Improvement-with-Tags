@@ -1,0 +1,10 @@
+<p>Without IIS can mean two different things:</p>
+
+<ol>
+<li>Still host a web service, but with some different server</li>
+<li>Host the service in a process or another desktop application</li>
+</ol>
+
+<p>Depending on the situation the answer to your question is different. Since you mention OpenRasta, I'm assuming you want option 1. If this is the case there's not much you can do without IIS, and even if you can do something, it's always going to be more difficult, just because there aren't a lot of solutions written in .NET and hosted on a non-.NET server. You won't be able to find much help, blogs and documentation. One way would be to use an <a href="http://weblogs.asp.net/israelio/archive/2005/09/11/424852.aspx" rel="nofollow">Apache server with mod_aspdotnet</a>, but I wouldn't recommend using anything else than IIS.</p>
+
+<p>For option 2, read <a href="http://msdn.microsoft.com/en-us/library/ms730158.aspx" rel="nofollow">this</a>.</p>

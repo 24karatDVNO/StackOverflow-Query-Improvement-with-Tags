@@ -1,0 +1,13 @@
+<p>the correct way to check if a variable is set to NULL is:</p>
+
+<pre><code>if(!is_null($var)){
+    [my code]
+}
+</code></pre>
+
+<p>the strpos returns a boolean, not a NULL value.</p>
+
+<p>if you are unsure of the content of a variable, you can always debug it with a simple </p>
+
+<pre><code>var_dump($var);
+</code></pre>

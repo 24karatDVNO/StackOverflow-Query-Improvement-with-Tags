@@ -1,0 +1,145 @@
+<p>This might help you out:<br/>
+JQuery
+<code>
+var activetab=null;
+$(document).ready(function() {
+            $('#nav').children().each(function(){
+                $(this).addClass('off');
+                $(this).find(' > a').each(function(){
+                    if(activetab == null){
+                        activetab = $(this);
+                        $(this).parent().removeClass('off').addClass('on');
+                    }
+                    $(this).click(function(){
+                        if(activetab != null){
+                            activetab.parent().removeClass('on').addClass('off');
+                        }
+                        $(this).parent().removeClass('off').addClass('on');
+                        activetab = $(this);
+                        return false;
+                    });
+                });
+                $(this).find(' > ul').each(function(){
+                    var o = $('#nav').offset();
+                    $(this).css('top',o.top+ 30).css('left',o.left).css('width',$('#nav').css('width'));
+                    $(this).find('li > a').each(function(){
+                        $(this).click(function(){
+                            var parentli = $(this).parent().parent().parent();
+                            if(activetab != null){
+                                activetab.parent().removeClass('on').addClass('off');
+                            }
+                            parentli.removeClass('off').addClass('on');
+                            activetab = $(this).parent().parent();
+                        });
+                    });
+                });
+            });
+        });
+</code><br/>
+CSS:
+<code><pre>
+*{margin:0;padding:0;}</p>
+
+<h1>divnav{width:800px;margin:40px auto;}</h1>
+
+<h1>nav{background-color:#dde;height:30px;}</h1>
+
+<h1>nav a {</h1>
+
+<p>text-decoration: none;
+color:#444;
+text-align:center;
+}</p>
+
+<h1>nav a:hover{color:#e3004e;}</h1>
+
+<h1>nav li { /<em>float the main list items</em>/</h1>
+
+<p>margin: 0;
+float: left;
+display: block;
+margin: 0 10px;
+}</p>
+
+<h1>nav li ul {</h1>
+
+<p>display: none;
+}</p>
+
+<h1>nav li.off ul, #nav li.on ul  { /<em>put the subnav below</em>/</h1>
+
+<p>position:absolute;
+padding-top: 5px;
+background-color: #f2f2f2;
+height:30px;
+width:100%;
+}</p>
+
+<h1>nav li.on ul {background-color: #f2f2f2;}</h1>
+
+<h1>nav li a {font-weight: bold;display: block;padding: 5px;font-size:1.3em;}</h1>
+
+<h1>nav li.on ul a, #nav li.off ul a {border: 0;float: left; /<em>ie doesn't inherit the float</em>/</h1>
+
+<p>width: auto;margin-right: 15px;}</p>
+
+<h1>nav li.on ul {display: block;}</h1>
+
+<h1>nav li.off:hover ul, #nav li.over ul {display: block;z-index: 6000;}</h1>
+
+<h1>nav > li{height:30;}</h1>
+
+<h1>nav > li:hover{background-color:#edd;height:26px;}</h1>
+
+<h1>nav > li.on{background-color:#edd;}</h1>
+
+<h1>nav li.off ul a, #nav li.on ul a {display: block;background: #f2f2ff2;font-family: arial, verdana, sans-serif;font-size: small;}</h1>
+
+<p></pre></code></p>
+
+<p>HTML:
+<code><pre>
+&lt;div id="divnav"&gt; 
+    &lt;ul id="nav"&gt; 
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;Renaissance&lt;/span&gt;&lt;/a&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Brunelleschi&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Alberti&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Palladio&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Michelangelo&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Bramante&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;Art Nouveau&lt;/span&gt;&lt;/a&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Mackintosh&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Guimard&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Horta&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;van de Velde&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;Modern&lt;/span&gt;&lt;/a&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Sullivan&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Le Corbusier&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Mies&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Gropius&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Yamasaki&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;Postmodern&lt;/span&gt;&lt;/a&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Venturi&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Eisenman&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Stern&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Graves&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Gehry&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;Digital&lt;/span&gt;&lt;/a&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Xenakis&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Lynn&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Diller+Scofidio&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Zellner&lt;/a&gt;&lt;/li&gt; 
+        &lt;li&gt;&lt;a href="#"&gt;Hadid&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt;&lt;/li&gt; 
+&lt;/ul&gt;
+&lt;/div&gt; </pre>
+</code></p>

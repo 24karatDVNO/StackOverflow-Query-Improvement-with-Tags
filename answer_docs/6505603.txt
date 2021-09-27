@@ -1,0 +1,16 @@
+<p>Starting with StevieG's rewritten query, the values from stageComments are never used in the query - so it appears to be redundant - but will slow down the query significantly; the following should give the desired results much quicker:</p>
+
+<pre><code>SELECT 
+  R.ID,
+  R.Title,
+  R.Requirement_Text,
+  R.Req_Owner,
+  D.desname,
+  D.team,
+  D.stage,
+  D.comm 
+FROM Req R LEFT JOIN descomments D ON R.ID=D.id
+WHERE 
+  R.ProjectID='STE 11.2' 
+ORDER BY R.Priority;
+</code></pre>

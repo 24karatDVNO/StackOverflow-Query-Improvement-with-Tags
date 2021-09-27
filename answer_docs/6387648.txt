@@ -1,0 +1,15 @@
+<p>Well your CSS selector is imporper should be <code>$('.params:last-child')</code> or <code>$('.params:last')</code> i think the space bar is not allowed there. </p>
+
+<p>Also no one forbis You from using the object you've created:</p>
+
+<pre><code>$(function(){
+      var param_html = '&lt;select class="params"&gt;&lt;/select&gt;';
+      $("input[value='+']").click(function(){
+        $('#parameters').append(param_html);
+          $(param_html).html('&lt;option&gt;aaa&lt;/option&gt;&lt;option&gt;keyword in profile&lt;/option&gt;&lt;option&gt;last tweet&lt;/option&gt;');
+      });
+
+    });
+</code></pre>
+
+<p>If you are going to use AJAX in future then the same idea will work instead of reselecting the object use to one you've created.</p>

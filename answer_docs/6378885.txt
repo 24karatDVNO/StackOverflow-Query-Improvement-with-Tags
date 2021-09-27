@@ -1,0 +1,6 @@
+<p>Yes, but you need to append a header so that the client knows it's gzipped. In PHP you would do it like this:</p>
+
+<pre><code>header("Content-Encoding: gzip");
+</code></pre>
+
+<p>However be aware that not every browser out there supports this fully (IE has a reputation of being rather horrible at it, although I believe this has been addressed in more recent versions).</p>

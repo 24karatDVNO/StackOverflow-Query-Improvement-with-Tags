@@ -1,0 +1,6 @@
+<p>It seems you are not properly process response headers - if server returns 'chunked' response, you should load it by parts.
+To ensure it, user firefox/firebug and check response headers for test request.</p>
+
+<p>See also <a href="http://en.wikipedia.org/wiki/Chunked_transfer_encoding" rel="nofollow">http://en.wikipedia.org/wiki/Chunked_transfer_encoding</a></p>
+
+<p>Also check response for other headers like Content-Length/Keep-Alive.</p>

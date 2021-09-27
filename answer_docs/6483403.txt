@@ -1,0 +1,16 @@
+<p>I ended up having to restructure the code, here is what ended up working:</p>
+
+<pre><code>AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+builder.setTitle(item.getTitle())
+.setCancelable(true)
+.setPositiveButton("View Details", new DialogInterface.OnClickListener() {
+    public void onClick(DialogInterface dialog, int id) {
+        Intent intent = new Intent(mContext, Profile.class);
+        intent.putExtra("id", item.getSnippet());
+        mContext.startActivity(intent);
+        }
+    });
+AlertDialog alert = builder.create();
+alert.show();
+return true;
+</code></pre>

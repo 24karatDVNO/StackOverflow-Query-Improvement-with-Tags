@@ -1,0 +1,7 @@
+<p>Perhaps you need something like</p>
+
+<pre><code>String text = (String) model.getValueAt(e.getLastRow(), 1);
+String text2 = new DecimalFormat("#.###").format(Float.parseFloat(text));
+if (!text.equals(text2))
+    model.setValueAt(dec.format(value), e.getLastRow(), 1);
+</code></pre>

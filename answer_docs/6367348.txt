@@ -1,0 +1,5 @@
+<p>This was not a problem with the file IO itself. There was a system call (<code>date +%Y%m%d</code>) to fetch the timestamp which was thrice as slow as it was in cgi. This was having the slowing effect.</p>
+
+<p>However, I am not sure why apche is able to execute the system command thrice as fast when run through cgi rather than modperl.</p>
+
+<p>Sorry for the mis-information in the question.</p>

@@ -1,0 +1,15 @@
+<p>I'm not 100% sure as I've just browsed the source for <a href="http://code.google.com/p/phpflickr/source/browse/trunk/phpFlickr.php" rel="nofollow">phpFlickr</a>, and looked the the Flickr <a href="http://www.flickr.com/services/api/flickr.photos.getInfo.html" rel="nofollow">API</a> for the <code>getInfo()</code> call. But let me have a go anyway :)</p>
+
+<p>First off, it looks like you shouldn't need that loop, like you mention. What does the output of <code>print_r($rsp);</code> look like? It could be that <code>$rsp</code> is an array with 1 element, in which case you could ditch the inner loop and replace it with something like <code>$pic = $rsp[0]; $desc = $pic['description'];</code></p>
+
+<p>Also, I'd create a new "description" column in your database table (that has the photo id as the primary key), and store the description in their on its own. Parsing db fields like that is a bit of a nightmare. Lastly, you might want to force <code>htmlspecialchars</code> to work in UTF8 mode, cause I don't think it does by default. From memory, the third parameter is the content encoding.</p>
+
+<p><strong>edit:</strong> doesn't phpFlickr have its own caching system? Why not use that and make the cache size massive? Seems like you might be re-inventing the wheel here... maybe all you need to do is increase the cache size, and make a <code>getDescription</code> function:</p>
+
+<pre><code>function getDescription ($id)
+{
+    $rsp = $phpFlickr-&gt;photos_getInfo ($id);
+    $pic = $rsp[0];
+    return $pic['description'];
+}
+</code></pre>

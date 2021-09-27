@@ -1,0 +1,8 @@
+<p>It seems like all you need is a join:</p>
+
+<pre><code>SELECT 
+  ItemLookUpcode, (i.Quantity - d.Quantity) as Quantity
+FROM Item i, ItemDynamic d
+WHERE
+   i.ItemID = d.ItemID
+</code></pre>

@@ -1,0 +1,46 @@
+<p>Lazy solution based on sehe's answer below.  Current problems:</p>
+
+<ol>
+<li>the file it writes is the original name, not the munged name</li>
+<li>it looks like the autocommands that set the filetype are running too soon, not at all, or are confused.</li>
+<li>it is using an external command to do the work</li>
+<li>it is specific to the munging I want (i.e. it is not general)</li>
+</ol>
+
+<p>When I have more downtime, I hope to fix all of the above and turn it into a plugin.</p>
+
+<p>in <code>.vimrc</code></p>
+
+<pre><code>autocmd BufReadCmd * r!cat_perl %
+</code></pre>
+
+<p>in <code>cat_perl</code></p>
+
+<pre><code>#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+sub cat {
+    my $file = shift;
+    open my $fh, "&lt;", $file
+        or die "could not open $file: $!";
+    print while &lt;$fh&gt;;
+    exit;
+}
+
+my $file = shift;
+
+cat $file if -f $file;
+
+#convert from module name to module file
+(my $module = $file) =~ s{::}{/}g;
+$module .= ".pm";
+
+#look for module in the include paths
+for my $dir (@INC) {
+    my $candidate = "$dir/$module";
+    cat $candidate if -f $candidate;
+}
+print "";
+</code></pre>

@@ -1,0 +1,36 @@
+<p>This is problem with your code  <code>2&gt;&amp;3 | sort -u &gt; out2.log 3&gt;&amp;1</code>. A pipe will not link an FD or a file until the command is completely executed. </p>
+
+<p>For example , consider the following file bla:</p>
+
+<pre><code>bash-4.0$ cat bla
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</code></pre>
+
+<p>(<strong>NOTE</strong>:  file called blu <strong>DOES NOT EXIST</strong>  before I execute the following command.)</p>
+
+<pre><code>bash-4.0$ cat bla &gt; blu | sort &lt; blu
+
+bash: blu: No such file or directory
+</code></pre>
+
+<p>Now if you list the directory u will see a blu created. That is because cat bla > blu executed correctly but no file was made until the entire command was executed. hence when sort tries to read blu it throws an error coz it doesn't exist. Do no make the mistake of misusing "|" for a ";" . They are completely different.
+Hope this helped.</p>

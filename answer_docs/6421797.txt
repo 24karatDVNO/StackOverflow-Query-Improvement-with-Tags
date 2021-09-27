@@ -1,0 +1,5 @@
+<p>You can split up each line using <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html#split%28java.lang.String%29" rel="nofollow">String.split()</a>.</p>
+
+<p>To skip the headers, you can either read the first N lines and discard them (if you know how many there are) or you will need to look for a specific marker - difficult to advise without seeing your data.</p>
+
+<p>You may also need to change your approach a little because you currently seem to be sizing the arrays according to the total number of lines (assuming your Scanner returns lines?) rather than omitting the count of header lines.</p>

@@ -1,0 +1,20 @@
+<p>The <code>UIScrollView</code> won't be <code>scrollable</code> in <code>Interface Builder</code>. You'll either have to stretch it out and add your <code>UIButtons</code> where you want them to be and then resize the <code>UIScrollView</code> at the end, OR you'll need to add your <code>UIButtons</code> <code>programmatically</code> to your <code>UIScrollView</code>.</p>
+
+<p>Personally, I'd opt for doing this one programmatically.  You can either create the <code>UIButtons</code> programmatically as well (what I'd opt to do), or if you want to cut <code>corners</code>, you can just add them to your <code>UIScrollView</code> in your <code>xib</code> file and make sure you have an <code>IBOutlet</code> connecting them to your code. Then in your code set their frames to where you want them.</p>
+
+<pre><code>-(void)viewWillAppear:(BOOL)animated {
+    // CGRectMake(x,y,width,height)
+    a.frame = CGRectMake(20, 20, a.frame.size.width, a.frame.size.height);    
+    b.frame = CGRectMake(20, 50, b.frame.size.width, b.frame.size.height);
+
+    // etc. etc. for the rest of your buttons
+</code></pre>
+
+<p>Then make sure you set the frame and <code>contentSize</code> of your <code>UIScrollView</code> otherwise it won't scroll.</p>
+
+<pre><code>  myScrollView.frame = self.view.frame;
+  myScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 
+                                        myScrollView.frame.size.height
+                 + how many pixels you want it to be able to scroll up and down&gt;;
+}
+</code></pre>

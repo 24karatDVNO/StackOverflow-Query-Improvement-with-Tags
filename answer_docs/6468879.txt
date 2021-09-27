@@ -1,0 +1,5 @@
+<p>One option, if you want to stick to creating a sorted list from the contents of a Hashtable, is to write a subclass of IComparer, overload the Compare method as needed, and create a Sorted list using:</p>
+
+<p><code>SortedList s = new SortedList( new MyIComparer() );</code></p>
+
+<p>Then add the elements of your Hashtable to the list accordingly.</p>

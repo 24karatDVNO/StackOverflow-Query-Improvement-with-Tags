@@ -1,0 +1,5 @@
+<p>The simple answer would probable filter null Vehicles</p>
+
+<p>join v in dc.Vehicles.Where(v => v != null) on c.VehicleReg equals v.VehicleReg into vg</p>
+
+<p>Hope that helps</p>

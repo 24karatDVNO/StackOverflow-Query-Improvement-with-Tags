@@ -1,0 +1,11 @@
+<p>You can't see the images because eclipse has deployed your webapp to a server and your images are being uploaded to the server. </p>
+
+<p>You can save them directly to your workspace by using:</p>
+
+<pre><code>System.getEnv("user.home")+"/workspace/MyProj/Library/"
+</code></pre>
+
+<p>instead of:</p>
+
+<pre><code>context.getRealPath("/")+"/Library/";
+</code></pre>

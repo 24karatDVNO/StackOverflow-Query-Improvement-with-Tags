@@ -1,0 +1,19 @@
+<p><code>2032</code> is a bit of a vague error from the framework.</p>
+
+<p>However, things to check (in addition to Stu's list)</p>
+
+<p><strong>Can you hit the https:// page in a browser directly?</strong></p>
+
+<p>I notice in your example that you haven't specified the port number for SSL.  Unless you've gone to the trouble of setting up some Apache SSL redirects, chances are this is a mistake.</p>
+
+<p>If you paste the URL into a browser, you should be able to hit it, and get an empty response.  Anything else, and you've got a problem (often one that doesn't relate to BlazeDS.)</p>
+
+<p><strong>Is your certificate valid?</strong></p>
+
+<p>If you're using a Self signed cert (as is common in development), does your browser have a security exception defined?  Various browsers will block attempts to hit invalid certs in different ways, but no self-resepcting browser would allow this call through until an exception has been set up.</p>
+
+<p><strong>Is your channel defined correctly?</strong></p>
+
+<p>When switching from http:// to https://, you need to update your Channel class on the flex client to <code>SecureAMFChannel</code> and the endpoint class in your <code>services-config.xml</code> to <code>SecureAMFEndpoint</code>.</p>
+
+<p>Broadly speaking, https with BlazeDS (either push, or RPC) works just fine, assuming you configure it properly.</p>

@@ -1,0 +1,5 @@
+<p>Finally, i found my mistake. </p>
+
+<p>Because my custom list is within form in parent component, i create function to reset all form elements before popup show up and bindings occur. In that code, i put <code>myCustomList.selectedItem=null</code> and when i remove that line, everything works as expected.</p>
+
+<p>Still, I'm not sure about reasons of earlier behavior.</p>

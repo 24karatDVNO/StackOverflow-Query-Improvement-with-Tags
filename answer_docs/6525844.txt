@@ -1,0 +1,35 @@
+<p>My advice would be to use <a href="http://msdn.microsoft.com/en-us/library/t71a733d%28VS.80%29.aspx" rel="nofollow noreferrer">ClickOnce</a> technology to deploy your application.  There are details in this <a href="https://stackoverflow.com/questions/2365431/is-clickonce-still-the-way-to-go-for-winform-app-deployment">previous question</a>. But here is an excerpt:</p>
+
+<p>Directly from the words of MS, ClickOnce overcomes three issues in deployment:</p>
+
+<ul>
+<li>Difficulties in updating
+applications. With Microsoft Windows
+Installer deployment, whenever an
+application is updated, the user must
+reinstall the entire application;
+with ClickOnce deployment, you can
+provide updates automatically. Only
+those portions of the application
+that have changed are downloaded,
+then the full, updated application is
+reinstalled from a new side-by-side
+folder.</li>
+<li>Impact to the user's computer. With
+Windows Installer deployment,
+applications often rely on shared
+components, with the potential for
+versioning conflicts; with ClickOnce
+deployment, each application is
+self-contained and cannot interfere
+with other applications.</li>
+<li>Security permissions. Windows
+Installer deployment requires
+administrative permissions and allows
+only limited user installation;
+ClickOnce deployment allows
+non-administrative users to install
+and grants only those Code Access
+Security permissions necessary for
+the application.</li>
+</ul>

@@ -1,0 +1,19 @@
+<p>You could always do a <code>LINQ</code> aggregate query and count the number of same cards. It would be something similar to (can't test it):</p>
+
+<pre><code>var query =  from card in hand
+             group card by card into groupedCards
+             select new { Card = groupedCards.Key, Count = groupedCards.Count() };
+</code></pre>
+
+<p>This way you would easily know if you are dealing with a possible straight (or nothing at all), a pair, a triple, etc.</p>
+
+<p>I am no <code>LINQ</code> expert and I can not test this bit of code at the moment, so I am not sure if it will compile as it is, but it might help you or give you an idea on how to approach the problem at hand.</p>
+
+<p>For example:</p>
+
+<ol>
+<li><p>if count query = 5 : We are dealing with an empty hand, a flush or a straight => Run particular flush/straight logic.</p></li>
+<li><p>if count query = 4 : We are dealing with a single pair.</p></li>
+<li><p>if count query = 3 : We are dealing with a double pair or a triple => if max count =3 then triple</p></li>
+<li><p>if count query = 2 : We are dealing with a full house / poker. If max count = 4 then poker</p></li>
+</ol>

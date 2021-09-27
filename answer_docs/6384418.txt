@@ -1,0 +1,1 @@
+<p>I feel that's because $_GET doesn't accept <code>\</code> in your $_GET string. try to <code>base64_encode();</code> your string and put it  to $_GET['str'] (it means that you will have another link without these chars)</p>

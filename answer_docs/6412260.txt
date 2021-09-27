@@ -1,0 +1,5 @@
+<p>You could host the component as a COM+ application which would allow you to specify what account the user runs under.  You would then have to do the appropriate work to access the COM component correctly in .NET, but it should work.</p>
+
+<p>Another option is to have a service that can run under the account for you and then make calls through WCF to make the calls in the server.</p>
+
+<p>The principal for both is the same though, you basically make the call in another app domain and shuttle the request/response between the other app domain and the one your application runs in.</p>

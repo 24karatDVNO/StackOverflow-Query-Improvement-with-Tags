@@ -1,0 +1,1 @@
+<p>Turns out that Prism wasn't the problem - there were implicit styles defined in the child windows that were wiping out the implicit styles from the shell because they weren't using BasedOn. After adding this attribute everything works fine now.</p>

@@ -1,0 +1,15 @@
+<p>Use the date functions to get the Month and the Day of Month from the date field and use in the where clause.</p>
+
+<p>Depending on your DB, the function names may vary. But it will be in general like</p>
+
+<pre><code>SELECT * FROM table 
+   WHERE Month(dateField) = 6 
+       AND (DayOfMonth(dateField) &gt;= 1 AND DayOfMonth(dateField) &lt;= 30)
+</code></pre>
+
+<p>in SQL Server:</p>
+
+<pre><code>SELECT * FROM table 
+       WHERE Month(dateField) = 6 
+           AND (Day(dateField) &gt;= 1 AND Day(dateField) &lt;= 30)
+</code></pre>

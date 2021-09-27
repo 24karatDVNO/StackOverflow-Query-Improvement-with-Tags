@@ -1,0 +1,17 @@
+<p>So from what I can see this is your problem: "what I have no idea how to achieve is how to have the tabs added with the correct information."</p>
+
+<pre><code>$.get("ajax.php", { name: $(getImageID).val()}, function(data) { 
+//get the json array in data var     
+     $(this).after("&lt;span class='title'&gt;Title"+obj["title"]+"&lt;/span&gt;&lt;span class='summary'&gt;"+obj["text"]+"&lt;/span&gt;"); //append a couple of spans with the data after you retrieve the unique data
+
+});
+</code></pre>
+
+<p>Firstly your ajax.php page needs to be returning a simple JSON_encode'ed array: <a href="http://php.net/manual/en/function.json-encode.php" rel="nofollow">http://php.net/manual/en/function.json-encode.php</a>, see this for more details.</p>
+
+<p>The next step is when you are appending the new content AFTER the button you pressed, use .after to the documet view: <a href="http://api.jquery.com/after/" rel="nofollow">http://api.jquery.com/after/</a></p>
+
+<p>Here is a quick jFiddle that shows what the JSON encoded array is doing: <a href="http://jsfiddle.net/DKuK9/1/" rel="nofollow">http://jsfiddle.net/DKuK9/1/</a> 
+it is applying a couple of spans with the arrayed content into the div, not precisly what your script is doing however i do not have a ajax page to call to :)</p>
+
+<p>edit your get function usage was wrong-</p>

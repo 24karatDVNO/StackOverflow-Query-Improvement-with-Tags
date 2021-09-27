@@ -1,0 +1,10 @@
+<p>You are sending the request to the wrong URL.
+Try <code>NSURL *tmpURl=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.w3schools.com/webservices/tempconvert.asmx/CelsiusToFahrenheit"]];
+</code></p>
+
+<p>Apart from that you should probably set Content-Type and Content-Length:</p>
+
+<pre><code>NSString *postLength = [NSString stringWithFormat:@"%d", [params length]];
+[theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"]; 
+[theRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+</code></pre>

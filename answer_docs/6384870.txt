@@ -1,0 +1,8 @@
+<p>So if by 'negate' you mean 'ignore', this should work:</p>
+
+<pre><code>if(Path.GetFileName(e.FullPath) != "temp.temp")            
+{ 
+    MessageBox.Show("You have a Collection Form: " + e.Name);
+    Process.Start("explorer.exe", e.FullPath);
+}
+</code></pre>

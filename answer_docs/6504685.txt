@@ -1,0 +1,20 @@
+<p>You have to implement a custom Validator and add it to the field:</p>
+
+<pre><code>            final ColumnConfig config = new ColumnConfig();
+            config.setNumberFormat(NumberFormat.getFormat("#.##"));
+            final NumberField field = new NumberField();
+            field.setPropertyEditorType(Float.class); // needed to convert from String to Number - default ist Double
+            field.setValidator(new com.extjs.gxt.ui.client.widget.form.Validator(){
+                public String validate(Field&lt;?&gt; field, String value) {
+                    if(value != null){
+                         final int index = value.indexOf('.');
+                         if(index &gt; -1 &amp;&amp; index &lt; value.length() - 3){
+                             return "Maximum number of digits is 2!";
+                         }
+                    }
+                    return null;
+                }
+            });
+            final CellEditor cellEditor = new CellEditor(field);
+            config.setEditor(cellEditor);
+</code></pre>

@@ -1,0 +1,8 @@
+<p>I think you check constants like this in ternary operators (to return FALSE if constant is not defined. See <a href="http://www.php.net/manual/en/function.defined.php" rel="nofollow">CONSTANTS</a> in php manual).
+But I don't know where you define that IS_PRODUCTION, so the other solution posted looks better in order to separate environments.</p>
+
+<pre><code>$db['default']['username'] = defined('IS_PRODUCTION') ? 'prodUsername' : 'localDevBoxUsername';
+$db['default']['password'] = defined('IS_PRODUCTION') ? 'prodPassword' : 'localDevBoxPassword';
+</code></pre>
+
+<p>or <code>constant('IS PRODUCTION')</code> (but this returns NULL if not defined)</p>

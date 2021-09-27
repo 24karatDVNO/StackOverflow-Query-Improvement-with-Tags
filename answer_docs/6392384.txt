@@ -1,0 +1,1 @@
+<p>As described in the comments to the OP, the issue was the load-order of the jQuery/Mootools scripts. The jQuery noConflict was being loaded too late, and causing problems. Please see jsfiddle -- <a href="http://jsfiddle.net/uSwzL/1/" rel="nofollow">http://jsfiddle.net/uSwzL/1/</a></p>

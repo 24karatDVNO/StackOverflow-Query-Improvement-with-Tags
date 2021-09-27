@@ -1,0 +1,61 @@
+<p>A listener can be attached to the table and the radio button set can be referenced by name. When a click event occurs on a radio button in the table, the X, Y and Z buttons can be enabled or disabled based on whether any buttons in a particular group are checked or not. The logic needs to allow for cases where the form is reset, e.g.</p>
+
+<pre><code>&lt;form&gt;
+  &lt;table id="table0" style="border: 1px solid black;"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;input type="radio" name="group1"&gt;
+      &lt;td&gt;&lt;input type="radio" name="group1"&gt;
+      &lt;td&gt;&lt;input type="radio" name="group1"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;input type="reset"&gt;
+      &lt;td&gt;
+      &lt;td&gt;
+  &lt;/table&gt;
+  &lt;label for="r2-0"&gt;X&amp;nbsp;&lt;input type="radio" name="group2" id="r2-0" value="x"&gt;&lt;/label&gt;
+  &lt;label for="r2-1"&gt;Y&amp;nbsp;&lt;input type="radio" name="group2" id="r2-1" value="y"&gt;&lt;/label&gt;
+  &lt;label for="r2-2"&gt;Z&amp;nbsp;&lt;input type="radio" name="group2" id="r2-2" value="z"&gt;&lt;/label&gt;
+&lt;/form&gt;
+
+&lt;script type="text/javascript"&gt;
+function enableButtons() {
+  var buttons1 = document.getElementsByName('group1');
+  var buttons2 = document.getElementsByName('group2');
+  var checkedState = false;
+
+  // Check if any buttons in group 1 have been checked
+  for (var i=0, iLen=buttons1.length; i&lt;iLen; i++) {
+    if (buttons1[i].checked) {
+      checkedState = true;
+      break;
+    }
+  }
+
+  // Enable or disable group 2 buttons based on above result
+  // When disabling, also uncheck any that are checked
+  for (var j=0, jLen=buttons2.length; j&lt;jLen; j++) {
+    if (!checkedState) {
+      buttons2[j].checked = false;
+      buttons2[j].disabled = true;
+    } else {
+      buttons2[j].disabled = false;
+    }
+  }
+}
+
+window.onload = function() {
+
+  // Disable X, Y &amp; Z buttons
+  var buttons = document.getElementsByName('group2');
+  for (var i=0, iLen=buttons.length; i&lt;iLen; i++) {
+    buttons[i].disabled = true;
+  }
+
+  // Add onlick listener to table
+  var table  = document.getElementById('table0');
+  if (table) table.onclick = function() {
+    window.setTimeout(enableButtons, 1);
+  }
+}
+
+&lt;/script&gt;
+</code></pre>

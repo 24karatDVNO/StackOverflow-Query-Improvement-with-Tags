@@ -1,0 +1,13 @@
+<pre><code>create table temp_lookup as select x.*, rownum as match_no
+  from (select amount, ref1, ref2, ref3 from yourtable
+          group by amount, ref1, ref2, ref3) x;
+
+update yourtable a set match_no = 
+ (select match_no from temp_lookup b
+    where a.amount = b.amount
+      and a.ref1 = b.ref1
+      and a.ref2 = b.ref2
+      and a.ref3 = b.ref3)
+
+drop table temp_lookup;
+</code></pre>

@@ -1,0 +1,10 @@
+<p>This might help someone in the future, so I found the problem it was in my code but it was worth sharing.</p>
+
+<p>Visual Studio 2010 behaves very strangely if you use MapViewOfFile to read from DBWIN_BUFFER and</p>
+
+<ul>
+<li>you have the debugger attached</li>
+<li>you are using debugging a unit test with local or app domain isolated.</li>
+</ul>
+
+<p>I suspect that there is some contention which causes either visual studio or my tests to lock and wait on reading the buffer.</p>

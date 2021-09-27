@@ -1,0 +1,18 @@
+<p>this require the use of a javascript famework like jquery it would be very easy.
+ i will give you the solution with jquery its very simple </p>
+
+<pre><code> $(document).ready(function(){
+    $("#mySlider .slider").each(function(){
+    $(this).fadeIn("slow");
+
+    });
+
+    });
+    &lt;div id="mySlider"&gt;
+    &lt;div class="slider"&gt;&lt;span&gt;here is the caption &lt;/span&gt;&lt;img src="../images/1.jpg" /&gt; &lt;/div&gt;
+ &lt;div class="slider"&gt;&lt;span&gt;here is the caption &lt;/span&gt;&lt;img src="../images/2.jpg" /&gt; &lt;/div&gt;
+ &lt;div class="slider"&gt;&lt;span&gt;here is the caption &lt;/span&gt;&lt;img src="../images/3.jpg" /&gt; &lt;/div&gt;
+    &lt;/div&gt;
+</code></pre>
+
+<p>the jquery code will treate all the sliders one by one and fade them in</p>

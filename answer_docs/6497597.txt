@@ -1,0 +1,19 @@
+<p>If you are using any of the <code>Ajax.*</code> helpers (such as <code>Ajax.BeginForm</code>, or <code>Ajax.ActionLink</code>) you need to remove all <code>Microsoft*.js</code> scripts and replace them with: <code>jquery.unobtrusive-ajax.js</code>, like this:</p>
+
+<pre><code>&lt;script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>The reason is that staring from ASP.NET MVC 3 Microsoft realized that reinventing the wheel is never a good thing and deprecated their MsAjax script libraries in favor to the far more advanced and better jQuery library. So those scripts are no longer used (they are just provided for backwards compatibility). ASP.NET MVC 3 <code>Ajax.*</code> helpers use HTML5 data-* attributes which are unobtrusively AJAXified with jQuery.</p>
+
+<p>Also you should ensure that unobtrusive AJAX is enabled in your web.config:</p>
+
+<pre><code>&lt;appSettings&gt;
+    ...
+    &lt;add key="UnobtrusiveJavaScriptEnabled" value="true" /&gt;
+&lt;/appSettings&gt;
+</code></pre>
+
+<p>If you still want backwards compatibility or something you could set the <code>UnobtrusiveJavaScriptEnabled</code> property to false and this will fallback to the previous <code>Microsoft*.js</code> libraries (absolutely not recommended).</p>
+
+<p>And the same stands for client side javascript validation: the jquery.validate plugin is used by default with unobtrusive HTML5 data-* attributes generated on the input fields.</p>

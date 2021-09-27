@@ -1,0 +1,32 @@
+<p>See my <a href="https://stackoverflow.com/questions/6271093/rails-3-devise-how-to-modify-the-mailer-method-for-confirmation-emails-to-add/6274068#6274068">answer</a> to a similar question. You create a mailer overriding headers_for in <code>Devise::Mailer</code> to make it send to multiple emails:</p>
+
+<pre><code>def headers_for(action)
+  #grab the emails somehow
+  @emails = resource.emails.map{|email| email.column_name}
+  if action == :reset_password_instructions
+    headers = {
+      :subject       =&gt; translate(devise_mapping, action),
+      :from          =&gt; mailer_sender(devise_mapping),
+      :to            =&gt; @emails,
+      :template_path =&gt; template_paths
+    }
+  else
+    # otherwise send to the default email--or you can choose just send to all of them regardless of action.
+    headers = {
+      :subject       =&gt; translate(devise_mapping, action),
+      :from          =&gt; mailer_sender(devise_mapping),
+      :to            =&gt; resource.default_email,
+      :template_path =&gt; template_paths
+    }
+  end
+
+  if resource.respond_to?(:headers_for)
+    headers.merge!(resource.headers_for(action))
+  end
+
+  unless headers.key?(:reply_to)
+    headers[:reply_to] = headers[:from]
+  end
+  headers
+end
+</code></pre>

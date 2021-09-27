@@ -1,0 +1,14 @@
+<p>you can save the value in some global variable and then <code>onbeforeunload</code> look for that value, whether it's greater than 0 or not.  </p>
+
+<pre><code>var valueContainer = 0;
+$(".qty").change(function(e) { 
+
+valueContainer = this.value;
+//rest of your code
+});
+
+window.onbeforeunload = function() {     
+if( valueContainer == 0) {         
+return 'Please Don't go away without selecting any product :(';    
+ } }; 
+</code></pre>

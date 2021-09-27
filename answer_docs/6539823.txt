@@ -1,0 +1,15 @@
+<p>Are you trying to find the closest two values to another value (i.e. the two rows that are closes to 13000)? Or are you trying to find any two rows between the range of 10000 and 15000? Was the label on the 15000 value supposed to be "max range". If so, then I am not clear on the reference to 13000. </p>
+
+<p>If it is the latter then this will work.</p>
+
+<pre><code>select top 2 * from TABLE1 where range between 10000 and 15000
+</code></pre>
+
+<p>This will return two rows, but it doesn't make a distinction about which of the two rows that fall within the range. If you need to be more specific, Narnian's answer is a better solution.</p>
+
+<p>Or you can use Paul's and combine the two select statements into a single union statement: </p>
+
+<pre><code>SELECT TOP 1 * from TABLE1 where range &lt; 13000 ORDER BY range desc
+Union
+SELECT TOP 1 * from TABLE1 where range &gt; 13000 ORDER BY range asc;
+</code></pre>

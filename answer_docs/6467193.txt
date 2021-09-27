@@ -1,0 +1,24 @@
+<p>The id attribute should be unique. You need to change it to a class:</p>
+
+<pre><code>$(function() // run after page loads 
+{ 
+  $(".toggle").click(function() 
+  {  
+    // hides matched elements if shown, shows if hidden 
+    $(this).next().toggle(); 
+    $(this).next().next().toggle(); 
+
+    return false;
+  }); 
+});
+
+&lt;a class="toggle" href="javascript:void(0);"&gt;Expand box 1&lt;/a&gt; 
+&lt;div&gt;Content 1&lt;/div&gt; 
+&lt;div style="display:none;"&gt;Hidden 1&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;a class="toggle" href="javascript:void(0);"&gt;Expand box 2&lt;/a&gt; 
+&lt;div&gt;Content 2&lt;/div&gt; 
+&lt;div style="display:none;"&gt;Hidden 2&lt;/div&gt;
+</code></pre>

@@ -1,0 +1,5 @@
+<p>You can't do this.</p>
+
+<p>Mutliple versions of the same class library may be stored in the <a href="http://msdn.microsoft.com/en-us/library/yf1d93sz%28v=VS.100%29.aspx" rel="nofollow">GAC</a>, a special folder; but within a project, you're working with a standard file system, which can't contain multiple files with identical names side by side (even if of different casing, when on Windows.)</p>
+
+<p>You <em>could</em> probably get away with storing them in a Solution Folder (one maintained within the solution itself, not physically, but a virtual folder) and have files stored in there from <em>different</em> physical locations, but I've never played with this to be certain how well it would pan out. Also, it could just mount confusion, so I'd steer blear, personally.</p>

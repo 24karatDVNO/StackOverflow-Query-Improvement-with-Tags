@@ -1,0 +1,9 @@
+<p>For POD types (no constructor) you may use:</p>
+
+<pre><code>Menu items[] = { {1,7}, {2,9} ... };
+</code></pre>
+
+<p>But you have constructor so you must call it implicitly:</p>
+
+<pre><code>Menu items[] = { Menu(1,7), Menu(2,9) ... };
+</code></pre>

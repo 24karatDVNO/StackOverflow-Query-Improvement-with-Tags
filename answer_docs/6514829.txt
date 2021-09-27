@@ -1,0 +1,21 @@
+<p>Alrighty, dudes.     Just figured it out...... I used BJornson's code in the linked class, but replaced <code>this</code> with <code>parent</code>. Here it is:</p>
+
+<pre><code>package {
+
+    import flash.display.*;
+
+
+    public class Menu extends MovieClip {
+
+        public function Menu() {
+        trace(birmingham.x);
+        }
+
+        public function get birmingham() : MovieClip {
+        return parent.getChildByName("birmingham") as MovieClip;
+        }
+    }
+}
+</code></pre>
+
+<p>Like magic! now I'm pulling x-value from MovieClip objects on the main fla's stage, and returning them for use inside my linked class! Super useful</p>

@@ -1,0 +1,18 @@
+<pre><code>sed 's/^\("[^"]*"\).*/\1/'
+</code></pre>
+
+<p>This deals with lines containing a simple double quoted field dropping any extra material.  It passes through any lines not matching that unchanged.</p>
+
+<p>If you want to drop non-matching lines, then:</p>
+
+<pre><code>sed -n '/^\("[^"]*"\).*/s//\1/p'
+</code></pre>
+
+<p>This doesn't print by default and prints when it finds a match.</p>
+
+<p>If you have to deal with data fields such as:</p>
+
+<pre><code>"He said, ""It's horrid""" and he meant it!
+</code></pre>
+
+<p>then you have to work considerably harder.  If your <code>sed</code> supports extended regular expressions or PCRE (Perl-Compatible Regular Expressions), you can do it.  If not, use <code>awk</code> instead.</p>

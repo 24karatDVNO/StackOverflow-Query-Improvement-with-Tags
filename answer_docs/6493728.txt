@@ -1,0 +1,10 @@
+<p>Alright so what I had to do is this:</p>
+
+<pre><code>//unprotect the workbook
+ExcelHelperWorkbook.Unprotect(password);
+
+//unprotect the first worksheet
+((Worksheet)ExcelHelperWorkbook.Worksheets.get_Item(1)).Unprotect(password);
+</code></pre>
+
+<p>Then I can run the SaveAs :)</p>

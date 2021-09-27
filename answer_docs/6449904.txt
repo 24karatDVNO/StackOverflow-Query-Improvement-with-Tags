@@ -1,0 +1,12 @@
+<pre><code>select t1.id from table1 as t1
+    left outer join table2 as t2
+    on t2.table1_id = t1.id
+    where t2.id is null;
+</code></pre>
+
+<p>or</p>
+
+<pre><code>select t1.id from table1 as t1
+    where not exists (select 1
+    from table2 as t2 where t2.table1_id = t1.id);
+</code></pre>

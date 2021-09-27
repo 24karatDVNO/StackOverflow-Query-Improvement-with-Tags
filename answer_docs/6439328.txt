@@ -1,0 +1,7 @@
+<p>Try this <strong>regex</strong>:</p>
+
+<pre><code>    String s = "http://example.com/123.app?id=87983";
+    String[] split = s.split(".*/|\\?id=");
+    String filename = split[1];
+    String id = (split.length == 3) ? split[2] : null;
+</code></pre>

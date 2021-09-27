@@ -1,0 +1,6 @@
+<p>If the velocity must be integral, just update the values to the floor of the floating-point calculation.  So to reduce velocity by 10%:</p>
+
+<pre><code>m_velocityX = floor(m_velocityX * 0.9);
+</code></pre>
+
+<p>You might want to do something fancier someday, but this seems simple and workable.</p>

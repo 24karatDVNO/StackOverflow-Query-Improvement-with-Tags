@@ -1,0 +1,15 @@
+<p>I've had the same issue before:</p>
+
+<p><a href="https://stackoverflow.com/questions/4647747/google-maps-api-strange-map-offset-behaviour">Google Maps API - Strange Map &quot;Offset&quot; Behaviour</a></p>
+
+<blockquote>
+  <p>I've seen things similar to this.
+  Without access to any code, my best
+  bet is that the map is initialized at
+  a time when the container div is
+  hidden. I've seen that cause such
+  symptoms. Try to set up your map as
+  you're showing it, rather than before.</p>
+</blockquote>
+
+<p>The issue is that the 2nd map is hidden while it's initialised and for whatever reason the google maps api doesn't like it. Try to bind the 2nd map setup to the tab switch event AFTER it is shown.</p>

@@ -1,0 +1,9 @@
+<p>If you want <em>all</em> the variables, you need to access both the global and local variables:</p>
+
+<pre><code>for (name, value) in globals().items()+locals().items():
+    print "Variable", name, "is of type", type(value)
+</code></pre>
+
+<p>This gives you access in particular to the global variables that are defined automatically by the Python interpreter (like <code>__name__</code>).</p>
+
+<p>If you only need to gather the types and do not need the names, you can do <code>.values()</code> instead of <code>.items()</code>.</p>

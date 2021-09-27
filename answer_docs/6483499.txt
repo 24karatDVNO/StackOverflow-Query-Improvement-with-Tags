@@ -1,0 +1,52 @@
+<p>A JSP is actually a Servlet written down in a different notation. The JSP code is compiled into Servlet code, which is compiled into a regular Servlet before it is used (who ever came up with this probably thought it was a good idea at the time). </p>
+
+<p>In this case I think you don't need an additional JSP since you already have a Servlet. To do what you want you could create an HTML file (yourForm.html) with a form in it to allow entering a query and submitting it, something like:</p>
+
+<pre><code>&lt;form action="yourServlet" method="post"&gt;
+    &lt;input type="text" name="sql-query/&gt;
+    &lt;input type="submit"/&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>You should put this in the 'document root' directoy of your web application, then when your server is running you should be able to access the HTML file at something like <a href="http://localhost:8080/yourForm.html" rel="nofollow">http://localhost:8080/yourForm.html</a>. This is assuming your web application context root is '/' and port 8080, which is configured in your web server. </p>
+
+<p>In your web.xml you need something like:</p>
+
+<pre><code>&lt;servlet&gt;
+  &lt;servlet-name&gt;yourDbServlet&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;your.app.YourDbServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;yourDbServlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/yourServlet&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre>
+
+<p>Where 'your.app.YourDbServlet' is the fully-qualified classname of your servlet.</p>
+
+<p>After entering an sql query in the text field and clicking on the submit button, the form will be submitted to <a href="http://localhost:8080/yourServlet" rel="nofollow">http://localhost:8080/yourServlet</a>. I chose HTTP-POST (instead of HTTP-GET like another responder) because I think it's more appropriate here - up for debate. This means you'd have to handle the request in your servlet's doPost() method instead of doGet().</p>
+
+<p>Now before continuing: A WARNING NOTICE.  Please realize that taking an SQL query from your client and firing it blindly at a database is A BIG SECURITY HAZARD. The query could delete or corrupt data, drop tables etc. depending on the database user's access rights. For a real life system this is usually a BAD IDEA. Please also read about '<a href="http://en.wikipedia.org/wiki/SQL_injection" rel="nofollow">SQL injection</a>' to get an idea of the problem.</p>
+
+<p>To run the query against the database do something like this:</p>
+
+<pre><code>String sqlQuery = getParameter("sql-query");
+PrintWriter out = response.getWriter();
+Connection conn = null;
+try {
+    Class.forName("com.mysql.jdbc.Driver");
+    String url = "jdbc:mysql://localhost/yourdatabase";
+    conn = DriverManager.getConnection(url, "username", "password");
+    Statement st = conn.createStatement();
+    ResultSet rs = st.executeQuery(sqlQuery);
+    showDB(out, rs);
+}
+finally {
+    if (conn != null) {
+        conn.close();
+    }
+}
+</code></pre>
+
+<p>Note that I didn't catch any exceptions for brevity (look into that, exception handling is important). I did put conn.close() in the finally block to make sure an attempt is always made to close the database connection, even if an exception occurs in the code. </p>

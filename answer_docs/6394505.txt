@@ -1,0 +1,20 @@
+<p>For Posterity, </p>
+
+<p>I think the answer to this is that the JS methodologies of Rails 3 are significantly different from those of 2.x </p>
+
+<p>Looking to write UJS using JQuery,  I might suggest this:</p>
+
+<p>View:</p>
+
+<pre><code>&lt;div class="slide_toggle"&gt;
+  Whompa
+&lt;/div&gt;
+</code></pre>
+
+<p>some_js_file.js:</p>
+
+<pre><code>$('div.slide_toggle').after('&lt;a class="toggle_link" href="#"&gt;Slide Up&lt;/a&gt;'); //since the link is only good if there's JS to begin with, add it in your JS instead of on the page.
+$('a.toggle_link').live('click', function(event) {
+  this.closest().slideToggle();
+}
+</code></pre>

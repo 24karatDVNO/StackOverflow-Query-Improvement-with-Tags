@@ -1,0 +1,10 @@
+<p>Think of symbols just like strings, but with a lot less of functionality and behavior as objects. You should change your code to following:</p>
+
+<pre><code>def validates_end_is_after_start(*attr_names)
+  start_hour = self.send(attr_names[0].to_sym).to_i
+  end_hour = self.send(attr_names[1].to_sym).to_i
+  # ... more code here
+end
+</code></pre>
+
+<p>You should also checkout the awesome gem <a href="https://github.com/adzap/validates_timeliness" rel="nofollow">validates_timeliness</a>, which is made to handle validation of date, time and datetime.</p>

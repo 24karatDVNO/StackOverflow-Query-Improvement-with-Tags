@@ -1,0 +1,3 @@
+<p>I would suggest changing to a duplex binding where you can exchange multiple messages between the client and server. Then chunk your results into discrete parts (thus not consuming a ton of memory) and send as multiple responses down the duplex channel.</p>
+
+<p>With duplex you can also enable secure channel and reliable session, neither of which are available with streaming binding.</p>

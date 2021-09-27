@@ -1,0 +1,13 @@
+<p>Not only should you be saving user data in the documents directory.</p>
+
+<pre><code>/**
+ Returns the path to the application's Documents directory.
+ */
+- (NSString *)applicationDocumentsDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+</code></pre>
+
+<p>But you should also only store relative paths to the files located in that directory.  If you store the absolute path, your app won't find the data after an update.  </p>
+
+<p><a href="https://stackoverflow.com/questions/5607655/first-app-update-user-data-lost-was-stored-in-documents-directory/6521499#6521499">First App Update, User Data Lost (was stored in Documents directory)</a></p>

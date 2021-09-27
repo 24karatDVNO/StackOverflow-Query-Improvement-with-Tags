@@ -1,0 +1,27 @@
+<p>Problem is that you're searching for partial element of index 1 of <code>$array</code>.</p>
+
+<p>But if you search:</p>
+
+<pre><code>echo (in_array(array('NUMBER' =&gt; 2, 'LETTER' =&gt; 'B'), $array))
+</code></pre>
+
+<p>then it will return 1.</p>
+
+<h2>EDIT: Use <a href="http://us2.php.net/manual/en/function.array-filter.php" rel="nofollow">array_filter</a> if you want to perform above task like this:</h2>
+
+<pre><code>$arr = array_filter($array, function($a) { return (array_search(2, $a) == 'NUMBER'); } );
+print_r($arr);
+</code></pre>
+
+<h3>OUTPUT</h3>
+
+<pre><code>Array
+(
+    [1] =&gt; Array
+        (
+            [NUMBER] =&gt; 2
+            [LETTER] =&gt; B
+        )
+
+)
+</code></pre>

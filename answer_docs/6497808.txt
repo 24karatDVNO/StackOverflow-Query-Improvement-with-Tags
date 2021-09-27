@@ -1,0 +1,13 @@
+<pre><code> $(function () {
+        var timer = null;
+        $("li", "#nav").hover(
+            function () {
+                var element = $(this);
+                timer = window.setTimeout(function () { element.find("ul:first").slideToggle(); }, 500);
+            },
+            function () { window.clearTimeout(timer); $(this).find('ul:first').slideToggle(); }
+        );
+
+            $("ul", "#nav").css("display", "none");
+    });
+</code></pre>

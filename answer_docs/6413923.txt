@@ -1,0 +1,28 @@
+<p>By default the '\' character is an escape character for strings in C#. That means that if you want to have a backslash in your string you need two slashes the first to escape the second as follows:</p>
+
+<pre><code>string escaped = "This is a backslash \\";
+//The value of escaped is - This is a backslash \
+</code></pre>
+
+<p>An easier example to follow is with the use of quotes:</p>
+
+<pre><code>string escaped = "To put a \" in a string you need to escape it";
+//The value of escaped is - To put a " in a string you need to escape it
+</code></pre>
+
+<p>The @ symbol is the equivalent of "ignore all escape characters in this string" and declare it verbatim. Without it your first declaration would look like this:</p>
+
+<pre><code>"\\\\192.168.2.10\\datastore\\\\" + id + "\\";
+</code></pre>
+
+<p>Note that you already didn't have the @ on your second string, so that string hasn't changed and still only contains a single backslash.</p>
+
+<p>You only need to use the @ symbol when you are declaring strings. Since your argument is already declared it is not needed. So your new line can be:</p>
+
+<pre><code>String location = args[0] + id + "\\";
+</code></pre>
+
+<p>or</p>
+
+<pre><code>String location = args[0] + id + @"\";
+</code></pre>

@@ -1,0 +1,14 @@
+<p>Once you have set the observer removing the ID will not stop the event being handled. You should do something like this:</p>
+
+<pre><code>&lt;div id="moveme"&gt;...&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('moveme').observe('click', function(ev) {
+  ev.stop();
+  ev.target.stopObserving('click');
+  ... Call move function here ...
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>This will respond to the click by removing all the click handlers from the div (And then calling your scriptaculous code). If this is a problem, you should store the pre-bound handler and then pass that as the second parameter of the stopObserving method.</p>

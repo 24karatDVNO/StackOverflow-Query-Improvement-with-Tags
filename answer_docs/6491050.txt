@@ -1,0 +1,1 @@
+<p>I'm guessing the same <code>struct</code> would do, but you need to set the <code>DllImportAttribute.CharSet</code> property to <code>Auto</code> or it will default to <code>Ansi</code>. <code>Unicode</code> would do too, but unless you are using Windows 98 or Me (no comments) <code>Auto</code> will marshal strings as <em>Unicode</em>.</p>

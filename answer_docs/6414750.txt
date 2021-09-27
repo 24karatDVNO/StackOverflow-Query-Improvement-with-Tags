@@ -1,0 +1,3 @@
+<p>Your question could be about how to develop specifically code that will run natively on 64-bit versus 32-bit hardware.  There is info on that <a href="http://msdn.microsoft.com/en-us/library/h2k70f3s%28v=VS.100%29.aspx" rel="nofollow">here</a>.  In particular you would have to follow the instructions <a href="http://msdn.microsoft.com/en-us/library/x4d2c09s.aspx%27" rel="nofollow">here</a> to enable 64-bit build tools.</p>
+
+<p>If you are building 64-bit binaries, you will need to link with 64-bit libraries.  Note that 32-bit binaries should run just fine on 64-bit Windows, so you may not need to go to this trouble.</p>

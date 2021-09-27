@@ -1,0 +1,5 @@
+<p>In the directory above there is a script called build.sh that runs the Android.mk and other makefiles; all the locations in those makefiles are set to be run from that location.</p>
+
+<p>However, there are lots of other problems, not all of which I've resolved yet; quick hints, though, you need the third-party libs like jpeg and so on in a directory called "thirdparty" in the same source location as the rest of mupdf (so as siblings of the android subdirectory) and some of the libs need you to produce config headers to make everything work!</p>
+
+<p>I'm currently trying to work out how to link it all ....</p>

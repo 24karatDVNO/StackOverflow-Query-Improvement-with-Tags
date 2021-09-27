@@ -1,0 +1,14 @@
+<p>Have you have confused requirements and solutions?</p>
+
+<blockquote>
+  <p>Data for every project must be
+  separated (into different databases)</p>
+</blockquote>
+
+<p>Is there <em>really</em> requirement that you have different databases, or is it just that <em>Data for every project must be separated</em>?</p>
+
+<p>If different databases are not an absolute requirement, just add a <code>user_id</code> column to enough tables so you can use the same tables for all users but still achieve this requirement.</p>
+
+<p>You could call this approach partitioning the data <em>vertically</em>, rather than <em>horizontally</em>.</p>
+
+<p>The benefit should be immediately obvious: Suddenly your solution is a lot simpler, which is a good thing.</p>

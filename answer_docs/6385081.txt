@@ -1,0 +1,53 @@
+<p>Try using <code>KeyPairWrapper</code> like this:</p>
+
+<pre><code>KeyPair kp = ... // read keypair from file
+ssh.authPublickey(user, new KeyPairWrapper(keypair));
+</code></pre>
+
+<p>With the BouncyCastle provider you can use something like this to extract a KeyPair from a PKCS8 PEM (apologies for the messy code)</p>
+
+<pre><code>/**
+ * Takes a PEM-encoded PKCS8 key-containing InputStream and returns the KeyPair within. Only the first keypair is considered
+ * 
+ * @return
+ * @throws IOException if the stream is not a valid PKCS8 wrapped keypair
+ */
+public static KeyPair readKeypair(final InputStream is, final char[] password) throws IOException {
+    PasswordFinder passwordFinder = password != null ? new StaticPasswordFinder(password) : null;
+
+    KeyPair kp = null;
+    try {
+        // read the stream as a PEM encoded
+        try {
+
+            final PEMReader pem = new PEMReader(new InputStreamReader(is), passwordFinder);
+            try {
+                // Skip over entries in the file which are not KeyPairs
+                do {
+                    final Object o = pem.readObject();
+
+                    if (o == null)
+                        break; // at end of file
+                    else if (o instanceof KeyPair)
+                        kp = (KeyPair) o;
+                } while (kp == null);
+            }
+            finally {
+                pem.close();
+            }
+        }
+        catch (EncryptionException e) {
+            throw new IOException("Error reading PEM stream: " + e.getMessage(), e);
+        }
+    }
+    finally {
+        is.close();
+    }
+
+    // Cast the return to a KeyPair (or, if there is no [valid] return, throw an exception)
+    if (kp != null)
+        return kp;
+    else
+        throw new IOException("Stream " + is + " did not contain a PKCS8 KeyPair");
+}
+</code></pre>

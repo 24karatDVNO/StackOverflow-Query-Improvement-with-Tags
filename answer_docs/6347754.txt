@@ -1,0 +1,16 @@
+<p>Semantically, you're actually best off setting up your content like this:</p>
+
+<pre><code>&lt;div id="main"&gt;
+...
+&lt;/div&gt;
+&lt;div class="sidebar" id="sidebar-left"&gt;
+...
+&lt;/div&gt;
+&lt;div class="sidebar" id="sidebar-right"&gt;
+...
+&lt;/div&gt;
+</code></pre>
+
+<p>Check out <a href="http://www.alistapart.com/articles/negativemargins/" rel="nofollow">this article on negative margins</a> to see how to get this technique to work.</p>
+
+<p>I recommend this technique over the others for a few reasons. My main reason for choosing this method is that by doing this, your content actually starts loading <em>before</em> your sidebars do. There are also some benefits to SEO that you gain from placing your Content before your sidebars.</p>

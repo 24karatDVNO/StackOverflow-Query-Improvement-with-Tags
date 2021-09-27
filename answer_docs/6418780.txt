@@ -1,0 +1,14 @@
+<p>Here is a regex solution:</p>
+
+<pre><code>import re
+pattern = re.compile(r"""jarid:\s(\S+)       # save jarid to group 1
+                         \s(recv:)\s\d+      # save 'recv:' to group 2
+                         \stimestamp:\s(\S+) # save recv timestamp to group 3
+                         .*?jarid:\s\1       # make sure next line has same jarid
+                         \s(n?ack:)\s\d+     # save 'ack:' or 'nack:' to group 4
+                         \stimestamp:\s(\S+) # save ack timestamp to group 5
+                     """, re.VERBOSE | re.DOTALL | re.MULTILINE)
+
+for content in pattern.finditer(log):
+    print "    jarid: " + " ".join(content.groups())
+</code></pre>

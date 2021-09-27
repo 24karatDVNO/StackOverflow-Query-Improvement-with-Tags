@@ -1,0 +1,5 @@
+<p>You are overriding your <code>imageDetailsFromCategory</code> variable that you alloc'd in the first line with your second line.</p>
+
+<p>So <code>imageDetailsFromCategory = [[NSMutableArray alloc] init]</code> creates a mutable array… but <code>imageDetailsFromCategory = [self  getImageDetailsFromCategory:generatedString];</code> replaces the previously alloced mutable array with a brand new object.</p>
+
+<p>THat's as if you did <code>int i=5;</code> then <code>i = [self someMethod];</code>: the value 5 would be lost.</p>

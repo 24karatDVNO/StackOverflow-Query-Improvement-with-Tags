@@ -1,0 +1,29 @@
+<p>I had to hand-code continuation passing style in google-code prettify.</p>
+
+<p>Basically I turned</p>
+
+<pre><code>for (var i = 0, n = arr.length; i &lt; n; ++i) {
+  processItem(i);
+}
+done();
+</code></pre>
+
+<p>into</p>
+
+<pre><code>var i = 0, n = arr.length;
+function work() {
+  var t0 = +new Date;
+  while (i &lt; n) {
+    processItem(i);
+    ++i;
+    if (new Date - t0 &gt; 100) {
+      setTimeout(work, 250);
+      return;
+    } 
+  }
+  done();
+}
+work();
+</code></pre>
+
+<p>which doesn't hit any recursion limit since there are no recursive function calls.</p>

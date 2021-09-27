@@ -1,0 +1,14 @@
+<p>The answer to your questions isn't really related to jQuery Mobile.</p>
+
+<p>To hide the url and footer you must enable web app mode on your mobile web site and add it to the homescreen, i.e. install it.</p>
+
+<p>Just add the following meta tag as described <a href="http://developer.apple.com/library/safari/#documentation/appleapplications/reference/SafariHTMLRef/Articles/MetaTags.html" rel="nofollow">here</a>:</p>
+
+<pre><code>&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+</code></pre>
+
+<p>To make it more obvious for your visitors that they have to install your web app you can add the <a href="http://code.google.com/p/mobile-bookmark-bubble/" rel="nofollow">Google Mobile Bookmark Bubble</a>.</p>
+
+<p>The splash screen can be added with the apple-touch-startup-image meta tag as you commented your self.</p>
+
+<p>However, be aware that web app mode totally disables multitasking, i.e. makes your site/web app reload each time the user choses it from the running apps, and that might not be acceptable for you.</p>

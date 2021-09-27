@@ -1,0 +1,52 @@
+<p>Try this:   </p>
+
+<pre><code>player1 = raw_input("Player 1 name: ")
+player2 = raw_input("Player 2 name: ")
+while(1)
+    player1score = 0
+    player2score = 0
+
+    print "%s, what do you choose?" % player1
+    print "1. Rock"
+    print "2. Paper"
+    print "3. Scissors"
+
+    choice1 = raw_input("&gt; ")
+
+    print "%s, what do you choose?" % player2
+    print "1. Rock"
+    print "2. Paper"
+    print "3. Scissors"
+
+    choice2 = raw_input("&gt; ")
+
+    if choice1 == "1" and choice2 == "1":
+        print "Its's a tie."
+
+    if choice1 == "1" and choice2 == "2":
+        print "%s wins." % player2
+        player2score=player2score+1
+
+    if choice1 == "2" and choice2 == "1":
+        print "Player 1 wins." % player1
+        player1score=player1score+1
+
+    if choice1 == "1" and choice2 == "3":
+        print "Player 1 wins." % player1
+        player1score=player1score+1
+
+    if choice1 == "3" and choice2 == "1":
+        print "%s2 wins." % player2
+        player2score=player2score+1
+
+    if choice1 == "2" and choice2 == "3":
+        print "%s wins." % player2
+        player2score=player2score+1
+
+    if choice1 == "3" and choice2 == "2":
+        print "Player 1 wins." % player1
+        player1score=player1score+1
+
+    print "Player1: %s" % player1score 
+    print "Player2: %s" % player2score
+</code></pre>

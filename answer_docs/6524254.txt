@@ -1,0 +1,5 @@
+<pre><code>sed 's/[^{]*{//;       # discard up to and including the first {
+     s/,//g;           # discard the commas
+     s/\(....\).*/\1/  # get the first four characters, discard the rest
+'
+</code></pre>

@@ -1,0 +1,36 @@
+<p>‏What you are describing is actually a lightweight markup language, and indeed a subset of several <a href="http://en.wikipedia.org/wiki/Lightweight_markup_language" rel="nofollow">existing markup languages</a>, such as <a href="http://daringfireball.net/projects/markdown/" rel="nofollow">markdown</a>, <a href="http://docutils.sourceforge.net/rst.html" rel="nofollow">reStructuredTest</a>, <a href="http://www.methods.co.nz/asciidoc/" rel="nofollow">AsciiDoc</a> and <a href="http://texy.info/en/syntax" rel="nofollow">Texy</a>.</p>
+
+<p>Consider using one of the existing tools for converting one of these into html.</p>
+
+<p>For example, on my openSUSE box:</p>
+
+<p><em>Installation:</em></p>
+
+<pre><code> sudo zypper install python-markdown
+</code></pre>
+
+<p><em>input.txt:</em></p>
+
+<pre><code>this is a title
+---------------
+
+Here is one paragraph,
+that continues in the next line.
+
+And this is a new paragraph,
+because of a blank line.
+</code></pre>
+
+<p><em>use:</em></p>
+
+<pre><code>markdown input.txt
+</code></pre>
+
+<p><em>output:</em></p>
+
+<pre><code>&lt;h2&gt;this is a title&lt;/h2&gt;
+&lt;p&gt;Here is one paragraph,
+that continues in the next line.&lt;/p&gt;
+&lt;p&gt;And this is a new paragraph,
+because of a blank line.&lt;/p&gt;
+</code></pre>

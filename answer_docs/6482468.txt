@@ -1,0 +1,31 @@
+<p>Try to do it using recursion</p>
+
+<pre><code>$('#DoButton').click(function (event) {
+  event.preventDefault();
+  doAction( $("input:checked").toArray().reverse() );
+});
+
+function doAction(arr) {
+    if( arr.length == 0 ) return;
+
+    var id = arr.pop().id;
+    $("#rdy_msg").text("Starting" + id);
+    $.ajax({
+        type: "POST",
+        traditional: true,
+        url: '/adminTask/doAction',
+        async: false,
+        data: { Id: id },
+        dataType: "json",
+        success: function (data) {
+            $("#rdy_msg").text("Completed: " + id);
+            setTimeout(function(){ doAction(arr); }, 2000);
+        },
+        error: function () {
+            var cdefg = data;
+            $("#rdy_msg").text("Error: " + id);
+            setTimeout(function(){ doAction(arr); }, 2000);
+        }
+    });
+}
+</code></pre>

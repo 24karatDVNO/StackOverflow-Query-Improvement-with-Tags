@@ -1,0 +1,16 @@
+<p>It looks fine on my screen (Firefox 5.0)</p>
+
+<p>Though I've read that some old IE versions have a problem called <a href="http://www.positioniseverything.net/explorer/doubled-margin.html" rel="nofollow">double margin</a></p>
+
+<p>Also make sure to put a clearfix div after those two child elements in <code>&lt;header&gt;</code>:</p>
+
+<pre><code>&lt;header&gt;   
+  &lt;div id="notifications" class="left"&gt;notifications&lt;/div&gt;
+  &lt;div class="right"&gt;
+    &lt;a href="account.aspx" id="userinfo"&gt;&lt;span class="dropdown"&gt;▾&lt;/span&gt; username&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div style="clear: both;"&gt;&lt;/div&gt;
+&lt;/header&gt;
+</code></pre>
+
+<p>EDIT: after checking out your screenshot it's obvious that you're missing that clearing div and the content below "floats after" your notifications box. Usually it is considered to be good practice to put a clearing element at the end of the floated elements, this way forcing the container to expand and "cover" all the contained elements.</p>

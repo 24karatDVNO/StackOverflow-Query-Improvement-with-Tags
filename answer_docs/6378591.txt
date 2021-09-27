@@ -1,0 +1,3 @@
+<p>Short of designing your own framework there isn't much you can do other than try to write cleaner code in the future. In my experience I generally consolidate all html injection stuff into a single function and call it before anything else.</p>
+
+<p>You can also separate functions out to $(document).ready() and $(window).load. Window load will occur after document ready, but this is definitely not a be all end all solution for messy code.</p>

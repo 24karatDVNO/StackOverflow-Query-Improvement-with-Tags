@@ -1,0 +1,25 @@
+<p>Two things:</p>
+
+<p>z-index will always be 'auto' unless using position of relative, absolute or fixed. Therefore, <code>position:inherit</code> will not work.</p>
+
+<p><em>Update your css:</em></p>
+
+<pre><code>.growImage { position:relative; width:80%;left:15px;}   
+.growDiv { 
+    position:relative; left: 60px; top: 60px;width:130px;height:130px; 
+}
+</code></pre>
+
+<p>Now, I made a JSFiddle to show that I got it working but I had to modify the HTML structure a bit: <a href="http://jsfiddle.net/Dpzur/4/" rel="nofollow">http://jsfiddle.net/Dpzur/4/</a></p>
+
+<p>You will need to view the source created by your .aspx page to see how many divs, starting from any div with class: 'growDiv', that you must traverse upwards through until you are at the div element that represents its parent "ItemTemplate"..  so you will need to modify my jQuery:</p>
+
+<pre><code>$(this).closest('.growDiv').first().css('z-index', 2);
+</code></pre>
+
+<p>to:</p>
+
+<pre><code>$(this).closest('.growDiv').first().closest('div').closest('div').css('z-index', 2);
+</code></pre>
+
+<p>, where you add in a <code>.closest('div)</code> for each div element that you need to traverse upwards through the DOM. Make sense?</p>

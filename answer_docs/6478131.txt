@@ -1,0 +1,18 @@
+<p>My suggestion is to simply incorporate the original variable name, or some other identifier that alerts readers of its intented function.</p>
+
+<pre><code>struct  Foo
+{
+  double m_d;
+
+};
+
+
+void function (Foo* f)
+{
+   double m_d_tmp = f-&gt;m_d;
+
+       /***Other stuff***/
+
+     f-&gt;m_d = m_d_tmp;
+}
+</code></pre>

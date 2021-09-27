@@ -1,0 +1,39 @@
+<p>Ha ha! Got it...</p>
+
+<pre><code>- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+
+    if (self.sBar.text != nil) {
+
+        NSPredicate *template = [NSPredicate predicateWithFormat:@"name contains[cd] $SEARCH OR optionOne contains[cd] $SEARCH OR optionTwo contains[cd] $SEARCH"];
+        NSDictionary *replace = [NSDictionary dictionaryWithObject:self.sBar.text forKey:@"SEARCH"];
+        NSPredicate *predicate = [template predicateWithSubstitutionVariables:replace];
+
+        [fetchedResultsController.fetchRequest setPredicate:predicate];
+
+    }
+
+    NSError *error = nil;
+    if (![[self fetchedResultsController] performFetch:&amp;error]) {
+
+        // Handle error
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    } 
+
+    if ([[fetchedResultsController fetchedObjects] count] != 0)  {
+
+        [self.myTable reloadData];
+        [sBar resignFirstResponder];  
+
+    }
+    else {
+
+        //display alert
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"No records match." 
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+
+    }   
+}
+</code></pre>

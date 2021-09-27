@@ -1,0 +1,11 @@
+<p>I've found an another way in the manual of HFH.</p>
+
+<pre><code>package Test::Form;
+use HTML::FormHandler::Moose;
+extends 'HTML::FormHandler';
+
+has '+name' =&gt; ( default =&gt; 'testform' );
+has '+widget_wrapper' =&gt; ( default =&gt; 'None' );
+has '+auto_fieldset' =&gt; ( default =&gt; 0 );
+has_field 'foo';
+</code></pre>

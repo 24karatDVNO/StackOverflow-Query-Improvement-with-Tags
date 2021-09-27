@@ -1,0 +1,91 @@
+<p>So here is a more complex example of the XML which includes the overlap problem as well.</p>
+
+<pre><code>&lt;div type='subdivision'&gt;
+  &lt;p&gt;
+    ....
+     &lt;anchor xml:id="AJH-L.2.63"/&gt;intellectus cum re que sentitur &lt;anchor
+     xml:id="AJH-L.2.64"/&gt;in&lt;anchor xml:id="AJH-L.2.65"/&gt; apprehensione&lt;anchor
+     xml:id="AJH-L.2.66"/&gt;
+    ....
+  &lt;/p&gt;
+  ....
+  &lt;app from="#AJH-L.2.64" to="#AJH-L.2.65"&gt;
+    &lt;rdg wit="#H #M #N #P #R #V"&gt;-&lt;/rdg&gt;
+  &lt;/app&gt;
+  &lt;app from="#AJH-L.2.63" to="#AJH-L.2.66"&gt;
+    &lt;rdg wit="#M"&gt;- &lt;emph rend="italic"&gt;hom.&lt;/emph&gt;&lt;/rdg&gt;
+  &lt;/app&gt;
+  ....
+&lt;/div&gt;
+</code></pre>
+
+<p>My XSLT Templates so far:</p>
+
+<pre><code>    &lt;xsl:template match="TEI:anchor"&gt;
+      &lt;xsl:variable select="@xml:id" name="anchorId"/&gt;
+      &lt;xsl:for-each select="ancestor::TEI:p/TEI:app[@to=concat('#',$anchorId)]"&gt;
+        &lt;a class="rs" name="rs_{count(preceding::TEI:app)+1}"
+          href="#app_{count(preceding::TEI:app)+1}"&gt;
+          &lt;xsl:value-of select="count(preceding::TEI:app)+1"/&gt;
+        &lt;/a&gt;
+      &lt;/xsl:for-each&gt;
+    &lt;/xsl:template&gt;
+
+    &lt;xsl:template match="TEI:app"&gt;
+    &lt;xsl:variable select="substring(@from,2)" name="from"/&gt;
+    &lt;xsl:variable select="substring(@to,2)" name="to"/&gt;
+    &lt;table class="appEntry"&gt;
+      &lt;tr rowspan="{count(TEI:rdg)+1}"&gt;
+        &lt;td&gt;
+          &lt;a name="app_{position()}" href="#rs_{position()}"&gt;
+            &lt;xsl:value-of select="position()"/&gt;
+          &lt;/a&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+        &lt;!-- the referenced text from between the anchors --&gt;
+           &lt;xsl:value-of select="//TEI:div[current()]//text()[preceding::TEI:anchor[@xml:id=$from] and following::TEI:anchor[@xml:id=$to]]"/&gt;
+          &lt;xsl:for-each select="TEI:rdg"&gt;
+            &lt;tr&gt;
+              &lt;td&gt;
+                &lt;!-- all readings --&gt;
+                &lt;xsl:value-of select="."/&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/xsl:for-each&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/xsl:template&gt;
+</code></pre>
+
+<p>And the resulting Output should look like the following:</p>
+
+<pre><code>&lt;div class="maintext"&gt;
+  ....
+  intellectus cum re que sentitur in &lt;a href="#app_32" name="rs_32" class="rs"&gt;32&lt;/a&gt;
+  apprehensione &lt;a href="#app_33" name="rs_33" class="rs"&gt;33&lt;/a&gt;
+  ....
+&lt;/div&gt;
+&lt;div class="apparatus"&gt;
+  ....
+  &lt;tr&gt;
+    &lt;td&gt;&lt;a href="#rs_32" name="app_32"&gt;32&lt;/a&gt;&lt;td&gt;
+    &lt;td&gt;in&lt;/td&gt;
+    &lt;td&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;a href="#rs_33" name="app_33"&gt;33&lt;/a&gt;&lt;td&gt;
+    &lt;td&gt;intellectus cum re que sentitur &lt;/td&gt;
+    &lt;td&gt;- hom.&lt;/td&gt;
+    &lt;/tr&gt;
+  ....
+&lt;/div&gt;
+</code></pre>
+
+<p>Except for the chaotic table this seems to work fine. It wasn't that voodoo as is thought of, once i had made the right start.</p>
+
+<p>I hope, i could specify my question and gave a good answer, too.
+What du you think?</p>
+
+<p>greetings,
+Timo</p>

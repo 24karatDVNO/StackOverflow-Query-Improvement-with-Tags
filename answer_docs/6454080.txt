@@ -1,0 +1,9 @@
+<p>You should consider having a <code>InitActivity</code>  that does what @Teja Kantemneni does : launching a dialog and launching your own "real first activity" when user clicks on the right button.</p>
+
+<p>Alternative :
+I would also try to do it from the application class itself, but I am not sure of the result.</p>
+
+<p>Create an application class, reference it in the manifest file, override onCreate and show your dialog. But honestly, I think it will already be too late and your main activity already launched at this point.</p>
+
+<p>Regards,
+ Stéphane</p>

@@ -1,0 +1,27 @@
+<p>I don't like to keep pimping my projects but in this case it is the best option for you.</p>
+
+<p>Check out <a href="https://github.com/RobertKozak/MonoMobile.MVVM" rel="nofollow">https://github.com/RobertKozak/MonoMobile.MVVM</a></p>
+
+<p>My project started out as adding Databinding support to MonoTouch.Dialog but has grown into a much bigger framework that is much easier to use than MonoTouch.Dialog.</p>
+
+<p>Using MonoMobile.MVVM the code to do what you want looks like this:</p>
+
+<pre><code>public class ButtonView : View, INotifyPropertyChanged
+{
+  private UIColor ButtonColor = UIColor.Red;
+
+   [Button]
+   [Bind("ButtonColor", "BackgroundColor")]
+   public void Test()
+   {
+       ButtonColor = UIColor.Green;
+       PropertyChanged(this, new PropertyChangedEventArgs("ButtonColor"));
+   }
+
+   public event PropertyChangedEventHandler PropertyChanged = (s,e)=&gt;{};
+}
+</code></pre>
+
+<p>There are better ways to accomplish this using a proper ViewModel but this will work as listed (I tested it before I typed it in here.)</p>
+
+<p>MonoMobile.MVVM is still in beta but there is enough there to get you going. It should be in full release status in the next couple of weeks after I finish up implementing INotifyCollectionChanged and adding a few more bindings for various Element properties.</p>

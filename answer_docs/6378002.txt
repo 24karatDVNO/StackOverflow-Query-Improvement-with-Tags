@@ -1,0 +1,30 @@
+<p>I would phrase your procedure as a FUNCTION instead, and return the new ID to the caller:</p>
+
+<pre><code>FUNCTION insert_user
+(
+    name_in IN users.name%TYPE,     
+    age_in  IN users.age%TYPE   
+)
+    RETURN users.id%TYPE 
+IS
+    v_id users.id%TYPE;
+BEGIN      
+    INSERT INTO users (
+        user_id, 
+        name, 
+        age
+    ) VALUES (
+        seq_user_id.nextval, 
+        name_in, 
+        age_in
+    )
+    RETURNING
+        user_id
+    INTO
+        v_id
+    ;    
+    RETURN v_id;
+END insert_user;
+</code></pre>
+
+<p>This is generally a more useful pattern for inserts, especially where you may want to subsequently insert child records in other tables.</p>

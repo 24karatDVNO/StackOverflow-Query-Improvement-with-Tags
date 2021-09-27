@@ -1,0 +1,16 @@
+<p>Reorder the objects in the ArrayList, but without using <code>add()</code>, <code>remove()</code> or any other method that may alter the size.</p>
+
+<p>It can be done, rather inelegantly, as follows:</p>
+
+<pre><code>Object temp = F;
+
+for (int i = list.indexOf(F); i &gt; 0; i--) {
+    list.set(i, list.get(i - 1));
+}
+
+list.set(0, temp);
+</code></pre>
+
+<p>Note, however, that the loop in the other thread may encounter the objects in the wrong order, or the same object at different positions. And if the other thread adds or removes items, then this will not work.</p>
+
+<p>I think if you cannot synchronize the list, you perhaps shouldn't be trying to modify it from your thread.</p>

@@ -1,0 +1,8 @@
+<p>One simple way is to put spaces around the word in your query:</p>
+
+<pre><code>SELECT ... WHERE description LIKE '% diamond %';
+</code></pre>
+
+<p>That doesn't work so well if your sentence ends with "diamond.", however.</p>
+
+<p>For something much more complex, you really need to use some sort of full-text indexing, which I have no experience with in MySQL.</p>

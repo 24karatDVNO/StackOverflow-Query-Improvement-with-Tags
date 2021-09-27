@@ -1,0 +1,3 @@
+<p>Check quitOnLastWindowClosed property of QApplication, this will prevent your application to quit after closing the dialog.</p>
+
+<p>Also your server is "waiting for bytes to be written" before actual write. You should first do write(block), than call waitForBytesWritten</p>

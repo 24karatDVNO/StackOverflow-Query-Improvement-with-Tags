@@ -1,0 +1,6 @@
+<p>Your code is so lengthy, I can't read all but, I can suggest you to try using this code just pass the URL and </p>
+
+<pre><code>    Drawable drawable_from_url(String url, String src_name) throws java.net.MalformedURLException, java.io.IOException      {         
+return Drawable.createFromStream(((java.io.InputStream)new java.net.URL(url).awagetContent()), src_name);    
+ } 
+</code></pre>

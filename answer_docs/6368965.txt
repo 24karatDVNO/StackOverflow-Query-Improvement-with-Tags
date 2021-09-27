@@ -1,0 +1,11 @@
+<p>Scripts on one page won't be available or remembered on another page without some sort of session-based help on your part.</p>
+
+<p>I would use AJAX to do this, by:</p>
+
+<ul>
+<li>Storing your JavaScript array in PHP or some other server-side scripting language that supports sessions.</li>
+<li>Using AJAX to retrieve the list of items when you need it.</li>
+<li>Using AJAX to append an item to the list.</li>
+</ul>
+
+<p>If you've never dealt with AJAX before, I highly recommend using the jQuery Javascript library. It takes all the hassle out of it for you.</p>

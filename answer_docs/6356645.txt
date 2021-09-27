@@ -1,0 +1,7 @@
+<p>Assuming you're trying to get a distinct list of hostels with entries in the hostelrooms table, then this should work..</p>
+
+<pre><code>select distinct (Hostel.hostel_id, Hostel.hostelname, Hostel.address, )hosteltypes.Hosteltypename, 
+from Hostel,hosteltypes,hostelrooms
+where Hostel.hosteltype_id=hosteltypes.hosteltype_id  
+and hostel_id = hostelrooms.hostel_id
+</code></pre>

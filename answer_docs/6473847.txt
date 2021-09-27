@@ -1,0 +1,3 @@
+<p>Just keep the filename before calling the parser.  Then when you catch ParseException, reread the file and, using beginLine, skip to the right line.  Alternatively, instead of the filename, keep the original source text yourself.</p>
+
+<p>I recently used javacc and did exactly that.  Also had to handle include-like files recursively so I had the parser build a stack of included source files.  Upon catching ParseException, it was a simple matter to walk the stack so the user could see the context (i.e. line number in the parent) where each file was included.</p>

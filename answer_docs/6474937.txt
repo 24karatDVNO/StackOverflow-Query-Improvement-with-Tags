@@ -1,0 +1,47 @@
+<p>The solutions that pass a value around can get quite sloppy because there's no guarantee that the value inside the textbox won't change after you've already passed it somewhere. Instead, it's more sensible to pass a function around which resolves the value from the TextBox when called, which will result in always getting the lastest value.</p>
+
+<pre><code>void button1_Click() {
+    form2 = new Form2(() =&gt; textBoxName.Text);
+}
+
+class Form2 : Form {
+    ...
+    public Form2(Func&lt;String&gt; nameResolver) {
+        form3 = new Form3(nameResolver);
+    }
+
+    void button1_Click(...) {
+       form3.Show()
+    }
+}
+
+class Form3 : Form {
+    Func&lt;String&gt; nameResolver;
+
+    public Form3(Func&lt;string&gt; nameResolver) {
+        this.nameResolver = nameResolver;
+    }
+
+    void button1_Click(...) {
+        this.textBoxName = nameResolver.Invoke();
+    }
+}
+</code></pre>
+
+<p>If you end up requiring more than one or two components shared between the various forms, it might be better to simply pass the forms themselves to child forms. Eg.</p>
+
+<pre><code>void button1_Click(...) {
+    form2 = new Form2(this);
+}
+
+class Form2 : Form {
+    Form1 parent;
+    public Form2(Form1 parent) {
+        this.parent = parent;
+    }
+
+    void button1_Click(...) {
+        form3 = new Form3(parent);
+    }
+}
+</code></pre>

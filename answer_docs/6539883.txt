@@ -1,0 +1,29 @@
+<p>What if you union the select with a hard coded select with one value for each age group.</p>
+
+<pre><code>select 1 as Guitar, 1 as Piano, 1 as Drums, 1 as Other
+</code></pre>
+
+<p>When you do the transform, each row will have a result that is +1 of the result you want.</p>
+
+<pre><code>foo      barTmpCount
+-------- ------------
+Guitar   2
+Piano    1
+Drums    3
+Other    1
+</code></pre>
+
+<p>You can then do a </p>
+
+<pre><code>select foo, barTmpCount - 1 as barCount from &lt;query&gt;
+</code></pre>
+
+<p>and get something like this</p>
+
+<pre><code>foo      barCount
+-------- ---------
+Guitar   1
+Piano    0
+Drums    2
+Other    0
+</code></pre>

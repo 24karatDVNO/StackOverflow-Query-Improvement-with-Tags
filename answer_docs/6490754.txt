@@ -1,0 +1,23 @@
+<p>I had this problem. Contrary to even some of the official documentation, the <code>itemLabel</code> tag has no effect on the chart appearance.</p>
+
+<p>Instead, to set the background colour of the entire chart area, create or change the <code>backcolor</code> attribute in the <code>reportElement</code> tag for your chart. E.g:</p>
+
+<pre><code>&lt;barChart&gt;
+    &lt;chart&gt;
+        &lt;reportElement mode="Opaque" backcolor="#CCCCCC" x="0" y="0" width="400" height="400"/&gt;
+...
+</code></pre>
+
+<p>Note that the <code>mode</code> attribute <strong>must</strong> be set to <code>"Opaque"</code> for the colour to be rendered.
+If you are using iReport, you can of course change the colour by using the properties tab.</p>
+
+<p>If you want to set the background colour for only the actual chart (area within the axes where the data is displayed), set the <code>backcolor</code> attribute within the <code>plot</code> element of your chart. E.g:</p>
+
+<pre><code>&lt;barChart&gt;
+...
+    &lt;barPlot&gt;
+        &lt;plot backcolor="#CCCCCC"/&gt;
+...
+</code></pre>
+
+<p>This does not feature on the properties tab, so you will need to edit the xml directly.</p>

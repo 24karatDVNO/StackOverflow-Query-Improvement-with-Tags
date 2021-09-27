@@ -1,0 +1,10 @@
+<p>What you are looking for is how to create a sequence for each user.  You can use a database sequence (<a href="http://www.postgresql.org/docs/8.1/static/sql-createsequence.html" rel="nofollow noreferrer">postgres</a>) or something like this:</p>
+
+<pre><code>class UserMetadata(models.Model):
+    user = models.OneToOneField(User)
+    next_order_number = models.PositiveIntegerField(default=1)
+</code></pre>
+
+<p>And each time you create a new order you use the <code>next_order_number</code> field and increment it by one (using <code>UPDATE ... LAST_INSERT_ID(next_order_number+1)...</code> in MySQL. See: <a href="https://stackoverflow.com/questions/526460/autoincrement-fields-on-databases-without-autoincrement-field/4921239#4921239">AutoIncrement fields on databases without autoincrement field</a> ).</p>
+
+<p>As far as I know Django have no built in support for creating such sequences in an atomic way.  This might be a good start: <a href="http://djangosnippets.org/snippets/304/" rel="nofollow noreferrer">http://djangosnippets.org/snippets/304/</a></p>

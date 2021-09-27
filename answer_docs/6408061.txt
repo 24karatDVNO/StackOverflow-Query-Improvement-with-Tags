@@ -1,0 +1,7 @@
+<p>The best solution for this case would probably be to disable directory listing for this directory like in this tutorial : </p>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc731109(WS.10).aspx" rel="nofollow">http://technet.microsoft.com/en-us/library/cc731109(WS.10).aspx</a></p>
+
+<p>And for download links, you should create a permalink database and store them in database. So if you have file at www.mysite.com/myapp/upload/file1.doc , the URL that user will see would be www.mysite.com/myapp/ControllerThatHandlesRedirect/{some guid }. All the links would be stored in database and would be taken from the database according to specific guid. So the user will not see the real URL only a GUID . The controller would select URL from database based on the permalink and redirect user to that file . </p>
+
+<p>Hope that helps you </p>

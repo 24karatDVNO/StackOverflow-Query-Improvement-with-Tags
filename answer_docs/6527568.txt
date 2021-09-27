@@ -1,0 +1,55 @@
+<p>Maybe something like this:</p>
+
+<pre><code>QOUT=[1.0, 3.0, 1.0, 2.0]
+QIN=[2.0, 3.0, 5.0, 2.0]
+TIN=[10.0,12.0,13.0, 12.0]
+
+V=[2.0, 4.0, 5.0]
+
+T=[10.0, 11.0, 12.0]
+
+#4 iterations
+
+#V(i) = V+QIN(i)-QOUT(i)
+
+for i in range(len(QIN)):
+    C = []
+    for v in V:
+        C.append(v + QIN[i] - QOUT[i])
+    print C
+
+lineNum = 0
+
+for t1 in TIN:
+    Tx = []
+    for c in C:
+        for t in T:
+            Tx.append((t * c + t1 * QIN[lineNum]) / (c + QIN[lineNum]))
+    lineNum += 1
+
+    print Tx
+</code></pre>
+
+<p>If you set lineNum to 0, after incrementing it in your code in loop</p>
+
+<pre><code>lineNum=0 
+for line in range(len(QIN)):
+    C = []
+    for i in range(len(V)):
+        C.append(V[i]+QIN[line]-QOUT[lineNum])     
+    lineNum +=1
+
+    print C 
+
+    lineNum=0  #here
+</code></pre>
+
+<p>i guess you you don't want to nest these loops:</p>
+
+<pre><code>for t1 in TIN:
+Tx = []
+for c in C:
+    for t in T:
+</code></pre>
+
+<p>in the first one.</p>

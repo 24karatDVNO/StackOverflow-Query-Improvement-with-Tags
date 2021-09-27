@@ -1,0 +1,11 @@
+<p>If you want to play just some video, look at @Banthar's answer, otherwise:</p>
+
+<hr>
+
+<p>OpenGL is a no-frills drawing API. It gives you the computer equivalent of "pens and brushes" to draw on some framebuffer. Period. No higher level functionality than that.</p>
+
+<p>Flash it a really complex thing. It consists of a vector geometry object system, a script engine (ActionScript), provides sound and video de-/compression etc. All this must be supported by a SWF player. ATM there's only one fully featured SWF player and that's the one Adobe makes. There are free alternatives, but the are behind the official flash players by several major versions (Lightspark, Gnash).</p>
+
+<p>So the most viable thing to do was loading the Flash player browser plugin in your program through the plugin interface, provide it, what a browser provided to a plugin (DOM, HTTP transport, etc.) and have the plugin render to a offscreen buffer which you then copy to OpenGL context. But that's not very efficient.</p>
+
+<p>TL;DR: Complicated as sh**, and probably not worth the effort.</p>

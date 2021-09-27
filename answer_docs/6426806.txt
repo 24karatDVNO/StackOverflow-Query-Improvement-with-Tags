@@ -1,0 +1,52 @@
+<p>Another method:</p>
+
+<pre><code>SELECT
+    T1.TransID,
+    T1.TenantID,
+    T1.TransactionType,
+    T1.Amount,
+    T1.TransactionDate,
+    T2.TransactionDate AS PreviousPaymentDate
+FROM
+    Transactions T1
+LEFT OUTER JOIN Transactions T2 ON
+    T2.TenantID = T1.TenantID AND
+    T2.TransactionType = 2 AND
+    T2.TransactionDate &lt; T1.TransactionDate
+LEFT OUTER JOIN Transactions T3 ON
+    T3.TenantID = T1.TenantID AND
+    T3.TransactionType = 2 AND
+    T3.TransactionDate &lt; T1.TransactionDate AND
+    T3.TransactionDate &gt; T2.TransactionDate
+WHERE
+    T3.TransID IS NULL AND
+    &lt;your normal selection criteria&gt;
+</code></pre>
+
+<p>You're basically getting the last transaction (T2) that's of type 2 for the same tenant where no other transaction for that tenant and of the same type 2 appears after that one (that's what the T3.TransID IS NULL does - the only way that it will be NULL is if no match was found). You can also do this a little more clearly with a NOT EXISTS, but performance is often better with the double LEFT OUTER JOIN. Here's a NOT EXISTS version:</p>
+
+<pre><code>SELECT
+    T1.TransID,
+    T1.TenantID,
+    T1.TransactionType,
+    T1.Amount,
+    T1.TransactionDate,
+    T2.TransactionDate AS PreviousPaymentDate
+FROM
+    Transactions T1
+LEFT OUTER JOIN Transactions T2 ON
+    T2.TenantID = T1.TenantID AND
+    T2.TransactionType = 2 AND
+    T2.TransactionDate &lt; T1.TransactionDate
+WHERE
+    NOT EXISTS (
+        SELECT *
+        FROM Transactions T3
+        WHERE
+            T3.TenantID = T2.TenantID AND
+            T3.TransactionType = 2 AND
+            T3.TransactionDate &lt; T1.TransactionDate AND
+            T3.TransactionDate &gt; T1.TransactionDate
+        ) AND
+    &lt;your normal selection criteria&gt;
+</code></pre>

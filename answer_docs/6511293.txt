@@ -1,0 +1,34 @@
+<p>consider this site to help generate css gradients <a href="http://www.colorzilla.com/gradient-editor/" rel="nofollow">http://www.colorzilla.com/gradient-editor/</a></p>
+
+<p>Here's an example <a href="http://jsfiddle.net/pxfunc/LG2dU/" rel="nofollow">http://jsfiddle.net/pxfunc/LG2dU/</a></p>
+
+<p>To note, the <code>-webkit-gradient</code> style was replaced with <code>-webkit-linear-gradient</code> in Chrome 10 &amp; Safari 5.1 to be compatible with the W3C spec</p>
+
+<p>For your gradient and image to both show you'll need to provide a color in your gradient with some alpha transparency either such as setting one of the gradient colors to <code>transparent</code> or using <a href="http://www.w3.org/TR/css3-color/#rgba-color" rel="nofollow">rgba</a> or <a href="http://www.w3.org/TR/css3-color/#hsla-color" rel="nofollow">hsla</a> formats</p>
+
+<p><strong>CSS:</strong> </p>
+
+<pre><code>/* Default -no gradient- */
+background:url("http://placehold.it/300/f00") no-repeat 90% 50%;
+/* FF3.6+ */
+background: -moz-linear-gradient(top, rgba(232,232,232,1) 0%, rgba(238,238,238,0.79) 53%, rgba(255,255,255,0) 100%),
+    url("http://placehold.it/300/f00") no-repeat 90% 50%;
+/* Chrome,Safari4+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(232,232,232,1)), color-stop(53%,rgba(238,238,238,0.79)), color-stop(100%,rgba(255,255,255,0))),
+   url("http://placehold.it/300/f00") no-repeat 90% 50%; 
+/* Chrome10+,Safari5.1+ */
+background: -webkit-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(238,238,238,0.79) 53%,rgba(255,255,255,0) 100%),
+    url("http://placehold.it/300/f00") no-repeat 90% 50%;
+/* Opera11.10+ */
+background: -o-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(238,238,238,0.79) 53%,rgba(255,255,255,0) 100%),
+    url("http://placehold.it/300/f00") no-repeat 90% 50%;
+/* IE10+ */
+background: -ms-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(238,238,238,0.79) 53%,rgba(255,255,255,0) 100%),
+    url("http://placehold.it/300/f00") no-repeat 90% 50%;
+/* IE6-9 */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#00ffffff',GradientType=0 ),
+    url("http://placehold.it/300/f00") no-repeat 90% 50%;
+/* W3C */
+background: linear-gradient(top, rgba(232,232,232,1) 0%,rgba(238,238,238,0.79) 53%,rgba(255,255,255,0) 100%),
+    url("http://placehold.it/300/f00") no-repeat 90% 50%;
+</code></pre>

@@ -1,0 +1,19 @@
+<p>In MDX you could create two calcs - this and last week (of course you'll need to change this to work with your cube):</p>
+
+<pre><code>WITH
+MEMBER [Measures].[thisWeekCount] AS
+    ([Date].[Week].[this], [Measures].[Count])
+MEMBER [Measures].[lastWeekCount] AS
+    ([Date].[Week].[last], [Measures].[Count])
+SELECT
+{
+    [Measures].[thisWeekCount],
+    [Measures].[lastWeekCount]
+} ON 0,
+{
+    ...
+} ON 1
+FROM [Your Cube]
+</code></pre>
+
+<p>Then, you can use them within placeholders as jimconstable explained, but without the <strong>iif</strong> functions.</p>

@@ -1,0 +1,10 @@
+<p>In your crop method, have you tried drawing it without passing the original DisplayObject's transform matrix? Seems to me it shouldn't need the transform matrix passed, especially since you want to copy the scaled version of the DisplayObject as-is.</p>
+
+<p>Also, in your crop method, it seems a little backwards to create the bitmap before drawing the displayobject you want to copy ( I don't think this is what is messing it up but it might be worth a look ...)</p>
+
+<p>I'd do: </p>
+
+<pre><code>var bmd:BitmapData  = new BitmapData (_width, _height, true, 0x00000000);
+bmd.draw (displayObject, null, null, null, rect, true);
+return new Bitmap (bmd, PixelSnapping.ALWAYS, true);
+</code></pre>

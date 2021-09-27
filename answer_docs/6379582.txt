@@ -1,0 +1,4 @@
+<p>I'm not sure what you mean by multi-database. If you're thinking about replication of one dataset across multiple database servers, you'll gain redundancy, and will also have the option of load balancing queries.</p>
+
+<p>Edit:
+You're mentioning "split of size", which may suggest you're thinking about fragmenting or sharding your dataset. That will reduce the amount of data being down or lost if suffering a crash. It will also spread queries across multiple servers, which will enable you to manage higher load.</p>

@@ -1,0 +1,15 @@
+<p>1) Go to C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies</p>
+
+<p>2 ) Find Microsoft.Moles.VsHost.x86.exe.config</p>
+
+<p>3) Open and alter by adding next lines under runtime</p>
+
+<pre><code>&lt;assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1"&gt;
+           &lt;dependentAssembly&gt;
+                     &lt;assemblyIdentity name="System.Moles" publicKeyToken="0ae41878053f6703" culture="neutral"/&gt;
+                     &lt;bindingRedirect oldVersion= "4.0.0.0"
+                                              newVersion= "2.0.0.0"/&gt;
+            &lt;/dependentAssembly&gt;
+
+     &lt;/assemblyBinding&gt;
+</code></pre>

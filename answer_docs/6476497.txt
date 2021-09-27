@@ -1,0 +1,20 @@
+<p>You can just use a simple if condition:</p>
+
+<pre><code>In [9]: def adder(d,source,dest,weight):
+   ...:     if source in d:
+   ...:         d[source][dest] = weight
+   ...:     else:
+   ...:         d[source] = {dest: weight}
+   ...: 
+
+In [10]: d={}
+
+In [11]: adder(d, 'a', 'b', 1)
+
+In [12]: adder(d, 'a', 'f', 4)
+
+In [13]: adder(d, 'b', 'c', 1)
+
+In [14]: d
+Out[14]: {'a': {'b': 1, 'f': 4}, 'b': {'c': 1}}
+</code></pre>

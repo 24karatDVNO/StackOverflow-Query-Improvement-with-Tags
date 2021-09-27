@@ -1,0 +1,36 @@
+<p>Almost a year after... but nevertheless :) </p>
+
+<p>This one is for a set container, but you can easily change it to use a map:</p>
+
+<pre><code>template &lt;class InputIterator, class OutputIterator&gt;
+OutputIterator intersect(InputIterator lf, InputIterator ll, 
+                         InputIterator rf, InputIterator rl, 
+                         OutputIterator result)
+{
+    while(lf != ll &amp;&amp; rf != rl)
+    {
+        if(*lf &lt; *rf)
+            ++lf;
+        else if(*lf &gt; *rf)
+            ++rf;
+        else
+        {
+            *result = *lf;
+            ++lf;
+            ++rf;
+        }
+    }
+    return result;
+}
+</code></pre>
+
+<p>Usage:</p>
+
+<pre><code>intersect(set1.begin(), set1.end(), 
+          set2.begin(), set2.end(), 
+          inserter(output_container, output_container.begin()));
+</code></pre>
+
+<p>set1 and set2 are both set containers whilst output_container can be set, list, array etc..</p>
+
+<p><a href="http://www.cplusplus.com/reference/std/iterator/inserter/" rel="nofollow">inserter</a> generates an insert iterator</p>

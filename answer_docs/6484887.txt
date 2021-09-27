@@ -1,0 +1,6 @@
+<p>Well, for now, using the inner for loop to solve this, And it is obviously working, but i will be happy to hear of any other suggestion to do it in a more efficient way if possible...</p>
+
+<pre><code>&lt;img src="{% for p in photo %}{{ MEDIA_URL }}{{ p.photo }}{% endfor %}" alt="Picture #{{ forloop.counter }}" /&gt;
+</code></pre>
+
+<p>10x :-)</p>

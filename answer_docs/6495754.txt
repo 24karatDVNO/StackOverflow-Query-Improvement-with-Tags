@@ -1,0 +1,7 @@
+<p>You want to fetch data from 2 tables and when you using join in this case you must use left join to reach your result change your inner join to left join</p>
+
+<p>I think it works </p>
+
+<pre><code>$sql="SELECT _location.locationname, _countries.countryname FROM _location 
+LEFT JOIN _countries ON _location.countryid='".$q."'";
+</code></pre>

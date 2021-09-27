@@ -1,0 +1,3 @@
+<p>Assuming that the user has access to the header but not to the implementation, he/she hasn't got any idea how to handle the pointer. If your function is a source (aka allocate the pointer with new) you should return an auto_ptr. auto_ptr are: standard, never throws and specifically design to do this job.</p>
+
+<p>You may have a look at this <a href="http://www.gotw.ca/publications/using_auto_ptr_effectively.htm" rel="nofollow">http://www.gotw.ca/publications/using_auto_ptr_effectively.htm</a></p>

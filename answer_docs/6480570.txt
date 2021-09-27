@@ -1,0 +1,17 @@
+<p>It might help to understand how C <code>char*</code> "strings" work:</p>
+
+<p>You start reading them from the char that the char* points to until you hit a <code>\0</code> char (or simply 0).</p>
+
+<p>So if I have</p>
+
+<pre><code>char* str = "theFile.nam";
+</code></pre>
+
+<p>then <code>str+3</code> represents the string <code>File.nam</code>.</p>
+
+<p>But you want to remove the last three characters, so you want something like:</p>
+
+<pre><code>char str2[9];
+strncpy (str2,str,8); // now str2 contains "theFile.#" where # is some character you don't know about
+str2[8]='\0'; // now str2 contains "theFile.\0" and is a proper char* string.
+</code></pre>

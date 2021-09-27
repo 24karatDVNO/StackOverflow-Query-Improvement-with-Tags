@@ -1,0 +1,8 @@
+<p>Try replacing with the following:</p>
+
+<pre><code>[FileName,PathName] = uigetfile('*.mat','Select mat file');
+if FileName==0, return, end
+
+Struct1 = load( fullfile(PathName,FileName) );   %# pass file path as string
+Structname = fieldnames(Struct1);                %# typo?
+</code></pre>

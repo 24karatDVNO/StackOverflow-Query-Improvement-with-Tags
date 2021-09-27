@@ -1,0 +1,12 @@
+<p>It is entirely possible, <strong>with the cooperation of the ISP</strong>. The fact that the ISP is giving private addresses should urge you to move to another.</p>
+
+<p>The concept you're after is called DNAT or <a href="http://en.wikipedia.org/wiki/Port_forwarding" rel="nofollow">Port Forwarding</a>.</p>
+
+<p>Let's say you decide on accessing port <code>1234</code> on a PC. The address of the PC is <code>Local2</code>. The address of the wireless router (in the network with the ISP) is <code>Local1</code>.</p>
+
+<ul>
+<li>The wireless router must do the translation <code>Local1:X -&gt; Local2:1234</code></li>
+<li>The ISP router must do the translation <code>Public:1234 -&gt; Local1:X</code></li>
+</ul>
+
+<p>The <code>X</code> means any port can be used.</p>

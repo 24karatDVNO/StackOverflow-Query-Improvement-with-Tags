@@ -1,0 +1,39 @@
+<p>Step 1:</p>
+
+<pre><code>string regno, exm, brd, cleg, strm, mrks, inyear;
+
+protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+{
+    string url;
+    regno = GridView1.Rows[e.NewEditIndex].Cells[1].Text;
+    exm = GridView1.Rows[e.NewEditIndex].Cells[2].Text;
+    brd = GridView1.Rows[e.NewEditIndex].Cells[3].Text;
+    cleg = GridView1.Rows[e.NewEditIndex].Cells[4].Text;
+    strm = GridView1.Rows[e.NewEditIndex].Cells[5].Text;
+    mrks = GridView1.Rows[e.NewEditIndex].Cells[6].Text;
+    inyear = GridView1.Rows[e.NewEditIndex].Cells[7].Text;
+
+    url = "academicinfo.aspx?regno=" + regno + ", " + exm + ", " + brd + ", " +
+          cleg + ", " + strm + ", " + mrks + ", " + inyear;
+    Response.Redirect(url);
+}
+</code></pre>
+
+<p>Step 2:</p>
+
+<pre><code>protected void Page_Load(object sender, EventArgs e)
+{
+    if (!IsPostBack)
+    {
+        string prm_string = Convert.ToString(Request.QueryString["regno"]);
+
+        if (prm_string != null)
+        {
+            string[] words = prm_string.Split(',');
+            txt_regno.Text = words[0];
+            txt_board.Text = words[2];
+            txt_college.Text = words[3];
+        }
+    }
+}
+</code></pre>

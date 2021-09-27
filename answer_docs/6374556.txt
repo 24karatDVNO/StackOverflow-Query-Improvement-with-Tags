@@ -1,0 +1,11 @@
+<p>with jQGrid v4.0 use cellattr in colmodel</p>
+
+<p>like following </p>
+
+<pre><code>colModel: [
+            { name: 'ClientName', label: 'Client', index: 'ClientName', width: 150, cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;' } },
+
+            .... other columns
+
+            ]
+</code></pre>

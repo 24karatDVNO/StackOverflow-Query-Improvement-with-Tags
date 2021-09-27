@@ -1,0 +1,3 @@
+<p>Solr replication <strong>is</strong> a copy operation of index files using HTTP transport method rather than file based copy. </p>
+
+<p>The advantage of using the built in replication scheme is that you rid yourself of potential problems such as filesystem locks. You will also get propagation of <code>optimize</code> requests which might be beneficial for components which might depend on it, such as the spellcheckers <code>buildOnOptimize</code>. Also it holds up well in performance compared to e.g., <code>rsync</code>. </p>

@@ -1,0 +1,22 @@
+<p>2In pseudo code I will do something like this:</p>
+
+<pre><code>spinner1Selected = false;
+spinner2Selected = false;
+
+Spinner1ItemSelected {
+   spinner1Selected = true;
+   if(spinner1Selected == true &amp;&amp; spinner2Selected == true) doMyStuff();
+}
+
+Spinner2ItemSelected {
+    spinner1Selected = true;
+    if(spinner1Selected == true &amp;&amp; spinner2Selected == true) doMyStuff();
+}
+
+doMyStuff(){
+    doing my stuff...
+
+    spinner1Selected = false;
+    spinner2Selected = false;
+}
+</code></pre>

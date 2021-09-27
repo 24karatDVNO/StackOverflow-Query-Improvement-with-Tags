@@ -1,0 +1,7 @@
+<p>Maybe if you rebind your grid it will help. You could use the .rebind() method but that will refresh your grid. </p>
+
+<p>.ajaxRequest() seems to refresh a grid while retaining its current state, which would hopefully refresh the grid edit popup without interfering with anything.</p>
+
+<pre><code>var grid = $('#OrdersGrid').data('tGrid');
+grid.ajaxRequest();
+</code></pre>

@@ -1,0 +1,21 @@
+<p>I ended up keeping the cache_counter as it was, but then forcing the cache expiry through the Post's after_create callback, like this:</p>
+
+<pre><code>class Post
+  belongs_to :author, :counter_cache =&gt; true
+  after_create :force_author_cache_expiry
+
+  def force_author_cache_expiry
+    author.force_cache_expiry!
+  end
+end
+
+class Author
+  has_many :posts
+
+  def force_cache_expiry!
+    notify :force_expire_cache
+  end
+end
+</code></pre>
+
+<p>then <code>force_expire_cache(author)</code> is a method in my AuthorSweeper class that expires the cache fragment.</p>

@@ -1,0 +1,32 @@
+<p>use JS </p>
+
+<p>very basic code, but it works.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+
+&lt;!--
+
+function validate_form ( )
+{
+    valid = true;
+
+        if ( document.upload_form.something.value == "" )
+        {
+                alert ( "Please select a file before clicking upload ! " );
+                valid = false;
+        }
+
+        return valid;
+}
+
+//--&gt;
+
+&lt;/script&gt;
+</code></pre>
+
+<p>and use onsubmit even in the form </p>
+
+<pre><code>onSubmit="return validate_form ( );"
+</code></pre>
+
+<p>when a user click on upload button without selecting any file, it will alert the user .</p>

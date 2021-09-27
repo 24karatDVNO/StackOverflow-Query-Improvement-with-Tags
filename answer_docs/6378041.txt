@@ -1,0 +1,17 @@
+<p>I accomplished this by creating an additional section with its own sub-record detail to house what would span multiple pages and left the original section to house only the header record. </p>
+
+<p>So the breakdown looked something like this in the Hierarchy pane:</p>
+
+<pre><code>MainForm
+ +-MasterPage           (Main layout)
+ +-subForm              (Layer over Main page)
+   +-SubFormDetail      (Sub For on Layer)
+     +-MainTable        (Primary Table)   
+       +-HeaderSection  (Section to display first page only header)
+       +-DetailSection  (Section to display multi-page rows)
+         +-DetailRows   (Rows to display each records data)
+</code></pre>
+
+<p>Although admittedly this may not be the best method to accomplish what you are trying to do, it worked for my needs.</p>
+
+<p>Hope that helps.</p>

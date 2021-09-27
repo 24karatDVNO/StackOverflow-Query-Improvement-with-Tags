@@ -1,0 +1,18 @@
+<pre><code>$('document').ready(
+    function(){
+        $('td.obsolete').each(function(index) {
+        alert($(this).text());
+        var val = $(this).text();
+        alert("val:" + val);
+        if (val == 'true') {
+            alert("now then");
+            $("td.obsolete").css('background-color', '#fef1f8');
+        }
+    });
+});</code></pre>
+
+<p><a href="http://jsfiddle.net/Zah4z/" rel="nofollow">http://jsfiddle.net/Zah4z/</a></p>
+
+<p>If you have spaces in your td text then you can check them with <code>jQuery.trim();</code></p>
+
+<p>this is what i tried and its working fiddle link provided</p>

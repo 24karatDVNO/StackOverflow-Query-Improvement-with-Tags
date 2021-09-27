@@ -1,0 +1,7 @@
+<p>I'm assiming, by the z-index on your inner div and that you're trying to position it over the iframe.</p>
+
+<p>It doesn't work, because Frames (including IFrames) are independent subwindows over the original window, so it doesn't matter how much you increment you z-index, the div will only be higher in the index of objects in the base windows, and will never get on top of the object in the subwindow.</p>
+
+<p>In you specific case it would be even more complex to do, as the subwindow is draw by a different program (I'm assuming Acrobat Reader, but it would depend on you computer configuration).</p>
+
+<p>Another element over which you usually can't position anything is OBJECT and EMBED - think of flash, for instance, because that space is draw by a different program. It may work on some browsers, but it's not specified to work and it doesn't work in most browsers.</p>

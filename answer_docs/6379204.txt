@@ -1,0 +1,20 @@
+<p>Why not using the WebClient or WebRequest classes?
+For the webclient, you can use the UploadValues method which will do exactly what you want (http://msdn.microsoft.com/en-us/library/9w7b4fz7.aspx) and you can also simply addapt the class to use cookies so your login will be "permanent" (http://stackoverflow.com/questions/1777221/c-using-cookiecontainer-with-webclient-class)</p>
+
+<p>If you like to do it even more model driven, i would use the WebRequest (has allready a cookiecontainer) and have some class with the needed data. This one would derive from a class, which can serialize all needed properties into a simple string you would post to the server - AFAIK it's same like the getter-parameters (param1=val1&amp;param2=val2&amp;...)
+so basically:</p>
+
+<pre><code>class Data : Postable { public string Param1{get;set;} public string Param2{get;set;} ...}
+class Postable 
+{ 
+    public override string ToString() 
+    { 
+        StringBuilder ret = new StringBuilder();
+        foreach(Property p in GetType().GetProperties())
+        {
+            ret.Append("{0}={1}&amp;", p.Name, p.&lt;GetValue&gt;);
+        }
+        return ret.ToString();
+    } 
+}
+</code></pre>

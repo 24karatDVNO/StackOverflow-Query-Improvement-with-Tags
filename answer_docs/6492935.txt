@@ -1,0 +1,7 @@
+<p>You could do this using below code:</p>
+
+<pre><code>NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"likecount" ascending:YES];
+[self.msgHistory sortUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];   
+
+[descriptor release];
+</code></pre>

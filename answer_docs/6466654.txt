@@ -1,0 +1,18 @@
+<pre><code>SELECT p.page_id, COUNT( key_id ) AS keyword_all
+FROM PAGES p
+JOIN KEYWORDS ON key_page_id = page_id
+GROUP BY page_id
+HAVING keyword_all = (
+  SELECT COUNT( key_id ) AS found_k
+    FROM KEYWORDS
+    WHERE key_page_id = p.page_id
+      AND (
+      key_name = 'purz'
+      OR key_name = 'puzy'
+    )
+  )
+</code></pre>
+
+<p>What I did here is to get only pages which total number of keywords match the keywords that we look for.</p>
+
+<p>This way you do not need to join multiple times. Only change the WHERE condition in the subquery according to the keywords that you look for.</p>

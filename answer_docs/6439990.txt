@@ -1,0 +1,12 @@
+<p>No need to change any codings .. simple insert the following codings to the application , it will automatically detect the orientation...</p>
+
+<p>UINavigationBar *bar = [self.navigationController navigationBar];<br>
+[bar setTintColor:[UIColor blackColor]]; 
+NSBundle *bundle = [NSBundle mainBundle];<br>
+NSString *moviePath = [bundle pathForResource:@"sharkdivertrailer" ofType:@"mp4"];<br>
+NSURL  *movieURL = [[NSURL fileURLWithPath:moviePath] retain];<br>
+        MPMoviePlayerController *theMovie = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];<br>
+        theMovie.view.frame = CGRectMake(184, 200, 400, 300);
+        [theMovie play];<br>
+        MPMoviePlayerViewController *moviePlayer = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];<br>
+        [self presentMoviePlayerViewControllerAnimated:moviePlayer];</p>

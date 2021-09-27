@@ -1,0 +1,10 @@
+<p>Well, it looks like <a href="https://stackoverflow.com/users/34549/zzzeek">zzzeek</a> just fixed the bug you described in this <a href="https://bitbucket.org/sqlalchemy/sqlalchemy/changeset/01c78541c896" rel="nofollow noreferrer">changeset</a>. So just update the file on your side and it should work.</p>
+
+<p><strong><em>Note:</em></strong> Also, please note that you seem to be misusing <a href="http://docs.python.org/library/functions.html#super" rel="nofollow noreferrer">super(...)</a> in your code: you should use the class itself as the first parameter, not the base class:</p>
+
+<pre><code>class LeukemicTissue(Tissue):
+    # ...
+    def __init__(self, token, concentration, leukemia, source_sample_id=None):
+        #super(Tissue, self).__init__(token, concentration, source_sample_id) # ERROR
+        super(LeukemicTissue, self).__init__(token, concentration, source_sample_id) # GOOD
+</code></pre>

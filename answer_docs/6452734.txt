@@ -1,0 +1,19 @@
+<pre><code>&lt;?php
+// PHP 5.3.5-1ubuntu7.2
+$url = "http://www.example.com:80i/"; // Yes, I have an "i" after port 80, then is not a valid URL
+
+if (filter_var($url, FILTER_VALIDATE_URL)) {
+  echo "URL is valid";
+} else {
+  echo "URL is NOT valid";
+}
+
+$url = parse_url($url);
+
+echo $url['port']; // Returns 80 (without the "i")
+
+// BUG...
+?&gt;
+</code></pre>
+
+<p>Using filter_var with FILTER_VALIDATE_URL doesn't validate correctly the URL</p>

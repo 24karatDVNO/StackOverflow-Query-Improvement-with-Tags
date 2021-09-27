@@ -1,0 +1,37 @@
+<p>There is no real magic on it. Since you'll be using ASCII, to convert an <em>int</em>
+to a <em>char</em> all you have to do is an assignment, as you may already know:</p>
+
+<pre><code>char a = 65; /* a contains 'A' */
+</code></pre>
+
+<p>NSString has a very convenient method <code>componentsSeparatedByString:</code> that will
+return an array of strings containing your numbers, and you can get an <em>int</em>
+from a string with the <code>intValue</code> method. Thus, all you have to do is to split
+the string and iterate through the components assigning their <em>int</em> value to a
+<em>char</em> array. Here is an example function that does that:</p>
+
+<pre><code>NSString *
+TextFromAsciiCodesString (NSString *string)
+{
+    NSArray *components = [string componentsSeparatedByString:@" "];
+    NSUInteger len = [components count];
+    char new_str[len+1];
+
+    int i;
+    for (i = 0; i &lt; len; ++i)
+        new_str[i] = [[components objectAtIndex:i] intValue];
+
+    new_str[i] = '\0';
+
+    return [NSString stringWithCString:new_str
+                              encoding:NSASCIIStringEncoding];
+}
+</code></pre>
+
+<p>And a simple use of it, with your <code>"Hello"</code> example:</p>
+
+<pre><code>NSString *string = @"72 101 108 108 111";
+NSLog(@"%@", TextFromAsciiCodesString(string));
+</code></pre>
+
+<p>Actually, it's a bit different as your example was <code>"Hell^K"</code> :-)</p>

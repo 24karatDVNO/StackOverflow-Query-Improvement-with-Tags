@@ -1,0 +1,34 @@
+<p>Here's one way to read your file:</p>
+
+<h3>file.dat</h3>
+
+<pre><code>DATE      TIMESTAMP    T W M     T AL M C  A_B_C
+DATE      TIMESTAMP    T W M     T AL M C  A_B_C
+DATE      TIMESTAMP    T W M     T AL M C  A_B_C
+DATE      TIMESTAMP    T W M     T AL M C  A_B_C
+DATE      TIMESTAMP    T W M     T AL M C  A_B_C
+DATE      TIMESTAMP    T W M     T AL M C  A_B_C
+</code></pre>
+
+<h3>MATLAB code:</h3>
+
+<pre><code>fid = fopen('file.dat', 'rt');
+C = textscan(fid, '%s %s %c%c%c %c%2c%c%c %s');
+fclose(fid);
+C = [ C{1}, C{2}, ...
+    cellstr( strcat(C{3},{' '},C{4},{' '},C{5}) ), ...
+    cellstr( strcat(C{6},{' '},C{7},{' '},C{8},{' '},C{9}) ), ...
+    C{10}
+]
+</code></pre>
+
+<p>The resulting cell-array:</p>
+
+<pre><code>C = 
+    'DATE'    'TIMESTAMP'    'T W M'    'T AL M C'    'A_B_C'
+    'DATE'    'TIMESTAMP'    'T W M'    'T AL M C'    'A_B_C'
+    'DATE'    'TIMESTAMP'    'T W M'    'T AL M C'    'A_B_C'
+    'DATE'    'TIMESTAMP'    'T W M'    'T AL M C'    'A_B_C'
+    'DATE'    'TIMESTAMP'    'T W M'    'T AL M C'    'A_B_C'
+    'DATE'    'TIMESTAMP'    'T W M'    'T AL M C'    'A_B_C'
+</code></pre>

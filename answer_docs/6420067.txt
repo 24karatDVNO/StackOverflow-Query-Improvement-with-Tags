@@ -1,0 +1,24 @@
+<p>Try:</p>
+
+<pre><code>foreach ($subarrays as $value){
+    //replaces all occurences of ',' with '?' within the last element of the subarray
+    $value[sizeof($value)-1] = str_replace(',', '?', $value[sizeof($value)-1]);
+}
+</code></pre>
+
+<p>OR</p>
+
+<pre><code>foreach ($subarrays as $value){
+    //replaces last character with '?' within the last element of the subarray
+    $value[sizeof($value)-1] = substr($value[sizeof($value)-1], 1, strlen($value[sizeof($value)-1])-1) . '?';
+}
+</code></pre>
+
+<p>OR a more legible version:</p>
+
+<pre><code>foreach ($subarrays as $value){
+    //replaces last character with '?' within the last element of the subarray
+    $str = $value[sizeof($value)-1];
+    $value[sizeof($value)-1] = substr($str, 1, strlen($str)-1) . '?';
+}
+</code></pre>

@@ -1,0 +1,21 @@
+<blockquote>
+  <p>Ok, so I'm calling this custom tag:</p>
+</blockquote>
+
+<p>What you have there is not a custom tag. It is a tag file.</p>
+
+<pre><code>&lt;%@ tag body-content="scriptless" import="java.util.*,com.serco.inquire.*,java.lang.*" %&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+&lt;%@ attribute name="theID" required="true" %&gt;
+&lt;%@ attribute name="aUser" required="true" %&gt;
+ ... do stuff with variables here...
+</code></pre>
+
+<p>You have used the prefix = c for your tag. Do you also have tag definitions in your web.xml ? If so, c might have already been used there for the JSTL tags. If that is the case, you might have a conflict between your tag file and the JSTL core tags.</p>
+
+<p>With this code in the .jsp file:</p>
+
+<pre><code>&lt;inq:singleRec theID="${id}" aUser="${user}" /&gt;
+</code></pre>
+
+<p>Where have you defined <code>ing</code> ?</p>

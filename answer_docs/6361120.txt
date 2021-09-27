@@ -1,0 +1,83 @@
+<p><strong>Pure SQL</strong></p>
+
+<p>For a pure SQL-solution, look at Adam's post <em>and</em> read this article <a href="http://blog.developpez.com/sqlpro/p9821/langage-sql-norme/agregation-d-intervalles-en-sql-1/" rel="nofollow noreferrer">this article</a> (it is written in french, however you will find out it's not too hard to read). The article was recommended to me after consulting the postgresql-mailing-list (thank you for that!).</p>
+
+<p>For my data this was not suitable because all possible solutions need to self join a table at least 3 times. This turns out to be a problem for (very) large amounts of data.</p>
+
+<p><strong>Semi SQL, Semi imperative Language</strong></p>
+
+<p>If you primarily care about speed and you have the possibility to use an imperative language, you can get much faster (depending on the amount of data, of course). In my case the task performed (at least) 1.000 times faster, using R.</p>
+
+<p>Steps:</p>
+
+<p>(1) Get a .csv-file. <em>Take care of sorting!!!</em></p>
+
+<pre><code>COPY (
+  SELECT "ID", "BEGIN", "END"
+  &lt;sorry, for a reason I don't know StackOverflow won't let me finish my code here...&gt;
+</code></pre>
+
+<p>(2) Do something like this (this code is R, but you could do something similar in any imperative language):</p>
+
+<pre><code>data - read.csv2("&lt;/path/to.csv&gt;")
+data$BEGIN - as.Date(data$BEGIN)
+data$END - as.Date(data$END)
+
+smoothingEpisodes - function (theData) {
+
+    theLength - nrow(theData)
+    if (theLength  2L) return(theData)
+
+    ID - as.integer(theData[["ID"]])
+    BEGIN - as.numeric(theData[["BEGIN"]])
+    END - as.numeric(theData[["END"]])
+
+    curId - ID[[1L]]
+    curBEGIN - BEGIN[[1L]]
+    curEND - END[[1L]]
+
+
+
+    out.1 - integer(length = theLength)
+    out.2 - out.3 - numeric(length = theLength)
+
+    j - 1L
+
+    for(i in 2:nrow(theData)) {
+        nextId - ID[[i]]
+        nextBEGIN - BEGIN[[i]]
+        nextEND - END[[i]]
+
+        if (curId != nextId | (curEND + 1)  nextBEGIN) {
+            out.1[[j]] - curId
+            out.2[[j]] - curBEGIN
+            out.3[[j]] - curEND
+
+            j - j + 1L
+
+            curId - nextId
+            curBEGIN - nextBEGIN
+            curEND - nextEND
+        } else {
+            curEND - max(curEND, nextEND, na.rm = TRUE)
+        }
+    }
+
+    out.1[[j]] - curId
+    out.2[[j]] - curBEGIN
+    out.3[[j]] - curEND
+
+    theOutput - data.frame(ID = out.1[1:j], BEGIN = as.Date(out.2[1:j], origin = "1970-01-01"), END = as.Date(out.3[1:j], origin = "1970-01-01"))
+
+    theOutput
+}
+
+data1 - smoothingEpisodes(data)
+
+data2 - transform(data1, TAGE = (as.numeric(data1$END - data1$BEGIN) + 1))
+
+write.csv2(data2, file = "&lt;/path/to/output.csv&gt;")
+</code></pre>
+
+<p>You can find a detailed discussion on this R-Code here:
+<a href="https://stackoverflow.com/questions/6425713/smoothing-time-data-can-it-be-done-more-efficient">&quot;smoothing&quot; time data - can it be done more efficient?</a></p>

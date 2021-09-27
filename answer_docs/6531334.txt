@@ -1,0 +1,15 @@
+<p>You could override the back button and only let the activity finish if the 'conditions have been met'.</p>
+
+<pre><code>@Override
+public void onBackPressed() {
+    if(conditionIsMet) {
+         //The condition was met, close the activity
+         finish;
+    } else  { 
+         //Cancel the button press
+         return;
+    }
+}
+</code></pre>
+
+<p>I hope this is the answer you were looking for, but your question wasn't too clear.</p>

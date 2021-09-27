@@ -1,0 +1,39 @@
+<p>ANSWER:</p>
+
+<p>What I did was wrote an Image Upload handler script that is pretty basic but it should get the job done. Here it is.</p>
+
+<pre><code>    public void ProcessRequest(HttpContext context)
+    {
+        string uploadDir = "C:\\Upload";
+        try
+        {
+            Image i = Image.FromStream(context.Request.InputStream);
+            string filename = context.Request.Params["qqfile"];
+
+            if (i.RawFormat.Equals(ImageFormat.Png))
+            {
+                i.Save(uploadDir + "\\" + filename, ImageFormat.Png);
+            }
+            else if (i.RawFormat.Equals(ImageFormat.Jpeg))
+            {
+                i.Save(uploadDir + "\\" + filename, ImageFormat.Jpeg);
+            }
+            else if (i.RawFormat.Equals(ImageFormat.Gif))
+            {
+                i.Save(uploadDir + "\\" + filename, ImageFormat.Gif);
+            }
+            else if (i.RawFormat.Equals(ImageFormat.Bmp))
+            {
+                i.Save(uploadDir + "\\" + filename, ImageFormat.Bmp);
+            }
+        }
+        catch (Exception e)
+        {
+            context.Response.Write("{'error':'"+e.Message+"'}");
+        }
+
+        context.Response.Write("{'success':true}");
+    }
+</code></pre>
+
+<p>And this works with the Ajax-Upload script I linked to earlier. Thanks</p>

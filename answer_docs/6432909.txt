@@ -1,0 +1,10 @@
+<p>From VBA/VBS, you can openup Notes using COM. You can then navigate Notes objects to create documents and populate Notes documents with field values. There are some minor differences between the objects/methods/propertoes available via COM and internally from say LotusScript, but on the whole its fairly easy. You don't need designer rights to open up a external notes session via com and assuming that you can use the existing forms/views in the database, then all you do need is ACL rights to create/deposit docs, and ECL rights to access via COM. There is help in the Notes-Doc (albeit brief) and some examples out on the web. You will need to open up your external session using a notes-name and password.</p>
+
+<p>You start with a simple: </p>
+
+<pre><code>set ns = createobject("Notes.Session") 
+</code></pre>
+
+<p>(or something similar) in VBA, and take it from there. </p>
+
+<p>Performance might be an issue if creating many thousands of docs but on the whole its ok.</p>

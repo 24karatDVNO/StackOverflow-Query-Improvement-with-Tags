@@ -1,0 +1,7 @@
+<p>Does the $items variable contains the data you're planning on using?</p>
+
+<p>If so, i recommend you remove the values before passing the array into the zend_paginator factory class:</p>
+
+<pre><code>unset($array[0]);
+$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array($array));  
+</code></pre>

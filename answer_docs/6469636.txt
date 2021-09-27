@@ -1,0 +1,15 @@
+<p>Reading <em>I want to grab "slide9" and put that in a variable.</em> I assume you want what matches your regexp to be the <strong>only</strong> thing put in <code>$new_output</code>? If so, then you can change that to:</p>
+
+<pre><code>new_output=`egrep -R -l "${images}" * | sed 's/.*\(slide[0-9]+\).*/\1/'`
+</code></pre>
+
+<p>Note no setting of <code>output=</code> is required (unless you use that for something else)
+If you need <code>$output</code> to use elsewhere then instead use:</p>
+
+<pre><code>output=`grep -R -l "${images}" *`
+new_output=`echo ${ouput} | sed 's/.*\(slide[0-9]+\).*/\1/'`
+</code></pre>
+
+<p>sed's s/// command is similar to perls s// command and has an equivalent in most languages.</p>
+
+<p>Here I'm matching zero or more characters <code>.*</code> before and after your <code>slide[0-9]+</code> and then remembering (backrefrencing) the result <code>\( ... \)</code> in sed (the brackets may or may not need to be escaped depending on the version of sed).   We then replace that whole match (i.e the whole line) with <code>\1</code> which expands to the first captured result in this case your <code>slide[0-9]+</code> match.   </p>

@@ -1,0 +1,13 @@
+<p>You are can use CURL for this task. In database or textfile save time last run script and one day in week run this script (of course, update date before execute script):</p>
+
+<p>$ch = curl_init(); </p>
+
+<p>curl_setopt($ch, CURLOPT_URL,"http://www.exaple.com/service_script.php");</p>
+
+<p>curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);</p>
+
+<p>curl_setopt($ch, CURLOPT_TIMEOUT, 1);</p>
+
+<p>$result_curl = curl_exec($ch);</p>
+
+<p>curl_close($ch);  </p>

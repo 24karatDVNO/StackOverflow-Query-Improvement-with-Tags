@@ -1,0 +1,45 @@
+<p>This tested script runs 5 jobs at a time and will restart a new job as soon as it does (due to the kill of the sleep 10.9 when we get a SIGCHLD. A simpler version of this could use direct polling (change the sleep 10.9 to sleep 1 and get rid of the trap).</p>
+
+<pre><code>#!/usr/bin/bash
+
+set -o monitor
+trap "pkill -P $$ -f 'sleep 10\.9' &gt;&amp;/dev/null" SIGCHLD
+
+totaljobs=15
+numjobs=5
+worktime=10
+curjobs=0
+declare -A pidlist
+
+dojob()
+{
+  slot=$1
+  time=$(echo "$RANDOM * 10 / 32768" | bc -l)
+  echo Starting job $slot with args $time
+  sleep $time &amp;
+  pidlist[$slot]=`jobs -p %%`
+  curjobs=$(($curjobs + 1))
+  totaljobs=$(($totaljobs - 1))
+}
+
+# start
+while [ $curjobs -lt $numjobs -a $totaljobs -gt 0 ]
+ do
+  dojob $curjobs
+ done
+
+# Poll for jobs to die, restarting while we have them
+while [ $totaljobs -gt 0 ]
+ do
+  for ((i=0;$i &lt; $curjobs;i++))
+   do
+    if ! kill -0 ${pidlist[$i]} &gt;&amp;/dev/null
+     then
+      dojob $i
+      break
+     fi
+   done
+   sleep 10.9 &gt;&amp;/dev/null
+ done
+wait
+</code></pre>

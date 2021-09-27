@@ -1,0 +1,7 @@
+<p>I was going to remove this post after realizing my sheer stupidity, but I'm going to leave it up for others who fall hard like me.</p>
+
+<p>The infinite loop was being created because nextLink never became null when I had more than 25 events in my calendar.  I'm guessing that without setting a value for maxResults, the default is 25.  Hence, when I had <strong>more than</strong> 25 events in my calendar, a "null" nextLink could never exist because the Atom returned has exactly 25 events.</p>
+
+<p>If I set maxResults to 50 and only 49 events exist in my calendar, the 50th nextLink would be null thus triggering the break from the loop.</p>
+
+<p>I have just set maxResults to a huge number like 1,000,000.  I figure if a person has 10 events in their calendar every day and lives to be 80 years old, that would only equate to around 291,000 events.  I figure 1,000,000 is a safe number.</p>

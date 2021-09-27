@@ -1,0 +1,21 @@
+<p>I think <code>NSNotification</code> is the message object itself, to send to listen to what is sent try <code>NSNotificationCenter</code>. It has a singleton object, so to send the message:</p>
+
+<pre><code>NSNotification *notificationObj;
+NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+[center postNotification:notificationObj];
+</code></pre>
+
+<p>And the other class listen to with:</p>
+
+<pre><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(method:) object:nil];
+</code></pre>
+
+<p>Make sure that class has <code>method:</code> method. You can have a single parameter, which is an <code>NSNotification</code> object that is sent earlier. The <code>NSNotification</code> object has <code>[notificationObj object</code> which you can get as a piece of data sent by the sender class. Alternatively, you might use <code>[notificationObj userInfo]</code> if you want it to be more structured.</p>
+
+<p>you can initialise <code>notificationObj</code> and tailor it with the message that you'd want. More information on <code>NSNotificationCenter</code>, you can find it</p>
+
+<p><a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSNotificationCenter_Class/Reference/Reference.html#//apple_ref/occ/cl/NSNotificationCenter" rel="nofollow">http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSNotificationCenter_Class/Reference/Reference.html#//apple_ref/occ/cl/NSNotificationCenter</a></p>
+
+<p>or for more information about <code>NSNotification</code> itself</p>
+
+<p><a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSNotification_Class/Reference/Reference.html" rel="nofollow">http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSNotification_Class/Reference/Reference.html</a></p>

@@ -1,0 +1,22 @@
+<p>Create a class that extends Route</p>
+
+<pre><code>public class CustomRoute : Route
+{
+
+    public override RouteData GetRouteData(System.Web.HttpContextBase httpContext)
+    {
+        var routeData = base.GetRouteData(httpContext);
+        if(routeData != null)
+        { do some stuff on routeData... }
+        return routeData;
+    }
+
+    public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
+    {
+        // Do the opposite of the first function
+    }
+}
+</code></pre>
+
+<p>edit: 
+The easiest way is to extends <code>Route</code> and use base.GetRouteData then just change the data tokens 'controller' and 'action' to what you want </p>

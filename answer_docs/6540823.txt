@@ -1,0 +1,5 @@
+<p>For the most part, types is a concept of the compiler more than the machine code.</p>
+
+<p>Interpreting bytes as a specific type is just a matter of what the machine code instructions expect to be at certain addresses.</p>
+
+<p>Casting a type to another (apart from <code>dynamic_cast</code>) does not generate any actual code. The exception is when you're casting between types within the same hierarchy, in which case the cast may produce a pointer offset.</p>

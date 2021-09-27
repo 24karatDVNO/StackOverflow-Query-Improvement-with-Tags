@@ -1,0 +1,15 @@
+<p>You want something like the following:</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+function addToValue(el, s) {
+  if (typeof el == 'string') el = document.getElementById(el);
+  el.value += (el.value.length &gt; 1)? ', ' + s : s;
+}
+&lt;/script&gt;
+
+
+&lt;textArea id="someText"&gt;&lt;/textarea&gt;
+&lt;button title="foo" onclick="addToValue('someText',this.title)"&gt;Add foo&lt;/button&gt;
+&lt;button title="bar" onclick="addToValue('someText',this.title)"&gt;Add bar&lt;/button&gt;
+&lt;button title="baz" onclick="addToValue('someText',this.title)"&gt;Add baz&lt;/button&gt;
+</code></pre>

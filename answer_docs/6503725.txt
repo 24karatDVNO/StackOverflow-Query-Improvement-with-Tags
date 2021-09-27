@@ -1,0 +1,22 @@
+<p>Try making them properties instead of iVars ...</p>
+
+<pre><code>@interface WhereamiAppDelegate : NSObject &lt;UIApplicationDelegate,CLLocationManagerDelegate&gt;
+
+@property (nonatomic, retain) IBOutlet CLLocationManager *locationManager;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) IBOutlet UITextView *locationTitleField;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+
+@end
+</code></pre>
+
+<p>and don't forget to synthesize them</p>
+
+<pre><code>@synthesize locationManager = _locationManager;
+@synthesize mapView = _mapView;
+@synthesize activityIndicator = _activityIndicator;
+@synthesize locationTitleField = _locationTitleField;
+</code></pre>
+
+<p>I never use iVars for objects that appear in nib files; I tend to always use properties and have never experienced any issues with hooking up the outlets.</p>

@@ -1,0 +1,11 @@
+<p>You can write the class which starts Stopwatch in the constructor and stops in the Dispose() (obviously you have to implement IDisposable).</p>
+
+
+
+<pre><code>using (var profiler = new PerformanceProfiler(out elapsedMilliseconds)
+{
+    // profiled action code ...
+}
+
+Debug.WriteLine(elapsedMilliseconds.ToString(CultureInfo.CurrentCulture));
+</code></pre>

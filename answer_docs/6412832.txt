@@ -1,0 +1,2 @@
+<pre><code>SELECT ph.number, min(mo.time) from (select distinct(number) from table) ph, table mo group by ph.number
+</code></pre>

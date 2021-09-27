@@ -1,0 +1,14 @@
+<p>I used a normal EditTextPreference but handled onPreferenceClick to cancel the dialog and catch the click.</p>
+
+<pre><code> mbtnCheckUpdate.setText ("Check Updates.");
+ mbtnCheckUpdate.setOnPreferenceClickListener( new OnPreferenceClickListener()
+    {
+        @Override
+        public boolean onPreferenceClick(Preference arg0)
+        {
+            ((EditTextPreference)arg0).getDialog().cancel();
+            return true;
+        }
+    }
+    );
+</code></pre>

@@ -1,0 +1,13 @@
+<p>To simply output the files after they have been merged you can use:</p>
+
+<pre><code>chdir("./files/");
+print join(array_map("file_get_contents",
+                     array("1.html", "2.html", "3.html", "4.html")));
+</code></pre>
+
+<p>I guess you didn't mean a static list though. To have a complete directory <code>/files</code> read you can adapt this to:</p>
+
+<pre><code>print join(array_map("file_get_contents", glob("files/*.html")));
+</code></pre>
+
+<p>If your question was really about creating a new file from the combined contents, then replace the <code>print</code> with <code>file_put_contents(..., "5.html")</code> for example.</p>

@@ -1,0 +1,15 @@
+<p>Whatever you <code>SELECT</code> would be in the <code>$row</code> variable, so in your code:</p>
+
+<pre><code>$result = mysql_query("select type,some_other_column from my_table");
+$row = mysql_fetch_array($result);
+/*
+   $row = array(
+        'type' =&gt; 'type_value',
+        '0' =&gt; 'type_value',
+        'some_other_column' =&gt; 'col_value',
+        '1' =&gt; 'col_value'
+   )
+*/
+$number = count($row); 
+print $number; // prints 4
+</code></pre>

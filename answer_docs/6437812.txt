@@ -1,0 +1,11 @@
+<p>The compilation error comes from this line:</p>
+
+<pre><code>AddXmlOfContAttribute(it_begin);
+</code></pre>
+
+<p>This should be:</p>
+
+<pre><code>AddXmlOfContAttribute(*it_begin);
+</code></pre>
+
+<p>I am a moron I didn't realize the first overload... that should be the reference as sc said.</p>

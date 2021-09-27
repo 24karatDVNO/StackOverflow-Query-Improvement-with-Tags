@@ -1,0 +1,27 @@
+<p>If you use Visual Studio 2008 or higher you will be able to test your code using MSTest framework:</p>
+
+<p>1.Open Test View window: Test/Windows/Test View;</p>
+
+<p>2.Add new unit test project: right click on Solution in Solution Explorer/Add/New 
+Project/Test Project;</p>
+
+<p>3.Remove all files apart from UnitTest.cs file in created test project;</p>
+
+<p>4.Write your unit test in method under [TestMethod] attribute:</p>
+
+<pre><code>[TestClass]
+public class UnitTest1
+{
+    [TestMethod]
+    public void TestMethod1()
+    {
+        var ranges = new Ranges();
+        int sum = ranges.CountOccurrences(11);
+        Assert.AreEqual(128, sum);
+    }
+}
+</code></pre>
+
+<p>5.Run your test from Test View window added in p.1</p>
+
+<p>6.See test results in Test/Windows/Test Results window</p>

@@ -1,0 +1,13 @@
+<p>you can apply linq query on the List before making it a source </p>
+
+<pre><code>List&lt;Person&gt; persons = new List&lt;Person&gt; ();
+var Filter =  from p in persons
+           where p.hide == false
+           select p;
+</code></pre>
+
+<p>Now renew persons and provide Filter as a list to it cast this Filter into List and defined it combo source...</p>
+
+<pre><code>persons  = new List&lt;Person&gt;(Filter);
+cbm.ItemSource = persons  ;
+</code></pre>

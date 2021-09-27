@@ -1,0 +1,29 @@
+<p>try the following snippet</p>
+
+<pre><code>public void back() {
+    if (history.size() &gt; 0) {
+        history.remove(history.size() - 1);
+        if (history.size() &lt;= 0) {
+            finish();
+        } else {
+            setContentView(history.get(history.size() - 1));
+        }
+    } else {
+        finish();
+    }
+}
+
+@Override
+public void onBackPressed() {
+    TopNewsGroup.group.back();
+}
+
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_BACK) {
+        TopNewsGroup.group.back();
+        return true;
+    }
+    return super.onKeyDown(keyCode, event);
+}
+</code></pre>

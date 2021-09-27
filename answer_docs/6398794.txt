@@ -1,0 +1,11 @@
+<p>just modifying previous recurrence.</p>
+
+<pre><code>C[i]: cash we can have at end of the day i.
+C[i] = max(C[i-1],(S[i]-B[i])*G[i]);
+</code></pre>
+
+<p>where</p>
+
+<pre><code>G[i] is unit of good we can afford to buy.
+G[i]=floor(C[i-1]/B[i])
+</code></pre>

@@ -1,0 +1,9 @@
+<p>It looks like you are creating several Timer threads. Check that all of them have exited properly, that is probably the problem.</p>
+
+<p>If you check the Timer JavaDoc - <a href="http://download.oracle.com/javase/6/docs/api/java/util/Timer.html" rel="nofollow">http://download.oracle.com/javase/6/docs/api/java/util/Timer.html</a> - you will notice the following note:</p>
+
+<blockquote>
+  <p>By default, the task execution thread does not run as a daemon thread</p>
+</blockquote>
+
+<p>You can use a debugger (both Eclipse and NetBeans have excellent ones) to see which threads are still alive.</p>

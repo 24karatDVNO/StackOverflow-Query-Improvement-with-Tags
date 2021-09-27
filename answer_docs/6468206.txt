@@ -1,0 +1,12 @@
+<p>You can find the pid, and checks that you're really its parent by doing:</p>
+
+<pre><code>// Find child processes according to current pid
+$res = trim(exec('ps -eo pid,ppid |grep "'.getmypid().'" |head -n2 |tail -n1'));
+if (preg_match('~^(\d+)\s+(\d+)$~', $res, $pid) !== 0 &amp;&amp; (int) $pid[2] === getmypid())
+{
+    // I'm the parent PID, just send a KILL
+    posix_kill((int) $pid[1], 9);
+}
+</code></pre>
+
+<p>It's working quite well on a fast-cgi PHP server.</p>

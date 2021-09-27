@@ -1,0 +1,6 @@
+<p>try removing the extra space at the end of your hard coded string and use <a href="http://php.net/trim" rel="nofollow">trim</a> to remove any extra spaces i your POST variable</p>
+
+<pre><code>if(trim($karthik)=="ALTA 3.1-06 (CLTA 123.2-06) - Zoning Classification and Allowable Uses - Improved Land"){
+    echo "correct";
+}
+</code></pre>

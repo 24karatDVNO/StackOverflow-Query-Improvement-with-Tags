@@ -1,0 +1,25 @@
+<p>Your code is redundant - you have the same URL twice in the code. In order to remove this redundancy, I propose this initial state:</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;div id="olderpost"&gt;
+    &lt;a href="/actions/olderpost/20"&gt;View older actions&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>JavaScript:</p>
+
+<pre><code>$('#olderpost a').click(function(e) {
+    e.preventDefault();
+    $.ajax({dataType: 'script', url: $(this).attr('href')});
+});
+</code></pre>
+
+<p>So, the URL is stored in the <code>href</code> attribute of the anchor. Then, if JavaScript is enabled, the click handler will make an Ajax request and the URL for that request will be taken from that same <code>href</code> attribute.</p>
+
+<p>In order to replace the URL, just modify the <code>href</code> attribute of the anchor:</p>
+
+<pre><code>$('#olderpost a').attr('href', function(i, v) {
+    return v.replace('20', '30');
+});
+</code></pre>

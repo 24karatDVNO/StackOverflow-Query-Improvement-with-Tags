@@ -1,0 +1,30 @@
+<p>iuuhhuuu!!! The solution was super easy...but I didn't know this component: ScrollView.</p>
+
+<p>Ok. put my code; the galery isn't yet but I use a textview between the webviews.</p>
+
+<pre><code>&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:orientation="vertical" android:scrollbars="vertical"&gt;
+
+ &lt;LinearLayout
+android:layout_width="fill_parent" android:layout_height="fill_parent"
+android:orientation="vertical" android:id="@+id/main_layout"&gt;
+
+    &lt;WebView android:id="@+id/webViewDisease"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        &gt;&lt;/WebView&gt;
+
+    &lt;TextView android:id="@+id/textView2" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;!-- Bottom --&gt;
+    &lt;WebView android:id="@+id/webViewBottomDisease"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        &gt;
+    &lt;/WebView&gt;
+
+
+ &lt;/LinearLayout&gt;
+
+&lt;/ScrollView&gt;
+</code></pre>

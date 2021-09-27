@@ -1,0 +1,10 @@
+<pre><code>NoMethodError in Technicals#new
+</code></pre>
+
+<p>Does controllers/technicals_controller.rb have a "def new"?
+If not, try adding one:</p>
+
+<pre><code>def new
+ @technical = Technical.new
+end
+</code></pre>

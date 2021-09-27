@@ -1,0 +1,30 @@
+<p>I know this question is a ancient history now, but here's my answer.</p>
+
+<pre><code>var byMonth =
+    from sc in ServiceCalls
+    join up in UsedParts
+        on sc.ServiceCallID equals up.ServiceCallID
+        into gups
+    let tsd = sc.ReportedTimestamp.Date
+    let month = tsd.AddDays(1 - tsd.Day)
+    group new
+    {
+        Calls = 1,
+        sc.IsPaid,
+        ChargeNet = sc.LabourNet + gups.Sum(gup =&gt; gup.NetPrice),
+        ChargeVat = sc.LabourVat + gups.Sum(gup =&gt; gup.VatAmount),
+    } by month into gscs
+    select new
+    {
+        Month = gscs.Key,
+        CallsReceived = gscs.Sum(gsc =&gt; gsc.Calls),
+        AmountInvoiced
+            = gscs.Sum(gsc =&gt; gsc.ChargeNet)
+            + gscs.Sum(gsc =&gt; gsc.ChargeVat),
+        MoneyReceived
+            = gscs.Sum(gsc =&gt; gsc.IsPaid ? gsc.ChargeNet : 0m)
+            + gscs.Sum(gsc =&gt; gsc.IsPaid ? gsc.ChargeVat : 0m),
+    };
+</code></pre>
+
+<p>Enjoy!</p>

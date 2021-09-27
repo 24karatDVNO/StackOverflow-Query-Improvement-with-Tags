@@ -1,0 +1,37 @@
+<p>This is a tricky question, because an entry (product) can be assigned to <em>more than one category</em>.</p>
+
+<p>For the sake of an example, if you are <strong>only assigning <em>one category per product</em></strong>, you can use the following code for a basic breadcrumbs trail in your permalink template:</p>
+
+<pre><code>{exp:channel:entries channel="product" limit="1"}
+    &lt;ul class="breadcrumbs"&gt;
+        &lt;li&gt;&lt;a href="{path='site_index'}"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="{path='product/index'}"&gt;{channel}&lt;/a&gt;&lt;/li&gt;
+            {categories limit="1" channel="product"}
+                &lt;li&gt;
+                    &lt;a href="{path='product/index'}"&gt;{category_name}&lt;/a&gt;
+                &lt;/li&gt;
+            {/categories}
+        &lt;li&gt;{title}&lt;/li&gt;
+    &lt;/ul&gt;
+{/exp:channel:entries}
+</code></pre>
+
+<p>Which would output something along the lines of:</p>
+
+<pre><code>&lt;ul class="breadcrumbs"&gt;
+    &lt;li&gt;&lt;a href="http://localhost/index.php"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://localhost/index.php/product"&gt;Products&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://localhost/index.php/product/category/toys"&gt;Toys&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Buzz Lightyear Action Figure&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p><strong>Depending upon how you've setup the taxonomy of your site (<em>single category for products vs. multiple categories</em>) will determine if you can safely use categories in your breadcrumbs.</strong></p>
+
+<p>Since you didn't post more of your code, you may choose to implement things differently, especially if you're using an <a href="http://expressionengine.com/user_guide/templates/embedding_templates.html" rel="nofollow">embeddd template</a> for your breadcrumbs. However, you can extract out the necessary bits from this example to suit your environment.</p>
+
+<p>In addition, you can use ExpressionEngine's <a href="http://expressionengine.com/user_guide/templates/globals/url_segments.html" rel="nofollow">URL Segment Variables</a>, <a href="http://expressionengine.com/user_guide//cp/admin/content_admin/global_channel_preferences.html" rel="nofollow">Category URL Indicator</a> and <a href="http://expressionengine.com/user_guide/templates/globals/conditionals.html" rel="nofollow">Conditional Global Variables</a> to add even more flexibility. </p>
+
+<hr>
+
+<p>I may also mention that if you're looking for a rapid and highly customizable solution to adding breadcrumbs to your site, you might want to consider the commercial add-on <a href="http://experienceinternet.co.uk/software/crumbly/" rel="nofollow">Crumbly</a> by Stephen Lewis of Experience Internet.</p>

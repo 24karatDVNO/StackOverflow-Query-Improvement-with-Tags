@@ -1,0 +1,7 @@
+<p>I'm not sure if it is possible to do with CSS and even if it is it won't be IE7 compatible.</p>
+
+<p>using jquery:</p>
+
+<pre><code>var iframe = $("#facebook").children().eq(2).find("iframe").first();
+iframe.css({overflow: [...], height: [...]});
+</code></pre>

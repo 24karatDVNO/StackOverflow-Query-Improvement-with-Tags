@@ -1,0 +1,15 @@
+<p>I tried your way, doesn't seem to for for me either. try this:</p>
+
+<pre><code>private pics = new Vector();
+
+for(int i = 0; i &lt; 1000; i++{
+
+    BitmapField temp = new BitmapField();
+    pics.addElement(temp);
+    ((BitmapField)pics.elementAt(i)).setBitmap(Bitmap.getBitmapResource("picture" + i + ".png"));
+    add((BitmapField)pics.elementAt(i));
+
+}
+</code></pre>
+
+<p>Also i agree with @Ted about the 1000 fields. good luck, let us know.</p>

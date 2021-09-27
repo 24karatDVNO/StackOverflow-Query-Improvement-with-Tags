@@ -1,0 +1,15 @@
+<p>No, you cannot get the way you want from a single query, you have to use <a href="http://dev.mysql.com/doc/refman/5.0/en/group-by-functions.html#function_group-concat" rel="nofollow">GROUP_CONCAT</a> to fetch all the rows (repeating in the join query) as single row.</p>
+
+<p>Use <code>GROUP_CONCAT</code> separated by <code>,</code> and like @Dan said, you can <code>explode (",", $result)</code> to get it in an array.</p>
+
+<p>For ex:</p>
+
+<pre><code>SELECT GROUP_CONCAT(samples.sample SEPERATOR ',' ) .....
+</code></pre>
+
+<p>The above query will give the results like</p>
+
+<pre><code>definition 1 sample-1,sample-2
+definition 2 sample-1,sample-2,sample-3
+.....
+</code></pre>

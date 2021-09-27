@@ -1,0 +1,9 @@
+<p>You need to serialise your data first and then decode it in the java.</p>
+
+<pre><code>void write_dataType( char* buff, dataType* data )
+   {
+   sprintf( buff, "%s\n%d\n", name, data.did );
+   }
+</code></pre>
+
+<p>You could, of course, use a real <a href="http://en.wikipedia.org/wiki/Remote_procedure_call" rel="nofollow">RPC technology</a>.</p>

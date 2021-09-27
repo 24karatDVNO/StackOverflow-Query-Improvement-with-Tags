@@ -1,0 +1,18 @@
+<p>i think you are missing a point here:</p>
+
+<pre><code>var checkBox_id = $(this).attr("id");
+var $this = $('#' + checkBox);
+</code></pre>
+
+<p>The second line is is completly unnecessary. <code>$this</code> will refer to the same element as <code>$(this)</code>. You just can do:</p>
+
+<pre><code>var $this = $(this);
+</code></pre>
+
+<p>for the same effect.</p>
+
+<p>If you need the id of the <code>td</code>and <code>tr</code> for the same thing, then you don't need it either.</p>
+
+<pre><code>var $td = $this.parent(); // Reference to td
+var $tr = $td.parent(); // Reference to tr
+</code></pre>

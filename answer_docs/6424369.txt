@@ -1,0 +1,8 @@
+<p>String doesn't have anything pre-built to do what you wanted. You can define a method in your class or extend the String class itself for what you want to do:</p>
+
+<pre><code>def word_count( string )
+  return 0 if string.empty?
+
+  string.split.size
+end
+</code></pre>

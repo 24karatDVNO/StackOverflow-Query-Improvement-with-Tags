@@ -1,0 +1,16 @@
+<p>Try this expression</p>
+
+<pre><code>^\d*\.\d{2}$
+</code></pre>
+
+<p><code>^</code> is the anchor for start of the string</p>
+
+<p><code>\d</code> is a digit</p>
+
+<p><code>*</code> means zero or more of the preceding expression, here <code>\d</code></p>
+
+<p><code>{2}</code> says exactly 2 of the preceding expression, here <code>\d</code></p>
+
+<p><code>$</code> is the anchor for the end of the string</p>
+
+<p>If you don't use the anchors, you can put anything what you want in front or behind and it will match.</p>

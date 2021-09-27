@@ -1,0 +1,10 @@
+<p>For a 6 digit random number, this should be good</p>
+
+<pre><code>&lt;?php
+
+   header( 'Location: http://www.example.com/index.php?'.rand(100000,999999)) ;
+
+?&gt;
+</code></pre>
+
+<p>Place it on the page from which you want people to redirect</p>

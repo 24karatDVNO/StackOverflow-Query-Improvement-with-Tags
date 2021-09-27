@@ -1,0 +1,14 @@
+<p>Perhaps, this is what you might need to do:</p>
+
+<pre><code>SELECT main.*, a.* 
+FROM main 
+LEFT JOIN a ON main.unique_id = a.unique_id 
+where main.condition_field='X'
+
+UNION 
+
+SELECT main.*, b.* 
+FROM main 
+LEFT JOIN b ON main.username = b.username 
+where main.condition_field='Y'
+</code></pre>

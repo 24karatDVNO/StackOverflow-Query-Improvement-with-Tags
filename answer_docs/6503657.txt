@@ -1,0 +1,26 @@
+<p>Yes, what you need is the <a href="http://en.wikipedia.org/wiki/Factory_method_pattern" rel="nofollow">factory pattern</a>.</p>
+
+<p>Make a common interface shared between the sort algorithms. Then make a factory object that returns the right algorithm based on the input. You can input a <code>enum</code>, <code>string</code>, <code>.class</code>, whatever you like.</p>
+
+<pre><code>public interface Sort {
+    void sort(Comparable[] a)
+}
+
+public class SortFactory {
+    public static sort getSorter(SortType type) {
+        if (type == SortType.INSERTION)
+            return new InsertionSort();
+        if (type == SortType.SELECTION)
+            return new SelectionSort();
+        if (type == SortType.SHELL)
+            return new ShellSort();
+    }
+}
+
+
+public enum SortType {
+    INSERTION,
+    SELECTION,
+    SHELL
+}
+</code></pre>

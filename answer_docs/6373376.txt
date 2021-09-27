@@ -1,0 +1,5 @@
+<p><code>DockableWindowContent</code> doesn't have to be in <code>position:absolute</code>.</p>
+
+<p>Having it in absolute take it "<em>out</em>" of your <code>&lt;td&gt;</code>. Maybe defining <code>#DockableWindow td {position:relative;}</code> would help... But it just seems useless.</p>
+
+<p>You could change <code>height:87%</code> to <code>min-height:87%</code> too. (<em>note</em>: ie6 doesn't know what min-height is)</p>

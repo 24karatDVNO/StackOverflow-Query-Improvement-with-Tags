@@ -1,0 +1,6 @@
+<p>Your PHP code is executing in the <code>www/html/website/</code> directory then. You need to go up two directories (arriving in the <code>www/</code> directory), then go down to the <code>cgi-bin/</code> subdirectory. So this should work:</p>
+
+<pre><code>exec('../../cgi-bin/test.py');
+</code></pre>
+
+<p>Note that this is relying on the current work directory being the PHP script directory. This might not always be the case, particularly if something in the PHP script changes the current work directory explicitly or simply if this PHP script is included from a different script. So it is better to use absolute paths (e.g. put the absolute path of the base directory into a config file).</p>

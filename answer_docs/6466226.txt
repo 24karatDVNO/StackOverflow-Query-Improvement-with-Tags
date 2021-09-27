@@ -1,0 +1,82 @@
+<p>Assuming that your entries are directly from a database and therefore are unique for one property, I can think of following steps for a simple solution:</p>
+
+<ol>
+<li>Merge Arrays together (<strong>prop1</strong>, <strong>prop2</strong>, <strong>prop3</strong> > <strong>temp</strong>)</li>
+<li>Count occurrences for each element (in this example code <strong>tempCount</strong>)</li>
+<li><p>Based on the knowledge about the occurrences, create the final array (here called <strong>result</strong>)</p>
+
+<pre><code>Dim prop1() As Variant
+Dim prop2() As Variant
+Dim prop3() As Variant
+Dim temp() As Variant
+Dim tempCount() As Integer
+Dim result() As Variant
+
+ReDim temp(UBound(prop1) + UBound(prop2) + UBound(prop3) + 1)
+
+'merge arrays
+Dim i As Integer
+On Error Resume Next
+    For i = 0 To UBound(temp)
+    temp(i * 3) = prop1(i)
+    temp(i * 3 + 1) = prop2(i)
+    temp(i * 3 + 2) = prop3(i)
+Next i
+
+'count occurences
+ReDim tempCount(UBound(temp) + 1)
+Dim j As Integer
+For i = 0 To UBound(temp)
+tempCount(i) = 1
+For j = 0 To i - 1
+
+'comparison of elements
+    If temp(i) = temp(j) Then
+    tempCount(i) = tempCount(i) + 1
+    End If
+Next j
+Next i
+
+ReDim result(UBound(temp) + 1)
+
+'if an element occurs 3 times, add it to result
+Dim count As Integer
+count = 0
+For i = 0 To UBound(tempCount)
+    If tempCount(i) = 3 Then
+        result(count) = temp(i)
+        count = count + 1
+    End If
+Next i
+</code></pre></li>
+</ol>
+
+<p>To check for some samples I added this to the code. It simply prints out the arrays <strong>temp</strong>, <strong>result</strong> and <strong>tempCount</strong> to the columns A, B and C.</p>
+
+<pre><code>'some sample arrays
+prop1 = Array("a", "b", "c", "d", "e")
+prop2 = Array("b", "c", "f")
+prop3 = Array("b", "c", "d", "g")
+
+'some sample Output
+
+'temp
+Cells(1, 1).Value = "temp:"
+For i = 0 To UBound(temp)
+    Cells(i + 2, 1).Value = temp(i)
+Next i
+
+'result
+Cells(1, 2).Value = "result:"
+For i = 0 To UBound(result)
+    Cells(i + 2, 2).Value = result(i)
+Next i
+
+'count:
+Cells(1, 3).Value = "count:"
+For i = 0 To UBound(tempCount)
+    Cells(i + 2, 3).Value = tempCount(i)
+Next i
+</code></pre>
+
+<p>Notes: <strong>tempCount</strong> just holds the <em>cumulative number</em> of occurrences at the point the element is watched at.</p>

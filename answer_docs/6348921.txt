@@ -1,0 +1,18 @@
+<p>(Can't get my test project to actually send the HTTP 500, only seems to do that when I don't want it to ;-)</p>
+
+<p>In the off-chance that this will help you, try wrapping you client service call and inspect the <code>response</code> in the debugger to see if it contains the error string you are trying to capture.</p>
+
+<pre><code>    using (new OperationContextScope(service1.InnerChannel))
+    {
+        try
+        {
+            result = service1.GetData("5");
+        }
+        catch (System.Exception e)
+        {
+            string msg = e.ToString();
+        }
+        HttpResponseMessageProperty response = (HttpResponseMessageProperty)
+            OperationContext.Current.IncomingMessageProperties[HttpResponseMessageProperty.Name];
+    }
+</code></pre>

@@ -1,0 +1,27 @@
+<p>In web.config you can specify access level for each page</p>
+
+<pre><code>    &lt;configuration&gt;
+
+        &lt;system.web&gt;
+
+        &lt;authentication mode="Forms"/&gt;
+        &lt;authorization&gt; &lt;deny users="?"/&gt;  //this will restrict anonymous user access
+
+        &lt;/authorization&gt;
+        &lt;/system.web&gt;
+
+        &lt;location path="register.aspx"&gt; //path here is path to your register.aspx page e.g. it could be ~/publicpages/register.aspx
+
+            &lt;system.web&gt;
+
+                &lt;authorization&gt;
+
+                &lt;allow users="*"/&gt; // this will allow access to everyone to register.aspx
+                &lt;/authorization&gt;
+
+            &lt;/system.web&gt;
+
+        &lt;/location&gt;
+
+    &lt;/configuration&gt;
+</code></pre>

@@ -1,0 +1,32 @@
+<p>You need to add the buttons before the post back so that you can get access to them during the post back, probably in the INIT of the page.  I changed it so it would compile and added an ID property to the buttons:</p>
+
+<pre><code>    Button btnMoveThread = new Button();
+    btnMoveThread.Text = "1";
+    btnMoveThread.ID = "Thread1";
+    btnMoveThread.Command += ModeratorButtonPassTo_Click;
+    DivContent.Controls.Add(btnMoveThread);
+
+    Button btnMoveThread2 = new Button();
+    btnMoveThread2.Text = "2";
+    btnMoveThread2.ID = "Thread2";
+    btnMoveThread2.Command += ModeratorButtonPassTo_Click;
+    DivContent.Controls.Add(btnMoveThread2);
+</code></pre>
+
+<p>Then, in your function you need to iterate over the keys of the request.form:</p>
+
+<pre><code>    int KeyCount = page.Request.Form.AllKeys.Length;
+    for (int i = 0; i &lt; KeyCount; i++)
+    {
+        if (page.Request.Form.AllKeys[i] == "Thread1")
+        {
+            return page.FindControl("Thread1");
+        }
+        if (page.Request.Form.AllKeys[i] == "Thread2")
+        {
+            return page.FindControl("Thread2");
+        }
+    }
+</code></pre>
+
+<p>Since you are adding the buttons in code and not in the designer the find control will be null unless you add them back before the postback, like I suggested in the INIT of the page.</p>

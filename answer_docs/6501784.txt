@@ -1,0 +1,19 @@
+<p>Hope this gets you on your way:</p>
+
+<pre><code>$max = 20;    // max value
+$repeats = 2; // numbers to be repeated
+
+$nums = range(1, $max);
+shuffle($nums);
+
+$halfPoint = ceil($max / 2);
+$firstHalf = array_slice($nums, 0, $halfPoint);
+
+$repeaters = array_intersect_key($firstHalf, array_flip(array_rand($firstHalf, $repeats)));
+$secondHalf = array_merge(array_slice($nums, $halfPoint), $repeaters);
+shuffle($secondHalf);
+
+$result = array_merge($firstHalf, $secondHalf);
+
+var_dump(join(',', $result));
+</code></pre>

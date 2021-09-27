@@ -1,0 +1,5 @@
+<p>You can perhaps initialize a counter variable and then add one to it anytime <code>window.open</code> is run. 
+But then 
+a)you'd need to send a vairable to parent window when open popup is closed (probably using a hidden field value)  something like this on unload:
+opener.document.your_form.counter.value ++;
+b) If user have popup blocker that's not gonna work.</p>

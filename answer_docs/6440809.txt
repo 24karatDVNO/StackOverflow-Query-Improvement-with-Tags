@@ -1,0 +1,5 @@
+<p>You are submitting the form which is different then the time of form render so Drupal consider it as malicious input. If you want to skip that malicious check then add below line as property of your form in your_module_form() function.</p>
+
+<p>'#DANGEROUS_SKIP_CHECK' => TRUE,</p>
+
+<p>This will solve your problem but make sure that you are adding manual validation to protect from malicious inputs :). Hope this will help you.</p>

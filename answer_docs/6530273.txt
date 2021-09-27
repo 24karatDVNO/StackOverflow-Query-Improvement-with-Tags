@@ -1,0 +1,29 @@
+<p>I'd suggest you just do everything with integer math yourself.  You can then calculate what the uneven amount is and then decide how you want to distribute it across the elements.  My supposition is that the least noticeable way to distribute the extra pixels would be to keep as many like width elements next to each other as possible.</p>
+
+<p>One way of doing that would to calculate how many extra pixels N you have and then just give each N elements starting from the left one extra pixel.  If you were worried about things not being centered, you could allocate the first extra pixel to the far left object, the second extra pixel to the far right, the third extra pixel to the 2nd from left, the fourth extra pixel from the 2nd from right, etc...  This would have one more boundary between dissimilar width objects, but be more symmetric than the first algorithm.</p>
+
+<p>Here's some code that shows how one could put the extra pixels on the end elements from outside in:</p>
+
+<pre><code>function distributeWidth(len, totalWidth) {
+    var results = new Array(len);
+    var coreWidth = Math.floor(totalWidth / len);
+    var extraWidth = totalWidth - (coreWidth * len);
+    var w,s;
+    for (var i = 0; i &lt; len; i++) {
+        w = coreWidth;
+        if (extraWidth &gt; 0) {
+            w++;
+            extraWidth--;
+        }
+        if (i % 2 == 0) {
+            s = i/2;               // even, index from front of array
+        } else {
+            s = len - ((i+1)/2);   // odd, index from end of array
+        }
+        results[s] = w;
+    }
+    return(results)
+}
+</code></pre>
+
+<p>And here's a fiddle to see it in action: <a href="http://jsfiddle.net/jfriend00/qpFtT/2/" rel="nofollow">http://jsfiddle.net/jfriend00/qpFtT/2/</a></p>

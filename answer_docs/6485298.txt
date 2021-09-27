@@ -1,0 +1,13 @@
+<p>Use a case/when construct in your order by clause... In this case, I set values to 1, 2 or 3, THEN order by the last visit date...</p>
+
+<pre><code>select
+      YT.*
+   from
+      YourTable YT
+   order by
+      case when YT.Picture = "noPic" then 1
+           when YT.Picture = "PrivatePic" then 2
+           else 3 
+      end,
+      YT.Last_Visit_Date desc
+</code></pre>

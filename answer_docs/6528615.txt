@@ -1,0 +1,16 @@
+<p>Here is I think a good solution. It's not exactly what you want but close enough</p>
+
+<pre><code>import java.util.EnumSet;
+import java.util.Set;
+
+public class User {
+    enum Fields implements Field {
+        USERNAME,
+        PASSWORD;
+    }
+
+    Set&lt; ? extends Field&gt; getFieldSet() {
+        return EnumSet.allOf(Fields.class);
+    }
+}
+</code></pre>

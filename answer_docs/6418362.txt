@@ -1,0 +1,8 @@
+<p>Beginning with Access 2007, Microsoft built a stronger, more capable macro system that they hope will be able to mostly replace VBA due to the inherent security differences between VBA and macros. There is not, as of yet, a simple way to make Access 2007 or 2010 create VBA code instead of macros when using wizards.</p>
+
+<p>There are two ways some people have had success getting Access to create VBA or converting macros to VBA.</p>
+
+<ol>
+<li><p>Create an Access 2003 database (.mdb) file. This will create a db compatible with the older versions of Access that don't have the robust macro system and so the code created will be VBA for the most part. The drawbacks of this will be if other functions in your database require the newer Access functions.</p></li>
+<li><p>After the macro is created, save it as a separate macro rather than an embedded macro. Then in the Design ribbon in the Tools group, the Convert Form's Macros to Visual Basic should work more reliably. The converter is still not very reliable, and if it errors out, there is usually not a way to fix the issue.</p></li>
+</ol>

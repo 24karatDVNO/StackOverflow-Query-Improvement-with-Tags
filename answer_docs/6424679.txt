@@ -1,0 +1,13 @@
+<p>maybe you could use a subselect and so something like this:</p>
+
+<pre><code>SELECT * FROM
+  products
+WHERE
+  (
+  SELECT COUNT(*) FROM
+    characteristics
+  WHERE product = products.id AND characteristics_id IN (1,2,3)
+  ) &gt;= 3;
+</code></pre>
+
+<p>note that this isn't tested because you havn't posted your exact table-definitions.</p>

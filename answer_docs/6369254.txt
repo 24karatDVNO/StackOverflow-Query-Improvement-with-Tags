@@ -1,0 +1,6 @@
+<p>Just <em>creating</em> the data set using the constructor does not yet retrieve the data. You need code to <em>fill</em> (=> select the rows from the MDB file and store them within your data set instance) the data set first.</p>
+
+<p>The easiest would be to create an ODBC connection to the MDB file and use <code>OdbcConnection</code> and respective <code>OdbsCommand</code> instances to create the actual connection and "SELECT" statements.</p>
+
+<p><strong>EDIT</strong><br>
+You may be able to connect to the MDB file directly using the Table Adapter designer. You would then not need to create an ODBC connection.</p>

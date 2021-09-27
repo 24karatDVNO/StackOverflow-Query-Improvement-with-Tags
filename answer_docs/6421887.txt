@@ -1,0 +1,5 @@
+<p>I think you should link/post the page(part of it) you are having problems with and some of your code to get better feedback.</p>
+
+<p>A few suggestions: try to convert the page string you got, from encoding specified in it's meta tag (or real document encoding, if that is not the case) to UTF-8 and/or force document encoding in the DOMDocument object (as ~mario described or using properties) as DOMDocument seems to properly use encoding meta tag only if it is the first thing in HTML head tag.</p>
+
+<p>You can also try to disable <a href="http://www.php.net/manual/en/class.domdocument.php#domdocument.props.substituteentities" rel="nofollow">entities conversion</a> or some other properties as you don't need it for simple URL changing.</p>

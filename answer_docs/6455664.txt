@@ -1,0 +1,6 @@
+<p>No, the page doesn't work any different on the server when it's opened using <code>showModalDialog</code>. The server isn't even aware that the page will end up there.</p>
+
+<p>You need the <code>runat="server"</code> attribute in the <code>head</code> tag to be able to access it from server code:</p>
+
+<pre><code>&lt;head runat="server"&gt;
+</code></pre>

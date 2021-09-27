@@ -1,0 +1,46 @@
+<p>I am not quite sure why this message shows up. In the end it's only a <code>DEBUG</code> message and it should not prevent you from bringing up your application. Alternatively, you could use a <code>FactoryBean</code> instead that instantiates <code>ThreadPoolExecutor</code>.</p>
+
+<pre><code>public class ThreadPoolExecutorFactory implements FactoryBean 
+{
+    private final ReentrantLock lock = new ReentrantLock();   
+    private ThreadPoolExecutor executor;
+    private int corePoolSize;
+    private int maximumPoolSize;
+    private long keepAliveTime;
+    private TimeUnit unit;
+
+    public Object getObject() 
+    {
+        lock.lock();
+        if (executor == null)
+            executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
+                    keepAliveTime, unit, new LinkedBlockingQueue&lt;Runnable&gt;());
+        lock.unlock();
+        return executor;
+    }
+
+    public Class getObjectType() 
+    {
+        return ThreadPoolExecutor.class;
+    }
+
+    public boolean isSingleton()    
+    {
+        return true;
+    }
+}
+</code></pre>
+
+<p>In your application context you'd then create the bean like this:</p>
+
+<pre><code>&lt;bean name="moduleExecutorService" class="ThreadPoolExecutorFactory"&gt;
+    &lt;constructor-arg value="1" /&gt; 
+    &lt;constructor-arg value="20" /&gt; 
+    &lt;constructor-arg value="60" /&gt;
+    &lt;constructor-arg&gt;
+        &lt;bean class="java.util.concurrent.TimeUnit" factory-method="valueOf"&gt;
+            &lt;constructor-arg value="SECONDS" /&gt;
+        &lt;/bean&gt;
+    &lt;/constructor-arg&gt;
+&lt;/bean&gt;
+</code></pre>

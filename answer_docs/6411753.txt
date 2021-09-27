@@ -1,0 +1,1 @@
+<p>I think you need to implement a mechanism that won't let your user get back to previous activity without choosing any item in the list. Override your <code>onKeyDown()</code> method, and when the user presses Back key you should check whether any item is chosen. If it's not you can throw an alert dialog to inform user what he must do to proceed. Hope this helps!</p>

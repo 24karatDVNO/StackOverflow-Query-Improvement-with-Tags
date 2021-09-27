@@ -1,0 +1,41 @@
+<pre><code>&lt;html&gt;
+
+    &lt;head&gt;
+
+        &lt;script src="http://www.google.com/jsapi" type="text/javascript"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;google.load("jquery", "1");&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;
+
+            $(document).ready(
+                function() 
+                {
+                    $('#myCheckbox').click(
+                        function() 
+                        {   
+                            if( $(this).attr('checked') == 'checked' )
+                            {
+                                alert('yes');
+                            }
+                            else
+                            {
+                                alert('no');
+                            }
+                        }
+                    );
+                }
+            );
+
+        &lt;/script&gt;
+
+    &lt;/head&gt;
+
+    &lt;body&gt;
+
+        &lt;input type="checkbox" checked="checked" id="myCheckbox" /&gt;
+
+    &lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+
+<p><a href="http://see.weareinto.com/7qOc" rel="nofollow">Download this solution</a></p>

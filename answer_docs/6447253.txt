@@ -1,0 +1,7 @@
+<p>JVM can do runtime optimizations. For this simple example, I guess the only relevant optimization is method inlining of <code>Math.round()</code>. Some method invocation overhead is saved; and further optimization is possible after inlining flats the code.</p>
+
+<p>Watch this presentation to fully appreciate how powerful JVM inlining can be</p>
+
+<p><a href="http://www.infoq.com/presentations/Towards-a-Universal-VM" rel="nofollow">http://www.infoq.com/presentations/Towards-a-Universal-VM</a></p>
+
+<p>This is nice. It means we can structure our logic with methods, and they don't cost anything at runtime. When they argued about GOTO vs. procedures in 70s, they probably didn't see this coming.</p>

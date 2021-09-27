@@ -1,0 +1,4 @@
+<p>Because you're still comparing strings. The fact that they contain only numeric digits doesn't mean that they're not strings. You need to convert them:</p>
+
+<pre><code>SELECT MAX(CAST(REPLACE(id, 'XYZ', '') AS INT)) FROM My_Table
+</code></pre>

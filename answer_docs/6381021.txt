@@ -1,0 +1,25 @@
+<p>Hard to tell what is happening without seeing your CSS.  </p>
+
+<p>However, if you want to control the padding/margins for your table, you should first reset everything in the table.  </p>
+
+<p>So, give the table an ID or class name <code>&lt;table class="imagesTable"&gt;</code></p>
+
+<p>Then reset the CSS as follows in your stylesheet:</p>
+
+<pre><code>table.imagesTable tr td, table.imagesTable tr td a, table.imagesTable tr td a img  {
+    padding:0;
+    margin:0;
+    border:0;
+}
+</code></pre>
+
+<p>This targets the all three elements in the table cell.  You may also want to reset the <code>tr</code>s, but that is probably not necessary.</p>
+
+<p>You may need to add <code>!important</code> to your style rule in order to override some other styles that might be applied. </p>
+
+<p>Once done, you can add back some nice padding to the <code>td</code></p>
+
+<pre><code>table.imagesTable tr td {
+    padding:5px;
+} 
+</code></pre>

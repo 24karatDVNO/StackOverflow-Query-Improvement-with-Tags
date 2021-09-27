@@ -1,0 +1,8 @@
+<p>You can use the implicit conversion:</p>
+
+<pre><code>select stock_code,makeid,modelid,enginesize,
+       CASE WHEN automatic = 1 THEN 'Yes' ELSE 'No' END as automatic,
+       CASE WHEN semiautomatic = 1 THEN 'Yes' ELSE 'No' END as semiautomatic,
+       CASE WHEN manual = 1 THEN 'Yes' ELSE 'No' END as manual
+from VehicleInfoForParts
+</code></pre>

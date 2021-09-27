@@ -1,0 +1,45 @@
+<p>i was in the seem prbm you have to send from the 1st pdf page a link with the name of the pdf (myfile.pdf), like that:</p>
+
+<pre><code>&lt;a href="pdfread.jsp?err=&lt;%=filename %&gt;"&gt;&lt;%=bookName %&gt; &lt;/a&gt; 
+</code></pre>
+
+<p>to the page pdfread.jsp and in this page put that </p>
+
+<pre><code>&lt;%
+    String filename= request.getParameter("err");
+%&gt;
+&lt;embed src="${pageContext.request.contextPath}/pdfreader/&lt;%=filename %&gt;#toolbar=0&amp;navpanes=0&amp;scrollbar=0" width="500" height="375"&gt;
+  &lt;/embed&gt;
+</code></pre>
+
+<p>and this code you must put it in a servlet with a do get</p>
+
+<pre><code>    String filename= request.getParameter("err");
+    //String filename =(String) request.getAttribute("linkbook");
+    File file = new File("F:/fichiers/", filename+".pdf");
+
+    response.setContentType(getServletContext().getMimeType(file.getName()));
+    response.setContentLength((int) file.length());
+    response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
+
+    BufferedInputStream input = null;
+    BufferedOutputStream output = null;
+
+    try {
+        input = new BufferedInputStream(new FileInputStream(file));
+        output = new BufferedOutputStream(response.getOutputStream());
+
+        byte[] buffer = new byte[8192];
+        int length;
+        while ((length = input.read(buffer)) &gt; 0) {
+            output.write(buffer, 0, length);
+        }
+    } finally {
+        if (output != null) try { output.close(); } catch (IOException ignore) {}
+        if (input != null) try { input.close(); } catch (IOException ignore) {}
+    }
+</code></pre>
+
+<p>see this link to do it </p>
+
+<p><a href="https://stackoverflow.com/questions/6349265/how-to-use-doget-in-jsp-with-servlet">How to use doGet in jsp with Servlet</a></p>

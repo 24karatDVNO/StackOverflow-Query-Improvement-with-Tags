@@ -1,0 +1,10 @@
+<p>post your adapter code. </p>
+
+<p>if you are changing the cursor on the adapter as you probably are. be sure to get the cursor from the adapter by calling </p>
+
+<pre><code>    Cursor c = adapter.getCursor()
+c.moveToPosition(position);
+String description = c.getString(c.getColumnIndex("DESCRIPTION"));
+</code></pre>
+
+<p>the key thing is to move the cursor to the desired position in the list. also be sure you are using the attached cursor to the listView not a previously saved instance or from your first query when you were assigning it to the adapter.</p>

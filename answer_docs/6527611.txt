@@ -1,0 +1,23 @@
+<p>Here is a program in which <code>sleep</code> uses almost 100% of the cpu cycles given to the application:</p>
+
+<pre><code>for (i = 0; i &lt; bigNumber; i++){
+  sleep(someTime);
+}
+</code></pre>
+
+<p>Why? Because it doesn't use very many actual cpu cycles at all,
+and of the ones it does use, nearly all of them are spent entering and leaving <code>sleep</code>.</p>
+
+<p>Does that mean it's a real problem? Of course not.</p>
+
+<p><a href="https://stackoverflow.com/questions/1777556/alternatives-to-gprof/1779343#1779343">That's the problem with profilers that only look at CPU time.</a></p>
+
+<p>You need a sampler that samples on wall-clock time, not CPU time.
+It should sample the stack, not just the program counter.
+It should show you <em>by line of code</em> (not by function) the fraction of stack samples containing that line.</p>
+
+<p>The usual objection to sampling on wall-clock time is that the measurements will be inaccurate due to sharing the machine with other processes.
+But that <em>doesn't matter</em>, because to find time drains does not require precision of measurement.
+It requires precision of <em>location</em>.
+What you are looking for is precise code locations, and call sites, that are on the stack a healthy <em>fraction</em> of actual time, as determined by stack sampling that's uncorrelated with the state of the program.
+Competition with other processes does not change the fraction of time that call sites are on the stack by a large enough amount to result in missing the problems.</p>

@@ -1,0 +1,10 @@
+<p>A possible workaround would be to use the PHP ini directive <code>session.use_cookies</code> and set it to <code>0</code>. Instead of storing the session id in cookies, it will pass it around via the URL.</p>
+
+<p>A couple things you will probably want to do to make it as safe as possible:</p>
+
+<ol>
+<li>Only use <code>session.use_cookies = 0</code> if you detect the browser is blackberry's. </li>
+<li>Only allow limited authenticated access if the user logged in while <code>session.use_cookies = 0</code>.</li>
+</ol>
+
+<p>Because sessionId's via urls can be copy/pasted and shared--in order to reduce risk to the user don't allow changing account details or viewing sensitive information if their session is flagged as having been signed in with URL session ids turned on. Instead, make them log in again this time with URL session id's turned off. [IE, they have to login in a better browser].</p>

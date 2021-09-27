@@ -1,0 +1,21 @@
+<p>First in your Page in the GridView Declaration Tag add the property <code>AllowSorting="true"</code> and in the Gridview_SortCommand try the Following code as guidence</p>
+
+<pre><code>try {
+    if (SortType == false) {
+        SortView.Sort = e.SortExpression + " ASC";
+        //dviewGeneral.Sort = e.SortExpression &amp; " ASC"
+        Session.Item("SortOrder") = SortView.Sort.ToString;
+        SortType = true;
+    } else {
+        SortView.Sort = e.SortExpression + " DESC";
+        Session.Item("SortOrder") = SortView.Sort.ToString;
+        //dviewGeneral.Sort = e.SortExpression &amp; " DESC"
+        SortType = false;
+    }
+    CMSgrid.SelectedIndex = -1;
+    CMSgrid.CurrentPageIndex = 0;
+    SortBind();
+} catch (Exception ex) {
+    UserMsgBox(ex.ToString());
+} 
+</code></pre>

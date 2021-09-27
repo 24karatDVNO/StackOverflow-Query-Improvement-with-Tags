@@ -1,0 +1,6 @@
+<p>There's a function called <a href="http://www.php.net/manual/en/function.simplexml-load-file.php" rel="nofollow"><code>simplexml_load_file</code></a> while bypasses the requirement to use <code>file_get_contents</code> first.</p>
+
+<pre><code>$xml = simplexml_load_file('http://partnerfeed.itsfogo.com/partnerfeed.aspx?partnerfeedID=1726&amp;ZoneID=128470&amp;partnerTargetLink=&amp;partnerField=itsfogoTargetLink');
+</code></pre>
+
+<p>The function return a <a href="http://www.php.net/manual/en/class.simplexmlelement.php" rel="nofollow">SimpleXMLElement</a> object which you can use to go through that DOM.</p>

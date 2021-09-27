@@ -1,0 +1,8 @@
+<p>The queryable represents a <em>sequence</em> of <code>Guid</code> but it seems like you just want one.  So either use <code>First</code> or <code>Single</code>:</p>
+
+<pre><code>context.ApplicationId =  DataBaseEntities.Applications
+    .Where(a =&gt; a.Name == applicationName)
+    .Select(a =&gt; a.Id)
+    .First()
+    .ToString();
+</code></pre>

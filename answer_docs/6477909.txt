@@ -1,0 +1,11 @@
+<p>You can do this with html5, you can access the audio api directly in javascript. </p>
+
+<p>eg. </p>
+
+<pre><code>var sound = new Audio("file.mp3"); 
+sound.play(); 
+</code></pre>
+
+<p>See an article like this for example: <code>http://www.storiesinflight.com/jsfft/visualizer/index.html</code></p>
+
+<p>So basically you would be capturing the button/link event in javascript and running javascript code like this to play the sound. Only works with html5 browsers tho, but most modern browsers support it :) - for browsers that dont support maybe you can download the swf audio players currently out there (with these can you trigger sounds using javascript apis provided).</p>

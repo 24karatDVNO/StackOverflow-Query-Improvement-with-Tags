@@ -1,0 +1,11 @@
+<p>you could just add the click property in mxml...</p>
+
+<pre><code>&lt;s:Button click="cancelButtonHandler(event)" /&gt;
+</code></pre>
+
+<p>or if you don't want to do that, add event listener to creationComplete or contentCreationComplete on the container and add the event listener there.</p>
+
+<pre><code>&lt;s:WhateverComponent includeIn="newChildComp" contentCreationComplete="{cancelButton.addEventListener etc.}"/&gt;
+</code></pre>
+
+<p>does that make sense?</p>

@@ -1,0 +1,5 @@
+<p>It's a bit tricky, you have to know what your internal <code>wchar_t</code>s mean. (<a href="https://stackoverflow.com/questions/6300804/wchars-encodings-standards-and-portability">See here</a> for a little discussion.) Basically you should communicate with the environment via <code>mbstowcs</code>/<code>wcstombs</code>, and with data with known encoding via <code>iconv</code> (converting from and to WCHAR_T).</p>
+
+<p>(The exception here is Windows, where you can't really communicate with the environment meaningfully, but you can access it in a wide version directly with Windows API functions, and you can write wide strings directly into message boxes etc.)</p>
+
+<p>That said, once you have your internal wide string, you can convert it to the environment's multibyte string with <code>wcstombs</code>, or you can just use <code>printf("%ls", mywstr);</code> which performs the conversion for you. Just don't forget to call <code>setlocale(LC_CTYPE, "")</code> at the very beginning of your program.</p>

@@ -1,0 +1,10 @@
+<p>This is an involved question, but it sounds like what you need is a multi-threaded solution:</p>
+
+<ol>
+<li>Thread(s) to search</li>
+<li>Thread(s) to send to server (with delay, etc)</li>
+</ol>
+
+<p>Have a look at <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/ExecutorService.html" rel="nofollow">ExecutorService</a> and using <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html" rel="nofollow">Future</a> tasks to help with the threading.</p>
+
+<p>Also consider a <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem" rel="nofollow">Producer Consumer</a> pattern implemented using a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/BlockingQueue.html" rel="nofollow">BlockingQueue</a> to <a href="http://en.wikipedia.org/wiki/Decouple#Software_Development" rel="nofollow">decouple</a> searching from sending - search results are put on the queue and the sender pulls them off the queue, but each can process independently.</p>

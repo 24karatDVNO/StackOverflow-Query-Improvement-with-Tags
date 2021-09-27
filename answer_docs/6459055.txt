@@ -1,0 +1,6 @@
+<p>Ideally, you would like to have a map that looks up the weight / diameter based on the size.
+Since you are using C++, take a look at <code>std::map</code> ( <a href="http://www.cplusplus.com/reference/stl/map/" rel="nofollow">http://www.cplusplus.com/reference/stl/map/</a> ).</p>
+
+<p>change <code>astm</code> to hold only <code>double weight, diameter;</code> and when reading the txt file for each <code>sz</code>, do a <code>map.insert(pair&lt;int,astm&gt;(sz,astm_var));</code></p>
+
+<p>When calculating, simply lookup the <code>astm</code> from the <code>map</code> and evaluate the total weight from it.</p>

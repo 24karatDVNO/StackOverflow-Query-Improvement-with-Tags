@@ -1,0 +1,7 @@
+<p>Consider you have a sorted array <code>a</code> of <code>n</code> elements of type <code>T</code>. Then for certain element <code>x</code> you can find the number of repetition of it as follows:<br/></p>
+
+<pre><code>T* ub = upper_bound( a, a + n, x );
+int answer = ub - lower_bound( a, ub, x );
+</code></pre>
+
+<p>The complexity is obviously <code>O(logn)</code>. When all elements are the same or there is no element <code>x</code> in <code>a</code>, <code>upper_bound</code> will return to <code>a+n</code> and <code>lower_bound</code> will work on the whole interval, which will make <code>2 * logn</code> iterations on these worst cases.</p>

@@ -1,0 +1,24 @@
+<p>I was in a similar situation and this is what I found:</p>
+
+<p>In Mars you can't use li.s because it's a pseudonot implemented. In PCSPIM it's implemented, something like</p>
+
+<pre><code>li.s $f2, 9.0
+</code></pre>
+
+<p>In PCSPIM will be traduced into</p>
+
+<pre><code>lui $1, 16656
+mtc1 $1, $f2
+</code></pre>
+
+<p>So, if you want to do li.s but you don't want to call li.s you can always load your program into PCSPIM (with li.s) and see what changes in your code and then substitute you code for those changes.</p>
+
+<p>But be careful, in PCSPIM you can't</p>
+
+<pre><code>lui $1, 16656
+mtc1 $1, $f2
+</code></pre>
+
+<p>It's gonna trow a nice error to you.</p>
+
+<p>It's cheap and chessy, I know, but it do the trick...</p>

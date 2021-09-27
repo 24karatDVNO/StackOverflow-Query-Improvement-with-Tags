@@ -1,0 +1,12 @@
+<p>If i understand you correctly you want to be able to limit the possibilities when a user is not logged in.</p>
+
+<p>i know two standard ways to achieve this:</p>
+
+<ol>
+<li><a href="http://blog.eclipse-tips.com/2009/02/commands-part-5-authentication-in-rcp.html" rel="nofollow">Use an ISourceProvider</a></li>
+<li><a href="http://tonnymadsen.blogspot.com/2007/06/using-activities-for-user-management.html" rel="nofollow">Use the org.eclipse.ui.activities extension point</a></li>
+</ol>
+
+<p>I would use an ISourceProvider if there are only a few different states (logged-in or not) or if there are just a few handlers that need to be handled.</p>
+
+<p>I would use the Activities extension point if there are several different roles or if there are lots of (different) components (perspectives, views, editors, wizards, preference pages, menus, toolbars, commands, ...) that need to be handled.</p>

@@ -1,0 +1,3 @@
+<p>The only way you could support handwriting would be to write a view which never became firstResponder (preventing the keyboard from appearing), userInteractionEnabled=YES (to get touches), and uses the touchesMoved to draw the characters as the user moves their finger. </p>
+
+<p>You can implement a custom keyboard by returning a custom keyboard UIView from the <code>inputView</code> property on <a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UITextView_Class/Reference/UITextView.html" rel="nofollow">UITextView</a> and similar text input views.</p>

@@ -1,0 +1,30 @@
+<p>To do this, you will need to replace the default back button with a custom back button. It will not be an arrow button, because as far as I am aware, the arrow navigation button only exists in a private API.</p>
+
+<p>To create your button, do something like this:</p>
+
+<pre><code>UIBarButtonItem *customBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(flipPopView)];
+
+self.navigationItem.leftBarButtonItem = customBackButton;
+
+[customBackButton release];
+</code></pre>
+
+<p>Next you need to create the <code>flipPopView</code> method to actually flip back:</p>
+
+<pre><code>- (void)flipPopView {
+
+    // animateView should be whichever view you want the animation to occur in.
+    UIView *animateView = self.navigationController.view;
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration: 0.5];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:animateView cache:YES];
+
+    [self.navigationController popViewControllerAnimated:NO];
+
+    [UIView commitAnimations];
+
+}
+</code></pre>
+
+<p>I based this off of some of my similar code, but it might work differently for you. Let me know if you have problems, and I'll see what I can do.</p>

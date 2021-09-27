@@ -1,0 +1,6 @@
+<p>if the file is located in a different web site than the webservice, then you have to tell your webservice where are the files located. You could put a key in web.config for this location and then compose the filename: </p>
+
+<pre><code>Path.Combine(ConfigurationManager.AppSettings["FilesPath"],fileName);
+</code></pre>
+
+<p>Be aware that you have to have access rights to that folder.</p>

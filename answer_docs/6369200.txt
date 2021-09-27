@@ -1,0 +1,11 @@
+<ol>
+<li><p>Not sure, I'll look into it.</p></li>
+<li><p>It is .ui-btn-active. You need to change both the background property and change the gradient of the background-image. Like this (though this is for orange, you need to specify your shades of the gradient):</p>
+
+<pre><code>.ui-btn-active {
+    background: #F08801;
+    background-image: -moz-linear-gradient(top, #F08801, #B85000);
+    background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #F08801), color-stop(1, #B85000));
+ }
+</code></pre></li>
+</ol>

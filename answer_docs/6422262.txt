@@ -1,0 +1,6 @@
+<p>The short answer is, you can do it with two copies of the cue being played back alternately. Probably not what you wanted to hear, because you have to write the code to manage this yourself rather than, say, rely on a parameter that could be passed to the built-in looping functionality.</p>
+
+<p>The implementation I came up with and am currently using has as its core algorithm, this:
+while loop periodically calls a runnable that plays the cue (or its twin, determined by a boolean switch) on its own thread, and has a sleep increment set just a bit below the length of the duration of the WAV file.</p>
+
+<p>It helps to have the cue itself start and end in silence, but ramp quickly at the overlap point, as one might do a splice with Sound Editing software. If the cue doesn't start/end in silence, there is a chance of having clicks when the sound starts or stops.</p>

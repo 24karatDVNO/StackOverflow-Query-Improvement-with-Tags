@@ -1,0 +1,33 @@
+<p>Kevin, I'm going to post some of your code here so I don't have to keeping switching over to pastie:</p>
+
+<pre><code>&lt;!-- XSL CODE FRAGMENT --&gt;
+&lt;xsl:choose&gt;
+    &lt;!-- If one of my ancestor items is the Active Item, then show myself and my siblings --&gt;
+    &lt;xsl:when test="boolean(ancestor::item[@id = $activeItemID])"&gt;
+        &lt;xsl:apply-templates select="//submenu[@child_of = $activeItemID]"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;!-- If one of my child items is the Active Item, then show my siblings --&gt;
+    &lt;xsl:when test="boolean(descendant::item[@id = $activeItemID])"&gt;
+        &lt;xsl:apply-templates
+            select="//submenu [@child_of = number(descendant::item[@id = $activeItemID]/parent::submenu/parent::item/@child_of)]"/&gt;
+    &lt;/xsl:when&gt;
+    &lt;xsl:otherwise&gt;
+        &lt;!-- Either myself or one of my siblings is the active Item, so simply show myself and my siblings   --&gt;
+        &lt;xsl:apply-templates
+            select="//submenu[@child_of = number(//item[@id = $activeItemID]/@child_of)]"/&gt;
+    &lt;/xsl:otherwise&gt;
+&lt;/xsl:choose&gt;
+</code></pre>
+
+<p>Since you haven't posted any of the surrounding XSLT, we have no way of knowing what the context item is here. For example, are you iterating through all item elements?? In other words, when the above comments say "my ancestor items", "my siblings", etc., we don't know what node is "me".</p>
+
+<p>Then after using the context node to test for conditions relating to ancestors/descendants/siblings of the context node, you apply templates to submenu elements that oddly have no relation to the context node.</p>
+
+<p>I'm really having a hard time figuring out what you're trying to do. In the sample code you are applying templates to <code>submenu</code> elements; but in the comments you say you want to select <code>item</code> elements.</p>
+
+<p>In your comment to @Michael, you said "I need the xslt to return the node set that are children of submenu[@id = 1010]". For that, the code would be</p>
+
+<pre><code>&lt;xsl:variable name="childNodes" select="//submenu[@id = 1010]/*" /&gt;
+</code></pre>
+
+<p>(I'm assuming you only care about the element children, not the (whitespace) text nodes.) This will give $childNodes a nodeset consisting of the four <code>&lt;item&gt;</code> elements with ids 1016, 1017, 1019, 1020.</p>

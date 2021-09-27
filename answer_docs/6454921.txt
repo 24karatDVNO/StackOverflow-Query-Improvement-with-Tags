@@ -1,0 +1,12 @@
+<p>Add this to your Web.config to increase the amount of time a Session stays active for:</p>
+
+<pre><code>&lt;configuration&gt;
+&lt;system.web&gt;
+    &lt;sessionState mode="SQLServer" sqlConnectionString="Data Source=vls.dev.videolibraryserver.com;User Id=sa;Password=test;" timeout="300" /&gt;
+&lt;/system.web&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>NOTE: change the timeout value</p>
+
+<p>Then write an ajax control that polls the WCF service, when it is complete then reload the page.</p>

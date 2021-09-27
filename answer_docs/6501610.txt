@@ -1,0 +1,17 @@
+<p>I would suggest keeping a boolean value around which is set off when the first IBAction is fired. You could do something like this:</p>
+
+<p>In your interface:</p>
+
+<pre><code>BOOL questionWasAnswered;
+</code></pre>
+
+<p>When you set up your view, make sure to set it to <code>NO</code>. Then, in each IBAction, you can do the following:</p>
+
+<pre><code> if(questionWasAnswered){
+   return;
+ }else{
+    questionWasAnswered = YES;
+ }
+
+ //...Run the rest of your method
+</code></pre>

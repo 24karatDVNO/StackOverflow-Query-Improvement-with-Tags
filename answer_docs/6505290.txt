@@ -1,0 +1,23 @@
+<p>You will need to define a protocol for this class and add a variable of that protocol to the member variable of this class as follows:</p>
+
+<p>The classes where the object is created can either call this method using the object. The Best option is to use the app delegate class to implement these methods. </p>
+
+<p>You can then assign the objects's delegate as the app delegate and call the methods.</p>
+
+<pre><code>@protocol mySqlDelegate ;
+
+@interface mySqlClass  {
+
+    id &lt;mySqlDelegate&gt; delegate;
+}
+@property (nonatomic, assign) id &lt;mySqlDelegate&gt; delegate;
+@end
+
+
+
+@protocol mySqlDelegate 
+
+- (void) delegateMethodsForThisClass;
+
+@end
+</code></pre>

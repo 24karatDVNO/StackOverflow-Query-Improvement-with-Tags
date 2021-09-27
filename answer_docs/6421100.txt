@@ -1,0 +1,38 @@
+<p>Try below simple example which contains two php files 
+1> test.php
+2> test2.php</p>
+
+<p>1> test.php  contains form which to post
+2> test2.php echoing the id which passed to <strong>"test.php?id=1"</strong> </p>
+
+<p><strong>content of test.php</strong></p>
+
+<pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;body&gt;
+&lt;form action="test2.php" method="POST"&gt;
+    &lt;input type="hidden" value="&lt;?php echo $_GET['id']; ?&gt;" name="id" /&gt;
+    &lt;table border="1"&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Name : &lt;/td&gt;
+            &lt;td&gt;&lt;input type="text" name="name" value=""&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+            &lt;td&gt;&lt;input type="submit" name="submit" value="submit"&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></p>
+
+<p>Content of test2.php</p>
+
+<pre><code>echo $_REQUEST['id'];
+exit;
+</code></pre>
+
+<p>Try to call test.php like below</p>
+
+<p><strong>"Http://your.domian.com/test.php?id=1"</strong></p>

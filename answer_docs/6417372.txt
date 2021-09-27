@@ -1,0 +1,5 @@
+<p>Just becasue a compatibility level is set to a lower value than the current version does not forbid you to use the newer features. All it does is stop enforcing the removal of features to preserve backward compatibilty of existing code. Since you can use new datatypes and features in your 2008 database, you cannot directly copy back to 2005 without analysis of what new features were used. </p>
+
+<p>If you are developing in 2008 and prod is 2005, you need to stop that practice immediately. Otherwise you will waste a lot of time using new features without realizing it until you try to send to prod. </p>
+
+<p>Database changes should only ever be done through scripts in general as you do not want to risk dropping and recreating tables that have existing data. Also database change scripts should be in source control for the version you are deploying like any other code. Part of making the changes in scripts is that the script you then run on prod has been tested on dev and QA. </p>

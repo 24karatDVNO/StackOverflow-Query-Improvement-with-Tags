@@ -1,0 +1,18 @@
+<p>The method you specify is defined as:</p>
+
+<pre><code>- (void)setDateFormat: (NSString *)string
+</code></pre>
+
+<p>It always returns <code>nil</code>. It just sets up the formatter.</p>
+
+<p>You have to use another method to get a formatted date, <strong>after</strong> you've used the above method:</p>
+
+<pre><code>- (NSString *)stringFromDate: (NSDate *)date
+</code></pre>
+
+<p>If you want the reserve, you can use the other method of <code>NSDateFormatter</code>:</p>
+
+<pre><code>- (NSDate *)dateFromString: (NSString *)string
+</code></pre>
+
+<p>Hope that helps.</p>

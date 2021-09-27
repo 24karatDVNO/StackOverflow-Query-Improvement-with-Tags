@@ -1,0 +1,7 @@
+<p>The attachment creates a problem of being flagged as spam. Best avoid it if you can.</p>
+
+<p>The attachment is MIME encoded rather than gzip compressed. This takes up 1.5 times the bandwidth.</p>
+
+<p>It is not easy to see if the attachment has been opened unless it has some payload that does that for you - again this could be flagged as spam.</p>
+
+<p>Putting these documents on a regular web server will make sense. You can use normal Google Analytics to see what is going on. You can also use public caching to make sure that the document is cached by ISPs etc, thereby reducing your download. The document can also be compressed with gzip to be opened with a browser, unobtrusively doing the un-compressing for your recipients.</p>

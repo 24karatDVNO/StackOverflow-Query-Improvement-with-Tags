@@ -1,0 +1,17 @@
+<p>You can keep it nested and readable as follows:  </p>
+
+<pre><code>var $addElem = $($('&lt;div&gt;', {
+    class: 'blah',
+    html: $('&lt;div&gt;', {
+        class: 'foo',
+        html: $('&lt;div&gt;', {
+            class: 'bar',
+            html: 'whatever'
+        })
+    })
+}));
+
+$('body').append($addElem);
+</code></pre>
+
+<p>Fiddle: <a href="http://jsfiddle.net/maniator/AMfrU/" rel="nofollow">http://jsfiddle.net/maniator/AMfrU/</a></p>

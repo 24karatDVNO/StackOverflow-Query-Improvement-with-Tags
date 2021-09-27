@@ -1,0 +1,11 @@
+<p>Perhaps you could use a naming convention to help you remember which is which: </p>
+
+<pre><code>char *str[10];
+char *str_p[10];
+
+str[i]="Hi";
+
+str_p[k]=strdup("hi");
+</code></pre>
+
+<p>(or use a structure with a pointer and a flag which indicates that this particular pointer was dynamically allocated)</p>

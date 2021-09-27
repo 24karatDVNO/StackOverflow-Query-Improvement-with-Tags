@@ -1,0 +1,5 @@
+<p>I finally make it work combining the ideas from <a href="http://blog.carbonfive.com/2011/04/04/using-open-source-static-libraries-in-xcode-4/" rel="nofollow">http://blog.carbonfive.com/2011/04/04/using-open-source-static-libraries-in-xcode-4/</a> &amp; <a href="http://www.clintharris.net/2009/iphone-app-shared-libraries/" rel="nofollow">http://www.clintharris.net/2009/iphone-app-shared-libraries/</a>.</p>
+
+<p>(The errors was because I forget to link the lib to the project, and unrelated to the question btw).</p>
+
+<p>The main trick is to <a href="http://blog.carbonfive.com/2011/04/04/using-open-source-static-libraries-in-xcode-4/#set_the_installation_directory" rel="nofollow">set the install directory</a> to <code>$(BUILT_PRODUCTS_DIR)</code> in the static lib targets.</p>

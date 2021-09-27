@@ -1,0 +1,3 @@
+<p>Web pages (whether running asp.net or a competing platform) are <em>always</em> <strong>reactive</strong>. They receive commands (requests) and respond.  They are not <em>proactive</em>, and don't send commands.  This is how the core technology on which the internet is built works. </p>
+
+<p>This means is you want an asp.net page to send a message to a client app, the only way to do it is for the client app to frequently poll the page, possibly using <code>System.Net.WebClient</code>.</p>

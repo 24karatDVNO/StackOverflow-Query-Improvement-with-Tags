@@ -1,0 +1,33 @@
+<p>Have the same problem, the previous answers apply well, for a single case.</p>
+
+<p>But, I require to do something in most controls, in several forms, in an app.
+Solved by using an interface:</p>
+
+<pre><code>interface IOnLoad
+{
+  void OnLoad();
+}
+</code></pre>
+
+<p>And added to descendant control:</p>
+
+<pre><code>public partial class MyButton : Button, IOnLoad
+{
+  void OnLoad() { // call "OnLoadDelegate" }
+}
+
+public partial class MyForm : Form
+{
+
+  public void MyForm_Load(...) {
+    foreach(Control eachControl in Controls) {
+      if (eachControl is IOnLoad) {
+        IOnLoad eachOnLoadControl = (IOnLoad)eachControl;
+        eachOnLoadControl.OnLoad();
+      }
+    } // foreach
+  }
+} // class
+</code></pre>
+
+<p>Its more complex, but it suit my requirements.</p>

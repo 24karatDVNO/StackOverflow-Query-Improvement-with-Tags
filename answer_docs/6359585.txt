@@ -1,0 +1,36 @@
+<p>Thank you Jon Skeet you are right .I got the solution by using the decoder as ISO8859_1
+in    </p>
+
+<p>public static String convertStreamToString(InputStream is) throws IOException {
+        String serverResponse=null;
+        try{
+//String serverResponse;
+        if (is != null) {
+            Writer writer = new StringWriter();</p>
+
+<pre><code>        char[] buffer = new char[1024];
+        try {
+            Reader reader = new BufferedReader(new InputStreamReader(is,"ISO8859_1"));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
+        } finally {
+            is.close();
+        }
+        serverResponse= writer.toString();
+
+        Log.e("response from server", serverResponse);
+    } else {
+        serverResponse= "{\"Error\":\"No response\"}";
+    }
+    return serverResponse;
+    }catch(IOException e){
+</code></pre>
+
+<p>//          timeOut=true;
+            serverResponse= "{\"Error\":\""+e.toString()+"\"}";
+            Log.e("Red spcie utils converting to string failed",e.toString()    );
+        }
+        return serverResponse;
+    }</p>

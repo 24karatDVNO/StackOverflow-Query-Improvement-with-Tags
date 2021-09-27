@@ -1,0 +1,21 @@
+<p>In the header of your TableViewCell class, you should create</p>
+
+<p><code>@property (nonatomic, retain) UILabel *textLabel;</code></p>
+
+<p>In the TableViewCell implementation class, make sure that you have <code>@synthesize textLabel</code></p>
+
+<p>And in the cellForRowAtIndex, you create the cell from that TableViewCell class. And you can get the cell with this function</p>
+
+<p><code>MyCustomizedCell *cell = (MyCustomizedCell *)[tableView dequeueReusableCellWithIdentifier:(NSString *) myIndent];</code></p>
+
+<p>And so on, you can use every object inside of that TableViewCell as easy as</p>
+
+<p><code>
+cell.textLabel.adjustsFontSizeToFitWidth = YES;
+</code></p>
+
+<p>or</p>
+
+<p><code>
+[cell.textLabel setAdjustsFontSizeToFitWidth:YES];
+</code></p>

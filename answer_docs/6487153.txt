@@ -1,0 +1,3 @@
+<p>Only if all the pages had the same origin server. So if the initial page came from server.domain.tld you could inject code into that which opened the popup (which opens a page requested from server.domain.tld) - you code can wait until the popup is loaded and interact with it.</p>
+
+<p>If any of the pages come from a different server then you become blocked from interacting with them because of the same origin policy followed by the javascript engine. The only way to operate outside of this is to run as part of the browser, i.e. to be part of a plugin (a bookmarklet <sup>(either as a bookmark or copied+pasted into the address bar)</sup> does not count in this regard).</p>

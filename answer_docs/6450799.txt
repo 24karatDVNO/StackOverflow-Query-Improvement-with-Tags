@@ -1,0 +1,7 @@
+<p>You only require ONE database connection.</p>
+
+<p>Once you connect to a database it is available for the life of that page (request).</p>
+
+<p>If you require to switch databases that will also use the same connection (unless different credentials are required.</p>
+
+<p>If it's for cross database queries if they are on the same MySQL server and the user for the initial connection has sufficient privileges, then you can prefix database tables with the database name.</p>

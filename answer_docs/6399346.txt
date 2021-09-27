@@ -1,0 +1,14 @@
+<p>Your rule seems fie. Try this one (slightly different) -- works fine for me:</p>
+
+<pre><code>&lt;rule name="CanonicalHostName"&gt;
+    &lt;match url="(.*)" /&gt;
+    &lt;conditions&gt;
+        &lt;add input="{HTTP_HOST}" pattern="^www\.example\.com$" negate="true" /&gt;
+    &lt;/conditions&gt;
+    &lt;action type="Redirect" url="http://www.example.com/{R:1}" /&gt;
+&lt;/rule&gt;
+</code></pre>
+
+<p>1) Try moving this rule to the top (make it first rule).</p>
+
+<p>2) Possibly (just possibly) you do not have binding for <code>example.com</code>, only for <code>www.example.com</code> ?</p>

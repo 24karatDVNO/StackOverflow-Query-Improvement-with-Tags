@@ -1,0 +1,12 @@
+<p>Maybe you can try another input stream like:</p>
+
+<pre><code>try {
+        audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+    } catch (UnsupportedAudioFileException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+
+<p>Hope it may help.</p>

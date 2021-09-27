@@ -1,0 +1,37 @@
+<p>The problem is that the event triggered on the <code>input</code> element then bubbles up and is handled on the <code>span</code>. This happens for the original event and for the event that you fire programmatically.</p>
+
+<p>The solution is probably to check to see if the event originated on an <code>input</code> element, and not to handle it if it did:</p>
+
+<pre><code>$('.RedHover').click(
+    function (e) {
+        if (e.target.nodeName.toLowerCase() !== 'input') {
+            $(this).children('input').trigger('click');
+            e.stopPropagation();
+            e.preventDefault();
+            console.log('here');
+        }
+    }
+);
+</code></pre>
+
+<p>The <code>try/catch</code> was unnecessary, jQuery will ensure that the event object always exists and has the methods you use.</p>
+
+<p>The calls to <code>stopPropgation</code> and <code>preventDefault</code> <em>may</em> be unnecessary, depending on your expected behaviour.</p>
+
+<hr>
+
+<p>Since the <code>span</code> only has one child, you could do this another way round. If <code>this</code> (the element where the event is handled, always the <code>span</code>) is the same as <code>e.target</code> (the element where the event originated, either the <code>span</code> or the <code>input</code>), you can proceed: </p>
+
+<pre><code>$('.RedHover').click(
+    function (e) {
+        if (this === e.target) {
+            $(this).children('input').trigger('click');
+            e.stopPropagation();
+            e.preventDefault();
+            console.log('here');
+        }
+    }
+);
+</code></pre>
+
+<p>Note that this is much less stable than checking the <code>nodeName</code>: if you altered your HTML in future, it may break this code.</p>

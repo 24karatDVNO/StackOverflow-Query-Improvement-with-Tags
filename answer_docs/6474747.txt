@@ -1,0 +1,7 @@
+<p>How is this</p>
+
+<pre><code>$('td').click(function(){
+    cell = this.cellIndex;
+    alert( $(this).closest('table').find('th:eq('+cell+')').text());
+});
+</code></pre>

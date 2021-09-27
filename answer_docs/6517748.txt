@@ -1,0 +1,4 @@
+<pre><code>DELETE FROM table a WHERE time != (SELECT MAX(time) FROM table b WHERE b.user=a.user);
+</code></pre>
+
+<p>Here delete a row, if its not the maximum time in group with the same user_id</p>

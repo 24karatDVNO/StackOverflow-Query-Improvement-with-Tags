@@ -1,0 +1,6 @@
+<p>=IIf(IsNothing(Fields!MyDateField.Value), Parameters!EmptyFullDateTime.Value, Format(Fields!MyDateField.Value, Parameters!FormatFullDateTimePattern.Value))</p>
+
+<p>And I have EmptyFullDataTime parameter defined as --/--/---- --:--
+And FormatFullDateTimePattern will be set depending on the culture. (e.g. dd/MM/yyyy HH:mm)</p>
+
+<p>MyDateField is a System.DateTime? type ( nullable )</p>

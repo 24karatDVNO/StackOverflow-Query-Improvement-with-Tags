@@ -1,0 +1,23 @@
+<p>If you need to find specific lines, just handle everything as a string and run specific regular expressions to dig out your gems.</p>
+
+<p>If you need to extract more data, I believe that with a small amount of work you can craft a nice parser for your data.  I would use the following functions as a start:</p>
+
+<pre><code>def extract_screens(text):
+    """ 
+    Returns a list of screens (divided by astericks).
+    Each screen is a list of strings stripped from asterisks.
+    """
+    ...
+
+def process_screen(screen):
+    """ 
+    Returns a list of screen divisions as tuples: [(heading, body)...]
+    heading is a string, body is a list of strings
+    blank lines are filtered out.
+    """
+    ...
+</code></pre>
+
+<p>By now you should have an indexed list of pieces of text.  You can loop through them and execute a simple and specific special parser method for each section.</p>
+
+<p>Tip:  Use unit tests to keep yourself sane.</p>

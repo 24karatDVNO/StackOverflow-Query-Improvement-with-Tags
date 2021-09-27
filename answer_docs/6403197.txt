@@ -1,0 +1,7 @@
+<p>Create a <a href="http://download.oracle.com/javase/1.5/docs/api/java/io/RandomAccessFile.html" rel="nofollow">RandomAccessFile</a> to open the file, seek to the end and start using readLine(). The first line you get might be cropped by the left. You can seek back a bit before reading lines if you want to get some of the last lines. Then use a <a href="http://download.oracle.com/javase/1,5.0/docs/api/java/util/regex/Pattern.html" rel="nofollow">Pattern</a> or whatever you want to test every line so when it matches 'the input string' you can print it.</p>
+
+<p>When you reach EndOfFile readLine() will throw an EOFException so before reading a line you might want to take note of the current position ( getFilePointer() ) so you can seek there again and retry after you notice the file modification date or the file size changes. I think there is no need to close and reopen the file. To get modification date you need a <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/io/File.html" rel="nofollow">File</a>. File length can be obtained from RAF itself or from File.</p>
+
+<p>I'm not sure about the need to seek back after EOFException for the case the file ends in the middle of a line (with no \n at the end).</p>
+
+<p>You can use a FileChannel as suggested by @kdgregory if you want asynchronous behavior but it's not as straightforward as doing it synchronous and threads are cheap.</p>

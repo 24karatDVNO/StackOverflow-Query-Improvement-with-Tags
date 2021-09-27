@@ -1,0 +1,5 @@
+<p>The C++ standard does not know of multiprocess systems. There is, therefore, no API for interacting with processes. (After all, how would the standard mandate a multiprocess system on an 8 bit microcontroller?)</p>
+
+<p>Moreover, some platforms (e.g. the Win32 Subsystem on Windows NT) do not keep track of process parent child relationships. (NT does under the hood but you'd have to call undocumented APIs to get at the information)</p>
+
+<p>I'm fairly certain POSIX does define APIs like this, but I have not used them myself.</p>

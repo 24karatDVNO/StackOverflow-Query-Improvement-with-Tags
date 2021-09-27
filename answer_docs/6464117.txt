@@ -1,0 +1,15 @@
+<p>The source would look like this</p>
+
+<pre><code>&lt;tr&gt;&lt;th&gt;Country:&lt;/th&gt;&lt;td&gt;Australia &lt;img src="http://whatismyipaddress.com/images/flags/au.png" alt="au flag"&gt; &lt;/td&gt;&lt;/tr&gt;
+</code></pre>
+
+<p>To use regular expression means to match a pattern.</p>
+
+<p>The pattern that indicates your wanted data is pretty straight forward <code>Country:</code>. You need also to match the following tags like <code>&lt;\/th&gt;&lt;td&gt;</code>. The only thing is you need to escape the forward slash. Then there is the data you are looking for, I would suggest to match everything that is not a <code>&lt;</code>, so <code>[^&lt;]</code>, this is a capturing group with a negation at the beginning, meaning any character that is not a <code>&lt;</code>, to repeat this add a <code>+</code> at the end, meaning at least one of the preceding character.</p>
+
+<p>So, the complete thing should look like this:</p>
+
+<pre><code>Country:&lt;\/th&gt;&lt;td&gt;\s*([^&lt;]+)\s*&lt;
+</code></pre>
+
+<p>I added here also the brackets, they mean put the found pattern into a variable, so your result can be found in capturing group 1. I added also <code>\s*</code>, this is a whitespace character repeated 0 or more times, this is to match whitespace before or after your data, I assume that you don't need that.</p>

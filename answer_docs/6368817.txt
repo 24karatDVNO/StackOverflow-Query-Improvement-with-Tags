@@ -1,0 +1,13 @@
+<p>I was experiencing the same issue using an .ini for configuration, but with me the problem was that I put a space in between the comma and the directory, which resulted in the directory not being 'linked' to the -d parameter.</p>
+
+<p>Not working:</p>
+
+<pre><code>directory = {$lib}/Question,{$lib}/Error, {$path}/docs/tutorials
+</code></pre>
+
+<p>Working:</p>
+
+<pre><code>directory = {$lib}/Question,{$lib}/Error,{$path}/docs/tutorials
+</code></pre>
+
+<p>Hope this solves the problem for someone else!</p>

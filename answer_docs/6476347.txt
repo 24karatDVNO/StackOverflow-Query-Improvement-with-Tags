@@ -1,0 +1,7 @@
+<p>The symbols <code>&amp;</code>, <code>&lt;&lt;</code>, and <code>^</code> are called <strong>operators</strong>.  There is a Wikipedia page that lists <a href="http://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B" rel="nofollow">C/C++ operators</a> so you can learn about the names of those operators and then search Google for more information.</p>
+
+<p>The <code>0x7fffffff</code> is an integer written in hex (base 16) notation. The <code>0x</code> prefix means it is hex.</p>
+
+<p>The <code>n</code> is probably the name of an integer variable defined a few lines above the line you quoted.</p>
+
+<p>The parentheses serve to group expressions together, so in your example they guarantee that n gets shifted left by 13 bits BEFORE it gets XOR'd with n.  Without the parentheses, the order of operations would be determined by the <a href="http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm" rel="nofollow">operator precedence</a>, (which in your example happens to give the same result).</p>

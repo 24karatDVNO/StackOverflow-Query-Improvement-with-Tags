@@ -1,0 +1,25 @@
+<p>This Should be it</p>
+
+<pre><code>using System;
+using System.IO; 
+
+namespace test {
+    class example {
+        static void Main() {
+            StreamReader reader = new StreamReader(File.OpenRead(@"C:\newlog.txt")); 
+            string fileContent = reader.ReadToEnd(); 
+            reader.Close(); 
+            fileContent = fileContent.Replace("ccc", "yyy"); 
+            StreamWriter writer = new StreamWriter(File.OpenWrite(@"C:\log.txt")); 
+            writer.Write(fileContent); 
+            writer.Close(); 
+        }
+    }
+}
+</code></pre>
+
+<p>Also, seeign your code looks like, better if you use the <code>static</code> method provided by <code>File</code> class</p>
+
+<pre><code>        File.ReadAllLines();
+        File.WriteAllLines(); 
+</code></pre>

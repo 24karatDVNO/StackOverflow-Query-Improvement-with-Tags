@@ -1,0 +1,34 @@
+<p>Some comments that might support :</p>
+
+<p>1) <strong>to resolve your localhost ip</strong><br>
+You have to get your browser able to find what's on 127.0.0.1. So, if not done, first edit the hosts file on your Windows OS machine <em>C:\Windows\System32\drivers\etc\hosts</em> :</p>
+
+<pre><code>127.0.0.1 foo.bar.dev.co.uk
+</code></pre>
+
+<p>Provided this is <strong>not</strong> possible to use wildcards in that host file. To do so, you shall install <a href="http://mayakron.altervista.org/support/browse.php?path=Acrylic&amp;name=UserManual" rel="nofollow noreferrer">this</a>.</p>
+
+<p>2) <strong>port :</strong><br>
+Make sure your server is listening to the http default port, eg do not forget to add this directive in your <em>httpd.conf</em> file (as I did not see it) :</p>
+
+<pre><code>Listen 80
+</code></pre>
+
+<p>3) <strong>Control :</strong><br>
+As you're using the <em>NameVirtualHost XXX.XXX.XXX.XXX</em> directive, make sure the  is <strong>exactly</strong> matching the <em>NameVirtualHost</em> directive. It looks like this is the case on your post.</p>
+
+<p>4) <strong>Path :</strong><br>
+That's maybe a stupid remark from my side, as a Linux user, but I thought Windows OS requires backslashes for the path, and not slashes. But I might be definitely wrong there and would not like to mislead anybody. But as "all the directives in this <em>Directory Name Interpolation</em> module interpolate a string into a pathname, I would check the result of The obtained interpolated string. Pls see next point.</p>
+
+<p>5) <strong>Placeholders :</strong><br>
+Make sure the module <em>vhost alias</em> is loaded into your wamp.
+I would also recommend you to add a directive in your vhost sothat you can check in the logs what's the required interpolated URL, find what's wrong, and correct accordingly your apache setup :</p>
+
+<pre><code>LogFormat "%h %l %u %t \"%r\" %&gt;s %b" common
+CustomLog logs/access_log common 
+</code></pre>
+
+<p>6) <strong>Existing solution...</strong><br>
+An existing problem has always existing solutions : See <a href="https://stackoverflow.com/questions/138162/wildcards-in-a-hosts-file">there</a>    </p>
+
+<p>Once you'll have checked these points, I guess the solution would appear soon.</p>

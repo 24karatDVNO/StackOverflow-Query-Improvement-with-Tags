@@ -1,0 +1,8 @@
+<p>Try adding the mouseout function to the thumbnailshover class instead of the #thumbnails object. Then it won't be until the mouse leaves the thumbnail that it goes away.</p>
+
+<pre><code>$(".thumbnailshover").mouseout(function(){
+     setTimeout(function() {
+           $('#thumbnails').removeClass('thumbnailshover');
+        },2000);
+ });
+</code></pre>

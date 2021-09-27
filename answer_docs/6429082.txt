@@ -1,0 +1,17 @@
+<p>Although ZipFile.read() returns the entire file, you can split it by newline characters, and then check it like so:</p>
+
+<pre><code>file_data = root.read(name)
+for line in file_data.split("\r\n"):
+    if line.find("BROKER_LOGIN") &gt; 0:
+        print line
+</code></pre>
+
+<p>Although it may be more memory efficient to use StringIO:</p>
+
+<pre><code>from StringIO import StringIO
+
+stream = StringIO(root.read(name))
+for line in stream:
+    if line.find("BROKER_LOGIN") &gt; 0:
+        print line
+</code></pre>

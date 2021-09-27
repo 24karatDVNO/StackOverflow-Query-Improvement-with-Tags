@@ -1,0 +1,7 @@
+<p>Sergio is right , theres nothing wrong with the code but I have found that string properties need to be copy rather than retain. </p>
+
+<p>Try</p>
+
+<p><code>@property (copy,readwrite) NSString *loadingMessage;</code></p>
+
+<p>Might stop the leak </p>

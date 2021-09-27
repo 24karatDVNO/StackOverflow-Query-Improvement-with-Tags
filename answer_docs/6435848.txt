@@ -1,0 +1,21 @@
+<p>in layout XMl file : </p>
+
+<pre><code>   &lt;ProgressBar 
+        android:layout_marginTop="60dip"
+        android:layout_gravity="center_horizontal"  
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/prgressbar"
+        android:visibility="invisible"
+      /&gt;
+</code></pre>
+
+<p>in Onclick  event of button do this:</p>
+
+<pre><code>ProgressBar prgressbar;
+prgressbar=(ProgressBar)findViewById(R.id.prgressbar);
+
+prgressbar.setVisibility(LinearLayout.VISIBLE); // this of visible the progress bar 
+
+prgressbar.setVisibility(LinearLayout.INVISIBLE); // this is for invisible 
+</code></pre>

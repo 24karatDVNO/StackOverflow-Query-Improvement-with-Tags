@@ -1,0 +1,11 @@
+<p>session variables are just data you put into the <code>$_SESSION</code> superglobal. Accessing them is no different than accessing any other array, except that the session array is saved for you automatically. All you need to remember is to do a <a href="http://php.net/session_start" rel="nofollow"><code>session_start()</code></a> before doing anything with the session.</p>
+
+<pre><code>$_SESSION['formfield1'] = $_POST['formfield1'];
+$_SESSION['formfield2'] = $_POST['formfield2'];
+etc...
+
+
+&lt;input type="text" name="formfield1" value="&lt;?php echo htmlspecialchars($_SESSION['formfield1']) ?&gt;" /&gt;
+</code></pre>
+
+<p>By default, PHP uses file-based sessions. To put it into a database, you'd have to write your own session handlers and point PHP to them using <a href="http://php.net/session_set_save_handler" rel="nofollow"><code>session_set_save_handler()</code></a>.</p>

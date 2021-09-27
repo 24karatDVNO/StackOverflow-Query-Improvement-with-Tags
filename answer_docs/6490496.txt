@@ -1,0 +1,27 @@
+<p>Generally I try to avoid setup and teardowns whenever possible. They tend to indicate (teardowns especially) that I am writing integration tests when I should be doing unit tests. 
+However, I am known to your situation. When this is needed, I derive the testfixture from a class that handles the licensing. </p>
+
+<pre><code>public class LicencedTestFixture
+{
+    private LicenseComponent _licenseComponent;
+
+    public LicencedTestFixture()
+    {
+        _licenseComponent = new LicenseComponent();
+        _licenseComponent.Init();
+    }
+
+    ~LicencedTestFixture()
+    {
+        _licenseComponent.Shutdown();
+    }
+
+}  
+</code></pre>
+
+<p>The test fixture just inherrit from the class, and that is all it needs to know: </p>
+
+<pre><code>[TestFixture]
+public sealed class SomeTestFixture: LicencedTestFixture 
+{}
+</code></pre>

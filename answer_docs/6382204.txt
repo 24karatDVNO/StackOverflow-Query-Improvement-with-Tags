@@ -1,0 +1,5 @@
+<p>Well in my application; </p>
+
+<p>I have a Python XML WebService on the server side. On the client side I use <a href="http://code.google.com/p/android-xmlrpc/" rel="nofollow">Android-xmlrpc</a> library which is a very thin and open source library and works great for my case. </p>
+
+<p>In the client application, it is possible to call more than one method of the WebService within the same activity. But I suggest to, issue webService calls on the separate threads. Also be sure that your web server is multi-threaded and capable of concurrent calls. </p>

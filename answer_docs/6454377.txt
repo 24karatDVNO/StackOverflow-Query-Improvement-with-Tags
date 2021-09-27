@@ -1,0 +1,15 @@
+<pre><code>            string s = "{{2,3}, {9,0}}";
+            string p = "{(?&lt;x&gt;\\d),(?&lt;y&gt;\\d)}";
+            Regex regex = new Regex(p);
+            MatchCollection ms = regex.Matches(s);
+            int[,] cood = new int[ms.Count, ms.Count];
+            int i =0;
+            foreach (Match m in ms)
+            {
+                cood[i,0] = int.Parse(m.Groups["x"].Value);
+                cood[i, 1] = int.Parse(m.Groups["y"].Value);
+                i++;
+            }
+</code></pre>
+
+<p>You can use TryParse if wrong value in coordinates is expected</p>

@@ -1,0 +1,10 @@
+<p>Keeping in mind that $_POST values should be cleaned before use, and that all $_POST values are strings, so an empty field is '' and not null, something like this will work:</p>
+
+<pre><code>        foreach ($_POST as $var=&gt;$value) {
+            if(empty($value)) continue; //skip blank fields (may be problematic if you're trying to update a field to be empty)
+            $sets[]="$var= '$value";
+
+        }
+        $set=implode(', ',$sets);
+        $q_save="UPDATE mytable SET $set WHERE blah=$foo";
+</code></pre>

@@ -1,0 +1,6 @@
+<p>If you want your line to be concise, then I would advise this syntax:</p>
+
+<pre><code>&lt;?php  $msg = $quote-&gt;getmessage()  AND  print "&lt;h6&gt;title&lt;/h6&gt;$msg";  ?&gt;
+</code></pre>
+
+<p>The <code>AND</code> has a lower precedence than the assignment (but extra whitespace or braces make that more readable). And the second part only gets executed if the <code>$msg</code> variable receives any content. And <code>print</code> can be used in this exporession context instead of <code>echo</code>.</p>

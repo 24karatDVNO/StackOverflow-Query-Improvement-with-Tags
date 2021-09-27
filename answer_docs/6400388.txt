@@ -1,0 +1,7 @@
+<p>Well, like the error says, you can only use subscript <code>[]</code> with an array or a pointer type.</p>
+
+<p><code>mytypes1.mychar</code> is of type <code>char</code>  - That is not an array, nor is it a pointer.</p>
+
+<p>An array would be something like this:  <code>char mychar[12];</code></p>
+
+<p>A pointer would be something like this:  <code>char* mychar;</code>  - but if you use the pointer, be sure to make it point to something first (such as a heap-allocated array).</p>

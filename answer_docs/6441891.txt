@@ -1,0 +1,50 @@
+<p>This should work:</p>
+
+<pre><code>def gen_best_order(orig):
+    last = None
+    while len(orig) &gt; 0:
+        deli = None
+        for i, m in enumerate(orig):
+            if m.website != last.website:
+                last = m
+                deli = i
+                yield m
+                break
+        if deli is None:
+            last = orig[0]
+            yield orig[0]
+            deli = 0
+        del orig[deli]
+ordered = list(gen_best_order(sequence))
+</code></pre>
+
+<p>This is a generator that will try and yield elements in order, but if the next element equals the last element yielded, it will skip it. If it gets to the end of the list and there is no way to yield something that doesn't equal the previous, it just yields it anyway.</p>
+
+<p>Here's an example of it working on a list of numbers:</p>
+
+<pre><code>def gen_best_order(orig):
+    last = None
+    while len(orig) &gt; 0:
+        deli = None
+        for i, m in enumerate(orig):
+            if m != last:
+                last = m
+                deli = i
+                yield m
+                break
+        if deli is None:
+            last = orig[0]
+            yield orig[0]
+            deli = 0
+        del orig[deli]
+
+nums = [1,2,3,3,4,5,5]        
+print 'orig:', nums
+print 'reordered:', list(gen_best_order(nums))
+</code></pre>
+
+<p>This prints:</p>
+
+<pre><code>orig: [1, 2, 3, 3, 4, 5, 5]
+reordered: [1, 2, 3, 4, 3, 5, 5]
+</code></pre>

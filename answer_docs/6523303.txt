@@ -1,0 +1,13 @@
+<p>Not sure if it matters at this point, but you have an extra "<code>&lt;/div&gt;</code>", I reformatted what you have to make the issue clearer:</p>
+
+<pre><code>&lt;div class="voting"&gt;
+    &lt;img class="voteUp" src="images/thumbsUp.png" /&gt;
+&lt;/div&gt; &lt;!-- Extra close div --&gt;
+    &lt;img class="voteDown" src="images/thumbsDown.png" /&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>So I don't think the find() in this statement is going to match anything:</p>
+
+<pre><code> $(this).parent().find('.voteDown').toggleClass('voteDown votedDown');
+</code></pre>

@@ -1,0 +1,11 @@
+<p>get rid of processRequest();</p>
+
+<p>inside processRequest(strFieldName) have code such as:</p>
+
+<pre><code>if(strFieldName){
+   ...code that needs parameter
+}
+else {
+   ..code that doesn't need parameter
+}
+</code></pre>

@@ -1,0 +1,36 @@
+<p>Try this</p>
+
+<p><a href="http://jsfiddle.net/RNuEu/7/" rel="nofollow">http://jsfiddle.net/RNuEu/7/</a></p>
+
+<pre><code>&lt;script&gt;
+$(document).ready(function() {
+    $('#box').hover(
+
+    function() {
+        $(this).css('z-index', 200).animate({
+
+            marginTop: '-10px',
+        });
+    }, function() {
+        $(this).animate({
+
+            marginTop: '0px',
+
+        }, function() {
+            $(this).css('z-index', 200);
+        });
+    })
+});
+&lt;/script&gt;
+&lt;style&gt;
+#box {
+    position: absolute;
+    width 30px;
+    height:60px;
+    left: 50px;
+    top: 50px;
+    background: yellow;
+}
+&lt;/style&gt;
+&lt;div id="box"&gt;test&lt;/div&gt;
+</code></pre>

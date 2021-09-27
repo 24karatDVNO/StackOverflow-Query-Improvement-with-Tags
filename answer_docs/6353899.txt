@@ -1,0 +1,7 @@
+<p>I Suppose the Page Execution stops in line 1 after you do a postback[which Firefox is doing now]</p>
+
+<pre><code>__doPostBack('&lt;%= lbtest.UniqueID %&gt;',null);
+window.parent.location.href='ResponseList.aspx?ref=1&amp;surveyID=2 
+</code></pre>
+
+<p>i don't have a clue as to why IE goes to execute the next line, where it redirects to another page with query string. You could step into the function and check with FireBug. 'FireBug' is your partner in webdevelopment.</p>

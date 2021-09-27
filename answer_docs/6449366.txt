@@ -1,0 +1,24 @@
+<p>I would just have a static string function where you can define a set of "rules", then you can create a TimeSpan and based you your rules return the string.</p>
+
+<p>pseudo code...</p>
+
+<p>For example if the timespan was less than 1 minute return "About TimeSpan.TotalSeconds ago"</p>
+
+<p>EDIT actual sample</p>
+
+<pre><code>public static string GetTimeText(DateTime eventTime)
+{
+        var span = (DateTime.Now - eventTime);
+
+        if(span.TotalSeconds &lt; 60 )
+        {
+            return string.Format("about {0} seconds ago", span.TotalSeconds);
+        }
+        if(span.TotalMinutes &lt; 60)
+        {
+            return string.Format("about {0} minutes ago", span.TotalMinutes);
+        }
+
+        ...
+}
+</code></pre>

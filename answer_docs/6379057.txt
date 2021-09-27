@@ -1,0 +1,6 @@
+<p>I assume the line you're getting the error for is:</p>
+
+<pre><code>print '&lt;a rel="nofollow" onclick="javascript:_gaq.push(['_trackPageview', '/outgoing/article_exit_link/789591']);" href="'.$item-&gt;offerURL.'"&gt;&lt;img src="'.$item-&gt;imageList-&gt;image[0]-&gt;sourceURL.'" width="100"&gt;&lt;/a&gt;';
+</code></pre>
+
+<p>You're using single quotes (<code>'</code>) to delimit your string, but the string also contains single quotes (for instance, <code>'_trackPageview'</code>. You need to escape these (<code>\'</code>), because otherwise PHP takes them to mean the end of your string, and gives you the unexpected token error you're experiencing.</p>

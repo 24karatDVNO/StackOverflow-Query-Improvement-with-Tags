@@ -1,0 +1,15 @@
+<p>How about this:</p>
+
+<pre><code>$number = '044567565';
+preg_match('/^0{0,2}(([0-9]*[.\-\(\)\s]*)*)/', $number, $match);
+print_r($match);
+</code></pre>
+
+<p>Result:</p>
+
+<pre><code>array(
+    [0] =&gt; 044567565
+    [1] =&gt; 44567565
+    [2] =&gt; 
+)
+</code></pre>

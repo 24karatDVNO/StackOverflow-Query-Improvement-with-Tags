@@ -1,0 +1,1 @@
+<p>Something you might try is use a singleton that each activity would attach to in its onResume() callback, and detach from in its onPause() callback. When the detach count reaches zero, set a timer which would get canceled in the attach method. If the timer expires, close the database.</p>

@@ -1,0 +1,5 @@
+<p>I am pretty sure that if you use the HttpClient provided with the Android APIs it should do session management with cookies for you until you close the connection manually.</p>
+
+<p>If I am wrong on this, then you can easily work around this by implementing your own cookie store using the CookieStore interface or the BasicCookieStore class. If all else fails, you can store cookies manually and set cookies in the header each time you make a HTTP request.</p>
+
+<p>I am not sure how this might change for your particular problem though but this should most likely work considering the description of the problem you gave.</p>

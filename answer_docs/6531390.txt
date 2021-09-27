@@ -1,0 +1,9 @@
+<p>I assume you're asking how to do this with javascript.  Here's sample code for the objects with id values.  For the other values, put id names on them too and use the same technique.</p>
+
+<pre><code>var input_one = document.getElementById("one");
+var input_two = document.getElementById("two");
+
+alert("Input one: type='" + input_one.type + "', name='" + input_one.name + "', value='" + input_one.value + "'");
+</code></pre>
+
+<p>And a fiddle that shows it in action: <a href="http://jsfiddle.net/jfriend00/nZyjN/" rel="nofollow">http://jsfiddle.net/jfriend00/nZyjN/</a></p>

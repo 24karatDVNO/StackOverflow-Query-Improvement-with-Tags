@@ -1,0 +1,9 @@
+<p>By default IIS recycles application pool every 29 hours.</p>
+
+<p>To avoid this you can go the application pool recycling settings and uncheck this option.</p>
+
+<p><img src="https://i.stack.imgur.com/7CnZM.png" alt="enter image description here"></p>
+
+<p>This still will not guarantee 100% state persistence, as the IIS can be restarted, app pool can be recycled when web.config changed, etc. If state is important for you, you might want to persist the state rather to database instead of relying on memory.</p>
+
+<p>Another option to consider is to hosting the service in Windows Service instead of IIS.</p>

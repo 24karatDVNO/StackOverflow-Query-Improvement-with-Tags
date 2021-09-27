@@ -1,0 +1,15 @@
+<p>Add:</p>
+
+<pre><code>$('#add').click(function() {
+    var values = $(this).attr('data-value');
+    alert($("#values").val());
+    $("#values").val($("#values").val() + values);    
+    alert($("#values").val());
+
+    return false;
+});
+</code></pre>
+
+<p>Remove would work the same way.</p>
+
+<p>you can get the value from the hidden input with the <a href="http://api.jquery.com/val/" rel="nofollow">.val()</a></p>

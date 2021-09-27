@@ -1,0 +1,8 @@
+<p>If in Excel it is actuall 6-1-<strong>2011</strong> (not 2001, typo?) then the 40695 represents an OLE date. You can therefore convert it via:</p>
+
+<pre><code>DateTime dt = DateTime.FromOADate(40695);
+</code></pre>
+
+<p>which corresponds to 6/1/2011.</p>
+
+<p>Use the above code in an IValueConverter to get the correct value to display in your DataGrid.</p>

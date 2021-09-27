@@ -1,0 +1,6 @@
+<p>Natively? Not through JS. You'll need to modify the values which are sent. There are a couple of ways to do that:</p>
+
+<ul>
+<li>Change the action: <code>&lt;form action="/processor.php?input-name=INPUT!"&gt;</code> Then get the value from $_GET in PHP (warning, this will not work if the request is a get request). </li>
+<li>Add a hidden input: <code>&lt;input type="hidden" name="input-name" value="INPUT!" /&gt;</code> The value will now be part of either $_GET or $_POST, depending on the action of the form.</li>
+</ul>

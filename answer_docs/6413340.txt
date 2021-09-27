@@ -1,0 +1,25 @@
+<p>If you just want to hash things look into using an extension method, to generate the hash.</p>
+
+<pre><code>public static int GenerateHash(this User myUser){
+    return myUser.UserName.GetHashCode() ^ ... other properties....
+}
+</code></pre>
+
+<p>Then in your code you could do:</p>
+
+<pre><code>Console.WriteLine("Hash A: {0} | Hash B: {1}", a.GenerateHash(), b.GenerateHash());
+</code></pre>
+
+<p>This would leave everything intact, and should not break anything else.   If you are looking for a way to compare objects, you could do the same using an extension method:</p>
+
+<pre><code>public static int AreEqual(this User myUser, User someOther){
+    return myUser.UserName == someOther.UserName &amp;&amp; ...  other properties.
+}
+</code></pre>
+
+<p>Usage would be like:</p>
+
+<pre><code>if(a.AreEqual(b)){
+    // these are equal have fun.
+}
+</code></pre>

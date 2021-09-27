@@ -1,0 +1,68 @@
+<p>I have written code to compare and synchronize two data tables many, many times, and I've posted about it here on SO. The key is to use SQL to limit the results to the records that don't match, but the chief insight is to write your on-the-fly SQL ONE COLUMN AT A TIME. With a WHERE clause on each of your SQL statements, this will be much more efficient than any other comparison method.</p>
+
+<p>Within Access, I've written this code to update one table from another. It assumes the tables have the same fields and that there's a PK field that actually identifies the same record in both tables. The code has a dependency on my SQLRun() function to actually execute the SQL, but that line could be replaced with CurrentDB.Execute if you don't want that.</p>
+
+<pre><code>  Public Function UpdateTableData(ByVal strSourceTable As String, _
+      ByVal strTargetTable As String, ByVal strJoinField As String, _
+      ByRef db As DAO.Database, Optional ByVal strExcludeFieldsList As String, _
+      Optional ByVal strUpdatedBy As String = "Auto Update", _
+      Optional strAdditionalCriteria As String) As Boolean
+    Dim strUpdate As String
+    Dim rsFields As DAO.Recordset
+    Dim fld As DAO.Field
+    Dim strFieldName As String
+    Dim strNZValue As String
+    Dim strSet As String
+    Dim strWhere As String
+
+    strUpdate = "UPDATE " &amp; strTargetTable &amp; " INNER JOIN " &amp; strSourceTable _
+        &amp; " ON " &amp; strTargetTable &amp; "." &amp; strJoinField &amp; " = " _
+        &amp; strSourceTable &amp; "." &amp; strJoinField
+    ' if the fields don't have the same names in both tables,
+    '   create a query that aliases the fields to have the names of the
+    '   target table
+    ' if the source table is in a different database and you don't
+    '   want to create a linked table, create a query and specify
+    '   the external database as the source of the table
+    ' alternatively, for strTargetTable, supply a SQL string with
+    '   the external connect string
+    Set rsFields = db.OpenRecordset(strSourceTable)
+    For Each fld In rsFields.Fields
+      strFieldName = fld.Name
+      If strFieldName &lt;&gt; strJoinField Or (InStr(", " &amp; strExcludeFieldsList _
+           &amp; ",", strFieldName &amp; ",") &lt;&gt; 0) Then
+         Select Case fld.Type
+           Case dbText, dbMemo
+             strNZValue = "''"
+           Case Else
+             strNZValue = "0"
+         End Select
+         strSet = " SET " &amp; strTargetTable &amp; "." &amp; strFieldName &amp; " = _
+             varZLSToNull(" &amp; strSourceTable &amp; "." &amp; strFieldName &amp; ")"
+         strSet = strSet &amp; ", " &amp; strTargetTable &amp; ".Updated = #" &amp; Date &amp; "#"
+         strSet = strSet &amp; ", " &amp; strTargetTable &amp; ".UpdatedBy = " _
+             &amp; STR_QUOTE &amp; strUpdatedBy &amp; STR_QUOTE
+         strWhere = " WHERE Nz(" &amp; strTargetTable &amp; "." &amp; strFieldName &amp; ", " _
+             &amp; strNZValue &amp; ") &lt;&gt; Nz(" &amp; strSourceTable &amp; "." &amp; strFieldName _
+             &amp; ", " &amp; strNZValue &amp; ")"
+         If db.TableDefs(strTargetTable).Fields(fld.Name).Required Then
+            strWhere = strWhere &amp; " AND " &amp; strSourceTable &amp; "." _
+                &amp; strFieldName &amp; " Is Not Null"
+         End If
+         If Len(strAdditionalCriteria) &gt; 0 Then
+            strWhere = strWhere &amp; " AND " &amp; strAdditionalCriteria
+         End If
+         Debug.Print strUpdate &amp; strSet &amp; strWhere
+         Debug.Print SQLRun(strUpdate &amp; strSet &amp; strWhere, dbLocal) &amp; " " _
+           &amp; strFieldName &amp; " updated."
+      End If
+    Next fld
+    Debug.Print dbLocal.OpenRecordset("SELECT COUNT(*) FROM " _
+       &amp; strTargetTable &amp; " WHERE Updated=#" &amp; Date &amp; "# AND UpdatedBy=" _
+       &amp; STR_QUOTE &amp; strUpdatedBy &amp; STR_QUOTE)(0) _
+       &amp; " total records updated in " &amp; strTargetTable
+    rsFields.Close
+    Set rsFields = Nothing
+    UpdateTableData = True
+  End Function
+</code></pre>

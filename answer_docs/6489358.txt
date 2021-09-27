@@ -1,0 +1,1 @@
+<p>These things are hard to debug without more complete information, but given that you see the error when returning from the function, my guess would be that a buffer overflow overwrites the return address, causing the code to jump to some arbitrary, non-rx memory location.</p>

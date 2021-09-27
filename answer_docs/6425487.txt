@@ -1,0 +1,9 @@
+<p>I would suggest running for loops through your documents using something like this:</p>
+
+<pre><code>def __init__(self, location):
+  if os.path.isdir(location): # search directory
+    for infile in glob.glob(os.path.join(directory, '*.png')):
+    print 'current file is: %s' % infile
+</code></pre>
+
+<p>Within the for loop I would suggest using a library such as <a href="http://pybrary.net/pyPdf/" rel="nofollow">pyPDF</a></p>

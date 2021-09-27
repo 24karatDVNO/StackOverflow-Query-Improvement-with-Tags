@@ -1,0 +1,16 @@
+<p>Since it's unlikely you'll have a large number to begin with there are a lot of ways you can proceed in factoring it.</p>
+
+<p>See <a href="https://stackoverflow.com/questions/239865/best-way-to-find-all-factors-of-a-given-number-in-c">Best way to find all factors of a given number in C#</a> for some of them.</p>
+
+<p>The simplest is:
+ - Loop from 1 to the square root of the
+   number, call the index "i".</p>
+
+<ul>
+<li>if number mod i is 0, add i and
+number / i to the list of factors.</li>
+</ul>
+
+<p>This will give you all the integers that divide your number N. The "other" number is, of course, obtained by dividing N by that integer.</p>
+
+<p>Then, you need to pick the best pair according to some rule. You can chose the ones with the smallest difference: if <code>a * b = N</code>, choose the ones with the smallest absolute value of (a-b)</p>

@@ -1,0 +1,11 @@
+<p>First, you will need to add an onClick event handler to your checkbox:</p>
+
+<pre><code>&lt;input type='checkbox' onClick="someFunction(this)" name='power_convention[]' value='SOME VALUE #1' /&gt;
+</code></pre>
+
+<p>Then, up in the head section, in a script tag, put</p>
+
+<pre><code>someFunction(checkbox) {
+    document.getElementById("elm1").value += "&lt;h3&gt;" + checkbox.value + "&lt;/h3&gt;";
+}
+</code></pre>

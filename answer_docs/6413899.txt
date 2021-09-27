@@ -1,0 +1,43 @@
+<p>use tbelow function this function returns boolean value.</p>
+
+<pre><code>public boolean parseResultantXml(String handlerType,String inputXml){
+        boolean result = false;
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp;
+        XMLReader xr = null;
+        try {
+            sp = spf.newSAXParser();
+
+            xr = sp.getXMLReader();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
+
+        SAXParsersUtil saxParserUtil = new SAXParsersUtil();
+
+        RequiredParser rp = saxParserUtil.getParser(handlerType);
+        xr.setContentHandler(rp);
+        InputStream in = null;
+        try {
+            in = new ByteArrayInputStream(
+                    ("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;" + inputXml)
+                            .getBytes("UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = false;
+        }
+        try {
+            xr.parse(new InputSource(in));
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = false;
+        } catch (SAXException e) {
+            e.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+</code></pre>

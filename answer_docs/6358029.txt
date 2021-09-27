@@ -1,0 +1,22 @@
+<p>Ok, so to add a second movie in slow motion one needs to do the following:</p>
+
+<pre><code>- (void)captureOutput:(QTCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL forConnections:(NSArray *)connections dueToError:(NSError *)error
+{
+
+    QTMovie *originalMovie = [QTMovie movieWithURL:outputFileURL error:nil];
+    [originalMovie setAttribute:[NSNumber numberWithBool:YES] forKey:QTMovieEditableAttribute];
+
+    QTMovie *slowMotionMovie = [QTMovie movieWithURL:outputFileURL error:nil];
+    [slowMotionMovie setAttribute:[NSNumber numberWithBool:YES] forKey:QTMovieEditableAttribute];
+
+    // Scale the second video
+    QTTime newDuration = QTMakeTime([slowMotionMovie duration].timeValue * 2, [slowMotionMovie duration].timeScale);
+    [slowMotionMovie scaleSegment:QTMakeTimeRange(QTZeroTime, [slowMotionMovie duration]) newDuration:newDuration];
+
+    // Attach Slow motion video
+    [originalMovie insertSegmentOfMovie:slowMotionMovie timeRange:QTMakeTimeRange(QTZeroTime, [slowMotionMovie duration]) atTime:[originalMovie duration]];
+
+}
+</code></pre>
+
+<p>But then, if you try to overwrite originalMovie you may get all kind of errors, so instead save it in a new location with <code>[originalMovie writeToFile]</code>.</p>

@@ -1,0 +1,20 @@
+<p>Depending on what kind of effect you are going for, you can most likely use some css to mimic such an effect.</p>
+
+<p>Have you tried using:</p>
+
+<pre><code>div.transparent
+   {
+   background-image:"imageLocation.jpg"
+
+   /* for IE */
+   filter:alpha(opacity=60);
+   /* CSS3 standard */
+   opacity:0.6;
+   }
+</code></pre>
+
+<p>Then just <code>&lt;div class="transparent"&gt;</code> for your div.</p>
+
+<p>The opacity property effects everything in the <code>&lt;div&gt;</code>. However, I think you can override it by adding another class with opacity 1.0 for your content.</p>
+
+<p>Just a thought.</p>

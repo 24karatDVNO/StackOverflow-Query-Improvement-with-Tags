@@ -1,0 +1,7 @@
+<p>Try limiting the subquery or use the unique key in the where clause:</p>
+
+<pre><code>    UPDATE PRODUCT SET FIXEDCOST = 
+   (Select PRICE from PRODUCTPROGRAM 
+    where productID = PRODUCTID LIMIT 1) * .6 
+WHERE FAMILY = 'Services'
+</code></pre>

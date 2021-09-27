@@ -1,0 +1,31 @@
+<p>Try this</p>
+
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+    &lt;script&gt;
+
+function x() {
+   if (document.getElementById("input1").value.length == 0 ) {
+     alert('1 is required');
+     document.getElementById("input1").focus();
+
+   }
+   else  if (document.getElementById("input2").value.length == 0 ) {
+     alert('2 is required');
+     document.getElementById("input2").focus(); 
+   }
+
+}
+
+&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body &gt;
+    cityname:
+    &lt;input type="text" name="City Name" id="input1" onblur="javascript:x();"&gt;
+    &lt;br/&gt;
+    KittyName:
+&lt;input type="text" name="Kitty Name" id="input2" onblur="javascript:x();"&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

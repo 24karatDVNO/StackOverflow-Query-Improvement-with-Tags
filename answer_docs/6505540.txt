@@ -1,0 +1,11 @@
+<p>First of all, don't think the primary key is valid in the create table you provided </p>
+
+<pre><code>PRIMARY KEY (`user_id`, `friend_id`) 
+</code></pre>
+
+<p>Those columns do not exist in your table.</p>
+
+<p>Second:</p>
+
+<pre><code>SELECT users.username FROM friends,users WHERE users.id=friends.fid
+</code></pre>

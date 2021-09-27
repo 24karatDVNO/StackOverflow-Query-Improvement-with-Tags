@@ -1,0 +1,8 @@
+<p>If you want to set it to be 0777, try this:</p>
+
+<pre><code>oldumask = umask(0);
+mkdir('mydir', 0777); 
+umask($oldumask);
+</code></pre>
+
+<p>Read more on umask as the directory permissions are a combination of the umask and what you specify.</p>

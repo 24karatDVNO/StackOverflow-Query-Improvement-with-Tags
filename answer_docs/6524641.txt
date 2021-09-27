@@ -1,0 +1,9 @@
+<p>Using <code>:dependent =&gt; :destroy</code> will only delete the associated object when the object itself is destroyed. You aren't destroying the user record, just changing one of its attributes, so this functionality is never triggered. </p>
+
+<p>To destroy it yourself, do something like</p>
+
+<pre><code>user = User.first
+user.account.destroy
+user.account = Admin.create
+user.save
+</code></pre>

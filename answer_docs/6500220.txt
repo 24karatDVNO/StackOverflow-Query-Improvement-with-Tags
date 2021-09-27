@@ -1,0 +1,14 @@
+<p>The transactional context lasts over the scope of your spring bean's entire lifespan. @Transactional notation has a scope of the entire component and you should annotate your @Component as @Transactional eg</p>
+
+<pre><code>@Transactional
+@Component
+class B {
+    @PersistenceContext 
+    EntityManager em;
+
+    public inner() { }
+    public outer() { }
+}
+</code></pre>
+
+<p>The methods inner and outer should accomplish individual units of work. If you need some helper function or what have you that is fine, but the unit of work that requires the transactional boundary should be scoped to each method. See the spring docs on @Transactional <a href="http://static.springsource.org/spring/docs/3.0.x/reference/transaction.html" rel="nofollow">http://static.springsource.org/spring/docs/3.0.x/reference/transaction.html</a></p>

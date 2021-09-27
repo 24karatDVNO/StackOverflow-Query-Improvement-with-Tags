@@ -1,0 +1,12 @@
+<p>You can test for a state change by doing the following in the Observable class:</p>
+
+<pre><code>public void update(Observable o, Object arg)
+{
+    if(o.hasChanged())
+    {
+        // do something
+    }
+}
+</code></pre>
+
+<p>The observers that listen to anything don't need this test. This is probably the easiest way if you only want to listen for state changes.</p>

@@ -1,0 +1,5 @@
+<p>If you think it straight, there is a great number of possibilites for you to represent and persist diverse date and time formats and intervals on a database, also you probably are going to change it to add some options to users or to remove options accordingly to the growth of your website.</p>
+
+<p>I would go with creating two fields like "date_start" and "date_end", and one string field containing a code that represents the frequency. Something like 3 chars per code, first can be M for monthly, W weekly; second can be F for first, L for last; third char can be a number for a specific number of the week, F for friday. </p>
+
+<p>The point here is that you can (encode and) decode that programatically so if you add features you won't have to recreate your database relations.</p>

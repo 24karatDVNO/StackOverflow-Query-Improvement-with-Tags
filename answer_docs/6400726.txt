@@ -1,0 +1,13 @@
+<p>You could also use Resume Next to continue processing the next instructions</p>
+
+<pre><code>Public Sub MyMain()
+    On Error Resume Next
+    aNumber = someNumber / 0    'Divide by Zero will yield a run time error
+    If Err&lt;&gt;0 Then         'In case you want to re-act with the error to the user
+        MsgBox "Divide by Zero Occurred"
+    End If
+    On Error Goto 0    'This will un-do the effect of On Error Resume Next, meaning
+                       ' that if any other error occurs, there will be a runtime error
+                       ' use this if you intentionally want to
+End Sub
+</code></pre>

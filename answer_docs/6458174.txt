@@ -1,0 +1,144 @@
+<p>Sweet victory!</p>
+
+<p>I was able to successfully skin the Accordion header using <a href="http://code.google.com/p/flexlib/" rel="nofollow">flexlib</a> and creating a custom skin based on the <code>AccordionHeaderSkin.mxml</code> found in the source of the Flex 4.5 SDK. I made a <code>CanvasButtonAccordionHeader</code> for the header renderer and set the skin for that to the new custom skin.</p>
+
+<p>Here's the code for the <code>AccordionHeaderSkin.mxml</code> (not my final style, but a working editable skin):
+    </p>
+
+<pre><code>&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+         minWidth="21" minHeight="21" alpha.disabled="0.5"&gt;
+
+&lt;fx:Script&gt;
+    /**
+     * @private
+     */
+    override protected function initializationComplete():void
+    {
+        useChromeColor = true;
+        super.initializationComplete();
+    }
+&lt;/fx:Script&gt;
+
+&lt;!-- states --&gt;
+&lt;s:states&gt;
+    &lt;s:State name="up" /&gt;
+    &lt;s:State name="over" /&gt;
+    &lt;s:State name="down" /&gt;
+    &lt;s:State name="disabled" /&gt;
+    &lt;s:State name="selectedUp" /&gt;
+    &lt;s:State name="selectedOver" /&gt;
+    &lt;s:State name="selectedDown" /&gt;
+    &lt;s:State name="selectedDisabled" /&gt;
+&lt;/s:states&gt;
+
+&lt;!-- layer 3: fill --&gt;
+&lt;s:Rect left="1" right="1" top="1" bottom="1"&gt;
+    &lt;s:fill&gt;
+        &lt;s:LinearGradient rotation="90"&gt;
+            &lt;s:GradientEntry color="0x000000" 
+                             color.over="0xBBBDBD" 
+                             color.down="0xAAAAAA" 
+                             alpha="0.85" /&gt;
+            &lt;s:GradientEntry color="0xD8D8D8" 
+                             color.over="0x9FA0A1" 
+                             color.down="0x929496" 
+                             alpha="0.85" /&gt;
+        &lt;/s:LinearGradient&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+
+&lt;!-- layer 4: fill lowlight --&gt;
+&lt;s:Rect left="1" right="1" top="1" bottom="1"&gt;
+    &lt;s:fill&gt;
+        &lt;s:LinearGradient rotation="270"&gt;
+            &lt;s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" /&gt;
+            &lt;s:GradientEntry color="0x000000" ratio="0.48" alpha="0.0099" /&gt;
+            &lt;s:GradientEntry color="0x000000" ratio="0.48001" alpha="0" /&gt;
+        &lt;/s:LinearGradient&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+
+&lt;!-- layer 5: fill highlight --&gt;
+&lt;s:Rect left="1" right="1" top="1" bottom="1"&gt;
+    &lt;s:fill&gt;
+        &lt;s:LinearGradient rotation="90"&gt;
+            &lt;s:GradientEntry color="0xFFFFFF"
+                             ratio="0.0"
+                             alpha="0.33" 
+                             alpha.over="0.22" 
+                             alpha.down="0.12"/&gt;
+            &lt;s:GradientEntry color="0xFFFFFF"
+                             ratio="0.48"
+                             alpha="0.33"
+                             alpha.over="0.22"
+                             alpha.down="0.12" /&gt;
+            &lt;s:GradientEntry color="0xFFFFFF"
+                             ratio="0.48001"
+                             alpha="0" /&gt;
+        &lt;/s:LinearGradient&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+
+&lt;!-- layer 6: highlight stroke (all states except down) --&gt;
+&lt;s:Rect left="1" right="1" top="1" bottom="1" excludeFrom="down"&gt;
+    &lt;s:stroke&gt;
+        &lt;s:LinearGradientStroke rotation="90"&gt;
+            &lt;s:GradientEntry color="0xFFFFFF" alpha.over="0.22" /&gt;
+            &lt;s:GradientEntry color="0xD8D8D8" alpha.over="0.22" /&gt;
+        &lt;/s:LinearGradientStroke&gt;
+    &lt;/s:stroke&gt;
+&lt;/s:Rect&gt;
+
+&lt;!-- layer 6: highlight stroke (down state only) --&gt;
+&lt;s:Rect left="1" top="1" bottom="1" width="1" includeIn="down"&gt;
+    &lt;s:fill&gt;
+        &lt;s:SolidColor color="0x000000" alpha="0.07" /&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+&lt;s:Rect right="1" top="1" bottom="1" width="1" includeIn="down"&gt;
+    &lt;s:fill&gt;
+        &lt;s:SolidColor color="0x000000" alpha="0.07" /&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+&lt;s:Rect left="1" top="1" right="1" height="1" includeIn="down"&gt;
+    &lt;s:fill&gt;
+        &lt;s:SolidColor color="0x000000" alpha="0.25" /&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+&lt;s:Rect left="1" top="2" right="1" height="1" includeIn="down"&gt;
+    &lt;s:fill&gt;
+        &lt;s:SolidColor color="0x000000" alpha="0.09" /&gt;
+    &lt;/s:fill&gt;
+&lt;/s:Rect&gt;
+
+&lt;!-- layer 2: border --&gt;
+&lt;s:Rect left="0" right="0" top="0" bottom="0" width="69" height="20"&gt;
+    &lt;s:stroke&gt;
+        &lt;s:SolidColorStroke color="0x696969" 
+                            alpha="1" 
+                            alpha.over="1" 
+                            alpha.down="1" /&gt;
+    &lt;/s:stroke&gt;
+&lt;/s:Rect&gt;
+</code></pre>
+
+<p></p>
+
+<p>Then here's the renderer (<code>AccordionHeader.mxml</code>):</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;CanvasButtonAccordionHeader xmlns:fx="http://ns.adobe.com/mxml/2009" 
+            xmlns:s="library://ns.adobe.com/flex/spark" 
+            xmlns:mx="library://ns.adobe.com/flex/mx" 
+            xmlns="flexlib.containers.accordionClasses.*" skin="AccordionHeaderSkin" height="25"&gt;
+
+    &lt;s:Group height="25"&gt;
+
+    &lt;/s:Group&gt;
+
+&lt;/CanvasButtonAccordionHeader&gt;
+</code></pre>
+
+<p>And here's my Accordion:</p>
+
+<p><code>&lt;mx:Accordion left="0" right="0" top="0" bottom="0" id="geo_accordion" openDuration="500" headerRenderer="AccordionHeader"&gt;</code></p>

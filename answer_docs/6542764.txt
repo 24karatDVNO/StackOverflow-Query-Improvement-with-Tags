@@ -1,0 +1,9 @@
+<p>Assuming you want to keep the existing blank lines intact:</p>
+
+<pre><code>awk '
+    prev &amp;&amp; $0 {print ""}
+    {print; prev = $0}
+'
+</code></pre>
+
+<p>The first test will only be true if both the previous line and the current line are non-empty.</p>

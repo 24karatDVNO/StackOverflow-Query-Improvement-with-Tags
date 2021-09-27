@@ -1,0 +1,14 @@
+<p>The problem with your code I think is in the way you allocated memory for 'bits' variable and how you used it then in GetDIBits function.</p>
+
+<p>Firstly, the commented part <code>byte* bits = new byte[w*4]</code> was better than <code>byte* bits[1000]</code>. When you write <code>byte* bits[1000]</code> computer allocates 1000 POINTERS to byte. Each of these pointers doesn't point to anything.</p>
+
+<p>Secondly, GetDIBits accepts LPVOID lpvBits as a 5th param. So, its a pointer to void.
+In most platforms sizeof(void *) > sizeof(byte), so you can't just pass it a byte array, probably it would be better to pass a pointer to int or unsigned int (I'm not good at Windows types, so maybe something more appropriate should be better, sorry).</p>
+
+<p>So, my guess is this:</p>
+
+<pre><code>unsigned bits[1000];
+memset(bits, 0, sizeof(bits));
+//...
+int tv = GetDIBits(memDC, ii.hmbColor, 0, 1, (LPVOID)bits, /* ... */);
+</code></pre>

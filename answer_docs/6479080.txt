@@ -1,0 +1,25 @@
+<pre><code>fd = open('foo.html')
+contents = fd.readlines()
+fd.close()
+
+for ind, line in enumerate(contents):
+    line = line.split(" ")
+    contents[ind] = line
+
+print contents,'\n\n------------------'
+
+
+fd = open('foo.html')
+li = fd.readlines()
+fd.close()
+
+a = map(lambda x: x.split(" "),li)
+print a,'\n',a==contents,'\n\n------------------'
+
+
+fd = open('foo.html')
+b = [line.split(" ") for line in fd]
+fd.close()
+
+print b,'\n',b==contents
+</code></pre>

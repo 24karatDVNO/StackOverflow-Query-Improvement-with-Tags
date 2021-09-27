@@ -1,0 +1,11 @@
+<p>Use code like this:</p>
+
+<pre><code>$str = 'Text1 (a, b) Text2. (d, f) Text3 (g, h)';
+$arr = preg_split('~\([^)]*\)~', $str, -1 , PREG_SPLIT_NO_EMPTY);
+var_dump(implode(',', $arr));
+</code></pre>
+
+<h3>OUTPUT</h3>
+
+<pre><code>string(23) "Text1 , Text2. , Text3 "
+</code></pre>

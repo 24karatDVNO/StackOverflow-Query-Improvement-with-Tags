@@ -1,0 +1,10 @@
+<p>If you use something like this:</p>
+
+<pre><code>&lt;input type="checkbox" name="transport[]" value="bus" /&gt;
+&lt;input type="checkbox" name="transport[]" value="train" /&gt;
+&lt;input type="checkbox" name="transport[]" value="taxi" /&gt;
+</code></pre>
+
+<p>The values will be passed as an array accessible with $_POST['transport']. If the user checks the first and the last checkboxes $_POST['transport'] will contain two strings: <code>0 =&gt; "bus", 1 =&gt; "taxi"</code>.</p>
+
+<p>Also see <a href="http://jetlogs.org/2007/07/19/passing-input-arrays-in-php/" rel="nofollow">http://jetlogs.org/2007/07/19/passing-input-arrays-in-php/</a>.</p>

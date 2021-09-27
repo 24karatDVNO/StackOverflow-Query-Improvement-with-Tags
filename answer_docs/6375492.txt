@@ -1,0 +1,5 @@
+<p>The JavaScriptSerializer serializes DateTime values in Unix time, so you will have to deserialize that integer value into a date first. You can simply use <strong>new Date()</strong> to do it:</p>
+
+<pre><code>var data = $.parseJSON(msg.d);
+var deserializedDate = new Date(parseInt(data.BeginDate.substr(6)));
+</code></pre>

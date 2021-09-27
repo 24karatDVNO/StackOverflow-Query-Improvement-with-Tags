@@ -1,0 +1,16 @@
+<p>This is a way to...</p>
+
+<pre><code>class ModelController &lt; ApplicationController
+
+  def show
+    respond_to do |format|
+      begin
+        @model = Model.find(params[:id])
+      rescue ActiveRecord::RecordNotFound 
+        format.html { render :text =&gt; "Sorry , this data is not available" }
+      end
+    end
+  end
+
+end
+</code></pre>

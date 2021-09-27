@@ -1,0 +1,6 @@
+<p><a href="http://msdn.microsoft.com/en-us/library/ms189792.aspx" rel="nofollow"><code>sys.allocation_units</code></a>:</p>
+
+<pre><code>select sum(total_pages)*8192 as size_used_in_bytes from ABCD.sys.allocation_units;
+</code></pre>
+
+<p>Monitor this query. It will report the total size used (allocated) in the database.</p>

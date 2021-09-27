@@ -1,0 +1,17 @@
+<pre><code>var lc:LocalConnection=new LocalConnection();
+lc.client=this;
+lc.connect("callBig");
+var receivedVar:String = "";
+
+// somewhere else
+function chemin(myVar:String){
+    receivedVar = myVar;
+}
+
+// later
+var chargementXML:URLLoader = new URLLoader();
+var vars:URLVariables = new URLVariables();
+vars.myVar = receivedVar;
+chargementXML.data = vars;
+var fichier:URLRequest = new URLRequest(myVar);
+</code></pre>

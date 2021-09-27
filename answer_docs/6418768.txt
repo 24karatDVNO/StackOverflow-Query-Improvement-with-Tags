@@ -1,0 +1,9 @@
+<p>You have to understand that SQL works with the cartesian products of tables.</p>
+
+<p>In your query, you'll have</p>
+
+<pre><code>book1   book1cat1
+book1   book1cat2
+</code></pre>
+
+<p>You are asking that, for each record, book1cat1 is both 3 AND 4. It is impossible as it can only be one of them.</p>

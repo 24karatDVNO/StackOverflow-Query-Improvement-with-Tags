@@ -1,0 +1,3 @@
+<p><code>&amp;quot;</code> is a HTML entity, a way of representing characters that might otherwise be interpreted as HTML code by the browser.</p>
+
+<p>PHP 5.2/5.3 (can't speak for others) shouldn't touch the html entities, so ensure that you're not running <code>html_entities(...)</code> on your json_encode string. Highly doubt the bug is in the encoder.</p>

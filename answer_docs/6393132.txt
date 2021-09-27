@@ -1,0 +1,3 @@
+<p>Have you tried it with the key structure storing a hashed value of <code>name</code> (using <code>boost::hash_value</code> for example) - so that comparing key objects would be just two number comparisons, which should be pretty quick.</p>
+
+<p>Try testing it with an <code>unordered_set</code>.  The <a href="http://www.boost.org/doc/libs/1_46_1/libs/multi_index/doc/index.html" rel="nofollow noreferrer"><code>boost::multi_index_container</code></a> claims to outperform <code>std::set</code> and such in some circumstances, you could see if that speeds things along a bit (see my answer <a href="https://stackoverflow.com/questions/6389481/c-cache-design-advice/6393065#6393065">here</a> for an example of its use).</p>

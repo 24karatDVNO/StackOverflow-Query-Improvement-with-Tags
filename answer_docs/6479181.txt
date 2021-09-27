@@ -1,0 +1,30 @@
+<p>Assuming you don't have access to the mysql general query log if you're on a shared host and can't modify the database's my.cnf file, you might draft up a function along the lines of:</p>
+
+<pre><code>function dbInsertQuery($query, $conn) {
+     $logFile = "/path/to/file.txt";
+     $isProd  = FALSE;
+
+     // run your security checks on the query here
+
+     $mysql_query($query, $db_connection) or trigger_error(mysql_error());
+
+     if (!$isProd &amp;&amp; is_writable($logFile)) {
+       if (!handle = fopen($logFile, 'a')) {
+         echo "cannot open dbInsertQuery's log file: " . $logFile;
+         exit;
+       } 
+
+       $logLine = date(DATE_RFC822) . " - " . $query;
+
+       if (fwrite($handle, $logLine) === FALSE) {
+         echo "cannot write to dbInsertQuery's log file: " . $logFile;
+         exit;
+       }
+
+       fclose($handle);
+     }
+
+   }
+</code></pre>
+
+<p>This will allow you to log all your queries to a log file.  I set in a <code>$isProd</code> variable for you to toggle for development, and if it is set to the a value of <code>TRUE</code>, it won't log to the file, and will skip the who fopen process entirely.  You may need to adjust it, and could even get it to run every query and not just inserts if you wanted.</p>

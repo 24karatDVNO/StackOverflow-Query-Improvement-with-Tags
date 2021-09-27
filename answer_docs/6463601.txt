@@ -1,0 +1,14 @@
+<p>Create a web service that can scan the images folder and return a json object of the list of files. Then use that to create your carousel items. </p>
+
+<p>In very rough code, something like this (PHP Code):</p>
+
+<pre><code>$dir = opendir("images");
+$files = array();
+// get each entry
+while ($name = readdir($dir)) {
+  $files[] = $name;
+}
+echo json_encode($files);
+</code></pre>
+
+<p>Then on the client side do an AJAX request to retrieve this list and once you get it, create a carousel using this list. </p>

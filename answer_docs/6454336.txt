@@ -1,0 +1,5 @@
+<p>how about something like...</p>
+
+<pre><code>def is_alternating_signs(aList):
+    return all( (aList[i]^aList[i-1])&lt;0 for i in range(1,len(aList)) )
+</code></pre>

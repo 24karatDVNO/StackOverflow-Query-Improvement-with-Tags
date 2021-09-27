@@ -1,0 +1,7 @@
+<p>Note that Windows does implement a solution to the legacy MS-DOS 260 char path limit.  It's the Long UNC path format, which starts with <code>\\?\</code> such as <code>\\?\c:\path\file.txt</code>.</p>
+
+<p>If you have access to the source code of the web service producing this error, you might try digging around in the service code that converts the URL arguments into local file paths and see if tacking the \?\ on the front helps matters at all.</p>
+
+<p>It also seems odd that you would get this file path error message on a URL.  Check your code (or the code of the web service) to see if somebody is using Path functions where they should be using URI functions.</p>
+
+<p>Finally, note that your example contains space characters, both in the path and in the URI.  Space characters are definitely prohibited in URIs; you will need to URI escape them with %20 to make them valid URIs.  That could be the real cause of the problem - the web service is not actually receiving the whole URI you're sending, since URI parsing will stop at the first space character.  </p>

@@ -1,0 +1,13 @@
+<ol>
+<li><p>to pass data serialize object(from session class)?<br>
+or alternatively serialize array containing what you need.</p></li>
+<li><p>to transfer the data and keep them accurate<br>
+memcached (which might get updated by any site ie. expired session, logout)<br>
+[no]SQL server (can be ReadOnly for services using SSO) <br>
+text file on 'secure box' (assuming it doesn't contain any sensitive data)</p></li>
+</ol>
+
+<p>btw: SSO system purpose is to only validate the user credentials. No groups etc.<br>
+usually either returns redirect or username(using https check)...</p>
+
+<p>make sure you use SSL trust between them to verify if the service is allowed to use sso, or for service if someone is fake-ing the 'secure box'.</p>

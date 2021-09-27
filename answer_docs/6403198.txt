@@ -1,0 +1,12 @@
+<p><strong>I decided to use next design</strong> :</p>
+
+<pre><code>declare @investment_type_value varchar(10)
+declare @investment_description_value varchar(50)
+SET @investment_type_value = '3041'
+
+EXEC global..pn_investment_type_eqt 'CVPFDST', 'US', 'N', @investment_type = @investment_type_value output , @investment_description = @investment_description_value OUTPUT
+select  investment_type = @investment_type_value, investment_description = @investment_description_value
+GO
+</code></pre>
+
+<p>It give me possibility to retrieve variable values.</p>

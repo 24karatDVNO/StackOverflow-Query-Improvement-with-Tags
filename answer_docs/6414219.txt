@@ -1,0 +1,48 @@
+<p>You cannot <em>read a file then remove everything before the word "&lt;--START-->" and rewrite the file with the rest</em>, except in memory as answered by Benjamin. Otherwise you need an intermediate file. In all cases you should handle various error conditions. This should do it:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+
+int main() 
+{   
+    if (rename("Text.txt", "Old.txt") == 0)
+    {
+        try
+        {
+            ifstream in("Old.txt");
+            ofstream out("Text.txt");
+            string line;
+            while (getline(in, line))
+            {
+                size_t pos = line.find("&lt;--START--&gt;");
+                if (pos != string::npos)
+                {
+                    string remain = line.substr(pos + 11);
+                    if (remain.size())
+                        out &lt;&lt; remain &lt;&lt; endl;
+                    break;
+                }
+            }
+            while (getline(in, line))
+                out &lt;&lt; line &lt;&lt; endl;
+        }
+        catch (exception&amp;)
+        {
+            remove("Text.txt");
+            rename("Old.txt", "Text.txt");
+            cerr &lt;&lt; "Error processing file" &lt;&lt; endl;
+            return 1;
+        }
+        remove("Old.txt");
+        return 0; 
+    }
+    cerr &lt;&lt; "Error renaming file, access right?" &lt;&lt; endl;
+    return 2; 
+} 
+</code></pre>
+
+<p>.</p>

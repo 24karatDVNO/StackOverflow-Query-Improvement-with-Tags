@@ -1,0 +1,47 @@
+<p>Java provides a means to identify Modifier keys.
+By Modifier keys I mean </p>
+
+<ol>
+<li>Alt -- e.isAltDown();</li>
+<li>Ctrl -- e.isControlDown();</li>
+<li>Shift -- e.isShiftDown()</li>
+</ol>
+
+<p>These acan be paired with other normal key press buttons from your keyboard to identify whether a combination has been pressed.</p>
+
+<pre><code>if( (e.isControlDown() &amp;&amp; e.getKeyCode() == KeyEvent.VK_X) )
+{
+
+}
+</code></pre>
+
+<p>e.getModifiers() can be used to identify the modifier as well as the mouse button clicked. This returns bit mask.</p>
+
+<p>See here.<br> <a href="http://www.leepoint.net/notes-java/GUI-lowlevel/keyboard/keyboard.html" rel="nofollow">http://www.leepoint.net/notes-java/GUI-lowlevel/keyboard/keyboard.html</a><br><br></p>
+
+<p>I would use it something like this for Ctrl. This is overly simplified code, but you will get an idea.</p>
+
+<pre><code>   JTextField sampleTxtFld= new JTextField();
+
+   sampleTxtFld.addKeyListener(new KeyAdapter() {
+
+
+          public void keyPressed(KeyEvent e) 
+         {
+              if((e.isControlDown() &amp;&amp; e.getKeyCode() == KeyEvent.VK_X)
+              {
+                    //identifies whether Ctrl + X has been pressed
+                    // do some action here
+              }
+         }
+
+        public void keyReleased(KeyEvent e) 
+        {
+              //some key released code here
+        }
+         public void keyTyped(KeyEvent e) {
+         }
+
+
+   });
+</code></pre>

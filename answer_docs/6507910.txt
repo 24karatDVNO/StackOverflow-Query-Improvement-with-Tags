@@ -1,0 +1,25 @@
+<p>Ok i am not sure if this right way of doing it or not, but this is what i did, as my application have a tabbarcontroller the first thing that i did is i implemented the delegate method of the tabbarcontroller "didSelectViewController"</p>
+
+<p>// By doing this every time you select a tab it will come back to the rootViewController of that tab</p>
+
+<pre><code>- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+
+     if ([viewController isKindOfClass:[UINavigationController class]]){
+         [(UINavigationController *)viewController popToRootViewControllerAnimated:NO];
+     }
+
+}
+</code></pre>
+
+<p>and then on didReceiveRemoteNotification</p>
+
+<pre><code>if(tabBarController.selectedIndex == 1){
+    UINavigationController *navigationController  = (UINavigationController*)tabBarController.selectedViewController;
+    [navigationController popToRootViewControllerAnimated:NO];
+    [[[navigationController viewControllers ] objectAtIndex:0]viewWillAppear:YES];
+}else{
+    self.tabBarController.selectedIndex = 1;
+}
+</code></pre>
+
+<p>so let me explain what this is doing, it is checking if the current tab is 1 if it is then it will remove all the view from the navigation stack to bring the view to the root view, if the current tab is not 1 and just make it to 1.</p>

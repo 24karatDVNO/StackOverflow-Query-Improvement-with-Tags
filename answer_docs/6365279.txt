@@ -1,0 +1,6 @@
+<p>Maybe this post is too late... but here are some ideas...<br>
+There are several possible things:<br>
+(1) The validator and the control to be validated are in the same panel? It is possible that there is a hidden panel while the validation was being done.<br>
+(2) If you are creating dynamically, was this creation put on the Page Load? and if so, was created within a function to validate input for the first time? It is possible that it is not necessary to do so.<br>
+(3) The use of protected override void CreateChildControls() eventually not runs on all the process of reloading, especially if the ViewState changes in some controls. You can put it in the Page Load.<br>
+(4) Other alternative is to place the button inside the Panel, but the visible attribute = false and also the validator, with attribute enabled = false. When you run the action, you change these two States and you can work with the PostBack.</p>

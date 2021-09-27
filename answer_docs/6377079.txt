@@ -1,0 +1,60 @@
+<p>see sites.google.com/site/embtdbo/wait-event-documentation/oracle-enqueues</p>
+
+<p>The locking wait indicates a conflict that could easily be the cause of your performance issues. On the surface it looks likely that the problem is inserting a duplicate key value while the first insert of that key value had not yet committed. The lock you see "enq: TX - row lock contention"  happens because one session is trying to modify uncommited data from another session. There are 4 common reasons for this particular lock wait event:</p>
+
+<p><OL>
+<li>update/delete of the same row
+<li>inserting the same uniq key
+<li>modifying the same bitmap index chunk
+<li>deleting/updating a parent value to a foreign key
+</OL></p>
+
+<p>We can eliminate the first and last case are you are doing an insert.
+You should be able to identify the 2nd if you have no bitmap indexes involved. If you have bitmap indexes involved and you have uniq keys involved then you could investigate easily if you had Active Session History (ASH) data, but unfortunately Oracle XE doesn't. On the other hand you can collected it yourself with S-ASH, see : http://ashmasters.com/ash-simulation/ .  With ASH or S-ASH you can run a query like</p>
+
+<p><PRE>
+col event for a22
+col block_type for a18
+col objn for a18
+col otype for a10
+col fn for 99
+col sid for 9999
+col bsid for 9999
+col lm for 99
+col p3 for 99999
+col blockn for 99999
+select
+       to_char(sample_time,'HH:MI') st,
+       substr(event,0,20) event,
+       ash.session_id sid,
+       mod(ash.p1,16)  lm,
+       ash.p2,
+       ash.p3, 
+       nvl(o.object_name,ash.current_obj#) objn,
+       substr(o.object_type,0,10) otype,
+       CURRENT_FILE# fn,
+       CURRENT_BLOCK# blockn, 
+       ash.SQL_ID,
+       BLOCKING_SESSION bsid
+       --,ash.xid
+from v$active_session_history ash,
+      all_objects o
+where event like 'enq: TX %'
+   and o.object_id (+)= ash.CURRENT_OBJ#
+Order by sample_time
+/
+</PRE>
+Which would output something like:
+<PRE>
+ST    EVENT                  SID  LM     P2   P3 OBJ   OTYPE  FN BLOCKN SQL_ID         BSID
+10:41 enq: TX - row lock c   143   4 966081 4598 I1    INDEX   0      0 azav296xxqcjx   144
+10:41 enq: TX - row lock c   143   4 966081 4598 I1    INDEX   0      0 azav296xxqcjx   144
+10:41 enq: TX - row lock c   143   4 966081 4598 I1    INDEX   0      0 azav296xxqcjx   144
+10:41 enq: TX - row lock c   143   4 966081 4598 I1    INDEX   0      0 azav296xxqcjx   144
+</PRE>
+showing that the object name "OBJ" and the object type "OTYPE" with the contention and that the type is an INDEX.  From there you could look up the type of INDEX to verify that it is bitmap.
+IF the problem is a bitmap index, then you should probably re-evaluate using bitmap indexes or revisit the way that data is loaded and/or modify to reduce conflicts.</p>
+
+<p>If the problem isn't BITMAP indexes, then it's trying to insert a duplicate key. Some other process had inserted the same key value and not yet committed. Then your process tries to insert the same key value and has to wait for the first session to commit or rollback.</p>
+
+<p>For more information see this link:  lock waits</p>

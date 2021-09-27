@@ -1,0 +1,19 @@
+<p>When you do COM programming, you are in general very defensive. So, as a caller, you use the famous FAILED or SUCCEEDED macros (or equivalent in the language used) when calling functions of an interface.</p>
+
+<p>However, when the documentation stipulates that the result is not important, it is recommended not to check the result. So, as a caller, I would do</p>
+
+<pre><code>...
+myObject.SetSite(whatever);
+...
+</code></pre>
+
+<p>instead of</p>
+
+<pre><code>...
+if (FAILED(myObject.SetSite(whatever))) goto error;
+...
+</code></pre>
+
+<p>Note this is quite specific because SetSite is documented like this.</p>
+
+<p>If I don't read the doc carefully (as you did) and assume this is a "regular hresult return" interface call, I would use the FAILED macro. If you return anything undocumented, FAILED will catch it anyway, and I'm quite safe anyway.</p>

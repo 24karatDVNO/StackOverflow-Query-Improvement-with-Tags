@@ -1,0 +1,5 @@
+<p>Your <code>IndexOutOfBounds</code> exception is probably being caused by the value of <code>rownum</code> being passed to <code>mgrq.getCurRecords()</code>.</p>
+
+<p>Your test code proves nothing because there you're calling <code>getCurRecords()</code> with a constant which is probably always valid for your system and will never cause the exception.</p>
+
+<p>My suggestion is to step through the code in your JSP with a debugger, or even simply to print out the value of your variables (especially <code>pagedatum</code>, <code>pagenum</code> and <code>rownum</code>) in your JSP code.</p>

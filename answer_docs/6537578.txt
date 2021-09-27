@@ -1,0 +1,6 @@
+<p>Since the dealer number apparently consists of several parts (since you're trying to just look at what the number starts with), it should probably be a string rather than an int, since, after all, it is not really a single number (or maybe you could split it into separate columns). However, if all numbers are of the same length, you can perform an integer division by some power of ten. For instance, if all numbers are seven digits long and you want to look at the first three, divide by 10000. <code>dlrNo</code> should probably be parsed as an int before the query.</p>
+
+<pre><code>int dlrNoAsInt = int.Parse(dlrNo);
+return (from buy in context.ContractBuys
+       where (buy.DealerNo.Value / 10000 == dlrNoAsInt) &amp;&amp; ...;
+</code></pre>

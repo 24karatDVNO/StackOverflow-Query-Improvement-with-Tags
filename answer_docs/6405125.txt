@@ -1,0 +1,24 @@
+<p>Save the predefined value somewhere:</p>
+
+<pre><code>readonly string  TEXTBOX_PREDEFINED_VALUE = "Foo!";
+
+private void textBox4_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int numberEntered = int.Parse(textBox4.Text);
+                if (numberEntered &lt; 1 || numberEntered &gt; 28)
+                {
+
+                   textBox4.Text = TEXTBOX_PREDEFINED_VALUE;
+
+                }
+            }
+            catch (FormatException)
+            {
+
+
+            }
+        } 
+</code></pre>

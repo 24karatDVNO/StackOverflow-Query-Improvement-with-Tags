@@ -1,0 +1,13 @@
+<p>you should put all the vendor prefixes first, then the CSS3 equivalent.
+In your case it would looke like this:</p>
+
+<pre><code>-webkit-border-radius:10px;
+-moz-border-radius:10px;
+border-radius:10px;
+</code></pre>
+
+<p>Internet Explorer 6,7,8 won't round corners, but this is ok from a progressive enhancement point of view. If it isn't ok from the client's point of view, you can either include a CSS based on CSS conditional statements and use a sprite with rounded corners or use a JavaScript fallback like <a href="http://css3pie.com/" rel="nofollow">http://css3pie.com/</a>.</p>
+
+<p>Older versions of Firefox, Chrome, Safari or Opera will round corners because of the vendor prefix.</p>
+
+<p>Good luck.</p>

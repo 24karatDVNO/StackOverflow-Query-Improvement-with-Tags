@@ -1,0 +1,5 @@
+<p>I'm going to guess you're having trouble with rotated pages.  Check <code>PdfReader.getPageRotation(pageNum)</code>.</p>
+
+<p>I've actually never encountered a page that was rotated 180 degrees.  I suspect that between iText's normal behavior and your code, you're take a +90 degree page and turning it into a -90 page, or visa versa.</p>
+
+<p>Without more detail/source/sample-PDFs its impossible to tell exactly what's going wrong.</p>

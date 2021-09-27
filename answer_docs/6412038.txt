@@ -1,0 +1,13 @@
+<p>my answer that derived from Tommy's hint,</p>
+
+<pre><code>SELECT * FROM 
+( SELECT root_mm_tagged_pages.tag_id as Atag_id, root_mm_tagged_pages.pg_id as Apg_id, At.tag_name as Atag_name FROM root_mm_tagged_pages
+
+LEFT JOIN root_tags as At ON At.tag_id = root_mm_tagged_pages.tag_id ) AS Aat JOIN
+
+( SELECT root_mm_tagged_pages.tag_id as Btag_id, root_mm_tagged_pages.pg_id as Bpg_id,  Bt.tag_name as Btag_name FROM root_mm_tagged_pages
+
+LEFT JOIN root_tags as Bt ON Bt.tag_id = root_mm_tagged_pages.tag_id ) AS Bbt on Aat.Apg_id = Bbt.Bpg_id WHERE Aat.Atag_name = 'A' AND Bbt.Btag_name = 'B'
+</code></pre>
+
+<p>thanks</p>

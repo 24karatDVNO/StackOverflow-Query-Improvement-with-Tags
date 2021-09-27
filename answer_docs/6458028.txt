@@ -1,0 +1,17 @@
+<p>Step 1:</p>
+
+<pre><code>FOR /F "USEBACKQ tokens=1-20 delims=&lt;&gt;" %%A in (`FINDSTR "123" "path of file to search in"`) DO (
+ SET var=%%B
+)
+
+ECHO %var%
+</code></pre>
+
+<p>Understand that delims will change depending on what 'separates' the parts of the output (whether its a space, a special character, etc.)</p>
+
+<p>Step 2 &amp; 3:</p>
+
+<pre><code>FOR /F "USEBACKQ tokens=*" %%A IN (`DIR "Path" /A ^| FIND /I "%var%"`) DO (
+ COPY /Y "%%A" "C:\New\Path\%%~nxA"
+)
+</code></pre>

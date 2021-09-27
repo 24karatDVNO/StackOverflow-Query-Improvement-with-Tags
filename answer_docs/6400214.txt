@@ -1,0 +1,3 @@
+<p>CoreText was introduced with iOS 3.2. If you weak link against it the app will start, but it will crash on the first instance on calling a CoreText function.</p>
+
+<p>To still be compatible with earlier versions you CAN weak link and avoid CT code by drawing the text with Quartz instead. You would detect if CT exists on the device and use it if yes, otherwise you would have a crude fallback mechanism for your drawing.</p>

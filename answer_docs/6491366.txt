@@ -1,0 +1,36 @@
+<p>I resolved the first problem:</p>
+
+<pre><code>#define STRUCT_OF_SIGNAL (dbus_g_type_get_struct ("GValueArray", \
+          G_TYPE_UINT,\
+          dbus_g_type_get_struct ("GValueArray", G_TYPE_UINT, G_TYPE_INVALID), \
+          G_TYPE_UINT,\
+          G_TYPE_UINT,\
+          G_TYPE_STRING,\
+          G_TYPE_STRING,\
+          G_TYPE_STRING,\
+          G_TYPE_STRING,\
+          G_TYPE_UINT,\
+          G_TYPE_INVALID))
+</code></pre>
+
+<p>the signal interface is now correct, but when I call the g_signal_emit:</p>
+
+<pre><code>(process:11052): GLib-GObject-CRITICAL **: g_value_copy: assertion `g_value_type_compatible (G_VALUE_TYPE (src_value), G_VALUE_TYPE (dest_value))' failed
+
+(process:11052): GLib-GObject-CRITICAL **: g_value_array_get_nth: assertion `value_array != NULL' failed
+
+(process:11052): GLib-GObject-CRITICAL **: g_value_copy: assertion `G_IS_VALUE (src_value)' failed
+</code></pre>
+
+<p>I initialize the second argument:</p>
+
+<pre><code>g_value_array_prepend(ret, NULL);
+g_value_init(g_value_array_get_nth(ret, 0), G_TYPE_VALUE_ARRAY);
+
+GValueArray *l_class = g_value_array_new(1);
+g_value_array_prepend(l_class, NULL);
+g_value_init(g_value_array_get_nth(l_class, 0), G_TYPE_UINT);
+g_value_set_uint(g_value_array_get_nth(l_class, 0), obj-&gt;class_id);
+
+g_value_set_boxed(g_value_array_get_nth(ret, 0), l_class);
+</code></pre>

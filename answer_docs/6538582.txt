@@ -1,0 +1,18 @@
+<p>Add it to the web config like this:</p>
+
+<pre><code>  &lt;connectionStrings&gt;
+     &lt;add name="myConnectionStringName" connectionString="Data Source=mySqlServerInstance;Initial Catalog=myCatalog;User ID=myUserId;Password=myPassword"/&gt;
+  &lt;/connectionStrings&gt;
+</code></pre>
+
+<p>Add code to retrieve it:</p>
+
+<pre><code>private static string GetConnectionString()
+{
+    var config = WebConfigurationManager.OpenWebConfiguration("/myProject");
+    var connections = config.ConnectionStrings;
+    var settings = connections.ConnectionStrings["myConnectionStringname"];
+    string connectionString = settings.ConnectionString;
+    return connectionString;
+}
+</code></pre>

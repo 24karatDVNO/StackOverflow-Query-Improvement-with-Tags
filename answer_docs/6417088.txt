@@ -1,0 +1,8 @@
+<pre><code>&lt;%= form_for @user, :remote =&gt; true do |f| %&gt;
+&lt;%= f.collection_select :community_id,
+Community.where('memberships.user_id = ? and memberships.role &gt; ?', @user.id, '0').includes(:memberships), :id, :name,{},
+:onchange =&gt; "this.form.submit();" %&gt;   
+&lt;% end %&gt;
+</code></pre>
+
+<p>Changed 'this.form.onsubmit() to 'this.form.submit()</p>

@@ -1,0 +1,11 @@
+<p>I decided to do this a different way which works perfectly for what I need.</p>
+
+<p>What I did was I created the base ViewController with nothing in the xib and in the viewDidAppear method I called the other viewControllers (using presentModalViewController) based on the value of a global NSNumber.</p>
+
+<p>Thus when I go to any of the other viewcontrollers rather than them call another viewController they simply set the global variable indicating which view to load and then close the current view (using dismissModalViewController).</p>
+
+<p>This way each instance of the viewControllers are closed and the memory released.</p>
+
+<p>I have created an example project and placed it on github   <a href="https://github.com/sregorcinimod/Open" rel="nofollow">https://github.com/sregorcinimod/Open</a>  </p>
+
+<p>Just look in the Downloads you'll see it there</p>

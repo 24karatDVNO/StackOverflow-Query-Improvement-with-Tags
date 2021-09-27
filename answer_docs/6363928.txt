@@ -1,0 +1,5 @@
+<p>I recently wrote a script to help us solve this problem - it's not complete source control by any stretch, but it's just a single stored procedure that stores the history of your database objects in a table - you can schedule it using the SQL Agent to run as often as you want.</p>
+
+<p>While it will take snapshots at a point in time, it doesn't really support check-ins, but it has saved our bacon a few times when a stored proc gets dropped or changed without a backup, and the previous version is easily restored.</p>
+
+<p><a href="http://trycatchfinally.net/2011/06/roll-your-own-lightweight-sql-server-source-control/" rel="nofollow">http://trycatchfinally.net/2011/06/roll-your-own-lightweight-sql-server-source-control/</a></p>

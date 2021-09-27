@@ -1,0 +1,16 @@
+<p>Got it! </p>
+
+<p>Many thanks to <strong><em>Hovercraft Full Of Eels</em></strong> for the pointer </p>
+
+<blockquote>
+  <p>"What happens if you use ImageIO.read(...) to get your image? Also, are you adding the image-displaying component to the GUI after it has been rendered?"</p>
+</blockquote>
+
+<p>And to <strong><em>camickr</em></strong> for the code to think on.</p>
+
+<p>I resolved it by using:</p>
+
+<pre><code>    Image imgBackground = ImageIO.read(getClass().getResourceAsStream("/images/background.gif"));
+</code></pre>
+
+<p>Creating and assigning the image to the variable at the beginning of my class instead of in the JPanels custom code section also worked. That is because the image had more time to be created..</p>

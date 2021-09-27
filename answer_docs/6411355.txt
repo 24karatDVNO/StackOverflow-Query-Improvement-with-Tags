@@ -1,0 +1,28 @@
+<p>Your code is almost correct; the following piece isn't working the way you expect it to:</p>
+
+<pre><code>$.each(cards,function(id,val){
+    $(this).replaceWith(tt.replace(val,getColor(val)))  
+});
+</code></pre>
+
+<p>The problem is that <code>this</code> inside of that <code>each</code> call is just an object that you're turning into a jQuery object. <code>replaceWith</code> isn't actually replacing the html that that object came from.</p>
+
+<p>You should probably build up an HTML string as you go and use <code>html</code> to set the contents at the end:</p>
+
+<pre><code>$('.someClass').each(function() {
+    $(this).addClass("km_done");
+    var tt = $(this).html();
+    if (tt.indexOf("[") != -1) {
+        var cards = tt.slice(tt.indexOf("[") + 1, tt.indexOf("]")).split(", ");
+        var result = '';
+
+        $.each(cards, function(id, val) {
+            tt = (tt.replace(val, getColor(val)));
+        });
+
+        $(this).html(tt);
+    }
+});
+</code></pre>
+
+<p>Example: <a href="http://jsfiddle.net/zWbkj/" rel="nofollow">http://jsfiddle.net/zWbkj/</a></p>

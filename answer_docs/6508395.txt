@@ -1,0 +1,32 @@
+<p>My suggestion would be to not make it too complicated and not over think things.  There really is no need to do anything more complicated than this.</p>
+
+<pre><code> public function clone():Thing {
+     var t:Thing = new Thing();
+
+     t.x = this.x;
+     t.y = this.y;
+     t.val1 = this.val1;
+     t.val2 = this.val2;
+
+     return t;
+ }
+</code></pre>
+
+<p>and if you have a parameters in your constructor.</p>
+
+<pre><code>public function Thing(x:int,y:int) {
+    this.x = x;
+    this.y = y;
+}
+
+public function clone():Thing {
+    var t:Thing = new Thing(this.x, this.y);
+
+    t.val1 = this.val1;
+    t.val2 = this.val2;
+
+    return t;
+}
+</code></pre>
+
+<p>I do like the other answer, it's clever but a lot of churn for just setting some properties. Don't over think the problem.</p>

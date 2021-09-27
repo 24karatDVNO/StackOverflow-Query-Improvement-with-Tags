@@ -1,0 +1,7 @@
+<pre><code>if (!empty($_POST['comment']))
+{
+       mysql_query("UPDATE contacts SET opp=1, inforecall='{$_POST['comment']}' WHERE contact_id='{$_GET['id']}'");
+}
+</code></pre>
+
+<p>That should solve your problems. If your <code>contact_id</code> is an INT then remove both of the single quotes after its equal sign.</p>

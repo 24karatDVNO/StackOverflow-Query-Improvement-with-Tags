@@ -1,0 +1,9 @@
+<p>Not too sure but two approaches as per my experience with parsing - </p>
+
+<ol>
+<li><p>Define a grammar which can parse the expression and collect values / parameters. You might want to come up with a dictionary of keywords using which you can then deduce the the type of search. </p></li>
+<li><p>Be strict when defining your grammar so that the expression itself tells you about the type of search.
+eg LOC: A in B , VALUE $ to Euro. etc.</p></li>
+</ol>
+
+<p>For parser see ANTLR / jcup &amp; jflex.</p>

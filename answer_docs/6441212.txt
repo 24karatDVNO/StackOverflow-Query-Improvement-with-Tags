@@ -1,0 +1,5 @@
+<p>Aloha!</p>
+
+<p>The simple solution is to use a MUX with fixed rotation in 0-31 steps of the input and then use x as the value to switch on.</p>
+
+<p>For an efficient implementation take a look at the barrel shifter. Using five 2-1 32-bit MUXes in chain shifting the input either 16, 8, 4, 2, 1 steps (for mux 0, 1, 2, 3, 4) or not based on the control bit for each mux.</p>

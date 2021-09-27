@@ -1,0 +1,12 @@
+<p>One possible way is to create an alias method "all_posts" and then define your own posts method that uses it:</p>
+
+<pre><code>class User
+    has_many :all_posts, :class_name =&gt; "Post"
+
+    def posts
+       self.has_priviledges? ? self.all_posts : self.all_posts.where(...)
+    end
+end
+</code></pre>
+
+<p>This has the disadvantage of losing some of the caching ActiveRecord does for you.  For instance, if you called user.all_posts twice, only the first would call sql, but calling user.posts twice could possibly call sql both times if the where clause is used.</p>

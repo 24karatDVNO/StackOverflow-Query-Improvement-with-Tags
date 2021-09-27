@@ -1,0 +1,27 @@
+<p>You can set the <code>textIndent</code> style, but that will only affect the "padding" to the left. I haven't looked into it, but you may also be able to set the <code>paddingLeft</code> and <code>paddingRight</code> styles as well.</p>
+
+<p>From <a href="http://blog.flexexamples.com/2008/01/14/indenting-a-flex-panel-controls-title/" rel="nofollow">Flex Examples</a>:  </p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!-- http://blog.flexexamples.com/2008/01/14/indenting-a-flex-panel-controls-title/ --&gt;
+&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+        layout="vertical"
+        verticalAlign="middle"
+        backgroundColor="white"&gt;
+
+    &lt;mx:Style&gt;
+        .myPanelTitle {
+            textIndent: 50;
+        }
+    &lt;/mx:Style&gt;
+
+    &lt;mx:Panel title="Lorem ipsum"
+            titleStyleName="myPanelTitle"
+            titleIcon="@Embed('assets/images/accept.png')"
+            width="200"&gt;
+        &lt;mx:Text text="The quick brown fox jumped over the lazy dog."
+                width="100%" /&gt;
+    &lt;/mx:Panel&gt;
+
+&lt;/mx:Application&gt;
+</code></pre>

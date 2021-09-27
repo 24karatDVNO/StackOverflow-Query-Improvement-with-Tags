@@ -1,0 +1,12 @@
+<p>this syntax is near what you were talking about:</p>
+
+<pre><code>;with myXml as
+(
+select 
+  a.value('@ClassID', 'uniqueidentifier') as ClassID,
+  a.value('@UserID', 'varchar(50)') as UserID
+  from @xml.nodes('root/row') as x(a)
+)
+select * from myXml
+where classid = '99c24704-bfdb-4350-a35b-102cf5699edb'
+</code></pre>

@@ -1,0 +1,12 @@
+<p>Python <a href="http://docs.python.org/howto/unicode.html" rel="nofollow">does support unicode-coded source</a>.</p>
+
+<p>Set the coding of your source file to the right type with a line of the form <code># coding: [yourCoding]</code> at the very beginning of your file. I think <code># coding: utf-8</code> works for Arabic.</p>
+
+<p>Then prepend your string literals with a <code>u</code>, like so:</p>
+
+<pre><code>u'アク'
+</code></pre>
+
+<p>(Sorry if you don't have a Japanese font installed, it's the only one I had handy!)</p>
+
+<p>This makes python treat them as unicode characters. There's further information specific to Arabic on <a href="http://www.spencegreen.com/2008/12/19/python-arabic-unicode/" rel="nofollow">this site</a>.</p>

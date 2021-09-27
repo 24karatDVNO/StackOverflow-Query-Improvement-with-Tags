@@ -1,0 +1,10 @@
+<p>I agree with my precursors. jQuery will most likely be in the users cache, in the ISPs cache or served very fast from a CDN, such as Google's.</p>
+
+<p>A >real&lt; speed test can't be done in your szenario. (also, "normal" Speed test, downing/upping 1MB are very random in their result)</p>
+
+<p>Just looking at the speed analysis, you could start a timer in the head section of the page and measure the time it took to get in the onLoad event/ bottom of the page (where you would load jquery and your other javascript files and execute them).
+The timegap would tell you something about the speed. But that number would be deluded by the users system and other apps running (slowing down execution speed) as well as your server maybe beeing overloaded and not responding as snappy.</p>
+
+<p>As I read, you are thinking about "Dropping jquery all together and just write the javascript you need".
+I'd like to point out that <a href="http://code.google.com/closure/compiler/" rel="nofollow">Google Closure Compiler</a> looks at all your code and functions your using and strips out all functions you never need, minifying your code significantly!!
+Also, I would consider using <a href="https://github.com/madrobby/zepto" rel="nofollow">Zepto</a> instead of jQuery - it has the same function set as jquery with a much lighter footprint (but only supporting mordern browser). And its written by Thomas Fuchs (Script.acolo.us fame), which is a brainiac like John Resig (jQuery) is :)</p>

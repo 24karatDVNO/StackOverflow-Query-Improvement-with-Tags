@@ -1,0 +1,20 @@
+<p>I's suggest:</p>
+
+<pre><code>$('dt').each(
+    function(){
+        var n = $(this).text().substring(1);
+        $('&lt;dd /&gt;').text(n).insertAfter($(this));
+    });
+</code></pre>
+
+<p><a href="http://jsfiddle.net/davidThomas/Gxusq/" rel="nofollow">JS Fiddle demo</a>.</p>
+
+<p>It doesn't matter, obviously, which elements you choose to use (I opted for <code>dt</code> and <code>dd</code> for the implied relationship between the input and the output). The important part is the <code>substring()</code> function; the value of <code>1</code> refers to the starting point of the resulting substring (from the second character, as JavaScript works with zero-based arrays).</p>
+
+<p>Had a second number been passed, in the form <code>substring(1,4)</code> the resulting substring would have started from the second character and ended with the fifth, <strong>unless</strong> the string on which <code>substring()</code> is working is of a length shorter than the second argument, in which case it's treated as being equal to the length of the string.</p>
+
+<p>Reference:</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/substring" rel="nofollow"><code>substring()</code> at the Mozilla Developer Center</a>.</li>
+</ul>

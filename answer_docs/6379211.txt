@@ -1,0 +1,10 @@
+<p>I had the exact same problem where I would basically declare  and it wouldn't get translated into HTML (basically, instead of printing the variable, the entire c:out was printed in the html source).  I had forgotten to add this dependency to maven:</p>
+
+<pre><code>        &lt;dependency&gt;
+            &lt;groupId&gt;taglibs&lt;/groupId&gt;
+            &lt;artifactId&gt;standard&lt;/artifactId&gt;
+            &lt;version&gt;1.1.2&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+
+<p>(If the xml doesn't print, the groupId is taglibs, the artifactId is standard, and the version is 1.1.2</p>

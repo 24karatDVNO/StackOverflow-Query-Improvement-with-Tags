@@ -1,0 +1,42 @@
+<p>If rebar was using astm directly (and you're actually using C++), you would have something like this:</p>
+
+<pre><code>struct astm
+{
+    astm( int size, float weight, float diameter )
+    : size( size )
+    , weight( weight )
+    , diameter( diameter )
+    {}
+
+    int size;
+    double weight;
+    double diameter;
+};
+
+struct rebar
+{
+    rebar( int size, double length )
+    : size( size )
+    , length( length )
+    {}
+
+    rebar( const astm&amp; astm ) //&lt;&lt;&lt; Uses astm directly
+    : size( astm.size )
+    {
+        // Do something with rest of astm
+    }
+};
+</code></pre>
+
+<p>However, this does not appear to be the case. Sounds like you want something like:</p>
+
+<pre><code>    std::vector&lt;rebar&gt; rebarVec;
+    for ( int i = 0; i &lt; numThings; ++i )
+    {
+        // Compute stuff from astm[ i ]
+        rebar rebarItem( size, length );
+        rebarVec.push_back( rebarItem );
+    }
+</code></pre>
+
+<p>Is this what you're trying to accomplish?</p>

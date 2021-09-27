@@ -1,0 +1,17 @@
+<p>first, you need to fill an array full with 0's:</p>
+
+<pre><code>$result = array();
+for($i=0;$i&lt;2000;$i+=50){
+    $result[$i] = array();
+    for($j=0;$j&lt;2000;$j+=50){
+        $result[$i][$j] = 0;
+    }
+}
+</code></pre>
+
+<p>where 2000 is the maximum screen width/height. then, you count your values, where <code>$a</code> is your array:</p>
+
+<pre><code>foreach($a as $v){
+    $result[floor($v[0]/50)*50][floor($v[1]/50)*50]++;
+}
+</code></pre>

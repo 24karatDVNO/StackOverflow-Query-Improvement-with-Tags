@@ -1,0 +1,20 @@
+<p>Something like this might help:</p>
+
+<pre><code>foreach (DataRow rows in table.Rows)
+{
+    object value = null;
+    var cells = rows.ItemArray;
+    for (int i = 0; i &lt; cells.Length; i++)
+    {
+        value = cells[i];
+        if (value != null &amp;&amp; value.GetType() == typeof(int))
+        {
+            if ((int)value == 0)
+            {
+                cells[i] = null;
+            }
+        }
+    }
+    rows.ItemArray = cells;
+}
+</code></pre>

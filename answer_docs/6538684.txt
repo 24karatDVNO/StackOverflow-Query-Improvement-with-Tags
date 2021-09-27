@@ -1,0 +1,13 @@
+<p><strong>EDIT:</strong> Sorry, I misread your original post. You can do this by using <code>get_defined_vars</code> to grab all variables in the current scope, and return them:</p>
+
+<pre><code>public function includeAndGetVars($file) {
+  include $file;
+  return get_defined_vars();      
+}
+</code></pre>
+
+<p>Then after you call your function, use <code>extract</code> to dump the results into the current scope:</p>
+
+<pre><code>extract(includeAndGetVars("include.php"));
+echo $myVar;
+</code></pre>

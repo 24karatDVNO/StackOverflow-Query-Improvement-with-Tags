@@ -1,0 +1,13 @@
+<p>As per the documents there is no guarantee for a notification to be received successfully. Also APNS won't inform the server about a successful delivery of push notification. So better 
+on the method <code><pre>
+ - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+//you can send a message to the server so that server can make sure that notification is delivered successfully.
+}
+ </pre></code></p>
+
+<p>FYI : If notifications to a particular device token is getting failed continously the APNS will inform about that.</p>
+
+<p>From apple docs</p>
+
+<p>"Apple Push Notification Service includes a feedback service that APNs continually updates with a per-application list of devices for which there were failed-delivery attempts. The devices are identified by device tokens encoded in binary format. Providers should periodically query the feedback service to get the list of device tokens for their applications, each of which is identified by its topic. Then, after verifying that the application hasn’t recently been re-registered on the identified devices, a provider should stop sending notifications to these devices. " </p>

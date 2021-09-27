@@ -1,0 +1,10 @@
+<p>You will have to identify each cell with unique identifier string like below -</p>
+
+<pre><code>UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell_%d", indexPath.row]];
+
+if (cell == nil) { 
+    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:[NSString stringWithFormat:@"cell_%d", indexPath.row]] autorelease];
+}
+</code></pre>
+
+<p>By doing this, you will make tableView able to reuse the same cell created (first time) before either with 6 items or 4 items.</p>

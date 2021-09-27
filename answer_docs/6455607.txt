@@ -1,0 +1,45 @@
+<p>I shaved off about a half a minute from my procedure using a LAMDA filter on my list before iterating it's elements and removed one conditional statement in the method.  Here is my updated code.</p>
+
+<pre><code>[SecurityCritical]
+        [SecurityPermissionAttribute(SecurityAction.Demand)] 
+        private static void GetGroupMembership(List&lt;ActiveDirectoryPrincipalProperties&gt; userGroupProperties)
+        {
+            List&lt;ActiveDirectoryPrincipalProperties&gt; groupProperties = new List&lt;ActiveDirectoryPrincipalProperties&gt;();
+
+            foreach (ActiveDirectoryPrincipalProperties gProperties in userGroupProperties.FindAll(token =&gt; token.groupYesNo.Equals(true)))
+            {
+
+                PrincipalContext ctx = new PrincipalContext(ContextType.Domain, gProperties.groupDomain);
+                try
+                {
+
+                    GroupPrincipal group = GroupPrincipal.FindByIdentity(ctx, IdentityType.Name, gProperties.groupName);
+
+                    foreach (Principal member in group.GetMembers(true))
+                    {
+                        ActiveDirectoryPrincipalProperties memberProperties = new ActiveDirectoryPrincipalProperties();
+                        memberProperties.fullGroupName = gProperties.fullGroupName;
+                        memberProperties.groupDomain = gProperties.groupDomain;
+                        memberProperties.groupName = gProperties.groupName;
+                        memberProperties.groupType = gProperties.groupType;
+                        memberProperties.groupYesNo = false;
+                        memberProperties.memberDomain = member.Context.Name.ToString();
+                        memberProperties.memberName = member.SamAccountName.ToString();
+                        memberProperties.memberType = member.StructuralObjectClass.ToString();
+                        memberProperties.sqlUserOnlyYesNo = false;
+
+                        groupProperties.Add(memberProperties);
+                    }
+                    group.Dispose();
+                }
+                finally
+                {
+                    ctx.Dispose();
+                }
+
+
+            }
+
+            userGroupProperties.AddRange(groupProperties);
+        }
+</code></pre>

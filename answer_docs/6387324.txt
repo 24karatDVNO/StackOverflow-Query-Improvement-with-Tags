@@ -1,0 +1,42 @@
+<p><strong>There are a few issues with your code that need to be addressed:</strong></p>
+
+<ol>
+<li><p>You are performing a null check on known value types.  A ValueType instance other than a <code>Nullable&lt;T&gt;</code> will never be null.  This action is unnecessary and hurts performance.  I have fixed this below.</p></li>
+<li><p>You are not accounting for the circumstance of a null reference type field other than <code>string</code>.  For example, what should happen if there is a null <code>Owner</code> or a null <code>List&lt;Owner&gt;</code>?  </p></li>
+<li><p>Since you did not post the <code>GetDefaultValue()</code> function, it's signature is a bit unclear.  My guess is that it accepts a <code>FieldInfo</code> and resolves the default non-null value based on the field type. Since, this in actuality is only applicable to a <code>string</code> argument, it would be better to replace the call with <code>string.Empty</code>.  I have pointed this out in a comment below.</p></li>
+</ol>
+
+<p>Below, I have consolidated, optimized and rewritten your function below, with comments to indicate where different behaviors must be changed or inserted. </p>
+
+<pre><code>public void LoopEverythingAndFix(object instance)
+{
+    var fields = instance.GetType().GetFields(BindingFlags.Public|BindingFlags.Instance)
+    foreach(var fieldInfo in fields){
+       var fieldType = fieldInfo.FieldType;
+       if(!fieldType.IsValueType){
+          bool isString = fieldType == typeof(string);
+          var fieldValue = fieldInfo.GetValue(instance);
+          if(fieldValue != null){
+                if(!isString){
+                    // This should recursion be called when the type is a 
+                    // complex (non-string) reference type that is not null
+                    LoopEverythingAndFix(fieldValue);
+                }
+                // You don't need to fix a non-null string value
+          }
+          else{
+              if(isString){
+                  // since you didn't post the code for this, I am assuming 
+                  // it works correctly, but it may be that you can just replace
+                  // GetDefaultValue(fieldInfo) with string.Empty 
+                  fieldInfo.SetValue(instance, GetDefaultValue(fieldInfo));
+              }
+              else{
+                  // It is unclear how you want to handle a complex reference type 
+                  // field with a null value.  That code should go here.
+              }
+          }
+       } 
+    }
+}
+</code></pre>

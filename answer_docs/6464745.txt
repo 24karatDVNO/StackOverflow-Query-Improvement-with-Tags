@@ -1,0 +1,12 @@
+<p>I have found a solution! I just need to add this as the second line in each controller:</p>
+
+<pre><code>before_filter :authenticate_user!
+</code></pre>
+
+<p>For instance:</p>
+
+<pre><code>class MonkeysController &lt; ApplicationController
+  before_filter :authenticate_user!
+</code></pre>
+
+<p>If you know any better solution, feel free to answer.</p>

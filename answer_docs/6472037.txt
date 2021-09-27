@@ -1,0 +1,8 @@
+<p>I believe you have to create the Builder before you can begin setting properties.  Try something like this (Assuming <code>show</code> is an AlertDialog):</p>
+
+<pre><code>show = new AlertDialog.Builder(mContext).create();
+show.setTitle("Error")
+  .setMessage("no inputs")
+  .setPositiveButton("OK", null)
+  .show();
+</code></pre>

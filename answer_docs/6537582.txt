@@ -1,0 +1,23 @@
+<p>I kinda solved it using the following:</p>
+
+<pre><code>var items = from r in TestaccountRequest.Queryable
+            group r by r.RequestCodeId into g
+            select g.ElementAt(0);
+var grouped = from r in items.ToList()
+              group r by new { Year = r.Requested.Year,
+                               Month = r.Requested.Month } into g 
+              select new { g.Key.Year, g.Key.Month, Count = g.Count() };
+</code></pre>
+
+<p>but I gues thats not the best solution as all objects are getting fetched from the DB, but at least it is working for now, but please provide a better solution if available.</p>
+
+<p><strong>EDIT:</strong><br>
+I now solved it using HQL:</p>
+
+<pre><code>HqlBasedQuery query = new HqlBasedQuery(typeof(ActivationCodeTestaccountRequestRecord),
+            "SELECT DISTINCT r.ActivationCodeId, YEAR(r.Requested), MONTH(r.Requested) " +
+            "FROM ActivationCodeTestaccountRequestRecord r");
+var items = from object[] row in (ArrayList)ActiveRecordMediator.ExecuteQuery(query)
+            group row by new { Year = row[1], Month =row[2] } into g2
+            select new { Year = g2.Key.Year, Month = g2.Key.Month, Count = g2.Count() };
+</code></pre>

@@ -1,0 +1,7 @@
+<p>What you need is simply not possible with default AD configuration. By default all users have full read access in the naming partition of AD (where all user objects are stored), furthermore it is also possible to configure AD to allow anonymous users the same read access. AD is not designed to store private data, basically it is as private as a phone-book.</p>
+
+<p>If your AD has default configuration and you are happy with the fact that every authenticated user can read the data, you should be able to use any attribute which cannot be changed by any trivial means.</p>
+
+<p>For example you can use objectSid, which contains the user's SID in binary or objectGUID, which contains its globally unique object identifier.</p>
+
+<p>However the objectSid attribute can be changed when the SID of the user is changed - there is a TechNet article titled "SID vs. GUID" describing in which scenarios objectSid can be changed - <a href="http://technet.microsoft.com/en-us/library/cc961625.aspx" rel="nofollow">http://technet.microsoft.com/en-us/library/cc961625.aspx</a>.</p>

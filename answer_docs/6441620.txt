@@ -1,0 +1,6 @@
+<p>If your server only supports POST, then Just add a dummy data string to be posted like this,</p>
+
+<pre><code>$('#result').load('/return_result', {test: 10});
+</code></pre>
+
+<p>Then the method will switch to using POST method. But this may not be the most elegant solution.</p>

@@ -1,0 +1,26 @@
+<p>Would something like this help?</p>
+
+<pre><code>SELECT 
+* 
+FROM
+(
+SELECT 
+Department, SalesPerson
+,   SUM(fin_month) SalesPerson_Sum
+FROM 
+[TABLE_NAME]
+GROUP BY Department, SalesPerson
+) a 
+INNER JOIN 
+(
+SELECT 
+    Department
+, SUM(fin_month) AS Department_Sum
+    FROM 
+[TABLE_NAME]
+GROuP BY 
+    Department
+) b
+ON 
+a.Department = b.Department
+</code></pre>

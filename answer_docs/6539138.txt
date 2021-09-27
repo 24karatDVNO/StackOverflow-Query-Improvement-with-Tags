@@ -1,0 +1,3 @@
+<p>A solution with strict CRUD operations doesn't seem useful here to me. However, the operations on resources don't necessarily need to be CRUD operations. Many people even think of this as a bad way to design a REST interface (just google for rest+crud).</p>
+
+<p>So, I think it's totally okay when you define a split operation as one REST call. As you apply this operation on one resource only (the original path), you can define this operation directly on it. No need to define it on multiple resources.</p>

@@ -1,0 +1,13 @@
+<p>According to Javadocs for <code>java.lang.UnsupportedClassVersionError</code> the point of this class is: </p>
+
+<blockquote>
+  <p>Thrown when the Java Virtual Machine
+  attempts to read a class file and
+  determines that the major and minor
+  version numbers in the file are not
+  supported.</p>
+</blockquote>
+
+<p>This tells me that there is a class that is at an unsupported version (usually read this as as "higher version" than what your Ant is using at the moment.</p>
+
+<p>So...that being said, and seeing that your Ant script looks like it is trying to do something possibly with EJB stub generation or of the like, makes me wonder what version of Java EE you are trying to work with and what version of JBoss you are working with. Find out that (like EE 6 isn't Java SE 5) and what JRE JBoss is using. If you are using any jars to package that are at a level higher than 1.5 build 22 (even if it is 1.5 build 23), then you will probably run into this error. Make sure all your jars (even third party jars and libraries and what not that you are using to generate your Java EE app) are all at 1.5 build 22 or lower. That should help alleviate the problem. If you are unsure about a jar's version, you can always "open" it using Winzip and look at its MANAFEST.MF file.</p>

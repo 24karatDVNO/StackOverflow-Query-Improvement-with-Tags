@@ -1,0 +1,13 @@
+<p>You can make a javascript function that you will call everytime you press a key in your textbox (with the onkeypress event).</p>
+
+<pre><code>  function isNumberKey(evt)
+  {
+     var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode &gt; 31 &amp;&amp; (charCode &lt; 48 || charCode &gt; 57))
+        return false;
+
+     return true;
+  }
+</code></pre>
+
+<p><a href="http://www.cambiaresearch.com/c4/029c978b-aac5-472e-97a8-95b256f5febd/How-Can-I-Use-Javascript-to-Allow-Only-Numbers-to-Be-Entered-in-a-TextBox.aspx" rel="nofollow" title="Source">Code sample source</a></p>

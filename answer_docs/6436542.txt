@@ -1,0 +1,11 @@
+<pre><code>while(MyCondition) {
+switch(msg-&gt;state) {
+case MSGTYPE: // ... 
+    break;
+// ... more stuff ...
+case DONE:
+   MyCondition=false; // just add this code and you will be out of loop.
+    break; // **HERE, you want to break out of the loop itself**
+}
+}
+</code></pre>

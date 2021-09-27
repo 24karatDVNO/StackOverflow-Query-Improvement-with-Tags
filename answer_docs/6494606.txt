@@ -1,0 +1,6 @@
+<p>The compiler is complaining because  represents a generic wildcard, as in the type specified between the brackets could be any reference type. Java prefers strong typing and is issuing you a warning to convince you to specify a concrete type as the type specifier.</p>
+
+<p>For example:</p>
+
+<pre><code>Class&lt;String&gt; parameter = String.class;
+</code></pre>

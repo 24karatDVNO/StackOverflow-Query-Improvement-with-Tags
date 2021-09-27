@@ -1,0 +1,24 @@
+<p>You may use something like that..</p>
+
+<pre><code>bash-3.2$ cat /tmp/$$
+Mg1.qna o a vss vss n 0.36 0.03 mult=4 $$UNI
+Mg3.qna o a vss vss n 0.36 0.03 mult=8 $$UNI
+Mg5.qna o a vss vss n 0.36 0.03 mult=6 $$UNI
+Mg7.qna o a vss vss n 0.36 0.03 mult=4 $$UNI
+Mg9.qna o a vss vss n 0.36 0.03 mult=34 $$UNI
+Mg2.qpa o a vcc vcc p 0.36 0.03 mult=6 $$UNI
+Mg4.qpa o a vcc vcc p 0.36 0.03 mult=4 $$UNI
+Mg6.qpa o a vcc vcc p 0.36 0.03 mult=8 $$UNI
+Mg8.qpa o a vcc vcc p 0.36 0.03 mult=34 $$UNI
+
+bash-3.2$ perl -lne 'BEGIN{$val=a} print "$_", " $val"; ++$val'  /tmp/$$
+Mg1.qna o a vss vss n 0.36 0.03 mult=4 $$UNI a
+Mg3.qna o a vss vss n 0.36 0.03 mult=8 $$UNI b
+Mg5.qna o a vss vss n 0.36 0.03 mult=6 $$UNI c
+Mg7.qna o a vss vss n 0.36 0.03 mult=4 $$UNI d
+Mg9.qna o a vss vss n 0.36 0.03 mult=34 $$UNI e
+Mg2.qpa o a vcc vcc p 0.36 0.03 mult=6 $$UNI f
+Mg4.qpa o a vcc vcc p 0.36 0.03 mult=4 $$UNI g
+Mg6.qpa o a vcc vcc p 0.36 0.03 mult=8 $$UNI h
+Mg8.qpa o a vcc vcc p 0.36 0.03 mult=34 $$UNI i
+</code></pre>

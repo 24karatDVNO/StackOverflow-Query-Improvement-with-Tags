@@ -1,0 +1,10 @@
+<p>You have the option of checking to make sure the parameter is of the right type. However, it's worth considering what you'd do if it isn't. If you're just going to throw an exception, you might be better off just assuming it's the right type and the the exception be thrown when something you do isn't allowed. If you're not going to add any more useful information to the exception/error that would already be thrown, then there's not much point in checking it in the first place.</p>
+
+<p>As to giving the user an indication of what type you want, I generally stick with including it in the variable name:</p>
+
+<pre><code>function sayHello($aNameStr)
+function addItems($itemList)
+...etc...
+</code></pre>
+
+<p>That, plus reasonable documentation, will mean the user can look at the function and figure out what they should be passing in in the first place.</p>

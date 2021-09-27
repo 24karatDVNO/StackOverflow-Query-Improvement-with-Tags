@@ -1,0 +1,3 @@
+<p>Rather than returning a HTML response to the ship button, return the thermal data with a MIME type of application/epl2 and if you have the ActiveX control from UPS installed, the data will be spooled to your printer.</p>
+
+<p>If you need to update the UI after shipping then you'll need to store the data somehow (disk, session variable, etc.) and perhaps update the UI but then do a http redirect to the binary data so it prints.</p>

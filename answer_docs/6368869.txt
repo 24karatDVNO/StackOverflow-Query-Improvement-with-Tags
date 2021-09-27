@@ -1,0 +1,5 @@
+<p>In regular OpenGL, the command you need is gluUnProject:</p>
+
+<p><a href="http://www.opengl.org/sdk/docs/man/xhtml/gluUnProject.xml" rel="nofollow">http://www.opengl.org/sdk/docs/man/xhtml/gluUnProject.xml</a></p>
+
+<p>For WebGL, you will have to roll your own since it doesn't have any fixed function pipeline support.  Assuming that you are using standard transformation matrices, you can just modify the formulas in that man page.  It would be hard to say anything more specific without the details of you set up your coordinate systems.</p>

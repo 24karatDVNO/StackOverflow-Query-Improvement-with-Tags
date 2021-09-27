@@ -1,0 +1,5 @@
+<p>I would load the "regular" lead instance from nHibernate with its contact detail collection. Then I would use AutoMapper, to map it to the DTO class.</p>
+
+<p>In my opinion, this is a much cleaner approach since you do not create special data access methods just for "simple" DTO mappings. And it's easier for refactoring since everything is expressed via "c sharp code".</p>
+
+<p>Link to <a href="http://automapper.codeplex.com/" rel="nofollow">AutoMapper</a></p>

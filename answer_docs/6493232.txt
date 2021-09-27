@@ -1,0 +1,7 @@
+<pre><code>SELECT
+  *
+FROM
+  myTable
+WHERE
+  codMSG = (SELECT MIN(codMsg) FROM myTable AS lookup WHERE anotherCod = myTable.anotherCod)
+</code></pre>

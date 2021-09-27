@@ -1,0 +1,7 @@
+<p>You need to look at how MySQL is evaluating the queries. To do this, use the built-in command <code>EXPLAIN</code>, which describes how MySQL executes a given select statement.</p>
+
+<p>Here is the reference on EXPLAIN: <a href="http://dev.mysql.com/doc/refman/5.5/en/explain.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.5/en/explain.html</a></p>
+
+<p>You can use EXPLAIN's output to see the MySQL "query execution plan", including which indexes and joins it would use, and so on. From this you can interpret why a given query is fast or slow, and what you can do to improve it. Usually this means adding a particular index, or tweaking one so it can be used in your query.</p>
+
+<p>You can Google "MySQL EXPLAIN" for a bunch of guides on using this powerful tool. Here is one such walk-through: <a href="http://forums.spry.com/howtos/1345-using-mysqls-explain-command.html" rel="nofollow">http://forums.spry.com/howtos/1345-using-mysqls-explain-command.html</a></p>

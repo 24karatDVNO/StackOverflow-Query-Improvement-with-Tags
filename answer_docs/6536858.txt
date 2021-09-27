@@ -1,0 +1,17 @@
+<p>I think you should have a look at bag. Add the comments as a bag to employee and you only need 1 get/load statement. </p>
+
+<p>The Employee class:</p>
+
+<pre><code>IdEmployee
+Name
+LastName
+IList &lt;CommentsEmployee&gt; Comments
+</code></pre>
+
+<p>The xml for the bag:</p>
+
+<pre><code>&lt;bag name="Comments" inverse="false" lazy="true" cascade="save-update" generic="true"&gt;
+    &lt;key column="EmployeeId"/&gt;
+    &lt;one-to-many class="EmployeeComments"&gt;
+&lt;/bag&gt;
+</code></pre>

@@ -1,0 +1,33 @@
+<pre><code>//the function should return the element from iArr which has the least distance from input
+double nearestValue(vector&lt;double&gt; iArr, double input)
+{
+    double pivot(0),temp(0),index(0);
+    pivot = abs(iArr[0]-input);
+    for(int m=1;m&lt;iArr.size();m++)
+    {           
+        temp = abs(iArr[m]-input);
+
+        if(temp&lt;pivot)
+        {
+            pivot = temp;
+            index = m;
+        }
+    }
+
+    return iArr[index];
+}
+
+void main()
+{
+    vector&lt;double&gt; iArr;
+
+    srand(time(NULL));
+    for(int m=0;m&lt;10;m++)
+    {
+        iArr.push_back(rand()%20);
+        cout&lt;&lt;iArr[m]&lt;&lt;" ";
+    }
+
+    cout&lt;&lt;"\nnearest value is: "&lt;&lt;lib.nearestValue(iArr,16)&lt;&lt;"\n";
+}
+</code></pre>

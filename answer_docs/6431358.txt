@@ -1,0 +1,30 @@
+<p>There is the entity that corresponds to the unique human being:</p>
+
+<pre><code>     EMPLOYEE
+     eeid PK
+     firstname
+     surname
+     dateofbirth
+     dateofhire
+     dateoftermination
+     etc
+</code></pre>
+
+<p>and there is the entity that corresponds to the position(s) held by the employee:</p>
+
+<pre><code>     EMPLOYEEPOSITION
+     id pk
+     eeid FK references EMPLOYEE(eeid)
+     title
+     reportsto FK references EMPLOYEE(eeid)
+     startdate not null usually
+     enddate allows null
+</code></pre>
+
+<p>The question of how to enforce whether an EMPLOYEE's positions can overlap is not typically addressed by creating multiple EMPLOYEE records. Inserts/updates to EMPLOYEEPOSITION typically look at the startdate/enddate columns for each of an EE's positions and, depending on what rule is in effect (e.g. overlaps allowed/disallowed) either commit or rollback the operation.</p>
+
+<p>All of an EE's positions can be found using eeid. </p>
+
+<p>You do not usually put a termination date in the EE record unless and until it's necessary.  If the EE is a contract worker, I'd instantiate the contract term as an EMPLOYEEPOSITION.</p>
+
+<p>You can analogize from here for any entity that exists in a many-to-one relationship back to EMPLOYEE.</p>

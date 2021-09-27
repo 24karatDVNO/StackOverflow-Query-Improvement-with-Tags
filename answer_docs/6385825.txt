@@ -1,0 +1,14 @@
+<p>This might be what you want (untested): requires bash version 4 for associative arrays</p>
+
+<pre><code>declare -A count
+cd /home/user/Drive-backup
+for userdir in */*/*/*; do
+    username=${userdir##*/}
+    lines=$(grep -cv '^[[:space:]]$' $userdir/user.dir/*.ano | awk '{sum += $2} END {print sum}')
+    (( count[$username] += lines ))
+done
+
+for user in "${!count[@]}"; do
+    echo $user ${count[$user]}
+done
+</code></pre>

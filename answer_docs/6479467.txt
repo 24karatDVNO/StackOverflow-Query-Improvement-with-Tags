@@ -1,0 +1,12 @@
+<p>This might be relevant: <a href="http://bugs.jquery.com/ticket/8346" rel="nofollow">http://bugs.jquery.com/ticket/8346</a></p>
+
+<p>The one reporting it got around with using <a href="http://api.jquery.com/jQuery.cssHooks/" rel="nofollow">jQuery.cssHooks</a>:</p>
+
+<pre><code>jQuery.cssHooks["MsTransform"] = {
+    set: function( elem, value ) {
+        elem.style.msTransform = value;
+    }
+};
+
+$("#divid").css("MsTransform", "rotate(-90deg)");
+</code></pre>

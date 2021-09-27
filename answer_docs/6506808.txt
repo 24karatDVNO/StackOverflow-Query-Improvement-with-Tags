@@ -1,0 +1,11 @@
+<p>I tried to set it up through snapshot dependencies as Danere pointed out and it is working. Since the TC way is different from what you probably tried with Jenkins here is my setup:</p>
+
+<ol>
+<li>I added another project to the chain named <strong>C</strong> that contains 2 VCS: projectA and projectB and a dummy build step.</li>
+<li>Project <strong>C</strong> is configured to be triggered by any VCS change</li>
+<li>Project <strong>C</strong> has a snapshot dependency on project <strong>B</strong></li>
+<li>Project <strong>B</strong> has a snapshot dependency on project <strong>A</strong></li>
+<li>Both project <strong>A</strong> and <strong>B</strong> do <strong>not</strong> have any triggers.</li>
+</ol>
+
+<p>The project C could be probably eliminated but my configuration is more complex and the last step performs system tests and I didn't want it to monitor all VCSs of all the upstream projects.</p>

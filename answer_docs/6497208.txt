@@ -1,0 +1,5 @@
+<p>I'd recommend that you create a Movieclip, lets call it Fish_MC, and connect that movieclip to a class, lets call it Fish.</p>
+
+<p>Inside of the Fish_MC, you can dedicate each frame to a "state" that the fish will be in. For example, have one frame for swimming slow, one frame for swimming fast and one frame for biting. On each of those frames, create a new movieclip that will contain the animation for the coressponding state that the fish is supposed to be in.</p>
+
+<p>The Fish class can contain all of the AI for the fish and have a "setState" method that changes which frame (ie state) the Fish_MC is on using a call to gotoAndStop.</p>

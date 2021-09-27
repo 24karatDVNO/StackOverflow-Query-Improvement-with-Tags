@@ -1,0 +1,10 @@
+<p>I don't internals of git but following works for me.</p>
+
+<pre><code>git reset --hard &lt;SHA of commit one commit before your first local commit &gt; ( If commit order is RA-B-C if B and C are local commits RA is SHA you have to give) 
+
+git merge --squash ORIG_HEAD
+
+git commit
+</code></pre>
+
+<p>It will be great if someone can explain this.</p>

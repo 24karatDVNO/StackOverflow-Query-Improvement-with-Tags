@@ -1,0 +1,23 @@
+<p>I'm curious about your observation, I can only observe a single check of <code>GetHashCode</code> for each of the items in each list. But as far as an implementation of <code>Union</code> using your comparer, think of it like this </p>
+
+<pre><code>static IEnumerable&lt;T&gt; Union&lt;T&gt;(this IEnumerable&lt;T&gt; first, IEnumerable&lt;T&gt; second, IEqualityComparer&lt;T&gt; comparer)
+{        
+    // there's undoubtedly validation against null sequences
+
+    var unionSet = new HashSet&lt;T&gt;(comparer);
+
+    foreach (T item in first)
+    {
+        if (unionSet.Add(item))
+            yield return item;
+    }
+
+    foreach (T item in second)
+    {
+        if (unionSet.Add(item))
+            yield return item;
+    }
+}
+</code></pre>
+
+<p>The <code>Add</code> method of the <code>HashSet</code> will return true or false if the item can be added. In the inner implementation, it will make a call to the item's <code>GetHashCode</code> and get the value, and then see if this value already exists inside the collection. If it does, it compares each with the matching hash code for equality. If there is no equality match (or if the hash code did not already exist), the item is successfully added and the method returns true. Otherwise, the item is not added and the method returns false. </p>

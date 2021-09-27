@@ -1,0 +1,4 @@
+<p>you are saying to replace the entire match with blank (''). You want to put the parenthesis around the parts you want to keep and then replace with $1$2 which is equal to what is in the first (<code>$1</code>) and second (<code>$2</code>) set of parenthesis.</p>
+
+<pre><code>preg_replace("/^([a-z]{2})[a-z\s]*(.*)$/i", '$1$2', $string);
+</code></pre>

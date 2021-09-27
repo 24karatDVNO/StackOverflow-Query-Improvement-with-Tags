@@ -1,0 +1,1 @@
+<p>Not sure why you call render in your action at that exact place where you call it. In short: You shouldn't need to do it there. If you do it, rails will try to render again when the method returns control, so you either have to return from the method after calling render or not call it in the method.</p>

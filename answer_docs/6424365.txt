@@ -1,0 +1,27 @@
+<pre><code>RewriteEngine on
+# force canonical name
+RewriteCond %{HTTP_HOST} ^domain\.com$ [NC]
+RewriteRule ^(.*)$ http://www.domain.com/$1 [R=301,QSA]
+
+# Add .php to requested resource (if such php file does exist)
+# e.g. www.example.com/services/ =&gt; www.example.com/services.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+)/$ /$1.php [QSA,L]
+
+# Force trailing slash to be present (only if such file does not exist)
+# e.g. www.example.com/services =&gt; www.example.com/services/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*[^/])$ /$1/ [R=301,QSA]
+</code></pre>
+
+<p>If you request this URL <code>domain.com/services</code> it will be redirected to <code>domain.com/services/</code> if such file/folder does not exist. Then, if  (ONLY IF) <code>domain.com/services.php</code> is does exist, it will be rewritten to <code>domain.com/services.php</code>. If there is no such php file, then you should see 404 error.</p>
+
+<p>In theory you could add these lines after "force canonical name" rule, then you can get rid of few RewriteCond rules later (useful if you have quite a bit rewrite rules), but you have to verify this on your site -- it works fine for me, but you may have specific circumstances:</p>
+
+<pre><code># Do not do anything for already existing files
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule .+ - [L]
+</code></pre>

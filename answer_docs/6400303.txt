@@ -1,0 +1,47 @@
+<p>Try This</p>
+
+<p>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Drawing;</p>
+
+<p>namespace WindowsFormsApplication2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }</p>
+
+<pre><code>    private void button1_Click(object sender, EventArgs e)
+    {
+        ComboBox b1 = new ComboBox();
+        b1.BackColor = Color.Blue;
+
+        flp.Controls.Add(b1);
+
+        b1.Text = b1.TabIndex.ToString();
+
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+        if (flp.Controls.Count &gt; 0)
+        {
+
+            flp.Controls.RemoveAt(flp.Controls.Count - 1);
+        }
+    }
+
+
+
+}
+</code></pre>
+
+<p>}</p>

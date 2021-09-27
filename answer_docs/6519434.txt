@@ -1,0 +1,1 @@
+<p>What I Normally do is create a ObjectContext once and store it in Thread Local Storage (using NamedThreadDataSlot) and access the ObjectContext from there. This ensures that the ObjectContext is shared across the request, which will be handled by one thread.</p>

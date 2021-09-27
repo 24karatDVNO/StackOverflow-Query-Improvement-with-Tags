@@ -1,0 +1,3 @@
+<p>How are you adding the returned data to the DOM?  If you're treating it as raw HTML (e.g. calling setInnerHtml()) that would explain the behavior that you're seeing.  If you inspect the DOM structure with FireBug/WebInspector, do you see a <code>&lt;chart&gt;</code> element?</p>
+
+<p>Depending on the widget that you're using to display the XML, you'll want something like <code>setInnerText()</code>.</p>

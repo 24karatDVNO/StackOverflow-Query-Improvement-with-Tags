@@ -1,0 +1,34 @@
+<p>This is yo illustrate my previous comment:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;iterator&gt;
+
+template&lt;class MyIterator&gt;
+bool is_subrange(const MyIterator&amp; first1, const MyIterator&amp; last1, const MyIterator&amp; first2, const MyIterator&amp; last2)
+{
+   return std::distance(first1, first2) &gt;=0 &amp;&amp; std::distance(last2, last1) &gt;= 0;
+}
+
+int main()
+{
+   std::vector&lt;int&gt; v;
+   for (int i=0; i &lt; 100; ++i)
+      v.push_back(i);
+   std::cout &lt;&lt; std::distance(v.begin(), v.end()) &lt;&lt; std::endl;
+   std::cout &lt;&lt; std::distance(v.end(), ++v.begin()) &lt;&lt; std::endl;
+   std::cout &lt;&lt; is_subrange(v.begin(), v.end(), ++v.begin(), --v.end()) &lt;&lt; std::endl;
+   std::cout &lt;&lt; is_subrange(++v.begin(), v.end(), v.begin(), --v.end()) &lt;&lt; std::endl;
+
+   return 0;
+}
+</code></pre>
+
+<p>This avoids comparing each element when dealing with subranges inside the same simple containers like vectors.</p>
+
+<p>Of course the function is_subrange() is very simple and gets more complicated with lists as they are doubly linked and hence the distance can never be negative e.g. std::distance(l.begin(), l.end()) == 1 and std::distance(l.end(), l.begin()) == 1 are possible.
+Ranges as [100,0] and [20,4] are also not handled by this simple sample, but it is feasible.</p>
+
+<p>Anyway, std::search() will do the job as previously posted by Mark-b</p>
+
+<p>cheers,</p>

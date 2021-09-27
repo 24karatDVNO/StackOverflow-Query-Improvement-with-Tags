@@ -1,0 +1,5 @@
+<p>AFAIK GUID/UUID is not a standard card instance identification mean applicable for any smartcard product. For example, SIM cards are rather identified using the content of a file EF_ICCID (ICC Identification) (ETSI TS 102 221 V6.15.0 (2010-02)) so you can get it through normal UICC file access APIs. The ATR is used for card type identification (ISO/IEC 7816-4). GUID/UUID presence on card is specific to some smartcard manufacturer/product or smartcard application.</p>
+
+<p>So for GUID/UUID you should identify at least the product and the manufacturer doc or someone working with that specific card can answer you if this information is retrievable and how (using standard APIs - e.g. if it's stored in a EF- or proprietary) from an applet.</p>
+
+<p>From terminal side this is usually done using SELECT/READ* or GET DATA APDUs after some security verifications.</p>

@@ -1,0 +1,8 @@
+<p>I would suggest you to download files from <a href="http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/" rel="nofollow">this</a> location and I suggest you to go through their tutorial. Its easy and it won't stretch your image at all. I have used these files in one of my working project. You just need to import their header file and call following lines</p>
+
+<pre><code>    UIImage *tmpImage = [yourImageView.image resizedImage:CGSizeMake(desiredWidth,DesiredHeight) interpolationQuality:kCGInterpolationHigh];
+    yourImageView.contentMode = UIViewContentModeCenter;
+    [yourImageView setImage:tmpImage];
+</code></pre>
+
+<p>Hope it helps.</p>

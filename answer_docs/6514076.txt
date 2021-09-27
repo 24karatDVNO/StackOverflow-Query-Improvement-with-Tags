@@ -1,0 +1,12 @@
+<p>Found the anwser here:
+<a href="https://stackoverflow.com/questions/930237/javascript-cancel-stop-image-requests/1468452#1468452">Javascript: Cancel/Stop Image Requests</a></p>
+
+<pre><code>    if(window.stop !== undefined)
+    {
+         window.stop();
+    }
+    else if(document.execCommand !== undefined)
+    {
+         document.execCommand("Stop", false);
+    }
+</code></pre>

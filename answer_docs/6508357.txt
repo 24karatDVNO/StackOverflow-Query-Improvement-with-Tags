@@ -1,0 +1,19 @@
+<p>Something like this might be best to do:</p>
+
+<pre><code>$(document).ready(function(){
+    $("#fontlabel").click(function(){
+        var name = $(this).attr("rel");
+        $("#"+name).toggle();
+    });
+});
+
+
+&lt;span id="fontlabel" rel="fontinfo" style="cursor:pointer; color:#06C;"&gt;Font List for Input&lt;/span&gt;
+&lt;span id="stagenamefont" class="fontsettings"&gt; ...stuff...&lt;/span&gt;
+&lt;br /&gt;
+&lt;span id="fontinfo"&gt; font settings here&lt;/span&gt;
+</code></pre>
+
+<p>Try this and see if that works</p>
+
+<p><a href="http://jsfiddle.net/tomgrohl/FCTRq/" rel="nofollow">Demo here</a></p>

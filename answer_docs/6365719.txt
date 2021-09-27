@@ -1,0 +1,12 @@
+<p>Thanks !!! </p>
+
+<p>So I got the point: I have to use:</p>
+
+<pre><code>- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+
+    if (frame == [self mainFrame]) {
+
+        if ([**frame document**] == nil) NSLog(@"mainFrameDocument with URL = %@ is nil!", [self mainFrameURL]);
+    }
+}
+</code></pre>

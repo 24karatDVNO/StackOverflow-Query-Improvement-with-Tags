@@ -1,0 +1,18 @@
+<p>Certainly a MySQL query can reference any database that lives in the same instance of MySQL.</p>
+
+<pre><code>SELECT * FROM `databasename`.`tablename` ...
+</code></pre>
+
+<p>And it's also easy to get the list of database names if the attacker can use SQL injection to execute arbitrary queries as root:</p>
+
+<pre><code>SHOW DATABASES;
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code>SELECT DISTINCT table_schema FROM INFORMATION_SCHEMA.TABLES;
+</code></pre>
+
+<p>I encourage you to perform a thorough code review of all your code and be safer about writing dynamic SQL queries.  You can use proper type coercion, string-escaping functions, and query parameters for most cases, but there are still more cases where you need to build dynamic SQL strings and those solutions don't help. </p>
+
+<p>Review my presentation, <a href="http://www.slideshare.net/billkarwin/sql-injection-myths-and-fallacies" rel="nofollow">SQL Injection Myths and Fallacies</a>, or the chapter on SQL injection in my book <a href="http://www.pragprog.com/titles/bksqla/sql-antipatterns" rel="nofollow">SQL Antipatterns: Avoiding the Pitfalls of Database Programming</a> for ideas.</p>

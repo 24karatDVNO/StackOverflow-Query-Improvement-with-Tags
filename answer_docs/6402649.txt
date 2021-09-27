@@ -1,0 +1,7 @@
+<p>I don't see any reason why that wouldn't be possible. Assuming your Web Application is accessible via HTTP, you should be fine (this is obviously VERY likely to be true).</p>
+
+<p>All RSpec Request Specs are basically black box tests. That's the point of Request Specs - you want to simulate a real user and exercise your whole Application stack - starting with HTML views down to database access. The same is true for cucumber features.</p>
+
+<p>Writing you Specs might be a little less comfortable, because you can't rely on the Web Application to adhere to Rails conventions.</p>
+
+<p>Anyway... I hope this helps.</p>

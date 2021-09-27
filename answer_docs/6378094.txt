@@ -1,0 +1,15 @@
+<p>You set a 'fake' drawable whilst downloading:</p>
+
+<pre><code>DownloadedDrawable downloadedDrawable = new DownloadedDrawable(task);
+imageView.setImageDrawable(downloadedDrawable);
+</code></pre>
+
+<p>This <code>DownloadedDrawable</code> is just a <code>ColorDrawable</code> and it has a black background:</p>
+
+<pre><code>public DownloadedDrawable(...) {
+    super(Color.BLACK);
+   ...
+}
+</code></pre>
+
+<p>Is it just a case of using <code>Color.WHITE</code>? Or simply <code>super(0)</code> to get it to be transparent, which would allow you to see the white <code>LinearLayout</code>. 0 is transparent because Android interprets the colour as <code>0xAARRGGBB</code> (where a = alpha, r = red, g = green, b = blue), resulting in a zero alpha value.</p>

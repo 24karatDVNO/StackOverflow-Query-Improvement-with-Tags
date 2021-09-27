@@ -1,0 +1,7 @@
+<p>I don't believe what you are trying to accomplish is possible by means of DisplayMember. Its a property, that's how it was designed. However, there are a few other means to accomplish what you want.</p>
+
+<p>1) You could wireup to the ComboBox's <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.listcontrol.format.aspx" rel="nofollow">Format</a> event. This is the ideal place to change your databound items into human-readable items for display, and really is exactly what you want.</p>
+
+<p>2) You could use LINQ to SQL classes instead, and override the .ToString() portions in the partial classes to display the data how you want. When you databind to a LINQ to SQL object the ComboBox will display the string value of that object.</p>
+
+<p>Since you are already using LINQ to DataSet, I would just wireup to the Format event, though.</p>

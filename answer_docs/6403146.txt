@@ -1,0 +1,10 @@
+<p>You haven't closed your <code>click</code> event handler function. Change it to this:</p>
+
+<pre><code>$(document).ready(function() {
+          $("#submits").click(function() {        
+              alert($("#user_val").val());
+          });
+});
+</code></pre>
+
+<p>And change <code>Value</code> to <code>value</code> (note the lowercase "v"), and then it should work fine.</p>

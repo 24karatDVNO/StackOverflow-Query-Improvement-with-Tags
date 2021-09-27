@@ -1,0 +1,16 @@
+<p>It seems in your inner foreach loop, where you are doing <code>$xls-&gt;addRow($subvalue)</code>, it keeps on adding all email sub-arrays. I think you should call some function inside the outer foreach but before the inner one, to clean the rows that have already been added to $xls.</p>
+
+<p>Here is a test run that I could think of:</p>
+
+<ol>
+<li>first call to the outer foreach is made - $email = email1@fake.com</li>
+<li>first call to the inner foearch is made - calls $xls->addrow() for each of the values of the "email1@fake.com" array</li>
+<li>first call to $xls->emailFile() is called that opens "email.xls" in w+ mode and writes the contents to the file</li>
+<li>second call to the outer foreach is made - $email = email2@fake.com</li>
+<li>second call to the inner foearch is made - calls $xls->addrow() for each of the values of the "email2@fake.com" array. <strong>Note -</strong> <em>I think at this point the rows added earlier to $xls in step 2 still exist and this might be the issue. If yes, you need to some cleanup either before the inner foreach starts or in the $this->buildXLS() method</em></li>
+<li>second call to $xls->emailFile() is called that opens "email.xls" in w+ mode and writes the contents to the file that includes values for both the subarrays.</li>
+</ol>
+
+<p>I'm not sure what is the purpose of $this->buildXLS() and have ignored it for my explanation above.</p>
+
+<p>Does the above make sense?</p>

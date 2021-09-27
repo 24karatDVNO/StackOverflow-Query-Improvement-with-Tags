@@ -1,0 +1,11 @@
+<p>try this (taking in consederation that #user_id is input field)</p>
+
+<pre><code>$(document).ready(function(){
+  var yourVAL = $("#user_id").val();
+  $('#user_id').bind('change keyup',function () {
+    if($("#user_id").val() != yourVAL){
+        calculateAmounts();
+    } 
+  }).change();
+});
+</code></pre>

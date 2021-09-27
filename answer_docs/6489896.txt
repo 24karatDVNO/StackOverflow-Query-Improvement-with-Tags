@@ -1,0 +1,22 @@
+<p>You never use the With Statement, so just do this instead:</p>
+
+<pre><code>For i1 = LBound(Results1) To UBound(Results1)
+    Worksheets("properties").Select
+    Set p1results = Range(Results1(i1))
+    p1results.EntireRow.Copy
+    Worksheets("SearchResult").Select
+    NextRow = Range("D65536").End(xlUp).Row + 1
+    Cells(NextRow, 1).Select
+    ActiveSheet.Paste           
+Next i1
+</code></pre>
+
+<p>or better:</p>
+
+<pre><code>For i1 = LBound(Results1) To UBound(Results1)
+    Worksheets("properties").Range(Results1(i1)).EntireRow.Copy
+    Worksheets("SearchResult").Cells(Range("D65536").End(xlUp).Row + 1, 1).Paste
+Next i1
+</code></pre>
+
+<p>Depending on what you're doing, you might want to use PasteSpecial instead.</p>

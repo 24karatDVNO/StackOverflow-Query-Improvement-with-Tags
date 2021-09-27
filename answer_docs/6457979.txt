@@ -1,0 +1,40 @@
+<p>XSLT:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"
+    exclude-result-prefixes="ns0"
+&gt;
+  &lt;xsl:output method="xml" indent="yes"/&gt;
+
+  &lt;xsl:template match="FinalBusinessDetails"&gt;
+    &lt;FinalBusinessDetails&gt;
+      &lt;BusinessIdDetails xmlns="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+        &lt;ns0:FinalBusinessIdDetails&gt;
+          &lt;ns0:NVBusinessId&gt;
+            &lt;xsl:apply-templates select="//ns0:FinalBusinessIdDetails"/&gt;
+          &lt;/ns0:NVBusinessId&gt;
+        &lt;/ns0:FinalBusinessIdDetails&gt;
+      &lt;/BusinessIdDetails&gt;
+    &lt;/FinalBusinessDetails&gt;
+  &lt;/xsl:template&gt;
+
+
+  &lt;xsl:template match="ns0:FinalBusinessIdDetails"&gt;
+    &lt;xsl:value-of select="ns0:NVBusinessId/."/&gt;
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;FinalBusinessDetails&gt;
+  &lt;BusinessIdDetails xmlns="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+    &lt;ns0:FinalBusinessIdDetails xmlns:ns0="http://www.portal.nv.gov/FinalCorporationDetails"&gt;
+      &lt;ns0:NVBusinessId&gt;:NV0511201142:NV0511201143:NV20111227759:NV20111227763:NV20111227763:NV20111227759::NV20111227802&lt;/ns0:NVBusinessId&gt;
+    &lt;/ns0:FinalBusinessIdDetails&gt;
+  &lt;/BusinessIdDetails&gt;
+&lt;/FinalBusinessDetails&gt;
+</code></pre>

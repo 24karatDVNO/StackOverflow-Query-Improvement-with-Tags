@@ -1,0 +1,132 @@
+<p>aah, after i sought the functions provided by xmlrpc-c library, i found <code>xmlrpc_serialize_response();</code> , which i thought will do such thing</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;xmlrpc.h&gt;
+#include &lt;xmlrpc_client.h&gt;
+#include &lt;xmlrpc-c/base.h&gt;
+#include &lt;xmlrpc-c/util.h&gt;
+
+#define XMLRPC_NAME       "XML-RPC tesaja"
+#define XMLRPC_VERSION    "0.1"
+
+int main()
+{
+//declare
+    xmlrpc_env env;
+    xmlrpc_value *result = NULL;
+
+    xmlrpc_client_init(XMLRPC_CLIENT_NO_FLAGS, XMLRPC_NAME, XMLRPC_VERSION);
+    xmlrpc_env_init(&amp;env);
+
+
+     result = xmlrpc_client_call(&amp;env, "http://xmlrpc-c.sourceforge.net/api/sample.php" ,
+                                 "sample.sumAndDifference", "(ii)", //method
+                                (xmlrpc_int32) 5,                  //var
+                                (xmlrpc_int32) 3);                 //var
+
+    /* ma code */
+     char output[1024] = {0};
+     int l_output = 0;
+    /* ------------------ keluarin xml ------------------*/
+        xmlrpc_value *params;
+        xmlrpc_mem_block *xmlmemblockP = NULL;
+
+    params = xmlrpc_build_value(&amp;env, "(ii)", (xmlrpc_int32) 5, (xmlrpc_int32) 7);    
+    xmlmemblockP = XMLRPC_MEMBLOCK_NEW(char, &amp;env, 0);
+    xmlrpc_serialize_call(&amp;env, xmlmemblockP, "sample.sumAndDifference", params);
+
+
+    l_output = snprintf(output,XMLRPC_MEMBLOCK_SIZE(char, xmlmemblockP),"%s",XMLRPC_MEMBLOCK_CONTENTS(char, xmlmemblockP));
+    output[l_output] = '\0';
+
+    printf("submit data -&gt; \n %s\n",output);
+
+    XMLRPC_MEMBLOCK_FREE(char, xmlmemblockP);
+
+    /* Dispose of our parameter array. */
+    xmlrpc_DECREF(params);
+
+     /* ------------------ keluarin xml ------------------*/
+
+
+    if(env.fault_occurred)
+    {
+    printf("err : %s\n",env.fault_string);
+        return 0;
+    }
+
+
+    // Parse our result value 
+    xmlrpc_int32 sum, difference;
+
+    xmlrpc_decompose_value(&amp;env, result, "{s:i,s:i,*}",
+                       "sum", &amp;sum,
+                       "difference", &amp;difference);
+
+    /* keluarin xml respon */
+
+    xmlmemblockP = XMLRPC_MEMBLOCK_NEW(char, &amp;env, 0);
+
+    xmlrpc_serialize_response(&amp;env,xmlmemblockP,result);    
+    l_output = snprintf(output,XMLRPC_MEMBLOCK_SIZE(char, xmlmemblockP),"%s",XMLRPC_MEMBLOCK_CONTENTS(char, xmlmemblockP));
+    output[l_output] = '\0';    
+    printf("respon data-&gt; \n %s \n",output);
+    XMLRPC_MEMBLOCK_FREE(char, xmlmemblockP);
+
+    /* keluarin xml respon*/
+
+
+    if(env.fault_occurred)
+    {
+        printf("err : %s\n",env.fault_string);
+        return 0;
+    }
+
+
+    // Print out our sum and difference.  
+    printf("Sum: %d, Difference: %d\n", (int) sum, (int) difference);
+
+
+    // Dispose of our result value.  
+    xmlrpc_DECREF(result);
+
+    //Shutdown our XML-RPC client library. 
+    xmlrpc_env_clean(&amp;env);
+    xmlrpc_client_cleanup();
+
+
+
+return 0;
+}
+</code></pre>
+
+<p><strong>output</strong></p>
+
+<pre><code>submit data -&gt; 
+ &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;methodCall&gt;
+&lt;methodName&gt;sample.sumAndDifference&lt;/methodName&gt;
+&lt;params&gt;
+&lt;param&gt;&lt;value&gt;&lt;i4&gt;5&lt;/i4&gt;&lt;/value&gt;&lt;/param&gt;
+&lt;param&gt;&lt;value&gt;&lt;i4&gt;7&lt;/i4&gt;&lt;/value&gt;&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodCall&gt;
+respon data-&gt; 
+ &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;methodResponse&gt;
+&lt;params&gt;
+&lt;param&gt;&lt;value&gt;&lt;struct&gt;
+&lt;member&gt;&lt;name&gt;sum&lt;/name&gt;
+&lt;value&gt;&lt;i4&gt;8&lt;/i4&gt;&lt;/value&gt;&lt;/member&gt;
+&lt;member&gt;&lt;name&gt;difference&lt;/name&gt;
+&lt;value&gt;&lt;i4&gt;2&lt;/i4&gt;&lt;/value&gt;&lt;/member&gt;
+&lt;/struct&gt;&lt;/value&gt;&lt;/param&gt;
+&lt;/params&gt;
+ /methodResponse&gt;
+Sum: 8, Difference: 2
+</code></pre>
+
+<p>and fortunately it did.
+now thats first question done with.
+but second question left unanswered, anyone mind to answer the left?</p>

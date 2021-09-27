@@ -1,0 +1,5 @@
+<p>Reading and writing data is not bound to a single thread, in fact it's using some libraries which will work asynchronously.</p>
+
+<p><strong>Only your code is running in a single thread</strong></p>
+
+<p>Maybe your facing problems with the V8 garbage collection, hard to tell. Or, as Raynos pointed, your code for telling the libraries to write to the sockets (not the really sending) is bound by the single core so that it's to slow asking node to send data to all recipients.</p>

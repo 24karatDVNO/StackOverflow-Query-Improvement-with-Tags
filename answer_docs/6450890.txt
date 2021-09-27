@@ -1,0 +1,12 @@
+<p>To separate the logic of table joins it's possible to use brackets:</p>
+
+<pre><code>select 
+    *
+from 
+    t1
+    inner join t2 on t1.some_id = t2.some_id
+    inner join (
+        t3 
+        left join t4 on t3.some_id = t4.some_id
+    ) on t2.some_id = t3.some_id
+</code></pre>

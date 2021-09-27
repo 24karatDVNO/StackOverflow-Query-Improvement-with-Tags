@@ -1,0 +1,11 @@
+<p>You could try:</p>
+
+<pre>
+if ($(this).is(":checked")) {
+    $(this).attr("checked",true);
+    $(this).addClass("checked");
+} else {
+    $(this).removeAttr("checked");
+    $(this).removeClass("checked");
+}
+</pre>

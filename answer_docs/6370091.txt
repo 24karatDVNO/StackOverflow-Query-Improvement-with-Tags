@@ -1,0 +1,64 @@
+<p>Mind that the request pool tries to send all requests in parallel, so they cannot know cookies not yet received of course. E.g.:</p>
+
+<pre><code>&lt;?php
+
+$url = "http://dev.iworks.at/ext-http/.cookie.php";
+
+function cc($a) { return array_map("current", array_map("current", $a)); }
+
+$single_req = new HttpRequest($url);
+
+printf("1st single request cookies:\n");
+$single_req-&gt;send();
+print_r(cc($single_req-&gt;getResponseCookies()));
+
+printf("waiting 1 second...\n");
+sleep(1);
+
+printf("2nd single request cookies:\n");
+$single_req-&gt;send();
+print_r(cc($single_req-&gt;getResponseCookies()));
+
+printf("1st pooled request cookies:\n");
+$pooled_req = new HttpRequestPool(new HttpRequest($url), new HttpRequest($url));
+$pooled_req-&gt;send();
+foreach ($pooled_req as $req) {
+    print_r(cc($req-&gt;getResponseCookies()));
+}
+
+printf("waiting 1 second...\n");
+sleep(1);
+
+printf("2nd pooled request cookies:\n");
+$pooled_req = new HttpRequestPool(new HttpRequest($url), new HttpRequest($url));
+$pooled_req-&gt;send();
+foreach ($pooled_req as $req) {
+    print_r(cc($req-&gt;getResponseCookies()));
+}
+
+printf("waiting 1 second...\n");
+sleep(1);
+
+printf("now creating a request datashare\n");
+$pooled_req = new HttpRequestPool(new HttpRequest($url), new HttpRequest($url));
+$s = new HttpRequestDataShare();
+$s-&gt;cookie = true;
+foreach ($pooled_req as $req) {
+    $s-&gt;attach($req);
+}
+
+printf("1st pooled request cookies:\n");
+$pooled_req-&gt;send();
+foreach ($pooled_req as $req) {
+    print_r(cc($req-&gt;getResponseCookies()));
+}
+
+printf("waiting 1 second...\n");
+sleep(1);
+
+printf("2nd pooled request cookies:\n");
+$pooled_req-&gt;send();
+foreach ($pooled_req as $req) {
+    print_r(cc($req-&gt;getResponseCookies()));
+}
+</code></pre>

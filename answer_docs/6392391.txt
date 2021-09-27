@@ -1,0 +1,21 @@
+<p>Your question uses the word subclass, so I'm keying from that to interpret your question.  As with the others who have answered, I am not certain I understand what you are looking for.</p>
+
+<pre><code>class ParentClass(object):
+  constant_pool = [c1, c2, c3]
+  def __init__(self):
+    # anything not included in your question
+
+class ChildClass(ParentClass):
+  def __init__(self, stream):
+    ParentClass.__init__(self)
+    self.name = ParentClass.constant_pool[stream.read_ui16()]
+
+stream = get_new_stream()
+children = []
+for count in range(stream.read_ui16()):
+  children.append(ChildClass(stream))
+</code></pre>
+
+<p>This code uses inheritance to derive ChildClass from ParentClass (and all methods, etc).  The constant_pool is an attribute of ParentClass itself, though it is OK to treat as an attribute of any instance of ParentClass or ChildClass (saying <code>self.constant_pool</code> within <code>ChildClass.__init__</code> would be equivalent to the above but, in my view, misleading).</p>
+
+<p>Nesting the class definitions is not necessary.  Nesting the definition of ChildClass within ParentClass just means that ChildClass is an attribute of ParentClass, nothing more.  It does not make instances of ChildClass inherit anything from ParentClass.</p>

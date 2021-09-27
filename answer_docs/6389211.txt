@@ -1,0 +1,7 @@
+<p>Here's a slightly cleaner implementation of the file part of Oppdal's solution:</p>
+
+<pre><code>f.bind(($j.browser.msie &amp;&amp; $j.browser.version &lt; 9) ? 'propertychange' : 'change',
+       function(){ 
+           alert('changed!');
+       });
+</code></pre>

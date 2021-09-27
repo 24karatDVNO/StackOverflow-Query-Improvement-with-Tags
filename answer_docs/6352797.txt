@@ -1,0 +1,40 @@
+<p>Try <code>modelViewMatrix.MultMatrix( *(*p)[i].getFrame() );</code></p>
+
+<pre><code>#include &lt;vector&gt;
+using std::vector;
+
+class GLFrame {};
+class actorManager {
+  /* The actorManager class has a private attribute, which is also an
+  object of type GLFrame. It has an accessor, getFrame(), which returns
+  a pointer to the GLFrame object. */
+private:
+  GLFrame g;
+public:
+  GLFrame* getFrame() { return &amp;g; }
+};
+
+/* I need to pass the GLFrame object as a parameter to this function:
+   modelViewMatrix.MultMatrix(**GLFrame isntance**); */
+class ModelViewMatrix {
+public:
+  void MultMatrix(GLFrame g){}
+};
+ModelViewMatrix modelViewMatrix;
+
+/* I have a vector called actorVector which stores an array of objects of
+type actorManager.  */
+vector&lt;actorManager&gt; actorVector;
+
+/* I have passed a pointer of actorVector to a function, so its a pointer
+to a vector of objects of type actorManager. */
+void f(vector&lt;actorManager&gt;* p, int i) {
+/* I need to pass the GLFrame object as a parameter to this function:
+   modelViewMatrix.MultMatrix(**GLFrame isntance**); */
+   modelViewMatrix.MultMatrix( *(*p)[i].getFrame() );
+}
+
+int main() {
+  f(&amp;actorVector, 1);
+}
+</code></pre>

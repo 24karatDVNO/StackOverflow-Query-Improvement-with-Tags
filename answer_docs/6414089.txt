@@ -1,0 +1,7 @@
+<p>The best way, IMHO would be to use a mmaped file, and then use regular expression to find what you are looking for.</p>
+
+<pre><code> text = mmap.mmap(file)
+ re.sub(pattern, text)
+</code></pre>
+
+<p>Mmap module maps a file as it were text, so you can perform pretty much any operations you would perform on a string. And the regex is the best way to search for something. Simple and efficient.</p>

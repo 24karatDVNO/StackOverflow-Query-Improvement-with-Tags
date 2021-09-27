@@ -1,0 +1,14 @@
+<p>I have worked with cfreport and crystal for over 10 years and here's what I can offer, hope something might help:</p>
+
+<p>It is possible to print Crystal Reports through ColdFusion a few different ways.  First, you have to understand that ColdFusion Report Builder was created to get rid of some of the headaches associated with Crystal Reports.</p>
+
+<p>1) If you can downgrade your report (File > Save as) A crystal 7 or 8 or maybe 9 version of an rpt file there is a chance it might work directly from cfreport.</p>
+
+<p>2) If that doesn't work you'll have to use a crystal web component to run the report to a pdf and link to it. There's enough Java and .NET examples out there and you can use the Java call directly in cf9, or wrap it in a javaloader cfc call.</p>
+
+<p>3) Call the report through crystal server - If you already have a web based crystal reports server you can attempt to access the report you want through it.  I'd suggest this route first.  There's a web viewer built into the crystal server which you may be able to re-purpose.  I got it working once but it's been too long.</p>
+
+<p>4) You can access the crystal reports developer tools and simply make a call through cfobject for what you need to run the report (aka print) to a PDF and then just use the report.  I'd probably look down this route first because I'm most familiar with it and it might be the least amount of work..</p>
+
+<p>Hope that helps!
+J</p>

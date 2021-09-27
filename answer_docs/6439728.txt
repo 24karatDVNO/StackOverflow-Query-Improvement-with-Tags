@@ -1,0 +1,48 @@
+<p>Although I maintain my opinion that Microsoft should exercise some common sense and ensure that classes like GeoCoordinate are DataContract serialisable, I have found a convenient workaround. Generally when one is doing this sort of work, one has imported the interface for the BingRoute webservice, or similar. </p>
+
+<p>Obviously all of the classes therein are serialisable so I converted all my code to use the <code>BingRoute.Location</code> type instead of <code>GeoCoordinate</code>, and the problem disappears. Where necessary, an extension method <code>ToGeoCoordinate()</code> makes the conversion sufficiently unobtrusive that the intent of existing code is unobscured.</p>
+
+<pre><code>public static GeoCoordinate ToGeoCoordinate(this BingRoute.Location loc)
+{
+  return new GeoCoordinate(loc.Latitude, loc.Longitude, loc.Altitude);
+}
+</code></pre>
+
+<p>If you take my advice then sooner or later you will miss GeoCoordinate's GetDistanceTo() method. Extension methods are your friend here too. </p>
+
+<p>You could convert both points to <code>GeoCoordinate</code> and use the built-in method, but this will produce large numbers of transient objects and at some point your app will choke while the garbage collector does its duty.</p>
+
+<p>I threw in the other built-in location type for good measure. Note that the distance code implements Haversine, which is a Great Circle computation with a number of limitations. Caveat emptor.</p>
+
+<pre><code>public static double GetDistanceTo(this BingRoute.Location A, BingRoute.Location B)
+{
+  return GetDistanceTo(A.Latitude, A.Longitude, B.Latitude, B.Longitude);
+}
+
+public static double GetDistanceTo(
+  this Microsoft.Phone.Controls.Maps.Platform.Location A, 
+  Microsoft.Phone.Controls.Maps.Platform.Location B)
+{
+  return GetDistanceTo(A.Latitude, A.Longitude, B.Latitude, B.Longitude);
+}
+
+static double toRad = Math.PI / 180D;
+static double toDeg = 180D / Math.PI;
+
+static double GetDistanceTo(double lat1, double lng1, double lat2, double lng2)
+{
+  lat1 *= toRad;
+  lng1 *= toRad;
+  lat2 *= toRad;
+  lng2 *= toRad;
+  double sin_dLng_on2_squared = Math.Sin((lng2 - lng1) / 2);
+  sin_dLng_on2_squared *= sin_dLng_on2_squared;
+  double sin_dLat_on2_squared = Math.Sin((lat2 - lat1) / 2);
+  sin_dLat_on2_squared *= sin_dLat_on2_squared;
+  double a = sin_dLat_on2_squared + Math.Cos(lat1 * Math.Cos(lat2) * sin_dLng_on2_squared);
+  double c = 2 * Math.Asin(Math.Min(1, Math.Sqrt(a)));
+  return c * 6371000;
+}
+</code></pre>
+
+<p>It's also quite important to note that the more you store, the slower your app starts because it takes longer to create the settings object on activation. So you're best advised to store only simple option state here and keep as much as possible in isolated storage files. </p>

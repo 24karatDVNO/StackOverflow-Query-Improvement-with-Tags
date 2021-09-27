@@ -1,0 +1,7 @@
+<p>You can callout to your membership class from your service class by doing something like this:</p>
+
+<pre><code>BrightSparksMembershipProvider provider = 
+    Membership.Provider as BrightSparksMembershipProvider;
+BrightSparksUser user = 
+    (BrightSparksUser)provider.GetUser(user.Username);
+</code></pre>

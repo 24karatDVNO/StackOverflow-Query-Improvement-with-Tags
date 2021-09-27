@@ -1,0 +1,10 @@
+<p>ok... give this a try.... hope this helps</p>
+
+<pre><code>LayoutInflater li = this.getLayoutInflater();   
+      View v = li.inflate(R.layout.neededxml,null);
+      LinearLayout logoView = new LinearLayout(this);
+      LinearLayout vgr=(LinearLayotu)li.inflate(R.layout.mainxml,null);
+      vgr.addView(logoView);
+      vgr.addView(v);
+      this.setContentView(vgr);
+</code></pre>

@@ -1,0 +1,3 @@
+<p>If you don't expect the count to change drastically, or in a way that really affects each user, you might experience a real savings by storing the <code>COUNT(*)</code> in <code>$_SESSION</code> for each user.  Then each only requests it once.  This is really a question of how important the timeliness of that data is to your users, and whether or not it is actually causing you a problem.</p>
+
+<p>That said, if it is currently scaling the way you need it to, then it doesn't hurt to make the database call each time.  If you start having scalability issues, you can consider this as a possible action to take.</p>

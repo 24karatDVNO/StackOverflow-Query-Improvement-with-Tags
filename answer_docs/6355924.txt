@@ -1,0 +1,20 @@
+<p>The Boolean datatype doesn't exist in MS SQL Serer per se. You should use the <a href="http://msdn.microsoft.com/en-us/library/ms177603.aspx" rel="nofollow">bit</a> datetype instead.</p>
+
+<blockquote>
+  <p>The string values TRUE and FALSE can
+  be converted to bit values: TRUE is
+  converted to 1 and FALSE is converted
+  to 0.</p>
+</blockquote>
+
+<p>Without knowing your exact schema and database rules I think this may work for you.</p>
+
+<pre><code>Select u.UserId,
+       s.StoryId 
+       Cast((Case When l.UserId Is Null Then 0 Else 1 End) as bit) as [UserLiked]
+
+From Users u
+Left Join Likes l on u.UserId = l.UserId
+Left Join Stories s on l.UserId = s.UserId
+Where u.UserId = @SomeUserId
+</code></pre>

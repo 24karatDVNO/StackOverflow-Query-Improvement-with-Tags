@@ -1,0 +1,38 @@
+<p><code>JButtons</code>, like almost all swing components, have a whole lot of things called "ActionListeners".  These ActionListeners are classes that implement an interface called... ActionListener!  They have a method called actionPerformed.  Every time the button is clicked, he will tell each of his ActionListeners to call their actionPerformed functions.  So, you give your button an ActionListener, and then make its actionPerformed method make all the changes you want.  </p>
+
+<p>Its like if every time your doorbell rang, you (as the JButton) would go make phone calls to all those despairing relatives who think no one ever goes to visit you.  In fact, they tell you they will pay you money every time your doorbell rings.  So the doorbell rings (clicking on the button), and you (the JButton) call your relatives (the ActionListeners) who then each pay you money (actionPerformed method).</p>
+
+<p>Example in Code: </p>
+
+<pre><code>import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+
+public class Test implements ActionListener{
+    int count = 0;
+    public static void main(String[] args){
+        JFrame frame = new JFrame();
+        JButton button = new JButton();
+
+        button.addActionListener(new Test());
+        button.setText("I have been clicked 0 times");
+
+        frame.setSize(200, 50);
+        frame.add(button);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        JButton button = (JButton) (arg0.getSource());
+        count++;
+        button.setText("I have been clicked "+count+" times");
+    }
+
+
+}
+</code></pre>

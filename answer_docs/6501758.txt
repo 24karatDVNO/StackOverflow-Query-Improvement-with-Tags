@@ -1,0 +1,51 @@
+<p>If I understand you correctly, you have 1 to N random numbers that must be used in a 10-set permutation with some specific criteria about repeats.  In php, I suggest this (not counting php-internals) O(n) solution:</p>
+
+<pre><code>//Generate a full list of keys
+$source = range(1, MAX);
+//NOTE: if MAX &lt; 10, you must pad the array
+
+//Get a random group of 10 of the keys
+$input = array_rand(array_flip($source), 10);
+
+//Shuffle (can be done later as well; this is the randomization).
+//array_rand() does not change order.
+shuffle($input);
+
+//Select the first of 5 that must be repeated in the last 5
+$one = rand(0, 4);
+$onev = $input[$one];
+
+//Remove this array key to prevent collisions with the second of 5
+$input = array_diff($input, array($onev));
+
+//Select a random index in the last 5 to be replaced with $one
+$rep = rand(5, 9);
+$repv = $input[$rep];
+
+//Remove this array key to prevent collisions with the other to-be-replaced
+$input = array_diff($input, array($repv));
+
+//Acquire the new keys list of input now that two elements have been removed
+$keys = array_slice(array_keys($input), 0, 3);
+//Select the second-of-5 to replace in the last 5.  No worry of collision now.
+$two = array_rand($keys, 1);
+$two = $keys[$two];
+
+//Select the second from the last-of-5 to be replaced by $two
+//No worry of collision because the other index is removed.
+$keys = array_slice(array_keys($input), 4, 8);
+$rept = array_rand($keys, 1);
+$rept = $keys[$rept];
+
+//Replace one of the last-of-five with one of the first-of-five
+$input[$rept] = $input[$two];
+
+//Restore removed keys as well as perform replacement of other last-of-five
+$input[$one] = $onev;
+$input[$rep] = $onev;
+
+//re-randomize based on shuffle
+ksort($input);
+</code></pre>
+
+<p>No loops, no conditionals.</p>

@@ -1,0 +1,7 @@
+<p>There's a variety of ways to do this, but ultimately it all boils down to have an app running on the second device that receives some trigger to show a notification.</p>
+
+<p>Some examples....</p>
+
+<p>You can have an app with a open server socket on device b and then discover and connect to it to send a message that triggers a notification over TCP/IP. <a href="http://jmdns.sourceforge.net/" rel="nofollow">http://jmdns.sourceforge.net/</a> can help with discovery.</p>
+
+<p>If they both have a network connection, you can build something on the App Engine to send a C2DM message to device B, and then upon receiving that message trigger a notification.</p>

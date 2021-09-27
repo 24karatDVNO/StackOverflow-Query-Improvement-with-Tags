@@ -1,0 +1,19 @@
+<p>After lots of googling I got this to : 
+     Declared at the Class Level</p>
+
+<pre><code>     HttpContextBase httpContextMock;
+      ControllerBase controllerMock;
+
+ In the Constructor
+         mockRepository = new MockRepository();
+         httpContextMock = mockRepository.DynamicMock&lt;HttpContextBase&gt;();
+        controllerMock = mockRepository.DynamicMock&lt;ControllerBase&gt;();
+
+      In The Test Method:
+       var routeData = new RouteData();
+        routeData.Values.Add("id", "Value");
+
+      absenceController.ControllerContext = new ControllerContext(httpContextMock,    routeData, controllerMock);
+</code></pre>
+
+<p>``</p>

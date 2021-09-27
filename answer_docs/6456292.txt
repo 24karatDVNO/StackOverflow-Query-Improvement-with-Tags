@@ -1,0 +1,10 @@
+<p>You should pass the reference of the element using <code>this</code>. It is more flexible than just passing hard parameters.</p>
+
+<p>eg: <code>...onclick="wr(this)"...</code></p>
+
+<p>and then</p>
+
+<pre><code>function wr(elm){
+  document.getElementById("e").innerHTML="this is "+ elm.value + " !";
+}
+</code></pre>

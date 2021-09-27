@@ -1,0 +1,15 @@
+<p>You need to use delegate or live to define the events. What the events above do is only bind the handler to the existing elements on the page while the live/delegate function bind to existing and future elements.</p>
+
+<pre><code>$(document).delegate('.grey_title', "click",function(){
+        $(this).parent().find('.inner_div').slideToggle('slow');
+ }).delegate('#hideall'."click", function(){
+        $('.inner_div').slideUp('slow');
+        $(this).parent().html("&lt;span id=\"showall\"&gt;Show all Menus&lt;/span&gt;");
+}).delegate('#showall',"click", function(){
+        $('.inner_div').slideDown('slow');
+        $(this).parent().html("&lt;span id=\"hideall\"&gt;Hide all Menus&lt;/span&gt;");
+});
+
+&lt;/script&gt;
+  &lt;div&gt;&lt;span id="hideall"&gt;Hide all Menus&lt;/span&gt;&lt;/div&gt;
+</code></pre>

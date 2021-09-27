@@ -1,0 +1,16 @@
+<p>You don't say what OS, but on linux you should be able to figure out what exact file was loaded for a given library by checking /proc//maps. For instance if I want to know what file was used to provide libncurses.so for my shell, I could do:</p>
+
+<pre><code>$ cat /proc/$$/maps | grep ncurses
+</code></pre>
+
+<p>which gets me output like:</p>
+
+<pre><code>    7f25ab1e4000-7f25ab224000 r-xp 00000000 08:01 6029412                    /lib/libncurses.so.5.7
+    7f25ab224000-7f25ab423000 ---p 00040000 08:01 6029412                    /lib/libncurses.so.5.7
+    7f25ab423000-7f25ab427000 r--p 0003f000 08:01 6029412                    /lib/libncurses.so.5.7
+    7f25ab427000-7f25ab428000 rw-p 00043000 08:01 6029412                    /lib/libncurses.so.5.7
+</code></pre>
+
+<p>So now I know that ncurses.so was satisfied by /lib/libncurses.so.5.7</p>
+
+<p>For your process, just replace '$$' by the PID of your running process. Other UNIX like operating systems will typically have a /proc like interface or a system tool that can give you this information about a running process. On Solaris for instance, the 'pldd' command can show you the equivalent of ldd output, but for any running process.</p>

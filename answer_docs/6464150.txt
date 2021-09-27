@@ -1,0 +1,7 @@
+<p>It seems they really want you to still use native2ascii. :-(</p>
+
+<p>This way, you can encode your Asian characters as \uxxxx sequences. The ResourceBundle mechanism can load them in this format.</p>
+
+<p>What we do is that we edit the property files in UTF-8, and the build script runs native2ascii on them.</p>
+
+<p>Seeing that Java6 finally supports different encodings for Properties when you load them manually, it would be nice if that support trickled down (up?) to the other pieces that build on properties, such as resource bundles.</p>

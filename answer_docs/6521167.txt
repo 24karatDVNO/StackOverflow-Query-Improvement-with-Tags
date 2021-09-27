@@ -1,0 +1,13 @@
+<p>Do you mean something like:</p>
+
+<pre><code>CGFloat minDistance = FLT_MAX;
+MyClass *minObject = nil;
+for (MyClass *obj in objects)
+{
+    if ([obj distanceFromOrigin] &lt; minDistance)
+    {
+        minObject = obj;
+        minDistance = [obj distanceFromOrigin];
+    }
+}
+</code></pre>

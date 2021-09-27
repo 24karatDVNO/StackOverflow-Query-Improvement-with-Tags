@@ -1,0 +1,8 @@
+<p>It all depends on which compiler/processor you use. If I put your definition in Keil Uvision for 8051, surely would point to ROM because of the "CONST" definer although I could modify with XRAM or CODE. But for ARM depends on address and not definer.
+Keil Uvision Example:</p>
+
+<pre><code>// For 8051 Keil 
+const char code romdata[2] = {0,1}; //&lt;&lt; this point to ROM/FLASH
+const char xram ramdata[2] = {0,1}; // this point to external RAM 
+const char romdata[2] = {0,1}; // this point to ROM/FLASH
+</code></pre>

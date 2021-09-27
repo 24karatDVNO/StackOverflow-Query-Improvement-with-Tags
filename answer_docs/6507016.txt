@@ -1,0 +1,10 @@
+<p>You can also kill your process..</p>
+
+<pre><code> @Override
+  public void onDestroy() {
+      //Any clean up you wanted to do
+       super.onDestroy();
+      //you can completely kill your process.
+      android.os.Process.killProcess(android.os.Process.myPid()) ;
+  }
+</code></pre>

@@ -1,0 +1,15 @@
+<p>you might just need to reinstall the mysql2 gem.</p>
+
+<p>first you should find your mysql_config.
+you can do this by issuing:</p>
+
+<pre><code>sudo find /usr/local -name mysql_config
+</code></pre>
+
+<p>then install the gem with </p>
+
+<pre><code>(sudo) gem install mysql2 -- --with-mysql-config=RESULT_FROM_ABOVE
+</code></pre>
+
+<p>this should give you a gem that is configured with your mysql installation.
+Hope that helps.</p>

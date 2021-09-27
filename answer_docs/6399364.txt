@@ -1,0 +1,5 @@
+<p>First things first, terminal is line buffered, i.e, buffers are flushed when newline is encountered. If you put a newline in printf() than results would change. However, if you are writing to a file, which is fully buffered, there will be no change in the output even if you add the newline to printf().</p>
+
+<p>After the first fork() call, P (parent) has 'a' and C1 also has 'a'. (C for child).</p>
+
+<p>Then, after the second fork call, two new children are created C2 and C3. The buffers of the process are also copied, so C2 and C3 also contains 'a' now. After the printf() call, all the processes contain 'a b' in their buffers. And when they exit, their buffers are flushed, and hence the output.</p>

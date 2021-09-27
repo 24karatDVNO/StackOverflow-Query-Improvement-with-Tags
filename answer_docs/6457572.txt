@@ -1,0 +1,17 @@
+<p>The File's Owner is the LoginController a subclass of NSObject. It has 1 outlet to a UINavigationController</p>
+
+<p>Drop the UINavigationController into the nib file.
+Connect the navController outlet of the LoginController to the navController you just put in the nib.
+Drop in a UIView from the pallet, set it to have a navigation bar at the top.
+Connect the VIEW outlet of the "Root View Controller" of the UINavigationController to the view.</p>
+
+<p>In the App Delegate, you now need to load the nib and file's owner but since it is an NSObject it will have to be loaded differently. First you create the file's owner (LoginController). Then, you load the nib with the file's owner. Finally, you set the windows.rootViewController to the LoginController.navController</p>
+
+<pre><code>_loginViewController = [[LoginViewController alloc] init];
+[[NSBundle mainBundle] loadNibNamed:@"LoginView" owner:_loginViewController options:nil];
+self.window.rootViewController = _loginViewController.navController;
+[self.window makeKeyAndVisible];
+</code></pre>
+
+<p>Technically, the LoginViewController isn't a subclass of UIViewController but it is still the owner of the nib file. So name it however.
+<img src="https://i.stack.imgur.com/JBJLf.png" alt="screenshot"></p>

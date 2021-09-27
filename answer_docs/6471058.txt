@@ -1,0 +1,22 @@
+<p>I would probably make this a new virtual method like so:</p>
+
+<pre><code>public class ClassA {
+    public virtual string Foo { get; set };
+
+    public virtual ClassA GetAsClassA() {
+        return this;
+    }
+}
+
+
+public class ClassB : ClassA {
+    public virtual string Foo { get; set };
+
+    public override ClassA GetAsClassA() {
+        // Create new ClassA and copy properties as needed.
+        // Can use base.Foo to get base properties, as needed.
+    }
+}
+</code></pre>
+
+<p>This wraps up the logic into the classes themselves.</p>

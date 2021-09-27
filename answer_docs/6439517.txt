@@ -1,0 +1,10 @@
+<p>This has bugged me a few times, but so you know, some info from MySQL Documentation.</p>
+
+<p>"this is known and documented feature of MySQL. When you compare numbers to
+strings, they are compared as float numbers. Any string that does NOT start with a digit
+is implicitly converted to number 0. Hence the results you get. Please, always compare
+numbers to numbers and strings to strings if you want to prevent undesired results."</p>
+
+<p>Read <a href="http://dev.mysql.com/doc/refman/5.0/en/type-conversion.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/type-conversion.html</a> for the details.</p>
+
+<p>So, casting is the concrete way of ensuring proper comparison in the query... or from MySQL again... there is no real fix other than to make sure string literals are quoted.</p>

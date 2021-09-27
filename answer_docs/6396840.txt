@@ -1,0 +1,8 @@
+<p>Put this code in your .htaccess:</p>
+
+<pre><code>Options -MultiViews +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REMOTE_ADDR} !=91.198.106.118
+RewriteRule ^(?!i/page\.html).*$ http://domain.nl/i/page.html [R=307,L,NC]
+</code></pre>

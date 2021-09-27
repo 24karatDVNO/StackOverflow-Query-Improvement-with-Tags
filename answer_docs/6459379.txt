@@ -1,0 +1,13 @@
+<p>Just have a separate regex for each of the constraints:</p>
+
+<ul>
+<li>at least 10 characters in length: <code>.{10,}</code>,</li>
+<li>contains at least 1 number: <code>[0-9]</code>,</li>
+<li>at least 1 special character: <code>[^0-9a-zA-Z]</code></li>
+<li>at least 1 upper case letter: <code>[A-Z]</code></li>
+</ul>
+
+<p>And make sure that the string matches all of these regexes.</p>
+
+<p>If you really need it, you can combine them all in one regex, using lookahead assertions:
+<code>(?=.*[0-9])(?=.*[^0-9a-zA-Z])(?=.*[A-Z]).{10,}</code></p>

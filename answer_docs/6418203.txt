@@ -1,0 +1,17 @@
+<p>You can create a wrapper class for the strings, then add a function like isValid() to them that checks if the length == 0.  Use a <a href="http://en.wikipedia.org/wiki/Null_Object_pattern" rel="nofollow">Null Object</a> that always returns false on isValid() to eliminate the null checks.</p>
+
+<p>If you can create classes that you tell what to do, rather than passing strings that have to be null checked throughout your code, you will get more resuseable results:</p>
+
+<pre><code>    class Haystack {
+    private static final Haystack NULL_HAYSTACK = new Haystack("");
+    private final String value;
+
+    public Haystack(String value) {
+        this.value = value;
+    }
+
+    public boolean containsNeedle(String needle) {
+        return needle != null &amp;&amp; value.contains(needle);
+    }
+}
+</code></pre>

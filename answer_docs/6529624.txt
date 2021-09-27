@@ -1,0 +1,24 @@
+<p>If you don't want to re-work your application to use Rest directly, you could also use URL-rewriting tools like <a href="http://ocpsoft.com/prettyfaces/" rel="nofollow">http://ocpsoft.com/prettyfaces/</a>, which allows you to do URL-mappings directly on top of an existing application.</p>
+
+<p>You just configure something like this in the pretty-config.xml file:</p>
+
+<pre><code>&lt;url-mapping&gt;
+   &lt;pattern value="/my/restful/url" /&gt;
+   &lt;view-id value="/my/existing/url" /&gt;
+&lt;/url-mapping&gt;
+</code></pre>
+
+<p>Or if you want to rewrite parameters, you can do this:</p>
+
+<pre><code>&lt;url-mapping&gt;
+   &lt;pattern value="/my/restful/url/#{param}" /&gt;
+   &lt;view-id value="/my/existing/url" /&gt;
+&lt;/url-mapping&gt;
+</code></pre>
+
+<p>And this means that any urls looking like <code>/my/existing/url?param=value</code> will now become:</p>
+
+<pre><code>/my/restful/url/value
+</code></pre>
+
+<p>So it's easy to add on to your current apps.</p>

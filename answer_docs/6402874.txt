@@ -1,0 +1,3 @@
+<p>It's not possible because <code>ContextMenu</code> captures the mouse, the popup closes because the control is automatically wired to close the popup when the mouse loses capture (In your case by right-clicking on the menu Item). </p>
+
+<p>You can use <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.primitives.popup.aspx" rel="nofollow">PopUp</a> instead to achive your problem.</p>

@@ -1,0 +1,6 @@
+<p><code>percflow</code> is the aspect instantiation model.  See here:
+<a href="http://eclipse.org/aspectj/doc/released/progguide/quick-aspectAssociations.html" rel="nofollow">http://eclipse.org/aspectj/doc/released/progguide/quick-aspectAssociations.html</a></p>
+
+<p>This means that one instance of this aspect is created for every cflow entered.</p>
+
+<p>The first aspect is a singleton and so it must store a map for all of the performance stats it keeps track of.  The second aspect is instantiated as needed, so performance stats are implicitly stored and associated with the proper dynamic call graph.</p>

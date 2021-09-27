@@ -1,0 +1,7 @@
+<p>you can do this by setting <code>VerticalScrollingOffset</code> of the <code>DataGridView</code> in the <code>Scroll</code> Event using Reflection</p>
+
+<p>include namespace <code>System.Reflection</code></p>
+
+<pre><code>PropertyInfo verticalOffset = dataGridView2.GetType().GetProperty("VerticalOffset", BindingFlags.NonPublic | BindingFlags.Instance);
+verticalOffset.SetValue(dataGridView2, dataGridView1.VerticalScrollingOffset, null);
+</code></pre>

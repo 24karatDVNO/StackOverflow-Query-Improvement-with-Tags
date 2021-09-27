@@ -1,0 +1,8 @@
+<p>You can use a query for this such as:</p>
+
+<pre><code>List&lt;int&gt; numbers = new List&lt;int&gt;() { 3, 5, 8, 11, 12, 13, 14, 21 };
+List&lt;int&gt; output = (from n in numbers
+                            where n &gt; 13 // or whatever
+                            orderby n ascending //or descending
+                            select n).ToList();
+</code></pre>

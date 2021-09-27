@@ -1,0 +1,24 @@
+<p>Assuming that the <code>attendance</code> table has a date column <code>attendance_date</code>, the below query may give you total time utilized per week in the month:</p>
+
+<pre><code>SELECT WEEK(`attendance_date`) `attendance_week`,
+SEC_TO_TIME(SUM(TIME_TO_SEC(`time_utilize`))) `attendance_time_utilized`
+FROM `attendance`
+GROUP BY `attendance_week`;
+</code></pre>
+
+<p>In the above query, the <code>attendance_week</code> is calculated as the week of the year, between 1 and 52.</p>
+
+<p>Another form of output might be to show weeks as 1,2,3,4. For it, you may try this query:</p>
+
+<pre><code>SELECT (`attendance_week` - `min_week` + 1) `att_week`, `attendance_time_utilized`
+FROM (
+    SELECT WEEK(`ATT`.`attendance_date`) `attendance_week`,
+    SEC_TO_TIME(SUM(TIME_TO_SEC(`ATT`.`time_utilize`))) `attendance_time_utilized`,
+    `T1`.`min_week`
+    FROM `attendance` `ATT`
+    INNER JOIN (SELECT MIN(WEEK(`attendance_date`)) `min_week` FROM `attendance`) T1
+    GROUP BY `attendance_week`
+) T2;
+</code></pre>
+
+<p>Hope the above queries help you with the desired results. Please change the table and column names as per your schema.</p>

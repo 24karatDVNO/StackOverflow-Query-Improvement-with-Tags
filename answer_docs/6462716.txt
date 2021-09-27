@@ -1,0 +1,15 @@
+<p>Your question is probably best answered in two parts.</p>
+
+<ul>
+<li><p>For a database (traditional, relational), a query that is executed contains a number of "where" clauses, which will cause the database engine to limit the number of results that it returns. So if you specify a where clause that basically limits between 2 values of the primary key,</p>
+
+<p>select * From table where id>99 and id&lt;201;</p></li>
+</ul>
+
+<p>you'll get what you're asking for.</p>
+
+<ul>
+<li>For a search engine, a query you make to get the results will always paginate - using various techniques, all the results will be pre-split into pages and a few will be cached. Other pages will be generated on demand. So if you want pages 100-200 then you only ever fetch those that are needed. </li>
+</ul>
+
+<p>The option to filter is not very efficient because large data sources never want to load all their data into memory and slice - you only want to load what's needed.</p>

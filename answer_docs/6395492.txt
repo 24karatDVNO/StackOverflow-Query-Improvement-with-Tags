@@ -1,0 +1,14 @@
+<p>some examples</p>
+
+<p>enable the plugin in you ProjectConfiguration
+go to 'core\config\ProjectConfiguration.class.php' and add next code in setup()</p>
+
+<pre><code>$this-&gt;enablePlugins('MyPlugin');
+</code></pre>
+
+<p>enable the module in your settings.yml</p>
+
+<pre><code>all:
+  .settings:
+    enabled_modules:  [my_module]
+</code></pre>

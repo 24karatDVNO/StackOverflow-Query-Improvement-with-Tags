@@ -1,0 +1,16 @@
+<p>In your include file, move the initialisation out to another function and call it from there:</p>
+
+<pre><code>//include js:
+$(document).ready(initialise);
+
+function initialise(){
+}
+</code></pre>
+
+<p>This in the file that loads this all you need do is call <code>initialise</code></p>
+
+<p>The subject of triggering the ready even is already well covered on SO:</p>
+
+<p><a href="https://stackoverflow.com/questions/562229/how-to-trigger-ready-in-jquery">How to trigger $().ready() in jQuery?</a></p>
+
+<p><a href="https://stackoverflow.com/questions/2238030/jquery-trigger-document-ready-so-ajax-code-i-cant-modify-is-executed">Trigger $document.ready (so AJAX code I can&#39;t modify is executed)</a></p>

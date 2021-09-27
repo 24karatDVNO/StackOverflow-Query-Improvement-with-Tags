@@ -1,0 +1,9 @@
+<p>I tried below and it worked for me (in ksh) not sure why it would error out in your case</p>
+
+<pre><code>user="username";
+host="somehost";
+VFSTAB_LOC="result.out";
+DEST="/home/username/aaa.out";
+echo $DEST;
+`ssh $user@$host "grep '/abc/dyf' $VFSTAB_LOC | awk '{print $3, $1}'" &gt;&gt; $DEST`;
+</code></pre>

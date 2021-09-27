@@ -1,0 +1,16 @@
+<p>It's considered best practice to just let the thread's method return:</p>
+
+<pre><code>void Run()   // thread entry function
+{
+   while(true)
+   {
+     if(somecondition)  // check for a terminating condition - usually "have I been disposed?"
+         break;
+
+     if(workExists)
+        doWork();
+
+     Thread.Sleep(interval);
+   }
+}
+</code></pre>

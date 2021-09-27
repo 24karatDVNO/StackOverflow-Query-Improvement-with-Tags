@@ -1,0 +1,39 @@
+<p>Build a property that represents the title of the event as you want it.</p>
+
+<p>Your controller action</p>
+
+<pre><code>public JsonResult GetEvents(double start, double end)
+{
+    //Bunch of work to deal with date format and retrieve data
+
+    var urlHelper = new UrlHelper(ControllerContext.RequestContext);
+
+    var result = from e in eventList
+             select
+                 new
+                     {
+                         id = e.EventId,
+                         title = e.StartDate.ToString("s") + " - " +
+                                                     e.EndDate.ToString("s") + 
+                                                     " Reservation ID#" +
+                                                     e.ReservationNumber,
+                         start = e.StartDate.ToString("s"),
+                         end = e.EndDate.ToString("s"),
+                         url = urlHelper.Action("Details", "Event", 
+                                                     new {id = e.EventId}),
+                         color = e.IsActive ? "#2E9AFE" : "#FA5858"
+                     };
+
+    var rows = result.ToArray();
+
+    return Json(rows, JsonRequestBehavior.AllowGet);
+}
+</code></pre>
+
+<p>As far as recurring events go, you have to build this up yourself. I basically created a standard CRUD add event action that also asked for a recurs until date.</p>
+
+<p>When you get your list of events back you can iterate over the collection to find those events with a recurrence. When you find one you have to go through the process of determining the "virtual" recurring events to add. I basically determined a list of dates between now and the end of the recurrence that should have a recurring event.</p>
+
+<p>Once you have those list of dates for the recurrence, create a new event for each of them with the id of the original event and all the other particulars. That way, when you click on the calendar event, they are represent the same event. Take this new list of events, tack it on to your original list of events, and you're set. Your calendar will display the recurring events and be none the wiser.</p>
+
+<p>Hope that helps.</p>

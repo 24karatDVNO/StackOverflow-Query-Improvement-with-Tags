@@ -1,0 +1,10 @@
+<p>Ideally you need to redesign your table but for making it work with the existing schema, you need to serialize and de-serialize data. see </p>
+
+<p><a href="http://php.net/manual/en/function.serialize.php" rel="nofollow">http://php.net/manual/en/function.serialize.php</a></p>
+
+<p>So in name column you store something like {firstname:lastname}</p>
+
+<pre><code>$name[0] = $firstname;
+$name[1] = $lastname;
+$ser = serialize($name); \\---&gt;put this in db
+</code></pre>

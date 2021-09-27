@@ -1,0 +1,10 @@
+<p>Well, the .edmx file is just for visual studio and won't be part of the application. The metadata is stored in three xml files and you can load them at runtime:</p>
+
+<p><a href="http://blogs.msdn.com/b/alexj/archive/2010/01/27/tip-51-how-to-load-ef-metadata-from-an-arbitrary-stream.aspx" rel="nofollow">http://blogs.msdn.com/b/alexj/archive/2010/01/27/tip-51-how-to-load-ef-metadata-from-an-arbitrary-stream.aspx</a></p>
+
+<p>You have to map the entities to classes and that is where it becomes ugly. Classes can by generated at runtime with the reflection-api. Or just take a generic class that has many properties like StringProperty1, StringProperty2. </p>
+
+<p>SQL is more appropriate than ESQL for your purpose.</p>
+
+<p>Learning the EF:
+<a href="http://www.testmaster.ch/EntityFramework.test" rel="nofollow">http://www.testmaster.ch/EntityFramework.test</a></p>

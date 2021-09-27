@@ -1,0 +1,1 @@
+<p>Finally found the solution. The weblogic application server was configured with default work manager settings. This was changed to size based on our concurrent requests, 100 as the initial capacity. Also made sure that database connection pool had corresponding connections available from the pool. Once these configurations were set the issue did not recur.</p>

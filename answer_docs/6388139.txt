@@ -1,0 +1,284 @@
+<p>This appears to be the relevant portion of <a href="http://www.gstatic.com/chromebook/js/third_party/chromeicons-main.min.js" rel="nofollow">chromeicons-main.min.js</a>. for the chrome logo itself. </p>
+
+<pre><code>ChromeLogo = CClass(CanvasNode, {
+    center_gradient: new Gradient({
+        type: "radial",
+        startX: 7,
+        startY: -7,
+        endRadius: 14,
+        colorStops: [
+            [1, "#005791"],
+            [0.62, "#2284DC"],
+            [0, "#86B9E2"]
+        ]
+    }),
+    center_back: new Gradient({
+        type: "radial",
+        endRadius: 14,
+        colorStops: [
+            [0, "#D2D2D2"],
+            [1, "#FFFFFF"]
+        ]
+    }),
+    top_gradient: new Gradient({
+        type: "radial",
+        endRadius: 16,
+        colorStops: [
+            [0.15, "#F37C65"],
+            [1, [243, 124, 90, 0]]
+        ]
+    }),
+    highlight_gradient3: new Gradient({
+        type: "radial",
+        startX: 0,
+        startY: 0,
+        endRadius: 40,
+        colorStops: [
+            [1, "rgba(255,255,255,0)"],
+            [0.4, "rgba(255,255,255,.4)"],
+            [0, "rgba(255,255,255,0)"]
+        ]
+    }),
+    highlight_gradient4: new Gradient({
+        type: "radial",
+        startX: 0,
+        startY: 0,
+        endRadius: 8,
+        colorStops: [
+            [1, "rgba(255,255,255,0)"],
+            [0.4, "rgba(255,255,255,.5)"],
+            [0, "rgba(255,255,255,0)"]
+        ]
+    }),
+    highlight_gradient5: new Gradient({
+        type: "radial",
+        startX: 0,
+        startY: 0,
+        endRadius: 8,
+        colorStops: [
+            [1, "rgba(255,255,255,0)"],
+            [0.5, "rgba(255,255,255,.9)"],
+            [0, "rgba(255,255,255,0)"]
+        ]
+    }),
+    initialize: function () {
+        CanvasNode.initialize.call(this);
+        this.scale = 0.78;
+        this.catchMouse = false;
+        this.textGlow = new Circle(30, {
+            fill: this.highlight_gradient5,
+            x: 22,
+            y: 23,
+            zIndex: 2
+        });
+        this.append(this.textGlow);
+        this.center = new Circle(7.5, {
+            fill: this.center_gradient,
+            x: 22,
+            y: 23,
+            zIndex: 4,
+            clip: true
+        });
+        this.centerBack = new Circle(9, {
+            fill: this.center_back,
+            x: 22,
+            y: 23,
+            zIndex: 3
+        });
+        this.border = new CanvasNode({
+            zIndex: 2
+        });
+        this.mask = new CanvasNode({
+            x: 22,
+            y: 23
+        });
+        this.ch3 = new Circle(8, {
+            fill: this.highlight_gradient4,
+            scale: 0.1,
+            opacity: 0,
+            compositeOperation: "lighter"
+        });
+        this.center.append(this.ch3);
+        this.red = _iconController.asset("logo_red");
+        this.red.childNodes[0].clip = true;
+        this.red.setProps({
+            x: -17,
+            y: -20,
+            clip: true
+        });
+        this.redShadow = _iconController.asset("shadow_red");
+        this.redShadow.setProps({
+            x: -17,
+            y: -13,
+            zIndex: 2
+        });
+        this.rh3 = new Circle(40, {
+            fill: this.highlight_gradient3,
+            scale: 0.1,
+            opacity: 1,
+            compositeOperation: "lighter",
+            x: 17,
+            y: 20,
+            zIndex: 4
+        });
+        this.red.childNodes[0].append(this.rh3);
+        this.yellow = _iconController.asset("logo_yellow");
+        this.yellow.setProps({
+            x: -1.5,
+            y: -9
+        });
+        this.yellow.childNodes[0].clip = true;
+        this.yellowShadow = _iconController.asset("shadow_yellow");
+        this.yellowShadow.setProps({
+            zIndex: 2,
+            x: 1,
+            y: -9
+        });
+        this.yh3 = new Circle(40, {
+            fill: this.highlight_gradient3,
+            scale: 0.1,
+            opacity: 1,
+            compositeOperation: "lighter",
+            x: 1.5,
+            y: 9,
+            zIndex: 4
+        });
+        this.yellow.childNodes[0].append(this.yh3);
+        this.green = _iconController.asset("logo_green");
+        this.green.setProps({
+            x: -20,
+            y: -11
+        });
+        this.green.childNodes[0].clip = true;
+        this.greenShadow = _iconController.asset("shadow_green");
+        this.greenShadow.setProps({
+            x: -2,
+            y: 5,
+            zIndex: 2
+        });
+        this.gh3 = new Circle(40, {
+            fill: this.highlight_gradient3,
+            scale: 0.1,
+            opacity: 1,
+            compositeOperation: "lighter",
+            x: 20,
+            y: 11.5,
+            zIndex: 4
+        });
+        this.green.childNodes[0].append(this.gh3);
+        this.top = new Circle(19, {
+            fill: false,
+            clip: true,
+            x: 24,
+            y: 23,
+            zIndex: 5
+        });
+        this.topGrad = new Circle(19, {
+            fill: this.top_gradient,
+            x: -2,
+            y: -24
+        });
+        this.mask.append(this.red, this.redShadow, this.yellow, this.yellowShadow, this.green, this.greenShadow);
+        this.border.append(this.mask);
+        this.top.append(this.topGrad);
+        this.append(this.border, this.centerBack, this.center, this.top);
+        this.text = _iconController.asset("logo_text");
+        this.text.setProps({
+            x: 49,
+            y: 8
+        });
+        for (var a = 0; a &lt; this.text.childNodes[0].childNodes.length; a++) {
+            this.text.childNodes[0].childNodes[a].opacity = 1
+        }
+        this.append(this.text)
+    },
+    mouseOver: function () {
+        this.canvas.play();
+        _tw.removeTweensOf([this.textGlow, this.rh3, this.yh3, this.gh3, this.ch3]);
+        this.textGlow.scale = this.ch3.scale = this.rh3.scale = this.gh3.scale = this.yh3.scale = 0.1;
+        this.textGlow.opacity = this.rh3.opacity = this.gh3.opacity = this.yh3.opacity = 1;
+        var a = new Array(0, 0.1, 0.2, 0.3);
+        var b = shuffle(a);
+        _tw.addTween(this.center, {
+            time: 0.1,
+            scale: 1.02,
+            transition: "easeOutQuad"
+        });
+        _tw.addTween(this.centerBack, {
+            time: 0.1,
+            scale: 1.02,
+            transition: "easeOutQuad"
+        });
+        _tw.addTween(this.mask, {
+            time: 0.1,
+            scale: 1.02,
+            transition: "easeOutQuad",
+            onComplete: function (c) {
+                _tw.addTween(c.center, {
+                    time: 0.5,
+                    scale: 1,
+                    transition: "easeInOutBack"
+                });
+                _tw.addTween(c.centerBack, {
+                    time: 0.55,
+                    scale: 1,
+                    transition: "easeInOutBack"
+                });
+                _tw.addTween(c.mask, {
+                    time: 0.55,
+                    scale: 1,
+                    transition: "easeInOutBack"
+                })
+            },
+            onCompleteParams: [this]
+        });
+        _tw.addTween(this.rh3, {
+            time: 2,
+            delay: b[0],
+            scale: 4,
+            opacity: 0,
+            transition: "easeOutCubic"
+        });
+        _tw.addTween(this.yh3, {
+            time: 2,
+            delay: b[1],
+            scale: 4,
+            opacity: 0,
+            transition: "easeOutCubic"
+        });
+        _tw.addTween(this.gh3, {
+            time: 2,
+            delay: b[2],
+            scale: 4,
+            opacity: 0,
+            transition: "easeOutCubic"
+        });
+        _tw.addTween(this.ch3, {
+            time: 0.2,
+            delay: b[3],
+            scale: 10,
+            opacity: 1,
+            transition: "linear",
+            onComplete: function (c) {
+                _tw.addTween(c.ch3, {
+                    time: 0.25,
+                    opacity: 0
+                })
+            },
+            onCompleteParams: [this]
+        });
+        _tw.addTween(this.textGlow, {
+            time: 10,
+            delay: 0.5,
+            scale: 120,
+            opacity: 0.2,
+            onComplete: function (c) {
+                c.canvas.stop()
+            },
+            onCompleteParams: [this]
+        })
+    },
+    mouseOut: function () {}
+});
+_iconController.initializeIcon("canvas-logo", ChromeLogo);
+</code></pre>

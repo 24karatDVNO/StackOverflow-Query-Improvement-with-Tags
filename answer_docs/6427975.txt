@@ -1,0 +1,7 @@
+<p>If you did something like:</p>
+
+<pre><code>var length = $("div.myclass").length;
+$("div.myclass:eq("+(length-1) +")").remove(); //Remove last div
+</code></pre>
+
+<p>Then you wouldn't need an id.</p>

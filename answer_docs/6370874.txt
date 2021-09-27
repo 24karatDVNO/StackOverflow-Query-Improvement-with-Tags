@@ -1,0 +1,131 @@
+<p>Well, I think that consolidating the operations is the best option available and in my case I couldn't think of a scenario where a non optimal solution would be generated. If someone is actually interested I have shared my consolidation code here:</p>
+
+<pre><code> public class TreeOperationConsolidator : ITreeOperationConsolidator
+{
+    public IEnumerable&lt;ITreeOperation&gt; ConsolidateOperations(IEnumerable&lt;ITreeOperation&gt; operations)
+    {
+        List&lt;ITreeOperation&gt; result = new List&lt;ITreeOperation&gt;();
+        foreach (var op in operations)
+        {
+            if (op.Operation == OperationType.Move)
+            {
+                ConsolidateMoveOperation(op, operations, result);
+            }
+            else if (op.Operation == OperationType.Rename)
+            {
+                ConsolidateRenameOperation(op, operations, result);
+            }
+            else if (op.Operation == OperationType.Create)
+            {
+                ConsolidateCreateOperation(op, operations, result);
+            }
+            else if (op.Operation == OperationType.Delete)
+            {
+                ConsolidateDeleteOperation(op, operations, result);
+            }
+        }
+        return result;
+    }
+
+    private void ConsolidateDeleteOperation(ITreeOperation op, IEnumerable&lt;ITreeOperation&gt; operations, List&lt;ITreeOperation&gt; result)
+    {
+        bool newlyCreated = result.Any(o =&gt; o.SourceId == op.SourceId &amp;&amp; o.Operation == OperationType.Create);
+
+        result.RemoveAll(o =&gt; o.SourceId == op.SourceId);
+
+        var children = (from o in result
+                        where
+                            (o.Operation == OperationType.Move &amp;&amp; o.DestId == op.SourceId)
+                            || (o.Operation == OperationType.Create &amp;&amp; o.DestId == op.SourceId)
+                        select o).ToList();
+
+        foreach (var child in children)
+        {
+            result.Remove(child);
+            ConsolidateDeleteOperation(new TreeOperation { Operation = OperationType.Temp, SourceId = child.SourceId }, operations, result);
+        }
+
+        if (newlyCreated == false &amp;&amp; op.Operation != OperationType.Temp)
+            result.Add(op);
+    }
+
+    private void ConsolidateCreateOperation(ITreeOperation op, IEnumerable&lt;ITreeOperation&gt; operations, List&lt;ITreeOperation&gt; result)
+    {
+        result.Add(op);
+    }
+
+    private void ConsolidateRenameOperation(ITreeOperation op, IEnumerable&lt;ITreeOperation&gt; operations, List&lt;ITreeOperation&gt; result)
+    {
+        var createOperation = result.FirstOrDefault(o =&gt; o.SourceId == op.SourceId &amp;&amp; o.Operation == OperationType.Create);
+        if (createOperation == null)
+        {
+            var renameOp = result.FirstOrDefault(o =&gt; o.SourceId == op.SourceId &amp;&amp; o.Operation == op.Operation);
+            if (renameOp != null)
+            {
+                result.Remove(renameOp);
+            }
+            result.Add(op);
+        }
+        else
+        {
+            createOperation.Argument = op.Argument;
+        }
+    }
+
+    protected void ConsolidateMoveOperation(ITreeOperation op, IEnumerable&lt;ITreeOperation&gt; operations, List&lt;ITreeOperation&gt; result)
+    {
+        var createOperation = result.FirstOrDefault(o =&gt; o.SourceId == op.SourceId &amp;&amp; o.Operation == OperationType.Create);
+        if (createOperation == null)
+        {
+            var moveOp = result.FirstOrDefault(o =&gt; o.SourceId == op.SourceId &amp;&amp; o.Operation == op.Operation);
+            if (moveOp != null)
+            {
+                result.Remove(moveOp);
+            }
+            result.Add(op);
+        }
+        else
+        {
+            createOperation.DestId = op.DestId;
+        }
+    }
+}
+
+public class TreeOperation : ITreeOperation
+{
+    public string Argument { get; set; }
+
+    public OperationType Operation { get; set; }
+
+    public string SourceId { get; set; }
+
+    public string DestId { get; set; }
+}
+
+public enum OperationType
+{
+    Move,
+    Rename,
+    Create,
+    Delete,
+    Temp
+}
+
+public interface ITreeOperationConsolidator
+{
+    IEnumerable&lt;ITreeOperation&gt; ConsolidateOperations(IEnumerable&lt;ITreeOperation&gt; operations);
+}
+
+public interface ITreeOperation
+{
+    string Argument { get; set; }
+
+    OperationType Operation { get; set; }
+
+    string SourceId { get; set; }
+
+    string DestId { get; set; }
+}
+</code></pre>
+
+<p>So what you need to do is to track all user actions in the tree (i.e. save instances of ITreeOperation in the session (or somewhere else). Before applying all changes make sure to call <code>IEnumerable&lt;ITreeOperation&gt; ConsolidateOperations(IEnumerable&lt;ITreeOperation&gt; operations)</code>.</p>

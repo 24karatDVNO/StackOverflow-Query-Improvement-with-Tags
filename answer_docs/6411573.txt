@@ -1,0 +1,7 @@
+<p>You chould use the following snippet as body for your function:</p>
+
+<pre><code>$aFiles = glob($sFolder);
+return (sizeof($aFiles) &lt; 1) true : false;
+</code></pre>
+
+<p>This will get the contents of the folder as an array, when empty - your directory is empty.</p>

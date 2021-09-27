@@ -1,0 +1,6 @@
+<p>The UITabBar does not load all the view controllers at once - it loads the first one. When you click on a tab bar button you load another controller.</p>
+
+<p>To receive the changes in the tab bar you can add a delegate and implement:</p>
+
+<pre><code>-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {...}
+</code></pre>

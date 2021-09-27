@@ -1,0 +1,21 @@
+<p>Don't try to force it to become synchronous but use the call back functions.</p>
+
+<p>For example: you could split up the original call into two method calls and set the second part as the callback of the save. You'll need to update how you save of course, but that shouldn't be too hard.</p>
+
+<pre><code>Private sub BlahWithSave()
+    'PERFOR ACTIONS
+    Blah()
+    Blah2()
+
+    'SAVE CHANGES TO DB
+    General.SaveState(BlahWithSavePart2)
+End Sub
+
+Private sub BlahWithSavePart2()
+
+    'CARRY ON PERFORMING ACTIONS AFTER SAVE CARRIED OUT
+    Blah3()
+    Blah4()
+
+End Sub
+</code></pre>

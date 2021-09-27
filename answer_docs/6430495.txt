@@ -1,0 +1,5 @@
+<p>Assuming that your <code>@property</code> is set to <code>retain</code>, that should be fine. Using the dot notation (<code>self.dictionaryIvar</code>) automatically will release and retain your dictionary.</p>
+
+<p>If you're just trying to clear the dictionary, though, it might be better to just call the dictionary's <code>-removeAllObjects</code> method:</p>
+
+<p><code>[self.dictionaryIvar removeAllObjects];</code></p>

@@ -1,0 +1,8 @@
+<p>There is no way to exclude unexpected attributes with XPath.</p>
+
+<p>So you must find a safer way to locate elements you want. Things that you should consider:</p>
+
+<ol>
+<li><p>In a <code>form</code>, each <code>input</code> should have a distinct name. The same is true for the <code>form</code> itself. So you can try <code>//form[@name='...']/input[@name='...']</code></p></li>
+<li><p>Add a class to the fields that you care about. Classes don't have be mentioned in any stylesheet. In fact, I used this for form field validation by using classes like <code>decimal number</code> or <code>alpha number</code></p></li>
+</ol>

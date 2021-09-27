@@ -1,0 +1,7 @@
+<p>A FileVersion is in the Format d.d.d.d (2.0.0.0), where a double is just a floating point number (d.d).</p>
+
+<p>All the information you need is in the <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.aspx" rel="nofollow">FileVersionInfo</a> instance you already created (check the properties).</p>
+
+<p><strong>/EDIT</strong></p>
+
+<p>Answer to Q2. You need to use SelectSingleNode() to return an XmlNode, then you look at the .Value property of that.</p>

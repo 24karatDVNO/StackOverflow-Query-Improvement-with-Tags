@@ -1,0 +1,7 @@
+<p>you're adding integers to char-arrays in:</p>
+
+<pre><code>string first_id = "idOne : " + (*i).second.id1; 
+string second_id = "idTwo: " + (*i).second.id2;
+</code></pre>
+
+<p>may be you're test-sets differs and on the non-throwing system you accidently get a valid address to assign to the string variable.</p>

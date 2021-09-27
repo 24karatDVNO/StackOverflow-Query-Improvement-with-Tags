@@ -1,0 +1,3 @@
+<p><code>tgt_name_str = map_name, ",", "TARGET" , ", " , tgt_name</code> creates a tuple, the string representation of which is surrounded by parenthesis.</p>
+
+<p>Others have suggested <code>''.join([map_name, ",", "TARGET" , ", " , tgt_name])</code>, but you could do <code>', '.join([map_name, "TARGET", tgt_name])</code>. The join will put the ', ' in between the elements of the supplied array. Note that this may differ from your desired output as in your code, there's no space after the first comma but there is after the second. Is that intentional?</p>

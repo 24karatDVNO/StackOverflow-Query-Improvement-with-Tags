@@ -1,0 +1,30 @@
+<p>One idea is:</p>
+
+<pre><code>    $args=array(
+      'meta_key' =&gt; 'netr_event_date_start',
+      'orderby'=&gt;'netr_event_date_start',
+      'numberposts' =&gt; -1,
+      'post_type' =&gt; 'post',
+     'post_status' =&gt; 'publish'
+  );
+
+  $posts = get_posts($args);
+</code></pre>
+
+<p>and another</p>
+
+<pre><code>   $args=array(
+      'meta_key' =&gt; 'netr_event_date_start'
+      'post_type' =&gt; 'post',
+      'post_status' =&gt; 'publish',
+      'posts_per_page' =&gt; -1,
+      'caller_get_posts'=&gt; 1,
+      'orderby'=&gt;'netr_event_date_start'
+   );
+
+   $my_query = null;
+   $my_query = new WP_Query($args);
+
+   if( $my_query-&gt;have_posts() ) {
+     while ($my_query-&gt;have_posts()) : $my_query-&gt;the_post(); ...
+</code></pre>

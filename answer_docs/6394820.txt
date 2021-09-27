@@ -1,0 +1,92 @@
+<p>It's possible to do what you want by registering a <code>setOnFocusChangeListener</code> and a <code>setOnClickListener</code> to the <code>EditText</code>. </p>
+
+<p>There are a lot of different scenarios to consider when it comes to navigation and things might need to be changed to work with a certain layout.</p>
+
+<p>Anyway, start by overriding onSizeChanged to show the hidden element when the back button is touched.</p>
+
+<pre><code>public class MyLinearLayout extends LinearLayout {
+
+    private MyListActivity mMyListActivity;
+
+    public MyLinearLayout(Context context) {
+        super(context);
+    }
+
+    public MyLinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);      
+    }
+
+    public void setMyListActivity(MyListActivity mla) {
+        mMyListActivity = mla;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        // show the element when we get more room       
+        if (h &gt; oldh) {
+            if (mMyListActivity != null) {
+                mMyListActivity.showBar();
+            }
+        }
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+}
+</code></pre>
+
+<p>In the ListActivity we grab the MyLinearLayout and pass <code>this</code> to it. Then a setOnFocusChangeListener is registered to handle things when the EditText's focus changes. The setOnClickListener is used to hide the element when the EditText already has focus.</p>
+
+<pre><code>public class MyListActivity extends ListActivity {
+
+    private ArrayList&lt;MyData&gt; mDataList = new ArrayList&lt;MyData&gt;();
+
+    private MyLinearLayout mMyLinearLayout; 
+    private LinearLayout mHideMeLinearLayout;
+    private EditText mEditText;
+
+    public void showBar() {
+        if (mHideMeLinearLayout != null) {
+            mHideMeLinearLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        // Get MyLinearLayout and pass this to it.
+        mMyLinearLayout = (MyLinearLayout) findViewById(R.id.myLinearLayout);
+        mMyLinearLayout.setMyListActivity(this);
+
+        // the LinearLayout to be hidden
+        mHideMeLinearLayout = (LinearLayout) findViewById(R.id.LinearLayoutToHide);
+
+        mEditText = (EditText) findViewById(R.id.editText);     
+        mEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Service.INPUT_METHOD_SERVICE);
+                if (hasFocus) {
+                    imm.showSoftInput(mEditText, 0);
+                    mHideMeLinearLayout.setVisibility(View.GONE);
+                } else {
+                    imm.hideSoftInputFromWindow(mMyLinearLayout.getWindowToken(), 0);
+                    mHideMeLinearLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        mEditText.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHideMeLinearLayout.setVisibility(View.GONE);
+            }
+        });
+
+        .....
+    }
+
+    .....
+}
+</code></pre>
+
+<p>I'll provide a working example later, but gotta run now.</p>

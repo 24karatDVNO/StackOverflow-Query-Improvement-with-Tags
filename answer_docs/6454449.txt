@@ -1,0 +1,5 @@
+<p>A "hash", as per definition, cannot be decoded, althought some brute force hacking is possible.</p>
+
+<p>If you need to decode your code, you must use a 2 way algorithm (such as AES or DES).</p>
+
+<p>If you don't really to decode, but just check if your stored hash matches the user input, then you must encode the user input using the same algorithm that was used for the stored hash and check if they match (this is the common approach used for passwords)</p>

@@ -1,0 +1,17 @@
+<p>Assuming you already have an opened session in a CurrentSession property/variable and that you could pass that working session to your repository, I would do the following:</p>
+
+<pre><code>using(var trx = CurrentSession.BeginTransaction())
+{
+    try
+    {
+        int newId = this.Repository.Save(obj, CurrentSession);  
+        webservice.Save(remoteObj, id);
+
+        trx.Commit();
+    }
+    catch
+    {
+        trx.Rollback();
+    }
+}
+</code></pre>

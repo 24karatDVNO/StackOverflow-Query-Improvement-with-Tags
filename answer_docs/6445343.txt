@@ -1,0 +1,16 @@
+<p>In the for loop you are replacing the body each iteration, so it will always end up with the HTML from the last child element. Try this:</p>
+
+<pre><code>script type="text/javascript"&gt;
+      $(document).ready(function(){
+        $(':submit').click(function() {
+         var children = $('body').children();
+         var arChildren = $.makeArray(children);
+         var htmlText='';
+         for (var i = 0; i &lt; arChildren.length; i++) {
+           htmlText += arChildren[i].innerHTML;
+         }
+         $('body').replaceWith(htmlText);
+        });
+      });
+    &lt;/script&gt;
+</code></pre>

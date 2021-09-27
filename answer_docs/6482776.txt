@@ -1,0 +1,7 @@
+<p>Hm, think I figured it out, the problem is that you can't have multiple items with the same IDs (even if they are in different sections of the code). Try something like this:</p>
+
+<p><a href="http://jsfiddle.net/grHEY/5/" rel="nofollow">http://jsfiddle.net/grHEY/5/</a></p>
+
+<p>Though, there are better ways of doing it.
+Say <a href="http://api.jquery.com/jQuery.data/" rel="nofollow">http://api.jquery.com/jQuery.data/</a> (.data)
+Or instead of storing that in the class, use php to set that to a variable in js (in the header).</p>

@@ -1,0 +1,22 @@
+<p>Instead of using template fields, you can override functions which allow you to edit BoundFields. To do this, try something like this:</p>
+
+<pre><code>&lt;asp:GridView runat="server" ID="gvCurrentLocations" ... OnRowEditing="rowEditing" OnRowCancelingEdit="rowCancel" OnRowUpdating="rowUpdating"&gt;
+    &lt;Columns&gt;
+        &lt;asp:BoundField DataField="locationname" HeaderText="Location Name" /&gt;
+        &lt;asp:TemplateField HeaderText="Action"&gt;
+            &lt;ItemTemplate&gt;
+                &lt;asp:CheckBox ID="cbToRemove" runat="server" CssClass="remove" /&gt;
+            &lt;/ItemTemplate&gt;
+        &lt;/asp:TemplateField&gt;
+        &lt;asp:BoundField DataField="boundpdas" HeaderText="Assigned To" ReadOnly="true" /&gt;
+        &lt;asp:CommandField ShowEditButton="true" UpdateText="Save"  /&gt;
+    &lt;/Columns&gt;
+    &lt;EmptyDataTemplate&gt;
+        There are currently no locations.
+    &lt;/EmptyDataTemplate&gt;
+&lt;/asp:GridView&gt;
+</code></pre>
+
+<p>Notice how the 2nd bound field is readonly, this will prevent it being editable. The command field in the 4th column exposes a button 'Edit' which changes the bound field to a text box.</p>
+
+<p>In your backend code, you can get the new values by accessing the 'NewValues' dictionary of the GridViewUpdateEventArgs parameter.</p>

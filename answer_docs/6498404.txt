@@ -1,0 +1,6 @@
+<p>Try to add TableCell before adding control:</p>
+
+<pre><code>TableCell cell = new TableCell();      
+e.Row.Cells.Add(cell);
+e.Row.Cells[i].Controls.Add(label);
+</code></pre>

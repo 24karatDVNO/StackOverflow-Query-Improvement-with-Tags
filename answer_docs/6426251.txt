@@ -1,0 +1,11 @@
+<p>Or use an ExecutorService.  Here is a excerpt from a class I have that does similar to yours.</p>
+
+<pre><code>ExecutorService l_service = Executors.newFixedThreadPool(l_number_threads);
+List&lt;Future&lt;T&gt;&gt; l_results = null;
+try {
+  l_results = l_service.invokeAll(a_tasks);
+} catch (InterruptedException ex) {
+  throw ex;
+}
+l_service.shutdownNow();
+</code></pre>

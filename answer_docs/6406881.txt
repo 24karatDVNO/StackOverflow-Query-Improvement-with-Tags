@@ -1,0 +1,45 @@
+<p>This is an <a href="http://www.html-form-guide.com/php-form/php-form-validation.html" rel="nofollow">example</a> of php form validation.</p>
+
+<p>Another <a href="http://www.finalwebsites.com/forums/topic/server-side-form-field-validation-with-php-only" rel="nofollow">example</a> for <a href="http://www.finalwebsites.com/demos/check_empty_form_fields.php" rel="nofollow">form</a> empty field validation.</p>
+
+<p>Example:</p>
+
+<pre><code>&lt;?PHP
+require_once "formvalidator.php";
+$show_form=true;
+if(isset($_POST['Submit']))
+{
+    $validator = new FormValidator();
+    $validator-&gt;addValidation("Name","req","Please fill in Name");
+    $validator-&gt;addValidation("Email","email",
+"The input for Email should be a valid email value");
+    $validator-&gt;addValidation("Email","req","Please fill in Email");
+    if($validator-&gt;ValidateForm())
+    {
+        echo "&lt;h2&gt;Validation Success!&lt;/h2&gt;";
+        $show_form=false;
+    }
+    else
+    {
+        echo "&lt;B&gt;Validation Errors:&lt;/B&gt;";
+
+        $error_hash = $validator-&gt;GetErrors();
+        foreach($error_hash as $inpname =&gt; $inp_err)
+        {
+          echo "&lt;p&gt;$inpname : $inp_err&lt;/p&gt;\n";
+        }
+    }
+}
+
+if(true == $show_form)
+{
+?&gt;
+&lt;form name='test' method='POST' action='' accept-charset='UTF-8'&gt;
+Name: &lt;input type='text' name='Name' size='20'&gt;
+Email: &lt;input type='text' name='Email' size='20'&gt;
+&lt;input type='submit' name='Submit' value='Submit'&gt;
+&lt;/form&gt;
+&lt;?PHP
+}//true == $show_form
+?&gt;
+</code></pre>

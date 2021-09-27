@@ -1,0 +1,29 @@
+<p>i had done this by solrj (For instance solution) </p>
+
+<pre><code> File home = new File("C:\\workspace\\SolrMultipleCore\\solr");
+ File f = new File( home, "solr.xml" );
+ CoreContainer container = new CoreContainer();
+ container.load( "C:\\workspace\\SolrMultipleCore\\solr", f );
+ EmbeddedSolrServer server = new EmbeddedSolrServer( container,"core1");
+ EmbeddedSolrServer server1 = new EmbeddedSolrServer( container,"core2");
+ String query=params.getParams("q");
+ String query1=params.getParams("q1");
+ SolrQuery solrquery=new SolrQuery(query);
+ QueryResponse q = server.query(solrquery);
+ QueryResponse q1 = server1.query(solrquery);
+</code></pre>
+
+<p>Solr.xml</p>
+
+<pre><code>&lt;solr persistent="true"&gt;
+ &lt;property name="snapshooter" value="C:\solr1\bin\snapshooter.sh" /&gt;
+ &lt;cores adminPath="/admin/cores"&gt;
+  &lt;core name="core1" instanceDir="core0"/&gt;   
+  &lt;core name="core2" instanceDir="core1" /&gt;
+ &lt;/cores&gt;
+&lt;/solr&gt;
+</code></pre>
+
+<p>Still i am making research on how to do this inside solr.</p>
+
+<p>Let me know if there is any details need on this</p>

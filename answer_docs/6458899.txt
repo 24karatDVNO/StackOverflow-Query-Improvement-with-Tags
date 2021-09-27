@@ -1,0 +1,14 @@
+<p>Are you calling reloadData on the instance of your tableView. In other words if you have</p>
+
+<pre><code>MyUITableView *mytableView;
+</code></pre>
+
+<p>then reloading it would require you call</p>
+
+<pre><code>[mytableView reloadData];
+</code></pre>
+
+<p>not</p>
+
+<pre><code>[MyUITableView reloadData];
+</code></pre>

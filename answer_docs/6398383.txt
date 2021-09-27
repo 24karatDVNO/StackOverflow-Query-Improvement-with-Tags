@@ -1,0 +1,28 @@
+<p>This works for me (just using the AppDelegate for now):</p>
+
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{   
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];    
+
+    [MKStoreManager sharedManager];
+
+    [MKStoreManager setDelegate:self];  
+
+    [[MKStoreManager sharedManager] purchasableObjects];
+
+    return YES;
+}
+</code></pre>
+
+<p>Which calls back (in my AppDelegate):</p>
+
+<pre><code>- (void)productFetchComplete {
+
+    NSArray *products = [MKStoreManager sharedManager].purchasableObjects;
+
+    NSLog(@"productFetchComplete: %@", products);
+}
+</code></pre>
+
+<p>Perhaps you can show us what you are doing if this isn't working for you.</p>

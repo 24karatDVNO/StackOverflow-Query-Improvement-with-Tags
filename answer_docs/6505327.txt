@@ -1,0 +1,25 @@
+<p>If you are using Java 5+ use Enum Types <a href="http://download.oracle.com/javase/tutorial/java/javaOO/enum.html" rel="nofollow">Java Enum Types</a>. According to Effective Java it's not a good practice to use a bunch of constants, instead use Enum.</p>
+
+<pre><code>public class Player {
+
+public enum Role{
+  WICKETPLAYER,
+  BATSMAN,
+  BOWLER,
+  ALLROUNDER;
+}
+ final int currentbatting;
+ final Role playerRole;
+
+  public Player(final Role role, final int currentbatting){
+      this.currentbatting=currentbatting;
+      this.playerRole=role;
+
+  }
+
+  public String whatTypeOFplayer(){
+      return this.playerRole.toString();
+  }
+</code></pre>
+
+<p>}</p>

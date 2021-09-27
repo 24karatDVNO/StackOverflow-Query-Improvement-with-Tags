@@ -1,0 +1,14 @@
+<p>All I needed was a gender.Trim() to get rid of all white spaces. </p>
+
+<pre><code>var gender = value.ToString();
+        try
+        {
+            return gender.Trim() == "F" ? "../Resources/Icons/male_user.png" : "../Resources/Icons/female_user.png";
+        }
+        catch (Exception)
+        {
+            return "";
+        }
+</code></pre>
+
+<p>Thats took care of it all, and it works. Thanks for the answers and "doh!" possibilites though.</p>

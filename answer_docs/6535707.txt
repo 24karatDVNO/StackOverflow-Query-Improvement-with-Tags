@@ -1,0 +1,22 @@
+<p>You can do this in a single trigger.</p>
+
+<p>Here are the two columns from your example combined into one trigger. I just did an update triggers because that's what you had in your example, but you'll probably want another trigger to do the same thing for inserts, too.</p>
+
+<pre><code>DELIMITER $$
+
+DROP TRIGGER IF EXISTS tr_b_upd_products $$
+
+CREATE TRIGGER tr_b_upd_products BEFORE UPDATE ON products FOR EACH ROW BEGIN
+  IF (NEW.sn = 0)
+  THEN
+    SET NEW.sn=NULL;
+  END IF;
+
+  IF (NEW.name = '')
+  THEN
+    SET NEW.name=NULL;
+  END IF;
+END $$
+
+DELIMITER ;
+</code></pre>

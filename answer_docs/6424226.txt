@@ -1,0 +1,21 @@
+<p>I changed the line </p>
+
+<pre><code>STDOUT = File.new("a.log", "w")
+</code></pre>
+
+<p>to</p>
+
+<pre><code>$stdout = File.new("a.log", "w")
+</code></pre>
+
+<p>and i changed </p>
+
+<pre><code>STDOUT = x
+</code></pre>
+
+<p>to</p>
+
+<pre><code>$stdout = STDOUT
+</code></pre>
+
+<p>and it worked</p>

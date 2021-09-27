@@ -1,0 +1,7 @@
+<p>If you use method syntax you should be able to do something like:</p>
+
+<pre><code>var user = context.Users.FirstOrDefault(u =&gt; u.Id == userId);
+var rights =user.Roles.SelectMany(role =&gt; role.Rights).Distinct();
+</code></pre>
+
+<p>Be sure to check user is not null before getting rights</p>

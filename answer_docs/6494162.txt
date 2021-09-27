@@ -1,0 +1,22 @@
+<p>Since specialization won't work since the template parameter will only ever be derived from <code>Foo</code>, use what another answer said: <code>is_base_of</code>, either from Boost or from the standard library if it already supports parts of C++0x:</p>
+
+<pre><code>#include &lt;type_traits&gt; // C++0x
+
+class Foo{};
+
+template&lt;class T&gt;
+class A{
+  void specialOnFoo(){
+    // dispatch the call
+    specialOnFoo(std::is_base_of&lt;T, Foo&gt;::type());
+  }
+
+  void specialOnFoo(std::true_type){
+    // handle Foo case
+  }
+
+  void specialOnFoo(std::false_type){
+    // non-Foo case
+  }
+};
+</code></pre>

@@ -1,0 +1,3 @@
+<p>jQuery and all other frameworks supporting custom events attach a function to the event of the elem (or observe it). That function then triggers all functions that have been bound (using bind) for a specific event type.</p>
+
+<p><a href="https://developer.mozilla.org/en/DOM/element.addEventListener" rel="nofollow">domelement.addEventListener</a> does not override an other function and your function added can't be removed by other (bad) javascript, except when it would know the exact footprint of your function.</p>

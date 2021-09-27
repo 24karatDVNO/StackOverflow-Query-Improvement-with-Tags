@@ -1,0 +1,5 @@
+<p><code>this</code> will point to DOM window and not the <code>&lt;a&gt;</code> tag. So use <code>onclick</code> attribute to execute.</p>
+
+<pre><code>out.print("&lt;a href=\"#\" onclick=\"showHideDetails('"+id+"',this);\"&gt;
+show details&lt;/a&gt;");
+</code></pre>

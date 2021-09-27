@@ -1,0 +1,13 @@
+<p>Is it possible to have another int column on your table variable and update that column with modulo after the insert is finished?</p>
+
+<pre><code>declare @Mytablevar table
+(
+id int identity(1,1)
+,id1 int
+somedata nvarchar(300)
+)
+
+-- insert your data as you would.  After insert is finished, do the following:
+
+update @mytablevar set id1 = case when id &gt; 250 then id % 250 else id end
+</code></pre>

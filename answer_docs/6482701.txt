@@ -1,0 +1,10 @@
+<p>Are your lists always 16 elements in a 4x4 matrix?  If you are simply trying to get the 4 lower right corner elements, try:</p>
+
+<pre><code>&gt;&gt;&gt; l =  [[1,2,3,4], [1,2,3,4], [1,2,3,4], [1,2,3,4]]
+&gt;&gt;&gt; print [l[2][:2], l[3][:2]]
+[[1, 2], [1, 2]]
+</code></pre>
+
+<p>Otherwise, for a general solution the list comprehension mentioned by others is better.</p>
+
+<p>It would be interesting to benchmark both and see which is faster for your use case.  Though this sounds like premature optimization to me.</p>

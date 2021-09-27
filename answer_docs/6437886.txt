@@ -1,0 +1,4 @@
+<p>i dont see anything wrong in above code that could lead it to deadlock or whatever it is, except this line:     <code>jobForm.JobLabel = context.JobDetail.JobDataMap.GetString("Name");</code></p>
+
+<p>what does this line does, there must be something wrong in this line, 
+try putting some hard coded string instead of <code>context.JobDetail.JobDataMap.GetString("Name");</code> and tell me if it still doesn't work.</p>

@@ -1,0 +1,10 @@
+<p>You're not setting the value for <code>{0}</code>. Try something like this:</p>
+
+<pre><code>myLink.NavigateUrl = 
+    String.Format("~/ShowMMBProfileStats1.aspx?Profile_ID={0}", HyperLinkValue );
+</code></pre>
+
+<p>or</p>
+
+<pre><code> myLink.NavigateUrl = "~/ShowMMBProfileStats1.aspx?Profile_ID=" + HyperLinkValue ;
+</code></pre>

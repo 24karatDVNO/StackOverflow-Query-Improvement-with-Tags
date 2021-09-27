@@ -1,0 +1,12 @@
+<p>I managed to solve the issue myself.</p>
+
+<p>Through a few hours of trial &amp; error (and research) I have figured out how to accomplish what I was asking for. Test code posted below for others. This prints out 3 of the values for each 'comic' node:</p>
+
+<pre><code>&lt;?php
+  $xml = simplexml_load_file('comiclist.xml');
+
+  foreach ($xml-&gt;comiclist-&gt;comic as $comic) {
+    echo $comic-&gt;mainsection-&gt;series-&gt;displayname . ' #' . $comic-&gt;issuenr . ' is ID number: ' . $comic-&gt;id . '&lt;br /&gt;';
+  }
+?&gt; 
+</code></pre>

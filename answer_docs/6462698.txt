@@ -1,0 +1,9 @@
+<p>If I have understood your question correctly, you would just handle the click event of the BulletedList control, like:</p>
+
+<pre><code>protected void filingList_Click(object sender, BulletedListEventArgs e)
+{
+    BulletedList bull = (BulletedList)sender;
+    ListItem li = bull.Items(e.Index);
+    filingLiteral.Text = li.Value;
+}
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Add the following to your apps onCreate() method:</p>
+
+<pre><code>WebSettings settings = this.appView.getSettings();
+settings.setSupportZoom(true);
+settings.setBuiltInZoomControls(true);
+</code></pre>
+
+<p>It won't work if your ROM does not support mulit-touch but since it is already working in your browser this should do it.</p>

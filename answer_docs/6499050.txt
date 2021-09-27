@@ -1,0 +1,3 @@
+<p>Within the action_submit function, you'll have to set <code>$this-&gt;auto_render = false;</code></p>
+
+<p>Instead of echoing out the resulting json object, you can use the response object: <code>$this-&gt;response-&gt;body(json_encode($return));</code></p>

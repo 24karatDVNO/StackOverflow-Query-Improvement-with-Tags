@@ -1,0 +1,27 @@
+<p>I recommend the project-specific PEAR environment for a PHP application. In yor case, your project can include the PEAR base system and required packages as follows:</p>
+
+<ul>
+<li>vendors/pear/PEAR.php</li>
+<li>vendors/pear/bin/cakerunner</li>
+<li>vendors/pear/Stagehand</li>
+<li>vendors/pear/...</li>
+</ul>
+
+<p>or</p>
+
+<ul>
+<li>app/vendors/pear</li>
+<li>...</li>
+</ul>
+
+<p>After introducing the project-specific PEAR environment, you can specify the path to into your preload script as:</p>
+
+<pre><code>set_include_path('/path/to/project/vendors/pear');
+</code></pre>
+
+<p>Finally, edit the command line for running tests as:</p>
+
+<pre><code>/path/to/php /path/to/project/vendors/pear/bin/cakerunner -p /path/to/preload.php --cakephp-app-path=/path/to/project/app --cakephp-core-path=/path/to/project/cake ...
+</code></pre>
+
+<p><a href="http://pear.php.net/manual/en/installation.shared.php" rel="nofollow">This manual page</a> explains how to build the project-specific PEAR environment for your project.</p>

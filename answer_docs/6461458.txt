@@ -1,0 +1,31 @@
+<p>Probably a bit verbose bit this should do it (untested):</p>
+
+<pre><code>$(function() {
+   var threshold = 5;
+
+   // get the original list
+   var $ul = $("ul");
+
+   // create the first container
+   var $div = $("&lt;div id='first_div'&gt;&lt;ul /&gt;&lt;/div&gt;").appendTo('body');
+
+   $("li", $ul).each(function(i) {
+      if(i &lt; threshold) {
+         $("ul", $div).append($(this));
+      }
+      else {
+         $overflowDiv = $("#second_div");
+
+         // create the second container if it doesn't already exists
+         if(!$overflowDiv.length) {
+            var $overflowDiv = $("&lt;div id='second_div'&gt;&lt;ul /&gt;&lt;/div&gt;").appendTo('body');
+         }
+         $("ul", $overflowDiv).append($(this));
+      }
+   });
+
+   // remove the (now empty) list
+   $ul.remove();
+
+});
+</code></pre>

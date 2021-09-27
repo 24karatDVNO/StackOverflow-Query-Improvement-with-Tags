@@ -1,0 +1,8 @@
+<p>Or you can do the following</p>
+
+<pre><code>text = """
+          word1:description 1 bla bla bla
+          word2:description 2 blah blah
+       """
+[tuple(x.strip().split(':', 1)) for x in text.split('\n') if ':' in x]
+</code></pre>

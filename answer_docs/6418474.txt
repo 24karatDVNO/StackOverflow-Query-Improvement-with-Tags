@@ -1,0 +1,3 @@
+<p>Depending on how are the two resulting arrays used, you could use a modification of copy-on-write:</p>
+
+<p>You won't use arrays directly, but using a wrapper. To clone an array, just create another wrapper. If you try to write to an array that is shared by more than one wrapper, you do the actual cloning and decouple the wrappers.</p>

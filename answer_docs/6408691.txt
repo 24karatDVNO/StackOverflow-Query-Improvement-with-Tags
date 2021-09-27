@@ -1,0 +1,3 @@
+<p>The easiest solution is to use a mutex(lock) which will protect ALL accesses to the queue. Just make <code>pop</code> and <code>push</code> use it.</p>
+
+<p>A possible performance wise better solution might  be to use more fine grain locking.</p>

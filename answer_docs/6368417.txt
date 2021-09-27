@@ -1,0 +1,8 @@
+<p>Unlike in Java, in C++ there is no <code>operator+</code> that explicitly converts a number to a string. What is usually done in C++ in cases like this is...</p>
+
+<pre><code>#include &lt;sstream&gt;
+
+stringstream ss;
+ss &lt;&lt; n &lt;&lt; '/' &lt;&lt; d; // Just like you'd do with cout
+string s = ss.str(); // Convert the stringstream to a string
+</code></pre>

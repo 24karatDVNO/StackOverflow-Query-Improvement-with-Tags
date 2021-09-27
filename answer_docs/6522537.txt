@@ -1,0 +1,13 @@
+<blockquote>
+  <p>there is a problem when I try to use this operator call from External</p>
+</blockquote>
+
+<p>Don't write procedural code inside your class definition. Only declarations.</p>
+
+<p>Write, in order:</p>
+
+<ul>
+<li>Class definition [in header]</li>
+<li><code>operator&lt;&lt;</code> [in header]</li>
+<li>Code that uses these things [in source file]</li>
+</ul>

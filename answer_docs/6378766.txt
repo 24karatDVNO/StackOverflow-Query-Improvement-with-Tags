@@ -1,0 +1,49 @@
+<p>Out of curiosity, is there a reason why you decided to use nested tables in the rows of your outermost table? If you were to use the following structure instead, and place your ASP elements in the <code>&lt;td&gt;</code> tags of the outer table (rather then creating new tables), then the columns would be automatically sized to fit the largest element from any of the rows, producing the desired results. </p>
+
+<pre><code>.cartonTb
+    {
+        font-size:x-large;
+        text-align:right;
+    }
+    .cartonlnkBtn
+    {
+        text-align:left;
+        font-size:x-large;
+    }
+
+   &lt;table &gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+            &lt;asp:Label runat="server"  Text="MODEL NO" class="cartonlnkBtn"  /&gt;
+        &lt;/td&gt;
+        &lt;td &gt;
+            &lt;asp:TextBox ID="tbCartonModel" runat="server" class="cartonTb" style="width:200px" /&gt;
+        &lt;/td&gt;
+        &lt;td &gt;
+            &lt;asp:Label   runat="server"  Text="MODEL VERSION" class="cartonlnkBtn"  /&gt;
+        &lt;/td&gt;
+        &lt;td &gt;
+            &lt;asp:TextBox ID="tbCartonModelVer" runat="server" class="cartonTb" 
+                                        style="width:100px"/&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+            &lt;asp:Label  runat="server"  Text="PART NO" class="cartonlnkBtn" /&gt;
+        &lt;/td&gt;
+        &lt;td &gt;
+            &lt;asp:TextBox ID="tbCartonPartNp" runat="server" class="cartonTb" style="width:200px" /&gt;
+        &lt;/td&gt;
+        &lt;td &gt; 
+            &lt;asp:Label  runat="server"  Text="QUANTITY" class="cartonlnkBtn" /&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;asp:TextBox ID="tbCartonQty"  runat="server" class="cartonTb" style="width:100px" /&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+ &lt;/table&gt;
+</code></pre>
+
+<p>I have never used ASP before and so I'm unaware if there are any ASP conventions that would affect this structure.</p>
+
+<p>And as Don suggested, you will want to change the <code>text-align</code> for <code>.cartonTb</code></p>

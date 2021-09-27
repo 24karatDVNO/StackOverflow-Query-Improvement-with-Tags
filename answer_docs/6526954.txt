@@ -1,0 +1,11 @@
+<p>This will show the div and push it down the page by extending the top margin 200px. It uses <a href="http://api.jquery.com/animate/" rel="nofollow">Jquery's animate</a>, which lets you change a numeric property over time (read: move stuff). SlideDown is basically shorthand for calling an animate function that increases the height of an element to move it down the page. Instead of increasing the height, this keeps the same height and just moves the element to a lower part of the page.</p>
+
+<p>Is this anything close to what you wanted? :D</p>
+
+<pre><code>$(function() {
+
+$(".act").live("click",function() {
+     $("#wait").show().animate({ marginTop: "+=200"  }, 600);
+    });
+});
+</code></pre>

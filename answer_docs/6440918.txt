@@ -1,0 +1,24 @@
+<p>user804965's solution is one I've implemented before. I had to run some terminal commands from Java, and used the Process and Runtime Java objects. The same idea can be applied to running ant commands. </p>
+
+<p>For example:</p>
+
+<pre><code>  ProcessBuilder pb = new ProcessBuilder("path/to/my/script/script.sh");
+  Map&lt;String, String&gt; env = pb.environment();
+  Process p = pb.start();
+  p.waitFor();
+  BufferedReader buf = new BufferedReader(new InputStreamReader(
+          p.getInputStream()));
+  String line = "";
+  while ((line = buf.readLine()) != null) {
+    System.out.println(line);
+  }
+</code></pre>
+
+<p>This will run a script file from Java and print the output to the console. Inside script.sh you can do something along the lines of...</p>
+
+<pre><code>cd /path/to/my/build.xml/file/; ant -p
+</code></pre>
+
+<p>Or call whatever ant script you need to call (ant clean, for example).</p>
+
+<p>You can also likely do this without having the additional sh file, and just call the terminal command from Java. I have not tried this approach though.</p>

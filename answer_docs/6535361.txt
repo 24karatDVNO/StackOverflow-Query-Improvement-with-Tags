@@ -1,0 +1,18 @@
+<p>Try placing the link tag that references your css file out of your <strong>master page's  contentPlaceHolder</strong> with id <strong>head</strong> as shown below,</p>
+
+<pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;head runat="server"&gt;
+  &lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+  &lt;title&gt;Title1&lt;/title&gt;
+  &lt;link href="~/css/layout.css" type="text/css" rel="stylesheet" media="all" runat="server" /&gt;
+
+   &lt;asp:ContentPlaceHolder ID="head" runat="server"&gt;
+   &lt;/asp:ContentPlaceHolder&gt;
+
+   &lt;/head&gt;
+   &lt;body&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>This fixed my issues while running through iis..</p>

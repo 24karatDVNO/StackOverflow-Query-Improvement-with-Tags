@@ -1,0 +1,31 @@
+<p>Most of the answers here are correct that you should return a struct. 
+There is one more way if you are interested, and that is by sending reference of the variables that you want to return.</p>
+
+<p>For example:</p>
+
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+bool f(int a,int b,int&amp; q,int&amp; r)
+{
+    if(b==0)return 0;
+    q=a/b;
+    r=a%b;
+    return 1;
+}
+
+int main()
+{
+    int a=64,b=7,q,r;
+    bool pos=f(a,b,q,r);
+    if(pos)
+    {
+        printf("Quotient = %d Remainder = %d\n",q,r);
+    }
+    else
+    {
+        printf("Divison by zero not possible!\n");
+    }
+    return 0;
+}
+</code></pre>

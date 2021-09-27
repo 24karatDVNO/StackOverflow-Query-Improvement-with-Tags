@@ -1,0 +1,48 @@
+<p>You should check out .queue() if you're looking to do animations.</p>
+
+<p><a href="http://api.jquery.com/queue/" rel="nofollow">http://api.jquery.com/queue/</a></p>
+
+<p>From what I understand you're trying to run set these in order upon success?</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>        $('#jqNav li a').click(function (e) {
+    if ($(this).parent().is(".nav1")) {
+            $('.landing .main .nav ul').css({
+                    "background-position": "0 -50px"
+            });
+    }
+    else if ($(this).parent().is(".nav2")) {
+            $('.landing .main .nav ul').css({
+                    "background-position": "0 -100px"
+            });
+    }
+    else if (
+    $(this).parent().is(".nav3")) {
+            $('.landing .main .nav ul').css({
+                    "background-position": "0 -150px"
+            });
+    }
+    else if ($(this).parent().is(".nav4")) {
+            $('.landing .main .nav ul').css({
+                    "background-position": "0 -200px"
+            });
+    };
+    e.preventDefault();
+    stopAnim = true;
+    $page = $(this).attr('href');
+    var $hashTag = $(this).attr('name');
+    window.location.hash = $hashTag;
+    $.ajax({
+            url: $(this).attr('href'),
+            success: function (e) {
+                    $(window).scrollTop(0);
+                    // Run your scripts to occur after ajax success in here
+            },
+            error: function (e) {
+                    console.log('error occured');
+            }
+    });
+</code></pre>
+
+<p>});</p>

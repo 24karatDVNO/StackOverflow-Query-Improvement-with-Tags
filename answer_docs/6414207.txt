@@ -1,0 +1,13 @@
+<p>It is not advisable to use variable names that conflict with reserved keyword but sometimes you may want to not follow that rule for readability.</p>
+
+<p>For example:</p>
+
+<pre><code>        var duplicates = from item in Items
+                         group item by item.Name into @group
+                         where @group.Count() &gt; 1
+                         select @group;
+</code></pre>
+
+<p>It kinda highlights the important part of code.</p>
+
+<p>Other cases come to mind when you need to use third party code that you cannot change.</p>

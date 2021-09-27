@@ -1,0 +1,12 @@
+<p>Use </p>
+
+<pre><code>if (!empty($proxy)) {
+    header('Location: http://www.google.com');
+}
+</code></pre>
+
+<p>instead.</p>
+
+<p>Also, I'm not even sure that is your problem since both proxy "options" are not empty strings, therefore have a <code>strlen() &gt; 0</code>.</p>
+
+<p>The only way that if statement will return <code>false</code> is if you were to do <code>$proxy = ""</code></p>

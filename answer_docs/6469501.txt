@@ -1,0 +1,9 @@
+<p>Thats correct as it is.</p>
+
+<p>You could even ommit the @JoinColumn Statement as it will default to this values.</p>
+
+<p>If you want a bidirectional relationship you also have to set the relationship on the group class like this:</p>
+
+<pre><code>@OneToMany(targetEntity="User", mappedBy="group")
+private $users;
+</code></pre>

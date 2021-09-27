@@ -1,0 +1,19 @@
+<p>dont parse HTML via <code>preg_match </code>
+instead use php Class</p>
+<h2><a href="http://www.php.net/manual/en/class.domdocument.php" rel="nofollow noreferrer">The DOMDocument class</a></h2>
+<h3>example:</h3>
+<pre><code>   &lt;?php      
+   $html= &quot;&lt;h5&gt;some text in header&lt;/h5&gt;
+   some other content, that belongs to header &lt;p&gt; or &lt;a&gt; or &lt;img&gt; inside.. not important...
+   &lt;h5&gt;Second text header&lt;/h5&gt;&quot;;
+   // a new dom object 
+   $dom = new domDocument('1.0', 'utf-8'); 
+   // load the html into the object ***/ 
+   $dom-&gt;loadHTML($html); 
+   /*** discard white space ***/ 
+   $dom-&gt;preserveWhiteSpace = false; 
+   $hFive= $dom-&gt;getElementsByTagName('h5'); 
+   echo $hFive-&gt;item(0)-&gt;nodeValue; // u can get all h5 data by changing the index
+   ?&gt;
+</code></pre>
+<p><a href="http://www.phpro.org/examples/Parse-HTML-With-PHP-And-DOM.html" rel="nofollow noreferrer">Reference</a></p>

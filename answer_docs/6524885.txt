@@ -1,0 +1,34 @@
+<p>If you simply replace the '=' with a LIKE operator, you will get the same exact match answer as your current query. I assume you would like to use the LIKE operator to do something different (such as a begins with search).</p>
+
+<p>I provided you how SQL databases normally does this, but if this works for you depends on how SQL compatible the SQL dialect being used by the HTML5 engine is.</p>
+
+<p>Firstly, it depends on concaternation syntax. Secondly, it depends on concaternation using NULL + string produces NULL or the string. Most professional databases would yield NULL (this is good for you, because then this will work).</p>
+
+<p>The following should work on MySQL or Oracle and some other databases:</p>
+
+<pre><code>SELECT * FROM bdreminders
+WHERE firstname LIKE IFNULL( CONCAT(?,'%'), firstname)
+AND lastname LIKE IFNULL( CONCAT(?,'%'), lastname)
+AND baughtgift LIKE IFNULL( CONCAT(?,'%'), baughtgift)
+ORDER BY firstname asc
+</code></pre>
+
+<p>or (for Oracle, Postgre and others)</p>
+
+<pre><code>SELECT * FROM bdreminders
+WHERE firstname LIKE IFNULL( ? ||'%', firstname)
+AND lastname LIKE IFNULL( ? || '%', lastname)
+AND baughtgift LIKE IFNULL( ? || '%', baughtgift)
+ORDER BY firstname asc
+</code></pre>
+
+<p>or (for SQL server and others)</p>
+
+<pre><code>SELECT * FROM bdreminders
+WHERE firstname LIKE IFNULL( ? +'%', firstname)
+AND lastname LIKE IFNULL( ? + '%', lastname)
+AND baughtgift LIKE IFNULL( ? + '%', baughtgift)
+ORDER BY firstname asc
+</code></pre>
+
+<p>I would try the last one first. If the above does not work and you get all bdreminders, the database does not concaternate NULL+string to NULL. In this case, I don't think you can use ISNULL as it will return the first non null value and thus, always return '%'.</p>

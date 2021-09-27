@@ -1,0 +1,16 @@
+<p><strong>1.</strong> You must use some method to stop event from bubbling or captured by parent:</p>
+
+<p>for IE</p>
+
+<pre><code>window.event.cancelBubble = true
+</code></pre>
+
+<p>For Firefox, Safari, Chrome, Opera</p>
+
+<pre><code>e.stopPropagation()
+e.preventDefault()
+</code></pre>
+
+<p>For more info read this document: <a href="http://www.quirksmode.org/js/events_order.html" rel="nofollow">http://www.quirksmode.org/js/events_order.html</a> </p>
+
+<p><strong>2.</strong> You need to use ajax to submit score from user browser, not from server, because of you will have not user's authentication's token/cookie which use to identify what's user submitting the score. If you use ajax then browser will automatically push cookie together with request then you don't care about that. </p>

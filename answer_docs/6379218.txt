@@ -1,0 +1,6 @@
+<p>Prepend</p>
+
+<pre><code>RewriteCond %{REQUEST_FILENAME} !-f    # Existing File 
+</code></pre>
+
+<p>before your RewriteRule - it prevents existing files, like css files, from being rewritten.</p>

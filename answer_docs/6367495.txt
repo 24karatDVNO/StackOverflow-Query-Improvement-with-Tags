@@ -1,0 +1,27 @@
+<p>I could not get John Douthat's method working for multiple parameters, so I came up with the following alternative (taken from my CommentsController):</p>
+
+<pre><code>def set_params
+  @comment.parent_id = params[:blog_comment][:parent_id] 
+  @comment.ip_address = request.remote_ip
+  @comment.commentator = current_user.username || "anonymous"
+  @comment.name = params[:blog_comment][:name]
+  @comment.email = params[:blog_comment][:email]
+  @comment.url = params[:blog_comment][:url]
+end
+
+def create
+  @comment = @post.comments.build(params[:blog_comment])
+  set_params
+
+  if @comment.save
+  ...
+end
+
+def update
+  @comment = Blog::Comment.find(params[:id])
+  set_params
+
+  if @comment.update_attributes(params[:blog_comment])
+  ...
+end
+</code></pre>

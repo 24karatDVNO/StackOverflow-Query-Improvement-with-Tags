@@ -1,0 +1,5 @@
+<p>I think you are implementing a thread to download the video. But I suggest implementing the same with <a href="http://developer.android.com/reference/android/os/AsyncTask.html" rel="nofollow">AsyncTask</a> (also known as <a href="http://developer.android.com/resources/articles/painless-threading.html" rel="nofollow">painless threading</a>).</p>
+
+<p>If you use <code>AsyncTask</code> then you need to take care of thread management. For your case, implement the AsyncTask as below.</p>
+
+<p>Do all the downloading tasks inside the <code>doInBackground()</code> method of AsyncTask and implement alert/notification or whatever you want to show inside the <code>onPostExecute()</code> method of <code>AsyncTask</code>.</p>

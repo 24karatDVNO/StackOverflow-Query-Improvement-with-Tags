@@ -1,0 +1,19 @@
+<p>There are a couple of ways you can add the .lib and/or .a files to the linker in Dev-C++:</p>
+
+<p>The following is what I did when completing the boost tutorial <a href="http://www.boost.org/doc/libs/1_46_1/more/getting_started/windows.html#link-your-program-to-a-boost-library" rel="nofollow">http://www.boost.org/doc/libs/1_46_1/more/getting_started/windows.html#link-your-program-to-a-boost-library</a> :</p>
+
+<ul>
+<li>Project > Project Options > Directories > Library Directories - and then adding the directory where the *.a files reside.</li>
+</ul>
+
+<p>or</p>
+
+<ul>
+<li><p>Project > Project Options > Parameters > Linker</p>
+
+<pre><code>-L"C:\Path\To Your\Lib\Files\boost_1_46_1\stage\lib"
+-l-lboost_regex-mgw34-1_46_1
+</code></pre></li>
+</ul>
+
+<p>I haven't used libcurl but hopefully the process is similar.</p>

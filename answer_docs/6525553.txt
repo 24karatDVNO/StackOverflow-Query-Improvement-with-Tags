@@ -1,0 +1,16 @@
+<p>Most of the comments given below points to the right direction in that in my original code, I was creating two instances of the Singleton class. And I realize my folly so here is the code that works:</p>
+
+<pre><code>Singleton *singleton = [unarchiver decodeObjectForKey:@"singleton"];
+</code></pre>
+
+<p>Then, use the one and only instance of mySingleton:</p>
+
+<pre><code>Singleton *mySingleton = [Singleton sharedSingleton];
+[mySingleton setSort:[singleton sort]];
+</code></pre>
+
+<p>So, this way, the unarchiver pulls an instance of a singleton object which is autoreleased but the value is set to the real Singleton class.</p>
+
+<p>Note: some comments mentioned that I may not be using the Singleton class properly and I probably am not. I'm not expert at this. I just want to save something and have it back when the app terminates. If it helps you, great. If not, post a comment to help us all learn better. If I got better and learn more, maybe I'll update this post.</p>
+
+<p>Thanks for all the comments though. They are all right. I've upvoted all of them.</p>

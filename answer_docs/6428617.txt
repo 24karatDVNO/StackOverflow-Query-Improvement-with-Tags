@@ -1,0 +1,11 @@
+<p>If you keep the proprietary <code>:first</code> selector out of it, you'll have a valid <code>querySelectorAll</code> selector.</p>
+
+<pre><code>var rows = tbl.find('tr.someClass').slice( 0, 1 );
+</code></pre>
+
+<p>or</p>
+
+<pre><code>var rows = tbl.find('tr.someClass').eq( 0 );
+</code></pre>
+
+<p>Also, using the context parameter <code>$( selector, context )</code> is just a slower way of using the <a href="http://api.jquery.com/find/" rel="nofollow"><code>find()</code><sup><i>[docs]</i></sup></a> method.</p>

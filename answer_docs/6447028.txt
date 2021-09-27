@@ -1,0 +1,6 @@
+<p>I might be a bit confused by what you are trying to do but why not just do:</p>
+
+<pre><code>var newImg = $('&lt;img /&gt;').attr('src',$(this).attr('src')).attr('id',$(this).attr('id'));
+</code></pre>
+
+<p>Wouldn't that give you the id as well?</p>

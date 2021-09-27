@@ -1,0 +1,17 @@
+<pre><code>s2 := ((*T2)(&amp;t1)).F2()         // ok - not expected
+</code></pre>
+
+<p>works because you cast it to type <code>T2</code>, and it thus allows <code>F2</code>. So it is expected to work. The <code>F2</code> function is then called on your <code>T2</code> object <code>t1</code> which returns <code>t1.s</code>.</p>
+
+<pre><code>s0 := t2.F1()                   // error - expected ok
+</code></pre>
+
+<p>For this one, I can not tell you for sure but only give you my plausible idea as well:</p>
+
+<p>F1 is a method on type T1. As t2 is not of type T1 you can not call F1 on t2. So, as you noted, only data-fields are shared, not the methods on those types.</p>
+
+<p>Also see <a href="http://golang.org/doc/go_for_cpp_programmers.html" rel="nofollow">Go for C++ programmers</a>, which states:</p>
+
+<blockquote>
+  <p>Methods are defined on named types. If you convert the value to a different type, the new value will have the methods of the new type, not the old type. </p>
+</blockquote>

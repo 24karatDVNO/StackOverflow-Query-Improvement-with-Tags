@@ -1,0 +1,16 @@
+<p>Two options:</p>
+
+<ol>
+<li><p>If you don't want any data in the URL you can send a POST request and access it using <code>request.POST</code>, see <a href="https://docs.djangoproject.com/en/dev/ref/request-response/" rel="nofollow">the relevant docs.</a> The downside of POST requests is that the browser will warn you on refreshing the page, and it's difficult to link to.</p></li>
+<li><p>A better approach would be to create a model that holds all of the data you need.</p></li>
+</ol>
+
+<p>For example:</p>
+
+<pre><code>class Data(models.Model):
+    data1 = models.IntegerField()
+    data2 = models.IntegerField()
+    data3 = models.IntegerField()
+</code></pre>
+
+<p>Then have one view that takes all of the data from a POST request, and generates a URL that looks like <code>/dataview/1</code>. That way you have a URL that can be used to get the data from your <code>Data</code> model, but doesn't have the data encoded in the URL.</p>

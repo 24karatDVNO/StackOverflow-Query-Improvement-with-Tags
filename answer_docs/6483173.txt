@@ -1,0 +1,5 @@
+<p><code>Caused by: java.net.UnknownHostException: struts.apache.org</code> means that <code>struts.apache.org</code> cannot be resolved as you probably figured. Because this name seems to exists, that suggest that the machine where you run your application is unable to resolve it (bad DNS setup, or no internet connection).</p>
+
+<p>Looking at the stack trace, it seems that's occurring during parsing some XML resource (<code>at javax.xml.parsers.SAXParser.parse(SAXParser.java:395)</code>). This is probably due to the fact that the XML parser you're using tries to download the DTD / Schema of the document in order to validate it.</p>
+
+<p>So either fix your internet connection, provide the DTD / Schema locally (as a classpath resource), or disable XML validation.</p>

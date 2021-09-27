@@ -1,0 +1,40 @@
+<p>In general unchecked checkboxes are not sent (see <a href="https://stackoverflow.com/questions/6233371/check-box-tag-one-to-many-relationship">check_box_tag - one to many relationship</a>), so I suppose, if there's nothing inside the category, it's not sent too.</p>
+
+<p>You could do something like this:</p>
+
+<pre><code>def save_subcategories
+  categories = Category.all
+  for cat in categories
+    from_params = params["#{ cat.name }"]
+    unless from_params.nil? || from_params[:subcategory_ids].blank?
+     category_to_edit = role
+     category.subcategories.clear
+     subcategories = Subcategories.find(from_params[:subcategory_ids])
+     category_to_edit.subcategories &lt;&lt; subcategories 
+    end
+  end
+  redirect_to :action =&gt; 'index'
+end
+</code></pre>
+
+<p>I don't know what does it mean in your app when all subcategories are unchecked, but you could clear them all if no checkboxes are passed:</p>
+
+<pre><code>def save_subcategories
+  categories = Category.all
+  for cat in categories
+    from_params = params["#{ cat.name }"]
+    if from_params &amp;&amp; from_params[:subcategory_ids].present?
+      if from_params[:subcategory_ids].sort != cat.subcategory_ids.sort
+        category_to_edit = role
+        category.subcategories.clear
+        subcategories = Subcategories.find(from_params[:subcategory_ids])
+        category_to_edit.subcategories &lt;&lt; subcategories
+      end
+    else
+      category_to_edit = role # no idea what's that and if it's needed here...
+      category.subcategories.clear
+    end
+  end
+  redirect_to :action =&gt; 'index'
+end
+</code></pre>

@@ -1,0 +1,5 @@
+<p>Several years ago, I had similar problem than you. 
+If I remember correctly ProGuard did optimize short private method wrongly:
+It did dissmiss effects of "synchronized" keyworld of method during inlining. </p>
+
+<p>We fix this problem by using <code>-dontoptimize</code> option of ProGuard.</p>

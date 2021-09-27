@@ -1,0 +1,8 @@
+<p>I think you have an addressing problem in your JavaScript reference. I believe Firefox is not able to locate overlay.js. Try this:</p>
+
+<pre><code>&lt;script type="application/javascript" src="chrome://sidebar/content/overlay.js"&gt;
+</code></pre>
+
+<p>where "sidebar" is the name of your app, and your .js file is located in the "sidebar/chrome/content" directory, alongside your sidebar.xul file.</p>
+
+<p>More information on the chrome URL can be found <a href="https://developer.mozilla.org/en/XUL_Tutorial/The_Chrome_URL" rel="nofollow">here</a>.</p>

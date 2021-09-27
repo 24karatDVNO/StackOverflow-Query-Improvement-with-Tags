@@ -1,0 +1,12 @@
+<p>Use option #1 if the attributes are static. Since the attribute is a property of the class and doesn't change from instance to instance, this seems the right choice. You will not cause any issues by going with option #1 (assuming your classes were implemented similar to Test).</p>
+
+<pre><code>class MasterObjectv2(object):
+     UNIQUE_KEY = getUniqueKey()
+     #other properties for all objects in our system
+</code></pre>
+
+<p>Then your Test class could be implemented as follows:</p>
+
+<pre><code>class Test(MasterObject):
+    pass
+</code></pre>

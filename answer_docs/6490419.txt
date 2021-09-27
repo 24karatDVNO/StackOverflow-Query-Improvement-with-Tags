@@ -1,0 +1,14 @@
+<p>In order to cancel or abort the tab's ajax request do something like this</p>
+
+<pre><code>$('#tabs').tabs({
+    ajaxOptions: {
+        timeout: 10000,
+        error: function() {
+            // If error occurs while trying to load a page via AJAX, abort the tabs
+            $('#tabs').tabs('abort');
+        }
+    }
+});
+</code></pre>
+
+<p>For more information go <a href="http://jqueryui.com/demos/tabs/#method-abort" rel="nofollow">here</a>.</p>

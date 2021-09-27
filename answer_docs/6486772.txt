@@ -1,0 +1,10 @@
+<p>As the other answer suggests a lookup table is a much cleaner solution.</p>
+
+<p>Regarding your code:
+You terminate leaf nodes with NULL... now, when you charToMorse, this code will terminate search even though you haven't checked the whole tree:</p>
+
+<pre><code>else if(current == NULL) 
+    return "";
+</code></pre>
+
+<p>So, when you do a recursive call verify the returned value and terminate only if you have actually found the letter.</p>

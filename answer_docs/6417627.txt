@@ -1,0 +1,10 @@
+<pre><code>foreach(object o in arrayList)
+{
+    var description = o.GetType().GetProperty("Description").GetValue(o, null);
+    if("some description".Equals(description) )
+    {
+       //do something
+    }
+
+}
+</code></pre>

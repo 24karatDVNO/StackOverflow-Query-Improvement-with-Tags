@@ -1,0 +1,4 @@
+<p>You can't use your aliased column in this way, you'll need to do:</p>
+
+<pre><code>and (ISNULL(Table_Adresses.IdCellule, Table_Clients.IdCellule)) = 4
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Calling stopDeviceMotionUpdates doesn't nil out your referenceAttitude variable. What version of XCode are you using, and what kind of device are you running it on?</p>
+
+<p>Have you verified that it is set to a valid CMAttitude instance at this point in code?</p>
+
+<pre><code>referenceAttitude = [motionManager.deviceMotion.attitude retain];
+</code></pre>
+
+<p>If you execute <code>po [dm attitude]</code> in the debugger within the <code>referenceAttitude == nil</code> block, what do you get?</p>

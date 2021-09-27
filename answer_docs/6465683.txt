@@ -1,0 +1,32 @@
+<p>Two things:</p>
+
+<ol>
+<li><code>usernameDone</code> will be defined when
+your <code>&lt;document&gt;</code> tags are fully
+loaded. On the off-chance those
+don't exist, you want
+<code>$(document).ready()</code>.</li>
+<li>Where are you trying to access <code>usernameDone</code>? I don't see an <code>alert</code> function in your example, so I can only assume you're trying to access it outside of <code>$(document).ready()</code>. That won't work. If you want that functionality, declare <code>var usernameDone</code> <em>outside</em> of that function block.</li>
+</ol>
+
+<p>The following examples work just fine:</p>
+
+<pre><code>$(document).ready(function() {
+  var usernameDone = false;
+  alert(usernameDone);
+});
+</code></pre>
+
+<p>and</p>
+
+<pre><code>var usernameDone;
+
+function testMe() {
+  alert(usernameDone);
+}
+
+$(document).ready(function() {
+  usernameDone = false;
+  testMe();
+});
+</code></pre>

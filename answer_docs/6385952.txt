@@ -1,0 +1,39 @@
+<p>I would use something like this perhaps:</p>
+
+
+
+<pre class="lang-cs prettyprint-override"><code>public interface IStatusHandler
+{
+    bool Handle(StatusData statusData);
+}
+
+public class Status1Handler : IStatusHandler
+{
+    public bool Handle(StatusData statusData)
+    {
+        if (statusData as Opt1Data == null) return false; // you don't need Type anymore
+
+        ...
+
+        return true;
+    }
+}
+
+public class StatusManager
+{
+     private IList&lt;IStatusHandler&gt; handlers;
+
+     public StatusManager(IList&lt;IStatusHandler&gt; handlers) // inject with IoC here
+     {
+         this.handlers = handlers;
+     }
+
+     public void ProcessStatus(StatusEventArgs args)
+     {
+         foreach(var handler in handlers)
+             if (handler.Handle(args.Data)) return;
+
+         throw new Exception("No handler for this kind of status!");
+     }
+}
+</code></pre>

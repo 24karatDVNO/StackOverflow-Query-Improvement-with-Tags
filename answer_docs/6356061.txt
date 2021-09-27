@@ -1,0 +1,3 @@
+<p>Also make sure your associations (eg hist.user, hist.user.somethingElseYetAgain) are loaded lazily and not eager. Otherwise your queries will join a lot more than is needed and instantiate instances in stead of Object proxies.</p>
+
+<p>This can be indicated at the query or mapping level.</p>

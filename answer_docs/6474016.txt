@@ -1,0 +1,11 @@
+<p>There is C function to create a daemon</p>
+
+<pre><code>#include &lt;unistd.h&gt;
+
+int daemon(int nochdir, int noclose);
+</code></pre>
+
+<p>More information can be found in man pages for <code>daemon(3)</code>
+Maybe it will help.</p>
+
+<p>And if you want to launch you daemon when you linux start, you should find out which <code>init</code> version you are using in you distro, but usually, you can just add command to execute you daemon to <code>/etc/init.d/rc</code> (but it seems to be no so good idea). This file is executed by <code>init</code> when linux is starting.</p>

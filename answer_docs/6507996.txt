@@ -1,0 +1,6 @@
+<p>In order to autoload models in Doctrine 1.2 the following line has to be added:</p>
+
+<pre><code>spl_autoload_register(array('Doctrine_Core', 'modelsAutoload'));
+</code></pre>
+
+<p>This line is added after the two lines I mentioned in my question.</p>

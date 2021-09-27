@@ -1,0 +1,7 @@
+<p>Ah, dang.</p>
+
+<p>So it turns out IIS had GZIP compression enabled, and the client has an IE6-only rollout. There's much written about IE6's GZIP incompatibility, and if you're looking to conditionally allow it in IIS, <a href="https://stackoverflow.com/questions/824704/disable-gzip-compression-for-ie6-clients">there are some solutions</a>.</p>
+
+<p>The white screen is result of it being an ASP page that posts back, and changes its 'content-type' in the HTTP header (to 'application/pdf') - where IIS decides it should compress it, and fails in IE6.</p>
+
+<p>Adobe Reader 8 does a 2nd request, losing the postback values.</p>

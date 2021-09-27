@@ -1,0 +1,59 @@
+<p>For a simple query like this, you could just iterate through the whole table and populate your gallery in one while loop, like this:</p>
+
+<pre><code>&lt;?php
+
+mysql_select_db("dbname", $con);
+
+$result = mysql_query("SELECT * FROM images");
+
+while($row = mysql_fetch_array($result))
+{
+    echo '&lt;a href="' . $row['imagesrc'] . '"&gt;' . $row['title'] . '&lt;/a&gt;';
+}
+
+mysql_close($con);
+?&gt;
+</code></pre>
+
+<p>Which prints:</p>
+
+<pre><code>&lt;a href="imagesrc1"&gt;Imagetitle1&lt;/a&gt;
+&lt;a href="imagesrc2"&gt;Imagetitle2&lt;/a&gt;
+&lt;a href="imagesrc3"&gt;Imagetitle3&lt;/a&gt;
+...
+</code></pre>
+
+<p>And you can mix whatever divs, spans and other fields (like $row['desc']) you need inside the while loop, eg.</p>
+
+<pre><code>while($row = mysql_fetch_array($result))
+{
+    echo '&lt;div&gt;';
+    echo '&lt;a href="' . $row['imagesrc'] . '"&gt;';
+    echo '&lt;img src="' . $row['imagesrc'] . '" /&gt;';
+    echo '&lt;/a&gt;';
+    echo '&lt;strong&gt;' . $row['title'] . '&lt;/strong&gt;';
+    echo '&lt;span&gt;' . $row['desc'] . '&lt;/span&gt;';
+    echo '&lt;/div&gt;';
+}
+</code></pre>
+
+<p>Which would print:</p>
+
+<pre><code>&lt;div&gt;
+    &lt;a href="imagesrc1"&gt;&lt;img src="imagesrc1" /&gt;&lt;/a&gt;
+    &lt;strong&gt;imagetitle1&lt;/strong&gt;
+    &lt;span&gt;desc1&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;a href="imagesrc2"&gt;&lt;img src="imagesrc2" /&gt;&lt;/a&gt;
+    &lt;strong&gt;imagetitle2&lt;/strong&gt;
+    &lt;span&gt;desc2&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;a href="imagesrc3"&gt;&lt;img src="imagesrc3" /&gt;&lt;/a&gt;
+    &lt;strong&gt;imagetitle3&lt;/strong&gt;
+    &lt;span&gt;desc3&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Hopefully that helps!</p>

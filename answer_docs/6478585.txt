@@ -1,0 +1,7 @@
+<p>Since you comment saying you're using <strong>DataGrid</strong>, this is a WPF application, not a Form application.</p>
+
+<p>WPF DataGrid Control is visual representation of data, you cannot read a specific cell directly out of a <strong>DataGrid</strong>, Hence you cannot select a specific row or column on a <strong>DataGrid</strong>, unless you bind it to a data source.</p>
+
+<p><strong>DataGrid</strong> is designed to use with <strong>DataTable</strong>. See <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datagrid.aspx" rel="nofollow">this link</a> to see how <strong>DataGrid</strong> is binded to <strong>DataTable</strong>.</p>
+
+<p>Then, to read a specific cell value in DataGrid, you would read the DataTable instead (e.g. <code>dataTable1[RowNumber][ColumnName]</code> where RowNumber is an int, and ColumnName is a string.</p>

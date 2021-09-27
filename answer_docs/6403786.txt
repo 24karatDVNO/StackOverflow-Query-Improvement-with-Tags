@@ -1,0 +1,3 @@
+<p>include/require both take a filename as a spec, not a URI.  PHP doesn't parse it as a URI, so what you're trying won't work.</p>
+
+<p>Better to set up an object that the included/required file can then inspect.</p>

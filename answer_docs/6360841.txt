@@ -1,0 +1,46 @@
+<p>Just found an answer in Webdesigners Wall:</p>
+
+<pre><code>&lt;script type="text/javascript" src="js/jquery.scrollTo-min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+$(function() {
+
+    function scroll(direction) {
+
+        var scroll, i,
+                positions = [],
+                here = $(window).scrollTop(),
+                collection = $('.post');
+
+        collection.each(function() {
+            positions.push(parseInt($(this).offset()['top'],10));
+        });
+
+        for(i = 0; i &lt; positions.length; i++) {
+            if (direction == 'next' &amp;&amp; positions[i] &gt; here) { scroll = collection.get(i); break; }
+            if (direction == 'prev' &amp;&amp; i &gt; 0 &amp;&amp; positions[i] &gt;= here) { scroll = collection.get(i-1); break; }
+        }
+
+        if (scroll) {
+            $.scrollTo(scroll, {
+                duration: 750       
+            });
+        }
+
+        return false;
+    }
+
+    $("#next,#prev").click(function() {        
+        return scroll($(this).attr('id'));        
+    });
+
+    $(".scrolltoanchor").click(function() {
+        $.scrollTo($($(this).attr("href")), {
+            duration: 750
+        });
+        return false;
+    });
+
+});
+&lt;/script&gt;
+</code></pre>

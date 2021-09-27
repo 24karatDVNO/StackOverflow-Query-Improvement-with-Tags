@@ -1,0 +1,15 @@
+<p>There is more than one way to skin a cat. The following will work in more browsers by using a simpler regular expression:</p>
+
+<pre><code>function trim(s) {
+  return s.replace(/^ | $/g,'').replace(/\s+/g,' ');
+}
+
+var x = 'ZD:123123 ZD:213123 ZD:2e213... [ZD:213123] [ZD#221313] ZD:234...';
+alert(
+  trim(x.replace(/(^| )[^ ]+[\.]{3}( |$)/g,' ')).split(/\s+/)
+);
+
+/* shows: ZD:123123,ZD:213123,[ZD:213123],[ZD#221313] */
+</code></pre>
+
+<p>It removes any space delimited "word" of characters ending in ... and then splits on the space.</p>

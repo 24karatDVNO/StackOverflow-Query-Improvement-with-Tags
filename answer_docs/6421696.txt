@@ -1,0 +1,21 @@
+<p>I would recommend 4 controller (methods - in Spring 3.0 you can handle several requests in one controller, I do not know if this is possible in 2.5 too)</p>
+
+<ul>
+<li>one for search</li>
+<li>one for delete an item</li>
+<li>one (update-form controller) to return the update form</li>
+<li>one (update controller) to change the item with the data from the update form</li>
+</ul>
+
+<p>(<em>You can use a SimpleFormController (deprecated in 3.0) to handle the update-form and update change with one controller.</em>)</p>
+
+<p>The search controller takes the search phrase returns an view with several forms:
+ * One to enter a new search phrase and invoke the search controller again.
+ * One delete form (just the submit button and an hidden field to identify the item) for each item. - If you want to show the search results again after the delete, you need to add the search phrase in a hidden field of this form to, to be able to redirect to the search result with the correct search phrase after deleting.
+ * One Link that invokes the update form (containing a attribute to identify the item) for each item.</p>
+
+<p>The delete controller takes the item identifier to find the item to delete. And takes the search phrase to redirect to the search controller after deleting.</p>
+
+<p>The update-form controller takes the item identifier to load the item and return a form to update the item, populated with the items values. - This form "invoke" the update controller. - The form must also contain the identifier of the item to change.</p>
+
+<p>The update controller takes the new values and validate them. If they are valid it takes the item identifier to load the item and then modify the values. If the items are not valid, it returns the same view like the update-form-controller but uses the new (changed) values.</p>

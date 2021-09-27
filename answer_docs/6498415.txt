@@ -1,0 +1,21 @@
+<p>Can you simplify your program into something that I can run?  I tried something very simple and I was able to have it run both on the command line and inside Eclipse.</p>
+
+<p>Here's the script I created:</p>
+
+<p>import jline.ConsoleReader</p>
+
+<p>def reader = new ConsoleReader()
+   LOOP: while (true) {
+        def input = reader?.readLine().trim()</p>
+
+<pre><code>    if (input.length() == 0)
+        continue
+
+    if (["exit", "quit"].contains(input.tokenize().get(0)))
+        break LOOP
+
+    println "You said: " + input
+}
+</code></pre>
+
+<p>Can you try running this and see if this works for you?</p>

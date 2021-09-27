@@ -1,0 +1,15 @@
+<p>Expanding on AndiDog's answer, you can set postConnectionCheck on a instance-by-instance basis and in version 0.21.1 (at least) of M2Crypto, there is the <code>Connect.set_post_connection_check_callback()</code> method to do so:</p>
+
+<pre><code>sslsock = M2Crypto.SSL.Connection(sslcontext)
+# Disable checking of server certificates
+sslsock.set_post_connection_check_callback(None)
+</code></pre>
+
+<p>Note that disables both checking of connected to servers and accepted clients (the latter is disabled by default).</p>
+
+<p>The parameter, if not None, is a function that takes a certificate and address, i.e.:</p>
+
+<pre><code>check(self.get_peer_cert(), self.addr[0])
+</code></pre>
+
+<p>For reference, see the <a href="http://svn.osafoundation.org/m2crypto/trunk/M2Crypto/SSL/Connection.py" rel="nofollow">M2Crypto source</a>.</p>

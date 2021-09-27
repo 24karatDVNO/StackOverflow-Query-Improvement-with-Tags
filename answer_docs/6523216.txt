@@ -1,0 +1,17 @@
+<p>Your best bet would be to use <code>System.DateTime</code> object</p>
+
+<p>Just make sure when you take a users input from a text box, that you save it in a <code>DateTime</code> object, then you can use the generic <code>DateTime.Equals</code> to compare the two.</p>
+
+<pre><code>Dim currentDateTime As New System.DateTime
+Dim alarmDateTime As DateTime
+currentDateTime = Date.Now
+alarmDateTime = 
+    New DateTime(2011, Month(Date.Now), dayInput, hourInput, minuteInput, 0)
+If currentDateTime.Equals(alarmDateTime) Then
+  'alarm code
+End If
+</code></pre>
+
+<p>Something to this effect shold get the job done.</p>
+
+<p><strong>EDIT</strong>: The parse method outlined in one of the other solutions would be better for creating your alarmDateTime object than manually doing it.</p>

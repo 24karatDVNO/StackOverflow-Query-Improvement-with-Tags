@@ -1,0 +1,38 @@
+<pre><code>$errors = array();
+$required = array("Name", "Email");  
+foreach($_POST as $key=&gt;$value)
+{
+    if(!empty($value))
+    {
+        $$key = $value;
+    }
+    else
+    {
+         if(in_array($key, $required))
+         {
+             array_push($errors, $key);
+         }
+    }        
+
+}
+</code></pre>
+
+<p>This should work for checking empty values. Just add the keys of the required fields in your form to the required array. The $$key = $value creates a variable with the same name as the key and puts the value in their for you. So if your fields were "Name" and "Email" after the loop you could access the variables $Name and $Email with the correct values in.</p>
+
+<p>You may want to check and display the errors afterwards like so</p>
+
+<pre><code>if(empty($errors))
+{
+    //send email
+}
+else
+{
+    //display errors
+    echo "&lt;ul&gt;";
+    foreach($errors as $error)
+    {
+        echo "&lt;li&gt;" . $error . "&lt;/li&gt;";
+    }
+    echo "&lt;/ul&gt;";
+}
+</code></pre>

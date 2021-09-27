@@ -1,0 +1,25 @@
+<p>The most likely problem I can see is this line, from <code>append_rows</code>:</p>
+
+<pre><code>var curr_fields = fields;
+</code></pre>
+
+<p>It seems like you're expecting this to make a copy of <code>fields</code>, however this is not what actually happens. JavaScript objects are effectively passed "by reference", so when you assign the value of <code>fields</code> to <code>curr_fields</code>, you're giving <em>two names</em> to <em>one object</em>.</p>
+
+<p>An example case:</p>
+
+<pre><code>var a = { name: "foo" };
+var b = a;
+b.name = "bar";
+alert(a.name); // Shows "bar"
+</code></pre>
+
+<p>A closure might let you use the <em>same name</em> over again in another iteration of a loop, but it will never give you another copy of the <em>same object</em>.</p>
+
+<p>Javascript doesn't provide any built in way to do a "deep copy", which you'd need to get a full copy of your multi-level nested <code>fields</code> object. Fortunately jQuery does, with the <a href="http://api.jquery.com/jQuery.extend/" rel="nofollow"><code>extend</code></a> method, using the <code>deep</code> parameter.</p>
+
+<p>This means you can get everything working by replacing the line with this:</p>
+
+<pre><code>var curr_fields = $.extend(true, {}, fields);
+</code></pre>
+
+<p>What this does is starts with a new object (the <code>{}</code> in the middle parameter), and then jQuery goes through every object and property in <code>fields</code> and duplicates it into the new object, which is then stored in <code>curr_fields</code>.</p>

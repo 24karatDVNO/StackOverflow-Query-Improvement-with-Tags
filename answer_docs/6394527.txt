@@ -1,0 +1,15 @@
+<p>You have a few options:</p>
+
+<ul>
+<li>you can <strong>throttle</strong> ajax requests, slowing them a little when they hit a limit, as some sites do.</li>
+<li><strong>rate limit</strong> (completely block) the ajax request after X requests, as Twitter does with its API</li>
+<li>choose another option, like WebSockets.</li>
+</ul>
+
+<p>These can be either server-sided or client-sided, server-sided being the obvious choice for security.</p>
+
+<blockquote>
+  <p>But the problem is, user can hit server through ajax call mass number of times in a second using javascript injections. It can make server down.</p>
+</blockquote>
+
+<p>Javascript injection is the least of your problems if you're concerned with your server staying alive. Raw HTTP DDoS attacks are a much bigger problem than a few ajax requests. The main thing Javascript injection should stick right in your mind is to do with security, not server uptime.</p>

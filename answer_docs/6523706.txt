@@ -1,0 +1,13 @@
+<p>You will have to disassemble the string and then rebuild it. It is not possible to replace characters in an NSString. </p>
+
+<p>First you need to split the string into components. Use NSString's <code>-(NSArray*)componentsSeperatedByString(@"age")</code>  or maybe <code>-(NSArray*)componentsSeperatedByString(@",")</code> to plit out your records. But then getting the digits needs more work. Use NSScanner.</p>
+
+<p>You create an NSScanner with the string you want to scan: <code>+ (id)scannerWithString:(NSString *)aString</code>. So you would loop through the array returned above and scan a string then an integer.</p>
+
+<p>To can over the strings, you need to use - (BOOL)scanCharactersFromSet:(NSCharacterSet <em>)scanSet intoString:(NSString *</em>)stringValue
+ using the character set: [[NSCharacterSet decimalDigitCharacterSet] inverseCharacterSet] - this is the charachter set including all characters other than the digits. Note that scanCharacters from range gives you back the characters it scans and so you can use this to rebuild the string.</p>
+
+<p>Then you could scan a integer using NSScanner's <code>- (BOOL)scanInt:(int *)intValue
+</code></p>
+
+<p>You could probably achieve something similar using NSPredicate and regexps - there would be less code but it would be less readable.</p>

@@ -1,0 +1,13 @@
+<p>You are passing in the typeof(MachineKeySection), when you should be passing in an instance of MachineKeySection.</p>
+
+<pre><code>Type machineKeySection = typeof(MachineKeySection);
+Object validationKey = machineKey.GetValue(machineKeySection, null);
+</code></pre>
+
+<p>Needs to be something like (taken from <a href="http://msdn.microsoft.com/en-us/library/b3ekw2a7%28v=VS.90%29.aspx" rel="nofollow">here</a>):</p>
+
+<pre><code>MachineKeySection machineKeySection = (MachineKeySection)config.GetSection("system.web/machineKey");
+Object validationKey = machineKey.GetValue(machineKeySection, null);
+</code></pre>
+
+<p>So to answer your question, no it's not an indexed property. You can check the documentation <a href="http://msdn.microsoft.com/en-us/library/system.web.configuration.machinekeysection.validationkey%28v=vs.90%29.aspx" rel="nofollow">here</a>.</p>

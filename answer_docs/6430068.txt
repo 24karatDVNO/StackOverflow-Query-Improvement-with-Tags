@@ -1,0 +1,7 @@
+<p>There are three ways of doing this as I see it.</p>
+
+<p>1) launch a seperate thread in the main app that waits until some third party class member is switched from true to false to indicate that the child window has been closed.  Then in the child window, when a shutdown or OK or Cancel is done, this third party class member is switched too false etc.  (this is the way i did this)</p>
+
+<p>2) have a call back function in the main program that is called by the child window.</p>
+
+<p>3) kind of cheat and don't have a child window at all.  Instead, in the XAML code of the main window, have a rectangle that looks like a pop up or child window that is hidden (visual set to collapse) that comes up (but really becomes visual) and all other fields in the main program are set to inactive until the right butons are puched.**</p>

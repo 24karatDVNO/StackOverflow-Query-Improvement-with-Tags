@@ -1,0 +1,5 @@
+<p>I got the solution. </p>
+
+<p>Because a weak reference, Android guarded all context in memory. </p>
+
+<p>My game has a pause in game mainThread and show a Toast Message. The user can left or re-enter in the game. If he left the screen, Android keeps the reference of dead activity in memory, probable with all open gl surface too, only because the Toast message, with dead activity reference still popup after close the last activity. I'm just use getApplicationContext().</p>

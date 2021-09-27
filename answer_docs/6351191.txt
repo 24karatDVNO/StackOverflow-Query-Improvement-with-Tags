@@ -1,0 +1,21 @@
+<pre><code>scala&gt; object codeRunner {
+     |    def run[InputType, OutputType](code: InputType =&gt; OutputType) = (input: InputType) =&gt; code(input)
+     | }
+defined module codeRunner
+
+scala&gt; def someCode(x: Int) {
+     |    println("This code uses " + x)
+     | }
+someCode: (x: Int)Unit
+
+scala&gt; def otherCode(y: String) {
+     |    println("This code uses " + y)
+     | }
+otherCode: (y: String)Unit
+
+scala&gt; codeRunner.run(someCode)(10)
+This code uses 10
+
+scala&gt; codeRunner.run(otherCode)("hello")
+This code uses "hello"
+</code></pre>

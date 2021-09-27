@@ -1,0 +1,3 @@
+<p>If you just need a window for the app to run properly, you could try creating a fake one by running it in a virtual X-server using xvfb.  This is not going to be very efficient, but at least your app will execute without crashing.</p>
+
+<p>Now if you are talking about launching the app on the client, I don't think that is something that you could reasonably expect to work unless the client actually downloads the code you are trying to run and voluntarily executes your program.  In general, web browsers are not supposed to run native machine code from arbitrary web sites.</p>

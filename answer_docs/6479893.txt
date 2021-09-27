@@ -1,0 +1,14 @@
+<p>first you get the selected value text from the <code>listbox</code> then </p>
+
+<p>Read the whole file into <code>memory</code> (e.g.
+   with <code>File.ReadAllLines</code>) Remove the
+   offending line based on the value of <code>listbox</code> (in this case it's
+   probably easiest to convert the
+   string array into a <code>List&lt;string&gt;</code> then
+   remove the line) Write all the rest
+   of the lines back (e.g. with
+   <code>File.WriteAllLines</code>) - potentially
+   convert the <code>List&lt;string&gt;</code> into a
+   string array again using <code>ToArray</code> That
+   means you have to know that you've
+   got enough memory though.</p>

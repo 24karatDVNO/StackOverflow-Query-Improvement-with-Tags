@@ -1,0 +1,8 @@
+<p>And what exactly is the error you are receiving?</p>
+
+<p>I think your error is from here:</p>
+
+<pre><code>default_scope :order =&gt; 'comments.created at sec'
+</code></pre>
+
+<p>Because <code>comments.created at sec</code> you can't have that field in DB</p>

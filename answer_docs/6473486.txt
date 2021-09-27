@@ -1,0 +1,18 @@
+<p>I guess there is easier way to implement the above requirement. All I was trying to do was create an editorpart that would show only the title box so that people can only update the title of the webpart being edited. I figured out that the best alternative is, is to use PropertyGridEditorPart. This webpart is ideal in situation where you want to allow user to set customized property for a webpart. Here is documentation from microsoft website:</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.webparts.propertygrideditorpart.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.webparts.propertygrideditorpart.aspx</a></p>
+
+<p>In my case i created following property and webpart framework took care of rest!!!!</p>
+
+<pre><code>[Personalizable(PersonalizationScope.User),
+WebBrowsable,
+WebDisplayName("Web part Title"),
+WebDescription("Description of property.")]
+public string WebPartTitle
+{
+  get { return this.Title; }
+  set { this.Title = value; }
+}
+</code></pre>
+
+<p>Thanks</p>

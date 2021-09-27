@@ -1,0 +1,8 @@
+<p>Maybe your missing a document ready check:</p>
+
+<pre><code>document.observe("dom:loaded", function() {
+  $('lol').update('Hi!');
+});
+</code></pre>
+
+<p>jsFiddle example here: <a href="http://jsfiddle.net/qWzTp/1/" rel="nofollow">http://jsfiddle.net/qWzTp/1/</a></p>

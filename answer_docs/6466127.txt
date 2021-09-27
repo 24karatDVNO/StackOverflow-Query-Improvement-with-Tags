@@ -1,0 +1,29 @@
+<p>This can be done like that (one of the many ways -- really depends on your exact requirements for validation):</p>
+
+<pre><code>&lt;?php
+$messages = array();
+$errors = 0;
+
+if (empty($_POST['studentName']))
+{
+    $messages['studentName'] = "You did not enter the student name Wank";
+    $errors++;
+}
+if (empty($_POST['tutorName']))
+{
+    $messages['tutorName'] = "&lt;h3&gt;You did not select a tutor name. Please go back and select your name from the tutors list&lt;/h3&gt;";
+    $errors++;
+}
+
+if ($errors) {
+    // we have some invalid data in one of the fields
+    // display error messages (some feedback to user)
+    foreach ($messages as $v) {
+        echo $v, "\n";
+    }
+    exit();
+}
+
+// nope, we are fine
+// do whatever else is required
+</code></pre>

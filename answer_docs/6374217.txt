@@ -1,0 +1,9 @@
+<p>A terse solution is: </p>
+
+<pre><code>Random random = new Random();
+String randomString = "test";
+       for(;randomString.length() &lt; 20 ;) {
+            char randomChar = (char) random.nextInt(123);
+            randomString += (Character.isLetterOrDigit(randomChar)) ? randomChar : ""; 
+        }
+</code></pre>

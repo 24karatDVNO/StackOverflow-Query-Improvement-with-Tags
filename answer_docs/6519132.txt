@@ -1,0 +1,59 @@
+<p><code>&lt;% ... %&gt;</code> leads JSP to treat the code contents as statements. Therefore you class becomes a local class following the same scope rules as local variables (that is, you must declare the class earlier than using it). I didn't test it, but if you rewrite your code to:</p>
+
+<pre><code>    &lt;%@ page language="java" import="java.net.Authenticator,java.net.PasswordAuthentication,java.io.BufferedReader,java.net.*,java.io.*" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+&lt;%
+
+class MyAuthenticator extends Authenticator {
+    private String username, password;
+
+    public MyAuthenticator(String user, String pass) {
+      username = user;
+      password = pass;
+    }
+
+    protected PasswordAuthentication getPasswordAuthentication() {
+      System.out.println("Requesting Host  : " + getRequestingHost());
+      System.out.println("Requesting Port  : " + getRequestingPort());
+      System.out.println("Requesting Prompt : " + getRequestingPrompt());
+      System.out.println("Requesting Protocol: " + getRequestingProtocol());
+      System.out.println("Requesting Scheme : " + getRequestingScheme());
+      System.out.println("Requesting Site  : " + getRequestingSite());
+      return new PasswordAuthentication(username, password.toCharArray());
+    }
+  }
+
+String urlToQuery = request.getParameter("url");
+System.out.println(" " +urlToQuery);
+//URL url = new URL(urlToQuery);
+
+
+
+//InputStream in = conn.getInputStream();
+
+String urlString = "";
+String username = "";
+String password = "";
+Authenticator.setDefault(new MyAuthenticator(username, password));
+URL url = new URL(urlToQuery);
+URLConnection conn = url.openConnection();
+InputStream content = (InputStream) url.getContent();
+BufferedReader in = new BufferedReader(new InputStreamReader(content));
+String line;
+while ((line = in.readLine()) != null) {
+  System.out.println(line);
+}
+System.out.println("Done.");
+
+
+
+
+
+%&gt;
+
+&lt;%=line %&gt;
+</code></pre>
+
+<p>Then <code>MyAuthenticator</code> should be resolvable in your code.</p>
+
+<p>Consider moving the Java class to a separate file to make your code more readable.</p>

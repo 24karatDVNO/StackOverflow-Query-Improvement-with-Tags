@@ -1,0 +1,6 @@
+<p>The reason for this happening is that the Activity is re-created when rotating to landscape mode. There are various ways around this:</p>
+
+<ol>
+<li>Move initialization out of Activity onCreate : <a href="https://stackoverflow.com/questions/456211/activity-restart-on-rotation-android">Activity restart on rotation Android</a></li>
+<li>Move the logic to a separate class (which does the random picking) and get the data from this class (well, a Model class, to be more specific).</li>
+</ol>

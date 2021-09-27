@@ -1,0 +1,16 @@
+<p>I am not quite sure I understood correctly what you're looking for. But it seems as if this one could help you:</p>
+
+<pre><code>#include &lt;sstream&gt;
+
+#define SSTR( x ) ( dynamic_cast&lt; std::ostringstream &amp; &gt;( \
+            ( std::ostringstream() &lt;&lt; std::dec &lt;&lt; x ) ).str()
+</code></pre>
+
+<p>Usage:</p>
+
+<pre><code>SSTR( "Hello" &lt;&lt; 1 &lt;&lt; 1.5 );
+</code></pre>
+
+<p>Yields std::string (which you can then feed to whatever output function you want).</p>
+
+<p>Elaborate description and explanation: <a href="http://dev.rootdirectory.de/trac.fcgi/wiki/SSTR%28%29" rel="nofollow">http://dev.rootdirectory.de/trac.fcgi/wiki/SSTR%28%29</a></p>

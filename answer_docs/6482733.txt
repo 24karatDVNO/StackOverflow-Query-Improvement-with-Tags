@@ -1,0 +1,3 @@
+<p>When you update an app, the data is preserved. As far as I am aware, the process is the same as when you test a new build from Xcode.</p>
+
+<p>The only time this could be an issue is if you are using CoreData, and you update your model. In this case, the old store will not work with your new model unless you migrate the old store. Apple has documentation on migrating CoreData stores <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CoreDataVersioning/Introduction/Introduction.html" rel="nofollow">here</a>.</p>

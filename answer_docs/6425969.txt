@@ -1,0 +1,40 @@
+<p>This would work:</p>
+
+<pre><code>&lt;input type="text" id="datepicker" class="datepicker"  /&gt;
+&lt;input type="text" id="datepicker2" class="datepicker"  /&gt;
+
+$(".datepicker").datepicker({
+    showOn: "button",
+    buttonImage: "jqueryLibrary/css/ui-lightness/images/Calendar2.jpg",
+    buttonImageOnly: true,
+    dateFormat: 'yy-mm-dd',
+    onSelect: function(dateText, inst) {
+
+        this.value = dateText;
+    }
+});
+</code></pre>
+
+<p>As stated on the jQuery UI website, <code>this</code> in the <code>onSelect</code> callback refers to the input box used with the datepicker, so one datepicker would refer to <code>#datepicker</code>, and the other to <code>#datepicker2</code>.</p>
+
+<p><strong>Edit</strong></p>
+
+<p>Just noticed your putting the date into a different box, in which this would work:</p>
+
+<pre><code>&lt;input type="text" id="datepicker" class="datepicker startdate"  /&gt;
+&lt;input type="text" id="datepicker2" class="datepicker enddate"  /&gt;
+
+$(".datepicker").datepicker({
+    showOn: "button",
+    buttonImage: "jqueryLibrary/css/ui-lightness/images/Calendar2.jpg",
+    buttonImageOnly: true,
+    dateFormat: 'yy-mm-dd',
+    onSelect: function(dateText, inst) {
+        var elem = "startDate";
+        if( $(this).hasClass("enddate") {
+            elem = "endDate"
+        }
+        document.getElementById(elem).value = dateText;
+    }
+});
+</code></pre>

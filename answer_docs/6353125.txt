@@ -1,0 +1,10 @@
+<p>try instead</p>
+
+<pre><code>ViewImagesController *vvViewImagesController = [[ViewImagesController alloc] init];
+UINavigationController *a = [[UINavigationController alloc] initWithRootViewController:vvViewImagesController];
+
+[self presentModalViewController:a animated:YES];
+
+[vvViewImagesController release];
+[a release];
+</code></pre>

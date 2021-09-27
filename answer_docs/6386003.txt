@@ -1,0 +1,121 @@
+<p>I finally found how to convert a stream to a string so I did the following thing :</p>
+
+<pre><code>    //Get the answer from http request
+    if(httpResponse!=null)
+        entity = httpResponse.getEntity();
+    else
+        entity = null;
+
+    //Display the answer in the UI
+    String result;
+    if (entity != null) {
+                    //First, Open a file for writing
+        FileOutputStream theXMLFile=null;
+        try{
+            theXMLFile=openFileOutput("HttpResponse.dat", MODE_PRIVATE);
+        } catch (Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+        Log.e("ResultService Exception :", e.getMessage());
+        }
+
+        try {
+            if(theXMLFile!=null) {
+                                    //Save the stream to a file to be able to re read it later.
+                entity.writeTo(theXMLFile);
+                                    //Entity is consumed now and cannot be reuse ! Lets free it.
+                entity=null;
+
+                                    //Now, lets read this file !
+                FileInputStream theXMLStream=null;
+                try {
+                    //Open the file for reading and convert to a string
+                    theXMLStream = openFileInput("HttpResponse.dat");
+                    result=com.yourutilsfunctionspackage.ServiceHelper.convertStreamToString(theXMLStream);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Log.e("ResultService Exception :", e.getMessage());
+                    result=null;
+                }
+                theXMLStream.close();
+                theXMLStream=null;
+
+                //Use the string for display
+                if(result!=null)
+                    infoTxt.setText(getText(R.string.AnswerTitle) + " = " +result);
+
+try {
+//Reopen the file because you cannot use a FileInputStream twice.
+theXMLStream = openFileInput("HttpResponse.dat");
+} catch (Exception e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+Log.e("ResultService Exception :", e.getMessage());
+}
+
+
+
+//Re use the stream as you want for decoding xml                
+if(theXMLStream!=null){
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder=null;
+    try {
+        builder = factory.newDocumentBuilder();
+    } catch (ParserConfigurationException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    if(builder!=null)
+    {
+        Document dom=null;
+        try {
+            dom = builder.parse(theXMLStream);
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        if(dom!=null){
+            Element racine = dom.getDocumentElement();
+            NodeList nodeLst=racine.getElementsByTagName("response");
+            Node fstNode = nodeLst.item(0);
+            if(fstNode!=null){
+                Element fstElmnt = (Element) fstNode;
+                String CallingService=fstElmnt.getAttribute("service");
+
+etc....
+
+//Function taken from internet http://www.kodejava.org/examples/266.html
+public static String convertStreamToString(InputStream is) throws IOException {
+        /*
+         * To convert the InputStream to String we use the
+         * Reader.read(char[] buffer) method. We iterate until the
+         * Reader return -1 which means there's no more data to
+         * read. We use the StringWriter class to produce the string.
+         */
+        if (is != null) {
+            Writer writer = new StringWriter();
+
+
+        char[] buffer = new char[1024];
+        try {
+            Reader reader = new BufferedReader(
+                    new InputStreamReader(is, "UTF-8"));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
+        } finally {
+            is.close();
+        }
+        return writer.toString();
+    } else {       
+        return null;
+    }
+}
+</code></pre>

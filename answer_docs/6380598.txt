@@ -1,0 +1,7 @@
+<p>I have no really big file to test your code, so I can only guess.</p>
+
+<ol>
+<li><p>You say your uncompressed zip size is more than 1 GB. This could be more than fits in your memory, and if something forces the VM to fit everything in memory, it will have to swap.  Observe your program with a profiler.</p></li>
+<li><p>Make sure your close each FileOutputStream after writing to it. (You create lots of them, and only close the last one.)</p></li>
+<li><p>I'm not sure about the ZipInputStream implementation (maybe it forces your BufferedStream to buffer much of data). You could try <code>ZipFile</code> instead (which allows random access, basically).</p></li>
+</ol>

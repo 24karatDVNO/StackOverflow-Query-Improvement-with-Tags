@@ -1,0 +1,32 @@
+<p>Try this,</p>
+
+<pre><code>$(".RadioClass").change(function(){
+if($(this).is(":checked"))
+{
+    var groupName = $(this).attr("name");
+    $(".RadioClass").each(function(idx)
+     {
+         if($(this).attr("name") == groupName)
+         {
+             $(this).next("label").removeClass("RadioSelected");
+         }
+     });
+
+
+    $(this).next("label").addClass("RadioSelected");
+}
+});
+</code></pre>
+
+<p>Edit: I also realised it's probably quicker to just select the elements by name.</p>
+
+<pre><code>$(".RadioClass").change(function(){
+if($(this).is(":checked"))
+{
+    var groupName = $(this).attr("name");
+    $("[name='"+groupName+"']").next("label").removeClass("RadioSelected");
+
+    $(this).next("label").addClass("RadioSelected");
+}
+});
+</code></pre>

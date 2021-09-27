@@ -1,0 +1,1 @@
+<p>You have to pass the selected values as an enumerable of "values" (and not an enumerable of the original "items"). In your case this should be a list of IDs. E.g. to select all try to pass the selected values like this: Model.PageTags.Select(i => i.ID)</p>

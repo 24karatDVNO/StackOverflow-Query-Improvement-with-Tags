@@ -1,0 +1,8 @@
+<p>I think you will get an IndexOutOfRangeException in the following line of your code:</p>
+
+<pre><code> Dim retrievedBytes As Long = reader.GetBytes(1, startIndex, buffer, 0, ChunkSize)
+</code></pre>
+
+<p>because the index of the first param is 0 not 1</p>
+
+<p>anyway I suggest you use a method like the one Klark has suggested, which is simpler and more readable.</p>

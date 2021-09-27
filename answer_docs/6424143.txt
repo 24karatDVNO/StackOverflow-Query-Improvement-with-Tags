@@ -1,0 +1,15 @@
+<pre><code>    DECLARE @var1 VARCHAR(1000)
+    DECLARE @var2 VARCHAR(10)
+
+    SET @var1 = 'string_to_be_found'
+    SET @var2 = 'end_string'
+
+    SELECT SUBSTRING(
+    REMARKS
+    ,CHARINDEX(@var1,REMARKS)
+    , CHARINDEX(@var2,REMARKS,CHARINDEX(@var1,REMARKS))+ LEN(@var2) - CHARINDEX(@var1,REMARKS)
+    )
+    FROM XPTO
+    WHERE CHARINDEX(@var1,REMARKS)&gt;0
+AND CHARINDEX(@var2,REMARKS,CHARINDEX(@var1,REMARKS))&gt;0
+</code></pre>

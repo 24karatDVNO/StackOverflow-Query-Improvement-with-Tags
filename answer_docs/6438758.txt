@@ -1,0 +1,52 @@
+<p>I don't know what exactly your use case is here, but I don't think you can do what you want with @Deprecated. When you mark something as deprecated, you're marking the field, method or class NOT the value. All you're getting access to in loadProperty is the value.</p>
+
+<p>So taking your example, I can quite easily call</p>
+
+<pre><code>new MyRepo().loadProperty("old_path");
+</code></pre>
+
+<p>without referencing OLD_PATH or NEW_PATH at all. The solution is simple, you need to check explicitly in your methods for a match. (isDeprecated method added). You can leave the @Deprecated annotation if you like, as an indication.</p>
+
+<pre><code>public class MyRepo {
+    @Deprecated
+    private static final String OLD_PATH = "old_path";
+    private static final String NEW_PATH = "new_path";
+
+    private boolean isDeprecated(String path) {
+        return OLD_PATH.equals("old_path");
+    }
+
+    //...
+
+    public load(Node node){
+        migrateProperty(node, OLD_PATH , NEW_PATH );
+
+        //load the properties
+        loadProperty(node, NEW_PATH);
+    }
+
+    //I want to validate that the String oldPath has the @Deprecated annotation
+    public void migrateProperty(Node node, String oldPath, String newPath) {
+        if (!isDeprecated(oldPath)) {
+            throw new Exception(oldPath + " is not deprecated");
+        }
+
+        if(node.hasProperty(oldPath)){
+            Property property = node.getProperty(oldPath);
+            node.setProperty(newPath, (Value) property);
+            property.remove();
+        }
+    }
+
+    //I want to validate that the String path does not have the @Deprecated annotation
+    public void loadProperty(Node node, String path) {
+        if (isDeprecated(path)) {
+            throw new Exception(path + " is deprecated, please use " + NEW_PATH);
+        }
+
+        //load the property from the node
+    }
+}
+</code></pre>
+
+<p>If this pattern needs to be applied to multiple classes, you can, of course, make this more rigourous.</p>

@@ -1,0 +1,10 @@
+<p>HSQLDB is very strict on referential integrity, unless it is turned off. JPA implementations actually use different <em>strategies</em> in this area for different databases. For example, with one database engine the implementation may define foreign keys with cascading deletes and delete the parent object, but for another engine it may delete the children of an object separately, before deleting the parent.</p>
+
+<p>Therefore, HSQLDB as the development database helps you find the errors to a large extent, but you still need to validate your software by running against the target database.</p>
+
+<p>Going back to the specific question, if you run one of your tests with a file database like this:</p>
+
+<pre><code>jdbc.url=jdbc:hsqldb:file:/home/db/SampleProject;hsqldb.write_delay=false;shutdown=true
+</code></pre>
+
+<p>You can then open the database with the DatabaseManager after the test and check the table and constraint definitions. If the JPA does create foreign keys, you can check for yourself that the contraints are enforced by HSQLDB if you try some inserts and deletes.</p>

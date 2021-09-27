@@ -1,0 +1,35 @@
+<p>i believe you're running into a design issue here, and you would probably be able to avoid wanting or needing to do this with some restructuring of code.  perhaps you could merge <code>skin</code> and <code>avBody</code> into one class?  you can decide and for now let's assume that a redesign is not the solution.</p>
+
+<p>unfortunately, since function overloading is not possible in AS3, a solution like the following is also not possible since overrides must have identical signatures:</p>
+
+<pre><code>override public function set x(value:Number, caller:*):void
+     {
+     if     (caller is AvBody)
+            super.x = value;
+     }
+
+     //Error:  Incompatible override.
+</code></pre>
+
+<p>you could simply override <code>x</code> and <code>y</code> setters, displaying an <code>ArgumentError</code> if they are called, and instead use custom internal setters for the <code>x</code> and <code>y</code> properties, even though it's kinda ghetto.</p>
+
+<pre><code>override public function set x(value:Number):void
+     {
+     throw new ArgumentError("Can not set public 'x' property on Skin class.  Set internal 'posX' property instead");
+     }
+
+override public function set y(value:Number):void
+     {
+     throw new ArgumentError("Can not set public 'y' property on Skin class.  Set internal 'posY' property instead");
+     }
+
+internal function set posX(value:Number):void
+     {
+     super.x = value;
+     }
+
+internal function set posY(value:Number):void
+     {
+     super.y = value;
+     }
+</code></pre>

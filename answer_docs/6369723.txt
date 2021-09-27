@@ -1,0 +1,131 @@
+<pre><code>strategy: 
+
+1.  find unique values, put them aside. 
+2.  loop through unique values 
+2.1     loop origial array 
+2.2        store sub array in $out if unique val = original val
+
+
+    &lt;?php
+    $i=0;
+
+    $a3d = array(
+        $i++ =&gt; array(0=&gt;'Some Value',1=&gt;'ValB'),
+        $i++ =&gt; array(0=&gt;'Other Value',1=&gt;'ValB1'),
+        $i++ =&gt; array(0=&gt;'Some Value',1=&gt;'ValB2'),
+        $i++ =&gt; array(0=&gt;'Zome moar',1=&gt;'ValB4'),
+        $i++ =&gt; array(0=&gt;'Other Value',1=&gt;'ValB3'),
+        $i++ =&gt; array(0=&gt;'Zome Moar',1=&gt;'ValB4'),
+    );
+    print_r($a3d);
+
+    foreach ($a3d as $a2d){
+        $uniq[]= $a2d[0];
+    }
+    $uniq = array_unique($uniq);
+
+    sort($uniq);
+    print_r($uniq);
+
+    foreach ($uniq as $v){
+        foreach ($a3d as $kk =&gt; $a2d){
+            if ($a2d[0] == $v){
+                $out[]= $a2d;
+                unset($a3d[$kk]); // &lt;--avoid rechecking elements
+            }
+        }
+
+    }
+
+    print_r(count($a3d));
+    print_r($out);
+    ?&gt;
+
+$ php sort_array.php 
+
+    Array
+    (
+        [0] =&gt; Array
+            (
+                [0] =&gt; Some Value
+                [1] =&gt; ValB
+            )
+
+        [1] =&gt; Array
+            (
+                [0] =&gt; Other Value
+                [1] =&gt; ValB1
+            )
+
+        [2] =&gt; Array
+            (
+                [0] =&gt; Some Value
+                [1] =&gt; ValB2
+            )
+
+        [3] =&gt; Array
+            (
+                [0] =&gt; Zome moar
+                [1] =&gt; ValB4
+            )
+
+        [4] =&gt; Array
+            (
+                [0] =&gt; Other Value
+                [1] =&gt; ValB3
+            )
+
+        [5] =&gt; Array
+            (
+                [0] =&gt; Zome Moar
+                [1] =&gt; ValB4
+            )
+
+    )
+    Array
+    (
+        [0] =&gt; Other Value
+        [1] =&gt; Some Value
+        [2] =&gt; Zome Moar
+        [3] =&gt; Zome moar
+    )
+    0Array
+    (
+        [0] =&gt; Array
+            (
+                [0] =&gt; Other Value
+                [1] =&gt; ValB1
+            )
+
+        [1] =&gt; Array
+            (
+                [0] =&gt; Other Value
+                [1] =&gt; ValB3
+            )
+
+        [2] =&gt; Array
+            (
+                [0] =&gt; Some Value
+                [1] =&gt; ValB
+            )
+
+        [3] =&gt; Array
+            (
+                [0] =&gt; Some Value
+                [1] =&gt; ValB2
+            )
+
+        [4] =&gt; Array
+            (
+                [0] =&gt; Zome Moar
+                [1] =&gt; ValB4
+            )
+
+        [5] =&gt; Array
+            (
+                [0] =&gt; Zome moar
+                [1] =&gt; ValB4
+            )
+
+    )
+</code></pre>

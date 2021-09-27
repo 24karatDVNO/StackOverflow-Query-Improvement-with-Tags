@@ -1,0 +1,12 @@
+<p>It means you take the number modulo 2^(2+n). This is so that 0 &lt;= R &lt; 2^(2+n), which means that 0 &lt;= P &lt; 2^n. One way to do this:</p>
+
+<pre><code>R %= 2 ** (2+n)
+</code></pre>
+
+<p>Using bit-shift operations, which could be more efficient (note that mask is a constant, so you only need to compute it once):</p>
+
+<pre><code>mask = (1 &lt;&lt; 2+n) - 1
+R &amp;= mask
+</code></pre>
+
+<p>The reason it's called "masking out all but the lower-order bits" is if you write R in binary, it's the same as removing everything except the last 2+n binary digits.</p>

@@ -1,0 +1,5 @@
+<p><code>reg</code> is a reference to an instance of <code>NSCFSet</code>.</p>
+
+<p>Most likely, you failed to retain whatever <code>reg</code> was supposed to refer to in the first place and, coincidentally, an NSCFSet happened to be allocated where the old object was.</p>
+
+<p>Use Build and Analyze, then use zombie detection if that doesn't identify the problem.</p>

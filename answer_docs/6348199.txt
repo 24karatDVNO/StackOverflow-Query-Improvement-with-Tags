@@ -1,0 +1,19 @@
+<pre><code>import java.util.Random;
+</code></pre>
+
+<p>public class RandomTest {</p>
+
+<pre><code>public static void main(String[] args) {
+    for (int i = 0; i &lt; 100; i++) {
+        System.out.println(randomOneOrMinusOne());
+
+    }
+}
+static int randomOneOrMinusOne() {
+    Random rand = new Random();
+    if (rand.nextBoolean()) return 1;
+    else return -1;
+}
+</code></pre>
+
+<p>}</p>

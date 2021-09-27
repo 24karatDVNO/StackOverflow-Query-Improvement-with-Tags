@@ -1,0 +1,4 @@
+<p><code>add.setDefaultFormProcessing(false);
+remove.setDefaultFormProcessing(false);</code></p>
+
+<p>I am using org.apache.wicket.markup.html.form.Button which allows you to turn off full form submit with button click with the <code>setDefaultFormProcessing(boolean)</code>.  This should allow you to process actions without submitting your complete form, therefore not validating required textfields.</p>

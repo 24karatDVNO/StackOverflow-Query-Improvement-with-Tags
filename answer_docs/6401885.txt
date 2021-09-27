@@ -1,0 +1,35 @@
+<p>ISPP is a Pre-Processor, so this means this code run's prior to compiling the SETUP.EXE</p>
+
+<p>The AppName is used for a variety of purposes but one is the SETUP.EXE Resource.    Which is why it can't be set at runtime using <code>{code: }</code></p>
+
+<p>So you could a compile time and have a different SETUP.EXE for each language.</p>
+
+<p>You can do this in a  number of ways, using the ISPP, here is one.   </p>
+
+<pre><code>#define lang = "english"
+[Setup]
+#if lang == "english"
+AppName=The Ball
+#elif lang == "spanish"
+AppName=La Bola
+#else
+# error Unsupported Language
+#endif
+
+AppVersion=1.5
+;AppVerName=My Program 1.5
+DefaultDirName={pf}\My Program
+
+[Languages]
+#if lang == "english"
+Name: "en"; MessagesFile: "compiler:Default.isl"
+#elif lang == "spanish"
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+#else
+# error Unsupported Language
+#endif
+
+
+[Files]
+Source: "C:\Program Files (x86)\Inno Setup 5\Examples\MyProg.exe"; DestDir: "{app}"; Flags: ignoreversion
+</code></pre>

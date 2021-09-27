@@ -1,0 +1,8 @@
+<p>You probably get an error, but the process hangs because you are not reading the <a href="http://download.oracle.com/javase/1.4.2/docs/api/java/lang/Process.html#getErrorStream%28%29" rel="nofollow">error stream</a>. 
+Taken from the Process JavaDoc</p>
+
+<blockquote>
+  <p>All its standard io (i.e. stdin, stdout, stderr) operations will be redirected to the parent process through three streams (Process.getOutputStream(), Process.getInputStream(), Process.getErrorStream()). The parent process uses these streams to feed input to and get output from the subprocess. Because some native platforms only provide limited buffer size for standard input and output streams, failure to promptly write the input stream or read the output stream of the subprocess may cause the subprocess to block, and even deadlock.</p>
+</blockquote>
+
+<p>So you need to read all of them. Using the <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/ProcessBuilder.html" rel="nofollow">ProcessBuilder</a> is probably easier</p>

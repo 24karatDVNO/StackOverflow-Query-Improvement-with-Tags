@@ -1,0 +1,9 @@
+<p>You should reformat your array like this:</p>
+
+<pre><code>$newArray = array();
+foreach ($yourArray as $key =&gt; $value) {
+   $newArray[$value['Email']][] = $value;
+}
+</code></pre>
+
+<p>It returns array grouped by Email. And for <code>stefano@email.it</code> tou will have an array with 2 items.</p>

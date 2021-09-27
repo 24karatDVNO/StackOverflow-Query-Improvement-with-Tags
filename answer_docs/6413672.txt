@@ -1,0 +1,18 @@
+<p>The reason you only see the last record is because you overwrite all previous records, as you do this in your <code>while</code>-loop:</p>
+
+<pre><code>$template-&gt;test1(array("TIT" =&gt; $row1['title']));
+</code></pre>
+
+<p>Then inside <code>test1()</code> you do a rather weird statement:</p>
+
+<pre><code>public function test1($data){
+    foreach($data as $k =&gt; $v){
+        $this-&gt;block[$k] = $v;
+    }
+    print_r ($this-&gt;block);
+}
+</code></pre>
+
+<p>You do <code>foreach($data as $k =&gt; $v)</code>, which is not neccesary, since there is only ONE value in the array (one key value pair). Nonetheless, you assing <code>$this-&gt;block[$k] = $v;</code> and <code>$k</code> is the same <strong>everytime</strong> (<code>TIT</code> and <code>FTIT</code>), so you overwrite all previous set values each time you call <code>test1()</code>.</p>
+
+<p>If you then call <code>test2()</code>, which has no 'set' capabilities, but rather only displays <code>$this-&gt;block</code>, you only get the last value for <code>TIT</code> and <code>FTIT</code>.</p>

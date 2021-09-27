@@ -1,0 +1,3 @@
+<p>Pre-multiplying alpha with an integer color type is an information lossy operation.  Data is destroyed during the quantization process (rounding to 8 bits).</p>
+
+<p>Since some data is destroy (by rounding), there is no way to recover the exact original pixel color (except for some lucky values).  You have to save the colors of your photoshop image before you draw it into a bitmap context, and use that original color data, not the multiplied color data from the bitmap.</p>

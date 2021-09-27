@@ -1,0 +1,13 @@
+<p>As it turns out I was approaching this problem incorrectly. After attempting to query the dataset in different ways using LINQ I realized that this was an AI problem. I was trying to identify groups of data within a large dataset on a per user and time basis.</p>
+
+<p>This is a clustering problem. I have written and published a library to perform K means clustering on objects in an IEnumerable. The process goes a little something like this:</p>
+
+<pre><code>var clusters = SharpLearning.Clustering.KCluster(k, iterations, listOfIClusterableObjects);
+
+foreach (var cluster in clusters) {
+    // Process some data.
+    // clusters is a List&lt;Cluster&lt;T&gt;&gt; where your objects can be viewed in the .Members attribute
+}
+</code></pre>
+
+<p>The Cluster class containing two distance algorithms, the IClusterable interface and the KCluster algorithm are all provided in the <a href="https://github.com/codyrioux/CSharpMachineLearning" rel="nofollow">C# Machine Learning Library</a></p>

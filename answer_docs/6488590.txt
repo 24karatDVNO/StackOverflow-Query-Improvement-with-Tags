@@ -1,0 +1,30 @@
+<h1>On Controller Use following code:</h1>
+
+<pre><code> public List&lt;ReceiveType&gt; _data = new List&lt;ReceiveType&gt; { 
+                new ReceiveType{ReceiveTypeID=1,ReceiveTypeName= "Purchase Order"},
+                new ReceiveType{ReceiveTypeID=2,ReceiveTypeName= "Sales Return"},
+                new ReceiveType{ReceiveTypeID=3,ReceiveTypeName= "FOC"}
+            };
+
+ public string load_cmbBoxWithServerSideDataFromClient() 
+        {
+          var _List = new SelectList(_data, "ReceiveTypeID", "ReceiveTypeName");
+          return new JavaScriptSerializer().Serialize(_List);
+        }
+</code></pre>
+
+<h1>On View Page Use following code</h1>
+
+<pre><code>@(Html.Telerik().ComboBox().Name("cmbLoadServerData"))
+&lt;input type="button" value="load" onclick="load_ServerDataFromClient()" /&gt;&lt;br /&gt;
+
+function load_ServerDataFromClient() {
+        var cmb = $('#cmbLoadServerData').data('tComboBox');
+
+        $.get("/Home/load_cmbBoxWithServerSideDataFromClient", function (response) {
+
+            var selectList = $.parseJSON(response);
+            cmb.dataBind(selectList, true);
+        });
+     }
+</code></pre>

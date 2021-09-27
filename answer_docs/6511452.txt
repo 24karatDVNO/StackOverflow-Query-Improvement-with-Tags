@@ -1,0 +1,3 @@
+<p>It might be possible that on your device, it's using the drawable-hdpi version of your icon in one place, and the drawable-mdpi version of it in another place. </p>
+
+<p>You can just delete any version of the icon except the one in drawable-hdpi. Then Android will just downscale it whenever necessary.  When you actually release the app, you might want to create a mdpi version of the icon to avoid scaling artifacts. In my opinion, ldpi is not really worth bothering with, but you can do that too.</p>

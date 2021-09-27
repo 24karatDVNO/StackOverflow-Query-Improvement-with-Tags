@@ -1,0 +1,34 @@
+<p>do you want something like this:</p>
+
+<pre><code>def get_row(row):
+    row=row.split()
+    num_pos=[]
+    for i in range(len(row)):
+        try:
+            int(row[i])
+            num_pos.append(i)
+        except:
+            pass
+    assert(len(num_pos)==2)
+    ans=[]
+    ans.append(row[0])
+    ans.append("".join(row[1:num_pos[0]]))
+    ans.append(int(row[num_pos[0]]))
+    ans.append("".join(row[num_pos[0]+1:num_pos[1]]))
+    ans.append(int(row[num_pos[1]]))
+    ans.append("".join(row[num_pos[1]+1:]))
+    return ans
+
+
+row1="2/18/2011  Central Arkansas           5  Southern Illinois-Edwardsville  4  @Central Arkansas"
+row2="2/18/2011  Central Florida           11  Siena                      1  @Central Florida"
+
+print get_row(row1)
+print get_row(row2)
+</code></pre>
+
+<p>output:</p>
+
+<pre><code>['2/18/2011', 'CentralArkansas', 5, 'SouthernIllinois-Edwardsville', 4, '@CentralArkansas']
+['2/18/2011', 'CentralFlorida', 11, 'Siena', 1, '@CentralFlorida']
+</code></pre>

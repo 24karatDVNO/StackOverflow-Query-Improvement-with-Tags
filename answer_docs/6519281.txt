@@ -1,0 +1,7 @@
+<p>Well, I doubt that simply the call of <code>ReadFile</code> makes the program crash. Assuming the Windows Readfile function, let me quote the <a href="http://msdn.microsoft.com/en-us/library/aa365467%28v=vs.85%29.aspx" rel="nofollow">documentation</a>:</p>
+
+<blockquote>
+  <p>If the ReadFile function attempts to read past the end of the file, the function returns zero, and GetLastError returns ERROR_HANDLE_EOF.</p>
+</blockquote>
+
+<p>Are you handling this error or continuing without checking at all?</p>

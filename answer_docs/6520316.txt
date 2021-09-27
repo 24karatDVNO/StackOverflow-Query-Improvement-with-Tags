@@ -1,0 +1,3 @@
+<p>That's just taking the address of <code>acc</code> and casting it to a pointer to <code>char</code>. </p>
+
+<p>Most likely that <code>.write()</code> method is meant to just blindly write a given amount of bytes out as-is. <code>char</code> is a convienent type to use for that, since (on most platforms) it is exactly one byte in size. So you pass it a pointer to the data you want written out, telling it, "Pretend this is a pointer to <code>char</code>".</p>

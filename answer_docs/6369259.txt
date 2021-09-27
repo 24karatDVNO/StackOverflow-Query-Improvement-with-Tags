@@ -1,0 +1,12 @@
+<p>Although I agree with the above posters, you <em>could</em> pass your variables as <strong>URL parameters</strong>.</p>
+
+<p>This tutorial should be of some assitance: - <a href="http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html" rel="nofollow">http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html</a></p>
+
+<p>As you already have an 'array', you could parse the parameters as a JSON object.</p>
+
+<pre><code>e.g. http://happyc.at/page1.html?json={"Windows":["banana","apple","mango","lemon"]}
+</code></pre>
+
+<p>...just remember to parse the string as JSON (you can use $.parseJSON in jQuery).</p>
+
+<p>Hope this helps.</p>

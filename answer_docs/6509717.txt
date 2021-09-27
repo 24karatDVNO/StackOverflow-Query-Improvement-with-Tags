@@ -1,0 +1,12 @@
+<p>You can't reference the updated table <code>c</code> within a sub-subquery (factored or otherwise). You'll have to eliminate it, maybe something like this (untested):</p>
+
+<pre><code>update calc c set price = (
+    select sum(t.units) * avg(other_prc)
+    from trans t, products p
+    where t.trans_date between c.start_date and c.end_date
+      and t.trans_date between p.prod_start and p.prod_end
+      and t.prod_id = p.prod_id
+      and t.agrmt_id=c.agrmt_id
+      and t.cust_num=c.cust_num
+)
+</code></pre>

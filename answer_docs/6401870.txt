@@ -1,0 +1,10 @@
+<p>You're right on thinking that your timing is wrong :)</p>
+
+<pre><code>// js
+$("someElement").load("file.php", function(){
+    var num = $("div#max_page").attr("title");
+    // here you can do with num whatever you need
+});
+</code></pre>
+
+<p>The function passed as a second argument will be executed immediately after <code>file.php</code> is loaded into <code>someElement</code>, thus guaranteed that the title attribute will exist at this point.</p>

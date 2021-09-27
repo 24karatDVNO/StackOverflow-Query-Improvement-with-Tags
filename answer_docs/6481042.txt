@@ -1,0 +1,21 @@
+<p>You can use facbook graph api to request the users info and than parse it like this:</p>
+
+<pre><code>        JSONObject resp = new JSONObject(content);
+        String facebookid = resp.getString("id");
+        String firstName = resp.getString("first_name");
+        String lastName = resp.getString("last_name");
+        String email = resp.getString("email");
+        String phone = resp.getString("mobile_phone");
+
+        JSONObject address = resp.getJSONObject("address");
+        String street = address.getString("street");
+        String city = address.getString("city");
+        String zip = address.getString("zip");
+        String state = address.getString("state");
+        String country = address.getString("country");
+</code></pre>
+
+<p>After you have the strings calling your registration method should be easy. Than you just have to auto authenticate them.</p>
+
+<p>I have posted more details about this here:
+<a href="https://stackoverflow.com/questions/5184959/facebook-connect-example-in-jsp-tomcat/5265028#5265028">Facebook Connect example in JSP (tomcat)</a></p>

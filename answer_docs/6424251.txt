@@ -1,0 +1,17 @@
+<p>I solved my original problem:</p>
+
+<p>I had to clear my pear cache and then run the install command again to re-install PHPUnit.</p>
+
+<p>Also, it is important to either set a Windows environment variable called PHPBIN (--> /path/to/php) or to make sure the pear configuration PHP settings are correct...</p>
+
+<p>--> pear config-show</p>
+
+<p>Otherwise (some) packages will install and HARDCODE an incorrect php bin path into the .bat file, and if it doesn't find the PHPBIN variable it will use that... and therefore not work... </p>
+
+<p>Another way to deal with this is to configure pear settings correctly and then force re-install the package, e.g.:</p>
+
+<p>pear install -f --alldeps </p>
+
+<ul>
+<li>M</li>
+</ul>

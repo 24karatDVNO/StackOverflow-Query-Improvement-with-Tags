@@ -1,0 +1,24 @@
+<p>You have to call the initializing method of the TinyMCE whenever the update panel is refreshed.</p>
+
+<p>For this, you have either to call this method (tinyMCE.init) from a RegisterStartupScript method, </p>
+
+<pre><code>      protected void Page_Load(object sender, System.EventArgs e)
+      {                
+          ScriptManager.RegisterStartupScript(this.Page, 
+              this.Page.GetType(), mce.ClientID, "callInt" + mce.ClientID + "();",  true);
+       }
+</code></pre>
+
+<p><strong>OR</strong> to create a page load javascript function in the head section of the page like this:</p>
+
+<pre><code>     function pageLoad() 
+     {
+         tinyMCE.init();
+      }
+
+
+      &lt;body onload="pageLoad()"&gt;  
+      &lt;/body&gt; 
+</code></pre>
+
+<p>Hope this helps..</p>

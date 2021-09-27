@@ -1,0 +1,13 @@
+<p>Question is sort of unclear. But here's my best shot:</p>
+
+<p>Instead of doing the foreach in php do it in javascript in the success: function (data) {} function like you suggested.</p>
+
+<p>You'd do something like:</p>
+
+<p>EDIT: </p>
+
+<pre><code>var container_node = $('#your_container_id');
+ $.each(data, function() { this['price'] ... document.createElement ... container_node.append ... do what you did in php but manipulating the DOM ... }
+</code></pre>
+
+<p>Hope that helps.</p>

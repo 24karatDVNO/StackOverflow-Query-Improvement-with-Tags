@@ -1,0 +1,26 @@
+<p>What specialized type are you trying to execute</p>
+
+<p>if you have</p>
+
+<pre><code>class Bar {
+  public virtual void Draw() {
+    DO STUFF!
+  } 
+}
+
+class Foo : Bar {
+  override public virtual Draw() {
+    DO MORE STUFF!
+  }
+}
+</code></pre>
+
+<p>then somewhere in your code</p>
+
+<pre><code>Bar[] data = new Bar[] { new Foo(), new Bar()};
+foreach (Bar elem in data) {
+  elem.Draw();
+}
+</code></pre>
+
+<p>The first elem will execute the overriden code in Foo for the first elem and the code in Bar for the second. Even if you cast an item down the code executed in the methods will still be the code in original object (and <code>elem.GetType()</code> will return Foo for a Foo type.</p>

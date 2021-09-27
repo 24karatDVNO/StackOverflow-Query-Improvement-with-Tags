@@ -1,0 +1,3 @@
+<p>You've re-defined x in your child class.  Take the int x declaration out and remove the "super." part of the setX method so it just reads: "this.x = x".</p>
+
+<p>The root of your problem, is you are changing the x defined in class A, then providing the value in class B which was initialized to 0.</p>

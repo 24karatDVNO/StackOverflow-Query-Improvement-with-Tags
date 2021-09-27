@@ -1,0 +1,20 @@
+<p>On your child forms, handle the FormResize event, with something like this:</p>
+
+<pre><code>private void Form1_Resize(object sender, EventArgs e)
+{
+    Size pSize = this.ParentForm.ClientSize;
+
+    Size maxAllowed = new Size(pSize.Width - this.Left, pSize.Height - this.Top);
+
+    // Resize the child if it goes out of bounds
+    if (this.Height &gt; maxAllowed.Height)
+        this.Height = maxAllowed.Height;
+
+    if (this.Width &gt; maxAllowed.Width)
+        this.Width = maxAllowed.Width;
+}
+</code></pre>
+
+<p>probably not great results depending on wht you want.</p>
+
+<p>I would probably redo it so that it moves te form back in bounds instead of resizing it.</p>

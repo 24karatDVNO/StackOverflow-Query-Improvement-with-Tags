@@ -1,0 +1,6 @@
+<p>Need to know the data you have in your table however just from looking at the sql and column names I would recommend</p>
+
+<ol>
+<li>do you really need an index on workflow_state assuming elements within it can't be very unique - this might not improve select but will insert or update...</li>
+<li>try making <code>field_id</code> check the first condition in your where statement</li>
+</ol>

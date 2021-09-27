@@ -1,0 +1,5 @@
+<p>You answered the first question with the second question. You use a script that checks the dates and updates the table.</p>
+
+<p>Yes, you need to use cron, but it does not need to be complex. Cron can run a php script (in cli mode). You can also have cron start <code>curl</code> or <code>wget</code> and have them run the php directly on the webserver.</p>
+
+<p>Well, actually you have one other option - every time you do some sort of action on your site (you will need to decide which action is most appropriate) have it also run the update commands.</p>

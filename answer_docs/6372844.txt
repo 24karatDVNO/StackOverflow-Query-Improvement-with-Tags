@@ -1,0 +1,23 @@
+<p>The web.config (and app.config) files can be split into separate files as shown below. You could encapsulate the entire system.serviceModel element if that is what you want.</p>
+
+<pre><code>&lt;system.serviceModel&gt;
+    &lt;services configSource="services.config" /&gt;
+
+    &lt;behaviors configSource="behavior.config" /&gt;
+
+    &lt;bindings&gt;
+        &lt;wsHttpBinding&gt;
+            &lt;binding name="Http" receiveTimeout="00:10:00"&gt;
+                &lt;security mode="None"&gt;
+                    &lt;transport clientCredentialType="None" /&gt;
+                    &lt;message clientCredentialType="None" establishSecurityContext="false" /&gt;
+                &lt;/security&gt;
+            &lt;/binding&gt;
+        &lt;/wsHttpBinding&gt;
+    &lt;/bindings&gt;
+
+    &lt;!-- rest of WCF elements inline as in the bindings element or in other files --&gt;
+&lt;/system.serviceModel&gt;
+</code></pre>
+
+<p>You would just need to create each of the referenced files. This is a great way of putting environment (i.e. Dev, QA, Staging, Prod) specific settings in separate files so you can parameterize the deployment script.</p>

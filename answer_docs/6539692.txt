@@ -1,0 +1,6 @@
+<p>Direct answer to your question:</p>
+
+<pre><code>$string = preg_replace('/^(.*?):/', '&lt;a href="http://twitter.com/$1"&gt;$1&lt;/a&gt;:', $string);
+</code></pre>
+
+<p>But I assume that you are parsing twitter RSS or something similar. So you can just use <code>/^(\w+)/</code>. </p>

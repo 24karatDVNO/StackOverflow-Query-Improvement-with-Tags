@@ -1,0 +1,25 @@
+<p>I seems find the problem.
+I have a view controller named "VCGameRule", under the MainView. And it has a declaration in the VCGameRule.h file as follow:</p>
+
+<pre><code>@property (nonatomic, retain) IBOutlet UILabel *lblInitialCash;
+</code></pre>
+
+<p>In VCGameRule.m, there is a code as following in a initialization function:</p>
+
+<pre><code>lblInitialCash = [[UILabel alloc] initWithFrame:CGRectMake(135, 12, 50, 20)];
+</code></pre>
+
+<p>And its viewDidUnload function is like this:</p>
+
+<pre><code>- (void)viewDidUnload {
+   [super viewDidUnload];
+   // Release any retained subviews of the main view.
+   self.lblInitialCash = nil; 
+}
+</code></pre>
+
+<p>See the problem? I try to assign an new allocated UILabel object to lblInitialCash which is a retained IBOutlet property. And I try to release the property in viewDidUnload function, then some bad thing happens.... </p>
+
+<p>I am still not sure what the exactly error it occurs. But I think should be the property's original allocated memory become chaos. So I receive a "EXC_BAD_ACCESS" error message when the App try to call didReceiveMemoryWarning in every loaded view controllers.</p>
+
+<p>After I modify the IBOutlet property to a normal class variables, the error seems not happen again! And everything is fine now, even my App really uses a lot of memory and do many times of viewDidUnload function, App is still alive. \(^o^)/</p>

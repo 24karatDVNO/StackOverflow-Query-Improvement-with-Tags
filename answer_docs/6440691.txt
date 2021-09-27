@@ -1,0 +1,11 @@
+<pre><code>$(function(){
+    $('a').click(function(e){
+        $('#input_123').load('/record/123');
+        e.preventDefault();
+    });
+});
+</code></pre>
+
+<p>I've never worked with prototype, but that's my best guess.  probably best to give your anchors an id, and use that to attach the behaviour though. </p>
+
+<p>this is assuming that input_123 is the id of a something and what get's returned from /record/123 is html that goes in there...</p>

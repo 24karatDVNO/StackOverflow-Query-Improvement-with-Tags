@@ -1,0 +1,14 @@
+<p>While this is not a solution, this could lead you down the path of the solution:</p>
+
+<p>the click event is bound to the UL, no the a or li:</p>
+
+<p>$('ul.ui-autocomplete').click();</p>
+
+<p>However, this didn't work for me.  I imagine the click event relies on some sort of state with the (a)s and the (li)s.  It adds a few classes and an ID to the currently hovered item which I simulated...</p>
+
+<p>$('a.ui-corner-all').attr('id','ui-active-menuitem')
+$('a.ui-corner-all').addClass('ui-active-menuitem')</p>
+
+<p>Still no dice.  No errors, but no action either.</p>
+
+<p>This should lead to the correct path...I just wish I could have figured it out!</p>

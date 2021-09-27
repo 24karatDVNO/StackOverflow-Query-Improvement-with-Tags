@@ -1,0 +1,3 @@
+<p>There are no direct bindings in JQuery and YUI because these libraries run in a web browser. Thus unless you’re planning to write your own browser plugins, the integration with the C++ will happen at the webserver that serves the data to the browser.</p>
+
+<p>You could feed the data from your C++ code directly into JQuery/YUI by building web services directly in C++. But you might want to build a web application that will be serving your JQuery/YUI pages and that act as user interface controller (like in the MVC pattern). Web application languages like Java, PHP, etc. all have ways to call native code. Java has JNDI and in PHP you build extensions that link to C++ code.</p>

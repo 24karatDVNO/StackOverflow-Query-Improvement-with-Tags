@@ -1,0 +1,11 @@
+<p>Well,</p>
+
+<p>from my point of view this is more an architectural problem than a Flash one. You must consider if you will use / reuse that template in other places ( but you should probably do it anyway )</p>
+
+<p>Create the poll template as a single project, with all the files in the same folder, with it's own namespace: com.andymiller.template.poll, etc...</p>
+
+<p>This may save you a lot of time solving bugs.</p>
+
+<p>If by Caurina you mean a tweener this is a shared class, in this case this won't be necessary, create a lib project or a folder that you know <strong>you won't modify</strong>! If you change the version of any of the libraries this may have "consequences" :)</p>
+
+<p>Hope it Helps </p>

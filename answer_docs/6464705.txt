@@ -1,0 +1,6 @@
+<p>You will need to check in case you have registered the <code>CheckChange</code> event separately somewhere in your code like </p>
+
+<pre><code>chkCopyToRespDoc.CheckedChanged += new EventHandler(chkCopyToRespDoc_CheckedChanged);
+</code></pre>
+
+<p>Maybe in the OnInit or page_Load, you will have to remove the ones since its already registered</p>

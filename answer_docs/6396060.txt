@@ -1,0 +1,16 @@
+<p>auto_increment does not guarantee to have increments by 1 in the ID column. And it cannot, because as soon as you work with parallel transactions it would break anyways:</p>
+
+<pre><code>BEGIN                                  BEGIN
+  INSERT INTO lol VALUES(...)            INSERT INTO lol VALUES(..)   
+  ...                                    ...
+COMMIT                                 ROLLBACK
+</code></pre>
+
+<p>What ids should be assigned by the database? It cannot know in advance which transaction will succeed and which will be rolled back.</p>
+
+<p>If you need a sequential numbering of your records you would use a query which returns that; e.g.</p>
+
+<pre><code>SELECT COUNT(*) as position, lol.data FROM lol 
+INNER JOIN lol2 ON lol.id &lt; lol2.id 
+GROUP BY lol.id
+</code></pre>

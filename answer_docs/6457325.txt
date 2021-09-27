@@ -1,0 +1,11 @@
+<p>You have to override <a href="http://developer.android.com/reference/android/widget/ArrayAdapter.html#getView%28int,%20android.view.View,%20android.view.ViewGroup%29" rel="nofollow">getView (int position, View convertView, ViewGroup parent)</a> method in your adapter.</p>
+
+<pre><code>@Override
+public View getView(int position, View convertView, ViewGroup parent) {
+    View view = super.getView(position,convertView,parent);
+    CheckBox cb = view.findViewById(R.id.check_box_id);
+    boolean is_checked;
+    /* check if the check box must be checked */
+    cb.setChecked(is_checked);
+}
+</code></pre>

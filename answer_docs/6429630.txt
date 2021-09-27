@@ -1,0 +1,8 @@
+<p>You can just use it as is.  In your code snippet, <code>tester</code> is class-level, and can be used in any of the classes non-static methods.</p>
+
+<pre><code>private void deletetask_Click(object sender, EventArgs e)
+{
+    ScheduledTasks st = new ScheduledTasks(@"\\" + System.Environment.MachineName);
+    st.DeleteTask(tester);
+}
+</code></pre>

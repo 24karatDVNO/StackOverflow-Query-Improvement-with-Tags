@@ -1,0 +1,22 @@
+<p>In your code there are missing commas and parenthesis for if statements... though those are not needed by the compiler, it's good practice to always wrap if statements inside commas, and always put semicolon at the end of each row.</p>
+
+<p>For example</p>
+
+<pre><code>$("#contact-form").validationEngine({
+        inlineValidation: false,
+        promptPosition: "centerRight",
+        success :  function(){use_ajax=true},
+        failure : function(){use_ajax=false;}
+     }) // missing semicolon here
+</code></pre>
+
+<p>and</p>
+
+<pre><code>{
+
+    $.validationEngine.buildPrompt(".jqTransformSelectWrapper","* This field is required","error") // missing semicolon here
+    return false;
+}
+</code></pre>
+
+<p>Since you are having bad arguments call in the debugger, it's better to write the code the right way, then we can try to understand what's wrong.</p>

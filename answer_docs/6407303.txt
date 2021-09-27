@@ -1,0 +1,16 @@
+<p>@dave; may be you can define it with simple <code>css declaration</code>.</p>
+
+<pre><code>.wrap1 a, .wrap2 a{
+    background:green;
+}
+.wrap1 a:hover, .wrap2 a:hover{
+    background:red;
+}
+a{background:yellow;}
+a:hover{background:pink;}
+</code></pre>
+
+<p>If the links are in different <code>divs</code> &amp; you want to target an specific <code>a</code> tag. 
+check this for more <a href="http://jsfiddle.net/sandeep/RsmAg/" rel="nofollow">http://jsfiddle.net/sandeep/RsmAg/</a><br>
+<strong>EDIT:</strong>
+may be <code>nth-child</code> is also an option. Check <a href="http://jsfiddle.net/sandeep/3aMC5/" rel="nofollow">THIS</a></p>

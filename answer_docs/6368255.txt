@@ -1,0 +1,5 @@
+<p>According to the seminal book, the pragmatic programmer, assertions are turned off by default because compiler writers and such have spread the idea that the performance overhead is unacceptable, and they only matter when debugging your code.</p>
+
+<p>In fact, it's suggested that you leave assertions on because your testing might not find all bugs and because, when shipped, the chaos monkey can strike at any time. Assertions should only be turned off if you encounter are performance issues.</p>
+
+<p>And it's also suggested that you should write own version of assert, that doesn't necessarily call exit when it fails.</p>

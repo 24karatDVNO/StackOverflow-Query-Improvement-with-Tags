@@ -1,0 +1,13 @@
+<p>Maybe you should just "memorize" the height of the element in a variable when the mouseover event is fired, and then set it back to that value again when the mouseout event is fired.</p>
+
+<pre><code>$(document).ready(function (){
+ $('.item').mouseover(function () {
+     // store the height in a variabile (keep also in mind margins and paddings)
+     $(this).parent().addClass("item-over");
+ }).mouseout(function() {
+     $(this).parent().removeClass("item-over");
+     // now set back the original height
+ });
+ }
+);
+</code></pre>

@@ -1,0 +1,8 @@
+<p>To get your method to compile, you could pull the default.</p>
+
+<pre><code>return (Greater.HasValue) ?
+            Greater.Value :
+            default(T);
+</code></pre>
+
+<p>That said, if you're using a modern version of C#, you should not be writing this method in the first place and should instead be using <a href="http://msdn.microsoft.com/en-us/library/system.linq.enumerable.max.aspx" rel="nofollow">Enumerable.Max()</a>.</p>

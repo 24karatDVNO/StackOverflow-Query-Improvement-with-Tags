@@ -1,0 +1,24 @@
+<p>Instead of testing in the loop whether you are processing the first image or not, process the first image separately. Including a test condition in a loop which effectively can only be fulfilled in only one iteration seems like a misconception to me.</p>
+
+<p>Put the logic of resizing the image into its own function to make code-reuse easier.</p>
+
+<p>Something like this:</p>
+
+<pre><code>if($stmt-&gt;rowCount() != 0) {
+    // this gets the first row
+    $row = $stmt-&gt;fetch(PDO::FETCH_ASSOC);
+
+    // take the first $filename result and resize it to make it larger
+    resizeImage($row['id'], $row['filename'], 'large');
+
+    // we always want to create a thumbnail, hence do-while
+    do {       
+        // resize $filename into thumbnails and output 10 thumbnails 
+        resizeImage($row['id'], $row['filename'], 'thumbnail');
+    } while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)) {
+}
+
+function resizeImage(id, name, type) {
+    // whatever here
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>In this case, check out the official documentation.</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/bsc2ak47(v=vs.80).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/bsc2ak47(v=vs.80).aspx</a></p>
+
+<p><i>The default implementation of Equals supports reference equality only, but derived classes can override this method to support value equality.</p>
+
+<p>For reference types, equality is defined as object equality; that is, whether the references refer to the same object. For value types, equality is defined as bitwise equality. The ValueType class supports value types.</i></p>
+
+<p>So for reference types, unless they override <code>Equals</code>, the reference is compared - i.e. "does this refer to the same object".  For value types, the entire value is compared.</p>

@@ -1,0 +1,10 @@
+<p>You could always chunk the lines up? I mean why open one file and iterate all the way through when you can open the same file 6 times and iterate through.
+e.g.</p>
+
+<pre><code>a #is the first 1024 bytes
+b #is the next 1024
+#etcetc
+f #is the last 1024 bytes
+</code></pre>
+
+<p>Each file handle running in a separate process and we start to cook on gas. Just remember to deal with line endings properly.</p>

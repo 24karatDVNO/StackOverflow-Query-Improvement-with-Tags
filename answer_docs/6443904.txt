@@ -1,0 +1,5 @@
+<p>You could just save the data as it is (in the controller), and have another field in the model telling it how to interpret the data. Then, in a before_validation callback, you could try parsing the date according to the given format and writing it to the same field, now as a date. Problems may arise on the way back. Then, to display it in the view again, you could write helpers - but better yet, provide a method in the model (for instance, formatted_date) that will compute and display the date.</p>
+
+<p>However, this requirement sounds strange. Why is the user's responsibility to select a date format? Shouldn't it be based on the user locale?</p>
+
+<p>In any case, I suggest you register your date formats in an initializer, rather than repeting the format strings throughout the application.</p>

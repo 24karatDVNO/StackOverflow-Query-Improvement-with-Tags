@@ -1,0 +1,5 @@
+<p>Avoid big ball of mud^H^H^Hcode. Use separate branch for each code line you want to deploy. If you plan to migrate changes between branches, it's the best way, because you'll be able to manage changes between commits for each branch separately.</p>
+
+<p>Common code can be kept in default branch (master or trunk, depending on your scm of choice).</p>
+
+<p>You should use automatic deployment from scm, then you can configure it so, that it will deploy only selected branches.</p>

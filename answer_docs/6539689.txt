@@ -1,0 +1,4 @@
+<p>The following should work -</p>
+
+<pre><code>$description = preg_replace("/^(.+?):\s@twitter\s(.+?)$/", "&lt;a href=\"http://www.twitter.com/\\1\" target=\"_blank\"&gt;@\\1&lt;/a&gt;: \\2", $description);
+</code></pre>

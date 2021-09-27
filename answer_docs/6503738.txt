@@ -1,0 +1,13 @@
+<p>You <strong>can</strong> get this setup to work (we have been working with the same toolchain and setup  here) if you can live with some manual refreshes, after you have been using m2eclipse goals to build.</p>
+
+<p>The problem is, that not all external changes via m2eclipse builds to workspace projects are synched correctly to your deployed web application in tomcat.</p>
+
+<p>So if you are experiencing NoClassDefFoundError exceptions after building via m2eclipse the following should help (not all are necessary everytime):</p>
+
+<ul>
+<li>Do a Project/Clean on your maven projects</li>
+<li>Do a Refresh (F5) on your maven projects</li>
+<li>Clean the deployed web application (Server Context menu)</li>
+</ul>
+
+<p>Yes, it is cumbersome but one can live with it.</p>

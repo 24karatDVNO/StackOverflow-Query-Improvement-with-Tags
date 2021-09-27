@@ -1,0 +1,40 @@
+<p>Have a look at the below class. I suggest you do the event handling part in your activity. Call the function that creates a needed alert dialog for you. </p>
+
+<p>public class AlertUtil {</p>
+
+<pre><code>/** Single AlertUtil Object*/
+private static AlertUtil mAlertUtil;
+
+/**
+ * method that prepares Dialog
+ * @param context
+ * @param title
+ * @param message
+ * @return Alert Dialog
+ */
+public AlertDialog getAlertDialog1(Context context, int title,int icon,
+        String message){
+
+    AlertDialog alert = new AlertDialog.Builder(context).create();
+    alert.setTitle(title);
+    alert.setIcon(icon);
+    alert.setMessage(message);
+    alert.setCancelable(true);
+
+    return alert;
+}
+
+
+public static void setAlertUtil(AlertUtil mAlertUtil) {
+    AlertUtil.mAlertUtil = mAlertUtil;
+}
+
+public static AlertUtil getAlertUtil() {
+    if(mAlertUtil == null){
+        setAlertUtil(new AlertUtil());
+    }
+    return mAlertUtil;
+}
+</code></pre>
+
+<p>}</p>

@@ -1,0 +1,15 @@
+<p><a href="http://github.com/rgrove/sanitize/" rel="nofollow">http://github.com/rgrove/sanitize/</a></p>
+
+<p>This is a great project, with an example for youtube embeds allowing as well.  Youtube has recently changed to iframe, and I'm submitting an example "filter for it" to them:</p>
+
+<pre><code>T_YOUTUBE_IFRAME = lambda do |env|
+ node      = env[:node]
+ return nil unless (env[:node_name] == 'iframe')
+
+ if node['src'] =~ /^http:\/\/www.youtube.com\/embed\//
+   node['src'] += "?test" 
+
+   return {:node_whitelist =&gt; [node]}
+ end
+end
+</code></pre>

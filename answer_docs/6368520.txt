@@ -1,0 +1,46 @@
+<p>I am curious, can't you have the code like --> ??</p>
+
+<pre><code>{{if idx % 12 == 0}}
+    &lt;div class="page"&gt;
+{{/if}}
+
+        &lt;div class="item mrl"&gt;
+            &lt;a href=""&gt;
+                &lt;img src="http://files.stv.tv/img/player/${programmeName}/episodes/${episodeName}-230.jpg" alt="${programmeNiceName}" /&gt;
+                &lt;h3 class="mln mvs"&gt;${programmeNiceName}&lt;/h3&gt;
+                &lt;p&gt;${idx}&lt;/p&gt;
+            &lt;/a&gt;        
+        &lt;/div&gt;
+
+{{if (idx % 12 == 0 &amp;&amp; idx &gt; 0) || idx == $item.getTotal() - 1}}
+    &lt;/div&gt;
+{{/if}}
+</code></pre>
+
+<p>I am now working out another way (an open source project) to generate HTML on the fly, for instance, your case can be like maniplating a tree of element nodes.
+I hope the following code is clear to you, </p>
+
+<pre><code>function getYouHTML(allData){
+    var t = Tog('div.page'); // new a div node
+
+    for(var i = 0; i &lt; allData.length; i ++){
+        var d = allData[i]
+        t.Div('.item.mrl')
+        .A().href('')
+        .img().src("http://files.stv.tv/img/player/", d.programmeName, "/episodes/", d.episodeName, "-230.jpg")
+            .alt(d.programmeNiceName)
+        .h3(d.programmeNiceName).cls('mln mvs')
+        .p(d.idx)
+        .close('.item.mrl')
+
+        if(i % 12 == 0){
+            t.close('.page').Tog('div.page'); // close it and re-new one if i % 12 == 0
+        }
+    }
+
+    return t.html();
+}
+
+// json = [{idx:0, programmeName: 'name 1', episodeName: ...}, {idx: 1, program... }, {idx: 2, ...} ]
+getYouHTML(json);
+</code></pre>

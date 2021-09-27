@@ -1,0 +1,21 @@
+<p>You can try something like this</p>
+
+<pre><code>$(document).ready(function(){  
+
+    // To hide the element
+    $("YOUR_SELCTOR").click(function()
+    {
+       $("ELEMENT_TO_BE_HIDE").hide("slow");
+    });
+
+    // To show the element
+    $("YOUR_SELCTOR").click(function()
+    {
+       $("ELEMENT_TO_BE_HIDE").show("slow");
+    });
+
+
+});
+</code></pre>
+
+<p>You can use <code>toggle()</code> in place of <code>hide</code> and <code>show</code>.</p>

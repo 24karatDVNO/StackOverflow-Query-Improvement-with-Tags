@@ -1,0 +1,9 @@
+<p>I have the exact same problem when I try to go to "Design View". I don't need to click quickly, I can wait an hour and then do that and bang! there is this error.</p>
+
+<p>Note that I only get the error if the sub-form is still empty (i.e. really does not include any records which is the case when I first open the window.) So I always thought that was normal.</p>
+
+<p>The AbsolutePosition is set to -1 when the cursor is not currently pointing to a specific position. Also, this value is zero based (as mentioned by someone else: first row is AbsolutePosition 0). However, this position may be -1 even if you have focus on a specific row in the sub-form. This means it is useless.</p>
+
+<p>What you want to use if you need to know the current cursor position is CurrentRecord. This is a number that starts at 1. I would imagine that if the list is empty, the CurrentRecord may be set to 0 or -1 representing the fact that no row is available.</p>
+
+<p>I used all of these in a function used to calculate a complex total of different columns, here is the page <a href="http://linux.m2osw.com/msaccess-sum-focus-recordset-problem" rel="nofollow">http://linux.m2osw.com/msaccess-sum-focus-recordset-problem</a></p>

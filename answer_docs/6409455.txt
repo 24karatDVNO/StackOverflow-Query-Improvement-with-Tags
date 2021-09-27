@@ -1,0 +1,11 @@
+<p>Find below php code to get file extension and change file name</p>
+
+<pre><code>&lt;?php
+if(isset($_FILES['upload_Image']['name']) &amp;&amp; $_FILES['upload_Image']['name']!=='') {
+    $ext = substr($_FILES['upload_Image']['name'], strpos($_FILES['upload_Image']['name'],'.'), strlen($_FILES['upload_Image']['name'])-1);     
+    $imageName = time().$ext;
+    $normalDestination = "Photos/Orignal/" . $imageName;
+    move_uploaded_file($_FILES['upload_Image']['tmp_name'], $normalDestination);
+}
+?&gt;
+</code></pre>

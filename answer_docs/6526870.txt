@@ -1,0 +1,12 @@
+<pre><code>var autoSet = function() {
+    if ('#StatusGroup' == 'Distance Ed') {
+        'DeliveryGroup' = 'mail';
+        'NVTGC' = 'DIST'; 
+    }
+    else if ('#StatusGroup' != 'Distance Ed'){
+        'DeliveryGroup' = 'pickup'; 
+    }
+}
+</code></pre>
+
+<p>Both of your conditions will never be true, so nothing happens in this function.</p>

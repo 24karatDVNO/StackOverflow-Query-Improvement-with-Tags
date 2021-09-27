@@ -1,0 +1,4 @@
+<p>To do exactly what you want, on the server, would be <a href="http://msdn.microsoft.com/en-us/library/a8wa7sdt%28v=VS.100%29.aspx" rel="nofollow">Response.Redirect</a>. There is no need to postback though.  There are a few client side solutions.  Use a LinkButton, w/ onclick html attribute set to false.  My recommendation is something like this though:</p>
+
+<pre><code>&lt;INPUT TYPE="BUTTON" VALUE="Cancel" ONCLICK="window.location.href='http://www.yourdomain.com/example.aspx'"&gt; 
+</code></pre>

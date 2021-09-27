@@ -1,0 +1,8 @@
+<pre><code>update(
+select ti.no_items_present,
+       ti.total_items,
+       it.no_of_items
+   from total_items ti inner join
+       itemstable it on ti.item_name=it.item_name)
+set no_items_present=total_items-no_of_items
+</code></pre>

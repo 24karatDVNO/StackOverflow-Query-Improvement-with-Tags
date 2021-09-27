@@ -1,0 +1,5 @@
+<p>via Matt Cheney, ChapterThree</p>
+
+<p>The best way to connect Drupal to an external MySQL database is to define the $db_url in the settings.php as an array of possible databases and then using the function db_set_active($database_name) to switch between them in PHP. There is some good documentation of this technique on Drupal.org here - <a href="http://drupal.org/node/18429" rel="nofollow">http://drupal.org/node/18429</a>.</p>
+
+<p>To allow your users to interact with this data, you could presumably build a module that returns the data in a variety of ways - including making tables, lists, etc. However, the best "Drupal Way" to do this involves a technique called "Lazy Instantiation" (http://en.wikipedia.org/wiki/Lazy_instantiation) which will create CCK nodes on the fly when externally requested using the Drupal function drupal_execute() <a href="http://api.drupal.org/api/function/drupal_execute" rel="nofollow">http://api.drupal.org/api/function/drupal_execute</a> to submit the node add form for your custom CCK type.</p>

@@ -1,0 +1,18 @@
+<p>My guess is that you're seeing <code>\uXXXX</code> escapes instead of the non-ASCII characters you asked for.  <a href="http://php.net/manual/en/function.json-encode.php" rel="nofollow">json_encode</a> appears to always escape Unicode characters:</p>
+
+<pre><code>&lt;?php
+$arr = array("♫");
+$json = json_encode($arr);
+echo "$json\n";
+    # Prints ["\u266b"]
+
+$str = '["♫"]';
+$array = json_decode($str);
+echo "{$array[0]}\n";
+    # Prints ♫
+?&gt;
+</code></pre>
+
+<p>If this is what you're getting, it's not wrong.  You just have to ensure it's being decoded properly on the receiving end.</p>
+
+<p>Another possibility is that the string you're passing is not in UTF-8.  According to the documentation for <a href="http://php.net/manual/en/function.json-encode.php" rel="nofollow">json_encode</a> and <a href="http://php.net/manual/en/function.json-decode.php" rel="nofollow">json_decode</a>, these functions only work with UTF-8 data.  Call <a href="http://php.net/manual/en/function.mb-detect-encoding.php" rel="nofollow">mb_detect_encoding</a> on your input string, and make sure it outputs either <code>UTF-8</code> or <code>ASCII</code>.</p>

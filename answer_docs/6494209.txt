@@ -1,0 +1,6 @@
+<pre><code>protected void Page_Load(object sender, EventArgs e)
+{
+    TextBox myTxt = (TextBox)Page.PreviousPage.FindControl("previousPageTextBoxName");
+    currentPageTextBox.text = myTxt.Text;
+}
+</code></pre>

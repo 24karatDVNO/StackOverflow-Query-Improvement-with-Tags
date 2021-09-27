@@ -1,0 +1,16 @@
+<p>This seems to do the trick !</p>
+
+<p>in folder:
+<strong>www.mypage.com/lang/it/</strong></p>
+
+<p>I put:</p>
+
+<pre><code>RewriteEngine on
+##  redirect if just folder is requested
+RewriteCond %{REQUEST_URI} ^/lang/it/$
+RewriteRule ^(.*)$ http://www.mypage.com/index.php?target=1&amp;lang=it
+
+##  otherwise redirects if file does not exist
+RewriteCond  %{DOCUMENT_ROOT}/lang/it/$1  !-f
+RewriteRule ^(.*)$ http://www.mypage.com/$1 [QSA]
+</code></pre>

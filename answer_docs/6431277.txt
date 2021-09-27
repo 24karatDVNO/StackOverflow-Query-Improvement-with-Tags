@@ -1,0 +1,25 @@
+<p>If the method of the HTML is changed to GET instead of POST:
+<code>&lt;form name="search_option" action="http://localhost/cgi-bin/mytestsearch2011.cgi" method="get"&gt;</code></p>
+
+<p>Then the tags can be viewed (I had to copy the source code and do this on my localhost to check them)</p>
+
+<p>I was able to find out what tags and values to put, b/c get method. So here is the working code:</p>
+
+<pre><code>if ($category_id  eq "xcomp") {
+    my $subjurl = "http://localhost/cgi-bin/mytestsearch2011.cgi?query=$search_key&amp;verb_only=on&amp;subject=on&amp;exclude0=&amp;exclude1=&amp;exclude2=&amp;exclude3=";
+    print qq(&lt;A HREF="$subjurl"&gt;Subject&lt;/A&gt;\n)."    ";
+    my $objurl = "http://localhost/cgi-bin/mytestsearch2011.cgi?query=$search_key&amp;verb_only=on&amp;object=on&amp;exclude0=&amp;exclude1=&amp;exclude2=&amp;exclude3=";
+    print qq(&lt;A HREF="$objurl"&gt;Object&lt;/A&gt;\n)."  ";
+    my $prepurl = "http://localhost/cgi-bin/mytestsearch2011.cgi?query=$search_key&amp;verb_only=on&amp;prep=on&amp;exclude0=&amp;exclude1=&amp;exclude2=&amp;exclude3=";
+    print qq(&lt;A HREF="$prepurl"&gt;Preposition&lt;/A&gt;\n)."&lt;br&gt;&lt;br&gt;";
+}
+
+elsif ($category_id  eq "subj") { ##List urls other than what is currently output:
+    my $enablingurl = "http://localhost/cgi-bin/mytestsearch2011.cgi?query=$search_key&amp;verb_only=on&amp;enabling=on&amp;exclude0=&amp;exclude1=&amp;exclude2=&amp;exclude3=";
+    print qq(&lt;A HREF="$enablingurl"&gt;Enabling Function&lt;/A&gt;\n)."  ";
+...
+</code></pre>
+
+<p>I don't understand all the exclude tags, but that's okay...</p>
+
+<p>UPDATE: This works with POST as well, I just needed to know all the tags that came after the URL. Thanks!</p>

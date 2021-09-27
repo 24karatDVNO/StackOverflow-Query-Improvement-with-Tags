@@ -1,0 +1,281 @@
+<pre><code>$array = array(
+    '2011-06-21','2011-06-22','2011-06-22','2011-06-23',
+    '2011-06-23','2011-06-24','2011-06-24','2011-06-25',
+    '2011-06-25','2011-06-26','2011-06-26','2011-06-27',
+    '2011-06-27','2011-06-28','2011-06-29','2011-06-29',
+    '2011-06-30','2011-06-30','2011-07-01','2011-07-01',
+    '2011-07-02','2011-07-02','2011-07-03','2011-07-03',
+    '2011-07-04','2011-07-04','2011-07-05','2011-07-05',
+    '2011-07-06','2011-07-06','2011-07-07','2011-07-07',
+);
+
+function getDupKeys(array $array, $return_first = true, $return_by_key = true) {
+    $seen = array();
+    $dups = array();
+
+    foreach ($array as $k =&gt; $v) {
+        $vk = $return_by_key ? $v : 0;
+        if (!array_key_exists($v, $seen)) {
+            $seen[$v] = $k;
+            continue;
+        }
+        if ($return_first &amp;&amp; !array_key_exists($v, $dups)) {
+            $dups[$vk][] = $seen[$v];
+        }
+        $dups[$vk][] = $k;
+    }
+    return $return_by_key ? $dups : $dups[0];
+}
+</code></pre>
+
+<p>If both optional parameters are true, it returns an array of arrays; the key of each child array will be the value which was not unique, and the values of the array will be all those keys which had that value.</p>
+
+<p>If the first optional parameter is false, then only keys <em>after</em> the first instance of a non-unique value will be returned (i.e., for the given array, each value returns only one key, the second time it occurred, instead of the first).</p>
+
+<p>If the second parameter is optional, then instead of returning an array of arrays, it returns a flat array containing all duplicate keys (exactly which keys it returns are dictated by the prior optional parameter).</p>
+
+<p>Here's a <s>dump</s>print_r, cause it's prettier:</p>
+
+<pre><code>print_r(getDupKeys($array));
+
+Array
+(
+    [2011-06-22] =&gt; Array
+        (
+            [0] =&gt; 1
+            [1] =&gt; 2
+        )
+
+    [2011-06-23] =&gt; Array
+        (
+            [0] =&gt; 3
+            [1] =&gt; 4
+        )
+
+    [2011-06-24] =&gt; Array
+        (
+            [0] =&gt; 5
+            [1] =&gt; 6
+        )
+
+    [2011-06-25] =&gt; Array
+        (
+            [0] =&gt; 7
+            [1] =&gt; 8
+        )
+
+    [2011-06-26] =&gt; Array
+        (
+            [0] =&gt; 9
+            [1] =&gt; 10
+        )
+
+    [2011-06-27] =&gt; Array
+        (
+            [0] =&gt; 11
+            [1] =&gt; 12
+        )
+
+    [2011-06-29] =&gt; Array
+        (
+            [0] =&gt; 14
+            [1] =&gt; 15
+        )
+
+    [2011-06-30] =&gt; Array
+        (
+            [0] =&gt; 16
+            [1] =&gt; 17
+        )
+
+    [2011-07-01] =&gt; Array
+        (
+            [0] =&gt; 18
+            [1] =&gt; 19
+        )
+
+    [2011-07-02] =&gt; Array
+        (
+            [0] =&gt; 20
+            [1] =&gt; 21
+        )
+
+    [2011-07-03] =&gt; Array
+        (
+            [0] =&gt; 22
+            [1] =&gt; 23
+        )
+
+    [2011-07-04] =&gt; Array
+        (
+            [0] =&gt; 24
+            [1] =&gt; 25
+        )
+
+    [2011-07-05] =&gt; Array
+        (
+            [0] =&gt; 26
+            [1] =&gt; 27
+        )
+
+    [2011-07-06] =&gt; Array
+        (
+            [0] =&gt; 28
+            [1] =&gt; 29
+        )
+
+    [2011-07-07] =&gt; Array
+        (
+            [0] =&gt; 30
+            [1] =&gt; 31
+        )
+
+)
+</code></pre>
+
+<hr>
+
+<pre><code>print_r(getDupKeys($array, false));
+
+Array
+(
+    [2011-06-22] =&gt; Array
+        (
+            [0] =&gt; 2
+        )
+
+    [2011-06-23] =&gt; Array
+        (
+            [0] =&gt; 4
+        )
+
+    [2011-06-24] =&gt; Array
+        (
+            [0] =&gt; 6
+        )
+
+    [2011-06-25] =&gt; Array
+        (
+            [0] =&gt; 8
+        )
+
+    [2011-06-26] =&gt; Array
+        (
+            [0] =&gt; 10
+        )
+
+    [2011-06-27] =&gt; Array
+        (
+            [0] =&gt; 12
+        )
+
+    [2011-06-29] =&gt; Array
+        (
+            [0] =&gt; 15
+        )
+
+    [2011-06-30] =&gt; Array
+        (
+            [0] =&gt; 17
+        )
+
+    [2011-07-01] =&gt; Array
+        (
+            [0] =&gt; 19
+        )
+
+    [2011-07-02] =&gt; Array
+        (
+            [0] =&gt; 21
+        )
+
+    [2011-07-03] =&gt; Array
+        (
+            [0] =&gt; 23
+        )
+
+    [2011-07-04] =&gt; Array
+        (
+            [0] =&gt; 25
+        )
+
+    [2011-07-05] =&gt; Array
+        (
+            [0] =&gt; 27
+        )
+
+    [2011-07-06] =&gt; Array
+        (
+            [0] =&gt; 29
+        )
+
+    [2011-07-07] =&gt; Array
+        (
+            [0] =&gt; 31
+        )
+
+)
+</code></pre>
+
+<hr>
+
+<pre><code>print_r(getDupKeys($array, true, false));
+
+Array
+(
+    [0] =&gt; 1
+    [1] =&gt; 2
+    [2] =&gt; 3
+    [3] =&gt; 4
+    [4] =&gt; 5
+    [5] =&gt; 6
+    [6] =&gt; 7
+    [7] =&gt; 8
+    [8] =&gt; 9
+    [9] =&gt; 10
+    [10] =&gt; 11
+    [11] =&gt; 12
+    [12] =&gt; 14
+    [13] =&gt; 15
+    [14] =&gt; 16
+    [15] =&gt; 17
+    [16] =&gt; 18
+    [17] =&gt; 19
+    [18] =&gt; 20
+    [19] =&gt; 21
+    [20] =&gt; 22
+    [21] =&gt; 23
+    [22] =&gt; 24
+    [23] =&gt; 25
+    [24] =&gt; 26
+    [25] =&gt; 27
+    [26] =&gt; 28
+    [27] =&gt; 29
+    [28] =&gt; 30
+    [29] =&gt; 31
+)
+</code></pre>
+
+<hr>
+
+<pre><code>print_r(getDupKeys($array, false, false));
+
+Array
+(
+    [0] =&gt; 2
+    [1] =&gt; 4
+    [2] =&gt; 6
+    [3] =&gt; 8
+    [4] =&gt; 10
+    [5] =&gt; 12
+    [6] =&gt; 15
+    [7] =&gt; 17
+    [8] =&gt; 19
+    [9] =&gt; 21
+    [10] =&gt; 23
+    [11] =&gt; 25
+    [12] =&gt; 27
+    [13] =&gt; 29
+    [14] =&gt; 31
+)
+</code></pre>

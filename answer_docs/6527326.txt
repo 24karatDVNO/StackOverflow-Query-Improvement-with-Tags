@@ -1,0 +1,25 @@
+<p>you need to tell it to use v2 and jsonp. as it stands, it returns xml... </p>
+
+<pre><code>var x = 'http://gdata.youtube.com/feeds/api/videos/FLE2htv9oxc?v=2&amp;alt=jsonc';
+var myJSONP = new Request.JSONP({
+    url: x,
+    log: true,
+    onRequest: function(url) {
+        // a script tag is created with a src attribute equal to url
+    },
+    onComplete: function(data) {
+        // the request was completed.
+        console.log(data);
+    }
+}).send();
+</code></pre>
+
+<p><a href="http://jsfiddle.net/ZD9Y6/" rel="nofollow">http://jsfiddle.net/ZD9Y6/</a> proof. </p>
+
+<hr>
+
+<p><strong>references</strong></p>
+
+<p><a href="http://code.google.com/apis/youtube/2.0/reference.html#Video_Feeds" rel="nofollow">http://code.google.com/apis/youtube/2.0/reference.html#Video_Feeds</a></p>
+
+<p><a href="http://code.google.com/apis/youtube/2.0/developers_guide_json.html" rel="nofollow">http://code.google.com/apis/youtube/2.0/developers_guide_json.html</a></p>

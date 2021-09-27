@@ -1,0 +1,14 @@
+<p>This should work in both directions...</p>
+
+<pre><code>If downwards Then
+    shpBar.Top += 50
+    If shrBar.Bottom &gt;= Me.Height Then
+        shpBar.Top = 0
+    End If
+Else
+    shpBar.Top -= 50
+    If shrBar.Top &lt;= Me.Top Then
+        shpBar.Top = Me.Height - shpBar.Height
+    End If
+End If
+</code></pre>

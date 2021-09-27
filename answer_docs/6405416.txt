@@ -1,0 +1,7 @@
+<p>I can suggest two main techniques.</p>
+
+<ol>
+<li><p>The server has a method getUpdates, callable by clients. The method returns the control to the client when there is an update to show. </p></li>
+<li><p>When Clients perform the registration, they give the server a callback remote object
+Since this object is not registered in any rmi registry, there should no be any issue with natted clients.</p></li>
+</ol>

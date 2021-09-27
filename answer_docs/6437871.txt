@@ -1,0 +1,88 @@
+<p>If you combine your great methods you get something even better, my code does only need one view and works with cookies and post vars :D</p>
+
+<pre><code>    private static final int TIMEOUT_MS = 3000;
+    private WebView mWebView;
+    private static final String redirURL = "http://www.somelogin.com/havefun.php";
+
+    @Override
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        setContentView(R.layout.main);
+
+        //------------------ COOKIES -----------------------//
+        CookieSyncManager.createInstance(this); 
+        CookieManager cookieManager = CookieManager.getInstance(); 
+        Date dateObj = new Date();
+
+        dateObj.setTime(dateObj.getTime() + 2 * 7 * 24 * 60 * 60 * 1000);
+        String sA = "acc=" + 0;
+        String sL = "lgn=";
+        SimpleDateFormat postFormater = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz"); 
+        String oD = postFormater.format(dateObj);   
+        String cookieString = "logondata=" + sA + "&amp;" + sL + "; expires="+ oD; 
+        cookieManager.setCookie(redirURL, cookieString); 
+        CookieSyncManager.getInstance().sync(); 
+
+
+
+        //------------------ WEBVIEW -----------------------//
+        mWebView = (WebView) findViewById(R.id.webview);
+
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setSavePassword(true);
+        webSettings.setSaveFormData(true);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setSupportZoom(false);
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            public boolean shouldOverrideUrlLoading(WebView view, String url){
+                // do your handling codes here, which url is the requested url
+                // probably you need to open that url rather than redirect:
+                view.loadUrl(url);
+                return false; // then it is not handled by default action
+           }
+
+        });
+
+        //------------------------------ HTTP 4.0 REDIRECT --------------------------//
+
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), TIMEOUT_MS);
+        HttpConnectionParams.setSoTimeout(httpClient.getParams(), TIMEOUT_MS);
+        HttpPost httpPost = new HttpPost(redirURL);  
+        List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;NameValuePair&gt;();  
+        nameValuePairs.add(new BasicNameValuePair("curl", "varl"));  
+        nameValuePairs.add(new BasicNameValuePair("flags", "0")); 
+        nameValuePairs.add(new BasicNameValuePair("forcedownlevel", "0"));    
+        nameValuePairs.add(new BasicNameValuePair("formdir", "9"));
+        nameValuePairs.add(new BasicNameValuePair("username", "Tijs"));  
+        nameValuePairs.add(new BasicNameValuePair("password", "mwhahah"));  
+        nameValuePairs.add(new BasicNameValuePair("trusted", "1"));
+        HttpResponse end = null;
+        String endResult = null;
+
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpClient.execute(httpPost);
+            end = response;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
+
+        BasicResponseHandler myHandler = new BasicResponseHandler();
+
+        try {
+            endResult = myHandler.handleResponse(end);
+        } catch (HttpResponseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        mWebView.loadData(endResult, "text/html", "utf-8");
+</code></pre>
+
+<p>Hope you like this code :P</p>

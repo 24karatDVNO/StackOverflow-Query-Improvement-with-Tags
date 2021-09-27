@@ -1,0 +1,5 @@
+<p>Found the solution,</p>
+
+<p>The issue was the web service which was residing as Http. However, when the reference was made, web.config defined the web service using the httpstransport method.</p>
+
+<p>Changed the <code>httpstransport</code> method to <code>httptransportmethod</code> and it worked like charm.</p>

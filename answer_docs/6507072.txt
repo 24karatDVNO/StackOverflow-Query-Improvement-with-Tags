@@ -1,0 +1,12 @@
+<p>This is usually done by storing another ID for each entry in the database. If you don't want to go that route, you'll have to use a function that can convert to/from "public" id's. Like...</p>
+
+<pre><code>function toPublicId($id) {
+  return $id * 1498158 + 825920496;
+}
+
+function toInternalId($publicId) {
+  return ($publicId - 825920496) / 1498158;
+}
+</code></pre>
+
+<p>or whatever. I sometimes use guaranteed unique alphanumeric ID's for public ID's, converting to/from them by converting to/from for instance base36 and a large multiplier + offset.</p>

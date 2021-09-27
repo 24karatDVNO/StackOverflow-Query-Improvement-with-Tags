@@ -1,0 +1,8 @@
+<p>Well i'm guessing actual error happens in function removeFilmleralt(). And sicne you try to remove instance which is initialized (and have scope to filmleralt) in same class as mentioned function u don't need:</p>
+
+<pre><code>Main.instance.narfilm.mainmenu.removeChild(filmleralt);
+</code></pre>
+
+<p>but simply <code>removeChild(filmleralt);</code> will do the job. I'm guessing "Main" object actually causing the error, which is not initialized anywhere and don't have scope to it.</p>
+
+<p>Try to use "permit debugging" in settings, that way you'll know exactly in which line error occurred. But don't forget to disable this option when go release, because of garbage collection.</p>

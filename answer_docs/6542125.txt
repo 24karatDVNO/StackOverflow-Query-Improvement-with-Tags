@@ -1,0 +1,5 @@
+<p>Not sure about economics, without doing the math, but it should be fairly straightforward to figure out which one is cheaper.</p>
+
+<p>Option 2 is without question easier to manage. 1 box is almost always simpler than 15. There's just fewer moving parts. Thread management is handled almost entirely by the CPU. File locking and resource management will be much easier. Writing everything to the same output file will require some form of locking, and having the file on the same machine is undoubtedly simpler than writing over a network. </p>
+
+<p>The benefit of small machines is largely for ease of resource manipulation. With 15 servers, it's easy to spin up another 10, or take 10 down as the load changes.</p>

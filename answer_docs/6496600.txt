@@ -1,0 +1,9 @@
+<p>Write a POJO to check the status of JBoss server - whether it's started or not. You can tap into MBean: <strong>jboss.system:type=Server</strong> and inspect boolean property <strong>Started</strong>. If it's started, dynamically change the loggin level for Hibernate using something like this:</p>
+
+<pre><code>Logger hibernate = (Logger)LoggerFactory.getLogger(&lt;logger name&gt;);
+hibernate.setLevel(Level.TRACE);
+</code></pre>
+
+<p>Now you can bundle this POJO with your application archive and schedule it as a quartz job to trigger after a minute or so.  When the POJO has done it's job, cancel its subsequent scheduling. </p>
+
+<p>If you don't want to schedule it as a quartz job, you could deploy this a separate artifact under <strong>deploy.last</strong> folder and let it change the logging level right away without checking the JBoss server status.   </p>

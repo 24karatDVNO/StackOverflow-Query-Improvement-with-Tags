@@ -1,0 +1,7 @@
+<p>The problem is that a checkbox will only post data when set. You should reverse check the values. Ie;</p>
+
+<ul>
+<li>Fetch all preference (id's) from the database</li>
+<li>Check if a value is found in the $_POST var</li>
+<li>If not, update to false (or 0 or whatever) in db, if set, read out the value.</li>
+</ul>

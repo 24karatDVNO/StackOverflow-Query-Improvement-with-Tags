@@ -1,0 +1,8 @@
+<p>This solution finds both bulleted and numbered items at the beginning of the line of text, then removes them.</p>
+
+<pre><code>var x="  1.     15-20 years  ";
+x.replace(/^\s*(?:[••••]|\d+)\.\t/, '');
+alert(x); // i want out put as 15-20 years
+</code></pre>
+
+<p>I think you are trying to replace a substring, instead of replacing with a regular expression.</p>

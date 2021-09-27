@@ -1,0 +1,5 @@
+<p>Yes it would be the best - in that it's what WCF is for; as it's config driven you'll be able to use different binding types to suit the environment you're in (sending the data across). </p>
+
+<p>The assumption is that the web clients are all (mostly) out on the public internet; being on a private network would give you more options.</p>
+
+<p>WCF can use a queue as a binding type, not sure if that gives you any advantage since you're going to put them into a queue anyway.  A synchronous WCF call using an http binding will be fine performance wise as the act of giving it to the MSMQ you have should be pretty quick.</p>

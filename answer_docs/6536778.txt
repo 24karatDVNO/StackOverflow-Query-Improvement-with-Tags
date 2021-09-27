@@ -1,0 +1,5 @@
+<p>Is there a <code>&lt;filterset/&gt;</code> in any of the copy statements in your build file? I ran into an issue once where I was <code>&lt;copy&gt;</code>-ing "<code>**/*</code>" and towards the end of development I figured out how to use <code>&lt;filterset/&gt;</code> with <code>&lt;copy&gt;</code>. </p>
+
+<p>To make a long story short, the text replacement worked flawlessly, however any binary file, executable or .jar that was in that "<code>**/*</code>" path was totally destroyed. Instead of opening files in binary mode, they get opened in text mode, and then saved in text mode.</p>
+
+<p>If you do have a <code>&lt;filterset/&gt;</code>, or something similar anywhere in your build file, make sure to <code>&lt;exclude/&gt;</code> any and all binary files. </p>

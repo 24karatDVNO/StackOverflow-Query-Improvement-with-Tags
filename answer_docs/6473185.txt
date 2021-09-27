@@ -1,0 +1,20 @@
+<p>you can use a dynamic query:</p>
+
+<pre><code>create procedure GET_PRODUCTS
+
+@num_items int = null
+
+as
+declare @sql nvarchar(max)
+
+set @sql = N'select '
+if @num_items is not null
+    set @sql = @sql + 'TOP(@num_items) '
+
+set @sql = @sql + 'prod_id,prod_name, prod_price from products'
+
+execute sp_executesql @sql
+    ,N'@num_items int = null'
+    ,@num_items
+end
+</code></pre>

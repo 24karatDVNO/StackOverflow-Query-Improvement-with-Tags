@@ -1,0 +1,6 @@
+<p>You can solve your second problem by using jQuery's <code>.stop()</code> right before you start the slide animation. That way, when you go back and forth quickly, it won't build up in a queue. I'm afraid I don't understand what your first problem is, however. Maybe a little more elaboration? Or am I just being dense? </p>
+
+<p>ex.</p>
+
+<pre><code>$('.myCoolMenu').stop().slideDown();
+</code></pre>

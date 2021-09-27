@@ -1,0 +1,17 @@
+<p>I've encountered this problem myself, that a page with validation errors can still continue on to submission when the user clicks the submit button.</p>
+
+<p>What you can do is something like this :</p>
+
+<pre><code>    protected void submitClicked(object sender, EventArgs e)
+    {
+        if (!Page.IsValid)
+        {
+           // somehow the user was able to submit their form even though there are
+           // validation errors. Stop here and let ASP.NET present the error messages
+           // to the user
+           return; 
+        }
+
+        // do submission stuff here like putting things in the database
+    }
+</code></pre>

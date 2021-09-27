@@ -1,0 +1,14 @@
+<p>Personally I dislike the Netbeans gui designer for a lot of reasons.  It's great for prototyping and small projects, terrible for big projects and going back in and doing maintenance.  But that's a rant for another time.</p>
+
+<p>What's going wrong is that you're getting back a static List from the JPA query.  You need to have your GUI re-run the query after your edit event to get the updated list.  The way I got this kind of thing working in the gui designer was to change the collection to an ObservableList in the "Custom Creation Code":</p>
+
+<pre><code>someList = Beans.isDesignTime() ? java.util.Collections.emptyList() : ObservableCollections.observableList(new ArrayList&lt;Something&gt;());
+</code></pre>
+
+<p>Then when I had a gui event that updated the JTable contents, I do something like:</p>
+
+<pre><code>someList.clear();
+someList.add(query.getResultList());
+</code></pre>
+
+<p>I'm doing it this way because I get the list via EJB remote session bean, and I did it a long time ago in about netbeans 6.5 or 7 (the last time I used the GUI designer to create a new form).  Apparently now there is a "<strong>modifiableWrapper</strong>" and "<strong>observable</strong>" you can set on the query results.  That might do what you need, otherwise do it the manual way as above.</p>

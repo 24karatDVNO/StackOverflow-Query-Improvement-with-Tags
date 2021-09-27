@@ -1,0 +1,17 @@
+<p>It seems as though bringing the <em>icisSite.modalStore</em> object literal into the jQuery scope fixes the issue.</p>
+
+<p>So wrapping it in the factory function like so:</p>
+
+<blockquote>
+  <p>$(function(){</p>
+  
+  <p>icisSite.modalStore = {
+        tradeFlowGraph: {<br>
+  selector: '.rtx-TradeFlowGraphs',<br>
+  title: 'Fertilizer Trade Flow graphs',
+  width: 800,<br>
+  openCall: function(){
+  carouselLink
+                .eq(0)
+                .trigger('click');          }       }   } });</p>
+</blockquote>

@@ -1,0 +1,6 @@
+<p>As far as I understood, that HTML is being loaded through AJAX, right? If so, then window.onload will not be fired since the page was already loaded (AJAX doesn't count). Just do this:</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+   document.getElementById('publish').submit();
+&lt;/script&gt;
+</code></pre>

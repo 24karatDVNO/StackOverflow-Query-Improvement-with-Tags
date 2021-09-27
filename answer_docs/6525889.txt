@@ -1,0 +1,3 @@
+<p>I think you're getting the program termination SIGABRT because of the pthread_cancel() -- when the blocked thread gets the signal, it probably dies.  The signal delivery doesn't happen until after the call to pthread_cancel() has returned, so it just looks like it occurs because of the join call.</p>
+
+<p>To check and see if my thoughts are right, I would insert a while(1); loop after the pthread_cancel() to see if you still get the SIGABRT.</p>

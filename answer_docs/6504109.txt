@@ -1,0 +1,6 @@
+<p>I assume you are asking how to group by objects of custom type.</p>
+
+<p>You need to define how your objects should be compared to each other.<br>
+You can do this by specifying  <code>IEqualityComparer</code> in the <code>GroupBy</code> call.</p>
+
+<p>If you don't specify <code>IEqualityComparer</code>, then <code>IEqualityComparer.Default</code> is used, which checks whether type <code>T</code> implements the <code>System.IEquatable&lt;T&gt;</code> interface and, if so, returns an <code>EqualityComparer&lt;T&gt;</code> that uses that implementation. Otherwise, it returns an <code>EqualityComparer&lt;T&gt;</code> that uses the overrides of Object.Equals and Object.GetHashCode provided by <code>T</code>.</p>

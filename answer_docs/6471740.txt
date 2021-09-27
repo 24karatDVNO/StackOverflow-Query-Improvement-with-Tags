@@ -1,0 +1,19 @@
+<p>The standard structure to ensure that your site remains in the centre of the page would be something along these lines.</p>
+
+<pre><code>&lt;div id="wrapper"&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;My Site&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;p&gt;My Content&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Which gives you a wrapper along with a header and footer. The css to achieve this is:</p>
+
+<pre><code>#wrapper { margin: 0 auto; width: 960px; }
+.header, .footer { float: left; }
+</code></pre>
+
+<p>That will align the page to the center of the page whenever the user resizes their window. The use of absolute positioning should be limit ( in my view ) until you have a firm grasp of the css box model. Using floats is nice and easy to generate most simple layouts.</p>

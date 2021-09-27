@@ -1,0 +1,5 @@
+<p><code>glob</code> or <code>readdir</code> would probably be my choice too. Another way to do it is to use the windows <code>dir</code> command to do the job:</p>
+
+<pre><code>my @dirs = qx(dir /AD /B);
+chomp @dirs;
+</code></pre>

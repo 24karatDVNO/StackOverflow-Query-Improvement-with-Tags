@@ -1,0 +1,12 @@
+<p>I like to start by laying out the different parts of my project in something like Vizio.</p>
+
+<p>I make boxes for the different views I expect to have, and I fill them with the information I expect them to contain.</p>
+
+<p>I make another set of boxes for my expected model objects (logic). I fill them with the information I expect they will work with, and I draw lines between models and views where I think it will be necessary.</p>
+
+<p>I do the same thing for object graphs (if I plan on using CoreData), and for database tables if I am going to have an external database.</p>
+
+<p>Laying everything out visually helps me decide if I am missing any important features or interactions between project components. It also gives me something to quickly refer to if I later lose track of what I was doing.
+From that point, I tend to work on a model until it has enough done to fill out part of a view, then I work on a view until it can interact with the model.</p>
+
+<p>I also try to identify views or models that could be reused for multiple purposes so that I can reduce the overall amount of work I have to do.</p>

@@ -1,0 +1,23 @@
+<p>Create a temporary table.</p>
+
+<p>I modified your <code>subid</code> for simplicity you can always combine them in the query result.</p>
+
+<pre>
+mysql> update table1 set creation_date = (SELECT x.creation_date
+    from (SELECT * from table1 WHERE subid=1) AS X
+    WHERE x.id =table1.id) WHERE subid=2;
+
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from table1;
++----+-------+---------------+
+| id | subid | creation_date |
++----+-------+---------------+
+|  1 |     1 | 2011-06-23    |
+|  1 |     2 | 2011-06-23    |
+|  2 |     1 | 2011-06-20    |
+|  2 |     2 | 2011-06-20    |
++----+-------+---------------+
+4 rows in set (0.00 sec) 
+</pre>

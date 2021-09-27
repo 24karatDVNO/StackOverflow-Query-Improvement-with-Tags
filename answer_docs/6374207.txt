@@ -1,0 +1,24 @@
+<p>Couple things I notice here.</p>
+
+<ol>
+<li><p>You've used both <code>pins</code> and <code>pin</code>, but I think they're supposed to be the same identifier. This could just be a typo from copying your code into your question.</p></li>
+<li><p>You've got some unnecessary explicit casts, and you're using the <code>Equals</code> method instead of just <code>==</code>. I'm not sure why you're doing that. <code>Equals</code> is overridden for Int32, so it should be the same as using the <code>==</code> operator; it <em>should</em> work fine -- but I'm not sure where else this error could come from. It's possible that LINQ to Entities isn't able to support pushing <code>Int32.Equals(int)</code> to a SQL query, even though it supports <code>Int32.==</code> just fine. </p></li>
+</ol>
+
+<p>The only other possibility I can think of is that <code>pin.TerminalID</code> or <code>pin.PinExpireDateTime</code> might not be the exact datatypes you think they are, but you'll have to check that yourself.</p>
+
+<p>Either way, you can at least simplify your code:</p>
+
+<pre><code>public int getPinCount(int terminalId, ref int pinnumber)
+{
+     using (var dbEntities = new DatabaseAccess.Schema.BMIEntityModel())
+     {
+          DateTime dateNow = DateTime.Now;
+          return (from pin in dbEntities.PinIds
+                  where pin.TerminalID == terminalId
+                  &amp;&amp; pin.PinExpireDateTime &lt; dateNow
+                  select pin).Count();
+     }
+     return 0;
+}
+</code></pre>

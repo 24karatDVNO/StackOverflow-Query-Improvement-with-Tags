@@ -1,0 +1,10 @@
+<p>I'm stabbing the dark here, but it sounds like the validations keep being included every time the model is loaded/saved.</p>
+
+<p>Can you show us where you include it?</p>
+
+<p>In Hyperactive Resource, instead of include we used:</p>
+
+<pre><code># make validations work just like ActiveRecord by pulling them in directly
+require "active_record/validations.rb"
+extend ActiveRecord::Validations::ClassMethods
+</code></pre>

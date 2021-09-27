@@ -1,0 +1,9 @@
+<p>first time get friend get friend list</p>
+
+<pre><code>[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
+</code></pre>
+
+<p>then select friend and post his/her wall</p>
+
+<pre><code> [_facebook requestWithGraphPath:@"frined_ID/feed" andParams:params andHttpMethod:@"POST" andDelegate:self];
+</code></pre>

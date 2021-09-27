@@ -1,0 +1,24 @@
+<p>@NGLN</p>
+
+<p>Hi</p>
+
+<p>I am sorry in not answering earlier but have been away for some days.</p>
+
+<p>I think I got it working OK:</p>
+
+<blockquote>
+  <p>SELECT L.linkid, F.OrderSum - S.clickCount AS clicksUnused FROM tlink AS L INNER JOIN (SELECT userid, SUM(factorder) AS OrderSum FROM tfact GROUP BY userid) AS F ON F.userid = L.userid INNER JOIN (SELECT userid, COUNT(*) AS clickCount FROM tstat GROUP BY userid) AS S ON S.userid = L.userid 
+  --WHERE --  clicksUnused >= 1</p>
+</blockquote>
+
+<p>only problem now that I can't filter out Links whose clicksUnused are higher than 1.</p>
+
+<p>Any ideas, thanks, Mike </p>
+
+<p>UPDATE Got this working</p>
+
+<blockquote>
+  <p>WHERE F.OrderSum > S.clickCount</p>
+</blockquote>
+
+<p>Is this the correct way?</p>

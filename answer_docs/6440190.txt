@@ -1,0 +1,11 @@
+<p>First, this is pretty much moot.  Very few applications make use of thread groups, so application threads nearly always end up in the same thread group.</p>
+
+<p>Second, I think that restriction you quoted is referring to sandboxed applications.  According to other parts of the ThreadGroup javadoc, the ability to enumerate the threads in a thread thread group is controlled by the security manager.</p>
+
+<p>Thirdly, if an application is sandboxed, it is always a good idea to restrict its knowledge of stuff outside of the sandbox.  If not, well there's not much to hide.</p>
+
+<p>Finally, if you are using a debugger it will have access to the root thread group, and hence won't be hampered by this restriction ... if it really exists.  Similarly, the "main" thread will be in the root thread group.</p>
+
+<hr>
+
+<p>As @Tom Hawtin says, thread groups are regarded as a failed experiment, especially since the methods that they are designed to support (Thread.stop, Thread.destroy, etc) have been deprecated on account of their being unsafe.</p>

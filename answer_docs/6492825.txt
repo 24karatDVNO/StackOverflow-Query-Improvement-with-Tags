@@ -1,0 +1,9 @@
+<p>It turns out that the reason the file wasn't writing was because of an unallocated variable:</p>
+
+<pre><code>NSString *currentContents = [NSString stringWithContentsOfFile:saveFilePath encoding:NSUTF8StringEncoding error:nil];
+</code></pre>
+
+<p>should have been:</p>
+
+<pre><code>NSString *currentContents = [[NSString alloc] initWithContentsOfFile:saveFilePath encoding:NSUTF8StringEncoding error:nil];
+</code></pre>

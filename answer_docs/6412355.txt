@@ -1,0 +1,44 @@
+<p>The postback is not needed and is a bit of a <code>hack</code>, you would be better off fixing the problem at the root.</p>
+
+<pre><code>private void PopulatePage()
+{
+    for (int n = 0; n &lt; Counter; n++)
+    {
+        CreateSingleControl(n);
+    } 
+}
+
+private void CreateSingleControl(int index)
+{
+    TextBox tb = new TextBox();
+    tb.ID = String.Format("text{0}", index);
+    PlaceHolder1.Controls.Add(tb);
+    Literal lit = new Literal();
+    lit.Text = "&lt;br/&gt;";
+    PlaceHolder1.Controls.Add(lit);
+
+}
+
+protected override void CreateChildControls()
+{
+    PopulatePage();
+    base.CreateChildControls();
+}
+protected void Button1_Click(object sender, EventArgs e) {
+    CreateSingleControl(Counter);
+    Counter++;
+
+}
+
+private int Counter
+{
+    get
+    {
+        return Counter = (int)(ViewState["data"] ?? 1);
+    }
+    set
+    {
+        ViewState["data"] = value;
+    }
+}
+</code></pre>

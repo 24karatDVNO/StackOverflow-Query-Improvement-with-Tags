@@ -1,0 +1,3 @@
+<p>Unfortunately, what is shown when the ComboBox is closed is completely unrelated to the ItemTemplate (which is what is shown when the dropdown is shown).</p>
+
+<p>I think your only hope is to subclass ComboBox and re-template it.  The new template would have a TextBox instead of a TextBlock inside the ContentPresenter.  In your subclass, you'd set up a two-way binding between the text of the TextBox and the text of the selected item.</p>

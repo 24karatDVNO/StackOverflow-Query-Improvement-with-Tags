@@ -1,0 +1,20 @@
+<p>Like what Alex said, you want to create a new table like</p>
+
+<pre><code>CREATE TABLE newTable(
+#Table definition from current table,
+id INT NOT NULL AUTO_INCREMENT
+);
+</code></pre>
+
+<p>And then insert with</p>
+
+<pre><code>INSERT INTO newTable
+SELECT * FROM oldTable
+ORDER BY orderColumn;
+</code></pre>
+
+<p>I think you can quickly do the create table with</p>
+
+<pre><code>CREATE TABLE newTable LIKE oldTable;
+ALTER TABLE newTable ADD COLUMN id INT NOT NULL AUTO_INCREMENT;
+</code></pre>

@@ -1,0 +1,8 @@
+<p>A more competent way of doing this is to separate the data from both the viewcontrollers into a model. You will have a separate class(NSObject) called ResultadoModel.h/m. This will be a singleton, so both classes can access the same instance. </p>
+
+<p>You would access the array by doing something like this(in both vcs):</p>
+
+<pre><code>[[[ResultadoModel sharedInstance] array_resultados] propertyOrMethod];
+</code></pre>
+
+<p>You can search how to create a singleton, it's very simple and very powerful. </p>

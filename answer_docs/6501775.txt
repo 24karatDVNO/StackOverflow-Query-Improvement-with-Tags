@@ -1,0 +1,7 @@
+<pre><code>&lt;SCRIPT language=JavaScript&gt;
+    var message = "function disabled"; 
+    function rtclickcheck(keyp){ if (navigator.appName == "Netscape" &amp;&amp; keyp.which == 3){   alert(message); return false; } 
+    if (navigator.appVersion.indexOf("MSIE") != -1 &amp;&amp; event.button == 2) {  alert(message);     return false; } } 
+    document.onmousedown = rtclickcheck;
+&lt;/SCRIPT&gt;
+</code></pre>

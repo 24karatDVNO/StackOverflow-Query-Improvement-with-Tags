@@ -1,0 +1,8 @@
+<p>The test is necessary, because if the collection is null, foreach will throw a NullReferenceException. It's actually quite simple to try it out.</p>
+
+<pre><code>List&lt;string&gt; items = null;
+foreach(var item in items)
+{
+   Console.WriteLine(item);
+}
+</code></pre>

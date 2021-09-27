@@ -1,0 +1,6 @@
+<p>Just looked at the site, you need to bind a click event to your image and then use the show method for the datepicker:</p>
+
+<pre><code>$(".ui-datepicker-trigger").click(function(){
+    $(".hasDatepicker").datepicker("show");
+});
+</code></pre>

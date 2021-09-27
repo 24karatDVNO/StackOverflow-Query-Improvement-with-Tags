@@ -1,0 +1,12 @@
+<p>I am not sure I am understanding you correctly, yet the first question that comes to mind is 'why aren't you using a HierarchicalDataTemplate?'.  This is generally the way I would personally template a tree structure as you describe.</p>
+
+<p>As for passing information from the parent control to the child control, you can create a relativesource binding by type... this will also work through controls since in the logical tree, they would still be the parent.</p>
+
+<p>ex.</p>
+
+<pre><code>&lt;local:ParentControl Tag="Something..can be a binding"&gt;
+    &lt;local:ChildControl Tag="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type local:ParentControl}, Mode=FindAncestor}}"/&gt;
+&lt;/ContentControl&gt;
+</code></pre>
+
+<p>I hope this helps.</p>

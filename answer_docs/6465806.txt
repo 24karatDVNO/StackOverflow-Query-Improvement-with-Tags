@@ -1,0 +1,3 @@
+<p>Turns out, my view has a custom <code>android:list&lt;view&gt;</code>, and on my custom listview definition, i was using the <code>android:background</code> definition for each textview.</p>
+
+<p>With this, I was not using the transparent or system defined color for background items on the listview.  I removed this definition from my custom listview items definition, and the problem was solved.</p>

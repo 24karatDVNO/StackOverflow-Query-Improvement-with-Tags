@@ -1,0 +1,3 @@
+<p>I think, what you are trying to do is to define a new Datasource by declaring it in the persistence.xml and it is missing a property like <code>&lt;property name="openjpa.ConnectionDriverName" value="org.apache.derby.jdbc.EmbeddedDriver" /&gt;</code></p>
+
+<p>However as you are using Websphere I would suggest you to create the Datasource via Webspheres Administration Console (Webinterface). Under <strong>Resources->JDBC</strong> you would first create a <strong>JDBC Provider</strong> and tell it to use the Derby Driver. And after that you would create a <strong>new Datasource</strong> using this provider. There you can define the JNDI-binding. Set it to <strong>jdbc/EJB3BANK</strong>. And you current persistence.xml should work hos it is supposed to.</p>

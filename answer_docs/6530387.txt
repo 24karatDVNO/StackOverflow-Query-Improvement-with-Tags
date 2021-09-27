@@ -1,0 +1,15 @@
+<p>I'm prefer to use an additional column with the moderator_id. In that case you can dynamically change user's set for each moderators without changing anything in the code.</p>
+
+<p>To initially define user's set per moderator use query like that:</p>
+
+<pre><code>UPDATE users
+SET moderator_id = 1
+WHERE user_id BETWEEN 1 AND 50
+</code></pre>
+
+<p>To select users by moderator use this query:</p>
+
+<pre><code>SELECT *
+FROM users
+WHERE moderator_id = 1
+</code></pre>

@@ -1,0 +1,4 @@
+<p>Your get_object function does nothing but return the DOM object using the id passed in - it doesn't draw any barcodes... It sounds to me like you want:</p>
+
+<pre><code>&lt;button type="button" button data-theme="b" id="submit" onclick="DrawCode39Barcode(get_object('inputdata').innerHTML,0);return false;"&gt;theater&lt;/button&gt;
+</code></pre>

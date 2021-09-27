@@ -1,0 +1,14 @@
+<pre><code>void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+{
+        Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, (ThreadStart)delegate()
+        {
+            this.imgSource.Source = (BitmapSource)e.Result;
+        });
+}
+</code></pre>
+
+<p>System.Windows.Threading.DispatcherPriority.<strong>ApplicationIdle</strong> means Operations are processed when the application is idle.</p>
+
+<p>What if the application is always busy and never idle? The requests will be queued and the app slows down.</p>
+
+<p>However I haven't tested this because I don't have the source code of your app.</p>

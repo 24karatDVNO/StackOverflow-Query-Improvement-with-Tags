@@ -1,0 +1,6 @@
+<p>If you load from the command line, it will already be escaped for you. This is why your escapes are "ignored" from your perspective. Note that the same is true when you load from config, so don't do this:</p>
+
+<pre><code>&lt;add key="pathToFile" value="C:\\myDirectory\\myFile.txt"/&gt;
+</code></pre>
+
+<p>If you do, you end up with double strings, as ".NET" is smart enough to escape thins for you when you load them in this manner.</p>

@@ -1,0 +1,5 @@
+<p>I feel crazy for suggesting this as it seems that no-one else has, but have you considered client-side caching? JavaScript isn't terrible at dealing with large lists, especially if they're relatively simple lists.</p>
+
+<p>I know that your ideal is that you have a desire to make the numbers completely accurate, but heuristics are your friend here, especially since synchronization will never be 100% -- a slow connection or high latency due to server-side traffic will make the AJAX request out of date, especially if that data is not a constant. <em><strong>IF THE DATA CAN BE EDITED BY OTHER USERS, SYNCHRONICITY IS IMPOSSIBLE USING AJAX. IF IT CANNOT BE EDITED BY ANYONE ELSE, THEN CLIENT-SIDE CACHING WILL WORK AND IS LIKELY YOUR BEST OPTION</strong></em>. Oh, and if you're using some sort of port connection, then whatever is pushing to the server can simply update all of the other clients until a sync can be accomplished.</p>
+
+<p>If you're willing to do that form of caching, you can also cache the results on the server too and simply refresh the query periodically.</p>

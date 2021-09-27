@@ -1,0 +1,39 @@
+<p>Heres Apples recomendation for using the UID</p>
+<blockquote>
+<p>A device’s unique identifier
+(sometimes abbreviated as UDID for
+Unique Device Identifier) is a hash
+value composed from various hardware
+identifiers such as the device serial
+number. It is guaranteed to be unique
+for each device. The UDID is
+independent of the device name. For
+devices that use a SIM (subscriber
+identity module) card, the UDID is
+independent of the SIM card.</p>
+<p>For user security and privacy, you
+must not publicly associate a device’s
+unique identifier with a user account.</p>
+<p>You may use the UDID, in conjunction
+with an application-specific user ID,
+for identifying application-specific
+data on your server. For example, you
+use could a device-user combination ID
+to control access to registered
+products or when storing high scores
+for a game in a central server.
+However, if you are developing a game,
+you may want to instead use Game
+Center’s player identifier key as
+explained in Game Kit Programming
+Guide.</p>
+<p>Important: Never store user
+information based solely on the UDID.
+Always use a combination of UDID and
+application-specific user ID. A
+combined ID ensures that if a user
+passes a device on to another user,
+the new user will not have access to
+the original user’s dat</p>
+</blockquote>
+<p>So it looks like if you are using this for storing data on a server you can use the UDID and a ID that you generate. Also it looks like Apple has gotten rid of many of the older ways that you would use to access the phone number.</p>

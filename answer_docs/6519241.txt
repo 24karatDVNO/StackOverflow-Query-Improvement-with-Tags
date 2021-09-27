@@ -1,0 +1,87 @@
+<p>on click event check for the alertbuilder instance if the instance is not null then set text to the textview and show the dialog using <code>showdialog(0)</code> method. if the instance is not null then create the dialog</p>
+
+<h2>See the sample example</h2>
+
+<pre><code>import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+    int counter = 0;
+
+    Builder myAlertDialog;
+    View entryView;
+    TextView dialogTextview;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        Button b = (Button) findViewById(R.id.button1);
+        b.setOnClickListener(listener);
+
+    }
+
+    public OnClickListener listener = new OnClickListener() {
+        @Override
+        public void onClick(View arg0) {
+
+            ++counter;
+            startDialog("Clicked=" + counter);
+
+        }
+
+    };
+
+    private void startDialog(String message) {
+        LayoutInflater factory = LayoutInflater.from(this);
+        entryView = factory.inflate(R.layout.mytest, null);
+        dialogTextview = (TextView) entryView.findViewById(R.id.textview1);
+        if (myAlertDialog == null) {
+            myAlertDialog = new AlertDialog.Builder(this);
+            myAlertDialog.setView(entryView);
+
+            myAlertDialog.setMessage("Do you want to exit the application?");
+            myAlertDialog.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            System.out.println("...yes button is clicked..");
+                            arg0.dismiss();
+
+                        }
+                    });
+
+            myAlertDialog.setNegativeButton("NO",
+                    new DialogInterface.OnClickListener() {
+
+                        // do something when the button is clicked
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            System.out.println("...clicked no...");
+                            arg0.dismiss();
+                        }
+                    });
+            AlertDialog alert = myAlertDialog.create();
+
+            alert.getWindow().setLayout(600, 400);
+
+            myAlertDialog.show();
+        } else {
+            dialogTextview.setText(message);
+            System.out.println("...settext in dialog...");
+            myAlertDialog.setView(entryView);
+            myAlertDialog.show();
+        }
+    }
+
+}
+</code></pre>

@@ -1,0 +1,5 @@
+<p>The problem with the notion is that in common environments, there is no explicit static data that determines whether an application is single-instance. You only have behavior to go on, but you cannot fully test behavior. </p>
+
+<p>What if you have an app that is multi-instance, but will fail to open a file that's already open? If you test it twice with the same, valid filename, it would create only a single process, but any other command line argument would cause two processes to exist. Is this a single-instance program?</p>
+
+<p>You could even argue that "single instance" isn't a well-defined catageory of programs for this reason.</p>

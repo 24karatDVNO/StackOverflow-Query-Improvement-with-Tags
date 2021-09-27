@@ -1,0 +1,36 @@
+<p>try this it ll help u</p>
+
+<p>if ur device is less than 2.1 mean u use below uri</p>
+
+<pre><code>uri="content://calendar/events" 
+</code></pre>
+
+<p>greeater than 2.1 mean</p>
+
+<pre><code>uri="content://com.android.calendar/events" 
+
+Cursor cursor=getContentResolver().query(Uri.parse(uri),    null, null, null, null);
+cursor.moveToFirst();
+
+// fetching calendars id
+if(cursor.getcount&gt;0)
+{
+CId = new int[cursor.getCount()];
+int i=0;  
+while(!cursor.isAfterLast())
+{
+CId[i] = cursor.getInt(cursor.getColumnIndex("_id"));
+i++;
+cursor.moveToNext();
+}
+</code></pre>
+
+<p>delete a calender event</p>
+
+<pre><code>for (int i = 0; i &lt; CNames.length; i++)
+{
+Uri CALENDAR_URI = Uri.parse(uri);
+Uri uri = ContentUris.withAppendedId(CALENDAR_URI,Cid[i]);
+getContentResolver().delete(uri, null, null);
+}
+</code></pre>

@@ -1,0 +1,7 @@
+<p>The actual id &amp; name of the control in html can be different than the server side ID. You need to use <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.control.uniqueid.aspx" rel="nofollow">UniqueID</a> property to get the control name in the html - the form data will be against that name. So your code should be something like</p>
+
+<pre><code>string[] selectedValues = Request.Form.GetValues(listName2.UniqueID);
+// join the array to get comma separated string
+</code></pre>
+
+<p>Alternately, you can also iterate over <code>listName2.Items</code> collection and see if <code>Selected</code> property is true or not.</p>

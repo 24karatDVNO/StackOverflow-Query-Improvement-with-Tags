@@ -1,0 +1,66 @@
+<p>I wrote something that will find the duplicates in an arbitrary string array and print out the names. I can't tell from your question if you specifically needed the indexes from the original array. This version will sort the array and the original indexes are "lost". But if you only need to know the names which are duplicates, the following should work:</p>
+
+<pre><code>#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define TRUE 1
+#define FALSE 0
+
+/* Compare function for quicksort. Shamelessly taken directly from linux man
+ * page */
+static int cmpstringp(const void *p1, const void *p2)
+{
+   return strcmp(* (char * const *) p1, * (char * const *) p2);
+}
+
+void find_duplicates(char *strings[], size_t size)
+{
+    size_t i, j, last_occurrence;
+    int is_unique;
+
+    for(i = 0; i &lt; size; ++i)
+    {
+        /* This variable tells us if the current element is unique */
+        is_unique = TRUE;
+        for(j = i; j &lt; size; ++j)
+        {
+            /* Make sure we aren't comparing the element to itself */
+            if((j != i) &amp;&amp; (strcmp(strings[i], strings[j]) == 0))
+            {
+                /* Since the array is sorted, we store the index of the last
+                 * duplicate and continue our search from there.
+                 */
+                last_occurrence = j;
+                is_unique = FALSE;
+            }
+        }
+
+        /* The element was not unique, print the name */
+        if(is_unique == FALSE)
+        {
+            printf("Duplicate: %s\n", strings[i]);
+            /* Set the counter to the next element we must check for
+                             * "uniqueness" */
+            i = last_occurrence;
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    /* Test array */
+    char *test_array[] = { "test1", "test2", "test3", "test1", 
+                                   "test4", "test1", "test4" };
+
+    /* Sort it using quicksort to make the process of finding duplicates
+     * easier
+     */
+    qsort(test_array, 7, sizeof(char*), cmpstringp);
+
+    find_duplicates(test_array, 7);
+
+    return 0;
+}
+</code></pre>

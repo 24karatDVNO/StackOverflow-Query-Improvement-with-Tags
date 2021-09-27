@@ -1,0 +1,28 @@
+<p>I ended up using a tutorial from a different site and rebuilding it from scratch... the jquery code below is what worked.</p>
+
+<pre><code>jQuery(document).ready(function () {
+          $("#settingsNotificationsForm").submit(function() {
+
+                //setup variables  
+                var form = $(this),  
+                formData = form.serialize(),
+                formUrl = form.attr('action'),
+                formMethod = form.attr('method');
+                /* responseMsg = $('#signup-response') */
+
+                //send data to server  
+                $.ajax({  
+                    url: formUrl,
+                    type: formMethod,
+                    data: formData,
+                    success:function(data){
+                        alert('Settings updated successfully!');
+                }  
+            })
+
+            //prevent form from submitting  
+            return false;
+
+         });
+    });
+</code></pre>

@@ -1,0 +1,20 @@
+<p>It's an off-by-one error in the third argument to memcpy. The while loop should be:</p>
+
+<pre><code>while (1){
+    if (*(FirstList+FirstCounter) &lt; *(SecondList + SecondCounter)) {
+        *(CombinedList+OutCounter++) = *(FirstList+FirstCounter++);
+        if (FirstCounter == FirstNumels) {
+            // Just copy the rest of the second list.
+            memcpy(CombinedList+OutCounter,SecondList+SecondCounter,(SecondNumels-SecondCounter)*sizeof(uint32_T));
+            return;
+        }
+    } else {
+        *(CombinedList+OutCounter++) = *(SecondList+SecondCounter++); 
+        if (SecondCounter == SecondNumels) {
+            // Just copy the rest of the first list.
+            memcpy(CombinedList+OutCounter,FirstList+FirstCounter,(FirstNumels-FirstCounter)*sizeof(uint32_T));
+            return;
+        }
+    }
+}
+</code></pre>

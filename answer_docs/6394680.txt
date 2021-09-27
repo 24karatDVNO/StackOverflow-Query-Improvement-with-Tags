@@ -1,0 +1,9 @@
+<p>The problem here is that since your values in database are NULL when you convert them to java values using getString they will also be null.</p>
+
+<p>Since null is not the same as empty string you can not really use prn.equals("")</p>
+
+<p>Also using prn.equals(null) is a bad idea as usually the way that equals is implemented ... it will return false if something that it is compared to is null</p>
+
+<p>Your best bet is to use equality operator to check for null</p>
+
+<p>if(prn == null)</p>

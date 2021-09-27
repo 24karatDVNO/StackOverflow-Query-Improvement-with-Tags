@@ -1,0 +1,13 @@
+<p>You can use the <code>.previousElementSibling</code> property to get the previous sibling element.</p>
+
+<p>If that property isn't supported, you can use a function to emulate it.</p>
+
+<pre><code>var inp = document.getElementById('username');
+
+var lab = inp.previousElementSibling || previousElementSibling( inp );
+
+function previousElementSibling( el ) {
+    while( el &amp;&amp; (el = el.previousSibling) &amp;&amp; el.nodeType !== 1 );
+    return el;
+}
+</code></pre>

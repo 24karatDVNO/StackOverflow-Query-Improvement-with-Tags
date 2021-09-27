@@ -1,0 +1,8 @@
+<p>A few options:</p>
+
+<ul>
+<li>pick a messaging/queue implementation (like <a href="http://www.zeromq.org/" rel="nofollow">http://www.zeromq.org/</a>) and provide a service</li>
+<li>implement a Windows Web Service if you want to be more enterprise friendly: <a href="http://msdn.microsoft.com/en-us/magazine/ee335693.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/magazine/ee335693.aspx</a></li>
+</ul>
+
+<p>I would not expose the implementation on the internet. Enough to have a simple buffer overflow and the machine can be taken over quickly. Adding a layer between the app and the web provides an easy way to validate input, access, stats ...</p>

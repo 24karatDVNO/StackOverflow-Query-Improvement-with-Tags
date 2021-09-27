@@ -1,0 +1,19 @@
+<p>you should start the camera by intent as follows..</p>
+
+<pre><code>Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+startActivityForResult(i, CAMERA_RESULT);
+</code></pre>
+
+<p>and save your image SDCard  as follows..</p>
+
+<pre><code>protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+super.onActivityResult(requestCode, resultCode, intent);
+if (resultCode == RESULT_OK)
+{
+Get Bundle extras = intent.getExtras();
+Bitmap bmp = (Bitmap) extras.get("data");
+imv = (ImageView) findViewById(R.id.ReturnedImageView);
+imv.setImageBitmap(bmp);
+}
+}
+</code></pre>

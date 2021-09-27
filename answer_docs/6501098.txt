@@ -1,0 +1,17 @@
+<p>you can use a tweening engine.</p>
+
+<p>i would recommend you use <a href="http://hosted.zeh.com.br/tweener/docs/en-us/" rel="nofollow">Tweener</a> instead of the standard <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/fl/transitions/Tween.html" rel="nofollow">Flash Tween</a> class.  the fl.transitions.Tween class is kind of ridiculous compared to Tweener and you may not even have access to it if you're not using Flash Professional IDE.  there are several other tweening engines you can look around for, but some of them can carry licensing fees (IE: <a href="http://www.greensock.com/tweenlite/" rel="nofollow">TweenLite</a>)</p>
+
+<p>so, if you were using Tweener, you would simply import some of the classes:</p>
+
+<pre><code>import caurina.transitions.Equations;
+import caurina.transitions.Tweener;
+</code></pre>
+
+<p>then then tween the rotation like this:</p>
+
+<pre><code>trace("Food below fish")
+Tweener.addTween(this, {time: 0.25, transition: Equations.easeInOutCubic, rotation: 180});
+</code></pre>
+
+<p>read thru the Tweener documentation (it's really short).  you'll probably end up using it a lot if you haven't heard about it before.</p>

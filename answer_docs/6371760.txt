@@ -1,0 +1,7 @@
+<p>OK - I figured it out - there is a "macro" button in the dialog for specifying the custom build arguments - it has the correct definitions.</p>
+
+<p>here's what works:</p>
+
+<p>c:\oracle\ora10g1\bin\proc $(ProjectDir)%(Filename)%(Extension)</p>
+
+<p>I believe that the doco that referenced "Arguments for External Tools" is either incorrect or they don't consider args used within the custom build dialog to be feeding an external tool.</p>

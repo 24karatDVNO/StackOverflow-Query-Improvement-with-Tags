@@ -1,0 +1,9 @@
+<p>I think the real way to think of this is to conceptualize your problem in terms of Model, View, Controller, which is how you should approach all Cocoa based problems, as reiterated often by Apple's documentation.</p>
+
+<p>Your two views, they are Views, they should only be concerned with interacting with the user (display information, take input).</p>
+
+<p>There should be a <strong>Controller</strong> (plural?), this controller knows there are 2 views, and allows the views to interact with the data.. which is the <strong>Model</strong>.</p>
+
+<p>The <strong>Model</strong> actually has a variable called <code>NSString *flavor;</code>.  It holds that information.  Any <strong>View</strong>, via interfacing with a <strong>Controller</strong>, gets that same variable flavor for display or modification.</p>
+
+<p>To recap: You solve your problem by having the data in 1 place, the <strong>Model</strong>.  A <strong>Controller</strong> exists to connect this data out to your multiple <strong>Views</strong> that have no idea where that actual data is behind held.</p>

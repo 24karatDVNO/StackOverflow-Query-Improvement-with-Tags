@@ -1,0 +1,46 @@
+<p>Since you say that the struct contains ints and shorts, I'm going to go out on a limb and answer on the assumption that this union is POD. If so then you benefit from 9.5/1:</p>
+
+<blockquote>
+  <p>one special guarantee is made in
+  order to simplify the use of unions:
+  If a POD-union contains several
+  POD-structs that share a common
+  initial sequence (9.2), and if an
+  object of this POD-union type contains
+  one of the POD-structs, it is
+  permitted to inspect the common
+  initial sequence of any of POD-struct
+  members</p>
+</blockquote>
+
+<p>So, assuming your structure looks like this:</p>
+
+<pre><code>struct Foo1 { UInt32 a; other stuff; };
+struct Foo2 { UInt32 b; other stuff; };
+...
+struct Foo15 { UInt32 o; other stuff; };
+struct Bar { UInt16 p; other stuff; };
+
+// some kind of packing pragma
+struct Baz {
+    char is_it_Foo;
+    char something_else;
+    union {
+        Foo1 f1;
+        Foo2 f2;
+        ...
+        Foo15 f15;
+        Bar b;
+    } u; 
+};
+</code></pre>
+
+<p>Then you can do this:</p>
+
+<pre><code>Baz *baz = whatever;
+if (baz-&gt;is_it_Foo) {
+    UInt32 n = baz-&gt;u.f1.a;
+}
+</code></pre>
+
+<p>If the members of the union aren't POD, then your <code>reinterpret_cast</code> is broken anyway, since there is no longer any guarantee that the first data member of the struct is located at offset 0 from the start of the struct.</p>

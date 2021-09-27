@@ -1,0 +1,11 @@
+<p>You should be using ASIHTTPRequest for your web client work, and DEFINITELY should be using the asynchronous methods for that.</p>
+
+<p>It's as easy as:</p>
+
+<pre><code>__block ASIHTTPRequest *r = [ASIHTTPRequest requestWithUrl:myNSURLObject];
+[r setCompletionBlock:^{
+    //do whatever to process your received data
+    [self.tableView reloadData];
+}];
+[r startAsynchronous];
+</code></pre>

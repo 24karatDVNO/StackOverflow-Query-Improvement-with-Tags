@@ -1,0 +1,1 @@
+<p>ld is trying to create an x86-64 executable from your x86-32 object files, and is unhappy because that isn't something that makes sense. Use GCC to link instead of ld, passing the -m32 at link as well, and it will call the linker with the correct flags for linking x86-32 binaries.</p>

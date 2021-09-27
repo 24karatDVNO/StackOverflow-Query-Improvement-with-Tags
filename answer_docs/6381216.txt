@@ -1,0 +1,14 @@
+<p>The triangle you see is just a box, often with no size, with really degenerate and different <code>border-width</code>s. For example to make an upward-pointing triangle, you would make a make a box like so:</p>
+
+<pre><code>      top
+     _____
+left| / \ |right
+    |/___\|
+     bottom
+</code></pre>
+
+<p>The box has no size, a <code>top-border-width</code> of 0, and non-zero values for the other widths. The border-color of the left and right and top are transparent, so you can't see those triangles. All you can see is the bottom border.</p>
+
+<p>Working example: <a href="http://jsfiddle.net/NnGyv/" rel="nofollow">http://jsfiddle.net/NnGyv/</a></p>
+
+<p>Unfortunately, you cannot use percentages with border widths, or else you could achieve a reusable CSS class definition.</p>

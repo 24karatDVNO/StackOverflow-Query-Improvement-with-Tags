@@ -1,0 +1,12 @@
+<p>I recommend you create a custom TTListDataSource which will combine both URL requests into a single data source. That's probably the easy way to do it.</p>
+
+<p>In your TTTableViewController:</p>
+
+<pre><code>///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)createModel {
+  self.dataSource = [[[URLRequestsDataSource alloc]
+                     initWithURLs:arrayOfURLs autorelease];
+}
+</code></pre>
+
+<p>In the datasource model class, you can have 2 types of TTTableItem, depending of the source.</p>

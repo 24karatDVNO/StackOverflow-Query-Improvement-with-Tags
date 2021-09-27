@@ -1,0 +1,22 @@
+<p>Here's what I eventually did to solve this one:</p>
+
+<pre><code>class MyModel &lt; ActiveRecord::Base
+
+  scope :related_to, lambda { |record|
+    joins(:tags,:taggings).
+    where(record.class.model_name == self.model_name ? ["#{table_name}.id != ?", record.id] : "").
+    where("tags.id IN (SELECT taggings.tag_id from taggings where taggable_type = ? and taggable_id = ?)", record.class.model_name, record.id).
+    order("count(DISTINCT(tags.id)) DESC").
+    group("#{table_name}.id")
+  }
+
+end
+</code></pre>
+
+<p></p>
+
+<p>Which means I can:</p>
+
+<pre>
+  @blog_post.related_to(@ad) # => returns all @blog_posts with the same tags as @ad, in order of the number of tags they share!
+</pre>

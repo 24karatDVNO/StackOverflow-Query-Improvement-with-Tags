@@ -1,0 +1,35 @@
+<p>Given </p>
+
+<pre><code>List&lt;Fruit&gt; getFruits() {...}
+</code></pre>
+
+<p>You can't typecast </p>
+
+<pre><code>List&lt;Orange&gt; oranges = (List&lt;Orange&gt;) getFruits();
+</code></pre>
+
+<p>Due to type erasure, at runtime the type of getFruits is just List. The compiler will not even let you do the downcast (I was in doubt, so I tried in Eclipse before answering). </p>
+
+<p>You could tell the compiler that your list will contain some subclass of Fruit, in that case, you need to use a wildcard on you method:</p>
+
+<pre><code>List&lt;? extends Fruit&gt; getFruits() {...}
+</code></pre>
+
+<p>Then the cast becomes possible, but with a type safety warning:</p>
+
+<pre><code>@SuppressWarnings("unchecked")
+List&lt;Orange&gt; oranges = (List&lt;Orange&gt;) getFruits();
+</code></pre>
+
+<p>Given that the runtime type of getFruits <em>is</em> List, you can just discard the generics type information and use an unsafe assigment: </p>
+
+<pre><code>@SuppressWarnings("unchecked")    
+List&lt;Orange&gt; oranges = (List) getFruits();
+</code></pre>
+
+<p>Maybe a more elegant way as it clearly states your intention, although requiring more system resources would be:</p>
+
+<pre><code>List&lt;Orange&gt; oranges = Arrays.asList((Orange[])getFruits().toArray())
+</code></pre>
+
+<p>Arrays in Java preserve their type information at runtime, so the cast is valid and "safe" from the compiler perspective, but it can throw a runtime exception if you pass some apples in the fruit basket.</p>

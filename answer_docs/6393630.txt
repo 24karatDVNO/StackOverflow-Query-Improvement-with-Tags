@@ -1,0 +1,7 @@
+<p>What you need to do is to "escape" the special characters, like <code>r'\^'</code>. But better than regular expressions in this case would be:</p>
+
+<pre><code>line = "Some sort of general menu^a_sub_menu_title^^pagNumber"
+(menu, title, dummy, page) = line.split('^')
+</code></pre>
+
+<p>That gives you the components in a much more straightforward fashion.</p>

@@ -1,0 +1,15 @@
+<p>I ended up accomplishing this by having the <code>fileset</code>'s <code>dir</code> be the root and using multiple <code>include</code> elements inside the <code>fileset</code> to include particular files in particular sub-directories. Something like this:</p>
+
+<pre><code>&lt;fileset dir="." id="fileset.my_files"&gt;
+    &lt;include name="file1.jar" /&gt;
+    &lt;include name="dir1/*.jar" /&gt;
+&lt;/fileset&gt;
+
+&lt;target name="build_zip"&gt;
+    &lt;zip destfile="${dist}/${zip.file}"&gt;
+        &lt;fileset refid="fileset.my_files" /&gt;
+    &lt;/zip&gt;
+&lt;/target&gt;
+
+&lt;!-- etc --&gt;
+</code></pre>

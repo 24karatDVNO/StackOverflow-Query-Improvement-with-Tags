@@ -1,0 +1,64 @@
+<p>Formatting is incredibly expensive.   Writing 128M double precision numbers to disk with fprintf() vs fwrite() can easily take 10x as long, because of the formatting and because of the large number of calls (compared to one big fwrite()); try the code below and see if you get similar timings.  Text files aren't the way to deal with significant amounts of data; if you're not actually going to sit down and read it all yourself, it aughtn't be in ascii.</p>
+
+<p>If you <em>do</em> want to stay with text, and you impose a rigid format (eg, all the numbers take exactly the same amount of bytes in the file), then you can break up the list into big blocks, and have each core format one set of numbers to a big string, and fseek() to the appropriate position in the file and dump it out.   You can play with the blocksize to see what the best tradeoff for memory/performance is.   If you really are bottlenecked by CPU, this should allow you to overlap I/O with computation and get some win.</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;time.h&gt;
+/* Jonathan Dursi, SciNet */
+
+#define FILESIZE 1024*1024*128
+
+int write_file_bin(const char *fname, const double *data, const int ndata) {
+
+    FILE *fp;
+    time_t start, end;
+
+    fp=fopen(fname,"wb");
+    assert(fp);
+    start = time(NULL);
+    fwrite(data, sizeof(double), ndata, fp);
+    end = time(NULL);
+    fclose(fp);
+
+    return (int)(end-start);
+}
+
+int write_file_ascii(const char *fname, const double *data, const int ndata) {
+
+    FILE *fp;
+    time_t start, end;
+    int i;
+
+    fp=fopen(fname,"wb");
+    assert(fp);
+    start = time(NULL);
+    for (i=0;i&lt;ndata;i++) {
+        fprintf(fp,"%lf\n",data[i]);
+    }
+    end = time(NULL);
+    fclose(fp);
+
+    return (int)(end-start);
+}
+
+int main(int argc, char **argv) {
+    double *data;
+    int i;
+    int asciitime, bintime;
+
+    data = (double *)malloc(FILESIZE * sizeof(double));
+    assert(data);
+    for (i=0;i&lt;FILESIZE;i++) {
+        data[i] = i*(double)i/2.;
+    }
+
+    asciitime = write_file_ascii("data.txt",data,FILESIZE); 
+    bintime   = write_file_bin("data.dat",data,FILESIZE); 
+
+    printf("Time to write files: ASCII: %d, Binary: %d\n",asciitime, bintime);
+
+    return 0;
+}
+</code></pre>

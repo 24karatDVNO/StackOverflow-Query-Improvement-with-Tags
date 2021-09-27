@@ -1,0 +1,10 @@
+<p>Specify the structure as a unicode structure:</p>
+
+<pre><code>[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+public struct foo
+{
+   public IntPtr fileId;
+   [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+   public string fileName;
+}
+</code></pre>

@@ -1,0 +1,11 @@
+<p>If it's a small table (approx 1000 records), you can turn on the Import/Export mode in SQL Assistant. This will help you to export the table as a csv (you can set the Tools-> Options -> Import/Export) and then import the file to your db. </p>
+
+<p>While importing, you can use the following syntax:</p>
+
+<pre><code>INSERT INTO TABLE
+VALUES (?,?,?,?);
+</code></pre>
+
+<p>The number of ? should be same as the number of columns in the table/file.</p>
+
+<p>If it's a bigger table, Fastexport the data and the import it using Fastload/Multiload. </p>

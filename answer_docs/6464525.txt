@@ -1,0 +1,20 @@
+<p>In standard scala it is not that hard, simply stick to your signature:</p>
+
+<pre><code>def combine[A,B,C]( f: (A,B) =&gt; C ) 
+  = ( fA:(()=&gt;A), fB:(()=&gt;B) ) =&gt; f( fA(), fB() )
+</code></pre>
+
+<p>Here is a small example:</p>
+
+<pre><code>scala&gt; val isProdPositive = combine( (i:Int,d:Double) =&gt; i*d &gt; 0.0 )
+  isProdPositive: (() =&gt; Int, () =&gt; Double) =&gt; Boolean = &lt;function2&gt;
+
+scala&gt; val f1 = () =&gt; 2
+  f1: () =&gt; Int = &lt;function0&gt;
+
+scala&gt; val f2 = () =&gt; -1.5
+  f2: () =&gt; Double = &lt;function0&gt;
+
+scala&gt; isProdPositive(f1,f2)
+  res1: Boolean = false
+</code></pre>

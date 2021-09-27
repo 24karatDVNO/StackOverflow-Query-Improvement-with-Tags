@@ -1,0 +1,46 @@
+<p>I think you have some syntax problems. Try:</p>
+
+<pre><code>$(document).ready(function() {
+  $("#submitme").click(function() {
+    var urls = new Array();
+    $("#edit :checked").each(function() {
+      var obj = new Object();
+      obj.url = $(this).val();
+      urls.push(obj);
+    });
+
+    if (0 &lt; urls.length){
+      $.post('/myurl', {urls: JSON.stringify(urls)});
+    }else {
+      alert("no checkboxes were checked!");
+   }
+   });
+   });
+</code></pre>
+
+<p>If you look in jsfiddle at the JSLint output you get this</p>
+
+<pre><code>Error:
+
+Problem at line 2 character 25: Use the array literal notation [].
+
+var urls = new Array();
+
+Problem at line 4 character 21: Use the object literal notation {}.
+
+var obj = new Object();
+
+Problem at line 9 character 7: Expected '{' and instead saw 'console'.
+
+console.log(urls)
+
+Problem at line 9 character 24: Missing semicolon.
+
+console.log(urls)
+
+Problem at line 11 character 7: Expected '{' and instead saw 'alert'.
+
+alert("no checkboxes were checked!");
+
+Implied global: $ 1,3,5, console 9, alert 11
+</code></pre>

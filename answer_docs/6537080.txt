@@ -1,0 +1,6 @@
+<blockquote>
+<p>java.util.HashMap$Values cannot be cast to java.util.ArrayList</p>
+<p>As I know the method .values() returns a Collection so don't know where is the problem here.</p>
+</blockquote>
+<p>The problem is that you can't cast a superclass to a more concrete class.</p>
+<p>The method says it returns a <code>Collection</code>. But, you don't know what the real internal implementation of that interface is. The <code>values()</code> method might return <code>Vector</code> or a <code>LinkedList</code> or an <code>ArrayList</code> or any other class that implements <code>Collection</code>. So Java allows you only to cast it to a <code>Collection</code> (as artbristol already mentioned in his answer).</p>

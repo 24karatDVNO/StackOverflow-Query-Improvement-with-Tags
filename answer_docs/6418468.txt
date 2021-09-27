@@ -1,0 +1,3 @@
+<p>If there is a maximum number of parts per device then, yes, it can be done without a cursor, but this is quite complex.</p>
+
+<p>Essentially, create a table (or view or subquery) that has a DeviceID and one PartID column for each possible index in the PartID string. This can be accomplished by making the PartID columns calculated columns using fn_split or another method of your choice. From there you do a multiple self-UNION of this table, with one table in the self-UNION for each PartID column. Each table in the self-UNION has only one of the PartID columns included in the select list of the query for the table.</p>

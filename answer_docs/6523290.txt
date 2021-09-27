@@ -1,0 +1,75 @@
+<p>using server side code or client side code depends on your project status so see my sample server side code</p>
+
+<p><strong>Code Behind</strong></p>
+
+<pre><code>protected void Page_Load(object sender, EventArgs e)
+{
+    List&lt;Int32&gt; Months = new List&lt;Int32&gt;() { 7, 8, 9 };
+    if (!IsPostBack)
+    {
+        gv.DataSource = Months;
+        gv.DataBind();
+    }
+}
+protected void gv_DataBinding(Object sender, RepeaterItemEventArgs  e)
+{
+    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+    {
+        Literal ltrMonth = e.Item.FindControl("ltrMonth") as Literal;
+        DateTime _date = new DateTime(DateTime.Now.Year, (Int32)e.Item.DataItem, 1); 
+        ltrMonth.Text = _date.ToString("MMMM");
+         DateTime temp;
+         List&lt;Int32&gt; sundays=new List&lt;Int32&gt;();
+         for(var i=1;i&lt;32;i++)
+         {
+             if(DateTime.TryParse(_date.Year+"/"+_date.Month+"/"+i,out temp))
+             {
+                 if(temp.DayOfWeek==DayOfWeek.Sunday)
+                 {
+                     sundays.Add(i);
+                 }
+             }
+         }
+
+
+        Repeater rptrSunday = e.Item.FindControl("rptrSunday") as Repeater;
+        rptrSunday.DataSource = sundays;
+        rptrSunday.DataBind();
+    }
+}
+protected void rptrSunday_DataBinding(Object sender, RepeaterItemEventArgs e)
+{
+    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+    {
+        Literal ltrDay = e.Item.FindControl("ltrDay") as Literal;
+        ltrDay.Text = e.Item.DataItem.ToString();
+    }
+}
+</code></pre>
+
+<p><strong>ASPX</strong></p>
+
+<pre><code>&lt;asp:Repeater runat="server" ID="gv" OnItemDataBound="gv_DataBinding"&gt;
+    &lt;HeaderTemplate&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+    &lt;/HeaderTemplate&gt;
+    &lt;ItemTemplate&gt;
+            &lt;td&gt;
+                &lt;asp:Literal runat="server" ID="ltrMonth"&gt;&lt;/asp:Literal&gt;
+                &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;asp:Repeater runat="server" ID="rptrSunday" OnItemDataBound="rptrSunday_DataBinding"&gt;
+                    &lt;ItemTemplate&gt;
+                        &lt;asp:Literal runat="server" ID="ltrDay"&gt;&lt;/asp:Literal&gt;&lt;/ItemTemplate&gt;
+                &lt;/asp:Repeater&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;&lt;/table&gt;
+            &lt;/td&gt;
+    &lt;/ItemTemplate&gt;
+    &lt;FooterTemplate&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;&lt;/FooterTemplate&gt;
+&lt;/asp:Repeater&gt;
+</code></pre>

@@ -1,0 +1,7 @@
+<p>Leaving this as vague as you have has caused this to be an unanswerable question.  Performance cannot be evaluated unless you have software and hardware to measure - what language?  what language implementation?  what target CPU architecture?  etc.</p>
+
+<p>That being said, both <code>&lt;=</code> and <code>&lt;</code> are often identical performance-wise, because they are logically equivalent to <code>&gt;</code> and <code>&gt;=</code>, just with swapped destinations for the underlying goto's (branch instructions), or swapped logic for the underlying "true/false" evaluation.</p>
+
+<p>If you're programming in C or C++, the compiler may be able to figure out what you're doing, and swap in the faster alternative, anyway.</p>
+
+<p>Write code that is understandable, maintainable, correct, and performant, in that order.  For performance, find tools to measure the performance of your whole program, and spend your time wisely.  Optimize bottlenecks only until your program is fast enough.  Spend the time you save by making better code, or making more cool features :)</p>

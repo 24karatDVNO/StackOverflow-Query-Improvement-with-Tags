@@ -1,0 +1,10 @@
+<p>The preferred way is to use <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Classes/NSCalendar_Class/Reference/NSCalendar.html" rel="nofollow">NSCalendar</a>.</p>
+
+<pre><code>-(int)differenceInMonthsFrom:(NSDate*)older to:(NSDate*)younger {
+  NSCalendar *calendar=[NSCalendar currentCalendar];
+  NSDateComponents *components=[calendar components:NSMonthCalendarUnit fromDate:older toDate:younger options:0];
+  return [components month];
+}
+</code></pre>
+
+<p>Note that this function does not check for ordering. Getting from your stored string to NSDate may be a trick; it might be wiser to store the date as an integer?</p>

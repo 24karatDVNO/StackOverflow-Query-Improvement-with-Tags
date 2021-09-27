@@ -1,0 +1,7 @@
+<p>As usually, Herb Sutter knows and explains everything:</p>
+
+<blockquote>
+  <p>If the handler body contained the statement "throw;" then the catch block would obviously rethrow whatever exception A::A() or B::B() had emitted. What's less obvious, but clearly stated in the standard, is that if the catch block does not throw (either rethrow the original exception, or throw something new), and control reaches the end of the catch block of a constructor or destructor, then the original exception is automatically rethrown.</p>
+</blockquote>
+
+<p><a href="http://www.gotw.ca/gotw/066.htm" rel="nofollow">More in his article</a></p>

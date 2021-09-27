@@ -1,0 +1,30 @@
+<p>I had the same problem but i have overcome on this problem using code igniter syntex.
+Here is the solution.
+Fisrt step
+Before the loop initialize two arrays</p>
+
+<pre><code>$options = array();
+$select = array();
+</code></pre>
+
+<p>Then in the loop write this instruction</p>
+
+<pre><code>foreach($result-&gt;result_array() as $row)
+{
+    /////////Your Condition ////////////
+    if($row['id'] == $myarray['mycolumn'])
+    {            
+        $options [$row['id']] = $row['salaryrange'];
+        $select = $row['id'] ; 
+    }else{
+        $options [$row['id']] = $row['salaryrange'];
+    }
+}
+</code></pre>
+
+<p>Now</p>
+
+<pre><code>echo form_dropdown('dropdown_name' , $options , $select);
+</code></pre>
+
+<p>It is working ok</p>

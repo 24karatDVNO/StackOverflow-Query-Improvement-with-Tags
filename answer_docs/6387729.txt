@@ -1,0 +1,11 @@
+<p>Try removing the *, it isn't needed for recursive copy.</p>
+
+<pre><code>cp -rf "$1"/* "$2"
+</code></pre>
+
+<p>to:</p>
+
+<pre><code>cp -rf "$1/" "$2"
+</code></pre>
+
+<p>I think globbing was ruining your quoting that was protecting you from spaces in filenames.</p>

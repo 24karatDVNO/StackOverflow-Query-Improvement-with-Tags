@@ -1,0 +1,8 @@
+<pre><code> It creates almost 900 threads
+</code></pre>
+
+<p>That's <em>partially</em> your problem.  Each thread is likely using the default 1MB of stack.  You start to approach a GB of thread overhead.  Chances of running out of memory are high. The whole point of using IOCP is so that you don't have to create a "thread per connection".  You can just create several threads (from 1x - 4x the number of CPUs) to listen on the completion port handler and have each thread service a different request to maximize scalability.</p>
+
+<p>I recall reading an article linked off of Stack Overflow that buffers you post for pending IOCP operations are setup such that the operating system WILL NOT let the memory swap out from physical memory to disk.  And then you can run out of system resources when the connection count gets high.</p>
+
+<p>The workaround, if I recall correctly, is to post a 0 byte buffer (or was it a 1 byte buffer) for each socket connection.  When data arrives, your completion port handler will return, and that's a hint to your code to post a larger buffer.  If I can find the link, I'll share it.</p>

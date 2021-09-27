@@ -1,0 +1,7 @@
+<pre><code>with distinct_cities ( select max(id) as id, trans_city
+from table
+group by trans_city)
+
+select t.id, t.trans_date, t.trans_city, t.trans_count
+from table t join distinct_cities d on t.id = d.id
+</code></pre>

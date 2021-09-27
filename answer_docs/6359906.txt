@@ -1,0 +1,29 @@
+<blockquote>
+  <p>Also, the threads cannot register signal handlers</p>
+</blockquote>
+
+<p>Signals to kill threads is potentially horrible, especially in C, especially if you allocate memory as part of the thread, since it won't be freed when that particular thread dies (as it belongs to the heap of the process). There is no garbage collection in C, so if that pointer goes out of scope, it's gone out of scope, the memory remains allocated. So just be careful with that one - only do it that way in C if you're going to actually kill all the threads and end the process so that the memory is handed back to the OS - adding and removing threads from a threadpool for example will give you a memory leak.</p>
+
+<blockquote>
+  <p>The problem is that when I want to shutdown these child threads they are all blocking on input.</p>
+</blockquote>
+
+<p>Funnily enough I've been fighting with the same thing recently. The solution is literally <em>don't make blocking calls without a timeout</em>. So, for example, what you want ideally is:</p>
+
+<pre><code>def threadfunc(running):
+
+    while running:
+        blockingcall(timeout=1)
+</code></pre>
+
+<p>where running is passed from the controlling thread - I've never used threading but I have used multiprocessing and with this you actually need to pass an <code>Event()</code> object and check <code>is_set()</code>. But you asked for design patterns, that's the basic idea.</p>
+
+<p>Then, when you want this thread to end, you run:</p>
+
+<pre><code>running.clear()
+mythread.join()
+</code></pre>
+
+<p>and your main thread should then allow your client thread to handle its last call, and return, and the whole program folds up nicely.</p>
+
+<p>What do you do if you have a blocking call without a timeout? Use the asynchronous option, and sleep (as in call whatever method you have to suspend the thread for a period of time so you're not spinning) if you need to. There's no other way around it. </p>

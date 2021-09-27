@@ -1,0 +1,13 @@
+<p>Lots of answers, here's one that specific to your question.</p>
+
+<pre><code>&gt; this.foreach(function(v) { a.push(v); }); //where did v came from???
+</code></pre>
+
+<p>In the function expression passed to <em>foreach</em>, <em>v</em> is a formal parameter. Including an identifier as a formal parameter is more or less equivalent to declaring it in the function body with <em>var</em>. Maybe it's clearer if written as:</p>
+
+<pre><code>this.foreach( function (v) {
+    a.push(v);
+});
+</code></pre>
+
+<p>or not...</p>

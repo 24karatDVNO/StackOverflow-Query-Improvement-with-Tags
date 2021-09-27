@@ -1,0 +1,22 @@
+<p>The shortest implementation:</p>
+
+<pre><code>&lt;?php
+
+function YOURMODULE_menu() {
+  $items = array();
+  $items['node/%node/go'] = array(
+    'page callback'     =&gt; 'YOURMODULE_redirect',
+    'page arguments'    =&gt; array(1),
+    'access arguments'  =&gt; array('access content'),
+  );
+  return $items;
+}
+
+function YOURMODULE_redirect($node) {
+  if ($node-&gt;type == 'YOUR_TYPE' &amp;&amp; isset($node-&gt;field_YOURFIELD[0]['value']) &amp;&amp; $node-&gt;field_YOURFIELD[0]['value']) {
+    drupal_goto($node-&gt;field_YOURFIELD[0]['value']);
+  }
+}
+</code></pre>
+
+<p>Edit: It would be advised to add some validation and probablty other stuff, but I believe this is quite obvious. And also, depends on details of your implementation.</p>

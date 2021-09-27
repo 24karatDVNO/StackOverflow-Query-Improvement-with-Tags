@@ -1,0 +1,17 @@
+<p>as Marc B said</p>
+
+<pre><code>&lt;?php
+echo "&lt;a href='wronginput.php?height=40&amp;width=80' id='link' class='thickbox'&gt;Link text&lt;/a&gt;
+&lt;script type='text/javascript'&gt;$('#link').click();&lt;/script&gt;
+";
+?&gt;
+</code></pre>
+
+<p>or </p>
+
+<pre><code>&lt;?php
+echo "&lt;script&gt;$(document).ready( function() { $('#link').click(); });&lt;/script&gt;
+&lt;a href='wronginput.php?height=40&amp;width=80' id='link' class='thickbox'&gt;Link text&lt;/a&gt;   
+";
+?&gt;
+</code></pre>

@@ -1,0 +1,19 @@
+<p>I've got the rectification for your problem. I use a <a href="http://apps.facebook.com/get-a-bright-idea/" rel="nofollow">simple Facebook application</a>. It works but under development.</p>
+
+<p>You must authorize the user first and get his user ID. After that just replace the "me" by user_id, and you are done.</p>
+
+<pre><code>&lt;?php
+    require_once 'facebook-php-sdk/src/facebook.php';
+    $facebook = new Facebook(array(
+        'appId' =&gt; '[your app id]',
+        'secret' =&gt; '[your app secreat]',
+        'cookie' =&gt; true,
+    ));
+
+    // Then authorize the current user in the way you desire 
+    // get his user_id
+    $user_profile = $facebook-&gt;api('/[the user's user id]');
+
+    echo $user_profile['name'];
+?&gt; 
+</code></pre>

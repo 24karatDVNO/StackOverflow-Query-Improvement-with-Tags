@@ -1,0 +1,3 @@
+<p>How are you adding the js for pageload? </p>
+
+<p>If this is added on <code>Page_Load</code> using <code>RegisterStartupScript</code> or similiar, add a <code>!IsPostBack</code> check so that it will not re-add itself everyime the  btnBuildTree_Click eventhandler is called.</p>

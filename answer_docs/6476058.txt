@@ -1,0 +1,5 @@
+<p>Look on <a href="http://myfaces.apache.org/core20/myfaces-impl/webconfig.html" rel="nofollow">MyFaces Web Config Params</a></p>
+
+<p>javax.faces.FACELETS_REFRESH_PERIOD is the standard param name.</p>
+
+<p>This param is used on development time for rebuild the view, so you can change your page and check your changes on the fly. You don't need to set that on production. Try set it to -1 and that disables it. That works as expected, because in fact comes from original facelets code which is common to both jsf implementations. It is known that environments like Google Application Engine (GAE) does not allow get the file last-modified-time, but I don't believe that is your case.</p>

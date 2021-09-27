@@ -1,0 +1,10 @@
+<pre><code>window.location.pathname.indexOf("/",1);
+</code></pre>
+
+<p>so now you can do</p>
+
+<pre><code>var indOf = window.location.pathname.indexOf("/",1);
+var myStr = window.location.pathname.substr(0,indOf+1 );
+
+alert( myStr );  // gives you what you want;
+</code></pre>

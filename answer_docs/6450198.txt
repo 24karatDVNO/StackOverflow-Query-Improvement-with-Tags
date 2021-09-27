@@ -1,0 +1,7 @@
+<p>Have a look at the COM WindowsInstaller classes.  You will need to add a reference to the WindowsInstaller class to get access to it.  From here you can browse the MSI and perform actions on it if required.  I use this in my post build to modify the archive to fix a... undocumented functionality of Visual Studio.</p>
+
+<pre><code>// Create an Installer instance   
+MsiInstaller = Activator.CreateInstance(Type.GetTypeFromProgID("WindowsInstaller.Installer")) as WindowsInstaller.Installer;
+// Open the msi file for Read/Write   
+MsiDatabase = MsiInstaller.OpenDatabase(MsiFile.FullName, MsiOpenDatabaseMode.msiOpenDatabaseModeTransact);
+</code></pre>

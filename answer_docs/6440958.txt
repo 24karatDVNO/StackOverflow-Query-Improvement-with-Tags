@@ -1,0 +1,11 @@
+<p>When I thought about this I realised that the easiest way to run the request through your own server would be to literally pretend it was your own request i.e. in a file stored.</p>
+
+<p>So I just created a php script that included the contents on my own domain</p>
+
+<pre><code>&lt;?php echo file_get_contents('http://www.sameoriginpolicydomain.com'); ?&gt;
+</code></pre>
+
+<p>And that did the trick, either calling it from AJAX or directly. Here's what you're looking for:</p>
+
+<pre><code>&lt;?php echo file_get_contents('http://www.google.com/fusiontables/exporttable?query='.urlencode($_GET['query']).'&amp;o=kmllink&amp;g='.$_GET['g']); ?&gt;
+</code></pre>

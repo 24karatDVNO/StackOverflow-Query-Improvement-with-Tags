@@ -1,0 +1,8 @@
+<p>I write that from my memory, so there will be some msalle errors:</p>
+
+<pre><code>Pattern p = Pattern.compile(".*?(&lt;span class="xcomponent"&gt;pls do not delete me&lt;/span&gt;).*");
+Matcher m = p.matcher(yourLine);
+if (matcher.matches()) { yourLine = matcher.group(1); }
+</code></pre>
+
+<p>Feel free to move brackets in the regexp indise the tag if you want to get rid of it too and leave only the inner text.</p>

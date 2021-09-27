@@ -1,0 +1,11 @@
+<p>On some versions of IE this will work, but only because they are non-conforming.</p>
+
+<pre><code>var fn  // declares a variable named fn
+    = function  // initializes fn
+      foo  // declares a name foo that is only visible within the function body.
+      (){
+        ...  // foo is visible here.
+      };
+foo();  // foo is not defined here (except on IE 6 and earlier)
+fn();  // works just fine.
+</code></pre>

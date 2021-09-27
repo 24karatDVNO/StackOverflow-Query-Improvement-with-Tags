@@ -1,0 +1,17 @@
+<p>You could create a "shortcut class" like:</p>
+
+<pre><code>public class SesVar
+{
+    public Common.SessionVariables IsLogout
+    {
+        get
+        {
+            return Common.SessionVariables.IsLogout;
+        }
+    }
+}
+</code></pre>
+
+<p>And then you cah do <code>Session[SesVar.IsLogout]</code>.</p>
+
+<p>But personally I wouldn't do that, because its not good for the readability of your code and IntelliSense does most of the typing for you anyway.</p>

@@ -1,0 +1,6 @@
+<p>I found the <a href="https://stackoverflow.com/questions/1717444/combining-two-lamba-expressions-in-c/1720642#1720642">answer to my problem</a></p>
+
+<pre><code>childSelector.Combine(p =&gt; p.AsQueryable().Any&lt;TEntity&gt;(this.Predicate), true)
+</code></pre>
+
+<p>This is how the code turned out.</p>

@@ -1,0 +1,11 @@
+<p>i'm not familiar with the play framework either but generally, for multipart requests (e.g. file uploads),</p>
+
+<ol>
+<li>the data from the inputstream is written to a temporary file on the local filesystem if the input size is large enough</li>
+<li>the request is then dispatched to your controller</li>
+<li>your controller gets a File object from the framework. (this file object is pointing to the temporary file)</li>
+</ol>
+
+<p>for the apache commons upload, you can use the DiskFileItemFactory to set the size threshold before the framework decides whether to write the file to disk or keep it in memory. If kept in memory, the framework copies the data to a DataOutputStream (this is done transparently so your servlet will still be working with the File object without having to know whether the file is on disk or in memory). </p>
+
+<p>perhaps there is a similar configuration for the play framework.</p>

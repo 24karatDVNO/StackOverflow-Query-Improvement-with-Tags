@@ -1,0 +1,12 @@
+<p>Considering the below is the query</p>
+
+<ol>
+<li>you have lot of files checked out from the repository into multiple directories and many of them got modified and you do not remember which files got modified and you it will be difficult to merge one file at a time, then do the following</li>
+</ol>
+
+<p>go to the top-level directory and run the command </p>
+
+<pre><code>svn ci -m "comments"
+</code></pre>
+
+<p>this will check-in all the modified files under the top-level directory and many subdirectories below it.</p>

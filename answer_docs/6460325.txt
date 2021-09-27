@@ -1,0 +1,24 @@
+<p>Adding <code>[ParseChildren(true, "Text")]</code> to your custom control class will do this.</p>
+
+<p>You can find more information along with samples here <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.parsechildrenattribute.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.web.ui.parsechildrenattribute.aspx</a></p>
+
+<p><strong>EDIT</strong></p>
+
+<p>Relevant snippet from the above link</p>
+
+<pre><code>[ParseChildren(true, "Employees")]
+</code></pre>
+
+<blockquote>
+  <p>Use the ParseChildren attribute to set
+  the ChildrenAsProperties and
+  DefaultProperty properties. Using this
+  constructor, the control parses all
+  child controls as properties and must
+  define a public property named
+  Employees, which it declares as an
+  ArrayList. Nested (child) elements
+  must correspond to child elements of
+  the Employees property or to other
+  properties of the control.</p>
+</blockquote>

@@ -1,0 +1,12 @@
+<p>Hmm... your question isn't totally clear to me, but I think what you need to do, for starters, is add an OnClickListener (I use an anonymous one) to "submit" and then create/start your intent within it's onClick(View) method. You can pass the value using Intent.putExtra(String, String). Something like this:</p>
+
+<pre><code>submit.setOnClickListener(new View.OnClickListener() {
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(ThisActivity.this, NextActivity.class);
+        intent.putExtra("value", valueTV.getText())
+        startActivity(intent);
+    }
+});
+</code></pre>

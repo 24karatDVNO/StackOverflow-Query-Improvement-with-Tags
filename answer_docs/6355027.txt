@@ -1,0 +1,32 @@
+<p>The reason that the text wraps to the right of the bullet is that the browser renders the entire list-item element to the right of the bullet.  It will always wrap the text within the element which contains the text.</p>
+
+<p>The simplest solution is to not use the built-in list-item bullets.</p>
+
+<p>Instead create an image of the bullet you like and use float:left to have it in the top left. The text will wrap around it and give you the result you desire.</p>
+
+<pre><code>&lt;style&gt;
+    li { list-style-type:none; }
+    img{ float:left; }
+&lt;/style&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;img src='bullet'&gt;my short text&lt;/li&gt;
+    &lt;li&gt;&lt;img src='bullet'&gt;my very very long text&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>Some other points:
+As different browsers differ on the padding and margins of lists, you should set them:
+(Set to your preferred margin):  </p>
+
+<pre><code>ul { padding:0; margin:30px }
+ul li{ padding:0; margin:0 } 
+</code></pre>
+
+<p>Also, it is better to use an element with the background being your preferred bullet:</p>
+
+<pre><code>span.bullet {float:left; height:10px; width:10px; background:url(bullet.gif) no-repeat}
+</code></pre>
+
+<p>Lastly, an even better idea is not to use an image at all - but rather to prefix all your text with a unicode bullet.
+Or, if your users use a modern browser, prepend the unicode char with CSS. 
+However, I haven't time at the moment to look this up. Praps later today.</p>

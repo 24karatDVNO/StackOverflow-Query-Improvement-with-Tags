@@ -1,0 +1,1 @@
+<p>Your problem is the <code>return(s)</code> in <code>find_details()</code>. As soon as you have found an entry, you are leaving the function. You do not even close the file then. One solution is to use an empty list at the beginning, e.g <code>results = []</code>, and then append all entries which matches your requirements (<code>results.append(s)</code>).</p>

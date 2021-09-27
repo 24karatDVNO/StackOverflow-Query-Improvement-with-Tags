@@ -1,0 +1,9 @@
+<p>If you want to get a histogram, I wouldn't sort the data.  I would just go through all the data counting all the combinations of interest. This is an O(N) operation. </p>
+
+<p>Sorting the data first is unlikely to improve speed. This is an O(N*log(N)) operation.</p>
+
+<hr>
+
+<p>If wanted to sort all the record, I would use a Collection.sort() with a custom comparator which has all the fields you need to compare. You would have to load all the records into memory which will take a few GB, but once you have done this it should be pretty fast.  </p>
+
+<p>The only way to make this faster would be to filter down the criteria.  If you do this, I would create a Collection which has a copy of the records of interest and sort that.</p>

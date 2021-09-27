@@ -1,0 +1,5 @@
+<p>You can't do that, since closing the main window will send a message to the carrier process to be ended, and then your program no longer has control (can't execute any more code).</p>
+
+<p>provide something like logging off instead, close DB connections, close all child windows, return to the login screen again to achieve "Fast User Switching" feature. </p>
+
+<p><strong>P.S:</strong> This method has the best effect if the main window were an MDI window.</p>

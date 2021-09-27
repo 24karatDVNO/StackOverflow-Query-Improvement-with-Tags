@@ -1,0 +1,11 @@
+<p>in your checking- </p>
+
+<pre><code>$_POST[$ans['qno']]==$ans['answer']
+</code></pre>
+
+<p>if no data in POST and  $ans['answer'] = 0, this will return true. So you'll need to change this code to </p>
+
+<pre><code>$_POST[$ans['qno']]===$ans['answer'] 
+</code></pre>
+
+<p>hope it'll work</p>

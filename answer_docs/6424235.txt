@@ -1,0 +1,52 @@
+<p>Perhaps this little sample helps</p>
+
+<pre><code>#include &lt;map&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+
+typedef int sortkey_t;
+typedef std::map&lt;int, sortkey_t&gt; lookup_t;
+
+struct by_sort_lookup
+{
+    by_sort_lookup(const lookup_t&amp; table) : _table(table) {}
+
+    bool operator()(int a, int b) const
+    {
+        lookup_t::const_iterator ai = _table.find(a);
+        lookup_t::const_iterator bi = _table.find(b);
+
+        if (ai==bi)           return false;
+        if (ai==_table.end()) return false; // choose some
+        if (bi==_table.end()) return true;  // complementary
+        return (ai-&gt;second) &lt; (bi-&gt;second);
+    }
+  private:
+    const lookup_t&amp; _table;
+};
+
+int main()
+{
+    std::map&lt;int, sortkey_t&gt; sortkey_by_id;
+
+    sortkey_by_id[1] = 70;
+    sortkey_by_id[2] = 60;
+    sortkey_by_id[3] = 80;
+
+    //
+    std::vector&lt;int&gt; ids;
+    ids.push_back(1);
+    ids.push_back(3);
+    ids.push_back(2);
+
+    std::cout &lt;&lt; "before sorting: " &lt;&lt; std::endl;
+    std::copy(ids.begin(), ids.end(), std::ostream_iterator&lt;int&gt;(std::cout, "\r\n"));
+
+    std::sort(ids.begin(), ids.end(), by_sort_lookup(sortkey_by_id));
+
+    std::cout &lt;&lt; "after sorting: " &lt;&lt; std::endl;
+    std::copy(ids.begin(), ids.end(), std::ostream_iterator&lt;int&gt;(std::cout, "\r\n"));
+}
+</code></pre>

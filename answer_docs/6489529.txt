@@ -1,0 +1,15 @@
+<p>If two developers are working together, you can either create a new repo that they both access (on a network share or a server), or they can access each other's repos.</p>
+
+<p>You can add another remote to your repo like this:</p>
+
+<pre><code>git remote add frank git@fserver.com:user5/project.git
+git remote add john https://user5@jserver.com/user5/project.git
+</code></pre>
+
+<p>The first requires that there's a machine called fserver.com that's running git daemon and someone named user5 has an account there. The new remote is named "frank".</p>
+
+<p>The second requires that there's a machine called jserver.com that's hosting git via http and someone named user5 has an account there. The new remote is named "john".</p>
+
+<p>You can then run <code>git fetch frank</code> to grab commits from frank's repo.</p>
+
+<p><a href="http://gitready.com/intermediate/2009/01/24/sharing-your-changes.html" rel="nofollow">Here's some more info</a> on sharing changes.</p>

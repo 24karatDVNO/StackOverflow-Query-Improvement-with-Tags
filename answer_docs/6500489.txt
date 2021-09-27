@@ -1,0 +1,10 @@
+<pre><code>private static def setupCompassInvocationArgs =
+['-e', "require 'rubygems';gem 'compass'; load Gem.bin_path('compass', 'compass')"]
+
+protected def runCompassCommand(def compassArgs) {
+    Main main = new Main()
+    main.run([setupCompassInvocationArgs, compassArgs].flatten() as String[])
+}
+</code></pre>
+
+<p>The first bit is what you need to load various gems.</p>

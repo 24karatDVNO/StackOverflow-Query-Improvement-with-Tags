@@ -1,0 +1,6 @@
+<p>I believe the problem is that your Delphi function description isn't correct. 
+All you could do is rightly mark the 'translate' function with __stdcall.</p>
+
+<p>This kind of error occures when you try to invoke a COM object according to a one description and it actually has a different one. With COM objects it happends because there can be more that one version of the COM object on your machine and incorrect version is loaded. So, this is a dll-hell-like problem. </p>
+
+<p>But in your case I believe that you know perfectly well where your Delphi DLL is loaded from. So I think it's just incorrect doc for that particular version of the DLL.</p>

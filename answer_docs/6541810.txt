@@ -1,0 +1,5 @@
+<p>Your application is sending a <code>GET</code> request (the parameters are passed in the URL), but you declared a <code>POST</code> route. </p>
+
+<p>Changing <code>post 'rate'</code> to <code>get 'rate'</code> will allow this request to go through.</p>
+
+<p>The other possibility is that your application is generating a <code>GET</code> on the client side when it should be generating a <code>POST</code>. I'd need to look at your view code to diagnose that one. </p>

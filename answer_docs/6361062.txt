@@ -1,0 +1,9 @@
+<p>The aspx page had the following code to keep the page from getting cached:</p>
+
+<pre><code>// Never cache this page
+Response.CacheControl = "no-cache";
+Response.AddHeader("Pragma", "no-cache");
+Response.Expires = -1;
+</code></pre>
+
+<p>Removing the first 2 lines and leaving only <code>Response.Expires = -1</code> resolved the issue.  For some reason this was preventing the image from working properly in IE.</p>

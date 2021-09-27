@@ -1,0 +1,7 @@
+<p>To have a 'view only' form, I have subclassed the Edit form, and included the following code:</p>
+
+<pre><code>$allElements = $this-&gt;getElements();
+foreach ($allElements as $element) {
+    $element-&gt;setAttrib('disabled', 'disabled');
+}
+</code></pre>

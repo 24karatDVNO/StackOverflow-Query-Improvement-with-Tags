@@ -1,0 +1,29 @@
+<p>What happens when <code>@vin</code> equals <code>'; DROP DATABASE UserDB; --</code> ?</p>
+
+<p>This might not be the problem you were looking to solve, but the way you're using dynamic SQL makes you vulnerable to a <a href="https://www.owasp.org/index.php/SQL_Injection" rel="nofollow">SQL Injection Attack</a>.</p>
+
+<p>Instead of using <code>exec(@sql)</code> string, you should use <code>sp_executesql</code>, and parameterize <code>@vin</code></p>
+
+<pre><code>DECLARE @sqlstr varchar(5000)
+DECLARE @ParmDefinition NVARCHAR(500)
+
+SET @sqlstr  = 'SELECT 
+                [Case].CaseID, 
+                [Case].VIN, 
+                [Case].Make, 
+                [Case].Model, 
+                Contact.FirstName, 
+                Contact.LastName, 
+                FROM  [Case] INNER JOIN
+                Contact ON [Case].CaseID = Contact.CaseID 
+                Where Contact.ContactTypeID = 1 '
+
+IF  @vin is not null and @vin &lt;&gt; ''
+BEGIN
+    SET @sqlstr = @sqlstr + ' and [Case].VIN = @vinparm'
+END
+
+SET @ParmDefinition = N'@vinparm varchar(50)'
+
+EXECUTE sp_executesql @sqlstr, @ParmDefinition, @vinparm = @vin
+</code></pre>

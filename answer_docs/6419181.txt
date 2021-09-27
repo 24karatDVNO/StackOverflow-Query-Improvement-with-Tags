@@ -1,0 +1,24 @@
+<p>I'm a little confused. <code>i</code> is declared locally and so it's <em>not</em> the same <code>i</code> variable getting modified. Tested on this very page:</p>
+
+<pre><code>var span = document.getElementsByTagName("span")[0];
+function func(node) {
+    for(var i = 0; i &lt; node.children.length; i++) {
+       console.log([i, node]);
+       func(node.children[i]);
+    } 
+}
+func(span);
+
+// returns
+// [0, &lt;span id="hlinks-user"&gt;...&lt;/span&gt;]
+// [1, &lt;span id="hlinks-user"&gt;...&lt;/span&gt;]
+// [2, &lt;span id="hlinks-user"&gt;...&lt;/span&gt;]
+// [0, &lt;a href="/users..."&gt;...&lt;/a&gt;]
+// [3, &lt;span id="hlinks-user"&gt;...&lt;/span&gt;]
+// [0, &lt;span title="1 silver..."&gt;...&lt;/span&gt;]
+// [1, &lt;span title="1 silver..."&gt;...&lt;/span&gt;]
+// [4, &lt;span id="hlinks-user"&gt;...&lt;/span&gt;]
+// [0, &lt;span title="7 bronze..."&gt;...&lt;/span&gt;]
+// [1, &lt;span title="7 bronze..."&gt;...&lt;/span&gt;]
+// [5, &lt;span id="hlinks-user"&gt;...&lt;/span&gt;]
+</code></pre>

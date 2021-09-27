@@ -1,0 +1,14 @@
+<p>Have you tried using a random offset &amp; limit?</p>
+
+<pre><code>class User &lt; ActiveRecord::Base
+
+  def self.random num = 1
+    num.times.map { offset(rand(count)).limit(1) }
+  end
+
+end
+
+@users = User.random(6)
+</code></pre>
+
+<p>I've used something similar to get single random instances from AR. You'd have to make it a bit smarter if you wanted to guarantee unique results.</p>

@@ -1,0 +1,27 @@
+<p>You want a <code>CustomConverter</code> to map the parent object, for example:</p>
+
+<p>Domain</p>
+
+<pre><code>class PersonA {
+    ...
+    int employeeId;
+    ...
+}
+</code></pre>
+
+<p>DTO</p>
+
+<pre><code>class PersonB {
+    ...
+    Employee employee;
+    ...
+}
+
+class Employee {
+    ...
+    int id;
+    ...
+}
+</code></pre>
+
+<p>You want to map the two classes <code>PersonA</code> and <code>PersonB</code> using a <code>CustomConverter</code>, this will let you construct them what ever way you want.</p>

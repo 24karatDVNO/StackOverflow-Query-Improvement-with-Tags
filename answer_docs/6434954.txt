@@ -1,0 +1,9 @@
+<p>I would definitively use Python, because writing Python programs is fast and easy, and because it probably already includes all the tools you would need. It will allow you to focus on algorithm, instead of working on syntax and declarations. </p>
+
+<p>For benchmarking, you can use <a href="http://docs.python.org/library/profile.html" rel="nofollow noreferrer">cProfile</a> or <a href="http://docs.python.org/library/timeit.html" rel="nofollow noreferrer">timeit</a> module.</p>
+
+<p>What kind of parallel algorithms do you want to test? There are many ways to do parallel programming. For algorithms that need to scale to many processes, the easiest way is probably using <a href="http://www.mpi-forum.org/" rel="nofollow noreferrer">MPI</a>. <a href="http://mpi4py.scipy.org/" rel="nofollow noreferrer">mpi4py</a> is a very good implementation for Python, and is tightly integrated with <a href="http://numpy.scipy.org/" rel="nofollow noreferrer">numpy</a>, if you need to work on arrays of numbers.</p>
+
+<p>As it was already mentioned, <a href="http://docs.python.org/library/threading.html" rel="nofollow noreferrer">multithreading</a> can only use 1 processor, because of the <a href="https://stackoverflow.com/questions/265687/why-the-global-interpreter-lock">GIL</a>. But this limitation only apply to this case. You can use <a href="http://docs.python.org/library/multiprocessing.html" rel="nofollow noreferrer">multiprocessing</a> on as many processors you want.</p>
+
+<p>Finally, there are tools in Python for <a href="http://docs.python.org/howto/functional.html" rel="nofollow noreferrer">functional programming</a>. And <a href="http://www.python.org/dev/peps/pep-0342/" rel="nofollow noreferrer">coroutines</a> can be great for concurrent programming.</p>

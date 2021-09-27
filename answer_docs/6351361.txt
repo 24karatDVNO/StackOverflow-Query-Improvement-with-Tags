@@ -1,0 +1,41 @@
+<p>If you use dependency injection and template your object under test, you can use mock objects without having to use virtual functions.</p>
+
+<pre><code>class AParameters
+{
+public:
+  int FunRet()
+  { return 4;}
+};
+
+class MockAParameters
+{
+public:
+  MOCK_METHOD0(FunRet, int());
+};
+
+template&lt;class Parameters&gt;
+class AImpl
+{
+public:
+   AImpl(Parameters&amp; parameters):parameters(parameters){}
+
+  void Fun()
+  {
+    if(parameters.FunRet()&gt;0){///} else {///}
+  } 
+
+private:
+   Parameters&amp; parameters;
+};
+
+typedef AImpl&lt;AParameters&gt; A;
+typedef AImpl&lt;MockAParameters&gt; ATestObject;
+
+void Test::funUsesFunRet()
+{
+    MockAParameters params;
+    EXPECT_CALL(params, FunRet());
+    ATestObject object(params);
+    object.Fun();
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>If you have control of the WCF service then I recommend that you refactor your code.</p>
+
+<p>It really is not good practise to have such a long running process happening synchronously.</p>
+
+<p>If you know that it's going to take that long and are not worried about the result you could use a OneWay service, then your client wouldn't have to wait for a reply.</p>
+
+<p>If you wrote a duplex service then your client may time still as it wouldn't get a callback for such a long time.</p>
+
+<p>Another solution is to use the OneWay service and then create another service that polls to see if the operation is complete, as suggested by Pete2k</p>

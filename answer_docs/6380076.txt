@@ -1,0 +1,24 @@
+<blockquote>
+  <p>First question, can someone explain
+  the logic of setting the anchor point
+  in the subview, and changing the
+  center of the superview (like why this
+  is done)?</p>
+</blockquote>
+
+<p>This code isn't changing the center of the superview. It's changing the center of the gesture recognizer's view to be the location of the gesture (coordinates specified in the superview's frame). That statement is simply moving the view around in its superview while following the location of the gesture. Setting <code>center</code> can be thought of as a shorthand way of setting <code>frame</code>.</p>
+
+<p>As for the anchor point, it affects how scale and rotation transforms are applied to the layer. For example, a layer will rotate using that anchor point as its axis of rotation. When scaling, all points are offset around the anchor point, which doesn't move itself.</p>
+
+<blockquote>
+  <p>Lastly, how does the math work for the
+  anchorPoint statement? If you have a
+  view that has a bounds of 500, 500,
+  and say you touch at 100, 100 with one
+  finger, 500, 500 with the other. In
+  this box your normal anchor point is
+  (250, 250). Now it's ???? (have no
+  clue)  </p>
+</blockquote>
+
+<p>The key concept to note on the <code>anchorPoint</code> property is that the range of the values in the point is declared to be from [0, 1], no matter what that actual size of the layer is. So, if you have a view with bounds (500, 500) and you touch twice at (100, 100) and (500, 500), the location in the view of the gesture as a whole will be (300, 300), and the anchor point will be (300/500, 300/500) = (0.6, 0.6).</p>

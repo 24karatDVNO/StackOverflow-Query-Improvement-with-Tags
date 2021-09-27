@@ -1,0 +1,7 @@
+<pre><code>SELECT id FROM (
+    SELECT max(time) as max_time, id
+    FROM test
+    GROUP BY id
+) tmp
+WHERE max_time &lt; 'X'
+</code></pre>

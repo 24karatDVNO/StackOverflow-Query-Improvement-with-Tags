@@ -1,0 +1,14 @@
+<p>IRequire sounds better, however, the use of the interface for this seems wrong.</p>
+
+<p>Use attributes instead:</p>
+
+<pre><code>class MyClass
+{
+    [Required]
+    double X
+    {
+         get;
+         set;
+    }
+}
+</code></pre>

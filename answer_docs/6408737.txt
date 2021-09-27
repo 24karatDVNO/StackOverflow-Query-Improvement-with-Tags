@@ -1,0 +1,12 @@
+<p>The replace itself can be achieved with the following:</p>
+
+<pre><code>&lt;?php
+
+$str = "SUM A+b+c TO var FOR D-&gt;E='' AND G-&gt;H=''";
+
+print preg_replace('/([A-Z]+)-&gt;([A-Z]+)=([^\s]+)/', '\\1:Field("\\2")=\\3', $str);
+</code></pre>
+
+<p>(<a href="http://www.ideone.com/ykGD8" rel="nofollow">Example</a>)</p>
+
+<p>This does not, however, check that the string starts with <code>SUM</code>. You could incorporate a simple <code>substr()</code> check: <code>if (substr($str, 0, 4) === 'SUM ') { ... }</code>, see <a href="http://www.ideone.com/EqvJM" rel="nofollow">working demo</a>.</p>

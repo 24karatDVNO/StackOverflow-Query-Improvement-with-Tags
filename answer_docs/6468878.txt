@@ -1,0 +1,10 @@
+<p>You can expose a single object in C# like so:</p>
+
+<pre><code>ScriptScope scope = runtime.CreateScope(); //get a scope where we put in the stuff from the host
+scope.SetVariable("lab", lab);
+</code></pre>
+
+<p>The object is the available in the script using the given name</p>
+
+<pre><code>lab.AnyMethodOfYourObject()
+</code></pre>

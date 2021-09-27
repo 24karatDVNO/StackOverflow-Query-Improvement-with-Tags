@@ -1,0 +1,11 @@
+<p>here is a somewhat general idea:</p>
+
+<p>depending on the application, i'd use a simple picturebox, load a bitmap (from file, db, create empty, ...) and handle mouse clicks on that ...</p>
+
+<p>translate the screen coordinates to your 16x16 matrix, and use some "needle-scheme" to interact with that image (means you have some sort of colorpicker that selects the color to use, and a click on a pixel sets it to that color)</p>
+
+<p>since your image is only 16x16 you will probably want to set the picturebox to stretch or zoom mode</p>
+
+<p>output of an image object is rather simple if you make use of the <a href="http://msdn.microsoft.com/en-us/library/system.drawing.image.aspx" rel="nofollow">System.Drawing.Image class</a> </p>
+
+<p>if you need further details/help, let me know...</p>

@@ -1,0 +1,13 @@
+<p>try this code</p>
+
+<pre><code>            string argString ="28431 ";
+
+            StringBuilder sb =new StringBuilder();
+            sb.Append(argString);
+            for (int i =  12 -argString.Length-3; i &gt;0 ; i--)
+            {
+                 sb.Insert(0, "0");              
+            }
+
+            string result = string.Format("123{0}",sb.ToString());
+</code></pre>

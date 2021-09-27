@@ -1,0 +1,5 @@
+<p>On your first iteration, you're not removing and everything's dandy.</p>
+
+<p>Second iteration you're at position [1] of the sequence, and you remove '1'. The iterator then takes you to position [2] in the sequence, which is now '3', so '2' gets skipped over (as '2' is now at position [1] because of the removal). Of course '3' doesn't get removed, so you go on to position [3] in the sequence, which is now '4'. That gets removed, taking you to position [5] which is now '6', and so on.</p>
+
+<p>The fact that you're removing things means that a position gets skipped over every time you perform a removal.</p>

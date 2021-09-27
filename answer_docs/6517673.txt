@@ -1,0 +1,22 @@
+<p>If you want resume option, just do simple work.</p>
+
+<ul>
+<li>While pausing catch the frame number into a number</li>
+</ul>
+
+<p>If mc is your movieClip,</p>
+
+<pre><code>&gt;   mc.stop();&lt;br&gt; var
+&gt; mcFrameNumber:Number = mc.currentFrame;
+</code></pre>
+
+<ul>
+<li>Then when playing again,use</li>
+</ul>
+
+<blockquote>
+<pre><code>mc.gotoAndPlay(mcFrameNumber);
+</code></pre>
+</blockquote>
+
+<p>It will work.</p>

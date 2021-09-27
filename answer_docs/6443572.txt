@@ -1,0 +1,7 @@
+<p>kThere was probably a leak in the code I had above. I got around declaring an NSManagedObjectContext by just using a pointer to one whenever needed. Here is a sample of the code:</p>
+
+<pre><code>iFitAppDelegate *appDelegate = (iFitAppDelegate *)[[UIApplication sharedApplication] delegate];
+NSManagedObjectContext *managedObjectContext = appDelegate.managedObjectContext;
+</code></pre>
+
+<p>This fixed my leak, so it must have had to do with how I was allocated and releasing the NSManagedObjectContext. Thank you for the pointers, @albertamg!</p>

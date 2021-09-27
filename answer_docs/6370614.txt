@@ -1,0 +1,9 @@
+<p>if you only want to remove lines:</p>
+
+<pre><code>grep -v -E '^\[(master|model|msdb|tempdb)\]'
+</code></pre>
+
+<p>if you want to remove the whole block:</p>
+
+<pre><code>perl -0133 -ne 'if ($_ !~ /^(master|model|msdb|tempdb)/) { print "["; print substr($_, 0, -1) }'
+</code></pre>

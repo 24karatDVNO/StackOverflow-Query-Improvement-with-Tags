@@ -1,0 +1,28 @@
+<p>I made name refactoring  to my code edit my query and everything seems to be working. Here are the changes :</p>
+
+<ol>
+<li><p>in the named query:</p>
+
+<pre><code>@NamedQuery(name = "getMenusByPrevilegeId", query = "select m from Menu m  JOIN 
+ m.previleges p where p.previlege.previlegeId = :p")})
+</code></pre></li>
+<li><p>the entity attribute</p>
+
+<pre><code>private List&lt;MenuPrevilege&gt; previleges;
+// getters and setters as well
+</code></pre></li>
+<li><p>in the constructor of the MenuPrevilege entity</p>
+
+<pre><code>public MenuPrevilege(Menu menu, Previlege previlege) {
+super();
+getIdmenuPrevilege().setIdMenu(menu.getUrl());
+getIdmenuPrevilege().setIdPrevilege(previlege.getPrevilegeId());
+this.setMenu(menu);
+this.setPrevilege(previlege);
+menu.getPrevileges().add(this);
+previlege.getMenus().add(this);
+}
+</code></pre></li>
+</ol>
+
+<p>as u can notice it was a syntax error in my query that caused the exception.</p>

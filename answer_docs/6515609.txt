@@ -1,0 +1,16 @@
+<p>I would rather create a script file in ~/bin/` that calls your executable from the appropriate directory.</p>
+
+<p>Here is an example using /sbin/ifconfig:</p>
+
+<pre><code>$ cat &gt; ~/bin/file
+#!/bin/bash
+
+file=/sbin/ifconfig
+cd `dirname $file`
+`basename $file` 
+(ctr+d)
+$ chmod +x ~/bin/file
+$ file
+</code></pre>
+
+<p>Here you should see the output of <code>ifconfig</code> but the point is: its get executed from the <code>/sbin</code> directory. So if ifconfig had dependencies it would work properly. Just replace <code>/sbin/ifconfig</code> with your absolute path.</p>

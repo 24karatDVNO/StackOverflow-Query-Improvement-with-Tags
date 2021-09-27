@@ -1,0 +1,4 @@
+<p>I think you need to call s.listen before every single connection. That is put it inside the infinite loop.
+<code>while True:
+    acceptor.listen(1)
+    #...</code></p>

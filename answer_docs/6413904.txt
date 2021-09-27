@@ -1,0 +1,13 @@
+<p>I think your selector is fine - you're just not doing anything with it.  Try this:</p>
+
+<pre><code>$("div.everyDiv").not(".hide1").not(".hide2").not(".hide3").fadeOut(1000);
+</code></pre>
+
+<p>You can also simplify this selector:  </p>
+
+<pre><code>$("div.everyDiv").not(".hide1, .hide2, .hide3").fadeOut(1000);
+</code></pre>
+
+<p>You can see it working here:</p>
+
+<p><a href="http://jsfiddle.net/nS4jC/1/" rel="nofollow">http://jsfiddle.net/nS4jC/1/</a></p>

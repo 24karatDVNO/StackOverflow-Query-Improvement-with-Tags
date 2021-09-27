@@ -1,0 +1,11 @@
+<p>My guess is that you're actually submitting the form, which is posting back to the server. What you will want to do is cancel the form from submitting and submit it using AJAX (which is what I believe you want?).</p>
+
+<p>To do so, your <code>showInfo()</code> function should do one of these three things (I can never remember which one)</p>
+
+<ol>
+<li><code>return false;</code></li>
+<li>cancel the event, something like <code>e.preventDefault()</code></li>
+<li>stop the propagation, something like <code>e.stopPropagation()</code></li>
+</ol>
+
+<p>Once you've successfully prevented the form from hard-submitting, you can then do what you'd like by submitting your data via AJAX and manipulating your response however you'd like.</p>

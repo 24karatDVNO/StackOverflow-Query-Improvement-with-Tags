@@ -1,0 +1,19 @@
+<p>You could try something like this, assuming the buttons have an id '#id' and content has '#idContent'  otherwise just change the naming convention to work with it.</p>
+
+<pre><code> $.bind('click', function(){
+        if($(this).hasClass('activeButton'))
+        {
+             $(this+'Content').css('display','none');
+             $(this).removeClass('activeButton');
+        }
+        else
+        {
+               $(this+'Content').css('display','block');
+               $(this).addClass('activeButton');
+        }
+    });
+</code></pre>
+
+<p>This is just an example.  You can always change it around to customize your size, but that is the idea.</p>
+
+<p>Sometimes i need to use 'visibility','visible'/'hidden'(instead of display block).  It depends; try both.  </p>

@@ -1,0 +1,8 @@
+<p>If you want to iterate on input fields, and show "name" and "value" when "BUT" is clicked :</p>
+
+<pre><code>$("#BUT").click(function() {
+    $("#mytable input").each(function() {
+        alert("name : " + $(this).attr('name') + " - value : " + $(this).val());
+    });
+});
+</code></pre>

@@ -1,0 +1,3 @@
+<p>There is no difference between starting activity and bringing them to foreground - read about activity lifecycle.
+Service is ineffective if you want to use it as simple timer. Much better approach is to use AlarmManager and scheduling next activity start. <a href="https://stackoverflow.com/questions/6445844/wake-the-device-up-when-app-prompts-user/6446142#6446142">Here</a> you have an example.
+Then just override Activity.onStart() method, to fill all fields you want.</p>

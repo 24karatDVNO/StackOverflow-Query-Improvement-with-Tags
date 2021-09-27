@@ -1,0 +1,29 @@
+<p>The problem is that you're not giving the run loop a chance to run (and therefore, drawing to happen). You'll want to use an <code>NSTimer</code> that fires periodically and sets the next text (you could remember in an instance variable where you currently are).</p>
+
+<p>Or use something like this (assuming that items is an <code>NSArray</code> holding your strings):</p>
+
+<pre><code>- (void)updateText:(NSNumber *)num
+{
+    NSUInteger index = [num unsignedInteger];
+    [label setText:[items objectAtIndex:index]];
+    index++;
+
+    // to loop, add
+    // if (index == [items count]) { index = 0; }
+
+    if (index &lt; [items count]) {
+        [self performSelector:@selector(updateText:) withObject:[NSNumber numberWithUnsignedInteger:index] afterDelay:0.5];
+    }
+}
+</code></pre>
+
+<p>At the beginning (e.g. in <code>viewDidAppear:</code>), you could then call</p>
+
+<pre><code>[self updateText:[NSNumber numberWithUnsignedInteger:0]];
+</code></pre>
+
+<p>to trigger the initial update.</p>
+
+<p>You'd of course need to ensure that the performs are not continuing when your view disappears, you could do this by canceling the performSelector, or if you're using a timer, by simply invalidating it, or using a boolean, or ...</p>
+
+<p>And if you want to get really fancy, use GCD :)</p>

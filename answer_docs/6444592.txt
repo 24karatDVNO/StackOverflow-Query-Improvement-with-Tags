@@ -1,0 +1,15 @@
+<p>It could also work like this, if Nodes can be copied:</p>
+
+<pre><code>Node convert(string line) {
+   Node n;
+   n.lastname = "abc";
+   return n;
+ }
+</code></pre>
+
+<p>But Node will need to support copying:</p>
+
+<pre><code>Node n = convert("abc");
+</code></pre>
+
+<p>The copying can be implemented by copy constructor.</p>

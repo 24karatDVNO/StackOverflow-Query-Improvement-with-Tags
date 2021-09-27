@@ -1,0 +1,8 @@
+<p>Looks like the only thing delimiting your text is the --------------------------------------------------------------------- characters.</p>
+
+<p>How about using string.Split().  Here is an example:</p>
+
+<pre><code>string[] textArray = wholeText.Split(new string[] {"---------------------------------------------------------------------"}, StringSplitOptions.RemoveEmptyEntries);
+
+string text = textArray[2];
+</code></pre>

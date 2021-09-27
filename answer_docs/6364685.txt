@@ -1,0 +1,25 @@
+<p>This method avoids creating circular references (or closures that make circular references), and avoids global variables.</p>
+
+<pre><code>function submitQuickview() {
+
+   var s = document.getElementById("quantity");
+
+        if(productForm.validate()){
+
+            //submit the form with ajax
+            new Ajax.Request($('product_addtocart_form').action, {
+                parameters: $('product_addtocart_form').serialize(true),
+                onSuccess: checkIt
+            });
+        }
+
+        return false;
+    }
+
+function checkIt() {
+   var s = document.getElementById("quantity");
+   // grab your value
+   var quant = s.options[s.selectedIndex].text;
+   alert(quant);
+}
+</code></pre>

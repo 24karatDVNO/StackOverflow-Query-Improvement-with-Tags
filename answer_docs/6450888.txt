@@ -1,0 +1,3 @@
+<p><code>static</code> is a way to instruct the compiler "the following function is not manipulating instance variable, only things that are global to all the instances of this class". You use that when you need to keep your constructor private for some reason, or have a function that does instances management (registration, etc.) </p>
+
+<p>When you intend to have only one instance of a given class (e.g. because it is a resource manager), you usually prefer to follow the <em>singleton</em> pattern: a static <code>getInstance()</code> method that return the only instance of that class and create it if needed, then you keep your other methods regular methods and your state instance members.</p>

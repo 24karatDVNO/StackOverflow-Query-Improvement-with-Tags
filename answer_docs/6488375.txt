@@ -1,0 +1,7 @@
+<p>You are expecting Eclipse to run the program in the project root directory.  Unless you did something special with your "Run" configuration, I'd be suprised if it really starts there.</p>
+
+<p>Try printing out your current working directory to make sure this is the right path.</p>
+
+<p>Then try verifying that the bin / build directory contains your "*.abc" files, as they are not Java source files and may have not been copied into the compilation output directory.</p>
+
+<p>Assuming that they are in the compliation directory, rewrite your file loader to use a relative path based on the class laoder's path.  This will work well in exanded collections of .class files in directories (and later in packed JAR files).</p>

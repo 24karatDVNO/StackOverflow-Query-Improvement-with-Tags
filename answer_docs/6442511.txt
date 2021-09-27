@@ -1,0 +1,15 @@
+<p>Other answer about 4 shell scripts does not fully satisfies me as it assumes that all tasks take approximatelu the same time and because it requires manual set up. But here is how I would improve it.</p>
+
+<p>Main script will create symbolic links to executables following certain namimg convention. For example,</p>
+
+<pre><code>ln -s executable1 ./01-task.01
+</code></pre>
+
+<p>first prefix is for sorting and suffix identifies batch (01-04).
+Now we spawn 4 shell scripts that would take batch number as input and do something like this</p>
+
+<pre><code>for t in $(ls ./*-task.$batch | sort ; do
+   t
+   rm t
+done
+</code></pre>

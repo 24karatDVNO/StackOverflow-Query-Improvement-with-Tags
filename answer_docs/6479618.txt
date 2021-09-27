@@ -1,0 +1,20 @@
+<pre><code>previousButton.setOnClickListener(new OnClickListener() 
+     {
+         @Override
+         public void onClick(View v) 
+         {
+             finish();
+         }
+     });         
+
+
+nextButton.setOnClickListener(new OnClickListener() 
+     {
+         @Override
+         public void onClick(View v) 
+         {
+                Intent loginIntent = new Intent(currentActivity.this, NextActivity.class);
+             startActivity(loginIntent);
+         }
+     });
+</code></pre>

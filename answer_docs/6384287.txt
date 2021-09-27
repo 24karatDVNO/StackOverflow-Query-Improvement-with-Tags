@@ -1,0 +1,35 @@
+<p>I made a mistake with my assessment.  I was looking at the debugger values when hovering over the array.  It would show that there was one object and the object pointer was 0x0. I changed the code:</p>
+
+<pre><code>- (void) endDevices:(NSNumber *)numberOfDevices {
+
+    // get out of here is there is no device in the device array
+    if (!self.deviceArray)
+        return;
+
+    NSLog(@"Array Count: %i", [self.deviceArray count]);
+    for (id object in self.deviceArray) {
+        if (object == nil) {
+            NSLog(@"Nil Object");
+        } else {
+            AmeriscanDevice *dev = (AmeriscanDevice *)object;
+            NSLog(@"Device: %@", [dev description]);
+        }
+
+    }
+
+    // lets sort the array by order of the devices sort order
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sortOrder" ascending:YES];
+    NSArray *sortDescriptorArray = [NSArray arrayWithObject:sortDescriptor];
+
+    // the array should now be sorted correctly...
+    [self.deviceArray sortUsingDescriptors:sortDescriptorArray];
+
+    // we now have data -- so.... lets reload the table
+    [self.tableView reloadData];
+
+}
+</code></pre>
+
+<p>Once I changed this code, it showed that the object in the array was in face the proper type object.  </p>
+
+<p>My problem was in the display of a table.  Apparently the cellForRowAtIndexPath method is not being called in the table when I called the reloadData or when the view is first shown.  I created this table view using xcode 4, so I am heading into the xib file to see whats not linked :)</p>

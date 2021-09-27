@@ -1,0 +1,9 @@
+<p>You will need to use an <code>NSPredicate</code> instance to get the particular data. You will need to add this in <code>if</code> clause above,</p>
+
+<pre><code>if ( [data containsObject:dateString] ) {
+    NSDate * searchDate = [formatter dateFromString:dateString];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@" timeStamp == %@ ", searchDate];
+
+    /* Create a fetch request with the predicate above and get the results from the MOC */
+}
+</code></pre>

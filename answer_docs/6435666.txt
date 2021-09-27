@@ -1,0 +1,10 @@
+<p>An sql query like this (using wordpress as an example) would get you the records in the correct order, and have the correct formatting:</p>
+
+<pre><code>select date_format(post_date, "%d %b")  as day, date_format(post_date, "%T") as time from wp_posts;
+</code></pre>
+
+<p>You could then iterate through this array and start a new "day" heading whenever the first column changes.</p>
+
+<p>I really wouldn't recommend querying the db one row at a time as suggested by @Lainlwakura's comment - PHP is slow, iterating over single row queries is slow. PHP array sorting, especially on string keys is incredible slow. If you are listing records spanning a year or so, that approach won't work.</p>
+
+<p>Let mysql do as much for you as you can.</p>

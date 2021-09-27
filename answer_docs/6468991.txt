@@ -1,0 +1,32 @@
+<p>Perhaps something like this (plain JS)</p>
+
+<pre><code>&lt;script&gt;
+
+var tId=[];
+
+window.onload=function() {
+  var inputs =document.getElementsByTagName("input");
+  for (var i=0, n=inputs.length;i&lt;n;i++) {
+    if (inputs[i].className.indexOf("watch") !=1) {
+      inputs[i].onfocus=function() {
+        var id = this.id;
+        tId[id]=setInterval(
+          function(){ 
+            var fld = document.getElementById(id);
+            if (fld.value!=fld.defaultValue) fld.onchange() 
+          },100);
+      }      
+      inputs[i].onblur=function() {
+        var id = this.id;
+        clearInterval(tId[id])
+      }      
+    }
+  }
+}
+
+
+&lt;/script&gt;
+&lt;form id="form1"&gt;
+&lt;input type="text" name="field1" id="field1" value="" class="watch"/&gt;
+&lt;/form&gt;
+</code></pre>

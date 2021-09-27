@@ -1,0 +1,10 @@
+<p>You can simply overwrite the default <code>window.alert</code> method.</p>
+
+<pre><code>window.alert = function( text ) {
+    createAWonderfulDialog( text );
+};
+</code></pre>
+
+<p>Even if I usually don't suggest to overwrite/change any buildin methods, this one is an exception. Oldish browser still lock up the complete browser with a modal dialog, which is totally outdated.</p>
+
+<p>So go on, do it!</p>

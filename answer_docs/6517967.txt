@@ -1,0 +1,15 @@
+<p>Select the child items first and then include the parent.  Then at the end, just select a list of the parent entity that you were after.</p>
+
+<pre><code>Messages.Include("MessageThread")
+        .Where(m =&gt; m.FromAccount == userAccount
+                 || m.ToAccount == userAccount)
+        .Select(m =&gt; m.MessageThread)
+</code></pre>
+
+<p>If you leave the select off the end you get a list of messages with the parents included. It depends on what you where after.</p>
+
+<p>OR.... (this, which is a bit neater)</p>
+
+<pre><code>MessageThreads.Where(s =&gt; s.Messages.Any( m =&gt; m.FromAccount == userAccount
+                                            || m.ToAccount == userAccount))
+</code></pre>

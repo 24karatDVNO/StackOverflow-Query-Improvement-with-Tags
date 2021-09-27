@@ -1,0 +1,5 @@
+<p>Not sure but you may be running into a common misunderstanding of what <code>mouseout</code> really does. Due to bubbling the event also triggers on child elements which is not really intuitive. </p>
+
+<p><a href="http://www.quirksmode.org/dom/events/mouseover.html" rel="nofollow">http://www.quirksmode.org/dom/events/mouseover.html</a></p>
+
+<p>Try <code>mouseleave</code> and see if that works.</p>

@@ -1,0 +1,7 @@
+<p>This should make sure the cart is properly updated :</p>
+
+<pre><code>        session_write_close();
+        $this-&gt;_redirect('checkout/cart');
+</code></pre>
+
+<p>When I add this to my extended cartcontroller functions after my product add and cart save then the cart renders my added product correctly.</p>

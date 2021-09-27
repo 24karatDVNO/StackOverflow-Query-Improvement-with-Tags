@@ -1,0 +1,66 @@
+<p>The same way you refactor anything.  You first have to figure out what
+the code is doing.  In this case, many of the tests are irrelevant, and
+each of the loops does basically the same thing.  You've solved one very
+specific case (very sloppily) of a more general problem.  Working out
+the general algorithm for the problem will result in a cleaner, simpler
+solution, and one that is more general.  Something like this:</p>
+
+<pre><code>class Combin
+{
+    int m;
+    int n;
+    int total;
+    std::vector&lt;int&gt; values;
+
+    void calc();
+    void dumpVector() const;
+public:
+    Combin( int m, int n ) : m(m), n(n), total(0) {}
+    int operator()() { total = 0; values.clear(); calc(); return total; }
+};
+
+void 
+Combin::calc()
+{
+    if ( values.size() == m ) {
+        dumpVector();
+        ++ total;
+    } else {
+        values.push_back( values.empty() ? 0 : values.back() + 1 );
+        int limit = n - (m - values.size());
+        while ( values.back() &lt; limit ) {
+            calc();
+            ++ values.back();
+        }
+        values.pop_back();
+    }
+}
+
+void
+Combin::dumpVector() const
+{
+    for (std::vector&lt;int&gt;::const_iterator iter = values.begin(); iter != values.end(); ++ iter )
+        std::cout &lt;&lt; ' ' &lt;&lt; *iter + 1;
+    std::cout &lt;&lt; '\n';
+}
+
+int main()
+{
+    Combin c( 6, 20 );
+    std::cout &lt;&lt; "TotalCombinations:" &lt;&lt; c() &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+
+<p>The only thing really worthy of comment in the above is the calculation
+of <code>limit</code> in <code>calc</code>, and that's really just an optimization; you could
+use <code>n</code> and get the same results (but you'd recurse a bit more).</p>
+
+<p>You'll note that in your original versions, the end conditions of the
+loops are more or less arbitrary: using <code>range</code> systematically would
+work, or you could work out the formula which I use for <code>limit</code> (which
+would result in a different end condition for each loop.</p>
+
+<p>Also, my code uses the half open intervals which are ubiquious in C and
+C++.  I think that once you get used to them, you'll find them much
+easier to reason about.</p>

@@ -1,0 +1,18 @@
+<p>The condition should probably detect if there is any process sleeping (blocked) in the queue. However, I think these conditions are not correct, considering behaviour of a binary semaphore (semaphore initially with s == 1) the pseudocode should be</p>
+
+<pre><code>wait(Semaphore s){ 
+  s=s-1;
+  if (s&lt;0) {
+    // add process to queue
+    block();
+  }
+}
+
+signal(Semaphore s){
+  s=s+1;
+  if (s&lt;=0) {
+    // remove process p from queue
+    wakeup(p);
+  }
+}
+</code></pre>

@@ -1,0 +1,53 @@
+<p>Below functions will be helpful to you.</p>
+
+<p>"getDateTimeFromString" will take date and time as argument and it will return NSDate object.\</p>
+
+<pre><code>-(NSDate *)getDateTimeFromString :(NSString *)tempDate :(NSString *)tempTime{
+
+NSString *dateValue = [tempDate stringByAppendingFormat:@" %@",tempTime];
+
+NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+
+[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+
+NSDate *date = [[NSDate alloc] init];
+date = [dateFormatter dateFromString:dateValue];
+
+NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+
+NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:date];
+NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:date];
+NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+
+NSDate* destinationDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:date] autorelease];
+
+return date;
+}
+</code></pre>
+
+<p>"getDateStringFromDate" will take NSDate as argument and it will return NSString.
+So, you can NSLog that value.</p>
+
+<pre><code>-(NSString *)getDateStringFromDate :(NSDate *)dateValue{
+
+NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+[dateFormat setDateFormat:@"yyyy-MM-dd"];
+
+NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
+[timeFormat setTimeStyle:NSDateFormatterShortStyle];
+
+[timeFormat setDateFormat:@"HH:mm a"];  
+
+ NSString *theDate = [dateFormat stringFromDate:dateValue];
+
+ /*NSLog(@"\n"        
+ "theDate: |%@| \n"
+ "theTime: |%@| \n"
+ , theDate, theTime);*/
+
+return theDate;
+}
+</code></pre>
+
+<p>Hope you will get the answer.</p>

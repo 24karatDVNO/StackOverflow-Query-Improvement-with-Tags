@@ -1,0 +1,5 @@
+<pre><code>select hostname,
+       max(datequeried) as datequeried
+from YourTable
+group by hostname
+</code></pre>

@@ -1,0 +1,95 @@
+<p><strong>Abandon full accordion functionality</strong></p>
+
+<p>If you can live without a full accordion, you could easily accomplish something similar to what you want by using a <code>TabControl</code>, with alternate layout (<code>TabStripPlacement="Left"</code>).</p>
+
+<p>See this question (the same as in my comments):  <a href="https://stackoverflow.com/questions/6014796/create-tabbed-sidebar-with-sections-wpf">Create Tabbed Sidebar with sections WPF</a></p>
+
+<p><strong>Existing Library</strong></p>
+
+<p>There are existing WPF control libraries with accordions:</p>
+
+<ul>
+<li><a href="http://wpf.codeplex.com/" rel="nofollow noreferrer">WPF Toolkit</a></li>
+<li>Telerik Rad controls - <a href="http://www.telerik.com/products/wpf.aspx" rel="nofollow noreferrer">http://www.telerik.com/products/wpf.aspx</a> (or silverlight/asp.net MVC, etc)</li>
+<li>Many others, most of them for money...</li>
+</ul>
+
+<p><strong>DIY</strong></p>
+
+<p>You can try using a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.treeview.aspx" rel="nofollow noreferrer"><code>TreeView</code></a> to implement your accordion, too.  You just need a few tricks up your sleeve to accomplish this:</p>
+
+<p>First, you need to hide the tree-view buttons.  They will mess up what we're trying to accomplish.  See this question - <a href="https://stackoverflow.com/questions/3361243/treeview-hide-buttons">Treeview hide [+] [-] buttons</a></p>
+
+<p>Second, you want to ensure that the <code>IsExpanded</code> property is set to true if a <code>TreeViewItem</code> or one of its children is selected, and set to false otherwise.  You can do this with a <code>IMultiValueConverter</code> combined with a <code>Style</code> for <code>TreeViewItem</code>.</p>
+
+<pre><code>&lt;Window x:Class="WpfApplication1.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:WpfApplication1"&gt;
+
+&lt;!-- ... --&gt;
+
+&lt;TreeView&gt;
+  &lt;TreeView.Resources&gt;
+    &lt;local:SelectedItemToIsChildConverter x:Key="isChildConverter" /&gt;
+    &lt;Style TargetType="{x:Type TreeViewItem}"&gt;
+      &lt;Style.Setters&gt;
+        &lt;Setter Property="IsExpanded"&gt;
+          &lt;Setter.Value&gt;
+            &lt;MultiBinding Converter="{StaticResource isChildConverter}"&gt;
+              &lt;Binding Path="SelectedItem"
+                RelativeSource="{RelativeSource AncestorType={x:Type TreeView}}" /&gt;
+              &lt;Binding RelativeSource="{RelativeSource Self}" /&gt;
+            &lt;/MultiBinding&gt;
+          &lt;/Setter.Value&gt;
+        &lt;/Setter&gt;
+      &lt;/Style.Setters&gt;
+    &lt;/Style&gt;
+  &lt;/TreeView.Resources&gt;
+  &lt;!-- Children here, or set ItemsSource property via databinding --&gt;
+&lt;/TreeView&gt;
+</code></pre>
+
+<p>Here's the code for the converter, in separate CS file:</p>
+
+<pre><code>public class SelectedItemToIsChildConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        TreeViewItem selectedItem = values.Length &gt; 0 ? values[0] as TreeViewItem : null;
+        TreeViewItem targetItem = values.Length &gt; 1 ? values[1] as TreeViewItem : null;
+
+        if (targetItem == null)
+            return false;
+
+        TreeViewItem currentItem = selectedItem;
+        while (currentItem != null)
+        {
+            if (currentItem == targetItem)
+                return true;
+            currentItem = currentItem.Parent as TreeViewItem;
+        }
+
+        return false;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+</code></pre>
+
+<p>After this, you would have to style it to make it look nice, and support animation.</p>
+
+<p>Once this is all done, use a grid to split up your UI.  Use data binding to show content on your main UI area, based off the selected tree view item.</p>
+
+<p><strong>Edit:</strong></p>
+
+<p>Actually, a tree view is a poor base for an accordion.  I searched a bit for details on accordion controls, and it turns out that they tend to only have one level of hierarchy.</p>
+
+<p>With this description in mind, it may be easier to use a <code>DataGrid</code>, and take advantage of the <code>RowDetails</code> to expand your accordion view.</p>
+
+<p>Here's a brief tutorial: <a href="http://www.wpftutorial.net/DataGrid.html#rowDetails" rel="nofollow noreferrer">http://www.wpftutorial.net/DataGrid.html#rowDetails</a></p>
+
+<p>Just make sure most of the data grid features are disabled.</p>

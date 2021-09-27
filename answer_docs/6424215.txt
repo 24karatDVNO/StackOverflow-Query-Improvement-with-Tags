@@ -1,0 +1,11 @@
+<p>I don't think it's feasible to upload directly from the browser to your FTP as you would have to have your credentials more or less visible on the website (e.g. in your javascript source).</p>
+
+<p>I once created something similar, but because of that issue I decided to upload via <code>plupload</code> to Amazon S3 and sync the files afterwards via <code>s3sync</code>. The advantages were</p>
+
+<ul>
+<li>Large filesizes (2GB+)</li>
+<li>One time Tokens for upload, no need to send credentials to the client</li>
+<li>no traffic to your web server (The communication runs <code>client-&gt;s3</code>)</li>
+</ul>
+
+<p>Take a look at this thread for an implementation: <a href="http://www.plupload.com/punbb/viewtopic.php?id=133" rel="nofollow">http://www.plupload.com/punbb/viewtopic.php?id=133</a></p>

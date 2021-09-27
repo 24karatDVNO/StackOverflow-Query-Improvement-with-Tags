@@ -1,0 +1,5 @@
+<p>If you're using jQuery 1.6 then you need to either use <code>is(":checked")</code> as suggested by Sarf or use <code>prop</code> instead of <code>attr</code>.  As of 1.6 <code>attr("checked")</code> is going to return the attribute value which was set when the page loaded.  </p>
+
+<p><a href="http://api.jquery.com/prop/" rel="nofollow">http://api.jquery.com/prop/</a></p>
+
+<p>Prior to 1.6 I believe using <code>attr("checked")</code> would have worked as you expected.</p>

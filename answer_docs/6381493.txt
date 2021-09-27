@@ -1,0 +1,22 @@
+<p>I'm not sure about adding the class to the table, but here is one way of 'renaming' the return type of the sproc.</p>
+
+<p>The following steps assume a stored procedure named "GetSomeThings" and a dataContext called "DataContext".</p>
+
+<p>When you add the sproc to the designer, rename it to "GetSomeThingsPrivate". in the designer.cs file there will now be defined a class called "GetSomeThingsPrivateResult".</p>
+
+<p>Create a new class called "Thing". define a new partial class as follows: <code>public partial class GetSomeThingsPrivateResult : Thing {}</code></p>
+
+<p>define a new partial class as follows:</p>
+
+<pre><code>public partial class DataContext
+{
+    public IEnumerable&lt;Thing&gt; GetSomeThings()
+    {
+        return GetSomeThingsPrivate.Cast&lt;Thing&gt;();
+    }
+}
+</code></pre>
+
+<p>now you can call the <code>GetSomeThings()</code> method, which will call the <code>"GetSomeThings"</code> stored procedure, and what you get back will be an IEnumerable of <code>Thing</code>, instead <code>GetSomeThingsResult</code>.</p>
+
+<p>Note that the designer generated method returns ISingleResult whereas the new method returns IEnumerable. If you need ISingleResult functionality then you will need to find an additional workaround - I didn't spend much time trying to get that working.</p>

@@ -1,0 +1,23 @@
+<p>Found this while researching same problem. This is how I fixed it since it hasn't been marked. </p>
+
+<p>I have used converter which converts value to <code>null</code> if it is just an empty datatime object.</p>
+
+<pre><code>public class DateTimeToNullConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DateTime dt = new DateTime(); 
+            if (dt.Equals(value)) return null; 
+            return value;
+        } 
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) 
+        { 
+            return value; 
+        }
+    }
+</code></pre>
+
+<p>XAML:</p>
+
+<pre><code>SelectedValue="{Binding CurrentContractRenewal.ExpiryDate, Mode=TwoWay, Converter={StaticResource DateTimeToNullConverter}}" 
+</code></pre>

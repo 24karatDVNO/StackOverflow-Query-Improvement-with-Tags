@@ -1,0 +1,11 @@
+<p>Add <code>Data.txt</code> to the resources folder and do something like this:</p>
+
+<pre><code>NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Data" 
+                                                     ofType:@"txt"];
+if (filePath != nil) {
+  theContents = [NSString stringWithContentsOfFile:filePath
+                                          encoding:NSUTF8StringEncoding
+                                             error:NULL];
+
+}
+</code></pre>

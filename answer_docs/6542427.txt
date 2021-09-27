@@ -1,0 +1,6 @@
+<p>Adding to Jeremy's solution of starting with keeping the whole class, the specific solution for me was to add the "java.lang" infront of the String arguments. </p>
+
+<pre><code>-keep public class com.mycompany.appName.myClass {
+  java.lang.String myMethod(java.lang.String, java.lang.String, java.lang.String); 
+}
+</code></pre>

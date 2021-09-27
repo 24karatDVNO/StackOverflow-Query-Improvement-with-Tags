@@ -1,0 +1,1 @@
+<p>If you're providing that string in code, you need to reformat it to be a 2-d string (e.g. new string[,] { { "a", "b" }, {"c", "d"} }).  If you're getting that string from some other source, you need to parse it first. You're taking a string and telling it to convert it to a 2-d string array, which is not possible, since you're only providing a single string.</p>

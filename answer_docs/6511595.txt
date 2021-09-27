@@ -1,0 +1,7 @@
+<p>Similar to @theoretical's answer, another thing to check/try:</p>
+
+<p>Ensure that "Key" and "Value" are defined as properties on DataContext.Items2.  Make sure they're not public data fields, but actually are properties; some of the .NET controls (Repeaters, I think) look explicitly and only for Properties when doing reflection.</p>
+
+<p>Maybe temporarily switch ddl2's DataValueField and DataTextField settings to be the same as ddl1, to help narrow down the possible issues.</p>
+
+<p>You've got me curious as to the root cause of this issue - good luck!</p>

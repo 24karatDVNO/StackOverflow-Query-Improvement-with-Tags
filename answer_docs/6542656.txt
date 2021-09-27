@@ -1,0 +1,17 @@
+<p>Sure, how about this?</p>
+
+<pre><code>create table t1 (
+t varchar(20) 
+)
+
+go
+insert into t1 (t) values ('R123'),('R234'),('R345'),('J123')
+go
+
+select Numerals 
+from (
+    select SUBSTRING(t,1,1) as Prefix, SUBSTRING(t,2,999) as Numerals
+    from t1) a
+group by Numerals
+having COUNT(*) = 1
+</code></pre>

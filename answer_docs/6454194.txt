@@ -1,0 +1,4 @@
+<pre><code>SELECT TOP 1 WITH TIES * 
+FROM YourTable
+ORDER BY ROW_NUMBER() OVER(PARTITION BY hostname ORDER BY datequeried DESC)
+</code></pre>

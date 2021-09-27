@@ -1,0 +1,24 @@
+<p>Your problem seems to be that you have a tablename in a variable but you need to turn the value of that variable into an identifier so that you can do normal SQL things with it. You could so something somewhat <a href="http://dev.mysql.com/doc/refman/5.6/en/if-statement.html" rel="nofollow">ugly like this</a>:</p>
+
+<pre><code>IF nameoftable = 'table1' THEN
+    UPDATE table1 SET status = 'D' WHERE email = 'you@example.com';
+ELSEIF nameoftable = 'table2' THEN
+    UPDATE table2 SET status = 'D' WHERE email = 'you@example.com';
+-- etc
+END IF;
+</code></pre>
+
+<p>Or you could use <a href="http://dev.mysql.com/doc/refman/5.6/en/sql-syntax-prepared-statements.html" rel="nofollow">a prepared statement</a> (which is, more or less, a form of <code>eval</code>):</p>
+
+<pre><code>PREPARE stmt FROM CONCAT('UPDATE ', nameoftable, ' SET status = ? WHERE email = ?');
+EXECUTE stmt USING 'D', 'you@example.com';
+</code></pre>
+
+<p>I'm pretty sure that the <code>CONCAT</code> will work in that context but if not, you can build the SQL as a variable and <code>PREPARE</code> that:</p>
+
+<pre><code>SET @update = CONCAT('UPDATE ', nameoftable, ' SET status = ? WHERE email = ?');
+PREPARE stmt FROM @update;
+EXECUTE stmt USING 'D', 'you@example.com';
+</code></pre>
+
+<p>The rest of your procedure seems pretty straight forward once you get over the problem of converting a variable's value to an SQL identifier.</p>

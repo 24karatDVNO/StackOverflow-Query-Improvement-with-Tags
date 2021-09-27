@@ -1,0 +1,19 @@
+<p>One possible answer: you have a third MOC you didn't know was there / forgot about.  (This happened to me.)</p>
+
+<p>I had</p>
+
+<ol>
+<li><code>mainMOC</code></li>
+<li><code>editorMOC</code></li>
+<li><code>viewerMOC</code> which came about by accidentally misguided subclassing - it was supposed to be looking at the main MOC, but instead was creating its own and looking at a frozen state.  The "checking for edits" relationship was going the other direction, because it was expected to be the "editor" in this scenario.</li>
+<li>the notification is correctly invoking the callback, and the data is being merged correctly into the main MOC (which i could tell because the data was correct on relaunch)</li>
+</ol>
+
+<p>note: <code>refreshObject:mergeChanges:</code> is not needed.  it's something i tried, too, when it wasn't working, but the merge of the notification should take care of all the objects for you.</p>
+
+<pre><code>- (void)twinStackUpdated:(NSNotification *)notification {
+  [[self managedObjectContext] mergeChangesFromContextDidSaveNotification:notification];
+}
+</code></pre>
+
+<p>not sure that this was <em>your</em> problem, but it might be someones, so there it is.</p>

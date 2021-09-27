@@ -1,0 +1,99 @@
+<p>At this moment in time, the following code appears to work on my device, but not on the simulator. Most testing needs doing though. The key fix is in the reuse of the cell, and probably [table reloadData]</p>
+
+<pre><code>// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+[table reloadData];
+return [super shouldAutorotateToInterfaceOrientation:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+[table reloadData];
+[super viewDidAppear:animated];
+}
+
+//This is a call back invoked by the interface when drawing the table view. This method will create a cell for each
+//row and add text to each cell depending on the string retrieved from the datasource.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+NSString * identifier = [NSString stringWithFormat:@"SwitchCell %d", indexPath.row]; // The cell row
+
+UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+CGFloat textLabelFontSize = 19;
+
+if (cell==nil){
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
+    // set the labels to the appropriate text for this row
+    cell.textLabel.text = [(Group*)[composeData objectInChosenGroupsListAtIndex:indexPath.row]groupName];
+    cell.textLabel.font = [UIFont systemFontOfSize:textLabelFontSize];
+
+    if ([(Group*)[composeData objectInChosenGroupsListAtIndex:indexPath.row]isDynamic]){
+         cell.detailTextLabel.text = NSLocalizedString(@"dynamic", @"dynamic");
+    }
+    else {
+        //get and set the group size
+        int groupSize = [(Group*)[composeData objectInChosenGroupsListAtIndex:indexPath.row]groupSize];
+
+        if (groupSize == 1)
+            cell.detailTextLabel.text = NSLocalizedString(@"1Contact", @"1 contact");
+        else
+            cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%dContacts", @"%d contacts"), groupSize];
+    }
+}
+
+
+CGFloat width = [[self table] frame].size.width-cell.indentationWidth-50;
+
+int section = indexPath.section;
+
+NSString *title_string = cell.textLabel.text;
+NSString *detail_string = cell.detailTextLabel.text;
+
+CGSize title_size = {0, 0};
+CGSize detail_size = {0, 0};
+
+if (title_string &amp;&amp; [title_string isEqualToString:@""] == NO ) {
+    title_size = [title_string sizeWithFont:[UIFont systemFontOfSize:textLabelFontSize]
+                          constrainedToSize:CGSizeMake(width, 4000)
+                              lineBreakMode:cell.textLabel.lineBreakMode];
+}
+
+if (detail_string &amp;&amp; [title_string isEqualToString:@""] == NO ) {
+    detail_size = [detail_string sizeWithFont:[UIFont systemFontOfSize:18.0]
+                            constrainedToSize:CGSizeMake(width, 4000)
+                                lineBreakMode:cell.detailTextLabel.lineBreakMode];
+}
+
+CGFloat title_height = title_size.height;
+CGFloat detail_height = detail_size.height;
+
+CGFloat content_size = title_height + detail_height;
+
+CGFloat height;
+
+switch ( section ) {
+
+    case 0:
+        height = content_size;
+        break;
+
+        //Just in case  
+    default:
+        height = 44.0;
+        break;
+
+}
+
+//hard code numberOfLines, to avoid ugly stretching when delete slides in
+cell.textLabel.numberOfLines = title_height/[UIFont systemFontOfSize:textLabelFontSize].lineHeight;
+//set height for retrieval later if neccesary
+cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, height);
+
+return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+UITableViewCell *cell = (UITableViewCell *)[self tableView: tableView cellForRowAtIndexPath: indexPath];
+return cell.frame.size.height;
+}
+</code></pre>

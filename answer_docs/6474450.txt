@@ -1,0 +1,5 @@
+<p>Do you really need to do that at all?</p>
+
+<p>If your ajax call succeeds than HTTP 200 will be returned and your success jQuery callback will be called. If your call fails than just throw an exception and let jQuery call error callback after it received HTTP 500 from the server.</p>
+
+<p>HTTP status codes are the proper way to inform the caller if the call has succeeded or failed for a certain reason.</p>

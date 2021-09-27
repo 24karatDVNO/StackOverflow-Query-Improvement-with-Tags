@@ -1,0 +1,15 @@
+<pre><code>&lt;script type="text/javascript"&gt;
+
+    function isObjVisibile(obj){
+
+        return obj.offsetTop != -1;
+    }
+&lt;/script&gt;
+
+
+&lt;input type=button onclick="alert(isObjVisibile(document.getElementById('myTest')))" value='is visible'&gt;
+&lt;input type=button onclick="document.getElementById('test2').style.display = 'none';" value='hide'&gt;
+&lt;div id='test2'&gt;
+&lt;div id='myTest'&gt;test&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>

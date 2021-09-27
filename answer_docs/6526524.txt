@@ -1,0 +1,9 @@
+<p>You'll need this sed command to do that replacement at the top of your files:</p>
+
+<pre><code>sed -i -n '/\(License\)/,/\(public class\)/{1h;1!H;/public class /{;g;s/\(License\).*\(public class \)/\1 2:\nyyyyyyyyyyyyyy\nyyyyyyyyyyyyyy\nyyyyyyyyyyyyyy\nyyyyyyyyyyyyyyyy\n\2/;p;};};/\(License\)/,/\(public class\)/!p' file.txt
+</code></pre>
+
+<p>Now to do it recursively you can combine above with find (assuming you're doing this in <code>.txt</code> files):</p>
+
+<pre><code>find . -name "*.txt" -exec sed -i -n '/\(License\)/,/\(public class\)/{1h;1!H;/public class /{;g;s/\(License\).*\(public class \)/\1 2:\nyyyyyyyyyyyyyy\nyyyyyyyyyyyyyy\nyyyyyyyyyyyyyy\nyyyyyyyyyyyyyyyy\n\2/;p;};};/\(License\)/,/\(public class\)/!p' {} \;
+</code></pre>

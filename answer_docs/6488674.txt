@@ -1,0 +1,13 @@
+<p>I don't know any out of the box plugins that will achieve what you are after. However you should be able to write your own with help from <a href="http://api.jquery.com/load-event/" rel="nofollow">.load()</a> and <a href="http://docs.jquery.com/UI/Progressbar" rel="nofollow">.progressbar()</a>.</p>
+
+<p>General idea would be to show you loading gfx by default with everything else hidden. Once everything has loaded then show your main UI.</p>
+
+<pre><code>$(document).ready(function(){
+    $(window).load(function() {
+        $("#loading").hide();
+        $("#mainUI").show();
+    });
+});
+</code></pre>
+
+<p>Key here is $(window).load().</p>

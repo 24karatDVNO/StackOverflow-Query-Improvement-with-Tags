@@ -1,0 +1,27 @@
+<p>You could also extend the DoNotOwn class which implements an interface defining the event.</p>
+
+<pre><code>public interface IClassDoNotOwn
+{
+    event EventHandler&lt;SomeEventArgs&gt; SomeEvent;
+}
+
+public class ExtendedDonNotOwn : ClassDoNotOwn, IClassDoNotOwn
+{
+
+}
+</code></pre>
+
+<p>And the test method may be : </p>
+
+<pre><code>    [Test]
+    private void TestMethod()
+    {
+        var classDoNotOwn = MockRepository.GenerateStub&lt;IClassDoNotOwn&gt;();
+        var classUnderTest = new ClassUnderTest();
+
+        classDoNotOwn.Raise(dno=&gt; dno.SomeEvent += null, this, EventArgs.Empty);
+        ......
+        ......
+
+    }
+</code></pre>

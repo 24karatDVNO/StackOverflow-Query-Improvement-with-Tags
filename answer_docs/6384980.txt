@@ -1,0 +1,5 @@
+<p>If you want to just ignore "temp.temp" how about an early return?</p>
+
+<pre><code>if (e.Name.Equals("temp.temp", StringComparison.CurrentCultureIgnoreCase))
+    return;
+</code></pre>

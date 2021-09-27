@@ -1,0 +1,3 @@
+<p>I dont see anything about debugging/logging in the JPA specification except for the fact that external properties that a implementation uses will need to use their own namespace (for e.g. com.hibernate.log). </p>
+
+<p>Since the JPA provider needs to be mentioned in persistence.xml, can you not put the implementation specific properties in the same file (atleast thats how it works for Hibernate) ?</p>

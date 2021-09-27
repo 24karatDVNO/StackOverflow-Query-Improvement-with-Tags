@@ -1,0 +1,12 @@
+<p>There's no need to use jQuery, it won't help in this instance.  The best way to do this is to use a regular expression to identify a valid user, in this case a string beginning with the <code>@</code> character.  This code extract all strings starting with an @ symbol from your string:</p>
+
+<p>Unlike the previous examples using split on the <code>@</code> symbol it will ignore anything not starting with an <code>@</code> and only return what's valid without the need for extra tests.</p>
+
+<pre><code>var accts = "@userA @userB @userC   @userD invalidUserE @userF ";
+var user = null;
+var patt = /@\w+/g;
+while(user=patt.exec(accts))
+{
+    alert(user);
+}
+</code></pre>

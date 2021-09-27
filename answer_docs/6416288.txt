@@ -1,0 +1,3 @@
+<p>I'm not sure how(if) ajax works for a non-browser-based app.  You could just maintain your own pool of SocketConnections open for the duration of the application with a Thread per connection.  </p>
+
+<p>If you need to scale to a lot of concurrent connections, look to a non-blocking I/O framework like <a href="http://mina.apache.org" rel="nofollow noreferrer">Apache Mina</a> or <a href="http://www.jboss.org/netty" rel="nofollow noreferrer">Netty</a> (related SO post: <a href="https://stackoverflow.com/questions/1637752/netty-vs-apache-mina">Netty vs Apache MINA</a>).</p>

@@ -1,0 +1,7 @@
+<p>solr allows copyfield to be used as index for autocomplete. this is example from my work in solr auto-suggest/auto-complete, <code>&lt;copyField source="name" dest="text"/&gt;</code>. Clearly that solr will only index the field that you will use in autocomplete.</p>
+
+<p>In the other hand, you cannot retrieve fields unless it is stored, and here I mean the orignal feilds not the copied ones. What I propose is to copy the searchable field ex:name, and then retrieve the all other field based on the query it self. You need to create custom of search handler and request handler.</p>
+
+<p>I'll edit this with full solution, later on.</p>
+
+<p>you can use this article to learn more about the subject and then extend your solution. <a href="http://solr.pl/en/2010/10/18/solr-and-autocomplete-part-1/" rel="nofollow">http://solr.pl/en/2010/10/18/solr-and-autocomplete-part-1/</a>  </p>

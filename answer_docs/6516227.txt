@@ -1,0 +1,21 @@
+<p>So there are a couple of common strategies for moving from SQL to MongoDB.</p>
+
+<ol>
+<li>Dump SQL DB to CSV, use <code>mongoimport</code> on CSV to pull into MongoDB.</li>
+<li>Use existing drivers and write a script that loops through SQL DB and inserts into MongoDB.</li>
+</ol>
+
+<p><strong>Method #1</strong> works for basic data sets, but it may have some problems with binary data. I generally advise against #1 unless you can confirm it's working correctly.</p>
+
+<p><strong>Method #2</strong> is generally suggested.</p>
+
+<p>The process will vary by language, but should be pretty easy. Simply query all of your data from MySQL, transform that data into the format you want for MongoDB and then perform the insert.</p>
+
+<p>There are several benefits to doing it this way:</p>
+
+<ol>
+<li><strong>Easy to track progress</strong>. If you have lots of data you can have your script log progress.</li>
+<li><strong>Easy to re-run</strong>. It's quite possible that you'll need to re-run portions of these "dumps". Having a repeatable script is desirable.</li>
+<li><strong>Tests your code</strong>. You're eventually going to need to insert new items into MongoDB once you switch over. This is a great way to test that your object building is working.</li>
+<li><strong>Schema changes</strong>. It is <em>very</em> unlikely that your MongoDB schema will be exactly like your MySQL schema. In fact you probably don't want it to be like your MySQL schema. You will probably be merging and combining data into your new data structures. You'll want to pull this together all at once.</li>
+</ol>

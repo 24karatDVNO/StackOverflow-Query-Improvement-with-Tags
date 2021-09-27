@@ -1,0 +1,80 @@
+<p>I found a possible solution: UserTypes.</p>
+
+<p>Entity</p>
+
+<pre><code>public class Post : Page
+{
+    [FormattedText]
+    public virtual string Text { get; set; }
+}
+</code></pre>
+
+<p>Mapping</p>
+
+<pre><code>public class PostMapping : SubclassMap&lt;Post&gt;
+{
+    public PostMapping()
+    {
+        Map(x =&gt; x.Text);
+    }
+}
+</code></pre>
+
+<p>UserType (part of it)</p>
+
+<pre><code>public class FormattedText: IUserType
+{
+    public object NullSafeGet(System.Data.IDataReader rs, string[] names, object owner)
+    {
+        string original = (string)NHibernateUtil.String.NullSafeGet(rs, names[0]);
+        // this is where we do the text processing
+        // TODO: the real implementation
+        return new string(original.Reverse().ToArray());
+    }
+    // ...
+}
+</code></pre>
+
+<p>Fluent NHibernate Convention for mapping the custom type</p>
+
+<pre><code>public class FormattedTextConvention : IPropertyConvention
+{
+    public void Apply(IPropertyInstance instance)
+    {
+        if (instance.Property.PropertyType == typeof(string))
+        {
+            if (instance.Property.MemberInfo.GetCustomAttributes(typeof(FormattedTextAttribute), true).Any())
+            {
+                instance.CustomType&lt;FormattedText&gt;();
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>Creating SessionFactory</p>
+
+<pre><code>public class NHibernateThingy
+{
+    public static ISessionFactory CreateSessionFactory(bool isAdminMapping)
+    {
+        var config = Fluently.Configure();
+        config.Database(/* ... */);
+        if (isAdminMapping)
+        {
+            // don't format strings when editing entities
+            // so no FormatTextConvetion here
+            config.Mappings(m =&gt; m.FluentMappings.AddFromAssemblyOf&lt;Content&gt;());
+        }
+        else
+        {
+            // format string when displaying
+            config.Mappings(m =&gt; m.FluentMappings.AddFromAssemblyOf&lt;Content&gt;().Conventions.Add(typeof(FormattedTextConvention)));
+            // use cache to run that heavy text processing only once
+            config.Cache(c =&gt; c.ProviderClass&lt;SysCacheProvider&gt;().UseSecondLevelCache());
+        }
+
+        return config.BuildSessionFactory();
+    }
+}
+</code></pre>

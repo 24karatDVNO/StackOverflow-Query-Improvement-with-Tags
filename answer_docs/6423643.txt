@@ -1,0 +1,3 @@
+<p>Try to avoid where you can the '.*' in regex, you can usually find what you want to get by avoiding other characters, for example [^"]+ not quoted, or ([^)]+) not in parenthesis. So you may just want "([^"]+)" which should give you the whole thing in [0], then in [1] you'll find 'test'.</p>
+
+<p>You could also just replace '"' with '' I think.</p>

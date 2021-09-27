@@ -1,0 +1,11 @@
+<p>What about:</p>
+
+<pre><code>DELETE FROM 
+    MY_TABLE M -- delete from the table
+LEFT JOIN
+    MY_TABLE M2 ON M.user = M2.user -- table needs to be joined TO ITSELF
+WHERE
+    NOT M.LOG_DATE = MAX( M2.LOG_DATE ) -- Anything which isn't MAX goes.
+</code></pre>
+
+<p>Could that work?</p>

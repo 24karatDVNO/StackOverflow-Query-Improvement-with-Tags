@@ -1,0 +1,18 @@
+<p>You need to specify the templated value because the compiler can't deduce it from return value:</p>
+
+<p>method defined:</p>
+
+<pre><code>template &lt;class CImg&gt;
+CImg cn_cimg_get_CNtoCImg(const cnImage &amp;cn) 
+</code></pre>
+
+<p>need to call:</p>
+
+<pre><code>CImg&lt;unsigned char&gt; fromCN = cn_cimg_get_CNtoCImg( CImg&lt;unsigned char&gt; )(cn);
+</code></pre>
+
+<p>It's confusing because the template parameter is called CImg, it is more clear if you rename it to T for example just to see the difference:</p>
+
+<pre><code>template &lt;class T&gt;
+T cn_cimg_get_CNtoCImg(const cnImage &amp;cn);
+</code></pre>

@@ -1,0 +1,7 @@
+<p>First idea: 
+Change your method to:</p>
+
+<pre><code>-(void) openDeal:(UIGestureRecognizer *) recognizer{
+    NSLog(@"%@",[NSString stringWithFormat:@"%d", recognizer.view.tag]);
+}
+</code></pre>

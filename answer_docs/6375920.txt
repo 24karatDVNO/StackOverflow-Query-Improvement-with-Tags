@@ -1,0 +1,21 @@
+<p>Try this:</p>
+
+<pre><code>function getPageSize($total, $maxpages, $pagenumber){
+
+    $itemsperpage=intval($total/$maxpages);
+    if($pagenumber == $maxpages){
+        $itemslastpage=abs($total-($itemsperpage*$maxpages));
+        return $itemslastpage;
+    }else{
+        return $itemsperpage;
+    }
+}
+
+// should print '5'
+echo getPageSize(29,6,6) . "\n";
+
+// should print '7'
+echo getPageSize(14,2,1) . "\n";
+</code></pre>
+
+<p>Note that <code>$limit</code> is not needed as it is only used to control results from database.</p>

@@ -1,0 +1,11 @@
+<p>You need to set the display of the tooltip to <a href="http://craigsworks.com/projects/qtip2/docs/hide/#fixed" rel="nofollow">fixed</a> mode and add a bit of a hide <a href="http://craigsworks.com/projects/qtip2/docs/hide/#delay" rel="nofollow">delay</a> as noted in the documentation so that it doesn't hide while the mouse is "in transit" to the tooltip.</p>
+
+<p>You didn't specify which version you're using, but I'll assume qTip2:</p>
+
+<pre><code>$('.selector').qtip({
+    hide: {
+        fixed: true,
+        delay: 300
+    }
+});
+</code></pre>

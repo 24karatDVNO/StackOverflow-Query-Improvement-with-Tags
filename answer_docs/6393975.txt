@@ -1,0 +1,40 @@
+<p>You can start at the Window class and go down from there, asking [view respondsTo:@selector(isFirstResponder) &amp;&amp; [view isFirstResponder] on each.  Some debugging code that I use might come in handy as a template and also while debugging:</p>
+
+<pre><code>+ (void) dumpWindowFrom:(NSString *) fromText {
+    [self dumpViews:[[UIApplication sharedApplication] keyWindow] from:fromText];
+}
+
+void dumpViewsRecursive(UIView* view, NSString *text, NSString *indent) 
+{
+    Class cl = [view class];
+    NSString *classDescription = [cl description];
+    //  while ([cl superclass])   //restore to print superclass list
+    //  {
+    //      cl = [cl superclass];
+    //      classDescription = [classDescription stringByAppendingFormat:@":%@", [cl description]];
+    //  }
+
+    if ([text compare:@""] == NSOrderedSame)
+        NSLog(@"%d: %@ %@ %@", (int)view, classDescription, NSStringFromCGRect(view.frame), view.hidden ? @"Inv" : @"Vis");
+    else
+        NSLog(@"%d: %@ %@ %@ %@", (int)view, text, classDescription, NSStringFromCGRect(view.frame), view.hidden ? @"Inv" : @"Vis");
+
+    for (NSUInteger i = 0; i &lt; [view.subviews count]; i++)
+    {
+        UIView *subView = [view.subviews objectAtIndex:i];
+        NSString *newIndent = [[NSString alloc] initWithFormat:@"  %@", indent];
+        NSString *msg = [[NSString alloc] initWithFormat:@"%@%d:", newIndent, i];
+        dumpViewsRecursive (subView, msg, newIndent);
+        [msg release];
+        [newIndent release];
+    }
+}
+
++ (void) dumpViews: (UIView *) view {
+    dumpViewsRecursive  (( (!view) ? [[UIApplication sharedApplication] keyWindow] : view), @"" ,@"");
+}
+
++ (void) dumpViews: (UIView *) view from:(NSString *) fromText{
+    dumpViewsRecursive ((!view) ? [[UIApplication sharedApplication] keyWindow] : view, fromText, @"");
+}
+</code></pre>

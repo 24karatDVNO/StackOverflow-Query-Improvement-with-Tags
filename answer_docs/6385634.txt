@@ -1,0 +1,8 @@
+<p>You could do something like this so you wouldn't have to write code for each select/div:</p>
+
+<pre><code>$('select').change(function() {
+    $('div[id^="' + this.id + '"]').text($(this).val());
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/FVGbZ/" rel="nofollow">JSFiddle Example</a></p>

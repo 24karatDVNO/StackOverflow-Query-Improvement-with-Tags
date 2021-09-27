@@ -1,0 +1,24 @@
+<p>Your query would work if you had next XML structure:</p>
+
+<pre><code>&lt;code&gt;
+    &lt;R&gt;1&lt;/R&gt; 
+    &lt;G&gt;2&lt;/G&gt; 
+    &lt;B&gt;3&lt;/B&gt;
+&lt;/code&gt;
+</code></pre>
+
+<p>where R,G,B are subnodes of code.</p>
+
+<p>But in your case, R,G,B as well as code are subnodes of row:</p>
+
+<pre><code>&lt;row&gt;
+    &lt;code&gt; &lt;/code&gt;
+    &lt;R&gt;1&lt;/R&gt; 
+    &lt;G&gt;2&lt;/G&gt; 
+    &lt;B&gt;3&lt;/B&gt;
+&lt;/row&gt;
+</code></pre>
+
+<p>So query <code>file/ROWS/row/*[not(self::code)]</code> will collect all R,G,B values (all subnodes of row except code).</p>
+
+<p>And call <code>doc.SelectNodes()</code>, not <code>doc.DocumentElement.SelectNodes()</code>!</p>

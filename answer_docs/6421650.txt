@@ -1,0 +1,3 @@
+<p>The delay in loading a page, generally, is not in the actual download of the HTML -- that's often quite quick as html is nothing more than Unicode text. Unless there is a <em>HUGE</em> amount of actual text and markup on a page you're not going to save much. Further, in order to get any of the actual content of the page, you'll need to download the entire <code>&lt;head&gt;</code> anyway...</p>
+
+<p>Personally, I would approach this asynchronously. <a href="http://twistedmatrix.com/trac/" rel="nofollow">Twisted</a> is one of the more common suggestions for this type of approach.</p>

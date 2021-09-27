@@ -1,0 +1,11 @@
+<p>First, do the following:</p>
+
+<pre><code>private ReloadableResourceBundleMessageSource messageSoure;
+
+@Autowired
+public void setMessageSource(ReloadableResourceBundleMessageSource messageSoure) {
+    this.messageSoure = messageSoure;
+}
+</code></pre>
+
+<p>Then check in configration xml for bean definition.</p>

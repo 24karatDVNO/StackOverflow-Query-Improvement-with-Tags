@@ -1,0 +1,4 @@
+<pre><code>get-childitem zz* |
+  where-object {$_ -cmatch "^(zz|ZZ)"} |
+   foreach-item {remove-item $_.fullname}
+</code></pre>

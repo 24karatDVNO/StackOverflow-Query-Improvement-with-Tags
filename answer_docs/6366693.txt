@@ -1,0 +1,26 @@
+<p>Something like this should do it, assuming the script fires for <code>http://www.trada.net/*</code>. :</p>
+
+<pre><code>//--- Is this the offline page?
+if (/errorPage/i.test (window.location.href) )
+{
+    //--- Wait 5 minutes and try the main page again.
+    var timeDelay       = 5 * 60 * 1000;    //-- 5 min, in milliseconds.
+
+    setTimeout (function() {
+
+        //--- Get "button" target.  Nominally, http://www.trada.net/p_home.aspx
+        var desiredPage = $('div#art-main div.art-nav ul.art-menu span li a.active')[0].href;
+
+        window.location.replace (desiredPage);
+
+    }, timeDelay);
+
+    return; //-- Don't process the rest of the script since we are not yet on target page(s).
+}
+</code></pre>
+
+<p><br>
+Note that you can probably just skip the <code>desiredPage</code> part and just use:</p>
+
+<pre><code>window.location.replace ('http://www.trada.net/p_home.aspx');
+</code></pre>

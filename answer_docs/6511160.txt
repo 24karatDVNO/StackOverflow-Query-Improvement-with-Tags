@@ -1,0 +1,20 @@
+<p>Some dynamic sql can eliminate the copy pasting for ya... that way you can easily extend this out for as many levels as you like, just mod the max_level.</p>
+
+<pre><code>DECLARE current_level INT;  SET current_level = 1;
+DECLARE max_level INT; SET max_level = 4;
+DECLARE full_sql VARCHAR(1000); SET full_sql = '';
+DECLARE base_sql VARCHAR(1000); SET base_sql = '(SELECT * FROM mytable WHERE qid NOT IN ({$used['used']}) AND level = ? ORDER BY RAND() limit 5) ';
+
+WHILE current_level &lt;= max_level
+    SET full_sql = CONCAT(full_sql, REPLACE(base_sql, '?', current_level));
+
+    IF current_level &lt; max_level THEN
+      SET full_sql = CONCAT(full_sql, ' UNION ');
+    END IF
+    SET current_level = current_level + 1;
+END WHILE
+
+PREPARE s1 FROM full_sql;
+EXECUTE s1;
+DEALLOCATE PREPARE s1; 
+</code></pre>

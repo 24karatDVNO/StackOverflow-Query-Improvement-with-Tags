@@ -1,0 +1,26 @@
+<p>From my htaccess ... </p>
+
+<pre><code>&lt;IfModule mod_headers.c&gt;
+
+    Header unset Pragma
+    FileETag None
+    Header unset ETag
+
+    # cache images/pdf docs for 10 days
+    &lt;FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js)$"&gt;
+
+      Header set Expires "Mon, 31 Dec 2035 12:00:00 gmt"
+      Header unset ETag  
+      Header unset Last-Modified
+
+    &lt;/FilesMatch&gt;
+
+    # cache html/htm/xml/txt diles for 2 days
+    &lt;FilesMatch "\.(html|htm|xml|txt|xsl)$"&gt;
+      Header set Cache-Control "max-age=7200, must-revalidate"
+    &lt;/FilesMatch&gt;
+
+&lt;/IfModule&gt;
+</code></pre>
+
+<p>it seems doesn't works .... for example firebug's net panel show me always 200 status code and access.log file report me that external objects are always requested by the browser. </p>

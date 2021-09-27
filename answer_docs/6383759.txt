@@ -1,0 +1,11 @@
+<p>Yes, a RowSet can be refreshed. Just call its "execute()" method again.</p>
+
+<p>Per the <a href="http://download.oracle.com/javase/6/docs/api/javax/sql/RowSet.html#execute%28%29" rel="nofollow">docs</a>:</p>
+
+<blockquote>
+  <p>If this method is successful, the current contents of the rowset are discarded and the rowset's metadata is also (re)set.</p>
+</blockquote>
+
+<p>A <a href="http://download.oracle.com/javase/6/docs/api/javax/sql/RowSetListener.html#rowSetChanged%28javax.sql.RowSetEvent%29" rel="nofollow">rowSetChanged</a> event fires upon this refresh.</p>
+
+<p>If you are asking if a RowSet can be automatically refreshed when data is changed on the database server: No way that I know of. You may not want to know of such changes, depending on your isolation level, locking, and MVCC strategy.</p>

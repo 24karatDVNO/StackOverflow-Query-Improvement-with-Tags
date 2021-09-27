@@ -1,0 +1,8 @@
+<p>Did you correctly select the control?</p>
+
+<pre><code>var controls = (from c in page.Controls where c is BaseUserControl select c)
+foreach(BaseUserControl control in controls)
+{     
+var javascript = control.JavaScriptReference
+}
+</code></pre>

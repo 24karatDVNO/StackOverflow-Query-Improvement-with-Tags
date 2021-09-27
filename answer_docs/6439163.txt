@@ -1,0 +1,5 @@
+<p>OK I found out what the problem was. I was basically trying to draw a non power of 2 texture while using texture wrapping which the reach API of Windows Phone 7 does not like. I'm not sure why I didn't get an exception thrown for this (last time I did something like this I actually got an exception thrown).</p>
+
+<p>I should have been more clear in my question, when I didn't initialize spritebatch I was also skeeping draw calls too.</p>
+
+<p>At any rate that was the problem.</p>

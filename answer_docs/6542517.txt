@@ -1,0 +1,4 @@
+<p>If the episode numbers are always sequential, you can just do something like</p>
+
+<pre><code>SELECT ... WHERE (episode = :episode - 1 OR episode = :episode + 1) AND series = :series
+</code></pre>

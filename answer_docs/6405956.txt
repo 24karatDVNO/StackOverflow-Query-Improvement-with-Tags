@@ -1,0 +1,15 @@
+<p>Here's the basic form of your SP (first 3 columns shown):</p>
+
+<pre><code>create procedure createAccount
+(
+    @cssn varchar(100), 
+    @first_name varchar(100), 
+    @last_name  varchar(100), 
+    ...  -- remaining columns
+) 
+as
+begin
+    insert into Customer (cssn, first_name, last_name, ... )
+    values (@cssn, @first_name, @last_name, ... )
+end
+</code></pre>

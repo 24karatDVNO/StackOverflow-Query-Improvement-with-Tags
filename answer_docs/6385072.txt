@@ -1,0 +1,12 @@
+<p>To use the chain you should override the get_query_set in your manager and place the for_user in your custom QuerySet.</p>
+
+<p>I don't like this solution, but it works.</p>
+
+<pre><code>class CustomQuerySet(models.query.QuerySet):
+    def for_user(self):
+        return super(CustomQuerySet, self).filter(*args, **kwargs).filter(private=False)
+
+class CustomManager(models.Manager):
+    def get_query_set(self):
+        return CustomQuerySet(self.model, using=self._db)
+</code></pre>

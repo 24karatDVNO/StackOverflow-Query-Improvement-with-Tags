@@ -1,0 +1,30 @@
+<p>The question:</p>
+
+<blockquote>
+  <p>Blockquote "return me all table where age is less than 24?" </p>
+</blockquote>
+
+<p>Implies that you would have more than one table with a column called age.  If the age applies to the runner I would suggest reviewing your schema.  You should have an entity named something like:</p>
+
+<p>Person
+or
+Runner
+or
+Participant</p>
+
+<p>That has a column age.  The trick would then be to simply move all your data into that table.  Then a simple</p>
+
+<p>SELECT
+   *
+FROM
+   Person
+WHERE
+   age &lt; 24</p>
+
+<p>Would return all the data you're looking for.</p>
+
+<p>I think where this is getting confusing is the concept of a datasheet in excel vs. a table in SQL.  Your data sheets sound like they're instances of a participant with various additional data.  Instead of creating a table for each data sheet you should create a schema that fits all of your data and then fill it with each instance from your data.</p>
+
+<p>Take a look here for a reference to schema design: </p>
+
+<p><a href="https://stackoverflow.com/questions/3131551/how-to-design-this-rdbms-schema">How to design this RDBMS schema?</a></p>

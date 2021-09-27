@@ -1,0 +1,27 @@
+<p>If I have understood your question correctly, I think you need some variables from database as well as from the session.</p>
+
+<p>Simply put the key of your database tuple (or keys in case of multiple values) along with other stuff. Page, upon loading will check for the session variables and when it finds the key, it can use it to retrieve the data from the database.</p>
+
+<p>In your previous page, the code will look like this :</p>
+
+<pre><code>    $_SESSION["player_key"] = 56;
+    $_SESSION["tournament_key"] = 100;
+</code></pre>
+
+<p>And current page, start processing like this :</p>
+
+<pre><code>    &lt;?php
+        session_start();
+        $player = $_SESSION["player_key"];
+        $tournament = $_SESSION["tournament_key"];
+
+        /*
+         * your database connection steps
+         */
+        $query = "select * from player where pid=".$player;
+        $res = mysql_query($query);
+        /*
+        Now assign values for your forms/components here or anywhere in the page. You don't have        to read anything from the querystring.
+        */
+    ?&gt;
+</code></pre>

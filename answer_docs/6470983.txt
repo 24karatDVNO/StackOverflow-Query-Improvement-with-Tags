@@ -1,0 +1,3 @@
+<p>A reentrant lock will allow the lock holder to enter blocks of code even after it has already obtained the lock by entering other blocks of code.  A non-reentrant lock would have the lock holder block on itself as it would have to release the lock it obtained from another block of code to reobtain that same lock to enter the nested lock requiring block of code.</p>
+
+<p>As far as deadlock is concerned, if you call a protected block of code from a protected block of code, you'll want a reentrant lock (or you will deadlock while waiting on yourself).</p>

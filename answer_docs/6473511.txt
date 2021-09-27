@@ -1,0 +1,28 @@
+<p>//upload.php</p>
+
+<pre><code>&lt;?php 
+$target = "upload/"; 
+$target = $target . basename( $_FILES['uploaded']['name']) ; 
+$ok=1; 
+if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)) 
+{
+echo "The file ". basename( $_FILES['uploadedfile']['name']). " is ready to be uploaded. &lt;a href='confirm.php?confirm=1&amp;filename=". basename( $_FILES['uploadedfile']['name']). "'&gt;Confirm to add your file into our system&lt;/a&gt; or &lt;a href='confirm.php?confirm=0&amp;filename=". basename( $_FILES['uploadedfile']['name']). "'&gt;Reverse upload&lt;/a&gt;";
+} 
+else {
+echo "Sorry, there was a problem uploading your file.";
+}
+?&gt; 
+</code></pre>
+
+<p>//confirm.php</p>
+
+<pre><code>&lt;?php
+if ($_GET['confirm'])
+{
+    echo "Your file (".$_GET['filename'].") has been uploaded";
+    die();
+}
+
+echo "Your upload was reverted";
+?&gt;
+</code></pre>

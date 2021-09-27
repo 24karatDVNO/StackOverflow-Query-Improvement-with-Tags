@@ -1,0 +1,11 @@
+<p>while<pre>margin:0 auto</pre> works with the main container of the site (the parent of this container is the body), it get a little wonky  when you have it inside containers, like i sounds you do.</p>
+
+<p>try something like this since you know the width:</p>
+
+<pre><code>#selector{
+    width:500px; /* however wide the element is */
+    position:absolute;
+    top:20px; /* This is whatever you want */
+    left: 50%;
+    margin-left:-250px; /* this is half of the width */
+}</code></pre>

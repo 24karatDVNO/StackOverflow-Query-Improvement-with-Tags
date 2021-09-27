@@ -1,0 +1,6 @@
+<p>First add that file to your application bundle By adding a existing file from xcode to your project. Then use this method to get the file path for example I'm getting a image's path.</p>
+
+<pre><code>NSString *path   = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
+</code></pre>
+
+<p>then try the dictionaryWithContentsOfFile method and see if it works or not.</p>

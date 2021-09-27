@@ -1,0 +1,11 @@
+<p>You might try this:</p>
+
+<pre><code>$sql = "select * from villages V
+    join town T on T.towncode=V.towncode
+    join county C on C.countycode=V.countycode
+    join state S on S.statecode=V.statecode
+    where V.statecode='".intval($getStateCode)."'
+    and V.countycode='".intval($getCountyCode)."' 
+    and V.towncode='".intval($getTownCode)."' 
+    and V.villagecode='".intval($getVillageCode)."'";
+</code></pre>

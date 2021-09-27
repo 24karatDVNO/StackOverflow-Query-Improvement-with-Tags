@@ -1,0 +1,48 @@
+<p>For all you endangered-species VB programmers (like me) I have converted H.B's solution to VB!</p>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>Public Class MyItem
+    Public Property ReferenceCodeDescription() As String
+        Get
+            Return m_ReferenceCodeDescription
+        End Get
+        Set(ByVal value As String)
+            m_ReferenceCodeDescription = Value
+        End Set
+    End Property
+    Private m_ReferenceCodeDescription As String
+    Public Property Description() As String
+        Get
+            Return m_Description
+        End Get
+        Set(ByVal value As String)
+            m_Description = Value
+        End Set
+    End Property
+    Private m_Description As String
+End Class
+</code></pre>
+
+<hr>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>Dim mySource = From r In Ref
+               Join s In Stk On r.StockID Equals s.StockID
+               Select New MyItem With { _
+                      .ReferenceCodeDescription = r.ReferenceCodeDescription,
+                      .Description = s.Description }
+
+    myListView.ItemsSource = mySource
+</code></pre>
+
+<hr>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>Dim item As MyItem = DirectCast(myListView.SelectedItem, MyItem)
+MessageBox.Show(item.Description)
+</code></pre>
+
+<h2>Thanks to H.B.</h2>

@@ -1,0 +1,18 @@
+<p>I do suggest to replace the meat of the loop with something like</p>
+
+<pre><code>const boost::irange domain(-1,2);
+for (int i: boost::irange(0, nmask)) for (int a: domain) for (int b: domain) for (int c: domain)
+{
+    if (a==0 &amp;&amp; b==0 &amp;&amp; c==0)
+        continue;
+    //oneD26 is just (double) 1/26
+    phi[i]= tempPhi[i]+oneD26*tempPhi[voxt[i][1+a][1+b][1+c]];
+    if (phi[i]!=0)
+    {
+        //this gives expected results: 27 nonzero elements (including tvox)
+        cout &lt;&lt; n &lt;&lt; " " &lt;&lt; i &lt;&lt; " " &lt;&lt; a &lt;&lt; b &lt;&lt; c &lt;&lt; " " &lt;&lt; phi[i] &lt;&lt; endl;
+    }
+}
+</code></pre>
+
+<p>Of course, for brevity I assume both <code>boost/range.hpp</code> and c++0x compiler. However, with trivial macro's you can achieve the same. That is without writing/using a proper <code>combinations</code> algorithm (<em>why is that not in the standard, anyway</em>).</p>

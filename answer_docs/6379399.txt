@@ -1,0 +1,14 @@
+<p>try to union with those that have no hours</p>
+
+<pre><code>SELECT YEAR(date), MONTHNAME(date), SUM(block_time)
+FROM flights
+WHERE operator = 'PSD'
+GROUP BY YEAR(date), MONTH(date)
+
+UNION ALL 
+
+SELECT YEAR(date), MONTHNAME(date), SUM(block_time)
+FROM flights
+WHERE hours = 0
+GROUP BY YEAR(date), MONTH(date)
+</code></pre>

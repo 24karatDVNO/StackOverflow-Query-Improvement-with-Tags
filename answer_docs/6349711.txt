@@ -1,0 +1,10 @@
+<p>Did you accidentally refactor mx:Image to s:Image in your Flex 3 to Flex 4.5 migration?</p>
+
+<p>For Spark Image, it could be that you need to reference the symbol name in the SWF.</p>
+
+<p>I find this works:</p>
+
+<pre><code>&lt;s:Image source="@Embed(source='path.swf', symbol='name')" ...
+</code></pre>
+
+<p>Seems like a bad practice, though - unlike mx:Image which would load the SWF natively, Spark Image is intended for bitmap data.</p>

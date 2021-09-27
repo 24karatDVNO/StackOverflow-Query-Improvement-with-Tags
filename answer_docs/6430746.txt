@@ -1,0 +1,14 @@
+<p>Have you tried Link.exe - it will do the job. You can find more details about the linker here:</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/y0zzbyt4(v=vs.71).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/y0zzbyt4(v=vs.71).aspx</a></p>
+
+<p>The Link tool is installed as part of Visual Studio. In my machine Link.exe is installed at: C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64</p>
+
+<p>The command structure that works for me is shown below: </p>
+
+<pre><code>LINK             = "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64\Link.exe"
+LIBPATH1         = "$(PROGRAMFILES)\Microsoft Visual Studio 8\SDK\v2.0\lib"
+LIBPATH2         = "$(PROGRAMFILES)\Microsoft SDKs\Windows\v7.0A\Lib"
+
+$(LINK) /LIBPATH:$(LIBPATH1) /LIBPATH:$(LIBPATH2) /DLL /nologo /LTCG /out:$(DLL_NAME).dll $(EXT_MODULE1) $(EXT_MODULE2) $(EXT_MODULE3) ... 
+</code></pre>

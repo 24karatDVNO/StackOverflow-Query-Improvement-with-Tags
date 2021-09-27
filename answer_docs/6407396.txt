@@ -1,0 +1,13 @@
+<p>Your window open is for sure illegal</p>
+
+<pre><code>MM_openBrWindow('some long url',
+'&amp;output-target=pageable/pdf','','width=1000,height=700,top=70,left=10');
+</code></pre>
+
+<p>You need to find a way to remove either '&amp;output-target=pageable/pdf' or the comma before it.</p>
+
+<p>Also give the window a name, e.g. </p>
+
+<pre><code>MM_openBrWindow('some long url....&amp;output-target=pageable/pdf',
+'newWindow','width=1000,height=700,top=70,left=10');
+</code></pre>

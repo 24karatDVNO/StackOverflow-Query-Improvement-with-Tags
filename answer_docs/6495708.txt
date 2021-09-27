@@ -1,0 +1,15 @@
+<p>If you're choosing to display only certain rows based on an expression, you can use this same expression in your calculation.</p>
+
+<p>For example, let's say you have a <code>Visibility</code> expression on the row that looks like this ("display the field only if XYZ is greater than 3"):</p>
+
+<pre><code>=iif(Fields!XYZ.Value&gt;3, true, false)
+</code></pre>
+
+<p>Adapt your <code>Sum</code> aggregate to include the conditional, like this ("Sum only the values of TotalResults where XYZ is greater than 3"):</p>
+
+<pre><code>=Sum(iif(Fields!XYZ.Value&gt;3, 0, Fields!TotalResults.Value))
+</code></pre>
+
+<p>Replace <code>Fields!XYZ.Value&gt;3</code> with your own visibility condition, of course.</p>
+
+<p>If this doesn't solve your problem, give us some more information about how you're determining which rows to display and maybe that will help. :)</p>

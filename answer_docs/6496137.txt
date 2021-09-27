@@ -1,0 +1,88 @@
+<p>Using CSS selectors is not overzealous as long as it allows your HTML code and style sheets to be simpler, easier to understand and modify;
+for example, with less <code>className</code> attributes in your HTML.<br>
+Furthermore, it is the best way to learn them!</p>
+
+<p>For the second part of your question, I suggest you this CSS ( 
+<a href="http://jsfiddle.net/S8Bne/" rel="nofollow">http://jsfiddle.net/S8Bne/</a> ) :</p>
+
+<pre><code>.geniusPicks {}
+
+.geniusPicks table {width:100%; font-size:12px; border-collapse:separate;}
+
+.geniusPicks table tr#picksHeading {border:0px solid; height:30px;}
+
+.geniusPicks table tr#picksHeading th {background:darkRed; color:white; font-weight:bold;}
+
+.geniusPicks table tr.pickHeading {border:0px solid;}
+
+.geniusPicks table tr.pickHeading td {background:red; padding-left:10px;}
+
+.geniusPicks table tr.pickHeading+tr td:last-child {border-right:solid 1px black;}
+
+.geniusPicks table tr.pickConsensusBody td {
+    border-left:1px solid;
+    border-top:1px solid;
+    background:grey;
+}
+
+.geniusPicks table tr.pickBody td {
+    border-left:1px solid;
+    border-top:1px solid;
+}
+
+.bigGap td {height:19px;}
+
+.smallGap td {height:10px; border-top:solid 1px black;}
+
+.geniusPicks table th,
+.geniusPicks table th:last-child,
+.geniusPicks table .pickHeading+tr td,
+.geniusPicks table .pickHeading+tr td:last-child {text-align:center;}
+
+
+.geniusPicks table th+th+th, 
+.geniusPicks table .pickHeading+tr td+td+td {text-align:left;}
+
+/* Border Left Radius */
+.geniusPicks table thead tr#picksHeading th:first-child, .geniusPicks table tr.pickHeading td {
+    border-radius:15px 0 0 0; 
+    -moz-border-radius:15px 0 0 0;
+    -webkit-border-radius:15px 0 0 0;
+    -khtml-border-radius:15px 0 0 0;
+}
+
+/* Border Right Radius */
+.geniusPicks table thead tr#picksHeading th:last-child {
+    border-radius:0 15px 0 0; 
+    -moz-border-radius:0 15px 0 0;
+    -webkit-border-radius:0 15px 0 0;
+    -khtml-border-radius:0 15px 0 0;
+}
+
+
+.geniusPicks table .pickHeading+tr td:nth-child(4) {
+    border-left-style:dotted;
+    border-left-color:black;
+    border-left-width:1px;
+    border-top-style:solid;
+    border-top-color:black;
+    border-top-width:1px;
+}
+
+.geniusPicks table tr.pickConsensusBody td:first-child:not([rowspan]),
+.geniusPicks table tr.pickBody td:first-child:not([rowspan]) {
+    border-top-style:dotted;
+    border-top-color:black;
+    border-top-width:1px;
+    border-left-style:dotted;
+    border-left-color:black;
+    border-left-width:1px;
+}</code></pre>
+
+<p>The nice thing with this solution is that it does not require to modify your HTML code at all.  </p>
+
+<p>However, the borders that must be dotted will remain solid if the browser (e.g. IE8) does not support the CSS3 <code>:nth-child</code> or <code>:not</code> pseudo-class.</p>
+
+<p>Tell me if you would prefer something that relies only on CSS2.
+But in that case it will be necessary either to add a <code>class</code> attribute to every cell that has to be dotted,
+or to split every row that has 7 cells so that every "vlah" cell becomes the first child of its row.</p>

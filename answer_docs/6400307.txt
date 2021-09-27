@@ -1,0 +1,41 @@
+<p>I was able to do this fairly easily. I modified the slider code to include a name for the translateTransform:</p>
+
+<pre><code>&lt;Slider x:Name="slider" 
+        TickFrequency="1"
+        Value="1"
+        IsSnapToTickEnabled="True"
+    IsMoveToPointEnabled="True"
+        Minimum="0"
+        Maximum="10"
+    ValueChanged="slider_ValueChanged"
+        AutoToolTipPlacement="BottomRight"
+        Grid.Column="0" VerticalAlignment="Top" Margin="0,-3,51.5,0"
+        Thumb.DragCompleted="slider_DragCompleted" &gt;
+    &lt;Slider.RenderTransform&gt;
+        &lt;TranslateTransform x:Name="mySliderTransform" /&gt;
+    &lt;/Slider.RenderTransform&gt;
+&lt;/Slider&gt;
+</code></pre>
+
+<p>Then I hooked a click event to a button and used the following code:</p>
+
+<pre><code>        private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        slider.Visibility = Visibility.Visible;
+        slider.Value = 1;
+
+        // get the mouse positions
+        string x = Mouse.GetPosition(this).X.ToString();
+        string y = Mouse.GetPosition(this).Y.ToString();
+
+        // convert the mouse position to a double
+        var X = Convert.ToDouble(x);
+        var Y = Convert.ToDouble(y);
+
+        // reset the slider transform and apply the coordinates of the mouse position.
+        mySliderTransform.X = 0;
+        mySliderTransform.Y = 0;
+        mySliderTransform.X = X - 20;
+        mySliderTransform.Y = Y;
+    }
+</code></pre>

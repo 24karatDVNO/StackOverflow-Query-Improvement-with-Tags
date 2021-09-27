@@ -1,0 +1,25 @@
+<p>If you are happened to use HibernateUtil to manipulate the data, you need to add annotated class to your configuration.</p>
+
+<pre><code>import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
+
+public class HibernateUtil {
+    private static final SessionFactory sessionFactory;
+    static {
+        try {
+            sessionFactory = new AnnotationConfiguration().addAnnotatedClass(Authentication.class)
+            .configure()
+                    .buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+}
+</code></pre>
+
+<p><a href="http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/ch01.html" rel="nofollow">http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/ch01.html</a></p>

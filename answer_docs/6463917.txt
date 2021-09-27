@@ -1,0 +1,3 @@
+<p>Regarding detecting an async AJAX request in progress, you could use some variable that is initialized with some value when a call starts and is set to a different value when the call finishes.</p>
+
+<p>For the second part, if that particular variable hasn't been set, add your function call to some queue that you process with a handler for the 'ajaxComplete' event. Alternatively, pass in a callback via .complete() that does something along those lines.</p>

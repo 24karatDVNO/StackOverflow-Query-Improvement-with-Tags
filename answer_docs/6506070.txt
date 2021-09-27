@@ -1,0 +1,11 @@
+<p>Thanks for the reply mattdwen - unfortunately your suggestion never worked (the 'Temporary ASP.NET Files' folder permissions were correct) but did provide the hint that lead to me (HACK) resolving the problem. After reading your answer I tried the following which led me in a different direction:</p>
+
+<p>(1) I successfully rebuilt the solution 3 times using <code>&lt;impersonate="true"/&gt;</code>, <code>&lt;identity impersonate="false"/&gt;</code> and <code>&lt;identity impersonate="true" userName="DOMAIN\different-user" password="password"/&gt;</code> (here "different-user" is a local admin).</p>
+
+<p>(2) I then amended the web.config back to the original <code>&lt;identity impersonate="true" userName="DOMAIN\user" password="password"/&gt;</code> and ONLY rebuilt the ASP.NET website project - success.</p>
+
+<p>This has led me to conclude (strongly hinted at by the original error message) that VS when rebuilding the solution is unable (for as yet unknown reason) to build one of the Class Libraries or its dependencies with <code>&lt;identity impersonate="true" userName="DOMAIN\user" password="password"/&gt;</code> in the ASP.NET website project.</p>
+
+<p>The Class Library in question has a number of references to 3rd party components, Office interops, etc. which for now would be too time consuming to attempt to eliminate one by one and discover the real underlying reason.</p>
+
+<p>Therefore, I have temporarily implemented the hack (cringe) to add the original user to local admins.</p>

@@ -1,0 +1,18 @@
+<pre><code>var text = "";
+
+$('#container div').each( function() {
+
+   if ( this.id != "three" ) {
+
+      text += $(this).html();
+
+   }
+
+});
+
+$('#save').val( text );
+</code></pre>
+
+<p><a href="http://jsfiddle.net/rzfPP/31/" rel="nofollow">http://jsfiddle.net/rzfPP/31/</a></p>
+
+<p>Basically you check the divs inside #container one by one, and check their id. If it's one you want, add their html to a string. Then at the end give that string as your textarea value.</p>

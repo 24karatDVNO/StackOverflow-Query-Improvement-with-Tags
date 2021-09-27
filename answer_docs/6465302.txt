@@ -1,0 +1,24 @@
+<p>With (G)Awk, you can do something like:</p>
+
+<pre><code>awk -F "[()/]" '{ for (i=1;i&lt;=NF;i++) { if ($i !~ /^[0-9]*$/ ) {print $i }}}' &lt;&lt;EOF
+G/20/EU (picture)/europe 21/
+/House/200 hits/real estate
+color/red-green/dark blue/orange/321
+EOF
+#OUTPUT:
+G
+EU 
+picture
+europe 21
+House
+200 hits
+real estate
+color
+red-green
+dark blue
+orange
+</code></pre>
+
+<p>Or see at: <a href="http://ideone.com/2f7lJ" rel="nofollow">http://ideone.com/2f7lJ</a></p>
+
+<p>HTH</p>

@@ -1,0 +1,15 @@
+<p>You can use either</p>
+
+<pre><code>$userarray = array('UserName' =&gt; $username, 'UserId' =&gt; $userId, 'UserPicURL' =&gt; $userPicURL);
+$string = json_encode($userarray);
+$backtoarray = json_decode($string);
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$userarray = array('UserName' =&gt; $username, 'UserId' =&gt; $userId, 'UserPicURL' =&gt; $userPicURL);
+$string = serialize($userarray);
+$backtoarray = unserialize($string);
+</code></pre>
+
+<p>The first one uses XML storage, and the second uses JSON.</p>

@@ -1,0 +1,15 @@
+<p>I'm not sure why you're getting NULLs here, but try this:</p>
+
+<pre><code>SELECT myTable.*, IF myTableMax.myMaxX IS NOT NULL myTableMax.myMaxX ELSE ""
+  FROM myTable
+LEFT OUTER JOIN 
+       (SELECT userID, contactNumber, MAX(X) AS myMaxX
+          FROM myTable
+      GROUP BY userID, contactNumber) AS myTableMax
+    ON myTable.userID = myTableMax.userID
+   AND myTable.contactNumber = myTableMax.contactNumber
+ WHERE myTable.userID = :userID
+   AND myTable.contactNumber = :contactNumber
+</code></pre>
+
+<p>If you're concerned about performance, add an index on <code>mytable (userID, contactNumber)</code>.</p>

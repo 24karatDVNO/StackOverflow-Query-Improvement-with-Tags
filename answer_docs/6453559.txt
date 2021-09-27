@@ -1,0 +1,2 @@
+<p>Getting in IEnumerable&lt;> might create some trouble, as you could receive some LINQ expression with differed execution, or yield return. In both cases you won't have a collection but <em>something</em> you could iterate on.
+So when you would like to set some boundaries, you could request an array. There is not a problem to call <em>collection.ToArray()</em> before passing parameter, but you'll be sure that there is no hidden differed caveats there.</p>

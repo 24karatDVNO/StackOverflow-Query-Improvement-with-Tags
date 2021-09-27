@@ -1,0 +1,7 @@
+<p>I have few points here.</p>
+
+<ul>
+<li>Your vectory probably having size of 0. This could lead to some crash. You will have to allocate it before using. You can give a static or global initialize. </li>
+<li>Do you really want a vector? Vector is appropriate when you're using some dynamic memory allocation. The enums are static. You can give a simple count and allocate it as an array.</li>
+<li>Do you really want a static member? Static member usually used while you're sharing it between the objects of the same class. Can you satisfy the requirement with an external objects which is local/global within the class? Also can you make static function out of the class?</li>
+</ul>

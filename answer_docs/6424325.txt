@@ -1,0 +1,15 @@
+<p>The syntax you have is for binding, not triggering.</p>
+
+<p>Handle your binding in <code>document.ready</code>:</p>
+
+<pre><code>$(document).ready(function() {
+$('#outdirections a').click(function() {
+      $('#outdirections a').removeClass('directionsselect');
+      $(this).addClass('directionsselect');
+      })
+});
+</code></pre>
+
+<p>Then, any time an <code>&lt;a&gt;</code> within <code>#outdirections</code> is clicked, it'll remove/add the class.</p>
+
+<p><a href="http://jsfiddle.net/Town/ybruG/" rel="nofollow"><strong>Working demo on jsfiddle</strong></a>.</p>

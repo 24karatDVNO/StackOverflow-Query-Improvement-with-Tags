@@ -1,0 +1,9 @@
+<pre><code>delete [] c;
+</code></pre>
+
+<p>should be</p>
+
+<pre><code>delete c;
+</code></pre>
+
+<p>Aside from that, the <code>Cube</code> class itself is dubious. Better use a <code>std::string</code> instead of a c-style string.</p>

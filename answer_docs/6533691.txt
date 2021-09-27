@@ -1,0 +1,12 @@
+<p>It looks like you are using several different RadioButtons, when you might really want a RadioButtonList.</p>
+
+<p>If you have a RadioButtonList, it is easy to bind something to it, in essence create a list (from your database or whatever) and then bind this to the radio button list..something like</p>
+
+<pre><code>        var de = new List&lt;string&gt;();
+        de.Add("1");
+        de.Add("2");
+        de.Add("3");
+
+        RadioButtonList1.DataSource = de;
+        RadioButtonList1.DataBind();
+</code></pre>

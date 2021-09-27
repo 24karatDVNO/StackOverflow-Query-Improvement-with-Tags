@@ -1,0 +1,13 @@
+<p>You could simply amend the for loop in your code to get the sums.</p>
+
+<pre><code>...
+// vars for sum
+var the_count = 0, the_sum = 0;
+for (var i = 0; i &lt; the_data.length; i++) {
+    the_count += the_data[i].count;
+    the_sum += the_data[i].value;
+    buildHTML.push("&lt;tr&gt;&lt;td&gt;" + the_data[i].department + "&lt;/td&gt;&lt;td&gt;" + the_data[i].count + "&lt;/td&gt;&lt;td&gt;£" + the_data[i].value + "&lt;/td&gt;");
+}
+buildHTML.push("&lt;tr&gt;&lt;td&gt;Total&lt;/td&gt;&lt;td&gt;" + the_count + "&lt;/td&gt;&lt;td&gt;" + the_sum + "&lt;/td&gt;");
+...
+</code></pre>

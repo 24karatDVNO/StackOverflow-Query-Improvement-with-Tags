@@ -1,0 +1,11 @@
+<p>If your underlying data source isn't going to change very often you can consider storing the results in the application's Cache and establish a timeout to refresh the data.  If the data changes every so often, you can set dependencies on the source table so that when the table's data gets modified it invalidates the cached object and then rebuilds the cached object.  If the data changes often then I would recommend doing exactly what you're doing now.</p>
+
+<p>When I say "rebuild" the cached object, it is your application's responsibility to test for the presence of the cached object and rebuild it and reestablish it in the cache if is not present.</p>
+
+<p>Keep in mind that if you will use an SqlDependency then you must set the database up for it.  aspnet_regsql.exe has the ability to set up your database.  Also, if your application relies on the fact that your data is guaranteed to be accurate then I would also do what you're doing now, or use SqlDependency.</p>
+
+<p><a href="http://asp.net-tutorials.com/caching/object-caching/" rel="nofollow">Caching Example</a></p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldependency.aspx" rel="nofollow">SqlDependency</a></p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/ms229862%28v=vs.80%29.aspx" rel="nofollow">aspnet_regsql.exe</a></p>

@@ -1,0 +1,12 @@
+<p>Your code is very confused. First, you don't seem to be setting any of the bits in the <code>fd_set</code>. Secondly, you test the bits before you even call <code>select</code>.</p>
+
+<p>Here is how the flow generally works...</p>
+
+<ul>
+<li>Use <code>FD_ZERO</code> to zero out your set.</li>
+<li>Go through, and for each file descriptor you're interested in the writeable state of, use <code>FD_SET</code> to set it.</li>
+<li>Call <code>select</code>, passing it the address of the <code>fd_set</code> you've been calling the <code>FD_SET</code> function on for the write set and observe the return value.</li>
+<li>If the return value is > 0, then go through the write set and use <code>FD_ISSET</code> to figure out which ones are still set. Those are the ones that are writeable.</li>
+</ul>
+
+<p>Your code does not at all appear to be following this pattern. Also, the important task of setting up the master set isn't being shown.</p>

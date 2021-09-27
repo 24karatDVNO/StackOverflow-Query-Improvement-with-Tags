@@ -1,0 +1,16 @@
+<p>My approach would probably be to implement a polymorphic deserialization solution.</p>
+
+<p>Gson does not currently have a simple mechanism for polymorphic deserialization, other than implementing custom deserialization processing.  The next release looks like it will provide a built-in solution.</p>
+
+<p>Previous StackOverflow.com Questions And Answers (Some With Examples) On This Topic:</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/5450935">Deserialising a generic with unknown compile time type where a field indicates the type</a></li>
+<li><a href="https://stackoverflow.com/questions/6089193">Parse JSON with no specific structure for a field with GSON</a></li>
+<li><a href="https://stackoverflow.com/questions/4528933">json object serialization/deserialization using google gson</a></li>
+<li><a href="https://stackoverflow.com/questions/5800433">Polymorphism with gson</a></li>
+</ul>
+
+<p>Specific to the original question, it looks like the "group" element would be used to distinguish between different types.</p>
+
+<p>FWIW, <a href="http://jackson.codehaus.org/" rel="nofollow noreferrer">Jackson</a> released <a href="http://programmerbruce.blogspot.com/2011/05/deserialize-json-with-jackson-into.html" rel="nofollow noreferrer">a built-in solution to this problem</a> many moons ago.</p>

@@ -1,0 +1,150 @@
+<p>At the end I solved my dillema creating a behavior which periodically executes a refresh command on the ViewModel which you can specify.</p>
+
+<p>The code for the behavior is like this
+(sorry for VB code):</p>
+
+<pre><code>Option Strict On
+
+Imports System.Windows.Threading
+Imports System.Windows.Interactivity
+
+Namespace View.Behaviors
+
+    Public Class RefreshBehavior
+        Inherits Behavior(Of FrameworkElement)
+
+
+
+        Public Property Command As ICommand
+            Get
+                Return DirectCast(GetValue(CommandProperty), ICommand)
+            End Get
+
+            Set(ByVal value As ICommand)
+                SetValue(CommandProperty, value)
+            End Set
+        End Property
+
+        Public Shared ReadOnly CommandProperty As DependencyProperty = _
+                                   DependencyProperty.Register("Command", _
+                                                               GetType(ICommand), GetType(RefreshBehavior), _
+                                                               New PropertyMetadata(Nothing))
+
+
+        Public Property CommandParameter As Object
+            Get
+                Return GetValue(CommandParameterProperty)
+            End Get
+
+            Set(ByVal value As Object)
+                SetValue(CommandParameterProperty, value)
+            End Set
+        End Property
+
+        Public Shared ReadOnly CommandParameterProperty As DependencyProperty = _
+                                   DependencyProperty.Register("CommandParameter", _
+                                                               GetType(Object), GetType(RefreshBehavior), _
+                                                               New PropertyMetadata(Nothing))
+
+
+
+
+        Public Property Interval As TimeSpan
+            Get
+                Return DirectCast(GetValue(IntervalProperty), TimeSpan)
+            End Get
+
+            Set(ByVal value As TimeSpan)
+                SetValue(IntervalProperty, value)
+            End Set
+        End Property
+
+        Public Shared ReadOnly IntervalProperty As DependencyProperty = _
+                                   DependencyProperty.Register("Interval", _
+                                                               GetType(TimeSpan), GetType(RefreshBehavior), _
+                                                               New PropertyMetadata(TimeSpan.Zero, AddressOf OnIntervalUpdate))
+
+
+
+        Public Property Enabled As Boolean
+            Get
+                Return DirectCast(GetValue(EnabledProperty), Boolean)
+            End Get
+
+            Set(ByVal value As Boolean)
+                SetValue(EnabledProperty, value)
+            End Set
+        End Property
+
+        Public Shared ReadOnly EnabledProperty As DependencyProperty = _
+                               DependencyProperty.Register("Enabled", _
+                               GetType(Boolean), GetType(RefreshBehavior), _
+                               New PropertyMetadata(False, AddressOf OnEnabledUpdate))
+
+
+
+
+        Dim WithEvents timer As New DispatcherTimer()
+
+        Private Shared Sub OnEnabledUpdate(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+            Dim enable As Boolean = CType(e.NewValue, Boolean)
+            Dim executor As RefreshBehavior = CType(d, RefreshBehavior)
+            If Not executor.attached Then Return
+
+            Dim timer As DispatcherTimer = executor.timer
+
+            If enable AndAlso Not timer.IsEnabled Then
+                timer.Start()
+            ElseIf Not enable AndAlso Not timer.IsEnabled Then
+                timer.Stop()
+            End If
+        End Sub
+
+        Private Shared Sub OnIntervalUpdate(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+            Dim executor As RefreshBehavior = CType(d, RefreshBehavior)
+
+            Dim timer As DispatcherTimer = executor.timer
+            timer.Interval = CType(e.NewValue, TimeSpan)
+        End Sub
+
+        Private WithEvents attachedObject As FrameworkElement
+
+        Private Sub OnUnload(ByVal sender As Object, ByVal e As EventArgs) Handles attachedObject.Unloaded
+            timer.Stop()
+        End Sub
+
+        Private attached As Boolean = False
+        Protected Overrides Sub OnAttached()
+            attached = True
+            attachedObject = AssociatedObject
+
+            If Enabled Then timer.Start()
+            MyBase.OnAttached()
+        End Sub
+
+        Protected Overrides Sub OnDetaching()
+            timer.Stop()
+            attached = False
+            attachedObject = Nothing
+            MyBase.OnDetaching()
+        End Sub
+
+        Private Sub OnTick(ByVal sender As Object, ByVal e As EventArgs) Handles Timer.Tick
+            Dim cmd = Command
+            Dim parameter = CommandParameter
+            If Interval &lt; TimeSpan.MaxValue AndAlso cmd IsNot Nothing AndAlso cmd.CanExecute(parameter) Then
+                cmd.Execute(parameter)
+            End If
+        End Sub
+    End Class
+End Namespace
+</code></pre>
+
+<p>You can use it like this:</p>
+
+<pre><code>&lt;i:Interaction.Behaviors&gt;
+    &lt;Behaviors:RefreshBehavior Enabled="True" Interval="0:0:10" Command="{Binding RefreshPageCommand}" /&gt;
+&lt;/i:Interaction.Behaviors&gt;
+</code></pre>
+
+<p>I hope it helps someone with a similar problem.</p>

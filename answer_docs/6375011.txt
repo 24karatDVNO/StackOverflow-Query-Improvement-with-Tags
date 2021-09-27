@@ -1,0 +1,42 @@
+<p>So here's a way I've found to do it.</p>
+
+<p>Basically I'm ignoring the view data completely and using the tagging-tags template tags to directly access the model contents.</p>
+
+<p>So</p>
+
+<pre><code>#managers.py
+class SnippetManager(models.Manager):
+def top_tags(self, klass):
+    return Tag.objects.all()
+</code></pre>
+
+<p>and then...</p>
+
+<pre><code>{% comment %} top_tags.html {% endcomment %}
+{% load tagging_tags %}
+
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Top Tags&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% tags_for_model calloway.Snippet as snippet_tags with counts %}
+    {% regroup snippet_tags|dictsort:"count" by count as regrouped_snippet_tags %}
+    {% for group in regrouped_snippet_tags reversed %}
+        {% for thistag in group.list %}
+            &lt;h2&gt;Tag: {{ thistag.name }}&lt;/h2&gt;
+            &lt;p&gt;Count: {{ group.grouper }}&lt;/p&gt;
+            &lt;p&gt;Snippets:&lt;/p&gt;
+            {% tagged_objects thistag in calloway.Snippet as tagged_snippets %}
+            {% for tagged_snippet in tagged_snippets %}
+                &lt;p&gt;&lt;a href="{{ tagged_snippet.get_absolute_url }}"&gt;{{ tagged_snippet.title }}&lt;/a&gt;&lt;/p&gt;
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>This seems like a cludgy way of doing it though, although the end result is what I want.</p>
+
+<p>Is there a way to do it through the manager and view? I think that's what the exercise is intended to produce.</p>

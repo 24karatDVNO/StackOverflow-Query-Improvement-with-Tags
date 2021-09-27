@@ -1,0 +1,87 @@
+<p>This code works for me</p>
+
+<pre><code>
+
+@interface DetailViewController : UIViewController {
+
+    UITextView *sourceText;
+    UIView *buttonHolder;
+}
+
+@implementation DetailViewController
+
+- (IBAction) processText {
+
+    self.buttonHolder.hidden = NO;
+
+    self.sourceText.editable = NO;
+
+    self.buttonHolder.frame = CGRectMake(0.0f, 0.0f, self.sourceText.contentSize.width, self.sourceText.contentSize.height); 
+
+    NSLog(@"self.buttonholder.frame = %@", NSStringFromCGRect (self.buttonHolder.frame) );
+
+    if ([[self.buttonHolder subviews] count] !=0) {
+        for (UIView *button in [self.buttonHolder subviews]) 
+            [button removeFromSuperview];
+
+    }
+
+    CGSize spaceSize = [@" " sizeWithFont:self.sourceText.font];
+
+    float textPadding = 8.0f;
+
+    float stepX = textPadding;
+    float stepY = textPadding;
+    CGRect buttonFrame;
+    CGSize wordSize;
+    NSString *sourceString = [NSString stringWithString:self.sourceText.text];
+
+    float lineHeight = [sourceString sizeWithFont:self.sourceText.font].height;
+
+    NSArray *linesArray = [sourceString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+    for (NSString *line in linesArray) {
+
+        NSArray *wordsInLine = [line  componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+        for (NSString *word in wordsInLine) {
+
+            UIButton *actButton = [UIButton buttonWithType:UIButtonTypeCustom];
+
+            actButton.backgroundColor  = [[UIColor greenColor] colorWithAlphaComponent:0.5];
+
+            [actButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
+            [actButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+
+            [actButton setTitle:word forState:UIControlStateNormal];
+
+            [actButton addTarget:self action:@selector(workWithWord:) forControlEvents:UIControlEventTouchUpInside];
+
+            actButton.titleLabel.font = self.sourceText.font;
+
+            wordSize = [word sizeWithFont:self.sourceText.font];
+            actButton.tag = 33;
+
+            if (stepX + wordSize.width + textPadding > self.sourceText.frame.size.width) {
+                stepX = textPadding;
+                stepY = stepY + lineHeight;
+            }
+
+            buttonFrame = CGRectMake(stepX, stepY, wordSize.width, lineHeight-lineHeight/10.0);
+            actButton.frame = buttonFrame;
+
+            stepX = stepX + wordSize.width + spaceSize.width;
+
+            [self.buttonHolder addSubview:actButton];
+
+        }
+
+        stepX = textPadding;
+        stepY = stepY + lineHeight;
+
+    }
+
+}
+
+</code></pre>

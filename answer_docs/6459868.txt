@@ -1,0 +1,27 @@
+<p>I managed to sort it out: </p>
+
+<pre><code>function framework_autoload($className, $extList='.inc,.php') {
+
+    $autoload_paths = array (
+            FRAMEWORK_BASEDIR . 'core' . DS,
+            FRAMEWORK_BASEDIR . 'libraries' . DS,
+            FRAMEWORK_APPLICATION . DS . 'controllers' . DS,
+            FRAMEWORK_APPLICATION . DS . 'models' . DS
+        );
+
+      $ext = explode(',',$extList);
+      foreach($ext as $x) {
+        foreach ($autoload_paths as $v) {
+            $fname = $v . strtolower($className).$x;
+            if(@file_exists($fname)) {
+                require_once($fname);
+                return true;
+            }
+        }
+      }
+      return false;
+}
+spl_autoload_register('framework_autoload');
+</code></pre>
+
+<p>Thanks to another question here on StackOverflow: <a href="https://stackoverflow.com/questions/1991179/spl-autoload-problem">spl_autoload problem</a></p>

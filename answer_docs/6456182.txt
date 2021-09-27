@@ -1,0 +1,10 @@
+<p>One method would be to create an intermediate table <code>Group</code>, Where <code>Users</code> are assigned to <code>Groups</code> and <code>Groups</code> are assigned to <code>Roles</code>.</p>
+
+<p>So your <code>multiple roles</code> requirement will be translated to <code>multiple groups</code>.</p>
+
+<pre><code>[PrincipalPermission(SecurityAction.Demand, Role = "SingleRole")]
+protected void UserGrid_RowUpdating(object sender, GridViewUpdateEventArgs e)
+{
+</code></pre>
+
+<p>You will have to write a custom <code>RoleProvider</code> to implement this.</p>

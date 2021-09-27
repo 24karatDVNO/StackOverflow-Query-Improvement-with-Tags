@@ -1,0 +1,16 @@
+<p>A jQuery alternative to Patrick's solution could be:</p>
+
+<pre><code>$("td").click(function()
+{
+    var $this = $(this);
+
+    //Find the index of the column based on how many 
+    //previous TDs there are.
+    var col_idx = $this.prevAll("td").length;
+
+    //Now select the Nth TH in the table using the base 1 column index.
+    var $th = $("th:nth-child(" + (col_idx + 1) + ")", $this.closest("table"));
+
+    /* your other code */
+});
+</code></pre>

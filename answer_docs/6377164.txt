@@ -1,0 +1,12 @@
+<p>The DomainCollectionView, as you mention at #1, is the way I've found.</p>
+
+<p>The DataPager is bound to your DomainCollectionView, so all the user's commands on the pager are passed on.  This is being done thru the interfaces that the DomainCollectionView implements, notably IPagedCollectionView, which the DataPager knows how to handle.</p>
+
+<p>Whenever the DataPager needs a new page, it will update the DomainCollectionView, which will in turn call your load function which is setup on the DomainCollectionViewLoader.  The article you link gives examples of getting this all set up.</p>
+
+<p>Some place in the setup of the DomainCollectionView, you will create your DomainCollectionViewLoader something like this:</p>
+
+<pre><code>... = new DomainCollectionViewLoader&lt;Customer&gt;(LoadCustomers, OnLoadCustomersCompleted);
+</code></pre>
+
+<p>In your function LoadCustomers(), you can start showing the BusyIndicator, and when OnLoadCusomtersCompleted() gets hit, you can stop it. </p>

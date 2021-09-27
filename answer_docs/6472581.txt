@@ -1,0 +1,37 @@
+<pre><code>class Card {
+  // ??? probably just an int (0 to 51), but certainly not a String. 
+  // Instead of using class Card below, directly using an int woulb be OK.
+}
+
+class Hand {
+  Set&lt;Card&gt; hand; // size 2
+}
+
+class Draw { // not sure of the exact poker name for the 5 cards
+  Set&lt;Card&gt; flop;  // size 3
+  Card turn;
+  Card river;
+}
+
+class Bet {
+  Player player;
+  // or maybe "Double" instead; then amount == null means player dropping out.
+  // or use 0.0 to mean dropped out.
+  double amount;
+}
+
+class BettingRound {
+  // Includes initial "entry" and all subsequent calls.
+  // Should include players dropping out also.
+  List&lt;Bet&gt; bets;
+}
+
+class Game {
+  Draw draw;
+  Map&lt;Player, Hand&gt; hands;
+  // rounds 0 and 1 are special since turn and river are not shown
+  List&lt;BettingRound&gt; rounds;
+}
+</code></pre>
+
+<p>You should also know how much money each player has, I guess. You could keep track of that with a third field (total cash before the bet) in class Bet.</p>

@@ -1,0 +1,16 @@
+<p>Try adding:</p>
+
+<pre><code>$email_message .= '&lt;h2&gt;DWR Submittal&lt;/h2&gt;
+&lt;p&gt;Process the attachment in the system.&lt;/p&gt;
+
+STEP 1. Download file
+STEP 2. Open with Adobe Acrobat
+STEP 3. Verify form data
+STEP 4. etc...
+STEP 5. etc...';
+</code></pre>
+
+<p>Right before:</p>
+
+<pre><code>$data = chunk_split(base64_encode($data));
+</code></pre>

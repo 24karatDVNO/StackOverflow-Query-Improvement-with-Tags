@@ -1,0 +1,8 @@
+<p>You can put this code in your .htaccess to append <code>?1</code> to css and js files like this:</p>
+
+<pre><code>Options +FollowSymlinks -MultiViews
+RewriteEngine on
+
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule \.(css|js)$ %{REQUEST_URI}?1 [R=301,L,NC]
+</code></pre>

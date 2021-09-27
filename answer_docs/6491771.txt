@@ -1,0 +1,6 @@
+<p>Please explicitly link to the example you reference. 
+The way I understand it, you create your own database at launch, unless the database already exists on the device, in which case the database creation is skipped. Correct?</p>
+
+<p>If that is correct, then the only thing you need to do is uninstall the application whenever you update the database design (to remove the old database, with the old table names, etc) and re-install, so the database is recreated with the new table names.</p>
+
+<p>Otherwise you will have updated application code that tries to work with an outdated database. </p>

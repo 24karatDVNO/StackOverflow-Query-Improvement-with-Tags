@@ -1,0 +1,24 @@
+<p>The error message is giving you the hint you need. "Reached end of file" means that as javac was looking for the end of your while loop, it hit the end of the file before it found it. In this case, the problem is on the while loop line it's self, and it's a common bug for people to run into.</p>
+
+<p>If you format your code so that each block is indented, it makes it much easier to see mistakes like this. For example:</p>
+
+<pre><code>public int myFunction()
+    {
+
+    if (thing)
+        {
+            ...blah...
+            ...blah...
+        }
+    }
+    else
+    {
+        while
+            ...blah...
+            ...blah...
+        }
+    }
+}   
+</code></pre>
+
+<p>This way, it's easier to see that things don't line up to catch the error. Different people have different styles on where the place the braces, but always indenting each block of code another level makes this kind of thing easier to spot.</p>

@@ -1,0 +1,45 @@
+<p>For example, you can make a boolean variable to mark, if there is an error, and exit if it's true + combine error messages into one</p>
+
+<pre><code>$error = false;
+if(empty($_POST['studentName'])) 
+{
+$errorMessages[] = "You did not enter the student name Wank";
+$error = true;
+}
+//Code to check that the Tutor Name field is completed
+if(empty($_POST['tutorName'] ))
+{
+$errorMessages[] = "You did not select a tutor name. Please go back and select your name from the tutors list";
+$error = true;
+}
+//Code to check that the Procedure field is completed
+if(empty($_POST['procedure'] ))
+{
+$errorMessages[] = "You did not select a procedure. Please go back and enter the name of the      procedure which you undertook";
+$error = true;
+}
+//Code to check that the Grade field is completed
+if(empty($_POST['grade'] ))
+{
+$errorMessages[] ="You did not select a grade. Please go back and select your grade from the drop down list";
+$error = true;
+}
+//Code to check that the Student Reflection field is completed
+if(empty($_POST['studentReflection'] ))
+{
+$errorMessages[] = "The student did not enter any comments for this procedure. Student reflection is required for each procedure. Please go back and enter any comments";
+$error = true;
+}
+//Code to check if the tick box is checked that the tutor comment is entered
+
+if( !strlen($_POST['tutorComments']) &amp;&amp; isset($_POST['alert'] ))
+{
+    $errorMessages[] = "You must enter a reason why you have clicked the alert box";
+    $error = true;
+}
+if($error)
+{
+    echo("&lt;h3&gt;".implode('&lt;br/&gt;',$errorMessages)."&lt;/h3&gt;");
+    exit();
+}
+</code></pre>

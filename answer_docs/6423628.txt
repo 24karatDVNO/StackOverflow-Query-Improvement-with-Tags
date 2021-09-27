@@ -1,0 +1,13 @@
+<blockquote>
+  <p>A main initializer is the one that calls [super init] and all the variables are assigned in this method.</p>
+</blockquote>
+
+<p>Rather than "main initialiser" we would normally say "designated initialiser".</p>
+
+<blockquote>
+  <p>Is this approach correct ?</p>
+</blockquote>
+
+<p>Yes, more or less.  All your initialisers should eventually invoke the designated initialiser which should initialise itself by first calling the super class's designated initialiser.</p>
+
+<p>Note that, you should override the super class's designated initialiser to call your designated initialiser if it does not have the same selector.  So in your example, assuming you inherit directly from <code>NSObject</code>,  you need to override <code>-init</code>  to call <code>-initWithAccount:apiKey:lineid:runTitle:</code> with appropriate default values.</p>

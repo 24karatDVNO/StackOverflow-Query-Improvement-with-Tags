@@ -1,0 +1,13 @@
+<pre><code>$counter = 0;
+
+foreach( $ds as $d){
+
+echo '&lt;div class="bkback" onclick="bkdates(this);"&gt;'.date('M', strtotime("today + $d day")).'&lt;br /&gt;&lt;span class="bknum"&gt;'.date('d', strtotime("today + $d day")).'&lt;/span&gt;&lt;br /&gt;
+'.date('D', strtotime("today + $d day")).'&lt;/div&gt;';
+
+$counter++;
+
+if ($counter % 5 == 0) { echo '&lt;div class="marker"&gt;&lt;/div&gt;'; }
+
+}
+</code></pre>

@@ -1,0 +1,5 @@
+<p>Have you gone through the <a href="http://www.castleproject.org/activerecord/gettingstarted/index.html" rel="nofollow">Castle ActiveRecord tutorial</a>?</p>
+
+<p>One thing I notice is that you don't have <em>object</em> relations, but <em>key</em> relations.  To use NHibernate and Castle ActiveRecord the way they're intended, your object model should have relationships <em>betweeen objects</em>.</p>
+
+<p>This means that your <code>Order</code> class should have a <code>User</code> property which points to an instance of a <code>UserAccount</code>.  Your <code>UserAccount</code> class should have an <code>Orders</code> collection.  In my experience, this should usually be an <code>ISet&lt;Order&gt;</code>, which you initialize in the <code>UserAccount</code> constructor as a <code>HashedSet&lt;Order&gt;</code>.</p>

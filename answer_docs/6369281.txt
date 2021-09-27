@@ -1,0 +1,8 @@
+<p>Yes, you can use javascript to redirect the user when they click a link that leads to '#', e.g.</p>
+
+<pre><code>&lt;a href="#"&gt;Secret File&lt;/a&gt;
+</code></pre>
+
+<p>However, this is pointless since it will always be possible to trace what file is being downloaded (by using an HTTP sniffer, for example, or other tools). Essentially, what you're asking for is impossible and unreasonable.</p>
+
+<p>If you need to make sure that the file is accessed only by some people, make them log in and check the credentials before giving them the data. Hiding the path is not the way to go.</p>

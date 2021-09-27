@@ -1,0 +1,17 @@
+<p>This simply loops through every half our and then calls date on each.</p>
+
+<pre><code>$inc   = 30 * 60;
+$start = (strtotime('6AM')); // 6  AM
+$end   = (strtotime('10PM')); // 10 PM
+
+echo "&lt;select&gt;";
+for( $i = $start; $i &lt;= $end; $i += $inc )
+{
+    // to the standart format
+    $range = date( 'g:i', $i ) . ' - ' . 
+             // $inc = 30 minutes so this will be .5 hr later
+             date( 'g:i A', $i + $inc );
+    echo "&lt;option value=\"$range\"&gt;$range&lt;/option&gt;" . PHP_EOL;
+}
+echo "&lt;/select&gt;";
+</code></pre>

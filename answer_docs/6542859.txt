@@ -1,0 +1,24 @@
+<p>In the view model, you are using attr_accessible, it wont save any fields that are not in the attr_accessible like the receives_attributes, that comes from the form when your nested form is displayed. So you have to add receiver_attributes to the attr_accessible list.You might want to do this to the User and Receiver(if you are having nested forms for them too), which also have attr_accessible</p>
+
+<pre><code>attr_accessible :id, :text, :user_id, :receiver_attributes
+</code></pre>
+
+<p>In the new action of notes_controller, you need to use build method like</p>
+
+<pre><code>@note.build_receiver
+</code></pre>
+
+<p>then in the form, you need to write the code to display the fields in the receiver.</p>
+
+<pre><code>&lt;%= semantic_form_for @note do |form| %&gt;
+&lt;%= form.inputs do %&gt;
+  &lt;%= form.input :text %&gt;
+  &lt;%= form.input :user_id, :as =&gt; :check_boxes, :collection =&gt; User.find(:all, :conditions =&gt; ["id != ?", current_user.id], :order =&gt; 'id').collect{|u| [u.email, u.id]} %&gt;
+&lt;% end %&gt;
+  &lt;%=f.semantic_fields_for :receiver_attributes, @note.receiver do|receiver| %&gt;
+   &lt;!-- Add receiver related input here using the receiver block variable like receiver.input --&gt;
+  &lt;% end %&gt;
+&lt;%= form.buttons %&gt;
+</code></pre>
+
+<p>&lt;% end %></p>

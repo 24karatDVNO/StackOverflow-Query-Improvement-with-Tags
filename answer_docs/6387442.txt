@@ -1,0 +1,11 @@
+<p>You've got most of things right but few statements I want to correct are:</p>
+
+<pre><code>if we only have one parameter in line 5, then compiler will use the run method defined in line 9 instead.
+</code></pre>
+
+<p>That is not totally correct, the method on line 9 accepts <code>String[]</code> type arguments and you will need to pass an array to call this method.</p>
+
+<pre><code>For the run method defined in line 9, it will call run method at line 10, which essentially is the run method defined at line 13.
+</code></pre>
+
+<p>On line 10 you will get syntax error since <code>input, output, alpha0</code> are undefined in that method. You need to take passed <code>String[] args</code> argument and covert it into <code>input, output, alpha0</code> arguments to be call other implementation of <code>run</code>.</p>

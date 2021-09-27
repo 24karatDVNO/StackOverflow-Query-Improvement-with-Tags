@@ -1,0 +1,3 @@
+<p>I haven't used iPhone's implementation yet (just on WebGL and Android) but as i can see from the Apple snippet you posted, they are stating that <strong>their</strong> implementation uses <code>mediump</code>, so if you're using <code>lowp</code> then <strong>their</strong> implementation will have to convert those low precision floating point values to medium precision values (floating point conversion isn't like integer conversions, they have to adjust mantissas and exponents).</p>
+
+<p>Remember that GLSL (or HLSL for DX11) shaders get compiled into implementation specific code.</p>

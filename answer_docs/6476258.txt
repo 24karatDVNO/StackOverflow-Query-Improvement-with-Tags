@@ -1,0 +1,49 @@
+<p>We have implemented this scenario in our LOB app.</p>
+
+<p>Firstly add the appropriate properties to the user class like so.</p>
+
+<pre><code>public partial class User : UserBase
+{
+    public Guid UserId { get; set; }
+    public int PeopleId { get; set; }
+    public int EpothecaryUserId { get; set; }
+    public string PersonFullName { get; set; }
+    public SearchGroups SearchGroups { get; set; }
+    public string SearchHistoryString { get; set; }
+    public int SearchRowsReturnedPerGroup { get; set; }
+}
+</code></pre>
+
+<p>Then create a class derived from AuthenticationBase</p>
+
+<pre><code>public class AuthenticationService : AuthenticationBase&lt;User&gt;
+{
+
+    protected override User GetAuthenticatedUser(IPrincipal principal)
+    {
+        return base.GetAuthenticatedUser(principal).WithProfile();
+    }
+
+    [Invoke]
+    public void SaveMyUser(User user)
+    {
+        if (user.UserId == Guid.Empty)
+        {
+            ClientLogger.Error("SaveMyUser failed because the UserId is invalid");
+            return;                
+        }
+
+        using (var db = new Pharma360Model())
+        {
+            var userProfile = db.UserProfiles.Single(p =&gt; p.EpothecaryUserId == user.EpothecaryUserId);
+            userProfile.SearchGroups = (int)user.SearchGroups;
+            userProfile.SearchHistory = user.SearchHistoryString;
+            userProfile.SearchRowsReturnedPerGroup = user.SearchRowsReturnedPerGroup;
+            db.SaveChanges();
+        }
+    }
+</code></pre>
+
+<p>}</p>
+
+<p>And this will take care of the loading and saving of the custom User class.</p>

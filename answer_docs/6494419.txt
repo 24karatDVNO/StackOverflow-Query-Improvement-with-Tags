@@ -1,0 +1,10 @@
+<p>Multiple views do not need separate instances of the ViewModel, you can quite happliy share the same ViewModel (e.g. a singleton) between multiple views. However, you have to be aware that changing the properties of this shared ViewModel affects the other Views as well.</p>
+
+<p>In addition you could also hold your Model as a Singleton and let multiple ViewModels bind to this instance.</p>
+
+<p>So for your questions:</p>
+
+<ol>
+<li><p>You will have to navigate to a View but this can be bound to a singleton ViewModel.</p></li>
+<li><p>Well depends, if all your ViewModels are singletons you can. But do you want it? Personally I think it is better to share the Model then.</p></li>
+</ol>

@@ -1,0 +1,25 @@
+<p>first you need to get them organized by company:</p>
+
+<pre><code>$companies = array();
+foreach($array as $i =&gt; $user)
+{
+  $id = $user['company_id'];
+  if(!isset($companies[$id])){
+    $companies[$id] = array(
+       'company_name' =&gt; $user['company_name'],
+       'company_type' =&gt; $user['company_type'],
+       'company_id' =&gt; $id,
+       'users' =&gt; array();
+    );
+  }
+
+  $companies[$id]['users'][] = array(
+     'user_name' =&gt; $user['user_name'],
+     'user_id' =&gt; $user['user_id']
+  );
+
+  unset($array[$i]); // just remove the element from the source array... not necessary but possibly useful if its a HUGE list.
+}
+</code></pre>
+
+<p>Then you can just loop through and output.</p>

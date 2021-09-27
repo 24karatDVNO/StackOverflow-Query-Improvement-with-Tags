@@ -1,0 +1,9 @@
+<p>Why don't you try to search little bit before you ask a question? This problem is asked several times per week. In your previous question I said you that you should use same context for loading <code>Alert</code> and storing <code>User</code>. You didn't do it and complicated whole situation. </p>
+
+<p>The context doesn't know anything about existence of the alert. Once you call <code>Add</code> for user it will add all entities which are not tracked yet. There are three ways to solve this:</p>
+
+<ul>
+<li>Use the same context in both repositories and do not detach alerts. Because of loading alerts, context will know about their existence and doesn't insert them again.</li>
+<li>If you don't use the same context for loading you must attach the <code>Alert</code> to the new context before you add it to <code>User</code>. That is hard to do when you wrap EF code to repositories.</li>
+<li>If you don't use the same context and you will not attach <code>Alert</code> to the new context before you add it to <code>User</code> you must modify your <code>Add</code> method for <code>User</code> and after adding <code>User</code> to the context you must iterate every alert and change its state to <code>Unchanged</code>.</li>
+</ul>

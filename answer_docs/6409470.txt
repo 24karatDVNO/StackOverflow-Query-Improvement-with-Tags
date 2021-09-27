@@ -1,0 +1,26 @@
+<p>I too would have expected it to leave it alone if it isn't in the xml, but I too can reproduce  what you are saying, both "as is", and with <code>[XmlElement(...)]</code> on the member. I guess <em>internally</em> it is newing up the list "in case".</p>
+
+<p>I also tried the alternative syntax just using a <code>get</code> and a lazy initializer, i.e.</p>
+
+<pre><code>// note: doesn't work; see answer text
+private List&lt;string&gt; conflictList;
+public List&lt;String&gt; ConflictList
+{
+    get { return conflictList ?? (conflictList = new List&lt;string&gt;()); }
+}
+</code></pre>
+
+<p>but it still invokes this getter, even when no conflict data is included. And annoyingly the <code>*Specified</code> pattern only ever gets called for data that <em>is</em> specified - it doesn't get called for data that <em>isn't</em> specified, else you could do:</p>
+
+<pre><code>// note: doesn't work; see answer text
+[XmlIgnore]
+public bool ConflictListSpecified
+{
+    get { return ConflictList != null; }
+    set { if (!value) ConflictList = null; }
+}
+</code></pre>
+
+<p>Add to that the fact that serialization callbacks aren't supported in <code>XmlSerializer</code> and I'm out of options.</p>
+
+<p>I've tested it back to .NET 2.0, and it behaves the same there too...</p>

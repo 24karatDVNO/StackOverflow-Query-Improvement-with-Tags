@@ -1,0 +1,15 @@
+<p>Upon application shutdown you must call</p>
+
+<pre><code>        scheduler.shutdown();
+</code></pre>
+
+<p>Sometimes you have to do a Thread.sleep(1000); to let it shut down properly aswell.</p>
+
+<p>Do this in a ContextLoad listener or other shutdown hook that you have.</p>
+
+<p>To get the instance depends on how you have set up quartz, but the default scheduler can be obtained like this:</p>
+
+<pre><code>        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+</code></pre>
+
+<p>See <a href="http://www.quartz-scheduler.org/docs/1.x/quick_start_guide.html" rel="nofollow">http://www.quartz-scheduler.org/docs/1.x/quick_start_guide.html</a> for more information</p>

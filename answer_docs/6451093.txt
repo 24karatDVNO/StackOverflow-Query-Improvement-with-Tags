@@ -1,0 +1,9 @@
+<p>To call a server side method from client side, you have the following options:</p>
+
+<ol>
+<li>Use ICallBackEventHandler</li>
+<li>Use a Webservice with [ScriptService] attribute and call it's web methods from js</li>
+<li>Use PageMethods. But that allows you to call static methods on your aspx page, only. Hence you won't be able to access any page controls.</li>
+</ol>
+
+<p>I would recommend option 2, since it's the easiest.</p>

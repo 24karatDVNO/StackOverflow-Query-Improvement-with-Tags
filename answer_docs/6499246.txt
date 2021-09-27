@@ -1,0 +1,10 @@
+<p>Our <a href="http://www.semanticdesigns.com/Products/DMS/DMSToolkit.html" rel="nofollow">DMS Software Reengineering Toolkit</a> and its <a href="http://www.semanticdesigns.com/Products/FrontEnds/CFrontEnd.html" rel="nofollow">C Front End</a> can do this.</p>
+
+<p>DMS provides generic machinery for parsing, building ASTs, symbol tables, generally analyzing ASTs, and specific analyzers for control/dataflow/points-to/value range, as well as transforming ASTs aribtrarily either procedurally or using patterns, and regeneration of source text including comments.  DMS's ability to process multiple compilation units at the same time allow for global analzyers and transformations that affect multiple compilation units simultaneously.</p>
+
+<p>DMS's C Front end specializes all this for C (it has front ends for a variety of other langauges).  It handles variety of dialects, including ANSI, GCC 3/4, MS Visual C and Green Hills C; it can be customized for other dialects as needed.</p>
+
+<p>DMS has been used for a variety of C analysis/transformation projects, including analyzing a 26 million line software system. </p>
+
+<p>An interesting application of DMS is to instrument C source to catch pointer errors when they occur (rather than suffering a long-delayed crash); see our <a href="http://www.semanticdesigns.com/Products/MemorySafety" rel="nofollow">CheckPointer</a> tool.  This tool reads the source code, inserts extra code to check each pointer access, and then writes out the results.
+In the process of doing this, it normalizes the C code to a simplified subset to get rid of lots of special cases.  This normalization may be pretty close to the kind of thing OP wants to do.</p>

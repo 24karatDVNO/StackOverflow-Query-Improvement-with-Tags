@@ -1,0 +1,11 @@
+<p>I'm not sure why you tagged your question with python/django, but here's my answer:</p>
+
+<p>First of all, how long is your query taking? It might take quite a while to ask such an open question to the database. Measure the time using e.g. System.currentTimeMillis() like so:</p>
+
+<pre><code>long t1 = System.currentTimeMillis();
+//run your code here
+long t2 = System.currentTimeMillis();
+System.out.println("Time: " + (t2-t1));
+</code></pre>
+
+<p>My suspicion is that your problem might be that you are running in the UI thread of your app, which might crash if the query takes too long.</p>

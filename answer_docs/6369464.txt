@@ -1,0 +1,12 @@
+<p>There are two aproaches if I understood you correctly.</p>
+
+<ol>
+<li><p>Repaint only the elements you need, each element must have a boolean indicating if it will be painted or not.</p></li>
+<li><p>In case you need to erase exactly one part of the window, use glScissor.</p></li>
+</ol>
+
+<p>Info:</p>
+
+<blockquote>
+  <p>Now for something new. A wonderful GL command called glScissor(x,y,w,h). What this command does is creates almost what you would call a window. When GL_SCISSOR_TEST is enabled, the only portion of the screen that you can alter is the portion inside the scissor window.</p>
+</blockquote>

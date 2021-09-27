@@ -1,0 +1,9 @@
+<ul>
+<li><p>As I know, there seems no such setting to "turn off" the "searching map" status, which vim will eat all the char you type if it is part of some map in keymap matching.</p></li>
+<li><p>Vim only can bind one key to a specific action, so there is no way to make a key do two thing as you may wish. On the other hand, you can  configure "snipmate" to use other key to do the "expand" action. And that's should be a usually way when you meet the key conflict problem. Alternatively, you can use "abbreviate" to do something :</p>
+
+<pre><code>:abbreviate &lt;expr&gt; :date: strftime("%Y-%m-%d")  
+</code></pre>
+
+<p>But I am sorry for that, the "eating matching" also exists here.</p></li>
+</ul>

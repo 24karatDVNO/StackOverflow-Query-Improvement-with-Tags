@@ -1,0 +1,26 @@
+<p>I'd combine <code>&lt;iframe&gt;</code> and the <code>&lt;form&gt;</code>'s ability to be sent even to another domain.
+Main file:</p>
+
+<pre><code>&lt;iframe id=ifr src=form.html style="display: none;"&gt;&lt;/iframe&gt;
+&lt;input id=send-me&gt;&lt;input type=button onclick="senddata();" value=Send&gt;
+&lt;script&gt;
+function senddata()
+{
+    var ifr = document.getElementById('ifr'),
+        f = ifr.contentWindow.document.forms[0];
+    f.elements.data.value = document.getElementById('send-me').value;
+    f.submit();
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>form.html:</p>
+
+<pre><code>&lt;form action="http://another.doma.in/" method=post&gt;
+    &lt;input type=hidden name=data&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>This will make POST HTTP request to another domain and send there the content of <code>&lt;input id=send-me&gt;</code>.</p>
+
+<p>Please note that this is just basic proposal and will need adjustment if you want to for example send data multiple times without refresh.</p>

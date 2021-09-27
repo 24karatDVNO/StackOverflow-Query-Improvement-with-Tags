@@ -1,0 +1,8 @@
+<pre><code>$(function() {
+    $('table td input[type=checkbox]').click(function() {
+        $(this).closest('td').css('background-color', $(this).prop('checked') ? 'red' : 'white');
+    })
+})
+</code></pre>
+
+<p>This is the easiest way to do it, it's tested.</p>

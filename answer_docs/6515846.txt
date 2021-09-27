@@ -1,0 +1,3 @@
+<p>Given the current state of the XPath language, I feel that the best answer is provided by Tomalek: to associate a prefix with the default namespace and to prefix all tag names. That’s the solution I intend to use in my current application.</p>
+
+<p>When that’s not possible or practical, a better solution than my hack is to invoke a method that does the same thing as re-scanning (hopefully more efficiently): <a href="http://www.php.net/manual/en/domdocument.normalizedocument.php" rel="nofollow"><strong>DOMDocument::normalizeDocument()</strong></a>. The method behaves “as if you saved and then loaded the document, putting the document in a ‘normal’ form.”</p>

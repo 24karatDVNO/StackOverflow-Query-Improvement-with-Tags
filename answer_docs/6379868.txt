@@ -1,0 +1,20 @@
+<p>In addition to the other answers...</p>
+
+<p>You can, if you like, use the <code>Data.Dynamic</code> module to work with dynamic types in Haskell.  For example:</p>
+
+<pre><code>&gt; let dyns = [ toDyn (5 :: Int), toDyn "hello", toDyn not ]
+</code></pre>
+
+<p>Then you can easily write a test for a specific type using <code>fromDynamic</code>:</p>
+
+<pre><code>isString :: Dynamic -&gt; Bool
+isString dyn = isJust (fromDynamic dyn :: Maybe String)
+</code></pre>
+
+<p>And you can apply that to any <code>Dynamic</code> value to determine if it contains a <code>String</code>:</p>
+
+<pre><code>&gt; map isString dyns
+[False,True,False]
+</code></pre>
+
+<p>So if you choose to use dynamic typing using the <code>Data.Dynamic</code> module, then yes you can do this.</p>

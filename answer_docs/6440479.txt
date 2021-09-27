@@ -1,0 +1,24 @@
+<p>I've created a simple store factory method that should solve your issue. 
+Copy in your class and create the store:</p>
+
+<pre><code>setStore(_createListStore("/category/getall", "data", "id", "name"));
+loader.load();
+setValueField("id");
+setDisplayField("name");
+setName("categoty");
+</code></pre>
+
+<p>the error in your code is that you add two fields to the ModelType, instead you should add just one field with "id" as value and "name" as display</p>
+
+<pre><code>protected ListStore&lt;ModelData&gt; _createListStore(String url, String root, String fieldValue, String displayValue){
+    ModelType mt = new ModelType();
+    mt.setRoot(root);
+    mt.addField(displayValue, fieldValue);
+    RequestBuilder rb = new RequestBuilder(RequestBuilder.GET, url);
+    HttpProxy&lt;String&gt; proxy = new HttpProxy&lt;String&gt;(rb);
+    JsonLoadResultReader&lt;ListLoadResult&lt;ModelData&gt;&gt; reader = new JsonLoadResultReader&lt;ListLoadResult&lt;ModelData&gt;&gt;(mt);
+    final BaseListLoader&lt;ListLoadResult&lt;ModelData&gt;&gt; loader = new BaseListLoader&lt;ListLoadResult&lt;ModelData&gt;&gt;(proxy, reader);
+    ListStore&lt;ModelData&gt; store = new ListStore&lt;ModelData&gt;(loader);
+    return store;
+}
+</code></pre>

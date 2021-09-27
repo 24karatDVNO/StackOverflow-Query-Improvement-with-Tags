@@ -1,0 +1,11 @@
+<ol>
+<li>In your <code>script tag</code> you have <code>language=</code> which should be <code>type=</code></li>
+<li>You should use <code>document.getElementById("message")</code> instead of <code>message</code>.</li>
+<li><p>You should feed the function with an actual color. The <code>string text "Blue"</code> is not a color</p>
+
+<pre><code>function changeColor(c)
+{
+   document.getElementById("message").style.color = c;
+}
+</code></pre></li>
+</ol>

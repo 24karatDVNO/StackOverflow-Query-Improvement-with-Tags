@@ -1,0 +1,6 @@
+<p>You can fill the form fields, on the second round, by filling the content inside the value attributes of html tags, like so:</p>
+
+<pre><code>&lt;input type="text" value="&lt;?php echo $_REQUEST['test']; ?&gt;" name="test"&gt;
+</code></pre>
+
+<p>Pay attention: this is a fast and simple solution. It gives you an idea. In good web programming practice you should sanitize the form data received by client in order to avoid security issues.</p>

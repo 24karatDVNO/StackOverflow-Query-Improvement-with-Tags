@@ -1,0 +1,6 @@
+<p>The <code>DataGrid</code> as a <code>AutoGeneratingColumn</code> event which fires for each column that is being generated.</p>
+
+<p>This event gives you considerable flexibility in modifying the actual column created. It also has a <code>Cancel</code> property on its event args to cancel the creation of specific column.</p>
+
+<pre><code>e.Cancel = e.PropertyName == "NotRequiredProperty";
+</code></pre>

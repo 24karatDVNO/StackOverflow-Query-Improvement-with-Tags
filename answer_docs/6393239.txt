@@ -1,0 +1,20 @@
+<p>Is this what you were looking for?</p>
+
+<pre><code>&lt;input name="A0000" isDate="true" value="01/01/2020" /&gt;
+&lt;input name="A0001" isDate="true" value="01/01/2021" /&gt;
+&lt;input name="A0002" isDate="true" value="01/01/2022" /&gt;
+&lt;input name="A0003" isDate="true" value="01/01/2023" /&gt;
+&lt;input name="A0004" isDate="true" value="01/01/2024" /&gt;
+&lt;input name="A0005" isDate="true" value="01/01/2025" /&gt;
+
+
+$("input[isDate="true"]).each(function(){
+    var _this = this;
+    // do stuff then... 
+
+    // get name of input
+    var name =  _this.name;
+});
+</code></pre>
+
+<p>Good luck!</p>

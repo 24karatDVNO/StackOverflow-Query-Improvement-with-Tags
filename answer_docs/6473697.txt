@@ -1,0 +1,14 @@
+<p>You can do </p>
+
+<pre><code> select TOP(@num_items) prod_id, prod_name, prod_price 
+   from products where @num_items is not null
+union
+ select prod_id, prod_name, prod_price 
+   from products where @num_items is null
+</code></pre>
+
+<p>or you can</p>
+
+<pre><code>select TOP(isnull(@num_items,Very large number)) prod_id, prod_name, prod_price 
+   from products
+</code></pre>

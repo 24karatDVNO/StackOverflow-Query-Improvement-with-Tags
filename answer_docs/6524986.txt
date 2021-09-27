@@ -1,0 +1,15 @@
+<p>I don't full understand why, but opening (optionally writing content) and closing the document solves the issue (at least in FF5 on OSX):</p>
+
+<pre><code>this.editor.contentWindow.document.open();
+// optionally write content here
+this.editor.contentWindow.document.close();
+this.editor.contentWindow.document.designMode = "on";
+</code></pre>
+
+<p>The other idea I had was to set a timeout around the <code>designMode = "on"</code> statement (I remember having to do this in the past for FF), but it did not work.</p>
+
+<p>I think it has something to do with FF loading "something" in the IFRAME and it not being ready to turn designMode on.</p>
+
+<p>I guess you could also use the <code>contentEditable="true"</code> attribute on the DIV instead.</p>
+
+<p>Anyway, I hope this helps.</p>

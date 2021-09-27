@@ -1,0 +1,29 @@
+<p>I tried and it adds the row at the end of the DataGridView.
+I dragged a DataGridView and a button in the form.
+Here is the code:</p>
+
+<pre><code>private void addRowbutton_Click(object sender, EventArgs e)
+{
+    dataGridView1.Rows.Add();
+}
+
+private void Form1_Load(object sender, EventArgs e)
+{
+   dataGridView1.Columns.Add("ID", "Product ID");
+   dataGridView1.Columns.Add("Name", "Product Name");
+   dataGridView1.Columns.Add("Description", "Description");
+   dataGridView1.Columns.Add("Price", "Price");
+   for (int i = 0; i &lt; 2; i++) 
+   {
+     DataGridViewRow row = new DataGridViewRow();
+     row.CreateCells(dataGridView1);
+     row.Cells[0].Value = i;
+     row.Cells[1].Value = "Product " + i;
+     row.Cells[2].Value = "Description of Product " + i;
+     row.Cells[3].Value = "99.99";
+     dataGridView1.Rows.Add(row);  
+   }
+}
+</code></pre>
+
+<p>If you populate the datagridview via databind you cannot add a row programmatically.</p>

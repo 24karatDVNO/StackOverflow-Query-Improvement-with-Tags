@@ -1,0 +1,41 @@
+<p><strong>Note:</strong> This answer was based on the first version of the question.  The edits and subsequent question(s) change things.</p>
+
+<blockquote>
+  <p>p.s. I don't believe I need a JsonSerializer, this should work out of the box :)</p>
+</blockquote>
+
+<p>That's not the case at all.  The JSON example you posted does not match the Java class structure you apparently want to bind to and generate.</p>
+
+<p>If you want JSON like that from Java like that, you'll definitely need custom serialization processing.</p>
+
+<p>The JSON structure is </p>
+
+<pre><code>an object with two elements
+    element 1 is a string named "geometryType"
+    element 2 is an object named "geometries", with differing elements based on type
+</code></pre>
+
+<p>The Java structure is</p>
+
+<pre><code>an object with two fields
+    field 1, named "geometryType", is a complex type GeometryType
+    field 2, named "geometries" is a Collection of AbstractGeometry objects
+</code></pre>
+
+<p>Major Differences:</p>
+
+<ol>
+<li>JSON string does not match Java type GeometryType</li>
+<li>JSON object does not match Java type Collection</li>
+</ol>
+
+<p>Given this Java structure, a matching JSON structure would be </p>
+
+<pre><code>an object with two elements
+    element 1, named "geometryType", is a complex object, with elements matching the fields in GeometryType
+    element 2, named "geometries", is a collection of objects, where the elements of the different objects in the collection differ based on specific AbstractGeometry types
+</code></pre>
+
+<p>Are you sure that what you posted is really what you intended?  I'm guessing that either or both of the structures should be changed.</p>
+
+<p>Regarding any question on polymorphic deserialization, please note that the issue was discussed a few times on StackOverflow.com already.  I posted a link to four different such questions and answers (some with code examples) at <a href="https://stackoverflow.com/questions/6424848/can-i-instantiate-a-superclass-and-have-a-particular-subclass-be-instantiated-bas/6426046#6426046">Can I instantiate a superclass and have a particular subclass be instantiated based on the parameters supplied</a>.</p>

@@ -1,0 +1,3 @@
+<p>You are probably getting overflow/undeflow because your 100x100 matrix is ill-conditioned. If you aren't using partial pivoting, you should be.</p>
+
+<p>A better alternative is to use something other than Gaussian elimination. Even with partial pivoting, Gaussian elimination is still subject to problems related to ill-conditioned matrices. One alternative is to use construct a pseudoinverse via singular value decomposition. Decompose your matrix A to a UVW* form using SVD. A pseudoinverse of A is UV^{-1}W*, where V^{-1} is a pseudoinverse of the diagonal matrix V. This is easy to calculate: Just find the inverse of each diagonal element, except that you use the seemingly paradoxical 1/(small number) = 0.</p>

@@ -1,0 +1,7 @@
+<p>Try</p>
+
+<pre><code>$("li").each(function(index){
+    var previewCaptions = $('#tooltips'+(index+1)).text();
+       $(this).attr('title',previewCaptions);
+});
+</code></pre>

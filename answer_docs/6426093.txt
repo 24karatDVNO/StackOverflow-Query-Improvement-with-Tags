@@ -1,0 +1,19 @@
+<p>I see 2 options.  You could define your <code>over</code> and <code>out</code> functions as separate functions:</p>
+
+<pre><code>function overFunc){...}
+function outFunc){...}
+
+$(".droparea").droppable({  
+   out: outFunc,
+   over: overFunc
+});
+</code></pre>
+
+<p>Then you can simply call those functions independently when needed.  </p>
+
+<p>The other option is to call the droppable functions like this (untested but I believe this is they syntax):</p>
+
+<pre><code>$("#droppable").droppable('option', 'out')()
+</code></pre>
+
+<p>It depends on your situation but you may have issues with context either way.  The first obviously has no context at all so you will want to call it with <code>.apply</code> in order to use <code>this</code>.  The 2nd may have the ability to use <code>this</code> to get the droppable but obviously has no access to what is being dropped if there are multiple droppables.</p>

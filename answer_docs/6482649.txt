@@ -1,0 +1,17 @@
+<p>I don't know what you are trying to do, so I can not tell you which one to use. in principle, servlet is used with JSP(JSF) to implement a MVC architecture. </p>
+
+<p>what you need to do to solve the problem you describe as question is that you need a from like:</p>
+
+<pre><code>&lt;form action=" /*the url where you get data */ " method="get"&gt;
+  &lt;input name="tabledata" type="button" value="getData"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>and in Servelet you have something like this:</p>
+
+<pre><code> public doGet(httpServeletRequest request, httpServletResponse response){
+       String tableData=getParameter("tableData");
+       //call the method you have
+       if(tableData!=null)showDB();
+ }
+</code></pre>

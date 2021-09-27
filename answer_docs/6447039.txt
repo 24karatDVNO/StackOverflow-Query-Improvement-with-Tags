@@ -1,0 +1,27 @@
+<p>I had this with using ruby installed via rvm. </p>
+
+<p>This was invaluable and is the correct way I think.</p>
+
+<p><a href="http://forums.macnn.com/79/developer-center/355720/how-re-sign-apples-applications-once" rel="nofollow">http://forums.macnn.com/79/developer-center/355720/how-re-sign-apples-applications-once</a></p>
+
+<p>I re-signed my rvm/ruby binary and all's well.</p>
+
+<p>Relevant bits:</p>
+
+<blockquote>
+  <p>You can examine the signature information by doing the following:</p>
+  
+  <p>codesign -dvvvv /path/to/application</p>
+</blockquote>
+
+<p>Then create a self-signed certificate via the Keychains application that is for Code Signing (see link for details). 
+Then:</p>
+
+<blockquote>
+  <p>Re-signing the application is quite simple.</p>
+  
+  <ol>
+  <li>Open Terminal.</li>
+  <li>Type "codesign -f -s (name of certificate) /path/to/application</li>
+  </ol>
+</blockquote>

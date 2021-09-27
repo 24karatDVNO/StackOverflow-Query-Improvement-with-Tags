@@ -1,0 +1,17 @@
+<pre><code>$var3 = "abc";
+return $var3;
+</code></pre>
+
+<p>That's pointless. You're <code>return</code>ing a <em>value</em>, not a variable. <code>return "abc";</code> is perfectly fine.</p>
+
+<blockquote>
+  <p>Is it ok to either return a value or return false?</p>
+</blockquote>
+
+<p>Yes, that's perfectly fine for a simple case such as this.</p>
+
+<blockquote>
+  <p>How can i check the function did return the $var3?</p>
+</blockquote>
+
+<p>As said above, the function returns the <em>value <code>"abc"</code></em>, not <code>$var3</code>. You're saving it in a new variable <code>$value</code>. This variable is definitely <em>set</em> (you just created it right there), so there's no need for <code>isset</code> or <code>empty</code>. Just test whether its value is <code>true</code> or <code>false</code> (or whatever else you want to test for). So the way you're doing it in fine.</p>

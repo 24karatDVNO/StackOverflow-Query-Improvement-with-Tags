@@ -1,0 +1,16 @@
+<p>This should do it:</p>
+
+<pre><code>UPDATE TheTable 
+SET Active=(VersionNo=(SELECT MAX(VersionNo)
+                       FROM TheTable AS T1
+                       WHERE T1.code=TheTable.code)) 
+WHERE code='RRUP'
+</code></pre>
+
+<p>Also, to normalize the whole table, just remove the where clause from the outer update:</p>
+
+<pre><code>UPDATE TheTable 
+SET Active=(VersionNo=(SELECT MAX(VersionNo)
+                       FROM TheTable AS T1
+                       WHERE T1.code=TheTable.code)) 
+</code></pre>

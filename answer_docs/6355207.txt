@@ -1,0 +1,7 @@
+<p>BLOB for binary data...</p>
+
+<p>While SQLite does have a few basic bit-wise operators (that only work on data convertible to a NUMERIC), it is pretty much <em>up to the client</em> on how to handle the "bitstring" -- so check on how the <em>client</em> works and what back-end formats are utilitized. (For instance, bitstrings of no more than 64 elements can be saved in an INTEGER field.)</p>
+
+<p>All the SQLite types and type affinities are <a href="http://www.sqlite.org/datatype3.html" rel="nofollow">discussed here</a> in a fair bit of detail.</p>
+
+<p>Happy SQL'ing.</p>

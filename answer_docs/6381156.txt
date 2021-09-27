@@ -1,0 +1,8 @@
+<p>Some options would be:</p>
+
+<ol>
+<li>write a crontab job to process the files and update a 'processed' field</li>
+<li>write a <a href="https://docs.djangoproject.com/en/dev/topics/http/file-uploads/#writing-custom-upload-handlers" rel="nofollow">custom upload handler</a> (advanced)</li>
+</ol>
+
+<p>I would go with option 1 for potentially lengthy/slow operations. The #2 is interesting if you already have mad^H^H^Hgood Python skills.</p>

@@ -1,0 +1,10 @@
+<p>It might be easier to create gesture recognizers for this. One that detects 1 finger touch and one that detects 2 finger movement. These should be easily created using the UIGestureRecognizer as base class. You could then make the 1 finger touch be dependent on the 2 finger movement failing, which means that in order to trigger a 1 finger touch event the 2 finger movement gesture recognizer <strong>has</strong> to fail.</p>
+
+<p>You could do that by implementing the following method:</p>
+
+<pre><code>- (void)requireGestureRecognizerToFail:(UIGestureRecognizer *)otherGestureRecognizer
+</code></pre>
+
+<p>Gesture recognizers are incredibly powerful stuff, I recommend you use them!</p>
+
+<p><a href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UIGestureRecognizer_Class/Reference/Reference.html" rel="nofollow">http://developer.apple.com/library/ios/#documentation/uikit/reference/UIGestureRecognizer_Class/Reference/Reference.html</a></p>

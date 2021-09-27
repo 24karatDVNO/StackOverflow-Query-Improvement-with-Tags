@@ -1,0 +1,15 @@
+<p>If the method you want to pass it to is your own, then depending on what you want to do (or how much reflection/convention you are willing to use, generics may be your answer</p>
+
+<pre><code>private string CheckMeOut&lt;T&gt;( T something )
+{
+    return something.GetType().Name;
+}
+
+public void CheckMeOutTest( )
+{
+    var anon = ( from x in typeof(string).GetMethods( )
+                 select new {x.Name, Returns = x.ReturnType.Name} ).First( );
+    string s = CheckMeOut( anon );
+    Console.Out.WriteLine( s );
+}
+</code></pre>

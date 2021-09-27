@@ -1,0 +1,6 @@
+<p>It looks like you want a namespaced element selector, so you should use:</p>
+
+<pre><code>document.getElementsByTagNameNS('fb', 'login-button')[0].click();
+</code></pre>
+
+<p>The <code>:</code> is the namespace separator.</p>

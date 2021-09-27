@@ -1,0 +1,34 @@
+<p>Inspired by tybro's answer, I came up with this, which solves a problem in your question. If the textbox is a fixed length, what happens if the last letter is not visible at all? What co-ordinate should be reported then? Anyway, this gets around it by expanding the textbox indefinitely.</p>
+
+<pre><code>// markup
+&lt;div id="textbox"&gt;
+    &lt;span id="edit" contentEditable&gt;&lt;/span&gt;
+    &lt;span id="end"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div id="report"&gt;x:? , y:?&lt;/div&gt;
+
+
+// css
+#textbox {
+    border: solid black 1px;
+    min-height: 1em;
+    white-space: nowrap;
+}
+
+
+// javascript
+$(function() {
+    $('#textbox').click(function() {
+         $('#edit').focus();
+    });
+
+    $('#edit').keypress(function() {
+        var endoff = $('#end').offset();
+        $('#report').html('x:' + endoff.left + ' , y:' + endoff.top);
+    });
+});
+</code></pre>
+
+<p>The only thing I'm not sure of is when does <code>keypress</code> fire if it's before the content has changed, that's a problem. You could get round it by introducing a timeout or probably theres an even better solution. Unfortunately the <code>keyup</code> event doesn't seem to work on <code>contentEditable</code> things (in Firefox 5 anyway).</p>
+
+<p>Hope this helps.</p>

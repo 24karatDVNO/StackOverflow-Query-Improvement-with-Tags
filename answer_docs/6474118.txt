@@ -1,0 +1,13 @@
+<p>get the states of your check boxes when form submit . then pass it to the view . set the values via jquery . </p>
+
+<p>like you get a check box's checked valuve is 2 when submit the form , then you get it and pass to the view</p>
+
+<pre><code>$this-&gt;view-&gt;checkbox1 = 2 ;
+</code></pre>
+
+<p>then in jaquery </p>
+
+<pre><code>var val = &lt;?php echo $this-&gt;checkbox1 ; ?&gt;;
+
+$("#mycheckbox")[val].checked = true;
+</code></pre>

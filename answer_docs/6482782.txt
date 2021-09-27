@@ -1,0 +1,48 @@
+<p>Your main problem is that you are using the same <code>id</code> for a lot of element. The <code>id</code> should be unique for an element. Also, an <code>id</code> should not start with a digit.</p>
+
+<p>I removed the <code>id</code> from all the elements, and use the containing elements as scope to isolate the textboxes:</p>
+
+<p><a href="http://jsfiddle.net/grHEY/7/" rel="nofollow">http://jsfiddle.net/grHEY/7/</a></p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;span style="display: inline;" class="numberBounds"&gt;
+    &lt;input onkeyup="javascript:handle_date_change(this)" valuetype="date" class="firstYear" value="1905" size="4" type="text"&gt;
+    -&lt;input onkeyup="javascript:handle_date_change(this)" valuetype="date" class="firstMonth" value="08" size="2" type="text"&gt;
+    -&lt;input onkeyup="javascript:handle_date_change(this)" valuetype="date" class="firstDay" value="07" size="2" type="text"&gt; &amp;lt;
+&lt;/span&gt;
+&lt;span class="date tag half-padding margin" value="1905-08-07"&gt;1905-08-07&lt;/span&gt;
+&lt;span style="display: inline;" class="numberBounds"&gt; &amp;lt;
+    &lt;input onkeyup="javascript:handle_date_change(this)" valuetype="date" class="lastYear" value="1905" size="4" type="text"&gt;
+    -&lt;input onkeyup="javascript:handle_date_change(this)" valuetype="date" class="lastMonth" value="08" size="2" type="text"&gt;
+    -&lt;input onkeyup="javascript:handle_date_change(this)" valuetype="date" class="lastDay" value="07" size="2" type="text"&gt;
+&lt;/span&gt;
+</code></pre>
+
+<p>Javascript:</p>
+
+<pre><code>$(".date").click(
+
+function() {
+    var first = $(this).prev();
+    var last = $(this).next();
+    first.toggle();
+    last.toggle();
+    handle_date_change(first, last);
+});
+
+
+function handle_date_change(first, last) {
+
+    // now we use normal filtering to get the appropriate values
+    var first_year = $(".firstYear", first).val();
+    var first_month = $(".firstMonth", first).val();
+    var first_day = $(".firstDay", first).val();
+    var last_year = $(".lastYear", last).val();
+    var last_month = $(".lastMonth", last).val();
+    var last_day = $(".lastDay", last).val();
+
+    alert(first_year);
+
+}
+</code></pre>

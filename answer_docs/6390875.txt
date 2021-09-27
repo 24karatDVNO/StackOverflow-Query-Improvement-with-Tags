@@ -1,0 +1,7 @@
+<p>Something like the following should do.</p>
+
+<pre><code>    UPDATE posts SET user_id=votes.user_id
+    FROM posts INNER JOIN votes ON posts.something=votes.something
+</code></pre>
+
+<p>Perform the updates in sequence if more than one table needs to be updated.</p>

@@ -1,0 +1,9 @@
+<p>I just tested changing the size of images and it worked for me:</p>
+
+<pre><code>foreach (var item in _grid.Children.OfType&lt;Image&gt;())
+{
+    item.Width = 400; // Update calls are unnecessary
+}
+</code></pre>
+
+<p>One thing that might be wrong with your code is that you access <code>Image.Height</code>/<code>Width</code> without setting it first. If those properties are not set they are on <code>Auto</code> (which is <code>Double.NaN</code>), if you want to retrieve the current values which are calculated by the layout system use <a href="http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.actualheight%28v=VS.95%29.aspx" rel="nofollow"><code>ActualHeight</code></a>/<a href="http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.actualwidth%28v=vs.95%29.aspx" rel="nofollow"><code>Width</code></a>.</p>

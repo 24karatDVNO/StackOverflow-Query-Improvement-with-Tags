@@ -1,0 +1,15 @@
+<p>Updated:</p>
+
+<pre><code>SELECT
+    appointment.employee_id ,
+    ( SELECT title.`name`
+      FROM appointment_title
+        INNER JOIN title
+          ON appointment_title.title_id = title.id
+      WHERE appointment.id = appointment_title.appointment_id
+      ORDER BY appointment_title.effective_date DESC
+      LIMIT 1
+    ) AS title_name
+FROM appointment
+GROUP BY appointment.employee_id
+</code></pre>

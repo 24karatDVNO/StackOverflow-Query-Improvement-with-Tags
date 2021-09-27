@@ -1,0 +1,6 @@
+<p>When use SysObjects use the xType Column:</p>
+
+<pre><code>select * from sys.objects where name = 'Test' and xType = 'U'
+</code></pre>
+
+<p>Maybe there is an object with the same name, using xtype = 'U' we can know if there is a User Table.</p>

@@ -1,0 +1,1 @@
+<p>I assume you want to skip clicks that come within a certain TimeSpan of previous clicks.  Create a class variable "DataTime LastClickTime", initially set to DateTime.MinValue.  When you enter the click handler, check if DateTime.Now - LastClickTime > TimeSpan(...desired...) and if it isn't, exit the click handler with a return.</p>

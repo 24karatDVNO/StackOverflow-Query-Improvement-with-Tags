@@ -1,0 +1,5 @@
+<p>The clue is in your question - the code is designed to "slide list items" which are represented by <code>&lt;li&gt;</code> tags - the code wont work on tables because of the way this code takes action.</p>
+
+<p>I've got it working for you here using a list format. <a href="http://jsfiddle.net/P3D2a/" rel="nofollow">http://jsfiddle.net/P3D2a/</a> I don't know why it only scrolls left -that seems to be a problem with your script.</p>
+
+<p>The main things you need to look out for are the dimensions of the slider, and that everything fits together. So if each item is 200px wide, then the visible area should be 400px wide and the whole ul (including the hidden area) should be 800px wide.</p>

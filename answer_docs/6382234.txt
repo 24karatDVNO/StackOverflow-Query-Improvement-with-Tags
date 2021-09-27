@@ -1,0 +1,13 @@
+<p>You can try this code:-</p>
+
+<pre><code>    NSString *post = [NSString stringWithFormat:@"Loginkey=%@&amp;Password=%@&amp;DeviceCode=%@&amp;Firmware=%@&amp;IMEI=%@",txtUserName.text,txtPassword.text,model,sysver,udid];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]; 
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]]; 
+    NSLog(@"%@",postLength);
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease]; 
+    [request setURL:[NSURL URLWithString:@"http://191.16.0.6:91/JourneyMapperAPI?RequestType=Login"]]; //add your web service url here
+    [request setHTTPMethod:@"POST"]; 
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"]; 
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"]; 
+    [request setHTTPBody:postData];
+</code></pre>

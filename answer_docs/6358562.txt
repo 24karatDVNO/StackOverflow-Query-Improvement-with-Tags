@@ -1,0 +1,3 @@
+<p>I've had similar cases where I need to reference the DOM element by ID (for example, a custom library that expects an ID as a parameter). What I normally do in these cases is generate inline javascript as Erik points out, or a more hybrid solution is adding a class, then cycle through all elements of that class, get their IDs, and bind them to the respective event (or do whatever you need with the ID). </p>
+
+<p>I'd also like to see a <em>best practice</em> for this…</p>

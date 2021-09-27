@@ -1,0 +1,21 @@
+<p>As was pointed out in the comments to @rsp's answer, the <a href="http://www.w3.org/TR/xslt20/#xsl-sort" rel="nofollow">default sort <code>data-type</code></a> is "text", but you want "number". You could actually use your own first attempt after making just that one change:</p>
+
+<pre><code>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"&gt;
+
+  &lt;xsl:output method="xml" indent="yes" omit-xml-declaration="no"/&gt;
+
+  &lt;xsl:template match="@*|node()[not(preceding::node()=.)]"&gt;
+    &lt;xsl:copy&gt;
+      &lt;xsl:apply-templates select="@*|node()[not(preceding::node()=.)]"&gt;
+        &lt;xsl:sort select="./@ID" data-type="number" /&gt;
+      &lt;/xsl:apply-templates&gt;
+     &lt;/xsl:copy&gt;
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>This allows you to keep your (inefficient) duplicate check:</p>
+
+<pre><code>node()[not(preceding::node()=.)] 
+</code></pre>

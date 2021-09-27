@@ -1,0 +1,5 @@
+<p>While another question will do it for all columns; a simple "alter table [tablename] alter column [columnToAlter] type numeric(15,3). You shouldn't need to run them through a cursor; any value that's not going to be affected by this should remain unaffected. </p>
+
+<p>If you can't do it by changing the datatype itself, a simple update [tablename] set [columnname] = cast(columnname as numeric(15,3) should also work. </p>
+
+<p>Hope that helps!</p>

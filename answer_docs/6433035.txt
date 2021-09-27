@@ -1,0 +1,34 @@
+<p>you can use spring-ws it will handle everything for you</p>
+
+<p><a href="http://static.springsource.org/spring-ws/sites/2.0/" rel="nofollow">http://static.springsource.org/spring-ws/sites/2.0/</a></p>
+
+<p>And do something like this </p>
+
+<pre><code>public class WebServiceClient {
+
+private static final String MESSAGE =
+    "&lt;message xmlns=\"http://tempuri.org\"&gt;Hello Web Service World&lt;/message&gt;";
+
+private final WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+
+public void setDefaultUri(String defaultUri) {
+    webServiceTemplate.setDefaultUri(defaultUri);
+}
+
+// send to the configured default URI
+public void simpleSendAndReceive() {
+    StreamSource source = new StreamSource(new StringReader(MESSAGE));
+    StreamResult result = new StreamResult(System.out);
+    webServiceTemplate.sendSourceAndReceiveToResult(source, result);
+}
+
+// send to an explicit URI
+public void customSendAndReceive() {
+    StreamSource source = new StreamSource(new StringReader(MESSAGE));
+    StreamResult result = new StreamResult(System.out);
+      webServiceTemplate.sendSourceAndReceiveToResult("http://localhost:8080/AnotherWebService",
+        source, result);
+}
+</code></pre>
+
+<p>}</p>

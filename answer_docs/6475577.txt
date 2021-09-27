@@ -1,0 +1,9 @@
+<p>I think the FoodId is of Integer type in the database but over here in the query you have passed as string so convert the string to integer.</p>
+
+<pre><code>cmd.CommandText = "select FoodName, Price from tablename where FoodID = '" + int.Parse(txtId.Text) + "' " ;
+</code></pre>
+
+<p>There seems to be no problem with this line of code :</p>
+
+<pre><code>OleDbDataReader dr = cmd.ExecuteReader();// correct way
+</code></pre>

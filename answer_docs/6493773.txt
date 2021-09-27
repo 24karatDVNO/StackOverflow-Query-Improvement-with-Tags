@@ -1,0 +1,11 @@
+<p>On the W3C function you could do this on success</p>
+
+<pre><code>document.getElementById("location").innerHTML = position.coords.latitude +", "+position.coords.longitude;
+</code></pre>
+
+<p>On the TryGoogleGears function you could do this on success</p>
+
+<pre><code>document.getElementById("location").innerHTML = position.latitude +", "+position.longitude;
+</code></pre>
+
+<p>In order to pass the LatLong pair back to PHP you will need to use a <a href="https://developer.mozilla.org/en/XmlHttpRequest" rel="nofollow">XMLHTTPRequest</a> or something similar. This is because PHP is a server side script that executes before JavaScript does, which runs on the client. So to tell PHP something you need to either load a new page and pass the data from JavaScript to PHP with headers, GET, or POST variables. You can either load this page the normal way in the browser and your users see a redirect or you can load it in the background using XMLHTTPRequest. </p>

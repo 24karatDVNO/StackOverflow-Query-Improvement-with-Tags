@@ -1,0 +1,12 @@
+<p>It's particularly meaningless to discuss the merits of particular algorithms without a much wider consideration of the threat models and specifics of implementations.</p>
+
+<p>Yes, whirlpool does appear to have some advantages in terms of how effective it is as a hash, but as Nickolay says that may be deceptive and due to the fact it is less widely used. But there are other considerations too - for some purposes storing a 128 character string for each account may be an unnecessary overhead. For everyone it's a question of what the software supports (and some people might want to use the same account record to control access to different systems).</p>
+
+<p>At the end of the day, it doesn't matter how sophisticated your hashing algorithm is:</p>
+
+<ol>
+<li>given a free choice, users pick bad, guessable passwords</li>
+<li>users will use the same password for different services</li>
+</ol>
+
+<p>If it works for you - then great - but there is no universal solution.</p>

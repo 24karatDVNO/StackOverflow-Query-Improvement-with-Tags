@@ -1,0 +1,20 @@
+<p>Is this what you're looking for?</p>
+
+<pre><code>SELECT * 
+FROM (
+
+SELECT firstname
+FROM firstnames
+ORDER BY RAND( ) 
+LIMIT 10
+) AS tb1
+JOIN (
+
+SELECT lastname
+FROM lastnames
+ORDER BY RAND( ) 
+LIMIT 10
+) AS tb2 ON 1=1
+</code></pre>
+
+<p>This will give you all combinations of 10 random first names and 10 random last names. Change the limits to change how many names you want to combine.</p>

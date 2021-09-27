@@ -1,0 +1,49 @@
+<p>I did a couple of changes:</p>
+
+<ul>
+<li>I added a <code>chomp</code> to remove the <code>\n</code> character at the end of each line. It might not make any difference, but it could. Remember when you read in input, it might contain the <code>\n</code> character on the end.</li>
+<li>I added a <code>$code++;</code>.</li>
+</ul>
+
+<p>One of the nice things about Perl is that it's pretty smart about auto-incrementing things. You try to auto-increment something with letters in it, and Perl assumes you want to update it alphabetically.</p>
+
+<p>Thus, I simply set <code>$n_code</code> and <code>$p_code</code> to "a", and let Perl handle the incrementing.</p>
+
+<p>You weren't very clear what you were looking for, so I hope this is what you meant.</p>
+
+<p>Next time, include some sample input and output. A half dozen lines of each would have been very helpful.</p>
+
+<pre><code>#!/usr/local/bin/perl
+
+use warnings;    
+use strict;
+
+my $inputfile = "file1.txt"; 
+
+open FH,$inputfile;          
+my @results = &lt;FH&gt;;   
+close FH;           
+
+print "\n---------type n--------------\n" ;
+
+my $n_code = "$a";
+foreach my $line (@results) {
+    chomp $line;  # Remove possible NL
+    if ($line =~ m/(^Mgn\d\.qna.*)/i)            
+    {
+        print "$1 $n_code\n";
+        $n_code++;   #Increment code to next alphabet character
+    }    
+}
+
+print "\n---------type p--------------\n" ;
+
+my $p_code = a;
+foreach my $line (@results) {
+   chomp $line;   #Remove possible NL
+   if ($line =~ m/(^Mgp\d\.qpa.*)/i)     
+       print "$1 $p_code\n";
+       $p_code++;    #Increment code to next letter of alphabet
+   }
+}
+</code></pre>

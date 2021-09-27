@@ -1,0 +1,9 @@
+<p>you are using the string concatenation operator inside the string. either use</p>
+
+<pre><code>"http://free.worldweatheronline.com/feed/weather.ashx?key=xxxxxxxxxxxxxxx&amp;q=$ip&amp;localObsTime&amp;num_of_days=5&amp;format=json"
+</code></pre>
+
+<p>or</p>
+
+<pre><code>'http://free.worldweatheronline.com/feed/weather.ashx?key=xxxxxxxxxxxxxxx&amp;q='.$ip.'&amp;localObsTime&amp;num_of_days=5&amp;format=json'
+</code></pre>

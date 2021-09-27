@@ -1,0 +1,32 @@
+<p>So, about doing this right:</p>
+
+<p>Your Customer objects should have an <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals%28java.lang.Object%29" rel="nofollow">equals()</a> and <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode%28%29" rel="nofollow">hashCode()</a> method, which do the comparison. (Or you simply would have only one Customer object for each customer, which would mean your data model would have to be adjusted. Then the default hashCode/equals would do.)</p>
+
+<p>If you have this, you can replace your three nested ifs with one:</p>
+
+<pre><code>    if(customers.get(i).equals(customers.get(j)) {
+       customers.remove(j);
+    }
+</code></pre>
+
+<p>This would not yet solve your problem, but make it easier to have a clearer look on it. If
+you look at which objects are compared to which others, you will see that after each removal
+of an object from the list, the next one has the same index as the one which you just removed,
+and you will not compare the current object to it. As said, <code>j--</code> after the removal will solve this.</p>
+
+<p>A more performant solution would be using a Set (which is guaranteed not to contain duplicates).
+In your case, a <code>HashSet&lt;Customer&gt;</code> or <code>LinkedHashSet&lt;Customer&gt;</code> (if you care about the order)
+will do fine.</p>
+
+<p>Then your whole code comes down to this:</p>
+
+<pre><code>Set&lt;Customer&gt; customerSet = new HashSet&lt;Customer&gt;();
+
+for(Account acc : accounts){
+    customerSet.add(acc.getCustomer());
+}
+List&lt;Customer&gt; customers = new ArrayList&lt;Customer&gt;(customerSet);
+</code></pre>
+
+<p>If you don't really need a list (i.e. indexed access), ommit the last line and simply
+use the set instead.</p>

@@ -1,0 +1,9 @@
+<p>You are altering the aspect ratio of the image when you capture in 640x360 instead of 640x480 or 320x240. You are doing something similar as a resize, using the whole image and making it a different size.</p>
+
+<p>If you don't want to distort the image, but use only a portion of it you need to do a <strong>crop</strong>. Some hardware support cropping, others don't and you have to do it in software. Cropping is using only portions of the original image. In your case, you would discard the bottom 120 lines.</p>
+
+<p>Example (from <a href="http://en.wikipedia.org/wiki/Cropping_%28image%29" rel="nofollow noreferrer">here</a>):</p>
+
+<p><img src="https://i.stack.imgur.com/kWPVc.jpg" alt="crop example"></p>
+
+<p>The blue rectangle is the natural, or original image and the red is a crop of it.</p>

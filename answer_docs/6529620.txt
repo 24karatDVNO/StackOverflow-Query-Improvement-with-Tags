@@ -1,0 +1,1 @@
+<p>Well, not having any specific error to go on, I will wager that your issue is that the variable <code>$form</code> is undefined in the function <code>init</code>. That is the most apparent issue. YOu can fix this by placing <code>$form = $this-&gt;_form;</code> after <code>if($this-&gt;_formatter != null){</code></p>

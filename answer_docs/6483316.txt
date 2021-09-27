@@ -1,0 +1,8 @@
+<p>Your solution is fine. You could also do it with a subquery, but you still would query the same table twice.</p>
+
+<p>Edit: Maybe you can change it to something like this:</p>
+
+<pre><code>SELECT a.* FROM double_select AS a LEFT JOIN double_select AS b ON a.OrderId = b.OrderId
+WHERE a.status = ready or b.status = ready
+GROUP BY a.ItemId;
+</code></pre>

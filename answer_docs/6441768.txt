@@ -1,0 +1,26 @@
+<p>I have had issues with this in Quartus as well, although your code also has some implicit latches (you are not assigning all bits of the output in your two shift cases).  </p>
+
+<p>The work-around I use is to define an intermediate array with all the possible results, then select one of those results using your selector.  In your case, something like the following:</p>
+
+<pre><code>subtype DWORD_T         is std_logic_vector( 31 downto 0);
+type    DWORD_A         is array (natural range &lt;&gt;) of DWORD_T;
+signal  shift_L         : DWORD_A(31 downto 0);
+signal  shift_R         : DWORD_A(31 downto 0);
+signal  zero            : DWORD_T;
+
+...
+
+zero &lt;= (others=&gt;'0');
+
+process (Ainput)
+begin    
+    for index in Ainput'range loop
+        shift_L(index) &lt;= Ainput(31 - index downto 0) &amp; zero(index - 1 downto 0);
+        shift_R(index) &lt;= zero(index - 1 downto 0) &amp; Ainput(31 downto index);
+    end loop;
+end process;
+
+ALR_output_mux &lt;= shift_L(to_integer(X)) when ALU_ctl="1000", 
+                  shift_R(to_integer(X)) when ALU_ctl="1001",
+                  (others=&gt;'0') when others;
+</code></pre>

@@ -1,0 +1,8 @@
+<p>better yet, use findAllByAttributes.</p>
+
+<p>your code should be:</p>
+
+<pre><code>$socials=Socials::model()-&gt;findAllByAttributes(array('socials_user'=&gt;1));
+</code></pre>
+
+<p>Doc : <a href="http://www.yiiframework.com/doc/api/1.1/CActiveRecord#findAllByAttributes-detail" rel="nofollow">http://www.yiiframework.com/doc/api/1.1/CActiveRecord#findAllByAttributes-detail</a></p>

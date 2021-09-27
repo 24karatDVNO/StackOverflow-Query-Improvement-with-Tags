@@ -1,0 +1,8 @@
+<p>First I would use firebug or similar to check that the request was being sent when the text field changes. Next I would check to see what the response is. If it's a 500 error, check the application logs for a stack trace.</p>
+
+<p>My guess is that the response will be a 500 error, probably because your update_poweroutput function is trying to render a partial that doesn't exist, I think you need to specify </p>
+
+<pre><code>:partial =&gt; 'javascripts/poweroutputscript.html.erb'
+</code></pre>
+
+<p>unless, of course, you're rendering a different partial that does exist in the pages view folder. In this case, are you setting all the necessary variables in the controller?</p>

@@ -1,0 +1,26 @@
+<p>You can use the <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.regularexpressionattribute.aspx" rel="nofollow">RegularExpressionAttribute</a> attribute</p>
+
+<p>Example taken from MSDN</p>
+
+<pre><code>[MetadataType(typeof(CustomerMetaData))]
+public partial class Customer
+{
+
+
+}
+
+public class CustomerMetaData
+{
+
+    // Allow up to 40 uppercase and lowercase 
+    // characters. Use custom error.
+    [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", 
+         ErrorMessage = "Characters are not allowed.")]
+    public object FirstName;
+
+    // Allow up to 40 uppercase and lowercase 
+    // characters. Use standard error.
+    [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
+    public object LastName;
+}
+</code></pre>

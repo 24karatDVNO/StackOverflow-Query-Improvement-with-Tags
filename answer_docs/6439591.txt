@@ -1,0 +1,3 @@
+<p><code>equals</code> can only be used to do a single comparison.</p>
+
+<p>Someone else may be able to give you an optimised approach to the query for your circumstance, but adding to the <code>equals</code> condition isn't the solution here. What might be best though is to approach it in a different fashion - rather than yanking at all the data from within the body of a single query - by some sort of bespoke loading and caching mechanism, since the size of the data is obviously problematic.</p>

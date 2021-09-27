@@ -1,0 +1,6 @@
+<p>Finally I used the following ,</p>
+
+<p>Header ("Content-type: octet/stream");<br>
+Header ("Content-disposition: attachment; filename=".$file.";");<br>
+Header("Content-Length: ".Filesize($file));<br>
+Readfile($file);</p>

@@ -1,0 +1,10 @@
+<p>Thanks for advice, Pablo! </p>
+
+<p>Unfortunately, gem_make.out contained only information I provided, nothing else...</p>
+
+<p>Due to <a href="http://rubyforge.org/tracker/?func=detail&amp;atid=575&amp;aid=27463&amp;group_id=126" rel="nofollow">rubyforge bugtracker</a> aboud freebsd, I realised that adding this line to .bashrc solves the problem</p>
+
+<pre><code>export RB_USER_INSTALL="$USER"
+</code></pre>
+
+<p>After <code>source .bashrc</code> I successfully installed both eventmachine and thin.</p>

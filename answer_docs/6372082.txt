@@ -1,0 +1,27 @@
+<p>Give all the images that should be faded the same class.
+Then give all the images that should be faded together the same <code>data-group</code>.</p>
+
+<pre><code>&lt;img class="fade" data-group="a" /&gt;
+&lt;img class="fade" data-group="b" /&gt;
+&lt;img class="fade" data-group="a" /&gt;
+
+&lt;script type="text/javascript"&gt;
+$(function(){ /* shorthand for $(document).ready(function(){ */
+
+    $('img.fade').hover(function(){
+
+        $('img.fade[data-group="'+$(this).data('group')+'"]').stop().animate({"opacity": "0"},"slow");
+
+    },function(){
+
+        $('img.fade[data-group="'+$(this).data('group')+'"]').stop().animate({"opacity": "1"},"slow");
+
+    });    
+
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>Now when you hover over one of the images, all the images from the same group will be faded out.</p>
+
+<p>Here is my example on jsFiddle: <a href="http://jsfiddle.net/Rv9jU/" rel="nofollow">http://jsfiddle.net/Rv9jU/</a></p>

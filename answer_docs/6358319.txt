@@ -1,0 +1,20 @@
+<p>What element are you trying to get into <code>ele</code>? If I understand your problem, you want to add an event to a <code>div</code> you are creating, and that <code>div</code> has the <code>id = nDiv</code>, so why are you trying to get an element with <code>id = con</code>? If you are trying to bind an event to your created div, maybe you can do it this way:</p>
+
+<pre><code>function createNewDiv(){
+  var div = document.createElement('div');
+  div.id = 'nDiv';
+  //add click handler to this div
+  div.addEventListener("click",function(){xxx},false);
+  div.innerHTML="s";
+}
+</code></pre>
+
+<p>If you have problems binding the function (I don't think so), try defining your function and bind it to the click this way:</p>
+
+<pre><code>function foo(){xxx}
+...
+div.addEventListener("click",foo,false);
+...
+</code></pre>
+
+<p>Note that there are no parenthesis when binding the <code>foo</code> function. </p>

@@ -1,0 +1,20 @@
+<p>If you launch a java application, and you embed your code into a loop:</p>
+
+<pre><code>while(true){
+...
+}
+</code></pre>
+
+<p>It will never stop, the only reason why it should stop it's because an exception is launched (do you consume resources inside the while) ?
+In case it really stops, try to understand what is the problem in this way:</p>
+
+<pre><code>while(true){
+  try{
+     ... your code ....
+     }catch(Throwable t){
+      system.out.println("This is my problem:" + t.printStackTrace);
+     }
+}
+</code></pre>
+
+<p>Sure it helps</p>

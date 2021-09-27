@@ -1,0 +1,11 @@
+<p>The reason it's returning numbers is because <code>n</code> is an index (number), not an element. so <code>n.className</code> will always be <code>undefined</code> which will make your logic inside that function always return <code>n</code>.</p>
+
+<p>What you want to use is either select the results by using </p>
+
+<pre><code>$('#search-results-table tr.hideGroup')
+</code></pre>
+
+<p>or </p>
+
+<pre><code>$('#search-results-table tr:not(.hideGroup)')
+</code></pre>

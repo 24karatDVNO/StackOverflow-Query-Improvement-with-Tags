@@ -1,0 +1,11 @@
+<p>Try to extend Google Translate class:</p>
+
+<pre><code>class ExtendedTranslate extends GoogleTranslateWrapper {
+   public function translateArray($array, $fromLanguage, $toLanguage) {
+      foreach ($array as &amp;$item) {
+         $item = $this-&gt;translate($item, $fromLanguage, $toLanguage);
+      }
+      return array();
+   }
+}
+</code></pre>

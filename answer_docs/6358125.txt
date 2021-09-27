@@ -1,0 +1,25 @@
+<p>How about this:</p>
+
+<pre><code>declare @InputDate datetime = '20110115';
+
+with cCourseList as (
+
+select  t1.School, t1.Course, DateStarted = t1.Date,
+        t2.DateCompleted
+from    tbl t1
+outer apply 
+        (select  top(1) DateCompleted = t2.Date
+        from    tbl t2
+        where   t2.Course = t1.Course
+            and t2.Status = 'C'
+        order by t2.Date) t2
+where   t1.Status = 'S'
+
+)
+
+select  cl.School, 
+        [Not Completed] = sum(case when cl.DateCompleted is null then 1 else 0 end)
+from    cCourseList cl
+where   cl.DateStarted &lt;= @InputDate
+group by cl.School;
+</code></pre>

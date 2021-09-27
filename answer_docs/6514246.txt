@@ -1,0 +1,12 @@
+<p>I can't be sure without more testing, but I'm betting your events aren't bubbling the way you'd expect. You're adding/removing the class while you're still hovering/animating, so the process fires a few times. </p>
+
+<p>I would suggest rewriting the function to trigger off of mouseenter/mouseleave events, I think this would help you making sure the events only fire once. You may not even have to add/remove classes with this method..</p>
+
+<pre><code>$(".slide_box").live('mouseenter', function () {
+    //animate up
+})
+
+$(".slide_box").live('mouseleave', function () {
+    //animate down
+})
+</code></pre>

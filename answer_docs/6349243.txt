@@ -1,0 +1,18 @@
+<p>I've sort of decided to go a different direction.</p>
+
+<p>I've built a method called <code>WebService(controller, action)</code></p>
+
+<p>Whereby I submit it as follows</p>
+
+<pre><code>$.ajax(WebService("myController", "myAction"), {
+    crossDomain: true,
+    dataType: "jsonp",
+    success: function (data) {
+        $.each(data, function (i, item) {
+            // do stuff
+        });
+    }
+});
+</code></pre>
+
+<p>Works like a champ.</p>

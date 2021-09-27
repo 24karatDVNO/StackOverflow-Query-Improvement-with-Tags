@@ -1,0 +1,18 @@
+<p>As Brian and Nate have said, read the documentation about it.</p>
+
+<p>I personally have a <a href="http://github.com/radar/ryanbigg.com" rel="nofollow">Jekyll-powered site</a> that you could use as an example if you're stuck. The documentation contains pretty good examples as well.</p>
+
+<p>But to get you started: Jekyll doesn't really have any database backing to it. You must create the directory structure--as outlined in the <a href="https://github.com/mojombo/jekyll/wiki/Usage" rel="nofollow">Usage guide</a>--yourself. </p>
+
+<p>For generating new posts, I have a script called <code>new.rb</code> in my repository. Simply because I can't be bothered remembering what the Wordpress ID was for the previous post (I imported from Wordpress).</p>
+
+<p>Once you've got a post written, install the <code>jekyll</code> gem:</p>
+
+<pre><code>gem install jekyll
+</code></pre>
+
+<p>Then run <code>jekyll --server</code>. This will parse the post into beautiful HTML which you can view at <a href="http://localhost:4000" rel="nofollow">http://localhost:4000</a>. Once you're satisfied with it, put it online somewhere with Apache or Nginx serving it as it would any other static HTML site.</p>
+
+<hr>
+
+<p>Finally, if you're ever looking for an alternative, I've heard good things about <a href="http://nanoc.stoneship.org/" rel="nofollow">nanoc</a>.</p>

@@ -1,0 +1,21 @@
+<p>With .NET usercontrols in Umbraco, you write them in exactly the same way you would for any other ASP.NET webforms application/website.
+Your code-behind should look like this:</p>
+
+<pre><code>protected void Button1_Click(object sender, EventArgs e) {
+    Response.Redirect("~/home.aspx");
+}
+</code></pre>
+
+<p>If you want to specify a particular content node to redirect to, then you can specify a property on your usercontrol, and then when you create your Umbraco macro in the Developer section, you will be able to include the usercontrol property as a macro property, and add a Content Picker type to it to make it user-friendly for an admin to specify which page to redirect to. Example:</p>
+
+<pre><code>partial class MyUserControl : UserControl {
+    public int NodeToRedirectTo { get; set; }
+    protected void Button1_Click(object sender, EventArgs e) {
+        Response.Redirect(umbraco.library.NiceUrl(NodeToRedirectTo));
+    }
+}
+</code></pre>
+
+<p>Hope this helps.</p>
+
+<p>Benjamin</p>

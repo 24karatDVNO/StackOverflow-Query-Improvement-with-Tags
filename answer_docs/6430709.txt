@@ -1,0 +1,24 @@
+<p>Well as you are getting the table:</p>
+
+<pre><code>$parents = array();
+$children = array();
+while($row = ...){
+    if($row['parent'] == null){
+         $parents[] = array ('id' =&gt; $row['id'], 'text' =&gt; $row['text']) 
+    }
+    else{
+         if(!isset($children[$row['parent']])) $children[$row['parent']] = array();
+         $children[$row['parent']][] = array ('id' =&gt; $row['id'], 'text' =&gt; $row['text']) 
+    }
+}
+</code></pre>
+
+<p>Iterate using this function:</p>
+
+<pre><code>function displayChildren($array, $id, $char = "&gt;"){
+   foreach($array as $ch){
+        if($ch['id']  == $id)
+           echo "$char {$ch['text']} (ID {$ch['id']})"
+   }
+}
+</code></pre>

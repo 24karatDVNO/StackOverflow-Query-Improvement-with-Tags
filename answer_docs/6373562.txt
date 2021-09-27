@@ -1,0 +1,8 @@
+<p>I solved. Finally I replace ajax and the result is:</p>
+
+<pre><code>if (name != '' &amp;&amp; password != '') {                  //alert('usr='+name+'&amp;pwd='+password);
+    window.parent.location="http://domain.com/ftp.php?" + 'name='+name+'&amp;password='+password;
+}
+</code></pre>
+
+<p>I'll try later with $("#myForm").submit() instead to avoid the password travel in the open. But this works as per my own request.</p>

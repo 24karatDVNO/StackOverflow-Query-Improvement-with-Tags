@@ -1,0 +1,3 @@
+<p>IE had (has?) the <code>onbeforeprint</code> and <code>onafterprint</code> events: you could wait for that, but it would only work on IE (which may or may not be ok).</p>
+
+<p>Alternatively, you could try and wait for the focus to return to the window from the print dialog and close it. Amazon Web Services does this in their invoice print dialogs: you hit the print button, it opens up the print-friendly view and immediately opens up the printer dialog. If you hit print or cancel the print dialog closes and then the print-friendly view immediately closes.</p>

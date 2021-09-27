@@ -1,0 +1,24 @@
+<p>Sans Web Workers there's no real way to do multithreading in javascript that I know of.</p>
+
+<p>You could use some logic to prioritize how much time should be spent doing certain tasks, though. You could make functions that store information in states (so loops could be exited and then picked back up at a later time). Each loop just knows how much time it has before it saves it's state and exits the function.</p>
+
+<p>So the for loop would have a time condition, too...</p>
+
+<pre><code>//Loop over some iterator, exit if time is up
+for (i = 1; i &lt; max || timeNotUp(); i++)
+{
+}
+
+//If exiting normally 
+if (i == max)
+{ //do somthing
+}
+//otherwise, save state
+else
+{
+    this.i = i;
+    this.otherStuff = otherStuff;
+}
+</code></pre>
+
+<p>You can definitely prioritize your code this way. But, there are downsides. Saving your state doesn't lead to clean easy to follow code (especially with loops within loops). It also isn't as fast, since you're constantly checking time and saving states. </p>

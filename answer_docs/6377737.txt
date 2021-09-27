@@ -1,0 +1,41 @@
+<p>The reason that isn't working is that you're assigning <code>$.parseJSON()</code>'s result to <code>data</code>, but then trying to access the object via <code>msg.d</code>, which is still just a JSON string.  Strings may also be accessed as arrays of characters in JavaScript, so <code>msg.d[0]</code> is literally referencing the first character of your JSON, which is the opening array bracket.</p>
+
+<p>If you used <code>data[0]</code> instead, you'd get what you're after. However, <strong>I'd like to strongly advise against continuing down that path</strong>.</p>
+
+<p>What you may not realize is that <a href="http://encosia.com/asp-net-web-services-mistake-manual-json-serialization/" rel="nofollow">ASP.NET automatically handles JSON serialization for you</a> in this case.  The JSON string that you've manually built there is then being automatically JSON serialized a second time.  On the client-side, jQuery is receiving the JSON string ASP.NET produced with your return value, parsing it, and then handing you the inner JSON string, which you're then parsing a second time.  That duplication of effort is needlessly inefficient on both client and server.</p>
+
+<p>Do this on the server-side instead:</p>
+
+<pre><code>public static IEnumerable CheckInsertRecord(String EventType, String BeginDate, String EndDate)
+{
+
+
+  var query = // Your LINQ query here
+
+  // You can simplify this by just returning the result. If it's empty,
+  //  it's easy to test for that on the client-side - easier than watching
+  //  for the magic string.
+  return query;
+}
+</code></pre>
+
+<p>Then, you'll have access to it on the client-side immediately after jQuery finishes its automatic deserialization:</p>
+
+<pre><code>$.ajax({
+  type: "POST", 
+  contentType: "application/json",
+  url: "Data.aspx/CheckInsertRecord",
+  data: "{EventType:'" + eventtype + "',BeginDate:'" + begindate + "'," +
+        "EndDate:'" + enddate+"' }",
+  success: function (msg) {
+    if (msg.d.length === 0)
+      alert("No duplicate");
+    else
+      alert(msg.d.length + " duplicate events already exist!");
+  }
+});
+</code></pre>
+
+<p>Nice and easy.</p>
+
+<p>If you're curious about why I changed the $.ajax() parameters, see this post for some <a href="http://encosia.com/save-yourself-some-typing-when-you-call-asp-net-services/" rel="nofollow">information on how you can eliminate some extraneous verbosity from jQuery calls to ASP.NET services</a>.</p>

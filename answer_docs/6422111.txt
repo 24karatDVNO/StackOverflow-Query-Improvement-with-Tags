@@ -1,0 +1,13 @@
+<p>Use Dense_rank to get the number of workshops or workers</p>
+
+<pre><code>SELECT city, MAX(WorkshopQty) AS WorkshopQty , MAX(WorkersQty) AS WorkersQty
+FROM (
+        SELECT c.name AS City, 
+               DENSE_RANK() OVER (PARTITION BY c.id ORDER BY WorkshopName) AS WorkshopQty,
+               DENSE_RANK() OVER (PARTITION BY c.id ORDER BY WorkerName) AS WorkersQty  
+        FROM tbl_city c
+        INNER JOIN tbl_workshop s ON s.city = c.id
+        INNER JOIN tbl_worker w ON w.city = c.id
+    ) s
+GROUP BY City
+</code></pre>

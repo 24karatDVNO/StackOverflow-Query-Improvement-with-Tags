@@ -1,0 +1,56 @@
+<p>I'm going to try to get my hands on that snapshot build, but here's how I hacked things together since yesterday, just for the sake of completeness.  Please feel free to improve my Gradle/Groovy.  I'm sure it's not as elegant as it could be.</p>
+
+<pre><code>//Make sure the war and jars get built first
+task ('ear', type:Jar, dependsOn: ":myWarProject:assemble" ){
+    //This needs to be in the config block, or Gradle skips the task, assuming the file list for the jar/ear is empty...
+    from{ "ear/src/main/application" }
+}
+
+ear.doFirst{
+    //Set up the ear file name
+    baseName = "myapp-" + rootVersion
+    extension = "ear"
+
+    //Gather up the jars required by all of the subprojects
+    def allSubprojectDependencies = getAllProjectDependencies([
+        "subproject1",
+        "subproject2",
+        "subproject3",
+        "subproject4",
+        "subproject5"
+    ])
+    from { allSubprojectDependencies }
+
+    //grab the assembled war file
+    from {
+        subprojects.find{ it.name=="myWarFile" }.war.archivePath
+    }
+
+    //Other stuff required for our ear, such as security or eventing EJBs
+    //Make sure you apply your "repositories" block to your root/ear project or "allProjects" if you do this...
+    from { configurations.earConfig.files }
+
+    //Create the classpath manifest
+    manifestClassPath = allSubprojectDependencies.collect { it.name }.sort().join(' ')
+    manifest { attributes( "Class-Path": manifestClassPath ) }
+}
+
+def getAllProjectDependencies (def projectNames){
+    def allDependencies = []as Set
+    projectNames.each{ projectName -&gt;
+        def subProject = subprojects.find{ subProject -&gt;
+            subProject.name.equals(projectName)
+        }
+        def subProjectDependencies = subProject.configurations.compile.files
+        allDependencies.addAll subProjectDependencies
+    }
+    return allDependencies.unique{ a,b-&gt;
+        if (a.equals(b)){
+            return 0
+        }
+        return -1
+    }
+}
+</code></pre>
+
+<p>(Please note, all jars are in the root of the ear on purpose.  Don't ask me why, but some people apparently like it that way.)</p>

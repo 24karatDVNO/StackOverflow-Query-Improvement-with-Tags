@@ -1,0 +1,8 @@
+<p>If you are thinking whether the first version always calls <code>test_some_condition</code> but the second version calls it only if the first condition is true, then the answer is that both versions are equivalent because the AND operator is lazy and <em>will not</em> evaluate its second argument if the first is already false.</p>
+
+<p>The standard guarantees this behaviour. This makes it legal to say:</p>
+
+<pre><code>if (array_size &gt; n &amp;&amp; my_array[n] == 1) { ... }
+</code></pre>
+
+<p>This would be broken code without the laziness guarantee.</p>

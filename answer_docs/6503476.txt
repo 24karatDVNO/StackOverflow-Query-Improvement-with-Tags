@@ -1,0 +1,25 @@
+<p>When I try it, it adds the link just fine:</p>
+
+<p><a href="http://jsfiddle.net/RsMKP/" rel="nofollow">http://jsfiddle.net/RsMKP/</a></p>
+
+<p>You need a <code>http://</code> in the URL for it to work, though.</p>
+
+<p>Javascript:</p>
+
+<pre><code>var foo = '1';
+var parameter = 'asdf';
+switch (foo) {
+  case "0" :
+    foo = "There is no link";
+    break;
+  case "1" :
+    foo = "Here is a link : &lt;a href=\"http://www.alink.com/?" + parameter + "\"&gt;Link B&lt;/a&gt;";
+    break;
+}
+$("#result").append(foo);
+</code></pre>
+
+<p>HTML:</p>
+
+<pre><code>&lt;div id="result"&gt;&lt;/div&gt;
+</code></pre>

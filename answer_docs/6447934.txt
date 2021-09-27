@@ -1,0 +1,15 @@
+<p>To solve this problem, I switched from the RNetCDF package (version 1.5.2-2) to the ncdf package (1.6.5). The functions in the two packages are similarly named and have the same purposes [open.nc vs. open.ncdf, var.get.nc vs. get.var.ncdf]. Using the exact same code with the RNetCDF function names replaced with ncdf functions, I get no errors and the expected results. </p>
+
+<p>So while the following RNetCDF commands fail (only sometimes &amp; for no apparent reason)</p>
+
+<pre><code>&gt;p8m.tmax &lt;- open.nc('tmax.nc')
+&gt;var.get.nc(p8m.tmax,'tmax', start=c(lon_val, lat_val, stval),count=c(1,1,82))
+</code></pre>
+
+<p>These ncdf commands never fail</p>
+
+<pre><code>&gt;p8m.tmax &lt;- open.ncdf('tmax.nc')
+&gt;get.var.ncdf(p8m.tmax,'tmax', start=c(lon_val, lat_val, stval),count=c(1,1,82))
+</code></pre>
+
+<p>This is not a real solution - I still don't know why the functions in the RNetCDF package sometimes work and sometimes do not. However, it does allow me to extract the data I need and will hopefully be of some use to others working with netcdf data in R.</p>

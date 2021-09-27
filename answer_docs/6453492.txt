@@ -1,0 +1,7 @@
+<p>I'm currently having similar issues that could be related to the listen.backlog setting.
+I've been finding different posts claiming that -1 can be wrongly interpreted.  I'm currently experimenting with setting listen.backlog to 0 or a high value.  I'll see what the outcome is and keep you posted.</p>
+
+<p>Have you tried correcting the log path as follows?
+log/php-error.log (the leading slash makes it look for the /log folder which usually doesn't exist on a Linux system.</p>
+
+<p>Kind regards</p>

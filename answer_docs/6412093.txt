@@ -1,0 +1,7 @@
+<p>So you want to set the width and height back to the whatever is defined in css? </p>
+
+<p>In theory what you do should work (unless there's some jquery specific issues which I'm not aware of), but I think IE won't accept empty string as a valid value and may keep the value unchanged. </p>
+
+<p>The most foolproof way to do it, is to store the original value before you change it the first time (unless this is a generic effect that should be applied to an undefined amount of elements, this should not be too hard) and set it back to that value instead of clearing it. </p>
+
+<p>If the original value is a calculated value such as percentage (of the screen width etc.) you may have to recalculate it or set it to a hardcode percentage value since you may not be able to get the original css value, only the calculated pixel value.</p>

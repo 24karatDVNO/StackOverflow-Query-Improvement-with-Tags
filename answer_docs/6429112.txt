@@ -1,0 +1,19 @@
+<p>You could use SimpleXML's asXML function.  It will return that called node as the xml string;</p>
+
+<pre><code>$xml = simplexml_load_file($file);
+foreach($xml-&gt;list-&gt;item as $item) {
+    $content = $item-&gt;contents-&gt;asXML();
+    echo $content."\n";
+}
+</code></pre>
+
+<p>will print:</p>
+
+<pre><code>&lt;content&gt;Some long content with &lt;special&gt;tags&lt;/special&gt; inside&lt;/content&gt;
+&lt;content&gt;Some long content with &lt;special&gt;tags&lt;/special&gt; inside&lt;/content&gt;
+</code></pre>
+
+<p>it's a little ugly but you could then clip out the <code>&lt;content&gt;</code> and <code>&lt;/content&gt;</code> with a substr:</p>
+
+<pre><code>$content = substr($content,9,-10);
+</code></pre>

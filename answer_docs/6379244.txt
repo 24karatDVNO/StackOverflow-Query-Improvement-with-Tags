@@ -1,0 +1,9 @@
+<p>Each thread created using the pthreads API specifies an entry point that should match the standard signature:</p>
+
+<pre><code>void *entry(void *)
+{
+   return 0;
+}
+</code></pre>
+
+<p>Once that entry point  has been called, you can invoke anything that you want including the stable() routine that you referenced above.  You will need to be careful, however, to ensure that stable() and anything that it calls is thread safe.</p>

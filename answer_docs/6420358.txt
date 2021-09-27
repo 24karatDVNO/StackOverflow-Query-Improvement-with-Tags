@@ -1,0 +1,4 @@
+<p>This has 4 options for how to run testng tests the xml file should include all your tests
+<a href="http://testng.org/doc/documentation-main.html#running-testng" rel="nofollow">http://testng.org/doc/documentation-main.html#running-testng</a></p>
+
+<p>You could also try to use maven and as long as your tests are annotated correctly and in /src/test/java they will all be run for you with <code>mvn integration-test</code> (as long as you have the proper dependencies defined and I believe maven-surefire-plugin). This might be more difficult to setup initially but usually pays off.</p>

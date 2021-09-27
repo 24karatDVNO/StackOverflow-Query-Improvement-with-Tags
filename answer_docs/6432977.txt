@@ -1,0 +1,21 @@
+<p>To do what you want, the easiest thing is to put all of the elements of the array into a different array.  The second array will be keyed by the order.  Otherwise, it will contain id, (order if you want to easily reuse the subarrays), modified date, and count.</p>
+
+<p>As go through the original array, check if there is an entry in the second array for that order using  <code>isset()</code>.  If it is set, compare the dates and update if the current one is newer and increment the count.  If it doesn't exist, just set it and make the count = 1.</p>
+
+<p>Example:</p>
+
+<pre><code>$new_array (
+   400 =&gt; (
+      id =&gt; 'blah',
+      order =&gt; 400,
+      modified =&gt; 'new date',
+      count =&gt; 2,
+   ),
+   401 =&gt; (
+      id =&gt; 'blah2',
+      order =&gt; 401,
+      modified =&gt; 'date',
+      count =&gt; 1,
+   ),
+)
+</code></pre>

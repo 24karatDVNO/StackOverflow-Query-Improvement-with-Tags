@@ -1,0 +1,11 @@
+<p>you are doing it wrong, you don't have to concate..try this:</p>
+
+<p>$current_sort = "title";
+$order = "asc";
+$myposts = get_posts(
+    array(
+        'cat' => "$cat,-$catHidden",
+        'numberposts' => $my_current_count,
+        'orderby'=> $current_sort,
+        'order' => $order
+        )); </p>

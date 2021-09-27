@@ -1,0 +1,8 @@
+<p>it is possible that mail() treats double quotation mark as a special symbol and because you are sending all of the string inside quotations, then mail() may not be able to tell where your string ends and where it continues again.</p>
+
+<p>I suggest replacing all of the double quotations inside your string with a single quotation as the HTML will allow that due to its flexibility.</p>
+
+<p>so try this</p>
+
+<pre><code>&lt;span style='Something'&gt;
+</code></pre>

@@ -1,0 +1,6 @@
+<p>I am using Postgres 8.4 and can say it may be a bug in Postgres optimizer to not using indexes for queries envolving min and max agregation functions.
+After changing my queries from <br/>
+<strong>Select max(field) from table</strong> to <br/>
+<strong>Select field from table order by field limit 1</strong> <br/>
+my query execution time improved from 10s to less than a second.
+Of course You might define and index for the column in question, otherwise postgres will do a seq_scan.</p>

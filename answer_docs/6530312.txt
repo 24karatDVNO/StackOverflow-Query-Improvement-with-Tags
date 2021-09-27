@@ -1,0 +1,4 @@
+<pre><code>const string Input = @"AnyText: ""TomDickHarry"" &lt;usernameredacted@example.com&gt;This is.";
+
+var result = Regex.Replace(Input, "(?&lt;=AnyText:)([^&lt;]*)", string.Empty);
+</code></pre>

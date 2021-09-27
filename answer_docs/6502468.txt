@@ -1,0 +1,18 @@
+<p>If you have ADB installed (as I assume you do), you just connect your phone to your computer via USB, enable debugging mode, and type in:</p>
+
+<pre><code>adb -d logcat
+</code></pre>
+
+<p>from the command line on your computer. A lot of output will show up, and you can scroll through to find the output you are looking for.</p>
+
+<p>You can also show only specific tags, such as <code>FOOBAR</code>:</p>
+
+<pre><code>adb -d logcat -s FOOBAR
+</code></pre>
+
+<p>By using this command, you can filter out only uncaught exceptions, which is useful for debugging:</p>
+
+<pre><code>adb -d logcat -s AndroidRuntime:E
+</code></pre>
+
+<p>You can read more about logcat <a href="http://developer.android.com/guide/developing/tools/logcat.html" rel="nofollow">here</a>.</p>

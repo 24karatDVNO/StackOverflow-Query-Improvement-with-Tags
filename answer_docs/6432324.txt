@@ -1,0 +1,5 @@
+<p>Ooo, a good question :)</p>
+
+<p>As far as I know, Mark and Sweep is only used for reference counting event listeners since they're the only ones that can have 'weak listeners'.  Everything else is straight up memory reference counting.  Essentially, your biggest problem would be cleaning up event listeners, but if the event listeners are within your class (listening to itself, or it's children or even outside events) they should be GC'ed properly if the object is dereferenced throughout your app (don't store it somewhere else).</p>
+
+<p>If you let object or properties be publically visible, it is possible for other classes to references them and it could prevent GC of your class (it really depends how it's referenced and all).  The only to combat that is to try to encapsulate as much as possible (one class handles it's own dereferencing; look into IDisposable) so that others can't reference and try to adhere to good coding practices (preventing spaghetti code).</p>

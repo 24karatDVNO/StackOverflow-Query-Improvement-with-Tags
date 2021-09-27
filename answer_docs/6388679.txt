@@ -1,0 +1,29 @@
+<p>Most likely (based on my experience) you do not have default file that will be executed when directory is requested.</p>
+
+<p>1) You may need to add this directive into your <code>.htaccess</code>. This will tell Apache to execute index.php when requesting directory.</p>
+
+<pre><code>DirectoryIndex index.php
+</code></pre>
+
+<p>2) Make sure you do have <code>index.php</code> present in such directory, otherwise you will see the 403 error.</p>
+
+<p>What exactly do you mean by "How can I redirect the root to a folder"? Here is the rule that will execute <code>/special/index.php</code> file if you request root folder of your site (e.g. <code>http://example.com/</code></p>
+
+<pre><code>RewriteRule ^$ /special/index.php [QSA,L]
+</code></pre>
+
+<hr>
+
+<p><strong>UPDATE:</strong></p>
+
+<pre><code>RewriteRule ^mydir/(index\.php)?$ http://www.example.com/ [R=301,QSA,NC]
+</code></pre>
+
+<p>This will tell Apache to <strong>redirect</strong> (change URL in a browser's address bar) from <code>http://www.example.com/mydir/index.php</code> or <code>http://www.example.com/mydir/</code> to <code>http://www.example.com/</code></p>
+
+<pre><code>RewriteRule ^$ mydir/index.php [QSA,L]
+</code></pre>
+
+<p>This will tell Apache to execute <code>/mydir/index.php</code> when you hit the root folder (e.g. <code>http://www.example.com/</code>) without changing URL in address bar.</p>
+
+<p>If you want it to work together with your existing rules you will have to put these 2 rules above other -- for example, right after <code>RewriteBase /</code></p>

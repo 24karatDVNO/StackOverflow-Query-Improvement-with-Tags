@@ -1,0 +1,10 @@
+<p>Another possibility is to do 3 <code>s///</code>.</p>
+
+<pre><code>$_ = 'a&amp;b'
+# First, change every 'a' to something that does not appear in your string
+s/a/\0/g;
+# Then, change 'b' to 'a'
+s/b/a/g;
+# And now change your special character to b
+s/\0/b/g;
+</code></pre>

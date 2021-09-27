@@ -1,0 +1,11 @@
+<p>Much better idea:</p>
+
+<pre><code>document.body.addEventListener("click", function (e) {
+    console.log("Clicked at coordinates ", e.pageX, e.pageY);
+
+    // Convert in your own fashion; here's one idea:
+    var index = (e.pageX % 100) + (100 * e.pageY);
+
+    window.location.href = "http://example.com/" + index;
+});
+</code></pre>

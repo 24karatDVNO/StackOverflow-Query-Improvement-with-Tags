@@ -1,0 +1,11 @@
+<p>Literal answer:</p>
+
+<pre><code>string s = "";
+Func&lt;string, string&gt; myFunc = x =&gt;
+{
+  s += x;
+  return x;
+};
+
+IEnumerable&lt;string&gt; query = source.Select(myFunc); //note, deferred - s not yet modified.
+</code></pre>

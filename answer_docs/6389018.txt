@@ -1,0 +1,14 @@
+<p>How about:</p>
+
+<pre><code>select left(right('Front Office Manager 0105212000', 9), 8)
+</code></pre>
+
+<p>So:</p>
+
+<pre><code>SELECT DISTINCT NAME, 
+    left(right(DESCRIPTION, 9), 8) as 'DESC', DESCRIPTION   
+FROM LABORLEVELENTRY 
+WHERE LABORLEVELDEFID = '201'   
+    AND INACTIVE = '0' 
+ORDER BY NAME 
+</code></pre>

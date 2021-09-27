@@ -1,0 +1,11 @@
+<p>Use <code>android:gravity="center"</code> in a TableRow.</p>
+
+<p>The following ideas are not elegant. Just for reference.</p>
+
+<p>Use RelativeLayout.
+Create an invisible control as Layout centerHorizontal.
+Then use Layout toLeftOf and toRightOf to this control to make the controls to the left or right to the center.
+Maybe the "control" must be a layout.</p>
+
+<p>Another way, to use TableLayout inside a RelativeLayout, if your controls are measured in dip's.
+Use center_horizontal in RelativeLayout, and specify TableLayout's width just big enough for the two controls. Then put the controls in a TableRow.</p>

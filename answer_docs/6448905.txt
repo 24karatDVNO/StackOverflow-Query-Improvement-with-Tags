@@ -1,0 +1,5 @@
+<p>What happens if you <code>var_dump($num);</code>?</p>
+
+<p>Personally, my guess is that PHP is interpreting something input as a number, when you are expecting it to be a string. Such examples might include things which might accidentally convert, like <code>'0xFF'</code> (a string of the Hex for 255). </p>
+
+<p>Clearly the issue is not about <code>isset</code>, because if it were, you would have caught it, and you said to evolve that this happens even without empty. This means that something which you are expecting to be <code>is_numeric($num) === FALSE</code> can be evaluated as <code>TRUE</code>.</p>

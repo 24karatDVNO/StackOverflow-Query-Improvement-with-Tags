@@ -1,0 +1,29 @@
+<p>package {
+    import com.Ball;
+    import flash.display.Sprite;
+    import flash.events.Event;</p>
+
+<pre><code>public class Main extends Sprite {
+    private var bal:Ball;
+    private var easing:Number=.3;
+
+    public function Main():void {
+        init();
+    }
+    private function init():void {
+        bal=new Ball(8,Math.random() * 0xffffff);
+        addChild(bal);
+        addEventListener(Event.ENTER_FRAME,animAction);
+    }
+    private function animAction(e:Event):void {
+        var dx:Number=mouseX - bal.x;
+        var dy:Number=mouseY - bal.y;
+        var ax:Number=dx * easing;
+        var ay:Number=dy * easing;
+        bal.x+= ax;
+        bal.y+= ay;
+    }
+}
+</code></pre>
+
+<p>}</p>

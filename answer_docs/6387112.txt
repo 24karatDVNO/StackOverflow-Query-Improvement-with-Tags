@@ -1,0 +1,30 @@
+<p>Create an abstract implementation of <code>IEntityBase</code> (<code>EntityBase</code>) then have <code>Customer</code> inherit <code>EntityBase</code> (and therefore implement <code>IEntityBase</code>). Then create a map for <code>EntityBase</code> and a subclass map for <code>Customer</code>. You should then have an EntityBase table and a Customer table with a column EntityBase_Id that relates to the EntityBase table. You will find that EntityBase will need another property (so that the Id can be generated in the database by inserting a new row and setting the another property) so I usually add a <code>Created</code> timestamp or similar.</p>
+
+<pre><code>public interface IEntityBase
+{
+    int Id { get; set; }
+    DateTime? Created { get; set; }
+}
+
+public abstract class EntityBase : IEntityBase
+{
+    public int Id { get; set; }
+    public DateTime? Created { get; set ;}
+}
+
+public class Customer : EntityBase
+{
+    public string Name { get; set; }
+}
+
+public class EntityBaseMap : ClassMap&lt;EntityBase&gt;
+{
+    Id(x =&gt; x.Id);
+    Map(x =&gt; x.Created);
+}
+
+public class CustomerMap : SubclassMap&lt;Customer&gt;
+{
+    Map(x =&gt; x.Name);
+}
+</code></pre>

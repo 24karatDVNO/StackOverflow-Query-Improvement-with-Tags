@@ -1,0 +1,1 @@
+<p>A portable way to do this, is adding a column time stamp (create date) which indicates when the row was added to the table. After initial loading of the content you simply poll for new content which a where clause current_time >= create_date. In case that rows could have identical timestamps you need to filter duplicates before adding them.</p>

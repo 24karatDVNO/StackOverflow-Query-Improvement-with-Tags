@@ -1,0 +1,9 @@
+<p>To get the path into a variable, you can do something like this:</p>
+
+<pre><code>$a = (Get-Location).Path
+</code></pre>
+
+<p>Then, if you want to set the value of the 'XXX' part of your path to a variable, you can use the split() function:</p>
+
+<pre><code>$x = $a.split('\')[4]
+</code></pre>

@@ -1,0 +1,13 @@
+<p>Have to set:</p>
+
+<pre><code>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section      
+{ 
+    **return [tableViewArray count];**
+}
+
+- (void)buttonClicked
+{
+    tableViewArray = ... //load array with new data;
+    [self.tableView reloadData];
+}
+</code></pre>

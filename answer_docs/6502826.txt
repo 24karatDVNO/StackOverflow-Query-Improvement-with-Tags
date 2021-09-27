@@ -1,0 +1,6 @@
+<p>Create a new socket each time. When you close the socket the file descriptor is released and the socket is no longer available.It cannot be reopened.
+From the jdk:</p>
+
+<blockquote>
+  <p>Once a socket has been closed, it is not available for further networking use (i.e. can't be reconnected or rebound). A new socket needs to be created.</p>
+</blockquote>

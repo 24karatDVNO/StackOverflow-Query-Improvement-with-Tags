@@ -1,0 +1,3 @@
+<p>I tested this with one of my application. The filter authentication_person! (it's person in my case) works well for all other controllers but doesn't work for controller inherited from Devise::RegistrationsController. This may be an issue or limitation with devise. Needs to be added to issues discussion at github. </p>
+
+<p>The other workaround can be to create a filter method should_be_logged_in? into the application controller and then checking for person_signed_in? helper and redirecting accordingly.</p>

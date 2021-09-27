@@ -1,0 +1,15 @@
+<p>Had the same problem in FireFox. </p>
+
+<p>I have set the attribute in the page OnPreRender. (in my case a usercontrol)</p>
+
+<pre><code>protected override void OnPreRender(EventArgs e)
+    {
+        base.OnPreRender(e);
+
+        txtAutoComplete.Attributes.Add("autocomplete", "off");
+    }    
+</code></pre>
+
+<p>Now it works like in IE.</p>
+
+<p>Great!!</p>

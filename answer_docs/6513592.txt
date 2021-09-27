@@ -1,0 +1,16 @@
+<p>This is difficult to do with regex (at least only one). In the regex you are giving the fields an order, so the parser expects them in that order.</p>
+
+<p>One alternative would be to use a choice, but that would make difficult to check that you have one of each of the terms:</p>
+
+<pre><code>[\w|\d|\W]{4,}
+</code></pre>
+
+<p>If you want to use regex, check three of them:</p>
+
+<p>1) Is there a digit?</p>
+
+<p>2) Is there a character?</p>
+
+<p>3) Is there a special?</p>
+
+<p>If all of them are true.... bingo!</p>

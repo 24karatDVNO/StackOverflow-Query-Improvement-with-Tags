@@ -1,0 +1,23 @@
+<p>If you're trying to hide an existing form, <code>(new Form2()).Hide()</code> won't do it, since that will instantiate a new form from the class Form2.</p>
+
+<p>Presuming Button1 is on the form you want to hide, you want:</p>
+
+<pre><code>private void button1_Click(object sender, EventArgs e)
+{
+    (new Form3()).Show();
+    this.Hide();
+}
+</code></pre>
+
+<p>If it's not on the same form, you'll need a reference to the form you want to hide:</p>
+
+<pre><code>private Form2 form2 = new Form2();
+private Form3 form3 = new Form3();
+form2.Show();
+
+private void button1_Click(object sender, EventArgs e)
+{
+   form2.Hide();
+   form3.Show();
+}
+</code></pre>

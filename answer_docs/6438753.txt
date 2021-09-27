@@ -1,0 +1,14 @@
+<p>I can't tell if this works for firebird, but you could try the following:</p>
+
+<pre><code>procedimiento.prepare("BEGIN EXECUTE PROCEDURE AGREEGAR_UNO; END;");
+</code></pre>
+
+<p>This is similar to the PL/SQL passage</p>
+
+<pre><code>BEGIN
+  EXECUTE PROCEDURE AGREEGAR_UNO;
+END;
+</code></pre>
+
+<p>I am accessing Oracle databases with Qt and had to include the "BEGIN" and "END;" commands there. You don't have the "EXECUTE PROCEDURE" in oracle, but it might be required for Firebird.<br/>
+Also, I am using Qt 4 so there might be a difference as well.</p>

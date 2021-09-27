@@ -1,0 +1,7 @@
+<p>I believe what you're getting is a .NET error.  The reason is probably because you are connecting to a SOAP web service.  In iOS, there is no native SOAP protocol implementation.  </p>
+
+<p>Essentially SOAP works by sending some standard XML into the body of the request sent to the server.  Just connecting to that web address does not mean you are communicating with the web service, which is why .NET is giving you the error. Even though you go to that web address with your browser and it appears to work, the site itself is doing all of the SOAP-ing for you so you aren't aware of it.</p>
+
+<p>You have two options.  Either <a href="https://stackoverflow.com/questions/1897892/nsurlconnection-is-it-possible-to-wait-block-on-a-request">create a soap request from scratch</a> or use a REST service in your test. REST services act just like you are assuming this one works.  REST services are just a fancy way of saying "web services that can be accessed simply by going to the http address."  </p>
+
+<p><a href="http://www.iphonedevsdk.com/forum/iphone-sdk-development/2841-resolved-how-call-soap-service-2.html" rel="nofollow noreferrer">Here's another SOAP example</a></p>

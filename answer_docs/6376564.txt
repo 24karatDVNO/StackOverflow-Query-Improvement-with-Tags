@@ -1,0 +1,2 @@
+<p>You need to make it instance variable.
+If you have <code>-(NSString *)</code> it can only be accessed within that file even if your importing it in another file.  If you use <code>+(NSString *)</code> you will not get that error anymore.  The same works for voids <code>+(void)</code>. Good Luck</p>

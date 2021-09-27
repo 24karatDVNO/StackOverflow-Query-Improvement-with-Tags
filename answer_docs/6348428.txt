@@ -1,0 +1,8 @@
+<p>If you want, you can get the next primary key independently of an object using:</p>
+
+<pre><code>Session session = SessionFactoryUtil.getSessionFactory().getCurrentSession();
+Query query = session.createSQLQuery( "select nextval('schemaName.keySequence')" );
+
+Long key = (Long) query.list().get( 0 );
+return key;
+</code></pre>

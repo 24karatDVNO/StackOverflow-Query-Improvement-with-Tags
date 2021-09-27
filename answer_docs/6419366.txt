@@ -1,0 +1,24 @@
+<p>In difference to javacript, in PHP not everything is an object. Therefore you need to differ between function and class.</p>
+
+<p>If you want to create an object, you need to <em>define</em> the class first.</p>
+
+<pre><code>class myClass {
+}
+</code></pre>
+
+<p>You can then add as many functions to the class as you need. But you need to <em>define</em> them first:</p>
+
+<pre><code>class myClass {
+  function test() {
+    echo "test!\n";
+  }
+}
+</code></pre>
+
+<p>When everything is ready, you can bring it to life then:</p>
+
+<pre><code>$class = new myClass;
+$class-&gt;test();
+</code></pre>
+
+<p><a href="http://www.php.net/manual/en/langref.php" rel="nofollow">Checkout the manual for more</a>.</p>

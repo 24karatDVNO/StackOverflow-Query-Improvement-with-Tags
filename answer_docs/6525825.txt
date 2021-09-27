@@ -1,0 +1,36 @@
+<p>There are a couple of approaches you can take here, personally I would replace the default event handler for the TextChanged event via inheritance.</p>
+
+<p>The code assigns one via during the setup and unfortunately textbox is a private member</p>
+
+<pre><code>textBox.TextChanged += new EventHandler(OnSelectedDateChanged);  
+</code></pre>
+
+<p>which is declared as </p>
+
+<pre><code>protected virtual void OnSelectedDateChanged(object sender, EventArgs e)
+</code></pre>
+
+<p>So we can inherit SlimeeLibrary.DatePicker</p>
+
+<pre><code>public class EnhancedDatePicker : SlimeeLibrary.DatePicker
+</code></pre>
+
+<p>and then override the EventHandler raising a new parse error event.</p>
+
+<p>public event EventHandler OnDateParseError;</p>
+
+<pre><code>protected override void OnSelectedDateChanged(object sender, EventArgs e)
+{
+    try
+    {
+        base.OnSelectedDateChanged(sender, e);
+    }
+    catch (FormatException fe)
+    {            
+        OnDateParseError(sender, e);
+    }
+
+}
+</code></pre>
+
+<p>Hope that helps.  I haven't checked it but have examined the code for slimees control, but don't want to setup a code project account to download it sorry.  You'll obviously need to change your ASP.NET usercontrol references to use the new class.</p>

@@ -1,0 +1,32 @@
+<p>Here's what I ended up doing:</p>
+
+<pre><code>$(".myForm").submit(function () {
+
+    var postData = $(this).serializeArray(); // Gets all of the form elements
+    var myID = $(this.ID).val(); // Takes only a single value from the form input named ID
+
+    $.ajaxSetup({
+        data        : "ID=" + myID // Sets the default data for all subsequent .ajax calls
+    });
+
+    $.ajax({
+        type        : "POST",
+        async       : false,
+        cache       : false,
+        url         : "./insertComment.php",
+        data        : postData, // Overwrites the default form data for this one instance only, including all form elements
+        success: function() {
+            $.ajax({
+               type         : "POST",
+               async        : false,
+               cache        : false,
+               url          : "./loadComments.php", // Notice there is no data: field here as we are using the default as defined above
+               success: function(comments) {
+                   $(".Comments").html(comments);
+               }
+            });
+        }
+    });
+    return false;
+});
+</code></pre>

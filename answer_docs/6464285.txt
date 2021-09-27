@@ -1,0 +1,22 @@
+<p>n = Number of frames (Pre-rotation)
+g = granularity of rotation
+r = actual angle of rotation
+f = actual frame</p>
+
+<p>I think these are the constants you need and are given.</p>
+
+<p>The first thing we will want to do it find the number of rotations it would take to get to the angle desired. In the above example getting to an angle of 45 would be 1 rotation. 90 degrees = 2 rotations and so on. Let R = number of rotations.</p>
+
+<p>R = r / g  This should always be an integer as you should never need an angle that doesn't fit the gratuity you used.</p>
+
+<p>Next we will calculate the starting index of that rotation "group". In your example above the first group with a rotation 0 would start at index 0. 45 degress or 1 rotation would start at index 3. And so on. To do this we need to multiply the number of rotations (R) by the number of frames pre-rotation (n). Let j = the starting index of that rotation group.
+j = R * n</p>
+
+<p>The last step would be to figure out how much you must add to the starting index (j) to reach the frame you want. I will assume the first frame will be numbered 1 as in your example above, but if the first frame is numbered 0 then remove the -1 in the algorithm. Let i = the final index.
+i = j + (f - 1)</p>
+
+<p>I will be the index you are looking for. To put this together in one algorithm it would look like this.</p>
+
+<p>i = ((r / g) * n ) + (f - 1)</p>
+
+<p>Hope this helps! Let me know if you need my to clarify anything.</p>

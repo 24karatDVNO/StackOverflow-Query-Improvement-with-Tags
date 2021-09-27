@@ -1,0 +1,7 @@
+<p>Use first the selector, then the context:</p>
+
+<pre><code>jQuery(':selected',styleSelect).text();
+</code></pre>
+
+<p>matchew's suggestion will work too but only when you didn't set the value-attributes of the <code>&lt;option&gt;</code>'s
+(If you set the value-attributes you will get the value of the selected option instead of the text)</p>

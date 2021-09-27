@@ -1,0 +1,5 @@
+<p>Databases don't use Java types, that use SQL types which can be translated/mapped to Java.</p>
+
+<p>You should use the type which is naturally fits your application because correctness is usually more important than speed.</p>
+
+<p>The difference between <code>long</code>, <code>Long</code> and <code>String</code> is sub-microsecond in Java and if this matters to you, you shouldn't be using a database to do lookups, but cache all the data in memory and use a collection like TLongObjectHashMap</p>

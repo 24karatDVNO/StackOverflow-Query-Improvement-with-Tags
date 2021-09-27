@@ -1,0 +1,13 @@
+<p>I would say the easiest way to do this is to do lots of selects (one for each table) of the value you want to sum and just do a sum on the union of that?</p>
+
+<p>Something like :</p>
+
+<pre><code>SELECT SUM(VALUE) FROM (
+            select 1 VALUE 
+            UNION
+            select 2 VALUE
+            UNION
+            select 3 VALUE) as DATA
+</code></pre>
+
+<p>Of course the selects will be selecting a column from each table and not just an integer like this, but you get the idea ...</p>

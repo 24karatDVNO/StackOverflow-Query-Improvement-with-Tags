@@ -1,0 +1,5 @@
+<p>Content scripts are not allowed to make cross-domain ajax requests (just like regular scripts on a page). </p>
+
+<p>You would need to move your ajax request to a background page that doesn't have such limitation (as long as you declared corresponding host permissions in the manifest). </p>
+
+<p>You can communicate between content script and background page through <a href="http://code.google.com/chrome/extensions/dev/messaging.html" rel="nofollow">messaging</a>.</p>

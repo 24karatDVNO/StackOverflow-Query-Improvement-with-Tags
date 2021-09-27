@@ -1,0 +1,24 @@
+<p>It looks like what you really need are numpy arrays. The built-in array behaves more like lists. </p>
+
+<pre><code>#!/usr/bin/python
+
+from array import array
+
+timeArray = array("f", [1]*1000)
+
+deltaTime = 2
+
+for i, x in enumerate(timeArray):
+    timeArray[i] = timeArray[i] * deltaTime
+
+print(timeArray)
+
+# but numpy arrays behave more "naturally".
+
+from numpy import array
+timeArray = array([1]*1000, dtype="f")
+print (timeArray * 2)
+</code></pre>
+
+<p>A numpy array will multiply all elements of the array by a scalar value.
+Besides, I'm not sure that your original array code actually works. Also, numpy arrays are much faster.</p>

@@ -1,0 +1,14 @@
+<p>I dont know if this helps, but you could define your own hierarchical structure of Id containing classes that are defined in terms of your actual resources. You would still need to type the fully qualified name, but only once. </p>
+
+<p>Like this:</p>
+
+<pre><code>public static final class MyResources {
+    public static final class activity1 {
+        public static final int button1=R.id.blahblah_button1;
+    }
+    public static final int button1=0x7f020001;
+}
+</code></pre>
+
+<p>then refer to them as:
+    MyResources.activity1.button1;</p>

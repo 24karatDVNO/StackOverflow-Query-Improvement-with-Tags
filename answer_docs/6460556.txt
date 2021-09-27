@@ -1,0 +1,3 @@
+<p>If it only blows up when you turn on optimization, then that's a strong hint you've invoked undefined behavior somewhere. Unfortunately, that UB may be nowhere near the code that actually generated the segfault (as I've discovered several times in the past).  </p>
+
+<p>Every time this has happened to me (which hasn't been that often), the cause was a buffer overflow somewhere else in the code.  I never developed a repeatable, generally applicable technique for finding the problem, though (unless you want to call hours stepping through a debugger and swearing a generally applicable technique).  </p>

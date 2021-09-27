@@ -1,0 +1,5 @@
+<p>I know very little about PHP (I'm making this up as I go along).  </p>
+
+<p>I'd recommend making a new square image, setting it to have a transparent background with imagecolortransparent().  Then write the text to the transparent image.  </p>
+
+<p>Next I'd try using imagecopyresized() to copy and scale the text to the new window.  Use the minimum of the original's height and width for the destination size.  The offset would be something like (max($width, $height)-min($width, $height))/2.  Apply the offset to whichever dimension is greater.</p>

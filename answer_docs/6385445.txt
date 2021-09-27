@@ -1,0 +1,20 @@
+<p>I've tracked down the answer. The hostname <code>localhost</code> is magic in a Web Reference. Inside the generated code lives this function:</p>
+
+<pre><code>    private bool IsLocalFileSystemWebService(string url) {
+        if (((url == null) 
+                    || (url == string.Empty))) {
+            return false;
+        }
+        System.Uri wsUri = new System.Uri(url);
+        if (((wsUri.Port &gt;= 1024) 
+                    &amp;&amp; (string.Compare(wsUri.Host, "localHost", System.StringComparison.OrdinalIgnoreCase) == 0))) {
+            return true;
+        }
+        return false;
+    }
+}
+</code></pre>
+
+<p>By changing my <code>app.config</code> to default to 127.0.0.1, I bypass the special behaviour for authentication of local web services.</p>
+
+<p>The moral of this story: don't use <code>localhost</code> in the URL when developing a web reference client against a local instance of the service.</p>

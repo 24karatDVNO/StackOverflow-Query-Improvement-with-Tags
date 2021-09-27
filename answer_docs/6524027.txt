@@ -1,0 +1,39 @@
+<p>For every page I write, I open a single connection object, then use that same connection object for all my recordsets as the "ActiveConnection" property of the recordset, then close the connection object when I'm done working. </p>
+
+<p>Example: </p>
+
+<pre><code>Dim cn
+Set cn = CreateObject("Adodb.Connection")
+cn.Open MyDsnString
+
+Dim rs1
+Set rs1 = CreateObject("Adodb.Recordset")
+rs1.ActiveConnection = cn
+rs1.source = "some query"
+rs1.Open
+
+'... (stuff happens here) '
+
+rs1.Close
+Set rs1 = Nothing
+
+'... (stuff happens here) '
+
+Dim rs2
+Set rs2 = CreateObject("Adodb.Recordset")
+rs2.ActiveConnection = cn
+rs2.source = "select something from sometable"
+rs2.Open
+
+'... (stuff happens here) '
+
+rs2.Close
+Set rs2 = Nothing
+
+'... (stuff happens here) '
+
+cn.Close
+Set cn = Nothing
+</code></pre>
+
+<p>That way there's only one connection open for the entire page, and it's very efficient.</p>

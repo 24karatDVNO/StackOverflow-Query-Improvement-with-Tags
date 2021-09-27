@@ -1,0 +1,16 @@
+<p>Have you tried opening up the Project file. For example, my project file is named <code>menu.pro</code> and it contains the following:</p>
+
+<pre><code>TEMPLATE = app
+QT = gui core
+CONFIG += qt debug warn_on console
+DESTDIR = bin
+OBJECTS_DIR = build
+MOC_DIR = build
+UI_DIR = build
+FORMS = ui/mainwindow.ui
+HEADERS = src/mainwindowimpl.h
+SOURCES = src/mainwindowimpl.cpp src/main.cpp
+RESOURCES = Images.qrc
+</code></pre>
+
+<p>The last line (<code>RESOURCES = Images.qrc</code>) is what you need to put in your project file: of course, use the name that you used for your resources file, in my case, it is <code>Images.qrc</code>.</p>

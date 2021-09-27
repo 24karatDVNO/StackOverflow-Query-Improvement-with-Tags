@@ -1,0 +1,4 @@
+<p>Add <code>(?!\w)</code> to the regex.  This will cause it to only match when the phrase is followed by a non-word character <code>[^a-zA-Z0-9_]</code>.</p>
+
+<pre><code>return preg_replace('/('.preg_quote($phrase, '/')(?!\w)')/Ui', '&lt;span class="'.$class.'"&gt;'."\\1".'&lt;/span&gt;', $str); 
+</code></pre>

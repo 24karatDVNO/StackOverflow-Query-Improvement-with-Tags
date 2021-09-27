@@ -1,0 +1,25 @@
+<pre><code>&lt;?php
+
+$start = "1 Jan 2011";
+$end = "20 Jan 2011";
+
+$dates = getDays($start, $end);
+
+print_r($dates);
+
+function getDays($start,$end)
+{
+    $t = new DateTime("$start 12:00");
+    $e = new DateTime($end ." 12:00");
+
+    $out = array();
+    for (; $t&lt;=$e; $t-&gt;modify("+1 day")) {
+        $day = $t-&gt;format("D");
+        if (in_array($day, array('Mon','Wed','Fri'))) {
+            $out[] = $t-&gt;format('d M Y');
+        }
+    }
+
+    return $out;
+}
+</code></pre>

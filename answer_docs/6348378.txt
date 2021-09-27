@@ -1,0 +1,8 @@
+<p>in your application.rb:</p>
+
+<pre><code>  before_filter :update_activity_time, :except =&gt; [:login, :logout]
+
+   def update_activity_time
+     session[:expires_at] = 60.minutes.from_now #default 60
+   end
+</code></pre>

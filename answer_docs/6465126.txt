@@ -1,0 +1,22 @@
+<p>I was trying to do the same thing and ended up writing a python script to do it for me.</p>
+
+<p><a href="https://github.com/bawigga/spy" rel="nofollow">https://github.com/bawigga/spy</a></p>
+
+<p>usage:</p>
+
+<pre><code>$ ./spy myscript.py
+... your script output ...
+
+$ ./spy --help
+Usage: spy [OPTIONS] [WATCH]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -c, --clear           clear the screen after each execution
+  -e COMMAND, --exec=COMMAND
+                        path to the program to execute
+  -i INTERVAL, --interval=INTERVAL
+                        (in seconds) set the time interval to check for file
+                        modifications
+</code></pre>

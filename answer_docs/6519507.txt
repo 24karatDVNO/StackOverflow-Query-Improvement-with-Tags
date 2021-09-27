@@ -1,0 +1,3 @@
+<p>I would structure the table in a different way. I'd have two columns, both <code>datetime</code> type, named <code>session_start</code> and <code>session_end</code>.</p>
+
+<p>Logic is: you cannot insert new session if it's <code>session_start</code> time isn't <code>&gt;</code> or <code>&lt;</code> than old session <code>session_end</code>.</p>

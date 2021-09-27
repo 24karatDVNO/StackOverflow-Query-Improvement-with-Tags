@@ -1,0 +1,9 @@
+<p>As other have said, although you can get by passing Models to your views, sooner rather than later you'll find yourself wanting to add properties for display purposes only that don't quite belong to the model (e.g. values depending on the current session rather than the model itself.) When you hit that point and it's usually pretty soon you'll be glad you used viewModels.</p>
+
+<p>Technically speaking ASP.NET MVC is not even using MVC but rather Model2. Dino Esposito has <a href="http://msdn.microsoft.com/en-us/magazine/dd252940.aspx" rel="nofollow">a good article about this</a>. Furthermore, on his book Microsoft .NET: Architecting Applications for the Enterprise he even goes as far as saying:</p>
+
+<blockquote>
+  <p>"It is a sharp and bold statement, but we have to make it: today classic MVC is gone. However, some of its variations are healthy and thrive. They are Model2 for the Web and MVP for both Web and Windows. In turn, and only more recently, MVP has undergone a facelift. In July 2006, Martin Fowler proposed to retire MVP entirely and replace it with two variations Passive View (PV) and Supervising Controller (SVC). “</p>
+</blockquote>
+
+<p>I wrote a review of this chapter <a href="http://hectorcorrea.com/Blog/The-Model-View-Controller-is-dead-long-live-the-Model-View-Controller" rel="nofollow">on my blog</a>.</p>

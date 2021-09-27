@@ -1,0 +1,9 @@
+<p>Sadly that you can mix server-side script (PHP) with client-side script (Javascript). However, you can use PHP to <code>echo</code> Javascript, like:</p>
+
+<pre><code>if ($admin == true || gebr_id == $_SESSION['id']){
+    echo '&lt;script&gt;
+               alert("Admin!");
+               $("selector").function(); //
+          &lt;/script&gt;';
+}
+</code></pre>

@@ -1,0 +1,25 @@
+<p>I would <code>typedef</code> the function pointer to make your life easier:</p>
+
+<pre><code>typedef void(*voidFunctionPointer)(); // Assuming here that the functions take no arguments.
+
+std::stack&lt;voidFunctionPointer&gt; instructionSteps; // This is very different from &lt;void*&gt;.  
+                                                  // The latter is merely a stack of void pointers.
+</code></pre>
+
+<p>One way of calling the top function is this:</p>
+
+<pre><code>voidFunctionPointer functionToCall = instructionSteps.top();
+functionToCall();
+</code></pre>
+
+<p>If you want to do it without an extra declaration, I <em>think</em> this should work.  Please correct me if I'm wrong.</p>
+
+<pre><code>instructionSteps.top()();
+</code></pre>
+
+<p>To build the stack, just use the function name without any trailing parentheses.</p>
+
+<pre><code>instructionSteps.push(step1);
+instructionSteps.push(step2);
+// ...
+</code></pre>

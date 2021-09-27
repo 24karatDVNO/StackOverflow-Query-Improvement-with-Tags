@@ -1,0 +1,10 @@
+<p>I think your problem is that in your Edit action method the model is not bound to the data source.</p>
+
+<p>After you call UpdateModel  (Is it necessary to call it?) you have to call</p>
+
+<pre><code>db.Subcategories.Attach(subcategory);
+</code></pre>
+
+<p>This way the EF will know that there's a modification, otherwise the SubCategory object is not attached to the db object and when you save the changes it won't know that instance.</p>
+
+<p>Hope that helps.</p>

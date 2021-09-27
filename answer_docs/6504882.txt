@@ -1,0 +1,12 @@
+<p>To use a variable, you need to use the RegExp object: </p>
+
+<pre><code>new RegExp('^(' + Extensions + ')$').test(ext)
+</code></pre>
+
+<p>Or assign the entire regex into your variable:</p>
+
+<pre><code>var Extensions = /^(jpg|png|jpeg|gif)$/; 
+Extensions.test(ext)
+</code></pre>
+
+<p>Perhaps call it allowedExtensions or something though.</p>

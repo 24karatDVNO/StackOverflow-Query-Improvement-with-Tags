@@ -1,0 +1,9 @@
+<p>No advantages at all.</p>
+
+<p>The disadvantages are mainly around using the various utilities.
+You need to turn of referential integrity before you can restore any of these
+tables from a backup copy or reload from a file copy. 
+It is very possible that they will then fail the "CHECK" when you try and turn 
+the referential integrity on. Once you get into this situation its very difficult
+to correct usually involves deleting specific rows and adding them back in again
+after the "parent" table is fixed.</p>

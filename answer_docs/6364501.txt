@@ -1,0 +1,17 @@
+<p>There are at least two options I can think of aside from digging into the security policy, which I don't know much about.</p>
+
+<p>Process the records to merge row by row.  Attempt to do the update, if it fails to update then insert, or vise versa, depending on whether you expect most records to need updating or inserting (ie optimize for the most common case that will reduce the number of SQL statements fired), eg:</p>
+
+<pre><code>begin
+  for row in (select ... from source_table) loop
+    update table_to_be_merged
+    if sql%rowcount = 0 then -- no row matched, so need to insert
+      insert ...
+    end if;
+  end loop;
+end;
+</code></pre>
+
+<p>Another option may be to bulk collect the records you want to merge into an array, and then attempted to bulk insert them, catching all the primary key exceptions (I cannot recall the syntax for this right now, but you can get a bulk insert to place all the rows that fail to insert into another array and then process them).</p>
+
+<p>Logically a merge statement has to check for the presence of each records behind the scenes anyway, and I think it is processed quite similarly to the code I posted above.  However, merge will always be more efficient than coding it in PLSQL as it will be only 1 SQL call instead of many. </p>

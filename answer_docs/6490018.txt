@@ -1,0 +1,24 @@
+<p>I ended up with this solution. As it is a Wordpress site, while stepping through the menu items in the menu I could check if each link is active by comparing the link to the active post, and insert the class "current" to these menu items:</p>
+
+<pre><code>echo '&lt;li class="child';
+if ( $menuPost-&gt;ID == $post-&gt;ID ) { echo ' current'; }
+</code></pre>
+
+<p>And then use jQuery to find all instances of the li "current" class, and trigger the parent ul's to slideDown:</p>
+
+<pre><code>$(document).ready(function() {
+    // Collapse everything:
+    $("li.cat").find("+ ul").slideUp(1);
+
+    // Collapse everything but the first menu:
+    //$("li.cat").not(":first").find("+ ul").slideUp(1);
+
+    // Expand or collapse:
+    $("li.cat").click(function() {
+        $(this).find("+ ul").slideToggle("fast");
+    });
+    $("li.current").parent().slideDown(1);  
+});
+</code></pre>
+
+<p>Sorry I didn't solve this through javascript as I intended, but I achieved what I wanted.</p>

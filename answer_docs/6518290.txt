@@ -1,0 +1,21 @@
+<p>Ok, so I solved the problem..</p>
+
+<p>Firstly, I defined the input to the controller as a <code>string[]</code>, which is incorrect. It's supposed to be a <code>List&lt;string&gt;</code>.</p>
+
+<p>Secondly, I changed the <code>$.post</code> to <code>$.ajax</code>, this is what I ended up with (ignore the change of variable name, items to itemIds):</p>
+
+<pre><code> $("#SaveButton").click(function () {
+
+    var order = $("#attributeList ul").sortable('toArray');
+
+    alert(order);
+
+    $.ajax({
+        data: { itemIds: order },
+        type: 'POST',
+        traditional: true
+    });
+});
+</code></pre>
+
+<p>Hope this is usefull to someone else!</p>

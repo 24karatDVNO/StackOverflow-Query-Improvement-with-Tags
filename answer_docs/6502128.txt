@@ -1,0 +1,11 @@
+<p>The first request against a web container, such as Tomcat, often loads the servlet for the first time.  Framework servlets such as the AxisServlet, CXFServlet, and the like usually do a whole bunch of things during their startup lifecycle phase.  For example, Axis loads up its internal service registry, wires things up, and exposes the services.  CXF does the same thing, looking in a Spring config file, and so on.</p>
+
+<p>So first quick check is you should look to add the  tag to your web.xml.</p>
+
+<p>That's at the servlet level - other elastic resources can also delay the first request (e.g. connection pools - really any pools getting populated for the first time). </p>
+
+<p>Of course, this may not be the only reason -- that stack trace shows an SSL connection.  Depending on where your web service is, perhaps it is going through an XML security gateway, interacting with security services (such as an OCSP certificate validation service)?  "pinned socket" suggests the JRockit JVM is smart enough to create long lived SSL connections where it can, so it could be that it's just taking a really long time for the certificate exchange process to occur - perhaps a platform configuration that increases that time window?</p>
+
+<p>Are there other things getting initalized between server and client?  web connectors to the web container (e.g. Apache + mod_jk), app server load balancers and such?  Could peel the onion and check those.</p>
+
+<p>Your stack trace also suggests you have a back-to-back user agent (e.g. server accepts a request, and then makes an outbound request somewhere).  If you are making an outbound request to your local instance (e.g. Client sends request to localhost:8080, webapp on 8080 sends request to localhost:8080/another web app), you can be resource starving your container and can be a symptom of an eventual deadlock (i.e. the looped request is waiting on the thread pool to free up to serve a request, but all are waiting).  This style condition is true in any web server / app server combo where you turn around and make a network request against your own setup.</p>

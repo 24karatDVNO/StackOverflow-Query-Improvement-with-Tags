@@ -1,0 +1,23 @@
+<pre><code>- (MKAnnotationView *)mapView:(MKMapView *)mv viewForAnnotation:(id &lt;MKAnnotation&gt;)annotation      {
+MKAnnotationView *pinView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pinView"];
+
+ if (!pinView) {
+    pinView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"] autorelease];
+    pinView.image = [UIImage imageNamed:@"SPOON4.png"];
+    pinView.frame = CGRectMake(-30, 0, 70, 67.5); 
+    //pinView.animatesDrop = YES; can't animate with custom pin images
+    pinView.canShowCallout = YES;
+
+
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    pinView.rightCalloutAccessoryView = rightButton;
+
+} else {
+    pinView.annotation = annotation;
+}
+if (annotation == mapView.userLocation){
+    return nil; //default to blue dot
+}
+return pinView;
+}
+</code></pre>

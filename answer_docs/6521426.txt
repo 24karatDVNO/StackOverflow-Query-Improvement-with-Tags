@@ -1,0 +1,2 @@
+<p>The app context should be wrapping myDao with an advised proxy.
+The stacktrace cuts off at the invocation of dao.saveOrUpdateData. If you investigate the stack trace beyond this call in the stack trace, you should find a proxy of the DAO wrapping the real DAO method invocation in a transactionTemplate.doInTransaction call. If this is not the case, then this problem may be manifesting because you are directly injecting the myDao bean into you BO. Autowiring the myDao into BO might work.</p>

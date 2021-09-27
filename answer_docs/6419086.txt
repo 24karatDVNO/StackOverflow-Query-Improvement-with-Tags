@@ -1,0 +1,13 @@
+<p>You can do it all in the <a href="http://api.jquery.com/map/" rel="nofollow"><code>map()</code><sup><i>[docs]</i></sup></a> method.</p>
+
+<pre><code>var arr = $(source).children('table').map(function() {
+    if( $('tbody &gt; tr', this).length &gt;= 4 ) return $(this).html();
+}).get();
+</code></pre>
+
+<p>Or using the <a href="http://api.jquery.com/jQuery.map/" rel="nofollow"><code>jQuery.map()</code><sup><i>[docs]</i></sup></a> method.</p>
+
+<pre><code>var arr = $.map($(source).children('table'), function(val,i) {
+    if( $('tbody &gt; tr', val).length &gt;= 4 ) return $(this).html();
+});
+</code></pre>

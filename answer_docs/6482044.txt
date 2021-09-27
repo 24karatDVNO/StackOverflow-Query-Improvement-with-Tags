@@ -1,0 +1,2 @@
+<p><code>i++</code> and <code>++i</code> are completely different, <code>i++</code> is post increment which means evaluate <code>i</code> in the expression and then increment once its evaluated. <code>++i</code> means increment then evaluate the expression.
+I see in your example you set <code>i = ++i/i++</code>, this is undefined behavior as mentioned in a comment.</p>

@@ -1,0 +1,3 @@
+<p>By default, argparse arguments consume one value. If you want foo to have different behavior, you'll need to specify it. It looks like you think the default is nargs=0, but it's not.  From the argparse documentation (at <a href="http://docs.python.org/dev/library/argparse.html#nargs" rel="nofollow">http://docs.python.org/dev/library/argparse.html#nargs</a>):  "If the nargs keyword argument is not provided, the number of args consumed is determined by the action. Generally this means a single command-line arg will be consumed and a single item (not a list) will be produced."</p>
+
+<p>You can either use nargs='?' for foo and give it a default value in case nothing is provided from the command-line, or use a non-default action (perhaps 'store_true'?).</p>

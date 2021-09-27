@@ -1,0 +1,4 @@
+<p>After taking the code appart, I found the 2 errors:
+1. My OS method used String.replaceAll("/","\") and threw a StringIndexOutOfBoundsException (don't know why) but String.replac() works fine
+2. I was naiv enough to think that the VM would ignore unsupported parameters like -Xdock:name and -Xdock:icon but it does not, so I made a seperate exec String for Mac.
+Thanks for your hints and help!</p>

@@ -1,0 +1,17 @@
+<p>To change the libraries for models, fomrs, and filters, create your folders in your lib/ directory and create autoload.yml  in  config/ directory  containing the following:</p>
+
+<pre><code>#config/autoload.yml
+autoload:
+  my_classes:
+    name: my_classes
+    path: %SF_LIB_DIR%/myLib
+    recursive: true
+</code></pre>
+
+<p>The sub-folders will also get autoloaded as long as you keep  <code>recursive: true</code></p>
+
+<p>You cannot change the directory structure of your modules. You can however change the default modules location of each of your symfony application by adding this line to the setup() method of the ProjectConfiguration class to override the sf_app_template_dir settings:
+ apps/XXX/config/XXXConfiguration.class.php</p>
+
+<pre><code>sfConfig::set('sf_app_module_dir', sfConfig::get('sf_app_dir').DIRECTORY_SEPARATOR.'myModules');
+</code></pre>

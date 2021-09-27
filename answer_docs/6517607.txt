@@ -1,0 +1,20 @@
+<p>I suppose the AT, PT and MX stand for the country codes of Austria, Portugal and Mexico ....</p>
+
+<p>In general my experience with international Excel applications is: do not format dates in Excel at all! This is what I do:</p>
+
+<ul>
+<li>Make sure entries in cells containing dates are really done/recognized as a date format (<code>vartype(cell) = vbDate</code>) - you can check/trap this via a <code>Sub ...Change()</code> trigger</li>
+<li>format/display the date cell in the system's short or long format (as per need/taste)</li>
+</ul>
+
+<p>It is and should remain <strong>in the power of the user</strong> to select his/her favourite (system) date format which applications should respect. This way you are also covering the ever increasing problem of nomadic users (e.g. British working in France, French travelling to US, etc.)</p>
+
+<ul>
+<li>anything else increases trouble - like in your example you're converting to a string ...</li>
+<li>so you can forget date arithmetic unless you convert back ... another function which needs to recognize the country specific details</li>
+<li>tomorrow your company goes to France, Brazil and South Africa ... trouble again</li>
+</ul>
+
+<p>Hope this helps</p>
+
+<p>good luck - MikeD</p>

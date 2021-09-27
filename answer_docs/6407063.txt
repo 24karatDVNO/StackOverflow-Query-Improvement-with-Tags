@@ -1,0 +1,9 @@
+<p>I don't use director.lua myself so I'm not 100% sure, but in your options.lua you put the following two lines inside the new() function:</p>
+
+<pre><code>local assetPath = "assets/"
+local localGroup = display.newGroup()
+</code></pre>
+
+<p>However in your titlescreen.lua those lines are above the new() function, and I think that's how it needs to be.</p>
+
+<p>In general you should make your indentation consistent, so that it's easy to notice which code is inside which code-blocks.</p>

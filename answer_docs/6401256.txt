@@ -1,0 +1,9 @@
+<pre><code>printf("%d ",a,b,c);
+</code></pre>
+
+<p>For every <code>%(something)</code> you need add one referining variable, therefore</p>
+
+<pre><code>printf("%d ",a+b+c);       //would work (a+b+c), best case with (int) before that
+
+printf("%d %d %d",a,b,c);  //would print all 3 integers.
+</code></pre>

@@ -1,0 +1,7 @@
+<p>It looks as though the reason the left and right images are not displaying is because the nested <code>table.bg</code> sitting inside <code>td.left</code> and <code>td.right</code> does not have an actual height.  I know you have set the height to <code>100%</code> but without actual content the nested table has no reason to expand.</p>
+
+<p>By assigning a <code>height:100%</code> to <code>#middletable td.left</code> and <code>#middletable td.right</code> the nested table can now achieve the height of 100% set to it. You can see in this jsfiddle: <a href="http://jsfiddle.net/CndUR/7/" rel="nofollow">http://jsfiddle.net/CndUR/7/</a> the images are now displaying.</p>
+
+<p>I would recommend looking into building your layout using CSS since what you are displaying is not tabular data (or doesn't seem to be).</p>
+
+<p>A great article for multi-column liquid layouts (although old - still very good) is <strong><a href="http://matthewjamestaylor.com/blog/perfect-multi-column-liquid-layouts" rel="nofollow">http://matthewjamestaylor.com/blog/perfect-multi-column-liquid-layouts</a></strong> by Matthew Taylor.</p>

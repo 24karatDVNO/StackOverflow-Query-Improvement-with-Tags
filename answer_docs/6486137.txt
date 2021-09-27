@@ -1,0 +1,26 @@
+<p>I'm not familiar with ASP.NET but I assume that <code>Content(FeedBackMessages.NewsletterSuccess())</code> transforms objects to a corresponding HTTP response, in this particular case possibly a localized <code>String</code> to a response with <code>Content-Type: text/plain</code>.</p>
+
+<p>My suggestion would be to wrap the success message into a result object which does not only contain a success or error message but also the corresponding state, like</p>
+
+<pre><code>class Result {
+    boolean success
+    String message
+}
+</code></pre>
+
+<p>Assuming that <code>Content()</code> transforms objects to JSON, you could return a <code>Result</code> object with <code>success=false</code> and evaluate this in your jQuery success handler. (Update: see Matthew Cox' answer to see how to create a JSON result object.)</p>
+
+<pre><code>$.post(this.action,
+    $(this).serialize(),
+    function (data) {
+        // Data transport went fine, now check the application logic result:
+        if (data.success) {
+            success(data.message);
+        } else {
+            failure(data.message);
+        }
+    }
+);
+</code></pre>
+
+<p>Maybe there's a more straightforward, native ASP.NET approach, but this one works generally well and JSON is well supported on JS client-side.</p>

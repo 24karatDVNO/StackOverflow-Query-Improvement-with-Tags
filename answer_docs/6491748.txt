@@ -1,0 +1,11 @@
+<p>Using jquery</p>
+
+<pre><code>var data = {
+    '.one' : 'AAA',
+    '.two' : 'BBB'
+};
+
+$.each(data, function(key, value){
+    $(key).css('background-color', '#' + value);
+})
+</code></pre>

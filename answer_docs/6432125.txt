@@ -1,0 +1,5 @@
+<p>Got it working by</p>
+
+<pre><code>:inoremap &lt;silent&gt; &lt;C-S&gt; 
+   &lt;Esc&gt;:if expand("%") == ""&lt;CR&gt;:browse saveas&lt;CR&gt;:else&lt;CR&gt;:w&lt;CR&gt;:endif&lt;CR&gt;a
+</code></pre>

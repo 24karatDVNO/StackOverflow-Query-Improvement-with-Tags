@@ -1,0 +1,17 @@
+<p>Rather than expiring the cache data every so often, you can actually just make sure to invalidate the cache whenever the underlying data you are caching changes.  </p>
+
+<p>See this example from info Q
+<a href="http://www.infoq.com/news/2011/04/Attribute-Caching" rel="nofollow">http://www.infoq.com/news/2011/04/Attribute-Caching</a></p>
+
+<pre><code>[Cache.Cacheable("UserTransactionCache")]
+public DataTable GetAllTransactionsForUser(int userId)
+{
+    return new DataProvider().GetAllTransactionsForUser(userId);
+}
+
+[Cache.TriggerInvalidation("UserTransactionCache")]
+public void DeleteAllTransactionsForUser(int userId)
+{
+ ...
+}
+</code></pre>

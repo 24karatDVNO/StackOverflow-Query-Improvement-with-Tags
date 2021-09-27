@@ -1,0 +1,28 @@
+<p>For starters, the assymetry in your code looks suspicious.  Without looking very much at your current code, I would assume that it might be giving you the right answer when you drag an item in one direction but not the other.</p>
+
+<pre><code>index1 = -1;
+index2 = stops.Count;  // This could be off by one
+for (int i = 0; i &lt; stops.Count - 1; i++)
+{
+    // First, find the bounds of what was moved
+    if (originalOrder[i] != modifiedOrder[i] &amp;&amp; index1 == -1)
+    {
+        index1 = i;
+    }
+    if (index1 != -1 &amp;&amp; originalOrder[i] == modifiedOrder[i])
+    {
+        index2 = i-1;
+        // No need to look at any more items
+        break;
+    }
+}
+// Swap indices depending on which direction item was moved
+if (originalOrder[index1] != modifiedOrder[index2])
+{
+    int temp = index1;
+    index1 = index2;
+    index2 = temp;
+}
+</code></pre>
+
+<p>I can't tell from your example what stops.Count represents.  You'll need to ensure that index 2 is initialized to the last index.</p>

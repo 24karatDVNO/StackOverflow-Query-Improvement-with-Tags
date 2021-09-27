@@ -1,0 +1,6 @@
+<p>The reason that taps are not being handled is because you are overriding the <code>itemSelector</code> config:</p>
+
+<pre><code>itemSelector : 'span.id',
+</code></pre>
+
+<p>You should not do this, as Ext.List expects it to be a certain internally-set value in order to handle events on items properly. Simply removing this from your config should make it start working.</p>

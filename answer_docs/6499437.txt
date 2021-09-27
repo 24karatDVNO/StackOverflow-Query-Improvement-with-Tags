@@ -1,0 +1,40 @@
+<p>Since this is 09' answers and whatnot I figure I update the link and code here for anyone looking in 11'.</p>
+
+<p>The link for the Quartz Demo is: <a href="http://developer.apple.com/library/ios/#samplecode/QuartzDemo/Introduction/Intro.html" rel="nofollow noreferrer">http://developer.apple.com/library/ios/#samplecode/QuartzDemo/Introduction/Intro.html</a></p>
+
+<p>and the code I use to draw multiple lines is:</p>
+
+<pre><code>   //Drawing lines
+
+    // Set the color that we want to use to draw the line
+[ [ UIColor brownColor] set];
+
+    //Get the current graphics context (pen)
+CGContextRef currentContext = UIGraphicsGetCurrentContext();
+
+    // Set the width for the line 
+CGContextSetLineWidth(currentContext,
+                      5.0f);
+
+    // Start the line at this point
+CGContextMoveToPoint(currentContext,
+                     20.0f,
+                     20.0f);
+    // And end it at this point 
+CGContextAddLineToPoint(currentContext,
+                        100.0f,
+                        100.0f);
+
+    // Extend the line to another point
+CGContextAddLineToPoint(currentContext,
+                        300.0f,
+                        100.0f);
+
+
+    //Use the context's current color to draw the line
+CGContextStrokePath(currentContext);
+</code></pre>
+
+<p>I recommend reading <a href="https://rads.stackoverflow.com/amzn/click/com/1449305679" rel="nofollow noreferrer" rel="nofollow noreferrer">Graphics and Animation on iOS: A Beginner's Guide to Core Graphics and Core Animation by Vandad Nahavandipoor</a>. It's mostly on graphics than animation though. I recommend checking out his videos on animation if your interested. <a href="http://www.youtube.com/watch?v=ybMFPB-Gbsw&amp;feature=player_embedded" rel="nofollow noreferrer">http://www.youtube.com/watch?v=ybMFPB-Gbsw&amp;feature=player_embedded</a> They're called <em>Animations in iOS using Block Objects</em> Part I and II. Supposedly there are supposed to be more videos at some point. But the videos go with the book.</p>
+
+<p>That's it.</p>

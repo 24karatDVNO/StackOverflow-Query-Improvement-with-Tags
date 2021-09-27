@@ -1,0 +1,7 @@
+<p>Get rid of <code>GROUP BY</code>, <code>LIMIT</code> and <code>ORDER</code>. They are useless and don't make sense (especially <code>LIMIT</code>) if you need a total count. <code>DISTINCT</code> doesn't make sense either.</p>
+
+<pre><code>SELECT COUNT(*) 
+ FROM announce_arrival AS a       
+ INNER JOIN members as m1 ON (a.user_id = m1.mem_id)
+ INNER JOIN members as m2 ON (a.venue_id= m2.mem_id)
+</code></pre>

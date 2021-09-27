@@ -1,0 +1,8 @@
+<p>If you are trying to get the date stored in one of the columns of the resultset obtained from the database, then you can use the <code>rs.getDate(columnIndex)</code> method.
+You have to specify the index of the column which contains the date.
+suppose your table is like this:</p>
+
+<p>ID | name | date|</p>
+
+<p>then you will have to use <code>rs.getDate(3)</code> 
+[or may be <code>getDate(2)</code>, I am not sure if the column index starts from 0 or 1 ]</p>

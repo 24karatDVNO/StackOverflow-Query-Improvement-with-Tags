@@ -1,0 +1,7 @@
+<p>To get the hash attributes have you tried <code>string.xpath("en-note//en-media//@hash")</code>?
+Perhaps you want to modify the XML like this:</p>
+
+<pre><code>string.xpath("en-note//en-media//@hash").each_with_index do |attribute, index|
+  attribute.value = values[index]
+end
+</code></pre>

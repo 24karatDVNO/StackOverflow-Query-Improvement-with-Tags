@@ -1,0 +1,53 @@
+<p>The documentations seems very clear <a href="https://bitbucket.org/jespern/django-piston/wiki/Documentation#!resources" rel="nofollow">https://bitbucket.org/jespern/django-piston/wiki/Documentation#!resources</a></p>
+
+<pre><code>from piston.handler import BaseHandler
+from myapp.models import Blogpost
+
+class BlogpostHandler(BaseHandler):
+   allowed_methods = ('GET',)
+   model = Blogpost   
+
+   def read(self, request, post_slug):
+      ...
+</code></pre>
+
+<blockquote>
+  <p>Piston lets you map resource to
+  models, and by doing so, it will do a
+  lot of the heavy lifting for you.</p>
+  
+  <p>A resource can be just a class, but
+  usually you would want to define at
+  least 1 of 4 methods:</p>
+  
+  <p><code>read</code> is called on GET requests, and
+  should never modify data (idempotent.)</p>
+  
+  <p><code>create</code> is called on POST, and creates
+  new objects, and should return them
+  (or <code>rc.CREATED</code>.)</p>
+  
+  <p><code>update</code> is called on PUT, and should
+  update an existing product and return
+  them (or <code>rc.ALL_OK</code>.)</p>
+  
+  <p><code>delete</code> is called on DELETE, and should
+  delete an existing object. Should not
+  return anything, just <code>rc.DELETED</code>.</p>
+</blockquote>
+
+<p>Also <a href="https://bitbucket.org/jespern/django-piston/wiki/Documentation#!mapping-urls" rel="nofollow">https://bitbucket.org/jespern/django-piston/wiki/Documentation#!mapping-urls</a></p>
+
+<p>In urls.py:</p>
+
+<pre><code>from django.conf.urls.defaults import *
+from piston.resource import Resource
+from mysite.myapp.api.handlers import BlogpostHandler
+
+blogpost_handler = Resource(BlogpostHandler)
+
+urlpatterns = patterns('',
+   url(r'^blogpost/(?P&lt;post_slug&gt;[^/]+)/', blogpost_handler),
+   url(r'^blogposts/', blogpost_handler),
+)
+</code></pre>

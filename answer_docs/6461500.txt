@@ -1,0 +1,13 @@
+<p>One way is to run the sieve code with <code>end = top</code> and modify the last line to give you only numbers bigger than bottom:</p>
+
+<p>If the range is small compared with it's magnitude (i.e. top-bottom is small compared with bottom), then you better use a different algorithm:</p>
+
+<p>Start from bottom and iterate over the odd numbers checking whether they are prime. You need an isprime(n) function which just checks whether n is divisible by all the odd numbers from 1 to sqrt(n):</p>
+
+<pre><code>def isprime(n):
+    i=2
+    while (i*i&lt;=n):
+        if n%i==0: return False
+        i+=1
+    return True
+</code></pre>

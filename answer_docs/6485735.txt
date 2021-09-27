@@ -1,0 +1,28 @@
+<p>point 3 answer:</p>
+
+<pre><code>$(function() {
+  $( '#aankomst' ).datepicker({
+    onClose: function(dateText, instance) {
+      $( '#vertrek' ).datepicker('show');
+     },      
+    onSelect: function( dateText, instance ) {
+
+      // Split arrival date in 3 input fields                        
+      var arrSplit = dateText.split("-");
+        $( '#alt-aankomst-d' ).val(arrSplit[0]);
+        $( '#alt-aankomst-m' ).val(arrSplit[1]);
+        $( '#alt-aankomst-y' ).val(arrSplit[2]);
+
+       // Populate departure date field
+       var nextDayDate = $( '#aankomst' ).datepicker('getDate', '+3d');
+         nextDayDate.setDate( nextDayDate.getDate() + 3 );
+           $( '#vertrek' ).datepicker( 'setDate', nextDayDate );
+           }                
+        });
+}); 
+</code></pre>
+
+<p>you already have the solution for point 2?</p>
+
+<p>Cheers,
+Daddy        </p>

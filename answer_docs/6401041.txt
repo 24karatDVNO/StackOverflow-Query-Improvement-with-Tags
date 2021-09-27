@@ -1,0 +1,29 @@
+<pre><code>$(document).ready(function(){
+
+
+var currentTime = new Date()
+var hours = currentTime.getHours()
+var minutes = currentTime.getMinutes()
+
+//decides if am or pm
+var suffix = "AM";
+if (hours &gt;= 12) {
+    suffix = "PM";
+    hours = hours - 12;
+}
+if (hours == 0) {
+    hours = 12;
+}
+
+// shows 0 before the minutes if under 10
+if (minutes &lt; 10)
+minutes = "0" + minutes
+
+    $('#bar').html(hours + ":" + minutes + " " + suffix);
+
+});
+</code></pre>
+
+<p>The order in which you print your variables matters,</p>
+
+<p>they were not defined upon printing.</p>

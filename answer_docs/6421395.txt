@@ -1,0 +1,7 @@
+<p>i would opt for having every functionality with Products in the products controller etc. mainly because of the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle" rel="nofollow">Single responsibility principle</a></p>
+
+<p>in MVC3 you can automatically generate controllers with CRUD methods / screens if you use the add controller wizard.</p>
+
+<p>example: <a href="http://msdn.microsoft.com/en-us/data/gg685467" rel="nofollow">http://msdn.microsoft.com/en-us/data/gg685467</a></p>
+
+<p>imo the controller should only be a thin layer talking to a business service layer who's handling all the business logic. For example the products you could create a ProductService that will handle your business logic.</p>

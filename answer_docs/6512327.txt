@@ -1,0 +1,30 @@
+<p>This any use to you?</p>
+
+<pre><code>IN: &gt; thing =  { "foo" : "1", "subthing" : {  "bar" : "2",  "subsubthing" : {  "baz" : "3"  }  } }
+OUT: {
+ "foo" : "1",
+ "subthing" : {  "bar" : "2",  "subsubthing" : {  "baz" : "3"  }  }
+ }
+
+IN &gt; thing.foo
+OUT: "1"
+
+IN: &gt; thing.subthing
+OUT: {
+ "bar" : "2",
+ "subsubthing" : {  "baz" : "3"  }
+ }
+
+IN: &gt; thing.subthing.bar
+OUT: "2"
+
+IN: &gt; thing.subthing.subsubthing
+OUT: {
+ "baz" : "3"
+ }
+
+IN: &gt; thing.subthing.subsubthing.baz = "4"
+"4"
+&gt; thing.subthing.subsubthing.baz
+"4"
+</code></pre>

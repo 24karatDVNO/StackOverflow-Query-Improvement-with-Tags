@@ -1,0 +1,19 @@
+<p>I think I have fixed the problem.</p>
+
+<p>The routing needs to go in the Area's RegisterArea method:</p>
+
+<pre><code>public override void RegisterArea(AreaRegistrationContext context)
+{
+    context.MapRoute(
+        "Subscribers_unsubscribe",
+        "Unsubscribe/{id}",
+        new { controller = "Subscriptions", action = "Unsubscribe", id = UrlParameter.Optional }
+    );
+
+    context.MapRoute(
+        "Subscribers_default",
+        "Subscribers/{controller}/{action}/{id}",
+        new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+    );
+}
+</code></pre>

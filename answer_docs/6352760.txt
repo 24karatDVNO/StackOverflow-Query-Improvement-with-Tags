@@ -1,0 +1,29 @@
+<p>Yes, why not you have something like that:</p>
+
+<pre><code>&lt;div id="container"&gt;
+  &lt;div id="rightFloat"&gt; you right floated here&lt;/div&gt;
+  &lt;div id="content"&gt; your text here&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>With the following style:</p>
+
+<pre><code>  #container {
+
+  } 
+  #rightFloat {
+    float: right;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin-right: 10px;    
+  }
+  #content {
+    border: 1px solid black;
+    float: right;
+    clear: none;
+    margin-right: 10px;
+  }
+</code></pre>
+
+<p>That ought to do it :)</p>

@@ -1,0 +1,4 @@
+<p>canavanin, have you found a solution in the meantime? In g77 <code>getarg(0,path)</code> delivers the executable with the full path, but not in gfortran. However, this shortcoming of gfortran seems to be windows specific only. <a href="http://people.sc.fsu.edu/~jburkardt/f77_src/args/args.html" rel="nofollow">See Here</a> which demonstrates getarg's functioning in a bash shell...</p>
+
+<p>---corection: 
+I have found out now that the problem is not GFORTRAN vs G77, it's the specific build. The most recent GCC / GFORTRAN version (4.54) of the DJGPP (DOS port) distribution makes the getarg(0,path) deliver the full path in front of the [executable].exe. The separation character is "/" not "\".</p>

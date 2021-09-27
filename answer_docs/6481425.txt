@@ -1,0 +1,3 @@
+<p>This does not sound like a very good idea to me, since you have a binding to a property anyway i would suggest that reformatting logic is applied in the setter of said property. (The binding engine should get the value afterwards in .NET 4 so this fromatting should even be reflected in the control as well)</p>
+
+<p>Alternatively you can use the <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.converter.aspx" rel="nofollow"><code>Converter</code></a> layer to accomplish the formatting.</p>

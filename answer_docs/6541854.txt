@@ -1,0 +1,3 @@
+<p>It would seem that a regular DLL is the right choice.</p>
+
+<p>The main concern with regular DLL is that if it were loaded into an MFC app, there would be two independent copies of MFC and all metadata.  The advice you found is written to make sure that metadata lookups don't go to the wrong copy.  Not a problem in your scenario.</p>

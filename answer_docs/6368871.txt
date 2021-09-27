@@ -1,0 +1,13 @@
+<p>Is there any error </p>
+
+<p>Check with </p>
+
+<pre><code>NSError *error = nil
+[dict writeToFile:plistPath atomically:YES encoding:NSASCIIStringEncoding error:&amp;error];
+
+if (error) {
+  NSLog(@"Error: %@", [error description]);
+} else {
+NSLog(@"Success");
+}
+</code></pre>

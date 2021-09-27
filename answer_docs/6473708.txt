@@ -1,0 +1,19 @@
+<p>MY guess is that that your install.xml contains a InfoPanel reference like:</p>
+
+<pre><code>  &lt;panels&gt;
+    &lt;panel classname="InfoPanel" /&gt;
+    ...
+  &lt;/panels&gt;
+</code></pre>
+
+<p>and a resourcedef like:</p>
+
+<pre><code>&lt;resources&gt;
+  &lt;res id="HTMLInfoPanel.info" src="Readme.txt" /&gt;
+  ...
+&lt;/resources&gt;
+</code></pre>
+
+<p>which actually is referencing the missing "Readme.txt" file which will be shown in the info panel.</p>
+
+<p>You should create this file or move it to the D:\trail\simple directory.</p>

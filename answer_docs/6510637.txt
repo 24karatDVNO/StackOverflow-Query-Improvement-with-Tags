@@ -1,0 +1,12 @@
+<p>Putting datagrids in datagrids, even if you can figure out how to do it sounds like a recipe for slowing down the browser or making it explode.</p>
+
+<p>You could consider a few things:</p>
+
+<p>Make this into a two step process. The first datagrid just has the name "test" and maybe a brief summary of sub_things. When you click on a row, it opens a new grid on another tab or maybe on the right side which contains the sub things just for that item.</p>
+
+<p>You could use multi row layout of the datagrid like explained on this page (scroll down a bit for the multirow examples)
+<a href="http://www.sitepen.com/blog/2008/07/14/dojo-12-grid/" rel="nofollow">http://www.sitepen.com/blog/2008/07/14/dojo-12-grid/</a></p>
+
+<p>You could have a combox box with a type ahead suggest of the main items and when one item is selected, then render a datagrid below it with the sub items.</p>
+
+<p>By nesting grids in grids you are going to create a usability nightmare, so I would really recommend focusing on how to limit the data shown to the user and keep it as simple as possible.</p>

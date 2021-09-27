@@ -1,0 +1,14 @@
+<p>I think you might need to append the terminating "0" to your data.</p>
+
+<p>From one of my projects:</p>
+
+<pre><code>- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+   char temp[] = {0};
+   [receivedData appendBytes:temp length:1];
+
+   // etc your usual code here
+}
+</code></pre>
+
+<p>Then perform as usual with the correct encoding.</p>

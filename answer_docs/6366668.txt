@@ -1,0 +1,3 @@
+<p>This is happening because you are dealing with int literals, the value of <code>4/100 = 0</code>.  You should try to do this using float literals <code>4.0/100.0</code>.</p>
+
+<p>When you try to do <code>4^100</code>, you are doing a "bitwise exclusive or", as that is what <code>^</code> means in Java.  This is not doing what you think it is, so do not do that.</p>

@@ -1,0 +1,6 @@
+<p>My problem turned out to be that rubyoci8 was getting built against one Oracle client and but using another one.
+I have multiple Oracle clients on my machine including a number of full clients and an instant client. All of these were on my Windows $PATH, along with all kinds of other junk.</p>
+
+<p>The rubyoci8 make program searches the $PATH to detect whether a full client is installed, but then uses the $ORACLE_HOME variable at another point - I suspect this double searching might have something to do with the problem.</p>
+
+<p>The solution for me was to clear the $PATH down (in one of my .bash* scripts) to just the bare essentials, and then include only the full client path I needed. I set $ORACLE_HOME to the same location, rebuilt rubyoci8, and it worked.</p>

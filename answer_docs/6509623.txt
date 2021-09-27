@@ -1,0 +1,8 @@
+<pre><code>context.ApplicationId =
+        DataBaseEntities
+            .Applications
+            .Where(a =&gt; a.Name == applicationName)
+            .Select(a =&gt; a.Id).
+            .SingleOrDefault().
+            .ToString();
+</code></pre>

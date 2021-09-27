@@ -1,0 +1,22 @@
+<p>How about this. The downside is that you need to hardcode the Name of your repository dll, but you could always move this to web.config etc which would be slightly cleaner.</p>
+
+<pre><code>IWindsorContainer container = new WindsorContainer();
+
+// Register repositories
+_container.Register(
+        AllTypes.Pick()
+                .FromAssemblyNamed("MyDataLayerAssembly")
+                .WithService
+                .DefaultInterface());
+
+// Register services
+_container.Register(
+        AllTypes.Pick()
+                .FromAssemblyNamed(typeof(ISomeService).Assembly.GetName().Name)
+                .WithService
+                .DefaultInterface());
+
+ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
+</code></pre>
+
+<p>You may just need to tweak precisely what's passed into the <code>Register()</code> methods to suit your needs however.</p>

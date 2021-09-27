@@ -1,0 +1,6 @@
+<p>Here is one workaround:</p>
+
+<pre><code>    String date = "hello world, good Day Thu Mar 03 07:13:56 GMT 2011";
+    date = date.replaceAll("^(?:.*)(Mon|Tue|Wed|Thu|Fri|Sat|Sun|Sunday)", "$1");
+    System.out.println(date);
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Why not keep the same db and tables and just have each of your models belong_to a customer? Then you can find all the models for that customer with:</p>
+
+<pre><code>Customer.all.each do |customer|
+  customer.widgets
+  customer.wodgets
+  # etc
+end
+</code></pre>

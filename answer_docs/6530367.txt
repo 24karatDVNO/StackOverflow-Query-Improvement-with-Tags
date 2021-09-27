@@ -1,0 +1,50 @@
+<p>try this ....</p>
+
+<pre><code>@Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        BackgroundTask b = new BackgroundTask();
+        b.execute("Main");
+
+    }
+    /** Called when the activity is first created. */
+    class BackgroundTask extends AsyncTask&lt;String , Void, Void&gt;
+    {
+        @Override
+        protected void onPreExecute()
+        {
+
+            setContentView(R.layout.splash);
+        } 
+        @Override
+        protected Void doInBackground(String... params) 
+        {
+            // TODO Auto-generated method stub
+            int pause=5000;
+            int interval =1000;
+            int counter=0;
+            while(counter&lt;pause)
+            {
+                try
+                {
+                    Thread.sleep(interval);
+                    counter+=interval;
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) 
+        {
+            startActivity( new Intent(androidbasics.this,menu.class));
+            androidbasics.this.finish();
+        }
+
+
+    }
+</code></pre>

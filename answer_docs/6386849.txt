@@ -1,0 +1,39 @@
+<p>Use the following code</p>
+
+<p><strong>Create RandomNumber without any special character</strong></p>
+
+<pre><code>private String generateRandomID(){
+
+            final int ID_SIZE = 16;
+            final int NUM_OF_CHARS = 62;
+            StringBuffer id = new StringBuffer();
+            long now = new Date().getTime();
+
+            // Set the new Seed as current timestamp
+            Random r = new Random(now);
+
+            int index = 0;
+            int x = 0;
+
+            while(x &lt; ID_SIZE){
+                  index = r.nextInt(NUM_OF_CHARS);
+                  System.out.println("Index="+ index);
+                  if(index &lt; 10){
+                        id.append((char)(48 + index));
+                  }
+                  else if(10 &lt;= index &amp;&amp; index &lt;36){
+                        index = index - 10;
+                        id.append((char)(65 + index));
+                  }else{
+                        index = index - 36;
+                        id.append((char)(97 + index));
+                  }
+                  x++;
+            }
+
+            return id.toString();
+      }
+</code></pre>
+
+<p>Thanks
+Deepak</p>

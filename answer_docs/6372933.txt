@@ -1,0 +1,11 @@
+<p>You have to download <code>Helv Neue 67 Med Cond</code> font and store it in assets folder. let the downloaded font is <code>myfont.ttf</code></p>
+
+<p>Use the following code to set the font</p>
+
+<pre><code>Typeface tf = Typeface.createFromAsset(getAssets(), "myfont.ttf");
+        TextView TextViewWelcome = (TextView)findViewById(R.id.textViewWelcome);
+        TextViewWelcome.setTypeface(tf);
+</code></pre>
+
+<p>Thanks
+Deepak</p>

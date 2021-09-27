@@ -1,0 +1,3 @@
+<p>You can write a <a href="http://wikis.sun.com/display/OpenSSO/Custom+Authentication+Module" rel="nofollow">Custom Authentication Module</a> in OpenAM.</p>
+
+<p>This is an easy way to authenticate users against a custom datastore.  You need to configure callbacks (Eg. username/password) which you need to process in a custom written <code>com.sun.identity.authentication.spi.AMLoginModule</code>. The runtime values for these callbacks will be provided as input to process the login module.  Based on those values, you should decide whether the user can be authenticated or not.</p>

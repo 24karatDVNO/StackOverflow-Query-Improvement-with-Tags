@@ -1,0 +1,28 @@
+<p>Here's the code that works for me:</p>
+
+<p>In between the <code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> tags:</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+    var GB_ROOT_DIR = "http://www.yourabsolute.url/including/filepath/to/greybox/";
+&lt;/script&gt;
+&lt;script type="text/javascript" src="/filepath/to/greybox/AJS.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/filepath/to/greybox/AJS_fx.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/filepath/to/greybox/gb_scripts.js"&gt;&lt;/script&gt;
+&lt;link href="/filepath/to/greybox/gb_styles.css" rel="stylesheet" type="text/css" /&gt;
+</code></pre>
+
+<p>And</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+var image_set = [{'caption': 'This is the image caption displayed.', 'url': 'http://www.yourabsolute.url/including/filepath/to/greybox/your_image01.jpg'},
+                 {'caption': 'This is the second image caption displayed.', 'url': 'http://www.yourabsolute.url/including/filepath/to/greybox/your_image02.jpg'}];
+&lt;/script&gt;
+</code></pre>
+
+<p>After the <code>&lt;body&gt;</code> tag:</p>
+
+<p>Click Here to launch Greybox.</p>
+
+<p><strong>Note:</strong> There seems to be a bug with Greybox v.5.54 in that images don't always load on the first try. It just displays the greybox correctly but with no content. If you close the greybox that you launched the first time, and try click on the link one more time before refreshing the page, greybox will launch correctly. Including all appropriate content.</p>
+
+<p><strong>Install:</strong> Installing Greybox v5.53 instead of v5.54 seems to have solved the issue of the images not loading on the first try. Hope this helps.</p>

@@ -1,0 +1,14 @@
+<p>If you know the comma is present:</p>
+
+<pre><code>aParts = split(oldvalue, ",")
+newvalue = trim(aPart(1)) &amp; " " &amp; trim(aPart(0))
+</code></pre>
+
+<p>You could probably do it all on one line and not need the intermediate array (or maybe not, my vbscript is a little rusty) but that would mean calling split twice so would likely be less efficient anyway.</p>
+
+<p>Or without split, just use basic string functions:</p>
+
+<pre><code>newvalue = trim(mid(oldvalue, instr(oldvalue,",")+1) &amp; " " &amp; trim(mid(oldvalue, instr(oldvalue,",")-1)
+</code></pre>
+
+<p><sup><strong>Edit:</strong> I've just noticed you've tagged the question vb.net as well as vbscript. The above is vbscript, I know little of vb.net...</sup></p>

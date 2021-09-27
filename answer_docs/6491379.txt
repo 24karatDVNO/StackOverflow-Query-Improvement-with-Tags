@@ -1,0 +1,8 @@
+<p>The problem with the code from the question is the <code>Source</code> in the binding. So what works is:</p>
+
+<pre><code> Binding binding = new Binding();
+</code></pre>
+
+<p>If the Constructor is used with a parameter, the parameter is set as the <code>Path</code> of the binding. The (additional) <code>XPath</code> of the binding is then used from that path. So it tried to find "Source" in the XML which lead to an empty selection. The xpath was then working on an empty set of nodes.</p>
+
+<p>So it is possible to use the bindings from the code.</p>

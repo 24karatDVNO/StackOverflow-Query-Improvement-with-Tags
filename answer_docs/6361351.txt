@@ -1,0 +1,3 @@
+<p>Is it tabular data? If so, you might consider using a vector of vectors.</p>
+
+<p>And how I would structure this is to have the data collection implemented in an abstract base class, and then have subclasses for the xml and csv versions that implement the write functions.</p>

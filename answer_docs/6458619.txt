@@ -1,0 +1,14 @@
+<p>why don't you use $("#hidden1").val(ui.value); ?</p>
+
+<p>you need create the sliders in other way </p>
+
+<p>something like:  </p>
+
+<pre><code>$(".slider").each(
+    $(this).slider({  
+        ....
+    });
+);
+</code></pre>
+
+<p>sorry for my bad english! </p>

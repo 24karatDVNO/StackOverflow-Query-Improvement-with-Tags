@@ -1,0 +1,8 @@
+<p>There are two ways to simplify XML parsing.</p>
+
+<ol>
+<li><p>If you have the XML schema then, <a href="http://jaxb.java.net/" rel="nofollow">JAXB</a> can do the XML to Java conversion.</p></li>
+<li><p>You can create a utility class to parse the name value pairs by passing it the XML in a constructor.</p></li>
+</ol>
+
+<p>Slightly unrelated to your original question but, if you are using myMethod() to connect to multiple URLs then, I would make parallel calls to speed up the response. Check out <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/ScheduledExecutorService.html" rel="nofollow">java.util.concurrent.ScheduledExecutorService</a></p>

@@ -1,0 +1,9 @@
+<p><code>LIKE</code> is slow also according to <a href="http://s.niallkennedy.com/blog/uploads/flickr_php.pdf" rel="nofollow">Flickr</a>(slides 24-26). You should first try to use <a href="http://dev.mysql.com/doc/refman/5.0/en/fulltext-search.html" rel="nofollow">FULL TEXT indexes</a> instead. If your site still seems slow there are also some other really fast(er)/popular alternatives available:</p>
+
+<ul>
+<li><a href="http://sphinxsearch.com/" rel="nofollow">sphinx</a></li>
+<li><a href="http://www.elasticsearch.org/" rel="nofollow">elasticsearch</a></li>
+<li><a href="http://lucene.apache.org/solr/" rel="nofollow">solr</a></li>
+</ul>
+
+<p>The only thing that is a little bit annoying that you need to learn/install these technologies, but are well worth the investment when needed.</p>

@@ -1,0 +1,19 @@
+<p>I think that the problem is that you are using an id. So loose i would do this:</p>
+
+<pre><code>&lt;a id="form" class="fancy_item slider-link"&gt;&lt;img src="images/button_downloadarticle.gif" alt="Download Article"/&gt;&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+    $(document).ready(function() {                  
+        $(".fancy_item").fancybox({
+            'width':'65%',
+            'height':'60%',
+            'autoScale':false,
+            'transitionIn':'none',
+            'transitionOut':'none',
+            'type':'iframe'
+        });
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>I hope this helps :)</p>

@@ -1,0 +1,18 @@
+<p>Well, in Python 2, you can say:</p>
+
+<pre><code>point = 1, 2
+size = 2, 3
+color = 'red'
+
+class Rect(object):
+    def __init__(self, (x, y), (width, height), color):
+        pass
+</code></pre>
+
+<p>Then you can say:</p>
+
+<pre><code>a_rect= Rect(point, size, color)
+</code></pre>
+
+<p>taking care that the first two arguments are sequences of len == 2.<br>
+NB: This capability has been removed from Python 3.</p>

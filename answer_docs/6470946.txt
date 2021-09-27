@@ -1,0 +1,9 @@
+<pre><code>CREATE OR REPLACE FUNCTION asnumber(p_val IN VARCHAR2) RETURN NUMBER IS
+l_val NUMBER;
+BEGIN
+   l_val := TO_NUMBER(p_val);
+   RETURN l_val;
+EXCEPTION WHEN VALUE_ERROR THEN
+   RETURN null;
+END;
+</code></pre>

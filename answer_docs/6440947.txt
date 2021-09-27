@@ -1,0 +1,22 @@
+<p>Are you subclassing UITabBarController?</p>
+
+<p>You are probably non subclassing and just adding a vanilla controller in Interface Builder.  You have to subclass to override that property.</p>
+
+<p>First make a new class like this:</p>
+
+<pre><code>//Test this, it's off the top of my head
+[Register("YourTabController")]
+public class YourTabController : UITabBarController
+{
+    public YourTabController (IntPtr handle) : base (handle) { }
+
+    [Export("initWithCoder:")]
+    public YourTabController (NSCoder coder) : base (coder) { }
+
+    //Override should rotate
+    public bool ShouldAutoRotateToInterfaceOrientation(UIInterfaceOrientation o)
+    { return true; }
+}
+</code></pre>
+
+<p>Then, if you already have a UITabBarController in IB, there is a 'Class' property that you set to the name of your new class.</p>

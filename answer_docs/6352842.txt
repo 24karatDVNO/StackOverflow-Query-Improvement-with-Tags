@@ -1,0 +1,6 @@
+<p>Couple of  things could be happening.</p>
+
+<ol>
+<li><p>You are not counting time for sort and joinArrays in rank0, after the child processes are done.</p></li>
+<li><p>Each child took 0.56sec, but starting time of each child need not be same. I don't know what kind of communication fabric your cluster has, but given small amount of data you are moving, I doubt that would be an issue.</p></li>
+</ol>

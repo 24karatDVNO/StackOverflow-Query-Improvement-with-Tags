@@ -1,0 +1,20 @@
+<p>Ok I actually need to add a get profile method in the <code>AccountProfile</code> class </p>
+
+<pre><code>public virtual AccountProfile GetProfile(string username)
+{
+    return ((AccountProfile)(ProfileBase.Create(username)));
+}
+</code></pre>
+
+<p>and then append the additional fields to the newly registered user:</p>
+
+<pre><code>// Get profile of registered user
+AccountProfile customuserProfile = (AccountProfile)AccountProfile.Create(RegisterUser.UserName, true);
+
+// update these custom fields to him/her
+customuserProfile .FullName = RegisterUser.UserName;
+customuserProfile .MailingAddress = ((TextBox)  RegisterUser.CreateUserStep.ContentTemplateContainer.FindControl("MailingAdd")).Text;
+customuserProfile .Newsletter = chkValue;
+
+customuserProfile .Save();
+</code></pre>

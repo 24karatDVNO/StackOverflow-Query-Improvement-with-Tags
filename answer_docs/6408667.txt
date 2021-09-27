@@ -1,0 +1,3 @@
+<p>It's very easy just create multiple Lua interpreters and run lua programs inside all of them. </p>
+
+<p>Lua multithreading is a shared nothing model. If you need to exchange data you must serialize the data into strings and pass them from one interpreter to the other with either a c extension or sockets or any kind of IPC.</p>

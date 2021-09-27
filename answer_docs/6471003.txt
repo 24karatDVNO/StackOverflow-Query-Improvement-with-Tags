@@ -1,0 +1,44 @@
+<p>This code demonstrates what you need.</p>
+
+<p>Just use theSemaphoreSlim (Same as Semaphore, better performance) object to do it.</p>
+
+<p>Think about the Semaphore as a counter. Each time you wait the counter goes one number down. In the end of the operation need to release it.</p>
+
+<p>When the counter is 0, can't get Semaphore.</p>
+
+<p>About the ThreadPool suggestions, I don't think it's a good idea because the thread pool is used in many parts of your application, not only this one.</p>
+
+<pre><code>class Program
+    {
+        private static SemaphoreSlim threadsSemaphore = new SemaphoreSlim(5, 5);
+
+        static void Main(string[] args)
+        {
+            Timer timer = new Timer(DoSomeWork, null, 0, 100);
+
+            Console.ReadKey();
+        }
+
+        private static void DoSomeWork(object state)
+        {
+            if (threadsSemaphore.Wait(TimeSpan.FromSeconds(1)))
+            {
+                try
+                {
+                    Console.WriteLine("Doing work ...");
+                    Thread.Sleep(1000);
+                }
+                finally
+                {
+                    threadsSemaphore.Release();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Skipping work", threadsSemaphore.CurrentCount);
+            }
+
+
+        }
+    }
+</code></pre>

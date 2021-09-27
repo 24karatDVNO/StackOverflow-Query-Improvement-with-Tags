@@ -1,0 +1,11 @@
+<p>This works for me:</p>
+
+<pre><code>$("select").change(function() {
+    var getChoice = $("select option:selected").val();
+    $('#vss_border').css('borderStyle', getChoice);
+});
+</code></pre>
+
+<p>Here, on the change to the <code>dropdown</code>, you collect the selected option value.  Then adjust the css.</p>
+
+<p><a href="http://jsfiddle.net/jasongennaro/2wfVj/12/" rel="nofollow">http://jsfiddle.net/jasongennaro/2wfVj/12/</a></p>

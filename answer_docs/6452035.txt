@@ -1,0 +1,35 @@
+<p>You are using an immediately called function expression for no good reason, your code is functionally equivalent to:</p>
+
+<pre><code>  function CollapsableFieldset(jQObject) {
+    // look for all the legend tags within this fieldset
+    jQObject.find("legend").click(function(event) {
+      // add or remove the "open" class to the fieldset
+      return jQObject.toggleClass("open");
+    });
+  }
+</code></pre>
+
+<p>The "constructor" doesn't return the object created when it is called with <em>new</em>, no advantage it taken of prototype inheritance so no point to using <em>new</em>.</p>
+
+<p>The object returned by the function isn't assigned to anything, so what's the point of returning anything?</p>
+
+<pre><code>&gt; jQuery(document).ready(function() {  
+&gt;     return $("fieldset.collapsable").each(function(i, element) {
+&gt;         return new CollapsableFieldset($(element));
+&gt;     });
+&gt; });
+</code></pre>
+
+<p>Where does the object returned by <code>new CollapsableFieldset(...)</code> go?</p>
+
+<p>Incidentally, there is no point to creating global variables using:</p>
+
+<pre><code>window.varName...
+</code></pre>
+
+<p>when </p>
+
+<pre><code>var varName ...
+</code></pre>
+
+<p>does it so much better.</p>

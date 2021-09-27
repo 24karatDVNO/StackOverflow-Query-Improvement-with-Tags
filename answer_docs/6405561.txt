@@ -1,0 +1,15 @@
+<p>Ok, I solved the problem. </p>
+
+<p>I appended the div to the image (I could only do it through .ax-window, not fancybox-img) and then applied the offset. It was not necessary to apply the window resize. this is the final code:</p>
+
+<pre><code>$("#preview_comments").appendTo('.ax-window');
+$("#preview_comments").css("position","relative");
+
+function pcomments() {
+    var p = $("#fancybox-close");
+    var offset = p.offset();
+    $("#preview_comments").offset({ top: offset.top, left: offset.left-30});
+};
+
+pcomments();
+</code></pre>

@@ -1,0 +1,61 @@
+<p>This PHP code will produce the same output you have listed in your question. It may not be the most efficient thing in the world, but it gets the job done.</p>
+
+<p>You may be able to write a funky MySQL query to do this, but I don't know how well it would scale over thousands of records, etc. And you're producing pages at that. :)</p>
+
+<pre><code>&lt;?php
+
+// Collect stuff from the database
+$dbc=mysqli_connect('127.0.0.1','user','passwd','pepa') or 
+ die('Could not connect!');
+$getOffers='select * from offers';
+$rs=mysqli_query($dbc,$getOffers);
+while($thisRow=mysqli_fetch_assoc($rs))
+ $offers[]=$thisRow;
+mysqli_close($dbc);
+
+// Create the pages
+// (this is probably a bit over the top, but you get the idea)
+foreach($offers as $oI =&gt; $thisOffer)
+ $offers[$oI]['used']=false;  // &lt;-- tell us if we've used the record or not
+$thisUser='Pepa';  // &lt;-- the user who should appear at the top of each page
+$numRecsPerPage=2; // &lt;-- the number of records per page
+$cPg=-1; foreach($offers as $oI =&gt; $thisOffer) {
+    if($thisOffer['id_user']==$thisUser) {
+        $cPg++;
+        $offers[$oI]['used']=true;
+        $page[$cPg][]=$thisOffer;
+        $recsUsed=1; foreach($offers as $pI =&gt; $procOffer) {
+            if(!$offers[$pI]['used'] &amp;&amp; $offers[$pI]['id_user']!=$thisUser) {
+                $offers[$pI]['used']=true;
+                $page[$cPg][]=$procOffer;
+                $recsUsed++;
+            }
+            if ($recsUsed&gt;=$numRecsPerPage) break;
+        }
+    }
+}  
+
+// Print the pages
+foreach($page as $thisPage) { 
+    foreach($thisPage as $thisRow)
+     echo   $thisRow['id']."\t".$thisRow['id_user']."\t".
+            $thisRow['offer']."\t".$thisRow['timestamp']."\n";
+    echo "\n";
+}
+
+?&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>1   Pepa    Auto    2011-06-05 21:14:10
+3   Karel   Traktor 2011-06-05 21:14:10
+
+2   Pepa    Motorka 2011-06-05 21:14:10
+4   Lukas   Jeep    2011-06-05 21:14:10
+
+5   Pepa    Autokara    2011-06-05 21:14:10
+6   Jindra  Traktor 2011-06-05 21:14:10
+</code></pre>
+
+<p>Sorry for adding another answer - I would otherwise add a comment, but I think the code is more helpful here.</p>

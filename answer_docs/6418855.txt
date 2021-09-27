@@ -1,0 +1,19 @@
+<p>There are two solutions, depending on whether you want the two counts in separate rows or in separate columns.</p>
+
+<p>In separate rows:</p>
+
+<pre><code>SELECT datecreated, recordtype, COUNT(*)
+FROM tbl_customers
+WHERE datecreated BETWEEN '...' AND '...'
+GROUP BY datecreated, recordtype
+</code></pre>
+
+<p>In separate colums (this is called <em>pivoting</em> the table)</p>
+
+<pre><code>SELECT datecreated,
+       SUM(recordtype = 'C') AS count_customers,
+       SUM(recordtype = 'L') AS count_leads
+FROM tbl_customers
+WHERE datecreated BETWEEN '...' AND '...'
+GROUP BY datecreated
+</code></pre>

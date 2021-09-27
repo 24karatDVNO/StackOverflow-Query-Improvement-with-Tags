@@ -1,0 +1,5 @@
+<p>It looks like you want the UnitOfWorkFactory to return your IUnitOfWork dependencies? Seems like you should be using .RegisterFactory to achieve this. You can register the factory with a  ContainerControlledLifetimeManager, and it will behave as a "singleton" without resorting to a static member.</p>
+
+<p>Lifetime management can get a bit tricky with WCF (and probably web). I have been using the code from this article for quite a while. It perfectly maps Unity lifetime to WCF request lifetime... It may give you some ideas about how to best achieve your aim.</p>
+
+<p><a href="http://drewdotnet.blogspot.com/2009/07/unity-lifetime-managers-and-wcf.html" rel="nofollow">http://drewdotnet.blogspot.com/2009/07/unity-lifetime-managers-and-wcf.html</a></p>

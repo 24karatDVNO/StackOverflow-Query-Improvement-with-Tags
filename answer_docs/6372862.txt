@@ -1,0 +1,3 @@
+<p>If you use output buffering in PHP, you can call <code>ob_get_length()</code> just before calling <code>ob_end_flush()</code> to get the size of the output buffer that you are sending to the client.</p>
+
+<p>If you also implement a PHP handler for all files (rather than allowing for direct links to the files via Apache), you'd have a pretty decent idea of exactly how much content you were sending each client.</p>

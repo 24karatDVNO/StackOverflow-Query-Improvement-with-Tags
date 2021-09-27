@@ -1,0 +1,73 @@
+<p>You could use a StAX parser and do something like the following with any JAXB implementation (Metro, EclipseLink MOXy, Apache JaxMe, etc):</p>
+
+<pre><code>import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+
+public class Demo {
+
+    public static void main(String[] args) throws Exception {
+        XMLInputFactory xif = XMLInputFactory.newFactory();
+
+        FileInputStream xml = new FileInputStream("input.xml");
+        XMLStreamReader xsr = xif.createXMLStreamReader(xml);
+        xsr.nextTag(); // Advance to "Persons" tag 
+        xsr.nextTag(); // Advance to "Person" tag
+
+        JAXBContext jc = JAXBContext.newInstance(Person.class);
+        Unmarshaller unmarshaller = jc.createUnmarshaller();
+        List&lt;Person&gt; persons = new ArrayList&lt;Person&gt;();
+        while(xsr.hasNext() &amp;&amp; xsr.isStartElement()) {
+            Person person = (Person) unmarshaller.unmarshal(xsr);
+            persons.add(person);
+            xsr.nextTag();
+        }
+
+        for(Person person : persons) {
+            System.out.println(person.getName());
+        }
+    }
+
+}
+</code></pre>
+
+<p><strong>input.xml</strong></p>
+
+<pre><code>&lt;Persons&gt;
+    &lt;Person&gt;Jim&lt;/Person&gt;
+    &lt;Person&gt;Tom&lt;/Person&gt;  
+&lt;/Persons&gt;
+</code></pre>
+
+<p><strong>System Output</strong></p>
+
+<pre><code>Jim
+Tom
+</code></pre>
+
+<p><strong>Person</strong></p>
+
+<pre><code>import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
+
+@XmlRootElement(name="Person")
+public class Person {
+
+    private String name;
+
+    @XmlValue
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+}
+</code></pre>

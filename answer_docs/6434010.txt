@@ -1,0 +1,60 @@
+<p>Use a recursive function e.g. </p>
+
+<pre><code>Public Class Form1
+  Sub New()
+
+    ' This call is required by the designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    TreeView1.Nodes.Add("Animal")
+    TreeView1.Nodes(0).Nodes.Add("Reptile")
+    TreeView1.Nodes(0).Nodes(0).Nodes.Add("Dragon")
+    TreeView1.Nodes(0).Nodes(0).Nodes.Add("Lizard")
+    TreeView1.Nodes(0).Nodes.Add("Mammal")
+    TreeView1.Nodes(0).Nodes(1).Nodes.Add("Cat")
+    TreeView1.Nodes(0).Nodes(1).Nodes.Add("Dog")
+    TreeView1.Nodes.Add("Vegetable")
+    TreeView1.Nodes(1).Nodes.Add("Fruit")
+    TreeView1.Nodes(1).Nodes(0).Nodes.Add("Apple")
+    TreeView1.Nodes(1).Nodes(0).Nodes.Add("Orange")
+    TreeView1.Nodes(1).Nodes(0).Nodes.Add("Pear")
+    TreeView1.Nodes(1).Nodes.Add("Aubergine")
+    TreeView1.Nodes(1).Nodes.Add("Carrot")
+    TreeView1.Nodes(1).Nodes.Add("Cucumber")
+    TreeView1.Nodes(1).Nodes.Add("Zucchini")
+    TreeView1.Nodes.Add("Mineral")
+    TreeView1.Nodes(2).Nodes.Add("Granite")
+    TreeView1.Nodes(2).Nodes.Add("Quartz")
+    TreeView1.Nodes(2).Nodes.Add("Topaz")
+
+  End Sub
+
+  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    TextBox1.Multiline = True
+    TextBox1.Height = 200
+    TextBox1.Width = 200
+    TextBox1.Text = WriteTreeView("", TreeView1.Nodes)
+
+
+  End Sub
+
+
+  Private Function WriteTreeView(ByVal parent As String, ByVal tnc As TreeNodeCollection) As String
+    Dim strOutput As String = ""
+    If tnc.Count = 0 Then
+      strOutput = parent &amp; vbCrLf 'leaf
+    Else
+      For i As Integer = 0 To tnc.Count - 1
+        Dim strCurrent As String = ""
+        If parent &gt; "" Then strCurrent = parent &amp; "."
+        strCurrent &amp;= tnc(i).Text
+        strOutput &amp;= WriteTreeView(strCurrent, tnc(i).Nodes)
+      Next i
+    End If
+    Return strOutput
+  End Function
+
+
+End Class
+</code></pre>

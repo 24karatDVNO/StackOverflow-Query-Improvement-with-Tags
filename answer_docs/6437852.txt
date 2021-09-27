@@ -1,0 +1,11 @@
+<p>Your answers gave me some brain storming and Voila! I read this article: <a href="http://www.linickx.com/1016/root-cookie-tutorial-1-accessing-wordpress-cookies-from-custom-scripts" rel="nofollow">http://www.linickx.com/1016/root-cookie-tutorial-1-accessing-wordpress-cookies-from-custom-scripts</a> and then used the plugin: <a href="http://wordpress.org/extend/plugins/root-cookie/" rel="nofollow">http://wordpress.org/extend/plugins/root-cookie/</a> Through it I could move the cookies place, and added the following piece of code to the existing CMS header:</p>
+
+<pre><code>&lt;?php
+define('WP_USE_THEMES', false);
+require('../portal/wp-load.php');
+
+require_once('../portal/wp-config.php');
+if (!is_user_logged_in()){auth_redirect();}?&gt;
+</code></pre>
+
+<p>I wish my solution will be useful!</p>

@@ -1,0 +1,17 @@
+<p>Try assigning THIS into a variable before calling the second function (result)</p>
+
+<p>I think THIS on each function is different from the THIS in the function(result)</p>
+
+<pre><code>each(function(row) {
+$.ajax({
+type: 'POST',
+url: 'test.php',
+data: 'id=' + 1,
+dataType: 'json',
+cache: false,
+success: function(result) {
+$('.title').each(function(index){
+  if (result) {
+
+    $(this).html(result[index]);
+</code></pre>

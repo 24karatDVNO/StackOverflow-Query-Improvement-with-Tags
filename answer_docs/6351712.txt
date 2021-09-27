@@ -1,0 +1,22 @@
+<p>Your <code>&lt;TEST&gt;</code> node is a child node of <code>&lt;paul&gt;</code> , so you have to do getChildNodes() and then iterate through them. </p>
+
+<pre><code>    for (int temp = 0; temp &lt; nList.getLength(); temp++) {
+    Node nNode = nList.item(temp);
+    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+        Element eElement = (Element) nNode;
+
+        // iterate through children here.
+        NodeList childrenList = eElement.getChildNodes();
+        for ( Node aNode : childrenList ) {
+               // YOU SHOULD HAVE TEST HERE
+        }
+        NamedNodeMap attrs = eElement.getAttributes();
+        int len = attrs.getLength();
+        for (int i = 0; i &lt; len; i++) {
+            Attr attr = (Attr) attrs.item(i);
+            keyValues.put(attr.getNodeName(), attr.getNodeValue());
+        }
+
+    }
+}
+</code></pre>

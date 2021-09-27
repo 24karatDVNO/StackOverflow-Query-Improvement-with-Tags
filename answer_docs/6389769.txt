@@ -1,0 +1,9 @@
+<p>The C++ standard in <strong>23.2.4</strong> guarantees that each element of a vector&lt;> is stored contiguously:</p>
+
+<blockquote>
+  <p>The elements of a
+  vector are stored contiguously, meaning that if v is a vector where T is some type
+  other than bool, then it obeys the identity <strong>&amp;v[n] == &amp;v[0] + n</strong> for all 0 &lt;= n &lt; v.size().</p>
+</blockquote>
+
+<p>It's important to notice what it says about vector &lt; bool > , vector &lt; bool > is a specialized vector&lt;> that happens to try to "optimize space allocation", in some implementations it does so by storing each boolean value in a bit which pretty much renders pointer arithmetic useless.</p>

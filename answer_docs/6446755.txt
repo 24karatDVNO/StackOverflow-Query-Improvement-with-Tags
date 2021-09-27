@@ -1,0 +1,20 @@
+<pre><code>$(document).ready(function(){
+    $(window).resize(function() {
+        var X = $(window).height();
+        $('#windowheight').text(X);
+    });
+
+});
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$(function(){
+    $(window).resize(function() {
+        var X = $(window).height();
+        $('#windowheight').text(X);
+    });
+});
+</code></pre>
+
+<p>both works</p>

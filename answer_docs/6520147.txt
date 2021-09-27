@@ -1,0 +1,31 @@
+<pre><code>function getUser(userId,username,callback){
+    flow.exec(
+            function(){
+                if(userId)
+                    return this(null,userId);
+
+                redis.get('username:'+username,this);
+            },
+            function(err,userId){
+                if(err) throw err;
+                if(!userId) return callback(null);
+                this.userId = userId;
+                redis.hgetall('user:'+userId+':profile',this);
+            },
+            function(err,profile){
+                if(err) throw err;
+                profile.userId = this.userId;       
+                callback(profile);
+            }
+    );
+}
+
+
+
+getUser(null,'gk',function(user){
+    if(!user) console.log('not found');     
+    console.log(user);  
+});
+</code></pre>
+
+<p>Can i use like this</p>

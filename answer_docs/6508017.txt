@@ -1,0 +1,30 @@
+<p>Like everyone else said, you need the quotes and semi colons.  But that's also ignoring that there are less verbose (and less overhead) methods of doing this.  For example, you could do all under one echo statement:</p>
+
+<pre><code>echo"
+  &lt;p&gt;&gt;Here is a little about me. I am a mother of twin girls who are 9&lt;/p&gt;
+  &lt;p&gt;I been married for 5 years but been with my husband for 11 years&lt;/p&gt;
+  &lt;p&gt;I am attending college for Computer Programming and Database Mangament&lt;/p&gt;
+";
+</code></pre>
+
+<p>Or, an alternative method is </p>
+
+<pre><code>$content = " &lt;&lt;&lt;END
+  &lt;p&gt;Here is a little about me. I am a mother of twin girls who are 9&lt;/p&gt;
+  &lt;p&gt;I been married for 5 years but been with my husband for 11 years&lt;/p&gt;
+  &lt;p&gt;I am attending college for Computer Programming and Database Mangament&lt;/p&gt;
+END;
+
+echo $content;
+</code></pre>
+
+<p>The best possible solution, if you're going to be doing a ton of non-php, is just to close the PHP tag and do it with straight HTML where you don't have to worry about quotes and semicolons at all!</p>
+
+<pre><code>?&gt;
+  &lt;p&gt;Here is a little about me. I am a mother of twin girls who are 9&lt;/p&gt;
+  &lt;p&gt;I been married for 5 years but been with my husband for 11 years&lt;/p&gt;
+  &lt;p&gt;I am attending college for Computer Programming and Database Mangament&lt;/p&gt;
+&lt;?php
+</code></pre>
+
+<p>My point is that I see a lot of <code>&lt;?php&gt;</code> and <code>&lt;/php&gt;</code> repetition as well as a ton of <code>echo</code> repetition on SO examples.  Does it work?  Sure.  But it's unnecessary.  It slows you down, and creates more opportunities to screw up.  And, it's just plain ugly!  I don't want to debug it!</p>

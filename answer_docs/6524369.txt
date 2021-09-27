@@ -1,0 +1,5 @@
+<p>You should still be able to tell who the 'owning' user is - I did a little test here: Logged into a Win2k8 terminal server with my non-admin account and launched a command prompt (cmd.exe) as my admin user.</p>
+
+<p>Using Process Explorer to get details on each process, I could see the User associated with the cmd.exe process was my admin account, the Parent process was explorer.exe (PID 5008), and when I look up the User associated with PID 5008, it was my non-admin account. </p>
+
+<p>If you can replicate this in your code you should be able to track down who started any given process running as your administrator account.</p>

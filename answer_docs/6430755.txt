@@ -1,0 +1,10 @@
+<p>As written, this loop will only execute 5 times because your <code>while</code> statement currently requires <strong>BOTH</strong> statements to be true. Consequently, because <code>num_pallets</code> begins at 25 and ends at 30, this loop will only execute 5 times. However, if you change the line to read:</p>
+
+<pre><code>weight, num_pallets = 70, 25
+while weight &lt; 100 || num_pallets &lt;=30    #Changed to "OR"
+  weight, num_pallets = weight + 1, num_pallets + 1
+  puts weight
+end
+</code></pre>
+
+<p>... it will run 30 times. Note that the only meaningful change above is the change from AND to OR in the <code>while</code> line.</p>

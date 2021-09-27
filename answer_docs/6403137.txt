@@ -1,0 +1,10 @@
+<p>It looks like every element of <code>$followers</code> is a value returned from <code>mysql_fetch_assoc()</code>. Each element will be an associative array, and when you echo it I would expect to see it echoed as the string <code>'Array'</code>, since that is PHP's usual behaviour.</p>
+
+<p>One point to observe is that when you create an empty array using <code>array()</code> and then populate it using assignments of the form <code>$myarray[] = ...</code>, the resulting array will be zero-indexed. That is, the keys of the array will start at 0, not at 1. So instead of <code>for ($a = 1; $a &lt;= $numberOfFollowers; $a++) {</code>, you need to use <code>for ($a = 0; $a &lt; $numberOfFollowers; $a++) {</code>, or go for the solution suggested by @Shef and use <code>foreach</code>.</p>
+
+<p>Your problem might arise because <code>$followers</code> contains only one element, and because of the off-by-one error, you are not seeing any output. Turn on error reporting by adding this line at the start of your script:</p>
+
+<pre><code>error_reporting(E_ALL &amp; ~E_STRICT);
+</code></pre>
+
+<p>If I am right then with your current code, you should see a <code>Notice: Undefined index: 1 ...</code></p>

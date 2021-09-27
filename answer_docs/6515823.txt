@@ -1,0 +1,24 @@
+<p>You have a few problems in your <code>change</code> handler:</p>
+
+<pre><code>   clicky(this.parents('TD'));
+</code></pre>
+
+<p>First of all, there is no <code>clicky</code> function visible where you're trying to use it. Second, <code>this</code> is a DOM object that doesn't have a <code>parents</code> method.</p>
+
+<p>If you want to change the background color when someone clicks on the button itself, then you can use <a href="http://api.jquery.com/closest" rel="nofollow"><code>closest</code></a> right in the change handler:</p>
+
+<pre><code>$('TABLE TBODY TR TD INPUT').change(function() {
+    $(this).closest('td').css('background-color', 'gray');
+});
+</code></pre>
+
+<p>For example: <a href="http://jsfiddle.net/ambiguous/V8c3e/" rel="nofollow">http://jsfiddle.net/ambiguous/V8c3e/</a></p>
+
+<p>If you want the background to change if they click anywhere in the table cell, then bind a click handler right to the table cell:</p>
+
+<pre><code>$('TABLE TBODY TR TD').click(function() {
+    $(this).css('background-color', 'gray');
+});
+</code></pre>
+
+<p>For example: <a href="http://jsfiddle.net/ambiguous/V8c3e/1/" rel="nofollow">http://jsfiddle.net/ambiguous/V8c3e/1/</a></p>

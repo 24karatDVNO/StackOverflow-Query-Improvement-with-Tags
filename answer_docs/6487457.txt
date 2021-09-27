@@ -1,0 +1,5 @@
+<p>CASE WHEN works fine, your problem is with MAX.</p>
+
+<p>MAX and MIN return null when no rows match while SUM and COUNT return 0.</p>
+
+<p>I'm afraid den-javamaniac is right, you need NVL, or perhaps a smart use of DECODE if you cannot switch out MAX.</p>

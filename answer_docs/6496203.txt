@@ -1,0 +1,18 @@
+<p>Something like this should work:</p>
+
+<pre><code>$("select[name=motifs]").change(function () 
+{
+    if( $(this).val() == "custom" )
+    {   
+        var $parentForm=$(this).closest("form");
+
+        $parentForm.find("select[name=motifs]").hide();
+        $parentForm.find("div[name=customInput]").show();
+        $parentForm.find("textarea[name=customMotif]").focus();
+    }
+});
+</code></pre>
+
+<p><code>closest</code> will get the closest ancestor that meets the selector.  In this case the form which the select is contained within.  Then using <code>find</code> will find the selectors only within the parent form.</p>
+
+<p>As a side note, IDs should always be unique.</p>

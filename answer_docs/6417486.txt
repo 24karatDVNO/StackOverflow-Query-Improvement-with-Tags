@@ -1,0 +1,18 @@
+<p>Maybe this is helpful but I'm unsure as your question was very broad:</p>
+
+<pre><code>&lt;?php 
+
+$events = get_group('Gallery');
+foreach($events as $event){ 
+
+  for($i=1;$i&lt;4;$i++) {
+    if(empty($event['gallery_image_'.$i])) 
+      continue
+      ;
+    $image = $event['gallery_image_'.$i];
+?&gt;
+
+&lt;a href="&lt;?php echo $image[1]['o']; ?&gt;"&gt;&lt;img src="&lt;?php echo $image[1]['t']; ?&gt;" /&gt;&lt;/a&gt;
+
+&lt;?php } }?&gt;
+</code></pre>

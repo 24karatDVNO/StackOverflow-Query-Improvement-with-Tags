@@ -1,0 +1,14 @@
+<p>If you want to add the add the call handler to the interception registration, you need to do something like this (I tried to make the variable names self-explanatory):</p>
+
+<pre><code>var intp = m_singleInstance.Configure&lt;Interception&gt;()
+    .SetInterceptorFor(typeof(typeToIntercept), 
+        new TransparentProxyInterceptor());
+
+var policy = intp.AddPolicy(policyNameString);
+
+policy.AddMatchingRule&lt;TypeMatchingRule&gt;(
+    new InjectionConstructor(
+    new InjectionParameter(typeof(typeToIntercept))))
+    .AddCallHandler(typeof(LogCallHandler), 
+        new ContainerControlledLifetimeManager());
+</code></pre>

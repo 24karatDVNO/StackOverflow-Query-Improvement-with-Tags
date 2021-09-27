@@ -1,0 +1,11 @@
+<p>before the SQL can be run , the parser will try to parse the SQL which also means that it will try to check if all the reference columns are in the table or not </p>
+
+<p>for example the below will not work coz there is no column by name <code>name1</code> in the table <code>sys.table</code></p>
+
+<pre><code>IF EXISTS(SELECT 1 FROM sys.tables WHERE name='foo') 
+    SELECT * from sys.objects where name= 's'
+ELSE 
+    SELECT * from sys.tables where name1= 's'
+</code></pre>
+
+<p>So if TableB does not have identifier as a column the error will come up</p>

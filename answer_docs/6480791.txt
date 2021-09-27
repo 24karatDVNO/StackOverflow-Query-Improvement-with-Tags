@@ -1,0 +1,7 @@
+<p>If $build_1 and $build_2 would be in an array, you could use the <a href="http://php.net/implode" rel="nofollow">implode</a>-method.</p>
+
+<pre><code>&lt;?php
+$build = array("bricks, stones and other stuff", "more bricks, stones and other stuff");
+$build_total = implode(", ", $build);
+?&gt;
+</code></pre>

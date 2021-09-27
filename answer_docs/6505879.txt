@@ -1,0 +1,12 @@
+<p>Try</p>
+
+<pre><code>$(document).ready(function () {
+     $("#reason_bars .edit").click(function () {
+          $(this).siblings('select').removeAttr("disabled");
+     )}
+});
+</code></pre>
+
+<p>In your line <code>$(parent+" select")</code> parent is a reference to an object, not a string which is why it doesnt work. You also can use the jQuery sibling selector to simplify things.</p>
+
+<p>Hope this helps!</p>

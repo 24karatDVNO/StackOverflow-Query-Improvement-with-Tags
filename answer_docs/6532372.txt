@@ -1,0 +1,12 @@
+<p>I wrote the following query to get the last restore date for databases that exisit using the following SQL.</p>
+
+<blockquote>
+  <p>SELECT<br>
+        Max([restore_date]) as LastRestoreDate
+        ,[destination_database_name]   FROM [msdb].[dbo].[restorehistory]<br>
+  inner join sys.databases on
+  [destination_database_name] = name<br>
+  group by [destination_database_name]</p>
+</blockquote>
+
+<p>Cheers</p>

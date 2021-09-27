@@ -1,0 +1,18 @@
+<p>Added this to parents/_form</p>
+
+<pre><code>&lt;%= fields_for @counselor_student_parent do |csp| %&gt;
+    &lt;%= f.label :parental_relation_type_id %&gt;
+    &lt;%= collection_select(:student_counselor_parent, :parental_relation_type_id, ParentalRelationType.all, :id, :name) %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<p>And this to parents_controller/new</p>
+
+<pre><code>def new
+    @counselor= Counselor.find(params[:counselor_id])
+    @student= Student.find(params[:student_id])
+    @parent= @student.parents.build
+    @parent_user= @parent.build_user
+    @counselor_student_parent= @counselor.student_counselor_parents.build
+end
+</code></pre>

@@ -1,0 +1,18 @@
+<p>Yes. To save a property list:
+this may help u</p>
+
+<p>if not just leave this ,since it may help others</p>
+
+<pre><code>NSString * error;
+NSData * data = [NSPropertyListSerialization dataFromPropertyList:yourPlist format:NSPropertyListXMLFormat_v1_0 errorDescription:&amp;error];
+[data writeToFile:pathToYourFile atomically:YES];
+</code></pre>
+
+<p><code>yourPlist</code> must be a kind of <code>NSData</code>, <code>NSString</code>, <code>NSNumber</code>, <code>NSDate</code>, <code>NSArray</code>, or <code>NSDictionary</code> object.</p>
+
+<p>To read your property list.</p>
+
+<pre><code>NSString * error;
+NSData * data = [NSData dataWithContentsOfFile:pathToYourFile];
+yourPlist = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:NSPropertyListXMLFormat_v1_0 errorDescription:&amp;error];
+</code></pre>

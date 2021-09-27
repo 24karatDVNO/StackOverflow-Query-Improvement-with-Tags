@@ -1,0 +1,13 @@
+<p>Not shure cause I haven't started Objective-C not to long ago but I would to autoreleas directly when you alloc it.  That will prevent you from having to manage the release and making  the runtime manage the release of it.</p>
+
+<pre><code>- (NSArray *) children
+{
+NSArray *children = [node objectForKey:TFHppleNodeChildrenKey];
+NSMutableArray *hpple = [NSMutableArray arrayWithCapacity:[children count]];
+for(NSDictionary *child in children) {
+    [hpple addObject:[[[TFHppleElement alloc] initWithNode:child] autorelease]];
+    [child release];
+}
+return hpple;
+}
+</code></pre>

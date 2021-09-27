@@ -1,0 +1,16 @@
+<p>try</p>
+
+<pre><code>int strcmp(const char * string1, const char * string2)
+{
+
+while (*string1 == *string2++)
+    if (*string1++ == 0)
+        return (0);
+    // then check for the ordering according to taste
+
+}
+</code></pre>
+
+<p>While the chars are the same, you'll increment s2, then check to see if s1's next char is null, incrementing it as you check.  This has the effect of incrementing both pointers while embedding a quick exit if you run to the end of the string.  It should pack into assembly quite tightly.</p>
+
+<p>This leaves you with a simplified scenario, where you only need to determine what the next character is in relation to the other</p>

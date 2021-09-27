@@ -1,0 +1,12 @@
+<p>From the <a href="http://download.oracle.com/javase/6/docs/technotes/tools/solaris/keytool.html" rel="nofollow">keytool documentation</a>:</p>
+
+<blockquote>
+  <p>If no file is given, the certificate is output to stdout.</p>
+</blockquote>
+
+<p>Same thing for <a href="http://www.openssl.org/docs/apps/openssl.html" rel="nofollow">openssl</a>: the output goes to standard output.</p>
+
+<p>If you want to save the output in a file, just redirect the output. On most operating systems, this si done with <code>&gt;</code></p>
+
+<pre><code>keytool ... | openssl base64 &gt; key.cert
+</code></pre>

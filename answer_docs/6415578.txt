@@ -1,0 +1,66 @@
+<p>You can probably do it in the below mentioned steps:</p>
+
+<p>1> Prepare the request URI where the xml is present.</p>
+
+<pre><code>prepareRequestUrl();
+</code></pre>
+
+<p>2> Get the response from the web-server:</p>
+
+<pre><code>/** 
+ * fetch the response for the request url
+ * @param request url string
+ * @return InputStream
+ */
+public InputStream getResponse(String reqUrl) throws AppException {
+
+    URL                 url             =   null;
+    URLConnection       connection      =   null;
+    HttpURLConnection   httpConnection  =   null;
+    int                 reponseCode     =   0;
+    InputStream         inputStream     =   null;
+
+    try {
+
+        url = new URL(reqUrl);
+
+        connection = url.openConnection();
+
+        httpConnection = (HttpURLConnection) connection;
+
+        reponseCode = httpConnection.getResponseCode();
+
+    } catch (MalformedURLException e) {
+
+    } catch (IOException e) {
+
+    }
+
+    if (reponseCode == HttpURLConnection.HTTP_OK) {
+        try {
+
+            inputStream = httpConnection.getInputStream();
+
+        } catch (IOException e) {
+
+        }
+    }
+    else    {
+        throw new AppException(AppConstants.HTTP_RESPONSE_FAILURE);
+    }
+
+    return inputStream;
+}
+</code></pre>
+
+<p>3> Parse the input stream xml received from the server:</p>
+
+<pre><code>                   inputStream = super.getResponse(requestUrl);             
+        result= xmlParser.parseList(inputStream);
+</code></pre>
+
+<p>4> Show the corresponding result in a listview.</p>
+
+<p>Note: Its always recommended to use an async task to do any network operation.here in this case invoking the we-server.</p>
+
+<p>Hope this helps!</p>

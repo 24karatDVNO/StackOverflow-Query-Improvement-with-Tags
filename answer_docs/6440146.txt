@@ -1,0 +1,12 @@
+<p>I also had problems with transparent PNG's in faded area's, but combining the above JS for removing the filter attribute with a tiny bit of css the image black 'border' was gone while fading.</p>
+
+<p>Is my case it was a element that uses a css-sprite, so i only had to add this to my sprite class in the css:</p>
+
+<pre><code>.sprite{
+    background-image: url('/images/sprite.png');
+    background-repeat: no-repeat;
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr=#00FFFFFF,startColorStr=#00FFFFFF)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00FFFFFF',startColorStr='#00FFFFFF');   /* IE6 &amp; 7 */
+    zoom: 1;
+}
+</code></pre>

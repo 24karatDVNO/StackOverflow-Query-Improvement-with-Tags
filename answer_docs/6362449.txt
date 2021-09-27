@@ -1,0 +1,4 @@
+<p>If it's a range you're looking for, such as anything modified starting a week ago and ending a week before that, BETWEEN makes this pretty easy.</p>
+
+<pre><code>WHERE People.lastmodified BETWEEN DATEADD(week, -1, getdate()) AND DATEADD(week, -2, getdate())
+</code></pre>

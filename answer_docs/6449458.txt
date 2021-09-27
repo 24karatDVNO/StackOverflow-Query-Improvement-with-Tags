@@ -1,0 +1,38 @@
+<p>Add both validation of the form in button click and in the success of form validation call the   method via ajax request.</p>
+
+<pre><code>$("#passwordForm").validate(
+{
+
+    submitHandler: function (form) {
+        var oldPassword = $("#txtOldPassword").val();
+        var newPassword = $("#txtNewPassword").val();
+        var userID = parseInt($("#txtUserID").val());    
+        ChangePassword(userID, oldPassword, newPassword);
+    },
+
+    rules: {
+        txtOldPassword: {
+            required: true
+        },
+        txtNewPassword: {
+            required: true
+        },
+        txtConfirmNewPassword: {
+            required: true,
+            equalTo: "#txtNewPassword"
+        }
+    },
+    messages: {
+        txtOldPassword: {
+            required: "Please enter old password"
+        },
+        txtNewPassword: {
+            required: "Please enter your new password"
+        },
+        txtConfirmNewPassword: {
+            required: "Please re-enter your password",
+            equalTo: "Please enter the same password as above" 
+        }
+    }
+});
+</code></pre>

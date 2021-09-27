@@ -1,0 +1,15 @@
+<p>Just another option:</p>
+
+<pre><code>@givendate = '22/06/2011'
+
+SELECT t1.Driver
+     , t1.Position
+     , t1.Date
+     , ( SELECT t2.Position
+         FROM table t2
+         WHERE t2.Driver = t1.Driver
+           AND t2.date = DATEADD(day, @givendate, -1)
+       ) AS PositionYesterday
+FROM table t1
+WHERE t1.date = @givendate 
+</code></pre>

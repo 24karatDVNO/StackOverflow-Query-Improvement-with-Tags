@@ -1,0 +1,19 @@
+<p>You can use the same strategy for your naming your title fields as you did for you file upload fields:</p>
+
+<pre><code>var txt = "&lt;br&gt;&lt;input type=\"file\" name=\"item_file[]\"&gt;&lt;br&gt;&lt;input type=\"text\" name=\"text[]"\"&gt;";
+</code></pre>
+
+<p>Notice I name them all <code>text[]</code>. Now in PHP I have the variable <code>$_POST['text']</code>, which is of itself an array containing all the titles.</p>
+
+<p>To access the files as well as the titles in PHP you can do:</p>
+
+<pre><code>for($i=0; $i&lt;length($_FILES['item_file']); $i++) {
+    print $_FILES['item_file'][$i]['name'] +"&lt;br&gt;";
+    print $_POST['text'][$i] + "&lt;br&gt;";
+}
+</code></pre>
+
+<p>Also, I am obliged to inform you that performing mysql queries without proper validation of your input is bound to get you hacked. Please consider using:</p>
+
+<pre><code>$insert=mysql_query("insert into image_upload set title='". mysql_real_escape_string($_POST["text"]) ."', image='". mysql_real_escape_string($filen) ."'") or die(mysql_error());
+</code></pre>

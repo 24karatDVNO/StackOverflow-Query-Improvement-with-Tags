@@ -1,0 +1,5 @@
+<p>You have two root-level items, which shouldn't happen (this is not specific to Android layout files, you can have only one document element in any XML file).</p>
+
+<p>I wouldn't recommend wrapping the to LinearLayouts in another one, that's too complicated; and it's generally a good idea to avoid nesting layouts, see <a href="http://developer.android.com/resources/articles/layout-tricks-efficiency.html" rel="nofollow">this article</a> about efficient layouts.</p>
+
+<p>For a TextView and two Buttons, a <a href="http://developer.android.com/resources/tutorials/views/hello-relativelayout.html" rel="nofollow">RelativeLayout</a> would be perfect. It's also more flexible than LLs.</p>

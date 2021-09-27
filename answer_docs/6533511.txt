@@ -1,0 +1,13 @@
+<p>If you need to execute the aps validator to validate the email address, which seems to be pertinant to your question, then you need to call the generated javascript that does this before you make the call - so call:</p>
+
+<blockquote>
+  <p>if(Page_ClientValidate)</p>
+  
+  <p>do your other stuff</p>
+</blockquote>
+
+<p>However, this will run all of the page validation, not just the email.</p>
+
+<p>If you need to only run the one validation call for this, you can look at the generted javascript on your page, and find where it does the call for your email validation, and call that. However, I would not recommend that, as it may change when the page is regenerated.</p>
+
+<p>See <a href="http://www.codeproject.com/KB/aspnet/JavascriptValidation.aspx" rel="nofollow">CodeProject</a></p>

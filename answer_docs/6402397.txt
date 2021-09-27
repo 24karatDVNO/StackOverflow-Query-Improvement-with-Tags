@@ -1,0 +1,51 @@
+<p>This look like as if your picture URLs are relative to the current URL path. E.g.</p>
+
+
+
+<pre class="lang-xml prettyprint-override"><code>&lt;img src="images/picture.png" /&gt;
+</code></pre>
+
+<p>When you open the page by</p>
+
+<blockquote>
+  <p><a href="http://example.com/contextname/myHome1.xhtml" rel="nofollow">http://example.com/contextname/myHome1.xhtml</a></p>
+</blockquote>
+
+<p>then the image URL will effectively point to </p>
+
+<blockquote>
+  <p><a href="http://example.com/contextname/images/picture.png" rel="nofollow">http://example.com/contextname/images/picture.png</a></p>
+</blockquote>
+
+<p>But when you open the page by</p>
+
+<blockquote>
+  <p><a href="http://example.com/contextname/myhome/myHome1.xhtml" rel="nofollow">http://example.com/contextname/myhome/myHome1.xhtml</a></p>
+</blockquote>
+
+<p>then the image URL will effectively point to </p>
+
+<blockquote>
+  <p><a href="http://example.com/contextname/myhome/images/picture.png" rel="nofollow">http://example.com/contextname/myhome/images/picture.png</a></p>
+</blockquote>
+
+<p>You need to fix it accordingly. There are several ways. Use a domain-relative path</p>
+
+
+
+<pre class="lang-xml prettyprint-override"><code>&lt;img src="/contextname/images/picture.png" /&gt;
+</code></pre>
+
+<p>Or prepend the context name dynamically</p>
+
+
+
+<pre class="lang-xml prettyprint-override"><code>&lt;img src="#{request.contextPath}/images/picture.png" /&gt;
+</code></pre>
+
+<p>Or just use <code>&lt;h:graphicImage&gt;</code> which will do that automatically</p>
+
+
+
+<pre class="lang-xml prettyprint-override"><code>&lt;h:graphicImage value="/images/picture.png" /&gt;
+</code></pre>

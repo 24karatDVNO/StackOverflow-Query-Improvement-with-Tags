@@ -1,0 +1,13 @@
+<p>In your specific case, running unnecessary code is never a good idea when it can be easily avoided. It may not seem like a big deal in this case, but it is not a good habit to get into.</p>
+
+<p>More generally, I always use an else statement even when the code flow would be identical without it. For example:</p>
+
+<pre><code>if(null == foo) {
+  return false;
+} else {
+  foo.Bar();
+  return true;
+}
+</code></pre>
+
+<p>The else is not strictly necessary, and some code analysis tools will recommend removing it. But I prefer the explicitness of being able to tell just by glancing at the structure of the code that only one of those blocks is actually going to be executed. Without the else, you have to analyze the first block to determine that it is exclusive of the second block.</p>

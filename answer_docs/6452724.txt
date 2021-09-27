@@ -1,0 +1,18 @@
+<pre><code>public class SpecificField : Field
+{
+    ...
+}
+
+public class SpecificController : BaseController&lt;SpecificField&gt;
+{
+    ....
+}
+
+public class BaseController&lt;T&gt; : Controller where T : Field
+{
+    public JsonResult Create( T field )
+    {
+        ....
+    }
+}
+</code></pre>

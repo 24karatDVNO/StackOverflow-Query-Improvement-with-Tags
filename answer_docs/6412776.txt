@@ -1,0 +1,27 @@
+<p>Your regex includes ^ and $, which force the regex to match only the whole string. That's probably the reason why replace fails.  </p>
+
+<p>Try this (untested):</p>
+
+<pre><code>var avidno = '(800)123 1234';
+var bodytext = document.body.innerHTML;
+var newaltr;
+
+function validate () {
+    var format = '\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})';
+    var bodytext, altrstr, newtext;
+
+    if (RegExp('^' + format + '$').test(avidno)) {
+        // This could be done in a single line, but this way it's clearer
+        bodytext = document.body.innerHTML;
+        altrstr = '&lt;span&gt;'+avidno+'&lt;/span&gt;';
+        newtext = bodytext.replace(RegExp(format, 'g'), altrstr);
+        document.body.innerHTML = newtext;
+
+        // Valid international phone number
+    } else {
+        alert('uupss');
+        // Invalid international phone number
+    }
+}
+validate();
+</code></pre>

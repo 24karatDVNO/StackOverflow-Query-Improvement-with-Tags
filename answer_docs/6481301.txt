@@ -1,0 +1,27 @@
+<p>Try this</p>
+
+<pre><code>var fader = {
+    init: function() {
+        this.firstLi = jQuery('#images ul li:first').attr('id'); 
+        this.lastLi = jQuery('#images ul li:last').attr('id');
+    },
+    doFade: function() {
+        this.currID = jQuery('#images ul').data('currLI');
+        this.currLiStr = '#images ul li#' + fader.currID;
+        this.nextID = (this.currID == this.lastLi) ? this.firstLi : jQuery(fader.currLiStr).next().attr('id');
+        this.nextLiStr = jQuery('#images ul li#' + fader.nextID);
+        jQuery(fader.currLiStr).fadeOut(3000);
+        jQuery(fader.nextLiStr).fadeIn(2000);
+        jQuery('#images ul').data('currLI',fader.nextID);
+    }
+}
+</code></pre>
+
+<p>Called like:</p>
+
+<pre><code>var firstLi = jQuery('#images ul li:first').attr('id');
+    jQuery('#images ul').data('currLI',firstLi);
+    fader.init();
+    setInterval('fader.doFade()',10000);
+    }
+</code></pre>

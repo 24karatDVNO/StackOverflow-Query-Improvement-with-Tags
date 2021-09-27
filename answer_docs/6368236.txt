@@ -1,0 +1,14 @@
+<p>You can use the utl_file package.
+Code fragment:</p>
+
+<pre><code>l_output        utl_file.file_type;
+l_output := utl_file.fopen( p_dir, p_filename, 'w' );
+utl_file.put(l_output, 'Hello' );
+...
+utl_file.new_line( l_output );
+utl_file.fflush( l_output );
+utl_file.fclose( l_output );
+</code></pre>
+
+<p>First of all create a directory object (the p_dir parameter of the fopen) and grant it read and write privileges.
+See also at <a href="http://download.oracle.com/docs/cd/B19306_01/appdev.102/b14258/u_file.htm" rel="nofollow">http://download.oracle.com/docs/cd/B19306_01/appdev.102/b14258/u_file.htm</a></p>

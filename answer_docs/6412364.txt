@@ -1,0 +1,17 @@
+<p>You are almost there, if url.OpenStream() throws an exception you would catch it. But to be completely on the safe side, you need to put </p>
+
+<pre><code>xr.parse(is); 
+</code></pre>
+
+<p>before</p>
+
+<pre><code>hb.exequteSql("Delete...");
+</code></pre>
+
+<p>Because xr.parse could throw an IO or SAX exception, and your code would delete even if that happens.</p>
+
+<p>for API, please see</p>
+
+<p><a href="http://download.oracle.com/javase/1.5.0/docs/api/org/xml/sax/XMLReader.html#parse(org.xml.sax.InputSource" rel="nofollow">http://download.oracle.com/javase/1.5.0/docs/api/org/xml/sax/XMLReader.html#parse(org.xml.sax.InputSource</a>)</p>
+
+<p>Also i would recommend you catch, IO and SAX exceptions seperately. It would help you debug things easily.</p>

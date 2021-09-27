@@ -1,0 +1,22 @@
+<p>You need to initialize the string. Right now any initialization or assignment is being performed within an if block. The compiler is detecting this and considering it possibly never initialized.</p>
+
+<pre><code>string st = string.Empty;
+</code></pre>
+
+<p>As a side note, it is much safer to use the sister methods TryParse() for conversations to ensure that you won't have any unexpected exceptions thrown due to a invalid formatting issue.
+The method will return true if it is converted successfully, which makes a clean look as such:</p>
+
+<pre><code>        if (dt!=null)
+        {
+           if(dt.rows.count&gt; 0)
+           {
+              st = dt.Rows[3]["timeslot_StartTime"].ToString();
+           }
+        }
+
+        DateTime dt = DateTime.MinValue;
+        if (DateTime.TryParse(st, out dt))
+        {
+            //was successful and do something here
+        }
+</code></pre>

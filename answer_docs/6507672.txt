@@ -1,0 +1,23 @@
+<p>your code seems work fine.</p>
+
+<p>But if you copy pasted it "as is" here then you have missing style and script tags</p>
+
+<pre><code>&lt;style&gt;
+.toggleMe {
+display:none;}
+.toggle {
+cursor:pointer;}
+&lt;/style&gt;
+
+&lt;script&gt;
+$(document).ready(function() { 
+    $(".toggle").click(function() { 
+        $(this).parents(".reportcontainer").children('.toggleMe').slideToggle('fast');
+        return false;
+    });
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>Best Regards,
+Max</p>

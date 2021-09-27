@@ -1,0 +1,4 @@
+<pre><code>Select count(*)
+From enemies
+Where id not in (select referenceid from weapons)
+</code></pre>

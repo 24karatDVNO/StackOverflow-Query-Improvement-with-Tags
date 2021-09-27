@@ -1,0 +1,6 @@
+<p>Every time you try to re-use the standard file descriptors like :</p>
+
+<pre><code>&lt;cmd&gt; 1&gt;err 2&gt;&gt;err 1&gt;out
+</code></pre>
+
+<p>It rewrites the definition of the first definition.That is, 1 is now only pointing to out and 2 to err. Your best bet would be to use two separate files (like err and out) and timestamping the outputs and sorting it yourself to get the combined output.</p>

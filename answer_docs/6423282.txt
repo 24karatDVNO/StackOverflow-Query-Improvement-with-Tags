@@ -1,0 +1,14 @@
+<p>you need to start the connection:</p>
+
+<pre><code>    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+    if (theConnection) {
+        webData = [[NSMutableData data] retain];
+        NSLog(@"%@",webData);
+        [theConnection start];
+    }
+    else 
+    {
+
+    }
+</code></pre>

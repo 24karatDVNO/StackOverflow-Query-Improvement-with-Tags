@@ -1,0 +1,23 @@
+<p>way 1:<br>
+ChrisBint is right. instead (val1,val2,val3) you can use (SELECT val FROM vals_tbl), and store the vals in vals_tbl.<br>
+It is the better way.  </p>
+
+<p>way 2:  </p>
+
+<pre><code>CREATE PROCEDURE exe_str(command TINYTEXT)/*exec the string*/
+BEGIN
+    PREPARE stmt1 FROM command;
+    EXECUTE stmt1;
+    DEALLOCATE PREPARE stmt1;
+END
+</code></pre>
+
+<p>Now, you can create string of the SELECT statement, and execute it :  </p>
+
+<pre><code>SET @str1="SELECT .........";
+SET @str2="'1-PGB4Z', '1-PGAT6'........";
+SET @str3=");";
+CALL exe_str(CONCAT(@str1,@str2,str3));
+</code></pre>
+
+<p>I recommends the first way.</p>

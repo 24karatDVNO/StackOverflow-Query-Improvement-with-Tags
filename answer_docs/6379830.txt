@@ -1,0 +1,18 @@
+<p>I have adjusted the answer for Sam, taking pre-loading the image into account, so that you won't have a possible deplay at the first rotation.</p>
+
+<pre><code>function rotateThumbs(otherImages, theImage) {
+        if(!$('#'+theImage).data('setup')){
+            $('#'+theImage).data('setup', true); // do not double pre-loading images
+            var $body = $('body');
+            for(var j = 0; j &lt; otherImages.length; j++){
+                $body.append($('&lt;img/&gt;').attr('src', otherImages[j])
+                .css('display', 'none'));
+            }
+        }
+        var i= 0;
+        setInterval(function(){
+            $('#'+theImage).attr('src', otherImages[i++]);
+            if(i &gt;= otherImages.length){i = 0}
+        }, 1000);
+}
+</code></pre>

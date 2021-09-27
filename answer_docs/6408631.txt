@@ -1,0 +1,9 @@
+<p>There are layers of data from bottom to top: storage, file system, db and app.</p>
+
+<p>The most efficient way of doing this is using storage replication. It almost has no impact on performance, can be configured as sync or async, and is not free. You may google SRDF or MirrorView for a concept of it.</p>
+
+<p>Then you can have a look at file system replication. It's similar to storage replication but happens in OS/file system layer, consuming resources(CPU, IO, mem) of the host system. You may google symantec storage foundation for more information.</p>
+
+<p>At DB level, you can do database replication / log shipping to replicate the data. SQL server has such facilities.</p>
+
+<p>The "cheapest" solution would be modify your app, like your 4), but I suggest you use a message queue to replicate the data to minimize the impact on performance.</p>

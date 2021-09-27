@@ -1,0 +1,15 @@
+<p>I may have misunderstood what you're describing. Are you just looking for a pattern for groups of letters with whitespace between?</p>
+
+<pre><code>// any subject containing words:
+$subject = 'AfdfdfdA BdfdfdB DdD'; 
+$subject = 'AA BB CC';
+$subject = 'Af df dfdA Bdf dfdB DdD';
+
+$pattern = '/(([a-z]+)\s)+[a-z]+/i';
+
+$result = preg_match_all($pattern, $subject, $matches);
+print_r($matches);
+echo "&lt;br/&gt;";
+print_r($matches[0]);  // this matches $subject
+echo "&lt;br/&gt;".$result;
+</code></pre>

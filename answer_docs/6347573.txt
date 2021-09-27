@@ -1,0 +1,8 @@
+<p>Well I'll just respond now for other peoples' reference:</p>
+
+<p>You can use Node.js with Socket.io basically, and implement long polling on the iPhone. There's a library somewhere IIRC, but it's relatively simple just to implement yourself:</p>
+
+<ul>
+<li>Implement a state machine of sorts on the phone to switch between open request and getting back data, fire off another request. </li>
+<li>Implement a heartbeat (you don't want to hit the HTTP timeout anyways) of like 5 seconds, read the socket.io github page for more info on the protocol so you can interface with Node. </li>
+</ul>

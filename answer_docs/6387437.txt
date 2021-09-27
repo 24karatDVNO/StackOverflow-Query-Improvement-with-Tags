@@ -1,0 +1,8 @@
+<p>The <a href="http://api.jquery.com/jQuery.each/" rel="nofollow"><code>each</code></a> function accepts arguments, the collection to iterate, and a function. The function specified can further have an iterative index passed along with a value.</p>
+
+<p>For your purposes, something like this ought to help out:</p>
+
+<pre><code>$.each(data, function() {
+    alert(this);
+});
+</code></pre>

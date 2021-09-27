@@ -1,0 +1,17 @@
+<p>Another option that seems to work is to use <a href="http://groovy.codehaus.org/api/groovy/lang/Grab.html" rel="nofollow">@Grab</a>. Something like:</p>
+
+<pre><code>@Grab(group="com.jcraft",module="jsch",version="0.1.42")
+import org.apache.ivy.plugins.resolver.SshResolver
+
+def sshResolver = new SshResolver()
+['libraries', 'builds'].each {
+    sshResolver.addArtifactPattern("/home/ivy/[organisation]/[revision]/[artifact].[ext]")
+    sshResolver.addIvyPattern("/home/ivy/[organisation]/[revision]/[artifact].[ext]")
+}
+sshResolver.name = "ssh"
+sshResolver.settings = ivySettings
+
+resolver sshResolver
+</code></pre>
+
+<p>If your jar isn't in a public repository, it may be a little trickier.</p>

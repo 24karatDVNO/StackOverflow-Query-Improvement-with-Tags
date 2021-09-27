@@ -1,0 +1,9 @@
+<p>A period <code>.</code> is a wildcard that matches any single character. To match an actual period you must escape it in the regex <code>\.</code> so your line</p>
+
+<p><code>description.replace(/.(?=[A-Z])/g, '&lt;br /&gt;&lt;br /&gt;');</code></p>
+
+<p>becomes</p>
+
+<p><code>description.replace(/\.(?=[A-Z])/g, '&lt;br /&gt;&lt;br /&gt;');</code></p>
+
+<p>I haven't done any testing on this to check the rest of the regex.</p>

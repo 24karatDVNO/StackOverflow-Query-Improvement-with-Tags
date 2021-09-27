@@ -1,0 +1,7 @@
+<p>This will depend on the font, DPI and other settings. I recommend looking up <a href="http://msdn.microsoft.com/en-us/library/bb760767%28v=VS.85%29.aspx#text_static_control" rel="nofollow noreferrer">static text controls</a> which says:</p>
+
+<blockquote>
+  <p>The system displays as much text as it can in the static control and clips whatever does not fit. To calculate an appropriate size for the control, retrieve the font metrics for the text. For more information about fonts and font metrics, see Fonts and Text.</p>
+</blockquote>
+
+<p>Combined with this <a href="https://stackoverflow.com/questions/4761594/how-to-measure-static-size-beforehand-winapi">post</a> about calculating the size of the resulting text should get you on your way to calculating the text width (and with knowledge of the text height the number of lines).</p>

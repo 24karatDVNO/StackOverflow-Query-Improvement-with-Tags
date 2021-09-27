@@ -1,0 +1,52 @@
+<p>I believe a <a href="http://msdn.microsoft.com/en-us/library/bb460184.aspx" rel="nofollow">Lookup</a> is probably the collection you're looking for, since you're mapping one key to many possible values (if I read correctly).</p>
+
+<p>You can sort the entries however you want when creating the lookup, or when you're retrieving the values out of it.</p>
+
+<p>Edit:</p>
+
+<p>Here is an example:</p>
+
+<pre><code>var Products = new [] 
+{
+    new { Key = "64290", Name = "P1" },
+    new { Key = "64290", Name = "P2" },
+    new { Key = "64287", Name = "P3" },
+    new { Key = "59261", Name = "P4" },
+    new { Key = "59261", Name = "P5" },
+    new { Key = "64290", Name = "P6" },
+    new { Key =" 64290", Name = "P7" },
+    new { Key = "51015", Name = "P8" },
+    new { Key = "51015", Name = "P9" }
+};
+
+Lookup&lt;string,string&gt; products = ( Lookup&lt;string,string&gt; ) Products.ToLookup
+(
+    p =&gt; p.Key, p =&gt; p.Name
+);
+
+foreach( IGrouping&lt;string,string&gt; g in products )
+{
+    Console.WriteLine( g.Key );
+
+    foreach( string product in g )
+    {
+        Console.WriteLine( String.Concat( "\t", product ) );
+    }
+}
+</code></pre>
+
+<p>Output:</p>
+
+<p>64290
+  P1
+  P2
+  P6
+  P7
+64287
+  P3
+59261
+  P4
+  P5
+51015
+  P8
+  P9</p>

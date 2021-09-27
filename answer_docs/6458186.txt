@@ -1,0 +1,11 @@
+<p>Poor query performance can be caused by a number of different issues, none of which I can even venture to guess would be your problem because there just isn't enough information:</p>
+
+<ul>
+<li>Multiple or unnecessary joins</li>
+<li>Rowcounts of joined tables</li>
+<li>No indexes or indexes not being utilized by query engine</li>
+<li>Out of date table statistics causing indexes to be inefficient</li>
+<li>Inefficient query</li>
+</ul>
+
+<p>With that being said you can always get a better idea of how your query is being interpreted by the query engine by running an EXPLAIN PLAN.  Here is information on how to do this for an Oracle database, <a href="http://download.oracle.com/docs/cd/B10500_01/server.920/a96533/ex_plan.htm" rel="nofollow">http://download.oracle.com/docs/cd/B10500_01/server.920/a96533/ex_plan.htm</a></p>

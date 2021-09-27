@@ -1,0 +1,47 @@
+<p>Update function of MySqlDataAdapter is overloaded. Calls the respective INSERT, UPDATE, or DELETE statements for each inserted, updated, or deleted row in the specified DataSet.</p>
+
+<p>So, you can use following code:</p>
+
+<pre><code>string conn = "server="localhost";uid=root;pwd=;database=globasys;";
+
+using (MySqlConnection con1 = new MySqlConnection(conn))
+{
+con1.Open();
+
+MySqlTransaction transaction = con1.BeginTransaction();
+
+string InsertQuery = "Insert into tr_config_unit_params " + Environment.NewLine;
+InsertQuery += "(unit_param_id,unit_id, unit_param_desc, unit_param_opc_progid, unit_param_host, unit_param_link, unit_param_data_type, unit_param_type) " + Environment.NewLine;
+InsertQuery += " VALUES(@unit_param_id,@unit_id,@unit_param_desc, @unit_param_opc_progid, @unit_param_host, @unit_param_link, @unit_param_data_type, @unit_param_type)";;
+
+MySqlCommand command = new MySqlCommand(InsertQuery, con1);
+command.Transaction = transaction;
+
+try
+{
+    //dt is a DataTable
+    foreach(DataRow dataRow in dt)
+    {
+        command.Parameters.Clear()
+        command.Parameters.AddWithValue("@unit_param_id", dataRow["unit_param_id"]);
+        command.Parameters.AddWithValue("@unit_id", dataRow["unit_id"]);
+        command.Parameters.AddWithValue("@unit_param_desc", dataRow["unit_param_desc"]);
+        command.Parameters.AddWithValue("@unit_param_opc_progid", dataRow["unit_param_opc_progid"]);
+        command.Parameters.AddWithValue("@unit_param_host", dataRow["unit_param_host"]);
+        command.Parameters.AddWithValue("@unit_param_link", dataRow["unit_param_link"]);
+        command.Parameters.AddWithValue("@unit_param_data_type", dataRow["unit_param_data_type"]);
+        command.Parameters.AddWithValue("@unit_param_type", dataRow["unit_param_type"]);
+
+        command.ExecuteNonQuery();
+    }
+
+    transaction.Commit();
+}
+catch(MySqlException mySqlEx)
+{
+    transaction.Rollback();
+
+    throw mySqlEx;
+}
+}
+</code></pre>

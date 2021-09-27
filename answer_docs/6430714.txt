@@ -1,0 +1,8 @@
+<p>Well, just as you are able to separate the requests for bob and sam when generating the page, you can do the same for the counter?</p>
+
+<p>You'll probably do something with <code>$_GET['getvalue']</code>. Just use that value (escaped, paramterized etc) in a query to update your counter....</p>
+
+<pre><code> UPDATE yourtable SET count = count + 1 WHERE pagename = ?
+</code></pre>
+
+<p>and then bind the getvalue...</p>

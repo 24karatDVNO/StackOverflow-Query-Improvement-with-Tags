@@ -1,0 +1,7 @@
+<p>Hash functions like sha256 and MD5 would mostly be fine. The Duplicated key problem is normally referred as key collision. There is ABSOLUTELY no way to make sure collision will not happen because, there are finite possibilities as hash function would generate. The quality of the hash function would make collision less likely but not impossible.</p>
+
+<p>To make sure collision never happen yet reduce the size of the generated key, what you can do is to maximize the <a href="http://en.wikipedia.org/wiki/Entropy_%28information_theory%29" rel="nofollow">entropy</a> in the key generated using the values. In simpler words, use a compression function to be the key. However, in your case, the toString builder seems have taken all info about the object to build the key, that defeats the purpose of having a cache as the key already holding all the information you need. Instead, the key should be some kind of unique identifier of the object you are trying to cache.</p>
+
+<p>So firstly, identify what can be used as the unique identifier as the key is more important than how to generate one.</p>
+
+<p>And figure out a way to handle collision.</p>

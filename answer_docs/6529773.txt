@@ -1,0 +1,28 @@
+<p>You could create a new user that has limited permissions and set to run app pool under this user.</p>
+
+<p>To change Identity of an AppPool (i.e. Specify what credentials the App Pool is running as)</p>
+
+<ol>
+<li>Open IIS  </li>
+<li>Select Application Pools in the Connections tree  </li>
+<li>Select the Application Pool  </li>
+<li>Right Click and select Advance Settings.</li>
+<li>Find Process Model / Identity. The default may read ApplicationPoolIdentity</li>
+<li>Click to the value (e.g. ApplicationPoolIdentity)</li>
+<li>Click the ellipsis that appears to the right</li>
+<li>Select a built in account or click custom account</li>
+<li>If Custom account was chosen, click Set and specify the Windows account and password</li>
+<li>Click OK to close the Set Credentials dialog</li>
+<li>Click OK to close the Application Pool Identity dialog</li>
+<li>Click OK to close the Advanced Settings dialog.</li>
+<li>Recycle the Application Pool.</li>
+</ol>
+
+<p>You can also set identity in the web.config file:</p>
+
+<pre><code>&lt;system.web&gt;
+  &lt;identity impersonate="true"
+            userName="UserName"
+            password="Password"/&gt;
+&lt;/system.web&gt;
+</code></pre>

@@ -1,0 +1,31 @@
+<p>To just get a count:</p>
+
+<pre><code>$&gt; egrep -o '\w+' fruits.txt | sort | uniq -c
+
+      3 apple
+      2 green
+      1 oragen
+      2 orange
+      1 red
+</code></pre>
+
+<p>To get a sorted count:</p>
+
+<pre><code>$&gt; egrep -o '\w+' fruits.txt | sort | uniq -c | sort -nk1
+      1 oragen
+      1 red
+      2 green
+      2 orange
+      3 apple
+</code></pre>
+
+<p><strong>EDIT</strong></p>
+
+<p>Aha, this was NOT along word boundaries, my bad. Here's the command to use for full lines:</p>
+
+<pre><code>$&gt; cat fruits.txt | sort | uniq -c | sort -nk1
+      1 oragen
+      1 red apple
+      2 green apple
+      2 orange
+</code></pre>

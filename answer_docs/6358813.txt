@@ -1,0 +1,3 @@
+<p>Second approach is indeed faster because there is only one call to the getSupercategories method if item is not null. However, in your second approach, you no longer create a LinkedHashSet instance -- which means it will behave differently (though faster).</p>
+
+<p>This sounds more like performance optimization as opposed to refactoring. Usually when you refactor something, there is a "factor" in there somwhere, that trims the code down by eliminating redundancies.</p>

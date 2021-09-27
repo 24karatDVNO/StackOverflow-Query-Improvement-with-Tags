@@ -1,0 +1,17 @@
+<p>You should do something like this</p>
+
+<pre><code>operator Class2() const 
+{
+    Class2 tmp;
+    ...
+    return tmp;
+}
+</code></pre>
+
+<p>Then if you have something like this</p>
+
+<pre><code>Class1 c1;
+Class2 c2 = c1;
+</code></pre>
+
+<p>the memory for <code>tmp</code> will be allocated in stack, then a copy constructor of <code>Class2</code> would be called to copy <code>tmp</code> to <code>c2</code>, and then the destructor of <code>tmp</code> would be called as it is an automatic variable.</p>

@@ -1,0 +1,10 @@
+<p>Another way is to duplicate attributes in child tables and make parent table as VIEW (that selects by common attributes from all children).</p>
+
+<pre><code>CREATE VIEW Parent
+AS 
+SELECT ID, Name FROM Child1
+UNION ALL
+SELECT ID, Name FROM Child2 ...
+</code></pre>
+
+<p>The problem could be with ID that should be unique through all the child tables (using GUIDs is preferrable)</p>

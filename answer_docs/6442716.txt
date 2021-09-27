@@ -1,0 +1,46 @@
+<p><a href="http://api.jquery.com/jQuery.getJSON/" rel="nofollow"><code>$.getJSON</code></a> should do the trick. </p>
+
+<pre><code>$.getJSON("http://www.example.com/getjson.php", {catid:1}, function(data){
+    console.log( data ); // display the JSON data in the web console
+});
+</code></pre>
+
+<p>Because <code>$.getJSON</code> returns a <a href="http://api.jquery.com/jQuery.get/#jqxhr-object" rel="nofollow">jqXHR object</a> you can attach an error callback as follows:</p>
+
+<pre><code>$.getJSON("http://www.example.com/getjson.php", {catid:1}, function(data){
+    console.log( data ); // display the JSON *data* in the web console
+    // you can then access the params via dot syntax like this:
+    var id = data.ID,
+        name = data.Name,
+        description = data.Description,
+        imageURL = data.ImageURL,
+        active = data.Active,
+        deleted = data.Deleted;
+}).error(function(){
+     alert("Error!");
+});
+</code></pre>
+
+<hr>
+
+<p>Fun fact: Whenever you use jQuery for AJAX it adds an X-Requested-With header with the value "XMLHttpRequest" to the request. You can check for this header with your server-side PHP code and decide if you should display an HTML page or send back AJAX-appropriate data instead.</p>
+
+<p>This is useful when you bind to the click event on a link. But you want the link to still work when someone navigates directly to the href.</p>
+
+<pre><code>&lt;a href="http://www.example.com/getjson.php?catid=1"&gt;Category 1&lt;/a&gt;    
+</code></pre>
+
+<p>JS:</p>
+
+<pre><code>$("a").click(function(e){
+    // Keep the browser from navigating to the link's href.
+    e.preventDefault();
+
+    // Because we are using one of jQuery's AJAX methods we can get data back from 
+    // our server that is different than the data we would get if we navigated to
+    // the link directly.
+    $.getJSON(this.href, /* optional data param */ function(data){
+        console.log( data ); // display the JSON data in the web console
+    });
+});
+</code></pre>

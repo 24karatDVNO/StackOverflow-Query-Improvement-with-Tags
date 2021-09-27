@@ -1,0 +1,7 @@
+<p>I think julio, the problem is with the logic and not in <code>SELECT INTO OUTFILE</code> or <code>LOAD DATA INFILE</code>.</p>
+
+<p>In both your examples, where you are adding $this->prefix to the OUTFILE / INFILE statements, you are regenerating the md5() each time. Therefore, the prefix that you use in OUTFILE does not match the prefix for INFILE and hence the error.</p>
+
+<p>Possible solutions:
+- store the prefixes in a table that you can read from later when doing LOAD DATA INFILE
+- if you are generating reports at regular times, say every hour, instead of md5(), use date-time as the prefix, e.g. 20110618_1000-table.csv.</p>

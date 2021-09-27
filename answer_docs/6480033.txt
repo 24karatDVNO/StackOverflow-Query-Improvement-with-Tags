@@ -1,0 +1,14 @@
+<p>3 things i've noticed</p>
+
+<p>*. you are checking the newVal's value twice, it should be something like </p>
+
+<p><code>var newVal = $(this).val();
+if (oldVal == newVal).....
+</code></p>
+
+<p>*. for the oldValue variable you can just do <code>var oldVal=$('#filed1_id').val();</code> this will be much simpler and will get you the value needed and not the object, this is simpler to handle.</p>
+
+<p>*.  you say you need to check for change on submission but you're checking on change, change it to which means you'll be checking more often when you need to.</p>
+
+<p>and again, it will be nice to know what's getOldValue does.
+good luck</p>

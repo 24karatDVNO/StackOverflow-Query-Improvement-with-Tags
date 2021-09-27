@@ -1,0 +1,8 @@
+<p>You shouldn't have multiple identical ids in the page.  It defeats the purpose of the id attribute and is <a href="http://www.w3.org/TR/CSS2/selector.html#id-selectors" rel="nofollow">against the W3C spec</a>.</p>
+
+<p>Regardless, jQuery's <code>$(this)</code> could help you in this situation.  Say you gave all your the "focusable" class.  Then you could do:</p>
+
+<pre><code>$('.focusable').focus( function(){
+     $(this).doSomething(); 
+});
+</code></pre>

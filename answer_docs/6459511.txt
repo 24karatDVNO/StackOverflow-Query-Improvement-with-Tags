@@ -1,0 +1,20 @@
+<pre><code>stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+
+var positionX:Number = 0;
+var positionY:Number = 0;
+function mouseDownHandler(e:MouseEvent) {
+    positionX = all_mc.mouseX;// save the x position for future reference
+    positionY = all_mc.mouseY;// save the y position for future reference
+
+    stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+}
+
+function mouseMoveHandler(e:MouseEvent) {
+    all_mc.x = stage.mouseX - positionX ;
+    all_mc.y = stage.mouseY - positionY ;
+}
+
+function mouseUpHandler(e:MouseEvent) {
+    stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+}
+</code></pre>

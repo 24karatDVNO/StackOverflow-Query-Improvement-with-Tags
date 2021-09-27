@@ -1,0 +1,5 @@
+<p>For <code>UNION</code>, <code>ORDER BY</code> goes at the end and applies to the combined result of both queries; you can't order by a column that is not selected by both queries in the union.</p>
+
+<p>what you need to do is select fr.DisplayName in both queries; then you can order by it.</p>
+
+<p>If you don't want the display name to be one of the output columns, nest the whole thing in an outer query that retrieves just the columns you want.</p>

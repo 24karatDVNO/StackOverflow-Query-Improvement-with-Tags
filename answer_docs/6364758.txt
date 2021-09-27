@@ -1,0 +1,5 @@
+<p>I would just make a list of questions and DataBind them to a repeater/gridview/datagrid (as @Cybernate said), then add an Event method to the OnItemDataBound of the databinder.</p>
+
+<p>In the ItemDataBound event I would get a list of answers for each question DataItem and add them to a DropDownList like you were doing above.</p>
+
+<p>When the user fills out all of the answers you just need to go through the Request.Form array and find all the answers that will be passed back.</p>

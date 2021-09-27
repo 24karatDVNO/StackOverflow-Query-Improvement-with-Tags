@@ -1,0 +1,9 @@
+<p>I assume you are referring the <code>pxcolor</code> and <code>pxmono</code> PCL XL (PCL6) devices.  These are high level vector devices but do not support text - well it will output bitmap characters in very restricted circumstances.  </p>
+
+<p>We don't really have plans to implement this.  </p>
+
+<p>The PCL model is Truetype and Bitmap centered whereas PDF and PostScript are more Type 1.  Also the encoding models (PCL vs. PDF/PS) are quite different.  This is not to say it is not possible, just a lot of work with little perceived benefit. </p>
+
+<p>The PCL XL devices are important for printing - they allow sending vectors to printers (instead of rasterizing to PCL bitmaps like other device) which is important for performance.  </p>
+
+<p>We haven't seen much interest for these devices to be used on the desktop where text would be important. </p>

@@ -1,0 +1,5 @@
+<p>In most programming languages, error hangling have a stair-like mechanism. So if an error occurs, exception mechanism starts to search for an exception for handling the error. If exception could not be handled in that class, it keeps search upper levels through classes which that class is derived from.... It keeps this process tgrough the uppermost level of the inheritance...</p>
+
+<p>So you are defining an <strong>ModelError</strong> class derived from <strong>TypeError</strong> , And importing that class from a different path <strong>may</strong> cause python interpereter to recognize these two as different classes.</p>
+
+<p><a href="http://docs.python.org/library/exceptions.html#exception-hierarchy" rel="nofollow">Python Documentation</a></p>

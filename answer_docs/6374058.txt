@@ -1,0 +1,22 @@
+<p>There's a general way to perform native SDK calls when prompted by Javascript.  You can implement the UIWebViewDelegate, and use the shouldStartWithRequest method to capture Javascript requests.</p>
+
+<p>In your Javascript, make a redirect to a non-existent local URL that indicates what you'd like to do.  For example:</p>
+
+<pre><code>window.location = "doKeyboardAction";
+</code></pre>
+
+<p>Then, in your UIWebViewDelegate:</p>
+
+<pre><code>- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+NSURL *url = request.URL;
+NSString *urlString = [url.absoluteString lastPathComponent];
+
+if([urlString isEqualToString:@"doKeyboardAction"]){
+    NSLog(@"Javascript says to do something.");
+    return NO;
+}
+
+return YES;}
+</code></pre>
+
+<p>This will capture all redirects within the UIWebView, and in the case that the URL is "doKeyboardAction", the WebView won't follow through with the redirect and at that point you can do whatever you want, such as manipulate the keyboard orientation.</p>

@@ -1,0 +1,9 @@
+<p>You need two endpoints for each contract you want to expose on the service. One endpoint will be for HTTP and second for HTTPS:</p>
+
+<pre><code>&lt;service behaviorConfiguration="RESTServiceBehavior" name="App.Services.Service1"&gt;
+    &lt;endpoint address="" behaviorConfiguration="webBehavior" binding="webHttpBinding" 
+              bindingConfiguration="RESTServiceBinding" contract="App.Contract.Services.IService1" /&gt;
+    &lt;endpoint address="" behaviorConfiguration="webBehavior" binding="webHttpBinding" 
+              contract="App.Contract.Services.IService1" /&gt;
+&lt;/service&gt;
+</code></pre>

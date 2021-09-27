@@ -1,0 +1,9 @@
+<p>Apart from what Sjoerd has mentioned (do strict equality testing), the problem might be that you're passing an object into strpos, instead of a string. This should work:</p>
+
+<pre><code>foreach($html-&gt;find('a') as $element) {
+   //not producing result
+   if(strpos( (string) $element-&gt;href, 'string') !== false) {
+      $myarray[] = $element-&gt;href;
+   }
+}
+</code></pre>

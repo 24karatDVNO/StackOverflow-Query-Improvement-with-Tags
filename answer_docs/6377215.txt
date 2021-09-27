@@ -1,0 +1,6 @@
+<p>This is a bit late I suspect but you have to download RIM's WebWorks package and follow all the necessary steps on their website. Basically, once you are as far as you are, you zip what you've got with a config.xml file and run their command line tool to turn it into a .bar file. Here's a little secret - a <code>.bar</code> file is actually just a <code>.zip</code> file by another name. If you change a <code>.bar</code> back to a <code>.zip</code> file you can treat it like any other zip file. </p>
+
+<p>After you've done this, run the signing tool, (results and mileage may vary) and then push it out to the device with another command line tool. In the simulator you have to set it to "Development Mode" and get the IP address. You put the IP address into the command line tool and it will put it onto the device. You may have to restart the simulator for it to show up. If you can't get the signing tool to work you should still be able to put it onto the simulator.</p>
+
+<p>Download WebWorks and get started here - <a href="http://us.blackberry.com/developers/browserdev/" rel="nofollow">http://us.blackberry.com/developers/browserdev/</a>
+You will need to sign up for a developer account to download it.</p>

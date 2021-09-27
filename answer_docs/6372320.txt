@@ -1,0 +1,21 @@
+<p>this is not a cakephp method, but a simpletest one.</p>
+
+<p>below is the actual method</p>
+
+<pre><code>   /**
+     *    Will trigger a pass if the text is found in the plain
+     *    text form of the page.
+     *    @param string $text       Text to look for.
+     *    @param string $message    Message to display.
+     *    @return boolean           True if pass.
+     *    @access public
+     */
+    function assertText($text, $message = '%s') {
+        return $this-&gt;assert(
+                new TextExpectation($text),
+                $this-&gt;_browser-&gt;getContentAsText(),
+                $message);
+    }
+</code></pre>
+
+<p>So it seems that it is just looking for the actual text within the page, not a button or other element. maybe 'welcome bob' would be a better search</p>

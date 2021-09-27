@@ -1,0 +1,6 @@
+<p>I found that using CDATA tags were the best way to get XML to work in JQgrid:</p>
+
+<pre><code> echo "&lt;cell&gt;&lt;![CDATA[" . $row['pre_date'] . "]]&gt;&lt;/cell&gt;";
+</code></pre>
+
+<p>if you're using something like PHP to generate the data.</p>

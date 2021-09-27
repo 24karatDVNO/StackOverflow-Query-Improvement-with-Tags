@@ -1,0 +1,7 @@
+<p><code>io.lines.count</code> would give you the number of lines.</p>
+
+<p><code>io.lines.each_with_index {|line, index|}</code> would give you each line and which line number it is (starting at 0).</p>
+
+<p>But I don't know if it's possible to count the number of lines without reading a file.</p>
+
+<p>You may want to read a file, and then use <code>io.rewind</code> to read it again.</p>

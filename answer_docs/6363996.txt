@@ -1,0 +1,9 @@
+<p><code>HashSet</code> will not necessarily be faster, but the time will be <em>constant</em>. Quoting from the Java Documentation.</p>
+
+<blockquote>
+  <p>This class offers constant time
+  performance for the basic operations
+  (add, remove, contains and size)</p>
+</blockquote>
+
+<p>So, if you add more Strings to be searched for the value, if you use equals the time will be relative to the number <em>n</em> of Strings but with a <code>HashSet</code> it will remain constant.</p>

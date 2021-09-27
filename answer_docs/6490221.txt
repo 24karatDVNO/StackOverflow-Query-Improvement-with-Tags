@@ -1,0 +1,5 @@
+<p>The parameter to your <code>changeColor</code> function should be the colour that you want to display. In the function you need to actually get a reference to the DOM object you intend to manipulate, using:</p>
+
+<p><code>document.getElementById("message").style.color = c;</code></p>
+
+<p>In your example, <code>message</code> is an undefined global variable, so replace that with a reference to the required DOM element and it should work fine.</p>

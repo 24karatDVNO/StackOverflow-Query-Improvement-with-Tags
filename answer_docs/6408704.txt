@@ -1,0 +1,10 @@
+<pre><code>DECLARE @NumStr varchar(1000)
+SET @NumStr = 'AB78KH013Hj9';
+
+BEGIN
+WHILE PATINDEX('%[^0-9]%',@NumStr)&gt; 0
+    SET @NumStr = REPLACE(@NumStr,SUBSTRING(@NumStr,PATINDEX('%[^0-9]%',@NumStr),1),'')
+END
+
+PRINT @NumStr 
+</code></pre>

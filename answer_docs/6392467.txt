@@ -1,0 +1,5 @@
+<p>It's been some time since I asked that question and had a chance to do it on my own.</p>
+
+<p>I don't think it's a good practice to expose IQueryable at all outside the DAL layer. It brings more problems that it solves. I'm talking about large MVC applications. First of all the refactorings is harder, many developers user IQueryable instances from the views and after struggle with the fact that when resolving IQueryable the connection was already disposed. Performance problems because all the database is often queried for a given set of resultats and so on.</p>
+
+<p>I rather expose Ienumerable from my repositories and believe me, it saves me many troubles.</p>

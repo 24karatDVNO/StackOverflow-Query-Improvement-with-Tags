@@ -1,0 +1,3 @@
+<p><strong>No</strong>, that is disastrous. <code>work</code> pointer is still in use and you are <code>delete</code>ing it. Which makes it a dangling pointer. Referring a dangling pointer is <strong>undefined behavior</strong>.</p>
+
+<p>Use <code>shared_ptr&lt;&gt;</code> or other smart pointer if you don't want to manage the freeing of the object. Or else, <code>delete</code> them inside <code>ServerManager::~ServerManager()</code> as you will still have their references inside <code>m_workHandler</code>. </p>

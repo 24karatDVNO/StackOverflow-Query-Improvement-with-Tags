@@ -1,0 +1,5 @@
+<p>I think JBoss was somehow caching things in it's temporary files and then I had forgotten about adding source in. This may be a JBoss thing as I don't recall seeing it with other application servers before. </p>
+
+<p>So after I cleared out the cache, what got me thinking about the source was the fact that eclipse would stop on the breakpoints in the debugger that I had just set, but I couldn't see the source files. </p>
+
+<p><strong>Prior to this I was apparently hitting the breakpoints in the cached files and I couldn't alter them by setting new breakpoints.</strong>  That was the root cause of the issue. Then  by adding in the source from the ear, I got the debugger in sync with the code and it started working fine. </p>

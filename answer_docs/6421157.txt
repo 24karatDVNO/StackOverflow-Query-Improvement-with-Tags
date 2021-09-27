@@ -1,0 +1,27 @@
+<p>If I understand you correctly your checkbox is not submitting with the form?
+If that is the case, I had a fun time with this question on this thread <a href="https://stackoverflow.com/questions/6361417/checkbox-value-problem-when-not-clicked/6379035#6379035">HERE</a></p>
+
+<p>PHP wants you to check to see if a checkbox is set or not by verifying whether or not there is a corresponding element in the POST array.  If the checkbox was checked, there will be an element of the same name in the POST array (that element will have a NULL value), if the checkbox was NOT checked, then there will be NO matching element in the POST array.</p>
+
+<p>The code would look something like this:</p>
+
+<p>Your input element remains the same --</p>
+
+<pre><code>&lt;input name="checkall" type="checkbox" value="ON" &lt;?php echo set_checkbox('checkall', 'ON'); ?&gt; /&gt;
+</code></pre>
+
+<p>Postback Handler Page gets a new way to validate a checkbox --</p>
+
+<pre><code>if(isset($_POST["checkall"])
+{
+   $checkall = TRUE;
+}
+else
+{
+   $checkall = FALSE;
+}
+</code></pre>
+
+<p>Hopefully I helped, its late and your question is sparse on details.</p>
+
+<p>Regards</p>

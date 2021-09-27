@@ -1,0 +1,6 @@
+<p>Since you are limited to only 999 possible keys, I'd probably create a temporary table with all possible keys (i.e. 1-999), or even create a permanent table just for this purpose, then you can do sql like this:</p>
+
+<pre><code>SELECT key_value FROM temp_key_table WHERE key_value NOT IN (SELECT key FROM original_table ORDER BY key ASC) ORDER BY key_value ASC LIMIT 1
+</code></pre>
+
+<p>Not sure how practical this is, and a SQL guru could probably give you a better solution, but this should work in a pinch, rather than messing with this in PHP.</p>

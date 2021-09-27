@@ -1,0 +1,25 @@
+<p>Since the information is not very confidential, I can suggest you to use <strong>Cookies</strong> (in case you don't want to use AJAX, but I still recommend you to use AJAX). People don't usually take the advantage of Cookies.</p>
+
+<p>So, in PHP file, set the Cookies with your information:</p>
+
+<pre><code>$value = 'Hello';
+setcookie("Information", $value);
+</code></pre>
+
+<p>And get it from HTML using Javascript (from <a href="http://w3schools.com/js/js_cookies.asp" rel="nofollow">W3School</a>)</p>
+
+<pre><code>function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i&lt;ARRcookies.length;i++)
+{
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+</code></pre>

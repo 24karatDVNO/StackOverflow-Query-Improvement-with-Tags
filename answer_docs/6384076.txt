@@ -1,0 +1,19 @@
+<p>you can use CustomMenuButtonDelegateImpl1.m                  </p>
+
+<pre><code>@implementation CustomMenuButtonDelegateImpl1
+
+- (void) customMenuButtonPressed:(WTPoi *)currentSelectedPoi {
+    //NSLog(@"addpoi");
+
+
+
+    [[WikitudeARViewController sharedInstance] hide];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+
+    }
+
+
+@end
+</code></pre>
+
+<p>and it woroks very well</p>

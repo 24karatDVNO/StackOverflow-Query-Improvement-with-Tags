@@ -1,0 +1,5 @@
+<p>The official answer from the jQuery team is that <a href="http://bugs.jquery.com/ticket/8972#comment:13" rel="nofollow">loading XHTML into a DOM is not possible under IE</a>.</p>
+
+<p>The only solution I have found is to do server-side browser detection and transmit the content as "text/html" instead of "application/xhtml+xml" when the browser is IE.</p>
+
+<p>I imagine it's also possible to write a client-side handler that would append the node of not on IE, and explicitly construct a DOM from the XML if on IE, but that's not worth the trouble to me, since I have access to the server side.</p>

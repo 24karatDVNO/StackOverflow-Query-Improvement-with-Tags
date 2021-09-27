@@ -1,0 +1,16 @@
+<p>You can get the today date and all other dates with php and convert them to sql format.<br>
+In php:   </p>
+
+<pre><code>date_default_timezone_set('UTC');  
+$today= mktime();
+$dateSQL=date('Y-m-d',$today);  
+$weekBegin=$today;  
+while (date('w',=$weekBegin)!=0){  
+$weekBegin=$weekBegin-24*60*60;  
+}
+
+1. SELECT * FROM events WHERE eventDate&gt;='$today'
+2. SELECT * FROM events WHERE eventDate&gt;='$weekBegin' AND eventDate&lt;'$weekBeginPlus7'
+</code></pre>
+
+<p>and so on.</p>

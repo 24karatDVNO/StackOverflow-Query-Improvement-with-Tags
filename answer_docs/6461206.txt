@@ -1,0 +1,11 @@
+<p>Assuming that the tables always return one (and <em>only</em> one) row, the following should work just fine:</p>
+
+<pre><code>UPDATE SomeTable st SET (MyColumn1, MyColumn2) = (SELECT SomeValue, 
+                                                         AnotherValue * MyColumn1
+                                                  FROM WhereverTable wt
+                                                  CROSS JOIN AnotherTable at)
+WHERE MyColumn4 = 'condition'
+</code></pre>
+
+<p>This will update <code>MyColumn2</code> as desired (using the old value of <code>MyColumn1</code>).<br>
+Obviously if there are more/optional rows things get more complicated.</p>

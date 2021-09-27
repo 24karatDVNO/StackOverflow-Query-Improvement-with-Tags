@@ -1,0 +1,8 @@
+<p>If you want to store such characters, you need to:</p>
+
+<ul>
+<li>use <code>NVARCHAR</code> as the datatype for your columns and parameters (<code>@Password</code> <strong>isn't</strong> <code>NVARCHAR</code> and the <code>CAST</code> you're using to assign the password in the database table isn't using <code>NVARCHAR</code> either, in your sample ...)</li>
+<li>use the <code>N'....'</code> syntax for indicating Unicode string literals</li>
+</ul>
+
+<p>With those two in place, you should absolutely be able to store and retrieve any valid Unicode character</p>

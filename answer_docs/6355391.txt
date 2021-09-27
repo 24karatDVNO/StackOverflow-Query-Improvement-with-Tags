@@ -1,0 +1,10 @@
+<p>The timestamp from <a href="http://php.net/manual/en/function.time.php" rel="nofollow">time()</a> is a unix format representing the number of seconds since 1st January 1970.  It can be replicated in date() as <code>$timestamp = date("U");</code></p>
+
+<p>You should be able to convert it using the <a href="http://php.net/manual/en/function.strtotime.php" rel="nofollow">strtotime()</a> command.</p>
+
+<pre><code>$myDate = "06-15-2011 0-9:35:32"
+
+$timestamp = strtotime($myDate)
+</code></pre>
+
+<p>You can then go on to format that in other ways using the <a href="http://php.net/manual/en/function.date.php" rel="nofollow">date()</a> function.</p>

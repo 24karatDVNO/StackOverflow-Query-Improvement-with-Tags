@@ -1,0 +1,9 @@
+<p>I created a facility for you and anyone else who wants to do this.</p>
+
+<p><a href="https://github.com/haf/Castle.Facilities.NHibernate/wiki/NHibernate-Facility---Quick-Start" rel="nofollow">https://github.com/haf/Castle.Facilities.NHibernate/wiki/NHibernate-Facility---Quick-Start</a></p>
+
+<p><strong>Nuget: <code>Castle.Facilities.NHibernate</code></strong></p>
+
+<p>Tell me if you find it worthwhile. It's very minimalistic. Just put a [Transaction] around the command handler that is handling the current unit of work. I don't recommend multiple services with disparate transactions. As such, I created a new lifestyle in Windsor called <em>per transaction</em>.</p>
+
+<p>I can give you more help on the castle mailing list. </p>

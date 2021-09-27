@@ -1,0 +1,11 @@
+<p>CSS expressions only work in IE 6-7, but allow inline JS to be used (generally to calculate a value to set).</p>
+
+<p>For example:</p>
+
+<pre><code>/* set bgcolor based on time */
+div.title {
+    background-color: expression( (new Date()).getHours() % 2 ? "#B8D4FF" : "#F08A00" );
+}
+</code></pre>
+
+<p>however, this could potentially be used to do malicious things, i'd say it's at least worth some testing.</p>

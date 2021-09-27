@@ -1,0 +1,14 @@
+<p>The only way that would <em>not</em> get called is if there was an exception or some other behavior that caused it not to progress to the next statement (ie, catastrophic failure).</p>
+
+<p>You can guard against an exception preventing it from happening by putting it in <a href="http://msdn.microsoft.com/en-us/library/ke0zf0f5%28v=vs.71%29.aspx" rel="nofollow">a <code>finally</code> block</a>:</p>
+
+<pre><code>public void Process()
+{
+    try {
+        Order o = new Order();
+        // Do stuff
+    } finally { 
+        o.Complete(GetTransactionId());
+    }
+}
+</code></pre>

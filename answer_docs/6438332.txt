@@ -1,0 +1,5 @@
+<p>$lockDate is a datestring sometimes, and sometimes you try to subtract with it.
+$currentDateTime = time();
+$minutes = floor(($currentDateTime-$lockDate) / 60);</p>
+
+<p>either this is a problem or strtotime($lockdate) above will be a problem.</p>

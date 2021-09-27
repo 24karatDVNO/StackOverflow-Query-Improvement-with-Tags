@@ -1,0 +1,5 @@
+<p>tempObj is not an object. tempObj is a variable. tempObj contains a pointer to the object and the assignment tempObj = otherObject makes otherObject contain the same pointer.</p>
+
+<p>The object is a portion of memory. Each object has a counter, the reference counter. [tempObj retain] adds 1 to the reference counter, [tempObj release] subtracts 1 from the reference counter. It's a way to know in how many places you're using your object. When the count reaches 0 the object is declared dead. No one should be using it anymore: the memory portion where it lived will likely be used by some other object.</p>
+
+<p>So you will not want to release otherObject or tempObj, which will obtain the same effect (subtracting 1 from the reference count of the object). If you do that, the reference count could reach 0 and the release in the dealloc method it will likely cause a crash.</p>

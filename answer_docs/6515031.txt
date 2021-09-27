@@ -1,0 +1,3 @@
+<p>I'm assuming libvirt communicates over a standard socket. If that's the case, you can set an application-wide timeout using <a href="http://docs.python.org/library/socket.html#socket.socket.settimeout" rel="nofollow"><code>socket.settimeout</code></a>.</p>
+
+<p>That's not to say the libvirt bindings for python don't call that function themselves, but it's worth a try.</p>

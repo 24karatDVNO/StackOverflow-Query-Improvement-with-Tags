@@ -1,0 +1,16 @@
+<p><code>sudo port install ffmpeg</code> and try this secret sauce:</p>
+
+<pre><code>#!/bin/bash
+BR=512k
+WIDTH=640
+HEIGHT=272
+input=${1}
+
+# strip off the file extension
+output=$(echo ${input} | sed 's/\..*//' )
+
+# works for most videos
+ffmpeg -y -i ${input} -f mpegts -acodec libmp3lame -ar 48000 -ab 64k -s ${WIDTH}x${HEIGHT} -vcodec libx264 -b ${BR} -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -subq 7 -trellis 0 -refs 0 -coder 0 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -bt 200k -maxrate ${BR} -bufsize ${BR} -rc_eq 'blurCplx^(1-qComp)' -qcomp 0.6 -qmin 30 -qmax 51 -qdiff 4 -level 30 -aspect ${WIDTH}:${HEIGHT} -g 30 -async 2 ${output}-iphone.ts
+</code></pre>
+
+<p>Adjust width and height to the original video and set the bitrate as you see fit. Pass the original video as parameter to the script. Works with almost any source format. You need <a href="http://www.macports.org/" rel="nofollow">macports</a> for the port command. </p>

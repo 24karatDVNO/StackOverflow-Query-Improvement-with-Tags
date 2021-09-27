@@ -1,0 +1,25 @@
+<p>Im assuming you have seen this apple developer page describing how to parse XObjects: <a href="http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_pdf_scan/dq_pdf_scan.html" rel="nofollow">http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_pdf_scan/dq_pdf_scan.html</a> </p>
+
+<p>XObjects do not contain any position data as they just describe image data that can be reused through the pdf.</p>
+
+<p>From <a href="http://itext-general.2136553.n4.nabble.com/finding-the-position-of-xobject-in-an-existing-pdf-td2157152.html" rel="nofollow">http://itext-general.2136553.n4.nabble.com/finding-the-position-of-xobject-in-an-existing-pdf-td2157152.html</a></p>
+
+<p>"An XObject is a stream that can be reused in many different 
+other streams. For instance: you could have an image XObject 
+of a logo that appears on every page in the document. 
+Suppose that you have some pages in landscape and some in portrait. 
+Then the logo will have different coordinates on these different 
+pages. Therefore the position of the XObject IS NEVER STORED with 
+the XObject, the position can be found in the stream that refers 
+to the XObject. 
+Maybe your reaction is: "Oh right, then it's simple: I have to 
+look in the content stream of the pages using the XObject." 
+Yes and no. That's indeed where you should look, but it's not 
+simple. Because the actual position depends on the current 
+transformation matrix of the state at the moment the image is 
+added. It's quite some programming work to parse the content 
+stream and calculate the position of an XObject. "</p>
+
+<p>I think you should find another option and avoid this all together.</p>
+
+<p>If your still determined you will have to use CGPDFScanner and find the transforms through the page.</p>

@@ -1,0 +1,3 @@
+<p>As long as you keep in mind the limitations of threads, it's fine. In particular, you're going to need appropriate locking, and you'll have relatively small stacks to work with.</p>
+
+<p>You might also want to consider an event driven architecture using eg <a href="http://monkey.org/~provos/libevent/" rel="nofollow">libevent</a>; this avoids the locking and stack size issues, and reduces context switch overhead, but can result in more complex code.</p>

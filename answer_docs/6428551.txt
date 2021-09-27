@@ -1,0 +1,18 @@
+<p>I'm hardly a PS guru, but some time ago I was playing with checking updates in different context, so maybe my advice will be of use to you. </p>
+
+<p>To the point. Try calling this snippet I have written down back then:</p>
+
+<pre><code>$session = New-Object -ComObject Microsoft.Update.Session 
+$searcher = $session.CreateUpdateSearcher() 
+$result = $searcher.Search("IsInstalled=1 and Type='Software'" ) 
+$result.Updates | get-member
+</code></pre>
+
+<p>After some time (it's kinda slow) you'll get list of things you can check. I don't know what information you have about these updates you're installing, but here's some possibly useful, like <code>Title</code> or <code>KBArticleIDs</code> number (hopefully containing some relevant info). Then you replace last line with what you want, e.g.</p>
+
+<pre><code>$result.Updates | select Title
+</code></pre>
+
+<p>and compare with data about recently installed updates.</p>
+
+<p><em>Sorry for somehow incomplete answer -- my current Windows box has some issues and above codes do not work exactly like I remember it. Don't hesitate to point out if it's simply wrong, errare humanum est! ;)</em></p>

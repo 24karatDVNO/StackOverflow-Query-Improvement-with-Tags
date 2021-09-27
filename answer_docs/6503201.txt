@@ -1,0 +1,5 @@
+<p>The question as stated is misleading. The problem with finding the key in the array was not that the same variable name was used in the two <code>foreach</code> loops; the reason is that the key searched for had inadvertently been prefixed with a space character, and the additional space was not seen while debugging.</p>
+
+<p>An answer to the question could be: If such an obscure "error" occurs, check for hidden characters in the key you are searching for. Actually @Marc B answered the question in the first comment.</p>
+
+<p>I will leave the title as is, so that someone else with this issue can find the solution.</p>

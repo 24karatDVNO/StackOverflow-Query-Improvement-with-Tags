@@ -1,0 +1,28 @@
+<p>Old thread that I came accross on Google. If anyone is looking, then I think I've got a neater solution:</p>
+
+<pre><code>try
+{
+    //operation that throws the Exception
+}
+catch (EndpointNotFoundException e)
+{
+    WebException w = e.InnerException as WebException;
+
+    if (w != null)
+    {
+         HttpWebResponse resp = w.Response as HttpWebResponse;
+         if (resp != null &amp;&amp; resp.StatusCode == HttpStatusCode.NotFound)
+         {
+             //The error was a 404 not found
+         }
+         else
+         {
+             //The response was null, or the error was not a 404
+         }
+    }
+    else
+    {
+        //The InnerException was not a WebException
+    }
+}
+</code></pre>

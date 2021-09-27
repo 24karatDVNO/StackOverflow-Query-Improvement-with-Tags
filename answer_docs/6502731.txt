@@ -1,0 +1,15 @@
+<p>use javascript, put this script between header on that page </p>
+
+<pre><code>&lt;script language="JavaScript"&gt;
+     var time = null;
+     function move() {
+          window.location = 'http://www.youdomain.com';
+      }
+&lt;/script&gt;
+</code></pre>
+
+<p>apply a codition to output on body tag:</p>
+
+<pre><code>&lt;body &lt;?php if('condition')echo 'onload="timer=setTimeout(\'move()\',10000)" '?&gt;&gt;
+&lt;div id="mes"&gt;This page will be redirected after 10 secs.&lt;/div&gt;
+</code></pre>

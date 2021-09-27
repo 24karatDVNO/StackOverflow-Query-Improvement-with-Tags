@@ -1,0 +1,9 @@
+<p>for ?p=my_account&amp;cat=1&amp;course_id=12</p>
+
+<p>try this.</p>
+
+<pre><code>Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule -p-(.*)-cat-(.*)-course_id-(.*)\.html index.php?p=$1&amp;cat=$2&amp;course_id=$3
+</code></pre>

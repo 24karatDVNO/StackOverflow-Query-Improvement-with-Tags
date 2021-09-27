@@ -1,0 +1,7 @@
+<pre><code>SELECT 
+    food.id AS foodId, 
+    food.name AS foodName,
+    (SELECT COUNT(*) FROM reports WHERE reports.food_id = food.id)
+FROM 
+    food
+</code></pre>

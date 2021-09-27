@@ -1,0 +1,28 @@
+<p>Not sure if <code>"</code> should be part of output or not, assuming not. If I'm mistaken, it shouldn't be any problems for you to add it to the output (deliberately left <code>sed</code> out of the list below, since the answer from @Jonathan-Leffler is a very good one)</p>
+
+<p>Not a perfect solution since <code>"</code> is output as the first character, but it is simple.</p>
+
+<pre><code>cut -d\" -f1-2 input
+</code></pre>
+
+<p>Solution using pure bash, see <a href="http://www.gnu.org/software/bash/manual/bashref.html" rel="nofollow">5.1 Bourne Shell Variables</a> for explanation of <code>IFS</code></p>
+
+<pre><code>#!/bin/bash
+
+IFS='"'
+
+while read -ra LINE;
+do
+    echo ${LINE[1]}
+done &lt; input
+</code></pre>
+
+<p>Solution using awk, and the <code>-F</code> flag to change delimiter to <code>"</code></p>
+
+<pre><code>$ awk -F\" '{print $2}' input
+</code></pre>
+
+<p>and finally one in perl. <code>-a</code> turns on autosplit mode – perl will automatically split input lines on whitespace into the <code>@F</code> array. <code>-F</code> is used in conjunction with -a, to choose the delimiter on which to split lines.</p>
+
+<pre><code>perl -F\" -lane 'print $F[1]' input
+</code></pre>

@@ -1,0 +1,19 @@
+<p>In <code>file.h</code>, you can put:</p>
+
+<pre><code>#include &lt;stddef.h&gt;
+
+extern char *myArray[];
+extern const size_t myArray_len;
+</code></pre>
+
+<p>Then in <code>file.c</code>, you have:</p>
+
+<pre><code>#include "file.h"
+
+char *myArray[] = { "str1", "str2", ... "str100" };
+const size_t myArray_len = sizeof myArray / sizeof myArray[0];
+</code></pre>
+
+<p>This way your other modules can refer to <code>myArray_len</code>, and you do not need to explicitly write the size of the array anywhere.</p>
+
+<p>(The downside is that <code>myArray_len</code> is merely a <code>const</code>-qualified variable, not a constant expression, which means that you can't use it to do things like initialise objects with static storage duration, or define the size of non-variably-modified arrays).</p>

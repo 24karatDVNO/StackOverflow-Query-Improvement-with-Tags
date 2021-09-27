@@ -1,0 +1,3 @@
+<p><code>ForeignKey</code> refers to an entity by it's primary key, by database design. You should probably not do it although, you might be able to fake it within django by lieing within Model.Meta what the primary key is.</p>
+
+<p>The right approach seems to me, is to make the book_number, the PK, if you are confident there aren't any repeats, and may be still retain the serial type for book_id.</p>

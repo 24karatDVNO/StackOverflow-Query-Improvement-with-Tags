@@ -1,0 +1,11 @@
+<p>There is no built-in smooth scrolling in JavaScript so you would have to implement it yourself -- but why re-invent the wheel if you already have it in <a href="http://www.jquery.org" rel="nofollow">jQuery</a> and you probably won't have to add more than two or three lines of code? Just download jQuery and the <a href="http://flesler.blogspot.com/2007/10/jqueryscrollto.html" rel="nofollow">ScrollTo plugin</a>, add them to your <code>&lt;head&gt;</code> section in a <code>&lt;script&gt;</code> tag and then use this to scroll to an element with a given ID:</p>
+
+<pre><code>$.scrollTo("#my-element-id");
+</code></pre>
+
+<p>This will scroll to the element whose ID is <code>my-element-id</code> so you have to use the <code>id=...</code> attribute in the anchors and not the <code>name=...</code> attribute.</p>
+
+<p>If you wish to add this behaviour automatically to all your anchors within a given <code>div</code> (or to the entire page), you can use the <a href="http://flesler.blogspot.com/2007/10/jquerylocalscroll-10.html" rel="nofollow">LocalScroll plugin</a> which makes the entire this as simple as:</p>
+
+<pre><code>$.localScroll();
+</code></pre>

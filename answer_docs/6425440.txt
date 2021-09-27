@@ -1,0 +1,16 @@
+<p>I have found the solution by passing cid as the querystring.</p>
+
+<pre><code>  $(document).ready(function() {
+        var cid = $("#ctl00_cphMain_hdnCid").val();
+        $("#ctl00_cphMain_txtSearch").focus();
+        $("#ctl00_cphMain_txtSearch").autocomplete("AutoCompleteHandler.ashx?cid=" + cid + "&amp;storetype=1", { autoFill: false });
+    });
+</code></pre>
+
+<p>In the autocompletehandler.ashx I have retrieved the "cid"
+like below:</p>
+
+<pre><code>int cid = Convert.ToInt32(context.Request.QueryString["cid"].ToString().Trim());
+</code></pre>
+
+<p>and used this as parameter for <code>SqlCommand</code>  object</p>

@@ -1,0 +1,18 @@
+<p>Section 5.17 of the ISO standard says</p>
+
+<blockquote>
+  <p>There are several assignment
+  operators, all of which group
+  right-to-left. All require a
+  modifiable lvalue as their left
+  operand, and the type of an assignment
+  expression is that of its left
+  operand. The result of the assignment
+  operation is the value stored in the
+  left operand after the assignment has
+  taken place; the result is an lvalue.</p>
+</blockquote>
+
+<p>It is because the overloaded operator for the '=' does not match any of your provided overloaded instances. </p>
+
+<p>You need to initialize it as Line * not simply Line and it should work. Better if you overload void* (e.g. new).</p>

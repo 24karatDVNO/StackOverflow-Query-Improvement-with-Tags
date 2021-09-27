@@ -1,0 +1,17 @@
+<p>Concatenating two files would probably take <em>more</em> time, as typical filesystems do not support simple <em>splice</em> operations to piece together multiple files into one file efficiently.</p>
+
+<p>While there are some ways you can write to files using multiple cores, chances are <em>very</em> good the bottleneck is actually your Disk IO speed. You can run <code>vmstat 1</code> on a Linux system and many Unix systems to see just your disk writing speed. (As well as many other neat measures.) Windows has a similar tool, but I can never recall the name of the thing. If your writing speed is near the speed of your disk, you probably can't get more performance by adding more cores.</p>
+
+<p>If you want to try anyway, there are three approaches that can work:</p>
+
+<ul>
+<li>use multiple threads / processes to copy from your vector into a memory mapped location backed by your file. <code>open(2)</code> the file, run <code>mmap(2)</code> to map it into memory, and then start copying data.</li>
+<li>use multiple threads / processes to copy data to disk using the <code>pwrite(2)</code> system call to specify the offset in the file to write that specific block of data</li>
+<li>use a single thread and the <code>aio_write(3)</code> system call to submit asynchronous writes to disk. (I'm not <em>convinced</em> that this will actually use multiple cores, but the libraries / kernel certainly <em>could</em> implement it that way.)</li>
+</ul>
+
+<p>The first two approaches require that the data you're writing be a <em>predictable</em> size; if you're really writing 500k numbers, they'll each take 4 or 8 or <a href="http://en.wikipedia.org/wiki/Long_double" rel="nofollow">some other fixed size</a>, making it pretty easy -- just assign the first 256k numbers to the first thread, and the next pile of numbers to the next thread, starting at <code>256*1024*8</code> bytes into the file.</p>
+
+<p><strong>Edit</strong></p>
+
+<p>Don't forget that spinning hard drives have latency when seeking all over your drive. Linear read and write patterns work best for spinning metal disks. The random access mechanisms I suggested in the first two bullet points would work best if each were writing to different disks (difficult with a single file :) or you had a solid state drive with no seek latency.</p>

@@ -1,0 +1,14 @@
+<p>Trowing in a awk solution that loops ovewr the input and skips entries with a period in them</p>
+
+<pre><code>{
+     printf("%s ", $1)
+     for(i=2;i&lt;NF;i++) {
+         if ($i !~ /\./) {
+             printf( " %s ", $i)
+         }
+     }
+}
+
+$ echo Abandoned 16 1.10 2.62 3.50 | awk -f f.awk 
+Abandoned  16 
+</code></pre>

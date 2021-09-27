@@ -1,0 +1,11 @@
+<p>You're passing the object's address to write into the file, whereas the original content lies somewhere else, pointed to by one of its internal pointers.</p>
+
+<p>Try this:</p>
+
+<pre><code>string x;
+getline(cin,x);
+ofstream o("D:/tester.txt");
+o &lt;&lt; x;
+// or
+// o.write( x.c_str() , x.length());
+</code></pre>

@@ -1,0 +1,6 @@
+<p>I dont see the image, but i think it must be the softkeyboard sitting there. It can be removed from the code by calling:</p>
+
+<pre><code> ((InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(searchField.getWindowToken(), 0);
+</code></pre>
+
+<p>This should be called before the dialog is made and shown.</p>

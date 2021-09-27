@@ -1,0 +1,10 @@
+<p>Please try with this code. </p>
+
+<p>$this->_productCollection = Mage::getModel('catalog/product')->getCollection()</p>
+
+<p>->addFieldToFilter('entity_id', array('in'=>$_arrayOfProductIds))</p>
+
+<pre><code>    -&gt;addAttributeToSelect('*')
+
+    -&gt;setOrder('sku', 'asc')-&gt;load();
+</code></pre>

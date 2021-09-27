@@ -1,0 +1,6 @@
+<p>I am no expert with MySQL, but I can immediately say that you should not be selecting everything that is like to a value. If the user types in "and", and there are thousands of results, it may be better just to select a certain amount from the database and then load more using the LIMIT parameter when the user goes to the next page (e.g).</p>
+
+<pre><code>SELECT * FROM `myTable` WHERE (`title` LIKE '%hello%' OR `title` LIKE '%world%') LIMIT numberOfValues,startingAtRowNumber
+</code></pre>
+
+<p>So to answer your question, the query is not efficient, and you should use something like I suggested above.</p>

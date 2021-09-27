@@ -1,0 +1,12 @@
+<p>In your code, each time the loop iterates, the <code>runningprocesses</code> array is pointing to a new instance.</p>
+
+<p>To fix it move your array instantiation outside the for loop:</p>
+
+<pre><code>NSArray * processes = [[UIDevice currentDevice] runningProcesses];
+NSMutableArray *runningprocesses = [[NSMutableArray alloc] init];
+for (NSDictionary * dict in processes){
+
+    NSString *process = [dict objectForKey:@"ProcessName"];
+    [runningprocesses addObject:process];
+}
+</code></pre>

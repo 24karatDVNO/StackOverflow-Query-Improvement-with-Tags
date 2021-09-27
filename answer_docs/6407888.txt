@@ -1,0 +1,3 @@
+<p>When you ask about Random Access - are you referring to a random access within the file or random access of multiple blobs?  Your descriptions imply the latter (lots of file transfers) - i.e. small files randomly accessed, in which case a block blob will do what you need.</p>
+
+<p>Do you have a use case for random seeking within the file?  There are scenarios for that, but typically the file is much larger than 512bytes.</p>

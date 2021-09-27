@@ -1,0 +1,14 @@
+<p>This is pretty simple with <a href="http://modelmapper.org" rel="nofollow">ModelMapper</a>:</p>
+
+<pre><code>ModelMapper modelMapper = new ModelMapper();
+
+modelMapper.addMappings(new PropertyMap&lt;SourceClass, DestClass&gt;() {
+  protected void configure() {
+    map().setSomeProperty(someConstant);
+  }
+});
+</code></pre>
+
+<p>This example maps <code>someConstant</code> to <code>DestClass.someProperty</code>.</p>
+
+<p>You can check out more examples and docs at: <a href="http://modelmapper.org" rel="nofollow">http://modelmapper.org</a></p>

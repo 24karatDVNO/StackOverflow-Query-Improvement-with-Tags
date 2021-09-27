@@ -1,0 +1,27 @@
+<p>I think there are lot of issues in your question</p>
+
+<ol>
+<li>Connecting Buttons in Xib
+If you want to connect a button via interfacebuilder you have to declare the button in the .h file as</li>
+</ol>
+
+<blockquote>
+  <p><strong>IBOutlet</strong> UIButton *myButton;</p>
+</blockquote>
+
+<p>This IBOutlet Indicates the Interface Builder that there is going to be a button placed in xib.
+   Dont connect anything to the FirstResponder</p>
+
+<ol>
+<li><p>if you see this error "setting does not have outlet view" then in your xib you have removed the outlet connected to you View.
+To Solve this right click the view in you xib and drag the New Referencing Outlet connector to the file owner. then select the view property there.</p></li>
+<li><p>When you touch a button
+You must have a IBAction to the button to assign via Interfacebuilder.
+in your .h</p>
+
+<blockquote>
+  <p>-(IBAction) onTouchEvent :(id)sender;</p>
+</blockquote></li>
+</ol>
+
+<p>Now rightClick the button in your xib. choose TouchUpInside connector and drag to fileowner you can see the onTouchEvent pops out.</p>

@@ -1,0 +1,14 @@
+<blockquote>
+  <p>They either work ok such as passthru
+  and pcntl_exec but don't let me record
+  the output into a string or array</p>
+</blockquote>
+
+<p>Well, you can use a hack to get that string:</p>
+
+<pre><code>ob_start();
+passthru('Your command here');
+$result=ob_get_clean();
+</code></pre>
+
+<p>It is bad, but if your server is not high-load - it should work.</p>

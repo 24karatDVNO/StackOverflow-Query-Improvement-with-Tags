@@ -1,0 +1,13 @@
+<p>Put your default values in the field initially, give them a class of wipe, then try something like this...</p>
+
+<pre><code>$('.wipe').addClass('wipeDefault'); $('.wipe').focus(function() { 
+if (this.value == this.defaultValue) { this.value = ''; 
+$('.wipe').removeClass('wipeDefault');
+
+$(this).removeClass('wipeDefault'); } }); 
+$('.wipe').blur(function() { if (this.value == '') { 
+this.value = this.defaultValue; 
+$('.wipe').addClass('wipeDefault');
+
+$(this).addClass('wipeDefault'); } });
+</code></pre>

@@ -1,0 +1,7 @@
+<p>Essentially, yes.</p>
+
+<p>I'm curious why you're asking this question, since you basically answer it yourself (in the form of a series of "Should I?" questions).</p>
+
+<p>What you describe is a fairly common pattern. The button doesn't really determine the sort order, though. Your app maintains a Configuration which includes the sort order and maybe some other things. The Configuration always includes a sort order, the button allows you to change it. Anything that uses the Configuration should be notified when it changes, so that it can update the views that need updating.</p>
+
+<p>There are lots of different ways to do this, and there's no One Right Way for all situations. Perhaps the button is responsible for telling the table that it updated the sort order. Or perhaps the table is responsible for observing changes to the configuration. Either way works.</p>

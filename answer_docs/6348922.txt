@@ -1,0 +1,36 @@
+<p>On the server, I was converting my LINQ to SQL query to an 'IEnumerable' by calling 'AsEnumerable' against it. Then I was projecting it into my POCO/DTO and then converting it back to 'IQueryable' by calling 'AsQueryable'. I was doing this because some of the things I was doing against the query couldn't be done against IQueryable (they couldn't be transformed into SQL). When I took this out, it worked fine. I'd still like to know why it was crashing.</p>
+
+<pre><code>    [ProjectManagerAuthorization]
+    public IQueryable&lt;ProjectSummary&gt; GetMachiningProjects()
+    {
+        var ret = (from project in _dataContext.DAProjects
+                   where project.Status == "purchased" ||
+                       project.Status == "ready" ||
+                       project.Status == "machining" ||
+                       project.Status == "onhold" ||
+                       project.Status == "machined"
+                   select project).AsEnumerable();
+
+        return (from project in ret
+                select new ProjectSummary
+                {
+                    ID = GetProjectID(project),
+                    ProjectNumber = project.ProjectNumber,
+                    StoreNumber = project.StoreNumber,
+                    ProjectName = project.ProjectName,
+                    OwnerEmail = project.OwnerEmail,
+                    SheetQuantity = project.SheetQuantity ?? 0.0f,
+                    EdgeLength = project.EdgeLength ?? 0.0f,
+                    Price = project.Price ?? 0.0m,
+                    SheetMaterialDescription = GetProjectSheetStockDescription(project),
+                    BandingMaterialDescription = GetProjectBandingStockDescription(project),
+                    Status = (ProjectStatus)Enum.Parse(typeof(ProjectStatus), project.Status, true),
+                    SubmitDate = UtcNormalizeDateTime(project.SubmitDate),
+                    PurchaseDate = UtcNormalizeDateTime(project.PurchaseDate),
+                    UsingQueuedMachine = true,
+                    QueuedMachineID = project.QueuedMachineID,
+                    QueuedMachineOrder = LookupQueuedMachineOrder(project)
+                }).AsQueryable();
+
+    }
+</code></pre>

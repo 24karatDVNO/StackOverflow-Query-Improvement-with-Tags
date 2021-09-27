@@ -1,0 +1,5 @@
+<p>I got the same error when I changed the suffix that my executable uses when loading frameworks from 'no' suffix to 'debug' suffix.  I think the debug frameworks aren't being kept up to date by Apple.</p>
+
+<p>You might get bit this way if you are using 'debug' for other reasons, then add a framework whose debug version isn't up to date.</p>
+
+<p>As at XCode 3, the suffix setting is available in the "General" pane of your executable's "Get Info" window.</p>

@@ -1,0 +1,12 @@
+<p>very simple to do this just create an property and bind it with the visiblity property just like 
+hadi's propery </p>
+
+<pre><code>public bool isVisible  
+{
+    get { return _isVisible; }   
+ set     { 
+       _isVisible = value;   
+     NotifyPropertyChanged("isVisible");   
+ }
+}
+</code></pre>

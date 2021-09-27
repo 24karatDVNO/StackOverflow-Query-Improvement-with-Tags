@@ -1,0 +1,19 @@
+<p>You could do</p>
+
+<pre><code>DateTime date2 = DateTime.Now.AddMonths(-12);
+  //Or if you want to neglect the time part you could do
+DateTime date2 = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,0,0,0).AddMonths(-12);
+String d = "26/06/10"; 
+DateTime date1 = DateTime.ParseExact(d, "dd/MM/yy", null);
+int result = DateTime.Compare(date1, date2);
+string res;
+
+if (result &lt; 0)
+   Console.WriteLine("It is less than 12 months"); 
+else if (result == 0)
+   res = "is the equal";         
+else
+    Console.WriteLine("It is more than 12 months"); 
+</code></pre>
+
+<p>The problem with your code snippet is that it will output "It is more than 12 months" even if the date is equal.</p>

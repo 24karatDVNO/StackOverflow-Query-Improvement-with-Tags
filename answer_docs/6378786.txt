@@ -1,0 +1,24 @@
+<pre><code>(function() {
+  var value = obj._view_layer;
+  delete obj._view_layer;
+  var callback = function() {
+    /* observation logic */
+  }
+  Object.defineProperty(obj, "_view_layer", {
+    get: function() {
+      return value;
+    },
+    set: function(val) {
+      value = val;
+      callback(val);
+    },
+    writable: true, 
+    enumerable: true
+
+  });
+})();
+</code></pre>
+
+<p>Requires an ES5 browser.</p>
+
+<p>Only recommended to use for debugging. You can also use <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/watch" rel="nofollow"><code>.watch</code></a> when debugging in firefox.</p>

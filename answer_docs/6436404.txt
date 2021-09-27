@@ -1,0 +1,29 @@
+<p>Another PHP example that doesn't read the entire file in an array.</p>
+
+<pre><code>&lt;?php
+
+$fh = fopen('countries.txt', 'r');
+
+$countries = array();
+$cities = array();
+
+while ( $data = fgets($fh) )
+{
+  // If $country is empty (or not defined), the this line is a country.
+  if ( ! isset($country) )
+  {
+    $country = trim($data);
+    $countries[] = $country;
+  }
+  // If an empty line is found, unset $country.
+  elseif ( ! trim($data) )
+    unset($country);
+  // City
+  else
+    $cities[$country][] = trim($data);
+}
+
+fclose($fh);
+</code></pre>
+
+<p>The <code>$countries</code> array will contain a list of countries while the <code>$cities</code> array will contain a list of cities by countries.</p>

@@ -1,0 +1,18 @@
+<p>Your basic analysis is correct.</p>
+
+<p>(just to clarify the point that others have made: <strong>overloading</strong> is when methods have the same name but different signatures, whereas <strong>overriding</strong> is when a method has the same name and argument types as a method in a superclass)</p>
+
+<p>For future reference, you should be aware that method resolution (name + arguments -> method selection) in Java, in the case of overloaded methods, can actually be quite difficult to understand. The exact behavior used is written up in the <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.12" rel="nofollow">Java Language Spec (JLS), section 15.12</a>, and involves a few general subtleties:</p>
+
+<ul>
+<li><p>Overloaded method resolution is done at <em>compile time</em>, not at runtime. (selection among method <em>overrides</em> with the <em>same signature</em> is done at runtime, based on the most specific subclass's method.) If the compiler knows an argument is an instance of <code>Foo</code> (e.g. its class is <code>Foo</code> or a subclass of <code>Foo</code>) then it will use <code>Foo</code> as the argument's class, not its "real" class.</p></li>
+<li><p>Issues that determine which method is used include:</p>
+
+<ul>
+<li>whether a method is varargs or not (has <code>...</code> as the last argument e.g. <code>foo(Object a, String... b)</code>)</li>
+<li>whether a method's declared arguments are primitives or wrapped primitives e.g. <code>float</code> vs <code>Float</code></li>
+<li>whether one method's declared arguments are "more specific" than another (subclasses are more specific than their superclasses)</li>
+</ul></li>
+</ul>
+
+<p>This is complex but you have the basic understanding.</p>

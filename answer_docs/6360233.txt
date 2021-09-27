@@ -1,0 +1,11 @@
+<p>This definitely works regardless of what characters you put in the textbox, there must be a problem somewhere else?</p>
+
+<pre><code>&lt;input id="something" type="text" value="" /&gt;
+&lt;input type="button" id="btn" value="Go" /&gt;
+
+$(document).ready(function(){
+ $('#btn').click(function(){
+  alert($('#something').val());
+ });
+});
+</code></pre>

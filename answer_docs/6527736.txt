@@ -1,0 +1,1 @@
+<p>The standard way to handle this is to use a mutex to ensure that only a single instance of your program runs.  Then when the shell attempts to start up a new instance to open each file, the new instance simply passes the message on to the already running instance and lets it open the file.</p>

@@ -1,0 +1,10 @@
+<p>Redirecting will not POST a value to the page. You could use session or GET.</p>
+
+<pre><code>$message = urlencode("$_POST[artist] Was Added Successfully to database");
+header ("location: quotes.add.php?message=" . $message);
+</code></pre>
+
+<p>On your quotes.add.php page</p>
+
+<pre><code>echo $_GET['message'];
+</code></pre>

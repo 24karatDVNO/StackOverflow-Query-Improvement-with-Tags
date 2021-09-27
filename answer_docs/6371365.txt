@@ -1,0 +1,102 @@
+<p>For anyone who wants to log the event messages to a file as well as see them in the debug output window, here's a piece of code I created.</p>
+
+<p>Please only use this in a development environment, this code is not optimized.</p>
+
+<p>usage:<br>
+    In your asp.net application, add a reference to this library (MyPresentationLayer.Web).<br>
+    Add the following element to 'rewriter' node:<br>
+    <code>&lt;register logger="IntelligenciaExt.Web.Logging.UrlRewriterIntelligencia.FileLogger, IntelligenciaExt.Web"/&gt;</code><br>
+    By default the log file can be found outside your 'www' folder, in the subfolder 'intelligenciaLog'.  </p>
+
+<pre><code>using System; 
+using SysDiag = System.Diagnostics; 
+using System.IO;
+
+using Intelligencia.UrlRewriter.Logging;
+
+namespace MyPresentationLayer.Web.Logging.UrlRewriterIntelligencia
+{
+    /// &lt;summary&gt;
+    /// Custom logger for Intelligencia UrlRewriter.net that logs messages
+    /// to a plain text file (../intelligenciaLog/log.txt).
+    /// &lt;/summary&gt;
+    public class FileLogger : IRewriteLogger
+    {
+     private const string _logFolderName = "../intelligenciaLog";
+     private const string _logFileName = "log.txt";
+     private const string _appName = "UrlRewriterIntelligencia.FileLogger";
+
+     public FileLogger()
+     {
+         LogToFile(Level.Info, "Created new instance of class 'FileLogger'");
+     }
+
+     public void Debug(object message)
+     {
+         LogToFile(Level.Debug, (string)message);
+     }
+
+     public void Error(object message, Exception exception)
+     {
+         string errorMessage = String.Format("{0} ({1})", message, exception);
+         LogToFile(Level.Error, errorMessage);
+     }
+
+     public void Error(object message)
+     {
+         LogToFile(Level.Error, (string)message);
+     }
+
+     public void Fatal(object message, Exception exception)
+     {
+         string fatalMessage = String.Format("{0} ({1})", message, exception);
+         LogToFile(Level.Fatal, fatalMessage);
+     }
+
+     public void Info(object message)
+     {
+         LogToFile(Level.Info, (string)message);
+     }
+
+     public void Warn(object message)
+     {
+         LogToFile(Level.Warn, (string)message);
+     }
+
+     private static void LogToFile(Level level, string message)
+     {
+         string outputMessage = String.Format("[{0} {1} {2}] {3}", DateTime.Now.ToString("yyyyMMdd HH:mm:ss"),
+               _appName.PadRight(50, ' '), level.ToString().PadRight(5, ' '),
+               message);
+         SysDiag.Debug.WriteLine(outputMessage);
+         try
+         {
+             string pathToLogFolder =Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _logFolderName);
+             if (!Directory.Exists(pathToLogFolder))
+             {
+                 Directory.CreateDirectory(pathToLogFolder);
+             }
+
+             string fullPathToLogFile = Path.Combine(pathToLogFolder, _logFileName);
+             using (StreamWriter w = File.AppendText(fullPathToLogFile))
+             {
+                 w.WriteLine(outputMessage);
+                 // Update the underlying file.
+                 w.Flush(); // Close the writer and underlying file.
+                 w.Close();
+             }
+         }
+         catch (Exception) { }
+     }
+
+     internal enum Level
+     {
+         Warn,
+         Fatal,
+         Info,
+         Error,
+         Debug
+     }
+    } 
+}
+</code></pre>

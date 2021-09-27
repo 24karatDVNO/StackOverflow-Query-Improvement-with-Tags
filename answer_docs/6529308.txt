@@ -1,0 +1,7 @@
+<p>You can set up a central server that the .exe sends requests to to find out when updates are available.</p>
+
+<p>I would recommend that you look into WCF as a framework for your solution; there are many great references for the framework as well as posts on sites like this one.  You can probably spin up a separate thread in your application that checks for updates every X minutes.</p>
+
+<p>As for your specific question, "Is there way to display this message and kick them from the exe remotely?", yes it is possible, but it is more feasible to make the program automatically query for the update.</p>
+
+<p>If you want to shut them down for update remotely, then you have to know where they are on the network.  If the program periodically contacts a central database, then there is no need for the server to know where the program is on the network, the program can automatically reach out to the server from wherever it is.</p>

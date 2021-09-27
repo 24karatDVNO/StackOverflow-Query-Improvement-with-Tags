@@ -1,0 +1,4 @@
+<pre><code>select realname as reporter, count(*) as bugs
+from profiles p join bugs b on p.userid = b.reporter
+group by realname
+</code></pre>

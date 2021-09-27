@@ -1,0 +1,19 @@
+<p>You can access these through the <a href="http://msdn.microsoft.com/en-us/library/system.web.mvc.formcollection.aspx" rel="nofollow noreferrer"><code>FormCollection</code></a> which contains all the values that are posted:</p>
+
+<pre><code>public ActionResult QuestionnaireAction(FormCollection formCollection)
+{
+   foreach (var key in formCollection.AllKeys)
+   {
+      var value = formCollection[key];
+      // etc.
+   }
+
+   foreach (var key in formCollection.Keys)
+   {
+       var value = formCollection[key.ToString()];
+       // etc.
+   }
+}
+</code></pre>
+
+<p>However, make sure to read the post <a href="https://stackoverflow.com/questions/220020/how-to-handle-checkboxes-in-asp-net-mvc-forms">How to handle checkboxes in ASP.NET MVC forms?</a> first as checkboxes can be weird in MVC if you don't understand how they work.</p>

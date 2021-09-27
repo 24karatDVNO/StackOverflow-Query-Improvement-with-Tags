@@ -1,0 +1,7 @@
+<p>Do you want test if the beforeInsert method is being called or the logic of beforeInsert is correct?</p>
+
+<p>If you want to test if beforeInsert is being called the test class should extend the GrailsUnitTestCase. Do so should give you mocking capabilities and add all the methods like save() and validate(). You can verify if the mocked object called the beforeInsert method or not when you do a save().</p>
+
+<p>If you are testing the logic of beforeInsert then you don't need to mock it. You can create the object and test the logic just like other unit test.</p>
+
+<p>Hope this helps.</p>

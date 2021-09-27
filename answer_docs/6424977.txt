@@ -1,0 +1,25 @@
+<p>If you only have 3 levels, try this: </p>
+
+<pre><code>$('ul').addClass('level-0');
+$('ul').find('ul').removeClass('level-0').addClass('level-1');
+$('ul').find('ul').find('ul').removeClass('level-0').removeClass('level-1').addClass('level-2');
+</code></pre>
+
+<p><a href="http://jsfiddle.net/fallen888/2rATE/" rel="nofollow">http://jsfiddle.net/fallen888/2rATE/</a></p>
+
+<p>For a more dynamic solution, try this:</p>
+
+<pre><code>$("ul").each(function(index, element) {
+    var parents = $(this).parents('ul');
+    var level = -1;
+
+    if (parents.length &gt; 0) {
+        var parentClass = $(parents.get(0)).attr('class');
+        level = parseInt(parentClass.substr(parentClass.indexOf('level-') + 6, 1));
+    }
+
+    $(this).addClass('level-' + (level + 1));
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/fallen888/2rATE/1/" rel="nofollow">http://jsfiddle.net/fallen888/2rATE/1/</a></p>

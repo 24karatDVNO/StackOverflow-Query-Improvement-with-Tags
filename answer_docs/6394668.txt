@@ -1,0 +1,30 @@
+<p>I don't see why this isn't possible.  opacity is about 5 css properties for cross-browser.  I am not sure what exactly you mean by an overlay (same thing as a layer or z-index?)  or are you talking about the possibility of using a css </p>
+
+<p>for all p tags, then it's p:hover in css, but for a specific p tag, then you use an #id with :hover pseudo-class like this:</p>
+
+<pre><code>#myptag:hover {
+    background-color: #f3c9d5;
+    background-image:url(/images/mybgimg.jpg);
+    color:blue;
+    cursor:pointer;
+}
+</code></pre>
+
+<p>for opacity, use a number in windows.index from 0 to 100:</p>
+
+<pre><code>//this function modifies the opacity of an element at a 
+//specific id like el1 or el2 using imageNumber as the index.
+//you also specify an opacityInteger, which is an non-negative 
+//integer number in the range 0..100
+//works on chrome, safari, ie, and firefox, all the major browsers.
+function processimage(imageNumber, opacityInteger) {
+    var opacityFloat=opacityInteger/100.0;
+    //set image style, if we can - I hear it's readonly...
+    //filter:alpha(opacity=100);-moz-opacity:1.0;opacity:1.0
+    document.getElementById("el"+imageNumber).style.filter="alpha(opacity="+opacityInteger+")";
+    document.getElementById("el"+imageNumber).style.mozOpacity=opacityFloat.toString();
+    document.getElementById("el"+imageNumber).style.opacity=opacityFloat.toString();
+}
+</code></pre>
+
+<p>well, I just realized this is only marginally helpful. while it may get your toward your goal, you may still have to set a css z-index:1; on a layerto get an actual overlay.  what I just gave you was an UNDERLAY or simply setting a given p tag's color or background image to another thing.  I don't know if that's desirable to you or not.  I have found overlays to be extremely difficult to manage, because the page layout engine treats all the layers as if they were the same layer tags-flow-wise and you have to use absolute positioning to force them to stick in a position you want them in.  plus it messes up your main page using layers.</p>

@@ -1,0 +1,68 @@
+<p>It's almost a factory method. I would do something like:</p>
+
+<pre><code>enum NinjaTypes {
+    Generic, Katanna, StarThrower, Invisible, Flyer
+}
+
+class Ninja {
+String Name;
+
+void jump() {
+}
+
+void kickAss() {
+}
+
+void useKatanna() {
+    System.out.println("nothing happens");
+}
+
+void throwStar() {
+    System.out.println("nothing happens");
+}
+
+void becomeInvisible() {
+    System.out.println("nothing happens");
+}
+
+void becomeVisible() {
+    System.out.println("nothing happens");
+}
+
+void fly() {
+    System.out.println("nothing happens");
+}
+
+void land() {
+    System.out.println("nothing happens");
+}
+}
+
+class StarThrowerNinja extends Ninja {
+    void throwStar() {
+        System.out.println("throwing star");
+    }
+}
+
+class NinjaSchool {
+    static Ninja create(NinjaTypes WhichType) {
+        switch (WhichType) {
+        case Generic:
+            return new Ninja();
+        case StarThrower:
+            return new StarThrowerNinja();
+        default:
+            return null;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Ninja generic=NinjaSchool.create(NinjaTypes.Generic);
+        generic.throwStar();
+        Ninja starThrower=NinjaSchool.create(NinjaTypes.StarThrower);
+        starThrower.throwStar();
+    }
+}
+</code></pre>

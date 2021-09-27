@@ -1,0 +1,8 @@
+<p>I'm assuming that upload file is a method you're trying to invoke on the same class you defined it on. If that's the case, all you have to do is</p>
+
+<pre><code> this.UploadFile();
+</code></pre>
+
+<p>and adjust the UploadFile() method to read the file from a member variable instead of a parameter. </p>
+
+<p>Hope that gives you enough info to get started.</p>

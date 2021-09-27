@@ -1,0 +1,7 @@
+<pre><code>$('ul').live('click', function(event) {
+  var target = $(event.target);
+  $('#' + target.attr('id')).removeClass('inactive-class').addClass('active-class');
+});
+</code></pre>
+
+<p>This should apply to any ul element you click. It is OK to make distinction of <code>&lt;ul&gt;</code> elements, so maybe it's better that all the elements in the horizontal navbar are selected by class like <code>$('ul.horiz-navbar')</code>.</p>

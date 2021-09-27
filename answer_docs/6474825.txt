@@ -1,0 +1,21 @@
+<p>A lot of people here will say that you shouldn't be using it at all. The reason for this is there could be conflicts if you accidentally define a function that is already in the std namespace, for very large projects this could be difficult to track down. For trivial programs, it's honestly not that big of an issue, but where you put it does make a difference.</p>
+
+<p>In the global scope, it applies everywhere. In a local scope (i.e, only in main()), it will only apply in main. </p>
+
+<p>Here are some alternatives good alternatives</p>
+
+<ul>
+<li>Put std:: before everything i.e, <code>std::cout &lt;&lt; "Hello, World!" &lt;&lt; std::endl;</code></li>
+<li>Only use the specific thing you want inside a function.</li>
+</ul>
+
+<p>An example of using only things you want in a local function:</p>
+
+<pre><code>int main()
+{
+   using std::cout;
+   using std::endl;
+   cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+   return 0;
+} // Obviously you need #include &lt;iostream&gt; at the top..
+</code></pre>

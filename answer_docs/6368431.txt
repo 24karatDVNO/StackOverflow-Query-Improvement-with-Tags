@@ -1,0 +1,6 @@
+<p>You could use a <a href="http://www.cplusplus.com/reference/iostream/stringstream/" rel="nofollow">stringstream</a>.</p>
+
+<pre><code>stringstream s;
+s &lt;&lt; n &lt;&lt; "/" &lt;&lt; d;
+fracs.insert(make_pair((double)n/d, s.str()));
+</code></pre>

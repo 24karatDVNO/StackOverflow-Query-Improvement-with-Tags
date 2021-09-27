@@ -1,0 +1,3 @@
+<p>I figured the problem. </p>
+
+<p>I wrote a C# console application and invoked the web service. At the same time, I captured the trace from fiddler. The fiddler trace showed me that xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" should come before xsi. I saved the xml and made my request xml EXACTLY the same. It started working. </p>

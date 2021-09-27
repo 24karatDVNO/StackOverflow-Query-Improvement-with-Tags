@@ -1,0 +1,3 @@
+<p>I agree with Chris Dennett that this is a bad idea. I would avoid JNI - it is a terrific way to introduce subtle bugs that crash your JVM.</p>
+
+<p>I would implement this by creating a C/D HTTP server running on the local host. The server accepts a POST request to /image/ to start creating the image, a long running process. That POST request returns immediately with a token. I would then GET /image/token which would return either the progress information or the image, depending on if it is done or not. Your Java process can then poll the GET /image/token URL.</p>

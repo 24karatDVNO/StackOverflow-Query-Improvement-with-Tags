@@ -1,0 +1,10 @@
+<pre><code>channel.bind('pusher:subscription_succeeded', function(members) {
+    members.each(function(member) {
+       set_status('online', member);
+    });
+})
+
+function set_status(setStatusToWhat, member) { //setStatusToWhat would be 'online'
+    ;
+}
+</code></pre>

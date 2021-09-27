@@ -1,0 +1,13 @@
+<p>width:auto isnt working because you need to specify the right position too.
+this should work, although i havent tested it:</p>
+
+<pre><code>.right_iframe {
+  position:absolute;
+  left:216px;
+  right: 0px;
+  width: auto;
+  height: 100%;
+  margin:0px;
+  border: 0px;
+}
+</code></pre>

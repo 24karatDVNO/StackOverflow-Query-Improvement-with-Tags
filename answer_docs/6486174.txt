@@ -1,0 +1,14 @@
+<p>Your code is almost correct; use <code>Add</code> instead of <code>AddRange</code>, and remove the <code>Environment.NewLine</code>.</p>
+
+<p>There are other possible approaches:</p>
+
+<ul>
+<li><p><code>AddRange</code> is used to add multiple items at once. So you could do that instead of the loop:</p>
+
+<pre><code>listBox2.Items.AddRange(filePaths);
+</code></pre></li>
+<li><p>You could also use data binding:</p>
+
+<pre><code>listBox2.DataSource = filePaths;
+</code></pre></li>
+</ul>

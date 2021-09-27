@@ -1,0 +1,30 @@
+<p>The easy fix would be to add a static property on the document class, that for this example is called MyApp.as. You assign a value to the globalStage property by setting it at a decent point in time, which for most cases in the document class can be the constructor:</p>
+
+<pre><code>public class MyApp extends Sprite {
+    public static var globalStage:Stage;
+    //...
+
+    public function MyApp() {
+        globalStage = stage;
+    }
+}
+</code></pre>
+
+<p>After that you can access the stage from anywhere by importing the document class and calling this snippet:</p>
+
+<pre><code>MyApp.globalStage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
+</code></pre>
+
+<p>Now it doesn't have to be a property of the the document class, maybe a dedicated class like <code>StageProxy</code> would be more clear, and you can still assign it from the document class.</p>
+
+<pre><code>public function MyApp() {
+    StageProxy.stage = stage;
+}
+</code></pre>
+
+<p>And access it from anywhere:</p>
+
+<pre><code>StageProxy.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
+</code></pre>
+
+<p>This is still not what I'd call 'clean' or 'pretty', but it gets the job done.</p>

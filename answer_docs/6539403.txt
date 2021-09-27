@@ -1,0 +1,13 @@
+<p>This function will take the current height and the unit number you want it to snap to, rounding to the nearest multipleOf.</p>
+
+<pre><code>function snapHeight(height, multipleOf) {
+    return multipleOf * Math.round(height / multipleOf);
+}
+</code></pre>
+
+<p>Examples:</p>
+
+<pre><code>snapHeight(930, 100); // returns 900
+snapHeight(930, 50); // returns 950
+$('#element').height(snapHeight($('#element').height(), 100)); // in jQuery
+</code></pre>

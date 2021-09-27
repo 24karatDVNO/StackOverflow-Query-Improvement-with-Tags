@@ -1,0 +1,7 @@
+<p>This is an array of objects. An array is like a list, so this would be a list of objects. Each object has two properties: Name and ReleaseYear. I'm not sure where your data is coming from, but try something like this:</p>
+
+<pre><code>var movies = new Array();
+$.each(result, function(key, value){
+    movies.push({Name: this.name, ReleaseYear:this.year})        
+});
+</code></pre>

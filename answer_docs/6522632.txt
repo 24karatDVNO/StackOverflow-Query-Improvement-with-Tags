@@ -1,0 +1,13 @@
+<p>To retrieve a list of users who have an HTML skill of 1 and a PHP skill of 2:</p>
+
+<pre><code>SELECT u.name
+FROM users u JOIN skills s1 ON u.id = s1.user_id AND s1.skill = 'php'
+JOIN skills s2 ON u.ud = s2.user_id AND s2.skill = 'html'
+WHERE s1.skill_level = 2
+AND s2.skill_level = 1
+</code></pre>
+
+<p>If you wanted all of the users with both HTML and PHP you could drop the WHERE clause entirely. If you wanted all of the users with a PHP skill of at least 2, you'd just change the clause to </p>
+
+<pre><code>s1.skill_level &gt;= 2
+</code></pre>

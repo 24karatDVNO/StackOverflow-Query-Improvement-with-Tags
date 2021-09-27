@@ -1,0 +1,6 @@
+<p>Your problem is that if numberOfLines is 0 for a label in your cell (which it probably is so that your cell can expand), then the label will expand again when delete slides in, causing the ugly overlap. A worthy alternative is to truncate the text when the delete slide comes in. To do this you need to set the number of lines when you make the cell.</p>
+
+<pre><code>cell.textLabel.numberOfLines = textLabelheight/textLabelFontSize;
+</code></pre>
+
+<p>You probably already know textLabelHeight and textLabelFontSize, cos you worked it out when you adjusted the cell height.</p>

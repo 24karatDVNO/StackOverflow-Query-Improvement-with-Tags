@@ -1,0 +1,7 @@
+<p>I suspect that the reason it worked for Winforms and not for WPF is that Winforms uses GDI for rendering and WPF uses DirectX. These technologies have interoperability issues that are more fully detailed here, in particular in a section called "Transparency and Top-Level Windows".</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/aa970688.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/aa970688.aspx</a></p>
+
+<p>You might be able work around the issue by hosting the WPF visual in a Win32 window, as detailed here:</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/ms742522.aspx#hosting_a_wpf_page" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms742522.aspx#hosting_a_wpf_page</a></p>

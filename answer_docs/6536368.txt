@@ -1,0 +1,12 @@
+<p>What you should aim to do here is to verify that the select element is present on the page before trying to interact with it.</p>
+
+<p>You don't specify what you are actually using to drive your browser. But, for example, if you are using capybara, there is a <code>has_select?</code> method, which, usefully, will automatically wait a short time for the element to appear if it is not found immediately, precisely to handle the kind of AJAX situation you describe.</p>
+
+<p>Selenium has a <code>wait_for_element_present</code> method which does much the same thing.</p>
+
+<p>In general, the pattern to use basically this:</p>
+
+<ol>
+<li>Assert that the item is present on the page, using some method which will retry if it isn't immediately there, and times out if it does not appear after a set amount of time</li>
+<li>Attempt interacting with the element once you are certain it is on the page</li>
+</ol>

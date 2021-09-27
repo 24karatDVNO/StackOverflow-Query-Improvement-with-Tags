@@ -1,0 +1,10 @@
+<p>Normally by default, the session time is set as 30 minutes by the server itself, unless it's modified by the system administrator or by the programmer, as per the client's requirements. So you should not be worrying about this point at all.</p>
+
+<p>Now regarding the user's any non-action, what I can say is that the server automatically time-outs the session internally, so that if the user performs any action after 30 minutes, the user will automatically need to re-login. But here there are two requirements:-</p>
+
+<ul>
+<li>The programmer must have properly set the restriction at the top of each user-specific page (like account details page, ...), so that the user can only perform actons hen he is logged in.</li>
+<li>The programmer must have properly written code to re-route the user to the login page, if the user wants to see the account details or user-specific action.</li>
+</ul>
+
+<p>Hope it helps.</p>

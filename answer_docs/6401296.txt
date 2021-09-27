@@ -1,0 +1,33 @@
+<p>This XPath is absolutely correct. I've tested it with <strong>Saxon</strong> XSLT processor as follows:</p>
+
+<pre><code>&lt;xsl:stylesheet version="2.0" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+    &lt;xsl:output method="xml" indent="yes"/&gt;
+    &lt;xsl:strip-space elements="*"/&gt;
+
+    &lt;xsl:template match="/"&gt;
+            &lt;xsl:copy-of select="//item[category 
+            = preceding-sibling::item[1]/category]"/&gt;   
+    &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>With results:</p>
+
+<pre><code>&lt;item&gt;
+   &lt;code&gt;0001.0.00&lt;/code&gt;
+   &lt;category&gt;709&lt;/category&gt;
+&lt;/item&gt;
+&lt;item&gt;
+   &lt;code&gt;0016.0.00&lt;/code&gt;
+   &lt;category&gt;52&lt;/category&gt;
+&lt;/item&gt;
+</code></pre>
+
+<p>You might want also try alternatives:</p>
+
+<pre><code>//item[category = ./preceding-sibling::item[1]/category]
+/root/itemlist/item[category = ./preceding-sibling::item[1]/category]
+</code></pre>

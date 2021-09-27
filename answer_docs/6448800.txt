@@ -1,0 +1,23 @@
+<p>Probably, your _vimrc is not broken. I tested below.</p>
+
+<pre><code># cat &gt; foo.vim
+hi CursorLine   guibg=#DDDDDD
+hi SpecialKey   guifg=#d8a080   gui=italic
+hi Constant   guifg=#d8a080   gui=italic
+set listchars=tab:»\ ,trail:·,extends:»,precedes:«,eol:¶
+set cursorline
+set list
+^D
+
+# vim foo.vim
+</code></pre>
+
+<p>I could see the cursorline is fill with lightgray, and "#DDDDDD" (is Constant) is italic.
+And, I did below to show SpecifalKey.</p>
+
+<pre><code>:map
+v  &lt;C-X&gt;         "*d
+...
+</code></pre>
+
+<p>I could see <code>&lt;C-X&gt;</code> is italic.</p>

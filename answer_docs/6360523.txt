@@ -1,0 +1,17 @@
+<p>Create an <a href="http://msdn.microsoft.com/en-us/library/bb383977.aspx" rel="nofollow" title="Extension Method">extension method</a>.</p>
+
+<pre><code>public static class ListExtensions
+{
+    public static void DoSomeStuffAndModifyList(this List&lt;int&gt; list)
+    {
+       ...
+       list.Add(newElement);
+    }
+)
+</code></pre>
+
+<p>And to call it:</p>
+
+<pre><code>var gradeList = new List&lt;int&gt;();
+gradeList.DoSomeStuffAndModifyList();
+</code></pre>

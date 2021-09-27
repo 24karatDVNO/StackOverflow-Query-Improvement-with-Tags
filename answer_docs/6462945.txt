@@ -1,0 +1,7 @@
+<pre><code>XNamespace ns4 = "urn:Allscripts:Hub:PatientMsg";
+XDocument doc = XDocument.Load("yourFileName.xml");
+string applicationStatusValue = doc.Root.Element("MessageContent")
+                                        .Element(ns4 + "MessageProcessed")
+                                        .Element(ns4 + "ApplicationStatus")
+                                        .Value;
+</code></pre>

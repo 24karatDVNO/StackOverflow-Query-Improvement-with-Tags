@@ -1,0 +1,19 @@
+<p>You have better to use WaitForMultipleObjects() for waiting stdin/sock.</p>
+
+<pre><code>HANDLE h[2];
+h[0] = GetStdHandle(STD_INPUT_HANDLE);
+h[1] = sock;
+
+while (1) {
+    DWORD ret;
+    ret = WaitForMultipleObjects(2, h, FALSE, 0 /* wait value you want */);
+
+    if (ret == WAIT_OBJECT_0) {
+        // munipulating stdin.
+    }
+    if (ret == WAIT_OBJECT_0 + 1) {
+        // munipulating sock.
+        // then call recv.
+    }
+}
+</code></pre>

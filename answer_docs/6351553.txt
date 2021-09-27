@@ -1,0 +1,8 @@
+<p>Your first rule matches ahead of the mobile rules because it's not limited to <code>user/</code> occurring at the beginning of the string.  Prefix it with <code>^</code> to indicate the start of the string:</p>
+
+<pre><code>RewriteRule ^user/(.*)/$ /viewer/index.php?profile=$1
+RewriteRule ^user/(.*)$ viewer/index.php?profile=$1
+
+RewriteRule ^mobile/user/(.*)/$ /mobile/index.php?user=$1
+RewriteRule ^mobile/user/(.*)$ mobile/index.php?user=$1
+</code></pre>

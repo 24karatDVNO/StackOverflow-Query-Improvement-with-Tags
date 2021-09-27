@@ -1,0 +1,7 @@
+<p>The one case that is possible outside the wonderful brief that Jason has highlighted. </p>
+
+<p>Have you previously used the tf.exe rollback <strong>/keepmergehistory[1]</strong> command on the changesets in the main or branch1? Read more about the tf.exe rollback command here <a href="http://geekswithblogs.net/TarunArora/archive/2011/06/27/how-to-undo-a-changeset-using-tf.exe-rollback.aspx" rel="nofollow">http://geekswithblogs.net/TarunArora/archive/2011/06/27/how-to-undo-a-changeset-using-tf.exe-rollback.aspx</a> </p>
+
+<p>[1] - Specify this option if you want future merges between the same source and the same target to exclude the changes that you are rolling back.</p>
+
+<p>If so, you can use tf.exe merge /force <a href="http://msdn.microsoft.com/en-us/library/bd6dxhfy(v=VS.100).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/bd6dxhfy(v=VS.100).aspx</a> which forces a merge between the 2 branches. But make sure you check in after the merge (when there is conflict after the merge, unless you resolve the conflict and check in, the changes remain checked out) and if you do a view history after the merge to the branch you are able to see the new changeset, verify the changeset details to make sure that the merge took place correctly. </p>

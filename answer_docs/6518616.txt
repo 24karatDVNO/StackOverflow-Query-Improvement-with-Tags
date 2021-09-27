@@ -1,0 +1,15 @@
+<p>Most likely the code <code>parser.parseAsList(impactsUrl)</code> parses differently from what you expect, and this test is detecting an error in the code it's testing.</p>
+
+<p>Post the code for ImpactsParser, and we might be able to help figure out where it's going wrong.</p>
+
+<p><strong>Edit:</strong></p>
+
+<p>Based on the code now posted for ImpactsParser, you're producing many more elements in your list of <code>ImpactInfo</code> items than there are <code>&lt;impact&gt;</code> tags in your document, which may be exactly what you want to do, but may be something you're misunderstanding.</p>
+
+<p>Every time you find an <code>&lt;impact&gt;</code> tag, you're getting sets of <code>onObject</code> and <code>toObject</code> tags from the attributes, looping over the combined pairs (which will be only one in your sample xml shown), and creating one <code>ImpactInfo</code> object for each by a call to a function not shown.</p>
+
+<p>If that object created has "conditions", presumably triggered by the presence of <code>&lt;condition&gt;</code> tags, you're creating <strong>another</strong> <code>ImpactInfo</code> object for each condition, and adding them to the list.  This is what I suspect you may really not want, but I of course don't really <em>know</em> exactly what you want.</p>
+
+<p>It's hard to go further than this in saying what's wrong, because it's not clear to me what the expected correct working is.</p>
+
+<p>What you really ought to do is define in a collection of tests the expected results for different bits of input (using assertions instead of <code>System.out.println</code>) and try to get your tests to pass by modifying the code.  Start with the simplest cases.</p>

@@ -1,0 +1,10 @@
+<p>Here's an example that works: <a href="http://jsfiddle.net/sharat87/v5Lqm/" rel="nofollow">http://jsfiddle.net/sharat87/v5Lqm/</a></p>
+
+<p>The problem with your code is that in the <code>.each</code> call, I don't think the <code>this</code> refers neither to a DOM element, nor to a selector, not a valid one at least. So, what you are effectively doing is this</p>
+
+<pre><code>$('Ks').replaceWith...
+</code></pre>
+
+<p>Now, jQuery can't find any elements with the <code>Ks</code> tag, as they don't exist and so nothing happens. jQuery doesn't complain when you operate on 0 elements.</p>
+
+<p>Study the code in the jsfiddle example I provided above, let me know if you have any more doubts :)</p>

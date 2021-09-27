@@ -1,0 +1,8 @@
+<p>Thanks guys for the suggestions.</p>
+
+<p>Ended up posting the same question on the jQuery forum. Answer was to specifiy the <em>items</em> option on the sortable initialize to select all but the first row:</p>
+
+<pre><code>$('table').sortable({items: 'tr:not(:first)'});
+</code></pre>
+
+<p>And this works perfectly ...</p>

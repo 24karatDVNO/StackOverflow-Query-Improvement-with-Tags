@@ -1,0 +1,5 @@
+<p>When do the files need to be downloaded?
+If once a day, i would suggest to use a timerjob (a scheduled event in sharepoint).
+Else, you need to create a Filesystemwatcher (service) that checks a folder if a new file is added and than add it to sharepoint.</p>
+
+<p>To create a webapplication, I suggest to user a "farm feature". When activating this feature, a webapplication can be created.</p>

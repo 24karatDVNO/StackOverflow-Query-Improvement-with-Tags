@@ -1,0 +1,35 @@
+<p>You need to constrain <code>T</code> to be of a type that has such a property:</p>
+
+<pre><code>interface INamed { 
+    string Name { get; }
+}
+
+public class MyList&lt;T&gt; where T : INamed 
+
+    public T[] items;
+
+    public T Get( string name ) {
+        foreach( T item in items ) {
+        if( item.Name == name )
+            return item;
+        }
+        return null; // if not found
+    }
+}
+</code></pre>
+
+<p>Then, for instance,</p>
+
+<pre><code>class Foo : INamed {
+    private readonly string name;
+    private readonly int foo;
+    public string Name { get { return this.name; } } 
+    public Foo(string name, int foo) {
+        this.name = name; 
+        this.foo = foo;
+    }
+}
+
+MyList&lt;Foo&gt; list = // some instance of MyList&lt;Foo&gt;
+Foo alice = list.Get("Alice");
+</code></pre>

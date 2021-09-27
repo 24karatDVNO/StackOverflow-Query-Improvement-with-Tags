@@ -1,0 +1,9 @@
+<p>If your log statements are always strings of the form "[%i] 0xdd - message..." and frag.id is always an integer between 0 and 30, you could instead declare an array of strings:</p>
+
+<pre><code>std::string messagesArray[] = {"[%i] 0x00 - message one", "[%i] 0x01 - message two", ...}
+</code></pre>
+
+<p>Then replace the switch statement with</p>
+
+<pre><code>errorLog.OutputSuccess(messagesArray[frag.id], i);
+</code></pre>

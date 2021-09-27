@@ -1,0 +1,9 @@
+<p>It depends on what platform / OS you are trying to do that on:</p>
+
+<ul>
+<li>If you are using a RTOS on embedded device, you may be able to change the code directly in there too...</li>
+<li>If you are on Linux, you may be able to find the code somewhere and change it there to recompile, but you may have a pretty serious performance impact on your platform.</li>
+<li>For others, you can use a wrapper in your application, call it "os_malloc" or something like that and implement that function for any debugging or anything like that.</li>
+</ul>
+
+<p>The last one is probably your safest bet no matter what...</p>

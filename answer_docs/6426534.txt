@@ -1,0 +1,7 @@
+<p>I personally prefer storing the image on the HD. This allows for easy scalability (you can move off your images to NFS or CDN or whatever)</p>
+
+<p>If you have the image name stored in the DB, then picking up and editing the file from the HD shouldn't be a big deal and you can always use <code>unlink()</code> to delete the file, not as easy as deleting the record from the DB but i think the effort is worth it in the long term.</p>
+
+<p>Besides i believe when you store images on the HD, you are taking a substantial load off of your DB server. So i think you stick with the new approach and iron out the issues you are having.</p>
+
+<p>Just my 2 cents.</p>

@@ -1,0 +1,7 @@
+<p>I think it's related to OS level permissions. Asp.net usually executes as NetworkService but may be making the unmanaged calls as Inet_machine, which doesn't have permission to use the API calls.</p>
+
+<p>Cassini runs under your machine account, so is executing the calls differently.</p>
+
+<p>You could try using the impersonate config directive or change the user the app pool executes as (dependant on your IIS).</p>
+
+<p>Another thought, have you considered using IIS to block access to the the restricted files rather than doing it in asp.net?</p>

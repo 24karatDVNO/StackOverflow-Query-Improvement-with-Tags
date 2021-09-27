@@ -1,0 +1,15 @@
+<p>Would something like this work?</p>
+
+<pre><code>&lt;?php
+foreach($array as $values){
+    echo '&lt;input type="checkbox" value="item" checked="checked" /&gt;' . $values[0] . ' &lt;input type="text" value="' . $values[1] . '"/&gt;'
+}
+?&gt;
+</code></pre>
+
+<p>I'm not sure how you know if a value is checked or not but once you have that in a variable or as part of the the array just use an if statement to output </p>
+
+<pre><code>checked="checked" 
+</code></pre>
+
+<p>if neccessary.</p>

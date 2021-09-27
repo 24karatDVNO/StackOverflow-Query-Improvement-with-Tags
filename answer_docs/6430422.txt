@@ -1,0 +1,7 @@
+<p>Well, i couldn't find any info on this so I decided to stick my custom code into the RoleProvider. Accessing the custom functions of the RoleProvider is as simple as:</p>
+
+<pre><code>string providerName = "MyProvider";
+CustomRolesProvider provider = Roles.Providers[providerName] as CustomRolesProvider;
+</code></pre>
+
+<p>Whenever the provider is accessed it fires the <code>Initialize</code> event if it is not yet initialized - which reads the config settings from the <code>Web.Config</code> under the <code>System.Web section</code></p>

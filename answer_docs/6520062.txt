@@ -1,0 +1,15 @@
+<p>As there are two groups to be rendered</p>
+
+<p>1 - optgroup
+2 - option</p>
+
+<p>So you have to write two foreach loops, one inside another, kinda like</p>
+
+<pre><code>foreach () {
+print '&lt;optgroup&gt;...';
+
+foreach () {
+print '&lt;option&gt;...';
+}
+}
+</code></pre>

@@ -1,0 +1,7 @@
+<p>Are you asking how to join two tables on a common column?  i.e.</p>
+
+<pre><code>select a.Sub, a.Temp, a.Weight a.Silicon a.Cast_Date, b.SI,
+       b.Temperature, b.Sched_Cast_Date, b.Treadwell
+from a
+join b on b.sched_cast_date = a.cast_date
+</code></pre>

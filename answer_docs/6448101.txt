@@ -1,0 +1,11 @@
+<p>Your PropertyPath is not valid. It expects the name of a property, not the value of the property you want to animate. The code <code>rectangles[5].Fill</code> will return a brush, the one that is used when rendering the rectangle. You should use something like <code>new PropertyPath("Fill")</code> instead.</p>
+
+<p>But in your case, it looks like you want to animate the Color property of the SolidColorBrush that is in the Fill property, then you'd want to use something like <code>new PropertyPath("(Shape.Fill).(SolidColorBrush.Color)")</code>. This path was adapted from this <a href="http://forums.silverlight.net/forums/p/136973/308960.aspx" rel="nofollow">forum discussion</a>.</p>
+
+<p>You could also change your target and and simply do:</p>
+
+<pre><code>Storyboard.SetTarget(exampleAnimation, rectangles[5].Fill);
+Storyboard.SetTargetProperty(exampleAnimation, new PropertyPath("Color"));
+</code></pre>
+
+<p>Ofcourse, this all assumes that Fill is actually a SolidColorBrush.</p>

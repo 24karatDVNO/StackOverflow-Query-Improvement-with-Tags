@@ -1,0 +1,18 @@
+<p>The problem was actually completely unrelated to the excel export. The “…could not be parsed” error was the key. From these links I got the key, which was that the grid events cause only a partial postback event: </p>
+
+<p><a href="http://forums.asp.net/t/1392827.aspx" rel="nofollow">http://forums.asp.net/t/1392827.aspx</a></p>
+
+<p><a href="http://forums.aspfree.com/net-development-11/gridview-footer-template-button-in-updatepanel-not-posting-back-236087.html" rel="nofollow">http://forums.aspfree.com/net-development-11/gridview-footer-template-button-in-updatepanel-not-posting-back-236087.html</a></p>
+
+<p>This explains the ThreadAbortException and the “…could not be parsed” error. Adding this to the OnPreRender of the ImageButton was the solution:</p>
+
+<pre><code>protected void addTrigger_PreRender(object sender, EventArgs e)
+{
+    if (sender is ImageButton)
+    {
+        ImageButton imgBtn = (ImageButton)sender;
+        ScriptManager ScriptMgr = (ScriptManager)this.FindControl("ScriptManager1");
+        ScriptMgr.RegisterPostBackControl(ImgBtn);
+    }
+}
+</code></pre>

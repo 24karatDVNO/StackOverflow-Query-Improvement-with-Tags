@@ -1,0 +1,13 @@
+<p>This sounds reasonable enough a suggestion to me.</p>
+
+<p>There shouldn't be any harm in implementing simple views to make querying vs. specific tables easier, e.g. (please forgive the syntax if not quite right - and by all means use column names rather then <code>*</code>s!).</p>
+
+<pre><code>CREATE VIEW vw_Customers
+
+AS
+
+SELECT BT.*, C.*
+FROM yourbasetable BT
+INNER JOIN customers C
+ON C.customerid = BT.ID
+</code></pre>

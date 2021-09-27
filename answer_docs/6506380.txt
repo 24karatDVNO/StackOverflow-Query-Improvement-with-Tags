@@ -1,0 +1,19 @@
+<p>After a few days i can answer my own question:</p>
+
+<p>The WARNING "advice defined in org.example.aspect.TestAspect has not been applied [Xlint:adviceDidNotMatch]" is given when there is no call to the mothod findAll().</p>
+
+<p>if you create a class that implements the interface test and has a main method that calls findAll(), the warning will vanish.</p>
+
+<pre><code>public class TestImpl implements Test {
+
+    @override
+    public Collection&lt;String&gt; findAll() {
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Test test = new TestImpl();
+        test.findAll();
+    }
+}
+</code></pre>

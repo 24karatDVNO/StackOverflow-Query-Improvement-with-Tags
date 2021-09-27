@@ -1,0 +1,7 @@
+<p>So it sounds like you must have two transactions competing for a row lock. </p>
+
+<p>Just brainstorming here, but if <code>dbValueLookup.Count = 0</code>, then you will call <code>addData</code> (which sounds like it does an <code>INSERT</code>?), but you will not call <code>scope.Complete()</code> to commit your transaction. </p>
+
+<p>I'm not sure if the <code>End Using</code> will always commit the transaction or not.</p>
+
+<p>Do you really need to create the <code>TransactionScope</code> on every iteration of the loop? Why not create one transaction, do all your updates/inserts, then commit once?</p>

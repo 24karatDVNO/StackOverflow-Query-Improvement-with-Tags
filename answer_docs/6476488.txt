@@ -1,0 +1,9 @@
+<p>If you have a function like</p>
+
+<pre><code>template&lt;class t&gt;
+ostream&amp; operator&lt;&lt;(ostream&amp; o, const t&amp; value) 
+</code></pre>
+
+<p>You must at least put this in the same namespace as the types you want to print. Otherwise, the type <code>t</code> will match <strong>all types</strong> in the entire program, including all my types that I perhaps don't want to print this way.</p>
+
+<p>It is generally not a good idea to define a template for any <code>t</code> as you risk making it way too general. Ask yourself, will it really work for <strong>all</strong> <code>t</code>s?</p>

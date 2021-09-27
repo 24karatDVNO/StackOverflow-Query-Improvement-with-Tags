@@ -1,0 +1,53 @@
+<p>For posterity, here's my solution to the scrolling part of the question.  This code handles the space first, then, if the scroll bar is already at the bottom, it doesn't handle the KeyDown.  @Hasan's recomended commend fires at that point.</p>
+
+<pre><code>internal class FlowDocumentScrollViewer2 : FlowDocumentScrollViewer
+{
+  private static bool PageDown&lt;T&gt;(T listView)
+     where T : DependencyObject
+  {
+     var scrollViewer = GetVisualChild&lt;ScrollViewer&gt;(listView, null);
+     var scrollBar = GetVisualChild&lt;ScrollBar&gt;(listView,
+                                               bar =&gt; bar.Orientation == Orientation.Vertical);
+     var formerOffset = scrollBar.Track.Value;
+     scrollViewer.PageDown();
+     scrollBar.Track.UpdateLayout();
+     return formerOffset &lt; scrollBar.Track.Value;
+  }
+
+  private static T GetVisualChild&lt;T&gt;(DependencyObject parent, Predicate&lt;T&gt; predicate)
+     where T : Visual
+  {
+     T child = default(T);
+     int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+     for (int i = 0; i &lt; numVisuals; i++)
+     {
+        Visual v = (Visual) VisualTreeHelper.GetChild(parent, i);
+        child = v as T;
+        if (child == null)
+        {
+           child = GetVisualChild(v, predicate);
+        }
+        if (child != null &amp;&amp; (predicate == null || predicate(child)))
+        {
+           break;
+        }
+     }
+     return child;
+  }
+
+  public FlowDocumentScrollViewer2()
+  {
+     PreviewKeyDown += PreviewSpaceDown;
+  }
+
+  private void PreviewSpaceDown(object sender, KeyEventArgs e)
+  {
+     if (e.Handled)
+        return;
+     if (e.Key == Key.Space)
+     {
+        e.Handled = PageDown(this);
+     }
+  }
+}
+</code></pre>

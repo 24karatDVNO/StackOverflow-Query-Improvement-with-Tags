@@ -1,0 +1,9 @@
+<p>Why not bind to the form's submit event instead of the hover? If you do something like this:</p>
+
+<pre><code>$('selector-for-your-form').submit(function() {
+    $(this).find('input:not(.toggleval_foc)').val('');
+    return true;
+});
+</code></pre>
+
+<p>Then you'll clear out the default example values right before the form is submitted. You will, of course, have to supply a real selector in place of <code>'selector-for-your-form'</code>.</p>

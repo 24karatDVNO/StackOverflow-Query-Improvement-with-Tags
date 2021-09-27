@@ -1,0 +1,8 @@
+<p>You need to pass in your Context in your override, or else declare it static by using something like this:</p>
+
+<pre><code>static public activity = Activity.this;
+</code></pre>
+
+<p>This may be bad programming practice, however.  You may want to consider writing a general base class and implementing it as a "controller" for each of your views.</p>
+
+<p>Hope this helped!</p>

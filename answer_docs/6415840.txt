@@ -1,0 +1,11 @@
+<p>Try including the :put method. For example:</p>
+
+<pre><code>&lt;%= form_tag({:controller =&gt; "translations", :action =&gt; "update"}, :html =&gt; {:method =&gt; :put, :multipart =&gt; true}) do %&gt;
+</code></pre>
+
+<p>Second, you should have an alias for the route. If its a RESTFUL route, which it looks like it is. You could do something like (below), instead of indicating which controller and action it should submit to.</p>
+
+<pre><code>&lt;%= form_for(@transaction, :url =&gt; transaction_path, :html =&gt; {:method =&gt; :put, :multipart =&gt; true}) do %&gt;
+</code></pre>
+
+<p>For your <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html" rel="nofollow">reference</a>.</p>

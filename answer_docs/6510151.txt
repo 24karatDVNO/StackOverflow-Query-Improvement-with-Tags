@@ -1,0 +1,21 @@
+<p>Assuming that you always get pairs in the <code>Group</code>s, you can do a <code>GROUP BY [Group]</code> and for each of the 4 columns select the <code>MAX()</code> (which will basically take the non-null value).</p>
+
+<p><strong>Edit:</strong> if you have a dataset with the columns "Group", "Date" and "Value" and want to merge those so that you have the "Group", "Date 1", "Value 1", "Date 2" and "Value 2" columns, use this (the first CTE represents the test data):</p>
+
+<pre><code>WITH Results AS (
+    SELECT 'A' [Group], CONVERT(datetime, '2011-06-15') [Date], 105 [Value]
+    UNION ALL
+    SELECT 'A' [Group], CONVERT(datetime, '2011-06-16') [Date], 107 [Value]
+    UNION ALL
+    SELECT 'B' [Group], CONVERT(datetime, '2011-06-18') [Date], 567 [Value]
+    UNION ALL
+    SELECT 'B' [Group], CONVERT(datetime, '2011-06-20') [Date], 525 [Value]
+),
+ResultsIndexed AS (
+    SELECT ROW_NUMBER() OVER (PARTITION BY r.[Group] ORDER BY r.[Date]) ix, r.* FROM Results r
+)
+SELECT r1.[Group], r1.[Date] [Date 1], r1.[Value] [Value 1], r2.[Date] [Date 1], r2.[Value] [Value 1]
+    FROM ResultsIndexed r1
+    JOIN ResultsIndexed r2 ON (r1.[Group] = r2.[Group]) AND (r2.[ix] = 2)
+    WHERE r1.[ix] = 1
+</code></pre>

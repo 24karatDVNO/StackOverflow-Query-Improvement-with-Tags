@@ -1,0 +1,17 @@
+<p>Try this:</p>
+
+<pre><code>$("div.overlay").each(function(){                
+  $(this).click(function(){
+      var $elm = $('a#overlink');
+      if (document.createEvent) {
+        var e = document.createEvent('MouseEvents');
+        e.initEvent( 'click', true, true );
+        $elm.get(0).dispatchEvent(e);
+      }
+      else {
+        $elm.trigger("click");
+      }
+     return false;
+  });
+});
+</code></pre>

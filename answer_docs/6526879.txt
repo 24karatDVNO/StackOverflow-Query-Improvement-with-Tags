@@ -1,0 +1,41 @@
+<p>You can do </p>
+
+<pre><code>function clickFunction()
+{
+  do stuff
+}
+</code></pre>
+
+<p>in your link call </p>
+
+<pre><code>onclick="clickFunciton()"
+</code></pre>
+
+<p>and in php call </p>
+
+<pre><code>if(isset($_REQUEST['javascript:function'])){
+    echo "&lt;script type='text/javascript'&gt;clickFunction()&lt;/script&gt;";
+}
+</code></pre>
+
+<p>then it will be called on page load</p>
+
+<p>or call </p>
+
+<pre><code>window.onload=clickFunction() ;
+</code></pre>
+
+<p>and Something like this can get you the query params</p>
+
+<pre><code>function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&amp;]"+name+"=([^&amp;#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>If you don't mind ordering Type 0 items as well then you can do</p>
+
+<pre><code>var sortedItems = items.OrderBy(i =&gt; i.Type).ThenBy(i =&gt; i.Text);
+</code></pre>
+
+<p>Otherwise, if you need to preserve the original order for Type 0 items, then you can do</p>
+
+<pre><code>var sortedItems = items.OrderBy(i =&gt; i.Type).ThenBy(i =&gt; i.Type == 0 ? "A" : i.Text);
+</code></pre>

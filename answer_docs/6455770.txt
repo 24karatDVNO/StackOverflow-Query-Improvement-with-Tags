@@ -1,0 +1,66 @@
+<p>The OP mentioned doing it without a function, so try this for a single string (provided you have a <a href="https://stackoverflow.com/questions/1393951/what-is-the-best-way-to-create-and-populate-a-numbers-table">"Numbers"</a> table):</p>
+
+<pre><code>--sp GEN_FN_GEN_ListToTable
+DECLARE @String  varchar(500)
+       ,@SplitOn char(1)
+SELECT @String='the quick red fox jumped over the lazy brown dog, again.'
+      ,@SplitOn=' '
+
+
+SELECT
+    COUNT(*) AS VowelCount
+    FROM (SELECT
+              LTRIM(RTRIM(SUBSTRING(List2, number+1, CHARINDEX(@SplitOn, List2, number+1)-number - 1))) AS ListValue
+              FROM (
+                       SELECT @SplitOn + @String + @SplitOn AS List2
+                   ) AS dt
+                  INNER JOIN Numbers n ON n.Number &lt; LEN(dt.List2)
+              WHERE SUBSTRING(List2, number, 1) = @SplitOn
+         ) dt2
+    WHERE ListValue IS NOT NULL AND ListValue!='' AND LEFT(ListValue,1) IN ('a','e','i','o','u')
+</code></pre>
+
+<p>OUTPUT:</p>
+
+<pre><code>VowelCount
+-----------
+2
+
+(1 row(s) affected)
+</code></pre>
+
+<p>here is an example of how to count the vowels (function free) with many strings in a table(provided you have a <a href="https://stackoverflow.com/questions/1393951/what-is-the-best-way-to-create-and-populate-a-numbers-table">"Numbers"</a> table):</p>
+
+<pre><code>DECLARE @YourTable table (RowID int, RowValue  varchar(500))
+
+INSERT INTO @YourTable VALUES (1,'the quick red fox jumped over the lazy brown dog, again.')
+INSERT INTO @YourTable VALUES (2,'just another example of some words.')
+INSERT INTO @YourTable VALUES (3,'a b c d e f g h i j k l m n o p q r s t u v w x y z')
+
+SELECT
+    RowID,COUNT(*) AS VowelCount
+    FROM (SELECT
+              RowID, LTRIM(RTRIM(SUBSTRING(List2, number+1, CHARINDEX(' ', List2, number+1)-number - 1))) AS ListValue
+              FROM (SELECT
+                       RowID, ' ' + RowValue + ' ' AS List2
+                       FROM @YourTable
+                   ) AS dt
+                  INNER JOIN Numbers n ON n.Number &lt; LEN(dt.List2)
+              WHERE SUBSTRING(List2, number, 1) = ' '
+         ) dt2
+    WHERE ListValue IS NOT NULL AND ListValue!='' AND LEFT(ListValue,1) IN ('a','e','i','o','u')
+    GROUP BY RowID
+</code></pre>
+
+<p>OUTPUT:</p>
+
+<pre><code>RowID       VowelCount    
+----------- -----------
+1           2
+2           3
+3           5
+
+(3 row(s) affected)
+</code></pre>
+
+<p>You basically need to get a split function and then split on a single space, <a href="https://stackoverflow.com/questions/2341374/sql-comma-delimted-column-to-rows-then-sum-totals/2341510#2341510">here is a similar answer</a> which explains about a split function and the usage of it. I'm not sure why the OP doesn't want to use a function though.</p>

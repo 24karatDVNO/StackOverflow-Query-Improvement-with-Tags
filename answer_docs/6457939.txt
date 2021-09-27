@@ -1,0 +1,45 @@
+<p>Well, if I would use wpf DataTemplate of:</p>
+
+<pre><code>&lt;Border HorizontalAlignment="Left" BorderThickness="2" Margin="3" 
+    Padding="2" CornerRadius="2" BorderBrush="Black" &gt;
+    &lt;StackPanel Orientation="Horizontal" &gt;
+        &lt;Border HorizontalAlignment="Left" BorderThickness="1" Margin="3"
+            CornerRadius="1" BorderBrush="Gray" VerticalAlignment="Top"&gt;
+            &lt;Image  Width="128" 
+                Source="{Binding Path=imageUrl}" &gt;&lt;/Image&gt;
+        &lt;/Border&gt;
+        &lt;StackPanel Width="120"&gt;
+            &lt;Label Content="{Binding Path=name}"/&gt;
+            &lt;Label Content="{Binding Path=brewery}"/&gt;
+            &lt;Label Content="{Binding Path=beer}"/&gt;
+            &lt;StackPanel Width="120" Orientation="Horizontal" &gt;
+                &lt;Label Content="AVG Rating: "/&gt;
+                &lt;Label Content="{Binding Path=reiting}"/&gt;
+            &lt;/StackPanel&gt;
+        &lt;/StackPanel&gt;
+    &lt;/StackPanel&gt;
+&lt;/Border&gt;
+</code></pre>
+
+<p>with a static data provider and gui:</p>
+
+<pre><code>&lt;Window.DataContext&gt;
+    &lt;ObjectDataProvider 
+        ObjectType="{x:Type local:BeerLoader}" MethodName="LoadData" /&gt;
+&lt;/Window.DataContext&gt;
+
+&lt;StackPanel&gt;
+    &lt;Button Content="Add" Click="Button_Click" /&gt;
+    &lt;ListBox Name="data" ItemsSource="{Binding}" /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+
+<p>I can get:</p>
+
+<p><img src="https://i.stack.imgur.com/Ga16A.jpg" alt="example"></p>
+
+<p>what is a lot better and clearer.</p>
+
+<p><s>However data is not static and I have not found a workaround yet. </s></p>
+
+<p>In the C# code, I just need to change collection from <code>List</code> to <code>ObservableCollection</code>.</p>

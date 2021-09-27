@@ -1,0 +1,14 @@
+<p>Here is the code..i put the stream.publish method inside the request function..it works well..</p>
+
+<pre><code> protected void postToWall(String temp2) {
+    Bundle params = new Bundle();
+   params.putString("message", _messageInput.getText().toString()"some text Here);
+   params.putString("caption", "{*actor*} just posted a secret message.");
+   params.putString("description","A secret message is waiting for you.  Click the link to      decode it.");
+   params.putString("name", "A Secret Message For You");
+   params.putString("picture","http://www.kxminteractive.com/Content/images/app_logos/secretMessage.png");
+   params.putString("link", "http://www.kxminteractive.com/decrypt/");
+  **mAsyncRunner.request(((temp2 == null) ? "me" : temp2) + "/feed",
+                params, "POST", new WallPostRequestListener(),stream.publish);**
+}
+</code></pre>

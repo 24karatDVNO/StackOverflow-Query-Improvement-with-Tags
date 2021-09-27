@@ -1,0 +1,17 @@
+<p>@Samuel: <em>"Each student must be assigned to exactly one grade and exactly one student is assigned to any one grade."</em></p>
+
+<p>Which means having a function that maps a student to any grade S->G. The condition does not seem to introduce side constraints (i.e. all grades must be assigned in best way among the set of students while maintaining the 1-to-1 constraint.)</p>
+
+<hr>
+
+<p>So in essence (if the problem was really formulated correctly) this means simply chosing</p>
+
+<p><strong>Q = argmax_j(Tij) for all i's</strong>.</p>
+
+<p>Which is simply the <strong>maximum value of each row of the cost matrix T</strong> .</p>
+
+<hr>
+
+<p>I guess i dont have to provide a code example since finding the maximum element is a rather trivial operation of O(n). Use heaps if you want, but a simple scanning and keeping the max will also work.</p>
+
+<p>Since this seems too simple, the problem might have been formulated incorrectly.</p>

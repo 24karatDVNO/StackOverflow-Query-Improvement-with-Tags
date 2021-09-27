@@ -1,0 +1,14 @@
+<p>Person aPerson=allPersons[0] copies just the reference of the item in the List.</p>
+
+<p>You will need to use 'new' to create a new instance of the object, otherwise it actually copying the pointer and any change would effect just one object.</p>
+
+<pre><code>List allPersons= ReadallPersons()
+
+**Person aPerson= new Person();**
+
+aPerson.Name='test1'
+
+allPersons.Add(aPerson)
+</code></pre>
+
+<p>or you can perform a DeepCopy of the object, see <a href="https://stackoverflow.com/questions/129389/how-do-you-do-a-deep-copy-an-object-in-net-c-specifically">How do you do a deep copy of an object in .NET (C# specifically)?</a>.</p>

@@ -1,0 +1,17 @@
+<p>Add a <code>ScrollView</code> as the top level parent of the view like so:  </p>
+
+<pre><code>@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    ScrollView scrollView  = new ScrollView(this);
+    setContentView(scrollView);
+
+    View view = new View(this);
+    view.setBackgroundColor(Color.WHITE);
+
+    scrollView.addView(view);
+}
+</code></pre>
+
+<p>You could do this in xml, you know...</p>

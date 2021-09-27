@@ -1,0 +1,12 @@
+<p>Well, I have no idea what you're trying to accomplish here. The fact that you label some records "Entity" and others "Field" and then try to connect them to each other makes it look to me like you are mixing two totally different things in the same table. Why not have an Entity table and a Field table?</p>
+
+<p>You could get the results you seem to want by writing</p>
+
+<pre><code>select fid, le.value, lf.value
+from entittyfields e
+join language le on e.pid=le.id and type='Entity'
+join language lf on e.fid=lf.id and type='Field'
+order by fid
+</code></pre>
+
+<p>But I think you'd be wise to rethink your table design. Perhaps you could explain what you're trying to accomplish.</p>

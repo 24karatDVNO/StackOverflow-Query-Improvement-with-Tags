@@ -1,0 +1,6 @@
+<p>Why not setup the linker flag (VC2008 and higher):
+Linker -> Manifest -> UAC Execution Level: <strong>requireAdministrator (/level='requireAdministrator')</strong></p>
+
+<p>EDIT: I re-read the question, and found that problem is probably with NTFS file-security. This is not your program's fault, but this is by design. Any user who creates files and <strong>folders</strong> is given permissions to that user only. </p>
+
+<p>Login as administrator user, create a folder. Then re-login as another user (however you like), and try to access/read/write/delete that folder - you cannot. The permissions are granted to administrator user, and not to everyone/users-group.</p>

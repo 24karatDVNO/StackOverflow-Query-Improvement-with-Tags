@@ -1,0 +1,18 @@
+<p>I see that there has been some viewers of this posting, so I wanted to share my findings for those that might need some assistance with this in the future...</p>
+
+<pre><code>$tabs = $("#tabs").tabs({
+                    tabTemplate: "&lt;li&gt;&lt;a href='#{href}'&gt;#{label}&lt;/a&gt;&lt;span class='ui-icon ui-icon-close'&gt;Remove Tab&lt;/span&gt;&lt;/li&gt;",
+                    add: function( event, ui ) {
+                        $(ui.panel).load("src/getDetails.php", {'q': + 'release_1234'}, function(response, status, xhr){
+                            if(status == "error"){
+                                var msg = "Sorry, but there appears to be an error: ";
+                                $("#error").html(msg + xhr.status + " " + xhr.statusText);
+                            }
+                        });
+                    }
+                });
+</code></pre>
+
+<p>Now all I need to figure out is how to pass a variable to replace the hardcoded value for release_1234 - shout if you have any ideas.</p>
+
+<p>Thanks.</p>

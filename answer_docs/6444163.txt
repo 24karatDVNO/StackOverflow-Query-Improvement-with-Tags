@@ -1,0 +1,1 @@
+<p>I would use option 2, just make the lock object final.  The account object can probably be changed, especially if the client can have more than one account.  If you use a final lock object you will ensure that any change to the account is synchronized, even if the account object changes to a different instance.</p>

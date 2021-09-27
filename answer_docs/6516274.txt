@@ -1,0 +1,5 @@
+<p>NSURLConnection is your friend. The best way to solve it is to do the server call asynchronous using NSURLConnection.</p>
+
+<p>There is <a href="http://developer.apple.com/library/ios/#samplecode/LazyTableImages/Introduction/Intro.html" rel="nofollow">Sample Code</a> on the Apple Developer Connection that downloads the images for each row in a UITableView asynchronously so the UI is more responsive. So if you take a look at that code you should be able to refactor your code. </p>
+
+<p>Loading the server response asynchronously prevents your app from being shut down by the iOS runtime because you are blocking the main thread for more than 20 seconds. </p>

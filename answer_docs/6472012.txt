@@ -1,0 +1,10 @@
+<p>For coordinates:</p>
+
+<pre><code>foreach (Visio.Page Page in Pages)
+{
+   Visio.Shapes Shapes = Page.Shapes;
+   foreach (Visio.Shape Shape in Shapes)
+   {
+      double x = Shape.Cells["PinX"].ResultIU;
+      double y = Shape.Cells["PinY"].ResultIU;
+</code></pre>

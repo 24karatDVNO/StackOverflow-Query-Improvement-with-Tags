@@ -1,0 +1,9 @@
+<p>Thank you everybody, I really appreciate your answers :)<br>
+I did it with this code :</p>
+
+<pre><code> var current_url = location.href ;
+ if( current_url.indexOf( 'user/' ) !== -1 ) { // if not using # hashtag , so redirect him
+ var user_id = current_url.substring(current_url.lastIndexOf('/')+1);
+ location.href = 'http://mysite.com/#user-'+user_id ;
+}
+</code></pre>

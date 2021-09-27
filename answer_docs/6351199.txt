@@ -1,0 +1,10 @@
+<p>In response to your question and your comment on morja's ans:
+The individual actions of command buttons and links <strong>inside the tabs will not be fired</strong>. However, the action that is specified in <strong>the tab tag will be fired</strong>.</p>
+
+<p>In your example <code>htmlCommandLink</code> will not be fired and <code>downloadRequest()</code> not called, but if you were to have:</p>
+
+<pre><code>&lt;rich:tab id="updateLicensesTab" label="Update licences" action="#{licenseIMC.tabChange}"&gt;
+                    &lt;h:form id="updateLicensesForm"&gt;      
+</code></pre>
+
+<p>then the <code>tabChange</code> function would be called.</p>

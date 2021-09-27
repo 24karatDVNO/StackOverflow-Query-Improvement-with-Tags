@@ -1,0 +1,11 @@
+<p>If you really want to return user IDs like that from friends that have been orphaned,</p>
+
+<pre><code>SELECT friends.desuser, user.nickname
+</code></pre>
+
+<p>instead of</p>
+
+<pre><code>SELECT user.id, user.nickname
+</code></pre>
+
+<p>since the id will not exist in <code>user</code> (since there's no matching record in <code>user</code>)</p>

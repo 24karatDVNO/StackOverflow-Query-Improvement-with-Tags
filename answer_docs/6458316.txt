@@ -1,0 +1,19 @@
+<p>Here is my code:</p>
+
+<pre><code>int multiply(int a[],int n,int nextproduct,int i)
+{
+    int prevproduct=1;
+    if(i&gt;=n)
+        return prevproduct;
+    prevproduct=multiply(a,n,nextproduct*a[i],i+1);
+    printf(" i=%d &gt; %d\n",i,prevproduct*nextproduct);
+    return prevproduct*a[i];
+}
+
+int main()
+{
+    int a[]={2,4,1,3,5};
+    multiply(a,5,1,0);
+    return 0;
+}
+</code></pre>

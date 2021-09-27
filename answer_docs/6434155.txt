@@ -1,0 +1,10 @@
+<pre><code>public int UniqueValue(params string[] strings)
+{
+    return String.Join("~", strings.AsEnumerable&lt;string&gt;()
+                                   .OrderBy&lt;string, string&gt;(s =&gt; s)
+                                   .ToArray&lt;string&gt;())
+                 .GetHashCode();
+}
+</code></pre>
+
+<p>This, of course, is provided that you don't need <em>complete</em> uniqueness and that a hash code is good enough.</p>

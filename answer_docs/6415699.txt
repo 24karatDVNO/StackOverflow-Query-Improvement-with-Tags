@@ -1,0 +1,7 @@
+<p>There <em>are</em> situations where a SLL is better than a heap for implementing a priority queue. For example:</p>
+
+<ol>
+<li>When removing from the queue needs to be as fast as possible. Removing from an SLL is O(1) (from the front of the list/queue) while removing from a heap is O(log n). I actually ran into this while writing a version of the <code>alarm()</code> syscall for a simple OS. I simply could not afford the O(log n) lookup time. Related to this is when you need to remove multiple elements at a time. Removing k elements from an SLL takes O(k) time while it takes O(k log n) time for a heap.</li>
+<li>Memory issues. The traditional implementation of a min or max heap involves an array, which needs to be resized as the heap grows. If you can't afford the time it takes to do a large <code>realloc</code> then this strategy is out. If you implement the heap as a binary tree, then you need two pointers instead of one for an SLL.</li>
+<li>When you have to maintain multiple priorities. It is relatively easy to keep track of the same nodes in different linked lists. Doing this with heaps is much more complicated.</li>
+</ol>

@@ -1,0 +1,8 @@
+<p>Use the <code>uniqid()</code> function instead of doing it with the md5. Make sure to set <code>more_entropy</code> to true.</p>
+
+<p>i.e.</p>
+
+<pre><code>uniqid('prefix', true);
+</code></pre>
+
+<p>Change <code>'prefix'</code> to something appropriate for your application.</p>

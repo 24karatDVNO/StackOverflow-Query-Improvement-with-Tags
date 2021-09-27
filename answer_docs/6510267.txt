@@ -1,0 +1,15 @@
+<p>Not sure if this is what you want. If you just have two row per group, you may try this.</p>
+
+<pre><code>;WITH cte as
+(
+    -- You sql output here
+    SELECT  *
+    FROM    table
+)
+SELECT  a1.group,a1.date1,a1.value1,a2.date2,a2.value2
+FROM    cte a1
+INNER JOIN cte a2
+ ON a2.date2 IS NOT NULL
+ AND a1.group = a2.group
+WHERE a1.date1 IS NOT NULL
+</code></pre>

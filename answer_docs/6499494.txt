@@ -1,0 +1,14 @@
+<p>Note: Currently my requirement is a single user per site. </p>
+
+<p>The solution I found is:</p>
+
+<ol>
+<li><p>All terms and action of "Logon" change to "Login", "Logoff" to "Logout".</p></li>
+<li><p>Have a single link on the home page to /Account/Login</p></li>
+<li><p>The Account/Login is to have both user login and openid login on the same page. The also involves moving identity to account controller and removing the UserController/actions as this was basically just an authenticated members area.  </p></li>
+<li><p>The forms authentication to be /Account/Login version too (web.config) as changed by (1)</p></li>
+<li><p>All XRDS xml documents to be named XRDS-Party or XRDS-Provider respectivly and also need to be returned from views as xml without their surrounding layout. I was only able to do this by instead of returning View(), to return Content() with the help of another method RenderPartialViewToString() from <a href="http://learningdds.com/public/ControllerExtension.cs" rel="nofollow">http://learningdds.com/public/ControllerExtension.cs</a></p></li>
+<li><p>Log4net is your friend, especially when "No endpoint could be found" error. It also helped me find that the returned xml document was surrounded by xml.</p></li>
+</ol>
+
+<p>Lastly, the above steps are not a complete guide to converting the solution to be a single code base. Hopefully it will help you and feel free to ask Qs.</p>

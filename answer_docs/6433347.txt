@@ -1,0 +1,3 @@
+<p>I think it all depends on your definition of "concurrent".</p>
+
+<p>You could write your string with a timestamp to a text file or a database when the first visitor hits the site and then for every new visitor check that file or the database and the timestamp. If it´s within your time-frame / definition of concurrent, you serve the existing value, if not, you replace it with a new one.</p>

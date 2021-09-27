@@ -1,0 +1,44 @@
+<blockquote>
+  <p>Like say cast to unix timestamp, then only select the record if the date is divisible by some number?</p>
+</blockquote>
+
+<p>The problem with this, and most approaches is that you still have to read all the consecutive points (unless you've got indexed columns containing various representations of the timestamp) so you might be reducing the size of the resultset but not the amount of work required to extract it.</p>
+
+<p>Can you create a new table (doesn't have to be in the same database / server - you can still connect to the raw data using the federated engine)? That way you could set up a table of timestamps with different degrees of granularity, in a towers of hanoi sequence e.g.</p>
+
+<pre><code>date time       level
+-------------   -----
+201101010000    0
+201101010010    6
+201101010020    6
+201101010030    5
+201101010040    6
+201101010050    6
+201101010100    4
+201101010110    6
+201101010120    6
+201101010130    5
+...
+201101020000    3
+...
+</code></pre>
+
+<p>That way you could SELECT from this tale at an appropriate level of granularity and join to the underlying rawdata.</p>
+
+<p>The above coul be imlemented as a functio to aggregate data - but without atable to lookup <strong>from</strong> you still need to read all the intervening rows in the src data.</p>
+
+<blockquote>
+  <p>If there was a solution that would allow me to directly select even time intervals</p>
+</blockquote>
+
+<p>Something like....</p>
+
+<pre><code> SELECT DATE_FORMAT(yourdate, SUBSTR('%Y%m%d%H%i%s',0,2*@level)) as t,
+ AVG(value)
+ FROM yourtable
+ WHERE yourdate BETWEEN @datestart AND @dateend
+ GROUP BY DATE_FORMAT(yourdate, SUBSTR('%Y%m%d%H%i%s',0,2*@level))
+ ORDER BY 1;
+</code></pre>
+
+<p>(as above - without a second table to join to or another way of selecting only the reuired sampl of data using an index, there's no performance penalty in using the aggregate fn).</p>

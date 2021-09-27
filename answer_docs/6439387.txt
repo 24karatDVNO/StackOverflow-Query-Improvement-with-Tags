@@ -1,0 +1,15 @@
+<p>You can use firebug addon of firefox browser to see content of HTTP request/response.
+It does't require any server (but of course, if you dont have server which process requests from browser and send responses to browser, you 'll always see response "unable to connect").</p>
+
+<p>If you still need to mock response, you can create simple server which is able to respond with mock responses, for example java servlet at tomcat server, with code like this:</p>
+
+<pre>
+public class MyMockServlet extends HttpServlet {
+..
+private String mockHeaders = "...";
+private String mockResponse = "my response";
+ public void service(HttpRequest request, HttpResponse response){
+    setHeaderAndBodyInResponse(response);//your method
+ }
+}
+</pre>

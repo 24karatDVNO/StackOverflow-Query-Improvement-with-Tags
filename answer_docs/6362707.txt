@@ -1,0 +1,10 @@
+<p>The preprocessor does not evaluate C variables. It "preprocesses" the source code before it is compiled and thus has its own language. Instead do this:</p>
+
+<pre><code>#define c 1
+
+#if c==1
+#define check(a) (a==1)?a:5
+#define TABLE_SIZE 100
+#endif
+...
+</code></pre>

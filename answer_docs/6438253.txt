@@ -1,0 +1,21 @@
+<p>So I don't know Ruby at all, but I know the architeccture you need to implement using jQuery. First you need to setup an endpoint that will return JSON to the client. When a user creates, modifies or just plain submits the filter form you will post or get the JSON endpoint. Its your option, you can retrieve it as each field is changed by the user or just when the submit button is clicked, it is entirely up to you how interactive you want to make it.</p>
+
+<p>You would use the jQuery $.ajax functions to retrieve the JSON. I reccomend either the $.post or $.get to retrieve the updated data.<a href="http://api.jquery.com/category/ajax/shorthand-methods/" rel="nofollow">jQuery AJAX Shorthand functions</a></p>
+
+<p>You can also setup a click event handler for your form submit button. It might look like this, it is important to use the e.preventDefault because this keeps the entire page from posting back.</p>
+
+<p>$("form :submit").click(function(e){</p>
+
+<p>e.preventDefault();</p>
+
+<p>$.getJSON([your AJAX url], [data from filter], function(result){
+        //update table using templates
+    });</p>
+
+<p>});</p>
+
+<p>In the $getJSON callback I reccomend using the jQuery templates or some other templating merge functionality like Resig's micro templates.</p>
+
+<p>I wrote a whole series of blog posts on doing exactly this sort of thing in ASP.NET. It should translate pretty well for you to Ruby, just replace the ASP.NET stuff with your Ruby server-side and you should be on your way.</p>
+
+<p><a href="http://professionalaspnet.com/archive/tags/Thin+ASP/default.aspx" rel="nofollow">My Thin ASP.NET Series</a></p>

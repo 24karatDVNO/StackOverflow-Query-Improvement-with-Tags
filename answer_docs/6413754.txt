@@ -1,0 +1,24 @@
+<p>I use the setIcon function from Google Maps API (v3) like:</p>
+
+<pre>
+// This is our marker image, sets the size and position (from the center of the map)
+this.image = new google.maps.MarkerImage("/gfx/map/icon_hotel.png",
+    // This marker is 22 pixels wide by 28 pixels tall.
+    new google.maps.Size(22, 28),
+    // The origin for this image is 0,0.
+    new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,28
+    new google.maps.Point(11, 28)
+);
+
+// This is our marker shadow. Same location as marker, but different dimensions
+this.shadow = new google.maps.MarkerImage("/gfx/map/icon_hotel_shadow.png",
+    // The shadow image is larger in the horizontal dimension
+    // while the position and offset are the same as for the main image.
+    new google.maps.Size(33, 28),
+    new google.maps.Point(0,0),
+    new google.maps.Point(11, 28)
+);
+</pre>
+
+<p>There's an example of this by Google at: <a href="http://code.google.com/apis/maps/documentation/javascript/examples/icon-complex.html" rel="nofollow">http://code.google.com/apis/maps/documentation/javascript/examples/icon-complex.html</a></p>

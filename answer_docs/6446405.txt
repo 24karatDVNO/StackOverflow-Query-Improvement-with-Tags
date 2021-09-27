@@ -1,0 +1,3 @@
+<p>I had the same problem. In my case, I had an additional target for the same project (which contained test libraries). At some point xCode always tried to launch the test binary, regardless of what binary it compiled.</p>
+
+<p>Removing the pbxuser and perspective files (inside project.xcodeproj) solved it for me.</p>

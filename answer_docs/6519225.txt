@@ -1,0 +1,33 @@
+<p>The <a href="http://dev.mysql.com/doc/refman/5.5/en/connector-j-reference-configuration-properties.html" rel="nofollow">JDBC URL format</a> when using the MySQL Connector/J driver is:</p>
+
+<blockquote>
+  <p>jdbc:mysql://[host][,failoverhost...][:port]/[database][?propertyName1][=propertyValue1][&amp;propertyName2][=propertyValue2]...</p>
+</blockquote>
+
+<p>Therefore, the actual URL to be used in your case ought to be (if the database is installed on your local machine with name TEST and listening on the default MySQL port of 3306):</p>
+
+<blockquote>
+  <p>jdbc:mysql://localhost:3306/TEST</p>
+</blockquote>
+
+<p>and not the below.</p>
+
+<blockquote>
+  <p>TEST/ANKUR1</p>
+</blockquote>
+
+<p>Remember that JDBC URLs are used by the <code>DriverManager</code> class to determine which driver ought to be used to connect to the database, and where the database is located. One does not connect to tables in JDBC; instead, one connects to a database (or a schema) and then issues SELECT queries against tables. Your method therefore, would look like:</p>
+
+<pre><code>conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/TEST","root","school");
+System.out.println("Connected to the database");
+PreparedStatement pStmt = conn.prepareStatement("SELECT * FROM ANKUR");
+ResultSet rs = pStmt.executeQuery();
+...
+//Process the contents of the ResultSet
+...
+rs.close();
+pStmt.close();
+conn.close();
+</code></pre>
+
+<p>It should be noted that it a good practice to close the <code>ResultSet</code>, <code>PreparedStatement</code> and <code>Connection</code> objects in a finally block.</p>

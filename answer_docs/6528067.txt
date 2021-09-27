@@ -1,0 +1,14 @@
+<p>Here is another approach, by using reference:</p>
+
+<pre><code>function calcAddAmp(&amp;$add_amp, $mul)
+{
+    global $quote;
+
+    $add_amp += $mul*($quote);
+}
+</code></pre>
+
+<p>example of usage:</p>
+
+<pre><code>calcAddAmp($add_amp, 0.5);
+</code></pre>

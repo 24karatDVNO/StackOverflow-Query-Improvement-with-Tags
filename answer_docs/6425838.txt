@@ -1,0 +1,14 @@
+<p>Did you mean to create your date variable (d) as the day before the rptDate value <em>(ie. with a day of zero (1-1))</em> ?</p>
+
+<p>This <em>(below)</em> will get you your record (assuming the record has no time part).</p>
+
+<pre><code>SELECT * FROM history WHERE ReportDate = '" &amp; d.toString("dd-MMM-yyyy") &amp; "'"
+</code></pre>
+
+<p><em>(The explicit date format is unambiguous, whereas "G" is not.)</em></p>
+
+<p>...or...</p>
+
+<pre><code>cm.CommandText = "SELECT * FROM history WHERE ReportDate = @date"
+cm.Parameters.AddWithValue("@date", d)  
+</code></pre>

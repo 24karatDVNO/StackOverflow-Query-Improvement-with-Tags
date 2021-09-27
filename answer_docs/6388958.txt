@@ -1,0 +1,6 @@
+<p>The <code>showHUDAddedTo:animated:</code> and <code>showWhileExecuting:</code> methods are mutually exclusive. You can't use both methods to show the HUD . </p>
+
+<p>Change your initializer to just allocate a HUD and it should work. </p>
+
+<pre><code>HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+</code></pre>

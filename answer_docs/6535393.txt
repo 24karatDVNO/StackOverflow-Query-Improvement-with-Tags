@@ -1,0 +1,21 @@
+<p>The code below gives you a dictionary where keys are titles and data are the links. Of course, if your XML document is "big", this is not the best way to do it.</p>
+
+<pre><code>CXMLDocument *doc = [[[CXMLDocument alloc] initWithXMLString:theXML options:0 error:nil] autorelease];
+NSArray *categories = nil;
+NSMutableDictionary* results = nil;
+categories = [doc nodesForXPath:@"/categories/*[starts-with(name(), 'category')]" error:nil];
+if (categories != nil &amp;&amp; [categories count] &gt; 0)
+{
+         results = [NSMutableDictionary dictionaryWithCapacity:[categories count]];
+         for (CXMLElement *category in categories)
+         {
+              NSArray* titles = [category elementsForName:@"title"];
+              if ([titles count] &gt;0)
+              {
+                   NSArray* links = [category elementsForName:@"link"];
+                   [result setObject:([links count]&gt;0?[[links objectAtIndex:0] stringValue]:nil;
+                           forKey:[[titles objectAtIndex:0] stringValue]];
+              } 
+         }
+}
+</code></pre>

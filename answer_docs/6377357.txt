@@ -1,0 +1,10 @@
+<pre><code>$('.sizeInput').bind('click', function(){
+    var value = $(this).val(),
+        size  = value.split('/')[0],
+                // get part after the slash, if it exists, parse as integer
+                // if there is no slash and part after it, then 0 is value
+                // and then add 1 to the count
+        num   = (parseInt(value.split('/')[1], 10) || 0) + 1;
+    $(this).val(size + '/' + num);
+});
+</code></pre>

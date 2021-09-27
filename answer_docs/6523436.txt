@@ -1,0 +1,5 @@
+<p>The solution I found is to convert the euclidean coordinates into 'hyper-spherical' coordinates.  Its similar to the spherical coordinate system except you add an additional angle with a range [0, pi) for each additional dimension beyond three.</p>
+
+<p>After that I can sort the list of points based on their distance from the origin and iterate through comparing each point in the list to the first item looking for angles that overlap.  after each iteration you remove the first item in the list and any items that were discovered to have been blocked.  then start over with the new first item (closest item).</p>
+
+<p>Don't know if anyone will ever find this useful but I thought I should put the answer up anyways.</p>

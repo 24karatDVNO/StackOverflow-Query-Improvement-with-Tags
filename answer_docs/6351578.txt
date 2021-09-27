@@ -1,0 +1,28 @@
+<p>If the file was available to the public server, you could use jQuery...</p>
+<pre><code>$('button').click(function() {
+   var word = $.trim($('#input-word').val());  
+   $.get('words.text', function(response) {
+       alert(response.test(new RegExp('\b' + word + '\b')) &gt; 0);
+   });
+});
+</code></pre>
+<p>You could use also jQuery and PHP to do that.</p>
+<h3>jQuery</h3>
+<pre><code>$('button').click(function() {
+   $.getJSON('word.php', { word: $.trim($('#input-word').val()) }, function(response) {
+       alert(response);
+   });
+});
+</code></pre>
+<p>The <code>alert(response)</code> will let you know if word was bound on its own in the file.</p>
+<h3>PHP</h3>
+<p>This filename needs to match above, e.g. <code>word.php</code>.</p>
+<pre><code>&lt;?php
+
+$fileContents = file_get_contents('file.txt');
+
+return json_encode(preg_match('/\b' . preg_quote(trim($_GET['word']), '/') . '\b/', $fileContents));
+</code></pre>
+<p>This is untested but it should get you started.</p>
+<p>Alternatively if you didn't want to use a regex you could <code>explode()</code> on spaces and drop empty array members (or <code>preg_split('/\s+/')</code>) and then use <code>in_array()</code>, but this will have a bit of overhead.</p>
+<p>If performance is an issue, you should perhaps split the text file up and cache its words as array keys to it is <code>0(1)</code> (or close enough) to see if the word exists.</p>

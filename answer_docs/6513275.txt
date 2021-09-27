@@ -1,0 +1,5 @@
+<blockquote>
+  <p>so I guess, vector is not thread safe.</p>
+</blockquote>
+
+<p>Of course std::vector is not thread-safe (none of standard containers are guaranteed to be thread safe - but all their methods are guaranteed to be reentrant by every sane implementation). You have to use synchronization mechanisms (mutexes, etc.).</p>

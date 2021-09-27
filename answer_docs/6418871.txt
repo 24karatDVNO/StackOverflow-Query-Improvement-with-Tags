@@ -1,0 +1,6 @@
+<p>The syntax <code>? :</code> you are using is PHP 5.3 only. </p>
+
+<p>Set a default value:</p>
+
+<pre><code>$conditions = ($this-&gt;input-&gt;post()) ? $this-&gt;input-&gt;post() : array('tutor'=&gt;$this-&gt;session-&gt;userdata('user_id'));
+</code></pre>

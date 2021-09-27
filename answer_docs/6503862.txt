@@ -1,0 +1,34 @@
+<p>The data format is not clear, but you could do something like this:</p>
+
+<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;
+
+&lt;head&gt;
+    &lt;title&gt;Simple JSON&lt;/title&gt;
+    &lt;meta http-equiv="content-type" content="text/html;charset=utf-8" /&gt;
+    &lt;meta name="generator" content="Geany 0.20" /&gt;
+    &lt;script type="text/Javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/Javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/Javascript"&gt;
+        $(document).ready(function(){
+            $('[name="button"]').click(function(){
+                $.get('json.php',function(data){
+                    data = $.parseJSON(data);
+                    $.each(data,function(i,v){                      
+                        $('[name="item-'+i+'"]').attr('value',v);
+                    });
+                });
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;input name="text-1" /&gt;
+    &lt;input name="text-4" /&gt;
+    &lt;input name="button" type="button" value="update" /&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>

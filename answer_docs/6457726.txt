@@ -1,0 +1,17 @@
+<p>Honest admission up front:  I have not tried the code below.</p>
+
+<p>I think the reason</p>
+
+<pre><code>menuItemFolder.Click += new System.EventHandler(menuItemFolder_Click(sender,e,owner,dataType));
+</code></pre>
+
+<p>won't work is because you are actually passing to System.EventHandler () the result of the invocation of menuItemFolder_Click () with the parameters provided.  You are not passing a pointer to the function itself.</p>
+
+<p>Try to write another function that implements the details of menuItemFolder_Click ().  See if something like </p>
+
+<pre><code>private void menuItemFolder_Click_Helper (object sender, EventArgs e, object Owner, object DataType) {
+// implement details here
+}
+</code></pre>
+
+<p>and then call the function from within menuItemFolder_Click ().</p>

@@ -1,0 +1,29 @@
+<p>Add a trait structure for your <code>drawable</code> class that you can use to test whether the types instantiated in the template are the correct types.  This would look something like</p>
+
+<pre><code>//default for any data-type
+template&lt;typename T&gt;
+struct drawable_type
+{
+    enum { drawable = 0 };
+};
+
+//specialization for a drawable class
+template&lt;&gt;
+struct drawable_type&lt;drawable&gt;
+{
+    enum { drawable = 1 };
+};
+
+template&lt;typename T, typename T2&gt;
+bool CheckCollision(T* obj1, T2* obj2) 
+{ 
+    if (drawable_type&lt;T&gt;::drawable &amp;&amp; drawable_type&lt;T2&gt;::drawable)
+    {
+        //do something
+    }
+    else
+        return false; 
+}
+</code></pre>
+
+<p>Now if the types past aren't drawable, your function will simply return false, otherwise you can continue to test and see if a collision occurred.</p>

@@ -1,0 +1,21 @@
+<p>It's not really clear how you want your <code>TabControl</code> laid out but maybe this snippet will help. </p>
+
+<pre><code>    &lt;TabControl ItemsSource="{Binding ListOfInstances}"&gt;
+        &lt;TabControl.ItemTemplate&gt;
+            &lt;DataTemplate&gt;
+                &lt;!-- This is the tab header --&gt;
+                &lt;Grid&gt;
+                    &lt;TextBlock Text="{Binding TabItem}" /&gt;
+                &lt;/Grid&gt;
+            &lt;/DataTemplate&gt;
+        &lt;/TabControl.ItemTemplate&gt;
+        &lt;TabControl.ContentTemplate&gt;
+            &lt;DataTemplate&gt;
+                &lt;!-- This is the tab content --&gt;
+                &lt;Grid&gt;
+                    &lt;TextBlock Text="{Binding TabItem}" /&gt;
+                &lt;/Grid&gt;
+            &lt;/DataTemplate&gt;
+        &lt;/TabControl.ContentTemplate&gt;
+    &lt;/TabControl&gt;
+</code></pre>

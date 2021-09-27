@@ -1,0 +1,9 @@
+<p>It turns out I was dealing with two different problems.</p>
+
+<p>On the development server, I found that the .NET 4.0 installation was broken. This was diagnosed by this <a href="http://blogs.msdn.com/b/astebner/archive/2008/10/13/8999004.aspx" rel="nofollow">brilliant tool</a>.</p>
+
+<p>On both servers, I changed the pipeline mode from <em>Classic</em> to <em>Integrated</em>, as nobody knew why it was set to Classic in the first place. A few tweaks the web config later, and the service was working!</p>
+
+<p>The solution may also have required Basic Authentication, as suggested by Richard L, since that was missing from the production server. Note that Basic Authentication is not enabled on the service web site itself.</p>
+
+<p>A very frustrating few days trying to get this working.</p>

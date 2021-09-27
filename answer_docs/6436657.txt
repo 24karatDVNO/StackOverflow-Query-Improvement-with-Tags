@@ -1,0 +1,5 @@
+<p>Circular references are no problem for the GC in .NET. It uses an algorithm to determine which objects are actually reachable from certain entry points (e.g. the main method).</p>
+
+<p>What can cause meory leaks, however, are objects which are accidentally referenced by static members for example.</p>
+
+<p>Your example falls into the first category and is therefore safe to use.</p>

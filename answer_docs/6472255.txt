@@ -1,0 +1,18 @@
+<p>Was that easy at the end. here is a taglib. placed it to WEB_INF/tags folder</p>
+
+<pre><code>&lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %&gt;
+&lt;%@ attribute name="contentType" required="true" type="java.lang.String" %&gt;
+&lt;%@ attribute name="file" required="true" type="java.lang.String" %&gt;
+
+
+&lt;% response.setHeader("Content-disposition",file ); 
+response.setHeader("Content-type",contentType);%&gt;
+</code></pre>
+
+<p>and this is jsp file:</p>
+
+<pre><code>&lt;%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %&gt;    
+&lt;tg:excel contentType="application/vnd.ms-excel" file="attachment;filename=mf.xls" /&gt;
+</code></pre>
+
+<p>afterwards simple html table building with data ;)</p>

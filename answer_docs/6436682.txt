@@ -1,0 +1,11 @@
+<p>If I understood your question correctly, you want to do this :  </p>
+
+<pre><code>template&lt; typename T &gt;
+struct A
+{
+  template&lt; typename P &gt;
+  A( std::vector&lt; P &gt; &amp;v )
+  {
+  }
+};
+</code></pre>

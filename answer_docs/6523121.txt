@@ -1,0 +1,8 @@
+<p>I hope you have some common way of identifiying your entity classes (such as a common base class, or implemented interface). Then you can do a reflection query like:</p>
+
+<pre><code>from t in typeof(Entity).Assembly.ExportedTypes
+where typeof(Entity).IsAssignableFrom(t) || t.GetInterfaces.Any(i =&gt; i == typeof(CommonInterface))
+select t
+</code></pre>
+
+<p>No compiler at hand, but this is the broad direction to go. </p>

@@ -1,0 +1,18 @@
+<p>It had nothing to do with that, as per this article</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.0/en/example-foreign-keys.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/example-foreign-keys.html</a></p>
+
+<blockquote>
+  <p>A foreign key constraint is not
+  required merely to join two tables.
+  <strong>For storage engines other than InnoDB,</strong>
+  it is possible when defining a column
+  to use a REFERENCES tbl_name(col_name)
+  clause, which has no actual effect,
+  and serves only as a memo or comment
+  to you that the column which you are
+  currently defining is intended to
+  refer to a column in another table. It
+  is extremely important to realize when
+  using this syntax that:</p>
+</blockquote>

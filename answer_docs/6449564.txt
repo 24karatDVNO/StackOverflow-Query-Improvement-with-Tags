@@ -1,0 +1,15 @@
+<pre><code>&lt;?php
+session_start();
+
+if (isset($_SESSION['id'])) {
+    $userid = $_SESSION['id'];
+    $username = $_SESSION['username'];
+
+    $toplinks = '&lt;a href="profile.php?id=' . $userid . '"&gt;' . $username . '&lt;/a&gt; &amp;bull; 
+    &lt;a href="edit_profile.php"&gt;Edit info&lt;/a&gt; &amp;bull; 
+    &lt;a href="logout.php"&gt;Log Out&lt;/a&gt;';
+} else {
+    echo '&lt;a href="register.php"&gt;Register&lt;/a&gt; &amp;bull; &lt;a href="login.php"&gt;Log In&lt;/a&gt;';
+}
+?&gt;
+</code></pre>

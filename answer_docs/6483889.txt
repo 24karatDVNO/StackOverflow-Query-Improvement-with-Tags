@@ -1,0 +1,8 @@
+<p>You can use something like this:</p>
+
+<pre><code>$php_array = json_decode( str_replace( 
+    array( '[',      ']',      '{', '}' ), 
+    array( '\u005B', '\u005D', '[', ']' ), 
+    $your_pgsql_array 
+) );
+</code></pre>

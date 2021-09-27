@@ -1,0 +1,15 @@
+<p>maybe you can do it this way</p>
+
+<pre><code>$("ul.HotelPanelNav li").hover(function() {
+   settTimeout('yourfunction($this);', time)
+});
+
+function yourfunction(element){
+  $("ul.HotelPanelNav li").removeClass("active"); //Remove any "active" class
+  $(this).addClass("active"); //Add "active" class to selected tab
+  $(".HotelPanel_content").hide(); //Hide all tab content
+  var activeTab = $(this).find("a").attr("id"); //Find the rel attribute value to identify the active tab + content
+  $(activeTab).slideDown("slow"); //Fade in the active content
+  return false;
+}
+</code></pre>

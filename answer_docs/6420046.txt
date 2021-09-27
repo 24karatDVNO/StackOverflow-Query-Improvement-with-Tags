@@ -1,0 +1,33 @@
+<p>Sorry, I didn't test following on unix.</p>
+
+<pre><code>function! s:srand()
+  if has('win32') || has('win64')
+    call libcallnr("msvcrt.dll", "srand", localtime())
+  else
+    call libcallnr("libc.so", "srand", localtime())
+  endif
+endfunction
+
+function! s:rand()
+  if has('win32') || has('win64')
+    return libcallnr("msvcrt.dll", "rand", -1)
+  else
+    return libcallnr("libc.so", "rand", -1)
+  endif
+endfunction
+
+call s:srand()
+
+function! s:RandomInc()
+  let r = s:rand()%3 + 1
+  exe "normal! ".r."\&lt;c-a&gt;"
+endfunction
+
+function! s:RandomDec()
+  let r = s:rand()%3 + 1
+  exe "normal! ".r."\&lt;c-x&gt;"
+endfunction
+
+nmap &lt;c-a&gt; :call &lt;SID&gt;RandomInc()&lt;cr&gt;
+nmap &lt;c-x&gt; :call &lt;SID&gt;RandomDec()&lt;cr&gt;
+</code></pre>

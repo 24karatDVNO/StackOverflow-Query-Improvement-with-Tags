@@ -1,0 +1,13 @@
+<p>You can split a string using regular expressions. In your case, you want to:</p>
+
+<ol>
+<li>Get rid of the colon (:)</li>
+<li>Get rid of the extra space surrounding the dash (-)</li>
+</ol>
+
+<p>So:</p>
+
+<pre><code>var tokens = s.split(/:\s*-\s*/);
+// tokens[0] will be the first part
+// tokens[1] the second
+</code></pre>

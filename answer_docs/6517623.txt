@@ -1,0 +1,7 @@
+<p>First possibility is that another macro is overwriting the column - worth ruling out. However the most likely problem is that you are not setting the format of the column to be a date format. If it is a general format, then the date is displayed as a number like you are seeing.</p>
+
+<p>The reason is that this is how it is stored, and you are not telling the cells to interpret this number as a date, so it doesn't.</p>
+
+<p>My excel scripting is not quite up to giving you code, but if you make sure you format the colum explicitly to display dates, then you should be OK. The reason it initially looks OK, is because when you add a date it sees it as a date, but if it not saved with defined format, then it will open again with the default.</p>
+
+<p>HTH</p>

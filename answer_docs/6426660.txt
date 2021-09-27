@@ -1,0 +1,3 @@
+<p>Usually you have to create a waiting loop, which checks a shared variable. This variable says if the thread has to cancel it's operation.</p>
+
+<p>WARNING: Do not create an infinity loop which checks the variable to often, this causes "busy waiting". You should wait for a message in the queue until a timeout arrives. After that timeout you can check your control variable and enter the waiting process for the queue again.</p>

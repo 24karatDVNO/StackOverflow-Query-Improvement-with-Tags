@@ -1,0 +1,136 @@
+<p>The below class in C# is something I've adapted from a Microsoft Knowledgebase article.  There are methods in this class to send the print job as a <code>string</code> and <code>byte[]</code>.  Please note there are some references to log4net in there that can be removed/replaced with the logging framework of your choice. :</p>
+
+<pre><code>/// &lt;summary&gt;
+/// Class used to aid in sending raw printer data (PS, PRN, etc) directly to the printer.
+/// This class was taken from http://support.microsoft.com/kb/322091
+/// &lt;/summary&gt;
+public class PrintQueueUtility
+{
+    private static ILog log = LogManager.GetLogger(typeof(PrintQueueUtility));
+
+    [DllImport("winspool.Drv", EntryPoint = "OpenPrinterA", SetLastError = true, CharSet = CharSet.Ansi, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool OpenPrinter([MarshalAs(UnmanagedType.LPStr)] string szPrinter, out IntPtr hPrinter, IntPtr pd);
+
+    [DllImport("winspool.Drv", EntryPoint = "ClosePrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool ClosePrinter(IntPtr hPrinter);
+
+    [DllImport("winspool.Drv", EntryPoint = "StartDocPrinterA", SetLastError = true, CharSet = CharSet.Ansi, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool StartDocPrinter(IntPtr hPrinter, Int32 level, [In, MarshalAs(UnmanagedType.LPStruct)] DOCINFOA di);
+
+    [DllImport("winspool.Drv", EntryPoint = "EndDocPrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool EndDocPrinter(IntPtr hPrinter);
+
+    [DllImport("winspool.Drv", EntryPoint = "StartPagePrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool StartPagePrinter(IntPtr hPrinter);
+
+    [DllImport("winspool.Drv", EntryPoint = "EndPagePrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool EndPagePrinter(IntPtr hPrinter);
+
+    [DllImport("winspool.Drv", EntryPoint = "WritePrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
+    public static extern bool WritePrinter(IntPtr hPrinter, IntPtr pBytes, Int32 dwCount, out Int32 dwWritten);
+
+    /// &lt;summary&gt;Method which sends a &lt;see langword="byte"/&gt; array to a printer queue with a specific document name.&lt;/summary&gt;
+    /// &lt;param name="bytes"&gt;Byte array to send to the printer.&lt;/param&gt;
+    /// &lt;param name="printerName"&gt;Name of the printer to send the &lt;paramref name="bytes"/&gt; to.&lt;/param&gt;
+    /// &lt;param name="documentName"&gt;The document Name.&lt;/param&gt;
+    /// &lt;returns&gt;&lt;see cref="bool"/&gt; indicating whether or not the method succeeded at adding something to the print queue.&lt;/returns&gt;
+    public static bool SendBytesToPrinter(byte[] bytes, string printerName, string documentName)
+    {
+        bool success;
+
+        // Allocate some unmanaged memory for those bytes into an unmanaged pointer.
+        IntPtr unmanagedBytes = Marshal.AllocCoTaskMem(bytes.Length);
+
+        // Copy the managed byte array into the unmanaged array.
+        Marshal.Copy(bytes, 0, unmanagedBytes, bytes.Length);
+
+        // Send the unmanaged bytes to the printer.
+        success = SendUnmanagedBytesToPrinter(unmanagedBytes, printerName, documentName, bytes.Length);
+
+        // Free the unmanaged memory that you allocated earlier.
+        Marshal.FreeCoTaskMem(unmanagedBytes);
+
+        return success;
+    }
+
+    /// &lt;summary&gt;Method which sends a string to the printer queue with a specific document name.&lt;/summary&gt;
+    /// &lt;param name="data"&gt;&lt;see cref="String"/&gt; data to send to the printer.&lt;/param&gt;
+    /// &lt;param name="printerName"&gt;Name of the printer to send the data to.&lt;/param&gt;
+    /// &lt;param name="documentName"&gt;Name of the document in the printer queue.&lt;/param&gt;
+    /// &lt;returns&gt;&lt;see cref="bool"/&gt; indicating whether or not the method succeeded at adding something to the print queue.&lt;/returns&gt;
+    public static bool SendStringToPrinter(string data, string printerName, string documentName)
+    {
+        bool success;
+        IntPtr unmanagedBytes;
+
+        // How many characters are in the string?
+        var characterCount = data.Length;
+
+        // Assume that the printer is expecting ANSI text, and then convert
+        // the string to ANSI text.
+        unmanagedBytes = Marshal.StringToCoTaskMemAnsi(data);
+
+        // Send the converted ANSI string to the printer.
+        success = SendUnmanagedBytesToPrinter(unmanagedBytes, printerName, documentName, characterCount);
+        Marshal.FreeCoTaskMem(unmanagedBytes);
+
+        return success;
+    }
+
+    private static bool SendUnmanagedBytesToPrinter(IntPtr unmanagedBytes, string printerName, string documentName, int count)
+    {
+        int error; 
+        int written;
+        IntPtr printer;
+        var di = new DOCINFOA();
+        var success = false;
+
+        di.pDocName = documentName;
+        di.pDataType = "RAW";
+
+        // Open the printer.
+        if (OpenPrinter(printerName.Normalize(), out printer, IntPtr.Zero))
+        {
+            // Start a document.
+            if (StartDocPrinter(printer, 1, di))
+            {
+                // Start a page.
+                if (StartPagePrinter(printer))
+                {
+                    // Write the bytes.
+                    success = WritePrinter(printer, unmanagedBytes, count, out written);
+                    EndPagePrinter(printer);
+                }
+
+                EndDocPrinter(printer);
+            }
+
+            ClosePrinter(printer);
+        }
+
+        // If you did not succeed, GetLastError may give more information
+        // about why not.
+        if (!success)
+        {
+            error = Marshal.GetLastWin32Error();
+
+            log.ErrorFormat("Sending bytes to printer {0} failed. Last Win32 error = {1}", printerName, error);
+        }
+
+        return success;
+    }
+
+    // Structure and API declarations:
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public class DOCINFOA
+    {
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string pDocName;
+
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string pOutputFile;
+
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string pDataType;
+    }
+</code></pre>

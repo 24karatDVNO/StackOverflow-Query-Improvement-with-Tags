@@ -1,0 +1,18 @@
+<p>I think I had the same need for work.
+First i would say that I don't offer a library solution but I tell you how I code this.</p>
+
+<p>I choose to make the colormap canvas using canvas linear Gradient.</p>
+
+<p>To apply this gradient on my picture, I simply calcul the min/max of value I need to represent, then I searched for each values what colors correspond considering my linear gradient.</p>
+
+<p>My picture has been included in a canvas using drawImage.</p>
+
+<p>Then I changed the color of each pixel using canvasPixel manipulation on data array.</p>
+
+<p>For interactive move colormap I choose to use JqueryUi slider.</p>
+
+<p>All of this is linked on my code and it was a bit long to do.</p>
+
+<p>Well I added some more complicated stuff because user is able to modify the color of linearGradient using a colorPicker Jquery plugin but it's more or less what you want too ?</p>
+
+<p>I hope I answer your question. Good luck.</p>

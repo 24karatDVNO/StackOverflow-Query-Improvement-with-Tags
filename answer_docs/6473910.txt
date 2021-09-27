@@ -1,0 +1,3 @@
+<p>RubyAudio doesn't appear to have been updated in six years and its documentation is sparse. If you're able I'd recommend using <a href="http://rtaglib.rubyforge.org/" rel="nofollow">rtaglib</a> instead.</p>
+
+<p>However, if you're married to RubyAudio it looks like you can get both a frame count (<code>Audio::Soundfile#frames</code>) and a sample (frame) rate (<code>Audio::Soundfile#samplerate</code>). Knowing this you should be able to divide the number of frames by sample rate to get the length of the file in seconds.</p>

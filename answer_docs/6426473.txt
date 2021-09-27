@@ -1,0 +1,14 @@
+<p>Why don't you want to make another query?</p>
+
+<pre><code>CREATE PROCEDURE [dbo].[spInsertCriteriaItem]
+@GroupID int
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    insert into CriteriaItem (CriteriaGroupID) VALUES(@GroupID);
+    SELECT @@IDENTITY AS InsertedId;
+END
+</code></pre>

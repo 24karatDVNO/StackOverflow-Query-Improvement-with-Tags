@@ -1,0 +1,44 @@
+<p>Well, Since you are using your dataTable in multiple threads, there is a high possibility of corruption--if you are manipulating the object from different threads.</p>
+
+<p>Some pointers to help you resolve your issue :</p>
+
+<ul>
+<li>Avoid using Default Views, and
+modifying the Default View if
+possible. Btw, .Net 2.0 has a number
+of reader/writer locks on creating
+views, so they are not the issue they
+were pre 2.0.</li>
+<li>Call AcceptChanges() where possible.</li>
+<li>Be careful about .Select(expression),
+since there is no reader/writer lock
+in this code -- and it is the only
+place (at least according to a person
+on the usenet so take it w/ a grain
+of salt -- however, this is very
+similar to your issue -- so using
+Mutexes may help)</li>
+<li>Set AllowDBNull to the column in
+question (questionable value, but
+reported on the usenet -- I've used
+it only in places where it makes
+sense)</li>
+<li>Make sure that you are not setting
+null (C#)/Nothing (VB) to a DataRow
+field. Use DBNull.Value instead of
+null. In your case you may wish to
+check that the field is not null, the
+expression syntax does supports the
+IsNull(val, alt_val) operator.</li>
+<li>This has probably helped me the most
+(absurd as it sounds): If a value is
+not changing, don't assign it. For example if you want to assign value to some column do it as  :</li>
+</ul>
+
+<blockquote>
+<pre><code>if (column.Expression != "some expression") 
+      column.Expression = "some expression"; 
+</code></pre>
+</blockquote>
+
+<p>Answer source : <a href="https://stackoverflow.com/questions/450675/datatable-internal-index-is-corrupted">StackOverflow - DataTable internal index is corrupted</a></p>

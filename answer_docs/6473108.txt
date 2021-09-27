@@ -1,0 +1,16 @@
+<p>Or maybe you do something like this?</p>
+
+<pre><code>struct A
+{
+    SomeType &amp; m_param;
+
+    A(SomeType &amp; param) : m_param(param)
+    {
+        ...use m_param here...
+    }
+};
+
+A a(SomeType()); // passing a temporary by reference
+</code></pre>
+
+<p>Then that's undefined behaviour, because the referenced temporary dies right after <code>m_param(param)</code> happens..</p>

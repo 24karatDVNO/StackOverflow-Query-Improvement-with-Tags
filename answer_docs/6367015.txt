@@ -1,0 +1,11 @@
+<p>Interpreting requirements as <code>Wonder Bingo = 0</code> meaning <em>the <code>0</code> index of the searched for key equals <code>"Wonder Bingo"</code></em>:</p>
+
+<pre><code>function find($needle, $haystack) {
+    preg_match('/^(.+) = (\d+)$/', $needle, $matches);
+    foreach ($haystack as $key =&gt; $value) {
+        if (isset($value[$matches[2]]) &amp;&amp; $value[$matches[2]] == $matches[1]) {
+            return $key;
+        }
+    }
+}
+</code></pre>

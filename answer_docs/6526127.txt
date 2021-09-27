@@ -1,0 +1,21 @@
+<p>Unless I miss-understand what you want to do, you will be best off using Javascript to update the quantity from 1 to however many the user wants, before they POST the form to the authorize.net website.</p>
+
+<p>The key here is to remember the order of events when you POST a form or click a link and make a GET request.</p>
+
+<p>PHP is server-side tech, so it's executed when you send instructions to the server. For-instance, you'll send instructions to PHP like query my db and get stuff and it will return those results for you.</p>
+
+<p>Once you display data in the browser PHP can't get involved again, unless you send another request to the server.</p>
+
+<p>In contrast, Javascript and its libraries like JQuery are browser tools so they can change what is already known. In your case you can tell the quantity field to change using Javascript, based on the users choice, before the POST event takes place.</p>
+
+<p>Read about these JS functions:</p>
+
+<p>onChange</p>
+
+<p>onSubmit</p>
+
+<p>document.write</p>
+
+<p>document.getelementbyid</p>
+
+<p>Hope I'm not teaching you to suck eggs.</p>

@@ -1,0 +1,10 @@
+<p>Here's a <a href="http://jsfiddle.net/cyRR7/16/" rel="nofollow">jsfiddle</a></p>
+
+<pre><code>$('input:checkbox[name*=power_]').click(function(){
+   value = '&lt;h3&gt;' + $(this).val() + '&lt;/h3&gt; &lt;br /&gt;'; 
+    prevVal = $('#elm1').val();
+
+
+    $('#elm1').val(prevVal  + value );
+});
+</code></pre>

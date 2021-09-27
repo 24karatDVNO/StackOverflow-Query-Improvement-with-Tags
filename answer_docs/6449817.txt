@@ -1,0 +1,18 @@
+<p>you can get the images from the sd card using their absolutepath
+example if i store abc.png image in xyz path then the absolute path of the image will be</p>
+
+<pre><code>String absPathOfImage = Environment.getExternalStorageDirectory()+"/xyz/"+abc.png
+</code></pre>
+
+<p>replace <code>int[] mPictureIds_rice</code> either with <code>String[] mPictureIds_rice</code> or with array list</p>
+
+<pre><code>public static String[] mPictureIds_rice = {
+            abspathOfImg1, R.drawable.nasi_goreng };
+</code></pre>
+
+<p>or</p>
+
+<pre><code>public static ArrayList&lt;String&gt; mPictureIds_rice = new ArrayList&lt;String&gt;();
+</code></pre>
+
+<p>add the absolute path of image after storing in sd card</p>

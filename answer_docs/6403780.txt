@@ -1,0 +1,23 @@
+<p><strong>Question 1-</strong></p>
+
+<p>Absolutely you will need Unique Identifiers for your files, but that becomes less complicated if you do things like storing files in folders by date/username, etc...</p>
+
+<p>Here is a basic workflow for your program that you could use, based on what you have shown so far:</p>
+
+<p>Client computer -> FileUploadServlet (utilizing Apache Commons File Upload)</p>
+
+<p>Once inside the FileUploadServlet:</p>
+
+<p>a) Save the information from the request to a Database by way of your EJB including the file name, Mime Type, information, etc...</p>
+
+<p>b) While still inside the servlet, upload the file to your server, or if you need to, use a commercial solution such as Amazon S3 or Google Storage (by way of a Java API such as <a href="http://jets3t.s3.amazonaws.com/toolkit/code-samples.html" rel="nofollow">JetS3t</a>)</p>
+
+<p>Afterwards, return any necessary information to the client. </p>
+
+<p><strong>Question 2 -</strong></p>
+
+<p>What is your reasoning for requesting throught the Bean, why not just make the Servlet the action instead, and collect the information from the request? I would not make the Bean's save method available on the JSF, as that sounds insecure and un-authenticated.</p>
+
+<p><strong>Question 3</strong> -</p>
+
+<p>Same as above, why store information, even if temporarily, when it is available elsewhere?</p>

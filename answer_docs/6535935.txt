@@ -1,0 +1,11 @@
+<p>Try this:</p>
+
+<pre><code>var langcodes=["it", "es"];
+var langCode = navigator.language || navigator.systemLanguage;
+var lang = langCode.toLowerCase(); 
+lang = lang.substr(0,2); 
+var dest = window.location.href;
+
+dest = dest.substr(0,dest.lastIndexOf('.')) + '-' + lang + dest.substr(dest.lastIndexOf('.'));
+window.location = dest;
+</code></pre>

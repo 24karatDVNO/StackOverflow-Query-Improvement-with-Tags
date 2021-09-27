@@ -1,0 +1,20 @@
+<pre><code>            while(true){
+                    apr_thread_mutex_lock(mySharedObject-&gt;getMutex());
+                    while (mySharedObject-&gt;getMessagesReady() == 0 &amp;&amp; !mySharedObject-&gt;getEndThread()) {
+                            apr_thread_cond_wait(mySharedObject-&gt;getCond(), mySharedObject-&gt;getMutex());
+                    }
+                    if (mySharedObject-&gt;getEndThread()){
+                            apr_thread_mutex_unlock(mySharedObject-&gt;getMutex());
+                            break;
+                    }
+
+                    apr_thread_mutex_unlock(mySharedObject-&gt;getMutex());
+
+                    if (mySharedObject-&gt;getMessagesReady()&gt;0){
+                             myActiveProducer-&gt;send();
+                    }
+
+            }
+</code></pre>
+
+<p>This is the way that I've implemented it. Something wrong??</p>

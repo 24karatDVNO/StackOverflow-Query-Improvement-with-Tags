@@ -1,0 +1,43 @@
+<p>maybe you can try out <a href="http://api.jquery.com/jQuery.template/" rel="nofollow">jQuery Templates</a> ?</p>
+
+<p>It is still in beta, but I believe that it is widely used.</p>
+
+<p>(Example is from the documentation)</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+table { border-collapse:collapse; margin:8px; background-color:#f8f8f8; }
+table td { border:1px solid blue; padding:3px; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+  &lt;script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button id="showBtn"&gt;Show movies&lt;/button&gt;&lt;br/&gt;
+&lt;table&gt;&lt;tbody id="movieList"&gt;&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;script&gt;
+  var movies = [
+  { Name: "The Red Violin", ReleaseYear: "1998", Director: "François Girard" },
+  { Name: "Eyes Wide Shut", ReleaseYear: "1999", Director: "Stanley Kubrick" },
+  { Name: "The Inheritance", ReleaseYear: "1976", Director: "Mauro Bolognini" }
+  ];
+
+var markup = "&lt;tr&gt;&lt;td colspan='2'&gt;${Name}&lt;/td&gt;&lt;td&gt;Released: ${ReleaseYear}&lt;/td&gt;&lt;td&gt;Director: ${Director}&lt;/td&gt;&lt;/tr&gt;"
+
+/* Compile markup string as a named template */
+$.template( "movieTemplate", markup );
+
+/* Render the named template */
+$( "#showBtn" ).click( function() {
+  $( "#movieList" ).empty();
+  $.tmpl( "movieTemplate", movies ).appendTo( "#movieList" );
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

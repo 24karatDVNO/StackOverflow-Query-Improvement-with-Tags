@@ -1,0 +1,5 @@
+<p>You should pass Rect object ('r' in your case) to the Get/SetIntField functions, i.e.</p>
+
+<pre><code>jint l=(*env)-&gt;GetIntField(env,r,fid);
+(*env)-&gt;SetIntField(env,r,fid,l);
+</code></pre>

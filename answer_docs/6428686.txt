@@ -1,0 +1,17 @@
+<p>I'm not particularly familiar with Prototype, but I think the code will look something like this:</p>
+
+<pre><code>$.ajax('/checkit', 
+    {
+        data: $('#checkit_form').serialize()
+    }
+);
+</code></pre>
+
+<p>jQuery's default settings are for scripts to be evaluated and for AJAX to be asynchronous.  IIRC, this is true for Prototype as well, so those lines were unnecessary in your prototype example.</p>
+
+<p>You could also do this with the <a href="http://api.jquery.com/jquery.get" rel="nofollow"><code>$.get</code></a> helper:</p>
+
+<pre><code>$.get('/checkit', $('#checkit_form').serialize());
+</code></pre>
+
+<p>This is a shorthand for the above code.</p>

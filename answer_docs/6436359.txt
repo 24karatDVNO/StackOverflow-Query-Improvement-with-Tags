@@ -1,0 +1,15 @@
+<p>You could use:</p>
+
+<pre><code>+ (void)animateWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay 
+options:(UIViewAnimationOptions)options animations:(void (^)(void))animations 
+completion:(void (^)(BOOL finished))completion
+</code></pre>
+
+<p>And use the Ease in and Ease out transitions to accelerate and decelerate toward the end.</p>
+
+<p>Note: the blocks based animation is only valid in is 4.0 and later if you want earlier you need to use</p>
+
+<pre><code>+ (void)beginAnimations:(NSString *)animationID context:(void *)context
+</code></pre>
+
+<p>And its a simple matter of editing the frame of the view.</p>

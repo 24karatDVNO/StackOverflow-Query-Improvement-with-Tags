@@ -1,0 +1,22 @@
+<p>Take this in .h file in SecondViewController </p>
+
+<pre><code>UIImage *imgSelected;
+</code></pre>
+
+<p>Make below function in seconviewcontroller</p>
+
+<pre><code>-(void)setImage:(UIImage *)imgCaptured{
+    imgSelected=imgCaptured;
+}
+</code></pre>
+
+<p>Now In first view controller do like this:</p>
+
+<pre><code>SecondViewControler *objSecond = [[SecondViewController] initwithNibName:@"secondview.xib" bundle:nil];
+
+[objSecond setImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+[self.navigationController pushViewController:objSecond animated:YES];
+[objSecond release];
+</code></pre>
+
+<p>Please check spelling mistakes as I hand written this. Hope this help.</p>

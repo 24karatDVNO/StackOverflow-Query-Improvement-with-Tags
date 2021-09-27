@@ -1,0 +1,25 @@
+<p>A @property can be declared 'atomic', which is the default, so it can be accessed safely from multi-thread, guaranteeing the consistency of the result:</p>
+
+<pre><code>@property (atomic, ...) NSString *someValue; // atomic is the default, thus optional
+</code></pre>
+
+<p>It guarantees that throughout the execution of the getter / setter, code from another thread won't affect the consistency of the result.</p>
+
+<pre><code>id val = sharedObject.someValue;
+</code></pre>
+
+<p>The result in <code>val</code> is retained and autoreleased, so no matter what happens on other threads, <code>val</code> will stay valid for the remainder of the current runloop cycle (before the autorelease pool is drained).  After getting <code>val</code>, there is no guarantee that <code>sharedObject.someValue</code> will be the same, as another thread could reassign it.</p>
+
+<p>Example, assuming <code>someMethod</code> is called periodically on a background thread and depends on your <code>sharedObject</code>:</p>
+
+<pre><code>- (void)someMethod {
+    SomeObject *val = sharedObject.someValue;
+    // now, val will remain consistent, 
+    // regardless of what happens to sharedObject.someValue
+
+    [val doSomething];
+    if (val.someInt &gt; 50) {
+        [val doSomethingElse];
+    }
+}
+</code></pre>

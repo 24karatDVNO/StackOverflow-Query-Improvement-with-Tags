@@ -1,0 +1,26 @@
+<p>Few more things to understand:</p>
+
+<p><strong>GCC-Cygwin:</strong></p>
+
+<p>Pros - </p>
+
+<ol>
+<li><p>Compiling C code using gcc under cygwin would generate a windows executable, which uses the cygwin.dll(Posix emulation layer) linked dynamically into your app/code. So if you need to execute this app from some other path or other windows machine, that should have cygwin installed and in its path  else you get error.</p></li>
+<li><p>Cygwin provides a benefit in that, if you have a POSIX compliant code developed on Linux-gcc you can compile it with no changes at all(very little changes in some case) on windows. So it kind of provides Posix compatibility on windows.</p></li>
+</ol>
+
+<p>Cons - </p>
+
+<ol>
+<li><p>If you are going to run some which is going to consume heavy system resources(memory,CPU) then not sure how cygwin would scale up as compared to a native executable on Linux.</p></li>
+<li><p>Sometimes, Debugging using ddd on cygwin, I have found some weird crashes/hang of the ddd.</p></li>
+</ol>
+
+<p><strong>GCC-Linux:</strong></p>
+
+<ol>
+<li><p>If your final app is going to be executing on Linux, it makes sense to compile, and debug it under the same environment. Linux-gcc. </p></li>
+<li><p>For Debugging , linux would provide you lot of tools (gdb/ddd, valgrind), etc.</p></li>
+<li><p>If you want to accelerate some critical protion of code, using inline assembly with gcc under linux is nicely defined and has no issues working.(Udner Cygwin, i have faced sometimes that getting a inline assembly compiled was a problem)</p></li>
+<li><p>If you want to add multiple threads for execution on multiple processors/cores, then pthreads comes to your help(Not sure about the same udner cygwin)</p></li>
+</ol>

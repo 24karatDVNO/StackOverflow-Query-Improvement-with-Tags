@@ -1,0 +1,19 @@
+<p>We have had this problem as well with <strong>FlashBuilder 4.5</strong>. None of the proposed solution were working. We loose 5 hours to try to solve this, even reinstalling Flash Builder did nothing. That was perfectly strange, as our project perfectly ran on another machine while it was checked out from scratch from same repository on both machines.</p>
+
+<p>Finally got the solution : Go to <code>Users/&lt;yourPCuserName&gt;/AppData/Roaming/Macromedia/Flash Player/Logs</code>
+edit the <strong>mm.cfg</strong> file (it is the debugging setup file for FlashPlayer...)
+there should only have two lines :</p>
+
+<pre><code>ErrorReportingEnable=1
+TraceOutputFileEnable=1
+</code></pre>
+
+<p>We did have something like this in it, that was completely blocking FlashPlayer in debugging / run an AIR App.</p>
+
+<pre><code>SuppressDebuggerExceptionDialogs=1
+PreloadSWF=C:\Users\&lt;username&gt;\AppData\Roaming\Mozilla\Firefox\Profiles\12l6me0w.default\extensions\flashfirebug@o-minds.com\chrome\content\flashfirebug\flashfirebug.swf
+</code></pre>
+
+<p><strong>flashfirebug</strong> is a Firefox debugger for Flash...</p>
+
+<p>Remove those 2 lines, your apps will start again.</p>

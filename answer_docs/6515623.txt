@@ -1,0 +1,6 @@
+<p>In this case you can get away with a <code>(?&lt;=lookbehind)</code>; however, in certain other cases you may find the \K escape to be more suitable. What it does is reset the start offset value passed by the application to the current position in the subject, effectively dumping the portion of the string that was consumed thus far in the current match. For example:</p>
+
+<pre><code>preg_replace('^[a-z]{2}\K[a-z ]*/i', '', 'FALL 2012')
+</code></pre>
+
+<p>Now only the substring matched by <code>[a-z ]*</code> is substituted.</p>

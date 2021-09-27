@@ -1,0 +1,3 @@
+<p>This issue turned out to be a permissions issue on the server. A file was being written to the system. </p>
+
+<p>RIA services was swallowing the error and presenting a generic error in it's stead. I put a try catch around the entry method and logged the error to the database. Then I was able to discover the real issue.</p>

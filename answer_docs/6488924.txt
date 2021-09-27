@@ -1,0 +1,3 @@
+<p>I don't think you can do what you want.  There is an ambiguity here: when you say <code>A::fa()</code>, it still doesn't tell the compiler which <code>A</code> object to use.  There isn't any way to access class <code>A</code>.  That's what the warning is telling you.</p>
+
+<p>This seems like an awfully strange construct, though.  Public inheritance should be used for is-a relationships.  You are saying that <code>C</code> is-a <code>A</code> twice over?  It doesn't make sense.  And that suggests that this is either an artificial example that would never come up in practice, or you should reconsider this design.</p>

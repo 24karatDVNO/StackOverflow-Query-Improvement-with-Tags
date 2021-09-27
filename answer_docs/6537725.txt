@@ -1,0 +1,7 @@
+<p>i found the answer to this stupid bug.</p>
+
+<p>The problem was that the orbit-script was initialized before the flickr-script. And therefore it was not able to determine the width/height of the image. </p>
+
+<p>In this case i found a simple solution by hardcoding the height/width into the flickr-loader - and the initializing Orbit once that was done. </p>
+
+<p>Thanks  for all of your help! </p>

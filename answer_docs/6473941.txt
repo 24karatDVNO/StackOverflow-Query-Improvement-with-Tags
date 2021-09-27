@@ -1,0 +1,33 @@
+<p>You could subtract 40 from the x-values for your second functions to make the range of x-values continuous. This would give you a range from 0% to 70%. Then you can make set the tics and labes of the x-axis as follows:</p>
+
+<pre><code>x_ticks = range(71, 0, 10)
+a.set_xticks(x_ticks)
+a.set_xticklabels([str(x) for x in [0, 10, 20, 30, 70, 80, 90, 100]])
+</code></pre>
+
+<p>Where <code>a</code> is the current axes. So basically, you plot your functions in the range from 0% to 70%, but label the axis with a gap.</p>
+
+<p>To illustrate - the following script:</p>
+
+<pre><code>from numpy import arange
+import matplotlib.pyplot as plt
+
+x1 = arange(0, 26) # first function
+y1 = x1**2
+
+x2 = arange(75, 100) # second function
+y2 = x2*4 + 10
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x1, y1)
+ax.plot(x2 - 40, y2) # shift second function 40 to left
+ax.set_xticks(range(0, 61, 5)) # set custom x-ticks
+# set labels for x-ticks - labels have the gap we want
+ax.set_xticklabels([str(x) for x in range(0, 26, 5) + range(70, 101, 5)])
+plt.show()
+</code></pre>
+
+<p>Produces the following plot (note the x-labels):</p>
+
+<p><img src="https://i.stack.imgur.com/EeA0B.png" alt="Output of script above"></p>

@@ -1,0 +1,22 @@
+<p>Here is the doc: <a href="http://rdoc.rubyforge.org/RDoc/Markup.html" rel="nofollow">http://rdoc.rubyforge.org/RDoc/Markup.html</a></p>
+
+<p>And here is a very basic example:</p>
+
+<p>First a ruby file, say <code>/tests/my_func.rb</code></p>
+
+<pre><code>#:include: doc.txt 
+
+def my_function
+  puts "yo"
+end 
+</code></pre>
+
+<p>Then a doc <code>/tests/documentations/doc.txt</code></p>
+
+<pre><code>This describes the method very well
+</code></pre>
+
+<p>In command line (executed from <code>/tests</code>):</p>
+
+<pre><code>rdoc -i /Users/benjaminroth/Sites/Tests/rdoc/descriptions
+</code></pre>

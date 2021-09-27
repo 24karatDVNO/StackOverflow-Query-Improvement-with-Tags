@@ -1,0 +1,4 @@
+<p>Ok, the simplest solution I came up with - to my case and considering the really of the code I am currently playing with was to load all the questions I need from the database using a method from my Model (something like fetchQuestions()), them in my controller I go throught the recordset and create the form elements according to the current question of the recordset.
+The elements are stacked in an array that is passed to my Form constructor. In the form constructor I read the array and generate all the dynamic elements. I them just echoed the form to the view.</p>
+
+<p>I have not seem why it would be a bad idea to override the Form constructor as I also could not use any of the set/get methods to pass this to my form.</p>

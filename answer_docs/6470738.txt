@@ -1,0 +1,16 @@
+<p>In these situations using awk is better :</p>
+
+<pre><code>output="`grep -R -l "main" codes`"
+echo $output
+tout=`echo $output | awk -F. '{for(i=1;i&lt;=NF;i++){if(index($i,"/")&gt;0){n=split($i,ar,"/");print ar[n];}}}'`
+echo $tout
+</code></pre>
+
+<p>This prints the filename without the extension. If you want to grab only slide9 than use the solutions provided by others.</p>
+
+<p>Sample output :</p>
+
+<pre><code>A@A-laptop ~ $ bash try.sh
+codes/quicksort_iterative.cpp codes/graham_scan.cpp codes/a.out
+quicksort_iterative graham_scan a
+</code></pre>

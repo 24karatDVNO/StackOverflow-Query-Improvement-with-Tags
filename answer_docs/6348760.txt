@@ -1,0 +1,11 @@
+<p>You can't just search a function in a source because there are so many ways to obfuscate it.</p>
+
+<p>Example:</p>
+
+<pre><code>$f = 'fo'; //&gt; somewhere
+$f .= 'pen'; //&gt; somewhere else
+
+$f('hi');
+</code></pre>
+
+<p>Don't inject code that you cannot clearly understand its source and they are coming from untrasted sources.</p>

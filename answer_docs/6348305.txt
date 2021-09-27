@@ -1,0 +1,8 @@
+<p>Not sure if this is the best practice, but when I ran into this issue I ended up setting the parent entity to Null but maintain any FK reference, this stopped the parent entity from being inserted on child entities:</p>
+
+<pre><code>var bar = new Bar();
+context.Bars.Add(bar);
+bar.Foo == null;
+bar.FooId = existingFooParent.Id;
+context.SaveChanges();
+</code></pre>

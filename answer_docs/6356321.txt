@@ -1,0 +1,7 @@
+<p>The "+" means that the program "is in the foreground process group".  I don't believe, however, that this state at all affects the process's scheduling.</p>
+
+<p>However, you can change it with <code>tcsetpgrp</code>.</p>
+
+<p>From the man page:  "The function tcsetpgrp() makes the process group with process group ID pgrp the foreground process group on the terminal associated to fd, which must be the controlling terminal  of the  calling  process, and still be associated with its session.  Moreover, pgrp must be a (non-empty) process group belonging to the same session as the calling process."</p>
+
+<p>By my reading, you just call this function and make the shell (or some other program) be the foreground process.</p>

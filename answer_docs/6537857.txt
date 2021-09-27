@@ -1,0 +1,3 @@
+<p>I'm not sure I understand you, but I think you want something like <a href="http://nvie.com/posts/a-successful-git-branching-model/" rel="nofollow">this</a>. (The graphics in that post are directed towards Git, but they should work just fine for Mercurial as well.) In short, you'd maintain separate branches for each of the environments (alpha, UAT, released, show-stopping bug fixing, etc).</p>
+
+<p>I'm kind of confused why you have all three products in one repository. Are they the same, just different versions? Then use tagged revisions to identify them on the branches, but it would still be one repository (indeed, one code base). Are they different products? (If so, why are you merging them?) Then you can use separate repositories to keep things clean.</p>

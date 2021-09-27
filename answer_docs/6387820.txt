@@ -1,0 +1,6 @@
+<p>Your error may be related to <code>i</code> being greater than the number of inner lists. To avoid this you could instead use</p>
+
+<pre><code>for inner in list:
+    for item in inner:
+        &lt;do action on item&gt;
+</code></pre>

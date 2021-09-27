@@ -1,0 +1,31 @@
+<p>I think, <a href="http://download.oracle.com/javase/tutorial/essential/concurrency/sync.html" rel="nofollow"><code>Synchronization</code></a> is the solution for your problem.  </p>
+
+<blockquote>
+  <p>Threads communicate primarily by
+  sharing access to fields and the
+  objects reference fields refer to.
+  This form of communication is
+  extremely efficient, but makes two
+  kinds of errors possible: thread
+  interference and memory consistency
+  errors. The tool needed to prevent
+  these errors is synchronization. </p>
+</blockquote>
+
+<p>From the JavaDoc's  <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/BlockingQueue.html" rel="nofollow"><code>BlockingQueue</code></a></p>
+
+<blockquote>
+  <p>BlockingQueue implementations are
+  thread-safe. All queuing methods
+  achieve their effects atomically using
+  internal locks or other forms of
+  concurrency control. However, the bulk
+  Collection operations addAll,
+  containsAll, retainAll and removeAll
+  are not necessarily performed
+  atomically unless specified otherwise
+  in an implementation. So it is
+  possible, for example, for addAll(c)
+  to fail (throwing an exception) after
+  adding only some of the elements in c.</p>
+</blockquote>

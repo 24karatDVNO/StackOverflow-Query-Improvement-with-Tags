@@ -1,0 +1,36 @@
+<p>Of course, you <em>could</em> try something like this:</p>
+
+<pre><code>INSERT INTO TableA (RecordID, Value)
+SELECT RecordID, GETDATE()
+FROM OPENQUERY(
+  <i>yourserver</i>,
+  'UPDATE TableA
+  SET SomeField = 1
+  OUTPUT inserted.RecordID
+  WHERE RecordID IN (SELECT TOP (5) RecordID FROM TableA)'
+)
+</code></pre>
+
+<p>But there's a couple of issues with the approach:</p>
+
+<ol>
+<li><p>You'd need to create a linked server <code>yourserver</code>.</p></li>
+<li><p>The 'remote' query wouldn't be very swift.</p></li>
+<li><p>You'd have hard time replacing <code>TOP (5)</code> with <code>TOP (@Something)</code>. Actually you'd most probably have to turn the entire statement into a dynamic query. (That's right, you'd have to put the already dynamic UPDATE inside another dynamic query.)</p></li>
+</ol>
+
+<p>I expect, with the last issue the one-statement limitation would finally be broken.</p>
+
+<p>So, instead, why not have it like this:</p>
+
+<pre><code>DECLARE @tmpRecords TABLE (RecordID int);
+
+UPDATE TableA
+SET SomeField = 1
+OUTPUT inserted.RecordID INTO @tmpRecords (RecordID)
+WHERE RecordID IN (SELECT TOP (@Something) RecordID FROM TableA);
+
+INSERT INTO TableA (RecordID, SomeDateColumn)
+SELECT RecordID, GETDATE()
+FROM @tmpRecords;
+</code></pre>

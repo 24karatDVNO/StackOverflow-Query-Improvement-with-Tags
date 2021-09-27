@@ -1,0 +1,34 @@
+<p>Refer to <a href="https://stackoverflow.com/questions/2734367/implement-password-recovery-best-practice/2734730#2734730">Jay's</a> answer at <a href="https://stackoverflow.com/questions/2734367/implement-password-recovery-best-practice">Implement password recovery best practice</a> for ideas on how to make password recovery more secure and why security questions are a bad idea.</p>
+
+<p><a href="http://www.schneier.com/blog/archives/2009/05/secret_question.html" rel="nofollow noreferrer">Bruce Schneier</a>  also has thoughts on the subject.</p>
+
+<p>I'd recommend what <a href="https://stackoverflow.com/questions/2734367/implement-password-recovery-best-practice/2734899#2734899">Duncan</a> suggested.</p>
+
+<blockquote>
+  <p>However, what you should not do:</p>
+  
+  <p>Send the password - because after all,
+  as has already been mentioned, you
+  don't have it.</p>
+  
+  <p>Generate a new temporary password -
+  not only is this as insecure as
+  sending the password, it also leads to
+  the possibility of a denial of service
+  attack. I can go to the site, pretend
+  to be you, request a new password and
+  then (if you haven't checked your
+  email) you can't log in, don't know
+  why and have to request a new new
+  password ...</p>
+  
+  <p>The token is probably the way to go.
+  Receiving it notifies a forgotten
+  password request, but doesn't take any
+  action unless you confirm. You would
+  also make it a one-time token with a
+  relatively short expiry time to limit
+  risk.</p>
+</blockquote>
+
+<p>If anything a security question should be used to allow a user to initiate a password reset request. I.E. You need to provide your email and security question answer to send the password reset request.</p>

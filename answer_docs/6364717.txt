@@ -1,0 +1,25 @@
+<p>I upgraded to MVC 2.0 as @RailRhoad suggested. </p>
+
+<p>Then I moved the partial view to an area and has to change the path links to the .js files to be more explicit (T4MVC wasn't rendering the correct paths). Instead of</p>
+
+<p><code>&lt;script src="/Scripts/MicrosoftAjax.js" type="text/javascript"&gt;&lt;/script&gt;</code> </p>
+
+<p>or </p>
+
+<p><code>&lt;script src="&lt;%= Links.Scripts.MicrosoftAjax_js %&gt;" type="text/javascript"&gt;&lt;/script&gt;</code> </p>
+
+<p>I had to do </p>
+
+<p><code>&lt;script src="../../../../Scripts/MicrosoftAjax.js" type="text/javascript"&gt;&lt;/script&gt;</code></p>
+
+<p>Also, the action in the controller worked as @jim suggested by</p>
+
+<pre><code>return PartialView(MVC.ProjectDash.Project.Views.MembersDisplay, members);
+</code></pre>
+
+<p>Also, I removed the "InsertionMode=..." from</p>
+
+<pre><code>&lt;% Ajax.BeginForm("AddMember", "Project", new AjaxOptions { UpdateTargetId = "results", InsertionMode=InsertionMode.Replace}) { %&gt;
+</code></pre>
+
+<p>The biggest issue was the javascript files were not be linked up and referenced correctly. Once that was fixed, the other things quickly feel into place.</p>

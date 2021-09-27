@@ -1,0 +1,18 @@
+<p>Most probably your program is just exiting because the code in the <code>main</code> method is finished very quickly.</p>
+
+<p>We don't know what is your <code>Player</code> but I think it is playing music on a different thread than main thread, so as long as your code stops, it works fine.</p>
+
+<p>In the <code>main</code> method, you should stop execution of code. For that, simply you can read something from console using:</p>
+
+<pre><code>import java.util.Scanner;
+...
+// here we will get input and program won't quit until we press Return
+new Scanner(System.in).readLine();
+</code></pre>
+
+<p>In addition to that, you can use something like </p>
+
+<pre><code>try{Thread.sleep(Long.MAX_VALUE);} catch(Exception e){}
+</code></pre>
+
+<p>to sleep main thread and wait too much time.</p>

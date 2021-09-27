@@ -1,0 +1,9 @@
+<p>possible workaround:</p>
+
+<pre><code>var l = (from buy in context.ContractBuys
+        where
+        (buy.CreationDate &gt;= createDateFrom) &amp;&amp; (buy.CreationDate &lt;= createDateTo)
+        select buy).ToList();
+
+return l.where(buy =&gt; buy.DealerNo.Value.ToString().StartsWith(dlrNo)).toList();
+</code></pre>

@@ -1,0 +1,10 @@
+<p><a href="http://php.net/function.count" rel="nofollow"><code>count()</code></a> is giving you the number of items in an array:</p>
+
+<pre><code>for($type = 0; $type &lt; count($fields); $type++) {
+    for($field = 0; $field &lt; count($fields[$type]); $field++) {
+        echo $fields[$type][$field];
+    }
+}
+</code></pre>
+
+<p>Often <a href="http://php.net/control-structures.foreach" rel="nofollow"><code>foreach</code></a> is easier to use and will create code that you can change easier.</p>

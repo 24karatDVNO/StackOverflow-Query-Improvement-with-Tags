@@ -1,0 +1,13 @@
+<p>ItemsTable.Item_Name= '" + DropItemName.SelectedValue + "'"</p>
+
+<p>looks like it should be after the WHERE clause.</p>
+
+<pre><code>SELECT TotalItems.Total_Items
+,TotalItems.No_Items_Present
+,ItemsTable.No_Of_Items_Ret 
+FROM TotalItems 
+INNER JOIN ItemsTable ON TotalItems.[reference] = ItemsTable.[reference]
+WHERE ItemsTable.Item_Name= '" + DropItemName.SelectedValue + "'"
+</code></pre>
+
+<p>reference should be the field that ties the tables together.</p>

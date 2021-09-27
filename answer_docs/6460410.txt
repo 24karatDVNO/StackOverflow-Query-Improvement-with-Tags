@@ -1,0 +1,15 @@
+<p>If your database supports them, it may be sufficient for you to use analytic queries to get the next status for each status that indicates the start of a break:</p>
+
+<pre><code>select mobile_token, end_dt - start_dt
+from (select status_id, 
+             mobile_token,
+             status_change_dt as start_dt, 
+             lead(status_change_dt) over (partition by mobile_token
+                                          order by status_change_dt) as end_dt
+      from Crew_Status)
+where status_id in (600, 603)
+</code></pre>
+
+<p>Obviously, if you can have a 600 without a 601 (for example), this won't work particularly well (the time period returned would be 600 to whatever happened to come next).</p>
+
+<p>As an aside, it is always a good idea to specify which database you're using, as functionality can vary quite a bit between them.</p>

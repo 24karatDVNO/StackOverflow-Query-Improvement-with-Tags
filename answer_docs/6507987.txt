@@ -1,0 +1,12 @@
+<p>Maybe instead of posting straight to the payment gateway you should post to one of your own pages eg, /process.php and then use your PHP to make a POST request to the payment gateway. Then the gateway would return the XML to your PHP script for parsing/validation.</p>
+
+<ul>
+<li>User submits form.</li>
+<li>Form hits your server with their credit card information.</li>
+<li>Your server hits the gateway with their credit card info and grabs the XML file.</li>
+<li>The XML file is parsed, and depending on it's contents you display a success or failure message.</li>
+</ul>
+
+<p>You can use <a href="http://php.net/manual/en/book.curl.php" rel="nofollow">curl</a> to make POST requests with PHP. This may not be <a href="https://www.pcisecuritystandards.org/" rel="nofollow">PCI compliant</a>, but no other solution apart from sending users to a payment gateways website will be. </p>
+
+<p>They might offer a hosted solution which may suit your needs better. If you are somewhat new to PHP you might not want to mess around with credit cards and security too much.</p>

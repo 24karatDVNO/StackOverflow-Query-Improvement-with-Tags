@@ -1,0 +1,14 @@
+<p>that's not really a good idea to show your popup , do the below</p>
+
+<pre><code>&lt;ajax:ModalPopupExtender ID="ModalPopupExtender2" runat="server" TargetControlID="dummyButton2" PopupControlID="DayEntryPanel" CancelControlID="Button3" BehaviourId="mpcPopup" BackgroundCssClass="backCSS"/&gt;
+</code></pre>
+
+<p>see i provided a beahviour Id, now you can do the below</p>
+
+<pre><code>$find("mpcPopup").show()//show me some popup's
+</code></pre>
+
+<p>hide the popup</p>
+
+<pre><code>$find("mpcPopup").hide();//zoot bye
+</code></pre>

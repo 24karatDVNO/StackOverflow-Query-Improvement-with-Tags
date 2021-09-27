@@ -1,0 +1,13 @@
+<p>That's quite a broad question and there are plenty of resources are out there on the web to help get started.</p>
+
+<p>It's easy to set up a forms authentication system in ASP.Net 4 by just creating a new website as it automatically creates the login and registration pages for the website in a database using a "Membership Provider":</p>
+
+<p><a href="http://blogs.msdn.com/b/aspnetue/archive/2010/01/12/website-user-authentication-asp-net-web-applications.aspx" rel="nofollow">Website User Authentication</a></p>
+
+<p>You could create an "UploadFile" table in the database that has a reference to the file path and userName. When a user is authenticated you can get their User name from User.Identity.Name property and then check if they can upload a file.  You can use an ORM for easier database access and there are plenty to choose from such as Linq To SQL, Entity Framework, or NHibernate.</p>
+
+<p>There are several tutorial videos on file uploads:</p>
+
+<p><a href="http://www.asp.net/general/videos/how-do-i-simple-file-uploads-in-aspnet" rel="nofollow">Simple File Upload</a></p>
+
+<p>Of course there is much more to this but hopefully will give you some ideas on where to start learning.</p>

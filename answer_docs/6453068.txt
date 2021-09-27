@@ -1,0 +1,36 @@
+<p>I dont understand why the query is in a query string, surely it would work better</p>
+
+<pre><code>ALTER PROCEDURE [sesuser].[Login_GetUserList]
+(  
+@beginsWith NVARCHAR(20) = NULL,
+@SortBy nvarchar(20) = NULL,
+@sortByDirection nvarchar(5) = N'ASC'
+)
+AS
+BEGIN    
+DECLARE @searchStr NVARCHAR(21)    
+IF @beginsWith IS NULL
+    SET @beginsWith = N''
+ELSE
+    SET @beginsWith = dbo.SuperTrim(@beginsWith);    
+IF LEN(@beginsWith) &gt; 0
+    SET @searchStr = @beginsWith + N'%'
+ELSE
+    SET @searchStr = N'%'    
+
+SELECT  [OfficeName]
+    ,[SESLoginID] AS LoginID
+    ,[SESSuspended] AS LoginSuspended
+    ,[SESAdmin] AS Role_Admin
+    ,[SESLoginID]
+    ,[SESFirstName]
+    ,[SESLastName]
+    ,[SESEmail]
+    ,[SESSuspended]
+    FROM sesuser.SESLogin
+    INNER JOIN sesuser.Office
+    ON sesuser.Office.OfficeID = sesuser.SESLogin.SESLoginID
+    WHERE SESFirstName LIKE @searchStr 
+
+END
+</code></pre>

@@ -1,0 +1,26 @@
+<p>As others have said, making addSoundInfo() public is enough for it to be available from other class. I'll just add some points about C++'s keyword static. Basically, it has many meanings depending on where is it used. When one uses it for functions, there are two meanings:</p>
+
+<ul>
+<li>static class function: a function that is tied to a class, not any specific object. In this sense, it is similar to namespace concept - using the scope :: operator to access the function.</li>
+<li>static function: The function has internal linkage, which means it is only visible in current translation unit (current source file). It is handy for utility functions.</li>
+</ul>
+
+<p>In your case, the answer to your question will technically be something like this:</p>
+
+<p>In the header file:</p>
+
+<pre><code>class DataCenter 
+{
+    static void addSoundInfo(DataCenter&amp; dc, long long deviceId, SoundInfo *soundInfo);
+}
+</code></pre>
+
+<p>In the source file:</p>
+
+<pre><code>void DataCenter::addSoundInfo(DataCenter&amp; dc, long long deviceId, SoundInfo *soundInfo)
+{
+    dc.add(deviceId, soundInfo);
+}
+</code></pre>
+
+<p>But it is probably not what you want.</p>

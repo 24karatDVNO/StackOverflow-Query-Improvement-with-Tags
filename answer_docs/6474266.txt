@@ -1,0 +1,21 @@
+<p>I'd change it so that the <code>&lt;select&gt;</code> elements themselves are created by jQuery as well, based on the different years present in <code>literature-container</code>:</p>
+
+<pre><code>$('.literature-container').each(function() {
+    itemContent = $(this).text();
+    itemURL = $(this).find('a').attr("href");
+    fileYear = itemContent.substr(0, 4);
+
+    optionFormat = '&lt;option ' + 'title="' + itemURL + '"&gt;' + itemContent + '&lt;/option&gt;';
+
+    // get the select, create it and append to body if it's not present
+    var $sel = $("#statistics_literature_"+fileYear);
+    if(!$sel.length) {
+        $sel = $("&lt;select id='statistics_literature_"+fileYear+"'&gt;&lt;option value='selected'&gt;Please Select a Statistics File:&lt;/option&gt;&lt;/select&gt;").appendTo($('body'));
+    }
+
+    // add the option to the select
+    $sel.append(optionFormat);
+});
+</code></pre>
+
+<p>This way you won't have to worry about adding more selects when items from another year are added later on. Ofcourse, the selects will be created in the order the distinct years are present in the <code>literature-container</code>s, so if the order of the list changes, the order of the selects might as well...</p>

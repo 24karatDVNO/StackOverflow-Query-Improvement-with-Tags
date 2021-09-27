@@ -1,0 +1,27 @@
+<p>Try this schema:</p>
+
+<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.testxyzxyz.de/xyz/BusinessModel" xmlns:b="http://schemas.testxyzxyz.de/xyz/BusinessModel"&gt;
+  &lt;xsd:element name="BusinessModel" type="b:BusinessModelType" /&gt;
+  &lt;xsd:complexType name="BusinessModelType"&gt;
+    &lt;xsd:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xsd:element name="Entities" type="b:EntitiesType" /&gt;
+    &lt;/xsd:choice&gt;
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name="EntitiesType"&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name="Entity" type="b:EntityType" maxOccurs="unbounded" /&gt;
+    &lt;/xsd:sequence&gt;
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name="AttributeType"&gt;
+    &lt;xsd:attribute name="Name" type="xsd:string" use="required" /&gt;
+    &lt;xsd:attribute name="Type" type="xsd:string" use="required" /&gt;
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name="EntityType"&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name="Attribute" type="b:AttributeType" maxOccurs="unbounded" minOccurs="1" /&gt;
+    &lt;/xsd:sequence&gt;
+    &lt;xsd:attribute name="Name" type="xsd:string" use="required" /&gt;
+  &lt;/xsd:complexType&gt;
+&lt;/xsd:schema&gt;
+</code></pre>

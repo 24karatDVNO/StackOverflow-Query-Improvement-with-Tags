@@ -1,0 +1,15 @@
+<p>Well you could just do it like this:</p>
+
+<pre><code>NSMutableArray*array1 = [NSMutableArray arrayWithObjects:person,person1,person2,nil];
+NSMutableArray*array2 = [NSMutableArray arrayWithObjects:person1,person2,person,nil];
+
+for (Person*person in array1)
+{
+    if ([array2 containsObject:person])
+    {
+         [array2 removeObject:person];
+    }
+}
+</code></pre>
+
+<p>This will remove all duplicates found in <code>array2</code>. You can also use <code>isEqual:</code> to compare the objects, that's up to you. Replace <code>array1</code> and <code>array2</code> with your two arrays and give it a go.</p>

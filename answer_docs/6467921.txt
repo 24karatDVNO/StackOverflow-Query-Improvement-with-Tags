@@ -1,0 +1,14 @@
+<p>Try something like this...</p>
+
+<pre><code>SELECT CASE SUBSTRING ( [yourField], LEN([yourField])-2, LEN([yourField])-1)
+WHEN '\' THEN (SUBSTRING ( [yourField], 0, LEN([yourField])-1))
+ELSE [yourField]
+
+End
+  FROM [yourTable]
+GO
+</code></pre>
+
+<p>Hope that helps,</p>
+
+<p>Jeffrey Kevin Pry</p>

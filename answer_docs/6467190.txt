@@ -1,0 +1,23 @@
+<p>First: you can't use the same id (toggle) multiple times.</p>
+
+<pre><code>&lt;a class="toggle" href="#"&gt;Expand box 1&lt;/a&gt; 
+&lt;div id="content"&gt;Content 1&lt;/div&gt; 
+&lt;div id="contentHidden" style="display:none;"&gt;Hidden 1&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;a class="toggle" href="#"&gt;Expand box 2&lt;/a&gt; 
+&lt;div id="content"&gt;Content 2&lt;/div&gt; 
+&lt;div id="contentHidden" style="display:none;"&gt;Hidden 2&lt;/div&gt;
+
+$('.toggle').click(function() {
+  var content = $(this).next();
+  $(content).toggle();
+  $(content).next().toggle(); // three lines above can also be done in a one-liner, but I prefer separate line for readability. In the end it's a matter of taste
+  return false;
+});
+</code></pre>
+
+<p>I've changed toggle <code>id</code> to <code>class</code> since it is not valid HTML to re-use the same id on the page. Id's must be unique.</p>
+
+<p><code>.next()</code> selects the next dom element (sister) in the tree</p>

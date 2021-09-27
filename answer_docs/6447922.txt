@@ -1,0 +1,6 @@
+<p>If (xk, yk) is the center before zooming and the size is (Sx, Sy), zoomed to a factor of Z in (0, 1], the new size will be (Qx, Qy) = (Sx*(1-Z), Sy*(1-Z)) centered on (xk, yk) which means the screen coordinates are:</p>
+
+<pre><code>rectangle: xk - Qx/2, yk - Qy/2, xk + Qx/2, yk + Qy/2
+</code></pre>
+
+<p>Hope that helps.</p>

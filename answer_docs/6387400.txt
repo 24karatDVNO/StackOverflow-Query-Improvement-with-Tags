@@ -1,0 +1,3 @@
+<p>Only the last <strong>run</strong> method definition matters.</p>
+
+<p>The other <strong>run</strong> method (which takes <code>String[]</code>) invokes this method, so it acts like some sort of "proxy", while the other <code>run</code> invocation in the <code>main</code> method can choose to invoke either of the two -- either the 'proxy' <strong>run</strong> method (which takes <code>String[] args</code>) or the last <strong>run</strong> method, which actually does the "running".</p>

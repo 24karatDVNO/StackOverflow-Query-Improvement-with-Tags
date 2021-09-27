@@ -1,0 +1,36 @@
+<p>Support for deploying WAR files with EJBs is fixed (but possibly not available; see the following text) in Geronimo 3.0, going by <a href="https://issues.apache.org/jira/browse/GERONIMO-5117" rel="nofollow">bug report 5117</a>. Going by this report, dependency injection in 2.2.1 is likely to fail.</p>
+
+<p>There is <a href="http://mail-archives.apache.org/mod_mbox/geronimo-user/201105.mbox/%3CBANLkTimxJwim9eii8a+0bvAawy1T8kyPcA@mail.gmail.com%3E" rel="nofollow">one report on the mailing list</a>, suggesting that Geronimo 3.0 M1 might be used for validating whether dependency injection works for EJBs deployed in a web-application; this is however against a query raised with respect to a failure on the same topic. Reproducing the salient contents of the mail:</p>
+
+<hr>
+
+<blockquote>
+  <p>Łukasz:</p>
+  
+  <p>Geronimo is not able to inject @EJB
+  into a servlet. Both SLSB and my
+  serlvet are packaged in war. ... <strong>By
+  looking at the release notes I know
+  that EJB 3.1 is supported only
+  partially</strong>. I take it that the part
+  that is not yet implemented in
+  deploying EJBs inside war package?</p>
+  
+  <p>Ivan:</p>
+  
+  <p>Hmm, IIRC, <strong>the EJB injection should
+  work in the M1 release, although it
+  have some bugs in EJB 3.1
+  integration.</strong> I would suggest to use
+  the latest trunk codes (just update
+  some codes to try to work around the
+  address binding issue on the building
+  machine, hopefully a snapshot build
+  could be generated in the next round),
+  as we got a much better TCK result
+  comparing with M1 release. JCDI
+  related packages are definitely
+  included in the latest trunk build.</p>
+</blockquote>
+
+<p>Going all of the above, 3.0 M1 would be the release to attempt this at the moment, but there is surely some possibility of this feature being absent (given that bug 5117 does not appeared to be in the list of fixed bugs in the release notes).</p>

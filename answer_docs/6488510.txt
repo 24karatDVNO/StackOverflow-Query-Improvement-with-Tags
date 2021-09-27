@@ -1,0 +1,16 @@
+<p>For reference: </p>
+
+<pre><code>curl -v \
+    -d    "api_key=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${APIKEY}`"    \   
+    -d    "api_sig=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${MS}`"        \
+    -d     "artist=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${ARTIST}`"    \
+    -d     "method=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${METHOD}`"    \
+    -d "playlistID=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${PLID}`"      \
+    -d         "sk=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${LASTFM_SK}`" \
+    -d      "track=`perl -e 'use Encode; printf "%s", encode_utf8($ARGV[0])' ${TRACK} `"    \
+$SE
+</code></pre>
+
+<p>....
+one is probably better off using perl from the beginning: 
+<a href="http://www.easyclasspage.de/lastfm/seite-11.html" rel="nofollow">http://www.easyclasspage.de/lastfm/seite-11.html</a></p>

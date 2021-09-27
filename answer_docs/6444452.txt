@@ -1,0 +1,17 @@
+<p>What you want to do should not by solved by calling different actions.</p>
+
+<p>In the controller, you know which models you want to display in the view, so you set up the attributes accordingly, e.g.</p>
+
+<pre><code>@user = current_user
+@team = current_user.team.first
+@top_teams = Team.top5 # this is a scope returning the 5 top teams
+</code></pre>
+
+<p>In your view, you then use partials to render the different parts of your site</p>
+
+<pre><code>&lt;%= render "users/parts/box", :user =&gt; @user %&gt;
+&lt;%= render "teams/parts/detail", :team =&gt; @team %&gt;
+&lt;%= render "teams/parts/top", :collection =&gt; @top_teams %&gt;
+</code></pre>
+
+<p>I suggest you have a look at <a href="https://github.com/jcnetdev/opensourcerails" rel="nofollow">Opensourcerails, which itself is open source</a> and makes use of this technique. A good example is the user's show action.</p>

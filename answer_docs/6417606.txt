@@ -1,0 +1,9 @@
+<p>You probably want to use <code>live()</code> rather than <code>bind()</code> so that it works even when your <code>li</code>'s are dynamically loaded. </p>
+
+<p><a href="http://api.jquery.com/live/" rel="nofollow">The docs are here</a></p>
+
+<p>I would also add a specific class to the <code>li</code>'s so you can use a selector like:</p>
+
+<pre><code>$('.my_loaded_selection').live('keyup', function(e){//do your thing
+}) ;
+</code></pre>

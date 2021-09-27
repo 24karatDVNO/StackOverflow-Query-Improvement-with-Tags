@@ -1,0 +1,27 @@
+<p>There are a multitude of problems in your code. Firstly, inside your for loop you use an ID instead of a class, you should only use an ID once. Secondly, there are better ways to attach this. Please accept below and untested example, it should work, but will need some testing.</p>
+
+<pre><code>&lt;?php
+    $result = dbclass::convert_array($res); //retrieving colors here
+    for($i = 0; $i &lt; $rows; $i++) {
+?&gt;
+
+&lt;!--  Using class .color instead of ID --&gt;
+&lt;div class="color" style="background-color:&lt;?php echo $result[$i][1];?&gt;; width:32px;  height:26px;"&gt;
+&lt;/div&gt;
+
+&lt;? } ?&gt;
+
+&lt;div id="changableColor" style"background-color:#FFFFFF;"&gt; &lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+    $(document).ready(function(){
+            // Attaching using a jQuery click function
+        $(".color").click(function(){
+                    // Using this operator to grab the background-color of the clicked item
+            $(#changableColor).css("background-color",$(this).css("background-color"))
+        });
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>Please comment if you need further help.</p>

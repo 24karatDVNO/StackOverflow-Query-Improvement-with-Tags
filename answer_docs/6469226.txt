@@ -1,0 +1,10 @@
+<p>The gridview defaults to <code>ItemMode</code> where it does not allow editing. You'll have to add an edit command and switch to <code>EditMode</code> and then your check box should be editable.</p>
+
+<pre><code> &lt;Columns&gt;
+       ...
+       &lt;asp:CommandField ShowEditButton="True" /&gt;
+       ...
+ &lt;/Columns&gt;
+</code></pre>
+
+<p>Alternatively, you can make it a <code>TemplateField</code> and make it editable even in <code>ItemMode</code>.</p>

@@ -1,0 +1,102 @@
+<p>Here's a solution that relies on the relative position of each of the steps:</p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:template match="/"&gt;
+        &lt;html&gt;
+            &lt;body&gt;
+                &lt;font face="Arial" size="2"&gt;
+                    &lt;xsl:apply-templates /&gt;
+                &lt;/font&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="testresults/test"&gt;
+        &lt;h4&gt;Steps&lt;/h4&gt;
+        &lt;table border="1" bordercolor="#000000"&gt;
+            &lt;tr bgcolor="#dccdc"&gt;
+                &lt;th align="center"&gt;Task&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- links --&gt;
+            &lt;xsl:apply-templates select="step" /&gt;
+        &lt;/table&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="testresults/test/step"&gt;
+        &lt;xsl:variable name="pos" select="position()" /&gt;
+        &lt;tr&gt;
+            &lt;td bgcolor="#F2F5A9"&gt;
+                &lt;a
+                    href="#{generate-id(../../step/drilldown/taskresults
+                                /testResults/test[position()=$pos])}"&gt;
+                    &lt;xsl:value-of select="@stepname" /&gt;
+                &lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="drilldown/taskresults/testResults"&gt;
+        &lt;h2&gt;Test Results&lt;/h2&gt;
+        &lt;xsl:apply-templates select="test" /&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="drilldown/taskresults/testResults/test"&gt;
+        &lt;h3&gt;
+            &lt;a name="{generate-id(.)}"&gt;
+                &lt;xsl:value-of select="@testname" /&gt;
+            &lt;/a&gt;
+        &lt;/h3&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt; 
+</code></pre>
+
+<p>On the provided input:</p>
+
+<pre><code>&lt;testresults&gt;
+    &lt;test testname="ComparisonResult"&gt;
+        &lt;step stepname="Step1"&gt;
+            &lt;result&gt;true&lt;/result&gt;
+        &lt;/step&gt;
+        &lt;step stepname="Step2"&gt;
+            &lt;result&gt;true&lt;/result&gt;
+        &lt;/step&gt;
+    &lt;/test&gt;
+    &lt;step stepname="results" stepresult="true"&gt;
+        &lt;drilldown&gt;
+            &lt;taskresults&gt;
+                &lt;testResults&gt;
+                    &lt;test testname="ComparisonResult_Step1"&gt;&lt;/test&gt;
+                    &lt;test testname="ComparisonResult_Step2"&gt;&lt;/test&gt;
+                &lt;/testResults&gt;
+            &lt;/taskresults&gt;
+        &lt;/drilldown&gt;
+    &lt;/step&gt;
+&lt;/testresults&gt;
+</code></pre>
+
+<p>Produces:</p>
+
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;font face="Arial" size="2"&gt;
+            &lt;h4&gt;Steps&lt;/h4&gt;
+            &lt;table border="1" bordercolor="#000000"&gt;
+                &lt;tr bgcolor="#dccdc"&gt;
+                    &lt;th align="center"&gt;Task&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td bgcolor="#F2F5A9"&gt;
+                        &lt;a href="#d1e26"&gt;Step1&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td bgcolor="#F2F5A9"&gt;
+                        &lt;a href="#d1e29"&gt;Step2&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;h2&gt;Test Results&lt;/h2&gt;
+            &lt;h3&gt;&lt;a name="d1e26"&gt;ComparisonResult_Step1&lt;/a&gt;&lt;/h3&gt;
+            &lt;h3&gt;&lt;a name="d1e29"&gt;ComparisonResult_Step2&lt;/a&gt;&lt;/h3&gt;
+        &lt;/font&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>Note:</strong> This solution does not use <code>for-each</code> in a monolithic template. Instead, it relies on multiple templates to modularize the handling of each section of the input.</p>

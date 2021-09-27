@@ -1,0 +1,5 @@
+<p>Generally for something like this, I'd generate a "nextrun_datetime" for each and every script/user combination. By default it would have a repeat interval, in your case, 7 days.</p>
+
+<p>If a user doesn't want to run it this week, they can "push" it out N days and the normal update interval would apply afterwards. To get the one-time shot, I'd allow an update interval of 0 or -1 to denote that.</p>
+
+<p>With this sort of thing, whenever a script is updated (or saved, run, rescheduled), you can calculate the next date if there is one. From there, it's a relatively simple cron job that should check the last N minutes for any scripts to be run.</p>

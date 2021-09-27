@@ -1,0 +1,29 @@
+<p>
+        
+</p>
+
+<pre><code>&lt;TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"&gt;
+    &lt;LinearLayout android:orientation="vertical"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"&gt;
+        &lt;View android:layout_width="fill_parent" android:layout_height="0.5dip"
+</code></pre>
+
+<p>Here, I set    0.5 you can st 1 dp  and you can set a tabdiver.9.png  file.</p>
+
+<pre><code>            android:background="#000" /&gt;
+        &lt;TabWidget android:id="@android:id/tabs"
+            android:layout_width="fill_parent" android:layout_height="55dip"
+            android:layout_marginLeft="0dip" android:layout_marginRight="0dip" /&gt;
+        &lt;View android:layout_width="fill_parent" android:layout_height="5dip"
+            android:background="#696969" /&gt;
+        &lt;View android:layout_width="fill_parent" android:layout_height="1dip" 
+            android:background="#000" /&gt;
+        &lt;FrameLayout android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent" android:layout_height="fill_parent" /&gt;
+    &lt;/LinearLayout&gt;
+&lt;/TabHost&gt;
+</code></pre>
+
+<p>Try this.</p>

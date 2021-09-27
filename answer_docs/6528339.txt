@@ -1,0 +1,10 @@
+<p>Use regex splitting as <a href="http://www.dotnetperls.com/regex-split" rel="nofollow">shown here</a></p>
+
+<p>I guess you'd end up with something like this: </p>
+
+<pre><code>RegexOptions options = RegexOptions.None;
+
+Regex regex = new Regex(@"[ ]{2,}", options); 
+
+string[] operands = Regex.Split(operation, regex);
+</code></pre>

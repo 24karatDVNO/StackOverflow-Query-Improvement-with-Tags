@@ -1,0 +1,20 @@
+<p>If you use it, then you should make the constructor private and use factory methods instead that call the <code>initialize()</code> method for you. For example:</p>
+
+<pre><code>class MyClass
+{
+public:
+    static std::unique_ptr&lt;MyClass&gt; Create()
+    {
+        std::unique_ptr&lt;MyClass&gt; result(new MyClass);
+        result-&gt;initialize();
+        return result;
+    }
+
+private:
+    MyClass();
+
+    void initialize();
+};
+</code></pre>
+
+<p>That said, initializer methods are not very elegant, but they can be useful for the exact reasons your teacher said. I would not consider them 'wrong' per se. If your design is good then you probably will never need them. However, real-life code sometimes forces you to make compromises.</p>

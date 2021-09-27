@@ -1,0 +1,12 @@
+<p>Enable mod_rewrite with</p>
+
+<pre><code>$ sudo a2enmod rewrite
+</code></pre>
+
+<p>Append this to your .htaccess;</p>
+
+<pre><code>&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteRule ^myframework/ - [F,L]
+&lt;/IfModule&gt;
+</code></pre>

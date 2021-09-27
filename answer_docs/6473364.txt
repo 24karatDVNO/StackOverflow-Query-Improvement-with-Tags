@@ -1,0 +1,23 @@
+<p>Dunno if a double else is feasable... never tried... but here's my shot.</p>
+
+<pre><code>@Echo off
+FOR /F "tokens=1" %%F IN ('ECHO %date%') DO (
+set day=%%F
+)
+FOR /F "tokens=* delims=:." %%F IN ('ECHO %time%') DO (
+set thetime=%%F
+)
+
+:Loop
+START /B "test.exe"
+FOR /F "tokens=1" %%F IN ('ECHO %date%') DO IF %date%==%day% IF %time% GEQ %thetime% (
+ GOTO Loop
+) Else (
+ IF NOT "%date%"=="%day%" IF %time% LEQ %thetime% (
+ GOTO Loop
+) ELSE (
+ IF NOT "%date%"=="%day%" IF %time% GRT %thetime% (
+ GOTO:EOF
+)
+)
+</code></pre>

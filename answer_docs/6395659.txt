@@ -1,0 +1,17 @@
+<p>From the asynctask maybe instead of directly referencing the ProgressBar, you could update the progressbar within a method of the activity. eg.</p>
+
+<pre><code>onPublishProgress(int progress) { 
+    updateProgressBar(progress);
+}
+</code></pre>
+
+<p>in the activity:</p>
+
+<pre><code>updateProgressBar(int progress) {
+    progressBar.setProgress(progress);
+}
+</code></pre>
+
+<p>You can save the state of the activity before it is destroyed by overriding onSaveInstanceState(). 
+Save the progress integer in here and then in onCreate, 
+check if savedInstanceState is not null then create the progress bar set at the saved integer.</p>

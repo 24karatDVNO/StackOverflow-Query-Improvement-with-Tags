@@ -1,0 +1,16 @@
+<p>Hope you are trying to load the detailvewcontroller from a listviewcontroller. And the table view is a member of listviewcontroller. </p>
+
+<p>Posssible reason for the issue.</p>
+
+<p>If you are adding listviewcontroller.view as a subview to any other viewcontollers view then </p>
+
+<p>[self.navigationController pushViewController:dvController animated:YES]; don't work.</p>
+
+<p>So you should get an instance of your app delegate and do the following.</p>
+
+<pre><code>YourAppDelegate *appDelegate = (YourAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+[appDelegate .navigationController pushViewController:dvController animated:YES];
+</code></pre>
+
+<p>Check around this. If this is not a reason for your issue then please let me know the console output Deepak asked you.</p>

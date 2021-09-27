@@ -1,0 +1,12 @@
+<p>Okay I figured it out myself.</p>
+
+<p>The fastest seems to be to do <code>SELECT media_id, keyword, COUNT(media_id) AS num WHERE ... GROUP BY media_id</code> and then going over the <code>num</code> field with a simple php-usort function.</p>
+
+<pre><code>function SortFrequency($a, $b)
+{
+     if ($a['num'] == $b['num']) return 0;
+     return ($a['num'] &gt; $b['num']) ? -1 : 1;
+}
+
+usort($results, 'SortFrequency');
+</code></pre>

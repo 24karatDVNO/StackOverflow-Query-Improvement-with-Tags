@@ -1,0 +1,10 @@
+<p>While I would just recommend using the dictionary directly and accessing the arrays like <code>temp['key']</code>, if you knew all of the variable names ahead of time you could write a function to extract them to individual variables:</p>
+
+<pre><code>def func(**kwargs):
+    return kwargs['a'],kwargs['b']
+
+
+temp = {'a':np.array([1,2]),'b':np.array([3,4])}
+a,b = func(**temp)
+del temp # get rid of temporary dict
+</code></pre>

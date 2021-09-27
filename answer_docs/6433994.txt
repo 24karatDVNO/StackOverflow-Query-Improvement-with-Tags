@@ -1,0 +1,8 @@
+<p>For a pure Linq language syntax:</p>
+
+<pre><code>  var pds = from pc in prodCats
+            select from p in pc.Products where p.ProductID &lt; 3
+            select p;
+</code></pre>
+
+<p>But I think the IEnumerable extension + lambda version is more readable.</p>

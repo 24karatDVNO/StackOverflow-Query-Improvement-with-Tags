@@ -1,0 +1,3 @@
+<p>The 'tab out' is doable, but would require an AJAX system to do the checking. Such systems are vulnerable to race conditions (e.g. tab out, everything ok, but in the 10 seconds it took for the user to reach for the mouse and click submit, someone else created the same record), so you'd still need submit-time checking as well.</p>
+
+<p>As for the server-side checking, you'd simply do a <code>SELECT</code> query to look for the certificate number, and if any rows are returned, the cert # is in use. If it's in use, then don't do the insert. For better safety, you'd want to sprinkle some transactions and locking into the mix, so that the time between checking and inserting isn't vulnerable to poaching by other users.</p>

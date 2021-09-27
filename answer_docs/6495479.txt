@@ -1,0 +1,62 @@
+<p>The code you specified below is for socket.io 0.7.x(API) and not for 0.6.x so that is where the error could be. You should try to <code>npm update socket.io</code> . My dependencies are the following according to <code>npm ls</code>:</p>
+
+<pre><code>alfred@alfred-laptop:~/node/socketio-demo$ npm ls
+/home/alfred/node/socketio-demo
+└─┬ socket.io@0.7.2 
+  ├── policyfile@0.0.3 
+  └── socket.io-client@0.7.2 
+</code></pre>
+
+<p>Also are you using socket.io client html from same node.js server or from some other server(PHP or something for example).</p>
+
+<hr>
+
+<p>I also did at test via PHP:</p>
+
+<pre><code>mkdir socketio-demo`
+cd socketio-demo`
+gedit server.js # my quick/dirty editor
+</code></pre>
+
+<hr>
+
+<pre><code>var io = require('socket.io').listen(8011);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+</code></pre>
+
+<hr>
+
+<pre><code>alfred@alfred-laptop:~/node/socketio-demo$ node server.js 
+   info  - socket.io started
+</code></pre>
+
+<hr>
+
+<p>I also have a PHP server running on port 80:</p>
+
+<pre><code>gedit socket.php
+</code></pre>
+
+<hr>
+
+<pre><code>&lt;script src="http://localhost:8011/socket.io/socket.io.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var socket = io.connect('http://localhost:8011/');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+&lt;/script&gt;
+</code></pre>
+
+<hr>
+
+<p>When on another host you need to update <code>&lt;script src="http://localhost:8011/socket.io/socket.io.js"&gt;&lt;/script&gt;</code> to point to your socket.io server</p>
+
+<p>and <code>var socket = io.connect('http://localhost:8011/');</code> to point to your socket.io server. Using this setup I got it working without any problems at all.</p>

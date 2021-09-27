@@ -1,0 +1,17 @@
+<p>Assuming that the numeric data is always at the start of the cell, you can use Regex to find any consecutive numbers at the start of the string, stopping once it hits the first non-numeric characters. Here is a function that will do it for you, I hope it helps. The ^ stands for start of the cell, and (\d+) means one or more numeric characters and the .* means followed by zero or more characters. I am assuming there is only one string of numbers you need, so I have the regex just return submatch 0 (first match).</p>
+
+<pre><code>Function ExtractNumericData(ByVal text As String) As String
+
+Application.ScreenUpdating = False
+Dim allMatches As Object
+Dim RE As Object
+Set RE = CreateObject("vbscript.regexp")
+
+RE.Pattern = "^(\d+).*"
+RE.Global = True
+Set allMatches = RE.Execute(text)
+ExtractNumericData = allMatches.Item(0).submatches.Item(0)
+Application.ScreenUpdating = True
+
+End Function
+</code></pre>

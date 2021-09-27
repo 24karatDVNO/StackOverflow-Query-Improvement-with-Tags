@@ -1,0 +1,14 @@
+<p>This can be done using a bit of regex. Assuming your title doesn't have any other brackets, you can do this:</p>
+
+<pre><code>function globalCount() {
+    var title = $('title').text().replace(/\([0-9]\)/, '');
+
+    $('title').load('../ajax/global-title.php', null, function(html){
+        $(this).text(title + html);
+    }); 
+}
+</code></pre>
+
+<p>The modification to the <code>var title</code> line will strip any strings matching stuff like <code>(2)</code> (a bracket, any number, and another bracket), and replace it with nothing.</p>
+
+<p>I've made a regex example <a href="http://regexpal.com/?flags=&amp;regex=%5C%28%5B0-9%5D%5C%29&amp;input=Hello%20world.%20%28Notifications%29%20%282%29%20%283%29" rel="nofollow">here</a>.</p>

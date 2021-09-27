@@ -1,0 +1,126 @@
+<p>What your looking for is the DefaultListModel - Dynamic String List Variable.</p>
+
+<p><strong>Here is a whole class that uses the DefaultListModel as though it were the TStringList of Delphi.</strong>  The difference is that you can add Strings to the list without limitation and you have the same ability at getting a single entry by specifying the entry int.</p>
+
+<p>FileName: StringList.java</p>
+
+<pre><code>package YOUR_PACKAGE_GOES_HERE;
+
+//This is the StringList Class by i2programmer
+//You may delete these comments
+//This code is offered freely at no requirements
+//You may alter the code as you wish
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
+public class StringList {
+
+    public static String OutputAsString(DefaultListModel list, int entry) {
+        return GetEntry(list, entry);
+    }
+
+    public static Object OutputAsObject(DefaultListModel list, int entry) {
+        return GetEntry(list, entry);
+    }
+
+    public static int OutputAsInteger(DefaultListModel list, int entry) {
+        return Integer.parseInt(list.getElementAt(entry).toString());
+    }
+
+    public static double OutputAsDouble(DefaultListModel list, int entry) {
+        return Double.parseDouble(list.getElementAt(entry).toString());
+    }
+
+    public static byte OutputAsByte(DefaultListModel list, int entry) {
+        return Byte.parseByte(list.getElementAt(entry).toString());
+    }
+
+    public static char OutputAsCharacter(DefaultListModel list, int entry) {
+        return list.getElementAt(entry).toString().charAt(0);
+    }
+
+    public static String GetEntry(DefaultListModel list, int entry) {
+        String result = "";
+        result = list.getElementAt(entry).toString();
+        return result;
+    }
+
+    public static void AddEntry(DefaultListModel list, String entry) {
+        list.addElement(entry);
+    }
+
+    public static void RemoveEntry(DefaultListModel list, int entry) {
+        list.removeElementAt(entry);
+    }
+
+    public static DefaultListModel StrToList(String input, String delimiter) {
+        DefaultListModel dlmtemp = new DefaultListModel();
+        input = input.trim();
+        delimiter = delimiter.trim();
+        while (input.toLowerCase().contains(delimiter.toLowerCase())) {
+            int index = input.toLowerCase().indexOf(delimiter.toLowerCase());
+            dlmtemp.addElement(input.substring(0, index).trim());
+            input = input.substring(index + delimiter.length(), input.length()).trim();
+        }
+        return dlmtemp;
+    }
+
+    public static String ListToStr(DefaultListModel list, String delimiter) {
+        String result = "";
+        for (int i = 0; i &lt; list.size(); i++) {
+            result = list.getElementAt(i).toString() + delimiter;
+        }
+        result = result.trim();
+        return result;
+    }
+
+    public static String LoadFile(String inputfile) throws IOException {
+        int len;
+        char[] chr = new char[4096];
+        final StringBuffer buffer = new StringBuffer();
+        final FileReader reader = new FileReader(new File(inputfile));
+        try {
+            while ((len = reader.read(chr)) &gt; 0) {
+                buffer.append(chr, 0, len);
+            }
+        } finally {
+            reader.close();
+        }
+        return buffer.toString();
+    }
+
+    public static void SaveFile(String outputfile, String outputstring) {
+        try {
+            FileWriter f0 = new FileWriter(new File(outputfile));
+            f0.write(outputstring);
+            f0.flush();
+            f0.close();
+        } catch (IOException ex) {
+            Logger.getLogger(StringList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+</code></pre>
+
+<p><strong>OutputAs</strong> methods are for outputting an entry as int, double, etc... so that you don't have to convert from string on the other side.</p>
+
+<p><strong>SaveFile &amp; LoadFile</strong> are to save and load strings to and from files.</p>
+
+<p><strong>StrToList &amp; ListToStr</strong> are to place delimiters between each entry.</p>
+
+<p>ex. 1&lt;>2&lt;>3&lt;>4&lt;> if "&lt;>" is the delimiter and 1 2 3 &amp; 4 are the entries.</p>
+
+<p><strong>AddEntry &amp; GetEntry</strong> are to add and get strings to and from the DefaultListModel.</p>
+
+<p><strong>RemoveEntry</strong> is to delete a string from the DefaultListModel.</p>
+
+<p>You use the DefaultListModel instead of an array here like this:</p>
+
+<pre><code>DefaultListModel list = new DefaultListModel();
+//now that you have a list, you can run it through the above class methods.
+</code></pre>

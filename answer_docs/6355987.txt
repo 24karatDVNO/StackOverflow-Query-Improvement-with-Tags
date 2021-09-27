@@ -1,0 +1,6 @@
+<p>When you say insert, I'm assuming you mean "represent".  You can represent a 2D array in a 1D array in many ways, so long as you somehow make a 1-to-1 mapping between the 2D indexes and the 1D indexes.  For example:</p>
+
+<pre><code>storage[row*column_count + column]
+</code></pre>
+
+<p>Would be a typical, easy way to store the data at <code>row, column</code> within a 1D array (or <code>vector</code>).</p>

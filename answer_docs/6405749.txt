@@ -1,0 +1,21 @@
+<p>Here is the solution I found, using gem nested_has_many_through, which is standard in Rails 3.1</p>
+
+<h1>User model</h1>
+
+<pre><code>  has_many :products, :dependent =&gt; :destroy
+  has_many :orders, :dependent =&gt; :destroy
+  has_many :product_posts, :through =&gt; :products, :source =&gt; :posts, :uniq =&gt; true
+  has_many :food_orders, :through =&gt; :product_posts, :source =&gt; :orders, :uniq =&gt; true
+</code></pre>
+
+<h1>OrdersController</h1>
+
+<pre><code> @orders_for_my_products = current_user.food_orders.all
+</code></pre>
+
+<h1>Orders index</h1>
+
+<pre><code>&lt;%= render :partial =&gt; "order", :collection =&gt; @for_my_products, :locals =&gt; {:order =&gt; @order}  %&gt;
+</code></pre>
+
+<p>This returns the deep nested data via relationships using minimal code.  I sure hope its efficient, but at least my sanity is spared!</p>

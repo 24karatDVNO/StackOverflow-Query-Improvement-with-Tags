@@ -1,0 +1,3 @@
+<p>Try <a href="http://docwiki.embarcadero.com/VCL/en/DB.TDataSet.RecNo" rel="nofollow">RecNo</a> and check out <a href="http://docwiki.embarcadero.com/RADStudio/en/Navigating_Data_in_Client_Datasets" rel="nofollow">Navigating Data in Client Datasets</a></p>
+
+<p>Apart from that, I think this is probably a design issue you need to address, but I'm not sure. I normally fetch all the data I need, then a single unidirectional pass through the dataset is usually enough. If necessary, make a second pass (rarely), but I've never had to move back and forth several times within a dataset. There is probably a better way. Hope that helps.</p>

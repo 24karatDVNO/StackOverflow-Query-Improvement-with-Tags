@@ -1,0 +1,13 @@
+<p>I suggest you do it like this:</p>
+
+<pre><code>String titleText=null;
+
+NodeList titles = doc.getElementsByTagName("title");
+
+for (int i = 0; titleText == null &amp;&amp; i &lt; titles.getLength(); i++) {
+    try {
+        titleText = doc.item(i).getFirstChild().getNodeValue();
+    } catch (SomeException e) {
+    }  
+}
+</code></pre>

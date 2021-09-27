@@ -1,0 +1,45 @@
+<p>If it were me I'd go with generating a hash based on the previously used hash and a common nonce, the tricky bit would be keeping the two systems in sync. e.g.</p>
+
+<pre><code>&lt;?php
+
+class otp {
+   var $salt;
+   var $previous_hash;
+   var $user_id;
+
+   function __construct($user_id)
+   {
+      $this-&gt;user_id=$user_id;
+      list($this-&gt;$salt, $this-&gt;$previous_hash)
+          =unserialize(file_get_contents(BASE_PATH . $user_id));
+   }
+   function authenticate($submitted_otp)
+   {
+      if (!$this-&gt;salt) {
+          // user does not exist
+          return false;
+      }
+      $new_hash=$this-&gt;previous_hash;
+      // allow for the sequence to get out of sync by 5 steps....
+      for ($x=0; $x&lt;5; $x++) {
+          $new_hash=md5($this-&gt;salt, $new_hash);
+          if ($new_hash===$submitted_otp) {
+              $this-&gt;update_token($new_hash);
+              return true;
+          }
+      }
+      // none of the next N iterations of the local password match
+      return false;
+   }
+   function create_user($user_id, $salt, $init_hash)
+   {
+      return file_put_contents(BASE_PATH . $user_id, array($salt, $init_hash));
+   }
+   function update_token($new_hash)
+   {
+       file_put_contents(BASE_PATH . $user_id, array($this-&gt;salt, $new_hash));
+   }
+}
+</code></pre>
+
+<p>Of course, in practice you probably wouldn't want to use a whole 32 char md5 hash (just, say, the first 6 characters, and applying cleansing such as changing 'S' to '5' etc).</p>

@@ -1,0 +1,10 @@
+<p>A <a href="https://github.com/jashkenas/coffee-script/wiki/FAQ" rel="nofollow">FAQ</a>.</p>
+
+<pre><code>FB.login (response) -&gt;
+  if response.perms and response.session
+    cbk true, response
+  # ...
+, perms: 'email,publish_stream'
+</code></pre>
+
+<p>The dedent + comma on the last line does the trick.</p>

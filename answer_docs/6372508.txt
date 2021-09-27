@@ -1,0 +1,15 @@
+<p>If your only trying to find out if the string begins with a number.
+Like above, you canskip using regex.
+Just use Substring, remove the first character and test if it is a number.</p>
+
+<p>Now if your trying to remove the entire number, then I would convert the string to a char array, and test the chars.</p>
+
+<p>pseudo
+string s = ""
+for each c in chars{
+if c is number then
+  s += c
+else
+  exit for
+}
+convert the s to an integer, you got the number at the begining of the string.</p>

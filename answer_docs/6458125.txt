@@ -1,0 +1,8 @@
+<p>There's no need to give the java client to external consumers. Your API should be able to answer to any Http client. The fact that there is a java client that shares the object can depend on different factors but should not influence how you expose your REST API to third party consumer. </p>
+
+<p>So I'd suggest to start writing a pure HTTP client, using apache commons HTTP, to see how your REST API behaves. </p>
+
+<p>The fact that the server objects are complex also should not be of any interest of the API. If the old system was designed modeling object around data, which I consider a bad idea, that's something you have to deal with.
+From the REST API you always receive just text, XML or JSON, and you have eventually to parse it into your Java Object, if you have for example and ORM + RDBMS backed system. If you could store Json, like on a a document DB, you do not have this problem but, again, this is of no concern of the REST API per se, but you need a layer that transform JSON to Java Object. </p>
+
+<p>Restlet helps you with this, of course such complicated object is not an easy one to be automagically converted. </p>

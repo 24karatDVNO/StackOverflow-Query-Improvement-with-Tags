@@ -1,0 +1,12 @@
+<p>Your regex fails because it lists the attributes in the wrong order. The match pattern does not accomodate for such things (which would be an actual reason to prefer using a DOM parser for such purposes.)</p>
+
+<p>The <code>\b</code> escape is misplaced. And you can wrap the two attributes into <code>(?: .. | .. )+</code> to allow for a little ambiguity:</p>
+
+<pre><code> $input = preg_replace('/(?:&lt;div
+     (?: \s class="(.*?)"
+       | \s data-info="(.*?)"  )+
+     [^&gt;]*&gt;)
+     (.*?)&lt;\/div&gt;/ix', "$3 class:$1 data-info:$2", $input);
+</code></pre>
+
+<p>The $1 $2 $3 numbering was off, and maybe you want to use <a href="http://www.regular-expressions.info/named.html" rel="nofollow">named capture groups</a> here anyway.</p>

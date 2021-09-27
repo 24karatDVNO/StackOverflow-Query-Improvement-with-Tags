@@ -1,0 +1,109 @@
+<p>You've probably found a solution or moved on by now, but I created an open source project that does exactly this - MVC style validation with Data Annotations attributes and jQuery Validate.</p>
+
+<p><a href="http://xvalwebforms.codeplex.com" rel="nofollow">http://xvalwebforms.codeplex.com</a></p>
+
+<p>You'll be interested in the jQuery.Validate branch. Its not quite complete yet, but very close. Here's an example from the demo project:</p>
+
+<p><strong>Model</strong></p>
+
+<pre><code>public class Booking : IValidatableObject
+{
+    [Required(ErrorMessage = "Client name is required.")]
+    [StringLength(15, ErrorMessage = "Client name must be less than 15 characters.")]
+    public string ClientName { get; set; }
+
+    [Range(1, 20, ErrorMessage = "Number of guests must be between 1 and 20.")]
+    public int NumberOfGuests { get; set; }
+
+    [Required(ErrorMessage = "Arrival date is required.")]
+    [DataType(DataType.Date, ErrorMessage = "Arrival date is invalid.")]
+    public DateTime ArrivalDate { get; set; }
+
+    [Required(ErrorMessage = "Smoking type is requried.")]
+    public SmokingType SmokingType { get; set; }
+
+    [Required(ErrorMessage = "Email address is required.")]
+    [DataType(DataType.EmailAddress, ErrorMessage = "Email address is invalid.")]
+    public string EmailAddress { get; set; }
+
+    #region IValidatableObject Members
+
+    public IEnumerable&lt;ValidationResult&gt; Validate(ValidationContext validationContext)
+    {
+        if (ArrivalDate == DateTime.MinValue)
+        {
+            yield return new ValidationResult("Arrival date is required.", new[] {"ArrivalDate"});
+        }
+
+        // Business rule: Can't place bookings on Sundays
+        if (ArrivalDate.DayOfWeek == DayOfWeek.Sunday)
+        {
+            yield return new ValidationResult("Bookings are not permitted on Sundays.", new[] {"ArrivalDate"});
+        }
+    }
+
+    #endregion
+}
+</code></pre>
+
+<p><strong>ASPX Markup</strong></p>
+
+<pre><code>    &lt;fieldset class="booking"&gt;
+        &lt;legend&gt;Booking&lt;/legend&gt;
+        &lt;asp:ValidationSummary ID="valSummary" runat="server" CssClass="ui-state-error" /&gt;
+        &lt;val:ModelValidator ID="valBooking" runat="server" CssClass="validator" Display="Dynamic"
+            ModelType="xVal.WebForms.Demo.Booking" /&gt;
+        &lt;label for="txtClientName"&gt;
+            Your name:&lt;/label&gt;
+        &lt;asp:TextBox ID="txtClientName" runat="server" /&gt;
+        &lt;val:ModelPropertyValidator ID="valClientName" runat="server" CssClass="validator"
+            ControlToValidate="txtClientName" Display="Dynamic" PropertyName="ClientName"
+            ModelType="xVal.WebForms.Demo.Booking" /&gt;
+        &lt;label for="txtNumberOfGuests"&gt;
+            Number of guests:&lt;/label&gt;
+        &lt;asp:TextBox ID="txtNumberOfGuests" runat="server" /&gt;
+        &lt;val:ModelPropertyValidator ID="valNumberOfGuests" runat="server" CssClass="validator"
+            ControlToValidate="txtNumberOfGuests" Display="Dynamic" PropertyName="NumberOfGuests"
+            ModelType="xVal.WebForms.Demo.Booking" /&gt;
+        &lt;label for="txtArrivalDate"&gt;
+            Arrival date:&lt;/label&gt;
+        &lt;asp:TextBox ID="txtArrivalDate" runat="server" CssClass="date-picker" /&gt;
+        &lt;val:ModelPropertyValidator ID="valArrivalDate" runat="server" CssClass="validator"
+            ControlToValidate="txtArrivalDate" Display="Dynamic" PropertyName="ArrivalDate"
+            ModelType="xVal.WebForms.Demo.Booking" /&gt;
+        &lt;label for="txtEmailAddress"&gt;
+            Email address:&lt;/label&gt;
+        &lt;asp:TextBox ID="txtEmailAddress" runat="server" /&gt;
+        &lt;val:ModelPropertyValidator ID="valEmailAddress" runat="server" CssClass="validator"
+            ControlToValidate="txtEmailAddress" Display="Dynamic" PropertyName="EmailAddress"
+            ModelType="xVal.WebForms.Demo.Booking" /&gt;
+        &lt;div&gt;
+            &lt;asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /&gt;&lt;/div&gt;
+    &lt;/fieldset&gt;
+</code></pre>
+
+<p><strong>Code behind</strong></p>
+
+<pre><code>protected void btnSubmit_Click(object sender, EventArgs e)
+{
+    if (!IsValid)
+    {
+        return;
+    }
+
+    if (txtNumberOfGuests.Text.Length == 0)
+    {
+        txtNumberOfGuests.Text = "1";
+    }
+
+    Booking booking = new Booking
+                          {
+                              ClientName = txtClientName.Text,
+                              NumberOfGuests = Convert.ToInt32(txtNumberOfGuests.Text),
+                              ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text),
+                              EmailAddress = txtEmailAddress.Text
+                          };
+
+    BookingManager.PlaceBooking(booking);
+}
+</code></pre>

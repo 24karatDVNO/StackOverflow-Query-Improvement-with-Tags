@@ -1,0 +1,10 @@
+<p>The problem here is the INT signal is being received by your script AND by your command <code>find /</code>, so it exits.</p>
+
+<p>You can fully ignore the signal(s) with:</p>
+
+
+
+<pre class="lang-shell prettyprint-override"><code>trap '' SIGNINT
+</code></pre>
+
+<p>I don't know if it's possible to catch the signal and prevent that your commands receive it.</p>

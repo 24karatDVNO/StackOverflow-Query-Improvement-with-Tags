@@ -1,0 +1,13 @@
+<p>Yes, I just encountered this.  You shouldn't use <code>mxGetPr</code> anymore in general.  The better way to do it is to first check the type like this:</p>
+
+<pre><code>if(!mxIsClass(prhs[0],"double"))
+{
+    mexErrMsgTxt("Data must be of type double!!!\n");
+}
+</code></pre>
+
+<p>Then access the data through <code>(double *)mxGetData(prhs[0])</code> or in your case <code>(unsigned long long int*)mxGetData(prhs[0])</code></p>
+
+<p>You can look up <code>mxIsClass</code> and <code>mxGetData</code> for more info.</p>
+
+<p>Edit:  <a href="http://www.mathworks.com/help/techdoc/apiref/mxisclass.html" rel="nofollow">Also here's a list of the different types for <code>mxIsClass</code></a></p>

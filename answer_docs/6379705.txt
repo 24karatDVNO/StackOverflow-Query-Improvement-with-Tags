@@ -1,0 +1,20 @@
+<p>Your array has "  John", but you're checking for "John".  These are obviously different strings.  This works for me:</p>
+
+<pre><code>&lt;style&gt;
+  div { color:blue; }
+  span { color:red; }
+&lt;/style&gt;
+
+&lt;div&gt;"John" found at &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;4 found at &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;"Karl" not found, so &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;script&gt;var arr = [ 4, "  Pete", 8, "  John" ];
+
+$("span:eq(0)").text(jQuery.inArray("  John", arr));
+$("span:eq(1)").text(jQuery.inArray(4, arr));
+$("span:eq(2)").text(jQuery.inArray("Karl", arr));
+
+&lt;/script&gt;
+</code></pre>
+
+<p>Or are you wanting to do some sort of fuzzy matching that ignores spaces?</p>

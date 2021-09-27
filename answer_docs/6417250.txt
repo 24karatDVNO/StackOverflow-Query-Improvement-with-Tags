@@ -1,0 +1,15 @@
+<p>Your error is caused by SOAP_ACTION:</p>
+
+<p>in SOAP action u specify : <a href="http://packagename/method" rel="nofollow">http://packagename/method</a> that u call</p>
+
+<p>So modify your SOAP action to this:
+final String SOAP_ACTION = "http://tempuri.org/extractText";
+final String NAMESPACE = "http://tempuri.org/";</p>
+
+<p>and if doesn't work try with this:</p>
+
+<p>final String SOAP_ACTION = "http://tempuri.org/extractText";
+final String NAMESPACE = "http://org.tempury/";</p>
+
+<p>Hope it helps!
+Mike!</p>

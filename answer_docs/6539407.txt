@@ -1,0 +1,52 @@
+<p><code>split</code>'s expects a string for its second argument, so</p>
+
+<pre><code>@TemplateArray = split(/\n/, @file_array);
+</code></pre>
+
+<p>ends up being the same as </p>
+
+<pre><code>@TemplateArray = split(/\n/, scalar(@file_array));
+</code></pre>
+
+<p>Keep in mind that <code>scalar(@file_array)</code> returns the number of elements in the array.</p>
+
+<hr>
+
+<pre><code>@file_array = &lt;FH&gt;;
+</code></pre>
+
+<p>will populate <code>@file_array</code> as follows:</p>
+
+<pre><code>@file_array = (
+    "line1\n",
+    "line2\n",
+    "line3\n",
+);
+</code></pre>
+
+<p>In other words, it's already split into lines. If you're trying to remove the trailing newlines, you want to replace</p>
+
+<pre><code>@TemplateArray = split(/\n/,@file_array);
+</code></pre>
+
+<p>with</p>
+
+<pre><code>chomp( my @TemplateArray = @file_array );
+</code></pre>
+
+<hr>
+
+<p>I can't help you fix</p>
+
+<pre><code>@matches = split(/\n/,@output);
+</code></pre>
+
+<p>because I don't know what <code>$ssh</code> contains, and thus I don't know what <code>@output</code> contains.</p>
+
+<hr>
+
+<p>Please use</p>
+
+<pre><code>use strict;
+use warnings;
+</code></pre>

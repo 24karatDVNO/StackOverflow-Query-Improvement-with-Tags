@@ -1,0 +1,3 @@
+<p>The CLI PHP executable, i.e., the one you're running with <code>php -m</code> is using a different php.ini file than the web server.</p>
+
+<p>You can check which files are being loaded by the cli with <code>php --ini</code>; for the web server, create a script with the content <code>&lt;?php phpinfo();</code> and check the configuration section.</p>

@@ -1,0 +1,16 @@
+<p>Regarding the outer loop, <code>element</code> is an array, not an object, so you want to use <code>for(;;)</code> not <code>for in</code>.</p>
+
+<p>Regarding the inner loop, <code>object</code> is the string <code>"firstElement"</code> not an object.</p>
+
+<pre><code>for (var i:int=0; i &lt; test.element.length; i++)
+{
+    for (var key:* in test.element[i])
+    {
+        trace("key " + key);
+        var object:* = test.element[i][key];
+        trace("object " + object);
+        if(typeof object === "object" &amp;&amp; object.hasOwnProperty("formula"))
+            object.formula();
+    }
+}
+</code></pre>

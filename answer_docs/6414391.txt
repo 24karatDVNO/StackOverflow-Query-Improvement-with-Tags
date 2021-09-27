@@ -1,0 +1,12 @@
+<p>If you're using ASP.NET MVC, then I'd do the following:</p>
+
+<p>Have a 'local' model that acts as the interface between the BLL and the Controller.  Essentially the controller should only know about objects that you use locally.</p>
+
+<p>This will likely involve mapping code in the "repository" part of your Model; AutoMapper is a good example of something to use for that.</p>
+
+<p>There are a few reasons for this: </p>
+
+<ol>
+<li>Your controller isn't directly tied to changes in the BLL.</li>
+<li>Dependencies for testing.  If you are using the 'One Controller Per Concern' method of building your controller, then you have a lot less dependencies. That becomes somewhat hairy if you're pulling these classes and dependencies in directly to the controller, because then you have to Mock out a lot more and you can have tests fail for reasons that aren't immediately obvious.</li>
+</ol>

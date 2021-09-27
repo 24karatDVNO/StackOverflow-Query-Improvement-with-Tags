@@ -1,0 +1,45 @@
+<p>I ended up extending Zend_View and adding the function renderParent:
+
+
+<pre><code>class My_View extends Zend_View
+{
+    private $_file = null;
+
+    private $_name = null;
+
+    /**
+     * Finds a view script from the available directories.
+     *
+     * @param $name string The base name of the script.
+     * @return void
+     */
+    protected function _script($name)
+    {
+        $this-&gt;_file = parent::_script($name);
+        $this-&gt;_name = $name;
+
+        return $this-&gt;_file;
+    }
+
+    /**
+     * Renders the parent script by looping through all the script paths.
+     *
+     * @return void
+     */
+    public function renderParent()
+    {
+        $scriptPaths = $this-&gt;getScriptPaths();
+
+        $found = false;
+        for ($i = 0; $i &lt; count($scriptPaths); $i++) {
+            if ($this-&gt;_file == $scriptPaths[$i] . $this-&gt;_name) {
+                $found = true;
+            } elseif ($found) {
+                if (is_readable($scriptPaths[$i] . $this-&gt;_name)) {
+                    return $this-&gt;_run($scriptPaths[$i] . $this-&gt;_name);
+                }
+            }
+        }
+    }
+}
+</code></pre>

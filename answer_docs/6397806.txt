@@ -1,0 +1,51 @@
+<p>I would put the id's from the parameter in a table variable and use that in a join against vDepartment</p>
+
+<pre><code>-- Comma separated parameter
+declare @x varchar(250)
+set @x = '3, 9, 10, 12, 14'
+
+-- Convert to xml
+declare @xx xml
+set @xx = '&lt;xml&gt;&lt;e&gt;' + REPLACE(@x,', ','&lt;/e&gt;&lt;e&gt;') + '&lt;/e&gt;&lt;/xml&gt;'
+
+-- Table variable to hold ID's from parameter
+declare @T table(ID int)
+
+-- Get ID's from xml
+insert into @T (ID)
+select N.value('.', 'int')
+from @xx.nodes('xml/e') as T(N)
+
+-- Use the table in a inner join.
+select stuff(
+(select ', '+DeptName
+ from vDepartments as D
+   inner join @T as T
+     on D.DeptID = T.ID
+ for xml path(''), type).value('.', 'varchar(max)'), 1, 2,  '')
+</code></pre>
+
+<p>If you use <code>.value</code> to extract the comma separated list of departments you will have no trouble with <code>&lt;&gt;&amp;'"</code> in department names.</p>
+
+<p><strong>Edit 1</strong></p>
+
+<p>A version that use a recursive CTE to get the ID's instead of converting to XML. All in one query.</p>
+
+<pre><code>;with cte(ID, Rest) as
+(
+  select cast(left(@x, charindex(',', @x+',')-1) as int),
+         stuff(@x, 1, charindex(',', @x+','), '')+','
+  where len(@x) &gt; 0       
+  union all
+  select cast(left(Rest, charindex(',', Rest)-1) as int),
+         stuff(Rest, 1, charindex(',', Rest), '')
+  from cte
+  where len(Rest) &gt; 1
+)
+select stuff(
+(select ', '+DeptName
+ from vDepartments as D
+   inner join cte as T
+     on D.DeptID = T.ID
+ for xml path(''), type).value('.', 'varchar(max)'), 1, 2,  '')
+</code></pre>

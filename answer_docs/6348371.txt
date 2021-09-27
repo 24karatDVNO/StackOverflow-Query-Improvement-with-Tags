@@ -1,0 +1,6 @@
+<pre><code>$xml = new DOMDocument();
+        $xml-&gt;load('path_to_xml');
+$htp = $xml-&gt;getElementsByTagName('hpt_mobile')[0];
+$catalog = $htp-&gt;getElementsByTagName('CATALOG')[0]
+$nodes = $catalog-&gt;getElementsByTagName('sA')-&gt;childNodes;
+</code></pre>

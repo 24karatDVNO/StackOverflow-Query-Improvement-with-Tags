@@ -1,0 +1,15 @@
+<p>From my understanding you cannot define arrays in the way you want. Other posters have indicated you can use associative arrays (Dictionaries)</p>
+
+<p>At best you can create a workaround:</p>
+
+<p><code>
+string[] array = {"array0", "", "array2", "array3"};
+</code></p>
+
+<p>or</p>
+
+<p><code>
+string[] array = new string[4];
+array[0] = "array0";
+array[2] = "array2";
+</code></p>

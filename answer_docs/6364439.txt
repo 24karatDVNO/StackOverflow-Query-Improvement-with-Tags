@@ -1,0 +1,9 @@
+<p>Well, I just ended up manually loading the assemblies. As in using Assembly.LoadFrom(relative path string)</p>
+
+<p>I tried suffixing them but it started complaining it didn't match the app.manifest file.</p>
+
+<p>The assembly resolve event also didn't work, because the reportviewer control didn't fire assemblyresolve for all of the dlls. Maybe because it's in it's own appdomain.</p>
+
+<p>Anyway, this seems to work for now.</p>
+
+<p>-Isaac</p>

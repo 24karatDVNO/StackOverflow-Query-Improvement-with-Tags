@@ -1,0 +1,18 @@
+<p>you should gove all your divs the same class eg <code>class="toggleable"</code> on the ones you want to toggle.</p>
+
+<p>Then try:</p>
+
+<pre><code>jQuery(".toggleable input[type='button']").click(function()
+{
+    jQuery(this).closest("div.toggleable").toggle();
+});
+</code></pre>
+
+<p>This will put an onlick on your buttons inside your div which will find the closest parent div with class <code>toggleable</code> and will either hide/show your div.</p>
+
+<ul>
+<li>To read about <code>toggle()</code>:
+<a href="http://api.jquery.com/toggle/" rel="nofollow">http://api.jquery.com/toggle/</a></li>
+<li>to read about selectors:
+<a href="http://api.jquery.com/category/selectors/" rel="nofollow">http://api.jquery.com/category/selectors/</a></li>
+</ul>

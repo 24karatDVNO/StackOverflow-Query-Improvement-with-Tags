@@ -1,0 +1,9 @@
+<p>This does the trick:</p>
+
+<pre><code>dfr$B&lt;-nchar(as.character(dfr$B))-nchar(gsub(";","",dfr$B))+1
+</code></pre>
+
+<p>Edit: I think this should be slightly faster:</p>
+
+<pre><code>dfr$B&lt;-nchar(as.character(dfr$B))-nchar(gsub(";","",dfr$B, fixed=TRUE))+1
+</code></pre>

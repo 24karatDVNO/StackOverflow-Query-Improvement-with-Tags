@@ -1,0 +1,12 @@
+<p>You should be able to do this using <a href="http://www.highcharts.com/ref/#axis-object" rel="nofollow">plot bands</a>.</p>
+
+<p>For example:</p>
+
+<pre><code>chart.addPlotBand({
+    id: 'target',
+    from: 90,
+    to: 100
+});
+</code></pre>
+
+<p>To make it dynamic, you would just need to call <code>chart.removePlotBand('target')</code>, then add your new target.</p>

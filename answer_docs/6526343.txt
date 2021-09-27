@@ -1,0 +1,7 @@
+<p>First, you're only triggering the click event if the input is checked - what if the user clicks on the input to <em>uncheck</em> it? I assume the styling for the TD is supposed to be a toggle.</p>
+
+<p>Second, You have S(this) - it should be $(this).</p>
+
+<p>Third, you're forcing a click on <em>all</em> td parents (which is possibly fine). Do you maybe actually intend $(this).parents('td').first().click()?</p>
+
+<p>Fourth - if the input is being changed by a click... well, then its parent is already getting a click event. Maybe you're triggering <em>two</em> click events (one from your change event, and one from the user's actual click), and they're cancelling each other out? If you need this change event for computational/manual input changes ($(this).change(), for example), then you'll need to detect whether the change was fired by a click event or not - or put a click event on the input, that stops propogation.</p>

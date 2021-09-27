@@ -1,0 +1,13 @@
+<p>You can get the view for a particular view by calling <code>viewForRow:forComponent:</code> method.</p>
+
+<pre><code>UIView * selectedViewInFirstComponent = [pickerView viewForRow:[pickerView selectedRowInComponent:0] forComponent:0];
+</code></pre>
+
+<p>and so on for the other components.</p>
+
+<p>The problem here is that you can't add it to another view as subview as there can be only one superview for any view. You should rather get the color which you might be using as the data source.</p>
+
+<pre><code>UIColor * colorForFirstComponent = [colors objectAtIndex:[pickerView selectedRowInComponent:0]];
+
+// Now use this color to fill one of the views in the guess block.
+</code></pre>

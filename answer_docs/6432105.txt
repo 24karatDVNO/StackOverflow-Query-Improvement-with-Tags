@@ -1,0 +1,5 @@
+<p>The shared variable is definitely not the way to go.  I took over a project that used that technique and there were slews of issues with one user getting another users data.  You should either use Session, which in itself can be an issue. </p>
+
+<p>One suggestion that I've used saving the byte data to a database with a key and passing that key to the iframe within the URL with the query string. In that case, you should have a way to clear out the past records from the db before it takes up too much space.  Depending on if this PDF document is supposed to be secure, this will open up so that the PDF would be accessible by people fiddling with the query string.</p>
+
+<p>Another suggestion, passing it as B64 encoded POST data. Those are a couple suggestions. </p>

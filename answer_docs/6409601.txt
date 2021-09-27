@@ -1,0 +1,7 @@
+<p>If your method does not have any arguments then do not use a colon in your selector call.</p>
+
+<pre><code>// Requires @selector(foo:)
+- (void) foo:(id)sender;
+// Requires @selector(foo)
+- (void) foo;
+</code></pre>

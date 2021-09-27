@@ -1,0 +1,22 @@
+<p>Extend the MapOverlay class. Override the draw() method and draw what is needed. Look for other answers on stackoverflow to draw a rotated bitmap to canvas within the draw method. code snippet to get you started:</p>
+
+<pre><code>   class MapOverlay extends com.google.android.maps.Overlay
+    {
+        @Override
+        public boolean draw(Canvas canvas, MapView mapView,
+        boolean shadow, long when)
+        {
+            super.draw(canvas, mapView, shadow);                   
+
+            //---translate the GeoPoint to screen pixels---
+            Point screenPts = new Point();
+            mapView.getProjection().toPixels(carloc, screenPts);
+
+            //---add the marker---
+            Bitmap bmp = BitmapFactory.decodeResource(
+                getResources(), R.drawable.marker);           
+            canvas.drawBitmap(bmp, screenPts.x, screenPts.y-50, null);         
+            return true;
+        }
+    } 
+</code></pre>

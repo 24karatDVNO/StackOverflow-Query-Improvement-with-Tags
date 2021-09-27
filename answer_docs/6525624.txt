@@ -1,0 +1,11 @@
+<p>I think it is to do with the generic parameter.</p>
+
+<p><code>SubGeneric&lt;string&gt;</code> is not a subclass of <code>Generic&lt;int&gt;</code></p>
+
+<p>So without knowing about the generic parameter, an inference cannot be made.</p>
+
+<pre><code>typeof(SubGeneric&lt;int&gt;).IsSubclassOf(typeof(Generic&lt;int&gt;));
+typeof(SubGeneric&lt;string&gt;).BaseType.Equals(typeof(Generic&lt;string&gt;));
+</code></pre>
+
+<p>should return <code>true</code>.</p>

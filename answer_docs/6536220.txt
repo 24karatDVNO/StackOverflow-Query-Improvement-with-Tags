@@ -1,0 +1,72 @@
+<p>I am not quite sure what you want to achieve here, so perhaps my answer is not what you are looking for. </p>
+
+<p>Anyway, in a generic list, you could use a lambda expression/ linq statement on your collection. Consider these examples I have written for you:</p>
+
+<pre><code>internal class ListLambdaLINQSample
+{
+
+    List&lt;KeyValuePair&lt;Colors, int&gt;&gt; listSource;
+    List&lt;KeyValuePair&lt;Colors, int&gt;&gt; listCriteria;
+    List&lt;KeyValuePair&lt;Colors, int&gt;&gt; listMatches;
+
+    private const int COLORCODE1 = 1;
+    private const int COLORCODE2 = 2;
+    private const int COLORCODE3 = 3;
+    private const int COLORCODE4 = 4;
+    private const int COLORCODE5 = 5;
+
+    internal enum Colors
+    {
+        Red, Blue, Green, Yellow
+    }
+
+
+    public ListLambdaLINQSample()
+    {   // populate the list
+        listSource = new List&lt;KeyValuePair&lt;Colors, int&gt;&gt;();
+        listCriteria = new List&lt;KeyValuePair&lt;Colors, int&gt;&gt;();
+
+        _populateListCriteria();
+        _populateListSource();
+
+        ...
+    }
+
+    private void _getMatchesWithLINQ()
+    {
+        listMatches =
+                        (from kvpInList
+                             in listSource
+                         where !listCriteria.Contains(kvpInList)
+                         select kvpInList).ToList();
+    }
+
+    private void _getMatchesWithLambda()
+    {
+        listMatches =
+            listSource.Where(kvpInList =&gt; !listCriteria.Contains(kvpInList)).ToList();
+    }
+
+
+    private void _populateListSource()
+    {
+        listSource.Add(new KeyValuePair&lt;Colors, int&gt;(Colors.Blue, COLORCODE1));
+        listSource.Add(new KeyValuePair&lt;Colors, int&gt;(Colors.Green, COLORCODE2));
+        listSource.Add(new KeyValuePair&lt;Colors, int&gt;(Colors.Red, COLORCODE3));
+        listSource.Add(new KeyValuePair&lt;Colors, int&gt;(Colors.Yellow, COLORCODE4));
+    }
+
+    private void _populateListCriteria()
+    {
+        listCriteria.Add(new KeyValuePair&lt;Colors, int&gt;(Colors.Blue, COLORCODE1));
+        listCriteria.Add(new KeyValuePair&lt;Colors, int&gt;(Colors.Green, COLORCODE2));
+    }
+}
+</code></pre>
+
+<p>Hope this helps!!</p>
+
+<p>Regards,
+Nico</p>
+
+<p>PS: I haven't compiled nor tested this code.</p>

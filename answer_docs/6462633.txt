@@ -1,0 +1,76 @@
+<p>this is rather ugly but it does work for the given example</p>
+
+<pre><code>def minus1(a,b):
+    if (b[0] &lt; a[0] and b[1] &lt; a[0]) or (a[1] &lt; b[0] and a[1] &lt; b[1]):
+        return [a] # doesn't overlap
+    if a[0]==b[0] and a[1]==b[1]:
+        return [] # overlaps exactly
+    if b[0] &lt; a[0] and a[1] &lt; b[1]:
+        return [] # overlaps completely
+    if a[0]==b[0]:
+        return [(b[1]+1,a[1])] # overlaps exactly on the left
+    if a[1]==b[1]:
+        return [(a[0],b[0]-1)] # overlaps exactly on the right 
+    if a[0] &lt; b[0] and b[0] &lt; a[1] and a[1] &lt; b[1]:
+        return [(a[0],b[0]-1)] # overlaps the end
+    if a[0] &lt; b[1] and b[1] &lt; a[1] and b[0] &lt; a[0]:
+        return [(b[1]+1,a[1])] # overlaps the start
+    else:
+        return [(a[0],b[0]-1),(b[1]+1,a[1])] # somewhere in the middle
+
+def minus(r1, r2):
+    # assume r1 and r2 are already sorted
+    r1 = r1[:]
+    r2 = r2[:]
+    l = []
+    v = r1.pop(0)
+    b = r2.pop(0)
+    while True:
+        r = minus1(v,b)
+        if r:
+            if len(r)==1:
+                if r[0] == v:
+                    if v[1] &lt; b[0] and v[1] &lt; b[1]:
+                        l.append(r[0])
+                        if r1:
+                            v = r1.pop(0)
+                        else:
+                            break
+                    else:
+                        if r2:
+                            b = r2.pop(0)
+                        else:
+                            break
+                else:
+                    v = r[0]
+            else:
+                l.append(r[0])
+                v = r[1]
+                if r2:
+                    b = r2.pop(0)
+                else:
+                    l.append(v)
+                    break
+        else:
+            if r1:
+                v = r1.pop(0)
+            else:
+                break
+            if r2:
+                b = r2.pop(0)
+            else:
+                l.append(v)
+                l.extend(r1)
+                break
+    return l
+
+r1 = [(1, 1000), (1100, 1200)]
+r2 = [(30, 50), (60, 200), (1150, 1300)]
+
+print minus(r1,r2)
+</code></pre>
+
+<p>prints:</p>
+
+<pre><code>[(1, 29), (51, 59), (201, 1000), (1100, 1149)]
+</code></pre>

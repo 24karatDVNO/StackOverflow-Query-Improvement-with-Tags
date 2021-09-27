@@ -1,0 +1,35 @@
+<p>We have a very similar workflow, but there's few key steps which developers must follow to avoid most of the merging pain.  The main difference to your workflow is that each of our developers has a long living development branch, which is similar to your case branches.  After merging a fix/feature from the development branch to the release branch, the developer can continue using their development branch to work on the next fix/feature.  In summary, our workflow is as follows:</p>
+
+<p><strong>Note:</strong> $SVN_REPOS is an environment variable containing the URL for our Subversion repository.</p>
+
+<p>A new development branch is created for the developer from the HEAD of the release branch:</p>
+
+<pre><code>svn copy $SVN_REPOS/branches/release_branch $SVN_REPOS/branches/development_branch
+</code></pre>
+
+<p>The developer checks out their development branch and implements their fix/features in the development branch working area - preferably frequently committing to the repository.</p>
+
+<p>Before reintegrating their development branch changes into the release branch, they must merge any new changes made to the release branch back to their development branch.  This step is basically where the developer integrates their changes with work carried out since their development branch was created.   We have a couple of rules for this:</p>
+
+<ul>
+<li>A clean development_branch working area is used for merge from the release branch, i.e all fix/feature changes have been committed.  Having a clean working area avoids any merge conflict with uncommitted code.</li>
+<li>The merge from the release branch happens at the root of the working area directory tree.  This avoids a mixed revision working area and ensures that the svn:mergeinfo Subversion property is recorded at the top of the development branch code tree.</li>
+<li>Developers are educated to understand that they are integrating other peoples code at this stage, and therefore they need to consider conflict resolution carefully.  This is prime country for losing other developers changes if conflict resolution is dealt with in a slap-dash manner.  A good wiki page describing conflict resolution steps and typical scenarios is also a good idea.</li>
+<li>The changes merged from the release branch are committed without any other fix/feature changes being made.  This ensures we get a single revision commit containing just the changes merged from the release branch, we also have a standard commit comment which must be used for this commit - "Dev branch refresh from release_branch".  This single "merge only changes" commit also makes it easy to undo the merge should things go badly wrong, without losing any functional changes. </li>
+</ul>
+
+<p>Having made their functional changes and refreshed the development branch, the developer now asks for their changes to be merged to the release branch.  We have a specific person  who looks after the release branch and performs all merges from the development branches.  They'll checkout a fresh copy of the release branch and perform the reintegration merge from the development branch into the release branch working area.  As with all our merges, this happens at the root of the code tree.   Any conflicts are sent back to the developer, without anything being committed to the release branch.  The developer will need to refresh their development branch from the release branch and resolve the conflicts before requesting another merge to the release branch.   <strong>Note:</strong>  The svn merge --reintegrate command will report an error before the merge starts if the development branch is "out of date".</p>
+
+<p>The release branch commit revision number is noted, and a "blocking" merge is comitted to the development branch.  For this example, assume we commited the development_branch changes to the release branch at revision 112.  In the working area for the development branch:</p>
+
+<pre><code>svn merge --record-only -c 112 $SVN_REPOS/branches/release_branch
+svn commit --depth=immediates . -m "Block development_branch to release_branch merge revision 112 from being merged back into rel_05_01_001"
+</code></pre>
+
+<p>This is the key to a long living development branch.  When the developer next updates their development branch with new release branch changes, the merge won't bring in rev 112, which contains changes already made on the development branch.  This avoids a whole bunch of conflicts.  Essentially the --record-only merge makes Subversion think revision 112 hasn't already been merged into the development branch, when in fact it's just a marker and no files have been merged.</p>
+
+<p>In summary, we mostly avoid merge issues because we always merge into "clean" working areas and consistently merge at the top of the code tree.  The --record-only trick is handy, as we prefer to avoid the overhead of creating a dedicate branch for each fix/feature.  Here's a good article which really gets into how Subversion tracks merges via the mergeinfo Subversion property:</p>
+
+<ul>
+<li><a href="http://www.collab.net/community/subversion/articles/merge-info.html" rel="nofollow">http://www.collab.net/community/subversion/articles/merge-info.html</a></li>
+</ul>

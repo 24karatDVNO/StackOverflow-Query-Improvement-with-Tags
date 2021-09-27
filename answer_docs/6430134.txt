@@ -1,0 +1,35 @@
+<p>I like your techniques @sandeep and @hatake-kakashi. A couple possible improvements (though maybe beyond the scope of the question). Try structuring your list and html as such:</p>
+
+<pre><code>&lt;style&gt;
+/* let your UL and LI handle the link positioning */
+ul.sprites {width:somevalue;} /* &lt;--clearfix this someplace cause of the floats inside*/
+ul.sprites li {float:left;} /* &lt;- these should collapse to the 30x30 width of the children */
+ul.sprites li a {
+  display:block;
+  /*sprite dimensions*/
+  width:30px;
+  height:30px;
+  background: url('..images/spritesSheet.png') 0 0 no-repeat;
+  /*hide link text*/
+  text-indent: -9999em
+  overflow: hidden;
+  text-align: left;
+}
+
+/*adjust the background of the single sprite image file*/
+ul.sprites a.spriteName1 {background-position:x y;}
+ul.sprites a.spriteName1:hover {background-position:x y;}
+ul.sprites a.spriteName2 {background-position:x y;}
+ul.sprites a.spriteName2:hover {background-position:x y;}
+/* etc...*/
+
+&lt;/style&gt;
+&lt;html&gt;
+&lt;ul class="sprites"&gt;
+    &lt;li&gt;&lt;a class="spriteName1" href="#"&gt;link1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="spriteName2" href="#"&gt;link2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>This way, the cascade works for you and all links in this list can get the sprite styling without redundant class names. And you let your parent elements handle the positioning. At least, I think that's correct. Apologies for syntax and pseudo-code as I wrote it kinda quick and dirty. </p>

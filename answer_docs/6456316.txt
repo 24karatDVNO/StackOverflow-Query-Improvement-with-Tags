@@ -1,0 +1,17 @@
+<p>Let me get this straight... </p>
+
+<ol>
+<li>Running a query the first time is slower than the second time,</li>
+<li>When your query returns more records it takes longer and</li>
+<li>When you search for more keywords (increasing the complexity of the filter) it takes longer</li>
+</ol>
+
+<p>Am i getting that right?</p>
+
+<p>If so they all sound like pretty normal behaviours to me.</p>
+
+<ol>
+<li>MSSQL does caching of some sort so subsequent runs of the same query will be faster</li>
+<li>The more records returned, the longer it takes to move the data from SQL server to your machine</li>
+<li>The more complex the query/conditions the longer it'll take to run</li>
+</ol>

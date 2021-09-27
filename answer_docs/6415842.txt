@@ -1,0 +1,8 @@
+<p>if you want to return all fields of your (1) table in one query, I suggest you consider using CROSS APPLY:</p>
+
+<pre><code>SELECT t1.* FROM table_1 t1
+CROSS APPLY (SELECT COUNT(*) cnt FROM Table_Many t2 WHERE t2.fk = t1.pk) a
+where a.cnt &lt; 3
+</code></pre>
+
+<p>in some particular cases, based on your indices and db structure, this query may run 4 times faster than the <code>GROUP BY</code> method</p>

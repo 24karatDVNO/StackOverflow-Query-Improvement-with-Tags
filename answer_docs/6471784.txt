@@ -1,0 +1,20 @@
+<p>If you want space or whitespace chars to trigger validation, use this:</p>
+
+<pre><code>  $(".url2").keyup(validateOnWhiteSpace).blur(validNum);
+
+  function validateOnWhiteSpace() {
+    if(event.keyCode == 9 ||  event.keyCode == 13 || event.keyCode == 32) {
+        validNum.call(this, arguments);
+    }
+  }
+
+function validNum() {
+
+var initVal = $(this).val();
+outputVal = initVal.replace(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;amp;:/~\+#]*[\w\-\@?^=%&amp;amp;/~\+#])$/,"replace this link by bla..");   
+if (initVal != outputVal) {
+    $(this).val(outputVal);
+
+    }}
+});
+</code></pre>

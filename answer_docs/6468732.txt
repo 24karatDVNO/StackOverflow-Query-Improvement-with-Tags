@@ -1,0 +1,8 @@
+<p>I'd like to think it was possible using the exslt set extensions</p>
+
+<p>E.g.:</p>
+
+<pre><code>//store[count(./book/@id) = count(set:intersection(./book/@id,//booklist/book/@id))]
+</code></pre>
+
+<p>But <code>intersection</code> doesn't seem to do what I expect it to within python's <code>lxml.etree</code></p>

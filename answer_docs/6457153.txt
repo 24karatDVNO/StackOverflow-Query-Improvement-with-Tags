@@ -1,0 +1,23 @@
+<p>Maybe you should execute your query:</p>
+
+<pre><code>&lt;?php
+require "connect2.php";
+
+$sql = "SELECT * FROM tablename ORDER BY RAND()";
+
+$result = mysqli_query($dbc,$query);
+
+if
+
+ (mysqli_num_rows($result) &gt; 0) {
+        while ($row = mysqli_fetch_object($result)) {
+    $html= &lt;&lt;&lt;HTML 
+&lt;h3&gt;&lt;font face='helvetica'&gt;&lt;font size='4'&gt;&lt;b&gt;&lt;font color='B80000'&gt;$title&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/b&gt; &amp;nbsp;&lt;font color='A0A0A0'&gt;&lt;a href='profile.php?id=$userid'&gt;$row-&gt;user&lt;/a&gt;&lt;/font&gt;
+    &lt;font face='helvetica'&gt;&lt;font size='3'&gt;&lt;br&gt;&amp;nbsp;$row-&gt;desc&lt;/font&gt;&lt;/font&gt;&lt;br&gt;
+
+   &lt;h3&gt;&lt;font color='101010'&gt; &amp;nbsp;$city,$state&amp;nbsp;&lt;font color='A0A0A0'&gt;$row-&gt;date&lt;/font&gt;  &lt;/font&gt;&lt;a href='bid.php?id=$row-&gt;userid'&gt;Bids&lt;/a&gt;
+HTML;
+     echo ($html);
+    }
+}
+</code></pre>

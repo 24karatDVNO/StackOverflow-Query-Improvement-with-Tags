@@ -1,0 +1,12 @@
+<p>The procedure which updates the jobclosed table runs Monday, Tuesday, Wednesday, Thursday, &amp; Friday mornings.  It doesn't run on Saturdays, so the records aren't inserted until monday, at which time they won't be retrieved by my stored procedure.  I will schedule the update job to run on Saturday's also.</p>
+
+<p>I added the following before the select statement:</p>
+
+<pre><code>if datepart(dw, GETDATE()) = 7 OR datepart(dw, GETDATE()) = 1
+    BEGIN
+        Exec dbo.NCL_MaintainJobClosedDateTable
+        --Select 'True'
+    END
+</code></pre>
+
+<p>Which will force an update on Saturday and Sunday mornings.</p>

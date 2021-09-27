@@ -1,0 +1,7 @@
+<p>a typical school boy error. from the "Exploring Lift book":</p>
+
+<blockquote>
+  <p>If the form attribute is included with a value of either “POST” or “GET”, then an appropriate form tag will be emitted into the XHTML using the specified submission method. If you <strong>omit</strong> this tag from a snippet that generates a form, the form elements will display but the <strong>form won’t submit</strong>.</p>
+</blockquote>
+
+<p>I had missed the <code>form="POST"</code> tag in my html file. Hence the form was not being submited</p>

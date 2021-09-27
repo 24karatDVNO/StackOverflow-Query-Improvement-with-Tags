@@ -1,0 +1,8 @@
+<pre><code>"
+    SELECT *
+    FROM PLACE.country
+    WHERE Number='" .mysql_real_escape_string($num) ."'
+       OR StreetNumber='" .mysql_real_escape_string($num) ."'
+       OR PostNumber='" .mysql_real_escape_string($num) ."'
+";
+</code></pre>

@@ -1,0 +1,49 @@
+<p>You could tweak your implementation in some ways:</p>
+
+<ol>
+<li>Avoid unnecessary autoboxing as Christian Semrau already mentioned in his comment.</li>
+<li>Create a shortcut for the "simple" case, e. g. you iterate over every number between 2 and number/2. This is unnecessary since 2 is the only even prime factor. You will save half of the number of iterations with this shortcut in the best case.</li>
+<li>You don't need to calculate the prime factors of <code>number</code>, <code>sqrt(number)</code> is sufficient.</li>
+<li><p>There are more efficient ways to <a href="http://en.wikipedia.org/wiki/Integer_factorization" rel="nofollow">Integer factorization</a></p>
+
+<pre><code>public static List&lt;Long&gt; getPrimeFactors(long number) {
+    List&lt;Long&gt; primeFactors = new ArrayList&lt;Long&gt;();
+
+    // Only process natural numbers
+    if(number &lt; 1l) {
+        return primeFactors;
+    }
+
+    // The only prime factor of 1 is 1
+    if(number == 1l) {
+        primeFactors.add(1l);
+        return primeFactors;
+    }
+
+    // Even have the prime factor 2
+    if(number % 2l == 0l) {
+        primeFactors.add(2l);
+
+        while(number % 2l == 0l) {
+            number /= 2l;
+        }
+    }
+
+    // Iterate from 3 to sqrt(number) to calculate the remaining prime factors
+    for (long factor = 3l; factor &lt; Math.sqrt(number); factor+=2l) {
+        if (number % factor == 0) {
+            primeFactors.add(factor);
+            while (number % factor == 0) {                  
+                number /= factor;
+            }
+        }           
+    }
+
+    if (number &gt; 1) {
+        primeFactors.add(number);
+    }
+
+    return primeFactors;
+}
+</code></pre></li>
+</ol>

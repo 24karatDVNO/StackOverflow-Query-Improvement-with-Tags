@@ -1,0 +1,8 @@
+<p>You can catch the not found error and handle it:</p>
+
+<pre><code>begin
+  foo = Foo.find(params[:id])   
+rescue ActiveRecord::RecordNotFound
+  redirect_to somewhere_else_url
+end  
+</code></pre>

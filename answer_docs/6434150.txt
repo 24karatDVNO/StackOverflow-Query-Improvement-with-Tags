@@ -1,0 +1,11 @@
+<p>The best answer I could come up with was to get my jar into a public Maven repo and use @Grab. e.g.,</p>
+
+<pre><code>@Grab(group='com.noahsloan.atg',module="atg-resolver",version="1.0")
+import com.noahsloan.atg.ivy.AtgModuleRepository
+
+grails.project.dependency.resolution = {
+
+    resolver AtgModuleRepository.newResolver
+</code></pre>
+
+<p>From <a href="https://github.com/iamnoah/grails-atg-core-plugin/blob/master/grails-app/conf/BuildConfig.groovy" rel="nofollow">my plugin</a>. I'd still like to know if there is a way to reference <code>pluginBasedir</code> from BuildConfig.</p>

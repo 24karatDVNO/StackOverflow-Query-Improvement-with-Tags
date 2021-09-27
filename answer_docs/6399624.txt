@@ -1,0 +1,15 @@
+<p>You could do that, but it is very <em>protocol-bound</em>, in this case <strong>HTTP</strong>.  I wonder if there is a way to do that without worrying so much about protocols?  Ideally we only want to do it once and not for each transport out there.  Luckily there is a way, let me explain.</p>
+
+<p>At the end of the day, your WCF internals should be <em>protocol agnostic</em>. By that I mean by the time a method is invoked on your service, we should not care whether it came by <em>REST, TCP, HTTP or named pipes</em>.</p>
+
+<p>In WCF this is pretty easy and so is versioning.  With versioning we can learn much about .NET interface versioning particularly when it has nothing to do with WCF.  The idea is that your service should realize:</p>
+
+<pre><code>interface ISomething1 { ... }
+</code></pre>
+
+<p>Later when a new method or changes are required you should:</p>
+
+<pre><code>interface ISomething2 : ISomething1 { void SomethingNew (...) }
+</code></pre>
+
+<p>It's then a simple matter to publish your service with 2 endpoints in config, one pointing to <strong>ISomething1</strong> and the other to <strong>ISomething2</strong>.</p>

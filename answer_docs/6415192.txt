@@ -1,0 +1,8 @@
+<p>Thanks all your help. Resolved the problem. </p>
+
+<ol>
+<li>The join is pretty slow. Eliminated join and the time down to 1.8~2s. (see the update above)</li>
+<li>The query didn't use index or only used index on Z_ENT. For ZCHARACTERID, it still do the full table scan. So I added "CREATE INDEX CID_Z_ENT_INDEX ON ZCHARACTERINFO (ZCHARACTERID, Z_ENT). The query time reduced to 0.05s. </li>
+</ol>
+
+<p>NOTE: Somehow after added the new index, explain query plan still shows it uses Z_ENT index. Have to drop Z_ENT index so CID_Z_ENT_INDEX can be used. Not sure why.</p>

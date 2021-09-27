@@ -1,0 +1,13 @@
+<p>Try out this:</p>
+
+<pre><code>mkrevlst [] = Lin
+mkrevlst (x:xs) = Snoc x (mkrevlst xs)
+</code></pre>
+
+<p>Snoc constructor need 2 parameters where as you were passing only one i.e x
+It will solve the error but it wont solve your problem of creating a output like:</p>
+
+<pre><code>((Lin Snoc 3) Snoc 2) Snoc 1
+</code></pre>
+
+<p>For this you need to modify your data structure</p>

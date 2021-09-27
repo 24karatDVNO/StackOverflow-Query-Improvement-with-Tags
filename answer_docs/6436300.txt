@@ -1,0 +1,6 @@
+<p>I think you can match one or more <code>,</code> followed by <code>\r\n</code> by using  <code>,+\\r\\n</code>. Don't know how to replace that using C# sorry. In perl I would do</p>
+
+<pre><code>perl -pi -e 's/,+\\r\\n/\\r\\n/g' c.txt
+</code></pre>
+
+<p>(assuming that <code>c.txt</code> is a file containing your input text).</p>

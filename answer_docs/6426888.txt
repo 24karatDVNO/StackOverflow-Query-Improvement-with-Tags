@@ -1,0 +1,24 @@
+<p>I have used the following approach with English-based fonts, but I am not sure if it will work on your case. The original source of this approach is a <a href="http://blog.opennetcf.com/ctacke/PermaLink,guid,18c06cd4-f442-46fe-a576-5f323a2ddfb1.aspx" rel="nofollow">nice post</a> from Chris Tacke (SO user @ctacke) with some modifications.</p>
+
+<pre><code>    [DllImport("coredll.dll")]
+    private static extern int AddFontResource(string lpszFilename);
+    [DllImport("coredll.dll", SetLastError = true)]
+    private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
+    static IntPtr HWND_BROADCAST = (IntPtr)0xFFFF;
+    const int WM_Fontchange = 0x001D;
+
+    private static void RegisterFont(string aFontPath, string aTargetFontPath)
+    {
+        IntPtr thir = (IntPtr)0;
+        IntPtr fourth = (IntPtr)0;
+        try
+        {
+            if (!System.IO.File.Exists(aTargetFontPath))
+                System.IO.File.Copy(aFontPath, aFontTargetPath);
+        }
+        catch { throw; }
+        int _Loaded = AddFontResource(aFontTargetPath);
+        if (_Loaded != 0)
+            SendMessage(HWND_BROADCAST, WM_Fontchange, thir, fourth);
+    }
+</code></pre>

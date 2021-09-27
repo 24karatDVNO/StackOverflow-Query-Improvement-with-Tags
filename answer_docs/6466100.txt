@@ -1,0 +1,16 @@
+<p>You can make a struct (or class) for this.</p>
+
+<pre><code>public struct IdAndName
+{
+    public int Id;
+    public string Name;
+
+    public IdAndName(int id, string name)
+    {
+        ID = id;
+        Name = name;
+    }
+}
+</code></pre>
+
+<p>You could also use a Tuple&lt;T1, T2>, (but that's not recommended as the properties aren't named.</p>

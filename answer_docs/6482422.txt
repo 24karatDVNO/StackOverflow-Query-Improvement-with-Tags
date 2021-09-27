@@ -1,0 +1,18 @@
+<p>So, if I have to demonstrate <code>A*(B-C)/D-E</code> with stack operation, I am doing this right:</p>
+
+<pre><code>PUSH A
+PUSH B
+PUSH C
+SUB
+MUL
+PUSH D
+DIV
+PUSH E
+SUB
+</code></pre>
+
+<p>Then, the top of stack would have what <code>A*(B-C)/D-E</code> evaluates to. Actually this needs to be done with zero-address format register and i believe using stack this way is how it is done.</p>
+
+<p>Thank you very much for the help.</p>
+
+<p>Highly appreciated.</p>

@@ -1,0 +1,4 @@
+<p>Try running your app with instruments on a device. There are a few things with AVFoundation that leak on the simulator, but do not on real hardware!</p>
+
+<p>but, on second thought, audioRecorder is never released. Maybe try either releasing it
+at the end of the method, or perhaps using autorelease?</p>

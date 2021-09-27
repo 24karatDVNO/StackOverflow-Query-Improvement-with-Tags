@@ -1,0 +1,28 @@
+<blockquote>
+  <p>I have tried to create a public array variable in my class and pass it but with no luck.</p>
+</blockquote>
+
+<p>Can you show the code for this? It should work fine as class variable...</p>
+
+<p>E.g:</p>
+
+<pre><code>class FooController extends AppController {
+
+    var $someArray = array();
+
+    function doExam() {
+
+        // Populate the array here
+        $this-&gt;someArray = array(1,2,3); 
+
+    }
+
+    function bar() {
+
+        // Use it here, no need to pass it as an argument
+        print_r($this-&gt;someArray);
+
+    }
+
+}
+</code></pre>

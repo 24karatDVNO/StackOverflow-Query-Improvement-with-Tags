@@ -1,0 +1,19 @@
+<p>I have a work around using AutoHotKey (an excellent tool) and changing <code>beautify.rb</code> to take a file.</p>
+
+<pre><code>;window ctrl R  - beautify sql
+#^R::
+ClipSaved := ClipboardAll   
+clipboard = ; Start off empty to allow ClipWait to detect when the text has arrived.
+Send ^c
+ClipWait  ; Wait for the clipboard to contain text.
+FileDelete , c:\tmp\tmp_ahk_clip.txt
+FileAppend , %clipboard% , c:\tmp\tmp_ahk_clip.txt
+RunWait, %comspec% /c ""C:\...\Database\beautify.rb" c:\tmp\tmp_ahk_clip.txt &gt; c:\tmp\tmp_ahk_clip_out.txt" ,,Hide
+FileRead, clipboard, c:\tmp\tmp_ahk_clip_out.txt
+Send ^v
+Clipboard := ClipSaved 
+ClipSaved = ; Free the memory 
+return 
+</code></pre>
+
+<p>Now any text field in any app with sql in it can be beautiful :)</p>

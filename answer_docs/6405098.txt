@@ -1,0 +1,5 @@
+<p>To some degree yes you would be re-inventing the wheel but the wheel you're re-inventing is not a particularly complex one.   If you were creating a line of business app you would probably use the <code>BusyIndicator</code> control for the Silverlight toolkit.  This control allows some "Loading..." UI to be presented while significant background activity runs.</p>
+
+<p>You could use this as a starting point, however you would probably want to replace its default style and specifically the default template in the style to present UI in keeping with your game's graphics.</p>
+
+<p>However including the toolkit just for this function may not be a good trade-off.  Having created your own template it would be very easy to then re-create the very simple control that sits behind the template.  So yes you would have re-created the wheel but most of the effort would be in the graphics unique to your game anyway and the rest might be a worthwhile trade off for not having to include a toolkit dll in your project.</p>

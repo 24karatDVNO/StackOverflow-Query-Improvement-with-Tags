@@ -1,0 +1,11 @@
+<p>Frankly this shouldn't be an issue tbh...</p>
+
+<p>However if it bothers you, you can use jQuery to embed the FB login code once the DOM is ready so that it isn't sent as a part of the markup to the validator</p>
+
+<p>Try something like :</p>
+
+<pre><code>jQuery(document).ready(function() {
+     var fbCode = "Your facebook code goes here";
+     $("#forgot").prepend(fbCode);
+});
+</code></pre>

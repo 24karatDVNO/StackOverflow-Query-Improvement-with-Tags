@@ -1,0 +1,21 @@
+<p>Not really sure what your desired output, how you get the right misc for a given user, but here is the general idea</p>
+
+<pre><code>SELECT userid, email, username, IF(email&lt;&gt;'',(SELECT avatar from misc where miscid = users.userid),null) avater FROM users;
+</code></pre>
+
+<p>this is a more readable version</p>
+
+<pre><code>SELECT
+  userid,
+  email,
+  username,
+  IF(email&lt;&gt;''
+    ,/*then*/(SELECT avatar from misc where miscid = users.userid)
+    ,/*else*/null)
+   as avater
+FROM users;
+</code></pre>
+
+<p>Please provide a clear list of your tables, and an example desired output, and we can better assist.</p>
+
+<p>The final desired example output is very helpful when designing MySQL statements.</p>

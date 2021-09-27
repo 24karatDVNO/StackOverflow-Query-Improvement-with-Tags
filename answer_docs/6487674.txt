@@ -1,0 +1,21 @@
+<p>You have touched on a very large topic, which really can get as complicated as you will allow it.</p>
+
+<p>Ultimately, the versioning approach you choose will be dependent on what you need to achieve, and how much time you have to allocate to maintaining it. The two are directly related.</p>
+
+<p>The two primary goals of versioning, is side-by-side execution, and tracking.
+Side-by-side (SxS) is allowing multiple versions of the same DLL to execute within the same application. Without the changing of an assembly-version-number, this is not possible.
+Tracking is simply being able to determine the exact code snapshot that is running on a customers machine.
+Both can be achieved by changing the assembly-version, but the first can be achieved <em>only</em> by changing the assembly-version.</p>
+
+<p>Many will reccommend you share the version numbers across all DLLs/EXEs - this is a good way to do it, as it is the most simplistic approach, it also achieves the least deployment flexibility.</p>
+
+<p>For example, if you are using any form of contract abstraction (defining dependencies between DLLs via interfaces rather than concrete types), you may split your application into multiple 'versioning silos'.
+An example of this would be client, and server, where the interdepency if defined in a 3rd assembly, your WCF contracts.
+If they are all versioned separately, then you can release a new version of server (so long as it conforms to the same contract), without affecting the client. And vice-versa.</p>
+
+<p>As you can see, you will increase your versioning granularity as your demands grow, but it will incur overheard.</p>
+
+<p>The best thing you can do is exactly what you are doing, sit down and plan your requirements, then map out your versioning boundaries (which components can be separated by contracts).</p>
+
+<p>This next thing depends on the size of your testing department, but I would also recommend that you look at having the file-version reflect (at least in part) the build number/date.
+You will only increment the assembly-version once per customer release, but you should have a different file version for each collection of DLLs that comes out of the build. This is because when you're testing, and you locate an issue, having these DLLs uniquely identifiable will remove any doubt as to exactly which build the DLL originated.</p>

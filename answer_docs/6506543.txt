@@ -1,0 +1,9 @@
+<p>As others have suggested, tracking a pointer is good way of knowing if memory has been freed or not.</p>
+
+<p>I would also suggest the following pointers.</p>
+
+<ol>
+<li>Initialiase the pointer to NULL while you declare it</li>
+<li>Once freed you initialise it to NULL again</li>
+<li>Check if pointer is not NULL before trying to free.</li>
+</ol>

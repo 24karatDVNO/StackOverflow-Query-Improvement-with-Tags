@@ -1,0 +1,1 @@
+<p>It depends largely on how you're drawing your animations. Manipulating the canvas pixel data array can be very slow as array traversal in JS is slower than native GPU-accelerated rendering. It can help to isolate only the parts of the canvas that need to be redrawn, rather than clearing the whole thing, but you may already know that!</p>

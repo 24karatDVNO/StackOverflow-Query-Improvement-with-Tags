@@ -1,0 +1,7 @@
+<p>how about:</p>
+
+<pre><code>$str = "&lt;span&gt;Hocking Parade, Sorrento WA 6020&lt;/span&gt;";
+preg_match('/,\s+(.*)\s+[A-Z]{2}\s+(\d{4})/', $str, $m);
+echo $m[1]; // prints Sorrento
+echo $m[2]; // prints 6020
+</code></pre>

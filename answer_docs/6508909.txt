@@ -1,0 +1,32 @@
+<p>struct1 and struct2 have different size in bytes, so sizeof(struct1) != sizeof(struct2). Returning the struct from function requires copying it, so c++ requires you to specify the correct type for it so that correct amount of bytes can be copied. To start correct this problem you need to think in the very low level:</p>
+
+<pre><code>struct GenericStruct {
+   void *ptr;
+   size_t size;
+   type_info t;
+};
+struct1 extract_struct1(GenericStruct &amp;s);
+struct2 extract_struct2(GenericStruct &amp;s)
+  {
+  if (s.size != sizeof(struct2)) throw -1;
+  if (s.t != typeid(struct2)) throw -1;
+  struct2 *s2 = (struct2*)s.ptr;
+  return *s2;
+  }
+GenericStruct make_generic(const struct1 &amp;ss)
+ {
+ GenericStruct s;
+ s.ptr = (void*)&amp;ss;
+ s.size = sizeof(struct1);
+ s.t = typeid(struct1);
+ return s;
+ }
+ GenericStruct make_generic(const struct2 &amp;ss);
+</code></pre>
+
+<p>the real problem is that these functions can fail on runtime, if the sizes or types do not match. The copying is obviously also needed:</p>
+
+<pre><code>GenericStruct Copy(const GenericStruct &amp;s);
+</code></pre>
+
+<p>After these basic primitives exists, you can create a class which has copy constructor and assignment operator which uses these functions to implement proper generic struct support.</p>

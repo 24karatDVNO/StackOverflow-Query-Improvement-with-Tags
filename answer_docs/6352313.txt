@@ -1,0 +1,13 @@
+<p>Could you create a new plist called ExerciseDescriptions.plist</p>
+
+<p><img src="https://i.stack.imgur.com/ZADf2.png" alt="plist image"></p>
+
+<p>Then implement something like this. <em>(I've not tested this code, it's just off my head)</em></p>
+
+<pre><code>NSString *exerciseName = [exerciseEntity valueForKey:@"name"];
+
+NSString *path = [[NSBundle mainBundle] pathForResource:@"ExerciseDescriptions" ofType:@"plist"];
+
+NSDictionary *exerciseDescription = [NSDictionary dictionaryWithContentsOfFile:path];
+NSString *description = [exerciseDescription objectForKey:exerciseName];
+</code></pre>

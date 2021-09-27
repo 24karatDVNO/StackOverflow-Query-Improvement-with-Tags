@@ -1,0 +1,12 @@
+<p>Perhaps this helps</p>
+
+<p><a href="https://stackoverflow.com/questions/5585087/can-i-reload-an-assembly-in-mono-csharprepl/5588699#5588699">Can I reload an assembly in Mono CSharpRepl?</a></p>
+
+<pre><code>var dom = AppDomain.CreateDomain("tmp");
+dom.Load("System.Core");
+AppDomain.Unload(dom);
+</code></pre>
+
+<p>See also</p>
+
+<p><a href="https://stackoverflow.com/questions/5916855/using-multiple-versions-of-the-same-dll/5916866#5916866">Using multiple versions of the same DLL</a></p>

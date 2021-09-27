@@ -1,0 +1,59 @@
+<p>Your functions are global, therefore you object may be global, with a wrapper function:</p>
+
+<pre><code>public class MyMsgObject
+{
+    void ShowMsg(char[] Msg);
+
+    // other methods
+};
+
+// ...
+
+// this function belongs to a class, is a method
+void MyMsgObject::ShowMsg(char[] Msg)
+{
+    cout &lt;&lt; "Method: " &lt;&lt; Msg &lt;&lt;"\n";
+}
+
+// this method doesn't belong to any class,
+// its global
+void GlobalShowMsg(char[] Msg)
+{
+    cout &lt;&lt; "Global: " &lt;&lt; Msg &lt;&lt;"\n";
+}
+
+// global var obj, before method wrapper:
+MyMsgObject myGlobalObject;
+
+void MethodWrapperShowMsg(char[] Msg)
+{
+    // method pointer is global,
+    // your objects must be used as globals:
+    myGlobalObject.ShowMsg(Msg);
+}
+
+// declare function pointer ("functor"),
+// syntax is weird
+
+typedef
+    void (*MyGlobalFunctorType) (char[] Msg);
+
+void main()
+{
+    // declare function pointer variable
+    MyGlobalFunctorType MyGlobalFunctorVar = null;
+
+    // test function pointer variable with global function
+    MyGlobalFunctorVar = &amp;GlobalShowMsg;
+    MyGlobalFunctorVar("Hello Earth");
+
+    // instantiate class into an object variable
+    myGlobalObject = new MyMsgObject();
+
+    // test function pointer variable with wrapper function
+    MyGlobalFunctorVar = &amp;MethodWrapperShowMsg;
+    MyGlobalFunctorVar("Hello Moon");
+} // void main(...)
+</code></pre>
+
+<p>Cheers.</p>

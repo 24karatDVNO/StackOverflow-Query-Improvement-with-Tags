@@ -1,0 +1,21 @@
+<p>You can check if requested resource is not a file/directory and only then rewrite. For example:</p>
+
+<pre><code>RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) /seoparser.php?$1 [QSA,L]
+</code></pre>
+
+<p>Depending on circumstances (what rewrite logic you have in place/needs to be implemented) this can be much better solution than mentioned by @inti. You will see such combination of rules used in a lot of real applications (for example, WordPress, Magento) and PHP frameworks (most of the time they will have only internal routing logic).</p>
+
+<p>This is a bit different approach (mostly from organisational point of view):</p>
+
+<pre><code>RewriteEngine On
+# Do not do anything for already existing files
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule .+ - [L]
+
+# Your rewrite rules (file/folder does not exist, we may need to route it elsewhere)
+RewriteRule (.*) /seoparser.php?$1 [QSA,L]
+</code></pre>

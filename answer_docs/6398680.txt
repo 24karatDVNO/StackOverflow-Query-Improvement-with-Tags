@@ -1,0 +1,11 @@
+<p>imageSize = din.readInt();</p>
+
+<p>imageName = din.readUTF();</p>
+
+<p>byte b[] = new byte[imageSize];
+din.readFully(b);</p>
+
+<p>bmImg = BitmapFactory.decodeByteArray(b,0,b.length);</p>
+
+<p>//This works for me....
+//din is DataInputStream object.</p>

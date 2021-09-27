@@ -1,0 +1,3 @@
+<p>The examples you posted are of authorization data.  Both define level of access to an asp.net resource for certain role(s).  So what you are really asking is, is there a way to configure authorization in ASP.NET in a way that is SQL-based so you can change what Roles have access to things from SQL, without modifying source or configuration directly.</p>
+
+<p>I don't know any way of doing this directly, but I could suggest plugging in your own role/group structure in SQL to the builtin Role structure, so that the ASP.NET role defines the resource and level of access, and the SQL group/role can be changed dynamically as you describe and follow your Party data model.</p>

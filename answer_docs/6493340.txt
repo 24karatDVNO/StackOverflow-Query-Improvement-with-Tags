@@ -1,0 +1,9 @@
+<p>I don't remember much java but I believe it is something like that : </p>
+
+<p>Create a <code>List&lt;ClassA&gt;</code> and add all your ClassB items to it like this : </p>
+
+<pre><code>List&lt;ClassA&gt; myList = new List&lt;ClassA&gt;();
+myList.addAll(myListOfOtherItems);
+</code></pre>
+
+<p>Now you can use myList to call your method since it's of type <code>List&lt;ClassA&gt;</code> but contains ClassB items that extends ClassA</p>

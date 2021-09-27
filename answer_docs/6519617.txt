@@ -1,0 +1,5 @@
+<p>Depends on what you do understand with 'webservices'. SOAP, REST, all technologies like this?</p>
+
+<p>SOAP services have the big advantage, that they have a well defined contract through the WSDL as well as the clients can easily generate stubs. On the other hand, SOAP services can also bring a lot more work (e.g. if using them on a client which has no soap client (e.g. iOS, plain html app)). Additionally the webservice stuff brings a lot of overhead, which could play a role if you intend to deliver large data e.g. to mobile devices. </p>
+
+<p>There you must take into consideration that the clients could have limited bandwith (speed and data volume). Furthermore it must process the hole XML document, whereas a json could be more easier for example.</p>

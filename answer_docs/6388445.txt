@@ -1,0 +1,10 @@
+<p>From the <a href="http://www.php.net/manual/fr/function.fsockopen.php#refsect1-function.fsockopen-examples" rel="nofollow">PHP Documentation</a>:</p>
+
+<pre><code>fwrite($sk, 'A message sent to the server');
+</code></pre>
+
+<p>Or with arrays :</p>
+
+<pre><code>$array = array(4, '3', 'Foo');
+fwrite($sk, serialize($array)); //You'll have to deserialize it on C# side.
+</code></pre>

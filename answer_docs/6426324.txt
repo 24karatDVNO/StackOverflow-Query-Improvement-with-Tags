@@ -1,0 +1,14 @@
+<p>I was looking for a good answer to this and none of the ones on here really were exactly what I wanted, so I'll share the way I did it:</p>
+
+<pre><code>$('ul.playerList').each(function() {
+    var id = $(this).attr('id'); // get element id
+    window[id] = $(this).sortable("serialize",{key:id}); // make global var w/ data
+});
+
+// you could make this more dynamic if you have a lot of lists
+var data = ul_id_1 + "&amp;" + ul_id_2 + "&amp;" + ul_id_3 + "&amp;action=other_vars"; 
+
+$.post(url,data,function(resp) {
+    $("#test").html(resp);
+});
+</code></pre>

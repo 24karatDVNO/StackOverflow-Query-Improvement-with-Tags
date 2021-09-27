@@ -1,0 +1,13 @@
+<pre><code>$("#selectbox").change(function() {
+ if($(this).val() == 'pricelh') {
+   $(".grid-product-box").qsort({attr: "productprice", digits: true});
+    });
+ } else if($(this).val() == 'pricehl') {
+   $(".grid-product-box").qsort({attr: "productprice", digits: true, order: "desc"});
+    });
+ }
+ // other functions
+});
+</code></pre>
+
+<p>Think you can use this</p>

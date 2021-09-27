@@ -1,0 +1,7 @@
+<p>One of the TryParse methods accepts an IFormatProvider, which can also come as a DateTimeFormatInfo class. The following link has all the necessary details:</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.globalization.datetimeformatinfo.aspx</a></p>
+
+<p>Yours would be almost like: ddd, MMM dd yyyy HH':'mm':'ss zzz yyyy</p>
+
+<p>The only problem is the timezone offset, zzz includes a colon between the hours and minutes. You might get away with using zz'00' though it is cheating.</p>

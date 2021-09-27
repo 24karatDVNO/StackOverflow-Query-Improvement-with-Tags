@@ -1,0 +1,5 @@
+<p>I think you need to define <code>mouseout</code> on the <code>#thumbnails</code> id, instead, and that may just fix your issue.</p>
+
+<p>What's happening is:</p>
+
+<p>Your <code>mouseover</code> and <code>mouseout</code> events are defined on the same id, <code>#gallery</code>, which means when you hover over the <code>#gallery</code> the <code>mouseover</code> function will be called, BUT because your overlay is now <strong>covering</strong> the <code>#gallery</code>, your mouse is no longer "over" the <code>#gallery</code>, but it's over the <code>#thumbnails</code>, thereby triggering mouseout.</p>

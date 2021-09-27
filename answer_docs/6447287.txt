@@ -1,0 +1,17 @@
+<p>In your first example with YUI the object literal is used simply as a dictionary of options. It's useful in a language where there are no named parameters and a function takes many arguments. Also it's easier to play with defaults this way in JavaScript.</p>
+
+<p>Take the following example:</p>
+
+<pre><code>function myf(options) {
+  var url = options['url'] || 'http://...';
+  var method = options['method'] || 'get';
+  // ...
+}
+
+// Now you can pass only what you deem necessary in the function
+myf({ 'url' : 'http://stackoverflow.com' });
+myf({ 'method' : 'post' });
+myf({});
+</code></pre>
+
+<p>This method is there for it's practical purposes.</p>

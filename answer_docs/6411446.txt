@@ -1,0 +1,54 @@
+<p>Ajax is async.  What happen is you created the MarkerClusterer before the callback function is complete and thus no marker was pushed onto the global array markersArray.  This is just on top of my head without any testing, but see if it solves the problem.</p>
+
+<pre><code>var markersArray = [], markerCluster;
+
+function getMarkers(hours) {//5
+
+    if (markersArray) {
+        for (i in markersArray) {
+            markersArray[i].setMap(null);
+        }
+        markersArray.length = 0;
+    }
+
+    image = '/images/site/tw.png';
+
+    $.ajax({
+        url: "updateMarkers",
+        type:"POST",
+        data:{"hours": hours},
+        success: function(data){
+            data = $.parseJSON( data );
+            if (data.Locations.length&gt;0) {//2
+                    for (i=0; i&lt;data.Locations.length; i++) {//1
+                        loc = new google.maps.LatLng(data.Locations[i].lat, data.Locations[i].lng);
+
+                        marker = new google.maps.Marker({
+                            position: loc,
+                            map: map,
+                            icon: image,
+                            html: content
+                        });
+
+                        markersArray.push(marker);
+
+                        infowindow = new google.maps.InfoWindow({
+                            content: "holding..."
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.open(map, this);
+                            infowindow.setContent(this.html);
+                        });
+                    }//1
+
+                    //Create the Cluster AFTER all markers are pushed into the markersArray, and make sure it's called within the callback function
+                    markerCluster = new MarkerClusterer(map, markersArray);
+                }//2
+            }
+        });
+
+}//5
+
+getMarkers(24);
+</code></pre>

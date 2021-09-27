@@ -1,0 +1,19 @@
+<p>I think for XDebug to load properly, it needs one of the following lines of code. Anytime I used the setup from <a href="http://robsnotebook.com/php_debugger_pdt_xdebug" rel="nofollow">this site</a>, XDebug did not load. The following snippet of php.ini is the configuration on all my development systems.</p>
+
+<pre><code>[XDebug]
+;; Only Zend OR (!) XDebug
+; Modify the filename below to reflect the .dll version of your xdebug
+zend_extension="C:\wamp\bin\php\php5.3.6\ext\php_xdebug-2.1.1-5.3-vc9.dll"
+xdebug.remote_enable=1
+xdebug.remote_host=localhost  ; if debugging on remote server,
+                          ; put client IP here
+xdebug.remote_port=9000
+xdebug.remote_handler="dbgp"
+xdebug.profiler_enable=1
+xdebug.profiler_output_dir="C:\wamp\tmp"
+xdebug.profiler_enable_trigger = 0
+xdebug.profiler_output_name = "xdebug_profile.%R::%u"
+xdebug.trace_output_dir = "C:\wamp\tmp"
+</code></pre>
+
+<p>Also check <a href="http://www.xdebug.org/find-binary.php" rel="nofollow">this website</a> to make sure you have the proper XDebug dll. I once had a problem of using a vc9 dll on a vc6 system.</p>

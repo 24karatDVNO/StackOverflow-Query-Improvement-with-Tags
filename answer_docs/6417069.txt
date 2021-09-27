@@ -1,0 +1,20 @@
+<p>The way I did it was to make a really basic activity with a layout with basically just text telling them how to properly add the widget</p>
+
+<pre><code> public class Jump extends Activity{
+        @Override
+        public void onCreate(Bundle savedInstanceState)
+        {
+                super.onCreate(savedInstanceState);
+            setContentView(R.layout.main);
+        }
+</code></pre>
+
+<p>And then put this in your manifest:</p>
+
+<pre><code>&lt;activity android:name=".Jump" android:label="@string/app_name"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN" /&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+        &lt;/intent-filter&gt;
+     &lt;/activity&gt;
+</code></pre>

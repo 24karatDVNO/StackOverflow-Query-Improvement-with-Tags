@@ -1,0 +1,13 @@
+<p>You can't have the same object used as a <code>ViewFactory</code> and use it as two different factories for two different components.</p>
+
+<p>I never tried it, but it here is some solution from a OO perspective :</p>
+
+<ul>
+<li>create two inner classes inside your activity</li>
+<li>both of them will implement <code>ViewFactory</code>, </li>
+<li>assign an instance of each inner class as the <code>ViewFactory</code> for your 2 components</li>
+<li>make their <code>makeView</code> method provide the needed <code>View</code> for each component</li>
+</ul>
+
+<p>This should work,
+ Stéphane</p>

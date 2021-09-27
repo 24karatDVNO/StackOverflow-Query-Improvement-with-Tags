@@ -1,0 +1,19 @@
+<p><strong><a href="http://api.jquery.com/toggle/" rel="nofollow">Here</a></strong> mention clearly that</p>
+
+<p>The <code>display</code> property is saved and restored as needed. If an element has a <code>display</code> value of inline, then is hidden and shown, it will once again be displayed inline.</p>
+
+<p>show i suggest another way to use class and remove <code>style=""</code> from <code>select</code></p>
+
+<p>css : </p>
+
+<pre><code>   .hide { display: none };
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$("#testbtn").click(function() {
+   $('#List').toggleClass('hide');
+});
+</code></pre>
+
+<p><strong><a href="http://jsfiddle.net/auFYf/" rel="nofollow">DEMO</a></strong></p>

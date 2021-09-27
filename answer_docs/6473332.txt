@@ -1,0 +1,5 @@
+<p>Effectively you are modelling a set of state transitions, when you're in a particular state (eg. Facing North) certain actions (eg. turn 90 clocwise) result in a new State ( facing East)</p>
+
+<p>You can model such things with a host of nested switch statements or some such. I think you may do best to actually model the states as explicit classes, perhaps derived from an abstract base class which defines the actions. </p>
+
+<p>I suspect that if your states or actions become marginally more complex you'll find you need the classes.</p>

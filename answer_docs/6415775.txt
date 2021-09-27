@@ -1,0 +1,25 @@
+<p>Create a table in an SQL database like this:</p>
+
+<pre><code>create table properties (
+    file_name  varchar(100) not null,  -- Or whatever sizes make sense
+    prop_name  varchar(100) not null,
+    prop_value varchar(100) not null
+)
+</code></pre>
+
+<p>Then parse your files with some simple regular expressions or even just <a href="http://ruby-doc.org/core/classes/String.html#M001165" rel="nofollow"><code>split</code></a>:</p>
+
+<pre><code>prop_name, prop_value = line.strip.split('=')
+</code></pre>
+
+<p>dump the parsed data into your table, and do a bit of SQL to find the properties that are common to all files:</p>
+
+<pre><code>select prop_name, prop_value
+from properties
+group by prop_name, prop_value
+having count(*) = $n
+</code></pre>
+
+<p>Where <code>$n</code> is replaced by the number of input files. Now you have a list of all the common properties and their values so write those to your new file, remove them from your <code>properties</code> table, and then spin through all the rows that are left in <code>properties</code> and write them to the appropriate files (i.e. the file named by the <code>file_name</code> column).</p>
+
+<p>You say that the files are "huge" so you probably don't want to slurp all of them into memory at the same time. You could do multiple passes and use a hash-on-disk library for keeping track of what has been seen and where but that would be a waste of time if you have an SQL database around and everyone should have, at least, SQLite kicking around. Managing large amounts of structured data is what SQL and databases are for.</p>

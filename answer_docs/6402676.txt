@@ -1,0 +1,9 @@
+<p><a href="http://httpd.apache.org/docs/2.0/mod/mod_rewrite.html" rel="nofollow">mod_rewrite supports environment variables</a>. The notation is <code>%{ENV:variable}</code> for RewriteCond and you can set them in RewriteRule with the <code>env|E=VAR:VAL'</code> flag. Done it, works.</p>
+
+<p>To return a plain 404 to "hide" away things you must implement your own handling inside wordpress. E.g. send those to be 404 / File Not Found masked requests into worpdress to make it return the 404 error page.</p>
+
+<p>However you must know what you do. E.g. some plugins won't work with the setup you aim to achieve as the precondition is that the client must be able to send requests into locations in <code>/wp-content</code> and <code>/wp-admin</code>.</p>
+
+<p>Next to that you won't be able to hide that your site is running with wordpress. Javascript files for examples need to be available. You would need to map those onto new URLs both in .htaccess as well as filtering the output to do the actual mapping of the files.</p>
+
+<p>Even if you do so (e.g. by rewriting URLs via an output buffer), you would come up with a sheme that does make visible you're using wordpress.</p>

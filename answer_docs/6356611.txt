@@ -1,0 +1,38 @@
+<p>Both problems are solved!</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+    $(function() {
+        $("#accordion").accordion({
+            collapsible: false,
+            autoHeight: false,
+            navigation: true,
+            header: 'p.menuitem'
+        });
+
+        $("p.menuitem a").click(function(event){
+            window.location.hash=this.hash;
+        });
+
+        if($(location).attr("hash")) $("a[hash="+$(location).attr("hash")+"]").click();
+    });
+
+    function openpanel(section) {   
+        $("#accordion").accordion("activate", section);
+    }
+&lt;/script&gt;
+
+&lt;div id="accordion"&gt;
+    &lt;div&gt;
+        &lt;p class="menuitem" id="item1"&gt;&lt;a href="#item1"&gt;Section1&lt;/a&gt;&lt;/p&gt;
+        &lt;div&gt;Phasellus mattis &lt;a href="#item2" onclick="javascript:openpanel(1)"&gt;tincidunt&lt;/a&gt; nibh.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;p class="menuitem" id="item2"&gt;&lt;a href="#item2"&gt;Section2&lt;/a&gt;&lt;/p&gt;
+        &lt;div&gt;Nam dui erat, auctor a, dignissim quis.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;p class="menuitem" id="item3"&gt;&lt;a href="#item3"&gt;Section3&lt;/a&gt;&lt;/p&gt;
+        &lt;div&gt;Nam dui erat, auctor a, dignissim quis.&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div
+</code></pre>

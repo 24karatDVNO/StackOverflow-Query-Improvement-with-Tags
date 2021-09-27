@@ -1,0 +1,5 @@
+<p>Since you've already done enough abstraction to mock out the participants, why not take it further and abstract out your thread synchronization (mutex, semaphore, whatnot)?</p>
+
+<p>When you think about what constitutes a deadlock, you could use a specialized, deadlock-aware thread synchronizer in your tests. By "deadlock-aware", I don't mean that it should detect deadlocks the brute-force way by using timeouts etc., but have awareness of the situations that lead to deadlocks by way of flags, counters etc. It could detect deadlocks, while optionally providing the expected thread synchronization functionality. What I'm basically saying is, use instrumented thread synchronization for your tests...</p>
+
+<p>This is all too abstract and easier said than done. And I don't claim to have successfully done it. I might simply be being silly here. But perhaps if you could provide just one (incomplete) test, the problem can be attacked in more concrete terms.</p>

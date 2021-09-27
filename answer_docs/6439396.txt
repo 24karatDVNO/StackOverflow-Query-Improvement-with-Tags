@@ -1,0 +1,6 @@
+<ol>
+<li>Have a flag in a view-state to decide if grid view to be shown or not. Initial value will be false.</li>
+<li>Have a method say <code>ShowGrid</code> that will add (if needed) your grid, bind the data and make it visible.</li>
+<li>On click of search, set the view-state flag true and call <code>ShowGrid</code> method.</li>
+<li>In <code>Page_Load</code> event, check if the view-state flag is true (in post-back condition) and if true then call <code>ShowGrid</code> method.</li>
+</ol>

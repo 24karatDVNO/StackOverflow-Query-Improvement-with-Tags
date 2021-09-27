@@ -1,0 +1,8 @@
+<p>Also you can use something like this:</p>
+
+<pre><code>a = [1, 2, 3, 4, 5, 6, 7, 8]
+# proceed backward
+for x,y in ((a[i],a[i-1]) for i in xrange(len(a)-1,0,-1)):
+    if x!= y:
+        # do something
+</code></pre>

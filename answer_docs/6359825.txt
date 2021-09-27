@@ -1,0 +1,9 @@
+<p>I am having the same problem. It happens when I try to run the Leaks instrument, which requires the Allocations instrument, I guess. I can run the Leaks instrument without the Allocations instrument without any problems, but then I can't get the the information that Allocations provides like from what method the leak originates. </p>
+
+<p>I haven't been able to find much about it.</p>
+
+<p>EDIT: I don't know if this is what fixed it, but I killed the app instance that was running on my iPad and then ran instruments again. I did not get the failure with "SessionInactive" and it seems to be running fine now.</p>
+
+<p>I also found a similar topic on the <a href="https://devforums.apple.com/message/452244" rel="nofollow" title="Apple Dev Forums">Apple Dev Forums</a>. It didn't really help me, but it might help you.</p>
+
+<p>EDIT 2: It's not perfect. It only runs for a few minutes, but it's better than not at all.</p>

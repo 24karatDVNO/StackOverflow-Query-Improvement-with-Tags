@@ -1,0 +1,3 @@
+<p>I can't think of an especially good reason to override a method or property in EF.  If you don't want a particular property present and wish to provide your own, don't include it in the entity model.  I'll admit that the constructor is a little more of a concern, though you can work around it with a factory method that does what you want.</p>
+
+<p>I suppose all design decisions have tradeoffs -- I have worked with Propel and like its model also, in that context.  EF does seem to fit the .NET paradigm well, though, and I have found partial classes "good enough" for extending the entities when I need to do so.</p>

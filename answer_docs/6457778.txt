@@ -1,0 +1,5 @@
+<p>You can use something like that:</p>
+
+<pre><code>bash-3.2$ perl -MLWP::Simple -le ' $current_value = get("http://stackoverflow.com/questions/6454398/how-to-extract-specific-information-from-html-webpage-using-perl"); if ($current_value=~/(XYZ\s\d+\.\d+\s\(.*?\))/s) { print "Matched pattern is:\t $1";} '
+Matched pattern is:      XYZ 81.6 (-0.1)
+</code></pre>

@@ -1,0 +1,7 @@
+<p>I don't have the answer, but if the same code compiled with two different compilers gives different answers I would guess that some of the types are of different size or you are implicitly relying on undefined behaviour somewhere.</p>
+
+<p>The first thing you should do is, given the same prime number pairs, check that all the constants you generate come out the same in both implementations.  If not, your key pair generation algorithms are at fault.</p>
+
+<p>The next thing is to make sure that your input data for encryption is absolutely identical on both systems.  Pay particular attention to how you deal with end of line characters.  Bear in mind that, on Windows, end of line is <code>\r\n</code> and on Linux it is <code>\n</code>.   Most Windows library implementations will convert <code>\r\n</code> to <code>\n</code> as the file is read in if <code>"r"</code> is supplied as the mode parameter to <code>fopen()</code>.  Your implementation might be different.</p>
+
+<p>Finally, whatever the problem is, <strong>on no account ever use <code>gets()</code></strong>  If you even catch yourself thinking about using it again, you should remove the frontal lobes of your brain with an ice pick.</p>

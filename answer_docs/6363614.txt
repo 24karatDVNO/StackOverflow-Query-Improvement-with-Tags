@@ -1,0 +1,15 @@
+<p>In your settings.py on your dev box that isn't logging, add something like this:</p>
+
+<pre><code>import logging
+logger = logging.getLogger("sentry.errors")
+handler = logging.StreamHandler()
+formatter = logging.Formatter("[%(levelname)s] %(name)s: %(message)s")
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+</code></pre>
+
+<p>So assuming you're using the standard manage.py runserver on your development desktop, that will open a StreamHandler() which writes to standard error and you should see on your console.</p>
+
+<p>You could also change StreamHandler() ---> FileHandler("/tmp/debug.log", "w")</p>
+
+<p>The fact that it is logging to the sentry.errors handler says that there is a misconfiguration with your dev sentry configuration / settings.</p>

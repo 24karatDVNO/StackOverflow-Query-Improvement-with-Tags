@@ -1,0 +1,13 @@
+<pre><code>SELECT SUBSTR(e.profile_option_name,1,30) PROFILE,
+    DECODE(a.level_id,10001,'Site',10002,'Application',10003,'Responsibility',10004,'User') L,
+    DECODE(a.level_id,10001,'Site',10002,c.application_short_name,10003,b.responsibility_name,10004,d.user_name) LValue,
+    NVL(a.profile_option_value,'Is Null') Value,
+    SUBSTR(a.last_update_date,1,25) UPDATED_DATE
+FROM fnd_profile_option_values a
+INNER JOIN fnd_profile_options e ON a.profile_option_id = e.profile_option_id 
+LEFT OUTER JOIN fnd_responsibility_tl b ON a.level_value = b.responsibility_id
+LEFT OUTER JOIN fnd_application c ON a.level_value = c.application_id
+LEFT OUTER JOIN fnd_user d ON a.level_value = d.user_id
+WHERE e.profile_option_name LIKE '%&amp;1%'
+ORDER BY profile_option_name;
+</code></pre>

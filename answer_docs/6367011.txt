@@ -1,0 +1,15 @@
+<p>This was resolved by changing my .htaccess which contained the following </p>
+
+<pre><code>&lt;IfModule mod_headers.c&gt;
+# 45 MIN
+&lt;FilesMatch "\.(ico|gif|jpg|jpeg|png|flv|pdf)$"&gt;
+  Header set Cache-Control "max-age=2700"
+&lt;/FilesMatch&gt;
+&lt;/IfModule&gt;
+</code></pre>
+
+<p>I removed <code>jpg|jpeg</code> and now things work as they should in Cr and IE8.</p>
+
+<p>Agreed, this should have been one of the first places to troubleshoot, but curiously FF and Saf don't seem to obey this rule in quite the same way as Cr and IE8. On Saf and FF the newly minted cropped JPEGs -- even having the same filename as the original JPEGs -- are refreshed despite the .htaccess rule. </p>
+
+<p>If anyone has ideas on how to make this behavior consistent across browsers please post a comment.</p>

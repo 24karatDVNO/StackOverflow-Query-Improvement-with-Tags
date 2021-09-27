@@ -1,0 +1,7 @@
+<pre><code>select v.venuename, min(v.costperday)
+from 
+(
+  select venuename, costperday
+  from venues
+  where v.venuecapacity = 120) v
+</code></pre>

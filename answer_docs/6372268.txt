@@ -1,0 +1,18 @@
+<p>If you actually give us an explanation of what is wrong we can help.  I did see that this statement is overly complex and contradicts itself..:</p>
+
+<pre><code> var products = from SPListItem ci in ComponentMaster .Items
+            where ci["Component Name"].ToString().Contains(SearchKey) ||
+                  (
+                     ( ci["Component Description"] == null &amp;&amp;           
+                       !string.IsNullOrEmpty(
+                           ci["Component Description"].ToString()
+                        )
+                   ) ? true:false)  
+</code></pre>
+
+<p>Assuming you want items that have a name or description, it reduces to:</p>
+
+<pre><code> var products = from SPListItem ci in ComponentMaster .Items
+            where ci["Component Name"].ToString().Contains(SearchKey) ||   
+                  string.IsNullOrEmpty(ci["Component Description"].ToString())
+</code></pre>

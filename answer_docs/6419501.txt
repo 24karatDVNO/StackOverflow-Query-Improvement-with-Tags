@@ -1,0 +1,3 @@
+<p>This is pretty much impossible to answer without seeing the model definitions.  If these are ForiegnKey relationships than you can most likely eliminate the outer loops altogether and just generate all your data by following the foreign keys up (with select_related of course to get all the data at once)</p>
+
+<p>However more than likely we're looking at manytomany relationships and for that you can't just navigate back up the foreign keys and the answer you have may be the best you can do.</p>

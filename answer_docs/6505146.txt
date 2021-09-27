@@ -1,0 +1,10 @@
+<p>This is simpler than I thought. The way to do it is in the <code>function init() {...}</code> routine, as follows:-</p>
+
+<pre><code>&lt;% if ( User.IsInRole("EditEvents") ) { %&gt;
+    scheduler.config.readonly = false;
+&lt;% } else { %&gt;   
+    scheduler.config.readonly = true;
+&lt;% }; %&gt;
+</code></pre>
+
+<p>Hope this helps anyone using dhtmlxSheduler.</p>

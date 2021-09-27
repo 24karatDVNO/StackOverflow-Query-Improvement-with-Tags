@@ -1,0 +1,9 @@
+<p>This works</p>
+
+<pre><code>with t as(
+select '456 lorem limpsump SRN=12378 and some more things 3.' as col )
+
+select substring(col,charindex('SRN=',col)+4,
+charindex(' ',col,charindex('SRN=',col))-charindex('SRN=',col)-4)
+from t
+</code></pre>

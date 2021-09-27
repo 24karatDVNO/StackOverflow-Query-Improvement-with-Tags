@@ -1,0 +1,10 @@
+<p>If I needed to guess I would say that the java compiler performs some optimization onto bar(). At compiletime it is clear that "str" + "4" can be replaced by "str4" which (since Strings are immutable objects) is indeed the very same object as "str4"-String used for the s-initialization.</p>
+
+<p>Within foo() the optimization is not that streight forward. In general the value s1-variable cannot be predicted very easily (indeed this example is quite streight forward). So the java compiler will produce two different variables for s and s1.</p>
+
+<p>The "==" operator does not compare the value of the Strings! It checks whether these are the same Objects. To compare the values of the Strings use the "equals" method like this:</p>
+
+<pre><code>String s = "str4";
+String s1 = "str" + s.length();
+System.out.println("(s==s1) = " + (s1.equals(s2));
+</code></pre>

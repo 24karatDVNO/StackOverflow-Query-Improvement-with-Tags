@@ -1,0 +1,7 @@
+<p>you could use a ThreadPool instead which allow you to set up the min/max number of thread</p>
+
+<p>have a llok at the below:</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.threading.threadpool.setmaxthreads.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.threading.threadpool.setmaxthreads.aspx</a></p>
+
+<p>you should avoid to lock (this) because you risk to have dead-locking. The looking should be as much granula as possible.</p>

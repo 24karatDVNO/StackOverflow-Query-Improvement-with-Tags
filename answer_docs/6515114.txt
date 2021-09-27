@@ -1,0 +1,5 @@
+<p>I don't think you can, since it almost certainly ties up the thread doing the fetch. The last time I needed to do something like this, I spawned a background thread, with a basic condvar (NSCondition) to signal when a new input was available, and <code>-performSelectorOnMainThread:...</code> to signal when the output was ready. This means that the background thread will continue to work on out-of-date inputs for a while before picking up the new "most recent" input.</p>
+
+<p>You can probably do a similar thing with NSOperation/NSOperationQueue by cancelling all operations on the queue (representing old inputs) before adding a new one (representing the latest input).</p>
+
+<p>Since NSMO/NSMOC isn't thread-safe, you probably want to pass the set of (the first few) MOIDs instead.</p>

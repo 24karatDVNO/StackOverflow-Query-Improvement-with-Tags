@@ -1,0 +1,15 @@
+<p>You could do this with a regular expression:</p>
+
+<pre><code>PS&gt; $path = 'c:\folder1\folder2\folder3\XXX\folder4\folder5'
+PS&gt; $path -match 'c:\\([^\\]+)\\([^\\]+)\\([^\\]+)\\([^\\]+)'
+True
+PS&gt; $matches
+
+Name                           Value
+----                           -----
+4                              XXX
+3                              folder3
+2                              folder2
+1                              folder1
+0                              c:\folder1\folder2\folder3\XXX
+</code></pre>

@@ -1,0 +1,43 @@
+<p><strong>Algorithm Improvements</strong></p>
+
+<ul>
+<li><strong>Don't use a static flag.</strong> Create an id system so that you can uniquely target a notification.
+<ul>
+<li>In C++ you could keep track of a variable that auto-increments whenever you make a new notification.  The id could be <code>#notification_#</code> where <code>#</code> is the id you want.  Then your notify function will send the id it wants to stop/start, as well as the parameter to start or stop it.</li>
+<li>In JavaScript, you then embed the id from the creation of the interval in the tag.  I'd recommend using <a href="http://api.jquery.com/jQuery.data/" rel="nofollow">.data()</a>. That way you can turn it off.</li>
+</ul></li>
+</ul>
+
+<hr>
+
+<p><strong>JS Improvements</strong> <em>(not much better, really)</em></p>
+
+<ul>
+<li>Use <code>===</code>/<code>!==</code> istead of <code>==</code>/<code>!=</code> in most cases. Also avoid <a href="http://www.sitepoint.com/javascript-truthy-falsy/" rel="nofollow">truthy</a> stuff if you can be more specific.</li>
+<li>Combined the hide notification into one query.</li>
+</ul>
+
+<p>Code:</p>
+
+<pre><code>var intervalID; // Needed to turn off setInterval()
+//function takes in 0 to turn off notification, anything else turns it on
+
+function notebookNotification(setting) {
+    if (setting === 0) {
+        if (intervalID !== null) {
+            // clears the blinking darkContainer
+            window.clearInterval(intervalID);
+            intervalID = null;
+        }
+        // hides both of the images
+        $("#lightNotificationContainer,#darkNotificationContainer").hide();
+    }
+    else {
+        $("#lightNotificationContainer").show();
+        if (intervalID === null) {
+            // "animates" the blinking of the notification; the darkContainer toggles on and off every second, and covers the lightContainer
+            intervalID = window.setInterval('$("#darkNotificationContainer").toggle()', 1000);
+        }
+    }
+}
+</code></pre>

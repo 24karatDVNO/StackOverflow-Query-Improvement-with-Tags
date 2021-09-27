@@ -1,0 +1,10 @@
+<p>If you mean, fetching every abbr in an array, then:</p>
+
+<pre><code>$abbr = array();
+while ($row = mysql_fetch_row($result))
+{
+    $abbr[] = $row[0];
+}
+</code></pre>
+
+<p>is a way to do it.</p>

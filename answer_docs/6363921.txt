@@ -1,0 +1,5 @@
+<p>Hadoop also has a C++ API called Hadoop Pipes.  Pipes allows you to write Map and Reduce code in C++, and thus interface with any C/C++ libraries you have available.  It makes sense that this could enable you to interface with CUDA.</p>
+
+<p>To my understanding, it is only a rewriting of MapReduce, thus all of the network communication and the distributed filesystem would still be handled by Java.  Hadoop is intended to make parallelization of tasks simple and general, and as such it is unable to be the most efficient MapReduce implementation.  Your requirements for efficiency versus available programmer time will probably be the deciding factor in using Hadoop or a more efficient, low-level framework.</p>
+
+<p><a href="http://wiki.apache.org/hadoop/C++WordCount" rel="nofollow">Word Count in Pipes</a> example.  There is a real lack of documentation, unfortunately, but having the source available makes things a lot easier.</p>

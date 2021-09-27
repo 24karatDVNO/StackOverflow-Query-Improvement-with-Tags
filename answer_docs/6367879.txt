@@ -1,0 +1,27 @@
+<p>The post <a href="http://www.etechplanet.com/blog/addingremoving-web-part-programmatically-in-sharepoint-website-using-c-code.aspx" rel="nofollow">Adding/Removing web part in SharePoint website programmatically using C# code</a> contains a detailed description of adding and removing Web Parts.</p>
+
+<p>Here's a snippet taken from the above post adding a Web Part to a page (replace the <code>WebPartToBeAdded</code> pseudoclass with <code>ContentByQueryWebPart</code>):</p>
+
+<pre><code>using (SPSite spSiteTest = new SPSite(“SiteURL”) 
+{   
+   using (SPWeb spWebTest = spSiteTest.OpenWeb())   
+   {     
+     SPWebPartCollection webparts = spWebTest.GetWebPartCollection("WebPageURL",Storage.Shared);      
+
+     //create new webpart object           
+     WebPartToBeAdded wpNew = new WebPartToBeAdded();      
+
+     //set properties of new webpart object     
+     wpNew.ZoneID = "WebPartZoneIDWhereWebPartIsToBeAdded";     
+     wpNew.Title = "Web Part Title";     
+     wpNew.ChromeState = System.Web.UI.WebControls.WebParts.PartChromeState.Normal;     
+     wpNew.ChromeType = System.Web.UI.WebControls.WebParts.PartChromeType.None;      
+
+     //add new webpart object to webparts collection     
+     webparts.Add(wpNew);      
+
+     //update spWeb object     
+     spWebTest.Update();    
+   } 
+}
+</code></pre>

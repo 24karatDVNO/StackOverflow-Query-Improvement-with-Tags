@@ -1,0 +1,14 @@
+<p>In this case you'd have to use <code>JSONArray</code> instead.</p>
+
+<pre><code>List&lt;Map&gt; list = new ArrayList&lt;HashMap&gt;();
+Map map1 = new HashMap();  
+map1.put("name","something");  
+Map map2 = new HashMap();  
+map2.put("status", "up"); 
+list.add(map1);
+list.add(map2);
+
+JSONArray array = JSONArray.fromObject(list);  
+String json = array.toString();  
+System.out.println("JSON: "+ json);
+</code></pre>

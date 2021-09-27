@@ -1,0 +1,18 @@
+<p>you can use <code>Window</code> resources to specify static resource, which will represent to your <code>ViewModel</code> like this :</p>
+
+<pre><code>&lt;Window.Resources&gt;
+    &lt;vm:VM_lalala  x:Key="viewmodel" /&gt;
+&lt;/Window.Resources&gt; 
+</code></pre>
+
+<p>Then, you can use it as <code>DataContext</code> of your Grid. </p>
+
+<pre><code> &lt;Grid DataContext="{StaticResource viewmodel}"&gt;
+</code></pre>
+
+<p>Then you can write </p>
+
+<pre><code> &lt;Label Content="{Binding Hersteller}" Grid.Row="0" Grid.Column="1"/&gt;
+</code></pre>
+
+<p>Also, use <code>public class</code> instead of just  <code>class</code>.</p>

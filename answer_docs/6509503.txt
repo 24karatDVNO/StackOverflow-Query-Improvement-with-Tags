@@ -1,0 +1,7 @@
+<p>What's wrong with changing the value inline?</p>
+
+<pre><code>&lt;iframe id="myiframe" src="..." style="width: 104px; height: 70px"&gt;
+&lt;/iframe&gt;
+</code></pre>
+
+<p>However, your jQuery code has a flaw: it's adding a <code>width</code> property to the iframe, it's not changing its <code>style</code>.</p>

@@ -1,0 +1,11 @@
+<p>The <a href="http://code.google.com/chrome/extensions/trunk/experimental.webRequest.html" rel="nofollow noreferrer">WebRequestAPI</a> should allow you to intercept URL requests and rewrite them to do something else.</p>
+<blockquote>
+<p>Use the chrome.experimental.webRequest module to intercept, block, or modify requests in-flight.</p>
+</blockquote>
+<p>So when you see a request to the old swf you can rewrite it to the other version.</p>
+<p><code>onBeforeRequest</code> happens before a request is actually submitted, so that would be a good point to modify the request:</p>
+<blockquote>
+<p>onBeforeRequest</p>
+<p>chrome.experimental.webRequest.onBeforeRequest.addListener(function(object details) {...}, RequestFilter filter, array of string extraInfoSpec));</p>
+<p>Fires when a request is about to occur.</p>
+</blockquote>

@@ -1,0 +1,8 @@
+<p>In IIS 6.0 (Server 2003) this error will occur if the httpHandler is missing (see <a href="https://stackoverflow.com/questions/302820/net-3-5-chart-controls-exception-error-executing-child-request-for-chartimg-axd/335363#335363">Previous Answer</a>)</p>
+
+<p>Looking into the stack trace it appears that IIS 6.0 assumes that a handler will be loaded. It does an Execute on the statement and the exception is swallowed. Including the following  attribute (as shown above) under the httpHandlers in IIS 6.0 fixed this for me.</p>
+
+<pre><code>&lt;add path="ChartImg.axd" verb="GET,HEAD" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"  validate="false"/&gt;
+</code></pre>
+
+<p>Note that I changed the Version from the previous answer to 4.0.0.0 and tested in Server 2008 (IIS 7.0) and Server 2003 (IIS 6.0)</p>

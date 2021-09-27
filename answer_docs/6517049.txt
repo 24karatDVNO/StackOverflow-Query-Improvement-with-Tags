@@ -1,0 +1,11 @@
+<p>This is a horrible, <strong>horrible</strong> hack to get an unescaped <code>SQL_CALC_FOUND_ROWS</code> into the query, but it works:</p>
+
+<pre><code>$categories = $this-&gt;Category-&gt;find('all', array(
+   'fields' =&gt; array('SQL_CALC_FOUND_ROWS 0.0 AS dummy_field,1', 'Category.*', ...),
+   'limit'  =&gt; 42,
+   ...
+));
+$totalCategories = $this-&gt;Category-&gt;query('SELECT FOUND_ROWS() as `total_categories`');
+</code></pre>
+
+<p>All credit goes to "Kani" from <a href="http://mogura.in/blog/2011/06/17/cakephp-1-3-sql_calc_found_rows" rel="nofollow">http://mogura.in/blog/2011/06/17/cakephp-1-3-sql_calc_found_rows</a>.</p>

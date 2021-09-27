@@ -1,0 +1,18 @@
+<p>This is by design as, despite being a checkbox field, the rows in a GridView are uneditable by default.  The way I've always handled this is with a <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.templatefield.aspx" rel="nofollow"><code>TemplateField</code></a>:</p>
+
+<pre><code>&lt;asp:TemplateField HeaderText="Select"&gt;
+&lt;ItemTemplate&gt;
+&lt;asp:CheckBox runat="server" ID="chkSelect" Checked='&lt;%# Eval("Select") %&gt;' /&gt;
+&lt;/ItemTemplate&gt;
+&lt;/asp:TemplateField&gt;
+</code></pre>
+
+<p>Then, if you want to only select one row at a time, use something like this (in <a href="http://jquery.com/" rel="nofollow">jQuery 1.6</a>):</p>
+
+<pre><code>var checkboxes = $('input[type="checkbox"][name$="chkSelect"]');
+checkboxes.click(function() {
+    checkboxes.not(this).prop("checked", false);
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/Town/wsSh5/" rel="nofollow"><strong>Working Demo</strong></a></p>

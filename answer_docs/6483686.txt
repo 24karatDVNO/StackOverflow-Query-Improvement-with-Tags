@@ -1,0 +1,27 @@
+<p>There are various ways to do this. Just adding more options:</p>
+
+<pre><code>SELECT * 
+FROM double_select AS d
+WHERE EXISTS  
+    ( SELECT * 
+      FROM double_select AS dd
+      WHERE dd.status = 'ready' 
+        AND dd.orderID = d.orderID 
+    )
+
+SELECT d.* 
+FROM double_select AS d
+  JOIN
+    ( SELECT DISTINCT orderID 
+      FROM double_select 
+      WHERE status = 'ready'
+    ) AS ds
+    ON ds.orderID = d.orderID  
+
+SELECT a.*
+FROM double_select AS a 
+  JOIN double_select AS b
+    ON a.orderId = b.orderId
+WHERE b.status = 'ready'
+GROUP BY a.itemId
+</code></pre>

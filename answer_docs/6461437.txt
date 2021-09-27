@@ -1,0 +1,16 @@
+<p>OK, I found the answer to this one, with the help of my team lead.  The source of the problem is in the following code:</p>
+
+<pre><code>if ( read.OverviewImage != null ) {
+    OverviewImage = new BitmapImage();
+
+    using ( MemoryStream memoryStream = new MemoryStream( read.OverviewImage.ImageBytes ) ) {
+        OverviewImage.BeginInit();
+        OverviewImage.StreamSource = memoryStream;
+        OverviewImage.EndInit();
+    }
+} 
+</code></pre>
+
+<p>The using statement is the cause of the problem. The using statement closed the MemoryStream before the BitmapImage could read the image from it.   Turns out the bytes for the BitmapImage aren't read from the stream until it is displayed.  When I removed the using statement, everything works.</p>
+
+<p>Tony</p>

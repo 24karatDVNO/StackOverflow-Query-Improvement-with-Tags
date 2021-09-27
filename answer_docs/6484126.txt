@@ -1,0 +1,19 @@
+<p>Correct code would be:</p>
+
+<pre><code>var oInput = document.getElementsByName("sitesinput")[0];
+var value = oInput.value;
+if (value.length == 0)
+{
+    alert("You have not selected a total amount of sites.")
+    oInput.style.border="1px solid #F00"
+    oInput.focus()
+    return false;
+}
+</code></pre>
+
+<p>There's really no need to call <code>getElementsByName</code> over and over again.. call it once, store the element in local variable and use it. You might also improve your validation by making sure it's numeric and whole number:</p>
+
+<pre><code>if (value.length == 0 || isNaN(parseInt(value, 10)))
+</code></pre>
+
+<p>For the record, there was runtime error because <code>getElementsByName</code> returns array, and array has no <code>style</code> property or <code>focus</code> method - and upon error during <code>onsubmit</code>, the form will be submitted.</p>

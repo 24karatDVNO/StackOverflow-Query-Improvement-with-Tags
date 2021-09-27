@@ -1,0 +1,25 @@
+<pre><code>&lt;?
+
+    require_once("connect2.php");
+
+    $sql = "SELECT * FROM tablename ORDER BY RAND()";
+
+    while( $row = mysql_fetch_array($sql) )
+    {
+        $userid = $row["userid"];
+        $user   = $row["user"];
+        $city   = $row["city"];
+        $desc   = $row["description"];
+        $title  = $row["title"];
+        $state  = $row["state"];
+
+        if (!$firstname) 
+        {
+            $firstname = $username;
+        }
+
+        echo "&lt;h3&gt;&lt;font face='helvetica'&gt;&lt;font size='4'&gt;&lt;b&gt;&lt;font color='B80000'&gt;$title&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/b&gt; &amp;nbsp;&lt;font color='A0A0A0'&gt;&lt;a href='profile.php?id=$userid'&gt;$user&lt;/a&gt;&lt;/font&gt;&lt;font face='helvetica'&gt;&lt;font size='3'&gt;&lt;br&gt;&amp;nbsp;$desc&lt;/font&gt;&lt;/font&gt;&lt;br&gt;&lt;h3&gt;&lt;font color='101010'&gt; &amp;nbsp;$city,$state&amp;nbsp;&lt;font color='A0A0A0'&gt;$date&lt;/font&gt;  &lt;/font&gt;&lt;a href='bid.php?id=$userid'&gt;Bids&lt;/a&gt;";
+    }
+
+?&gt;
+</code></pre>

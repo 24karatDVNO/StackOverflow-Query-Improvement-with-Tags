@@ -1,0 +1,15 @@
+<pre><code>cout.write (buffer,length);
+</code></pre>
+
+<p>Don't do this! The above is going to dump the binary data to standard output.</p>
+
+<pre><code>cout &lt;&lt; buffer &lt;&lt; endl;
+</code></pre>
+
+<p>Don't do this either! The above will dump the binary data up to the first byte that happens to be zero to standard output. If there is no such byte, this will just keep on going past the end of the buffer (so undefined behavior).</p>
+
+<p><strong>If</strong> the buffer truly does contain doubles, and only doubles, you can do something nasty like</p>
+
+<pre><code>double * dbuf = reinterpret_cast&lt;double*&gt;(buffer);
+int dlength = length / sizeof(double);
+</code></pre>

@@ -1,0 +1,16 @@
+<p>It is quite simple:</p>
+
+<ol>
+<li><p>Inform the wifimanager that your app need to receive multicast:</p>
+
+<pre><code>WifiManager wifi = (WifiManager)getSystemService( Context.WIFI_SERVICE );
+MulticastLock mcLock = wifi.createMulticastLock("mylock");
+mcLock.acquire();
+</code></pre></li>
+<li><p>Create the socket:</p>
+
+<pre><code>InetAddress group = InetAddress.getByName(MULTICAST_ADDRESS);
+MulticastSocket s = new MulticastSocket(MULTICAST_PORT);
+s.joinGroup(group);
+</code></pre></li>
+</ol>

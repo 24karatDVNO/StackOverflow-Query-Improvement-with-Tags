@@ -1,0 +1,9 @@
+<p>Usually images in MATLAB are just matrices.  So you can glue them back together with the usual horizontal and vertical concatenation commands:</p>
+
+<pre><code>WholeImage = [ NorthWest NorthEast; ...
+               SouthWest SouthEast ];
+</code></pre>
+
+<p>Assuming your image was broken up into four pieces, this will put them back together.</p>
+
+<p>If you had a broken it up into a variable number of pieces and stored the pieces in a cell array, then <code>cell2mat</code> should be helpful in gluing the pieces back together.</p>

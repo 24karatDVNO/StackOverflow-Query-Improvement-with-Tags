@@ -1,0 +1,5 @@
+<p>I figured it out ... I didn't have the right scope specified on my bean ...  I wrote a simple test application without Weld / CDI and it worked fine.  The ObjectServer was getting closed almost immediately after it was opened.</p>
+
+<p>After I changed it to the proper scope which was a singleton for the server, it worked.</p>
+
+<p>Walter</p>

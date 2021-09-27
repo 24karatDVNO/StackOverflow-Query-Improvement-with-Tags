@@ -1,0 +1,8 @@
+<p>According to the Framework Guidelines (or Effective C# I forgot which one) it is better to use String when you want to use the class and string when you want to declare a string type:</p>
+
+<pre><code>string result = String.Format("You have {0} items.", items);
+</code></pre>
+
+<p>(Though I would use var result if its a local variable)</p>
+
+<p>As for comparison, I would use String.Compare() so that you can use various comparisons like ignore case.</p>

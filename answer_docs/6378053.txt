@@ -1,0 +1,19 @@
+<p>I had the same problem and it seems that you do not have exact control over the position of the default bullet point. </p>
+
+<p>For me the following was working in Firefox and in IE, but in Chrome it is positioned inside the text:</p>
+
+<pre><code>&lt;ul style="list-style-position: outside; margin:0; padding:0;"&gt;
+   &lt;li /&gt;
+   &lt;li /&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>I needed to set margins and paddings for both the list and the list items to get the bullet point(disk) outside the text</p>
+
+<pre><code>&lt;ul style="list-style-position: outside; margin:10px; padding:10px;"&gt;
+   &lt;li style="padding: 10px 0 0 3px; margin-bottom: 8px;" /&gt;
+   &lt;li style="padding: 10px 0 0 3px; margin-bottom: 8px;" /&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>The strange part is, that if I set those bottom margins to anything less than 7 pixel, the bullets jump inside. 8px is the smallest working value, although there is lots of space around and between the elements (they move closer to each other fluently, only the bullet points start to jump).</p>

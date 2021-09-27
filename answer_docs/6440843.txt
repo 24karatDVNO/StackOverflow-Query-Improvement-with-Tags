@@ -1,0 +1,3 @@
+<p>Probably, functions are not the best idea for "where" clauses, they force dbms to do "full scan" which kills performance.</p>
+
+<p>I think it's better to use few "(att.subjectId = '132' and att.classId = '100')" concatenated with "OR" (for each term in your "IN" list) and add some indexes for separated columns.</p>

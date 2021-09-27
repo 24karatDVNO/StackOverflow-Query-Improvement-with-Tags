@@ -1,0 +1,5 @@
+<p>The rootViewController property was only recently introduced and might not be available on devices running an older version of iOS.</p>
+
+<p>You want to have a UINavigationController as the root view controller of your application and subsequent pages you simply push onto it. If you don't want animation, then do animate:NO. If you don't need a navigation bar, then hide that as well.</p>
+
+<p>It is generally preferable to use one of the existing container view controllers over swapping them out yourself.</p>

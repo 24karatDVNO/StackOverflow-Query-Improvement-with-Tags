@@ -1,0 +1,3 @@
+<p>In case anybody - like me - get here through google because it's the most similar to their ComboBox ft. setValue() problem:</p>
+
+<p>After an hour of stepping in out and over Ext's internals, I found that I needed to set <strong>lazyInit: false</strong> for the combo boxes. It defaults to true and being true may cause unlogical behaviour if you don't know about this. And why would you? Anything else seems to be not lazy by default.</p>

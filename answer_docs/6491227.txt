@@ -1,0 +1,17 @@
+<p>Maybe you are confusing foreign key constraint with data relationships. Yes, you may have two tables with data match (i.e. these likely phone numbers) and data constraint. </p>
+
+<p>If you need to query both tables relating a column with matching data, just use a INNER JOIN:</p>
+
+<pre><code>SELECT employee.*, mobileoutbox.*
+FROM employee INNER JOIN mobileoutbox
+ON employee.empphoneno = mobileoutbox.mobileno
+</code></pre>
+
+<p>Then you may want to report all the employees, even those who don't have a mobile. In this case, you can use a LEFT OUTER JOIN to do this:</p>
+
+<pre><code>SELECT employee.*, mobileoutbox.*
+FROM employee LEFT OUTER JOIN mobileoutbox
+ON employee.empphoneno = mobileoutbox.mobileno
+</code></pre>
+
+<p>This will return all the employees and not null data for the mobileoutbox fields if the employee has a mobile number matching a mobile number in the right table.</p>

@@ -1,0 +1,8 @@
+<pre><code>SELECT i.id as item_id,i.item,SUM(dpr.out_stock)/SUM(dpr.in_stock) * 100 as p,SUM(dpr.out_stock) as sales,u.title as unit,u.id as unit_id   
+FROM `sm_daily_item_stock_report` as dpr
+INNER JOIN sm_item_master as i on dpr.item_id=i.id and i.consumable='1'
+INNER JOIN sm_unit_master as u on i.primary_unit=u.id
+WHERE date between '2011-06-20' and '2011-06-23'
+and dpr.store_id='1' GROUP BY item_id
+having (SUM(dpr.out_stock)/SUM(dpr.in_stock) * 100) &gt; 50
+</code></pre>

@@ -1,0 +1,14 @@
+<p>Let's follow the logic chain (assuming the first few lines of your <code>for</code> loop are exactly as described):</p>
+
+<ul>
+<li><code>itCurrent-&gt;this == 0xcdcdcdcd</code>, therefore ...</li>
+<li><code>itCurrent == 0xcdcdcdcd</code>, therefore ...</li>
+<li><code>vlWatchers[i].begin()</code> returned <code>0xcdcdcdcd</code>, therefore ...</li>
+<li><code>vlWatchers[i]</code> is invalid, therefore perhaps ...
+<ul>
+<li><code>i &gt;= vlWatches.size()</code>, or</li>
+<li><code>vlWatchers</code> is invalid</li>
+</ul></li>
+</ul>
+
+<p>I vote for <code>vlWatchers.size() == 0</code> somehow. Can you add a check to your method to detect that case?</p>

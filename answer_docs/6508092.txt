@@ -1,0 +1,6 @@
+<p>Use mouseleave instead. The problem with mouseout is that it is triggered on certain browsers when you mouse over elements inside your container, in this case #gallery.</p>
+
+<pre><code>$('#gallery').mouseleave(function(){
+    ...
+});
+</code></pre>

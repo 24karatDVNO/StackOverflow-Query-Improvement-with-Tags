@@ -1,0 +1,21 @@
+<p>If you correctly created your controls in markup or page init for dynamic controls, then the RadGrid will properly restore state.</p>
+
+<p>You can access the initial values that were loaded from the data source like this example below, provided you told the table view in question to keep the columns around in the data keys.</p>
+
+<pre><code>protected T GetInitialGridData&lt;T&gt;(GridDataItem item, string uniqueColumnName) {
+   item.ThrowIfNull("item");
+   uniqueColumnName.ThrowIfNullOrEmpty("uniqueColumnName");
+
+   return (T)item.OwnerTableView.DataKeyValues(gridItem.ItemIndex)(columnName);
+}
+</code></pre>
+
+<p>If you are using a dynamic custom template column, and need to get to any values that may now be in their states, you can use:</p>
+
+<pre><code>protected string GetCustomTextBoxValue(GridDataItem item, string controlID) {
+   item.ThrowIfNull("item");
+   controlID.ThrowIfNullOrTrimmedEmpty("controlID");
+
+   return ((TextBox)item.FindControl(controlID)).Text;
+}
+</code></pre>

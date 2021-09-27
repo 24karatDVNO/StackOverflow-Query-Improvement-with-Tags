@@ -1,0 +1,8 @@
+<p>Well, I think that the most suitable decision for you will be to create an abstract base class <code>Paddle</code>, which will have all common code for all kinds of paddles, and then derive multiplayer and singleplayer paddles from it. Your hierarchy could look like this:</p>
+
+<pre><code>class Paddle {};
+class PaddleMP : public Paddle {};
+class PaddleSP : public Paddle {};
+</code></pre>
+
+<p>The same way you can derive <code>RpaddleMP</code> and <code>LpaddleMP</code> from <code>PaddleMP</code>, and <code>RpaddleSP</code> and <code>LpaddleSP</code> from <code>PaddleSP</code>. If such approach seems new to you, I suggest you reading some more about inheritance in C++.</p>

@@ -1,0 +1,7 @@
+<p>No.</p>
+
+<p>Why would you want to do this?  If two Deriveds are supposed to have the exact same Base, such that modifications through one Derived show up in the other, you need to have some sort of pointer to Base in each derived, making this composition, not inheritance.</p>
+
+<p>If you want to change the data in the Derived's Base, write a function to do that, a little like a copy assignment operator for Base.</p>
+
+<p>Alternately, you could make a new constructor for Derived that would take a Base and a Derived, and take Base information from the Base and Derived information from the Derived.</p>

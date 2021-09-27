@@ -1,0 +1,9 @@
+<p>It turned out to be a simple issue actually. 
+In our application we just started to access several databases so in one of our queries we had to start by saying 'Use SomeDatabase;' or adding 'Initial Catalog= SomeDatabase' to our connection string might have worked also. </p>
+
+<p>Anyway, the exception was actually saying whats going on.
+It was basically looking at a different database at that moment.
+So we ensured that every query executes in the correct database.
+Even that NHibernate does the default database thing for you, I m just guessing that using native sql might have complicated the issue.</p>
+
+<p>Bilsay</p>

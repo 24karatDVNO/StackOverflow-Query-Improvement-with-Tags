@@ -1,0 +1,7 @@
+<p>PushApplicationStatus.getStatus() returns one of STATUS_PENDING, STATUS_ACTIVE, STATUS_FAILED or STATUS_NOT_REGISTERED.</p>
+
+<p>I don't think you should compare this status value with any of the REASON_* constants.</p>
+
+<p>Also if the status is STATUS_NOT_REGISTERED then you should attempt to register your application! Your code does the registration in the else-branch, which should never be reached since one of the four STATUS_* values should have matched.</p>
+
+<p>Take a look at the sample-push-enabled-app that comes with the BlackBerry Push Service SDK. You'll find the complete source code in a jar file: sample-push-enabled-app-1.0.1.11-sources.jar</p>

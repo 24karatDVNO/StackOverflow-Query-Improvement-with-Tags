@@ -1,0 +1,9 @@
+<p><code>show_confirm()</code> function does not return a Boolean Value. It should return a value to work properly.</p>
+
+<p>Why not do it simply like the following, it will do what you are looking for.</p>
+
+<pre><code>&lt;asp:LinkButton ID="LinkButton1" runat="server"
+     CssClass="primary positive big button" OnClick="LinkButton1_Click"
+     OnClientClick="return confirm('Are you sure you want to Save this Transaction');"&gt;
+     &lt;span class="check icon"&gt;&lt;/span&gt;Save Transaction &lt;/asp:LinkButton&gt;
+</code></pre>

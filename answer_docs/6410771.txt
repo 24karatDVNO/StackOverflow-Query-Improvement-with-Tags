@@ -1,0 +1,15 @@
+<p>(This should stack with the other answers, such as use of a lookup table)</p>
+
+<p>Yes, you can achieve a considerable speedup using unsafe.  There's no reason for the line setting <code>joined</code> to take 6%, and the loop condition can also be improved.  Try:</p>
+
+<pre><code>int row = 0;
+int remaining = 269440/2;
+fixed (ushort* p = (ushort*)&amp;ntscOutput[0])
+    do {
+        int joined = *p;
+        p++;
+
+        // ...
+
+    } while (--remaining &gt; 0);
+</code></pre>

@@ -1,0 +1,4 @@
+<p>Can you just avoid the copying?  If you read the data into a buffer class, you could just queue the buffer instance and immediately create another for the next lot of data.  No copying and the pool threads will always be working on different data than the server thread that is reading from the socket.  Sure, you will have to free the buffer objects, (or repool them), after the pool threads have processed the data, but this is a small price to pay for avoiding copying, read/write clashes, buffer pointer manipulation synchronized across threads and all that nasty stuff that's very hard to get right.</p>
+
+<p>Rgds,
+Martin</p>

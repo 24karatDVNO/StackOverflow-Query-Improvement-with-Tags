@@ -1,0 +1,36 @@
+<p>You could use the following code in your <strong>template's index.php</strong>:</p>
+
+<pre><code>$app      =&amp; JFactory::getApplication();
+
+if ( $app-&gt;isSite() ) { // Make changes only on Front-end
+
+    $frontpage = ( isset($this-&gt;_metaTags['standard']['title']) &amp;&amp; $this-&gt;_metaTags['standard']['title'] == "Frontpage")? true : false;
+    $com = JRequest::getVar("option");
+
+
+    // When you need Mootools on frontpage only
+    if(!$frontpage) {
+       $prohibited = array (
+           '/media/system/js/core.js',
+           '/media/system/js/mootools-core.js',
+           '/media/system/js/mootools-more.js',
+           '/media/system/js/caption.js'
+        );
+
+ }
+
+    // When you need jQuery, for example in "com_xmap" only
+    if( $com != "com_xmap") {
+        $prohibited = array (
+           'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js',
+        );
+     }
+
+    foreach ($this-&gt;_scripts as $key =&gt; $value) {
+        if( in_array($key, $prohibited ) ) {
+            unset($this-&gt;_scripts[$key]);
+        }
+     }
+
+}
+</code></pre>

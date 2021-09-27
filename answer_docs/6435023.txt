@@ -1,0 +1,7 @@
+<p>Use unobtrusive javascript and tell jQuery that it needs to include the newly loaded form' for validation</p>
+
+<p>See my posting on this at:</p>
+
+<p><a href="https://stackoverflow.com/questions/5825631/asp-net-mvc-can-you-use-data-annotations-validation-with-an-ajax-jquery-call">ASP.Net MVC: Can you use Data Annotations / Validation with an AJAX / jQuery call?</a></p>
+
+<p>Its probably because your FormContext doesn't exist when you call it via GetNew - the attributes aren't rendered out unless there is a FormContext</p>

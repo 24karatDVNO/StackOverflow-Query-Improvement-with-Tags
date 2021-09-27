@@ -1,0 +1,45 @@
+<pre><code>var tempAC:Array = [
+    {name: "Bob", value: 3},
+    {name: "Mary", value: 5},
+    {name: "Bob", value: 12},
+    {name: "Mary", value: 1}
+];
+
+/**
+ * Combines values in objects that have identical names
+ * @param ar The array to assess
+ */
+function combine(ar:Array):Array
+{
+    var hold:Array = [];
+    var back:Array = [];
+
+    var i:Object;
+    for each(i in ar)
+    {
+        if(!hold[i.name]) hold[i.name] = i.value;
+        else hold[i.name] += i.value;
+    }
+
+    var j:String;
+    for(j in hold)
+    {
+        back.push({name: j, value: hold[j]});
+    }
+
+    return back;
+}
+
+
+var list:Array = combine(tempAC);
+
+var i:Object;
+for each(i in list)
+{
+    trace(i.name + ": " + i.value);
+}
+
+Output:
+Bob: 15
+Mary: 6
+</code></pre>

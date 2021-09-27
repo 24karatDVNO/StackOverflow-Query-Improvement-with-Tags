@@ -1,0 +1,10 @@
+<p>I don't know if you have the flexibility to do this, but here's how I solved this.</p>
+
+<ol>
+<li>Create another assembly (I called mine "xx.Common")</li>
+<li>Add some structs in there, make them COM-visible</li>
+<li>Reference that assembly from both the VBA and C# projects</li>
+<li>Add a new VBA sub with those structs as arguments</li>
+</ol>
+
+<p>You can now pass in structured, user-defined data. If you generalize this idea, you can use <em>any</em> COM-visible type (i.e. not just structs). As long as both projects reference an assembly that defines these types, you should be ok.</p>

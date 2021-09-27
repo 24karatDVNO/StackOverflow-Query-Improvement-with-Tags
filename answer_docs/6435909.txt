@@ -1,0 +1,32 @@
+<p>Have you looked at the OOTB nmap option to do this?
+nmap has an option to read the IP address list from a file which you can read more about <a href="http://nmap.org/book/man-target-specification.html" rel="nofollow">here</a> on the nmap website.</p>
+
+<p>The specific option to look for is this:</p>
+
+<blockquote>
+  <p>-iL  (Input from list)</p>
+  
+  <p>Reads target specifications from . Passing a huge list
+  of hosts is often awkward on the
+  command line, yet it is a common
+  desire. For example, your DHCP server
+  might export a list of 10,000 current
+  leases that you wish to scan. Or maybe
+  you want to scan all IP addresses
+  except for those to locate hosts using
+  unauthorized static IP addresses.
+  Simply generate the list of hosts to
+  scan and pass that filename to Nmap as
+  an argument to the -iL option. Entries
+  can be in any of the formats accepted
+  by Nmap on the command line (IP
+  address, hostname, CIDR, IPv6, or
+  octet ranges). Each entry must be
+  separated by one or more spaces, tabs,
+  or newlines. You can specify a hyphen
+  (-) as the filename if you want Nmap
+  to read hosts from standard input
+  rather than an actual file.</p>
+  
+  <p>The input file may contain comments that start with # and extend to the end of the line.</p>
+</blockquote>

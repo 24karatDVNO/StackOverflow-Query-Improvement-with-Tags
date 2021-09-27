@@ -1,0 +1,3 @@
+<p>To  test if your query is ok, import a small subset of records from A, B and C to a temporary database and test it their.</p>
+
+<p>You have redundancies in your implicit JOIN because you are joining A.OCN with B.OCN, B.OCN with C.OCN and then C.OCN to A.OCN, on of those can be deleted. If A.OCN = B.OCN and B.CON = C.OCN, A.OCN = C.OCN is implied. Further, I guess you have redundancies in your date comparisons. </p>

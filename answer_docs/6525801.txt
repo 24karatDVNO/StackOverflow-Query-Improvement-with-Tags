@@ -1,0 +1,13 @@
+<p>What is happening here is getDate is return a javascript date object. You are seeing the date object's toString method.</p>
+
+<p>Try this: </p>
+
+<pre><code>$(document).ready(function() {
+   $('#datepicker').datepicker({
+   onSelect: function(dateText, inst) { alert(dateText) }
+   });
+$('#datepicker').datepicker( "option" , 'dateFormat', 'yyyy-mm-dd' )
+
+
+});
+</code></pre>

@@ -1,0 +1,18 @@
+<p>Something like that :) .... is the color a fixed value are will be dynamic ... each checkbox a different color?</p>
+
+<pre><code>&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type="checkbox" class="colorswitcher"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="radio"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type="checkbox" class="colorswitcher"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="radio"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type="checkbox" class="colorswitcher"&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="radio"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+$(document).ready(function() {
+        $(".colorswitcher").click(function() {
+            if($(this).is(":checked")) {
+                $(this).closest("td").css("background","#000");  
+            }else {
+               $(this).closest("td").css("background","#fff");
+            } 
+        });
+    });
+</code></pre>

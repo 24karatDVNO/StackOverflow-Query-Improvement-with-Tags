@@ -1,0 +1,16 @@
+<p>(Reposting from comments):
+There was a typo/bug in system/application/config/mimes.php which caused the is_allowed_filetype() method to fail in do_upload(); </p>
+
+<pre><code>Erronous: 
+        ...
+        'gif' =&gt; array('image/gif', 'application/octet-stream'),
+        'jpeg' =&gt; array('image/jpeg', 'image/pjpeg', 'application/octet-stream'),
+        'jpg' =&gt; array('image/jpeg', 'image/pjpeg', 'application/octet-stream'),
+        'jpe' =&gt; array('image/jpeg', 'image/pjpeg', 'application/octet-stream'),
+        'png' =&gt; array('image/png', 'image/x-png', 'application/octet-stream' 
+    );
+</code></pre>
+
+<p>// missing ) for final entry. – John Beech (aka Markavian)</p>
+
+<p>Any errors in the CodeIgniter configuration files seem to fail silently, so any further errors are not reported. Found problem by debugging internal CI method to find out which line failed. </p>

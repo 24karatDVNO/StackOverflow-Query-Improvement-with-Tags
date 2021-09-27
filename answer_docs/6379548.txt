@@ -1,0 +1,3 @@
+<p>I actually figured it out last night. I have a child class that inherits from HTTPClient. When overriding connectionMade, I forgot to call the parent's connectionMade. Since connectionMade acts a as default constructor for a protocol, the instance was not getting properly configured. </p>
+
+<p>While I don't know every detail of this solution, it has proven reliable in testing. The anomalies that were occurring are gone. </p>

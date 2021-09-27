@@ -1,0 +1,24 @@
+<p>Okay, so I have got it partly solved...<br>
+I used another table containing the one column which holds the subject of the PM. I also have a new column in the regular "pms" table that holds the same ID to be able to join the tables together.</p>
+
+<p>However, when I select all the PMs to show them in the inbox, I have not found a way to group the conversations in order by if they're read or not. I'm currently using this SQL query:</p>
+
+<pre><code>  SELECT * 
+    FROM `pms` 
+    JOIN `pm_conversations` ON (pms.ConvID = pm_conversations.ID) 
+   WHERE pms.To='username' 
+GROUP BY pm_conversations.ID 
+ORDER BY pms.ID
+</code></pre>
+
+<p>I came up with this:</p>
+
+<pre><code>   SELECT MAX(pms.ID) as pmIDS,
+          pms.*,
+          pm_conversations.* 
+    FROM `pms` 
+    JOIN `pm_conversations` ON (pms.ConvID = pm_conversations.ID)
+   WHERE `To`='".$UserActive."' 
+GROUP BY pm_conversations.ID 
+ORDER BY pmIDS DESC
+</code></pre>

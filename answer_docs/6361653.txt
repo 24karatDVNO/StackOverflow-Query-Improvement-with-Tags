@@ -1,0 +1,14 @@
+<p>There are a couple of misconceptions in your question.</p>
+
+<p>First of all none of the technologies you've mentioned are mutually exclusive. An appliction could be built using Prism, MEF and the MVVM Light toolkit.</p>
+
+<p>Secondly, if you're developing a WPF application then you should be using the <a href="http://en.wikipedia.org/wiki/Model_View_ViewModel" rel="nofollow noreferrer">MVVM design pattern</a> regardless of which technologies you decide to incorporate.</p>
+
+<blockquote>
+  <p>have dependency on huge framework like
+  prism</p>
+</blockquote>
+
+<p>Prism actually has a relatively small footprint in an applications design. The features and components are essentially opt-in. Use the bits you need and ignore the stuff you dont need. Indeed, compared to the monstrosity that was <a href="http://smartclient.codeplex.com/" rel="nofollow noreferrer">SCSF</a>, Prism is actually well designed.</p>
+
+<p>There are arguably some overlapping goals of both Prism and MEF but this has been discussed <a href="https://stackoverflow.com/questions/1324702/mef-a-replacement-for-prism/1416077#1416077">here</a></p>

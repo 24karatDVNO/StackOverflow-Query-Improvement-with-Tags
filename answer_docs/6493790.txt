@@ -1,0 +1,17 @@
+<p>This should work:</p>
+
+<pre><code>$("*").contents().each(function() {
+    var me = this;
+    if(this.nodeType == 3 
+       &amp;&amp; this.nodeValue.indexOf("1.(800).123.1234")&gt;-1){
+
+        $(this).replaceWith(this.nodeValue.replace("1.(800).123.1234", "&lt;b&gt;new&lt;/b&gt;"));  
+    }        
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/eLkZp/20/" rel="nofollow">http://jsfiddle.net/eLkZp/20/</a></p>
+
+<p>Basically replace the text node rather than just the text within it.</p>
+
+<p>You should really consider if there's some way to narrow down that original filter though.  Parsing your entire page is generally a bad idea.</p>

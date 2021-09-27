@@ -1,0 +1,23 @@
+<blockquote>
+  <p>take the "tid" and find the corresponding entry that has an action of "New Ticket Response made by XXX" where XXX is anything except for "User"</p>
+</blockquote>
+
+<p>Simples:</p>
+
+<pre><code>SELECT b1.tid AS Tid, MIN(DATEDIFF(b2.date,b1.date)) AS ResponseTime
+FROM billing b1 INNER join billing b2 
+  ON b1.tid = b2.tid
+WHERE b1.action='New Support Ticket Opened'
+AND b2.action LIKE 'New Ticket Response made by%'
+AND b2.action &lt;&gt; 'New Ticket Response made by User'
+GROUP BY Tid
+</code></pre>
+
+<p>And if you want to find the actual user.....</p>
+
+<pre><code>SELECT SUBSTR(b2.action, LENGTH('New Ticket Response made by ')) AS user,
+  b1.tid AS Tid, MIN(DATEDIFF(b2.date,b1.date)) AS ResponseTime
+....
+</code></pre>
+
+<p>(since LENGTH('New Ticket Response made by ') is constant, you'll get better performance replacing it with a literal integer)</p>

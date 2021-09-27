@@ -1,0 +1,15 @@
+<p>You would need to set some "global" variable. GLobal does not necessarily mean global to the window, just enough it's global in your own namespace (which you hopefully got).</p>
+
+<pre><code>if(this.value != '3' &amp;&amp; this.value != '6' &amp;&amp; this.value != '9') {
+    NotifyTheUser = true;
+}
+else {
+    NotifyTheUser = false;
+}
+
+window.onbeforeunload = function() {
+    if( NotifyTheUser ) {
+        return 'Check your input.. foo bar yay!';
+    }
+};
+</code></pre>

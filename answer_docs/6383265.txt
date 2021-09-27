@@ -1,0 +1,10 @@
+<p>seems like you need smth liek this</p>
+
+<pre><code>SELECT 
+  col1,col2 
+FROM 
+  table1 
+WHERE 
+ (col1 in (1,2,3) and col2 not in (1,2,3)) or
+ (col1 not in (1,2,3) and col2 in (1,2,3))
+</code></pre>

@@ -1,0 +1,19 @@
+<blockquote>
+  <p>1) create a wrapper class for main web
+  service calls and calls the
+  third/error handling webservice from
+  that web service calls.</p>
+</blockquote>
+
+<p>That sounds much better.</p>
+
+<blockquote>
+  <p>2) create a wrapper for error handling
+  routines and move all the routines to
+  that class., whcih includes call to
+  error/third reporting webservice.</p>
+</blockquote>
+
+<p>Consolidating logging into a reusable object is the right way to go, but I wouldn't hard-code it to something like a web service.</p>
+
+<p>What happens if the web services fail due to network issues - your logging call will fail also (if I understand your design).</p>

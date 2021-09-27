@@ -1,0 +1,1 @@
+<p>In your script each call too <code>HTTPRequest()</code> is creating a new request object, so the request with the <code>onReadystateChange</code> handler is never getting sent and request that is sent has no handler function. Here's an updated version of your fiddle that should work: <a href="http://jsfiddle.net/HwYUS/" rel="nofollow">http://jsfiddle.net/HwYUS/</a></p>

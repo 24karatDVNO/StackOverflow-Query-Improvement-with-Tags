@@ -1,0 +1,13 @@
+<p>The KeyUp event solved my problem! Events <code>KeyDown</code> and <code>KeyPress</code> didn't catch <kbd>Ctrl</kbd> + <kbd>C</kbd> for copy!</p>
+
+<p>From Stack Overflow question <em><a href="https://stackoverflow.com/questions/1650648/catching-control-c-in-a-textbox/1650747#1650747">Catching Ctrl + C in a textbox</a></em>:</p>
+
+<pre><code>private void txtConsole_KeyUp(object sender, KeyEventArgs e)
+{
+    if (e.KeyData == (Keys.C | Keys.Control))
+    {
+        _consolePort.Write(new byte[] { 3 }, 0, 1);
+        e.Handled = true;
+    }
+}
+</code></pre>

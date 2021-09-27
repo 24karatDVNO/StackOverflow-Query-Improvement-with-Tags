@@ -1,0 +1,25 @@
+<p>Try something like this:</p>
+
+<pre><code>var query = context.TimeForm.
+            Join(context.CLIENT,
+            t =&gt; t.CODEID, c =&gt; c.CODEID ,
+            (t, c) =&gt; new
+            {
+                PropertyA = t.ColumnA,
+                PropertyB = c.ColumnB                    
+            }).Join(context.RATE,
+                    b =&gt; b.RATEID, r =&gt; r.RATEID,
+                    (b, r) =&gt; new
+                    {
+                        PropertyC = b.ColumnC,
+                        PropertyD = r.ColumnD                            
+                    }).Join(context.TASK,
+                           x =&gt; x.TASKID, t =&gt; t.TASKID,
+                           (x,t) =&gt; new
+                           {
+                               PropertyE = x.ColumnE,
+                               PropertyF = t.ColumnF
+                           });
+</code></pre>
+
+<p>PropertyA, B, etc are just properties present in the type, which you use to store the data returned from the query. Whereas ColumnA, B, etc are columns present in the tables involved in the join. You can substitute actual values for these in your query.</p>

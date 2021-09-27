@@ -1,0 +1,3 @@
+<p>This should just work, since I have been doing that with .Net 2.0 for years. Only I would not have a space after the decimal. However, it seems that .Net 4.0 is treating this differently under some circumstances. I get the same Argument error as you did especially when the bound control resides inside a user control (but not always...)</p>
+
+<p>Funny enough when running the same code in Net 3.5 (or 2.0) it behaves as expected and I can just use <code>CheckBox1.DataBindings.Add("Checked",obj,"MainBooking.JoinersAllowed")</code>. But in Net 4.0 it is giving me lots of grief. Any solutions/suggestions would be welcome.</p>

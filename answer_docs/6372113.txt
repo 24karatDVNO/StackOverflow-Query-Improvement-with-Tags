@@ -1,0 +1,17 @@
+<p>This is your solution:</p>
+
+<pre><code>SELECT *
+FROM 
+(
+    SELECT *
+    FROM `your_table`
+    ORDER BY `task_time` DESC
+) `TT`
+GROUP BY `TT`.`task_id`;
+</code></pre>
+
+<p>Please note to change in the above query, <code>your_table</code> with your table name and <code>task_id</code>, <code>task_time</code> with your respective ID and time columns.</p>
+
+<p>Also, please note that the above query might run slow if the table has many, many entries, say a million rows.</p>
+
+<p>Let me know if above is the query you were willing to ask.</p>

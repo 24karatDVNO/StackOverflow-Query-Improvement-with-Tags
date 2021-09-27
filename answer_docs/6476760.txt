@@ -1,0 +1,20 @@
+<p>This functions behaves as you want it to:</p>
+
+<pre><code>CREATE FUNCTION some_user_name_stuff(_P12_USERNAME varchar) RETURNS void AS $$
+DECLARE
+  user_name_not_found boolean;
+BEGIN
+  SELECT count(*) = 0 INTO user_name_not_found
+  FROM benutzer
+  WHERE username=_P12_USERNAME;
+
+  IF (user_name_not_found) THEN
+    raise EXCEPTION 'BEREITS_VORHANDEN'; 
+  END IF; 
+END;
+$$ LANGUAGE plpgsql;
+</code></pre>
+
+<p>I wouldn't do it this way unless the missing username is an exceptional case, i.e. you really expect it to be there. Just use a boolean function. Furthermore, try not to nest function calls inside conidtional statements, it makes an already too verbose langauge even less readable.</p>
+
+<p>Enjoy! :)</p>

@@ -1,0 +1,5 @@
+<p>I can't think of a way to link user data with emails without actually linking user data with emails. However, it would be possible to not have the email address stored and linked in a database if you could live with only having their email address when the user is logged in. </p>
+
+<p>You could require users to log in using their email address and password as many sites do, but you could store a one way hash of the email address (such as sha1(email+password) ) rather than the address itself. When the user logs in successfully, you can store their email address in their session without ever having to get it from the database. You could then send them emails until you destroy their session. This would prevent an attacker from connecting their data to their email without brute forcing the hashes or grabbing the session information from memory or user cookies depending on how you store it.</p>
+
+<p>Unfortunately, this wouldn't allow you to send notification emails.</p>

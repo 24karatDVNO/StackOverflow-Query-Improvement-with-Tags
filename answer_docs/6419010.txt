@@ -1,0 +1,7 @@
+<p>There is no such thing as "natural order" in a relational database.</p>
+
+<p>There is the fact that Jet/ACE stores tables with a primary key clustered on the PK, but that's not the same thing as how you seem to be defining "natural order" since the PK might cause records not inserted in PK order to show up elsewhere.</p>
+
+<p>A table without a PK simply does not belong in any database because it cannot be reliably accessed and manipulated via SQL. Sure, it can be done, but it's a mistake.</p>
+
+<p>I think you need to rethink what you're trying to do. You seem to be depending on quirky things that just happen to work some of the time for your presentation order. If that order is important, then you have to structure your data so that it can be ordered in that fashion.</p>

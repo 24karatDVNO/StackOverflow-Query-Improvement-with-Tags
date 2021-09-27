@@ -1,0 +1,14 @@
+<p>Try:</p>
+
+<pre><code>function myClass (x,y) {
+    var mouseX=x;
+    var mouseY=y;
+    var $this = this;
+
+    $(document).mousemove(function(){$this.mouseMove()});
+}
+myClass.prototype.mouseMove = function(e){
+    this.mouseX=e.pageX;//not a good idea but you can alert this
+}
+var a=new myClass();
+</code></pre>

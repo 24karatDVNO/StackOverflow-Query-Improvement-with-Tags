@@ -1,0 +1,10 @@
+<p>This may work:</p>
+
+<ol>
+<li>Listen for willRotateToInterfaceOrientation</li>
+<li>[UIView setAnimationsEnabled:NO];</li>
+<li>Listen for UIDeviceOrientationDidChangeNotification</li>
+<li>[UIView setAnimationsEnabled:YES];</li>
+</ol>
+
+<p>Untested, but I know that does work for some cases.</p>

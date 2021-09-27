@@ -1,0 +1,6 @@
+<p>It most likely relates to the entry two lines above:</p>
+
+<pre><code>at java/lang/Object.wait(J)V(Native Method)[optimized]
+</code></pre>
+
+<p>wait() will release the currently held lock (the lock held by the surrounding synchronized block) and wait for a notify() signal.</p>

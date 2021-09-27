@@ -1,0 +1,6 @@
+<p>This would give you a 4-digit number with all preceding 0's</p>
+
+<pre><code>Random r = new Random(Environment.TickCount);
+string n = r.Next(0, 10000).ToString();
+textBox5.Text = "0000".Substring(0, 4 - n.Length) + n;
+</code></pre>

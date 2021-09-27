@@ -1,0 +1,10 @@
+<pre><code>- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
+{ 
+  //  Removing whitspace and newline characters
+  string   =   [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+  //  If no characters are left return
+  if([string length] == 0) return;
+
+  //Rest of the code for saving the string
+</code></pre>

@@ -1,0 +1,12 @@
+<p>You need to stop the propagation of the event with the <code>stop()</code> method.</p>
+
+<pre><code>$('div.sidebar_content_con').hover(function () {
+    $(this).children('.sidebar_details_container').stop('true, true).slideDown(500, function() {
+        $(this).children('.sidebar_details, .sidebar_click').stop('true, true).fadeIn(500);   
+    });
+
+},function(){
+    $(this).children('.sidebar_details_container').stop('true, true).slideUp(500)
+    $('.sidebar_details, .sidebar_click').stop('true, true).fadeOut(500);                                                 
+});
+</code></pre>

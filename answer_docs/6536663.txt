@@ -1,0 +1,5 @@
+<p>I suggest you try hooking up your button to a listener, then using <a href="http://www.blackberry.com/developers/docs/5.0.0api/" rel="nofollow">Background</a> to create your background before using setBackground() to change the background. </p>
+
+<p>If this doesn't update the way you want, overwrite the layout() method in your screen and call the setBackground() in there, then call UIApplication.getUIApplication().relayout() to get it to layout the screen again (be sure to do it in a synchronize block!)</p>
+
+<p>Good luck!</p>

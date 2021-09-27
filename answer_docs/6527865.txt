@@ -1,0 +1,36 @@
+<p>It is ugly and I try to get around doing things like this but...</p>
+
+<pre><code>namespace :test do
+
+  def view(url_options = {}, *view_args)
+    view_args[0] ||= ActionController::Base.view_paths
+    view_args[1] ||= {}
+
+    view = ActionView::Base.new(*view_args)
+    routes = Rails::Application.routes
+    routes.default_url_options = {:host =&gt; 'localhost'}.merge(url_options)
+
+    view.class_eval do
+      include ApplicationHelper
+      include routes.url_helpers
+    end
+
+    assigns = instance_variables.inject(Hash.new) do |hash, name|
+      hash.merge name[1..-1] =&gt; instance_variable_get(name)
+    end
+    view.assign assigns
+
+    view
+  end  
+
+  task :it =&gt; :environment do
+    param = ""
+    puts "&gt;&gt;&gt; compute_asset_host returns: [#{view.send("compute_asset_host", param)}]"
+  end
+
+end
+</code></pre>
+
+<p>... may start you in a direction to solve the problem you are having.</p>
+
+<p>PS: I found the view method here: <a href="https://gist.github.com/592846" rel="nofollow">https://gist.github.com/592846</a></p>

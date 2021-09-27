@@ -1,0 +1,20 @@
+<p>It doesn't matter how <code>tableView:cellForRowAtIndexPath:</code> if you want to hide or delete cells. The table view calls this method only when it knows cells exist. It depends on what you return in the methods <code>numberOfSectionsInTableView:</code> and <code>tableView:numberOfRowsInSection:</code> method. Most of the times the former returns <code>1</code> so if you want to eliminate an entire section than you should've some kind of marker such as <code>sectionHidden</code> which is boolean value indicating whether section is hidden or not.</p>
+
+<pre><code>- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ( sectionHidden ) 
+        return 0;
+    else
+        return 1;
+}
+</code></pre>
+
+<p>and wherever you want to initiate the delete action do something like this,</p>
+
+<pre><code>sectionHidden = YES;
+[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0]
+              withRowAnimation:UITableViewRowAnimationFade];
+</code></pre>
+
+<p>and to flip it back on do <code>sectionHidden = NO</code> and call <code>reloadSections:withRowAnimation:</code>.</p>
+
+<p>Same thing applies for rows, where you will have to alter the <code>tableView:numberOfRowsInSection:</code> method to reflect that you've deleted the rows or hidden the rows. This time you've to use <code>reloadRowsAtIndexPaths:withRowAnimation:</code> instead of <code>reloadSections:withRowAnimation:</code> method.</p>

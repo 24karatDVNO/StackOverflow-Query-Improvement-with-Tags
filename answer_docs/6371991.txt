@@ -1,0 +1,11 @@
+<p>You can make bitmap aaray in android like this,</p>
+
+<pre><code>byte[] bMapArray= new byte[buf.available()];
+            buf.read(bMapArray);
+            Bitmap bMap = BitmapFactory.decodeByteArray(bMapArray, 0, bMapArray.length);
+            image.setImageBitmap(bMap);
+</code></pre>
+
+<p>Use this android developer <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html" rel="nofollow">documentation</a> for details.</p>
+
+<p>Use <a href="http://www.higherpass.com/Android/Tutorials/Working-With-Images-In-Android/2/" rel="nofollow">this</a> too</p>

@@ -1,0 +1,21 @@
+<p>RIA service will not modify an object on the client side if an object's Key property is the same. Even if we modify other properties of an object, it will not be picked up. If we are sending a List from RIA service to client side Silverlight application then we will have to set a new value for the Key property of the object after we modify it so it is refreshed and silverlight can get the updated changes.</p>
+
+<p>Therefore,</p>
+
+<pre><code>Create a public Guid UniqueID property in your XYZ class
+
+Add [Key] attribute to it
+
+When creating an object set its
+value to Guid.NewGuid()
+
+When updating an object, set its
+value to Guid.NewValue()
+</code></pre>
+
+<p>If you want to update all of the Guid values of a list then you can use anonymous method:</p>
+
+<pre><code>MyList.Select(c =&gt; { c.UniqueID = Guid.NewGuid(); return c; }).ToList();
+</code></pre>
+
+<p>Hope it helps</p>

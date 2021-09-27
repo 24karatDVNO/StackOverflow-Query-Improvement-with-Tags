@@ -1,0 +1,14 @@
+<p>The click handlers are assigned to the elements that currently exist. <code>.new</code> does not exist yet when you execute the second block (only after you clicked <code>.default</code>). </p>
+
+<p>Just toggle the classes:</p>
+
+<pre><code>$(function(){
+   $('.default').click(function(){
+      $('#link').attr('href', function(i, v) {
+           return v === 'defaultStyle' ? 'secondStyle' : 'defaultStyle';
+      });
+
+      $(this).toggleClass('new').toggleClass('default');
+   });
+});
+</code></pre>

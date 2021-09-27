@@ -1,0 +1,15 @@
+<p>Using MOQ, you can even test if the header has been actually added to the response object</p>
+
+<pre><code>var httpContextBase = new Mock&lt;HttpContextBase&gt;();
+_httpResponse = new Mock&lt;HttpResponseBase&gt;();
+httpContextBase.Setup(c =&gt; c.Response).Returns(_httpResponse.Object);
+controller = new Controller(businessService.Object)
+{
+     ControllerContext = new ControllerContext { HttpContext = httpContextBase.Object }
+};
+</code></pre>
+
+<p>Then you can verify</p>
+
+<pre><code>_httpResponse.Verify(r =&gt; r.AddHeader("content-disposition", "attachment; filename=GSFA_Help_Pages_Printout.pdf"));
+</code></pre>

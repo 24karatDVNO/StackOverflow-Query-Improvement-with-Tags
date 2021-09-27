@@ -1,0 +1,7 @@
+<p>An example, you declared your "birthday" as datetime
+command.Parameters.Add(new MySqlParameter("@birthday", SqlDbType.DateTime));</p>
+
+<p>but, your value is being inserted as 
+command.Parameters["@birthday"].Value = addbday.Text; // which im not sure if you are in the right format or not.  </p>
+
+<p>That's why you have format error.  </p>

@@ -1,0 +1,13 @@
+<p>For the first query, would something like this work?</p>
+
+<pre><code>SELECT
+a.region  , b.*
+FROM 
+bbc  a
+INNER JOIN 
+(SELECT population , (population  * 3) AS PopX3, region  FROM bbc  ) b
+ON
+a.population  &lt; PopX3
+AND
+a.region &lt;&gt; b.region
+</code></pre>

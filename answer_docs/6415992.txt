@@ -1,0 +1,14 @@
+<p>You were missing single quotes...</p>
+
+<p>If you have elements with class Sales and Acct, this should work in IE.
+Remember that css is case sensitive. So class names must match.</p>
+
+<pre><code>    if (dept == "All") {
+        $('.Sales').show();
+        $('.Acct').show();
+    }
+    else if (dept == "Sales") {
+        $('.Sales').show();
+        $('.Acct').hide();
+    }
+</code></pre>

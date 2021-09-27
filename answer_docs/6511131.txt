@@ -1,0 +1,4 @@
+<p>I can confirm I had a similar error like @kbighorse where the commands ran fine manually on the command line, but did not run from the cron job.  I did not receive any errors, but the log file would only output the directory the sphinx command was being run from.  Once I added the following path variable from @jdl to the top of the crontab file the cron job would run properly:</p>
+
+<pre><code>PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
+</code></pre>

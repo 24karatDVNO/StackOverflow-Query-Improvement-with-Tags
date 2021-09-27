@@ -1,0 +1,13 @@
+<p>If you are using linq-to-sql or entity framework you should have navigation properties so your manual joins are redundant. If you don't have navigation properties you are using technology in the wrong way. Redefine your model to contain navigation properties and try this (untested):</p>
+
+<pre><code>var query = from u in context.Users where u.userIsSomething.Equals(true)
+            select new UserEd {
+                UserName = u.Name,
+                Education = from ue in u.UserEducations
+                            group ue by ue.Rank into grouped
+                            select new RankedEd {
+                                grouped.Key,
+                                grouped.Select(g =&gt; g.Education.Name) 
+                            }
+            });
+</code></pre>

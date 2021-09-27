@@ -1,0 +1,16 @@
+<p>This is another example of difficulties encountered with programs using libtool.</p>
+
+<p>the file <code>OpenDPI_demo</code> alongside <code>OpenDPI_demo.o</code> is actually, as you said, a shell script which wraps the execution of the real compiled file, probably in <code>.libs/OpenDPI_demo</code>.</p>
+
+<p>libtool needs this wrapper to adjust the runtime library paths and such so that you can execute the program transparently, as if it was actually installed on your system.</p>
+
+<p>The way to correctly debug this application is not</p>
+
+<pre><code>/home/lx/ntop/test/opendpi $ gdb src/examples/OpenDPI_demo/.libs/OpenDPI_demo
+</code></pre>
+
+<p>but rather using <code>libtool --mode=execute</code> on the shell script, like the following (it's an example):</p>
+
+<pre><code>/home/lx/ntop/test/opendpi $ ./libtool --mode=execute gdb --args \
+  src/examples/OpenDPI_demo/OpenDPI_demo -f capture.pcap
+</code></pre>

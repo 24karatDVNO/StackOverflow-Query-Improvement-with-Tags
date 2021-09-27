@@ -1,0 +1,16 @@
+<p>use json module</p>
+
+<pre><code>mydict = {'name' : 'foo'}
+
+
+with open('dump.json', 'w') as f:
+    json_str = json.dumps(mydict) // save json_str in database 
+    f.write(json_str)
+
+contents = None
+with open('dump.json') as f:
+    json_str = json.loads(f.read())
+    contents = json_str
+</code></pre>
+
+<p>You could walk over contents and look up dictionaries.</p>

@@ -1,0 +1,6 @@
+<p>I havent tried internationalization with ezPdf, but can you try doing</p>
+
+<pre><code>iconv("&lt;chinese encoding&gt;", "UTF-8", "text") 
+</code></pre>
+
+<p>and send that to ezPdf libraries instead of directly sending over the chinese text.</p>

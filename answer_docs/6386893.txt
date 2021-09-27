@@ -1,0 +1,9 @@
+<pre><code>public class PersonMap : ClassMap&lt;Person&gt;
+{
+    public PersonMap()
+    {
+        Id(x =&gt; x.Id);
+        Map&lt;Address&gt;(x =&gt; x.Address); // Person.Address is of type IAddress implemented by Address
+    }
+}
+</code></pre>

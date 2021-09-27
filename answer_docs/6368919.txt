@@ -1,0 +1,5 @@
+<h2>Don't use mongo for full text searching</h2>
+
+<p>its not designed for that. Yes obviously you will get an error <strong>key too large on indexing</strong> for long string values.</p>
+
+<p>Better approach would be using full text search servers (solr/lucene or sphinx) if your main concern is search. </p>

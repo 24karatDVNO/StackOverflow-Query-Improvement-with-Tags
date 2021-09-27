@@ -1,0 +1,16 @@
+<p>You are initializing the inner private variable <code>_theList</code> in the <code>set</code> of <code>theList</code> property but when reading it, it's the <code>get</code> that will be accessed (<a href="http://msdn.microsoft.com/en-us/library/x9fsa0sw%28v=VS.90%29.aspx" rel="nofollow">Properties in C#</a>).</p>
+
+<p>What you want to do is this (Try also to write properties with CamelCase<a href="http://msdn.microsoft.com/en-us/library/ms229043%28v=VS.90%29.aspx" rel="nofollow">[Capitalization Conventions]</a>):</p>
+
+<pre><code>private IEnumerable&lt;entityFrameworkClass&gt; TheList
+{ 
+    get
+    { 
+        if(_theList == null)
+        {
+             _theList = from i in context select i;
+        }
+        return _theList; 
+    }
+}
+</code></pre>

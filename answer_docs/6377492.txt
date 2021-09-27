@@ -1,0 +1,17 @@
+<p>What you currently have i your <code>.htaccess</code> file is not related to your rewrite requests.</p>
+
+<p>Here is what you need:</p>
+
+<p>The first:</p>
+
+<pre><code>RewriteRule ^(.*)/$ index.php?page=$1
+</code></pre>
+
+<p>The second:</p>
+
+<pre><code>RewriteRule ^(.*)/([0-9]*)$ index.php?page=$1&amp;catId=$2
+</code></pre>
+
+<p>Be sure to add <code>RewriteEngine on</code> at the top.</p>
+
+<p>Your server will never get the "#someAnchor" part of the url, because no browser in the world will send this as part of the request. The browser keeps it private.</p>

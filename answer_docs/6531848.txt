@@ -1,0 +1,6 @@
+<p>What about using the <code>$P!{..}</code> syntax for parameters, such as:</p>
+
+<pre><code>SELECT Cus.Cusname,Cus.Cus_Address,Cus.CusID FROM customer Cus, calculatedbillamounthistory Cal WHERE Cal.consumedunits $P!{condition} $P!{units} AND Cus.CusID = Cal.cusid AND Cus.Area_code = $P!{Area_code};
+</code></pre>
+
+<p>The <code>$P!{..}</code> syntax evaluates the parameters before executing your query. With <code>$P{..}</code> prepared statements would be used, which at least for the <code>condition</code> parameter doesn't work.</p>

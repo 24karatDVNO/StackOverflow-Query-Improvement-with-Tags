@@ -1,0 +1,35 @@
+<p>a couple of quick comments - firstly,</p>
+
+<pre><code>if (c.getCount() &gt; 0) {
+    c.moveToFirst();
+    do {
+        result.add(new Item(
+                c.getString(0),
+                c.getString(1),
+                c.getString(2),
+                c.getString(3),
+                c.getString(4)));
+    } while (c.moveToNext());
+}
+</code></pre>
+
+<p>can safely be replaced with a simple:</p>
+
+<pre><code>while (c.moveToNext()) {
+    ....
+}
+</code></pre>
+
+<p>There's no particular reason to check the size this way, and you don't need to call moveToFirst() on the cursor.  That's just a suggestion for maintainability, and doesn't answer your question but I wanted to throw it out there to save you keystrokes in the future.</p>
+
+<p>As far as your question - if I'm understanding correctly, you want to get a list of elements from a compound list of objects - basically, a list comprised of all instances of a particular property within a list of objects holding that property.  There's no shortcut to do this.  Luckily you can do this more cleanly than your other code:</p>
+
+<pre><code>List&lt;CompoundObjectWithAStringProperty&gt; foo = /* go get the list */
+List&lt;String&gt; allProperties = new ArrayList&lt;String&gt;();
+
+for (CompoundObjectWithAStringProperty obj : foo) {
+    allProperties.add(obj.getStringProperty());
+}
+</code></pre>
+
+<p>Your code is 90% of the way there but its oh so C-like.  </p>

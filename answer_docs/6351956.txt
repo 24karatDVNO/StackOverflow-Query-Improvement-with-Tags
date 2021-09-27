@@ -1,0 +1,13 @@
+<pre><code>Iterator&lt;String&gt; di = new MyDoublyIterator&lt;String&gt;(); 
+di.hasPrev(); 
+</code></pre>
+
+<p>It won't help you. Compiler needs a way to know that your own interface has that method, and not the built-in interface Iterator interface i.e <code>Iterator&lt;String&gt;</code>.  Here, you are creating a reference for the built-in Iterator interface i.e <code>Iterator&lt;String&gt;</code>.</p>
+
+<p>Hence, if you have your own interface named <code>MyDoublyIterator&lt;E&gt;</code> and this interface has the method named <code>hasPrev();</code> you need to do this :</p>
+
+<pre><code> MyDoublyInterface&lt;String&gt; di = new MyDoublyIterator&lt;String&gt;(); 
+ di.hasPrev();  
+</code></pre>
+
+<p>and then it will resolve the method call, since it knows that you have created a reference of your own <code>MyDoubleInterface&lt;T&gt;</code> <strong>and it should solve the problem now. :-)</strong></p>

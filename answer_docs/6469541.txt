@@ -1,0 +1,27 @@
+<p>So What i ended up doing is </p>
+
+<pre><code>class VacationApproval &lt; ActiveRecord::Base
+  has_many :entries , :conditions =&gt; {:job_id =&gt; Job.VACATION.id }, :dependent =&gt; :nullify
+
+class Entry &lt; ActiveRecord::Base
+  validates_presence_of :vacation_approval_id ,:if =&gt; lambda {|entry| entry.job_id == Job.VACATION.id} , :message =&gt; "This Vacation Has Been Canceled. Please Delete These Entries."
+</code></pre>
+
+<p>and then </p>
+
+<pre><code>@entries.each {|entry| entry.destroy if entry.invalid? }
+</code></pre>
+
+<p>in the index action of my controller.
+and </p>
+
+<pre><code>`raise "Entries are not valid, please check them and try again ( Did you cancel your vacation? )" if @entries.any? &amp;:invalid?` 
+</code></pre>
+
+<p>in the submit action</p>
+
+<p>The problem with deleting the others at the same time is if my UI makes 10 Ajax calls to selete 10 rows, and it deletes all of them the first time I end up with 9 unahandled 404 responses, which was undesirable. </p>
+
+<p>Since I don't  care it they remain there, as long as the Entry cannot be submitted its OK. </p>
+
+<p>This was the easiest / safest / recursion friendly way for me, but is probably not the best way. Thanks for all your help! </p>

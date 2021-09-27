@@ -1,0 +1,19 @@
+<p>You're going to be looking at something like this: <a href="http://jsfiddle.net/Town/VA9qS/" rel="nofollow"><strong>Demo</strong></a>.</p>
+
+<p><strong>HTML</strong></p>
+
+<pre><code>&lt;div class="trigger"&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>jQuery</strong></p>
+
+<pre><code>$('div.outer').live("mouseleave", function(e) {
+    $('.trigger', this).unwrap();
+});
+
+$('.trigger').mouseenter(function() {
+    $(this).wrap("&lt;div class='outer'&gt;");
+});
+</code></pre>
+
+<p><em><strong>Caveat</em>:</strong> I've used <code>jQuery 1.5.2</code> on the jsfiddle example as both <code>1.6</code> and <code>edge</code> display some strangely-different behaviours. <code>1.6</code> fails to work as the <code>mouseleave</code> event is fired when leaving the child element (<code>trigger</code>) (<a href="http://dev.jquery.it/ticket/9069" rel="nofollow">bug details are here</a>), and <code>edge</code> fires the <code>mouseenter</code> event for <code>trigger</code> each time.  This is workaroundable (which is now a word) by checking the <code>className</code> of the <code>parent</code>, <a href="http://jsfiddle.net/Town/VA9qS/3/" rel="nofollow">like this</a>.  This is all in Chrome 12.</p>

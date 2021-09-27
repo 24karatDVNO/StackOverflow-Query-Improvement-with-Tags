@@ -1,0 +1,8 @@
+<pre><code>SELECT 
+    sum(IF(executors LIKE '%floris%',hours,0)) as 'floris',
+    sum(IF(executors LIKE '%rosa%',hours,0)) as 'rosa',
+    sum(IF(executors LIKE '%lotte%',hours,0)) as 'lotte'
+FROM logs;
+</code></pre>
+
+<p>But, you know, usage <code>%</code> at first position could kill you DB performance. Because in that case indexes will not using. Try to avoid that kind of requests.</p>

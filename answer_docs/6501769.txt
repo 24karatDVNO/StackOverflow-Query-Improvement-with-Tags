@@ -1,0 +1,17 @@
+<pre><code>$max = 15;
+
+$array = array(1, $max);
+for($x = 1; $x &lt;= $max; $x++)
+{ $array[$x] = rand(1, $max); }
+
+$firstDup = $array[rand(1,5)];
+$secondDup = $firstDup;
+do { $firstDup = $array[rand(1,5)];
+} while($firstDup == $secondDup);
+
+do { $array[rand($max-5,$max)] = $firstDup;
+} while(!in_array($firstDup,array_slice($array,$max-5,5)));
+
+do { $array[rand($max-5,$max)] = $secondDup;
+} while(!in_array($secondDup,array_slice($array,$max-5,5)));
+</code></pre>

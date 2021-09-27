@@ -1,0 +1,6 @@
+<p>You can use dismax's <code>bq</code> (boost query) to achieve this. Read about <code>bq</code> here: <a href="http://wiki.apache.org/solr/DisMaxQParserPlugin#bq_.28Boost_Query.29" rel="nofollow">http://wiki.apache.org/solr/DisMaxQParserPlugin#bq_.28Boost_Query.29</a></p>
+
+<p>You'll have to break your query into individual words and search tags using each of those separately. So if your query is "abc pqr" you'll have:</p>
+
+<pre><code>q={!boost b=recip(ms(NOW,date),3.16e-11,1,1)}%s&amp;defType=dismax&amp;qf=title^100 note&amp;bq=tags:abc OR tags:pqr
+</code></pre>

@@ -1,0 +1,5 @@
+<p>Try:</p>
+
+<pre><code>var answerID = $(this).parents("div.answer").find("input.answerID").val();
+var isUpVoted = $.inArray(+answerID, project.problem.upVoted) &gt; -1;
+</code></pre>

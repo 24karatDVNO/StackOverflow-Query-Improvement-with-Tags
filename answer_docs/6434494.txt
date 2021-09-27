@@ -1,0 +1,3 @@
+<p>I would assume because the class as given loads the ENTIRE file into memory. Exactly where I'm not sure as I do not know the Java NIO classes. I would suspect though classes like <code>MappedByteBuffer</code> and <code>CharBuffer</code> might be the issue. </p>
+
+<p>A stack trace might be able to tell you where its coming from. </p>

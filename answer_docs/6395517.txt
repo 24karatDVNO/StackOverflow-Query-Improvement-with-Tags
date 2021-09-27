@@ -1,0 +1,5 @@
+<p>Your page should <strong>still work without JavaScript anyway</strong>, so a user clicking a button extremely fast will just temporarily have a somewhat degraded experience.</p>
+
+<p>That being said, the DOM is basically ready when the HTML document all scripts are loaded. Since you cannot execute meaningful JavaScript before the JavaScript code is loaded (duh), I'd have a close look at page performance. Sending an HTML document and 2,3 JavaScript files should not be slow.</p>
+
+<p>You could also use the old-style inline event handlers, like <code>&lt;button onclick="registerButtonClickEvent()"&gt;</code>. However, this would introduce a complex, potentially buggy and hardly testable layer of temporary event holding.</p>

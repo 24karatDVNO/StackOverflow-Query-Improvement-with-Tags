@@ -1,0 +1,17 @@
+<p>It has been a while since I'm using my custom TabBarViewController with disappearing tabbar and it seems to work properly both on iPad and iPhone.
+The main problem that I had was due to an incorrect assignment to the content view frame and probably to a wrong assumption that modalVC were loaded from the current view controller.<br/>
+First point: the content view should use the bounds of the main view, here is a part of the loadView method of the Root View Controller:</p>
+
+<pre><code>[super loadView];
+containerOfControllersView=[[UIView alloc] initWithFrame:self.view.bounds];
+</code></pre>
+
+<p><br/>
+Second:before add as a subview a view of a view controller remark to it that its frame should have the same bounds of its new parent view.</p>
+
+<pre><code>    theView.frame =self.view.bounds;
+</code></pre>
+
+<p>Third: modal view controllers should be loaded from the root view controller or the will never have correct size. That's why I've implemented a base abstract class for each view controllers that inherit a protocol that manage the presetation and dismissing of modal viewcontrollers.<br/>
+Hope this helps someone else.<br/>
+Andrea</p>

@@ -1,0 +1,9 @@
+<p>You can do this:</p>
+
+<pre><code>@bookshelf.attributes.merge(:books =&gt; @bookshelf.books.map(&amp;:attributes))
+</code></pre>
+
+<p>oh, even better, I belive you can get a hash using <code>as_json</code> which is actually internally called by <code>to_json</code></p>
+
+<pre><code>@bookshelf.as_json :include =&gt; :books
+</code></pre>

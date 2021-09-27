@@ -1,0 +1,7 @@
+<p>Finally i did! 
+I have to use 2 background workers.. this is what i did..
+backgroundWorker1: performs the post method.
+backgroundWorker2: performs a TimeSpan counter.
+when backgroundWorker2 starts, sets a TimeSpan in 0 and in the DoWork, if the backgroundWorker1 CancellationPending is false, then i report progress in backgroundWorker2.
+When the post method finish, i set backgroundWorker1 to CancelAsync, so the backgroundWorker2 will terminate to.
+I think that was my best solution.</p>

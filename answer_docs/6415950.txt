@@ -1,0 +1,58 @@
+<p>This problem is solved here is the final working code</p>
+
+<p>code on home page:</p>
+
+<pre><code>ini_set('session.gc_maxlifetime',1800);
+ini_set('session.gc_probability',1);
+ini_set('session.gc_divisor',1); 
+session_start();
+if($_SESSION['admin_login'] != $password){
+    header('Location: index.php'); 
+    exit();
+}
+if(isset($_SESSION['last_activity']) &amp;&amp; (time()-$_SESSION['last_activity'] &gt;1800)){
+// last request was more than 30 minates ago
+session_destroy();   // destroy session data in storage
+session_unset();     // unset $_SESSION variable for the runtime
+    header('Location: index.php'); 
+    exit();
+}
+$_SESSION['last_activity'] = time(); // update last activity time stamp
+?&gt;
+
+
+&lt;script src="jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;     
+    function timedCount(){        
+        $.ajax({
+          type: 'POST',
+          url: "check_time.php",
+          success: function(data){
+            if (jQuery.trim(data) == "LOGOUT") {
+        window.location = 'LOGOUT.php';
+            }
+          }
+        });
+        setTimeout("timedCount()",10000);
+     };
+
+&lt;/script&gt;
+
+
+Here is the code on the check_time.php page
+
+
+&lt;?php
+
+  session_start();
+    if (isset($_SESSION['last_activity'])){
+        if(time() - $_SESSION['last_activity'] &gt; 1800){
+            session_unset();
+            session_destroy();
+            echo "LOGOUT";  
+        }
+    }else{
+        echo "LOGOUT";
+    }
+?&gt;
+</code></pre>

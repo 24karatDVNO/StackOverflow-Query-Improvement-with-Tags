@@ -1,0 +1,11 @@
+<p>I changed the HTML of text area.And remove the <code>class="form400 default_valued_text_field"</code> attribute from its html.</p>
+
+<pre><code>myDoc = this.webBrowser1.Document;
+
+myDoc.GetElementById("review-text").OuterHtml = "&lt;textarea id=\"review-text\"   onkeyup=\"javascript:ui.widget.countChars(this.form.comment,5000);\" onkeydown=\"javascript:ui.widget.countChars(this.form.comment,5000);\" name=\"comment\" rows=\"8\" cols=\"40\" style=\"height: 86px;\"&gt;&lt;/textarea&gt;";
+</code></pre>
+
+<p>After that i set the inner text of this element</p>
+
+<pre><code>myDoc.GetElementById("review-text").InnerText = "Testing";
+</code></pre>

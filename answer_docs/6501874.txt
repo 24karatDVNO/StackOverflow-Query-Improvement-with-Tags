@@ -1,0 +1,3 @@
+<p>This project dynamically loads modules and what wasn't clear from the original ASP.NET error page was that the NullReferenceException was being caused by the final line of the MapRoute() method call.</p>
+
+<p>It turns out that _loadedModules was empty, so FirstOrDefault() was returning null - hence the exception.</p>

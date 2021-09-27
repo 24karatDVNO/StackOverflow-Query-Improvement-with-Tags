@@ -1,0 +1,16 @@
+<p>Same as @nanothief's solution, but in Scala:</p>
+
+<pre><code>def flipFlop[A](flip: A =&gt; Boolean, flop: A =&gt; Boolean, seq: Seq[A]): Seq[A] = {
+  val (p, q) = seq.dropWhile(!flip(_)).span(!flop(_))
+  p ++ q.take(1)
+}
+</code></pre>
+
+<p>Sample runs:</p>
+
+<pre><code>&gt; flipFlop[Int](_ == 3, _ == 5, Nil)
+List()
+
+&gt; flipFlop[Int](_ == 3, _ == 5, 1 to 19)
+Vector(3, 4, 5)
+</code></pre>

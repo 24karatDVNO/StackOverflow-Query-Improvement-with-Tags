@@ -1,0 +1,33 @@
+<pre><code>public XmlDocument SubmitDocument1(XmlDocument xDoc, string URL)
+{
+    try
+    {
+        // get the data from the xml document into a byte stream
+        Byte[] bdata = System.Text.Encoding.ASCII.GetBytes(xDoc.OuterXml);
+        // instantiate a web client
+        WebClient wc = new WebClient();
+
+        // add appropriate headers
+        wc.Headers.Add("Content-Type", "text/xml");
+
+        // add default Credentials 
+        wc.Credentials = CredentialCache.DefaultCredentials;
+
+        // send data to server, and wait for a response           
+
+        Byte[] bresp = wc.UploadData(URL, bdata);
+
+        // read the responses
+        string resp = System.Text.Encoding.ASCII.GetString(bresp);
+
+        XmlDocument xresp = new XmlDocument();
+        xresp.LoadXml(resp);
+
+        // return the xml document response from the server
+        return xresp;
+    }
+    catch
+    {
+    }
+}
+</code></pre>

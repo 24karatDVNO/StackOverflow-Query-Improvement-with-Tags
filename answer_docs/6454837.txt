@@ -1,0 +1,180 @@
+<p>mport java.util.StringTokenizer;</p>
+
+<p>import android.app.Activity;
+import android.os.Bundle;</p>
+
+<pre><code>public class Test extends Activity {
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+
+StringTokenizer st = new StringTokenizer("koch, Ranchi, zalkhand, NY, 10001, India", ","); 
+        int numberOfToken = st.countTokens();
+        System.out.println("Tokens are seperated");
+        int i=0;
+        String address[] = new String[numberOfToken];
+
+         String contlocation="";
+         String contfirst_street="";
+         String contsecond_street="";
+         String contcity="";
+         String contstate="";
+         String contzipcode="";
+         String contcountry="";
+
+
+      /*  while(st.hasMoreTokens())
+        {
+
+          */      
+
+              for(i=0;i&lt;numberOfToken;i++)
+              {
+                    address[i] = st.nextToken();
+                   System.out.println("address "+i+": "+address[i]);
+              }
+
+              if(numberOfToken==7)
+              {
+
+                  System.out.println("\n-------------address.length==7--------------------");
+
+                  contlocation=address[0];
+                  System.out.println("contlocation :"+contlocation);
+
+                  contfirst_street=address[1];
+                  System.out.println("contfirst_street :"+contfirst_street);
+
+                  contsecond_street=address[2];
+                  System.out.println("contsecond_street :"+contsecond_street);
+
+                  contcity=address[3];
+                  System.out.println("contcity :"+contcity);
+
+                  contstate=address[4];
+                  System.out.println("contstate :"+contstate);
+
+                  contzipcode=address[5];
+                  System.out.println("contzipcode :"+contzipcode);
+
+                  contcountry=address[6];
+                  System.out.println("contcountry :"+contcountry);
+
+                  System.out.println("\n-------------address.length==7--------------------");
+              }
+              else if(numberOfToken==6)
+              {
+                  System.out.println("\n-------------address.length==6--------------------");
+
+                  contlocation="";
+                  System.out.println("contlocation :"+contlocation);
+
+                  contfirst_street=address[0];
+                  System.out.println("contfirst_street :"+contfirst_street);
+
+                  contsecond_street=address[1];
+                  System.out.println("contsecond_street :"+contsecond_street);
+
+                  contcity=address[2];
+                  System.out.println("contcity :"+contcity);
+
+                  contstate=address[3];
+                  System.out.println("contstate :"+contstate);
+
+                  contzipcode=address[4];
+                  System.out.println("contzipcode :"+contzipcode);
+
+                  contcountry=address[5];
+                  System.out.println("contcountry :"+contcountry);
+
+                  System.out.println("\n-------------address.length==6--------------------");
+              }
+              else if(numberOfToken==5)
+              {
+                  System.out.println("\n-------------address.length==5--------------------");
+
+                  contlocation="";
+                  System.out.println("contlocation :"+contlocation);
+
+                  contfirst_street=address[0];
+                  System.out.println("contfirst_street :"+contfirst_street);
+
+                  contsecond_street="";
+                  System.out.println("contsecond_street :"+contsecond_street);
+
+                  contcity=address[1];
+                  System.out.println("contcity :"+contcity);
+
+                  contstate=address[2];
+                  System.out.println("contstate :"+contstate);
+
+                  contzipcode=address[3];
+                  System.out.println("contzipcode :"+contzipcode);
+
+                  contcountry=address[4];
+                  System.out.println("contcountry :"+contcountry);
+
+                  System.out.println("\n-------------address.length==5--------------------");
+              }
+
+              else if(numberOfToken==4)
+              {
+                  System.out.println("\n-------------address.length==4--------------------");
+
+                  contlocation="";
+                  System.out.println("contlocation :"+contlocation);
+
+                  contfirst_street=address[0];
+                  System.out.println("contfirst_street :"+contfirst_street);
+
+                  contsecond_street="";
+                  System.out.println("contsecond_street :"+contsecond_street);
+
+                  contcity=address[1];
+                  System.out.println("contcity :"+contcity);
+
+                  contstate=address[2];
+                  System.out.println("contstate :"+contstate);
+
+                  contzipcode="";
+                  System.out.println("contzipcode :"+contzipcode);
+
+                  contcountry=address[3];
+                  System.out.println("contcountry :"+contcountry);
+
+                  System.out.println("\n-------------address.length==4--------------------");
+              }
+
+              else if(numberOfToken==3)
+              {
+                  System.out.println("\n-------------address.length==3--------------------");
+
+                  contlocation="";
+                  System.out.println("contlocation :"+contlocation);
+
+                  contfirst_street=address[0];
+                  System.out.println("contfirst_street :"+contfirst_street);
+
+                  contsecond_street="";
+                  System.out.println("contsecond_street :"+contsecond_street);
+
+                  contcity=address[1];
+                  System.out.println("contcity :"+contcity);
+
+                  contstate="";
+                  System.out.println("contstate :"+contstate);
+
+                  contzipcode="";
+                  System.out.println("contzipcode :"+contzipcode);
+
+                  contcountry=address[2];
+                  System.out.println("contcountry :"+contcountry);
+
+                  System.out.println("\n-------------address.length==3--------------------");
+              }
+}
+    }
+</code></pre>

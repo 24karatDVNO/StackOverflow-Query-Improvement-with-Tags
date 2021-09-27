@@ -1,0 +1,16 @@
+<p>When dealing with recursive functions, the way to effectively express what the function is doing is to view it as a mathematical function and simplify the application of the function. While this won't really tell you the internal state of the function (in this case, the value of <code>temp</code>) it gives you a really nice way to describe the function.</p>
+
+<p>For factorial example, we can define fact to be:</p>
+
+<pre><code>fact(x) = 1 when x &lt;= 1
+fact(x) = x * fact(x - 1) otherwise
+</code></pre>
+
+<p>Now, when you want to express how it works, you choose a small starting number (say 6) and...</p>
+
+<pre><code>fact(6) = 6 * fact(5) = 6 * 5 * fact(4) = 6 * 5 * 4 * fact(3)
+</code></pre>
+
+<p>and so on.</p>
+
+<p>This way, what you are doing is analyzing the structure of the function rather than its implementation. Now for debugging purposes this is not too useful (at least not in a non-functional language). But it's wonderful for comments, documentation and communication.</p>

@@ -1,0 +1,13 @@
+<p>Try changing <code>moderate.ctp</code> to</p>
+
+<pre><code>&lt;?php 
+echo $form-&gt;create('Post', array(
+    'url' =&gt; array(
+        'controller' =&gt; 'topics', 
+        'action' =&gt; 'moderate', 
+        $topic['Topic']['slug'],
+     ),
+    'type' =&gt; 'post',
+)); 
+?&gt;
+</code></pre>

@@ -1,0 +1,17 @@
+<p>If I understand your question correctly, here is what you can do:</p>
+
+<pre><code>String myWord = "Game";
+String trimmedWord = myWord.trim();
+
+int lengthOfWord = trimmedWord.length();
+boolean lengthIsDivisibleByTwo = lengthOfWord%2 == 0;
+
+String middleSection = "";
+
+if (lengthIsDivisibleByTwo) {
+    int middleLetterIndex = lengthOfWord/2;
+    middleSection = trimmedWord.substring(middleLetterIndex-1, middleLetterIndex+1);
+}
+</code></pre>
+
+<p>Then the "middleSection" variable will hold your "am", or whatever the middle 2 letters are.</p>

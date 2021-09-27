@@ -1,0 +1,4 @@
+<p>You need to call readRSS() in separate thread as oncreate comes with restriction on time it takes. You can use a thread to fetch rss and update the UI by putting it in UI thread or use async task </p>
+
+<p>refer 
+<a href="http://developer.android.com/resources/articles/painless-threading.html" rel="nofollow">http://developer.android.com/resources/articles/painless-threading.html</a></p>

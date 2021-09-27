@@ -1,0 +1,34 @@
+<p>First of all, you should create your vectors to be type-specific. Let's assume you're storing objects of the type <code>MyData</code> into them, so you would have this:</p>
+
+<pre><code>public class MyData {
+    private String myStringValue;
+
+    public String getMyStringValue() {
+        return this.myStringValue;
+    }
+
+    public void setMyStringValue(String myStringValue) {
+        this.myStringValue = myStringValue;
+    }
+}
+</code></pre>
+
+<p>Then you should have your Vectors like this:</p>
+
+<pre><code>private Vector&lt;MyData&gt; a, b, c;
+</code></pre>
+
+<p>When you have it initialized like this, you can do this to access your objects' values:</p>
+
+<pre><code>// Loop through all MyData objects stored in the Vector b
+for(MyData myData : b){
+    System.out.println(myData.getMyStringValue());
+}
+</code></pre>
+
+<p>As an afterthought, why use a <code>Vector</code>? You probably don't need Vector's synchronicity, so you would be better off using an <code>ArrayList</code>.</p>
+
+<pre><code>private List&lt;MyData&gt; b = new ArrayList&lt;MyData&gt;(); // populate the arraylist with objects
+</code></pre>
+
+<p>Also you would benefit more from studying basic OO stuff about encapsulation (= the getters and setters in my examples). Forget reflection for now and save that to the near future when you have the basics all sorted out.</p>

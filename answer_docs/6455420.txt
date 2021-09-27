@@ -1,0 +1,11 @@
+<p>If you want to display all the dates between two selected dates...</p>
+
+<pre><code>$thisTime = strtotime($selectedStartDate);
+$endTime = strtotime($selectedEndDate);
+
+while($thisTime &lt; $endTime) {
+    echo date('Y-m-d', $thisTime);
+    $thisTime = strtotime('plus one day', $thisTime);
+}
+echo date('Y-m-d', $endTime);
+</code></pre>

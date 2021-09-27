@@ -1,0 +1,3 @@
+<p>Either use a push notification framework (comet) <a href="http://pokein.codeplex.com/" rel="nofollow">http://pokein.codeplex.com/</a>  or save your status to a database and your page either refreshes to get the status or uses jQuery.ajax() for example to get the data back or refreshes an UpdatePanel on a timer such as: <a href="http://msdn.microsoft.com/en-us/library/cc295400.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/cc295400.aspx</a></p>
+
+<p>Either way though - your 'progress' needs to be saved to either the current session or to a database and read. The UI generally wouldn't interact directly with the processing thread, but both talk to some intermediate medium that contains the update status.</p>

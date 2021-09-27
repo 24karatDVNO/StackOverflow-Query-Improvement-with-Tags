@@ -1,0 +1,35 @@
+<p>I'm not sure what you are trying to solve, but I am pretty sure there is a better way to do it than this.</p>
+
+<p>That being said, here's one way of tracing functions and checking the callstack without resorting to parsing of browser-specific stack traces:</p>
+
+<pre><code>var callstack = [];
+
+function traced(name, func) {
+  return function () {
+    callstack.push(name);
+    func.apply(this, arguments);
+    callstack.pop();
+  }
+}
+</code></pre>
+
+<p>and use it like this:</p>
+
+<pre><code>var a = traced("a", function () {
+  b();
+});
+
+var b = traced("b", function () {
+  c();
+});
+
+var c = traced("c", function () {
+  var s = callstack.join("&lt;br&gt;");
+  document.getElementById('output').innerHTML = s;
+});
+
+document.getElementById('a').onclick = a;
+document.getElementById('b').onclick = b;
+</code></pre>
+
+<p>You can check it out on fiddle here: <a href="http://jsfiddle.net/AsrSp/" rel="nofollow">http://jsfiddle.net/AsrSp/</a></p>

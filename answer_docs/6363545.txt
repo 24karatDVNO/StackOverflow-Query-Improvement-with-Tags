@@ -1,0 +1,13 @@
+<p>You could use something like this (sintax depends on db engine):</p>
+
+<pre><code>SELECT DISCTINCT column
+FROM
+   ( 
+    SELECT column1 as column FROM table
+    UNION
+    SELECT column2 as column FROM table
+   )
+ORDER BY column ASC
+</code></pre>
+
+<p>Refer to you dbms manual to check sintax on UNION clause</p>

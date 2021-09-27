@@ -1,0 +1,7 @@
+<p>This is a guess, since I'm not able to test this at my current comp, but it <em>looks</em> like the require is different on the gem itself, than what you're pulling in. Give this a shot:</p>
+
+<pre><code>gem 'ajaxful_rating_jquery', 
+  :git =&gt; "git://github.com/kamui/ajaxful_rating_jquery.git", 
+  :branch =&gt; "rails3",
+  :require =&gt; "ajaxful_rating"
+</code></pre>

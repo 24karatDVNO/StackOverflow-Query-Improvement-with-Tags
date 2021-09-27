@@ -1,0 +1,12 @@
+<p>Apple has gone far and gave the programmers a way to present the end user with an SMS sheet (just like an e-mail sheet) , that they will have to approve (press send) in order to send SMS from a 3rd party app. </p>
+
+<p>The reasons are mainly user privacy (as some apps on Android actually send SMSs on the user's behalf). </p>
+
+<p>The best thing to do , in this case, is :</p>
+
+<ol>
+<li><p>Create a local notification , that will remind the user that they need to send an SMS. </p></li>
+<li><p>Upon launch (<code>application:didFinishLaunchingWithOptions</code>) present the user with a prepared SMS sheet , so they'll just need to tap 'send'. </p></li>
+</ol>
+
+<p>For more info , look at <code>MFMessageComposeViewController</code> class reference. </p>

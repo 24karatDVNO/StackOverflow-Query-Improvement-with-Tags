@@ -1,0 +1,14 @@
+<p>The regex way is the perfectly correct way to go.</p>
+
+<pre><code>var msDateRegex = /"\\\/Date\((-?\d+)\)\\\/"/g;
+
+var msDateJsonConverter = function(data) {
+    return JSON.parse($.trim(data.replace(msDateRegex, '{"__date":$1}')), function(key, value) {
+        return value &amp;&amp; typeof value.__date == "number" ? new Date(value.__date) : value;
+    });
+};
+
+$.ajaxSetup({ converters: { "text json": msDateJsonConverter } });
+</code></pre>
+
+<p>See: <a href="http://weblogs.asp.net/bleroy/archive/2008/01/18/dates-and-json.aspx" rel="nofollow">http://weblogs.asp.net/bleroy/archive/2008/01/18/dates-and-json.aspx</a></p>

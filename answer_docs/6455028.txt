@@ -1,0 +1,5 @@
+<p>You actually mean <code>var myFun = function(x) { ... }</code>.</p>
+
+<p>If you don't put the <code>var</code> there (bad), it becomes a global variable, which is not what you want. The <code>function</code> syntax will automatically restrict the variable to be a local I think, but people use both syntaxes.</p>
+
+<p>Otherwise the difference is so minor that it is not worth caring about, but you can see the accepted answer on <a href="https://stackoverflow.com/questions/6223050/when-to-use-anonymous-javascript-functions">When to use anonymous JavaScript functions?</a></p>

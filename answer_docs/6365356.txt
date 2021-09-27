@@ -1,0 +1,19 @@
+<p>You have several options to deal with inventory issues:</p>
+
+<ul>
+<li>Checkout Store Gadget: offers a simple built-in "inventory update" (using an online spreadsheet). Because Google handles the inventory, an order will not go through if the inventory dropped to zero. Here's the link to the Store Gadget documentation:</li>
+</ul>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_Store_Gadget_How_To.html" rel="nofollow">http://code.google.com/apis/checkout/developer/Google_Checkout_Store_Gadget_How_To.html</a></p>
+
+<ul>
+<li>If you don't want to use the Store Gadget, you can use the Checkout Notification and Order Processing APIs and cancel the order if it took to long to complete (i.e. the ticket was sold to someone else). This avoids overselling but will make some customers unhappy.</li>
+</ul>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Notification_API.html" rel="nofollow">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Notification_API.html</a></p>
+
+<p><a href="http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Processing.html" rel="nofollow">http://code.google.com/apis/checkout/developer/Google_Checkout_XML_API_Processing.html</a></p>
+
+<ul>
+<li>Use an inventory buffer to avoid overselling. Keep a few tickets in "reserve" and avoid cancelations and unhappy customers :-)</li>
+</ul>

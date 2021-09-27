@@ -1,0 +1,3 @@
+<p>Your options are either ClickOnce, which is the superior option of the two, or create a windows service that does the updating for you. The service runs all the time and pols for updates, downloads any and installs them. The reason this is superior to a preloader as suggested by Sascha is that in an environment where users log on with low level privileges the service will have admin privileges and be able to update the application. </p>
+
+<p>Having said this, ClickOnce is the way to go.</p>

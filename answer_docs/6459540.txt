@@ -1,0 +1,22 @@
+<p>As everyone said, this is due to static typing and <code>FooBar</code> class does not contain <code>name</code>. So it won't work.</p>
+
+<p>I wanted to point out the suggested usage of Anonymous class.</p>
+
+<p>Anonymous class (or close to Closures, maybe lambdas. Similar but <em>not</em> same) come from functional programming paradigm, where the states should be immutable.</p>
+
+<p>That being said, why should you user such classes? When you need a quick and short thing to be done which should not necessarily go in a complete class. Example:</p>
+
+<pre><code>MyTask() //This is a method
+{
+    new Thread(new Runnable() { //Anonymous class
+        public void run()
+        {}
+    }).start();
+}
+</code></pre>
+
+<p>The understanding of enclosing your implementation only to a function/class is important.</p>
+
+<p>The <code>scope of the variables defined in the Anonymous class (or closed-over function) should only be used inside the Anonymous class</code>, it cannot be accessed from other program code.</p>
+
+<p>Therefore, you should not  (and anyway cannot) set <code>fooBar.name = "Test";</code></p>

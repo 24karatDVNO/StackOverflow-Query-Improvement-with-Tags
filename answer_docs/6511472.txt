@@ -1,0 +1,12 @@
+<p>I searched with Google for 'java class.newInstance' and:</p>
+
+<p>a) I found the documentation for the java.lang.Class class, which explains the exact circumstances under which this exception is thrown:</p>
+
+<pre><code>InstantiationException - if this Class represents an abstract class, an
+interface, an array class, a primitive type, or void; or if the class has
+no nullary constructor; or if the instantiation fails for some other reason.
+</code></pre>
+
+<p>b) A suggested search term was "java class.newinstance with parameters", which finds several approaches for dealing with the "class has no nullary constructor" case, including some results from StackOverflow.</p>
+
+<p>You don't have array classes, primitive types or 'void' in your list of classes, and "some other reason" is unlikely (and would be explained in the exception message anyway). If the class is abstract or an interface, then you simply can't instantiate it in any way.</p>

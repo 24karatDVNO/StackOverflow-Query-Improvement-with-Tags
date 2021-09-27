@@ -1,0 +1,19 @@
+<p>If you know all the functions you'll need to call, and they're placed in one program, you can use this:</p>
+
+<pre><code>void do_fork()
+{
+    printf ("Fork called.\n");
+}
+
+void callFunc(char *funcName)
+{
+    if (strcmp(funcName, "do_fork") == 0) do_fork();
+}
+
+int main()
+{
+    char *pFunc = "do_fork";
+    callFunc(pFunc);
+    return 0;
+}
+</code></pre>

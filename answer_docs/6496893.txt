@@ -1,0 +1,11 @@
+<p>It is not clear what you are trying to do, but if you just want to split the whole text into an array, then:</p>
+
+<pre><code>your_string.split(/(?&lt;=.)(?=^\d)/)
+</code></pre>
+
+<p>or more carefully,</p>
+
+<pre><code>your_string.split(/(?&lt;=.)(?=^\d+\s+)/)
+</code></pre>
+
+<p>The problem with your regex is that, by default, <code>.</code> does not match multi-lines, which include "\n". In order to do so, you need to put <code>m</code> after your regex: <code>/  /m</code>.</p>

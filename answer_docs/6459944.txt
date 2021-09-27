@@ -1,0 +1,5 @@
+<p>If you are using devise's "confirmable" module which makes users click a link in an email to confirm their address, then when you use "sign_in" in the tests you also have to fake email confirming.  It looks something like this:</p>
+
+<pre><code>sign_in @user
+@user.confim!
+</code></pre>

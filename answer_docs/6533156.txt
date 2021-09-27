@@ -1,0 +1,4 @@
+<p>The count function can only be used on a field of an entity, not the entity itself. You could pick any field to count, but it should probably be the primary key as that will never be null. The following query should work though.</p>
+
+<pre><code>&lt;![CDATA[select count(j.priority) as nb from Jiraissue j where j.priority='3']]&gt;
+</code></pre>

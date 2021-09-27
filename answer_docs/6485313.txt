@@ -1,0 +1,23 @@
+<p>You have to make sure your view controller implements the UISearchBarDelegate protocol then add the following method</p>
+
+<pre><code>- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self titles:searchText];
+}
+</code></pre>
+
+<p>Modify your <strong><em>titles</em></strong> method to accept a string as parameter:</p>
+
+<pre><code>-(NSArray *)titles:(NSString *)toMatch
+{
+NSMutableArray * retval = [[[NSMutableArray alloc] init] autorelease];
+
+NSString * query = [NSString stringWithFormat:@"SELECT * FROM table 1 WHERE content MATCH '%@'", toMatch];
+
+sqlite3_stmt * statement;
+
+if (sqlite3_prepare_v2(_database, query.UTF8String, -1, &amp;statement, nil) == SQLITE_OK) {
+    while (sqlite3_step(statement) == SQLITE_ROW) {………..}}};
+</code></pre>
+
+<p>Make sure your viewcontroller is the delegate for the UISearchBar. </p>

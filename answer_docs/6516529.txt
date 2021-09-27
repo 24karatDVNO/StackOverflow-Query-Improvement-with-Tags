@@ -1,0 +1,7 @@
+<pre><code>map { (defined $_) &amp;&amp; $_-&gt;[0] }
+</code></pre>
+
+<p>actually iterates through each and every element in the array, and apply some function or expression. in out case it is the following function: <code>defined($_) &amp;&amp; $_-&gt;[0]</code>
+if your cell is undef the third cell in your array evaluates to <code>defined(undef) &amp;&amp; $-&gt;[0]</code> ( which equals <code>''</code> you can try it..), while the other evaluates to <code>1 &amp;&amp; $-&gt;[0]</code> which equals $->[0].</p>
+
+<p>BTW, thats also the reason your second statement works, for each cell of your array, you choose the first inner cell.</p>

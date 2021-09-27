@@ -1,0 +1,5 @@
+<p>I's suggest the first thing to do is fix your derived table to get rid of any nonnumeric characters. Null out the "N/D" and remove the spaces and % signs. Then you have numbers that you can do something with.</p>
+
+<p>You are also going to have to join to this table at least three times since you seem to want separate records at the end, one for the R records, one for the W records and one for the M records. Perhaps the derived table shouldn't try to put them in one line. </p>
+
+<p>If you want theresults on one line thoug for each type, you can use the case statment to get the results you want. </p>

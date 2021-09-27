@@ -1,0 +1,16 @@
+<p>Here's one method:</p>
+
+<pre><code>    var obj = {},
+        name2json = function(o, name, val){
+            var prop = name.splice(0, 1);
+            o[prop] = o[prop] || {};
+            if(name.length === 0){
+                o[prop] = val;
+            }else{
+                name2json(o[prop], name, val);
+            }
+        };
+    $('input.specialClass').live('focusout', function(){
+        name2json(obj, this.name.split('_'), this.value);
+     });
+</code></pre>

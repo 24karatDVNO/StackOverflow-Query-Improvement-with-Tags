@@ -1,0 +1,23 @@
+<p>I've found that using tiered xcconfigs helps this problem.</p>
+
+<p>Working on complex builds with apps, libraries, and SDKs you have to be able to coordinate not merely build numbers per project, but build number compatibility.</p>
+
+<p>You can make a build management header that is effectively a text file with build iteration numbers (or versioning info i.e. beta, dev, rel) and import it through the xcconfig import chain per project.</p>
+
+<p>At that point you can have a target build script step that will embed your build/versioning info. This is also best done by putting holding text in your plist and running PlistBuddy on your derived file/built file sections. (This way your source control changes are minimal)</p>
+
+<p>If you can write a build execution script that does the necessary build number twiddling (or better yet, use a system like bamboo which creates the file for you), you can keep that separate from your code. Granted, if you need to do it and keep track, you may have to check in the changed build number to allow it to increment.</p>
+
+<p>I've been able as a result of this to maintain build numbers along the line of:
+2.0.3 b34 (3473)  Where we have a build number and an SVN checkout build point.
+(Please no git hazing, I'm old school)</p>
+
+<p>Pre/Post actions are more for Uber notifications or processes:
+Email that the build started/failed/ etc
+Copy the done project to the done project server.</p>
+
+<p>Everything else works better as a Build Script.</p>
+
+<p>(And as always: make the script phase call an external script file. DON'T push your script into the project, it's hell on source controlling the project file)</p>
+
+<p>Hope this helps.</p>

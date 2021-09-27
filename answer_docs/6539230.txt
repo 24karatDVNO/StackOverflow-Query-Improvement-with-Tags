@@ -1,0 +1,25 @@
+<p>To anyone who wants to achieve a similar effect:</p>
+
+<p>Wrap your table in a div with <code>width:100%;</code> and <code>overflow:auto;</code>.</p>
+
+<p>Copy the header portion of your table and create a new table with just that in it. POSITION THIS TABLE AS ABSOLUTE! (<code>position:absolute;</code>)</p>
+
+<p>Place your header table in the same div as the real table. (It should fit perfectly over the original header portion).</p>
+
+<p>Use jQuery to manage the scrolling of the div and stick the header in place...</p>
+
+<pre><code>jQuery(document).ready(function() {
+    jQuery('#tableDiv').scroll(function() {
+        jQuery('#copiedHeaderTable').css('top', jQuery(this).scrollTop());
+    });
+})
+</code></pre>
+
+<p>This solution of course makes a few assumptions about your requirements, but has a few advantages (simplicity being the main).</p>
+
+<p><strong>Edit</strong> To ensure matching cell widths, wrap all th contents in a div and set the width of each div manually before the cloning:</p>
+
+<pre><code>jQuery('#headerRow th div').each(function() {
+    jQuery(this).css('width', jQuery(this).parent()[0].offsetWidth+'px');
+});
+</code></pre>

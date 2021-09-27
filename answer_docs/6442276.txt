@@ -1,0 +1,19 @@
+<p>If your <code>userInfo</code> String isn't a static field, and is instead an instance variable:</p>
+
+<p>In order to access it, you'll need a reference to that instance of your class in the other class. How you go about this is really up to you, depending on the exact problem you're trying to solve.</p>
+
+<p>If you're going to want access to more than that one field from the first class (let's call it <code>A</code>) inside more than one method of the other class then you'll likely want to save a reference to the entire instance inside your second class (let's call it <code>B</code>). To do that, I'd define a constructor for class B that takes an object of type <code>A</code> as a parameter:</p>
+
+<pre><code>public B(A a) {
+     this.a = a;
+}
+</code></pre>
+
+<p>If you only want it for one method, pass the object as a parameter of the method.</p>
+
+<pre><code>public void foo(A a) {
+   // do something involving an instance of class A here
+}
+</code></pre>
+
+<p>If you only want the one field, either pass it as a parameter for a constructor (and save it inside class B) if you'll want it in more than one method, or pass it as a parameter for the single method you need it for.</p>

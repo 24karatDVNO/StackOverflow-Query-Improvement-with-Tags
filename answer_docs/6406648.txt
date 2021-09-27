@@ -1,0 +1,5 @@
+<p>Sort of using dynamically generated Sql (as @Andomar suggests), there is no way of parameterising a database name <em>at runtime</em> in SQL.</p>
+
+<p>However, when you execute the DDL to build the database you have <em>many</em> more options. Probably the easiest is to use the SQLCmd parameter syntax, supplying the slave database name as an argument when you execute the build script (see the <a href="http://msdn.microsoft.com/en-us/library/ms162773.aspx" rel="nofollow">SQLCmd doco</a>). This could then be incorporated into your build/deploy script so doing a schema build for a given environment could be easily automated. I've done exactly this in the past for pretty much the scenario you describe.</p>
+
+<p>Ultimately the best answer may be to take the content migration out of the database altogether, and put it into the application layer. This is generally a cleaner approach, and leads to additional benefits because the location of the two databases ceases to matter (they could be on seperate servers for example). Only you can decide whether this is overkill for your needs.</p>

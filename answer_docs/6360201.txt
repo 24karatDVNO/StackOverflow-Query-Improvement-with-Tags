@@ -1,0 +1,30 @@
+<p>here you have the example wotking, the problem was the herarchy of the css, now is working because the over class y down.
+In this case the over class will replace the alt class.</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;script type="text/javascript" src="http://code.jquery.com/jquery-1.5b1.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;style&gt;
+    #table tr.alt { background: #ecf6fc;}
+    #table tr.over { background: red;}
+  &lt;/style&gt;
+&lt;table id="table" class="stripeMe"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;aaaa&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td &gt;bbbb&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+ &lt;script type="text/javascript"&gt; 
+ $(document).ready(function(){
+    //jQuery ready is quicker than onload
+   $(".stripeMe tr").mouseover(function()          {$(this).removeClass("over");$(this).addClass("over");}).mouseout(function()  {$(this).removeClass("over");});
+  $(".stripeMe tr:even").addClass("alt");
+ });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

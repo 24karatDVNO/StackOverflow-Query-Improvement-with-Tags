@@ -1,0 +1,4 @@
+<pre><code>SELECT e.empid, e.empname, e.empphoneno, e.empaddress, m.srno, m.mobileno, m.textmsg, m.texttype
+FROM employee e, mobileoutbox m
+WHERE e.empphoneno = m.mobileno
+</code></pre>

@@ -1,0 +1,19 @@
+<p>I didn't quite understand your question but If you ask what commands give to the ballgiven its position here is my guess:</p>
+
+<pre><code>1. you find the location of the ball.
+2. you have the line of the desired path drown on the board and detected
+using canny.
+3. Find the closest point to the ball which is on the path line.  If
+it was a straight line then the calculation is simple geometrical
+formulae dist(point,line). Let us call the result D.
+4. The resulting point on the line is where the ball should be. 
+5. Advance distance D along the path line. This would give you your
+destination point.
+6. Subtract ball coordinates from destination point, and then, using atan2()
+method to calculate in which direction to move the ball.
+7. Activate motores to tilt board in that direction.
+</code></pre>
+
+<p>Clarification to step 5. Why did I say to advance distance D along the path? Because thus you direct the ball in at most 45 degrees of the path line. This gives you relatively smooth motor movement.  </p>
+
+<p>If I didnt understand your question please tell me and I will correct my answer</p>

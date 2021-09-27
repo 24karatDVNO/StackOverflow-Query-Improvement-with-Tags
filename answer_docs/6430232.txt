@@ -1,0 +1,20 @@
+<p>I think something like this might work (admittedly I haven't tried it):</p>
+
+<pre><code>var data = "&lt;user&gt;&lt;name&gt;Joe Bob&lt;/name&gt;&lt;/user&gt;";
+var store = new Ext.data.Store({
+    model: 'PersonModel',
+    data: data,
+    proxy: {
+        type: 'memory',
+        reader: {
+            type  : 'xml',
+            record: 'Person'
+        }
+    }
+});
+</code></pre>
+
+<p>You may also want to add <code>autoLoad: true</code> in the store's options so you don't have to call <code>store.load();</code></p>
+
+<p>Edit:
+You may also want to consider changing the data a bit so it can be used by the array reader: <a href="http://docs.sencha.com/ext-js/4-0/#/api/Ext.data.reader.Array" rel="nofollow">http://docs.sencha.com/ext-js/4-0/#/api/Ext.data.reader.Array</a></p>

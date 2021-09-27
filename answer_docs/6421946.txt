@@ -1,0 +1,26 @@
+<p>You could try</p>
+
+<pre><code>BEGIN TRY
+
+    ...
+
+    BEGIN TRY
+        select
+            *
+        from
+            OPENROWSET (...)
+    END TRY
+    BEGIN CATCH
+       IF ERROR_NUMBER() &lt;&gt; 7399 --have to experiment to get the right error number
+           RAISERRROR (stuff about real error, 16, 1)
+       ELSE
+           RAISERRROR ('No file!', 16, 1)
+    END CATCH
+
+    ...
+
+END TRY
+BEGIN CATCH
+   --normal error handling
+END CATCH
+</code></pre>

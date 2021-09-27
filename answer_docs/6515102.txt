@@ -1,0 +1,15 @@
+<p>Check out this implementation in <a href="http://baud.cz/blog/coproject-ria-caliburnmicro-demo-part-10" rel="nofollow">Coproject</a> on codeplex.  </p>
+
+<p>If you're using mvvm, you can wrap operations in a using.  The BusyWatcher gets injected into the ViewModel using MEF.</p>
+
+<pre><code> [Import(RequiredCreationPolicy = CreationPolicy.Shared)]
+        public IBusyWatcher Busy { get; set; }
+</code></pre>
+
+<p>then:</p>
+
+<pre><code> using (Busy.GetTicket())
+ {
+  ...
+ }
+</code></pre>

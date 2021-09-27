@@ -1,0 +1,21 @@
+<p>I modified it because I am working with a lot of files therefore the solution works great but not for queries dealing with a lot of records. Here is what I worked out. </p>
+
+<p>lets assume I have this records so far:</p>
+
+<p><img src="https://i.stack.imgur.com/7n3CA.png" alt="enter image description here"></p>
+
+<pre><code>Select * from table1 WHERE DateInserted = 4
+ and Path not in(
+        select Path from table1 t1 
+        where 
+            DateInserted = 4 AND
+            Path IN (Select Path from table1 where DateInserted&lt;4) AND
+            DateModified IN (Select DateModified from table1 where DateInserted&lt;4)
+    )
+</code></pre>
+
+<p>and that returns:</p>
+
+<p><img src="https://i.stack.imgur.com/MKbA5.png" alt="enter image description here"></p>
+
+<p>this query works out much faster. I will obviously have to change the 4 for a variable in my code but this is just to illustrate the changes that I have done. </p>

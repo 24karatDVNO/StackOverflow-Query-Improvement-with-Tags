@@ -1,0 +1,11 @@
+<p>You need to specify in PDE the source folder where the files are generated and the output folder you want to use.  Add something like the following lines to your build.properties file:</p>
+
+<pre><code>source.my.generated.files = src_generated/
+output.my.generated.files = bin/
+</code></pre>
+
+<p>The PDE classpath is different from the JDT classpath.  In a way, they are redundant, but they both must be specified.</p>
+
+<p>You can also specify this in the UI:</p>
+
+<p><a href="http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/guide/tools/editors/manifest_editor/build.htm" rel="nofollow">http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/guide/tools/editors/manifest_editor/build.htm</a></p>

@@ -1,0 +1,14 @@
+<p>The using statement ensures that Dispose (of IDisposable) is called even if an exception occurs while you are calling methods on the object. In your example the SqlConnection will be closed and disposed at the end of the using block.</p>
+
+<p>Your example is not the common way of defining a using block, because you could accidentally reuse con after the using block.</p>
+
+<p>Try this:</p>
+
+<pre><code>using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["newConnectionString"].ConnectionString))
+{
+    con.Open();            
+    //
+    // Some code
+    //
+}
+</code></pre>

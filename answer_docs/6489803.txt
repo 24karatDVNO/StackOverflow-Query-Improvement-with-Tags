@@ -1,0 +1,10 @@
+<p>Delay the <code>scrollToBottom()</code> command, so that the ScrollPanel is ready to take input.</p>
+
+<pre><code>Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+        @Override
+        public void execute() {
+            // your commands here
+            scrollPanel.scrollToBottom();
+        }
+});
+</code></pre>

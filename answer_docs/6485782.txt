@@ -1,0 +1,11 @@
+<p>Change you WHERE Condition from this: </p>
+
+<pre><code>Where Condition: [ID] = [Customer ID]
+</code></pre>
+
+<p>To this:</p>
+
+<pre><code>"[ID]=" &amp; Me![Customer ID] 
+</code></pre>
+
+<p>You have to tell it where to pull the Customer ID from. By using, the <code>Me</code> you are letting it know it is from that form. </p>

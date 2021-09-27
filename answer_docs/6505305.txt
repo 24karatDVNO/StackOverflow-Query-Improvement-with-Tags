@@ -1,0 +1,9 @@
+<p>The below code which you have used returns 'px' appended to the result so you can't compare it to '19'</p>
+
+<pre><code>Height = $(this).css("height")
+</code></pre>
+
+<p>Parse it like this and let us know how you get on :)</p>
+
+<pre><code>parseInt($(this).css('height'), 10);
+</code></pre>

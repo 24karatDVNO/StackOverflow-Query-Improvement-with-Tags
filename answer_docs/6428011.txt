@@ -1,0 +1,30 @@
+<p><a href="http://groups.google.com/group/rails-i18n/browse_thread/thread/987b3b67f3ceeb1c" rel="nofollow">This discussion on the rails-i18n google group</a> has an interesting solution:</p>
+
+<pre><code>#in a locale file
+en: 
+  education_levels: 
+    gcses: Some GCSEs or less 
+    collegeA: College A levels 
+    some_university: Some University, no degree
+    bachelors: University graduate - Bachelors or equivalent 
+    masters: Masters degree
+    professional: Professional Degree
+    doctorate: Doctorate  
+
+#And in a model: 
+class Education &lt; ActiveRecord::Base 
+  def translated_education_level 
+    I18n.t(education_level, :scope =&gt; :education_levels) 
+  end 
+end 
+
+#In a helper: 
+module EducationHelper 
+  def education_levels 
+    I18n.t(:education_levels).map { |key, value| [ value, key ] } 
+  end 
+end 
+
+#And then in your view: 
+&lt;%= f.select :education_level, education_levels %&gt;
+</code></pre>

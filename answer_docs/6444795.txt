@@ -1,0 +1,12 @@
+<p>You don't stop a BroadcastReceiver.. you may try using a Service instead.</p>
+<blockquote>
+<p>public abstract void onReceive (Context context, Intent intent)</p>
+<p>Since: API Level 1
+This method is called when the BroadcastReceiver is receiving an Intent broadcast. During
+this time you can use the other methods on BroadcastReceiver to view/modify the current
+result values. The function is normally called within the main thread of its process, so
+<strong>you should never perform long-running operations</strong> in it (there is a timeout of 10 seconds that
+the system allows before considering the receiver to be blocked and a candidate to be
+killed). You cannot launch a popup dialog in your implementation of onReceive().</p>
+</blockquote>
+<p><a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html#onReceive%28android.content.Context,%20android.content.Intent%29" rel="nofollow noreferrer">http://developer.android.com/reference/android/content/BroadcastReceiver.html#onReceive(android.content.Context, android.content.Intent)</a></p>

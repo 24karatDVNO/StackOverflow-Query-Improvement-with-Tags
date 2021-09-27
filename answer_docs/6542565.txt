@@ -1,0 +1,12 @@
+<p><a href="http://en.wikipedia.org/wiki/Integer_factorization" rel="nofollow noreferrer">http://en.wikipedia.org/wiki/Integer_factorization</a></p>
+
+<p><a href="http://en.wikipedia.org/wiki/Integer_factorization#General-purpose" rel="nofollow noreferrer">http://en.wikipedia.org/wiki/Integer_factorization#General-purpose</a></p>
+
+<p>As mentioned in the comments, once you have an algorithm which factors into primes:</p>
+
+<pre><code>def allFactors(num):
+    primeFactors = algorithm(num)
+    return (product(subset) for subset in combinations(primeFactors))
+</code></pre>
+
+<p><a href="https://stackoverflow.com/questions/464864/python-code-to-pick-out-all-possible-combinations-from-a-list">How to get all possible combinations of a list’s elements?</a></p>

@@ -1,0 +1,24 @@
+<p>To achieve a consistent result like </p>
+
+<pre><code>Employer
+    job posting 1
+    job posting 2
+Other employer
+    job posting 1
+</code></pre>
+
+<p>You might have to alter you query to sort your jobs by employer first to be sure that the jobs are grouped together.</p>
+
+<p>Then by looping through your data (untested pseudo-code)</p>
+
+<pre><code>employerCache = '';
+for ($jobs as $job) {
+   if ($job['company_name'] != employerCache) {
+       // display company/employer header
+       $employerCache = $job['company_name'];
+   }
+   // display job posting
+}
+</code></pre>
+
+<p>That will give you 1 loop instead of two nested loops on the same dataset</p>

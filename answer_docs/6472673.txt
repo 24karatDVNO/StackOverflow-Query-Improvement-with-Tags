@@ -1,0 +1,8 @@
+<p>First, you would setup your database.yml file to use your MySQL on your local machine for development. Set this up however you like, a good example is <a href="http://wiki.rubyonrails.org/database-support/mysql#databaseyml_example" rel="nofollow">http://wiki.rubyonrails.org/database-support/mysql#databaseyml_example</a></p>
+
+<p>And than when you are ready to migrate your development database from your local machine, you would run: </p>
+
+<pre><code>heroku db:push
+</code></pre>
+
+<p>This will export your MySQL, SQLite or Postgres DB on your development machine and import it into your heroku instance. Your heroku instance will overwrite your database.yml file with the correct Postgres info and your application will have your development schema in the heroku Postgres DB.</p>

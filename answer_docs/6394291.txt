@@ -1,0 +1,6 @@
+<p>Static optimization is based on the program code itself. Alternatively, dynamic optimization is based on code execution results. For example, having a long switch statement in C/C++, it would be possible to optimize it by changing case operators order. To do this, it is necessary to run the program many times and keep this switch operator statistics.</p>
+
+<p>Some modern compilers contain such optimization framework, which allows to run the program and save its runtime statistics. Then the program code is optimized by using this statistics.</p>
+
+<p>See, for example, VC++ Profile-Guided Optimizations:
+<a href="http://msdn.microsoft.com/en-us/library/e7k32f4k.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/e7k32f4k.aspx</a></p>

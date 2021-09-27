@@ -1,0 +1,27 @@
+<p>I know the problem now,</p>
+
+<p>I placed the declaration in wrong place</p>
+
+<p>Look at this</p>
+
+<pre><code>public void showCurrentLocation() {
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location != null) {
+                showToastStatus(location);
+                tv_obj_long.setText(String.valueOf(location.getLongitude()));
+                tv_obj_lat.setText(String.valueOf(location.getLatitude()));
+            }else{
+                Toast.makeText(getApplicationContext(), "Terjadi Kesalahan dalam pengambilan koordinat", Toast.LENGTH_LONG).show();
+        }
+    };
+</code></pre>
+
+<p>i added this code on second line</p>
+
+<pre><code>final TextView error_text = (TextView) findViewById(R.id.error_text);
+</code></pre>
+
+<p>and it works!!</p>
+
+<p>i placed that code in onCreate before
+T___T</p>

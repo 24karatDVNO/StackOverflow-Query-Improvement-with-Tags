@@ -1,0 +1,18 @@
+<p>are there 3 machine's involved? it sounds like you are remoting from A to B and the script on B is remoting to C - is that right?</p>
+
+<p>How are you supplying the credentials (for userY)?</p>
+
+<p>I wonder if it's double hop related... if it is and your on windows 2008 you can try using CredSSP.</p>
+
+<p>Here's some links to help explain it better than I would:</p>
+
+<p><a href="http://www.ravichaganti.com/blog/?p=1230" rel="nofollow">http://www.ravichaganti.com/blog/?p=1230</a></p>
+
+<p><a href="http://blogs.msdn.com/b/powershell/archive/2008/06/05/credssp-for-second-hop-remoting-part-i-domain-account.aspx" rel="nofollow">http://blogs.msdn.com/b/powershell/archive/2008/06/05/credssp-for-second-hop-remoting-part-i-domain-account.aspx</a></p>
+
+<p><a href="http://blogs.msdn.com/b/clustering/archive/2009/06/25/9803001.aspx" rel="nofollow">http://blogs.msdn.com/b/clustering/archive/2009/06/25/9803001.aspx</a></p>
+
+<p>and  <code>Get-Help credssp</code> displays the commands that you'll need.</p>
+
+<p>HTH,
+Matt</p>

@@ -1,0 +1,12 @@
+<p>It is not currently possible. GestureListener.Tap does not support this.
+I have an event handler in my code behind, which calls viewmodel method using datacontext:</p>
+
+<pre><code> private void OnListItemTap(object sender, GestureEventArgs e)
+ {
+     var vm = DataContext as MyViewModel;
+     if (vm != null)
+     {
+         vm.TapOnItem.Execute(listbox.SelectedItem);
+     }
+ }
+</code></pre>

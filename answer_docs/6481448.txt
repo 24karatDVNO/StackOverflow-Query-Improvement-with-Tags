@@ -1,0 +1,17 @@
+<p>You can authenticate the user by using the API itself</p>
+
+<pre><code>FB.getLoginStatus(function(response) {
+  if (response.session) {
+    // logged in and connected user, someone you know
+  } else {
+    // no user session available, someone you dont know
+  }
+});
+</code></pre>
+
+<p>also the api provides a logout</p>
+
+<pre><code>FB.logout(callback);
+</code></pre>
+
+<p>FB docs are poor... But anyway read that, its the only way to get latest changes on their sdk.</p>

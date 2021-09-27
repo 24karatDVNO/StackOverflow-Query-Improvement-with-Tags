@@ -1,0 +1,8 @@
+<p>There is a workaround to this. Use javascript to open a window in a new tab, store a reference to that tab, and when you want to focus it; close it first and then re-open it. </p>
+
+<pre><code>if (window.existingWindow != null) 
+  try { window.existingWindow.close(); } catch (e) { };
+window.existingWindow = window.open("/your/url", "yourTabName");
+</code></pre>
+
+<p>We use a similar approach to opening the preview pane of the current page you're working on in our service called Handcraft where the above works as expected (we wanted the new window to always focus).</p>

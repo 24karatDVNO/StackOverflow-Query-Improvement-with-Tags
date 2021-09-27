@@ -1,0 +1,4 @@
+<p>At the end i solved the problem adding a constraint for categorynameurl parameter:</p>
+
+<pre><code>routes.MapRoute("CategoryHome", "{categorynameurl}/", new { controller = "Categories", action = "Index" },new {categorynameurl = @"[a-z0-9\-]+$" });
+</code></pre>

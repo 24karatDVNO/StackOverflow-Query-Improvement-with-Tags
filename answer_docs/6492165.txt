@@ -1,0 +1,3 @@
+<p>Tough luck, I'm afraid. Macros are expanded by the preprocessor, even before the compiler starts looking at the code.</p>
+
+<p>What maybe <em>could</em> be a solution, is to let the assert test expression be evaluated regardless of release or debug mode, however let the result be tested only in debug mode.</p>

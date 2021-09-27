@@ -1,0 +1,15 @@
+<p>This will find any dates in a string as long as they are separated by spaces:</p>
+
+<pre><code>        Dim startString As String = "Cars 02/22/11"
+    Dim tempParts As String()
+    Dim testValue As String
+    Dim tempDate As DateTime
+
+    tempParts = startString.Split(" ")
+
+    For Each testValue In tempParts
+        If DateTime.TryParse(testValue, tempDate) = True Then
+            MessageBox.Show(String.Format("Date in string: {0}", tempDate))
+        End If
+    Next
+</code></pre>

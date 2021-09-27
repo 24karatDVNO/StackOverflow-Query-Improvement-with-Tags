@@ -1,0 +1,38 @@
+<blockquote>
+  <p>the function assigned to
+  window.fbAsyncInit is run as soon as
+  the Facebook JS SDK is loaded. Any
+  code you want to run after the SDK is
+  loaded should be placed within this
+  function and after the call to
+  FB.init().</p>
+</blockquote>
+
+<p>now try this.</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="fb-root"&gt;&lt;/div&gt;
+&lt;script&gt;
+  window.fbAsyncInit = function()
+      {
+        FB.init( {appId: 'MYAPPID', status: true, cookie: true, xfbml: true} );
+        alert( FB.Canvas.getPageInfo()["clientWidth"] );
+
+      };
+      (function() 
+          {
+            var e = document.createElement('script'); 
+            e.async = true;
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+
+          }());
+
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>

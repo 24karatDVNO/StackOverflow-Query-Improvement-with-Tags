@@ -1,0 +1,8 @@
+<p>If you're going to loop through the indexes, you could do something like this:</p>
+
+<pre><code>double removedCount = 0;
+for (int i = 0; i &lt;= lst.Count - 1; i++) {
+  lst.RemoveAt(i - removedCount);
+  removedCount = removedCount + 1;
+}
+</code></pre>

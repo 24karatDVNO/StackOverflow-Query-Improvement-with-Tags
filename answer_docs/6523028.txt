@@ -1,0 +1,4 @@
+<p>You've already bound a click event to the object.  You cannot remove the class an expect the click event to come with it.  What you want is to call this:</p>
+
+<pre><code>$(this).unbind('click');
+</code></pre>

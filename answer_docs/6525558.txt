@@ -1,0 +1,7 @@
+<p>If the goal is to create something generic, I'd probably try something with <code>std::tuple</code>, allowing usage like this:</p>
+
+<pre><code>std::tuple&lt;int, double, std::string&gt; input;
+streamLikeObject &gt;&gt; input;
+</code></pre>
+
+<p>(Implementation left as an exercise for the reader.)</p>

@@ -1,0 +1,54 @@
+<p>This method returns all orderings. Limit it if you just want a few.</p>
+
+<pre><code>public static Set&lt;List&lt;Integer&gt;&gt; orderings(int i, int len, int max) {
+
+    Set&lt;List&lt;Integer&gt;&gt; seqs = new HashSet&lt;List&lt;Integer&gt;&gt;();
+
+    if (len &lt;= 0 || i &gt; max)
+        return seqs;
+
+    if (max - i == len) {
+        List&lt;Integer&gt; l = new ArrayList&lt;Integer&gt;();
+        while (i &lt; max)
+            l.add(i++);
+        seqs.add(l);
+        return seqs;
+    }
+
+    seqs.addAll(orderings(i    , len - 1, max));
+    seqs.addAll(orderings(i + 1, len - 1, max));
+
+    for (List&lt;Integer&gt; l : seqs)
+        l.add(0, i);
+
+    return seqs;
+}
+
+
+public static Set&lt;List&lt;Integer&gt;&gt; orderings(int[] arr1, int[] arr2) {
+    return orderings(0, arr2.length, arr1.length);
+}
+</code></pre>
+
+<p><strong>Test code:</strong></p>
+
+<pre><code>public static void main(String[] args) {
+    int[] listA = { 0, 1, 2 };
+    int[] listB = { 0, 1, 2, 3, 4 };
+    for (List&lt;Integer&gt; seq : orderings(listA, listB))
+        System.out.println(seq);
+}
+</code></pre>
+
+<p><strong>Output:</strong></p>
+
+<pre><code>[0, 0, 1, 2, 2]  &lt;-- your second example
+[0, 1, 1, 1, 2]
+[0, 1, 1, 2, 2]  &lt;-- your first example
+[0, 1, 2, 2, 2]
+[0, 0, 0, 1, 2]
+[0, 0, 1, 1, 2]
+</code></pre>
+
+<p><strong>Ideone.com demo:</strong><br/>
+<a href="http://ideone.com/iPLVr" rel="nofollow">Link</a></p>

@@ -1,0 +1,1 @@
+<p>Your program actually has undefined behavior because <code>%d</code> is not a valid format specifier for <code>size_t</code> expressions. You should use <code>%zu</code> or else cast the result of <code>sizeof</code> down to <code>int</code>. Otherwise the existing answers are okay.</p>

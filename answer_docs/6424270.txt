@@ -1,0 +1,10 @@
+<p>You shouldn't be loading the jquery 1.6.1 twice. Using the jQuery library you should usually group your JavaScript the following way:</p>
+
+<ol>
+<li>load jquery</li>
+<li>load jquery UI (in case you need it)</li>
+<li>load all plugins (once)</li>
+<li>do your "own thing"</li>
+</ol>
+
+<p>In case you load the basic jQuery-library twice, the second time will overwrite the existing <code>$</code>-object that may have already been extended by a plugin before. This plugin will therefore completely lose all of its functionality.</p>

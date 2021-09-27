@@ -1,0 +1,97 @@
+<p>I ended up Writing a webpage that that users having issues with their active directory settings can bring up that lists all active directory groups that a current user is in. </p>
+
+<p>Here is the code to see:</p>
+
+<ul>
+<li>Current Logged in User's AD Credentials for Groups beginning with ALG\ACOMP_USER OR ALGWEB\ACOMP_USER </li>
+<li>Current Logged in User's AD Credentials for ALL Groups</li>
+</ul>
+
+<p>see credentials.aspx.vb code-behind here: </p>
+
+<pre><code>Imports System.Text
+Imports ACOMP_Invitation_Web_App.aComp_ServiceReference
+Imports System.Security.Principal
+Imports System.Net.Security
+Imports System.Web.UI.WebControls
+
+
+Public Class verifycredentials
+Inherits System.Web.UI.Page
+
+Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+    Dim identityReferenceCollection As IdentityReferenceCollection
+    Dim identityReference As IdentityReference
+    identityReferenceCollection = WindowsIdentity.GetCurrent().Groups
+    Dim strGroupName As String
+
+    For Each identityReference In identityReferenceCollection
+        Dim mktGroup As IdentityReference = identityReference.Translate(GetType(NTAccount))
+        ' MsgBox(mktGroup.Value)
+        ' Debug.WriteLine(mktGroup.Value)
+        strGroupName = mktGroup.Value.ToString
+
+        Dim MarketingCompanyShortName As String = ""
+        Dim mktGroupName As String = mktGroup.Value
+
+        If mktGroupName.StartsWith("ALG\ACOMP_USER") Then
+            Credentials.Text = Credentials.Text + mktGroup.Value + "&lt;br&gt;"
+        End If
+        If mktGroupName.StartsWith("ALGWEB\ACOMP_USER") Then
+            Credentials.Text = Credentials.Text + mktGroup.Value + "&lt;br&gt;"
+        End If
+        If mktGroupName.StartsWith("ALG\ACOMP_user") Then
+            Credentials.Text = Credentials.Text + mktGroup.Value + "&lt;br&gt;"
+        End If
+    Next
+    For Each identityReference In identityReferenceCollection
+        Dim mktGroup As IdentityReference = identityReference.Translate(GetType(NTAccount))
+        ' MsgBox(mktGroup.Value)
+        ' Debug.WriteLine(mktGroup.Value)
+        strGroupName = mktGroup.Value.ToString
+
+        Dim MarketingCompanyShortName As String = ""
+        Dim mktGroupName As String = mktGroup.Value
+
+        AllCredentials.Text = AllCredentials.Text + mktGroup.Value + "&lt;br&gt;"
+
+    Next
+
+End Sub
+</code></pre>
+
+<p>see credentials.aspx code here:</p>
+
+<pre><code>    &lt;%@ Page Language="vb" AutoEventWireup="false" CodeBehind="credentials.aspx.vb" Inherits="ACOMP_Invitation_Web_App.verifycredentials" %&gt;
+
+    &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+    &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+    &lt;head id="Head1" runat="server"&gt;
+        &lt;title&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form id="form1" runat="server"&gt;
+        &lt;div&gt;
+
+        &lt;br /&gt;
+
+    Current Logged in User&amp;#39;s AD Credentials for Groups beginning with 
+    ALG\ACOMP_USER OR ALGWEB\ACOMP_USER:&lt;br /&gt;&lt;br /&gt;
+
+    &lt;asp:Label ID="Credentials" runat="server"&gt;&lt;/asp:Label&gt;
+    &lt;br /&gt;
+    &lt;br /&gt;
+    Current Logged in User&amp;#39;s AD Credentials for ALL Groups:&lt;br /&gt;&lt;br /&gt;
+
+    &lt;asp:Label ID="AllCredentials" runat="server"&gt;&lt;/asp:Label&gt; 
+    &lt;br /&gt;
+    &lt;br /&gt;
+        &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+
+<p>Having users load this web application I was able to see what the user was seeing on their end and determined that users accessing the site remotely don't load their active directory group in IE under ALG\ACOMP_USER_COMPANY but only ALGWEB\ACOMP_USER_COMPANY and that's why some users were having problems. </p>

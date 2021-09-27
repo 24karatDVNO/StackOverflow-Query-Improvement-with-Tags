@@ -1,0 +1,36 @@
+<p>I implemented INavigationAware interface, and set the complex object in navigationContext.NavigationService.Region.Context in OnNavigatedFrom() method. Now in the next page, again I implemented INavigationAware interface and now I check for the same value in OnNavigatedTo() to get the value. </p>
+
+<p><strong>Update</strong>: I posted answer with code in another question. Mentioning it here for reference -</p>
+
+<p>First derive the viewmodel from INavigationAware interface -</p>
+
+<pre><code>public class MyViewModel : INavigationAware
+ { ...
+</code></pre>
+
+<p>You can then implement OnNavigatedFrom and set the object you want to pass as navigation context as follows -</p>
+
+<pre><code>void INavigationAware.OnNavigatedFrom(NavigationContext navigationContext)
+{
+     SharedData data = new SharedData();
+     ...
+     navigationContext.NavigationService.Region.Context = data;
+}
+</code></pre>
+
+<p>and when you want to receive the data, add the following piece of code in the second view model -</p>
+
+<pre><code>void INavigationAware.OnNavigatedTo(NavigationContext navigationContext)
+{
+    if (navigationContext.NavigationService.Region.Context != null)
+    {
+                if (navigationContext.NavigationService.Region.Context is SharedData)
+                {
+                    SharedData data = (SharedData)navigationContext.NavigationService.Region.Context;
+                    ...
+                }
+    }
+}
+</code></pre>
+
+<p>hope it helps you all!</p>

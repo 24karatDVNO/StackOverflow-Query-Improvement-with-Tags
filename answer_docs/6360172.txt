@@ -1,0 +1,25 @@
+<p>If I understand your question correctly, this is what might help you (from Ant FileSet documentation):</p>
+
+<pre><code>&lt;fileset dir="${server.src}" casesensitive="yes"&gt;
+  &lt;patternset id="non.test.sources"&gt;
+    &lt;include name="**/*.java"/&gt;
+    &lt;exclude name="**/*Test*"/&gt;
+  &lt;/patternset&gt;
+&lt;/fileset&gt;
+</code></pre>
+
+<p>You could adjust it for your needs this way:</p>
+
+<pre><code>&lt;path id="result.path"&gt;
+    &lt;fileset dir="first_dir" casesensitive="yes"&gt;
+      &lt;patternset id="sub.dirs"&gt;
+        &lt;include name="a"/&gt;
+        &lt;include name="b"/&gt;
+        &lt;include name="c"/&gt;
+      &lt;/patternset&gt;
+    &lt;/fileset&gt;
+    &lt;fileset dir="second_dir" casesensitive="yes"&gt;
+      &lt;patternset refid="sub.dirs" /&gt;
+    &lt;/fileset&gt;
+&lt;/path&gt;
+</code></pre>

@@ -1,0 +1,21 @@
+<p>since you only get ONE user's data, you can do this:</p>
+
+<h2><a href="http://jsfiddle.net/mplungjan/AfsCc/" rel="nofollow">DEMO HERE</a></h2>
+
+<pre><code>&lt;div id="input"&gt;
+    &lt;span&gt;Enter Twitter Username&lt;/span&gt;
+    &lt;input id="twitterUsername" type="text" /&gt;
+    &lt;button id="getTweets"&gt;Get Tweets&lt;/button&gt;
+&lt;/div&gt;
+&lt;ul id="klout"&gt;&lt;/ul&gt;
+
+$( "#getTweets" ).bind( "click", function() {
+    var twitterUsername = $( "#twitterUsername" ).val();   
+     var url = "http://api.klout.com/1/soi/influenced_by.json?key=7zcwhzhdp4w45q9fdqw9gqsc" + "&amp;users=" +  twitterUsername + "&amp;callback=?";
+    $.getJSON( url, function( data ) {
+        $.each(data.users[0].influencers,function(j, influenser) { // array
+  $("#klout").append('&lt;li&gt;'+influenser.twitter_screen_name+':'+influenser.kscore+'&lt;/li&gt;');
+       });
+    });
+});
+</code></pre>

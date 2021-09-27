@@ -1,0 +1,14 @@
+<p>Add these to your Activity</p>
+
+<pre><code>protected void onResume() {
+    // Disables power-saving
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    super.onResume();
+}
+
+public void onBackPressed() {
+    // Enables power-saving
+    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    super.onBackPressed();
+}
+</code></pre>

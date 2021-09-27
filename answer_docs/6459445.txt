@@ -1,0 +1,3 @@
+<p>You're grouping on <code>ItemSent</code>, so <code>count(distinct ItemSent</code>) will return either 1 or 0.  After all, a new group will be created for each different value of <code>ItemSent</code>, and the <code>count()</code> will then be applied to that group.</p>
+
+<p>If you want to count items per <code>BillingLawyer</code>, group on <code>BillingLawyer</code> but not <code>ItemSent</code>.</p>

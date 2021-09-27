@@ -1,0 +1,16 @@
+<p>I found a solution! It's probably not the most elegant, but it works and maintains the same level of security as far as I can see.</p>
+
+<ul>
+<li>On login, store <strong>two</strong> cookies.
+<ol>
+<li>Secure cookie which contains session key</li>
+<li>Unsecured cookie which stores an 'authorized' state: <code>true</code> or <code>false</code></li>
+</ol></li>
+<li>On unsecured pages, check for the unsecured cookie.
+<ul>
+<li>If the unsecured cookie's value is <code>true</code>, <em>assume the user is authorized</em> and display links to the secure "My Account" page (<em>non-modal</em>).</li>
+<li>Once the user visits the "My Account" page via HTTPS, the secure cookie is checked. If everything's good, the page is displayed as normal. If the session key is nonexistent or doesn't validate, both cookies are deleted and the user is redirected to the homepage.</li>
+</ul></li>
+<li>On secure pages, the process remains the same — a check is run for the secure session key cookie.</li>
+<li>On logout, invalidate both cookies.</li>
+</ul>

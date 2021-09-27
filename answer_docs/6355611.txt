@@ -1,0 +1,5 @@
+<p>Use <code>loadRequest</code> instead for www.Google.com</p>
+
+<pre><code>NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"www.google.com"]];
+[webView loadRequest:request];
+</code></pre>

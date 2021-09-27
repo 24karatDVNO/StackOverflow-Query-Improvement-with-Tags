@@ -1,0 +1,6 @@
+<p>Okay, I found a few possibilities; but hopefully somebody else can come up with a better answer.</p>
+
+<ol>
+<li><p>Use a macro to create the extern, since the # token could grab the name it should be easy enough to get this string to the template.</p></li>
+<li><p>If I truly don't care about the thrown string I can do <code>typeid(T*)</code> since that apparently doesn't need the type.</p></li>
+</ol>

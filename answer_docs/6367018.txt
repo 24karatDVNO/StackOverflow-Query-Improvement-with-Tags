@@ -1,0 +1,20 @@
+<p>For a good overview of what a GUID is, check out our good friend <a href="http://en.wikipedia.org/wiki/GUID" rel="nofollow">Wikipedia: GUID</a>.</p>
+
+<blockquote>
+  <p>and is it really unique  </p>
+</blockquote>
+
+<p>GUIDs generated from the same machine are virtually guaranteed to be unique. You have an infinitesimally small chance of generating the same one twice on the same machine. Arguably you have a tiny chance of generating two GUIDs the same out in the wider world, but that chance is still small and the chances of those two GUIDs ever meeting are also pretty small. In fact you probably have a greater chance of the Large Hadron Collider generating a black hole that swallows the Earth than you would having two identical GUIDs meeting somewhere on a network.</p>
+
+<p>Because of this, some people like to use it as the primary key for database tables. Personally i don't like to do this because:</p>
+
+<ul>
+<li>an auto-incrementing integer gives me enough uniqueness to be able to use it as a primary key</li>
+<li>GUIDs are a massive PITA to deal with when you are writing SQL queries.</li>
+</ul>
+
+<blockquote>
+  <p>Wiki said it used to make class,interface uniquely identifier  </p>
+</blockquote>
+
+<p>If you need an identifier that is unique across several disparate areas (like hives in a registry), then GUIDs are a good solution. In this particular case they are being used to identify a type. A concrete instance could also internally use a GUID  identifier, but this is really only useful for data objects.</p>

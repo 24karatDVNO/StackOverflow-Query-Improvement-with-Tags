@@ -1,0 +1,19 @@
+<p>In my fetch/fetchAll database functions, I forgot to update the query with the new column.</p>
+
+<p>For example, before i added the new column, my fetchAll code looked like:</p>
+
+<pre><code>public Cursor fetchAll() {
+    return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DATE,
+            KEY_PAYEE, KEY_AMOUNT, KEY_CATEGORY, KEY_MEMO, KEY_TAG}, 
+            null, null, null, null, KEY_DATE + " desc");
+}
+</code></pre>
+
+<p>After adding the new column to the database, my fetchAll function looks like:</p>
+
+<pre><code>public Cursor fetchAll() {
+    return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DATE, 
+            KEY_CHECKNUM, KEY_PAYEE, KEY_AMOUNT, KEY_CATEGORY, KEY_MEMO, KEY_TAG}, 
+            null, null, null, null, KEY_DATE + " desc");
+}
+</code></pre>

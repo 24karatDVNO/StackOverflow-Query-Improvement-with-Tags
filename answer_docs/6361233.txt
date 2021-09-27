@@ -1,0 +1,22 @@
+<p>You need to change these two statements</p>
+
+<pre><code>if (enoughTreats = true) 
+
+else if (enoughTreats = false)
+</code></pre>
+
+<p>into </p>
+
+<pre><code>if (enoughTreats == true) 
+
+else if (enoughTreats == false)
+</code></pre>
+
+<p>You could also shorten the code and get the exact same effect by simply typing this below:</p>
+
+<pre><code>if (enoughTreats)
+
+else
+</code></pre>
+
+<p>If you put a boolean variable inside of the parenthesis of an if statement by itself, the if statement will check to see if it's true, thus you wouldn't need to type '== true.'  You could also replace the else if statement in your code with a simple 'else' because if the enoughTreats variable is not equal to true, the else code will automatically execute without you having to specifically state a condition.</p>

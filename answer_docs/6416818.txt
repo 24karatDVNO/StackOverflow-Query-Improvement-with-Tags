@@ -1,0 +1,31 @@
+<p>My C++ is rusty, so let me give you a C# example. Any number of nested loops can be replaced with just one, as follows:</p>
+
+<pre><code>    public void ManyNestedLoopsTest()
+    {
+        var limits = new[] {2, 3, 4};
+        var permutation = new[] {1, 1, 0};
+        const int lastDigit = 2;
+        var digitToChange = lastDigit;
+        while(digitToChange &gt;= 0)
+        {
+            if (permutation[digitToChange] &lt; limits[digitToChange])
+            {
+                permutation[digitToChange]++;
+                digitToChange = lastDigit;
+                PrintPermutation(permutation);
+                continue;
+            }
+            permutation[digitToChange--] = 1;
+        }
+    }
+
+    private void PrintPermutation(int[] permutation)
+    {
+        for(int i=0;i&lt;3;i++)
+        {
+            Console.Write(permutation[i]);
+            Console.Write(" ");
+        }
+        Console.WriteLine(" ");
+    }
+</code></pre>

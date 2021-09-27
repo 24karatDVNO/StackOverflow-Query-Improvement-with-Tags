@@ -1,0 +1,11 @@
+<p>Most probably you are using Self Tracking entities in combination with WCF. Then it's not needed to enable the changetracking manually. this is already done for you. The T4 template that generates the STE's includes a method decorated with the [OnDeserialized] attribute which starts the tracking once entities are deserialized (which occurs normally after reaching the client and converted back into runtime class instances fromout the xml that WCF generated for the transport. See the exact code example:</p>
+
+<pre><code>    [OnDeserialized]
+    public void OnDeserializedMethod(StreamingContext context)
+    {
+        IsDeserializing = false;
+        ChangeTracker.ChangeTrackingEnabled = true;
+    }
+</code></pre>
+
+<p>Search your entities or the T4 template and you will find this soon.</p>

@@ -1,0 +1,10 @@
+<p>Did you know that the Apple docs recommend using a delegate with a ModalViewController? If you're still having trouble a different approach like this might help:</p>
+
+<p>Basically, you define a delegate property for the view controller that's being presented modally (i.e photoGalleryViewController) and set it to the parent view controller when you create photoGalleryViewController and present it modally.  In dismiss{}, you would use the delegate(parent) to call a method that handles dismissModalViewController.</p>
+
+<p>It requires setting up a protocol for photoGalleryViewController and adding the protocol and the delegate method to the parent view controller's definition, but those extra steps aren't much effort and the better design would probably payoff in the long run.</p>
+
+<p>Apple Doc - View Controller Programmers Guide <a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/ModalViewControllers/ModalViewControllers.html#//apple_ref/doc/uid/TP40007457-CH111-SW14" rel="nofollow noreferrer">http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/ModalViewControllers/ModalViewControllers.html#//apple_ref/doc/uid/TP40007457-CH111-SW14</a></p>
+
+<p>advice on setting modal view controllers using delegates:
+<a href="https://stackoverflow.com/questions/3304790/present-modal-view-controller">present modal view controller</a></p>

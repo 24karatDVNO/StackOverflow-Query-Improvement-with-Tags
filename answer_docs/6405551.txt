@@ -1,0 +1,12 @@
+<p><strong>There is no right answer into that.</strong> 
+If the pointer returned by the member function (or method if we are using java lingo) is pointing into an <strong>object allocated in the stack</strong>, your program will crash if use the keyword delete on it. </p>
+
+<p>Should the <strong>caller or the callee</strong> be responsible for memory management if you are using the <strong>free storage</strong>? If another person calls the member function, Now you have a <strong>dangling pointer</strong>. And what about if the callee is using <strong>RAII</strong>?</p>
+
+<p>Since you are learning (kudos for that) , try to learn the basics of memory management first. Once you have a basic understanding of memory, you will be more comfortable with C++ and memory management.</p>
+
+<p>If you are doing production code, and you have to do it in C++. The safest way to avoid all these issues is to use dynamic memory allocation only when you need to, until you have a better understanding of it. In my opinion, even when you have a good understanding of dynamic memory allocation,  you should have a good reason why you are using it.</p>
+
+<p>Good luck,</p>
+
+<p>Armando.</p>

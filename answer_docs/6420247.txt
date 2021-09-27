@@ -1,0 +1,19 @@
+<p>It sounds like IIS is recycling your service.  Keep this in mind (excerpted from Internet <a href="http://msdn.microsoft.com/en-us/library/aa751802.aspx" rel="nofollow">Information Services Hosting Best Practices</a>):</p>
+
+<blockquote>
+  <p>The IIS hosting environment is
+  optimized for services that do not
+  maintain local state in memory. IIS
+  recycles the host process in response
+  to a variety of external and internal
+  events, causing any volatile state
+  stored exclusively in memory to be
+  lost. Services hosted in IIS should
+  store their state external to the
+  process (for example, in a database)
+  or in an in-memory cache that can
+  easily be re-created if an application
+  recycle event occurs.</p>
+</blockquote>
+
+<p>While it is possible to disable recycling, if you you need to be IIS-hosted and you care about state, you should probably put it in a durable location.</p>

@@ -1,0 +1,8 @@
+<p>remove this line:</p>
+
+<pre><code>header("Location:form_data.php");
+</code></pre>
+
+<p>the line would redirect to form_data.php. but your are in the form_data file => redirect loop</p>
+
+<p>and i would not save a password as a cookie. it's really easy to steal those password</p>

@@ -1,0 +1,18 @@
+<p>If I understand you want to assert that a property of some objects in a list isn't equals at something....
+if you can user the commons collection ( <a href="http://commons.apache.org/collections/" rel="nofollow">http://commons.apache.org/collections/</a> ) you can use the interface <strong>org.apache.commons.collections.Predicate</strong> to search in a list (using the method <em>org.apache.commons.collections.CollectionUtils.find(List, Predicate)</em></p>
+
+<p>you can make somenthing like</p>
+
+<pre>
+Predicate p = new Predicate(){
+    /*
+     * Test if the object has the value that you don't want
+     */
+    public boolean evaluate(java.lang.Object object){
+         YourObject yo = (YourObject) object;
+         return yo.getProperty().equals(theValue);
+    }
+}
+//if is return null means that nothing was found
+assertNull(CollectionUtils.find(yourList, p));
+</pre>

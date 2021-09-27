@@ -1,0 +1,7 @@
+<p>Here was my initial attempt:</p>
+
+<pre><code>tag_id = 123
+Annotation.joins("JOIN #{AnnotationTag.table_name} on #{AnnotationTag.table_name}.annotation_id =  #{Annotation.table_name}.id and #{AnnotationTag.table_name}.tag_id = #{tag_id}").scoped
+</code></pre>
+
+<p>@Cameron's is a much cleaner solution, but did require my join table class name to be changed to AnnotationsTags (note the plural).</p>

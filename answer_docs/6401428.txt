@@ -1,0 +1,7 @@
+<p>Try something like:</p>
+
+<pre><code>&lt;asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='&lt;%# Eval("Url") %&gt;'
+    Visible='Eval("Title") = "My Sample Page" ? this.IsAdmin.ToString() : "True"' &gt;
+    &lt;%# Eval("Title") %&gt;
+&lt;/asp:HyperLink&gt;
+</code></pre>

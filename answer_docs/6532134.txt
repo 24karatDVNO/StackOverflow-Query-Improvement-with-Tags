@@ -1,0 +1,7 @@
+<p>If you want <code>g[0]</code> to be a bound method too, do:</p>
+
+<pre><code>class A(object):
+  f = lambda x,y: (x + y)
+  _ = lambda x,y: (x + y)
+  g = [_]
+</code></pre>

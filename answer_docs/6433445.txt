@@ -1,0 +1,10 @@
+<p>It is fine to expose individual <code>static</code> members from a class.</p>
+
+<p>Check these MSDN links for details:</p>
+
+<ul>
+<li><p><a href="http://msdn.microsoft.com/en-us/library/98f28cdx.aspx" rel="nofollow"><code>static</code> (C# Reference)</a></p></li>
+<li><p><a href="http://msdn.microsoft.com/en-us/library/79b3xss3%28v=vs.80%29.aspx" rel="nofollow">Static Classes and Static Class Members</a></p></li>
+</ul>
+
+<p>Note that if you mark the class itself as <code>static</code> then you can no longer instantiate it and use multiple copies referenced throughout your application - you restrict it to a one-stop shop, so to speak.</p>

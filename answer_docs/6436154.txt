@@ -1,0 +1,5 @@
+<p>Obviously the 'utility-domain' resolved (as otherwise curl would fail differently) but the curl error explains that there was no TCP server listening to port 80 on the IP that curl tried to connect to. You can easily verify this by checking which IP curl decided to use and then you can try telnetting to that IP + port instead of using curl.</p>
+
+<p>This problem can be due to many reasons but possibly your Apache is not configured to listen on 127.0.0.1 (or "any" or whatever) so you have to make sure to reach correct IP. Or you have to modify your server config.</p>
+
+<p>In some configurations, the IP of a host internally is not the same as the IP shown externally and that can also make things a bit tricky when you try to access your site without going through the external means.</p>

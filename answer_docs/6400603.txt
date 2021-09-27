@@ -1,0 +1,18 @@
+<p>This behaviour is seen ONLY when <code>expire_url</code> function is called when <code>s3_host_alias</code> is set. I monkey patched the gem to get around the issue.</p>
+
+<p>Added the patch in <code>config\initializers\paperclip.rb</code></p>
+
+<pre><code>module Paperclip::Storage::S3
+  def bucket_name_with_s3_host_alias
+    s3_host_alias || bucket_name_without_s3_host_alias
+  end
+  alias_method_chain :bucket_name, :s3_host_alias
+
+  def expiring_url_with_s3_host_alias
+    result = expiring_url_without_s3_host_alias
+    s3_host_alias.present? ? 
+      result.gsub(/(\/s3.amazonaws.com)|(\.s3.amazonaws.com)/, '') : result
+  end
+  alias_method_chain :expiring_url, :s3_host_alias
+end
+</code></pre>

@@ -1,0 +1,9 @@
+<p>you could group requests &amp; split them specific to a set of data &amp; have a single (or a group of servers) process that, here you can have the data available in the cache to improve performance.</p>
+
+<p>e.g.,</p>
+
+<p>say, employee &amp; availability data are handled using 10 tables, these can be handled b a small group of server (s) when you configure hibernate cache to load &amp; handle requests.</p>
+
+<p>for this to work you need a load balancer (which balances load by business scenario).</p>
+
+<p>not sure how much of it can be implemented here.</p>

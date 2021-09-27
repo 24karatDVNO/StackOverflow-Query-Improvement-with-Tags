@@ -1,0 +1,10 @@
+<p>Try this for size:</p>
+
+<pre><code>$filename = "C:\\wamp\\www\\projects\\cog.png";
+$handle = fopen($filename, "rb");
+$binContents = fread($handle, filesize($filename));
+fclose($handle);
+
+$hexContents = bin2hex($binContents);
+echo $hexContents;
+</code></pre>

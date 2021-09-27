@@ -1,0 +1,15 @@
+<p>I found the solution! The halo theme was not included in the compilation line!</p>
+
+<p>So I added it and launched that command:</p>
+
+<pre><code>mxmlc +configname=air -compiler.library-path+=..\..\my_project\libs\,
+  ..\..\Modeles\libs,..\..\Service\libs,..\..\sflexlib\libs
+  -define+=CONFIG::appMode,"'staging'" -theme+="%FLEX45_FRAMEWORK%"\themes\Halo\halo.swc
+  ..\..\my_project\src\my_project.mxml -o my_project.swf
+</code></pre>
+
+<p><code>%FLEX45_FRAMEWORK%</code> is the <code>FLEX_4.5_PATH\frameworks</code> directory</p>
+
+<p>I found the solution when I got an error by changing Embed to url() in the css file. Before that it was only a warning! =)</p>
+
+<p>Thank you guys!</p>

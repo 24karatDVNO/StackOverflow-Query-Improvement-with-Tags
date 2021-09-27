@@ -1,0 +1,25 @@
+<p>The only time a <code>class</code> should be private or "hidden" is when it is an internal class. If you are attempting to keep others from taking advantage of your classes resources, you can leave the modifier off (private, public, protected), which will make the class package protected (the default when no modifier is present).</p>
+
+<p>For example, this class can only be seen by classes in the same package:</p>
+
+<pre><code>package com.test;
+
+class Test {
+
+}
+</code></pre>
+
+<p>Where as this class would be accessible outside of the package:</p>
+
+<pre><code>package com.test;
+
+public class Test {
+
+}
+</code></pre>
+
+<p>However, in this scenario, another person could use the package name <strong>com.test</strong> and could use your class.</p>
+
+<p>If you want to have tight control over how classes are used, you can mark them as <code>public final</code>. This will make it so that your class cannot be extended. Then you can make the constructor private so that the class cannot be instantiated. If you do this, you will likely want <code>static</code> methods that return new objects of the class you are dealing with.</p>
+
+<p>If you intend on distributing the jar, you will just have to deal with this. But there are plenty of options (as explained above) that will help you create a useful library of code.</p>

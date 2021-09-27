@@ -1,0 +1,13 @@
+<p>Not sure I get your question completely, but I think this might be what your looking for:</p>
+
+<pre><code>RewriteCond %{REQUEST_URI} ^(.*)$
+RewriteCond %{REMOTE_ADDR} !^95\.126\.000\.MYIP$
+RewriteRule $ http://www.tempraldomain.com [R=302,L]
+
+
+RewriteCond %{REMOTE_ADDR} ^95\.126\.000\.MYIP$
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</code></pre>

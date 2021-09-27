@@ -1,0 +1,75 @@
+<p>In your own PayPal account, you should have specified a script PayPal will contact upon confirmation of the transaction. That same page should open another connection with PayPal again, to confirm that the source is valid. From the first request, you should receive all of the information you would need.</p>
+
+<p>Here is the code that I use:</p>
+
+<pre><code>//posts transaction data using fsockopen.
+function fsockPost($url,$data) {
+
+    //Parse url
+    $web=parse_url($url);
+
+    //build post string
+    foreach($data as $i=&gt;$v) {
+
+        $postdata.= $i . "=" . urlencode($v) . "&amp;";
+
+    }
+    $postdata.="cmd=_notify-validate";
+
+    //Set the port number
+    if($web[scheme] == "https") {
+
+        $web[port]="443";
+        $ssl="ssl://";
+
+    } else {
+
+        $web[port]="80";
+
+    }
+
+    //Create paypal connection
+    $fp=@fsockopen($ssl . $web[host],$web[port],$errnum,$errstr,30);
+
+//Error checking
+    if(!$fp) {
+
+        echo "$errnum: $errstr";
+
+    } else { //Post Data
+
+        fputs($fp, "POST $web[path] HTTP/1.1\r\n");
+        fputs($fp, "Host: $web[host]\r\n");
+        fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n");
+        fputs($fp, "Content-length: ".strlen($postdata)."\r\n");
+        fputs($fp, "Connection: close\r\n\r\n");
+        fputs($fp, $postdata . "\r\n\r\n");
+
+        //loop through the response from the server
+        while(!feof($fp)) {
+
+            $info[]=@fgets($fp, 1024);
+
+        }
+
+        //close fp - we are done with it
+        fclose($fp);
+
+        //break up results into a string
+        $info=implode(",",$info);
+
+    }
+
+    return $info;
+
+}
+
+$result=fsockPost("http://www.paypal.com/cgi-bin/webscr", $_POST);
+</code></pre>
+
+<p>The $result variable (bottom) is filled with the response text (which serves as a verification that it is from PayPal). The POST values that come from the first call of this scrip (which should be from PayPal) should contain all of the information you need. Here is a sample dump of that ($postdata) (details have been altered...duh):</p>
+
+<pre><code>mc_gross=15.00&amp;protection_eligibility=Ineligible&amp;address_status=confirmed&amp;payer_id=123456789T4JL&amp;tax=0.00&amp;address_street=23+23rd+Ave&amp;payment_date=39%3A42%3A34+Feb+23%2C+2011+PST&amp;payment_status=Completed&amp;charset=windows-1252&amp;address_zip=12345&amp;first_name=John&amp;mc_fee=0.81&amp;address_country_code=US&amp;address_name=John+Doe&amp;notify_version=3.0&amp;custom=&amp;payer_status=verified&amp;business=yourbusiness.com&amp;address_country=United+States&amp;address_city=NYC&amp;quantity=1&amp;verify_sign=AShYUCI1AJfCySIHj5coaxvlUU.RAHLmp.bWuPpa4vyNvWgV9qowpF3f&amp;payer_email=payer_mail%40gmail.com&amp;txn_id=48661819D0514811P&amp;payment_type=instant&amp;last_name=Doe&amp;address_state=NY&amp;receiver_email=your%40mail.com&amp;payment_fee=0.81&amp;receiver_id=RVBKNFXM3HCQL&amp;txn_type=web_accept&amp;item_name=Donation+-+23j&amp;mc_currency=USD&amp;item_number=d565ef66e70&amp;residence_country=US&amp;handling_amount=0.00&amp;transaction_subject=Donation+-+23j&amp;payment_gross=15.00&amp;shipping=0.00&amp;cmd=_notify-validate
+</code></pre>
+
+<p>Let me know if that helped.</p>

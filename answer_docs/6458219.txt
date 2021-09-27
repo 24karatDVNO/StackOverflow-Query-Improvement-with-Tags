@@ -1,0 +1,80 @@
+<p>Mirod's answer is awesome. This being Perl, I'll throw another approach out there.</p>
+
+<p>Let's assume you have the HTML file in <code>input.html</code>. Here's a Perl program which uses the <code>HTML::TreeBuilder</code> module to extract the text:</p>
+
+<pre><code>#!/usr/bin/perl
+
+use 5.10.0 ;
+use strict ;
+use warnings ;
+
+use HTML::TreeBuilder ;
+
+my $tree = HTML::TreeBuilder -&gt; new () ;
+
+$tree -&gt; parse_file ( 'input.html' ) ;
+
+my $text = ($tree -&gt; address ( '0.1.0.2.0.0.0.1' ) -&gt; content_list ()) [0] ;
+
+say $text ;
+</code></pre>
+
+<p>Running it:</p>
+
+<pre><code>/tmp/tmp $ ./_extract-a.pl 
+XYZ 81.6 (-0.1)�
+</code></pre>
+
+<p>So how did I come up with that '0.1.0.2.0.0.0.1' magic number? Each node in the tree that results from parsing the HTML file has an "address". The text that you are interested has the address '0.1.0.2.0.0.0.1'.</p>
+
+<p>So, how do you display the node addresses? Here's a little program I call <code>treebuilder-dump</code>; when you pass it an HTML file, it displays it with the nodes labeled:</p>
+
+<pre><code>#!/usr/bin/perl
+
+use 5.10.0 ;
+use strict ;
+use warnings ;
+
+use HTML::TreeBuilder ;
+
+my $tree = HTML::TreeBuilder-&gt;new ;
+
+if ( ! @ARGV == 1 ) { die "No file provided" ; }
+
+if ( ! -f $ARGV[0] ) { die "File does not exist: $ARGV[0]" ; }
+
+$tree-&gt;parse_file ( $ARGV[0] ) ;
+
+$tree-&gt;dump () ;
+
+$tree-&gt;delete () ;
+</code></pre>
+
+<p>So for example, here's the output when run on your HTML snippet:</p>
+
+<pre><code>&lt;html&gt; @0 (IMPLICIT)
+  &lt;head&gt; @0.0 (IMPLICIT)
+  &lt;body&gt; @0.1 (IMPLICIT)
+    &lt;table border="0" width="100%"&gt; @0.1.0
+      &lt;caption valign="top"&gt; @0.1.0.0
+        &lt;p class="InfoContent"&gt; @0.1.0.0.0
+          &lt;b&gt; @0.1.0.0.0.0
+            &lt;br /&gt; @0.1.0.0.0.0.0
+      &lt;tr&gt; @0.1.0.1
+        &lt;td colspan="3"&gt; @0.1.0.1.0
+          &lt;p class="InfoContent"&gt; @0.1.0.1.0.0
+            &lt;b&gt; @0.1.0.1.0.0.0
+              "ABC"
+      &lt;tr&gt; @0.1.0.2
+        &lt;td height="61" valign="top" width="31%"&gt; @0.1.0.2.0
+          &lt;p class="InfoContent"&gt; @0.1.0.2.0.0
+            &lt;b&gt; @0.1.0.2.0.0.0
+              " "
+              &lt;font color="#0000FF"&gt; @0.1.0.2.0.0.0.1
+                "XYZ 81.6 (-0.1)�"
+                &lt;br /&gt; @0.1.0.2.0.0.0.1.1
+                "22/06/2011"
+              " "
+</code></pre>
+
+<p>You can see that the text you're interested in is located within the <code>font color</code> node which has address <code>0.1.0.2.0.0.0.1</code>.</p>

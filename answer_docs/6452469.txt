@@ -1,0 +1,19 @@
+<p>One technique I've used to address this issue is is to define an enum-typed interface, so you can "join" a particular enum with a class, then define that enum with the subclass, like this:</p>
+
+<pre><code>public interface MySuper&lt;T extends Enum&lt;T&gt;&gt; {
+    void someMethod(T someEnum);
+}
+
+public class MySubClass implements MySuper&lt;MyEnum&gt; {
+
+    public static enum MyEnum {
+        ONE, TWO, THREE
+    }
+
+    void someMethod(MyEnum myEnum) {
+        // do something
+    }
+}
+</code></pre>
+
+<p>Oddly, you have to <code>import static mypackage.MySubClass.MyEnum;</code></p>

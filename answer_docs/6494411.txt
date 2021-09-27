@@ -1,0 +1,7 @@
+<p>add to your view:</p>
+
+<pre><code>try:
+    last_note = client.note_set.latest("datetime")
+except DoesNotExist:
+    last_note = None
+</code></pre>

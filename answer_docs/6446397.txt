@@ -1,0 +1,22 @@
+<p>Maybe you want something like this:</p>
+
+<pre><code>SELECT `bus_id` FROM `tbl_works_categories` WHERE `category_id` = *some id from the search* 
+        AND `category_id` = *some other id from the search*;
+</code></pre>
+
+<p>Although you'd need those ids- there are a few ways to do this, I'll describe probably the most straight forward...</p>
+
+<p>You get categories from $_POST, so let's just say you have 2 of them entered. (Food, and take-away). Parse these however you want, there are multiple ways, but the point is they're coming from $_POST.</p>
+
+<p>execute this sort of thing for each one you find:</p>
+
+<pre><code>SELECT `category_id` FROM `categories` WHERE `category_name` LIKE '%*the name from $_POST*%';
+</code></pre>
+
+<p>Store these results in an array...based on how many you have there you can build an applicable query similar to the one I describe first. (Keep in mind you don't need and AND there, that's something you have to detect if you return > 1 category_id from the second query here)</p>
+
+<p>I'm not going over things like security..always be careful when executing queries that contain user submitted data.</p>
+
+<p>An alternate solution might involve a join, not too sure what that'd look like off the top of my head.</p>
+
+<p>Good luck.</p>

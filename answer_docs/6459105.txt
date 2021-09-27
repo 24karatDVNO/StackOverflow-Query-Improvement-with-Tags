@@ -1,0 +1,3 @@
+<p>You can implement behavior similar to the (simplified) behavior of Hibernate session cache. Your memory representation can keep a "dirty" flag that would indicate which objects need to be updated in the database and which - deleted. Depending on the algorithm you use to allocate ids (application-centric vs. database-centric) you can identify objects that were added by a special value (say, 0) or by keeping this information in the dirty flag.</p>
+
+<p>One more potential enhancement, is to consider eager (read all records at once) vs. lazy (read records as needed) loading of your cache.</p>

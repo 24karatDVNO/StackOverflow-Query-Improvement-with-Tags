@@ -1,0 +1,1 @@
+<p>How are you identifying the user object that you check the last call on? Are you using a LINQ Single call? if so this will throw an exception if the user is not found and so the server will abort authentication at that point rather than with the SecurityTokenValidationException which I think would give you the behavior you are seeing</p>

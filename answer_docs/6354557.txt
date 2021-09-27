@@ -1,0 +1,13 @@
+<p>As you can see in thi<a href="http://jsfiddle.net/D42d5/" rel="nofollow">http://jsfiddle.net/D42d5/</a></p>
+
+<p>you can use the not selector so the selector could look something like:</p>
+
+<pre><code>    $("*:not(body)").hover(
+      function () {
+              $(this).addClass('hoverElem'); ;
+      },
+      function () {
+              $(this).removeClass('hoverElem');
+      }
+    );
+</code></pre>

@@ -1,0 +1,3 @@
+<p>Overloading is not possible in PHP but you can get around it to some extend with default parameter values as explained in other responses.</p>
+
+<p>The limit to this workaround is when one wants to overload a function/method according to the parameter types. This is not possible in PHP, one need to test the parameter types yourself, or write several functions. The functions min and max are a good example of this : if there is one parameter of array type it returns the min/max of the array, otherwise it returns the min/max of the parameters.</p>

@@ -1,0 +1,11 @@
+<p>If many lines <i>do not</i> contain an E-mail address, how about a quick pre-test before applying the RE:</p>
+
+<pre>if ( my $ix = index( $line, '@' ) &gt; 0 )
+{   #test E-mail address here
+    . . .
+    #and another wild idea you could try to cut down lengths of strings actually parsed:
+    my $maxLength = 100;     #maximum supported E-mail address length (up to the @)
+    if ( substr( $line, MAX( $ix - $maxLength, 0), $maxLength ) =~ /YourRE/ )
+}</pre>
+
+<p>(yes, &gt;   any line starting with a @ can not be an E-mail address)</p>

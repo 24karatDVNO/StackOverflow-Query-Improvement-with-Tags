@@ -1,0 +1,5 @@
+<p>Alternative inefficient approach: Store an array of width*height lists. Populate each list with the list of rectangles covering that pixel (or the "top" rectangle if you do some sort of overlap-handling). O(1) lookup!</p>
+
+<p>"Hacker's" approach: Divide the screen into squares of size h*h where h ~= (width+height)/sqrt(n). Populate each square as above. O(sqrt(n))-ish lookup.</p>
+
+<p>Neither is quite as good as a tree-based approach, but the tree might be painful to generate.</p>

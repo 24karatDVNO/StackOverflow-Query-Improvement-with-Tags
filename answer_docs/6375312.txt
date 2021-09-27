@@ -1,0 +1,13 @@
+<p>Did you make sure to add the inputBarCode activity to your AndroidManifiest? If you did not, then that will give a runtime error. If thats no the problem, then possibly changing </p>
+
+<pre><code>Intent doBarcode = new Intent(parent, inputBarcode.class);
+</code></pre>
+
+<p>to</p>
+
+<pre><code>Intent doBarcode = new Intent(this, inputBarcode.class);
+</code></pre>
+
+<p>will solve your problem. I'm not familiar with the parent variable being used.</p>
+
+<p>I hope that helps.</p>

@@ -1,0 +1,9 @@
+<p>You don't want a hash, since by hashes are one way. You want some kind of encryption. And unless you use asymmetric crypto your encryption will effectively be only an obfuscation since you put the key in a location where the user can access it.</p>
+
+<p>In your case you could first UTF8 encode the string to get an array of bytes. Then encrypt that array with AES which gives you another byte array. And finally encode that encrypted data using Base64 to get a human readable string.</p>
+
+<p>But since you need to embed the key into the client any moderately competent cracker will be able to write a keygen for your program.</p>
+
+<p>You could use asymmetric crypto to avoid the embedded key problem. But that leads to really long license keys. It prevents keygens, but not cracks.</p>
+
+<p>I recommend using third party software for your licensing stuff. Or perhaps just leave it out entirely since it will get cracked unless your software is so uninteresting that nobody bothers.</p>

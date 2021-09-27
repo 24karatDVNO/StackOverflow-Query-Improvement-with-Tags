@@ -1,0 +1,5 @@
+<pre><code>select * from xml where url in(  
+  'http://rss.news.yahoo.com/rss/us',  
+  'http://rss.news.yahoo.com/rss/world'  
+) and itemPath="//item" and content.type = 'image/jpeg'  
+</code></pre>

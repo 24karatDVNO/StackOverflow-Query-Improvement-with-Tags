@@ -1,0 +1,14 @@
+<p>Try this code</p>
+
+<pre><code>- (NSString *)likesCount {
+    if ([[facebook valueForKey:@"likes"] isEqualToString:@"(null)"] || [facebook valueForKey:@"likes"] == nil) {
+
+        return @"";
+    }
+    else {
+
+    return [facebook valueForKey:@"likes"];
+
+    }
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>The problem is that <code>%x</code> requires an <code>unsigned int *</code> to read the value in, but you have a <code>long *</code>. <code>&lt;stdint.h&gt;</code> header provides value types with fixed length, and <code>&lt;inttypes.h&gt;</code> defines corresponding macros for use with <code>printf</code>, <code>scanf</code>, and their derivatives. I think it'll be better for you to <code>fscanf</code> the data into an <code>int32_t</code> variable using the macro provided by <code>&lt;inttypes.h&gt;</code>:</p>
+
+<pre><code>#include &lt;inttypes.h&gt;
+
+...
+
+int32_t data_size;
+fscanf(fp, "%" SCNx32, &amp;data_size);
+</code></pre>

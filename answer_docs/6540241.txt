@@ -1,0 +1,6 @@
+<p>This isn't as good as Eric's solution, because it will group the entire enumeration, but this seems like the right way to use <code>Any</code> here. </p>
+
+<pre><code>var t = selectedDrivers
+    .GroupBy(item =&gt; item.Value)
+    .Any(group =&gt; group.Count() &gt; 1)
+</code></pre>

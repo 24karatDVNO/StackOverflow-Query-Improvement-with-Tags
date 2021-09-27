@@ -1,0 +1,9 @@
+<p>Looks like it's because of the "critters" dictionary. You should add "Values" property to your query. Try next:</p>
+
+<pre><code>static T GetAnimal&lt;T&gt;() where T : Animal
+  {
+     var qry = from animal in critters.Values.OfType&lt;T&gt;()
+               select animal;
+     return (qry.Count() &gt; 0) ? qry.First() : null;
+  }
+</code></pre>

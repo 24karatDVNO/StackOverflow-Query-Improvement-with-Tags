@@ -1,0 +1,12 @@
+<p>First of all, don't check with isset. Since $_POST is always generated you should be using !empty().</p>
+
+<p>Remove @'s before mysql_* commands, this makes your script slow and suppresses helpful errors.</p>
+
+<p>And you are having issues because you don't have table variable set, $table_name needs to be defined.</p>
+
+<p>If you are inserting questions to a table named 'questions' simply change your SQL to:</p>
+
+<pre><code>//Insert data into database
+$sql = "INSERT INTO `questions` (name, question)
+             VALUES ('$name', '$question')";
+</code></pre>

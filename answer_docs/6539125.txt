@@ -1,0 +1,11 @@
+<p>I don't believe there is an easy way to add vertical distance between tree header and first node.  It would be possible through making a customer <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/TreeItemRenderer.html" rel="nofollow">TreeItemRenderer</a> and just adding a gap at the top.</p>
+
+<p>To change the background color of a node when it is selected you can use</p>
+
+<pre><code>myTree.setStyle( "selectionColor", 0x0000FF );
+</code></pre>
+
+<p>or declared in the mxml as a property of the control</p>
+
+<pre><code>&lt;mx:Tree selectionColor="0x0000FF" /&gt;
+</code></pre>

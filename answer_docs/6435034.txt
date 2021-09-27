@@ -1,0 +1,12 @@
+<p>Same thing happened to me as was happening to Alun ap Rhisiart</p>
+
+<p>My problem was for the second line in this block...</p>
+
+<pre><code>def sign_in(user)
+  cookies.permanent.signed[:remember_token] = [user.id, user.salt]
+  self.current_user = user
+  logger.debug "sign_in(user) - #{self.current_user}"
+end
+</code></pre>
+
+<p>...I had accidentally put [user.id], [user.salt]</p>

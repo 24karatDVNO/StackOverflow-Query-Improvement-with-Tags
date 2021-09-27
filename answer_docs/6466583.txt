@@ -1,0 +1,11 @@
+<p>The solution is clear</p>
+
+<ol>
+<li>You can't use SET IDENTITY_INSERT without an IDENTITY column. </li>
+<li>Either you have an IDENTITY column or you don't</li>
+<li>If you don't, add an IDENTITY column</li>
+<li>If you don't want to add an IDENTITY column, then don't use SET IDENTITY_INSERT</li>
+<li>If you want to use SET IDENTITY_INSERT you need an IDENTITY column</li>
+</ol>
+
+<p>So go back to step 1 and repeat...</p>

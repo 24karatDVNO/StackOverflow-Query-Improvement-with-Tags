@@ -1,0 +1,32 @@
+<p>The diff command from the GNU diffutils packages provides an option to merge two different files by inserting <code>#ifdef</code> preprocessor instructions. For instance consider 2 files <code>f1</code> and <code>f2</code> (displayed side-by-side):</p>
+
+<pre><code>line 1     |   line 1
+line 2     |   line 2
+line 3a    |   line 3a
+line 4     |   line 4
+line 5a    |   line 5a
+</code></pre>
+
+<p>Calling <code>diff -D MARKER f1 f2</code> will produce this merged output:</p>
+
+<pre><code>line 1
+line 2
+#ifndef MARKER
+line 3a
+#else /* MARKER */
+line 3b
+#endif /* MARKER */
+line 4
+#ifndef MARKER
+line 5a
+#else /* MARKER */
+line 5c
+#endif /* MARKER */
+</code></pre>
+
+<p>You can strip the preprocessor instructions to get a clean merged file, e.g. by using <code>grep</code>:</p>
+
+<pre><code>diff -D MARKER f1 f2 | grep -v "MARKER"
+</code></pre>
+
+<p>Note that the token <code>MARKER</code> must not exist in the original input files, so you should better use something more special, e.g. a random token like <code>c11ced4751ef4b3aa60e512bdaa184210441b4ed0</code>.</p>

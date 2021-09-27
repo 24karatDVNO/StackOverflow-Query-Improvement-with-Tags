@@ -1,0 +1,47 @@
+<p>This should give you a way to call a subroutine the connects for you. You would pass in the parameters required.</p>
+
+<pre><code>Sub adocnnRoutine_SP(ByVal ReturnVal As String, ByVal cnnstr As String, ByVal CallVal   As Range, Optional CallHDR As Range)
+'ReturnValue is the string to send to SQL Such as "Select * from TableName where email    = 'username@email.com'"
+'CallVal places the results in that one cell as a starting point Such as Sheet2.Range("A2")
+'CallHDR is optional header placement point Such as Sheet2.Range("A1")
+
+
+Dim cn As ADODB.Connection, rs As ADODB.RECORDSET
+
+Set cn = New ADODB.Connection
+Set rs = New ADODB.RECORDSET
+
+On Error GoTo CleanUp
+cn.Open cnnstr
+rs.Open ReturnVal, cnnstr
+
+
+
+ If Not CallHDR Is Nothing Then
+
+ With CallHDR
+    For Each field In rs.Fields
+      .Offset(0, Offset).Value = field.Name
+      Offset = Offset + 1
+    Next field
+  End With
+
+ End If
+
+CallVal.CopyFromRecordset rs
+
+CleanUp:
+
+
+Debug.Print Err.Description
+
+cn.Close
+Set rs = Nothing
+Set cn = Nothing
+
+
+
+End Sub
+</code></pre>
+
+<p>And Then you can loop through your sheet1 emails as required.</p>

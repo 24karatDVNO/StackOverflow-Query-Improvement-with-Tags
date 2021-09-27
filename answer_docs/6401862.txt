@@ -1,0 +1,7 @@
+<p>You may explicitly read from the controlling terminal <code>/dev/tty</code>:</p>
+
+<pre><code>while IFS="" read -r line; do 
+   echo "hello $line"
+   read -p "Press any key" -n 1 &lt;/dev/tty
+done &lt; file
+</code></pre>

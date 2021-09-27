@@ -1,0 +1,11 @@
+<p>As Dan Ray pointed out, <code>NSUserDefaults</code> would be the easiest way to accomplish this. If you had a lot of data and wanted to keep it all together then you could write it to an XML file.</p>
+
+<p>Here is an example of using <code>NSUserDefaults</code>:</p>
+
+<pre><code>// Setting.
+NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+[standardUserDefaults setObject:myString forKey:@"MyKey"];
+
+// Retrieving that object.
+NSString* aString = (NSString*)[standardUserDefaults objectForKey:@"MyKey"];
+</code></pre>

@@ -1,0 +1,11 @@
+<p>how about somthing similar to this</p>
+
+<pre><code>//Bind this keypress function to all of the input tags
+$("input").keypress(function (evt) {
+//Deterime where our character code is coming from within the event
+var charCode = evt.charCode || evt.keyCode;
+if (IsNumeric(charCode)) { //key's keycode
+return false;
+}
+});
+</code></pre>

@@ -1,0 +1,19 @@
+<p>Quote and add_amp need to be global.</p>
+
+<pre><code>global $quote;
+global $add_amp;
+
+$quote = 49;
+$add_amp = 0;
+$con_array = "3,2,1";
+
+
+function calcAddAmp($mul)
+{
+    global $quote;
+    global $add_amp;
+
+    $add_amp = $add_amp + $mul*($quote);
+
+}
+</code></pre>

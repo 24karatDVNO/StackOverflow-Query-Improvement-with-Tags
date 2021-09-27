@@ -1,0 +1,15 @@
+<p>You can do that inside your geocode call</p>
+
+<pre><code>  geocoder.geocode( { 'address': 'CA, US'}, function(results, status) {
+   if (status == google.maps.GeocoderStatus.OK) {
+     location = results[0].geometry.location;
+   alert(location)
+    } 
+  });
+</code></pre>
+
+<p>This will show the latitude and longitude of the address.</p>
+
+<blockquote>
+  <p>(lat,lng)</p>
+</blockquote>

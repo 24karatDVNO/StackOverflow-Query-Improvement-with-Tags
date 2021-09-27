@@ -1,0 +1,6 @@
+<p>Check <a href="http://android-developers.blogspot.com/2011/06/deep-dive-into-location.html" rel="nofollow">this post</a>. This should help you understand how to use location better.</p>
+
+<p>For stopping the location after <strong>30 seconds</strong> you may start a timer and stop the <code>LocationService</code> after that time by calling</p>
+
+<pre><code> locationManager.stopUpdates(LocationListener).
+</code></pre>

@@ -1,0 +1,3 @@
+<p><a href="https://stackoverflow.com/questions/4620906/how-do-i-know-when-ive-stopped-scrolling-javascript">This question</a> offers one solution.</p>
+
+<p>Another way to do this, rather than a timer, is to simply set a flag that indicates that an ajax request is already running, and to do nothing until the flag is cleared by the original request. You could also set a timer after the flag is cleared, if you wanted the ajax requests to not happen any more often than some arbitrary frequency (e.g. no more often than every 5 seconds).</p>

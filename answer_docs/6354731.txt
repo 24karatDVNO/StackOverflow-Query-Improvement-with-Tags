@@ -1,0 +1,6 @@
+<p>I think it's possible. This is just an error with PHPStorm. The cast is correct, but you're missing a <code>)</code> </p>
+
+<pre><code>$MyObject = (MyObject)(&lt;-- unclosed Doctrine::getTable('MyTable')-&gt;findOneById($id));
+</code></pre>
+
+<p>Which could be the cause of the error if it's not just a mistype posting the question to Stackoverflow.</p>

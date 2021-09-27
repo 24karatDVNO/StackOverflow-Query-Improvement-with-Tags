@@ -1,0 +1,22 @@
+<p>You can use the following sample method too:</p>
+
+<pre><code>data = [[1, 1,2],[12,4],[6]]
+
+def m_array_index(arr, searchItem):
+    for i,x in enumerate(a):
+        for j,y in enumerate(x):
+            if y == searchItem:
+                return i,j
+    return -1,-1#not found
+
+print m_array_index(data, 6)
+</code></pre>
+
+<p>Or with all occurrences(sure code could be optimized - modified to work with generators and so on - but here is just a sample):</p>
+
+<pre><code>occurrences = lambda arr, val: tuple((i,j) for i,x in enumerate(arr) for j,y in enumerate(x) if y == val) or ((-1,-1))
+
+print occurrences(data, 1) # ((0, 0), (0, 1))
+print occurrences(data, 12) # ((1, 0),)
+print occurrences(data, 11) # (-1, -1)
+</code></pre>

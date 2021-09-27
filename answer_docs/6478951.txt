@@ -1,0 +1,36 @@
+<p>I have a generic function for you to calculate the nth day of a month. Hope this could help you to resolve your issue.</p>
+
+<pre><code>function get_Nth_dow($dow, $occurence, $m, $y)
+{
+    $numdays = date('t', mktime(0, 0, 0, $m, 1, $y));
+    $add = 7 * ($occurence - 1);
+    $firstdow = date('w', mktime(0, 0, 0, $m, 1, $y));
+    $diff = $firstdow - $dow;
+
+    $day_of_month = 1;
+    if ($diff &gt; 0)
+    {
+        $day_of_month += ($add - $diff);
+    }
+    elseif ($diff &lt; $numdays)
+    {
+        $day_of_month -= ($diff - $add);
+    }
+
+    return $day_of_month;
+}
+</code></pre>
+
+<p><code>$DOW</code> = day of the week (0 = Sunday, 6 = Saturday).</p>
+
+<p><code>$X</code> = occurence (1 = first, 2 = third, etc..). If the given month does </p>
+
+<p>not have the occurrence, then it will return the last. For example, if </p>
+
+<p>you ask for the 7th occurrence of Friday, it will return the last </p>
+
+<p>Friday of the month.
+<code>$M</code> = month
+<code>$Y</code> = year</p>
+
+<p>Example, <code>get_Nth_DOW(2,3,7,2009)</code> will return the third Tuesday of  7th 2009.</p>

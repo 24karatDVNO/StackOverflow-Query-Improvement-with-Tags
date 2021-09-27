@@ -1,0 +1,5 @@
+<p>In case each java thread is mapped to a lwp in the OS you are using, all the threads that JVM creates by default are children of the parent process which starts the java process itself. So, there is no parent within the java process for garbage collection thread. So, threads like garbage collection thread, finalizer and reference handler thread are all children of parent process of java process along with the main thread.</p>
+
+<p>You can look at the output of <code>ps -elL</code> on a Solaris machine to confirm this.</p>
+
+<p>I think this answers your question. Please revert back if not.</p>

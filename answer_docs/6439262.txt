@@ -1,0 +1,14 @@
+<p>In java there are only two data types - objects (everything that extends class Object) and primitives (int, byte, char and so on). Also, every primitive have its object sibling - for example int and java.lang.Integer</p>
+
+<p>Technically, array can contain only objects.</p>
+
+<p>But in java 5.0 it's possible to skip primitive-to-object conversion thanks to 'autoboxing' functions - basically it's replacing each call like 
+<br><code>
+int myInt = 0;
+array[0] = myInt;<br></code>
+with
+<code><br>
+array[0] = new Integer(myInt);
+</code></p>
+
+<p>This replacement is done automatically, however internally (in runtime) java machine will have array with objects (Integer), not with primitives (int), and this can affect performance of array operations.</p>

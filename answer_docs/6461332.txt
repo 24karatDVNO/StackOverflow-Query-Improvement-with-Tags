@@ -1,0 +1,1 @@
+<p>"PXSourceList solution" working good. You subclass <code>NSOutlineView</code> and overload <code>frameOfCellAtColumn</code> for this particular task. At this function you need to decrease width of <code>cellFrame</code>, returned from <code>super</code> call, by the width of your badge plus padding.</p>

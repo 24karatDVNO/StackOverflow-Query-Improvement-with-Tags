@@ -1,0 +1,14 @@
+<pre><code>    SELECT *
+         , CASE WHEN parent_id = 1 THEN id ELSE parent_id END AS sort_level
+    FROM questions
+    WHERE parent_id = 1
+       OR parent_id
+          IN (
+              SELECT id
+              FROM questions
+              WHERE parent_id = 1
+                AND parent_id != id
+             )
+    ORDER BY sort_level 
+           , id
+</code></pre>

@@ -1,0 +1,12 @@
+<p>This kind of logic should be in the <code>render</code> method of a snippet. Display code in pure Scala (rather than in a template language hybrid) is a first-class citizen with respect to testing, IDE's and refactoring tools.</p>
+
+<p>These kinds of transforms don't come built-in, but you can add them with implicits:</p>
+
+<pre><code>class HappyString(s: String) {
+  def capfirst = ....
+}
+
+implicit def toHappyString(s: String) = new HappyString(s)
+</code></pre>
+
+<p>Then call these in your <code>render</code> method before binding whatever value it is you're generating.</p>

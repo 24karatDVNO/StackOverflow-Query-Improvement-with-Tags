@@ -1,0 +1,5 @@
+<h3><a href="https://docs.djangoproject.com/en/dev/topics/db/aggregation/" rel="nofollow noreferrer">Annotation</a></h3>
+<p>Use annotation.</p>
+<pre><code>mymti = mti.objects.get(pk=1)
+unique_colors = mymti.mtd.values_list('color__name', flat=True).annotate()
+</code></pre>

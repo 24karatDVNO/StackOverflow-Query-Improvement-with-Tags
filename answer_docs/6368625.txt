@@ -1,0 +1,25 @@
+<p>There's nothing wrong with the original code you posted, but depending on the context there are alternatives you might consider.</p>
+
+<p>You can use a property decorator like so:</p>
+
+<pre><code>class Pie(object):
+
+    _flavour = None
+
+    @property
+    def flavour(self):
+        return self._flavour
+
+    @flavour.setter
+    def flavour(self, value):
+        self._flavour = value
+
+p = Pie()
+p.flavour = 'cherry'
+p.flavour
+&gt;&gt;&gt; 'cherry'
+</code></pre>
+
+<p>This is effectively a getter/setter, but without requiring users of your class to use methods like <code>p.get_flavour()</code>. It also has advantages over letting a user directly access the data, since you can add logic in the getters and setters (eg. caching a value in the getter).</p>
+
+<p>If you have data that you don't want users of your class to access, you can prefix it with an underscore or double underscore, eg. <code>_flavour</code>. Users can still access it by calling <code>pie._flavour</code>, but the underscore signals your intent that it shouldn't be used in that way. See <a href="https://stackoverflow.com/questions/3385317/private-variables-and-methods-in-python">Private Variables and Methods in Python</a> for a discussion on this.</p>

@@ -1,0 +1,7 @@
+<p>why not just incorporate the check right into your update:</p>
+
+<pre><code>declare @rowtoalter int =1
+
+update myTempTable set name='newName' where userid=1
+and (select count(*) from myTempTable where userid=1)=@rowtoalter
+</code></pre>

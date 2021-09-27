@@ -1,0 +1,12 @@
+<p>I think you only need to rewrite 'ahah'.  Here is how I did it.  I also omitted your 'ahahDone' callback and incorporated it into this implementation.`</p>
+
+<pre><code>function ahah(url, target) {
+    $("#" + target).html('&lt;img src="loading.gif" /&gt;');
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data, status, req) { $("#" + target).text(req.responseText); },
+        error: function (req, status, err) { $("#" + target).text(" AHAH Error:\n" + req.status + "\n" + req.statusText); }
+    });
+}
+</code></pre>

@@ -1,0 +1,34 @@
+<p>A straightforward solution is</p>
+
+<pre><code>int i;
+for(i = 0; i &lt; 52; i++){
+  char ch = i + (i &lt; 26? 'A' : 'a');
+  /* do something with ch */
+}
+</code></pre>
+
+<p>although I prefer, especially in sensible languages that allow nested functions,</p>
+
+<pre><code>for(ch = 'A'; ch &lt;= 'Z'; ch++)
+  dosomething(ch);
+for(ch = 'a'; ch &lt;= 'z'; ch++)
+  dosomething(ch);
+</code></pre>
+
+<p>P.S. Kobe, I see in one of your comments that your reason for the loops is to check whether a character is a letter ... but looping is a horrid way to do that. You could simply do</p>
+
+<pre><code>if(('A' &lt;= c &amp;&amp; c &lt;= 'Z') || ('a' &lt;= c &amp;&amp; c &lt;= 'z')){
+    /* c is a letter */
+}
+</code></pre>
+
+<p>or, considerably better,</p>
+
+<pre><code>#include ctype.h
+...
+if(isalpha((unsigned char)c)){
+    /* c is a letter */
+}
+</code></pre>
+
+<p>(To understand why that cast is needed, read the isalpha man page and the C language standard. This is one of several abominable aspects of C.)  </p>

@@ -1,0 +1,27 @@
+<p>According to the <a href="http://infocenter.arm.com/help/topic/com.arm.doc.qrc0006e/QRC0006_UAL16.pdf" rel="nofollow">Thumb-16 Quick Reference Guide</a>, the <code>ADDS</code> instruction should be available. This appears to be a bug in the assembler (as was confirmed by @dwelch).</p>
+
+<p>I found I could work around it by issuing instructions pre-encoded using assembler directives. For example:</p>
+
+<pre><code>__asm__
+(
+  "ldr  r0, %[xa]   ;"  // R0 = a
+  "ldr  r1, %[xb]   ;"  // R1 = b
+  "adds r1, r1, r0  ;"  // R1 = a + b
+  ...
+);
+</code></pre>
+
+<p>would be realized using:</p>
+
+<pre><code>__asm__
+(
+  "ldr  r0, %[xa]   ;"  // R0 = a
+  "ldr  r1, %[xb]   ;"  // R1 = b
+  ".inst.w 0x1809   ;"  // Issue 'adds r1, r1, r0'
+  ...
+);
+</code></pre>
+
+<p>If I wanted <code>adds r2, r2, r1</code>, the code should emit <code>.inst.w 0x1852</code>, and so on.</p>
+
+<p>EDIT: Code recently updated due to <a href="http://sourceware.org/ml/binutils/2011-09/msg00078.html" rel="nofollow">arm thumb2 ldr.w syntax?</a> on the Binutils mailing list.</p>

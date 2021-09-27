@@ -1,0 +1,32 @@
+<p>Instead of</p>
+
+<pre><code>#reviews #test {
+opacity:0.0;filter:alpha(opacity=0);
+-webkit-transition-property:opacity, filter;
+-webkit-transition-duration:600ms ,600ms;
+ }
+</code></pre>
+
+<p>Do this:</p>
+
+<pre><code> #reviews .hidden{
+ opacity:0.0;filter:alpha(opacity=0);
+ -webkit-transition-property:opacity, filter;
+-webkit-transition-duration:600ms ,600ms;
+}
+</code></pre>
+
+<p>Then do this:</p>
+
+<pre><code>   &lt;div id="test" class='hidden'&gt;moved&lt;/div&gt;
+</code></pre>
+
+<p>Andupdate js to this:</p>
+
+<pre><code>$('#moveIt').click(function() {
+$('#dropout').addClass('dropopen');
+$('#test').removeClass('hidden');
+$('#test').addClass('test');
+return false;
+});
+</code></pre>

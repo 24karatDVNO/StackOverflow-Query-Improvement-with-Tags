@@ -1,0 +1,13 @@
+<p>In the context of the comment:</p>
+
+<blockquote>
+  <p><code>netTcpBinding</code> was found to be one of the quicker options -- certainly much faster than the vanilla BasicHttpBinding/WS binding that was tried. That's the only real need since netTcpBinding used binary vs straight text it was faster.</p>
+</blockquote>
+
+<p>Firstly, I have looked at this many, many times - and oddly enough, <strong><em>every</em></strong> time I test it, <code>NetTcpBinding</code> completely fails to be any quicker than the basic xml offering. However, since performance is your goal I have options...</p>
+
+<p>I'm a bit biased (since I wrote it), but I strongly recommend "protobuf-net" here; since it is designed along the same idioms as most .NET serializers, it is pretty easy to swap in, but it is faster (CPU) and smaller (bandwitdh) in every test I make for this - or tests that <a href="http://www.servicestack.net/benchmarks/NorthwindDatabaseRowsSerialization.1000000-times.2010-02-06.html" rel="nofollow">other people make</a>. And because the protobuf format is an open specification, you don't have to worry about the "Net" bindings being non-interoperable.</p>
+
+<p>For MS .NET, I have direct WCF hooks that can be <a href="http://marcgravell.blogspot.com/2009/11/controlling-wcf-protobuf-net-at.html" rel="nofollow">used purely from config</a> making enabling it a breeze. I honestly don't know how well that will work with the Mono equivalent - I haven't tried. It <em>might</em> work, but if not the other option is to simply throw a <code>byte[]</code> or <code>Stream</code> over the network and worry about (de)serialization manually.</p>
+
+<p>My preferred layout here is basic-http binding with MTOM enabled, which gives you the simplicity and portability of the simplest xml binding, without the overhead of base-64 for the binary data.</p>

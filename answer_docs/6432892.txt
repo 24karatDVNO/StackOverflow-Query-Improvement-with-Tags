@@ -1,0 +1,5 @@
+<p>Suppose you want those coordinates be in range 0 - n. Then you have to get a random number between 0 and n / 30 and multiply it by 30. So:</p>
+
+<pre><code>Random r = new Random();
+coordinate_whatever = r.Next(n / 30) * 30;
+</code></pre>

@@ -1,0 +1,9 @@
+<p>bit shorter with sed - save the following into file e.g. confdel.sh</p>
+
+<pre><code>sed "/^$1:/,/end-config/d"
+</code></pre>
+
+<p>and use it like:</p>
+
+<pre><code>bash confdel.sh mallory &lt; config_file.txt
+</code></pre>

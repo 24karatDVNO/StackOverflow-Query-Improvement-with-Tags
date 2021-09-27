@@ -1,0 +1,20 @@
+<p>Its because you are adding extra space from your new line and tabs. Instead you would want this:</p>
+
+<pre><code>&lt;textarea id ='box' autocomplete='off' 
+                    &lt;?php 
+                        if (!$_SESSION['username']){
+                            echo "readonly='readonly'";
+                        }
+                    ?&gt;
+                &gt;&lt;?php 
+                        if (!$_SESSION['username']){ 
+                            echo "Login to answer...";
+                        } 
+                        else {
+                            echo "Answer this problem...";
+                        }
+                    ?&gt;
+                &lt;/textarea&gt;
+</code></pre>
+
+<p>Alternatively, I would recommend trimming the values before comparison (removing leading/trailing whitespace). This is easy to do with jQuery's <code>.trim()</code> function.</p>

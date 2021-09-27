@@ -1,0 +1,15 @@
+<p>i ended up testing the return against NaN, and also for being in the range [int.MIN_VALUE, int.MAX_VALUE].</p>
+
+<p>here's some examples and the results. (false = not a valid int, true = is a valid int)</p>
+
+<pre><code>"abcde"      , false //
+"0XYZ"       , true  // i wish this wasn't the case, but it is.
+" 123 "      , true  //
+"NaN"        , false //
+"85899345912", false //   2^33 - 1
+ "2147483647", true  //   2^31 - 1
+ "2147483648", false //   2^31
+"-2147483647", true  // -(2^31 - 1)
+"-2147483648", true  // -(2^31
+"-2147483649", false // -(2^31 + 1)
+</code></pre>

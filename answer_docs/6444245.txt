@@ -1,0 +1,10 @@
+<p>If it is just for this case, I would do it in the HTML rather than in JQuery:</p>
+
+<pre><code>&lt;a href="" accesskey="i" style="text-decoration:none"&gt;L&lt;u&gt;i&lt;/u&gt;nk&lt;/a&gt;
+</code></pre>
+
+<p>Note:  The "text-decoration:none" is needed to remove the default underline for links, though you should probably set this in CSS.  </p>
+
+<p><a href="http://jsfiddle.net/briguy37/ztY7n/" rel="nofollow">Here</a>'s a fiddle for that method.</p>
+
+<p>If you still want to do it with JQuery, you can just change the link style and inner html to the above.</p>

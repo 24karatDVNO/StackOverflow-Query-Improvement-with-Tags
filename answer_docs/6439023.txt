@@ -1,0 +1,13 @@
+<p>Change your code to:</p>
+
+<pre><code>if(isset($_POST['values']))
+{
+    $values = $_POST['values']); 
+    //remove duplicate numbers
+    $values = explode(',', $values);
+    $values = array_unique($values);
+    $values = implode(',', $values);
+
+    echo $values;
+}
+</code></pre>

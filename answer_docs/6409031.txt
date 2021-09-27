@@ -1,0 +1,13 @@
+<p>Provided that value of ENUM_ELEM1 is negative, value of ENUM_ELEM2 is zero and value of ENUM_ELEM3 is positive.</p>
+
+<p>Then you may want to <em>refuctor</em> towards readability by the following:</p>
+
+<pre><code>static final short unPos = (short)(1 &lt;&lt; 15);
+
+static short f(short b)
+{
+    return (short)(b == 0 ? 0 : (b &amp;= unPos) == unPos ? -12 : 12);
+}
+</code></pre>
+
+<p>Please notice that I implemented in Java, but I guess you will find the corresponding syntax for the language of your choice.</p>

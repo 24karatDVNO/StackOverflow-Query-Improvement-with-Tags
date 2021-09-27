@@ -1,0 +1,12 @@
+<p>Think that you can also use something like this:</p>
+
+<pre><code>data = [['a-3','b-3', ['x','hello', ['3','b']]],'r',['j']]
+
+while not all(not isinstance(x, list) for x in data):
+    for i in xrange(len(data)):
+        value = data.pop(i)
+        if isinstance(value, list):
+            data.extend(value)    
+        else:
+            data.append(value)
+</code></pre>

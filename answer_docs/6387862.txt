@@ -1,0 +1,8 @@
+<p>The problem is that <code>$("H1:contains('True')")</code> always returns <code>true</code> because it is always an object.  What you really want to check is if it contains elements.</p>
+
+<pre><code>if ($("H1:contains('True')").length) {
+</code></pre>
+
+<p>Now it will return the else part.</p>
+
+<p>Note: I believe that <code>:contains</code> is case-sensitive.</p>

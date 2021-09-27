@@ -1,0 +1,12 @@
+<p>Here is one solution. It does not use the package or function you mention, but it could be of use. Suppose your data frame is called <code>df</code>:</p>
+
+<pre><code>M &lt;- matrix(NA,
+            nrow = length(unique(df$Case)),
+            ncol = length(unique(df$Variable))+1,
+            dimnames = list(NULL,c('Case',paste('Variable',sort(unique(df$Variable))))))
+irow &lt;- match(df$Case,unique(df$Case))
+icol &lt;- match(df$Variable,unique(df$Variable)) + 1
+ientry &lt;- irow + (icol-1)*nrow(M)
+M[ientry] &lt;- df$Value
+M[,1] &lt;- unique(df$Case)
+</code></pre>

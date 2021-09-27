@@ -1,0 +1,5 @@
+<p>I'm just getting back into using Ninject so I'm a little rusty, but this but this sounds like the singleton problem I encountered when moving from Ninject 1.0 to 2.0. You can <a href="http://syncor.blogspot.com/2009/10/on-becoming-ninject-warrior-and.html" rel="nofollow">read more details on my blog</a>, but I think you want to bind ThingsDataContext to itself in singleton context first. Then you can bind IThingsDataContext to the copy of ThingsDataContext that is in the kernel.</p>
+
+<pre><code>Bind&lt;ThingsDataContext&gt;().ToSelf().InSingletonScope();
+kernel.Bind&lt;IThingsDataContext&gt;.ToMethod( c =&gt; c.Kernel.Get&lt;ThingsDataContext&gt;());
+</code></pre>

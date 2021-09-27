@@ -1,0 +1,10 @@
+<p>It seems like iframe is being treated as an absolutely positioned element whether or not you actually specify that in the css.  If its container is absolutely positioned, it should be able to fill the container using width:100% and height:100%.</p>
+
+<p>In other words, if my theory is correct, the iframe isn't sizing "correctly" because it is searching for a positioned (i.e. relative, absolute, just not static) parent element.  It needs to figure out how to adjust its size and the closest abs pos element is the browser viewing area itself.  100% height of the screen would normally fill the screen height, but the iframe is positioned down 73px, thus making it overflow by 73px.</p>
+
+<p>Play with this a bit, it should be a nice step in the right direction:</p>
+
+<pre><code>&lt;div style="position:absolute; width: 515px; top:73px; bottom:0px; right:0px;"&gt;
+    &lt;iframe id="friendpane_area" style="position:absolute; width:100%; height: 100%;" src="./FriendsConnect   My dashboard_files/shell.htm" frameborder="0" allowtransparency="true"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</code></pre>

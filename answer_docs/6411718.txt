@@ -1,0 +1,10 @@
+<p>added fix for negative steps</p>
+
+<pre><code>   var previousNumber = 0;
+
+    function countSteps(number) {
+        var result = (number - previousNumber);
+        previousNumber = number;
+        return (result&lt;0) ? result*-1 : result;
+    }
+</code></pre>

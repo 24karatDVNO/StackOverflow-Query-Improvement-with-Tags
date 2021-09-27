@@ -1,0 +1,16 @@
+<p>Your jar file lacks a file with this name</p>
+
+<pre><code>/org/dav/kin/Tester.class
+</code></pre>
+
+<p>or you have special characters in your MANIFEST.MF file</p>
+
+<p>MANIFEST.MF files have a particular syntax.  It's best to use other tools to generate them; however some of the details I've encountered which increases the success of hand written files include:</p>
+
+<ol>
+<li>Always make sure the lines are less than 72 characters long.</li>
+<li>Always use \r\n (windows newline), even on non-windows systems.</li>
+<li>Verify that all whitespace characters are spaces.</li>
+<li>Verify that there are no nonprintable characters (htab, etc).</li>
+<li>Sometimes a blank line at the end of the file helps.</li>
+</ol>

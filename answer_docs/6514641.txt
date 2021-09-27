@@ -1,0 +1,12 @@
+<p>The file name should be (according to convention) <code>pick.js.erb</code> and not <code>pick.html.erb</code> based on the fact that you have JavaScript code included.</p>
+
+<p>If you want to include a partial inside this one, you can use the <code>escape_javascript</code> helper to render the partial.</p>
+
+<p>If you have more than one possible file to be rendered from the <code>pick</code> action, you should look into using <code>respond_to</code> such as:</p>
+
+<pre><code>@route = Route.find(params[:id])
+respond_to do |format|
+  format.html
+  format.js { render :js =&gt; @route }
+end
+</code></pre>

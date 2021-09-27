@@ -1,0 +1,15 @@
+<p>Modify the algorithm slightly, because a maxheap does not support efficient "find smallest".</p>
+
+<ul>
+<li>Insert the first K items into a
+<em>min-heap</em></li>
+<li><p>For the remaining items, if the value is larger than the heap
+head</p>
+
+<ul>
+<li>pop the head, and insert the new item.</li>
+</ul></li>
+<li><p>The head is the Kth largest item.</p></li>
+</ul>
+
+<p>The worst case is still O(N lg K) for an input where each item is greater than the smallest of the last K.   But for a randomly distributed input, you will do only have to do the heap operation on a smaller percentage of the items.</p>

@@ -1,0 +1,11 @@
+<p>It is always good to use SQL VIEWS instead of using sub queries. Because VIEW will be having already compiled result.</p>
+
+<pre><code>CREATE VIEW subqueryView 
+    SELECT age, count(*) AS total 
+    FROM pacient
+    WHERE age BETWEEN 20 AND 40 
+    GROUP BY age ORDER BY age
+
+SELECT A.age, A.total, MAX(A.total) as max_value FROM (SELECT FROM subqueryView) as A
+GROUP BY A.age, A.total
+</code></pre>

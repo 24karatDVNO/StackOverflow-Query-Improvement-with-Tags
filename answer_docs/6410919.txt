@@ -1,0 +1,6 @@
+<p>Assuming you are using primitive types, the model binder should be able to construct an object of that type from values passed in. The querystring parameter names need to match the property  names. If this is from a form post, make sure that your inputs are named correctly.</p>
+
+<p>The easiest way to do that is to use the helpers.</p>
+
+<pre><code>Html.TextboxFor(m =&gt; m.Level);
+</code></pre>

@@ -1,0 +1,15 @@
+<p>You can also just use regroup directly in the template:</p>
+
+<pre><code>{% regroup object_list by name.0 as letters %} 
+
+{% for letter in letters %}
+  &lt;div class="letter_group" id="index_{{letter.grouper}}"&gt;
+    &lt;h2&gt;{{letter.grouper}}&lt;/h2&gt;
+    &lt;ul&gt;
+    {% for object in letter.list %}
+      &lt;li&gt;&lt;a href="{% url object_show object.pk %}"&gt;{{object}}&lt;/a&gt;&lt;/li&gt; 
+    {% endfor %}
+    &lt;/ul&gt;
+  &lt;/div&gt;
+{% endfor %}
+</code></pre>

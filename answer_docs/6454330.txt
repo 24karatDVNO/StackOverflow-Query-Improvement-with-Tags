@@ -1,0 +1,10 @@
+<p>An iterator references an element in the list, so for a list of type <code>T</code>, dereferencing an iterator yields a value of type <code>T</code>.</p>
+
+<p>In your case, <code>T</code> is actually a pointer - <code>Object*</code>. Hence, the <code>iter-&gt;</code> call (which dereferences the iterator) yields a pointer. You have to dereference that pointer to get to the actuala object.</p>
+
+<p>Try using</p>
+
+<pre><code>(*iter)-&gt;print()
+</code></pre>
+
+<p>instead.</p>

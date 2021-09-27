@@ -1,0 +1,4 @@
+<p>I'd like to suggest a variation of this answer. <a href="https://stackoverflow.com/questions/1476290/beginner-regex-multiple-replaces#answer-1476709">Beginner Regex: Multiple Replaces</a></p>
+
+<pre><code>$text =~ s/(cat|tomatoes)/ ${{ qw&lt;tomatoes cat cat tomatoes&gt; }}{$1} /ge;
+</code></pre>

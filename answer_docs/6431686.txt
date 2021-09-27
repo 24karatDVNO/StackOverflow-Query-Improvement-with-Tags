@@ -1,0 +1,17 @@
+<p>Not sure about JUnit, but here is how you would do it with <a href="http://testng.org" rel="nofollow">TestNG</a>, using data providers:</p>
+
+<pre><code>@DataProvider
+public Object[][] dp() {
+  return new Object[][] {
+    new Object[] { 1, 7 },
+    new Object[] { 2, 3 },
+  };
+}
+
+@Test(dataProvider = "dp")
+public nthShouldMatch(int parameter, int expected) {
+  Assert.assertEquals(getNth(parameter), expected);
+}
+</code></pre>
+
+<p>Obviously, you should implement dp() in a way that it retrieves its values from the spreadsheet instead of hardcoding them like I just did, but you get the idea. Once you have implemented your data provider, all you need to do is update your spreadsheet and you don't even need to recompile your code.</p>

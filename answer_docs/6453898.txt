@@ -1,0 +1,3 @@
+<p>For some reason your Cocos2d library depends on itself. Open the properties for your Cocos2d library target (right click -> "Get Info") and look at the general tab. There's a list called "DirectDependencies". Remove the cocos2d library from that list.</p>
+
+<p>Another place where a direct dependency could occur is the Cocos2d library product. Open the properties for your Cocos2d library product (this time under "Products" not under "Targets"). Open the targets tab and look at the targets. If the cocos2d library is checked as target, uncheck it.</p>

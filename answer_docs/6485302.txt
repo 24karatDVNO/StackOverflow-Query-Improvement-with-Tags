@@ -1,0 +1,16 @@
+<p>Try</p>
+
+<pre><code>&lt;asp:button text="Click me" onclientclick="window.checkValidity();" /&gt;
+</code></pre>
+
+<p>By doing</p>
+
+<pre><code>&lt;script language="javascript" type="text/javascript"&gt;
+    function checkValidity() { }
+&lt;/script&gt; 
+</code></pre>
+
+<p>You declare a function to the global scope. In the context of a browser it is the same as doing:</p>
+
+<pre><code>window.checkValidity = function() { };
+</code></pre>

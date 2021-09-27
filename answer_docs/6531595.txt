@@ -1,0 +1,36 @@
+<p>It's ok for the Decrypt method to throw an exception when it can't decrypt - that's what the exceptions are used for. However, it would be better to throw some custom exception insted of the <code>System.Security.Cryptography.CryptographicException</code> which is specific to your current implementation. For example, you may change the Decrypt method to do this:</p>
+
+<pre><code>public byte[] Decrypt(byte[] buffer)
+{
+    MemoryStream decryptStream = new MemoryStream();
+    try
+    {
+        using (CryptoStream cs = new CryptoStream(decryptStream, decryptor, CryptoStreamMode.Write))
+        {
+            cs.Write(buffer, 0, buffer.Length);
+        }
+    }
+    catch ( CryptographicException ex )
+    {
+        throw new InvalidKeyException(ex);
+    }
+    return decryptStream.ToArray();
+}
+</code></pre>
+
+<p>Where <code>InvalidKeyException</code> is a class that derives from <code>System.Exception</code>. Now, assuming the decrypt method is part of a class called EncryptionProvider, you can call it like this:</p>
+
+<pre><code>EncryptionProvider encryptionProvider;
+// initialize the encryptionProvider with the key
+try
+{
+    byte[] decryptedData = encryptionProvider.Decrypt( encryptedData );
+    // use decryptedData here - it's decrypted with the correct key
+}
+catch ( InvalidKeyException )
+{
+    // Handle the "wrong key" case here. You may notify the user that they are 
+    // not  authorized to access this information or something similar,
+    // depending on your application logic
+}
+</code></pre>

@@ -1,0 +1,17 @@
+<p>Try the following: </p>
+
+<pre><code>class User &lt; ActiveRecord::Base
+  has_one :participant
+end
+
+class Participant &lt; ActiveRecord::Base
+  belongs_to :user
+
+  scope :foo, lambda {|name|
+    joins(:users).
+    where("name = ?", name)
+  }
+end
+</code></pre>
+
+<p>If you're taking user input you're going to want to probably fix joins so it uses <code>sanitize_sql_array</code>. See <a href="http://asciicasts.com/episodes/215-advanced-queries-in-rails-3" rel="nofollow">here</a> also for some query goodness</p>

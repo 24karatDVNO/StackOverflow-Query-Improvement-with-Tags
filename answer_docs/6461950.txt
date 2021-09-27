@@ -1,0 +1,17 @@
+<p>You should create a two dimensional array with your values:</p>
+
+<pre><code>    col_lookup = dict([(col.id, i) for i, col in enumerate(cols)])
+
+    row_lookup = dict([(row.id, i) for i, row in enumerate(rows)])
+
+    # create an "empty" two dimensional array.
+    # each row is a tuple in the format (row, [False, False, False...])
+    table = [(row, [False for x in xrange(len(col_lookup))]) for row in rows]
+
+    for cell in Table.objects.all():
+       table[row_lookup[cell.row_id]][1][col_lookup[cell.col_id]] = cell.value
+</code></pre>
+
+<p>Now render <code>table</code>.  Use <code>{%for row, values in table%}</code>...<code>{{row.name}}</code>...<code>{%for value in values%}</code></p>
+
+<p><em>(I did not test the code. Suggestion: rename your <code>Table</code> model to <code>Cell</code>)</em></p>

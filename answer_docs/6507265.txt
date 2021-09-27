@@ -1,0 +1,3 @@
+<p>One requirement json have is that <em>all</em> data you give to it <em>must</em> be UTF-8 encoded. json_encode() does not do this automaticly. So you can try to run this <code>array_map("utf8_encode", $array);</code> before you json_encode it.</p>
+
+<p>Else... It looks weird, so Im just guessing...</p>

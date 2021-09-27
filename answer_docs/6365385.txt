@@ -1,0 +1,14 @@
+<pre><code>$(document).ready(function() {
+    $('ul.art-vmenu li').live("click", function() {
+        alert($(this).text());
+    });
+});
+</code></pre>
+
+<p>jsfiddle: <a href="http://jsfiddle.net/ZpYSC/" rel="nofollow">http://jsfiddle.net/ZpYSC/</a></p>
+
+<p>jquery documentation on live(): <a href="http://api.jquery.com/live/" rel="nofollow">http://api.jquery.com/live/</a></p>
+
+<blockquote>
+  <p>Description: Attach a handler to the event for all elements which match the current selector, now and in the future.</p>
+</blockquote>

@@ -1,0 +1,9 @@
+<p>Add </p>
+
+<pre><code>layout_weight="1"
+</code></pre>
+
+<p>into your horizontal layout.
+And you will need to add similar lines in the TextViews at the bottom if you want to see those also.</p>
+
+<p>Your current problem is that you set that one to <code>fill_parent</code>, so when it gets to the ListView, there is no space available.</p>

@@ -1,0 +1,3 @@
+<p>Solved this. In the layout there was an (empty) GridView at the bottom of the layout set to android:layout_height="fill_parent" wich stole the touchevent.</p>
+
+<p>The weird part about this is that when putting the exact same activity with the exact same XML inside a tab, the onClick() worked fine.</p>

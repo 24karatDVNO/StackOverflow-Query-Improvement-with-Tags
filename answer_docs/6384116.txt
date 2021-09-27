@@ -1,0 +1,5 @@
+<p>Actually I believe <code>Result1</code> behavior is the correct one (no results should always lead to an empty list).</p>
+
+<p>After you've double-checked that <code>Result0</code> is really an empty cursor (as opposed to - for example - a cursor with one all-fields-are-null row), I guess you may start hunting for a bug in iBatis :)</p>
+
+<p>As for your second question, I don't believe iBatis can help you (or that it should: such defaulting is not part of the database &hArr; application interface and so should be best handled in the DAO – or maybe even further up your services hierarchy).</p>

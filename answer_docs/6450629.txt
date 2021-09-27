@@ -1,0 +1,26 @@
+<p>get the maximum width among all the textviews and set that width to all the textviews</p>
+
+<pre><code> @Override
+        public void onWindowFocusChanged(boolean hasFocus) {
+            // TODO Auto-generated method stub
+            super.onWindowFocusChanged(hasFocus);
+            // System.out.println("...111Height..."+mainLayout.getMeasuredHeight());
+
+            width1 = textView1.getWidth();
+    width2 = textView2.getWidth();
+    width3 = textView3.getWidth();
+
+
+    //get maximum width among all width
+     int[] nums={width1 ,width2 ,width3};  
+     Arrays.sort(nums);  
+    int max =   nums[nums.length-1];
+
+    //set this maximum value to all the textviews
+
+    textView1.setWidth(max);
+    textView2.setWidth(max);
+    textView3.setWidth(max);
+
+    }
+</code></pre>

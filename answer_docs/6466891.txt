@@ -1,0 +1,3 @@
+<p>A database is not a jar file - therefore this is totally unrelated to the classpath. If you load the db by a relative path the program will search in the current directory.</p>
+
+<p>My suggestion would be to use a fully qualified path when loading the SQLite database. You can retrieve for example the path where your main jar is located - see <a href="https://stackoverflow.com/questions/320542/how-to-get-the-path-of-a-running-jar-file">How to get the path of a running JAR file?</a> for details.</p>

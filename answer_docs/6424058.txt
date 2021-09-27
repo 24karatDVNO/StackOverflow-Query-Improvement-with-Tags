@@ -1,0 +1,19 @@
+<p>The solution:</p>
+
+<p>From:</p>
+
+<pre><code>xml.Add(new XElement("Root", ""));
+xml.Element("Root").Add(new XElement("Sites", ""));
+xmlContent = xmlContent.Element("Root").Element("Sites");
+</code></pre>
+
+<p>To:</p>
+
+<pre><code>xml.Add(new XElement("Root", ""));
+xml.Element("Root").Add(new XElement("Sites", ""));
+xmlContent = xml.Element("Root").Element("Sites");
+</code></pre>
+
+<p>I just needed to use the correct instance, xml and not xmlContent.</p>
+
+<p>Thanks!</p>

@@ -1,0 +1,5 @@
+<p>You've got two options:</p>
+
+<p>The first is to fix the structure of the solutions, and add project references to the projects in mySln.sln. (To do this you'd have to add the sub-projects to the solution, then add the project references. You can then remove the sub-projects from mySln.sln if you want.)</p>
+
+<p>The second option is to build the projects in prebuild solution. You then setup <a href="http://msdn.microsoft.com/en-us/library/6taasyc6.aspx" rel="nofollow">reference paths</a> in the projects where you need to reference the pre-build output, and then add references to the dlls. Visual studio will store the paths to the dlls in the *.csproj.user files. Then, each time a developer pulls a new version of the mySln.sln they will need to go through and set-up the reference paths in the projects, but they <em>wont</em> need to setup the references themselves. Your pre-build solution can then live anywhere, or indeed be built on a CI server and the output downloaded as necessary.</p>

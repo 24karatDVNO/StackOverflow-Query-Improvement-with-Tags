@@ -1,0 +1,9 @@
+<p>When I changed the div in the top page to an iframe, this worked for refreshing the iframe.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+    $(document).ready(function() {
+        treload = window.parent.document.getElementById('tnav');
+        treload.src = "loadtreeb.php";
+    });
+&lt;/script&gt;
+</code></pre>

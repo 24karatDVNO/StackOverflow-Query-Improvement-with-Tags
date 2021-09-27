@@ -1,0 +1,22 @@
+<p>it sounds like you should be using a catchall url to lookup actions you can manage in a DB such as:</p>
+
+<p>Route like this</p>
+
+<pre><code>routes.MapRoute(
+                               "MailCampaigns", 
+                               "/mailcampaigns/{*url}", 
+                              new {controller = "MailCampaigns", action = "Incoming" }
+                              );
+
+
+public ActionResult Incoming(string url)
+{
+
+   //parse the url and perform actions accordingly
+
+   var actionInfo = repository.Query&lt;ActionInfo&gt;().Where(x =&gt; x.Url == url).SingleOrDefault();
+
+ return Redirect(actionInfo.TargetUrl);
+
+}
+</code></pre>

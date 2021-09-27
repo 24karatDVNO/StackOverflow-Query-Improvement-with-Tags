@@ -1,0 +1,4 @@
+<p>Calling <code>__syncthreads()</code> for some and not all threads can cause a deadlock. <code>threadIdx.x &lt; 10</code> calls <code>_syncthreads()</code>
+As previously mentioned you are not using shared memory here.
+The compiler is clever if you are not using the value afterwards the memory location can become invalid.
+Try outputing the value as your return value for your device function. Should work fine especially if you move/remove <code>__syncthreads()</code>.</p>

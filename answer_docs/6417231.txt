@@ -1,0 +1,7 @@
+<p>Instead of OneToOneField you can use <a href="https://docs.djangoproject.com/en/dev/topics/db/models/#multi-table-inheritance" rel="nofollow">Multi-table inheritance</a>, which implemented using a one-to-one relationshinp:</p>
+
+<pre><code>class CampaignMonitor(CampaignMain): 
+    ...
+</code></pre>
+
+<p>Now modify CampaignMonitor's admin as needed for your needs.</p>

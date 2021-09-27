@@ -1,0 +1,15 @@
+<p>With this query, you will get the total sales of a particlar category where the product is deleted. </p>
+
+<p>Did you want this or did you want ALL the sales of a category, no matter the state of the product ?</p>
+
+<pre><code>SELECT p.catid AS catid, 
+       GROUP_CONCAT(DISTINCT p.productid SEPARATOR ',') AS productids, 
+       COUNT(DISTINCT p.productid) AS totalproducts, 
+       COUNT(s.salesid) AS totalsales
+FROM products p
+    LEFT OUTER JOIN sales s
+        ON s.productid = p.productid
+        AND s.paymentstatus = 'COMPLETED'
+WHERE p.deleted = 'n'
+GROUP BY p.catid
+</code></pre>

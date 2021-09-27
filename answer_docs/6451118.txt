@@ -1,0 +1,18 @@
+<p>Here is what works, I tried it on your JS Bin:</p>
+
+<pre><code>var s = 'hey &lt;a href="#user"&gt;user&lt;/a&gt;, what are you doing?';
+s = s.replace(/(&lt;[^&gt;]*)user([^&lt;]&gt;)/g,'$1NEVER_WRITE_THAT_ANYWHERE_ELSE$2');
+s = s.replace(/user/g,'Mr Smith');
+s = s.replace(/NEVER_WRITE_THAT_ANYWHERE_ELSE/g,'user');
+document.body.innerHTML = s;
+</code></pre>
+
+<p>It may be a tiny little bit complicated, but it works!</p>
+
+<p>Explanation:</p>
+
+<ul>
+<li>You replace "user" that <strong>is</strong> in the tag (which is easy to find) with a random string of your choice that you must never use again... ever. A good use would be to replace it with its hashcode (md5, sha-1, ...)</li>
+<li>Replace every remaining occurence of "user" with the text you want.</li>
+<li>Replace back your unique string with "user".</li>
+</ul>

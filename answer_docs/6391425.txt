@@ -1,0 +1,11 @@
+<p>If you want the current item being dragged use </p>
+
+<pre><code>$(document).ready(function(){
+$("#contain").sortable({
+    stop: function(event, ui){
+         // i want to take the value of the current
+        var currItem = ui.item;
+        alert(currentItem); // this display all item and i want the current element only 
+    }
+});
+</code></pre>

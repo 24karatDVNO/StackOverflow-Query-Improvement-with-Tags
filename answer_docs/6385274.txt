@@ -1,0 +1,12 @@
+<p>As Arhimed said, your question is not so clear. It would be better if you can brief us on your problem. However if you are looking for some URL encoding you can also try this. Method:</p>
+
+<pre><code>private String encodeString(String hsURL)
+{
+    URLEncodedPostData
+    urlEncoder = new URLEncodedPostData("UTF-8", false);
+    urlEncoder.append("url", hsURL);
+    hsURL = urlEncoder.toString();
+    hsURL = hsURL.substring(4);
+    return hsURL;
+}
+</code></pre>

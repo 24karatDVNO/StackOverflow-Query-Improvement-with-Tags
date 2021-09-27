@@ -1,0 +1,36 @@
+<p>For Splash Screen in your xml</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"&gt;
+        &lt;ImageView     
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/splash"/&gt;
+    &lt;/LinearLayout&gt;
+</code></pre>
+
+<p>and in your AndroidManifest.xml</p>
+
+<pre><code>    &lt;activity android:name=".Splash" android:theme="@android:style/Theme.NoTitleBar"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN" /&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+</code></pre>
+
+<p>The <strong>Theme.NoTitleBar</strong> will also remove the title bar from the splash screen</p>
+
+<p>And for the image for splash screen use images of sizes:</p>
+
+<p>As i had read somewhere and then used</p>
+
+<p>For Portrait: 600 x 1024 px</p>
+
+<p>For Landscape: 1024 x 600 px</p>
+
+<p>I use these sizes in my app and have tested them on android versions 1.6 to 2.3 in each version the resolution of the images appears excellent</p>

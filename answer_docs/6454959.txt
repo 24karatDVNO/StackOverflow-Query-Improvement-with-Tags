@@ -1,0 +1,26 @@
+<p>What about just the straight-forward solution by looping through it once and testing? Quite possibly the fastest, too, because many of the other solutions loop through the list multiple times.</p>
+
+<pre><code>def signs_are_alternating(numbers):
+    """Return True if numbers in given list have alternating signs, False
+    otherwise. If given list has less than 2 elements, return False.
+
+    &gt;&gt;&gt; signs_are_alternating([1, -1, 1, -1, 1])
+    True
+    &gt;&gt;&gt; signs_are_alternating([-1, 1, -1, 1, -1])
+    True
+    &gt;&gt;&gt; signs_are_alternating([1, -1, 1, -1, -1])
+    False
+
+    """
+    if len(numbers) &lt; 2:
+        return False
+    previous_positive = (numbers[0] &lt; 0)  # Pretend it starts alternating
+    for number in numbers:
+        this_positive = (number &gt;= 0)
+        if previous_positive == this_positive:
+            return False
+        previous_positive = this_positive
+    return True
+</code></pre>
+
+<p>Note that I wasn't quite sure what the intended behaviour is if the input list has less than 2 elements.</p>

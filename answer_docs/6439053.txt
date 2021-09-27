@@ -1,0 +1,12 @@
+<p>You'll have to run a wrapper shell script that looks like this:</p>
+
+<pre><code>source myscript.sh
+env
+</code></pre>
+
+<p>and then read the output of the 'env' command and set the environment within your perl program from that.</p>
+
+<p>So you need to run the wrapper script like this:</p>
+
+<pre><code>open CMD, "wrapper.sh|";
+</code></pre>

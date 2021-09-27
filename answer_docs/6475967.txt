@@ -1,0 +1,8 @@
+<p>Something like this perhaps?</p>
+
+<pre><code>for cmd in $(grep RUN_THIS &lt; test_file); do
+    $cmd --some-option-to-be-provided-to-run-this
+done
+</code></pre>
+
+<p>That should work okay as long as there are no spaces in the commands in <code>test_file</code>.</p>

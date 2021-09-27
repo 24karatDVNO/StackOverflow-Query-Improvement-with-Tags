@@ -1,0 +1,11 @@
+<p>Wolfgang has the right answer in my mind - doing this <em>before</em> you display your table's probably the right idea.</p>
+
+<p>But, another approach could be to use table row animation to actively remove the table rows from the table  So, before the price is known you have "--" or some other filler text - then once you know the price as "unknown",</p>
+
+<pre><code>// Assume you just found out that cell #2 is no good
+NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0];
+
+[tableView beginUpdates];
+[tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+[tableView endUpdates];
+</code></pre>

@@ -1,0 +1,5 @@
+<p>I can see you running into some issues using a file for complex communication between processes - files can generally only be written by one process at a time, so what happens if the worker process tries to remove a task at the same time as the web process tries to add a task?</p>
+
+<p>A better approach would be to store the tasks in a database that is accessible to both processes - a database can be written to by multiple processes, and it is easy to select all tasks that have a scheduled date in the past.</p>
+
+<p>Using a database you don't get to use FileSystemWatcher, which I suspect is one of the main reasons you want to use a file. If you really need the job to run instantly there are various sorts of messaging you could use, but for most purposes you can just check the queue table on a timer.</p>

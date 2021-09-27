@@ -1,0 +1,9 @@
+<p>I'm not so sure that you are having issues with the MIME Type settings but just in case you can try changing a setting in your ClickOnce application that will add a ".deploy" extension to ever file in your project.  The installer will strip the .deploy extension from your application files once they are downloaded.</p>
+
+<p>To cut on this feature, open your application's Properties page and go to the Publish tab.  On the publish tab, select Options and from within the Options dialog, select the Deployment setting group on the left-hand side.  In the Deployment section, check the Use ".deploy" file extension option. (See the screenshot below)</p>
+
+<p><img src="https://i.stack.imgur.com/M6wiB.png" alt="enter image description here"></p>
+
+<p>Republish your application and attempt to install the application.  If the Text file is not downloaded after using the .deploy extension, you have another problem.</p>
+
+<p>Hope that helps.</p>

@@ -1,0 +1,8 @@
+<p><strong>EDITED to be case insensitive and incorporate new requirement</strong></p>
+
+<p>I think the regex you want is simply:</p>
+
+<pre><code>[Uu][aA][tT](?![iI][oO][nN])
+</code></pre>
+
+<p>ie <code>uat</code> (any case) not followed by <code>ion</code> (any case)</p>

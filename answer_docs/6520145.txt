@@ -1,0 +1,9 @@
+<p>Add a group arround the space and tag part and reference that group for the space in the replaceAll Call. </p>
+
+<p>so your regex would look like (\\s)(\\&lt;.*?\\>)?</p>
+
+<p>then do a replaceAll on only the group 1, to be replaced with a line feeds. (remember group 0 is the whole match so 1 will only be the space). If there can be more than one space character add a plus after the (\\s).</p>
+
+<p>For examples on how to replace using groups see the question: <a href="https://stackoverflow.com/questions/1277157/java-regex-replace-with-capturing-group">Java Regex Replace with Capturing Group</a></p>
+
+<p>I will try and put a java example later. But I hope that this takes you in the right direction for now.</p>

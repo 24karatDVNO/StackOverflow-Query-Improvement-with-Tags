@@ -1,0 +1,10 @@
+<p>You can consider adding bridge to a class and then applying the class to widget using <a href="http://api.jquery.com/addClass/" rel="nofollow">addClass()</a> and then you can remove the class using <a href="http://api.jquery.com/removeClass/" rel="nofollow">removeClass()</a></p>
+
+<pre><code>$.widget.addClass('someclass');
+$('someclass').bridge( "fileSelect", FileSelect );
+</code></pre>
+
+<p>Then to remove ,</p>
+
+<pre><code>$.widget.removeClass('someclass');
+</code></pre>

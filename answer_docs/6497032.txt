@@ -1,0 +1,15 @@
+<p>The <a href="http://es2.php.net/manual/en/pdo.prepare.php" rel="nofollow">manual</a> says:</p>
+
+<blockquote>
+  <p>If the database server successfully
+  prepares the statement, PDO::prepare()
+  returns a PDOStatement object. If the
+  database server cannot successfully
+  prepare the statement, PDO::prepare()
+  returns FALSE or emits PDOException
+  (depending on error handling).</p>
+</blockquote>
+
+<p>That means that you don't have an object when it fails: you have a boolean <code>FALSE</code>.</p>
+
+<p>Try changing the <a href="http://es2.php.net/manual/en/pdo.error-handling.php" rel="nofollow">PDO error handling</a> to <code>PDO::ERRMODE_EXCEPTION</code>.</p>

@@ -1,0 +1,16 @@
+<p>It should be this.</p>
+
+<pre><code>&lt;?php
+$id=$_POST['ID'];
+
+mysql_connect($host,$username,$password);
+
+if (!mysql_select_db($database))
+    die("Can't select database");
+$query="SELECT * FROM table WHERE ID= '$id'";
+$result = mysql_query($query);
+$num=mysql_num_rows($result) or die("Error: ". mysql_error(). " with query ". $query);
+
+mysql_close();
+?&gt;
+</code></pre>

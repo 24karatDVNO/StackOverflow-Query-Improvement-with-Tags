@@ -1,0 +1,23 @@
+<p>Not really a solution, rather a work-around, but your question and the answer by @Mic lead me down this route:</p>
+
+<p>Just use <code>data:text/html</code> as then you can put in line breaks using <code>&lt;br /&gt;</code> </p>
+
+<ol>
+<li>I tried everything else (all combinations of unicode characters, etc, ) to get line breaks in <code>text/plain</code> but couldn't get them to show up. <code>document.write()</code> and <code>document.body.textContent()</code>, etc also suffer from the same problem. Line breaks just get ignored.</li>
+<li>Since Chrome won't let you save the popup window anyway, the only way to get text out of it is copy and paste so there is no benefit of using <code>text/plain</code> over <code>text/html</code></li>
+<li>In web browsers that will let you save the page (Firefox) you can choose to save the page as text, rather than HTML and so you still get the same end result.</li>
+</ol>
+
+<p>EDIT: This approach works in Chrome, but not Firefox</p>
+
+<pre><code>win = window.open("", "win")
+win.document.body.innerText = "Line \n breaks?"
+</code></pre>
+
+<p>Have to use <code>innerText</code> though. <code>InnerHTML</code> or <code>textContent</code> remove the line breaks. This works on both:</p>
+
+<pre><code>win = window.open("", "win")
+win.document.body.innerHTML = "&lt;pre&gt;Line \n breaks?&lt;/pre&gt;"
+</code></pre>
+
+<p>So perhaps you could just wrap everything in <code>&lt;pre&gt;</code> tags? Although I guess both of these have the same "problem" as the `<br /> suggestion in that it's actually creating a HTML document rather than a text/plain one.</p>

@@ -1,0 +1,29 @@
+<pre><code>function setSameHeight(class_name){
+  var max_height = 0;
+  var cards = getElementsByClassName(class_name);       
+  for (var i=0; i&lt;cards.length; i++){
+    if (cards[i].offsetHeight &gt; max_height){                
+      max_height = cards[i].offsetHeight;
+    }
+  }
+  for (var i=0; i&lt;cards.length; i++){
+    cards[i].setAttribute("height", max_height);
+    cards[i].height = max_height;           
+  }
+}
+
+function getElementsByClassName(className){
+  var hasClassName = new RegExp("(?:^|\\s)" + className + "(?:$|\\s)");
+  var allElements = document.getElementsByTagName("*");
+  var results = [];
+  var element;
+  for (var i = 0; (element = allElements[i]) != null; i++) {
+    var elementClass = element.className;
+      if (elementClass &amp;&amp; elementClass.indexOf(className) != -1 &amp;&amp;     hasClassName.test(elementClass))
+      results.push(element);
+    }
+    return results;
+}
+</code></pre>
+
+<p>used that for tables</p>

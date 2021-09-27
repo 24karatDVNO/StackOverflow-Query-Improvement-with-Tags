@@ -1,0 +1,13 @@
+<p>As the AjaxControlToolkit is an open source project, you can download project sources and make all customization that you need. In this particular case enough to add very few changes: edit the AutoCompleteBehavior.pre.js file in AutoComplete folder of MicrosoftAjax.Extended project. You need following changes: in the _onTimerTick method change from </p>
+
+<pre><code>if (text.trim().length &lt; this._minimumPrefixLength) {
+            this._currentPrefix = null;
+            this._update('', null, /* cacheResults */false);
+            return;
+        }
+</code></pre>
+
+<p>To</p>
+
+<pre><code>if (text.trim().length &lt; this._minimumPrefixLength || text.indexOf('@') == -1) {
+</code></pre>

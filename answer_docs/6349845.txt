@@ -1,0 +1,20 @@
+<p>You could generalize this a a bit with a function if you plan to apply it more generally.</p>
+
+<pre><code>function searchArray($query, $keyArray, $valuesArray){
+
+    $key = array_search($query, $keyArray);
+
+    $returnArray = array();
+    foreach($valuesArray as $arrKey=&gt;$arrVal){
+        $returnArray[$arrKey] = $arrVal[$key];
+    }
+
+    return $returnArray;
+}
+</code></pre>
+
+<p><code>$query</code> is a string containing the value you are looking for in <code>$keyArray</code> and <code>$valuesArray</code> is an array of arrays that contain the values associated with the potential query strings.</p>
+
+<p>Example: <code>$userAttributes = searchArray('45', $myArray['Aames'], array('Names'=&gt;$myArray['Names'], 'Speciality'=&gt;$myArray['Speciality']));</code></p>
+
+<p><code>$userAttributes</code> should then be <code>array('Names'=&gt;'John', 'Speciality'=&gt;'Buisness')</code> [sic]</p>

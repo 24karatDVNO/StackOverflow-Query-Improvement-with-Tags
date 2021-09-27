@@ -1,0 +1,9 @@
+<p>Ohhhh.. Turns out this was nothing to do with closures or any other javascript for that matter, sorry to excite you all.</p>
+
+<p>It was caused by a php script, and not even the php script that handles ajax requests, it was actually the script that reads the javascript files and then JSONs them. That script also has a find and replace function like a simple templating system where it will find all the words between '[' &amp; ']' which unfortunately means any arrays in the javascript will get bungled up.</p>
+
+<p>I used the find and replace with square braces because it was originally meant for html templating, I just didn't consider it properly when I started using the system in my JS code aswell.</p>
+
+<p>So to clarify, my php script would change JS of <code>obj[var].description</code> into <code>obj.description</code> which is valid JS so didn't flag any errors for me to notice it.</p>
+
+<p>Ohhhhh. What a loser :)</p>

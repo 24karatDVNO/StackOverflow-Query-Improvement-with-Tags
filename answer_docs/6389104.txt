@@ -1,0 +1,5 @@
+<p>The reverse argument is that SOAP only works on platforms that have a WSDL parser and SOAP stack in place. Without one it's completely impractical to ever use it, whereas REST can be boiled down to "send HTTP request, parse results as XML".</p>
+
+<p>Yes, for certain types of APIs on platforms that support it SOAP will be easier to work with. And in other cases its not. :) It really depends on what you're trying to do.</p>
+
+<p>In WCF it's not terribly hard to enable both, so it might be worth it to do that and let the people using your API choose what they want to work with.</p>

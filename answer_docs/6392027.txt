@@ -1,0 +1,13 @@
+<p>This works, it builds on your initial string->list solution, just does a conversion on the list of characters</p>
+
+<pre><code>(apply + (map (lambda (d) (- (char-&gt;integer d) (char-&gt;integer #\0)))
+       (string-&gt;list (number-&gt;string 123))))
+</code></pre>
+
+<p>The conversion function could factored out to make it a little more clear:</p>
+
+<pre><code>(define (digit-&gt;integer d)
+  (- (char-&gt;integer d) (char-&gt;integer #\0)))
+
+(apply + (map digit-&gt;integer (string-&gt;list (number-&gt;string 123))))
+</code></pre>

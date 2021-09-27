@@ -1,0 +1,3 @@
+<p>In C++, stay away from <code>#define</code> for simple constants.  It doesn't play well with namespaces.  Instead, use an <code>enum</code> or just a <code>const</code> variable in an appropriate namespace.  Either of these is typesafe and properly scoped.</p>
+
+<p>There are some things only <code>#define</code> can do, but avoid it when there's another way.</p>

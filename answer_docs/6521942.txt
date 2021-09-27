@@ -1,0 +1,17 @@
+<p>Since you are creating an anonymous type, there are two ways you could approach this.  The first would be to change you view expect a model of type <code>dynamic</code>, but I would recommend you do away with the anonymous type and create a new class, say <code>AppWithRating</code> that looks like this:</p>
+
+<pre><code>public class AppWithRating
+{
+    public App App { get; set; }
+    public double Rating { get; set; }
+}
+</code></pre>
+
+<p>Change you linq query to this:</p>
+
+<pre><code>var apps = from a in db.Apps
+           let rating = a.Ratings.Average(r =&gt; r.Stars)
+           select new AppWithRating { App = a, Rating = rating == null ? 0 : rating };
+</code></pre>
+
+<p>And finally update your View to accept the type <code>IEnumerable&lt;AppWithRating&gt;</code>.  </p>

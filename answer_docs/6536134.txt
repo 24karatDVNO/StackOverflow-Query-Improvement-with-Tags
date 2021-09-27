@@ -1,0 +1,20 @@
+<p>If using Maven's Android plug-in, make sure you declare the test project's dependency on the Application-Under-Test's APK to be in 'provided' scope, like the AUT's JAR:</p>
+
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;com.example&lt;/groupId&gt;
+        &lt;artifactId&gt;my-application&lt;/artifactId&gt;
+        &lt;type&gt;jar&lt;/type&gt;
+        &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.example&lt;/groupId&gt;
+        &lt;artifactId&gt;my-application&lt;/artifactId&gt;
+        &lt;type&gt;apk&lt;/type&gt;
+        &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;    &lt;!-- ADD THIS --&gt;
+    &lt;/dependency&gt;   
+</code></pre>
+
+<p>The Maven examples (at the time of writing) all make the test APK depend on the application APK with default (i.e. 'compile') scope, causing any libraries that the application gives 'compile' scope to be packaged into the test APK too.</p>

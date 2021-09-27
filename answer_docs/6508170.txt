@@ -1,0 +1,6 @@
+<p>To match positive or negative numbers, as in <code>-3</code> or <code>+5</code>, use <code>[+-]?\d+</code>:</p>
+
+<pre><code>re.findall('[+-]?\d+', 'sfkdjfsdfj-1skjfslkdjf+4')   # ['-1', '+4']
+</code></pre>
+
+<p>Make sure you put the negative sign last so the compiler understands you don't mean something else.</p>

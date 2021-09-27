@@ -1,0 +1,6 @@
+<pre><code>List&lt;string&gt; strings = new List&lt;string&gt;{"a", "b", "c", "d", "e"};
+List&lt;string&gt; firstTwoStrings = strings.Take(2).ToList();
+// firstTwoStrings  contains {"a", "b"}
+</code></pre>
+
+<p>The <a href="http://msdn.microsoft.com/en-us/library/bb503062.aspx" rel="nofollow"><code>Take(int count)</code></a> method will leave you with count items.</p>

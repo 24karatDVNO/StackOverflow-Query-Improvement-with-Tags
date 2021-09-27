@@ -1,0 +1,7 @@
+<p>This needs to be built statically with the kernel. (ubuntu 11 default configuration will suffice for this build to be successful, the errors reported in the post are because the module doesnt have facilities to be an insertable module.</p>
+
+<p><a href="http://linux.about.com/od/lkm_howto/a/hwtlkm07.htm" rel="nofollow">http://linux.about.com/od/lkm_howto/a/hwtlkm07.htm</a></p>
+
+<p>the warnings and error messages need not always represent the exact problem.</p>
+
+<p>Also thanks to strace insmod binder.ko (hinted me on absence of init_module)</p>

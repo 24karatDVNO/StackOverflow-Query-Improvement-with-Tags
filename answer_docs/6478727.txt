@@ -1,0 +1,36 @@
+<p>I get a different problem on my machine.</p>
+
+<pre><code>Traceback (most recent call last):
+  File "test.py", line 8, in &lt;module&gt;
+    m.f('Original')
+AttributeError: 'module' object has no attribute 'f'
+</code></pre>
+
+<p>I've noticed that you didn't close your file, so it may that the contents of the file are being held in a buffer and are waiting to be written to disk. So when you come to reloading the module, python still sees the original version of the file.</p>
+
+<p>From the documentation for file.write</p>
+
+<blockquote>
+  <p>write(...)
+     write(str) -> None.  Write string str to file.</p>
+  
+  <p>Note that due to buffering, flush() or close() may be needed before
+     the file on disk reflects the data written.</p>
+</blockquote>
+
+<p>Does the following work for you?</p>
+
+<pre><code>f = open('m.py','wt')
+f.write(r'def f(str): print "Sooo Original : %s"%(str)')
+f.close()
+
+import m
+m.f('Original')
+
+f = open('m.py','wt')
+f.write(r'def f(str): print "Not so original : %s"%(str)')
+f.close()
+
+m = reload(m)
+m.f('Copy')
+</code></pre>

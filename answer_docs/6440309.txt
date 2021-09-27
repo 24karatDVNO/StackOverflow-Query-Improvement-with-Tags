@@ -1,0 +1,15 @@
+<p>Something like this - please notice that you can only close a window you opened using script</p>
+
+<pre><code>&lt;?PHP
+ // set this on session start
+ $sessionStartTimeString = date("F j, Y, g:i a");
+?&gt;
+window.onload=function() {
+  var serverTime = new Date('&lt;?php echo $sessionStartTimeString ;?&gt;');
+  var nowTime = new Date('&lt;?php echo date("F j, Y, g:i a");?&gt;');
+  var closeTime = serverTime.setMinutes(serverTime.getMinutes()+5);
+  var diff = closeTime.getTime()-nowTime.getTime();
+  if (diff &gt; 0) setTimeout(function() { window.close(); }, diff);
+  else window.close()
+}
+</code></pre>

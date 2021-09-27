@@ -1,0 +1,6 @@
+<p>You distinguish retina and non-retina images only by their name ending like:
+picture.png for normal
+picture@2x.png for retina
+I usually put them into the same folder so i can easily see what pictures have retina support.</p>
+
+<p>Using [UIImage imageNamed:@"picture.png"] will at first try and load picture@2x.png if your app runs on a device with retina display. If it cannot load the 2x version, it will use the picture.png.</p>

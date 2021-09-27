@@ -1,0 +1,4 @@
+<p>The first parameter to <code>nsIOutputStream.write()</code> has to be a string - you are giving it an XML document instead. You can use <a href="https://developer.mozilla.org/en/XMLSerializer" rel="nofollow">XMLSerializer</a> to convert XML into text and to write it to a stream directly:</p>
+
+<pre><code>new XMLSerializer().serializeToStream(xml, stream, "utf-8");
+</code></pre>

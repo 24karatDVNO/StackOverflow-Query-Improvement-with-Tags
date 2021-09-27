@@ -1,0 +1,7 @@
+<p>The error message is showing that when you run rails, it is using 1.9.1. Per Wissam's comment, not sure if the ruby version is the problem, but you definitely need to make sure you are running on 1.9.2 before troubleshooting any further.</p>
+
+<p>Did you install RVM? If so, have you set the default ruby? Try typing "rvm info" at the prompt. If you have RVM installed, it will print out a bunch of useful info about your ruby version. If you don't, it will say command not found. If you do have it, then you can select a different ruby version using "rvm use 1.9.2".</p>
+
+<p>If you don't have RVM installed, then there are probably two versions manually installed on your host, and you'll need to figure out why rails is using 1.9.1. </p>
+
+<p>In any case, I highly recommend using RVM. <a href="https://rvm.io" rel="nofollow">https://rvm.io</a>.</p>

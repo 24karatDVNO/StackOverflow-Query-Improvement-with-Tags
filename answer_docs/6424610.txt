@@ -1,0 +1,6 @@
+<p>Regex split on any non-word character:</p>
+
+<pre><code>string.split(/\W+/).size
+</code></pre>
+
+<p>...although it makes apostrophe use count as two words, so depending on how small the margin of error needs to be, you might want to build your own regex expression.</p>

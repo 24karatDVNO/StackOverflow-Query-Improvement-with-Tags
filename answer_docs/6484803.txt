@@ -1,0 +1,13 @@
+<p>Your corrected code version:</p>
+
+<pre><code>function PasswordClick(evt) {
+
+    if ("Password" === $(this).val()){$(this).val('');}
+    if($(this).attr('type')=='text'){
+       $(this).attr({'type':'password'});
+    }
+        $(this).focus(function(){PasswordClick(evt);});
+}
+</code></pre>
+
+<p><a href="http://docs.jquery.com/Main_Page" rel="nofollow">Please, read some jQuery documentation before start programming with it.</a></p>

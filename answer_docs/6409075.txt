@@ -1,0 +1,23 @@
+<pre><code>WITH
+  filter AS
+(
+SELECT
+  LEN('AB78KH013Hj9') AS remaining,
+      'AB78KH013Hj9'  AS input,
+  ''                  AS numeric,
+  ''                  AS alpha
+
+UNION ALL
+
+SELECT
+  remaining - 1,
+  RIGHT(input, remaining - 1),
+  CASE WHEN PATINDEX('%[^0-9]%', LEFT(input, 1)) &gt; 0 THEN numeric ELSE numeric + LEFT(input, 1) END,
+  CASE WHEN PATINDEX('%[^0-9]%', LEFT(input, 1)) &gt; 0 THEN alpha + LEFT(input, 1) ELSE alpha END
+FROM
+  filter
+)
+
+
+SELECT numeric, alpha FROM filter WHERE remaining = 0
+</code></pre>

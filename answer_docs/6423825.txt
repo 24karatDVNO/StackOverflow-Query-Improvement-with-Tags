@@ -1,0 +1,11 @@
+<p>Use <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSPredicate_Class/Reference/NSPredicate.html" rel="nofollow"><code>NSPredicate</code></a>.</p>
+
+<pre><code>NSPredicate *predicate;
+predicate = [NSPredicate predicateWithFormat:@"username LIKE [cd] %@", textField.text];
+NSArray *result = [array filteredArrayUsingPredicate:predicate];
+
+if ([result count] &gt; 1) {
+
+    // User Exists
+}
+</code></pre>

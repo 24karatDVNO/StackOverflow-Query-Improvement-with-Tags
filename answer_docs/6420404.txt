@@ -1,0 +1,5 @@
+<p>It depends if you want to hide the link on a postback / initial load or after the page has already been delivered to the client.</p>
+
+<p>If you want to hide the link on postback / initial load, you can add the runat="server" attribute to the link and set its Visible property in the code behind.</p>
+
+<p>If you want to hide the link on a page that is already on the client, you can poll the server with Ajax calls and then hide the link using javascript.</p>

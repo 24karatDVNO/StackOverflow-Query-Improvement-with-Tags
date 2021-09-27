@@ -1,0 +1,5 @@
+<p>I'd suggest reading up on how garbage collection is handled in the .net world -- esentially, it works by following references to find anything that <em>could</em> be referenced by a top level object and frees everything else; it doesn't work with destructors like the C++ world, so you can be happy in the knowledge that managed objects will "just go" if their parent(s) and grand-parent(s) are freed.</p>
+
+<p>Of course, the garbage collector only knows about managed memory, and it is worth looking at the <a href="http://msdn.microsoft.com/en-us/magazine/cc163392.aspx" rel="nofollow">IDisposable pattern</a> if you have any unmanaged resources - this allows deterministic release of non-managed objects.</p>
+
+<p>The complicated bit comes in when dealing with what <em>could</em> reference an object, and it does include some less obvious things, like event handlers, which is where the WPF/INotifyPropertyChanged issue you mentioned comes from.</p>

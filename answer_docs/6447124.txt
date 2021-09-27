@@ -1,0 +1,48 @@
+<p>you don't need to execute the query again and again just execute it once and when thr records fetched in while loop put your div as per your requirement by using if( if required). I am showing you a sample of code which i used recently.</p>
+
+<pre><code>&lt;?php
+$conn=mysqli_connect(DBHOST,DBUSER,"",DB);
+$query1="select dev_image,dev_name from developers";
+$result=mysqli_query($conn,$query1);
+$cnt=0;
+while($row=mysqli_fetch_array($result))
+    //$dev_name=row['dev_name'];
+{               
+   $dev_image=$row['dev_image'];
+   $dev_name=$row['dev_name'];
+    if($cnt%4==0) {
+    echo "&lt;div class=\"project_main\"&gt;";
+}
+if($cnt%4==0) { 
+        echo "&lt;div class=\"project_img_main\"&gt;";
+        echo "&lt;div class=\"project_img1\"&gt;";
+        echo "&lt;img src=\"$dev_image\" alt=\"\" title=\"Project-1\" border=\"none\" /&gt;";
+        echo "&lt;/div&gt;";
+        echo "&lt;div class=\"project_img_name\"&gt;";
+        echo "&lt;p align=\"center\" class=\"txt1\"&gt;".$dev_name."&lt;/p&gt;";
+        echo "&lt;/div&gt;";
+    echo "&lt;/div&gt;";
+} else {
+        echo "&lt;div class=\"project_img_main1\"&gt;";
+        echo "&lt;div class=\"project_img1\"&gt;";
+        echo "&lt;img src=\"$dev_image\" alt=\"\" title=\"Project-1\" border=\"none\" /&gt;";
+    echo "&lt;/div&gt;";
+    echo "&lt;div class=\"project_img_name\"&gt;";
+        echo "&lt;p align=\"center\" class=\"txt1\"&gt;".$dev_name."&lt;/p&gt;";
+    echo "&lt;/div&gt;";
+        echo "&lt;/div&gt;";
+}
+
+$cnt++;
+if($cnt%4==0) {
+    echo "&lt;/div&gt;";
+}
+}
+
+?&gt;              
+</code></pre>
+
+<p>I hope it will be useful for you..just made it accordingly.</p>
+
+<p>Thanks<br>
+Rajesh</p>

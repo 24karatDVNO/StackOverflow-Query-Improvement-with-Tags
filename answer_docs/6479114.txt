@@ -1,0 +1,50 @@
+<p>Here's an alternative:</p>
+
+<pre><code>&lt;?
+function lastDayOfMonth($month, $year) {
+    switch ($month) {
+        case 2:
+            # if year is divisible by 4 and not divisible by 100
+            if (($year % 4 == 0) &amp;&amp; ($year % 100) &gt; 0)
+                return 29;
+            # or if year is divisible by 400
+            if ($year % 400 == 0)
+                return 29;
+            return 28;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            return 30; 
+        default:
+            return 31;
+    }
+}
+
+function lastDayOfWeek($month, $year, $dow) {
+    $d = new DateTime();
+
+    #Finding the last day of month
+    $d = $d-&gt;setDate($year, $month, lastDayOfMonth($month, $year));
+
+    #Getting the day of week of last day of month
+    $date_parts = getdate($d-&gt;getTimestamp());
+
+    $diff = 0;
+
+    #if we can't find the $dow in this week... (cause it would lie on next month)
+    if ($dow &gt; $date_parts['wday']) {
+        # ...we go back a week.
+        $diff -= 7;
+    }
+
+    return $date_parts['mday'] + $diff + ($dow - $date_parts['wday']);  
+}
+
+# checking the algorithm for this month...
+for ($i=0; $i &lt; 7; $i++) {
+    echo lastDayOfWeek(6,2011,$i) . "&lt;br&gt;";
+}
+
+?&gt;
+</code></pre>

@@ -1,0 +1,41 @@
+<p>The accepted answer is really nice, but it made me think of the Spl iterators on the rocks. Fabien Potencier explains how he created the Finder classes in symfony here:</p>
+
+<p><a href="http://fabien.potencier.org/article/43/find-your-files" rel="nofollow">http://fabien.potencier.org/article/43/find-your-files</a></p>
+
+<p>I also use his finder classes, they have a very nice chained interface. </p>
+
+<ul>
+<li>5.3+ standalone version (From sf2): <a href="https://github.com/symfony/Finder" rel="nofollow">https://github.com/symfony/Finder</a></li>
+</ul>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>use Symfony\Component\Finder\Finder;
+
+$finder = new Finder();
+$finder-&gt;files()-&gt;in(__DIR__);
+
+foreach ($finder as $file) {
+   print $file-&gt;getRealpath()."\n";
+}
+</code></pre>
+
+<p><strong>and also..</strong></p>
+
+<pre><code>$finder-&gt;files()-&gt;name('*.php');
+// or 
+$finder-&gt;files()-&gt;size('&gt;= 1K')-&gt;size('&lt;= 2K');
+$finder-&gt;date('since yesterday');
+</code></pre>
+
+<p>Documentation: <a href="http://symfony.com/doc/2.0/cookbook/tools/finder.html" rel="nofollow">http://symfony.com/doc/2.0/cookbook/tools/finder.html</a></p>
+
+<p><strong>The PHP5.2+ version from the sf1.4 framework:</strong> 
+<a href="http://svn.symfony-project.com/branches/1.4/lib/util/sfFinder.class.php" rel="nofollow">http://svn.symfony-project.com/branches/1.4/lib/util/sfFinder.class.php</a> </p>
+
+<p>This version is slightly different, and less fancy, but also does the job. You'll need to create an sfException class though, it's its only tie-in with the symfony framework. You may create your own sfException Class:</p>
+
+<pre><code>class sfException extends Exception { }
+</code></pre>
+
+<p>Documentation can be found here: <a href="http://www.symfony-project.org/cookbook/1_2/en/finder" rel="nofollow">http://www.symfony-project.org/cookbook/1_2/en/finder</a></p>

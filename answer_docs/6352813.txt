@@ -1,0 +1,4 @@
+<p>Why not make the views layer-backed? You can then just apply an affine transform to the view's layer.</p>
+
+<pre><code>yourView.layer.transform = CATransform3DMakeRotation(M_PI_4, 0, 0, 1.0);
+</code></pre>

@@ -1,0 +1,12 @@
+<pre><code>$timestamp=mktime(0,0,0,$_POST['month'],$_POST['day'],$_POST['year']);
+$dob=date('Y-m-d',$timestamp);
+</code></pre>
+
+<p>The $dob value is ready to be inserted to your database</p>
+
+<p>Or alternatively you could do:</p>
+
+<pre><code>$dob=$_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
+</code></pre>
+
+<p>but you should escape the values first before inserting them to db, or use PDO </p>

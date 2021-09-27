@@ -1,0 +1,6 @@
+<p>You don't specify what you do with your <code>loadedPoofSprite</code>/<code>poofImage</code>.
+Possibly the problem is not related to retain/release: e.g., if you add the image as a subview to another view (through an UIImageView), your image is automatically retained by the framework, so retaining it yourself should not be required and could prevent unloading it when the system needs it.</p>
+
+<p>Indeed, it is possible that your application, while in the background, is affected by the system attempting to recover memory for the benefit of another app running; in such case, your views would be released, possibly deallocated, and on resume to foreground, your app would not find its views. Hence the failure.</p>
+
+<p>If my reasoning applies, you will need to check whether your UIViews are there and be prepared to reload/recreate them as needed (as specified by the docs about <code>didReceiveMemoryWarning/viewWillLoad/viewDidUnload</code>).</p>

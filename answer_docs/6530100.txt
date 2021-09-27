@@ -1,0 +1,5 @@
+<p>If you are going to call the sub as a class method, you need to expect the additional implicit class argument:</p>
+
+<pre><code>my $class = shift;
+my %args = ( ..., @_ );
+</code></pre>

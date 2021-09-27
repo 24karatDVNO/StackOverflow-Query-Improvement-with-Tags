@@ -1,0 +1,6 @@
+<p>Try: <br /></p>
+
+<pre><code>@places = Place.find(:all, :include =&gt; :categories, :conditions =&gt; ["categories_places.category_id IN ?", int])
+</code></pre>
+
+<p>where <code>int</code> - your array of ids</p>

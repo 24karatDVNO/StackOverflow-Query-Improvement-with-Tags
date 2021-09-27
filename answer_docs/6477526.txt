@@ -1,0 +1,37 @@
+<p>AFAIK, you need to manage views (like setting text) outside <code>if (convertView == null){}else{}</code> block, since you need it to be invoked in any case, not only on view creating. Could it be the issue?</p>
+
+<pre><code>if (convertView == null) {
+     holder = new ViewHolder();
+
+
+    switch (type) {
+        case TYPE_ADDRESS:
+                    convertView = mInflater.inflate(R.layout.layout_address, null);
+                    holder.address = (TextView) convertView.findViewById(R.id.address_id);                                     
+
+                    break;
+
+        case TYPE_NAME:                        
+                    convertView = mInflater.inflate(R.layout.layout_name, null);                    
+                    holder.name = (TextView)convertView.findViewById(R.id.name_id);
+                    holder.phone = (TextView)convertView.findViewById(R.id.phone_id);
+
+                    break;
+    }
+
+        convertView.setTag(holder);          
+
+   }else {
+
+    holder = (ViewHolder) convertView.getTag();
+   }    
+
+   switch (type) {
+        case TYPE_ADDRESS:
+              holder.address.setText(data.getAddress(position));
+              break;
+        case TYPE_NAME:                        
+              holder.name.setText(data.getName(position));
+              holder.phone.setText(data.getPhone(position)); 
+              break;       
+</code></pre>

@@ -1,0 +1,3 @@
+<p>The same function should work for Cyrilic as well.</p>
+
+<p>Do you understand the difference between KEY and CHARACTER? Keys are on your keyboard, while characters are what is drawn on screen. WM_KEYDOWN and WM_KEYUP don't send characters, they send keys. <code>Keys</code> datatype covers keyboard as a hardware - you always have the same 102 or so keys there regardless of what they mean in your local language. These keys are converted to characters later, using active code page. So that's why you can use the same function for Cyrilic, just switch active code page to Cyrilic and send the right key names as if it was from an u.s.english keyboard.</p>

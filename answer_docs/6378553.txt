@@ -1,0 +1,22 @@
+<p>I guess, you want to write a function that converts the date string to timestamp.
+And I also believe that your string is in the form of 06/03/2011</p>
+
+<p>So, for this scenario, you would want to do...</p>
+
+<p>(php code)</p>
+
+<pre><code>public function dateToStamp($str) {
+    if( is_numeric($str) || $str==0 ) return $str;
+
+    if( (int)strstr($str, "/")&gt;=0  )
+        $date = explode("/",$str);
+    else
+        $date = explode("-",$str);
+
+    return mktime(0,0,0,$date[0],$date[1],$date[2]);
+}
+</code></pre>
+
+<p>The above code handles, a) timestamp input
+b) 12/24/2011
+c) 12-24-2011</p>

@@ -1,0 +1,9 @@
+<p>If you really want to use Regex, you need to remember to escape the <code>|</code> as <code>\|</code> in raw regex, and in C#, <code>"\\|"</code> or <code>@"\|"</code>.</p>
+
+<pre><code>string[] parts = Regex.Split (input, @"\|");
+</code></pre>
+
+<p>For something simple like this, just use <code>string[] parts = input.Split('|')</code>.  You shouldn't use regex in this case unless there's something special, like not wanting to split on escaped pipes (like <code>email@email.com|my value has a \| in it|more stuff'</code>).  In this example, you would use this:</p>
+
+<pre><code>string[] parts = Regex.Split (input, @"(?&lt;!\\)\|");
+</code></pre>

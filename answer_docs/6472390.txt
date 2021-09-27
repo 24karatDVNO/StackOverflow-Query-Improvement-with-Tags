@@ -1,0 +1,7 @@
+<p>I just needed to configure the SuperHuman to map inherited properties, like so:</p>
+
+<pre><code>    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;SuperHuman&gt;().Map(m =&gt; m.MapInheritedProperties());
+    {
+</code></pre>

@@ -1,0 +1,3 @@
+<p>Thanks for all the help on this issue. For anyone else who has this problem, I believe it is because I forgot to add the the location of the mongodb binary files to the <code>$PATH</code> variable</p>
+
+<p>In my case installed the binary files in <code>/usr/local/mongodb/bin</code> as such I needed to add <code>export PATH=/usr/local/mongodb/bin:$PATH</code> to my <code>~/.bash_profile</code></p>

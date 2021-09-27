@@ -1,0 +1,19 @@
+<p>If somediv is a dom element or jquery object then you can do:</p>
+
+<pre><code>$(somediv).show().html(msg);
+</code></pre>
+
+<p>If somediv is the id of the element, then you can do what @boca said:</p>
+
+<pre><code>$('#' + somediv).show().html(msg);
+</code></pre>
+
+<p>An example call for choice one would be </p>
+
+<pre><code>getData("url", {d1:"",d2:""}, $('#messageDiv'));
+</code></pre>
+
+<p>And an example call for choice two would be</p>
+
+<pre><code>getData("url", {d1:"",d2:""}, 'messageDiv');
+</code></pre>

@@ -1,0 +1,15 @@
+<p>A friend give me a reference to this earlier question: <a href="https://stackoverflow.com/questions/652053/setting-java-home-when-running-ant-from-java">Setting JAVA_HOME when running Ant from Java</a></p>
+
+<p>The problem basicly is with ant because it has point java.home to 'jre' instead of 'jdk'. It got overwritten everytime ant was call to execute.</p>
+
+<p>The solution is to add:</p>
+
+<p><code>fork="yes"</code> </p>
+
+<p>to each compilation script and add: </p>
+
+<p><code>p.setProperty("java.home", "C:\\Program Files\\Java\\jdk1.6.0_26");</code></p>
+
+<p>to the java execution code.</p>
+
+<p>Hope this help others :D</p>

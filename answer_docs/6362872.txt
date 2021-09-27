@@ -1,0 +1,69 @@
+<p>Answering my own question, might be helpful to someone else, have to update my section_link_to helper like this:</p>
+
+<p>Defined a css class <code>.current</code> to highlight the current link. My definition looks like this: </p>
+
+<pre><code>.current {
+    font-size: 12pt;
+    text-decoration: none;
+}
+</code></pre>
+
+<p>In the <code>application_controller.rb</code>, define a before_filter which would set the current controller and action names.</p>
+
+<pre><code>def instantiate_controller_and_action_names
+  @current_action = action_name
+  @current_controller = controller_name
+end
+</code></pre>
+
+<p>Then the helper:</p>
+
+<pre><code>def section_link_to(name, url_options, html_options = {})
+  if url_options.is_a?(Hash)
+    action = url_options[:action] || 'index'        
+    controller = url_options[:controller]
+
+    if action.eql?(@current_action) and controller.eql?(@current_controller)
+      link_to(name, url_options, html_options, :class =&gt; 'current')
+    else
+      link_to(name, url_options, html_options)
+    end
+  else
+    if url_options.length &gt; 1
+      controller = url_options.delete('/')
+      if controller.include?('?')
+        controller = controller.split('?')[0]
+      end
+    else 
+      controller = 'welcome' 
+    end
+
+    if controller == @current_controller
+      if html_options.has_key?(:class)
+        css_options = html_options.fetch(:class)
+        css_options &lt;&lt; ' current'
+
+        html_options.merge!( { :class =&gt; css_options })
+      else
+        html_options.merge!( { :class =&gt; 'current' } )
+      end
+
+      link_to(name, url_options, html_options)
+    else
+      link_to(name, url_options, html_options)
+    end
+  end
+end
+</code></pre>
+
+<p>In the helper, I am checking whether the <code>current_controller</code> and <code>current_action</code> equals the link that is being rendered. If yes, add the class <code>.current</code> to that link and render.</p>
+
+<p>Now I can pass either a hash of options like:</p>
+
+<pre><code>&lt;%= section_link_to "Home", :controller =&gt; 'welcome %&gt;
+</code></pre>
+
+<p>Or use the generated rails like this:</p>
+
+<pre><code>&lt;%= section_link_to "Home", root_path %&gt;
+</code></pre>

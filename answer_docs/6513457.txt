@@ -1,0 +1,19 @@
+<p>Rather than using a <code>has_many</code> association (which adds a bunch of setter methods, as well as getters), simply define a method (which you've more or less already done):</p>
+
+<pre><code>def User &lt; ActiveRecord::Base
+
+   has_many :posts # written by the user
+
+   # Posts the user can see
+   def posts_visible_to
+     if has_privileges?
+        Post.all
+     else
+        posts
+     end
+   end
+
+end
+</code></pre>
+
+<p>PS you spelled 'privileges' wrongly... :)</p>

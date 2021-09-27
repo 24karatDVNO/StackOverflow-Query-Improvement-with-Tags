@@ -1,0 +1,5 @@
+<p>To have a typical system/application cache, you either need file system write access or have something like APC available.</p>
+
+<p>The only other way to cache data is to set it to the session for each user, where if the session key "my-cache" doesn't exist, get from the database and set to the session. Just like with any other caching method you'll also have to think about unsetting the cache when data gets updated etc.</p>
+
+<p>It's not ideal at all to have application data cached on the client side, but if you need cache where caching options aren't available, then it's your only option.</p>

@@ -1,0 +1,11 @@
+<p>You can pass all the data to the controller as a custom type.</p>
+
+<pre><code>public ActionResult MyControllerMethod(MyCustomType formData)
+</code></pre>
+
+<p>If you strongly type your view then you'll be able to render the form fields using the HtmlHelper such as:</p>
+
+<pre><code>&lt;%= Html.TextBoxFor(m =&gt; m.FirstName) %&gt;
+</code></pre>
+
+<p>This was the ID of the form fields, which is used to associate the form field with the model property, will already be set for you.</p>

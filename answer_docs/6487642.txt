@@ -1,0 +1,20 @@
+<p>I am not sure what your requirements are, but are you sure you want to pass the name of the article to the controller? Would you be better off just passing the ID then doing a SELECT from the database to get the Name?</p>
+
+<p>If you still wanted to have a URL like <code>http://mysite.com/controller/action/123/name-of-article</code>
+but only pass in the ID you can use a route like this</p>
+
+<pre><code> routes.MapRoute(
+               "MyNewRoute",            // Route name
+               "articles/edit/{id}/{name}",       // URL
+               new { controller = "Articles", action = "Edit", id = "" }, // Defaults
+               new[] { "YourApp.UI.Controllers" }                       // Namespaces
+             );
+</code></pre>
+
+<p>Then your controller action</p>
+
+<pre><code>public ActionResult Edit(int id)
+{
+
+}
+</code></pre>

@@ -1,0 +1,5 @@
+<pre><code>while($row_category = mysql_fetch_array($category)){
+   $result[] = implode(',',$row_category);
+}
+echo implode("\n",$result);
+</code></pre>

@@ -1,0 +1,10 @@
+<p>@user762730 : Are you asking how to log messages to the machines' event log?  If so, you can accomplish with very few lines of code.  </p>
+
+<pre><code>if (!EventLog.SourceExists("Application Name"))
+    EventLog.CreateEventSource("Application Name", "Application");
+
+var myLog = new EventLog { Source = "Application Name" };
+myLog.WriteEntry(errorMsg + ex.Message + "\n\nStack Trace:\n" + ex.StackTrace);
+</code></pre>
+
+<p>The EventLog type is found within the System.Diagnostics namespace.  </p>

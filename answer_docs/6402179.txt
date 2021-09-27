@@ -1,0 +1,23 @@
+<pre><code>var count=3;
+
+ function check()
+ {
+    var obj =new Array();
+    obj=document.getElementById("list");
+    checkLength(obj.length);
+ }
+ function checkLength(len)
+ {
+    if(len&gt;count)
+    {
+       alert("Drop down size changed");
+    }
+ }
+</code></pre>
+
+<ul>
+<li>Take three option elements in select element.</li>
+<li>Call the method check() using  onchange()  to get the size of drop down list.</li>
+<li>The variable count is    used to store the drop down list size    .</li>
+<li>So that it can be used to check if drop down list is changed.</li>
+</ul>

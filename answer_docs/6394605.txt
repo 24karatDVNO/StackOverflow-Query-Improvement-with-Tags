@@ -1,0 +1,8 @@
+<p>What are the column names of the table?</p>
+
+<p>For me this seems to be possibly cyclic:</p>
+
+<pre><code>SUM(isnull(prn_amount,0))as prn_amount
+</code></pre>
+
+<p>and there seems to be a <code>group by</code> missing in your statement on loan_id</p>

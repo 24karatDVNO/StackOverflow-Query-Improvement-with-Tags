@@ -1,0 +1,4 @@
+<p>If you have already created a database you'll need to tell the app that you want to drop and recreate the tables when the database changes. Try adding this to Global.asax    </p>
+
+<pre><code>System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges&lt;YourApp.Models.YourAppContext&gt;());
+</code></pre>

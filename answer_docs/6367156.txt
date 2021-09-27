@@ -1,0 +1,13 @@
+<p>Well, I am sort of working on an open-source project on my weekends.
+I think it would fit your demand. Please check it out at <a href="http://tog2html.com" rel="nofollow">http://tog2html.com</a></p>
+
+<p>For instance, in your case , after getting a json obj (var data). You can do something like :</p>
+
+<pre><code>$(...).append(
+   Tog('div#main_div').h1('hello, ', data.name).h3().raw(data.title).html()
+   // raw() is for escaping the data into something valid to be shown in html
+)
+
+possible output:
+&lt;div id='main_div'&gt;&lt;h1&gt;hello, some one&lt;/h1&gt;&lt;h3&gt;this is my blog title&lt;/h3&gt;&lt;/div&gt;
+</code></pre>

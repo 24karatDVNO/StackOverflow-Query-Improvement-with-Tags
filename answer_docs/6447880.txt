@@ -1,0 +1,11 @@
+<p>First, if I understand your meaning in your "How can I search efficiently" subsection, you cannot just skip a few megabytes of data in the search if the target string might be in those first few megabytes.</p>
+
+<p>As for loading the file into memory, if you do that, don't forget to make sure you have enough space in memory for the entire file. You will be frustrated if you go to use your utility and find that the 2GB file you want to use it on can't fit in the 1.5GB of memory you have left.</p>
+
+<p>I am going to assume you will load into memory or memory map it for the following.</p>
+
+<p>You did specifically say this was a binary file, so this means that you cannot use the normal C++ string searching/matching, as the null characters in the file's data will confuse it (end it prematurely without a match). You might instead be able to use memchr to find the first occurrence of the first byte in your target, and memcmp to compare the next few bytes with the bytes in the target; keep using memchr/memcmp pairs to scan through the entire thing until found. This is not the most efficient way, as there are better pattern-matching algorithms, but this is a sort of efficient way, I suppose.</p>
+
+<p>To "delete" n bytes you have to actually move the data after those n bytes, copying the entire thing up to the new location.</p>
+
+<p>If you actually copy the data from disk to memory, then it'd be faster to manipulate it there and write to the new file. Otherwise, once you find the spot on the disk you want to start deleting from, you can open a new file for writing, read in X bytes from the first file, where X is the file pointer position into the first file, and write them right into the second file, then seek into the first file to X+n and do the same from there to file1's eof, appending that to what you've already put into file2.</p>

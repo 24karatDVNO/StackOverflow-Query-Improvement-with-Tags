@@ -1,0 +1,3 @@
+<p>You are simply reusing the same <code>oraRowDetailsMap</code> for each row. No wonder you have the same map over and over in your result.</p>
+
+<p>Use a <code>Map&lt;...&gt; oraRowDetailsMap = new HashMap&lt;...&gt;();</code> inside your result set loop to create a new map for each row, instead of only once before the loop.</p>

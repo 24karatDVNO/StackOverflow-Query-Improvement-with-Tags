@@ -1,0 +1,3 @@
+<p>If a thread wants to finish, it can either call <code>pthread_exit()</code> or it can return from the initial thread function.  These are equivalent.</p>
+
+<p>I don't see any reason why a thread <em>couldn't</em> call <code>pthread_cancel()</code> on itself, but this would be highly unusual.</p>

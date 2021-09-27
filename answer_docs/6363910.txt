@@ -1,0 +1,42 @@
+<p>Well, This can be done using Ajax. fairly easy using Jquery in fact. 
+What i would advise you is have the different "sections" broken down into pages.</p>
+
+<p>what i mean is, for example you would have a print.html page containing only the markup for the print page, same for the web page and same for the motion page. (only the markup = "the main image area, some copy, and the selection area which has a short title for the image", no <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> tags since we are in fact creating "segments" for your page. </p>
+
+<p>The main page container's markup would be almost the same except that your current divs with id content3 and content4 would be empty (since that's where we would insert your page. In fact you can even outsource those 2 divs to your page segments and replace them by a <code>&lt;div id='dynamic'&gt;&lt;/div&gt;</code> (better since you have better control on the placement of items in your segments then).</p>
+
+<p>From here on i'll assume you have some knowledge of jquery, so if you don't understand something you can look it up or ask.</p>
+
+<p>you can have each of the links (web / print / motion) have a class of "load_segment" and an id of web / print / motion. for the sake of convenience i'd name the ids the same as the page segments i discussed above (without the .html extension of course) to automate some of the work.</p>
+
+<p>so after this is done, include the jquery script and do something like the following</p>
+
+<pre><code>&lt;script&gt;
+   $(function(){ // shorthand document.ready, ensures dom is loaded before starting
+
+       $('.load_segment').click(function(){  // binds a click event handler to your links
+
+           var page = $(this).attr("id") + '.html'  
+
+           /* 
+              here is why we named our id the same as our page segments, we auto generate 
+              filenames, and thus only need to write this code once for all 3 links. you could 
+              even add more later and as long as you have the corresponding html file segment 
+              it will still work all the same 
+           */
+
+           $.get(page,function(segment){  
+          // perform ajax request, fetch page, and then execute function 
+
+               $("#dynamic").html(segment); 
+              // the segment is inserted in the dynamic div created above.
+
+           }); //end ajax request
+
+        }); // end .load_segment click event
+
+   }) // end of jquery document.ready
+&lt;/script&gt;
+</code></pre>
+
+<p>Please note that for the numbered links in each section you could also create embedded ajax fetchers such as in the above within your segments (no need to include jquery again in each segment) and create... well "subsegments" to each page, but that risks getting a bit complex in the long run if the page is to grow.</p>

@@ -1,0 +1,21 @@
+<p>DECLARE @foo TABLE<br>
+(
+Id int,<br>
+[Ship Qty] INT,
+Size VARCHAR(32),
+Qty Float<br>
+); </p>
+
+<p>INSERT @foo( Id, [Ship Qty], Size)  </p>
+
+<p>select Id,[Ship Qty], [Size] from PlacedOrderDetails where Qty is Null ;<br>
+ UPDATE @foo 
+ SET Qty = [Ship Qty] * CONVERT(INT, LEFT(Size, CHARINDEX('X', Size)-1)) * CONVERT(Float, SUBSTRING(Size, CHARINDEX('X', Size)+1,              CHARINDEX(' ', Size)-CHARINDEX('X', Size)))<br>
+WHERE         CHARINDEX('X', Size) > 0         AND CHARINDEX(' ', Size) > 0         AND Qty IS NULL;      </p>
+
+<p>SELECT Id,[Ship Qty],Size, Qty FROM @foo; </p>
+
+<p>-- <strong><em>*</em>****</strong>
+-- This query results great
+-- Issue is that, It is inserting into Temp Table
+-- I want to update it instantly on the Parent Table : PlacedOrderDetails</p>

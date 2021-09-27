@@ -1,0 +1,14 @@
+<p>Can;t you just make the body of your functions work with the arguments property?</p>
+
+<p><a href="http://jsfiddle.net/9XcEb/" rel="nofollow">http://jsfiddle.net/9XcEb/</a></p>
+
+<pre><code>var add = new Function(
+    "var total=0;"+
+    "for (var i=0; i &lt; arguments.length; i++) {"+
+       "total+=arguments[i]"+
+    "};"+
+    " return total"
+);
+
+alert(add(3,4,5,6));
+</code></pre>

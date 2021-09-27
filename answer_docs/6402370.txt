@@ -1,0 +1,3 @@
+<pre><code>SELECT Name, PPNO FROM Table WHERE PPNO IN
+(SELECT PPNO FROM Table GROUP BY PPNO HAVING Count(PPNO)=5)
+</code></pre>

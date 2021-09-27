@@ -1,0 +1,9 @@
+<p>use this..</p>
+
+<pre><code>style="&lt;%#  (DataBinder.Eval(Container, "DataItem.Exclamation").ToString() == "1") ? Response.Write("color:red") :Response.Write("color:red")  %&gt;"
+</code></pre>
+
+<p>OR</p>
+
+<pre><code>style="&lt;%# (Eval("Exclamation").ToString() == "1") ? Response.Write("color:red") :Response.Write("color:red")  %&gt;
+</code></pre>

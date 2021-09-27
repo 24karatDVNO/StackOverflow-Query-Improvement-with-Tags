@@ -1,0 +1,7 @@
+<p>You can use Table Adapter, e.g.</p>
+
+<pre><code>DataSet mSet = new DataSet();
+OleDbTableAdapter mAdapter = new OleDbTableAdapter(myOleDbCommand); 
+mAdapter.Fill(mSet); 
+myOleDbCommand.Connection.Close();
+</code></pre>

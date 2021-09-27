@@ -1,0 +1,26 @@
+<p>It's HTML escaping attribute values. If you change your example to</p>
+
+<pre><code>xml =&lt;&lt;-EOXML
+&lt;entry title="jobs d'été"&gt;
+jobs d'été
+&lt;/entry&gt;
+EOXML
+</code></pre>
+
+<p>it's clearer:</p>
+
+<pre><code>&lt;entry title="jobs d'&amp;#xE9;t&amp;#xE9;"&gt;jobs d'été&lt;/entry&gt;
+</code></pre>
+
+<p>You could convert them back like this</p>
+
+<pre><code>require 'cgi'
+p = MyParser.new() do |node|
+  puts CGI.unescapeHTML(node.to_xml(:encoding =&gt; "UTF-8"))
+end
+</code></pre>
+
+<p>which gives</p>
+
+<pre><code>&lt;entry title="jobs d'été"&gt;jobs d'été&lt;/entry&gt;
+</code></pre>

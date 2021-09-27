@@ -1,0 +1,12 @@
+<p>I'm not sure how you're using that method (in a loop, or what), but, if you can, set up another NSAutoreleasepool to release those objects as soon as you can.</p>
+
+<p>Here's an example of how you could use it with a loop to get rid of autoreleased objects ASAP.</p>
+
+<pre><code>for (NSInteger i = 0; i &lt; 99999999999999; i++ )
+{
+    NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
+    NSString *string = [NSString string];
+    // code
+    [innerPool release];
+}
+</code></pre>

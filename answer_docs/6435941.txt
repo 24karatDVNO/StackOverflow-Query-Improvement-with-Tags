@@ -1,0 +1,18 @@
+<p>Put the animation code inside a named function, so you can call the function both on load of the page and on the click of the link.</p>
+
+<pre><code>function animation() {
+
+    // your animation code here...
+
+}
+</code></pre>
+
+<p>Then call it on windows load</p>
+
+<pre><code>$(window).load(function() {
+
+    // call animation function
+    animation();
+
+});
+</code></pre>

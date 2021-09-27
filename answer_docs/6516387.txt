@@ -1,0 +1,17 @@
+<p>You have many options:</p>
+
+<ul>
+<li>try-catch-finally</li>
+<li>Page_Error method</li>
+<li>Application_Error method</li>
+<li>Web.config file</li>
+</ul>
+
+<p>If you just want to display error message on any parts of your page, use try-catch and you can continue with other transactions that do not require connection. Or you can use Page_Error to catch all unhanded errors on page-level or Application_Error (you will be using Global.asax file) for exceptions that are not handled by try-catch and Page_Error method. If you prefer to redirect to a different error page use  section on web.config.</p>
+
+<p>For references, you can also read these articles:</p>
+
+<ul>
+<li><a href="http://www.4guysfromrolla.com/articles/081209-1.aspx" rel="nofollow">http://www.4guysfromrolla.com/articles/081209-1.aspx</a></li>
+<li><a href="http://support.microsoft.com/kb/306355" rel="nofollow">http://support.microsoft.com/kb/306355</a></li>
+</ul>

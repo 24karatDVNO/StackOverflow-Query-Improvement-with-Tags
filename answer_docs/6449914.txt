@@ -1,0 +1,31 @@
+<p>I believe you want a global variable $GLOBAL:variable_name. That variable will be in the scope of the script not just the function.</p>
+
+<p>Looking at the code you may want to use trap (<code>Get-Help about_Trap</code>) as well - though $GLOBAL:variable_name would work with yours above. Here's a re-wreite of the code example - I've not tested this so it's more pseudo-code... :)</p>
+
+<pre><code>function MyFun {
+  [CmdletBinding()]    # must be an advanced function or this 
+  param ()             # will not work as ErrorVariable will not exist
+  begin {
+    trap {
+      $GLOBAL:my_error_boolean = $true
+      $GLOBAL:my_error_message = "Error Message?"
+
+      return
+    }
+  }
+  process {
+    # more code here....
+  }
+}
+
+# call the function
+$GLOBAL:my_error_boolean = $false
+MyFun 
+# this check would be similar to checking if $? -eq $false
+if ($GLOBAL:my_error_boolean) {
+  "An error was detected"
+  # handle error, log/email contents of $Err, etc.
+}
+</code></pre>
+
+<p>HTH, Matt</p>

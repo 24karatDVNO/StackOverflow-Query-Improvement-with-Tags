@@ -1,0 +1,13 @@
+<p>Instead of this</p>
+
+<pre><code>public void DeleteAllRows()
+    {
+         for( int i = absTest.getRowCount() - 1; i &gt;= 0; i-- )
+         {
+              lstTestData.remove(i);
+              SetData(lstTestData);
+         }
+    }
+</code></pre>
+
+<p>just create an empty list and call SetData.</p>

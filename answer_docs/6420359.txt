@@ -1,0 +1,9 @@
+<p>You are missing a route to the show action for users. You can add something like this to the routes.rb file.</p>
+
+<pre><code>match "/users/:id" =&gt; "users#show"
+</code></pre>
+
+<p>If you want the normal CRUD actions, you can get rid of your users/new route and instead of the match line above, just declare them all with a single line:</p>
+
+<pre><code>resources :users
+</code></pre>

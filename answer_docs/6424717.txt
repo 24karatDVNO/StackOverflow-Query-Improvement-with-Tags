@@ -1,0 +1,3 @@
+<p>Solved this by appending the upload form after the form where the rest of the input elements are. Then I use a link to access the file field (works in Chrome, FF and Safari). The reason why I put the form after the main form instead of just adding it to the body is that in jQuery UI modal dialog if form 2 is in body you can't access it due to the nature of the modal dialog (disables events outside the modal dialog).</p>
+
+<p>In IE I put the form 2 file input into form 1 and then with the onChange event I move (append) the file input into form 2, fire submit and then move the file input back to where it was. It's a bit "hacky" but it seems to work quite nicely.</p>

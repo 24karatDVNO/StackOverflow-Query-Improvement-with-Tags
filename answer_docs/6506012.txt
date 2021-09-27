@@ -1,0 +1,20 @@
+<p>try </p>
+
+<pre><code>$current_sql = mysql_query("SELECT * FROM `product_categories` WHERE `product`='{$_GET['id']}'");
+$all_sql = mysql_query("SELECT * FROM `categories`");
+$pcs = array();
+    while($in=mysql_fetch_array($current_sql);)){
+        $pcs[]=$in['ID']
+    }
+
+while($ca = mysql_fetch_array($all_sql)){
+
+    echo("&lt;label&gt;&lt;input type=\"checkbox\" name=\"categories[]\" value=\"".$ca['ID']."\" class=\"cat_check\"");
+    if($edit){
+        if(in_array($ca['ID'], $pcs)){
+            echo(" checked=\"checked\"");   
+        }
+    }
+    echo("&gt; " . $ca['category'] . "&lt;/label&gt;&lt;br/&gt;\n");
+}
+</code></pre>

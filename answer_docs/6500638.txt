@@ -1,0 +1,3 @@
+<p><strong>Depends</strong>. Log4j <em>does this very check at the beginning of every method</em>—<code>isDebugEnabled()</code> before debug statement, <code>isWarnEnabled()</code> before warn, etc.,—by default.</p>
+
+<p>This does not mean checks are not required. <strong>Checks can save procssing if any of the parameters passed invoke computation</strong>. E.g., <code>LOGGER.debug(transformVars(a, b, c, d));</code> would result in unnecessary execution of <code>transform()</code>, if debug is not enabled!</p>

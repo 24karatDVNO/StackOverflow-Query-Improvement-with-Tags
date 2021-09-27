@@ -1,0 +1,3 @@
+<p>This is a bit of a guess but I would think that the uniqueName is the problem. When you have unobtrusive validation turned on the Html helpers render uniqueId/Names by default. If the unobtrusive validation is binding to that and then the uniqueName of knockout is changing the name, this would break the validation.</p>
+
+<p>Remove the unique name and see if it works.</p>

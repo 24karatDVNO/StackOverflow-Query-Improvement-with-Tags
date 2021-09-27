@@ -1,0 +1,43 @@
+<p>First, put <code>print_r()</code> output into <code>&lt;pre&gt;</code> tags so it is readable.</p>
+
+<pre><code>Array ( 
+    [0] =&gt; ModComments_CommentsModel Object ( 
+        [data:private] =&gt; Array ( 
+            [0] =&gt; 11686 
+            [crmid] =&gt; 11686 
+            [1] =&gt; 1679 
+            [smcreatorid] =&gt; 1679 
+            [2] =&gt; 1679 
+            ...
+        )
+    )
+    ...
+)
+</code></pre>
+
+<p>You're trying to access the first object in your array, <code>$COMMENTS[0]</code>. Since that it is object, and your <code>data</code> property is private, you cannot access it in Smarty. You would have to edit the ModComments_CommentsModel class to give you access to either the <code>data</code> property or the <code>crmid</code> key of the property.</p>
+
+<p>Example:</p>
+
+<pre><code>class ModComments_CommentsModel {
+
+    // ...
+
+    public function CrmId(){
+        return $this-&gt;data['crmid'];
+    }
+
+    // ...
+
+}
+</code></pre>
+
+<hr>
+
+<pre><code>{* template *}
+{$COMMENTS[0]-&gt;CrmId()}
+
+{* might have to assign before using method call *}
+{assign var='comment' value=$COMMENTS[0]}
+{$comment-&gt;CrmId()}
+</code></pre>

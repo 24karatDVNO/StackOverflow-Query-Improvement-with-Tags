@@ -1,0 +1,18 @@
+<p>Here's a brute force method that absolutely works:</p>
+
+<pre><code>public static Date parseDate(String input)
+{
+    SimpleDateFormat format = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
+    for (int i = 0; i &lt; input.length() - 29; i++)
+    {
+        try
+        {
+            return format.parse(input.substring(i, i + 29));
+        }
+        catch (ParseException ignore) {}
+    }
+    throw new IllegalArgumentException();
+}
+</code></pre>
+
+<p>It just scans along the string trying every start position until it parses a date</p>

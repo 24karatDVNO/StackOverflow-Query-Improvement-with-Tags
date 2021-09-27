@@ -1,0 +1,10 @@
+<p>Let <code>maxval</code> be the maximal value of <code>uint8_t</code>.
+Determine the existence of <code>next_carry</code> as follows:<br/></p>
+
+<pre><code>next_carry = false;
+if( *i == maxval &amp;&amp; ( *j &gt; 0 || carry ) ) // excluding *i + carry &gt; maxval case in next if
+        next_carry = true;
+    else
+        if( *i + carry &gt; maxval - *j ) ///  equal to *i + *j + carry &gt; maxval
+             next_carry = true;
+</code></pre>

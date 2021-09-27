@@ -1,0 +1,25 @@
+<p>A simple solution here is to match the string with the pattern <code>\d+</code>. 
+Sometimes it is easier to split by the values you don't want to match, but here it serves as an anti-pattern.:</p>
+
+<pre><code>MatchCollection numbers = Regex.Matches(s, @"\d+");
+</code></pre>
+
+<p>Another solution is to use regular String.Split and some LINQ magic. First we split by commas, and then check that all letters in a given token are digits:</p>
+
+<pre><code>var numbers = s.Split(',').Where(word =&gt; word.All(Char.IsDigit));
+</code></pre>
+
+<p>It is an commonly ignored fact the <code>\d</code> in .Net matches <strong>all Unicode digits</strong>, and not just <code>[0-9]</code> (try ١٢٣ in your array, just for fun). A more robust solution is to try to parse each token according to your defined culture, and return the valid numbers. This can easily be adapted to support decimals, exponents or ethnic numeric formats:</p>
+
+<pre><code>static IEnumerable&lt;int&gt; GetIntegers(string s)
+{
+    CultureInfo culture = CultureInfo.InvariantCulture;
+    string[] tokens = s.Split(',');
+    foreach (string token in tokens)
+    {
+        int number;
+        if (Int32.TryParse(token, NumberStyles.Integer, culture, out number))
+            yield return number;
+    }
+}
+</code></pre>

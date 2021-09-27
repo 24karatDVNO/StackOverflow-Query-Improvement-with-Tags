@@ -1,0 +1,20 @@
+<p>This is apparently a bug in the SL grid. I was able to get around it by quickly closing and reopening the parent RowDetailsTemplate after the the user collapses a row in the second-level grid:</p>
+
+<pre><code>void secondLevelGrid_RowDetailsVisibilityChanged(object sender, DataGridRowDetailsEventArgs e)
+{
+    if (e.Row.DetailsVisibility == Visibility.Visible) return;
+
+    var parentRow = this.GetVisualAncestors().OfType&lt;DataGridRow&gt;().FirstOrDefault();
+    parentRow.DetailsVisibility = Visibility.Collapsed;
+
+    var timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 0, 0, 200) };
+    timer.Tick += (ts, te) =&gt;
+                      {
+                          Dispatcher.BeginInvoke(() =&gt; parentRow.DetailsVisibility = Visibility.Visible);
+                          timer.Stop();
+                      };
+    timer.Start();
+}
+</code></pre>
+
+<p>When the parent row reopens, the correct row in the second-level grid is still selected, so visually this creates a fairly seamless experience.</p>

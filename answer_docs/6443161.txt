@@ -1,0 +1,11 @@
+<p>Think of DependencyProperties as Pointers or Addresses. Instead of setting a property to a value, you are setting it to a an address which points to another value.</p>
+
+<p>For example, instead of saying a TextBox's text is equal to SomeValue, you are saying it is pointing to a string value in the ViewModel. Or it is pointing to the Name property of some object. Or pointing to a specified ComboBox's SelectedText. Of course, you could always say it points directly to a string of "SomeValue"</p>
+
+<pre><code>&lt;TextBox Text="{Binding SomeProperty}" /&gt;
+&lt;TextBox Text="{Binding SomeObject.SomeProperty}" /&gt;
+&lt;TextBox Text="{Binding ElementName=MyComboBox, Path=SelectedText}" /&gt;
+&lt;TextBox Text="SomeValue" /&gt;
+</code></pre>
+
+<p>Basically, it is a property that is dependent on some other value.</p>

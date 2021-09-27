@@ -1,0 +1,6 @@
+<p>The <code>left join</code> will ensure that all the rows in <code>postcodes</code> will be represented whether or not they have a matching row in <code>sector_domains</code>. If they don't have a matching row in <code>sector _domains</code>, the <code>sector_domains</code> fields will be <code>null</code>.</p>
+
+<p>Would this explain the behaviour you are seeing? If so you could try something like:</p>
+
+<pre><code>SELECT sd.domain, p.postcodes FROM postcodes p join sector_domains sd where p.postcodes LIKE CONCAT(sd.postcode,'%') ;
+</code></pre>

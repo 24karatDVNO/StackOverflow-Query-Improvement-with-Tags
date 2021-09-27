@@ -1,0 +1,7 @@
+<p>From my (outside) perspective, the nomenclature is not really what you want to be defining your database schema on. Milestone A under Program 1 seems like, although it's named the same, can have a completely different set of Tasks as the "same" Milestone A under Program 2.</p>
+
+<p>What I suggest you do is distinguish between a key name and a display name. For example, on the Milestone model you can have 2 names: MilestoneKey, which would be internally used and stored as something like "Program 1 Milestone A", and a MilestoneName, which would be something like "Milestone A".</p>
+
+<p>In your application, users would only ever see the MilestoneName, whereas internally you can keep track of it as MilestoneKey.</p>
+
+<p>Or, to avoid that complexity, just have the MilestoneName field and call Program 2's Milestone A becomes Milestone X, or Program 2 - Milestone A.</p>

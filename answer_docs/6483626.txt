@@ -1,0 +1,23 @@
+<p>I think the easiest way to accomplish what you need is to use a function in replace() expression.</p>
+
+<pre><code>var replaceMethod:Function = function (match:String, tagName:String, tagContent:String, spaces:String, targetText:String, index:int, whole:String) : String
+{
+    trace("\t", "found", spaces.length,"spaces in tag '"+tagName+"'");
+    trace("\t", "matched string:", match);
+    // check tag name or whatever you may want
+    // do something with found spaces
+    var replacement:String = spaces.replace(" ", "*");    
+    return "&lt;"+tagName+" "+tagContent+"&gt;"+replacement+targetText;
+}
+
+var str1:String = '&lt;value1 att="1"&gt;    some text&lt;/value1&gt;';
+var exp:RegExp = /&lt;(\w+)([ &gt;].*?)&gt;(\s+)(some text)/gm;
+
+trace("before:", str1);
+str1 = str1.replace(exp, replaceMethod);
+trace("after:", str1);
+</code></pre>
+
+<p>It's not performance-safe though; if you are using huge blocks of text and/or launching this routine very frequently, you may want to do something more comlicated, but optimized. One optimization technique is reducing the number of arguments of replaceMathod().</p>
+
+<p>p.s. I think this can be done with one replace() expression and without using replaceMethod(). Look at positive lookaheads and noncapturing groups, may be you can figure it out. <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=12_Using_Regular_Expressions_09.html" rel="nofollow">http://livedocs.adobe.com/flex/3/html/help.html?content=12_Using_Regular_Expressions_09.html</a></p>

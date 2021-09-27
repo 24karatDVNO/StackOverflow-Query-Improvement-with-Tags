@@ -1,0 +1,19 @@
+<p>You'd want to set up a way for the User to store their preferred home page in your database (or your preferred method). Once that's done you should be able to do this in a simple fashion:</p>
+
+<p>ASP.NET WebForms:</p>
+
+<ol>
+<li>On the Master Page / Default page, check to see if they're logged in in your Page_Load event.</li>
+<li>If they are, check to see if they have a start up page saved, if they do then use Response.Redirect and send them to their preferred location.</li>
+<li>If they don't, or aren't logged in, then show them the default page.</li>
+</ol>
+
+<p>ASP.NET MVC:</p>
+
+<ol>
+<li>On the HomeController's Index method check to see if they're logged in.</li>
+<li>If they are, check to see if they have a start up page saved, if they do then use RedirectToAction and send them to their preferred location.</li>
+<li>If they don't, or aren't logged in, then show them the default view.</li>
+</ol>
+
+<p>There are probably plenty of other ways to accomplish this as well, but this should be a straight forward way to get your started.</p>

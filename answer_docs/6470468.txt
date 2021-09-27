@@ -1,0 +1,1 @@
+<p>If your activity has finish()'d, you're not going to avoid going through onCreate() again -- however there's no need to worry about that. Just let your onCreate() examine the contents of its intent extras, and if there are none then follow your default initialization but if there are extras, make them carry enough state data so you can be back in the previous state.</p>

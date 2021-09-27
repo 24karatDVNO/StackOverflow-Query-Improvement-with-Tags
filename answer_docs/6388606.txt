@@ -1,0 +1,1 @@
+<p>Without looking at code, it's hard to guess how you are passing the exception, but did you check the InnerException property of the Exception you receive. It may contain the information you are looking for. If there is no information, it could be that the code that is catching the exception and "floating" it may itself be generating an error.</p>

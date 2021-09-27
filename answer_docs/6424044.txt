@@ -1,0 +1,25 @@
+<p>Erm, use nested if statements? I'm not entirely sure what you want to do with the result of the second condition, but here's what it looks like if the first condition isn't met:</p>
+
+<pre><code>if (condition1) {
+  // First condition succeeds
+
+  // Assuming you want to execute this either way
+  if (condition2) {
+  }
+
+  // Only execute if first condition succeeds
+  if (condition3) {
+  } else {
+  }
+} else {
+  // First condition fails
+
+  // Assuming you want to execute this either way; ignore otherwise
+  if (condition2) {
+  }
+}
+</code></pre>
+
+<p>Note also that if you want to return a value from a function, you can use something like <code>if (!condition1) return false;</code>.</p>
+
+<p>As for whether the above is what you're looking for: this question is mad ambiguous.</p>

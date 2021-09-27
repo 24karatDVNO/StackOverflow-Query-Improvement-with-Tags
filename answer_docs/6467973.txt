@@ -1,0 +1,11 @@
+<p>On the second part of the question, you are simply using the dot notation.  You can set your <code>myText.text</code> equal to @"hey", the same way you are doing it in the second example.</p>
+
+<pre><code>[myText setText:@"hey"]; 
+</code></pre>
+
+<p>is synonymous to</p>
+
+<pre><code>myText.text = @"hey";
+</code></pre>
+
+<p>You don't need to declare an NSString to hold your value ahead of time.</p>

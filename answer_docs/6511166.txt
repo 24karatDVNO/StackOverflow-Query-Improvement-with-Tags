@@ -1,0 +1,21 @@
+<p>Not sure if this is the best answer, but here's what I came up with:</p>
+
+<p>Via the advice on <a href="http://www.robertsosinski.com/2009/04/28/binding-scope-in-javascript/" rel="nofollow">http://www.robertsosinski.com/2009/04/28/binding-scope-in-javascript/</a> , in my create function, I wrote</p>
+
+<pre><code>this._filter = function (item) {
+
+                if (this.options.searchString == null)
+                { return true; }
+                if (this.options.searchString.length == 0)
+                { return true; }
+                for (var prop in item) {
+                    if (item[prop] != null) {
+                        if (item[prop].toString().toLowerCase().indexOf(this.options.searchString.toLowerCase()) &gt; -1)
+                        { return true; }
+                    }
+                }
+                return false;
+            } .bind(this);
+</code></pre>
+
+<p>Which bound the scope to the widget.</p>

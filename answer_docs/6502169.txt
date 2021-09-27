@@ -1,0 +1,28 @@
+<p>You are basically sending a request via HTTP to your webservice and use the result (Take the function from @Muhammad Zeeshan to get longitude/latitude):</p>
+
+<pre><code>var xhr = Titanium.Network.createHTTPClient();
+// write file on success
+xhr.onload = function(){
+    var f = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,this.apiFile);
+    f.write(this.responseData);
+};
+// error handling
+xhr.onerror = function(){  
+    Ti.API.error(this.status + ' - ' + this.statusText);  
+};
+// open the client (and test HTTPS)
+xhr.open('GET','http://example.com/api/?longitude=' + longitude + '&amp;latitude=' + latitude);
+// send the data
+xhr.send();
+// read file and return json
+var f = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, this.apiFile);
+var contents = f.read();
+var yourJson = JSON.parse(contents);
+</code></pre>
+
+<p>On the server Side you need some Webservice to talk to (you didn't specify  a language you use on the server), but I presume you get the data via a MySQL database (others should be similar):</p>
+
+<pre><code>SELECT ((ACOS(SIN($lat * PI() / 180) * SIN(lat * PI() / 180) + COS($latitude * PI() / 180) * COS(lat * PI() / 180) * COS(($longitude – lon) * PI() / 180)) * 180 / PI()) * 60 * 1.1515) AS `distance` FROM `locations` HAVING `distance`&lt;=’10′ ORDER BY `distance` ASC
+</code></pre>
+
+<p>Add additional WHERE clauses to filter by tag as well.</p>

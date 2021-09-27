@@ -1,0 +1,3 @@
+<p>The general approach I take when binding the View to a ViewModel, Model or Collection is to drive all changes from the Model/Collection up - so the view is purely listening and reflecting what it is bound to. So although you are tracking the mouse events in order to capture the position and size of the bar (and perhaps drawing a preview as the user is drawing), when the user completes the drawing operation you should add the new item to the underlying collection and let that bubble up to the View. </p>
+
+<p>The pay off in my view for doing that routinely is that there is only one route through the code by which new items get added (directly to the datasource), and that reduces the code paths and potential for bugs / maintenance headaches.</p>

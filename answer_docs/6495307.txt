@@ -1,0 +1,26 @@
+<p>On a tangent, a better way to add click handlers to multiple markers would be add a single click handler to just their container. The HTML could look something like:</p>
+
+<pre><code>&lt;div id=#bmi-xxx"&gt;
+    &lt;div class="marker" data-marker="0"&gt;...&lt;/div&gt;
+    &lt;div class="marker" data-marker="1"&gt;...&lt;/div&gt;
+    ...
+</code></pre>
+
+<p>You can use generic HTML5 data-* attributes to store arbitrary data.</p>
+
+<p>And the JavaScript would be:</p>
+
+<pre><code>// Updates bar preview box
+this.updatePropertyMarkerBox = function (self, BarsID) {
+
+    ... snip ...
+
+    // Add event handler
+    $("#bmi-" + self.containerId).click(function (event) {
+        var marker = $(event.target).attr("data-marker");
+
+        if (marker) { // Hey, it's a marker!
+            alert(marker);
+        }
+    });
+</code></pre>

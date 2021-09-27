@@ -1,0 +1,29 @@
+<p>Here is a rewritten version that should give you what you wish for :)</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+
+function onMouseOver() {
+   var self = $(this), 
+       item1_sub = self.find('ul.item1_sub'), 
+       item2_sub = self.find('ul.item2_sub'),
+       animOptions = { queue: false, duration: 200, easing: 'easeInSine' };
+
+    item1_sub.show().stop().animate({ height: '145px', opacity: '100' }, animOptions);
+    item2_sub.show().stop().animate({ height: '170px', opacity: '100' }, animOptions);
+
+}
+
+function onMouseOut() {
+    $(this).find('ul.item1_sub, ul.item2_sub').stop().animate({ height: '0px', opacity: '0' }, { queue: false, duration: 100, easing: 'easeInCirc' });
+}
+
+
+function onDomReady() { 
+  $('.nav li').hover(onMouseOver, onMouseOut); 
+}
+
+
+$(onDomReady);
+
+&lt;/script&gt;
+</code></pre>

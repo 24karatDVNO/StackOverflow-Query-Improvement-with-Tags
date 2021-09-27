@@ -1,0 +1,20 @@
+<p>My first thought is that you may be unintentionally using the "android:secondaryProgress" property.</p>
+
+<p>Other than this, if you're running this in a seperate thread, make sure you're using the following:</p>
+
+<pre><code>activity.runOnUiThread(new Runnable() //
+            {
+                public void run() //
+                {
+                    int newProgressVal = Integer
+                            .parseInt((String) syncProgressNumber.getText()) + 1;
+                    syncProgress.incrementProgressBy(1);
+                    syncProgressNumber.setText(String
+                            .valueOf(newProgressVal));
+                }
+            });
+</code></pre>
+
+<p>The UI thread is not threadsafe, so you can't update the UI from other threads.</p>
+
+<p>Hope this helps!</p>

@@ -1,0 +1,13 @@
+<p>Take a look at the <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx" rel="nofollow">MVVM</a> pattern, it'll be a huge help as you create this application.</p>
+
+<p>What you want is an ObservableCollection in the ViewModel. You'll bind the ItemsSource property of the datagrid to this collection. Then have your columns bind to various properties on  to display them. Whenever this ObservableCollection has an item appended, your front end should update automatically.</p>
+
+<p>To have a column autosize, set the Width="*".</p>
+
+<p>Here's a sample of a datagrid with MVVM</p>
+
+<pre><code>&lt;DataGrid ItemsSource="{Binding FireAlarmCollection}" SelectedItem="{Binding SelectedFireAlarm, Mode=TwoWay}" AutoGenerateColumns="True" CanUserSortColumns="True" HorizontalScrollBarVisibility="Visible" CanUserResizeColumns="True"&gt;
+&lt;/DataGrid&gt;
+</code></pre>
+
+<p>As you continue your effort, post separate questions for each issue.</p>

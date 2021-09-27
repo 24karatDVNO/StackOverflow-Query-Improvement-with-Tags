@@ -1,0 +1,9 @@
+<p>Interfaces are simply a collection of <code>public</code> method signatures and <code>public static final</code> fields. No constructors, no protected/internal methods, no other type of fields.</p>
+
+<p>On the other hand, any class can be abstract simply by putting <code>abstract</code> in front of its declaration. They can declare abstract methods and implement interfaces and other abstract classes without defining the method implementation.</p>
+
+<p>An abstract class is more restrictive when it comes to inheritance (only one can father a subclass), but you can implement methods and constructors in it.</p>
+
+<p>Any number of interfaces can be implemented by a class, but there is no default method &amp; constructor implementation.</p>
+
+<p>That is why it is always a good idea to provide an abstract class next to an interface as a default implementation option.</p>

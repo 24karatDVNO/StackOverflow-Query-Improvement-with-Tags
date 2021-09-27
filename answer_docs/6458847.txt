@@ -1,0 +1,10 @@
+<p>try using this..</p>
+
+<pre><code>    var result = (from c in db.Customers
+          where c.FirstName == "JimBob"
+          select c).Skip((PAGENUMBER-1 * 10)).Take(10);
+</code></pre>
+
+<p>check out the blogpost here on simple <a href="http://wahabkotwal.blogspot.com/2011/06/aspnet-ajax-simple-paging-system-using.html" rel="nofollow">LINQ Paging</a></p>
+
+<p>Hope it helps.. :)</p>

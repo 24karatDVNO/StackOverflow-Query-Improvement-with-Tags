@@ -1,0 +1,8 @@
+<p>You do not need to include head and body tags in the content that is being loaded via the jquery load call.</p>
+
+<p>When you do model popups, jquery moves your div markup to the end of the document.  So if you had some css that was pretty specific, such as</p>
+
+<pre><code>#content #model { ... }
+</code></pre>
+
+<p>It wouldn't work because jquery will move the markup to the bottom of your page.</p>

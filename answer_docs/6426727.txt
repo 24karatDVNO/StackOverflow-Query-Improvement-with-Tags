@@ -1,0 +1,10 @@
+<p>Not sure about speed at all:</p>
+
+<pre><code>SELECT n.*
+FROM Names AS n
+  JOIN Dictionary AS d1
+    ON n.name LIKE CONCAT(d1.word, '%')
+  JOIN Dictionay AS d2
+    ON d1.id &lt;= d2.id
+WHERE n.name = CONCAT(d1.word, d2.word))
+</code></pre>

@@ -1,0 +1,15 @@
+<p>Couldn't get code formatting to work in the comment - just thought I'd add a simple example to the answer in case anyone else comes across it:</p>
+
+<pre><code>$query = DB::select()
+           -&gt;from('some_table')
+           -&gt;where_open()
+           -&gt;where('column_one', '=', 1)
+           -&gt;or_where('column_two', '=', 2)
+           -&gt;where_close();
+</code></pre>
+
+<p>would produce the following SQL:</p>
+
+<pre><code>SELECT * FROM some_table
+WHERE (column_one = 1 OR column_two = 2);
+</code></pre>

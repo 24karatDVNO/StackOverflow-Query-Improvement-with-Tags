@@ -1,0 +1,6 @@
+<p>You can do this through an FQL query - though you may need to use multiple queries if you require more information about the friend who posted the link:</p>
+
+<pre><code>select title, owner from link where owner in (select uid2 from friend where uid1 = me() limit 100)
+</code></pre>
+
+<p>You may want to limit the number of friends (or even the links themselves) as this can be a costly query</p>

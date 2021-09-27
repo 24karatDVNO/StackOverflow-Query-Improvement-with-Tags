@@ -1,0 +1,7 @@
+<p>Here's what I would do:</p>
+
+<ol>
+<li>Make a custom itemRenderer for the Subclasses column in the DataGrid.</li>
+<li>Override the <code>set data</code> method to go through all of your subclasses and build the comma delimited string.</li>
+<li>Set the value of the itemRenderer's label to your comma delimited string.</li>
+</ol>

@@ -1,0 +1,9 @@
+<p>You have the mathematical function, and can therefore generate as many points as you need. </p>
+
+<p>I assume the problem is that because you do not know the output resolution (SVG is device independent) you do not know how many points to generate. Otherwise you could just create a polyline where each line is approximately 1 pixel long. </p>
+
+<p>Fitting your mathematical function to a bezier curve is (probably) not going to get a perfect match - just like a circle cannot be matched perfectly by a cubic bezier curve. And I think the task of fitting your function to a bezier curve would not be trivial (I've never done this).</p>
+
+<p>Could you rather output your mathematical function to a canvas element? Then you could write some javascript code to plot your mathematical function dependant on the output resolution. Similar to how a graphics system renders a Bezier curve.</p>
+
+<p>Do you know how graphics systems render Bezier curves? They approximate the bezier curve with a polyline, and then measure the error difference between the polyline and the bezier curve. If the difference is greater than a certain tolerance - <strong>where the tolerance is determined by the output resolution</strong> - the bezier is subdivided and the process repeated for each bezier curve. When the difference between beziers and polylines is below the tolerance, the polylines are drawn. <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Computer_graphics" rel="nofollow">http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Computer_graphics</a></p>

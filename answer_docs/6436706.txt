@@ -1,0 +1,25 @@
+<p>Given:</p>
+
+<pre><code>&lt;div id="target"&gt;
+    &lt;a id="view.php"&gt;link&lt;/a&gt;
+    &lt;a id="anotherview.php"&gt;link&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>You can:</p>
+
+<pre><code>var time = new Date().getTime();
+$("#target a").each(function() {
+    this.href = this.id + "?time=" + time;
+});
+</code></pre>
+
+<p>Result:</p>
+
+<pre><code>&lt;div id="target"&gt;
+    &lt;a id="view.php" href="view.php?time=1308729633979"&gt;link&lt;/a&gt;
+    &lt;a id="anotherview.php" href="anotherview.php?time=1308729633979"&gt;link&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>See <a href="http://jsfiddle.net/jensgram/njqYy/" rel="nofollow">demo</a>. (And <a href="http://jsfiddle.net/jensgram/njqYy/4/" rel="nofollow">another demo</a> where links without IDs are not changed.)</p>

@@ -1,0 +1,9 @@
+<p>As noted, there is no reflection in C++. One simple thing you might do would be to check the size of the class. This could at least get you to look at the proper location by generating an error message if you forget to update the size after adding a member.</p>
+
+<p>Example:</p>
+
+<pre><code>template&lt;size_t Real, size_t Expected&gt; struct check_size;
+template&lt;size_t Size&gt; struct check_size&lt;Size, Size&gt; {};
+// ...
+A(const A&amp; soc): s(soc.s-&gt;Clone()), i(soc.i), j(soc.j) {check_size&lt;sizeof(A), 24&gt; size_checker;}
+</code></pre>

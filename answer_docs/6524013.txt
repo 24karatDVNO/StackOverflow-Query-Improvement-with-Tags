@@ -1,0 +1,14 @@
+<p>When you create a NSString you should do it directly like this:</p>
+
+<pre><code>NSString *str1 = @"ñalskdfjsdañlkfj";
+</code></pre>
+
+<p>If you want to use a format you do it like this:</p>
+
+<pre><code>NSString *str2 = [NSString stringWithFormat:@"This is string %d", 2];
+</code></pre>
+
+<p>If you want to use it as a property in a class you should declare it like this:</p>
+
+<pre><code>@property (copy) NSString *str3;
+</code></pre>

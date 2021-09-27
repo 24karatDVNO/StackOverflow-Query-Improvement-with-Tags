@@ -1,0 +1,27 @@
+<p>I sorted it out by altering <code>jquery.ui.sortable.js</code>:</p>
+
+<ul>
+<li><p>Add this as an property to <code>$.widget</code> (where all functions are added as well):</p>
+
+<pre><code>revertingElem: $(),
+</code></pre></li>
+<li><p>Modify inside <code>_mouseStop</code>:</p>
+
+<pre><code>self.reverting = true
+</code></pre>
+
+<p>to</p>
+
+<pre><code>self.reverting = true           
+this.revertingElem = $(this.helper);
+</code></pre></li>
+<li><p>Modify inside <code>_mouseCapture</code>:</p>
+
+<pre><code>return false;     (the first occurence)
+</code></pre>
+
+<p>to</p>
+
+<pre><code>$(this.revertingElem).stop(true, true);
+</code></pre></li>
+</ul>

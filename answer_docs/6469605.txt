@@ -1,0 +1,9 @@
+<p>Try this (assuming that <code>objArray</code> is an array):</p>
+
+<pre><code>$.each(objArray, function(i, obj) {
+       doAjaxMethod(obj.getId());
+});
+</code></pre>
+
+<p>It will iterate your array and <code>obj</code> is each of the items.
+Hope it helps.</p>

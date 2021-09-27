@@ -1,0 +1,17 @@
+<p>as long as where is executed before select, selected aliases are not known in where clause. you can only use the aliases in order by clause.</p>
+
+<p>you have to write like this:</p>
+
+<pre><code>SELECT * FROM 
+(
+Select TD.ProductAccumRule_Id,TD.PRODUCT_ID,TD.VARIABLE_ID,TD.Accum_code,Ordinal = row_number() over( partition by TD.PRODUCT_ID,TD.VARIABLE_ID,TD.Accum_code order by TD.PRODUCT_ID,TD.VARIABLE_ID,TD.Accum_code) From testdata TD
+Join (
+select PRODUCT_ID,VARIABLE_ID,Accum_code from testdata where 
+isActive = 1
+GROUP BY PRODUCT_ID,VARIABLE_ID,Accum_code
+having count(*) &gt; 1
+) TEMP on TD.Product_Id = temp.Product_Id and TD.Variable_Id = TEMP.Variable_Id and TD.Accum_code = TEMP.Accum_code
+where TD.isActive = 1
+) myInnerQuery
+where Ordinal  &lt;&gt; 1
+</code></pre>

@@ -1,0 +1,4 @@
+<p>The problem is SVN knows about merging only in one way, only tree that you commit after merge knows that it was merge (in 1.5+).
+In my opinion You have conflicts because SVN try to make changes to branch that are from branch and was merged to trunk. 
+Try first to merge commit(s) to trunk that are merged from branch with --record-only.
+record-only does only cahnge merge-info property. After that merge (and commit to branch) You should be able to merge another commits from trunk. </p>

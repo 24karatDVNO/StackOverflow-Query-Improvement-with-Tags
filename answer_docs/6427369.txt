@@ -1,0 +1,5 @@
+<p>as far as I understood your case the following should be enough</p>
+
+<pre><code>type.BaseType != null &amp;&amp;
+type.BaseType.MetadataToken == typeof(EntityTypeConfiguration&lt;&gt;).MetadataToken
+</code></pre>

@@ -1,0 +1,3 @@
+<p>The question no one seems to be asking is why are you using a ListBox when you said you are trying to display information for a single record? </p>
+
+<p>If you want to apply a template to the item, use a ContentPresenter and set the ContentTemplate. (Internally that's what the listbox does when it generates the visuals for the items in its source). </p>

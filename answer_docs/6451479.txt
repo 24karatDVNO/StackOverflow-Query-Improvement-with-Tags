@@ -1,0 +1,6 @@
+<pre><code>&gt;&gt;&gt; p = re.compile('::\s*(?P&lt;phrase&gt;(?:\w[\w\s]*)?\w)\s*::')
+&gt;&gt;&gt; p.findall(': test :: test test :: ::  s  :: ::  another test:: ::third test   ::')
+['test test', 's', 'another test', 'third test']
+</code></pre>
+
+<p>this works by ensuring the phrase starts and ends with a \w (even if there's only one \w). Leif's also does, I see, but I can't explain how his works without more effort than I'm willing to put into it (sleepy)...</p>

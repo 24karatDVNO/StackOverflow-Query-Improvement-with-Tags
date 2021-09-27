@@ -1,0 +1,24 @@
+<p>You need an NSMutableArray of ImageViews. In your header declare the NSMutableArray:</p>
+
+<pre><code>NSMutableArray *_imageViewArray;
+</code></pre>
+
+<p>Then in your viewDidLoad method initialize the array and then populate it with your image views.</p>
+
+<pre><code>_imageViewArray = [[NSMutableArray alloc]init];
+for (int i =0; i &lt; imageNames; i++) {
+   UIImageView *tempImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[imageNames objectAtIndex:i];
+   [_imageViewArray addObject:tempImageView];
+   [tempImageView release];
+ }
+</code></pre>
+
+<p>So thats the image view array populated, you may do it a different way but thats up to you.
+To switch the views over what I would do is like so...</p>
+
+<pre><code>[self.view removeAllSubviews]; // gets rid of all previous subviews.
+[self.view addSubview:[_imageViewArray objectAtIndex:3]];// could be any number. generate a random number if you want.
+</code></pre>
+
+<p>Thats all you would need to do. If you wanted to know which image view was being displauyed the maybe declare an instance of UIImageView in your header called _currentImageView and then you can remove just that image view instead of all subviews.<br>
+Hope this helped.</p>

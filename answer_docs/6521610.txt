@@ -1,0 +1,5 @@
+<p>As a general rule, co-operative multitasking involves the functions signalling that they are now waiting, rather than going into spin loops ( where they process while waiting ) they suspend themselves.</p>
+
+<p>In this case, the processing behind the ReadFile will handle the waiting for data and the relevant signalling that it is suspendable. Within you own code, whatever it is written in, you should suspend processing if you are waiting for a long-running process, not spin. However, in many cases, the suspend processes are automatically handled, because suspension activities are built in. The danger in this is tht if you deliberately force long-term spins, then you will hang the system.</p>
+
+<p>The alternative ( from that wiki ) is pre-emptive multitasking, where the process is forced out action after a certain time, irrespective of what it is doing. This means that whatever you do, it cannot run forever, because the system process will force it out. However, it can be less efficient as the break points are not defined.</p>

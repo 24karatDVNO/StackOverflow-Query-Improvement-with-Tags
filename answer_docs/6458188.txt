@@ -1,0 +1,17 @@
+<p>This should print the required output : </p>
+
+<pre><code>public class Diamond
+{
+  public static void main( String []args)
+  {
+    for(int i=0;i&lt;9;i++){ 
+      for(int j=0;j&lt;9;j++)
+        if( (i + j == 4 ) || (i-j == 4)||(i+j == 12) || (j-i == 4))
+          System.out.print("*");
+        else
+          System.out.print("-");
+      System.out.println();
+    }
+  }
+}
+</code></pre>

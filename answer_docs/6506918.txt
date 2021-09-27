@@ -1,0 +1,26 @@
+<p>I don't normally recommend using <code>ViewBag</code>, but if you <em>only</em> want to use this to render a title, subclass your controllers from a parent controller say, <code>GeneralController</code> and set a <code>ViewBag.Title</code> property there based on domain.</p>
+
+<p>One alternative to this is subclassing any view models from a base view model including similar logic.</p>
+
+<pre><code>public class GeneralController
+{
+    protected override void OnActionExecuting(ActionExecutingContext filterContext)
+    {
+        base.OnActionExecuting(filterContext);
+
+        if(HttpContext != null)
+            ViewBag.Title = GetRequestPath();        
+    }
+
+    private string GetRequestTitle()
+    {
+        if(HttpContext.Request.Path.Contains("test.xxx"))
+            return "Test site";
+    }
+}
+</code></pre>
+
+<p>Then, any controller and subsequently rendered views will be able to use this ViewBag.Title property. In fact, out of the box, MVC3 includes <code>_Layout.cshtml</code> as its default layout (or Master Page) that already contains the following line in the head:</p>
+
+<pre><code>&lt;title&gt;@ViewBag.Title&lt;/title&gt;
+</code></pre>

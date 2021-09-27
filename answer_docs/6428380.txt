@@ -1,0 +1,5 @@
+<p>Got it;</p>
+
+<pre><code>IF((find_in_set(7, group_concat(prx.people_role_id))) OR (find_in_set(8, group_concat(prx.people_role_id))),1,0) AS rfac,
+IF(find_in_set(8, group_concat(prx.people_role_id)),1,0) as dfac
+</code></pre>

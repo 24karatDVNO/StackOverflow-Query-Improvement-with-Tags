@@ -1,0 +1,18 @@
+<p>You can use one-liner - but note that it will create new list:</p>
+
+<pre><code>headers = ['Date', 'Temp', 'Descrip', 'ID', 'Lat', 'Long', 'FID']
+rVals = ['Date', 'ID', 'FID']
+
+res = [x if x not in rVals else x+'_' for x in headers]
+</code></pre>
+
+<p>OR:</p>
+
+<pre><code>map(lambda x: x if x not in rVals else x+'_', headers)
+</code></pre>
+
+<p>OR:</p>
+
+<pre><code>for x in (x for x in rVals if x in headers):
+    headers.__setitem__(headers.index(x),x+'_')
+</code></pre>

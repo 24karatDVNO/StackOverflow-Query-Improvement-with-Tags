@@ -1,0 +1,6 @@
+<p>I might be thinking way too easy, but guess it could be done with:</p>
+
+<pre><code>SELECT DATE(`datefield`) `date`, TIME(`datefield`) `time` FROM `yourtable` ORDER BY `datefield` ASC;
+</code></pre>
+
+<p>And then just show it with PHP. MySQL is just for fetching the data, not for displaying it. :)</p>

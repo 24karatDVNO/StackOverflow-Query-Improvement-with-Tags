@@ -1,0 +1,16 @@
+<p>Here's a "dictreader" for a headless csv, each row will be a dictionary with sequential keys 'column_0', 'column_1', 'column_2' and so on...</p>
+
+<pre><code>import csv
+
+csvfile = list(csv.reader(open('data.csv')))
+
+csvdics = []
+
+for row in csvfile:
+    row_dict = {}
+    for i in xrange(len(row)):
+        row_dict['column_%s' % i] = row[i]
+    csvdics.append(row_dict)
+</code></pre>
+
+<p>Or, if you know ahead of time what the column names should be, you can pass them in a list as a second argument to DictReader.</p>

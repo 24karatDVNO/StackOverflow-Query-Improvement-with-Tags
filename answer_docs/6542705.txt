@@ -1,0 +1,3 @@
+<p>Well I ended up figuring out the error.  When I said in my original post that I <em>configure</em> and push the detail view controller, I had a memory management error (over-release) in one of the properties that I set on the detail view controller when configuring the detail view controller.  The error showed up in kind of an indirect way, but I caught it when I tried to recreate the bug in another, new, simpler VC.</p>
+
+<p>Thanks to those who offered help.</p>

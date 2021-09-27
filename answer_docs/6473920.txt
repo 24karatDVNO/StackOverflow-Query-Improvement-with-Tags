@@ -1,0 +1,17 @@
+<p>Add a class to the form of .footerForm then include this in your style sheet</p>
+
+<pre><code>.footerForm{
+float:left;
+}
+</code></pre>
+
+<p>Then you need to modify the width of the .social class (style.css line 1417) to 100px.</p>
+
+<pre><code>.social {
+    display: inline;
+    padding-left: 95px;
+    width: 100px;
+}
+</code></pre>
+
+<p>This fixes the issues for me in ff</p>

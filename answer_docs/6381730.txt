@@ -1,0 +1,9 @@
+<p>I'm not sure if this is the problem, but it looks like:</p>
+
+<pre><code>stream &lt;&lt; out;
+return stream;
+</code></pre>
+
+<p>Is outside of the function, at class scope.</p>
+
+<p>You probably want to get rid of one of the <code>}</code>s after <code>else</code>.</p>

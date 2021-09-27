@@ -1,0 +1,25 @@
+<p>I got it. First mistake - I didn't use delete_first_token(), it's deleting closing tag from tokens, it was the cause of the error. Second mistake - this is impossible insert a parsed data into a string in function, because it's not a string, but class 'django.template.debug.DebugNodeList'. This object requires render() method to be a string caused in Node class instance. And the last one - youtube link for embed and for watch are different.</p>
+
+<p>Workable tag</p>
+
+<pre><code>class YoutubeNode(template.Node):
+    def __init__(self, parsed_link):
+        self.parsed_link = parsed_link
+
+    def render(self, context):
+        del_it = re.compile('&amp;amp;feature=related')
+        replace_it = re.compile('watch\?v=')
+        link = self.parsed_link.render(context)
+        link = del_it.sub('', link)
+        link = replace_it.sub('embed/', link)
+        video = """&lt;p&gt;&lt;iframe width="550" height="438" src="%s" 
+        frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;""" % link
+        return video
+
+@register.tag
+def youtube(parser, token):    
+    parsed_link = parser.parse(('endyoutube', ))
+    # first token it's closing tag. delete_first_token just delete it - del    self.tokens[0];)
+    parser.delete_first_token()
+    return YoutubeNode(parsed_link)
+</code></pre>

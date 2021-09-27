@@ -1,0 +1,7 @@
+<p>Well the design shouldn't be like this that you get a pointer from another object and delete it.</p>
+
+<pre><code>SubObject *mySubObject = anotherObject.getSubObject();
+delete mySubObject;
+</code></pre>
+
+<p>If you delete mySubObject in that point anotherObject class functions may still use it. You should follow OOP approaches. The object that is returned by getSubObject() function should be created/allocated memory from constructor and deallocated in a destructor. And yes reference is better here so that mistakenly a delete is not performed outside the class. Thanks.</p>

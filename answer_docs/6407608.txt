@@ -1,0 +1,29 @@
+<p>You can do that by hand not using <code>fgetcsv</code> and friends:</p>
+
+<pre><code>&lt;?php
+$file = file('http://google.com.....etc/etc');
+foreach ($file as $row) {
+    $row = preg_split('/,(?!(?:[^",]|[^"],[^"])+")/', trim($row));
+    foreach ($row as $n =&gt; $cell) {
+        $cell = str_replace('\\"', '"', trim($cell, '"'));
+        echo "$n &gt; $cell\n";
+    }
+}
+</code></pre>
+
+<p>Alternatively you can opt in for a more fancy closures-savvy way:</p>
+
+<pre><code>&lt;?php
+$file = file('http://google.com.....etc/etc');
+
+array_walk($file, function (&amp;$row) {
+    $row = preg_split('/,(?!(?:[^",]|[^"],[^"])+")/', trim($row));
+    array_walk($row, function (&amp;$cell) {
+        $cell = str_replace('\\"', '"', trim($cell, '"'));
+    });
+});
+
+foreach ($file as $row) foreach ($row as $n =&gt; $cell) {
+    echo "$n &gt; $cell\n";
+}
+</code></pre>

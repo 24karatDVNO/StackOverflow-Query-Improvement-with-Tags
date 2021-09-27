@@ -1,0 +1,28 @@
+<p>This will automatically resize the columns to fit ("view" is an QTableView* and model is a QSqlQueryModel*).  </p>
+
+<pre><code>static_cast&lt;QTableView*&gt;(view)-&gt;horizontalHeader()
+        -&gt;resizeSections(QHeaderView::ResizeToContents);
+
+QFontMetrics fm(view-&gt;font());
+
+for (int i = 0 ; i &lt; model-&gt;record().count(); ++i)
+{
+    int maxLength = 0;
+
+    for (int j = 0; j &lt; model-&gt;rowCount(); ++j)
+    {
+        QString cell = model-&gt;record(j).value(i).toString();
+
+        if (fm.width(cell) &gt; maxLength)
+        {
+            maxLength = fm.width(cell);
+        }
+    }
+    QHeaderView&amp; hv = *static_cast&lt;QTableView*&gt;(view)-&gt;horizontalHeader();
+
+    if (maxLength &gt; hv.sectionSize(i))
+    {
+        hv.resizeSection(i, maxLength * 1.5);
+    }
+}
+</code></pre>

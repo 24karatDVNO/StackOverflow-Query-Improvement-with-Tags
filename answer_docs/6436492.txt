@@ -1,0 +1,46 @@
+<p>query:</p>
+
+<pre><code>SELECT DATE_FORMAT( entry_time, '%D %M' ) as date,
+       GROUP_CONCAT( DATE_FORMAT( entry_time, '%h:%i %p' )
+                     ORDER BY entry_time ASC
+                     SEPARATOR '&lt;br /&gt;' ) as times
+FROM yourtable
+GROUP BY DATE( entry_time )
+ORDER BY entry_time
+</code></pre>
+
+<p>results in:</p>
+
+<pre><code>&gt; date        times
+
+&gt; 21st April  3:00 PM&lt;br /&gt;3:50 PM
+
+&gt; 22st April  5:00 AM&lt;br /&gt;4:00 PM
+</code></pre>
+
+<p>then you can go through it:</p>
+
+<pre><code>foreach($result as $row) {
+   echo $row-&gt;date. '&lt;br /&gt;'. $row-&gt;times. '&lt;br /&gt;';
+}
+</code></pre>
+
+<p><strong>edit:</strong>
+the benefit is that all sorting &amp; formatting is done in mysql engine, so you have a ready to display result</p>
+
+<p><strong>edit2:</strong>
+That query will give you exactly result you want:</p>
+
+<pre><code>SELECT CONCAT( DATE_FORMAT( entry_time, '%D %M' ), "&lt;br /&gt;\n",
+               GROUP_CONCAT( DATE_FORMAT( entry_time, '%h:%i %p' )
+                             ORDER BY entry_time ASC
+                             SEPARATOR '&lt;br /&gt;' ), "&lt;br /&gt;&lt;br /&gt;\n"
+       ) as dates
+FROM yourtable
+GROUP BY DATE( entry_time )
+ORDER BY entry_time
+</code></pre>
+
+<p>use <em>foreach</em> (or any other array func.) to go through it:</p>
+
+<p><code>foreach($result as $row) { echo $row-&gt;dates; }</code></p>

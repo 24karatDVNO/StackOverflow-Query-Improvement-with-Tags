@@ -1,0 +1,9 @@
+<p>I don't know any library function which could check that. However a one "hack" comes in mind:
+X11, or any other system component that manages a connected monitor must consume some of the GPU memory.</p>
+
+<p>So, check if both devices report the same amount of available global memory through <a href="http://www.clear.rice.edu/comp422/resources/cuda/html/group__CUDART__DEVICE_g5aa4f47938af8276f08074d09b7d520c.html#g5aa4f47938af8276f08074d09b7d520c" rel="nofollow">'cudaGetDeviceProperties'</a> and then check the value of 'totalGlobalMem' field.
+If it is the same, try allocating that (or only slightly lower) amount of memory on each of the GPU and see which one fails to do that (cudaMalloc returning an error flag).</p>
+
+<p>Some time ago I read somewhere (I don't remember where) that when you increase your monitor resolution, while there is an active CUDA context on the GPU, the context may get invalidated. That hints that the above suggestion might work. Note however that I never actually tried it. It's just my wild guess.</p>
+
+<p>If you manage to confirm that it works, or that it doesn't, let us know!</p>

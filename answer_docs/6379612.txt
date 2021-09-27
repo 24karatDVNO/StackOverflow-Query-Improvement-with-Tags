@@ -1,0 +1,25 @@
+<pre><code>   function onLoaded(event:Event):void {
+        var variables:URLVariables = new URLVariables( event.target.data );
+        modelli = variables.string.split(",");
+        caricaColori(modelli[0]);
+    }
+</code></pre>
+
+<p>Your problem is that you're loading the variables into a URLVariables container, and then trying to call a string function on it. I would do it this way instead:</p>
+
+<pre><code>function onLoaded(event:Event):void {
+    //load data as a string
+    var variables:String = event.target.data;
+
+    //make a new array
+    var modelli:Array = new Array();
+    modelli = variables.split(",");
+
+    //possibly pop the array
+    modelli.pop(); //pop off the last empty element of array
+
+    caricaColori(modelli[0]);
+ }
+</code></pre>
+
+<p>There's also a good chance that when you load this PHP data, you'll need to pop() the last element off of the array because it will be an empty string.</p>

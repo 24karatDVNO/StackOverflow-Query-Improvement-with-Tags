@@ -1,0 +1,5 @@
+<p>You have code for determining when to start a new file which I haven't examined closely, but the process of finishing one file and starting the next is definitely incomplete.</p>
+
+<p>On reaching a point where you want to end a file, you have to generate end events for the enclosing <code>&lt;class&gt;</code> and <code>&lt;school&gt;</code> tags and for the document before closing it.  When you start your new file, you need to generate start events for the same after opening it and before starting again to copy student events.</p>
+
+<p>In order to generate the start events properly, you will have to retain the corresponding events from the input.</p>

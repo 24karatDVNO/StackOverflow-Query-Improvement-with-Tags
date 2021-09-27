@@ -1,0 +1,7 @@
+<p>It sounds like you want a mux/demux (multiplexer/demultiplexer) in front of your server which, presumably, replies in such a way as the frontend can properly route the reply.</p>
+
+<p>There's nothing in TCP to support this so you'll have to write it yourself or find one already written.  <a href="http://www.google.com/search?q=tcp+multiplexer" rel="nofollow">http://www.google.com/search?q=tcp+multiplexer</a></p>
+
+<p>This link looks promising: <a href="http://sourceforge.net/projects/tcpmultiplexer/" rel="nofollow">http://sourceforge.net/projects/tcpmultiplexer/</a></p>
+
+<p>(Don't confuse what you're looking for with "tcpmux" on port #1; that's completely different.)</p>

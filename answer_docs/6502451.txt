@@ -1,0 +1,29 @@
+<p>You have a couple of options:</p>
+
+<ol>
+<li><p>Create a view model (recommended approach):</p>
+
+<pre><code>public class AccountViewModel
+{
+    public string SubAccNumber { get; set; }
+    public string AccountName { get; set; }
+    public string Address { get; set; }
+}
+</code></pre>
+
+<p>and have your controller action accept this view model as argument:</p>
+
+<pre><code>public PartialViewResult SelectAccounts(AccountViewModel account) { ... }
+</code></pre></li>
+<li><p>Your current implementation where parameters are passed as action arguments</p></li>
+<li><p>Fetch parameters from request:</p>
+
+<pre><code>public ActionResult SelectAccounts() 
+{ 
+    var subAccNumber = Request["subAccNumber"];
+    var accountName = Request["accountName"];
+    var address = Request["address"];
+    ...
+}
+</code></pre></li>
+</ol>

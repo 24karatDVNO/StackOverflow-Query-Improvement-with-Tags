@@ -1,0 +1,47 @@
+<p>I use CLLocationManagerDelegate and MKReverseGeocoderDelegate in my app. Create CLLocationManager * locationManager set up its properties and accuracy then start. </p>
+
+<pre><code>- (void)locationManager:(CLLocationManager *)manager
+       didUpdateHeading:(CLHeading *)newHeading 
+{
+    [manager stopUpdatingHeading];
+
+    CLLocationCoordinate2D coordinate = manager.location.coordinate;
+
+    MKReverseGeocoder * geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:coordinate];
+    geocoder.delegate = self;
+    [geocoder start];
+}
+
+#pragma mark - MKReverseGeocoderDelegate
+</code></pre>
+
+<p>You'll get NSDictionary with location info. I've used no all keys. If you need more than listed NSLOG dictionary keys and its responsive values.
+Hope it will help you. </p>
+
+<pre><code>- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+    getLocationState = glsAvailable;
+
+    NSDictionary * dic = placemark.addressDictionary;
+
+    NSString * CountryCode = [dic objectForKey:@"CountryCode"];
+    NSString * State = [dic objectForKey:@"State"];
+    NSString * City = [dic objectForKey:@"City"];
+    NSString * SubLocality = [dic objectForKey:@"SubLocality"];
+    NSString * Street = [dic objectForKey:@"Street"];
+    NSString * ZIP = [dic objectForKey:@"ZIP"];
+
+    self.locationString = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@",
+                           CountryCode?CountryCode:@"",
+                           State?State:@"",
+                           City?City:@"",
+                           SubLocality?SubLocality:@"",
+                           Street?Street:@"",
+                           ZIP?ZIP:@""
+                           ];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LOCATION_STRING_IS_READY" object:nil];
+    [geocoder cancel];
+    [geocoder release];
+}
+</code></pre>

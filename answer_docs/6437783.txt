@@ -1,0 +1,26 @@
+<p>If you need to do this query frequently, you could also investigate persisted computed columns - e.g. something like:</p>
+
+<pre><code>ALTER TABLE dbo.Worksheet 
+  ADD YearMonth AS 
+        RIGHT('0000' + CAST(YEAR(ExpectedStartDate) AS VARCHAR(4)), 4) + 
+        RIGHT('00' + CAST(MONTH(ExpectedStartDate) AS VARCHAR(2)), 2) PERSISTED
+</code></pre>
+
+<p>This will add a new column <code>YearMonth</code> to your table that is always up to date, always accurate, and it's persisted, e.g. stored on disk so it's fast, you can even put an index on that column!</p>
+
+<p>That column will contains values such as</p>
+
+<pre><code>201103
+201104
+</code></pre>
+
+<p>and so forth - the year (four digits) and month (two digits, leading zero) of your <code>ExpectedStartDate</code></p>
+
+<p>So to select all projects for January 2011, you can define:</p>
+
+<pre><code> SELECT (list of columns)
+ FROM dbo.Worksheet
+ WHERE YearMonth = '201101'
+</code></pre>
+
+<p>and get exactly those rows very quickly - especially if you index this column.</p>

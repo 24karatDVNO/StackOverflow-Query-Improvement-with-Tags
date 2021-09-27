@@ -1,0 +1,21 @@
+<p>The function numberForPlot is where you define your datas you want to plot:</p>
+
+<pre><code>   -(NSNumber *)numberForPlot:(CPPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index 
+    {
+
+NSNumber *num = nil;
+    if ( [plot isKindOfClass:[CPBarPlot class]] ) {
+        switch ( fieldEnum ) {
+            case CPBarPlotFieldBarLocation:
+            num = (NSNumber *)[NSNumber numberWithFloat:[[*yourArray* objectAtIndex:index] floatValue]];
+                break;
+            case CPBarPlotFieldBarLength:
+                num = (NSNumber *)[NSNumber numberWithFloat:[[*yourOtherArray* objectAtIndex:index] floatValue]];
+                break;
+        }
+    }
+    return num;
+}
+</code></pre>
+
+<p>You just have to insert datas in your arrays.</p>

@@ -1,0 +1,16 @@
+<p>I'm not familiar with the jQuery modal dialog, but it looks like you can just modify this line: </p>
+
+<pre><code>closeHTML: "&lt;a href='#' title='Close' class='modal-close'&gt;x&lt;/a&gt;",
+</code></pre>
+
+<p>to change the href attribute:</p>
+
+<pre><code>closeHTML: "&lt;a href='http://google.com' title='Close' class='modal-close'&gt;x&lt;/a&gt;",
+</code></pre>
+
+<p>However, the modal dialog close handler likely cancels the default action (in this case, going to Google), so you can just add:</p>
+
+<pre><code>location.href("http://google.com")
+</code></pre>
+
+<p>after closing the dialog (<code>modal.close();</code>)</p>

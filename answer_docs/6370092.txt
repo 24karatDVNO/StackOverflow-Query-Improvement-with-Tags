@@ -1,0 +1,9 @@
+<p>If you want to get just two IDs with profilename and photo thumb, first you should remove a.id from your query and use JOIN</p>
+
+<pre><code>SELECT DISTINCT a.venue_id,a.user_id,mm.profilenam,mm1.photo_thumb
+FROM announce_arrival a
+LEFT JOIN members mm ON a.user_id = mm.mem_id
+LEFT JOIN members mm1 ON a.venue_id = mm1.mem_id
+</code></pre>
+
+<p>But it seems for me, than you have strange DB scheme and strange references.</p>

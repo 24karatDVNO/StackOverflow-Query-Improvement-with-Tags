@@ -1,0 +1,27 @@
+<p>You can try this : </p>
+
+<pre><code>-(IBAction)postMeFeedButtonPressed:(id)sender {
+
+NSMutableDictionary *variables = [NSMutableDictionary dictionaryWithCapacity:4];
+
+[variables setObject:@"#Your Message" forKey:@"message"];
+[variables setObject:@"#http://Your Youtube Link" forKey:@"link"];
+[variables setObject:@"#This is the bolded copy next to the image" forKey:@"name"];
+[variables setObject:@"#This is the plain text copy next to the image.  All work and no play makes Jack a dull boy." forKey:@"description"];
+
+
+FbGraphResponse *fb_graph_response = [fbGraph doGraphPost:@"me/feed" withPostVars:variables];
+NSLog(@"postMeFeedButtonPressed:  %@", fb_graph_response.htmlResponse);
+
+//parse our json
+SBJSON *parser = [[SBJSON alloc] init];
+NSDictionary *facebook_response = [parser objectWithString:fb_graph_response.htmlResponse error:nil];   
+[parser release];
+
+//let's save the 'id' Facebook gives us so we can delete it if the user presses the 'delete /me/feed button'
+self.feedPostId = (NSString *)[facebook_response objectForKey:@"id"];
+NSLog(@"feedPostId, %@", feedPostId);
+NSLog(@"Now log into Facebook and look at your profile...");
+
+}
+</code></pre>

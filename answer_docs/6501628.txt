@@ -1,0 +1,6 @@
+<p>I reviewed Chris Haas' algorithm in <a href="https://stackoverflow.com/questions/4793729/rgb-to-hsl-and-back-calculation-problems">RGB to HSL and back, calculation problems</a> and found that my derivation of the algorithm was flawed. </p>
+
+<ol>
+<li><p>What color model does Microsoft use for its GetHue, GetSaturation, and GetBrightness functions? HSL. In the Color Dialog component, the HSL values are transformed from the range [0,1] to the range [0,240].</p></li>
+<li><p>There do not appear to be any errors in <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" rel="nofollow noreferrer">HSL and HSV</a>, only those that I introdiced.</p></li>
+</ol>

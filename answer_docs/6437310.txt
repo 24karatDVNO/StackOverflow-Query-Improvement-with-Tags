@@ -1,0 +1,23 @@
+<p>a workaround could be to display an alert window to suspend the script.</p>
+
+<pre><code>  // Let's send the request to the server
+  xmlhttp.send("");
+  // Let's abort the request
+  var index = agt.indexOf("firefox");
+  if(index &gt; 0)
+  {
+    var version = agt.substr(index, agt.length-index).split("/");
+    var vnum =  parseInt(version[1]);
+    // alert window for Firefox &gt; 4
+    if(vnum &gt; 4) alert("Firefox logout");
+  }
+  xmlhttp.abort();
+</code></pre>
+
+<p>If you get folowing error:</p>
+
+<pre><code>Fehler: uncaught exception: [Exception... "prompt aborted by user"  nsresult: "0x80040111 (NS_ERROR_NOT_AVAILABLE)"  location: "JS frame :: resource://gre/components/nsPrompter.js :: openTabPrompt :: line 468"  data: no]
+</code></pre>
+
+<p>You must enter <code>about:config</code> and set
+<code>prompts.tab_modal.enabled</code> to <code>false</code></p>

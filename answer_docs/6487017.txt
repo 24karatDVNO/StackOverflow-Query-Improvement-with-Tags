@@ -1,0 +1,38 @@
+<p><a href="http://download.oracle.com/javase/1.4.2/docs/api/javax/swing/JFrame.html" rel="nofollow">http://download.oracle.com/javase/1.4.2/docs/api/javax/swing/JFrame.html</a></p>
+
+<p>Which says:</p>
+
+<blockquote>
+  <p>The JFrame class is slightly
+  incompatible with Frame. Like all
+  other JFC/Swing top-level containers,
+  a JFrame contains a JRootPane as its
+  only child. The content pane provided
+  by the root pane should, as a rule,
+  contain all the non-menu components
+  displayed by the JFrame. This is
+  different from the AWT Frame case. For
+  example, to add a child to an AWT
+  frame you'd write:</p>
+
+<pre><code>   frame.add(child);   
+</code></pre>
+  
+  <p>However using JFrame you need to add the child
+  to the JFrame's content pane instead:</p>
+
+<pre><code>   frame.getContentPane().add(child);  
+</code></pre>
+  
+  <p>The same is true for setting layout
+  managers, removing components, listing
+  children, and so on. All these methods
+  should normally be sent to the content
+  pane instead of the JFrame itself. The
+  content pane will always be non-null.
+  Attempting to set it to null will
+  cause the JFrame to throw an
+  exception. The default content pane
+  will have a BorderLayout manager set
+  on it.</p>
+</blockquote>

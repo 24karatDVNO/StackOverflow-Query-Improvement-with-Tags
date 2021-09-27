@@ -1,0 +1,8 @@
+<p>I guess the <code>inputs[a].onchange = Custom.clear;</code> line in <code>custom-elements.js</code> is the trouble maker.</p>
+
+<p>One shot in the blue... can you try </p>
+
+<pre><code>$("input[name='property']").live("change", function(e) {
+    alert("change");
+});
+</code></pre>

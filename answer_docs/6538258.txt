@@ -1,0 +1,14 @@
+<p>If you mean similar to how RAII is done in C++, the answer is no - Java insists you know when you no longer need something if you need to do something to clean it up. The usual way to do this is:</p>
+
+<pre><code>Something s = new Something();
+try 
+{
+  // do things
+} 
+finally 
+{ 
+  s.close();
+}
+</code></pre>
+
+<p>C# has a <a href="http://msdn.microsoft.com/en-us/library/yh598w02%28v=vs.80%29.aspx" rel="nofollow">using</a> keyword that tidies it up a bit. </p>

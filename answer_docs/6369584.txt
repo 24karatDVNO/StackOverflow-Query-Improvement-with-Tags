@@ -1,0 +1,11 @@
+<p>You need to update the SelectionStart Property and increase its length with the size of the new text inserted.
+Something like:</p>
+
+<pre><code>int curPos = txtEditor.SelectionStart;
+if (e.KeyChar == 'k')
+{
+    txtEditor.Text=txtEditor.Text.Insert(txtEditor.SelectionStart, "jj");
+    txtEditor.SelectionLength = 0;
+}
+txtEditor.SelectionStart = curPos + 2; //or whatever the length of text u inserted    
+</code></pre>

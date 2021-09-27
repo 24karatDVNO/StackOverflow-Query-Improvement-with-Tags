@@ -1,0 +1,6 @@
+<p>First of all (as Adithya is saying), replace <code>$curImage</code> by <code>$curfile</code>.
+Besides that, you don't seem to initialize <code>$image</code> (that's what the error is saying).
+I don't know how your class is called, but say it's called <code>Image</code>, then you should add this above <code>$image-&gt;load ...</code>:</p>
+
+<pre><code>$image = new Image();
+</code></pre>

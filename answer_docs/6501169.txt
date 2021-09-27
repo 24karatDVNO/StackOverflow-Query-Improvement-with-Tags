@@ -1,0 +1,29 @@
+<p>This regex pattern should work</p>
+
+<pre><code>"(&lt;Reference[^&gt;]+Version=)([^,]+),"
+</code></pre>
+
+<p>Applied with VBScript </p>
+
+<pre><code>  str1 = "&lt;Reference Include=""SomeDLLNameHere, Version=10.2.6.0,"
+
+  ' Create regular expression.
+  Set regEx = New RegExp
+  regEx.Pattern = "(&lt;Reference[^&gt;]+Version=)([^,]+),"
+
+  ' Make replacement.
+  ReplaceText = regEx.Replace(str1, "$111.0.0.0,")
+  WScript.echo ReplaceText
+</code></pre>
+
+<p>Gives the correct result</p>
+
+<pre><code>&lt;Reference Include="SomeDLLNameHere, Version=11.0.0.0,
+</code></pre>
+
+<p><strong>UPDATE</strong></p>
+
+<p>if you need something that matches between <code>Version=</code> and the end of the tag use <code>&gt;</code> instead of <code>,</code></p>
+
+<pre><code>"(&lt;Reference[^&gt;]+Version=)([^&gt;]+)&gt;"
+</code></pre>

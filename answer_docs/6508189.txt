@@ -1,0 +1,14 @@
+<p>you can add the chart from code behind as </p>
+
+<pre><code>var myChart = new Chart {
+ID="myChart", Height= 100, Width =100, ...
+}
+</code></pre>
+
+<p>and add the series like</p>
+
+<pre><code>var mySeries = new Series(){
+Name ="my series", Color = Color.Red, ChartType = SeriesChartType.Line ...
+}
+myChart.Series.Add(mySeries);
+</code></pre>

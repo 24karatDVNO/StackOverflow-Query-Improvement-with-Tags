@@ -1,0 +1,57 @@
+<p>Well, as far as I could understand, you would like to provide a mechanism for distinguishing different types by a custom identifier object. I think you are almost near a working solution. In .NET when having a generic class, each substitution of the generic argument (or each unique combination of the generic arguments, if more than one) creates a unique type in the runtime. In your code <code>Id&lt;Order&gt;</code> and <code>Id&lt;Customer&gt;</code> are two distinct types. The  <code>NewId()</code> method returns an instance of <code>Id&lt;Order&gt;</code> for the <code>orderId</code> and <code>Id&lt;Customer&gt;</code> for the <code>customerId</code> variables. The two types do not implement the <code>==</code> operator and therefore cannot be compared. Moreover, such comparison would be difficult to implement, since you cannot determine all possible uses of the <code>Id&lt;TDsicriminator&gt;</code> - you cannot guess what type will the <code>TDsicriminator</code> be substituted with.</p>
+<h2>1</h2>
+<p>A fast and simple solution will be to do this:</p>
+<pre><code>class Order { /* skipped */ }
+class Customer { /* skipped */ }
+
+void Foo()
+{
+    var orderId = Id&lt;Order&gt;.NewId();
+    var customerId = Id&lt;Customer&gt;.NewId();
+
+    bool sameIds = (orderId.Value == customerId.Value); // true
+    bool sameObjects = orderId.Equals(customerId); // false
+}
+</code></pre>
+<p>Since the <code>Value</code> properties are both of the <code>Guid</code> type, comparison is possible.</p>
+<h2>2</h2>
+<p>If you need however, to implement the <code>==</code> operator, or some sort of equality comparisons for instances of <code>Id&lt;TDisciminator&gt;</code>, the approach will be different. What comes up to my mind is the following:</p>
+<pre><code>public abstract class IdBase
+{
+    public abstract Guid Value { get; protected set; }
+
+    public static bool operator == (IdBase left, IdBase right)
+    {
+        return left.Value == right.Value;
+    }
+}
+
+public sealed class Id&lt;TDiscriminator&gt; : IdBase
+{
+   // your implementation here, just remember the override keyword for the Value property
+}
+</code></pre>
+<p>Many people would not recommend the second approach though, since different implementations of <code>IdBase</code> may happen to have the same <code>Value</code> property (if you used the constructor that passes an existing ID). For instance:</p>
+<pre><code>var guid = Guid.NewGuid();
+var customerID = Id&lt;Customer&gt;.From(guid);
+var orderID = Id&lt;Order&gt;.From(guid);
+</code></pre>
+<p>Here (customerID == orderID) will then return true which is probably not what you want.</p>
+<p>Shortly, in such a case, two different types will count as equal, which is a big logical mistake, so I'd stick to the first approach.</p>
+<p>If you need <code>Id&lt;Customer&gt;.Value</code> to always be different than <code>Id&lt;Order&gt;.Value</code>, because of the different generic arguments (<code>Customer</code> is different than <code>Order</code>), then the following approach will work:</p>
+<pre><code>public sealed class Id&lt;in TDiscriminator&gt;
+{
+    private static readonly Guid _idStatic = Guid.NewGuid();
+
+    private Id()
+    {
+    }
+
+    public Guid Value
+    {
+        get { return _idStatic; }
+    }
+}
+</code></pre>
+<p>Notice the <code>in</code> keyword used here. This is applicable for .NET 4.0 where generics can be covariant and ensures that your class uses contravariant generics. (see <a href="http://msdn.microsoft.com/en-us/library/dd469487.aspx" rel="nofollow noreferrer">http://msdn.microsoft.com/en-us/library/dd469487.aspx</a>). In the above code, the _idStatic field will have a unique value for every different type supplied as a generic argument.</p>
+<p>I hope this info is helpful.</p>

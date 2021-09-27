@@ -1,0 +1,33 @@
+<p>Try this instead:</p>
+
+<pre><code>$('*').hover(
+    function (e) {
+        // Remove class from previous element
+        $('.hoverElem').removeClass('hoverElem');
+
+        // Add class to new element
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+        var elem = document.elementFromPoint(mouseX, mouseY);
+        $(elem).addClass('hoverElem');
+    }
+);
+</code></pre>
+
+<p>or this:</p>
+
+<pre><code>$('*').hover(
+    function (e) {
+        // Add class to new element
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+        var elem = document.elementFromPoint(mouseX, mouseY);
+        $(elem).addClass('hoverElem');
+    }, function (e) {
+        // Remove class from previous element
+        $('.hoverElem').removeClass('hoverElem');
+    }
+);
+</code></pre>
+
+<p>I'm not exactly sure what you're trying to do, so it's a bit hard to guess.</p>

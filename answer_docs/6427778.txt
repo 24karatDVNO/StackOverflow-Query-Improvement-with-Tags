@@ -1,0 +1,10 @@
+<p>I think what you are missing is to define the Clip of your outer Canvas. The reason you need to do this is that the Canvas by default doesn't have overflow:hidden. Any child inside it which actually is bigger will be shown outside the boundary of it.</p>
+
+<p>You need to set the clip for your outer Canvas like this:</p>
+
+<pre><code>&lt;Canvas Width="200" Height="100"&gt;       
+    &lt;Canvas.Clip&gt;
+        &lt;RectangleGeometry Rect="0, 0, 200, 100"/&gt;
+    &lt;/Canvas.Clip&gt;
+&lt;/Canvas&gt;
+</code></pre>

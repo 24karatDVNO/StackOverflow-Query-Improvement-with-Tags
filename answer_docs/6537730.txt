@@ -1,0 +1,14 @@
+<p>I used exception listener to parse the data as suggested <a href="http://www.sencha.com/forum/archive/index.php/t-104068.html" rel="nofollow">here</a>.  But, is this the right way to do this.  </p>
+
+<pre><code>Ext.data.DataProxy.addListener('exception', function(proxy, type, action,
+options, res) {
+if (type == 'response') {
+var success = Ext.util.JSON.decode(res.responseText).success;
+if (success) {
+console.log('UPDATE OK');
+} else {
+console.log('UPDATE FAILED');
+}
+}
+});
+</code></pre>

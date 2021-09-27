@@ -1,0 +1,20 @@
+<p>Build the query into a separate string, then dump it out to see what's really going on:</p>
+
+<pre><code>$sql = &lt;&lt;&lt;EOL
+DELETE FROM jointable
+WHERE (to_ = '$id') AND (from_ = '$neighbor')
+EOL;
+$result = mysql_query($sql) or die(mysql_error());
+
+die("&lt;pre&gt;$sql&lt;/pre&gt; $result");
+</code></pre>
+
+<p>Note that I'm running the query only once. Your two queries simply rearrange the WHERE clause, which is pointless. <code>(P and Q)</code> is exactly the same as <code>(Q and P)</code> in this case.</p>
+
+<p>Once you've got the query text, try running it manually yourself in the MySQL monitor, and see what's going on. Turn it into a SELECT query with the same WHERE clause, e.g.</p>
+
+<pre><code>SELECT *
+FROM jointable WHERE (to_ = '$id') AND (from_ = '$neighbor')
+</code></pre>
+
+<p>and see if that returns anything. Since MySQL isn't spitting out an error on the query, then most likely it's your WHERE clause that's causing it to not find the record you want.</p>

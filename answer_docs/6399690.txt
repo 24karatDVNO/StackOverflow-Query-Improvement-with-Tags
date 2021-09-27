@@ -1,0 +1,21 @@
+<blockquote>
+  <p>always heard that more than 2/3 arguments is a warning of bad code design</p>
+</blockquote>
+
+<p>Completly false. Especially in this case.<br>
+You are doing it the right way (DI). No need for changes here imo.</p>
+
+<blockquote>
+  <p>I may have to move the vote casting in both Article &amp; Comment Service?</p>
+</blockquote>
+
+<p>This could be another solution. But you can freely stay with this imo.<br>
+If you want implement this solution you can create an interface <code>IVotable</code> with a method <code>addVote</code>.</p>
+
+<p>At this point you can implements this interface in your <code>Articles/Comments</code> class so you could do:</p>
+
+<pre><code>$a = new Article;
+$b = new Comment;
+$a-&gt;addVote($currentLoggedUser,10); //&gt; Inject only loggedUser (and maybe your DAL)
+$b-&gt;addVote($currentLoggedUser,10);
+</code></pre>

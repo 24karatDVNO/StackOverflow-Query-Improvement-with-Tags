@@ -1,0 +1,12 @@
+<p>If you can't use .NET 4.0 and are stuck on 3.5/2.0, I wrote a small library called Awesome.ClientID to solve this problem.</p>
+
+<p>I've posted it before in this answer: <a href="https://stackoverflow.com/questions/5049221/how-do-i-make-this-getelementsbyname-work-for-ie-and-ff/5049299#5049299">How do I make this getElementsbyName work for IE (and FF)?</a></p>
+
+<p>Basically it will allow you to serialize all your controls to a JSON array, and you can change your JavaScript to:</p>
+
+<pre><code>document.getElementById(controls.ddlInd);
+</code></pre>
+
+<p>The library can be found here: <a href="http://awesomeclientid.codeplex.com/" rel="nofollow noreferrer">http://awesomeclientid.codeplex.com/</a></p>
+
+<p>Blog post about it: <a href="http://www.philliphaydon.com/2010/12/i-love-clean-client-ids-especially-with-net-2-0/" rel="nofollow noreferrer">http://www.philliphaydon.com/2010/12/i-love-clean-client-ids-especially-with-net-2-0/</a></p>

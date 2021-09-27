@@ -1,0 +1,31 @@
+<p>First of all, you need to know that a <code>Hashtable</code> does not maintain the order in which elements are inserted, so the first 5 can be whatever.</p>
+
+<p>If you want the insertion order to be preserved, use a <code>LinkedHashMap</code> (perhaps wrapping it in a <code>Collections.synchronizedMap()</code> if you want it to be thread-safe).</p>
+
+<p>Besides, there's also a nice interface called <code>NavigableMap</code>, implemented by <code>TreeMap</code>, which offers methods like <code>subMap()</code>, but you need to know from which key to which key (instead of using indices). And this will also hold your entries sorted by the key.</p>
+
+<p>If you can rely only on indices, aside from using a <code>LinkedHashMap</code>, I would suggest you go for a generic solution like the following:</p>
+
+<pre><code>&lt;K, V&gt; Collection&lt;Map&lt;K, V&gt;&gt; splitMap(Map&lt;K, V&gt; map, int count) {
+    if (count &lt;= 0) {
+        throw new IllegalArgumentException("zero or negative count");
+    }
+    List&lt;Map&lt;K, V&gt;&gt; list = new ArrayList&lt;Map&lt;K, V&gt;&gt;();
+    Iterator&lt;Entry&lt;K, V&gt;&gt; entries = map.entrySet().iterator();
+    while (entries.hasNext()) {
+        list.add(subMap(entries, count));
+    }
+    return list;
+}
+
+&lt;K, V&gt; Map&lt;K, V&gt; subMap(Iterator&lt;Entry&lt;K, V&gt;&gt; iterator, int count) {
+    Map&lt;K, V&gt; map = new LinkedHashMap&lt;K, V&gt;();
+    for (int i = 0; i &lt; count &amp;&amp; iterator.hasNext(); i++) {
+        Entry&lt;K, V&gt; entry = iterator.next();
+        map.put(entry.getKey(), entry.getValue());
+    }
+    return map;
+}
+</code></pre>
+
+<p>Then just call splitMap(yourMap, 5) in order to get the collection (actually a list) of maps containing 5 entries each (or less for the last one if there are not enough entries in the initial map).</p>

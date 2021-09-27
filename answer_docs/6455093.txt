@@ -1,0 +1,9 @@
+<p>When you do <code>Task.where(...)</code>, you're passing in a string to <code>:due_date</code>, rather than a date. Remove the quotation marks:</p>
+
+<pre><code>Task.where(:due_date =&gt; Date.today, :task_status =&gt; "open").order("due_date ASC")
+</code></pre>
+
+<p>For your second one, there is no method called <code>Time.now.this_week</code>. You need to supply a <code>between</code> range instead:</p>
+
+<pre><code>Task.where("due_date between ? and ?", Date.today.beginning_of_week, Date.today.end_of_week").where(:task_status =&gt; "open").order("due_date ASC")
+</code></pre>

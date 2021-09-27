@@ -1,0 +1,5 @@
+<p>If this issue only occurs in test and never an instance in production then you likely have an engineering ghost, unless the lock is directly related to the new code in this release which is not in production.</p>
+
+<p>engineering ghosts are common with the test artifacts set up to exercise the system under test behave differently than a real user in production.   This can be related to speed of execution, session abondonment, passing appropriate information back and forth or potentially dozens of other items.   The key here is to understand which of your test artifacts is causing the issue.   </p>
+
+<p>If you are using a traditional end user interface test tool which records the conversation between client and server, then record twice andd diff the test recordings.   You may have missed a subtle element related to session or state which is directl related to the above errors.    If you have hand constructed the conversation, then you will want to examine from a log or sniffer trace perspective how your hand construction varies from the actual client converation and then adjust your test artifact accordingly.</p>

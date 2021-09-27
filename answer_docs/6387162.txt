@@ -1,0 +1,24 @@
+<p>In a <code>multipart/form-data</code> request, the text parameter is <em>also</em> sent as a multipart item, not as a regular query parameter. To get the text parameter, you need to use the <strong>same</strong> API as you have used to get the uploaded file. Assuming that you're using <a href="http://commons.apache.org/fileupload" rel="nofollow noreferrer">Apache Commons FileUpload</a>, which is a de facto standard <code>multipart/form-data</code> parser, then you need to hook on the condition where the item is a normal form field.</p>
+
+<pre><code>List&lt;FileItem&gt; items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+for (FileItem item : items) {
+    if (item.isFormField()) {
+        // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
+        String fieldname = item.getFieldName();
+        String fieldvalue = item.getString();
+        // ... (do your job here)
+    } else {
+        // Process form file field (input type="file").
+        String fieldname = item.getFieldName();
+        String filename = FilenameUtils.getName(item.getName());
+        InputStream filecontent = item.getInputStream();
+        // ... (do your job here)
+    }
+}
+</code></pre>
+
+<h3>See also:</h3>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/2422468/how-to-upload-files-in-jsp-servlet/2424824#2424824">How to upload files to server using JSP/Servlet?</a></li>
+</ul>

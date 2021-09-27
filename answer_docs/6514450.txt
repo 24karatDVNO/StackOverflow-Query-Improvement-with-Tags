@@ -1,0 +1,27 @@
+<p>After going back and forth with respect to responsibility for animation, fear of designers stuffing up code in blend, and actually getting it working, I've (provisionally) arrived on a solution of sorts...</p>
+
+<p>this is called in MainWindow.xaml.cs on startup:</p>
+
+<pre><code>private void initialiseCustomAnimations()
+{
+
+    compassRoseAnimation = new DoubleAnimation();
+    compassRoseAnimation.Duration = new Duration(TimeSpan.FromSeconds(2));
+    navigationData.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(navigationData_PropertyChanged);
+
+}
+</code></pre>
+
+<p>and this is the guts (where <code>CompassWithNumbersControl</code> is a canvas built in blend):</p>
+
+<pre><code>private void navigationData_PropertyChanged(object sender, EventArgs e)
+{
+    compassRoseAnimation.From = navigationData.previousHeading;
+    compassRoseAnimation.To = navigationData.heading;
+    RotateTransform rotateTransform = new RotateTransform();
+    CompassWithNumbersControl.RenderTransform = rotateTransform;
+    rotateTransform.BeginAnimation(RotateTransform.AngleProperty, compassRoseAnimation);
+}
+</code></pre>
+
+<p>I should only perform this animation on the correct event getting fired, but it works..</p>

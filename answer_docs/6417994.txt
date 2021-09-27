@@ -1,0 +1,47 @@
+<p>No one is using binary forms? since it's only 1 and 0. We can use binary vectors.</p>
+
+<pre><code>def set1(M, N):
+    '''Set 1/0s on M according to the rules.
+
+    M is a list of N integers. Each integer represents a binary array, e.g.,
+    000100'''
+    ruler = 2**N-1
+    for i,v in enumerate(M):
+        ruler = ruler &amp; M[i]
+        M[i] = M[i] if M[i]==2**N-1 else 0  # set i-th row to all-0 if not all-1s
+    for i,v in enumerate(M):
+        if M[i]: M[i] = ruler
+    return M
+</code></pre>
+
+<p>Here's the test:</p>
+
+<pre><code>M = [ 0b10110,
+      0b01110,
+      0b11111,
+      0b10111,
+      0b11111 ]
+
+print "Before..."
+for i in M: print "{:0=5b}".format(i)
+
+M = set1(M, len(M))
+print "After..."
+for i in M: print "{:0=5b}".format(i)
+</code></pre>
+
+<p>And the output:</p>
+
+<pre><code>Before...
+10110
+01110
+11111
+10111
+11111
+After...
+00000
+00000
+00110
+00000
+00110
+</code></pre>

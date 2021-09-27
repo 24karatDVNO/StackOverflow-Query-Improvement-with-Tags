@@ -1,0 +1,32 @@
+<p>Try this:</p>
+
+<pre><code>var dataLength = data.Length;
+
+Response.Clear();
+
+Response.ContentType = "correct MIME type";
+Response.AddHeader("content-disposition", string.Format("attachment;filename={0}", name));
+Response.AddHeader("content-length", data.Length.ToString());
+
+Response.Buffer = true;
+
+var buffer = new byte[1024];
+int bytes;
+
+var outputStream = Response.OutputStream;
+
+using (var stream = data.OpenBinaryStream())
+{
+     while (dataLength &gt; 0 &amp;&amp; (bytes = stream.Read(buffer, 0, buffer.Length)) &gt; 0)
+     {
+          outputStream.Write(buffer, 0, bytes);
+          dataLength -= bytes;
+     }
+}
+
+Response.Flush();
+Response.Close();
+Response.End();
+</code></pre>
+
+<p>Where "data" is byte array containing image data and "name" is file name.</p>

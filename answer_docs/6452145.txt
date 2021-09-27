@@ -1,0 +1,21 @@
+<blockquote>
+  <p>I googled it but I still don't know
+  what its for. I've found pages that
+  say its the same size and has the same
+  range as an int. So what would be the
+  point in using it?</p>
+</blockquote>
+
+<p><a href="https://stackoverflow.com/questions/2398262/is-long-still-useful-in-c">I've wondered the same thing.</a>  And concluded that <code>long</code> is now useless.</p>
+
+<p>Prior to the rise of 64-bit systems, the <strong><em>de facto</em></strong> standard for C integer types was:</p>
+
+<ul>
+<li><code>char</code> = (<code>u</code>)<code>int8_t</code> (Note that C predates Unicode.)</li>
+<li><code>short</code> = <code>int16_t</code></li>
+<li><code>int</code> = <code>intptr_t</code> [until 64-bit], <code>int_fast16_t</code></li>
+<li><code>long</code> = <code>int32_t</code> [until 64-bit], <code>intmax_t</code> [until 1999]</li>
+<li><code>long long</code> = <code>int64_t</code> or <code>intmax_t</code></li>
+</ul>
+
+<p>Today, however, <code>long</code> has no consistent semantics.</p>

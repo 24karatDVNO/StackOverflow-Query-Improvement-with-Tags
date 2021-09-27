@@ -1,0 +1,22 @@
+<p>Predicates don't recognize entities so you can't construct a predicate to find them. (Update: This is only true of SQL stores.)</p>
+
+<p>If you have your heart set on fetching by pet type then you don't have choice but to provide an attribute that will provide the pet type value and which will let predicates and fetches operate. However, you can make a much cleaner and safer version than the one you proposed. </p>
+
+<ol>
+<li>Create a <code>petType</code> attribute for each entity (it can't be inherited in the entity but can be inherited in custom NSManagedObject subclasses.)</li>
+<li>Then set the default value in the data model editor to the name of species e.g. cat, dog, goldfish etc. (If you use an inherited attribute, you inherit the default value as well.)</li>
+<li><p>Override the setter method to do nothing effectively making the attribute readonly. (This can be inherited from a common superclass.)</p>
+
+<pre><code>-(void) setPetType:(NSString *) petType{
+   return;
+}
+</code></pre></li>
+</ol>
+
+<p>Now finding all dogs and cats just becomes a matter of setting the fetch entity to <code>Pet</code> and then providing and array of pet type names for the <code>IN</code> operator. </p>
+
+<pre><code>NSArray *petTypes=[NSArray arrayWithObjects:@"cat",@"dog",nil];
+NSPredicate *p=[NSPredicate predicateWithFormat:@"petType IN %@", petTypes];
+</code></pre>
+
+<p>While this will work, I think that <a href="https://stackoverflow.com/questions/6530340/querying-for-all-objects-of-multiple-child-entity-types-in-core-data/6537268#6537268">Dave Dribin made the best point.</a> This kind of hack is usually needed when you haven't properly refined your data model. If you need to group various pets by pet type then that grouping probably belongs to another real-world object, condition or event e.g. owner, which in turn should be modeled with relationships to specific pet instances. If you do that, then your grouping happens automatically and you don't have to mess around with all the above. </p>

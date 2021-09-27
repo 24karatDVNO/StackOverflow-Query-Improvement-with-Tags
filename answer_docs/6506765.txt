@@ -1,0 +1,3 @@
+<p>I finally find a solution. In the web-app/web-inf/lib directory, there was a jar file who was sharing the same name with the dependent jar file.</p>
+
+<p>For a reason I don't understand, maven-war-plugin used to take this old jar file rather than the freshly one I installed in my local repository.</p>

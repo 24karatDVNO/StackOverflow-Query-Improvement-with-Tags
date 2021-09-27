@@ -1,0 +1,7 @@
+<p>The connection to Game Center is not "lost" immediately, i am unsure of the actual timeout period, and would not count on it being any particular period if it is not specified in the docs somewhere. You can always test it for a particular release/version using two connected players.</p>
+
+<p>In our game Tic Tac Toe Twist, when a player disconnects due to timeout or other networking problem, we let the players know who disconnected with a message on screen for five seconds, leave the match we are in, reset the game state and then drop them back to the start game screen. </p>
+
+<p>You could also remove them from your game and recover, if your particular game worked well that way.</p>
+
+<p>Be sure to check out the WWDC 2011 information for updates as to how Game Center will handle this in the future, just in case Apple decides to change things...</p>

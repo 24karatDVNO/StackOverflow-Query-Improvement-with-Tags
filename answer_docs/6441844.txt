@@ -1,0 +1,3 @@
+<p>You should close your database in the <code>onDestroy</code> method to avoid that problem.</p>
+
+<p>It's true that sometimes <code>onDestroy</code> does not get called, but it does not really matter. If the OS takes down your process all the resources are going to be cleaned up anyway. </p>

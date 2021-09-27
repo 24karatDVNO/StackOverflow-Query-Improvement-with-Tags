@@ -1,0 +1,15 @@
+<p>If the date column has no time component:</p>
+
+<pre><code>select ...
+from mytable
+where datecol between add_months(trunc(sysdate,'YYYY'),3)
+                  and add_months(trunc(sysdate,'YYYY'),16)-1
+</code></pre>
+
+<p>If the date column has a time component:</p>
+
+<pre><code>select ...
+from mytable
+where datecol &gt;= add_months(trunc(sysdate,'YYYY'),3)
+and   datecol &lt; add_months(trunc(sysdate,'YYYY'),16)
+</code></pre>

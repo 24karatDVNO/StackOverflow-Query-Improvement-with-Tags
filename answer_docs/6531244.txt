@@ -1,0 +1,11 @@
+<p>this looks really complicated... I have a much smaller solution. I never tried it on https but I think this will also work.</p>
+
+<p>Just set the credentials for your http client:</p>
+
+<pre><code>httpClient = new DefaultHttpClient();
+String user = prefs.getString("http_auth_username", "");
+String pwd = prefs.getString("http_auth_password", "");
+httpClient.getCredentialsProvider().setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(user, pwd));
+</code></pre>
+
+<p>Then you do not have to set the auth header manually.</p>

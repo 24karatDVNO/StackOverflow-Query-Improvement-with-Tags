@@ -1,0 +1,11 @@
+<p>You forgot add a <strong>semicolon</strong> *<em>;</em>* in line no. 30</p>
+
+<p>it should be </p>
+
+<pre><code>   $db = mysql_select_db($db_name, $connection) or die(mysql_error());
+</code></pre>
+
+<p>instead of   </p>
+
+<pre><code>  $db = mysql_select_db($db_name, $connection) or die(mysql_error())
+</code></pre>

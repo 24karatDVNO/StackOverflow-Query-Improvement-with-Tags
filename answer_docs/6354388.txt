@@ -1,0 +1,18 @@
+<p>With the help of Mark Koopman I managed to use his Javascript method and it worked like I wanted.</p>
+
+<p>So heres the method in Javascript: </p>
+
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            function handleOnload()
+            {
+                if(location.search == "?AC")
+                   alert("the query string is " + location.search);
+            }
+
+            window.onload=handleOnload;
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

@@ -1,0 +1,5 @@
+<p>The point is not to return a pointer or reference to a local variable, because once the function returns, locals don't exist.</p>
+
+<p>However, the return value still exists, and dynamically allocated memory certainly exists as well.</p>
+
+<p>In C++, we prefer to avoid raw pointers whenever possible. To "return a value that already exists" (i.e. the function does not create a new value), use a reference. To "return a value that didn't already exist" (i.e. the function creates a new value, in the idiomatic sense, not the <code>new</code> keyword sense) use a value, or if necessary, some kind of smart pointer wrapper.</p>

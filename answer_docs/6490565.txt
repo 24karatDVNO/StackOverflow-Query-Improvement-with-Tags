@@ -1,0 +1,28 @@
+<p>One option could be to do </p>
+
+<pre><code>&lt;li style="color:Red" onclick='changeColor(this.style.color);'&gt;Red&lt;/li&gt;
+</code></pre>
+
+<p>instead of</p>
+
+<pre><code>&lt;li onclick='changeColor(this.style.color);'&gt;Red&lt;/li&gt;
+
+
+
+&lt;html&gt; 
+        &lt;head&gt;
+            &lt;script language="text/javascript"&gt;
+                function changeColor(c) {
+                    message.style.color=c;
+                }
+            &lt;/script&gt;
+         &lt;/head&gt;
+         &lt;body&gt;
+             &lt;p id="message" style="color:orange"&gt; Welcome &lt;/p&gt;
+             &lt;ul id="color"&gt;
+              &lt;li style="color:Red" onclick='changeColor(this.style.color);'&gt;Red&lt;/li&gt;
+               &lt;li style="color:Blue" onclick='changeColor(this.style.color);'&gt;Blue&lt;/li&gt;
+              &lt;/ul&gt;
+         &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>

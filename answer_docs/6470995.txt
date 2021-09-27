@@ -1,0 +1,32 @@
+<p>Ignoring your exact question, do you mind doing something like this:</p>
+
+<pre><code>out_file = open("test.txt", "wt")
+out_file.write("This Text is going to out file\nLook at it and see!")
+out_file.close()
+</code></pre>
+
+<p>I found that <a href="http://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/File_IO" rel="nofollow">here</a>.</p>
+
+<p>EDIT:
+Alternatively, this code snippet is more along the lines of what ever you're up to:</p>
+
+<pre><code>with open('out.log', mode='w', encoding='utf-8') as a_file, RedirectStdoutTo(a_file):
+    print('B')
+</code></pre>
+
+<p>I found <a href="http://diveintopython3.org/files.html" rel="nofollow">THAT within this page</a>.</p>
+
+<p>EDIT2:
+Okay, this may be even more helpful (<a href="http://diveintopython.net/scripts_and_streams/stdin_stdout_stderr.html" rel="nofollow">from here</a>):</p>
+
+<pre><code>#stdout.py
+import sys
+
+print 'Dive in'                                          
+saveout = sys.stdout                                     
+fsock = open('out.log', 'w')                             
+sys.stdout = fsock                                       
+print 'This message will be logged instead of displayed' 
+sys.stdout = saveout                                     
+fsock.close()            
+</code></pre>

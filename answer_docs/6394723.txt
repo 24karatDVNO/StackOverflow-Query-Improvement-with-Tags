@@ -1,0 +1,8 @@
+<p>You are probably using a relative path in your include which means that header.php may or may not be included depending on whether your current file is on the "right" directory or not. </p>
+
+<p>What you can do is : </p>
+
+<ul>
+<li>use an absolute path in your include </li>
+<li>modify your include path depending on where the current file is located in the hierarchy </li>
+</ul>

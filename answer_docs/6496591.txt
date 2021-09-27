@@ -1,0 +1,9 @@
+<p>One suggestion is not to use block level elements in an inline element. It won't always render properly (beyond being semantically incorrect). Try removing the floats and using spans to style the part that you want to be an H3 and p.</p>
+
+<pre><code>&lt;a href="google.com"&gt;
+    &lt;img src="img.jpg" style="float:left;"&gt;
+    &lt;span class='title'&gt;Title&lt;/span&gt;
+    &lt;span class='desc'&gt;Description&lt;/span&gt;
+
+&lt;/a&gt;
+</code></pre>

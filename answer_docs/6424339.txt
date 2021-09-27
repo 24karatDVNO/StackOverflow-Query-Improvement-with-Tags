@@ -1,0 +1,5 @@
+<p>If it's a FormView as you've commented, you should call <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.formview.changemode.aspx" rel="nofollow">FormView.ChangeMode(FormViewMode.Insert)</a>:</p>
+
+<pre><code>Me.FormView1.ChangeMode(FormViewMode.Insert)
+Me.FormView1.DataBind()
+</code></pre>

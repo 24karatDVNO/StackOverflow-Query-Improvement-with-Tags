@@ -1,0 +1,19 @@
+<p>The problem is here:</p>
+
+<pre><code>NumOpenList = "SELECT COUNT([FORMAT NUMBER]) " &amp; _
+ "FROM(ALL_COMPLAINTS) " &amp; _
+ " join (SELECT * FROM dbo.ProductPartNumbers(' " &amp; _
+ arrayProducts(y) &amp; _
+ " ')) on EPA_PRD_CODE like '%' + [FORMAT NUMBER] + '%' "
+</code></pre>
+
+<p>The problem is your SQL is invalid. You can't join a <code>(SELECT ...)</code> directly without an alias following the <code>SELECT</code>. (I should also mention  this is very poorly written code, and you should break the habit of using non-parameterized queries.)</p>
+
+<p>Your SQL is boiling down to:</p>
+
+<pre><code>SELECT COUNT([FORMAT NUMBER]) FROM (ALL_COMPLAINTS) 
+  join (SELECT * FROM dbo.ProductPartNumbers('somepartnumber'))
+ on EPA_PRD_CODE like '%something%' 
+</code></pre>
+
+<p>If  you try to populate the parts you're concatenating manually and running the SQL, it won't work. </p>

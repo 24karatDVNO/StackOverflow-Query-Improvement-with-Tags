@@ -1,0 +1,32 @@
+<p>Figured it out!</p>
+
+<p>This was the original <code>application_helper.rb</code> code from Railscasts #228 and #240.</p>
+
+<pre><code>def sortable(column, title = nil)
+  title ||= column.titleize
+  css_class = column == sort_column ? "current #{sort_direction}" : nil
+  if direction == "desc"
+    direction = column == sort_column &amp;&amp; sort_direction == "desc" ? "asc" : "desc"
+  else
+    direction = column == sort_column &amp;&amp; sort_direction == "asc" ? "desc" : "asc"
+  end
+  link_to title, params.merge(:sort =&gt; column, :direction =&gt; direction, :page =&gt; nil), {:class =&gt; css_class}
+end
+</code></pre>
+
+<p>I changed it to (changes on lines 1 and 4):</p>
+
+<pre><code>def sortable(column, title = nil, direction = nil)
+  title ||= column.titleize
+  css_class = column == sort_column ? "current #{sort_direction}" : nil
+  direction ||= column == sort_column &amp;&amp; sort_direction == "asc" ? "desc" : "asc"
+  link_to title, params.merge(:sort =&gt; column, :direction =&gt; direction, :page =&gt; nil), {:class =&gt; css_class}
+end
+</code></pre>
+
+<p>This enables me to now specify a default direction in a column heading:</p>
+
+<pre><code>&lt;div class="col&gt; 
+  &lt;%= sortable "priority_number", "Priority", "desc" %&gt; 
+&lt;/div&gt;
+</code></pre>

@@ -1,0 +1,6 @@
+<pre><code>NSDATE *date;
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+[dateFormatter setDateFormat:@"ddMMyyyy"];
+NSString *textDate = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:date]];
+[dateFormatter release];
+</code></pre>

@@ -1,0 +1,3 @@
+<p>It really depends on how you intend to use your data. If your second date will never be used outside of calculating the TimeSpan, you should not store it, and store the TimeSpan instead. If you use the end date frequently and only seldom calculate the duration, you should store the 2 datetimes.</p>
+
+<p>You can even consider to store the three values if you use them frequently and the increase in memory space is not a problem.</p>

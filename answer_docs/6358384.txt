@@ -1,0 +1,61 @@
+<p>I found my solution to the missing child IDs this morning.  It actually was not a JAXRS / JAXB issue, but caused by the Hibernate mapping files (yes, I still like to use a mapping file over annotations for Hibernate).</p>
+
+<p>The Hibernate mapping file for the example file above would be:</p>
+
+<pre><code>&lt;hibernate-mapping&gt;
+    &lt;class name="com.mycompany.Parent" table="PARENT"&gt;
+    &lt;id name="id" type="java.lang.Long"&gt;
+        &lt;column name="PARENT_ID" scale="0" /&gt;
+        &lt;generator class="native" /&gt;
+    &lt;/id&gt;
+    &lt;property name="parentName" type="java.lang.String"&gt;
+        &lt;column name="PARENT_NAME" /&gt;
+    &lt;/property&gt;
+    &lt;set name="children" inverse="true" lazy="true" table="CHILD" fetch="select"&gt;
+        &lt;key&gt;
+        &lt;column name="CHILD_ID" /&gt;
+        &lt;/key&gt;
+        &lt;one-to-many class="com.mycompany.Child" /&gt;
+    &lt;/set&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+
+&lt;hibernate-mapping&gt;
+    &lt;class name="com.mycompany.Child" table="CHILD"&gt;
+    &lt;id name="id" type="java.lang.Long"&gt;
+        &lt;column name="CHILD_ID" scale="0" /&gt;
+        &lt;generator class="native" /&gt;
+    &lt;/id&gt;
+    &lt;property name="childName" type="java.lang.String"&gt;
+        &lt;column name="CHILD_NAME" /&gt;
+    &lt;/property&gt;
+    &lt;many-to-one name="parent" type="com.mycompany.Child" fetch="select"&gt;
+        &lt;column name="PARENT_ID" /&gt;
+    &lt;/many-to-one&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre>
+
+<p>The fix was to force Hibernate not to 'lazy load' the children.  I changed:</p>
+
+<pre><code>&lt;set name="children" inverse="true" **lazy="true"** table="CHILD" **fetch="select"**&gt;
+</code></pre>
+
+<p>to:</p>
+
+<pre><code>&lt;set name="children" inverse="true" lazy="false" table="CHILD" **fetch="join"**&gt;
+</code></pre>
+
+<p>With the modified hibernate mapping files, the IDs came through the results of JAXRS:</p>
+
+<pre><code>{
+    "id":{"@type":"xs:long","$":"1"},
+    "parentName":"Homer Simpson",
+    "child": {
+        "id":{"@type":"xs:long","$":"1"},
+        "childName":"BartSimpson"
+    }
+}
+</code></pre>
+
+<p>Hope this helps if someone else runs into this issue.</p>

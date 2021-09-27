@@ -1,0 +1,9 @@
+<p>Your Project object (if its an update instead of an insert) <strong>MUST</strong> be loaded from the same Data Context Object that you are calling SaveChanges on. If you load Project from a context in one library, and pass the Project around, then your update will fail. This is one of the stickier parts of EF/Linq-To-Sql.</p>
+
+<p>Look into the "Attach" method to attach an existing entity to a different data context, but be warned, there's no magic bullet as far as I can tell. (Still looking for it myself)</p>
+
+<ul>
+<li><a href="http://geekswithblogs.net/michelotti/archive/2007/12/25/117984.aspx" rel="nofollow">http://geekswithblogs.net/michelotti/archive/2007/12/25/117984.aspx</a></li>
+<li><a href="http://omaralzabir.com/linq_to_sql__how_to_attach_object_to_a_different_data_context/" rel="nofollow">http://omaralzabir.com/linq_to_sql__how_to_attach_object_to_a_different_data_context/</a></li>
+<li><a href="http://social.msdn.microsoft.com/forums/en-US/linqprojectgeneral/thread/6f42d725-4540-4044-be86-afc7bc2d2b46/" rel="nofollow">http://social.msdn.microsoft.com/forums/en-US/linqprojectgeneral/thread/6f42d725-4540-4044-be86-afc7bc2d2b46/</a></li>
+</ul>

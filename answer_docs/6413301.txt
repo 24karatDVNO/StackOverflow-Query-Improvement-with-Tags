@@ -1,0 +1,5 @@
+<p>In addition to the <code>INSERT..ON DUPLICATE KEY UPDATE</code> syntax that others have mentioned, sometimes it's appropriate to use <a href="http://dev.mysql.com/doc/refman/5.1/en/replace.html" rel="nofollow"><code>REPLACE</code></a>.  It's basically a DELETE of the row followed by an INSERT of the new values.  </p>
+
+<p>This has some side effects, like firing both a delete and insert trigger.  It also is subject to referential integrity constraints, so if there are any child rows referencing the row you're replacing, either the REPLACE will fail, or else the delete will cascade and also delete the child row.</p>
+
+<p>There are still times when REPLACE is handy, but keep those issues in mind.</p>

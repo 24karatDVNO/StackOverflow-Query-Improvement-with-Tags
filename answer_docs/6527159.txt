@@ -1,0 +1,11 @@
+<p>this does it all:    <a href="http://jsfiddle.net/uUzY3/4/" rel="nofollow">http://jsfiddle.net/uUzY3/4/</a></p>
+
+<pre><code>$(function() {
+    $("input").each( function () {
+        $(this).data('initialValue', $(this).val());
+    }).bind('focus', function() {
+        if ($(this).val() == $(this).data('initialValue'))
+            $(this).val("");
+    });
+});
+</code></pre>

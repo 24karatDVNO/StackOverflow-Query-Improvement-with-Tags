@@ -1,0 +1,11 @@
+<p>In the case of a cube this is simple: Face normals are the cartesian axes. So one looks straigt on a face if you constrain the rotations around the cartesian axes (X, Y, Z) and the rotation angles are multiple of pi/2 = 90°.</p>
+
+<p>So in your code when the user stops interacting, set the rotation angles to the next multiple of 90°</p>
+
+<pre><code>fmod(round(angle/90) * 90, 360); // degrees
+fmod(round(angle/(pi/2)) * pi/2, 2*pi); // radians
+</code></pre>
+
+<p>Either do it hard, or animate it.</p>
+
+<p>If your object is not a cube, but arbitrary, you need to find the additional rotation for the face to get perpendicular to the view axis. This angle is determined by <code>acos( scalar_product(normalize(face_normal), normalize(view_axis)) )</code> the axis of rotation is given by  <code>cross_product(normalize(face_normal), normalize(view_axis))</code></p>

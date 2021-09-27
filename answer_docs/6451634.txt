@@ -1,0 +1,30 @@
+<pre><code>//If anything is empty write an error.
+if(empty($_POST['username'])){
+$errMsg = "Du skal udfylde brugernavn.";
+}
+elseif(empty($_POST['password'])){
+$errMsg = "Du skal udfylde password.";
+}
+elseif(empty($_POST['name'])){
+$errMsg = "Du skal udfylde navn.";
+}
+elseif(empty($_POST['last_name'])){
+$errMsg = "Du skal udfylde efternavn.";
+}
+elseif(empty($_POST['company'])){
+$errMsg = "Du skal udfylde firma.";
+} else {
+$sql = (" SELECT * FROM users WHERE username ='.$username.'")
+$res = mysql_query($sql) ;
+while ($row = mysql_fetch_array($res) ){
+  $errMsg = "Your error message";
+  exit();
+}
+
+$sql = ("INSERT INTO members (username, password, name, last_name, company, salt)VALUES('$username', '$password', '$name', '$last_name', '$company', '$salt')")or die(mysql_error());
+if(mysql_query($sql))
+echo "Du er oprettet som profil.";
+}//End if empty else
+</code></pre>
+
+<p>I also took out the surrounding <code>if</code> - if it were to execute the <code>then</code>, then no error would of been displayed, because everything was set</p>

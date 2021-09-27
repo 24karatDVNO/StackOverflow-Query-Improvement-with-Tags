@@ -1,0 +1,6 @@
+<p>Criteria isn't the best match for this particular need. Criteria are most useful when you're building dynamic queries, in my experience. </p>
+
+<p>If I understand your domain correctly, this is pretty simply expressed in HQL:</p>
+
+<pre><code>select item.category from Item item where item.id = :itemId
+</code></pre>

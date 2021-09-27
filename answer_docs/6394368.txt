@@ -1,0 +1,7 @@
+<p>Following up <em>my comment</em> on <strong>quoo</strong>'s answer, here's the code for same purpose, but just grabbing the width out of a <code>TextField</code>, using <a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/text/TextLineMetrics.html" rel="nofollow">TextLineMetrics</a> as well:</p>
+
+<pre><code>    public function mtxtWidth(container:TextField):int {
+       var lineMetrics:TextLineMetrics = container.getLineMetrics(0);
+       return lineMetrics.width;      
+    }
+</code></pre>

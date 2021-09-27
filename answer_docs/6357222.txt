@@ -1,0 +1,3 @@
+<p>You can replicate a single table using <a href="http://dev.mysql.com/doc/refman/5.5/en/replication-options-slave.html#option_mysqld_replicate-wild-do-table" rel="nofollow">replicate-wild-do-table</a> along with selective database and binlogging options, but it's really not a nice way to go and is probably saving up trouble.</p>
+
+<p>One flaw in your plan is that while you can do a union query across multiple databases, you can't do them across multiple connections, which is what you'd have. Why do you need to split the query like this anyway?</p>

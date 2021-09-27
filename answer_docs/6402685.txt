@@ -1,0 +1,5 @@
+<p>If you don't need to filter through this field you could either use <a href="http://djangosnippets.org/snippets/377/" rel="nofollow">JsonField</a> or you could pickle your objects like <a href="http://djangosnippets.org/snippets/1694/" rel="nofollow">this</a> </p>
+
+<p>The second aproach would allow you to store nearly any type of python data type, though it would be usable only from python code.</p>
+
+<p>If you need to filter through this data you should just create separate fields with one data type.</p>

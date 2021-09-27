@@ -1,0 +1,28 @@
+<p>ApplicationAdapter already had ScheduleJob to manage multithreading.</p>
+
+<p>the example</p>
+
+<pre><code>public boolean connect(IConnection conn, IScope scope, Object[] params) {
+        iconn = (IServiceCapableConnection) conn;
+        appScope = scope;
+        createSharedObject(appScope, "thread", false);
+        //updateArray();
+        this.addScheduledJob(100, new IScheduledJob() {
+            @Override
+            public void execute(ISchedulingService jobs0)
+                    throws CloneNotSupportedException {
+                System.out.println(sendList);
+                iconn.invoke("receiveVariable", new Object[] { sendList.toArray() });
+                sendList.clear();
+                try {
+                    Thread.sleep(5000);
+                    updateArray();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        return true;
+    }
+</code></pre>

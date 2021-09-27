@@ -1,0 +1,30 @@
+<p>Your error does not match your code:</p>
+
+<p><strong>Code</strong></p>
+
+<pre><code>cmd.Parameters.Add("@farmercode", SqlDbType.Int).Value 
+  = Convert.ToInt32(TxtFarmerCode.Text);
+</code></pre>
+
+<p><strong>Error</strong>  </p>
+
+<pre><code>cmd.Parameters.Add("@farmercode", SqlDbType.Int).Value 
+   = int.Parse(TxtFarmerCode.Text);
+</code></pre>
+
+<p>Other than that it seems obvious that TxtFarmerCode.Text does not translate into a valid int.<br>
+Make sure you test your values for validity before inserting them into the database, this goes for all your vars that have a limited range.<br>
+Obviously not all ints are valid for farmercode, so let the user have a list of valid farmercodes and make him choose one from the list. That way it's impossible to pick an incorrect farmercode.  </p>
+
+<p><strong>Suspected error inserting primary key</strong><br>
+You are trying to insert a new record, if <code>slipno</code> is your primary key, you should not allow a value other than <code>null</code> here, if you try to insert an existing key into the table you'll get an error, that should never happen.<br>
+It's best to let the database assign the primary key because that's foolproof.</p>
+
+<p><strong>Normalization of database</strong><br>
+Why do you have <code>farmercode</code> and <code>farmername</code> in your table? Isn't farmercode the id of a farmer?<br>
+If so storing farmername as well is duplication of information.<br>
+You should just store the farmerid in the table. The farmer id then points to the primary key of table <code>farmers</code> which stores the name and other relevant info about farmers.  </p>
+
+<p>Links:<br>
+<a href="http://en.wikipedia.org/wiki/Database_normalization" rel="nofollow">http://en.wikipedia.org/wiki/Database_normalization</a><br>
+<a href="http://databases.about.com/od/specificproducts/a/normalization.htm" rel="nofollow">http://databases.about.com/od/specificproducts/a/normalization.htm</a>  </p>

@@ -1,0 +1,3 @@
+<p>Using the dynamic keyword with POCOs can be extremely useful when you have several method overloads and you've received the the argument as an object. Cast the argument to dynamic and it will resolve the correct overload based on runtime type-- doing without dynamic ends up being a series of if/elseif statements, yuck.</p>
+
+<p>Using the dynamic keyword with DynamicObjects subclasses allows you to get rid of boiler plate, write fluent api's more easily and create code that is by far more malleable. For example, here is a dynamic api that get rid of a ton of boilerplate code related to MVVM binding <a href="http://code.google.com/p/impromptu-interface/wiki/UsageMVVM" rel="nofollow">http://code.google.com/p/impromptu-interface/wiki/UsageMVVM</a></p>

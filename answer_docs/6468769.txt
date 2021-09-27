@@ -1,0 +1,17 @@
+<p>I don't know why, but if instead of extracting the month I want from each file and then merge them in 1 file, I merge the files and only then extract the months that I want the values of the correlations are correct! What I mean is:</p>
+
+<p><code>
+files &lt;- list.files(pattern=".csv") 
+x&lt;-read.zoo(files[1],sep=",", header=TRUE,index.column=1)<br>
+y&lt;-read.zoo(files[2],sep=",", header=TRUE,index.column=1)<br>
+CET&lt;-merge(x, y, all = TRUE, fill = NA, check.names=FALSE)<br>
+for (i in 3:length(files))<br>
+{<br>
+z&lt;-read.zoo(files[i],sep=",", header=TRUE,index.column=1)<br>
+CET&lt;-merge(CET, z, all = TRUE, fill = NA, check.names=FALSE)<br>
+}<br>
+a&lt;-1:(dim(CET)[2])<br>
+even &lt;- a[ a%%2 == 0 ]<br>
+dat&lt;-CET[,even]<br>
+dat.aut&lt;-dat[months(time(dat), TRUE) %in% c("Sep", "Oct", "Nov")]<br>
+c.mat&lt;-cor(dat.aut,use="pairwise.complete.obs" )</code>  </p>

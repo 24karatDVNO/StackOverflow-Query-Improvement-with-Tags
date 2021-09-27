@@ -1,0 +1,4 @@
+<p>I am not sure If I get your Problem, but once you call an intent and start the new activity,
+immediately after call finish();  to end the activity you are leaving. This will end your last activity and will prevent from multiple activities from running at the same time.</p>
+
+<p>Also if you are using screen rotation as a way to launch activities, you can always control which one's you do not want to start multiple times by setting some checks using "If and Else" Statements.</p>

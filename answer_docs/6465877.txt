@@ -1,0 +1,6 @@
+<p>Use any subclass of <a href="http://developer.android.com/reference/android/widget/CursorAdapter.html" rel="nofollow">CursorAdapter</a>, like</p>
+
+<pre><code>       Cursor c = db.getAllTitles();
+       SimpleCursorAdapter a = new SimpleCursorAdapter(c, ....);
+       listview.setAdapter(a);
+</code></pre>

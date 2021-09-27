@@ -1,0 +1,5 @@
+<p>my World class extended GLSurfaceView and was using the MatrixTrackingGL as a wrapper.</p>
+
+<p>the problem was that the Viewport also extended GLSurfaceView and was NOT using the MatrixTrackingGL... stupid.</p>
+
+<p>now the world doesn't extend anything and the Viewport ( extending GLSurfaceView ) implements the Wrapper's change and everything's fine.</p>

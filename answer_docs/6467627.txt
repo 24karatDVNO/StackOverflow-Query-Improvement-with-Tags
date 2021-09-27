@@ -1,0 +1,12 @@
+<p>Note that :</p>
+
+<p>In jquery API, </p>
+
+<p>.closest() : Get the first ancestor element that matches the selector, beginning at the current element and progressing up through the DOM tree.</p>
+
+<p>Apparently, your &lt;div> element is not an ancestor element of &lt;a></p>
+
+<p>see <a href="http://api.jquery.com/closest/" rel="nofollow">http://api.jquery.com/closest/</a></p>
+
+<p>In this case, you should try .next(), if you want to get only one element,
+or .nextAll(), if you want to get all elements matches your selector.</p>

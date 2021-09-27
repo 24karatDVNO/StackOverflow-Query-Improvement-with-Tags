@@ -1,0 +1,13 @@
+<p>There is no native support in PHP to decode such strings.</p>
+
+<p>There are several tricks to use native function though I am not sure that any of those is safe and injection proof :</p>
+
+<ul>
+<li>json_decode . See <a href="http://noteslog.com/post/escaping-and-unescaping-utf-8-characters-in-php/" rel="nofollow">http://noteslog.com/post/escaping-and-unescaping-utf-8-characters-in-php/</a></li>
+<li>xml parser</li>
+<li><p>regex replace</p>
+
+<p><code>If anybody has other options for escaping/unescaping Utf8 using native function, please post a reply.</code></p></li>
+</ul>
+
+<p>Another option using Zend Framework is to download the Zend_Utf8 proposal class. See more information at <a href="http://framework.zend.com/wiki/display/ZFPROP/Zend_Utf8+-+Andrea+Ercolino" rel="nofollow">Zend_Utf8 proposal for Zend Framework</a></p>

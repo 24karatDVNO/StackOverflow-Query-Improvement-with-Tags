@@ -1,0 +1,5 @@
+<p><a href="http://msdn.microsoft.com/en-us/library/ms188787.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms188787.aspx</a></p>
+
+<p>"To execute sp_configure with both parameters to change a configuration option or to run the RECONFIGURE statement, you must be granted the ALTER SETTINGS server-level permission. The ALTER SETTINGS permission is implicitly held by the sysadmin and serveradmin fixed server roles."</p>
+
+<p>Your SQL account(s) for application access should not have this level of permission. Not sure if that's what you are indicating, but if so, I would take those rights away ASAP.</p>

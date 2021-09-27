@@ -1,0 +1,9 @@
+<p>I'm guessing the only advantage to using <code>new</code> is if you like the syntax of </p>
+
+<p><code>this.myfunct = function...</code></p>
+
+<p>If you did that without the <code>new</code>, you would be polluting the global namespace</p>
+
+<p>but other than that there really is no difference.</p>
+
+<p>If speed bothers you, being that jsperf puts it at one millionth of a second slower, if you're doing one million IIFEs then you're doing something worng</p>

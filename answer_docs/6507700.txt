@@ -1,0 +1,6 @@
+<pre><code>INSERT INTO Products (name, price)
+VALUES 
+((SELECT name, price 
+    FROM Products  
+   WHERE product_id = 1));
+</code></pre>

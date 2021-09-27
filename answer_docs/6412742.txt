@@ -1,0 +1,28 @@
+<p>This has nothing to do with your code, nor with the JSON data you're trying to decode, but is a PHP configuration error (or done on purpose). I've come across this multiple times, but simply put <em>the function has been disabled</em>. <strong>Note</strong> that the function is not working rather than actually disabled, but the result is the same, an empty return value.</p>
+
+<p>Best solution is to use an alternative code (method) to decode your JSON data, which can be found on the PHP website:</p>
+
+<pre><code>function json_decode($json)
+{
+    $comment = false;
+    $out = '$x=';
+
+    for ($i=0; $i&lt;strlen($json); $i++)
+    {
+        if (!$comment)
+        {
+            if (($json[$i] == '{') || ($json[$i] == '[')) $out .= ' array(';
+            else if (($json[$i] == '}') || ($json[$i] == ']')) $out .= ')';
+            else if ($json[$i] == ':') $out .= '=&gt;';
+            else $out .= $json[$i];
+        }
+        else $out .= $json[$i];
+        if ($json[$i] == '"' &amp;&amp; $json[($i-1)]!="\\") $comment = !$comment;
+    }
+
+    eval($out . ';');
+    return $x;
+}
+</code></pre>
+
+<p>This code is not pretty, but it does the trick. I've used this code every now and then to decode JSON data on servers that have similar problems you describe and I've yet to come across data you can't decode using this function.</p>

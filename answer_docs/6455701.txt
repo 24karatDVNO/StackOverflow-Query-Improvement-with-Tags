@@ -1,0 +1,17 @@
+<p>I solved me problem.</p>
+
+<p>To get the Angle:</p>
+
+<p><code>float angle = atan2(imageView.transform.b, imageView.transform.a);</code></p>
+
+<p>The scale transform applied to the imageView was <strong>uniform</strong>, so to get the Scale Value:</p>
+
+<pre><code>CATransform3D localScaleTransform = [(CALayer *)[imageView.layer presentationLayer] transform];
+float scale = sqrt(pow(localScaleTransform.m11, 2) + pow(localScaleTransform.m12, 2));
+</code></pre>
+
+<p>If you applied different scale values follow this:</p>
+
+<p>scaleInX = sqrt(M11^2 + M12^2)</p>
+
+<p>scaleInY = sqrt(M21^2 + M22^2)</p>

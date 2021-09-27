@@ -1,0 +1,10 @@
+<p>It MIGHT work if you put the X.gem file into ./vendor/cache</p>
+
+<p>If you run "bundle package", then that's where bundler will put built .gem files. So if you put it there yourself, will bundler find it there? Maybe. But I'm not sure about the idea of having some gems packaged in ./vendor/cache and others not, not entirely sure if Bundler supports that, since I think "bundle package" insists on putting all of em in there. </p>
+
+<p><a href="http://gembundler.com/bundle_package.html" rel="nofollow">http://gembundler.com/bundle_package.html</a>
+http://gembundler.com/man/bundle-package.1.html</p>
+
+<p>If instead of checking your pre-built X.gem into your repo, you can check the SOURCE for the X gem into your repo, and the source includes an X.gemspec file, THEN you can use the :path option. But I think as you've discovered the :path option expects to point at source, not a *.gem package.  It's possible that if you simply unzip the *.gem, that will result in a directory that you can use bundler gem :path with. (A *.gem product is just a zipfile... I think.). </p>
+
+<p>Not a definitive answer, but some ideas to explore maybe. </p>

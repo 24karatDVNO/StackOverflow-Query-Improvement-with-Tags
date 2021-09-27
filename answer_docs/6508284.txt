@@ -1,0 +1,4 @@
+<p>Use standard C functions like round() or roundf()... try <code>man round</code> at a command line, there are several different options depending on the data type. You'll probably want to scale the values first by dividing by an appropriate number and then multiplying the result by the same number, something like:</p>
+
+<pre><code>int roundedValue = round(someNumber/scalingFactor) * scalingFactor;
+</code></pre>

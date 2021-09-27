@@ -1,0 +1,11 @@
+<p>You can create your own wrapper around <code>StringBuffer</code>:</p>
+
+<pre><code>class MyStringBuffer {
+    StringBuffer _sb = new StringBuffer();
+    public boolean append(String s) {
+        _sb.append(s==null ? "" : s);
+        return s == null;
+    }
+    public String toString() { return _sb.toString(); }
+}
+</code></pre>

@@ -1,0 +1,15 @@
+<p>I didn't want to install another module so I put this code in <a href="http://api.drupal.org/api/drupal/developer--hooks--core.php/function/hook_init/6" rel="nofollow">hook_init()</a> in one of our custom modules. Enforces the node/add page, by giving an access denied if the users do not have the "create <em>*</em> content" permission.</p>
+
+<pre><code>  $arg = arg();
+  // Quick hack to enforce node creation permissions.
+  if (   $arg[0] == 'node'
+      &amp;&amp; !empty($arg[1])
+      &amp;&amp; $arg[1] == 'add'
+      &amp;&amp; !empty($arg[2])
+        ) {
+    $arg[2] = str_replace('-', '_', $arg[2]);
+    if (!user_access('create ' . $arg[2] . ' content')) {
+      drupal_access_denied();
+    }
+  }
+</code></pre>

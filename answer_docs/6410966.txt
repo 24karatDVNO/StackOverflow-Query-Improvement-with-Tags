@@ -1,0 +1,10 @@
+<pre><code>SQL-02134: Invalid runtime context 
+
+Cause: The runtime context associated with this statement has not been properly allocated.
+
+Action: Rewrite the application to execute the EXEC SQL CONTEXT ALLOCATE statement before executing any SQL statements.
+</code></pre>
+
+<p>So, I would guess since you said that the code includes that statement before executing the SQL statement that the context is being cleared before you execute said sql.</p>
+
+<p>Run a debugger of some kind to produce a trace file to see where exactly the issue is propagating.</p>

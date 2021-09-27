@@ -1,0 +1,17 @@
+<p>Tha Data helper is loaded when you call the translation helper, ie: <code>Mage::helper('modulename')-&gt;__("some string to translate")</code>.<br>
+In your config .xml, have you declared the module's helper class?:</p>
+
+<pre><code>&lt;config&gt;
+    ...
+    &lt;global&gt;
+        ...
+        &lt;helpers&gt;
+            &lt;yourmodule&gt;
+                &lt;class&gt;Yourcompanyname_Yourmodule_Helper&lt;/class&gt;
+            &lt;/yourmodule&gt;
+        &lt;/helpers&gt;
+        ...
+    &lt;/global&gt;
+    ...
+&lt;/config&gt;
+</code></pre>

@@ -1,0 +1,13 @@
+<p>Try using AdditionalProperties,</p>
+
+<pre><code>  &lt;ItemGroup&gt;
+    &lt;SolutionToBuild Include=".../Suite.sln"&gt;
+      &lt;Targets&gt;&lt;/Targets&gt;
+      &lt;AdditionalProperties&gt;TestVersion=True&lt;/AdditionalProperties&gt;
+    &lt;/SolutionToBuild&gt;
+  &lt;/ItemGroup&gt;
+</code></pre>
+
+<p>Now doing this (or using Properties as you have above) will only apply when the item array you are creating, in this case @(SolutionToBuild) is passed to the MSBuild task.</p>
+
+<p>It is a little tough from your question to see what you are trying to do, but using XML to change the project file is not the way to go.  Depending on what you are trying to do there is a proper way to alter the property.  What is the scenerio for changing this property?  Is it from the command line, or from a build machine script?</p>

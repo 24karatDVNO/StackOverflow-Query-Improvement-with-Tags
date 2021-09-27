@@ -1,0 +1,13 @@
+<p>As long as you don't have name (function/classes/etc) collisions between your existing app and CI, I think it's a matter of importing CI's index.php into your app. You'd have to get a handle of the CI object from your app via <code>=&amp; get_instance()</code> to be able to access CI stuff.</p>
+
+<p>From there, it's a matter of replacing all <code>$this-&gt;(function name)</code> calls into <code>(your variable)-&gt;(function name)</code> from CI.</p>
+
+<p>For example:</p>
+
+<p><code>$this-&gt;CI =&amp; get_instance();</code></p>
+
+<p>Instead of calling <code>$this-&gt;load-&gt;view('welcome_message')</code>, you call <code>$this-&gt;CI-&gt;load-&gt;view('welcome_message')</code></p>
+
+<p>Disclaimer: I haven't really tried calling CI from within another application. I was operating under the premise that CI plugins/libraries are pretty much plain old PHP. See more here: <a href="http://codeigniter.com/user_guide/general/creating_libraries.html" rel="nofollow">http://codeigniter.com/user_guide/general/creating_libraries.html</a></p>
+
+<p>But I agree with the other responders, if you take your time porting your app to CI, it would potentially be easier in the long run.</p>

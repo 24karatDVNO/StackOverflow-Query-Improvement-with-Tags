@@ -1,0 +1,14 @@
+<pre><code>int[] number = new int[7]; // first index=0, last=6. 
+                           // After creation all elements are 0
+</code></pre>
+
+<p>In for-loop you call 99 times the line: <code>++number[1+rand.nextInt(6)];</code></p>
+
+<pre><code>++number[index]; // it's the same: number[index]=number[index]+1
+</code></pre>
+
+<p><code>rand.nextInt(n)</code> method return random integer between 0..n-1. <a href="http://download.oracle.com/javase/6/docs/api/java/util/Random.html#nextInt%28int%29" rel="nofollow">javadoc</a></p>
+
+<p>In your example you add one to that random number, so you have random number between: 1..6</p>
+
+<p>Now you can understand all the code so I'm sure you will know what it does. Notice first index of your array is zero and is never changed.</p>

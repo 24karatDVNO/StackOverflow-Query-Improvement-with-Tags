@@ -1,0 +1,14 @@
+<p>Step 1. Add a class to all of your container DIV tags, something like class="province"</p>
+
+<p>Step 2. You can just add the following to your click code</p>
+
+<p><code>$(".province").click(function () {  });</code></p>
+
+<pre><code>$('#BC-show').click(function () {
+    // ---- HIDE ALL OTHER DIVS ----        
+    $(".province").hide();
+    // ---- END HIDE ----
+    $('#BC').toggle('slow');
+    return false;
+});
+</code></pre>

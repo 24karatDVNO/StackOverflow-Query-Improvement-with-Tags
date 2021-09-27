@@ -1,0 +1,3 @@
+<p>Your problem is you are referencing your host computers local filesystem inside your android device.  C:\ isn't a path that android knows how to interpret.</p>
+
+<p>Host it on a local webserver then use something like <code>http://192.168.0.100/your/url/image.png</code></p>

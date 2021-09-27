@@ -1,0 +1,6 @@
+<p>As others said, hash map keys should be unique, simplest fix is add this line </p>
+
+<pre><code>HashMap&lt;String,Object&gt; childRowMap = new HashMap&lt;String, Object&gt;(); 
+</code></pre>
+
+<p>at the start of the for-loop</p>

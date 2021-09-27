@@ -1,0 +1,11 @@
+<p>You don't need that.<br/>
+AS3 has the ExternalInterface class that deals with calling JavaScript functions from Flash.
+<br/>You can both call JavaScript functions and get results returned by JavaScript functions directly from Flash.</p>
+
+<p>All you need is read this: <br/>
+<a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/external/ExternalInterface.html" rel="nofollow">http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/external/ExternalInterface.html</a></p>
+
+<p><strong>Added after comments:</strong><br/>
+User is asking if JavaScript placed in address bar can "mess with swf" file.
+JavaScript can only mess with SWF execution of its AS code if it contains callbacks that get data from JavaScript which are not properly sanitized.
+JavaScript directly in address bar is less of a wary because using various addons, software etc (Firebug, Dragonfly) you can write as much JavaScript as you want and execute it as if it was part of that site (client side execution).</p>

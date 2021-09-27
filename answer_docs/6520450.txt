@@ -1,0 +1,11 @@
+<p>you can use Fql query or Graph API to get your friends data.
+Sometimes  you will not get all information from the graph like birthdate of your friends but yes you can use fql queries to solve your probs.</p>
+
+<p>here is an exmple for you.</p>
+
+<p>create first facbook object and the use it.</p>
+
+<p>$query = "SELECT uid, first_name, last_name, birthday_date, sex, pic_square, current_location, hometown_location FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) AND birthday_date != 0 ORDER BY birthday_date";</p>
+
+<p>Regards,
+Archit.</p>

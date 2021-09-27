@@ -1,0 +1,15 @@
+<p>as jchavannes said, $(this) refers to $(".cls_sshowbtn :next")
+to fix it, change the code as follows:</p>
+
+<pre><code>//Right Click
+$(".cls_sshowbtn .next").click(function () {
+    $("#slideshow_horiz ul li:first").animate({
+        "margin-left": $("#slideshow_horiz ul li:first").width()
+    }, 1000, "easeInQuad", function () {
+        //$("#slideshow_horiz li:last").after($("#slideshow_horiz li:first"));
+        $("#slideshow_horiz li:last").css({
+            //"margin-left":"0"
+        });
+    });
+});
+</code></pre>

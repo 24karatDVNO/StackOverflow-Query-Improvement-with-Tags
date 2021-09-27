@@ -1,0 +1,11 @@
+<p>If you want to rewrite the history, the easiest way is probably to use <code>git rebase -i</code>:</p>
+
+<ol>
+<li>remove the file with <code>git rm</code>, add <code>*~</code> to your .gitignore, and commit your changes</li>
+<li><code>git rebase -i commit_before_the_file_was_added</code></li>
+<li>in your text editor, put the line of your last commit just after the one of the commit in which you added the file, and change "pick" to "fixup"</li>
+<li>save, exit, watch magic happen</li>
+<li>double-check that your history is fine, and <code>git push -f</code>.</li>
+</ol>
+
+<p>...or you can use what's suggested in <a href="https://stackoverflow.com/questions/3932622/git-erase-files-from-repository-from-previous-commits">this question</a>.</p>

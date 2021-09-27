@@ -1,0 +1,16 @@
+<p>Ended up doing the following:</p>
+
+<pre><code>Gson gson = new GsonBuilder()
+  .registerTypeAdapter(GregorianCalendar.class, new JsonSerializer&lt;GregorianCalendar&gt;() {
+    public JsonElement serialize(GregorianCalendar date, Type type, JsonSerializationContext context) {
+      return new JsonPrimitive("\\/Date(" + date.getTimeInMillis() + "-0000)\\/");
+    }               
+}).create();
+</code></pre>
+
+<p>When I add my object to the HttpPost request as json <code>StringEntity</code>, I fix the escaped backslashes:</p>
+
+<pre><code>String json = gson.toJson(data).replace("\\\\/", "\\/");
+</code></pre>
+
+<p>I would still be interested in a "better" way of accomplishing this, if it exists...</p>

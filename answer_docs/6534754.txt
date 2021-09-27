@@ -1,0 +1,18 @@
+<p>Here you don't need to use linq, you can do it with logic</p>
+
+<p>Now just get Num_Subjects like for unit1 = 6</p>
+
+<pre><code>DataTable dt = [whole_table];
+
+int counter = Num_Subjects + 1; //7
+
+string colName = "P" + counter.ToString(); //P7
+
+while(dt.Columns.Contains(colName))
+{
+   dt.Columns.Remove(colName);
+   colName = "P" + (++counter).ToString()
+}
+</code></pre>
+
+<p>At last you we get a table upto P6 columns rest of columns will be deleted.</p>

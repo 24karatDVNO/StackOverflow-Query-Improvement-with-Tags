@@ -1,0 +1,7 @@
+<p>This is how you can do the threaded bit:            </p>
+
+<pre><code>Stream stream = new MemoryStream();                
+inputFileId.FileContent.CopyTo(stream);
+
+ThreadPool.QueueUserWorkItem(delegate { SendViaFTP(inputFileId.FileName, stream); });
+</code></pre>

@@ -1,0 +1,4 @@
+<p>If you want to sort by all of them, as it seems this is what you are asking you can just do the following</p>
+
+<pre><code>var sorted = list.OrderBy(p =&gt; p.process).ThenBy(r =&gt; r.runtime);
+</code></pre>

@@ -1,0 +1,16 @@
+<p>I experienced similar issue, and here's what worked for me:</p>
+
+<pre><code>jQuery(window).load(function() { 
+
+jQuery('.blog').jScrollPane(); 
+
+});
+</code></pre>
+
+<p>That is, use (window).load instead of (window).ready as you indicated in your question. </p>
+
+<p>In my case, I had to use jQuery (not $) because of the WordPress script compatibility issues. But in your case it may work with $ as well. </p>
+
+<p>Hope this helps. </p>
+
+<p>P.S. Another thing I noticed, it seems that the .blog div of your site contains only rss feed. jScrollPane is applied to that div, so naturally it applies itself to the content of the div.</p>

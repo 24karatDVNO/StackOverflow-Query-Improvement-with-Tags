@@ -1,0 +1,12 @@
+<p>You are passing a single instance of <code>Banner.Models.HomeViewModel</code>, but your view is expecting an <code>IEnumerable</code> collection of <code>Banner.Models.HomeViewModel</code>.</p>
+
+<p>Change your view to look like this and it should work:</p>
+
+<pre><code>@model Banner.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+&lt;h2&gt;Edit&lt;/h2&gt;
+</code></pre>

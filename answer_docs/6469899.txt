@@ -1,0 +1,39 @@
+<p>Add this attribute to your button:</p>
+
+<pre><code>usesubmitbehavior="False"
+</code></pre>
+
+<p>This will insert something like the following into onclick:</p>
+
+<pre><code>javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$Main$Tabs$SaveTab$Cancel", "", true, "", "", false, false))
+</code></pre>
+
+<p>This code will cause a post back even if the button is disabled. Showing a confirmation dialog and allowing the post back to be cancelled gets a little more interesting:</p>
+
+<pre><code>    var click = $("[id$='_Cancel']")[0].onclick;
+    $("[id$='_Cancel']")[0].onclick = null;
+    $("[id$='_Cancel']").bind('click', function (event) { addFeeSchedule.onCancelClick(event) });
+    $("[id$='_Cancel']").bind('click', click);
+</code></pre>
+
+<p>In order to prevent the post back from occurring immediately, remove the onclick code inserted by .net and bind it after your own function using jQuery. Use <code>event.stopImmediatePropagation()</code>, to prevent the post back:</p>
+
+<pre><code>onCancelClick: function (event) {
+
+    var confirmResponse;
+
+    confirmResponse = confirm('No fee schedule will be created.\n\nAre you sure you want to cancel?');
+
+    if (confirmResponse == true) {
+
+        showWait();
+        event.target.disabled = 'true';
+
+    } else {
+
+        event.stopImmediatePropagation();
+
+    }
+
+},
+</code></pre>

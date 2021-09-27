@@ -1,0 +1,5 @@
+<p>Not really an answer, but some more information that I found out:</p>
+
+<p>It seems that the order in which the selected items are returned by the <code>selectedItems()</code> function is the order in which they were selected. </p>
+
+<p>Moreover, if the <code>selectionBehavior</code> property of the <code>QTableWidget</code> is set to <code>SelectRows</code>, then the selected items are returned in the order in which the rows were selected. For example, for a 2x3 table, where the rows are numbered 'A', 'B' and the columns are numbered '1', '2', '3': if you select B2 and then A1, then the selected items are returned as: B1,B2,B3,A1,A2,A3.</p>

@@ -1,0 +1,16 @@
+<p>Under 1.9, one thread can be doing I/O, while another thread is <a href="http://yehudakatz.com/2010/08/14/threads-in-ruby-enough-already/" rel="nofollow">doing CPU work</a>.</p>
+
+<blockquote>
+  <p>I’ve heard a common misperception that
+  Ruby inherently “blocks” when doing
+  disk IO or making database queries. In
+  reality, Ruby switches to another
+  thread whenever it needs to block for
+  IO. In other words, if a thread needs
+  to wait, but isn’t using any CPU,
+  Ruby’s built-in methods allow another
+  waiting thread to use the CPU while
+  the original thread waits.</p>
+</blockquote>
+
+<p>Which isn't much help for me, as I'm not I/O bound, but it may be good news for you.</p>

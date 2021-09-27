@@ -1,0 +1,25 @@
+<p>I think you are looking for <a href="http://www.blackberry.com/developers/docs/3.6api/net/rim/device/api/ui/Screen.html#onClose%28%29" rel="nofollow">onClose()</a> method</p>
+
+<pre><code> public class MyMainScreen extends MainScreen {
+        public MyMainScreen() {
+            super();
+        }
+        public boolean onClose() {
+            // Your code here
+        }
+    }
+</code></pre>
+
+<blockquote>
+<pre><code>  public boolean onClose()
+</code></pre>
+  
+  <blockquote>
+    <p>Indicates a close event has occurred.
+    The default implementation is
+    activated by specifying DEFAULT_CLOSE.
+    It will call onSavePrompt if the
+    screen is dirty, then call close() if
+    sucessful.</p>
+  </blockquote>
+</blockquote>

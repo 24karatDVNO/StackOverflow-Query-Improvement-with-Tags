@@ -1,0 +1,29 @@
+<p>Thanks @matt for your suggestion. Based on that I've hacked together the following which shifts the curves according to new offset values, but takes into account the old offset values. This means I don't have to retain the original curve data. Something similar might be done to correct the set_offsets method of LineCollection but I don't understand the details of the class well enough to risk it.</p>
+
+<pre><code>def set_offsets(newoffsets, ax=None, c_num=0):
+    '''
+        Modifies the offsets between curves of a LineCollection
+
+    '''
+
+    if ax is None:
+        ax=plt.gca()
+
+    lcoll=ax.collections[c_num]
+    oldoffsets=lcoll.get_offsets()
+
+    if len(newoffsets)==1:
+        newoffsets=[i*np.array(newoffsets[0]) for\
+         (i,j) in enumerate(lcoll.get_paths())]
+    if len(oldoffsets)==1:
+        oldoffsets=[i*oldoffsets[0] for (i,j) in enumerate(newoffsets)]
+
+    verts=[path.vertices for path in lcoll.get_paths()]
+
+    for (oset, nset, vert) in zip(oldoffsets, newoffsets, verts):
+        vert[:,0]+=(-oset[0]+nset[0])
+        vert[:,1]+=(-oset[1]+nset[1])
+
+    lcoll.set_offsets(newoffsets)
+    lcoll.set_paths(verts)
+</code></pre>

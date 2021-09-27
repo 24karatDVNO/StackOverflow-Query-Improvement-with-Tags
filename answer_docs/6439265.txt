@@ -1,0 +1,8 @@
+<p>PHP uses floating point numbers by default, you need to manually cast to integers.</p>
+
+<p>You should be aware of floating point arithmetic. The other posts here provide enough links about that.</p>
+
+<p>Personally I use round/ ceil/ float depending on what I expect as opposed to int</p>
+
+<pre><code>$a = (int) round((0.7 + 0.1) * 10);
+</code></pre>

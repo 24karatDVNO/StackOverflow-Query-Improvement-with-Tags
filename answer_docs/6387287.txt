@@ -1,0 +1,7 @@
+<p>I did publish multiple apps on multiple app store accounts using multiple certificate (for the same identity, aka "me") and Xcode manages to understand which certificate to use for which app so far (i may have to help him out by selecting the correct provisionning profile manually from time to time in the "project info" menu).</p>
+
+<p>What i'm doing is to create a new certificate for every new "app store" account i'm working on, and of course never collide the app ids. That means my keychain is full of "iPhone developer - Ben (XDFUHSD)", "iPhone developer - Ben (DSUKJNSD)", etc... certificates, each beeing used for a different client.</p>
+
+<p>Xcode does give me the error you mention from time to time, but it really only happens when one of my certificate has expired and i've just redownloaded a new one.</p>
+
+<p>Hope this helps</p>

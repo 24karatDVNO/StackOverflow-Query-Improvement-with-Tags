@@ -1,0 +1,13 @@
+<p>I changed the ContextMenu property to</p>
+
+<pre><code>public ObservableCollection&lt;MenuItem&gt; ContextMenu {
+    get {
+        return ( ObservableCollection&lt;MenuItem&gt; )GetValue( TreeContextMenuProperty );
+    }
+    set {
+        SetValue( TreeContextMenuProperty, value );
+    }
+}
+</code></pre>
+
+<p>and everything else accordingly, and now works fine.</p>

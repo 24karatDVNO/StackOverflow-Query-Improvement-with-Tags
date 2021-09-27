@@ -1,0 +1,14 @@
+<p>It looks like the converter is just making a string representation of the displayables. If that's the case, I think what you really want to do is override the toString() method for each Displayable, and give each of them a constructor that takes a display string as an argument. Then you don't need to worry about implementing a separate Converter for each implementation of Displayable. So a Person would look something like:</p>
+
+<pre><code>public class Person implements Displayable {
+    public Person(String display) {
+        // Make a Person from a display
+    }
+
+    public String toString() {
+        // Make a display from a person
+    }
+
+    ...
+}
+</code></pre>

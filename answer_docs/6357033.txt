@@ -1,0 +1,6 @@
+<p>Pretty sure the function you show is a pure SHA encrypt - you only use a specific encryption_key if you want to key/encode the data so only you (the holder of the encryption key), will be able to decrypt it.</p>
+
+<pre><code>$encrypted_with_encryption_key = $this-&gt;encrypt-&gt;encode($var);
+
+$encrypted_with_sha_no_enc_key = $this-&gt;encrypt-&gt;sha1($var);
+</code></pre>

@@ -1,0 +1,22 @@
+<p>why not use a left join and use <code>fieldX=3</code> as a join condition? if fieldX is different from 3, sql fills the field with <code>NULL</code></p>
+
+<pre><code>select a.field1, a.field2, sub.value
+from abc a
+left join
+(
+  select value from sub_table
+  where cat_id = 3
+  limit 0,1
+) sub
+on a.fieldX = 3
+</code></pre>
+
+<p>or, if you do want to get all rows for the corresponding values (i see you have <code>cat_id = 3</code> and <code>fieldX = 3</code>, so basically <code>cat_id = fieldX</code>), just use a simple join. no need to use complicated if constructs. sql was built to do fast and efficient joins:</p>
+
+<pre><code>select a.field1, a.field2, sub.value
+from abc a
+left join sub_table sub
+on a.fieldX = sub.cat_id
+</code></pre>
+
+<p>note however, that the second query will return multiple rows, when there are more matches between fieldX and cat_id (non-unique <code>cat_id</code>)</p>

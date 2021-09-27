@@ -1,0 +1,7 @@
+<p>FWIW we process large CSV's into datastore using mapreduce, with some initial handling/ validation inside a task.  Even tasks have a limit (10 mins) at the moment, but that's probably fine for your data size.</p>
+
+<p>Make sure if you're doing inserts,etc. you batch as much as possible - don't insert individual records, and same for lookups - get_by_keyname allows you to pass in an array of keys.  (I believe db put has a limit of 200 records at the moment?)</p>
+
+<p>Mapreduce might be overkill for what you're doing now, but it's definitely worth wrapping your head around, it's a must-have for larger data sets.</p>
+
+<p>Lastly, timing of anything on the SDK is largely pointless - think of it as a debugger more than anything else!</p>

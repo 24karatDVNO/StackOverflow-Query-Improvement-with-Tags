@@ -1,0 +1,41 @@
+<p>You need to set a delegate for your UIWebView.</p>
+
+<p>If you set a delegate for your UIWebView the following method will be called everytime your web view sends a request:</p>
+
+<pre><code>- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = [request URL];
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+            if ([[url scheme] isEqualToString:@"click"]) {
+               // do whatever you want here to happen after the click
+            }
+            return NO;
+    } else {
+       return YES;
+    }
+}
+</code></pre>
+
+<p>To make it as easy as possible change your html to the following (no Javascript needed):</p>
+
+<pre><code>  &lt;html&gt;
+    &lt;head&gt;
+        &lt;meta name=viewport content=width=320/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;center&gt;&lt;h1&gt;This is Page One&lt;/h1&gt;&lt;/center&gt;
+        &lt;center&gt;&lt;a href="click://"&gt;&lt;IMG SRC="divers-circle.jpg"&gt;&lt;/a&gt;&lt;/center&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;center&gt;Scuba divers&lt;/center&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+
+<p>When the image is clicked, the following is happening:</p>
+
+<ol>
+<li>The WebView sends a request with the URL "click://".</li>
+<li>The UIWebView delegate's method webView:shouldStartLoadWithRequest:navigationType: is being called</li>
+<li>the 2 "if" clauses in this method evaluate to "YES" because the request happened after a click (navigationType == UIWebViewNavigationTypeLinkClicked) and the URL's scheme is "click"</li>
+</ol>
+
+<p>You find more about the UIWebViewDelegate protocol <a href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UIWebViewDelegate_Protocol/Reference/Reference.html" rel="nofollow">here</a>. </p>

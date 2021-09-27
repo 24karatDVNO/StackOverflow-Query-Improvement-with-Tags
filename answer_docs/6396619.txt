@@ -1,0 +1,7 @@
+<p>As others have suggested, you really need some sort of caching mechanism on the server side. Whether it's a MySQL table or memcache, either would work. But to reduce the number of calls to the server, retrieve the full list of cached counts in one request and cache that locally in javascript. That's a pretty simple way to eliminate almost 12M server hits.</p>
+
+<p>You could probably even store the count information in a cookie which expires in an hour, so subsequent page loads don't need to query again. That's if you don't need real time numbers. </p>
+
+<p>Many of the latest browser also support local storage, which doesn't get passed to the server with every request like cookies do.</p>
+
+<p>You can fit a lot of data into a 1-2K json data structure. So even if you have thousands of possible count options, that is still smaller than your typical image. Just keep in mind maximum cookie sizes if you use cookie caching.</p>

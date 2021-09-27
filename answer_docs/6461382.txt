@@ -1,0 +1,14 @@
+<p>I updated the my caching profile then inspected the traffic again. The content was now being cached locally in IE.</p>
+
+<pre><code>&lt;caching&gt;
+    &lt;profiles&gt;
+        &lt;add extension=".txt" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+        &lt;add extension=".swf" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+        &lt;add extension=".gif" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+        &lt;add extension=".jpg" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+        &lt;add extension=".png" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+        &lt;add extension=".css" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+        &lt;add extension=".js" policy="CacheUntilChange" kernelCachePolicy="CacheUntilChange" location="Client" /&gt;
+    &lt;/profiles&gt;
+&lt;/caching&gt;
+</code></pre>

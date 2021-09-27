@@ -1,0 +1,3 @@
+<p>If you are reading bytes from any device, you should expect read() to block for a period of time. How long that is depends on the device. If its a Socket it depends on the other end sending the data and your network characteristics.</p>
+
+<p>If you want the connection to detect a failed Socket connection, have the other end send a regular heartbeat and unless get a packet within a limited amount of time you can assume the connection is dead.</p>

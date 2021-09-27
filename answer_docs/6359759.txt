@@ -1,0 +1,4 @@
+<p>I just went back and checked out Lookup Editors -- I'm pretty sure you need to create columns manually before any data will appear. The DevExpress LookupEditor isn't a simple drop-down, it's basically an embedded grid control. If there's only one property on your item list to display, it would be something like this:</p>
+
+<pre><code>  rep.Columns.Add(new LookupColumnInfo("PropertyName", 0));
+</code></pre>

@@ -1,0 +1,7 @@
+<p>First off JavaScript doesn't have built in namespaces.  It can only be simulated.  You must also include each javascript file you plan on using.</p>
+
+<p>Your right about just calling <code>ImageView()</code>  that basically invokes the constructor on <code>this</code> which is next level of scope.  </p>
+
+<p>Using <code>new ImageView()</code> creates a new Object of constructor ImageView and <code>this</code> points to the new instance.</p>
+
+<p>JavaScript is a prototype language with loose typing.</p>

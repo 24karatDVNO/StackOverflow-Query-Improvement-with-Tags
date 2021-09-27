@@ -1,0 +1,11 @@
+<blockquote>
+  <p>can only be specified when a column
+  list is used and IDENTITY_INSERT is
+  ON.</p>
+</blockquote>
+
+<p>You're forgetting the first condition: the column list.  The column list is a (usually) optional element between the table name and <code>values</code>.  You should specify it like:</p>
+
+<pre><code>INSERT INTO AirConditioner (ID, CategoricNumber, ...)
+VALUES(@ID, @CategoricNumber, ...)
+</code></pre>

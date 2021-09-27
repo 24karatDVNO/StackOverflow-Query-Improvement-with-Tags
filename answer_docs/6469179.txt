@@ -1,0 +1,14 @@
+<p>An <code>ExecutorService</code> can do this for you.</p>
+
+<pre><code>ExecutorService executor = Executors.newFixedThreadPool(10);
+
+do {
+  List&lt;Callable&gt; tasks = getNextTasksToExecute();
+  executor.invokeAll(tasks);
+} while (tasks.size() &gt; 0);
+</code></pre>
+
+<p>This will create a thread pool with 10 threads. It will then call <code>getNextTasksToExecute()</code> which you should implement yourself to return the next bunch of tasks that need doing. It will execute those tasks in parallel in the thread pool and then keep looping until <code>getNextTasksToExecute()</code> returns no more tasks.</p>
+
+<p>Edit:<br>
+Code not tested, think there may be a compile error, but you can figure that out.</p>

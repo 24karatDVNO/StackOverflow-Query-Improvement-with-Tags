@@ -1,0 +1,10 @@
+<p>Assuming you have an IBOutlet named username hooked up to the username UITextField, and an IBOutlet named password hooked up to the password UITextField, add the following code:</p>
+
+<pre><code>- (void)viewWillDisappear
+{
+    [username resignFirstResponder];
+    [password resignFirstResponder];
+}
+</code></pre>
+
+<p>this should then dismiss the keyboard when navigating to the next view</p>

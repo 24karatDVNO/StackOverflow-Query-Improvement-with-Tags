@@ -1,0 +1,15 @@
+<p>I <strong>strongly</strong> suggest you to don't use an anchor tag for that. JavaScript events can be added to any DOM element, just like in:</p>
+
+<pre><code>&lt;li class="click-to-expand"&gt;
+  &lt;img src="..." /&gt;
+&lt;/li&gt;
+</code></pre>
+
+<p>And also, as some users already replied, you can use CSS pointer property to indicate a possible user interaction when hovering the clickable interface item.</p>
+
+<pre><code>.click-to-expand{
+  cursor:pointer;
+}
+</code></pre>
+
+<p>Remember to keep it accessible by providing a valid URL to access the content in case it's necessary (no javascript fallback).</p>

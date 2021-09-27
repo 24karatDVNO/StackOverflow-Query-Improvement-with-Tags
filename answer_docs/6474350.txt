@@ -1,0 +1,5 @@
+<p>The answer depends on what you need the time for. For example, if you are trying to compare two time instances from the same running instance of your application, then you can try using DateTime.UtcNow, which is not adjusted for locale or DST.</p>
+
+<p>If you need to trigger an event at a specific time, use a Timer (probably System.Threading.Timer if you care that much about the granularity, although System.Timers.Timer is easier to use).</p>
+
+<p>If you need it for some other reason, please specify.</p>

@@ -1,0 +1,9 @@
+<p>It only gets the first name-value because you didn't attempt to split between the options. Here is my solution for your problem (not regex). These lines go after the <code>get_between()</code> function:</p>
+
+<pre><code>$opt = explode('&lt;option ', $html);
+foreach ($opt as $split_html) {
+    $value = get_between($split_html, 'value="', '"&gt;');
+    $name = get_between($split_html, "$value\"&gt;", ' ');
+    echo $value ." ". $name . "&lt;br /&gt;";
+}
+</code></pre>

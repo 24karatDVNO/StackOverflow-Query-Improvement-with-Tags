@@ -1,0 +1,17 @@
+<p>Here you an example:</p>
+
+<pre><code>List&lt;Date&gt; dates=new ArrayList&lt;Date&gt;();
+dates.add(new Date(System.currentTimeMillis()));
+dates.add(new Date(System.currentTimeMillis()+231892738));
+dates.add(new Date(System.currentTimeMillis()-742367634));
+for(Date d:dates)
+    System.out.println(d);
+Collections.sort(dates);
+for(Date d:dates)
+    System.out.println(d);
+</code></pre>
+
+<p>Or you can use custom comparator</p>
+
+<pre><code>Collections.sort(dates,customComparator);
+</code></pre>

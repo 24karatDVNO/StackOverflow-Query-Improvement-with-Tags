@@ -1,0 +1,9 @@
+<p>I got this working on mono 2.10.2:</p>
+
+<pre><code>[mono-] ~ @ sqlmetal /namespace:MonoService /provider:MySql "/conn:Server=[server];Database=[db];Uid=[name];Pwd=[pass];" /code:ProxyContext.cs --with-dbconnection="MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=6.3.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
+</code></pre>
+
+<p>Before I put MySql.Data into the gac:</p>
+
+<pre><code>gacutil -i MySql.Data.dll
+</code></pre>

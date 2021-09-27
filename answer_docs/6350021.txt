@@ -1,0 +1,22 @@
+<p>You've got a good idea to start. All the objects that you add on a view are already kept in an array called <code>[myview subviews]</code>. It was a good idea to tag them because then you can easily access them with <code>[myview viewWithTag: kFirstViewTag]</code>.</p>
+
+<p>So to answer the second part, when your checking touch locations, check if the touch location intersects with any of your subviews.</p>
+
+<p>For example:</p>
+
+<pre><code>for (UIView* view in [myView subviews]) {
+   if (CGRectContainsPoint([view frame], touchPoint) {
+       //do something
+   }
+}
+</code></pre>
+
+<p>I can assume you probably don't need to go trough all the subviews, so you can just cycle to ones limited with tags from <code>kFirstViewTag</code> to <code>kLastViewTag</code> with for loop, like:</p>
+
+<pre><code>for (int i = kFirstViewTag; i &lt;= kLastViewTag; i++) {
+   UIView *view = [myView viewWithTag: i];
+   if (CGRectContainsPoint([view frame], touchPoint) {
+       //do something
+   }
+}
+</code></pre>

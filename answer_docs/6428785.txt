@@ -1,0 +1,36 @@
+<p>I've written an FTPToolkit for an app I wrote and it lists all files and directories. Here's an example:</p>
+
+<pre><code>Public Function ListDirectoryDetail(ByVal directory As String) As FTPdirectory
+        Dim ftp As System.Net.FtpWebRequest = GetRequest(GetDirectory(directory))
+        'Set request to do simple list
+        ftp.Method = System.Net.WebRequestMethods.Ftp.ListDirectoryDetails
+
+        Dim str As String = GetStringResponse(ftp)
+        'replace CRLF to CR, remove last instance
+        str = str.Replace(vbCr &amp; vbLf, vbCr).TrimEnd(ControlChars.Cr)
+        'split the string into a list
+        Return New FTPdirectory(str, _lastDirectory)
+End Function
+
+Private Function GetStringResponse(ByVal ftp As FtpWebRequest) As String
+        'Get the result, streaming to a string
+        Dim result As String = ""
+        Using response As FtpWebResponse = DirectCast(ftp.GetResponse(), FtpWebResponse)
+            Dim size As Long = response.ContentLength
+            Using datastream As Stream = response.GetResponseStream()
+                Using sr As New StreamReader(datastream)
+                    result = sr.ReadToEnd()
+                    sr.Close()
+                End Using
+
+                datastream.Close()
+            End Using
+
+            response.Close()
+        End Using
+
+        Return result
+End Function
+</code></pre>
+
+<p>If you'd like to get a copy of the Toolkit, just let me know.</p>

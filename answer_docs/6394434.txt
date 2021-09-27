@@ -1,0 +1,5 @@
+<p><a href="http://en.wikipedia.org/wiki/Schematron" rel="nofollow">Schematron</a> is the schema language to look at (used as a layer on top of your XSD probably).</p>
+
+<p>Schematron is based around constraints expressed using XPath, which in most cases is powerful enough to express what is needed. Since XPath can be extended with user-defined functions, there is scope to be able to carry out potentially any validation by e.g. comparing data from external databases etc.</p>
+
+<p>(If you are drawing on data outside your document for validation purposes a nice approach is to expose that external data as XML - perhaps available in a RESTy fashion - so the validation constraints can be expressed entirely in XML terms within your Schematron schema.)</p>

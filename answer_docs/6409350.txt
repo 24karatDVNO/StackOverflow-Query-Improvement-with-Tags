@@ -1,0 +1,9 @@
+<p>Read <a href="http://www.iphoneexamples.com/" rel="nofollow">http://www.iphoneexamples.com/</a>    </p>
+
+<pre><code>CGRect myImageRect = CGRectMake(0.0f, 0.0f, 320.0f, 109.0f);
+UIImageView *myImage = [[UIImageView alloc] initWithFrame:myImageRect];
+[myImage setImage:[UIImage imageNamed:@"myImage.png"]];
+myImage.opaque = YES; // explicitly opaque for performance
+[self.view addSubview:myImage];
+[myImage release];
+</code></pre>

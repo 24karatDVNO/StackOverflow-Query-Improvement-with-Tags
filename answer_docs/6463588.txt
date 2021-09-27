@@ -1,0 +1,7 @@
+<p>I ran into the same issue with my forms.  It has to do with the PHP version and the php function that is called in the theming process to get output from your theme function: call_user_func_array.</p>
+
+<p>In php 5.2 and below it accepts the structured $form arrays that Drupal passes in.  However, in php 5.3 it dies.</p>
+
+<p>I solved my issue by rolling back my php version to 5.2.14.</p>
+
+<p>This solution applies to Drupal 6.  I haven't tested it in Drupal 7 as D7 claims to be php 5.3 compatible.</p>

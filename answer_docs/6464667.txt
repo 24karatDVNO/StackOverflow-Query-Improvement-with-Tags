@@ -1,0 +1,20 @@
+<p>I solved it by using a ReentrentLock within a static class so i cannot access it while it is locked.</p>
+
+<pre><code>public class DataAccessUtil {
+
+private static final ReentrantLock lock = new ReentrantLock();
+</code></pre>
+
+<p>...</p>
+
+<pre><code>public static void lockDataFolder() {
+
+    lock.lock();  // block until condition holds
+}
+
+public static void unlockDataFolder() {
+
+    lock.unlock(); 
+
+}
+</code></pre>

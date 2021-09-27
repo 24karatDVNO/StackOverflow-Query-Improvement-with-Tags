@@ -1,0 +1,23 @@
+<p>So, the only thing you know about a link is that it is underlined?</p>
+
+<p>I thought this would do it (using the latest watir-webdriver gem):</p>
+
+<pre><code>browser.link.u.click
+</code></pre>
+
+<p>But I got this:</p>
+
+<pre><code>NoMethodError: undefined method `u' for #&lt;Watir::Anchor:0x00000100cbb3c0&gt;
+</code></pre>
+
+<p>Jari (watir-webdriver developer) said he thinks <code>u</code> tag is not in HTML spec.</p>
+
+<p>By the way, this works:</p>
+
+<pre><code>browser.link.b.click
+</code></pre>
+
+<p>Jari suggested trying xpath, but I thought css selectors would be nicer to read. Here it is:</p>
+
+<pre><code>browser.element(:css =&gt; "a b u").click
+</code></pre>

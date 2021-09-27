@@ -1,0 +1,14 @@
+<p>Have a look at <code>dirname</code>and <code>basename</code></p>
+
+<pre><code>$ dirname /path/to/some/USEFUL_INFORMATION/in/some/path
+/path/to/some/USEFUL_INFORMATION/in/some
+
+$ basename /path/to/some/USEFUL_INFORMATION/in/some/path
+path
+</code></pre>
+
+<p>awk can handle any separator, e.g. <code>/</code>:</p>
+
+<pre><code>$ echo /path/to/some/USEFUL_INFORMATION/in/some/path | awk -F"/" '{print $5}'
+USEFUL_INFORMATION
+</code></pre>

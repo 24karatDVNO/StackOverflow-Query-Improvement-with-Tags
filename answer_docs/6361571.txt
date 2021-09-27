@@ -1,0 +1,15 @@
+<p>If you're using AVFoundation, you can just add a listener to your player, and make the end playback method to fetch the next track. You add the listener like so:</p>
+
+<pre><code>    [[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(playerItemDidReachEnd:)
+                                             name:AVPlayerItemDidPlayToEndTimeNotification
+                                           object:[player currentItem]];
+</code></pre>
+
+<p>And then you create your method, something like this:</p>
+
+<pre><code>    -(void)playerItemDidReachEnd:(NSNotification *)notification {
+        AVPlayerItem *p = [notification object];
+        //Fetch your next track from your plist, array, database or whatever
+      }
+</code></pre>

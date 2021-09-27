@@ -1,0 +1,1 @@
+<p>Rails does not use a CGI interface with stdin/stdout etc. The body of a submitted request can be found in <code>request.body</code>, so in the above change <code>STDIN.read</code> to <code>request.body.read</code> and you should be fine.</p>

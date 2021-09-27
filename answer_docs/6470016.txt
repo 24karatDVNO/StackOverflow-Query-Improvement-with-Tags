@@ -1,0 +1,71 @@
+<p>Maybe I should've said I wanted an interface for generic collection with generic items where items have a common base class. This is how I solved it and hopefully someone one day finds it useful.</p>
+
+<pre><code>/// &lt;summary&gt;
+/// This repo enables us to work with serialisable collections. Collection class has
+/// to inherit from IEnumerable and must be described with CollectionDataContract attribute
+/// &lt;/summary&gt;
+/// &lt;typeparam name="T"&gt;&lt;/typeparam&gt;
+public interface ICollectionsRepository&lt;T, V&gt; where T : Collection&lt;V&gt;
+{
+    /// &lt;summary&gt;
+    ///     Get collection from datastore
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;List of items&lt;/returns&gt;
+    T Load();
+
+    /// &lt;summary&gt;
+    ///     Add new collection item to datastore
+    /// &lt;/summary&gt;
+    /// &lt;param name="item"&gt;Item to be added to the collection&lt;/param&gt;
+    void Add(V item);
+}
+
+public class XmlCollectionsProvider&lt;T, V&gt; : ICollectionsRepository&lt;T, V&gt; where T: Collection&lt;V&gt;, new() where V: CollectionItem
+{
+    private readonly string _file = Path.Combine(XmlProvider.DataStorePhysicalPath, typeof(T).Name + ".xml");
+
+    public T Load()
+    {
+        if (!DefaultsExist()) {
+            CreateDefaults();
+        }
+
+        DataContractSerializer dcs = new DataContractSerializer(typeof(T));
+        T obj = null;
+        XmlDictionaryReader reader =
+            XmlDictionaryReader.CreateTextReader(new FileStream(_file, FileMode.Open, FileAccess.Read),
+                                                                                     new XmlDictionaryReaderQuotas());
+
+        obj = (T)dcs.ReadObject(reader, true);
+        reader.Close();
+        return obj;
+    }
+
+    public void Add(V item)
+    {
+        T collection = Load();
+        collection.Add(item);
+        Save(collection);
+    }
+}
+
+[CollectionDataContract(ItemName = "Culture")]
+public sealed class Cultures : List&lt;LangCult&gt;   {   }
+
+[DataContract]
+public class LangCult : CollectionItem
+{
+    ...
+}
+
+[DataContract]
+public abstract class CollectionItem
+{
+    [DataMember]
+    public string Id
+    {
+        get;
+        set;
+    }
+}
+</code></pre>

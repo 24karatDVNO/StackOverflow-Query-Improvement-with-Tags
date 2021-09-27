@@ -1,0 +1,14 @@
+<p>I did this:</p>
+
+<pre><code>var Product = Backbone.Model.extend({});
+var Products = Backbone.Collection.extend({
+  model: Product,
+  url: '/rest/product'
+});
+var products = new Products();
+var first = new Product({id:1});
+first.collection = products;
+first.fetch();
+</code></pre>
+
+<p>This has the advantage of working when you're not using a REST storage engine (instead, using something like the HTML5 Local storage, or so forth)</p>

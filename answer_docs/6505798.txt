@@ -1,0 +1,7 @@
+<p>The equal sign needs to be <strong>inside</strong> the single quote. You also need to use a <code>+</code> to concatenate the value of <code>value</code> on to the string. See below.</p>
+
+<pre><code>slide:  function(e, ui){        
+    var value = $('#changeTableSlider').slider('value');
+    $(this).attr("href",$(this).attr('href')+'&amp;minSquaredAverage=' + value);
+}
+</code></pre>

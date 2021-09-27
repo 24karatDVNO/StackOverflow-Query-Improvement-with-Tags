@@ -1,0 +1,13 @@
+<p>This method uses the actual full path to the perl script itself ... TIMTOWTDI
+You could just easily replace the $RunDir with the path you would like to start with ... </p>
+
+<pre><code>        #resolve the run dir where this scripts is placed
+        $0 =~ m/^(.*)(\\|\/)(.*)\.([a-z]*)/; 
+        $RunDir = $1 ; 
+        #change the \'s to /'s if we are on Windows
+        $RunDir =~s/\\/\//gi ; 
+        my @DirParts = split ('/' , $RunDir) ; 
+        for (my $count=0; $count &lt; 4; $count++) {   pop @DirParts ;     }
+
+        $confHolder-&gt;{'ProductBaseDir'} = $ProductBaseDir ; 
+</code></pre>

@@ -1,0 +1,12 @@
+<pre><code>info(PlayerId) -&gt;
+Pid = case global:whereis_name(util:getRegName({?MODULE, PlayerId})) of
+    P when is_pid(P) -&gt;
+        P;
+    _ -&gt;
+        {ok, P} = player_sup:start_child(PlayerId),
+        P
+end,
+gen_server:call(Pid, info).
+</code></pre>
+
+<p>This is my case to handle this issue.  This worker process is triggered only when it is requested.</p>

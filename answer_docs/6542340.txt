@@ -1,0 +1,18 @@
+<p>Is this okay?</p>
+
+<pre><code>&lt;html&gt;
+
+&lt;head&gt;
+&lt;script&gt;
+function Start(page) {
+OpenWin = this.open(page, "CtrlWindow", "toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,width=600,height=200,left="
++((window.screen.width-600)/2)+",top="+((window.screen.height-200)/3)+"" );
+}
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body  onload="Start('child.htm')"&gt;
+This is parent.
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

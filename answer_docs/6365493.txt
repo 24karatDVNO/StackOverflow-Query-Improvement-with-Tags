@@ -1,0 +1,16 @@
+<pre><code>&lt;script language="javascript"&gt;
+if (window.location.search == "") {
+    window.location.href = window.location + "?width=" + screen.width + "&amp;height=" + screen.height;
+} 
+&lt;/script&gt;
+</code></pre>
+
+<p>This will redirect the page you try to access to the same page but sending parameters to the page.</p>
+
+<p>Then you would be able to:</p>
+
+<pre><code>&lt;?php
+$width = $_get['width'];
+$height = $_get['height'];
+?&gt;
+</code></pre>

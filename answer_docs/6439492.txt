@@ -1,0 +1,15 @@
+<p>Just use ToList():</p>
+
+<pre><code>Person Paul = TravelTicket.Members.ToList()[3];
+</code></pre>
+
+<p>EF isn't going to query data until you actually try to access it - and a collection doesn't try until you iterate it, while ToList must instantiate each instance.</p>
+
+<p>Even better, be more specific:</p>
+
+<pre><code>Person Paul = TravelTicket.Members.Where(m=&gt;m.Id == 3);  // or some such similar filter
+</code></pre>
+
+<p>Then you only instance ONE Member - the one you want.  </p>
+
+<p>Note you may need Members.AsQueryable().Where instead - I never remember...</p>

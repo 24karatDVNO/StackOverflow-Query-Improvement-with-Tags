@@ -1,0 +1,9 @@
+<p>Simplest solution that comes to my mind:</p>
+
+<p>You can have its name stored in a string, and <code>mixin</code>'ed where necessary, something like:</p>
+
+<pre><code>string func_name = "func";
+...
+int param = 294;
+mixin(func_name ~ "(" ~ to!string(param) ~ ")");
+</code></pre>

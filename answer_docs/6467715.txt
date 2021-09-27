@@ -1,0 +1,24 @@
+<p>When you use inline, you are telling the compiler to replace any calls to your inline method, with the code from that method. For example:</p>
+
+<pre><code>inline int min(int a, int b)
+{
+    return (a &lt; b) ? a : b;
+}
+
+void some_method()
+{
+    int x = min(20, 30);
+}
+</code></pre>
+
+<p>would be changed by the compiler to:</p>
+
+<pre><code>void some_method()
+{
+    int x = (20 &lt; 30) ? 20 : 30;
+}
+</code></pre>
+
+<p>If this was in a loop, it would still be just the one replacement, so it wouldn't increase code size in that particular situation.</p>
+
+<p>That said, there are <a href="http://en.wikipedia.org/wiki/Inline_function#Problems_with_inline_functions" rel="nofollow">Problems With Inline Functions</a> that should be considered. Frequently, letting the compiler decide what to inline will be more efficient than doing it yourself.</p>

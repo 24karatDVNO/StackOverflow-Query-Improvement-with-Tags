@@ -1,0 +1,104 @@
+<p>Just in case someone is interested in C++ implementation with O(nlog(k))</p>
+
+<pre><code>    void findMinWindow(const vector&lt;int&gt;&amp; input, const vector&lt;int&gt;&amp; query) {
+         map&lt;int, int&gt; qtree;
+         for(vector&lt;int&gt;::const_iterator itr=query.begin(); itr!=query.end(); itr++) {
+            qtree[*itr] = 0;
+         }
+
+         int first_ptr=0;
+         int begin_ptr=0;
+
+         int index1 = 0;
+         int queptr = 0;
+
+         int flip = 0;
+
+         while(true) {
+             //check if value is in query
+             if(qtree.find(input[index1]) != qtree.end()) {
+                int x = qtree[input[index1]];
+                if(0 == x) {
+                  flip++;
+                }
+                qtree[input[index1]] = ++x;
+              }
+
+              //remove all nodes that are not required and
+              //yet satisfy the all query condition.
+              while(query.size() == flip) {
+                //done nothing more
+                if(queptr == input.size()) {
+                  break;
+                }
+
+                //check if queptr is pointing to node in the query
+                if(qtree.find(input[queptr]) != qtree.end()) {
+                  int y = qtree[input[queptr]];
+                  //more nodes and the queue is pointing to deleteable node
+                  //condense the nodes
+                  if(y &gt; 1) {
+                    qtree[input[queptr]] = --y;
+                    queptr++;
+                  } else {
+                    //cant condense more just keep that memory
+                    if((!first_ptr &amp;&amp; !begin_ptr) ||
+                        ((first_ptr-begin_ptr)&gt;(index1-queptr))) {
+                      first_ptr=index1;
+                      begin_ptr=queptr;
+                    }
+                    break;
+                  }
+                } else {
+                  queptr++;
+                }
+              }
+
+             index1++;
+
+             if(index1==input.size()) {
+                break;
+             }
+         }
+         cout&lt;&lt;"["&lt;&lt;begin_ptr&lt;&lt;" - "&lt;&lt;first_ptr&lt;&lt;"]"&lt;&lt;endl;
+    }
+</code></pre>
+
+<p>here the main for calling it.</p>
+
+<pre><code>    #include &lt;iostream&gt;
+    #include &lt;vector&gt;
+    #include &lt;map&gt;
+
+    using namespace std;
+
+    int main() {
+        vector&lt;int&gt; input;
+        input.push_back(2);
+        input.push_back(5);
+        input.push_back(2);
+        input.push_back(8);
+        input.push_back(0);
+        input.push_back(1);
+        input.push_back(4);
+        input.push_back(7);
+
+        vector&lt;int&gt; query1;
+        query1.push_back(2);
+        query1.push_back(8);
+        query1.push_back(0);
+
+        vector&lt;int&gt; query2;
+        query2.push_back(2);
+        query2.push_back(1);
+        query2.push_back(7);
+
+        vector&lt;int&gt; query3;
+        query3.push_back(1);
+        query3.push_back(4);
+
+        findMinWindow(input, query1);
+        findMinWindow(input, query2);
+        findMinWindow(input, query3);
+    }
+</code></pre>

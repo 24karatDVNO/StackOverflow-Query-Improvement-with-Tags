@@ -1,0 +1,57 @@
+<pre><code>example
+
+
+firstviewcontroller .h file
+
+        before @interface 
+
+        use @class secondViewcontroller;
+
+
+declare this inside of @interface  with
+
+        secondViewcontroller *sVC;
+
+
+then in firstViewController.m file 
+
+        before @implementation
+
+        use 
+
+    #import "secondViewcontroller.h"
+
+
+then
+
+
+
+
+-------------------
+
+secondVC.h file
+
+        @interface inside declare this
+
+        say UIImage *secondimage;
+
+        and sythasize them.
+
+
+
+
+
+
+
+
+-------------------
+
+
+after this 
+
+        in firstViewcontroller.h viewdidload create this sVC by alloc and initwithnibname then
+
+        sVC.secondimage=urfirstImage;
+
+        now while u push this sVC controller to navigation controller u can show that in UIImageView.
+</code></pre>

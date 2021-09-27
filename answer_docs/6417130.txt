@@ -1,0 +1,22 @@
+<p><a href="http://wwwold.dkuug.dk/JTC1/SC22/WG14/www/docs/n869/n869.pdf.gz" rel="nofollow"><b>C99</b></a> has this to say about initialization in Section 6.7.8, subclause 10:</p>
+
+<p>If an object that has automatic storage duration is not initialized explicitly, its value is
+indeterminate. If an object that has static storage duration is not initialized explicitly,
+then:</p>
+
+<p>if it has pointer type, it is
+   initialized to a null pointer; </p>
+
+<p>if
+   it has arithmetic type, it is
+   initialized to (positive or unsigned)
+   zero;</p>
+
+<p>if it is an aggregate, every
+   member is initialized (recursively)
+   according to these rules;</p>
+
+<p>if it is
+   a union, the first named member is
+   initialized (recursively) according
+   to these rules.</p>

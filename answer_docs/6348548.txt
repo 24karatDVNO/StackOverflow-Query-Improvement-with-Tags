@@ -1,0 +1,12 @@
+<p>I'm not 100% sure if I got correctly what you mean, but you can reference static class members by fully qualifying it.</p>
+
+<pre><code>public class MyClass {
+  // static class member
+  public static String myStaticArray;
+
+  // non-static class method
+  public void myMethod() {
+    MyClass.myStaticArray = {...}; // do stuff
+  }
+}
+</code></pre>

@@ -1,0 +1,7 @@
+<p>When faced with a difficult engineering problem, be it programming, web design, or electronics, often the most successful method (for me at least) is the 'outside-in' method. One of the most difficult thinks about it is making yourself use it, since it's "only a little tweak somewhere" that you'll make and fix everything... When I spend a good while looking for that right tweak, I know I should change my approach.</p>
+
+<p>So, starting from scratch, I rebuilt a copy of index.php, pasting bits from the broken original in order to figure out what breaks stuff.  And, sure enough, it turned out that the culprit was... the DOCTYPE, something I never paid much attention to - since I only recently started working on webpages as part of my job, caring about compatibility, etc. I slapped a XHTML 1.0 Transitional doctype instead of the original HTML, and it worked like a charm.</p>
+
+<p>Thanks to everyone who helped and especially to @Magnum for his effort.</p>
+
+<p>(:</p>

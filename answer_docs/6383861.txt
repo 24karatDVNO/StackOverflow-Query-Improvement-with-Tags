@@ -1,0 +1,18 @@
+<pre><code>var qry = from x in db.DT_Control_ColourPalette_PageColors
+                  where x.PageControlID == CheckValue(HF_CPID.Value)
+                  select new
+                  {
+                      x.PageControlID,
+                  };
+
+
+private int CheckValue(sting str)
+{
+  if(!string.IsNullOrEmpty(str))
+  {
+    return int.Parse(str);
+   }
+ else
+  return 0;//or your default value you want to return
+}
+</code></pre>

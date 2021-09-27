@@ -1,0 +1,20 @@
+<p>If you want only text nodes and br:</p>
+
+<pre><code> //span
+  [starts-with(@id, 'no')]/
+  following::*[1][name()='blockquote']
+   //node()
+   [ count(.|..//text()) = count(..//text())
+     or 
+     name()='br'
+   ]
+</code></pre>
+
+<p>returns</p>
+
+<pre><code>Text here.
+&lt;br /&gt;
+Text.
+&lt;br /&gt;
+linkhere
+</code></pre>

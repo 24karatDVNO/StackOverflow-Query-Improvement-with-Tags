@@ -1,0 +1,11 @@
+<p>If I put the log.xml file in my project directory, the logger library will write in the</p>
+
+<pre><code>project/bin/debug/log.xml
+</code></pre>
+
+<p>while the xaml binding will look for log.xml in</p>
+
+<pre><code>project/log.xml
+</code></pre>
+
+<p>I solved the problem setting the property of the log.xml file to "Content" not to "Resource"..even if I really don't know the difference :)</p>

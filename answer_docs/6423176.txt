@@ -1,0 +1,52 @@
+<p>not sure if this is the most efficient method, but it works. <a href="http://jsfiddle.net/27gbk/7/" rel="nofollow">jsfiddle</a></p>
+
+<pre><code>var doorClickState, letterbox, inletterbox = false;
+
+$(function() {
+
+    var paper = Raphael("canvas", 330, 457);
+
+    //draw the door
+    doorClickState = paper.path("M0,0v200h117V0H0z").translate(0, 0).attr({
+        fill: "#FF0000",
+        stroke: 0,
+        opacity: 0.9
+    }).toFront();
+
+    //draw and hide letterbox
+    letterbox = paper.path("M0,0v15h60V0H0z").translate(30, 100).attr({
+        fill: "#000000",
+        stroke: 0,
+        opacity: 0.9
+    }).hide();
+
+
+    //click states for both
+    doorClickState.click(function() {
+        alert('door clicked');
+    });
+    letterbox.click(function() {
+        alert('letterbox clicked');
+    });
+
+
+    doorClickState[0].onmouseover = function() {
+        letterbox.show();
+    }
+    letterbox[0].onmouseover = function() {
+        inletterbox = true;
+    }
+    letterbox[0].onmouseout = function() {
+        inletterbox = false;
+    }
+
+    doorClickState[0].onmouseout = function() {
+        setTimeout(function() {
+            if (!inletterbox) {
+                letterbox.hide();
+            }
+        }, 20);
+    };
+
+});
+</code></pre>

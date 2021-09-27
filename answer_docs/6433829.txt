@@ -1,0 +1,17 @@
+<p>Clearly, in your example you can't set them in the properties themselves, because you don't have an explicit backing variable.</p>
+
+<p>When you set default values in the constructor, it's fine, but you need to be careful to always call that constructor from others you may have, like:</p>
+
+<pre><code>public Foo () {
+  this.Happy = true;
+  this.BasicUnit = 92;
+}
+
+public Foo (bool happy) : this() {
+   this.Happy = happy;
+}
+</code></pre>
+
+<p>It can get a little confusing as to what is what. So, personally, I like to set default values explicitly in the backing variables.</p>
+
+<p>-- Edit: I see I may have misinterpreted your question - as others have said, all member variables are given default values, local variables are not.</p>

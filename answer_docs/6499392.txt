@@ -1,0 +1,9 @@
+<p>ThiefMaster's got it, but to expand on the answer:</p>
+
+<pre><code>$arr = array()
+foreach ($items as $item) {
+    $arr[] = array('title' =&gt; $item-&gt;title, 'image' =&gt; $item-&gt;getImage());
+}
+
+echo json_encode($arr);
+</code></pre>

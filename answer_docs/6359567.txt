@@ -1,0 +1,7 @@
+<p><strong>The answer lies in the spaces.</strong></p>
+
+<p>Removing and re-adding the three spaces (between <code>Binding</code> and <code>IsPrinted</code>, between the comma and <code>Converter</code> and between <code>StaticResource</code> and <code>VisibilityConverter</code>) resulted in a successful build.</p>
+
+<p>It appears that Visual Studio spaces and standard spaces are different, and never the twain shall mix - copying the line out of Visual Studio into OneNote and editing it there caused the spaces to become mismatched.</p>
+
+<p>The space characters are represented in Word as <code>.</code> for a standard space and a little <code>o</code> for a Visual Studio space.  Using all of either in the line is fine, but mismatching them causes the error above.</p>

@@ -1,0 +1,17 @@
+<p>You can create a function in your model that calculates PDT time from EDT time and use it in your template like any other field of your model:</p>
+
+<pre><code>class Meeting(models.Model)
+    name = models.CharField(max_length=100)
+    start = models.DateTimeField()
+
+    def start_PDT(self):
+        # example using 'pytz' module
+        # `start` is already in EDT timezone
+        PDT = pytz.timezone('US/Pacific')
+        return self.start.astimezone(pytz.PDT)
+</code></pre>
+
+<p>In the template:</p>
+
+<pre><code>{{ meeting.start_PDT }}
+</code></pre>

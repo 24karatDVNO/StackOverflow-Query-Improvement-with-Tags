@@ -1,0 +1,5 @@
+<p>I think your decision really depend on what you mean by functional tests. If your functional test are actually acceptance test (the test does what the customer would do in the acceptance testing of the system) then I think you should let them run at each build if possible. </p>
+
+<p>However if the tests are integration tests I really think you should consider if it would not be more valuable to rewrite those tests into unittest (over time). My favorite read on this topic is <a href="http://blog.thecodewhisperer.com/post/1325858548/integrated-tests-are-a-scam" rel="nofollow">Integrated Tests Are A Scam</a>. </p>
+
+<p>Except for this I do second @Laepdjek's answer.</p>

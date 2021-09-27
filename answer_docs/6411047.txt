@@ -1,0 +1,27 @@
+<p>As you can see from running</p>
+
+<pre><code>colorlist=[1 0 0;1 1 0;0 1 0; 0 0 1; 0 1 1];
+valuelist=[10 5 0 -8 -10];
+figure;
+hold all;
+for i=1:10
+  bar(i,i,'FaceColor',colorlist(i,:))
+end;
+</code></pre>
+
+<p>the <code>colorlist</code> defined above corresponds to the colors you are interested in. </p>
+
+<p><strong>To solve your question</strong>, for each pixel in your image, you would have to determine which RGB values are exactly zero and which ones are exactly one to determine between which pair you want to interpolate. For example, assuming <code>size(image)==[100,100,3]</code> and <code>image=im2double(imread(myfilename))</code> i.e. <code>max(image(:))==1</code>:</p>
+
+<pre><code>if ((image(x,y,:)==0)==[0 0 1]) &amp;&amp; ((image(x,y,:)==1)==[1 0 0])
+    %# interpolate between red and yellow
+    result(x,y)=10 - 5*image(x,y,2); %# pure red gives 10, pure yellow gives 5
+elseif ((image(x,y,:)==0)==[0 0 1]) &amp;&amp; ((image(x,y,:)==1)==[0 1 0])
+    %# interpolate between yellow and green
+    result(x,y)=5*image(x,y,1); %# pure yellow gives 5, pure green gives 0
+elseif 
+    %# ...
+end
+</code></pre>
+
+<p>This solution is not vectorized, but it should get you on the right track for a doable implementation. Of course, if you could avoid saving the data with a multicolor lookup-table as RGB but save the raw values instead, you could save yourself some hassle...</p>

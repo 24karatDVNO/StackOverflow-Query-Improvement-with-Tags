@@ -1,0 +1,3 @@
+<p>TCP connection is a bi-directional stream layered on top of packet-based network. It's a common occurrence to read only part of what the other side sent. You have to read in a loop, appending until you have a complete message. For that you need an application level protocol - types, structure, and semantics of messages - that you use on top of TCP (FTP, HTTP, SMTP, etc. are such protocols).</p>
+
+<p>To answer the specific second part of the question - add <a href="http://www.kernel.org/doc/man-pages/online/pages/man2/epoll_ctl.2.html" rel="nofollow"><code>EPOLLRDHUP</code></a> to the set of <a href="http://www.kernel.org/doc/man-pages/online/pages/man4/epoll.4.html" rel="nofollow"><code>epoll(7)</code></a> events to get notified when connection drops.</p>

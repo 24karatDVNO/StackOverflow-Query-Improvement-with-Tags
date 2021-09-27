@@ -1,0 +1,7 @@
+<p>I have experienced this problem before too as I have a 1920x1200 screen and thus the number of pixels that the canvas needs to clear is massive. It's only really a problem if your browser is using software rendering as a GPU would have no problem with that.</p>
+
+<p>One thing you can do (as mentioned by others before me) is to only clear parts of the canvas.</p>
+
+<p>Another thing you can do is make sure that the user has hardware acceleration turned on for their browser. On Windows, you can tell the user to enable hardware acceleration in about:flags in Chrome. IE9 has it on by default and does a really good job. I think Firefox also has Direct2D acceleration on by default.</p>
+
+<p>For cases like Chrome where users have to manually set it what you could do is measure the framerate while your app is running and if it is really slow show them some text to tell them to make sure they have hardware acceleration enabled for their browser.</p>

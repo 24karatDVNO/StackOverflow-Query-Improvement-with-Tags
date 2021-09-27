@@ -1,0 +1,26 @@
+<p>Setting <code>async: false</code> has other implications. </p>
+
+<p>If you set <code>async</code> to false the browser will bet blocked till the response comes back to the client from the server, this will impact the client performance and user experience. If you can share the piece of code which is causing the problem we may be able to help you to solve it. Setting <code>async</code> to false may not be the right solution.</p>
+
+<p>Can you share some details regarding the following points
+What is the order in which the requests are made?
+Is all request independent or some requests are depending on other requests response value?</p>
+
+<p>The chances of the 4th ajax request(the one which fails) depending on another request(1 of the first 3) is very much because you are saying if you set the <code>async</code> to <code>false</code> the request is working fine.</p>
+
+<p>In this case I would suggest something like</p>
+
+<pre><code>$.ajax({
+    url: 'request whose result need to be used in the 4th request',
+    data:{....}
+    ....
+}).success(function(result){
+    $.ajax({
+        url : '4ht request',
+        data:{
+            xyx : result.abc,
+            ......
+        }
+    });
+})
+</code></pre>

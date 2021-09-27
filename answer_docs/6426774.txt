@@ -1,0 +1,28 @@
+<p>You should declare an mutable array as an instance variable something like,</p>
+
+<pre><code>NSMutableArray * colors;
+</code></pre>
+
+<p>Initialize it in the <code>viewDidLoad</code> method and later alter your <code>retrive1</code> method to add to the colors array.</p>
+
+<pre><code>-(void)retrive1
+{
+    /* Clearing existing values for newer ones */
+    [colors removeAllObjects]
+
+    /* Get database path */
+
+    @try {
+          [..]
+                while(sqlite3_step(compiledStatement) == SQLITE_ROW) { 
+                    [colors addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement,0)]];
+                }
+
+          [..]
+    }
+    @catch (NSException * ex) { @throw ex; }
+    @finally { }
+}
+</code></pre>
+
+<p>And you'll have to implement the rest of the table view methods in the usual manner using the array as the source.</p>

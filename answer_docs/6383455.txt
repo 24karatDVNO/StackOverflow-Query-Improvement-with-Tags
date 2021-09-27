@@ -1,0 +1,5 @@
+<p>I don't understand why you don't have two separate graphs on the same page. As each graph is an image, just have two  elements on the page, each of which calls a CGI program to generate one image.</p>
+
+<pre><code>&lt;img src="/path/to/generate/first_graph.cgi?param1=something;param2=something_else/"&gt;
+&lt;img src="/path/to/generate/second_graph.cgi?param1=something;param2=something_else/"&gt;
+</code></pre>

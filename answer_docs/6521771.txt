@@ -1,0 +1,3 @@
+<p>For MVVM, people typically provide an entire class dedicated to being the "view model" for the entire control, so you usually wouldn't be setting a new DataContext within the control.  The view model will expose exactly the properties that are needed by the view, e.g., ProductName, UnitPrice, etc.</p>
+
+<p>The control that created this one that you're showing might set the DataContext for this control.  (And you might do the same recursively for other custom controls you create.)</p>

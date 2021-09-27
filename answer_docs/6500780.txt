@@ -1,0 +1,13 @@
+<p>Recursive flattening of any iterable types, except leaving strings alone (since you probably don't want to split those into characters):</p>
+
+<pre><code>def flatten(x):
+  try:
+    if isinstance(x, basestring): raise TypeError
+    y = iter(x)
+  except TypeError:
+    yield x
+    return
+  for item in y:
+    for subitem in flatten(item):
+      yield subitem
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Use CDATA sections so that the XSLT Processor interpret your img tags as a part of text nodes and not as an attempt to insert element nodes into an attribute (it is forbidden by the XML specification)</p>
+
+<pre><code>&lt;xsl:attribute name="onmouseover"&gt;
+  &lt;xsl:text&gt;&lt;![CDATA[ddrivetip('&lt;img src="]]&gt;&lt;/xsl:text&gt;
+  &lt;xsl:value-of select="$IMGSRC" /&gt;
+  &lt;xsl:text&gt;&lt;![CDATA["/&gt;
+
+      &lt;br /&gt;
+
+  ...
+</code></pre>

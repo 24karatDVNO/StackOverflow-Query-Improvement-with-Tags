@@ -1,0 +1,18 @@
+<p>Could you use an array or vector?</p>
+
+<pre><code>class foo() { .... }
+
+void bar()
+{  
+    // Using an array:
+    static foo obj_arr[502];
+
+    // or
+
+    // Using a vector
+    // Size given in the constructor to tell it how many objects you're going to need
+    // This may or may not be needed depending on how how your code is set up, since 
+    // vectors automatically resize when elements are added to them. 
+    static std::vector&lt;foo&gt; obj_vec(502); 
+}
+</code></pre>

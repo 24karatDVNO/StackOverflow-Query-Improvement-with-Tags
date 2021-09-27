@@ -1,0 +1,3 @@
+<p>If you sort the strings and do a binary search, then you will do a maximum of three <code>compareTo</code> tests. If you use a HashSet, you will have to compute the hash for the test string and do at least one <code>equals</code> test (if it matches a hashcode) or no <code>equals</code> test (for a miss). It's not at all clear to me whether there is going to be a big difference here, and the actual performance may depend on secondary issues like the level of optimization.</p>
+
+<p>The answer, like always for this kind of question, is to benchmark.</p>

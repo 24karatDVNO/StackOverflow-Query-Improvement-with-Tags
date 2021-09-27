@@ -1,0 +1,36 @@
+<p>Try with jTDS. It is an open source JDBC 3.0 driver for Microsoft SQL Server (6.5, 7, 2000 and 2005). Place jar file into your application classpath. java.sql package along with above driver helps connecting to database. </p>
+
+<pre><code>import java.sql.*;
+
+public class testConnection
+{
+    public static void main(String[] args) 
+    {
+        DB db = new DB();
+        db.dbConnect(
+     "jdbc:jtds:sqlserver://localhost:1433/tempdb","sa","");
+    }
+}
+
+class DB
+{
+    public DB() {}
+
+    public voidn dbConnect(String db_connect_string, 
+  String db_userid, String db_password)
+    {
+        try
+        {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(
+    db_connect_string, db_userid, db_password);
+            System.out.println("connected");
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}; 
+</code></pre>

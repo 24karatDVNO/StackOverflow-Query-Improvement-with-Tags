@@ -1,0 +1,5 @@
+<p>I am not that familiar with the different layer types in OpenLayers anymore, but the key is that the Google Earth API and the Google Maps API are really different beasts.  At first glance I do not see why you would need to add it to a Google Maps type (assuming that's what I think it is).  </p>
+
+<p>As Chris implied already, just treat your Earth API integration as an entirely new and separate thing from any existing Google layers; the syntax and concepts in these API's are not really similar enough for you to get any advantage of subclassing the existing Google Maps integration in OpenLayers at least as far as I can tell.</p>
+
+<p>That said I hope the code for the Maps V3/Earth integration will be helpful and analogous to what you need to do to integrate it with OpenLayers.  Meanwhile I've seen some other folks also give this a shot, such as this geoExt example which you may also find useful: <a href="http://dev.geoext.org/sandbox/cmoullet/ux/GoogleEarthPanel/examples/GoogleEarthPanelExample.html" rel="nofollow">http://dev.geoext.org/sandbox/cmoullet/ux/GoogleEarthPanel/examples/GoogleEarthPanelExample.html</a></p>

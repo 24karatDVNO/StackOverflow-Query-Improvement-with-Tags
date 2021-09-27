@@ -1,0 +1,18 @@
+<p>You can always wrap it in a closure, and return it with you explicit visibility.</p>
+
+<pre><code>namespace2 = (function(){
+  function private_function() {
+    //..
+  }
+
+  function publicFunction1() {
+    private_function(); // accessible here
+  }
+
+  return {
+    exportedPublicFunction1: publicFunction1
+  };
+})();
+
+namespace2.exportedPublicFunction1();
+</code></pre>

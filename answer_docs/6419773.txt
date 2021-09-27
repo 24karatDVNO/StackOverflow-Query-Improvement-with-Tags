@@ -1,0 +1,17 @@
+<pre><code>import java.io.*;
+import java.net.*;
+public class Jwget{
+    public void wget(String urlstring,File destfile) throws Exception {
+        URL url=new URL(urlstring);
+        InputStream is=url.openStream();
+        OutputStream os=new FileOutputStream(destfile);
+        for(int i=is.read();i!=-1;i=is.read())
+            os.write(i);
+        is.close();
+        os.close();
+    }
+    public static void main(String[] args) throws Exception {
+        new Jwget().wget("http://tayek.com",new File("java.txt"));
+    }
+}
+</code></pre>

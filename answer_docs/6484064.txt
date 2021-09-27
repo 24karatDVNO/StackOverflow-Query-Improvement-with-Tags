@@ -1,0 +1,5 @@
+<p>Since this is a general question I'll just give a general answer:</p>
+
+<p>If the monitored application can be started from the command line than any of the high level languages (Python, Ruby, etc) will be able to start the application and start a timer.</p>
+
+<p>Shutting down the application depends on what you mean by "gracefully". If you just want to stop the application, you can issue a <code>kill</code> command, but to be able to shut it down "gracefully" depends on how much the application exposes itself. Can you use Applescript, or other scripting languages to ask it to shut down gracefully?</p>

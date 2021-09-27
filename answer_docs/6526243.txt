@@ -1,0 +1,15 @@
+<p>This is a good place to employ an <a href="http://en.wikipedia.org/wiki/Ed_%28text_editor%29" rel="nofollow"><em>ed script.</em></a></p>
+
+<p>Something like:</p>
+
+<pre><code>for i in *.java; do
+  ed $i &lt;&lt; \eof
+1,20d
+0r newlicense.txt
+w
+q
+eof
+done
+</code></pre>
+
+<p>It's probably a good idea to wrap this in such a way that it checks for the old license. You could make it conditional on a grep for a line in the old license, or perhaps change <code>1,20d</code> to something like <code>/first old line/;/last old line/d</code></p>

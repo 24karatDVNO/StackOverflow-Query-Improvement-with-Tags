@@ -1,0 +1,25 @@
+<p>I believe this should work:</p>
+
+<pre><code>UPDATE Store as ST (Price, Amount) = (SELECT OD.Price, ST.Amount + OD.Amount
+                                      FROM OrderHeader as OH
+                                      JOIN OrderDetails as OD
+                                      ON OH.Number = OD.Number
+                                      JOIN Articles as A
+                                      ON A.Reference = OD.Article
+                                      WHERE OH.Store = ST.Store
+                                      AND OH.Date = '2009-12-04'
+                                      AND OH.Number = 26485)
+WHERE ST.Store = '074'
+      AND EXISTS (SELECT '1'
+                  FROM OrderHeader as OH
+                  JOIN OrderDetails as OD
+                  ON OH.Number = OD.Number
+                  JOIN Articles as A
+                  ON A.Reference = OD.Article
+                  WHERE OH.Store = ST.Store
+                  AND OH.Date = '2009-12-04'
+                  AND OH.Number = 26485)
+</code></pre>
+
+<p>The <code>WHERE EXISTS</code> is to prevent against <code>NULL</code> results.  I'm assuming <code>Store</code> has an <code>id</code> column to match.<br>
+This will only work if the tables will return one (and only one) row for the given selection criteria.  If this is not the case, you will need to supply more details.</p>

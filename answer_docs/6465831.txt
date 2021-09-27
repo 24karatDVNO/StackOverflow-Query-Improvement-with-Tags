@@ -1,0 +1,42 @@
+<p>I edited your fiddle <a href="http://jsfiddle.net/LpmnY/1/" rel="nofollow">http://jsfiddle.net/LpmnY/1/</a> (ok, it's not red) -  when something is set to min it changes the background coloro of it</p>
+
+<pre><code>var max1box = document.getElementById('length'),
+    max2box = document.getElementById('width'),
+    max1 = 100,
+    min1 = 20,
+    max2 = 400,
+    min2 = 10;
+
+ max1box.addEventListener('change',validateValues,false);
+ max2box.addEventListener('change',validateValues,false);
+
+
+function validateValues() {
+
+    if (this == max1box &amp;&amp;
+        +this.value &gt; max1 &amp;&amp;
+        +this.value &gt; max2box.value)
+    {
+       max1box = max2box;
+       max2box = this;  
+
+    }
+
+    if (max1box.value &gt; max1) {
+        max1box.value = max1;
+
+    }
+    if (max1box.value &lt; min1) {
+        max1box.value = min1;
+        max1box.style.backgroundColor= '#E5E5E5';
+    }        
+
+    if (max2box.value &gt; max2) {
+        max2box.value = max2;
+    }
+    if (max2box.value &lt; min2) {
+        max2box.value = min2;
+        max2box.style.backgroundColor= '#E5E5E5';
+    }
+   }
+</code></pre>

@@ -1,0 +1,14 @@
+<p>Why not be consistent and just use <code>.live()</code> for both? :D</p>
+
+<pre><code>$('#Sidebar ul li .DeleteList').live('click', function(e) {
+    alert("I was deleted");
+});
+
+$('#Sidebar ul li').live('click', function(e) {
+    alert("I was selected");
+});
+</code></pre>
+
+<p>This way 'deleted' gets triggered first.</p>
+
+<p>fiddle: <a href="http://jsfiddle.net/c9sBD/" rel="nofollow">http://jsfiddle.net/c9sBD/</a></p>

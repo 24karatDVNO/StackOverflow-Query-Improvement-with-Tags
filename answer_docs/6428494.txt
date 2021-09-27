@@ -1,0 +1,9 @@
+<p>Not knowing exactly what you're looking for, here's a bit of jQuery that will take a selector and give a <code>data-uid</code> attribute to each match that resembles the asp.net ClientID.</p>
+
+<pre><code>$("div").each(function() {
+    var uid = $.map($(".findMe").parentsUntil('body').andSelf(), function(o, i) {
+        return o.id || o.tagName.toLowerCase() + $(o).prevAll(o.tagName).length;
+    }).join('_');
+    $(this).data("uid", uid);
+});
+</code></pre>

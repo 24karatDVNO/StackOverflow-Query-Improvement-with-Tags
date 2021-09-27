@@ -1,0 +1,5 @@
+<p>As long as you are using Java for web forms, at some point any framework you use is based on servlets. So if you use them properly, yes it is safe.</p>
+
+<p>The main point to keep in mind to prevent cracking your authentication (if database based) is <a href="http://en.wikipedia.org/wiki/SQL_injection" rel="nofollow">SQL injection</a>. As long as you use Hibernate, JPA or <a href="https://www.owasp.org/index.php/Preventing_SQL_Injection_in_Java#Prepared_Statements" rel="nofollow">prepared statements</a> you should be safe.</p>
+
+<p>If using Tomcat, you can also start with Tomcat <a href="http://tomcat.apache.org/tomcat-5.5-doc/realm-howto.html#JDBCRealm" rel="nofollow">native authentication</a>.</p>

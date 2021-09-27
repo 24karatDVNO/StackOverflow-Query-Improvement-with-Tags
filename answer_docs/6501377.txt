@@ -1,0 +1,3 @@
+<p>Let's make each line into a dict first, using the field titles as keys and the field data as values. We want a dict where each key-value pair comes from a pair that we grab by "zipping" those two lists together: <code>dict(zip(field_titles, row))</code>. We can use a list comprehension to make a list of these dicts from the list of input rows: <code>[dict(zip(field_titles, row)) for row in data]</code>.</p>
+
+<p>We want to be able to look these up by id_number, so we'll make a containing dict where the key is the idnumber and the value is the row dict. We can get the idnumber by looking it up in the row_dict: <code>dict((row_dict['id_number'], row_dict) for row_dict in data)</code>.</p>

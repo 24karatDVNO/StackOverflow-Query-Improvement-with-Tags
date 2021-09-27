@@ -1,0 +1,20 @@
+<p>First of all, the fourth time you access <code>f</code> you won't be getting <code>1</code> again because you have already read all of the data once. Therefore, you should read the data into the variables <code>f</code> and <code>g</code> before processing it. If you do the following:</p>
+
+<pre><code>f = open('Qin.txt').readlines()  
+g = open('Qout.txt').readlines()
+</code></pre>
+
+<p>Then you will get:</p>
+
+<pre><code>[-2.0, -1.0, 0.0, 1.0, 2.0]
+[-3.0, -2.0, -1.0, 0.0, 1.0]
+[-3.0, -2.0, -1.0, 0.0, 1.0]
+[0.0, 1.0, 2.0, 3.0, 4.0]
+[-1.0, 0.0, 1.0, 2.0, 3.0]
+[-1.0, 0.0, 1.0, 2.0, 3.0]
+[-1.0, 0.0, 1.0, 2.0, 3.0]
+[-2.0, -1.0, 0.0, 1.0, 2.0]
+[-2.0, -1.0, 0.0, 1.0, 2.0]
+</code></pre>
+
+<p>These are the results you'll get from the calculations you specified above.</p>

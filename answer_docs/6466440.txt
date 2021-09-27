@@ -1,0 +1,8 @@
+<p>There are a few steps involved.  You will first need to <a href="https://www.owasp.org/index.php/Data_Validation" rel="nofollow noreferrer">validate the user's input</a> - don't just put it directly into the database.  Validation should be done on the server.  You can perform client-side validation with Javascript too, but this should only be done to enhance the user experience - it must not replace server-side validation.  To start, you could look at PHP's <a href="http://www.php.net/manual/en/book.filter.php" rel="nofollow noreferrer">Filter methods</a>, or perhaps look for a <a href="https://stackoverflow.com/questions/737385/easiest-form-validation-library-for-php">form validation library</a>.</p>
+
+<p>When you come to insert it into the database, I highly recommend using <a href="http://php.net/manual/en/pdo.prepared-statements.php" rel="nofollow noreferrer">prepared statements</a> instead of messing around with horrible escaping.</p>
+
+<p>The example given on the PHP site is quite good, and should get you started.  You could also checkout:</p>
+
+<p><a href="https://stackoverflow.com/questions/1457131/php-pdo-prepared-statements">PHP PDO prepared statements</a><br>
+<a href="http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/" rel="nofollow noreferrer">Why you Should be using PHP’s PDO for Database Access</a></p>

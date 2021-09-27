@@ -1,0 +1,11 @@
+<p>It may sound like I'm wandering a bit, but have you taken into account another possibility, that is separating all the authentication/membership functionality into an application itself?</p>
+
+<p>From your description it seems you may add another application in the future. It would start to look like a network of sites, much like 37signals web apps, Google web apps or MSN web apps.</p>
+
+<p>And thus, you may go for a kind of Single-Sign-On / Connect service. This one single application may offer authentication methods via web-services or any other mechanisms, it will have its own DB for you to tweak, modify, backup and move without affecting the other apps. I myself have found this situation many times and thus I love how easy is to share your Google or Facebook login among applications.</p>
+
+<p>Perhaps I'm seeing it from a little higher perspective than yours, sorry if it's the case. If this is not an option, you may keep 4 databases: 1 for each application and 1 for the membership provider, which has its own connectionstring most of the time.</p>
+
+<p>Of course it depends on the size of your applications' footprint on DB-level. 10 tables per app is OK, 150 tables per app would make the DB a little ugly to us, that being a personal preference.</p>
+
+<p>Good luck with whatever option you choose.</p>

@@ -1,0 +1,5 @@
+<p>There are already good answers to this question, coming ultimately down to "it depends", but I want to add a thought that I believe greatly influences which method is better for any given situation.</p>
+
+<p>In your code snippet examples, but of your catches are <code>catch (Exception e) {}</code> as opposed to, say, <code>catch (IOException e)</code> or <code>catch (NullReferenceException</code>, or some other narrower exception type. The kind(s) of exception(s) you expect from the code in the <code>try</code> block will make a difference in the way you want to handle it. Especially if you have more than one type to consider, as could be the case if you handle exceptions outside of the subroutine - a large enough upper-level <code>try</code> block could have several different types of exceptions to handle, and start to run the risk of making the code messy.</p>
+
+<p>My general rule of thumb, overall, is that if the exception is a non-critical error (especially if caused by invalid user input), I can handle it in the subroutine and keep the system running. On the other hand, if the exception means the program needs to close, I handle it higher up.</p>

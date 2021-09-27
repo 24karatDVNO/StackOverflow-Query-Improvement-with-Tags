@@ -1,0 +1,5 @@
+<p>Using a mutable object for a Map key is always a dangerous thing. If you maintain any reference to any of those keys after inserting into the map, then it is very likely that one of those keys will be modified at some point in the future which will invalidate the contents of your map.</p>
+
+<p>A less likely, but possible scenario, even assuming you somehow don't screw up your <code>List&lt;List&lt;&gt;&gt;</code> key is if you have messed up the <code>equals</code> method of class <code>A</code>, then your Lists' <code>equals</code> method will also be messed up, again screwing up your map.</p>
+
+<p>Look at alphazero's nice code example if you need further proof that what you are attempting to do is a bad idea.</p>

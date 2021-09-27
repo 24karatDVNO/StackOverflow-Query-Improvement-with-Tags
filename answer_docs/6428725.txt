@@ -1,0 +1,10 @@
+<p>In your routes, you should have better results using the macros Rails provides for routing. Instead of doing the old-style route map, try:</p>
+
+<pre><code>resources :accounts do
+  resources :transfers do
+    put 'accept', :on =&gt; :member
+  end
+end
+</code></pre>
+
+<p>The router is really smart when it comes to RESTful routes, but when you start manually mapping things, it can get confused... especially when you're doing it inside of nested, RESTful routes.</p>

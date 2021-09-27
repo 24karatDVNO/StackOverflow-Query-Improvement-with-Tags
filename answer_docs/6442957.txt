@@ -1,0 +1,5 @@
+<p>How do you log users out, can we see the code from Logout.aspx? The common practice is having these 2 lines in Page_Load event:</p>
+
+<pre><code>Session.Abandon();
+FormsAuthentication.SignOut();
+</code></pre>

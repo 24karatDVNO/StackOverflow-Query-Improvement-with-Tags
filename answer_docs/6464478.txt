@@ -1,0 +1,12 @@
+<p>I would try to change the table view content size:</p>
+
+<pre><code>[textView setContentSize:CGSizeMake(width, height)];
+</code></pre>
+
+<p>Set width and height so that the whole text view fits inside that text view.
+Also check that the scroll is enabled inside of the text view; if it is not then set it:</p>
+
+<pre><code>textView.scrollEnabled = YES;
+</code></pre>
+
+<p>Hope it helps! ;D</p>

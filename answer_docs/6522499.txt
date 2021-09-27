@@ -1,0 +1,15 @@
+<p>I'm assuming that you have a view containing this new view and the hero list view. If that is the case, then you could create a property in the new view like so:</p>
+
+<pre><code>@property (nonatomic,retain)HeroListViewController *heroListViewController;
+</code></pre>
+
+<p>and then set it equal to the heroList from the outside: </p>
+
+<pre><code>newView.heroListViewController = HeroListViewController;
+</code></pre>
+
+<p>The main problem with your code at the moment is that you're creating a new instance of HeroListViewController by using alloc init, and you're not accessing the same thing. By setting the new view's heroListViewController property, you can get access to the correct viewController.</p>
+
+<p>Finally, in viewDidLoad of the new view - I'd actually put the code in viewWillAppear:(BOOL)Animated - you can put code to match the arrays. </p>
+
+<p>Note that this whole way of doing it is messy and could be better done with a singleton class if you need access to an array in multiple places. The above will help you get it working quick, but if you want a really clean fix, go here: <a href="http://www.iphonedevsdk.com/forum/iphone-sdk-tutorials/24135-singleton-classes.html" rel="nofollow">http://www.iphonedevsdk.com/forum/iphone-sdk-tutorials/24135-singleton-classes.html</a></p>

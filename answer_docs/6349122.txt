@@ -1,0 +1,25 @@
+<p>I ended up using an <code>AbsractResourceStreamWriter</code> subclass:</p>
+
+<pre><code>public class SitemapStreamWriter extends AbstractResourceStreamWriter
+{
+    @Override
+    public void write(OutputStream output)
+    {
+        String HEAD = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n" +
+                      "&lt;urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"\n" +
+                       "        xmlns:wicket=\"http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd\"&gt;\n";
+        try
+        {
+            output.write(HEAD.getBytes());
+
+            // write out a &lt;loc&gt; entry for each of my pages here
+
+            output.write("&lt;/urlset&gt;\n".getBytes());
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+}
+</code></pre>

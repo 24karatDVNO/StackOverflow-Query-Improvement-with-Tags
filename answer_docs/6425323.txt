@@ -1,0 +1,15 @@
+<p>Ok I finally figured this out, and apparently it was due to some code not shown.  There seems to be a bug in EF's fluent mapping when extra properties exist that are not mapped.  I should have shown the <code>ReleaseVersion</code> structure which looks like:</p>
+
+<pre><code>public class ReleaseVersion
+{
+    public int id { get; set; }
+
+    public virtual ICollection&lt;Hotfix&gt; CurrentVersionForHotfix { get; set; }
+    public virtual ICollection&lt;Hotfix&gt; ReleaseVersionForHotfix { get; set; }
+    public virtual ICollection&lt;Hotfix&gt; hotfixes2 { get; set; }
+}
+</code></pre>
+
+<p>What's significant is the extra <code>hotfixes2</code> property.  This property was created by the EF 4.1 CodeFirst power tools, but I didn't remove it because I wanted to get everything working first.  </p>
+
+<p>Anyways, the <code>hotfixes2</code> property had no relationship mapping in the hotfix EF configuration mapping class but for some reason this one extra property was causing the whole hotfix configuration to be disgarded.  Simply removing the <code>hotfixes2</code> property from the <code>ReleaseVersion</code> POCO caused my application to correctly work without errors.  </p>

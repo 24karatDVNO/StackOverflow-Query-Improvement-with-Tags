@@ -1,0 +1,11 @@
+<p>If I understand well, you are looking for a command line that will execute a bunch of commands that exist inside a text file named (C:\inetpub\wwwroot\PRIMEWeb\Executables\FlyCommand.txt) </p>
+
+<p>Here is what you need to do:</p>
+
+<pre><code>cmd &lt; C:\inetpub\wwwroot\PRIMEWeb\Executables\FlyCommand.txt
+</code></pre>
+
+<p>In case the path contains spaces, use the following command:</p>
+
+<pre><code>cmd &lt; "C:\inetpub\wwwroot\PRIMEWeb\Executables\FlyCommand.txt"
+</code></pre>

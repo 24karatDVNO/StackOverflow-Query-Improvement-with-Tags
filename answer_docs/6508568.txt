@@ -1,0 +1,10 @@
+<p>If your jQuery selector matches more than one element, when you bind a callback function to an event, that function will be bound to <strong>all</strong> the elements the selector matches.</p>
+
+<p>Example:</p>
+
+<pre><code>$('input[type="radio"]').change(function() {
+    $('body').append('changed');
+});
+</code></pre>
+
+<p>See a working fiddle <a href="http://jsfiddle.net/JpdAg/" rel="nofollow">here</a></p>

@@ -1,0 +1,9 @@
+<p>Some environments can, e.g. alltt; however, lstlisting can't, because of how it is written (it apparently has to do with various catcode stuff that it does). </p>
+
+<p>Using \def as you do is sort of outdated; \newcommand is preferred:</p>
+
+<p>\newcommand \allttcode[1] { \begin{alltt}#1\end{alltt} }</p>
+
+<p>...</p>
+
+<p>\allttcode{test}</p>

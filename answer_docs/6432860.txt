@@ -1,0 +1,15 @@
+<p>I was looking for an answer to the same question, and tried a couple of the examples here. However, I  was getting an undefined value using the example with ui-state-active:</p>
+
+<pre><code>var clicked = $(this).find('.ui-state-active').attr('id');
+</code></pre>
+
+<p>I also wanted to make sure the .load function was only called the first time each accordion panel was expanded. By combining a couple of other posters answers I got the result I wanted:</p>
+
+<pre><code>$('#accordion').accordion({ 
+    changestart: function(event, ui){
+         if(ui.newContent.html() == ""){
+             var id = ui.newContent.attr("id");
+             ui.newContent.load("[your url]" + id);
+         }
+});
+</code></pre>

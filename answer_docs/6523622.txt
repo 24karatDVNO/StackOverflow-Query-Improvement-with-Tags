@@ -1,0 +1,13 @@
+<p>PHP's DOM classes have methods for <a href="http://php.net/manual/en/domnode.removechild.php" rel="nofollow"><code>RemoveChild</code></a> and <a href="http://php.net/manual/en/domdocument.getelementsbytagname.php" rel="nofollow"><code>getElementsByTagName</code></a>.</p>
+
+<p>Between them, these methods should give you what you want. Something like this should do the trick:</p>
+
+<pre><code>$names = $xmlDoc-&gt;getElementsByTagName('name');
+
+if($names-&gt;length &gt; 10) {
+    $firstname = $xmlDoc-&gt;getElementsByTagName('name')-&gt;item(0);
+    $removedname = $xmlDoc-&gt;removeChild($firstname);
+}
+</code></pre>
+
+<p>(note: not tested it yet, though, so you might have to tweak it a bit!)</p>

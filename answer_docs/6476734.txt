@@ -1,0 +1,10 @@
+<p>make sure that <code>real_order</code> is in global scope and this should do it:</p>
+
+<pre><code>friends.sort(function(a, b) {
+    if (real_order.indexOf(a.id) &gt; real_order.indexOf(b.id)) {
+        return 1;
+    }else{
+        return -1;
+    }
+});
+</code></pre>

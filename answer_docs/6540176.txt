@@ -1,0 +1,19 @@
+<p>Have you tried something like this:</p>
+
+<pre><code>if (!empty($_POST['field_name'])) {
+if(!preg_match("/(0?\d|1[0-2]):(0\d|[0-5]\d) (AM|PM)/i", '$start')) :
+    $errors-&gt;add('submit_error', __('&lt;strong&gt;ERROR&lt;/strong&gt;: The time is incorrect', 'appthemes'));
+}
+</code></pre>
+
+<p>It will first look at the state of the field then move to the validation if required. </p>
+
+<p>EDIT
+Sorry, just realised there is an optimal way being:</p>
+
+<pre><code>if(!empty($start) &amp;&amp; !preg_match("/(0?\d|1[0-2]):(0\d|[0-5]\d) (AM|PM)/i", '$start')) :
+    $errors-&gt;add('submit_error', __('&lt;strong&gt;ERROR&lt;/strong&gt;: The time is incorrect', 'appthemes'));
+endif;
+</code></pre>
+
+<p>Why the <code>!empty($start)</code>? Because it is using the standard PHP function that defines if the value is present or not. Not 100% required but is best practice to use the empty() function when determining if a value exists or not. </p>

@@ -1,0 +1,14 @@
+<p>Try this</p>
+
+<pre><code>declare @string varchar(max)
+declare @var1 varchar(1000) 
+declare @var2 varchar(1000) 
+set @var1 = 'john' 
+set @var2 = '.'
+
+set @string='hi laura! john will go to the pub later. will he take is girlfriend?'
+select SUBSTRING(string,1,charindex(@var2,string)-1) from
+(
+select SUBSTRING(@string,CHARINDEX(@var1,@string),len(@string )) as string
+) as t
+</code></pre>

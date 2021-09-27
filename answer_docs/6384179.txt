@@ -1,0 +1,53 @@
+<p>This is what you are looking for:</p>
+
+<p><strong>HideTextBox.aspx</strong></p>
+
+<pre><code>&lt;%@ Page Language="C#" AutoEventWireup="true" CodeFile="HideTextBox.aspx.cs" Inherits="HideTextFields" %&gt;
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head runat="server"&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id="form1" runat="server"&gt;
+    &lt;div&gt;
+        &lt;asp:TextBox ID="TextBox1" runat="server"&gt;&lt;/asp:TextBox&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        &lt;asp:TextBox ID="TextBox2" runat="server"&gt;&lt;/asp:TextBox&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        &lt;asp:TextBox ID="TextBox3" runat="server"&gt;&lt;/asp:TextBox&gt;
+        &lt;br /&gt;
+        &lt;asp:Button ID="BtnHide" runat="server" onclick="Button1_Click" 
+        Text="Hide TextBox" /&gt;   
+    &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>And the code behind file
+<strong>HideTextBox.aspx.cs</strong></p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class HideTextFields : System.Web.UI.Page
+{
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        foreach (Control c in form1.Controls)
+        {
+            if (c is TextBox)
+                c.Visible = false;
+
+        }
+    }
+}
+</code></pre>

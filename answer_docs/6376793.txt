@@ -1,0 +1,56 @@
+<p>Figured out how to get this done:</p>
+
+<pre><code>var pSubMenu2 = new dijit.Menu({
+  onFocus: function() {
+    var obj = dijit.byId('editID');
+    if (obj) {
+      obj.attr('style','color: black');
+    } 
+  },
+  onBlur: function() {
+    var obj = dijit.byId('editID');
+    if (obj) {
+      obj.attr('style','color: white');
+    } 
+  },
+  onMouseDown: function() {
+    var obj = dijit.byId('editID');
+    if (obj) {
+      obj.attr('style','color: white');
+    } 
+  }
+});
+
+pSubMenu2.addChild(new dijit.MenuItem({
+  onMouseOver: function() {
+    var obj = dijit.byId('editID');
+    if (obj) {
+      obj.attr('style','color: black');
+    }
+  },
+  label: "Edit item #1"
+  }));
+
+pSubMenu2.addChild(new dijit.MenuItem({
+  onMouseOver: function() {
+    var obj = dijit.byId('editID');
+    if (obj) {
+      obj.attr('style','color: black');
+    }
+  },
+  label: "Edit item #2"
+  }));
+
+pMenuBar.addChild(new dijit.PopupMenuBarItem({
+  id: "editID",
+  label: "Edit",
+  style: "color: white",
+  onMouseOver: function() {
+    this.attr('style','color: black');
+  },
+  onMouseLeave: function() {
+    this.attr('style','color: white');
+  },
+  popup: pSubMenu2
+  }));
+</code></pre>

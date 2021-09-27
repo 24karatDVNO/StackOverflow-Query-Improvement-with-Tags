@@ -1,0 +1,14 @@
+<p>Since you need to provide two arguments and perform after a delay package both arguments in an NSDictionary and pass it:</p>
+
+<pre><code>    NSDictionary *arguments = [NSDictionary dictionaryWithObjectsAndKeys:
+    tableView, @"tableView", indexPath, @"indexPath", nil];
+    [self performSelector:@selector(pushDetailView:) withObject:arguments afterDelay:0.1];
+    ...
+
+- (void)pushDetailView:(NSDictionary *)arguments {
+    UITableView *tableView = [arguments objectForKey:@"tableView"];
+    NSIndexPath *indexPath = [arguments objectForKey:@"indexPath"];
+    ...
+</code></pre>
+
+<p>Or as @Felipe suggests, use GCD.</p>

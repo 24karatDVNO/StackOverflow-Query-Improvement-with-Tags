@@ -1,0 +1,15 @@
+<p>You can use NSSortDescriptors to sort your events.</p>
+
+<p>Suppose you have a property <code>finished</code> that indicates when the event is finished, you could filter the array like this</p>
+
+<pre><code>NSPredicate *predicate = [NSPredicate predicateWithFormat:@"finished = NO"];
+self.events = [[dbAccess getAllEvents] filteredArrayUsingPredicate:predicate];
+</code></pre>
+
+<p>And than, if the event object has a <code>date</code> property that is the one you are trying to sort ascending, you could use <code>NSSortDescriptor</code> to sort it.</p>
+
+<pre><code>NSSortDescriptor *descriptor = [NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+NSArray *arrayDescriptors = [NSArray arrayWithObject: descriptor];
+self.events = [self.events sortedArrayUsingDescriptors:arrayDescriptors];
+[descriptor release];
+</code></pre>

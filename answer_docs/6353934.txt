@@ -1,0 +1,25 @@
+<p>Thanks to Cordsen for pointing me in the right direction here.</p>
+
+<p>I used your suggested solution with a slight amendment and it is working OK so far!</p>
+
+<p>I found that I was getting more and more nested <code>&lt;description&gt;</code> tags in the final XML so I deleted the existing <code>&lt;description&gt;</code> node first and then appended the new one:</p>
+
+<pre><code>    frmDescription = Request.Form("description")
+    'Line breaks in the form are coming across as &lt;br&gt; instead of &lt;br /&gt;'
+    frmDescription = replace(frmDescription, "&lt;br&gt;", "&lt;br /&gt;")
+
+    Set formDescriptionXML = Server.CreateObject("MSXML2.DOMDocument")
+    formDescriptionXML.loadXML frmDescription
+    If Not formDescriptionXML Is Nothing Then
+        'Remove the existing description node'
+        Set objRemove = objSaleItem.SelectSingleNode("description")
+        objSaleItem.removeChild objRemove
+        'Create the new description node '
+        objSaleItem.appendChild formDescriptionXML.documentElement
+    End If
+</code></pre>
+
+<p>I still need to do a bit of work to nake sure I always only have one <code>&lt;description&gt;</code> node but I have solved the worst bit.</p>
+
+<p>Thanks very much!
+Andy</p>

@@ -1,0 +1,20 @@
+<p>I don't know the blackberry API but you could take other aproach to your problem. You could do offscreen rendering. Create a <code>BufferedImage</code>, get a reference to its <code>Graphics</code> object, do the rendering and then save the <code>BufferedImage</code> as a png for example.</p>
+
+<p>For example:</p>
+
+<pre><code>int width = 200, height = 200;
+
+// TYPE_INT_ARGB specifies the image format: 8-bit RGBA packed
+// into integer pixels
+BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+Graphics2D ig2 = bi.createGraphics();
+
+// Draw your chart
+
+ImageIO.write(bi, "PNG", new File("yourImageName.PNG"));
+</code></pre>
+
+<p>This way you can do all your drawing once, saving it as a file or just in memory (depends on what you need) and then you just need either to load the image from the file or do g.drawImage() in your screen.</p>
+
+<p>But as i said before i don't know if this applies to the Blackberry API it works for sure with the JDK/JRE in a desktop.</p>

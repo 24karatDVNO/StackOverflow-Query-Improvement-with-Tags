@@ -1,0 +1,29 @@
+<p>In the html file you can have something like:</p>
+
+<p>sorry about that but I don't no how post a link html. So you can have a link <strong>class</strong>="delete", <strong>id</strong>= <i>value</i> and a <strong>href</strong> = "javascript:;"</p>
+
+<p>Then I used this function to render a partial view:  </p>
+
+<pre><code> $(".delete").click(function(event){
+          var id = $(".select").attr("id");
+          var id2 = event.target.id;
+          $.ajax({
+                url: "Persona/Delete?idPersona=" + id2.toString(),
+                success: function (data) {
+                    $("#popUpConfirmar").html(data);
+                }
+            });
+
+            dialogoPopUp.dialog("open");
+        });
+</code></pre>
+
+<p>Remember in the controler you must have a action like:</p>
+
+<pre><code>    public PartialViewResult Delete(int idPersona)
+    {
+        PersonaDataAccess personaDataAccess = new PersonaDataAccess();
+        Persona persona = personaDataAccess.GetOne(idPersona);
+        return PartialView("Delete",persona);
+    }
+</code></pre>

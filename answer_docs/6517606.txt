@@ -1,0 +1,23 @@
+<p>Some references to help you out.</p>
+
+<ul>
+<li><strong>URLRequest.data</strong>: <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html?filter_flex=4.1&amp;filter_flashplayer=10.2&amp;filter_air=2.6#data" rel="nofollow">http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html?filter_flex=4.1&amp;filter_flashplayer=10.2&amp;filter_air=2.6#data</a></li>
+<li><strong>URLVariables</strong>: <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLVariables.html" rel="nofollow">http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLVariables.html</a></li>
+</ul>
+
+<p>So, if you want to pass some variables in your request, you do the following:</p>
+
+<ol>
+<li>Create <code>new URLVariables()</code> object</li>
+<li>Assign it's reference to <code>URLRequest.data</code> field.</li>
+</ol>
+
+<hr>
+
+<pre><code>var fichier:URLRequest = new URLRequest();
+var urlVars:URLVariables = new URLVariables();
+urlVars["myVarName"] = myVar;
+fichier.data = urlVars;
+</code></pre>
+
+<p>This way your server side app will recieve a variable myVarName with value of myVar.</p>

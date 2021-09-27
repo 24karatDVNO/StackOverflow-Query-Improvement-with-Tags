@@ -1,0 +1,16 @@
+<p>I would do something along these lines here. I removed the unused vars and instead of a malloc/free a simple allocation in the stack will do.</p>
+
+<pre><code>#define FNAME_SZ 1024 //should really read the docs on your target platform to find the proper size
+unz_file_info pfile_info;
+char szFileName[FNAME_SZ];
+
+//initialize. important just to be sure
+memset(szFileName, 0, FNAME_SZ);
+
+do {
+    int ret = unzGetCurrentFileInfo(zipFile, &amp;pfile_info, szFileName, FNAME_SZ, NULL, 0, NULL, 0);
+    NSLog(@"get info ret %i filename size %lu, filename %s", ret, pfile_info.size_filename, szFileName);
+    // do other stuff here with the filename
+}
+while (unzGoToNextFile(zipFile) == UNZ_OK);
+</code></pre>

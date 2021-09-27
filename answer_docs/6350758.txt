@@ -1,0 +1,28 @@
+<p>In your view model create a property for the CurrentItem/Entity like this:</p>
+
+<pre><code>    private Customer customer;
+    public Customer CurrentCustomer
+    {
+        get { return this.customer; }
+        set
+        {
+            if (this.customer!= value)
+            {
+                this.customer= value;
+                OnPropertyChanged("CurrentCustomer");
+            }
+        }
+    }
+</code></pre>
+
+<p>After you load up all your customers in your view model set CurrentCustomer to something like:</p>
+
+<pre><code>CurrentCustomer = context.Customers.Last();
+</code></pre>
+
+<p>In your View/XAML bind the datagrid's selected <strong>item</strong> to CurrentCustomer like:</p>
+
+<pre><code>SelectedItem="{Binding CurrentCustomer, Mode=TwoWay}"
+</code></pre>
+
+<p>Just reset CurrentCustomer like above after each 5-second refresh.</p>

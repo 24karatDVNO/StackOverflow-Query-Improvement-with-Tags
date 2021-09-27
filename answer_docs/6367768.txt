@@ -1,0 +1,61 @@
+<pre><code>public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.maiin);
+
+
+
+
+        final TabHost tabHost = (TabHost) getTabHost();
+        try {               
+
+            tabHost.addTab(createTab(FIRST_ACTIVITY_NAME.class, "eter",
+                    "eter", R.drawable.tab_icon_events));
+            tabHost.addTab(createTab(SECONDACTIVITY_NAME.class, ".abc", ".abc",
+                    R.drawable.tab_icon_pitchforkfm));
+            tabHost.addTab(createTab(THIRD_ACTIVTY_NAME.class, "xyz", "xyz",
+                    R.drawable.tab_icon_home));
+            tabHost.addTab(createTab(ExtraInfromation.class, "wewr", "wewr",
+                    R.drawable.tab_icon_tv));       
+
+
+            tabHost.setCurrentTab(1);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }    
+        tabHost.getTabWidget().getChildAt(0).getLayoutParams().width = 85;
+
+        tabHost.getTabWidget().getChildAt(1).getLayoutParams().width = 85;
+        tabHost.getTabWidget().getChildAt(2).getLayoutParams().width = 85;
+        tabHost.getTabWidget().getChildAt(3).getLayoutParams().width = 85;
+tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+
+    @Override
+    public void onTabChanged(String tabID) {
+        // TODO Auto-generated method stub
+        if( tabID.equals(".xyz") ){
+
+
+        //DO SOMETHING 
+        }
+
+    }
+});
+    }
+
+
+
+    private TabSpec createTab(final Class&lt;?&gt; intentClass, final String tag,
+            final String title, final int drawable) {
+        final Intent intent = new Intent().setClass(this, intentClass);
+
+        final View tab = LayoutInflater.from(getTabHost().getContext())
+                .inflate(R.layout.tab, null);
+        ((TextView) tab.findViewById(R.id.tab_text)).setText(title);
+        ((ImageView) tab.findViewById(R.id.tab_icon))
+                .setImageResource(drawable);
+
+        return getTabHost().newTabSpec(tag).setIndicator(tab)
+                .setContent(intent);
+
+    }
+</code></pre>

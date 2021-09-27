@@ -1,0 +1,5 @@
+<p>i had the same issue and it drove me crazy as well.</p>
+
+<p>Nobody mentions it in the three20 docs, but you shouldn't use UIViewController's initWithNibName function to add subviews. If you do, a memory warning will release these subviews.</p>
+
+<p>Try to move your code from initWithNibName function to viewDidLoad function. I have noticed that some code need to be kept in the  initWithNibName, such as navigation styles. However, any subviews added to the controller's view should be in the viewDidLoad function.</p>

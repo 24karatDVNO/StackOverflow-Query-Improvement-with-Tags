@@ -1,0 +1,12 @@
+<p>What you want, in essence, is a parser for a number followed by an operator. You could do several things: 1. Write a good simple ad-hoc parser. 2. Write a simple inefficient ad-hoc parser (simpler and slower than 1) with for example regexes. 3. Have a parser written for you by a parser-generator (I googled <a href="http://www.codeproject.com/KB/recipes/TinyPG.aspx" rel="nofollow">http://www.codeproject.com/KB/recipes/TinyPG.aspx</a> for you).</p>
+
+<p>Your regular grammar here is</p>
+
+<pre><code>input := line*
+line := number operator
+number := digit+
+digit := [1-9]
+operator := [your|list|of|valid|operator|literals]
+</code></pre>
+
+<p>A simple solution would be to create a recursive decent parser. A fast solution would be to create a finite state automaton parser. A fast lazy (and thus the best) solution is have a parser-generator create a finite state automaton parser for you.</p>

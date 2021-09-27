@@ -1,0 +1,15 @@
+<p>The C# code above is a if-then structure.  I don't have the code in front of me, but the line is essentially shorthand for:</p>
+
+<pre><code>If (publishIEvent == true)
+{
+   var eventMessage = Bus.CreateInstance&lt;IEvent&gt;()
+}
+else
+{
+   var eventMessage = new EventMessage();
+}
+</code></pre>
+
+<p>Hope this helps solve the issue.</p>
+
+<p>FYI, I realize the code above is not syntactically correct, just trying to illustrate the point of the C# statement.</p>

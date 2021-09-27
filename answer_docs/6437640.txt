@@ -1,0 +1,6 @@
+<p>I only know that I had such similar situations because of wrong using of Libraries with <strong>same name</strong> but with <strong>different architecture</strong>. lets say, I have an Dll (lets call it mydll.dll) for x86 and will import it into my project it will work. If I will do the same with x64 dll (same name mydll.dll) it will work.
+But if I want to include both libraries it is not allowed to only rename it into mydllx86.dll / mydllx64.dll. <strong>I CAN include now both libraries into Visual Studio</strong>. <strong>But when compiling it or restarting visual studio, one of both libraries will be unaccessable anymore</strong>. </p>
+
+<p>In this case I perhaps it helps to have a look into library architecture and used namespaces / Api names.</p>
+
+<p>Regards</p>

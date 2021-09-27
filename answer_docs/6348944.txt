@@ -1,0 +1,7 @@
+<p>I would not depend on the compass output, it's always in question. </p>
+
+<p>What I did was use Gogle maps, get a location fix, draw the point on the map (if you want to draw a line use bearing that would be a better hint I guess) then let the user draw or adjust the line using sattelite view to pinpoint the target. You can then get the new geo-coord and get a fairly accurate bearing ( if that's required ) </p>
+
+<p>I would also suggest using both the network and gps provider, in cities sometimes the network provider is more accurate than the GPS if the glass/metal canyon is preventing it, even a couple of hundred yards can get you close to your position.  </p>
+
+<p>Anyway it's a somewhat manual process but it's more reliable then trying to guess distance and hoping the azimuth is reliable (rarely is) </p>

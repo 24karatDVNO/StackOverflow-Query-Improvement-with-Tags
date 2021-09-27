@@ -1,0 +1,18 @@
+<p>This works:</p>
+
+<pre><code>- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    UIBarButtonItem *theSettingsButton = [[[UIBarButtonItem alloc]
+                                           initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered
+                                           target:self action:@selector(settingsClick)] autorelease];
+
+}
+
+-(void)settingsClick
+{    
+    NSLog(@"Hello");
+}
+</code></pre>
+
+<p>You hadn't closed your viewDidLoad method.</p>

@@ -1,0 +1,10 @@
+<p>With REST based services, you're relying on "raw" HTTP as your transport. A simple "router" could accomplish this by performing these steps:</p>
+
+<ul>
+<li>Capture the HTTP request</li>
+<li>Determine the target service and "redirect" the HTTP request to it</li>
+<li>Capture the HTTP response</li>
+<li>Transmit the contents of the response to the client</li>
+</ul>
+
+<p>The ASP.NET Routing module could be made to work this way but it wasn't intended for that.</p>

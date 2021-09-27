@@ -1,0 +1,11 @@
+<p>If you are not using jQuery then your alternative is pretty hacky mouse event for firefox, e.g.</p>
+
+<pre><code>var evt = document.createEvent("MouseEvents"); 
+evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, 
+false, false, false, 0, null); 
+AnchorFieldObj.dispatchEvent(evt); 
+</code></pre>
+
+<p>as per <a href="http://groups.google.com/group/mozilla.dev.tech.dom/browse_thread/thread/78e15cb742b88adf" rel="nofollow">mozilla.dev.tech.dom</a></p>
+
+<p><strong>However</strong>, another alternative is to call the function handling your button click event. View Source and check what it is, it'll be something like <code>__doPostback('ButtonNext',...);</code> and call it in your ExecuteLink() funct.</p>

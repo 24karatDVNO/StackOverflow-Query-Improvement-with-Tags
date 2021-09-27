@@ -1,0 +1,10 @@
+<p>add an onclick handler to the select that calls a method that simply submits the form.</p>
+
+<p>Use this method to create the select:</p>
+
+<pre><code>collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
+</code></pre>
+
+<p>In the html_options hash put in :onclick => "some_javascript_method()"</p>
+
+<p>in your javascript method have it submit the form.  I would suggest using jQuery to get the form element to call submit on.</p>

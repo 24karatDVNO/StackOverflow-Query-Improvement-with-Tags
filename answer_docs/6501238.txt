@@ -1,0 +1,12 @@
+<p>Return the XML you're building from <code>list_dir()</code>.</p>
+
+<pre><code>function list_dir($dir_handle,$path)
+{
+    ...
+    $xmlString .= list_dir($handle, $dir);
+    ...
+    return $xmlString;
+}
+
+$xmlString = '&lt;XML&gt;' . list_dir($dir_handle,$path) . '&lt;/XML&gt;';
+</code></pre>

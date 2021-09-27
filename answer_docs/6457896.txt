@@ -1,0 +1,25 @@
+<p>Here is my code:</p>
+
+<pre><code>int getNindex(int a[],int n,int N)
+{
+    int min=-99999,i=0,minindex=-1;
+    for(i=0;i&lt;n;i++)
+    {
+        if(a[i]&gt;min &amp;&amp; a[i]&lt;=N)
+        {
+            min=a[i];
+            minindex=i;
+        }
+    }
+    return minindex;
+}
+
+int main()
+{
+    int a[]={5,75,20,50,100};
+    int Nindex=getNindex(a,5,60);
+    if(Nindex&gt;=0)
+        printf("index= %d,N= %d\n",Nindex,a[Nindex]);
+    return 0;
+}
+</code></pre>

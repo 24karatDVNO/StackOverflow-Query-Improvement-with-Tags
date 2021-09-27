@@ -1,0 +1,19 @@
+<p>with the bind method</p>
+
+<pre><code>$('a', '#container').bind('click',function(e){
+    /* stuff */
+});
+</code></pre>
+
+<p>(and unbind, for removing)</p>
+
+<p>Or if you are asynchronously appending new links you can use the live function</p>
+
+<pre><code>$('a', '#container').live('click',function(e){
+    /* stuff */
+});
+</code></pre>
+
+<p>(opposite of live, is die( event ) )</p>
+
+<p>Clicking on a link, child of #container will call the anonymous function within the arguments of bind/live, You can then check which link was clicked by checking for its index, or class, or anything - and run different code.</p>

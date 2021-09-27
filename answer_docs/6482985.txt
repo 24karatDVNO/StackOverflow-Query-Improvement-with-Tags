@@ -1,0 +1,7 @@
+<p>The C99 standard says explicitly (6.5, p2)</p>
+
+<blockquote>
+  <p>Between the previous and next sequence point an object shall have its stored value modified at most once by the evaluation of an expression. </p>
+</blockquote>
+
+<p>The expressions <code>i = ++i;</code> and <code>i = i++;</code> both update <code>i</code> twice, which is not allowed.</p>

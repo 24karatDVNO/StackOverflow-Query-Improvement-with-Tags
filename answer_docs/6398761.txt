@@ -1,0 +1,15 @@
+<p>The problem is that <a href="http://api.jquery.com/jQuery.post/" rel="nofollow">$.post</a> is expecting a function to call on success as the third parameter, but you are passing "html".</p>
+
+<p>Try replacing</p>
+
+<pre><code>$.post("addForm.php",{idEl:id},"html");
+</code></pre>
+
+<p>with </p>
+
+<pre><code>$.post("addForm.php", {idEl:id}, function(d) {
+    $('#vrWrapper').append( d );
+}); );
+</code></pre>
+
+<p>As the jQuery documentation points out, "most implementations will specify a success handler;" in their example, they "fetch the requested HTML snippet and insert it on the page," which is exactly what you are trying to do.</p>

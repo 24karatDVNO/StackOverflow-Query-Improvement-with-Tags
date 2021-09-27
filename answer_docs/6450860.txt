@@ -1,0 +1,6 @@
+<p>IMHO, the cleanest mechanism would be to write a custom PHP session handler that:</p>
+
+<ul>
+<li>Stores data to a database (rather than files)</li>
+<li>Serializes data to a format known by Ruby, possibly JSON</li>
+</ul>

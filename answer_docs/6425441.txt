@@ -1,0 +1,16 @@
+<p>I would made as follows:</p>
+
+<pre><code>    void Traverse(Type type, ISet&lt;Type&gt; marks, ICollection&lt;PropertyInfo&gt; result)
+    {
+        if (marks.Contains(type)) return; else marks.Add(type);
+        foreach (var propertyInfo in type.GetProperties())
+            if (propertyInfo.PropertyType.IsPrimitive) result.Add(propertyInfo);
+            else Traverse(propertyInfo.PropertyType, marks, result);
+    }
+</code></pre>
+
+<p>and </p>
+
+<pre><code>var props = new List&lt;PropertyInfo&gt;();
+Traverse(yourRootType, new HashSet&lt;Type&gt;(), props);
+</code></pre>

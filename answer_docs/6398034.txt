@@ -1,0 +1,49 @@
+<p>The code you have at the moment for the function <code>add</code> will get you a stack overflow :) Because you do the recursive call to <code>add(m)</code> before modifying the vector <code>m</code>. So <code>add</code> gets called always with an unmodified vector and the base case never gets hit.</p>
+
+<p>I don't know if I catched what you want to do, but what about:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;vector&gt;
+
+void add(int i, std::string s, int sum)
+{
+    if (sum == 100)
+    {
+      std::cout &lt;&lt; s &lt;&lt; "=100" &lt;&lt; std::endl;
+      return;
+    }
+    if (sum &gt; 100)
+    {
+       return;
+    }
+    if (sum &lt; 100)
+    {
+      std::ostringstream oss;
+      oss &lt;&lt; s &lt;&lt; "+" &lt;&lt; i;
+      add(i, oss.str(), sum+i);
+    }
+}
+
+int main()
+{
+  std::vector&lt;int&gt; m;
+
+  m.resize(5);
+
+  m[0]=2;
+  m[1]=5;
+  m[2]=10;
+  m[3]=20;
+  m[4]=50;
+
+  // This loop will initiate m.size lines of recursive calls
+  // one for each element of the array
+  for (size_t i = 0; i &lt; m.size(); i++)
+  {
+    add(m[i], "", 0);
+  }
+
+  return 0;
+}
+</code></pre>

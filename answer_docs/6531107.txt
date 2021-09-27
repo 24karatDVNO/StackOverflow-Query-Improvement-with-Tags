@@ -1,0 +1,21 @@
+<p>I encountered the same problem. My solution was the following:</p>
+
+<ol>
+<li><p>Define a method in your helper:</p>
+
+<pre><code>def wp_options_text_field(profile, wp_options, name)
+  wp_options.text_field name, :value =&gt; profile.wp_options[name]
+end
+</code></pre></li>
+<li><p>In your view:</p>
+
+<pre><code>&lt;%= form_for(@profile, :remote =&gt; true) do |f| %&gt;
+...
+&lt;%= f.fields_for :wp_options do |wp_options| %&gt;
+  &lt;%= wp_options_text_field :wp_name  %&gt;
+&lt;% end %&gt;
+...
+</code></pre></li>
+</ol>
+
+<p>The only problem here is that you'll need to define methods for each helper method you'll use. In my case I had only 2 methods used and it wasn't painful.</p>

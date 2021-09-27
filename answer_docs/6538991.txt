@@ -1,0 +1,9 @@
+<p>I agree with the comment that some code would help -- it's hard to understand exactly what the problem is. Nevertheless, I'll point out that the documentation for NSManagedObject's <code>-objectID</code> says:</p>
+
+<blockquote>
+  <p><strong>Important:</strong>  If the receiver has not yet been saved, the object ID is a
+  temporary value that will change when
+  the object is saved.</p>
+</blockquote>
+
+<p>So, if you're creating an object, storing it's objectID, saving the context, and then trying to find the object with the objectID that you stored, you're probably going to fail because the temporary objectID was replaced with a permanent one when the context was saved.</p>

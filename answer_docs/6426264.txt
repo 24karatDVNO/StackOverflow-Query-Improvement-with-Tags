@@ -1,0 +1,8 @@
+<pre><code>jQuery(function() {
+    jQuery('#widthKeeper').click(function() {
+           var divWidth = $("table tr td:firstchild").css(width);
+           jQuery(this).css('position', 'absolute');
+           jQuery("table tr td:firstchild").css('width',divWidth);
+    });
+});
+</code></pre>

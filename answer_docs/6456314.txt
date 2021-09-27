@@ -1,0 +1,26 @@
+<p>I think something like this also can work:</p>
+
+<pre><code>&lt;div id="image-holder"&gt;
+    &lt;img src="http://www.image.com/image.jpg"/&gt;
+&lt;/div&gt;
+
+
+var srcImage   = 'http://www.image.com/image.jpg';
+var reloadTime = 4000;
+var holder = document.id('image-holder');
+
+var imageReload = function(){
+    holder.empty();
+    var newImage =  new Element('img',{
+            id:'image',
+            src:srcImage ,
+            alt:'image new'
+        }).inject(holder);    
+}
+
+var start = function() {
+    interval = imageReload.periodical(reloadTime);
+};
+
+start();
+</code></pre>

@@ -1,0 +1,5 @@
+<p>You have to mock HttpContext in your unit tests. Here's how you can do it with Moq framework : <a href="https://stackoverflow.com/questions/1452418/how-do-i-mock-the-httpcontext-in-asp-net-mvc-using-moq">How do I mock the HttpContext in ASP.NET MVC using Moq?</a></p>
+
+<p>But you can also use <a href="http://mvccontrib.codeplex.com" rel="nofollow noreferrer">MvcContrib</a> TestControllerBuilder to do it easily. You have some examples here : <a href="http://mvccontrib.codeplex.com/wikipage?title=TestHelper&amp;referringTitle=Documentation" rel="nofollow noreferrer">http://mvccontrib.codeplex.com/wikipage?title=TestHelper&amp;referringTitle=Documentation</a></p>
+
+<p>An advice for the future, will be also to avoid as possible to depend on HttpContext in your controllers actions.</p>

@@ -1,0 +1,11 @@
+<pre><code>select sum(select top 4 Value from [table] order by Value Desc)
+</code></pre>
+
+<p>or, perhaps</p>
+
+<pre><code>select sum(value)
+from [Table]
+where Value &gt;= (Max(Value) - 4)
+</code></pre>
+
+<p>I haven't actually tried either of those- and can't at the moment, but they should get you pretty close.</p>

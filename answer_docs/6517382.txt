@@ -1,0 +1,6 @@
+<p>Your <code>ln</code> command is creating a symbolic link; as specified from <code>/usr/bin/gcc</code> to a file called <code>ygcc</code> in your current directory.  For this link to be useful:</p>
+
+<ol>
+<li><p><code>gcc</code> needs to be at <code>/usr/bin/gcc</code>; if it has a different location you'll need to change that part of the command to an appropriate path.</p></li>
+<li><p>When you compile the kernel you need to have the <code>ygcc</code> file you have created on your path.  Make sure it is on your <code>PATH</code> and/or make the link in a directory which is on your path.</p></li>
+</ol>

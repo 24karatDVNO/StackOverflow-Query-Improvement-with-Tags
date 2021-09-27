@@ -1,0 +1,11 @@
+<pre><code>&lt;?php
+$value = "Hello!";
+?&gt;
+
+&lt;form name="settings" action=""&gt;
+   &lt;input name="color" value="" /&gt;
+&lt;/form&gt;  
+&lt;script&gt;
+document.forms["settings"].color.value = "&lt;?php echo $value;?&gt;";
+&lt;/script&gt;
+</code></pre>

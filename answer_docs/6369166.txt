@@ -1,0 +1,15 @@
+<p>I found a (hacky) solution:</p>
+
+<p>I updated my navigation.xml to use <code>{br}</code> tokens wherever a <code>&lt;br/&gt;</code> tag is required, and then amended the base <code>Zend/View/Helper/Navigation/Menu.php</code> file as follows:</p>
+
+<p>within <code>htmlify</code> function, changed</p>
+
+<pre><code>$this-&gt;view-&gt;escape($label)
+</code></pre>
+
+<p>to</p>
+
+<pre><code>str_replace("{br}", "&lt;br/&gt;", $label)
+</code></pre>
+
+<p>I could (and probably will) override the Zend Library Menu View Helper with my own at some point, but this at least cover it for now.</p>

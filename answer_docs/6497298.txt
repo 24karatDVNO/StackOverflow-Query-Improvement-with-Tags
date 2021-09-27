@@ -1,0 +1,30 @@
+<p>Let P be your model view projection matrix, and c be the center of the quad you are trying to draw.  You want to find a pair of vectors u, v that determine the edges of your quad,</p>
+
+<pre><code>Q = [ c-u-v, c-u+v, c-u-v, c+u-v ]
+</code></pre>
+
+<p>Such that u is pointing directly down in clip coordinates, while v is pointing to the right:</p>
+
+<pre><code>P(u) = (0, s, 0, 0)
+P(v) = (s, 0, 0, 0)
+</code></pre>
+
+<p>Where s is the desired scale of your quad.  Suppose that P is written in block diagonal form,</p>
+
+<pre><code>    [   M   | t ]
+P = [-----------]
+    [ 0 0 1 | 0 ]
+</code></pre>
+
+<p>Then let m0, m1 be the first two rows of M.  Now consider the equation we got for P(u), substituting and simplifying, we get:</p>
+
+<pre><code>              [ 0 ]
+P(u) ~&gt; M u = [ s ]
+              [ 0 ]
+</code></pre>
+
+<p>Which leads to the following solution for u, v:</p>
+
+<pre><code>u = s * m1 / |m1|^2
+v = s * m0 / |m0|^2
+</code></pre>

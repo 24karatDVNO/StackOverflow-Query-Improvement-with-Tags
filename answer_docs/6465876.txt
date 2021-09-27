@@ -1,0 +1,20 @@
+<p>Even if your question is not phrased well, </p>
+
+<pre><code>// set myCount somewhere as an INT with value 0
+// int myCount = 0;
+
+-(void)callA
+{
+    if (myCount &lt; 3){
+        [self performSelector:@selector(callB) withObject:nil afterDelay:1.0];
+    }
+}
+
+
+-(void)callB
+{
+    myCount +=1;
+    [self performSelector:@selector(callA) withObject:nil afterDelay:1.0];
+
+}
+</code></pre>

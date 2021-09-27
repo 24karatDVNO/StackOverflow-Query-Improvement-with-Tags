@@ -1,0 +1,24 @@
+<p>In case anyone else comes across this question, I finally stumbled across this article, indicating there's a bug when you have consecutive optional URL parameters.</p>
+
+<p><a href="http://haacked.com/archive/2011/02/20/routing-regression-with-two-consecutive-optional-url-parameters.aspx" rel="nofollow">http://haacked.com/archive/2011/02/20/routing-regression-with-two-consecutive-optional-url-parameters.aspx</a></p>
+
+<p>I won't claim I fully understand the explanation, but creating additional routes all pointing back to the original controller seems to have fixed the problem:</p>
+
+<pre><code>        routes.MapRoute(
+            "PartListRoute",
+            "Products/PartList/{Manufacturer}",
+            new { controller = "PartList", action = "Index", Manufacturer = UrlParameter.Optional }
+        );
+
+        routes.MapRoute(
+            "PartListRoute2",
+            "Products/PartList/{Manufacturer}/{Product}",
+            new { controller = "PartList", action = "Index", Manufacturer = UrlParameter.Optional, Product = UrlParameter.Optional }
+        );
+
+        routes.MapRoute(
+            "PartListRoute3",
+            "Products/PartList/{Manufacturer}/{Product}/{PartNumber}",
+            new { controller = "PartList", action = "Index", Manufacturer = UrlParameter.Optional, Product = UrlParameter.Optional, PartNumber = "" }
+        );
+</code></pre>

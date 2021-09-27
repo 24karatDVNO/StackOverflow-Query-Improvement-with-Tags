@@ -1,0 +1,20 @@
+<p>check the following code and make sure you understand that <code>n</code> is each element, using this instead a each function does not refer to the current element if that makes sense.</p>
+
+<pre><code> this.each(function(i,n) {
+        var parentPaddingTop = parseInt($(n).parent().css('paddingTop'));
+        $(n).data({
+            'parentPaddingTop': parentPaddingTop,
+            'startOffset': $(n).parent().offset().top
+        }).css({
+            position: 'absolute'
+        });
+        if (opts.lockBottom) {
+            var bottomPos = $(n).parent().height() - $(n).height() + parentPaddingTop;
+            if (bottomPos &lt; 0) {
+                bottomPos = 0;
+            }
+            $(n).data('bottomPos', bottomPos);
+        }
+        elements.push($(n));
+    });
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Its main uses would be to tell elevation changes, however i am sure that there are some intelligent ways to use this sensor to do multiple other tasks. </p>
+
+<p>As for getting the variables out I am pretty sure it works as the other android sensors do. You register a sensor event listener and then in your on sensor changed you get the values out of event.values.clone() eg.</p>
+
+<pre><code>switch (event.sensor.getType())
+        {
+        case Sensor.TYPE_PRESSURE:
+            m_fPressureVal = event.values.clone();
+            break;
+                     }
+</code></pre>

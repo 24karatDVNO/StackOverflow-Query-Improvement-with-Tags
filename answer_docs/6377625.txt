@@ -1,0 +1,16 @@
+<p>try:</p>
+
+<pre><code>$(document).ready( function() {
+
+    $("head").append("&lt;link&gt;");
+    var css = $("head").children(":last");
+    css.attr({
+      rel:  "stylesheet",
+      type: "text/css",
+      href: "test.css"
+    });
+
+});
+</code></pre>
+
+<p>example is on: <a href="http://jsfiddle.net/XjAu4/" rel="nofollow">http://jsfiddle.net/XjAu4/</a></p>

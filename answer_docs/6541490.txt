@@ -1,0 +1,13 @@
+<p><strong>Edit</strong> Sry, I misread and thought the object database might have been corrupt/incomplete.</p>
+
+<hr>
+
+<p>don't. However, if you insist you might get somewhere with <code>git fsck</code> or if you're really desperate for bandwidth: <code>rsync</code></p>
+
+<pre><code>rsync -hxPavilyzH --delete user@remote:/repo/origin/.git/ brokenclone/.git/
+</code></pre>
+
+<p>To find out what speed up / bandwidth optimization to expect:</p>
+
+<pre><code>rsync -hxPavilyzH --delete user@remote:/repo/origin/.git/ brokenclone/.git/ -n --stats
+</code></pre>

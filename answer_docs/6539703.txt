@@ -1,0 +1,36 @@
+<p>This is not an answer, but a suggestion to enhance performance, Answer is already given by uvesten.</p>
+
+<p>sendSynchronousRequest is not a good way to implement, it will not leave control until request is completed, so if it takes time to load, app will not respond to touches.</p>
+
+<p>Instead, you can try</p>
+
+<pre><code>NSString *urlString = [NSString stringWithFormat:@"http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=%@&amp;output=json&amp;query=%@&amp;results=30", YahooAppId, text];
+NSLog(@"URL zaprosa: %@",urlString);
+
+//Create NSURL string from formatted string
+NSURL *url = [NSURL URLWithString:urlString];
+
+
+NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+[[NSURLConnection alloc] initWithRequest:request delegate:self];
+</code></pre>
+
+<p>and implement delegate methods</p>
+
+<pre><code>- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    expectedSize = [response expectedContentLength];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    if (objData==nil) { 
+        objData = [[NSMutableData alloc] init]; 
+    }
+    [objData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection{
+}
+</code></pre>

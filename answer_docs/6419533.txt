@@ -1,0 +1,5 @@
+<p>I think IIS is throwing the 404 before control gets to your application. I suspect it's matching the ExpressionlessURLHandler for the path <code>*.</code>.</p>
+
+<p>If you are brave, I suppose you could change the handler for that path to be asp, but I suspect there are some security implications to allowing that path through to asp.</p>
+
+<p>Perhaps use a different character? </p>

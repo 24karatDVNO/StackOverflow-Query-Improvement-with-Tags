@@ -1,0 +1,9 @@
+<p>in fact it's very easy :D</p>
+
+<pre><code>context = xmlDoc.xpathNewContext()
+extractedContent = context.xpathEval( normalize-space( translate( /html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/form[1]/div[2]/h3[1] , '&amp;#160;' , ' ' ) )
+context.xpathFreeContext()
+</code></pre>
+
+<p>I thought normalize-space and translate could be accessed only from an XSLT engine
+I was wrong</p>

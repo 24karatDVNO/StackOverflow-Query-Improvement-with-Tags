@@ -1,0 +1,12 @@
+<p>I don't know SqlLite, but I hope this will work anyway. It doesn't use anything fancy.</p>
+
+<pre><code>Select t1.* 
+From Table1 t1
+Left join Table1 t2
+On t1.FullName = t2.FullName
+And t1.DateInsertedToDatabase = t2.DateInsertedToDatabase + 1
+Where t1.DateInsertedToDatabase = (select max(DateInsertedToDatabase) from Table1)
+And (t1.DateModified &lt;&gt; t2.DateModified or t2.FullName is null)
+</code></pre>
+
+<p>Joining on DateInsertedToDatabase + 1 will join with the previous record. Then you filter for the highest DateInsertedToDatabase and include either records that don't have a match (they are new) or where the modified dates don't match. </p>

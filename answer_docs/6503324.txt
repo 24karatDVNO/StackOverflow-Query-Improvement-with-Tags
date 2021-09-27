@@ -1,0 +1,33 @@
+<p>get the string length:</p>
+
+<pre><code>$string_length = strlen($string);//getting the length of the string your working with
+$random_position = 2;//generate random position
+</code></pre>
+
+<p>generate the "random" character:</p>
+
+<pre><code>$characters = "abcd..xyz012...89-_";//obviously instead of the ... fill in all the characters - i was just lazy.
+</code></pre>
+
+<p>getting a random character out of the character string:</p>
+
+<pre><code>$random_char = substr($characters, rand(0,strlen($characters)), 1);//if you know the length of $characters you can replace the strlen with the actual length
+</code></pre>
+
+<p>breaking the string into 2 parts:</p>
+
+<pre><code>$first_part = substr($string, 0, $random_position);
+$second_part = substr($string, $random_position, $string_length);
+</code></pre>
+
+<p>adding the random character:</p>
+
+<pre><code>$first_part .=  $random_char;
+</code></pre>
+
+<p>combining the two back together:</p>
+
+<pre><code>$new_string = $first_part.$second_part;
+</code></pre>
+
+<p>this may not be the best way, but I think it should do it...</p>

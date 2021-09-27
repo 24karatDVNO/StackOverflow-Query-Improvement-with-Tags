@@ -1,0 +1,6 @@
+<p>Since these tags cannot be nested, parsing is not necessary.</p>
+
+<pre><code>#&lt;(meta|title|script|link)(?: .*?)?(?:/&gt;|&gt;(.*?)&lt;(?:/\1)&gt;)#is
+</code></pre>
+
+<p>If you are using this with your function, you will have to write $tag_name instead "meta|title|script|link".</p>

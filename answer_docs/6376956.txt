@@ -1,0 +1,21 @@
+<p>You have to compare the image's aspect ratio with your viewport's before deciding whether to resize by width or height.</p>
+
+<p>If your image display area is <code>viewport_w</code> x <code>viewport_h</code> and uploaded image is <code>w</code> x <code>h</code>, then (pseudo-code):</p>
+
+<pre><code>viewport_aspect_ratio = viewport_w / viewport_h;
+image_aspect_ratio = w / h;
+
+if (image_aspect_ratio &gt; viewport_aspect_ratio) {
+    // image aspect ratio is wider than our viewport
+    // resize to fit viewport width
+    new_w = viewport_w;
+    new_h = image_h * viewport_w / image_w;
+} else {
+    // image aspect ratio is taller than our viewport
+    // resize to fit viewport height
+    new_w = image_w * viewport_h / image_h;
+    new_h = viewport_h;
+}
+
+// resize image to new_w x new_h
+</code></pre>

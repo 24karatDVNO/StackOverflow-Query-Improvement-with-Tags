@@ -1,0 +1,12 @@
+<p>As @SLaks stated, .Htaccess won't work.</p>
+
+<p>Even if you did add <code>?1</code> on with htaccess, your browser would then cache that too.</p>
+
+<p>If the JavaScript/Css file is cached there should be no problem with it as the browser would just load the cached files.</p>
+
+<p>One way to get round it would be to do something like:</p>
+
+<pre><code>&lt;script type="text/javascript" src="file.js?"&lt;php echo date("ymdhis");?&gt; /&gt;
+</code></pre>
+
+<p>without the need for .Htaccess</p>

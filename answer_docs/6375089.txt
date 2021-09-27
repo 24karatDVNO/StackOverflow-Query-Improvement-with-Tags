@@ -1,0 +1,6 @@
+<p>a regular expression something like this should do the trick:</p>
+
+<pre><code>/.\/(.+?)\/.*?\/.*$/
+</code></pre>
+
+<p>(note I'm using lazy searches (<code>+?</code> and <code>*?</code>) so that it doesn't includes slashes where we don't want it to)</p>

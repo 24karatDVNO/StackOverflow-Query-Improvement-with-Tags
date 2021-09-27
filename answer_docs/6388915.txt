@@ -1,0 +1,67 @@
+<p>Here are two solutions. The first is longer, but doesn't create a temporary array, so it saves memory. The second probably runs faster, but uses more memory:</p>
+
+<pre><code>function swap1(array &amp;$a, $key1, $key2)
+{
+  if (!array_key_exists($key1, $a) || !array_key_exists($key2, $a) || $key1 == $key2) return false;
+
+  $after = array();
+  while (list($key, $val) = each($a))
+  {
+    if ($key1 == $key)
+    {
+      break;
+    }
+    else if ($key2 == $key)
+    {
+      $tmp = $key1;
+      $key1 = $key2;
+      $key2 = $tmp;
+      break;
+    }
+  }
+
+  $val1 = $a[$key1];
+  $val2 = $a[$key2];
+
+  while (list($key, $val) = each($a))
+  {
+    if ($key == $key2)
+      $after[$key1] = $val1;
+    else
+      $after[$key] = $val;
+    unset($a[$key]);
+  }
+
+  unset($a[$key1]);
+  $a[$key2] = $val2;
+
+  while (list($key, $val) = each($after))
+  {
+    $a[$key] = $val;
+    unset($after[$key]);
+  }
+
+  return true;
+}
+
+function swap2(array &amp;$a, $key1, $key2)
+{    
+  if (!array_key_exists($key1, $a) || !array_key_exists($key2, $a) || $key1 == $key2) return false;
+
+  $swapped = array();
+
+  foreach ($a as $key =&gt; $val)
+  {
+    if ($key == $key1)
+      $swapped[$key2] = $a[$key2];
+    else if ($key == $key2)
+      $swapped[$key1] = $a[$key1];
+    else
+      $swapped[$key] = $val;
+  }
+
+  $a = $swapped;
+
+  return true;
+}
+</code></pre>

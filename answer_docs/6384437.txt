@@ -1,0 +1,1 @@
+<p>Just checking the obvious: COM uses <code>BSTR</code> everywhere, which contain an <code>WCHAR[]</code>. Are your applications using <code>WCHAR</code>, or are you marshalling between <code>char</code> and <code>WCHAR</code> on every call?</p>

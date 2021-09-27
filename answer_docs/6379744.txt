@@ -1,0 +1,9 @@
+<p>Change this</p>
+
+<p><code>$database-&gt;database_query("UPDATE se_users SET user_div='{$user-&gt;user_info['user_div']};</code></p>
+
+<p>to this</p>
+
+<p><code>$database-&gt;database_query('UPDATE se_users SET user_div='.$user-&gt;user_info['user_div'].'');</code></p>
+
+<p>and try again.</p>

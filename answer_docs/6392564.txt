@@ -1,0 +1,6 @@
+<p>Add this to <code>app/models/user.rb</code></p>
+
+<pre><code>def self.find_for_database_authentication(conditions={})
+  self.where("username = ?", conditions[:username]).limit(1).first 
+end
+</code></pre>

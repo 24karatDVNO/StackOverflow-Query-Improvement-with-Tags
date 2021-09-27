@@ -1,0 +1,11 @@
+<p>This should work. Be sure that you run this on a webserver, browsers may not allow setting local cookies(e.g. Chrome)</p>
+
+<p>But however, if you really like to check the cookie-value and not only if the cookie exists, you can't do it that way.
+Every cookie-value will be recognized as a boolean <code>true</code> (except <code>null</code> and a empty string)</p>
+
+<p>Use </p>
+
+<pre><code>if ($.cookie('mycookie')==='true') 
+</code></pre>
+
+<p>instead.</p>

@@ -1,0 +1,3 @@
+<p>You could use macros. For example you can make different list node types, with differently typed <code>data</code> members and keep sure all have a <code>next</code> and <code>prev</code> member. Then just use macros for all the list operations (like add, insert, remove), as these don't care about the type stored.</p>
+
+<p>Of course macros aren't that type safe as templates and are considered "bad style". But hey we're in C, who fears macros in C? And <code>void*</code> isn't that type safe, too.</p>

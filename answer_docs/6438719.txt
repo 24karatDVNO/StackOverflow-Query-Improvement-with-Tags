@@ -1,0 +1,16 @@
+<p>You need to apply size changes in <strong>viewWillAppear</strong> too. Along with it reload the table.  </p>
+
+<pre><code>UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+
+
+    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+
+        [Table reloadData];
+        // Set coordinates of views to have to change in landscape mode
+    }
+    else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        [Table reloadData];
+        // Set coordinates of views to have to change in potrait mode
+
+    }  
+</code></pre>

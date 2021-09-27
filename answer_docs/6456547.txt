@@ -1,0 +1,3 @@
+<p>Basically you should be calling notifyDataSetChanged aftet all changes. And you are calling invalidate. This thread seems to have good explanation. <a href="https://stackoverflow.com/questions/6380051/android-listview-adapter-notifydatasetinvalidated-vs-notifydatasetchanged">Android ListView Adapter notifyDataSetInvalidated() vs notifyDataSetChanged()</a></p>
+
+<p>Also, I don't think you need notifyDataSetChanged before <code>clear</code>.</p>

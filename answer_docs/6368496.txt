@@ -1,0 +1,11 @@
+<p>There is probably an issue with the selector. Yours is</p>
+
+<pre><code>$("a[href=#entity]")
+</code></pre>
+
+<p>I assume you need to add quotes, like this</p>
+
+<pre><code>$("a[href='#entity']")
+</code></pre>
+
+<p>See the jQuery API at <a href="http://api.jquery.com/attribute-equals-selector/" rel="nofollow">http://api.jquery.com/attribute-equals-selector/</a></p>

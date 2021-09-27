@@ -1,0 +1,5 @@
+<p>You should be able to get the days using <a href="http://php.net/manual/en/function.strtotime.php" rel="nofollow"><code>strtotime()</code></a>. It accepts arguments like <code>next Tuesday</code> and also parses <code>2011-06-15</code> into a correct timestamp. And yes, you need one (or more) loop(s).</p>
+
+<p>This should be sufficient to point you in the right direction.</p>
+
+<p>Ok, you updated your question while I was writing my answer. You can't assume that a day always has 86400 seconds. When DST starts or ends your assumption will be incorrect.</p>

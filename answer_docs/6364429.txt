@@ -1,0 +1,5 @@
+<p>eek - you really don't want an applet or web start app connecting directly to your DB server! </p>
+
+<p>If that is really a requirement, the first thing you'll want to do is ensure that the connection to the database is encrypted (otherwise your user, when running your app in an internet cafe, is broadcasting credentials all over the place): <a href="http://technet.microsoft.com/en-us/library/ms189067.aspx" rel="nofollow">http://technet.microsoft.com/en-us/library/ms189067.aspx</a></p>
+
+<p>Rather than starting from "everything" (admin user) and restricting things, you'll want to work the other way around: determine what the user really needs access to, and give them access to that only. For simple data access, this may be as simple as making the user part of the <code>db_datareader</code> and <code>db_datawriter</code> groups, or as complex as explicitly granting the appropriate permission on each of the objects the user (or, hopefully, role)  needs access to.</p>

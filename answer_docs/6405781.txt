@@ -1,0 +1,31 @@
+<p>First of all, you should describe what <strong>doesn't work as I aspected</strong> means.</p>
+
+<p>I think the value <em>inside</em> the <code>&lt;meter&gt;</code> tag not changing is the problem.</p>
+
+<p>My solution is this, using <strong>innerHTML</strong>:</p>
+
+<pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Meter&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+function f(a)
+{
+    //changing the value
+    document.getElementById("prog").value = document.getElementById("prog").value + a;
+    //(next two lines) changing the innerHTML, which is the inner HTML of an element.
+    var t = parseInt(document.getElementById("prog").innerHTML,10);
+    //This makes t+a between 0 and 100.
+    document.getElementById("prog").innerHTML = t+a&lt;100?t+a&gt;0?t+a:0:100;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form title="Meter"&gt;
+&lt;button type="button" onClick="f(-10);" &gt;Subtract&lt;/button&gt;
+&lt;button type="button" onClick="f(10);" &gt;Add&lt;/button&gt;
+&lt;meter  min="0" max="100" value="50" id="prog"&gt;50&lt;/meter&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

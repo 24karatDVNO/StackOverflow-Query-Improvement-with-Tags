@@ -1,0 +1,10 @@
+<p>One option is if you know the desired height of the parent, you can specify it in the parent div.  For example, in your case:  </p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;div style="position:relative;border:1px solid red;width:500px;overflow:visible; height: 0px;"&gt;
+&lt;div style="height:200px;border:1px solid orange;float:right;"&gt;test&lt;/div&gt;
+&lt;/div&gt;
+stuff
+</code></pre>
+
+<p><a href="http://jsfiddle.net/briguy37/6JUaK/" rel="nofollow">Here</a>'s a fiddle to test.</p>

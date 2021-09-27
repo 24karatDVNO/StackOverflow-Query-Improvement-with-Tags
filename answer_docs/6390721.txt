@@ -1,0 +1,26 @@
+<p>NULL comparisons are always false. And empty string or single space is a value which is not NULL.</p>
+
+<p>However, GROUP BY will recognise it and count it.</p>
+
+<p>Try these</p>
+
+<pre><code>select count(*) from id_rec
+where correct_addr &lt;&gt; 'N' or correct_addr IS NULL
+
+select count(*) from id_rec
+where COALESCE(correct_addr, 'X') &lt;&gt; 'N' 
+
+
+select count(*) from id_rec
+where COALESCE(correct_addr, ' ') in (' ','Y');
+</code></pre>
+
+<p>Also, COUNT(column) will ignore NULLS so some more to try</p>
+
+<pre><code>select count(correct_addr), COUNT(*) from id_rec GROUP BY correct_addr
+
+select count(correct_addr), COUNT(*) from id_rec
+where correct_addr &lt;&gt; 'N' or correct_addr IS NULL
+</code></pre>
+
+<p>Note: char(1) will always pad to a space</p>

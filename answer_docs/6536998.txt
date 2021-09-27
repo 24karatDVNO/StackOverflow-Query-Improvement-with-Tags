@@ -1,0 +1,3 @@
+<p>According to my reading of RFC 2396, <strong>no</strong>.  The <code>?</code> is a reserved character and serves only to delimit the query segment.  The <code>?</code> is not allowed in either the path or the query segment.</p>
+
+<p>In your example, the first <code>?</code> marks the beginning of the query segment.  The second <code>?</code> is inside the query segment, and is disallowed.</p>

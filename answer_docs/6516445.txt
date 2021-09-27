@@ -1,0 +1,26 @@
+<p>I got that the problem was with the Page_UnLoad event: it was invoked each time the next/previous page button in Cristal Report was clicked, disposing the Viewer and causing the Object Reference exception.</p>
+
+<p>I added a condition to check if a PostBack happens:</p>
+
+<pre><code>    protected void Page_UnLoad (object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            if (_crystalReportViewer != null)
+                _crystalReportViewer.Dispose();
+            _crystalReportViewer = null;
+
+            if (_myReportDocument != null)
+            {
+                _myReportDocument.Close();
+                _myReportDocument.Dispose();
+            }
+            _myReportDocument = null;
+
+            GC.Collect();
+        }           
+    }
+</code></pre>
+
+<p>Unfortunately a small problem still persist: on the TEST machine, everything works fine but once deployed on DEV machine (they are 2 different servers with apparently same settings), it is possible to view just the first 2 records of the report, then by clicking on "Next" button of the CR Viewer nothing happens. All other features like "Go TO" and "Print" from CR work fine.
+It is quite strange since the database settings are correct, the report and code are the same...any idea?</p>

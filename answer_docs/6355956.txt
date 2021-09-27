@@ -1,0 +1,2 @@
+<p>Following further testing and use of some different calls in the Libavformat library, I've found that as long as I set the bit_rate of the output context to the same as the input context then the same quality can be maintained.
+This isn't so handy when transcoding from a high bandwidth format like MPEG2, down to an H264 stream since the output bandwidth is probably much greater than it needs to be but it's a solution so that I don't lose quality from the transcoded file.</p>

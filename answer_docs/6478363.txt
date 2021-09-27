@@ -1,0 +1,3 @@
+<p>Each time a GET request comes to your servlet, the doGet method is called, and the <code>new EmployeeDTO()</code> statement is executed.</p>
+
+<p>So if 100 requests are done, 100 instances of EmployeeDTO are created. When the request ends, unless you have stored the DTO somewhere where it can still be reached, the DTO is eligible to garbage collection.</p>

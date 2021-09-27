@@ -1,0 +1,6 @@
+<p>You have two solutions:</p>
+
+<ul>
+<li><p>A pretty solution is what Trass3r already mentioned in his comment: Treat <code>immmutable(Vector)</code> as its own data type (it is), and call its constructor.</p></li>
+<li><p>A somewhat uglier solution is to use <code>assumeUnique()</code> on the object you want to cast. I think you might need to import a library (<code>std.exception</code>, if I'm not wrong).</p></li>
+</ul>

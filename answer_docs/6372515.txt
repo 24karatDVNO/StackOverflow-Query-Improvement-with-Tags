@@ -1,0 +1,14 @@
+<p>I'll assume that the possible different data types are known (otherwise how can the server possibly handle them). Then you could use a union, e.g. something like:</p>
+
+<pre><code>union dataU{
+    struct datatype1S datatype1;
+    struct datatype2S datatype2;
+    ...
+}
+struct messageS {
+    int typeId;
+    union dataU data;
+}
+</code></pre>
+
+<p>Then use the typeId to determine what member of the union to look at.</p>

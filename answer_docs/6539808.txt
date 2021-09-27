@@ -1,0 +1,7 @@
+<p>I ended up just using a Regex to remove the lines I didn't want:</p>
+
+<pre><code>Trace = Regex.Replace(Trace
+                      , "^.*" + FilterPattern + ".*$\n"
+                      , string.Empty
+                      , RegexOptions.Multiline | RegexOptions.IgnoreCase);
+</code></pre>

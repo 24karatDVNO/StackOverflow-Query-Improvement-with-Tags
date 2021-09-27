@@ -1,0 +1,7 @@
+<p>How about this?</p>
+
+<pre><code>NSArray *temp = [[appDelegate teamRoster] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+[appDelegate setTeamRoster:temp];
+</code></pre>
+
+<p>If your app delegate has a teamRoster set up as a property, the setter will let you replace the old array without having to empty it and refill it.</p>

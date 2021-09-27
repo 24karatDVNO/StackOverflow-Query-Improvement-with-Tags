@@ -1,0 +1,14 @@
+<p>This appears the be the...<br>
+ &nbsp; &nbsp; <strong>hexadecimal representation for...</strong><br>
+ &nbsp; &nbsp; &nbsp; &nbsp;  - <strong>... a 16 bytes encryption block</strong> or..<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;  - <strong>... some 128 bits hash code</strong>  or even<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;  - <strong>... just for some plain random / identifying number</strong>.</p>
+
+<p>(Hexadecimal? : note how there are only 0 thru 9 digits and a thru f letters.)</p>
+
+<p>While the MD5 Hash guess suggested by others is quite plausible, <strong>it could be just about anything...</strong></p>
+
+<p>If it is a hash or a identifying / randomly assigned number, its meaning is <em>external</em> to the code itself.<br> 
+For example it could be a key to be used to locate records in a database, or a value to be compared with the result of the hash function applied to the user supplied password etc. </p>
+
+<p>If it is an encrypted value, its meaning (decrypted value) is directly found within the code, but it could be just about anything.  Also, assuming it is produced with modern encryption algorithm, it could take a phenomenal amount of effort to crack the code (if at all possible).</p>

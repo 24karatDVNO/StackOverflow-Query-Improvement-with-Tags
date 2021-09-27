@@ -1,0 +1,7 @@
+<p>I have never seen people use NPC for commands. As you have mentioned that you only initializa it on ctor, what's the point of having NPC attached to it ? </p>
+
+<p>Are u changing your command in runtime?  if not, there is no need. </p>
+
+<p>you can use binding:</p>
+
+<p><code>&lt;Button Content="Go Back" Margin="30,10" Command="{Binding GoBackCommand}"/&gt;</code></p>

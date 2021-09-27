@@ -1,0 +1,10 @@
+<p>Using CTE, can do</p>
+
+<pre><code>WITH minquery AS
+ (SELECT min(costperday) AS mincost
+  FROM venues
+  WHERE venuecapacity&gt;=120)
+SELECT venuename, venuecapacity, costperday
+  FROM venues 
+  WHERE costperday=minquery.mincost AND venuecapacity&gt;=120;
+</code></pre>

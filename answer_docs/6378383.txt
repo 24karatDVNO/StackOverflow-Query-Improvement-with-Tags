@@ -1,0 +1,15 @@
+<p>You'll need to set event handlers that remove the disabling when the first two <code>&lt;select&gt;</code> fields are changed. Something like this:</p>
+
+<pre><code>$(document).ready(function(){
+    $('#select1').change(function(){
+        if ($(this).val() != '')
+            $('#select2').removeAttr('disabled');
+    });
+    $('#select2').change(function(){
+        if ($(this).val() != '')
+            $('#select3').removeAttr('disabled');
+    });
+});
+</code></pre>
+
+<p>See a working demo <a href="http://jsfiddle.net/D8ggn/" rel="nofollow">here</a>. <strong>Note:</strong> Using <code>onchange</code> sometimes leads to unexpected behavior in IE. You might have to use <code>onclick</code> (i.e., <code>.click(function())</code> in jQuery) instead.</p>

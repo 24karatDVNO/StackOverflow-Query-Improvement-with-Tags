@@ -1,0 +1,4 @@
+<pre><code>$("ul li").each(function(){
+    $("ul li img",this).wrap("&lt;a href='"+ $("h3 a.title",this).attr("href") + "'&gt; &lt;/a&gt;");
+});
+</code></pre>

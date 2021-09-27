@@ -1,0 +1,7 @@
+<pre><code>$("table td")
+.filter(function () {
+  // cellIndex will be 0 for the first column, 1 for the second, and so on
+  return (this.cellIndex == 1 || this.cellIndex == 3);
+})
+.remove();
+</code></pre>

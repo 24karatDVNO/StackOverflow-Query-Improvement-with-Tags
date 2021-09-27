@@ -1,0 +1,10 @@
+<p>Without assuming anything about your page layout:</p>
+
+<pre><code>var $i = $('img').first();             // Find the first image:
+var $d = $('&lt;div&gt;').insertBefore($i);  // Create the new div before the first image
+$('img').appendTo($d);                 // Move all images into `$d`
+</code></pre>
+
+<p>Demo at <a href="http://jsfiddle.net/alnitak/54kQk/" rel="nofollow">http://jsfiddle.net/alnitak/54kQk/</a></p>
+
+<p><strong>EDIT</strong> it turns out this is more or less the implementation of <code>.wrapAll()</code>.</p>

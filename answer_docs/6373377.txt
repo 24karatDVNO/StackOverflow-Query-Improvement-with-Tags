@@ -1,0 +1,15 @@
+<p>You can handle all in .htaccess file
+mine looks like this:</p>
+
+<pre><code>#SetEnvIf Host www\.lenjerii\.com MAGE_RUN_CODE=base
+#SetEnvIf Host www\.lenjerii\.com MAGE_RUN_TYPE=website
+#SetEnvIf Host ^lenjerii\.com MAGE_RUN_CODE=base
+#SetEnvIf Host ^lenjerii\.com MAGE_RUN_TYPE=website
+
+#SetEnvIf Host www\.wildfashion\.ro MAGE_RUN_CODE=wildfashion
+#SetEnvIf Host www\.wildfashion\.ro MAGE_RUN_TYPE=website
+#SetEnvIf Host ^wildfashion\.ro MAGE_RUN_CODE=wildfashion
+#SetEnvIf Host ^wildfashion\.ro MAGE_RUN_TYPE=website
+</code></pre>
+
+<p>This solution eliminate any other folders for your additional websites.</p>

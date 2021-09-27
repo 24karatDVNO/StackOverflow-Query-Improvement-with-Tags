@@ -1,0 +1,5 @@
+<p>I know this question is old, but I figure I'll give my answer anyway.</p>
+
+<p>The way Tomcat works now, at least, there should be two folders in your WEB-INF directory, one called classes and one called lib. From what I understand, .class files go in WEB-INF/classes, and .jar files go in WEB-INF/lib. Additionally, if you're going to declare your .class file to be in a package, it needs to be in an appropriate directory; in your case, this means it should be located at WEB-INF/classes/dbpooljar/DBPool.class.</p>
+
+<p>Hope that helps someone.</p>

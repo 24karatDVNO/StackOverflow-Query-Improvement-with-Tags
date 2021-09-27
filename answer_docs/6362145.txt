@@ -1,0 +1,12 @@
+<p>Ok - after a lot of research I've come up with the final option - which seem to be just what I needed.</p>
+
+<p>I've used the <a href="http://htmlpurifier.org/" rel="nofollow">HTMLPurifier</a> and filtered my content using the following:</p>
+
+<pre><code>require_once('HTMLPurifier/HTMLPurifier.auto.php');
+$config = HTMLPurifier_Config::createDefault();
+$config-&gt;set('HTML.Doctype', 'XHTML 1.0 Transitional');
+$objPurifier = new HTMLPurifier($config);
+return $objPurifier-&gt;purify($string);
+</code></pre>
+
+<p>I hope someone else will find it useful.</p>

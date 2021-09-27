@@ -1,0 +1,15 @@
+<p>You are on the right track.
+So, without getting into code level details that you are right you should figure out on your own, how it (is supposed to) work in an ideal world is - </p>
+
+<ol>
+<li><p>All interaction in your system between different kind of objects is defined by using interfaces. i.e. if you need to find out "how do things interact in my application" you should need to look no further than all the interfaces. (Everything else is implementation detail.) In other words, all the <strong><em>real work</em> is done by classes</strong> (that implement interfaces) but the <strong><em>interaction</em> is defined by the interfaces</strong>.</p></li>
+<li><p>One implementation class e.g. QuickInsertQueue, should not need to know anything about other implementations. (e.g. implementation of QueueItem) i.e. <strong>QueueItem  does not need to know about what class is implementing PriorityQueue nor does PriorityQueue need to know about the class that implements QueueItem.</strong> <em>(For this to work, make sure an in interface has all the methods necessary to allow others to interact with it. Also note that classes can implement multiple interfaces)</em></p></li>
+</ol>
+
+<p>Practically,<br/> </p>
+
+<ul>
+<li>Unless you are make use of things like <a href="http://en.wikipedia.org/wiki/Factory_method_pattern" rel="nofollow">factory method pattern</a> and/or IoC containers like <a href="http://www.springsource.org/" rel="nofollow">Spring</a> or <a href="http://code.google.com/p/google-guice/" rel="nofollow">Guice</a>, you will have at the least, an implementation instance (i.e. an object of a class) instantiating other implementations (objects of other classes)  in your system.</li>
+</ul>
+
+<p>(In this case, data structure to use so that insertion should be O(1) is an implementation detail quuestion/discussion)</p>

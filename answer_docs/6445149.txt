@@ -1,0 +1,12 @@
+<p>Pretty much the platform layer is where your business logic resides.
+Imagine you have a site for selling cookies.</p>
+
+<ol>
+<li>You have a web server running apache/iis that handles http requests</li>
+<li>You have an application server ( windows/linux/etc. ) that exposes a custom API for handling sales, reports etc - you call a method via http get or some web service to get the report for sales ... etc ... etc ...</li>
+<li>And finally you have a Database server which handles ... data storage.</li>
+</ol>
+
+<p>Imagine your site grows to the size of amazon.com, then adding new web servers, app servers (platform layer) and db servers get easier. </p>
+
+<p>Scalling out it is called.</p>

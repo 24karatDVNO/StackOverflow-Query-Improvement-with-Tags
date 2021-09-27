@@ -1,0 +1,19 @@
+<p>You can use NSThread class method to start the new thread.e.g.</p>
+
+<pre><code>[NSThread detachNewThreadSelector:@selector(newThread) toTarget:self withObject:nil];
+
+
+
+///////
+
+-(void)newThread{
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+   ///your code
+
+   [pool release];
+
+}
+</code></pre>
+
+<p>for more read <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i" rel="nofollow">Thread Programming guide</a></p>

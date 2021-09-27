@@ -1,0 +1,26 @@
+<p>I've figured out the bulk of these errors.</p>
+
+<blockquote>
+  <ol>
+  <li><p>The text is rendering flipped</p></li>
+  <li><p>The text is rendering with strange characters - I think this is an
+  encoding issue, but how do i adjust
+  this?</p></li>
+  <li><p>The text doesn't get added to the view at the addSubview line, it only
+  gets added when the CGContext is
+  updated, i.e. I have a draw lines
+  function too and if I draw on the view
+  then the text magically pops up.</p></li>
+  <li><p>The text is horribly jagged and badly rendered, is there something I
+  can do for this? I've added a
+  CGContextSetShouldSmoothFonts but it
+  doesn't seem to be doing anything.</p></li>
+  </ol>
+</blockquote>
+
+<ol>
+<li><p>Using a basic transformation, I was able to flip the text automatically.</p></li>
+<li><p>Here I adjusted the encoding so MacRoman was used throughout.</p></li>
+<li><p>I had to manually invoke an update - I wrote a function that does just that and called it where I needed it.</p></li>
+<li><p>Due to the text print being caught in a loop, it appeared to print the text several times on top of each other, hence the jaggedness.</p></li>
+</ol>

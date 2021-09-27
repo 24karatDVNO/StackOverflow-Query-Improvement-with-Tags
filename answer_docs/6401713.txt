@@ -1,0 +1,15 @@
+<p>You have the wrong object path to your data. I recommend that you paste your json data into a viewer to make it easier to see what you need to get. Try <a href="http://jsonviewer.stack.hu/" rel="nofollow">http://jsonviewer.stack.hu/</a> for example.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+$(document).ready(function(){
+    $.getJSON("asv/index.json", function(json) {
+        alert(json.bible.testament[0]['@attributes'].name);
+        alert(json.bible.testament[0].book[0]['@attributes'].name);
+    });
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>That works for me. Notice how you don't have any <code>testament[1]</code> index, only <code>testament[0]</code>.</p>
+
+<p>The @attributes part seems to be something the script that generates the JSON is creating, nothing you need to use JSON per say. I would remove it if I had access to the JSON-creating script, but perhaps it is used in some system that you do not see.</p>

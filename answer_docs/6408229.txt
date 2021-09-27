@@ -1,0 +1,12 @@
+<pre><code>while(!(std::cin &gt;&gt; array[i])) 
+{
+std::cin.clear();             //clears any error flags on cin so get() works
+while(std::cin.get()!= '\n')  //in case white space is in the stream
+{                             //loop until the end of line character
+   continue;              
+}
+std::cout &lt;&lt; "enter a new input: ";
+}
+</code></pre>
+
+<p>Info in the comments.</p>

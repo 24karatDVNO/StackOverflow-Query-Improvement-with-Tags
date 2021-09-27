@@ -1,0 +1,13 @@
+<p>The loop I would use for the final copy into str would be something like:</p>
+
+<pre><code>for(i=0, p=str; i &lt; num; i++)
+    p += sprintf(p, "%s", ptr[i]);
+</code></pre>
+
+<p>or</p>
+
+<pre><code>for(i=0, p=str; i &lt; num; i++)
+    p += strlen(strcpy(p, ptr[i]));
+</code></pre>
+
+<p>rather than trying to deal with a variable number of arguments in a single call to sprintf.</p>

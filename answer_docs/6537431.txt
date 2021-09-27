@@ -1,0 +1,9 @@
+<p>You could switch to using RESTful routes. This means simply using</p>
+
+<pre><code>resources :ads
+</code></pre>
+
+<p>Which automatically matches <code>ads/:id</code> to the <code>show</code> action of the <code>Ads</code> controller, as well as the 6 other actions. If you <i>only</i> want to enable the <code>show</code> action, you can use:</p>
+
+<pre><code>resources :ads, :only =&gt; :show
+</code></pre>

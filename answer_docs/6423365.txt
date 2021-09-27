@@ -1,0 +1,40 @@
+<p>I took your code only, its working for me. Just have look at it. And thanks for your code. In this sample i am drawing a rect.</p>
+
+<pre><code>- (void)drawRect:(CGRect)rect 
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();  
+    CGContextSetLineWidth(context, 2.0);  
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);  
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);  
+    CGContextAddRect(context, rectFrame);  
+    CGContextDrawPath(context, kCGPathFillStroke);  
+
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    startPoint = [touch locationInView:self];
+    rectFrame.origin.x = startPoint.x;
+    rectFrame.origin.y = startPoint.y;
+}  
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    endPoint = [touch locationInView:self];
+    rectFrame.size.width = endPoint.y - startPoint.x;
+    rectFrame.size.height = endPoint.y - startPoint.x;
+
+    [self setNeedsDisplay];
+ }    
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
+{
+    UITouch *touch = [touches anyObject];
+    endPoint = [touch locationInView:self];
+    rectFrame.size.width = endPoint.y - startPoint.x;
+    rectFrame.size.height = endPoint.y - startPoint.x;
+
+    [self setNeedsDisplay];
+ }
+</code></pre>

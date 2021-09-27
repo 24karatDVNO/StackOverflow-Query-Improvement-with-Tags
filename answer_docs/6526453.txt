@@ -1,0 +1,12 @@
+<p>I use MySQL and over 2M records (page views) a month and we run reports on that table daily and often.</p>
+
+<p>The table is partitioned by month (like already suggested) and indexed where needed.</p>
+
+<p>I also clear the table from data that is over 6 months by creating a new table called "page_view_YYMM" (YY=year, MM=month) and using some UNIONS when necessary</p>
+
+<p>for the second question, the way I would approach it is by creating a table with the list of your products that is a simple:</p>
+
+<pre><code>url, description 
+</code></pre>
+
+<p>the description will be a tag stripped of the content of your page or item (depend how you want to influence the search) and then add a full text index on description and a search on that table adding possible extra terms that you have been collecting while the user was surfing your site that you think are relevant (for example category name, or brand)</p>

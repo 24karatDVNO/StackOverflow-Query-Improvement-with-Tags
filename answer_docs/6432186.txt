@@ -1,0 +1,20 @@
+<p>You can clone the repository using the normal <code>hg clone</code> operation.</p>
+
+<p>The default path for <code>hg push</code> will be the location you cloned from, but you can happily do an <code>hg push &lt;other_loc&gt;</code>.</p>
+
+<p>If, as I suspect, you want to make the default path for push and pull something new, you can simply edit the <code>[paths]</code> section of <code>.hg/hgrc</code>. For example, if you started with this:</p>
+
+<pre><code>[paths]
+default = ssh://hg@someserver/myrepo
+</code></pre>
+
+<p>You can change it to</p>
+
+<pre><code>[paths]
+default = ssh://hg@someotherserver/mynewrepo
+source  = ssh://hg@someserver/myrepo
+</code></pre>
+
+<p>This way you can pull from <code>source</code> if needed.</p>
+
+<p>You can even configure different default push and pull paths, as documented <a href="http://www.selenic.com/mercurial/hgrc.5.html#paths" rel="nofollow">here</a></p>

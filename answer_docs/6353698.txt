@@ -1,0 +1,7 @@
+<p>It's a two part solution.  The primary answer to the above (add extra fields to a form) is a fairly simple bit of javascript of which you can find one such example here:</p>
+
+<p><a href="http://www.randomsnippets.com/2008/02/21/how-to-dynamically-add-form-elements-via-javascript/" rel="nofollow">http://www.randomsnippets.com/2008/02/21/how-to-dynamically-add-form-elements-via-javascript/</a></p>
+
+<p>The second part involves what you do with the form data after submission.  If you are merely going form to email then any script that loops through the array of submissions will pick up the extra fields.</p>
+
+<p>If you are storing the data to a database, it gets slightly harder as you need to be able to write data to two tables off of one post.  Dreamweaver is not equipped to handle this so you probably will need to get better with PHP before coding the solution.</p>

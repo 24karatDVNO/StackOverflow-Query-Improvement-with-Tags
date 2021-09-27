@@ -1,0 +1,12 @@
+<p>Finnally i could it make it to change style of a tab you need attach the right event and using the correct object like this</p>
+
+<pre><code>$("#menuContainer").bind('tabsshow',function (event,ui){
+    $(ui.tab).parent().removeClass('ui-state-active');
+    $(ui.tab).parent().css('border','1px solid #072fc5');
+
+});
+</code></pre>
+
+<p><strong>Notes that i remove the class <code>ui-state-active</code> for adding my style</strong></p>
+
+<p>Also it's important the event associate it has to be <strong><code>tabsshow</code></strong> because in the event <strong><code>tabselected</code></strong> the class ui-state-active it's not yet adding to the tab</p>

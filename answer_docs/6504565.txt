@@ -1,0 +1,10 @@
+<p>You can do something like what is done in this example</p>
+
+<pre><code>$sql = "INSERT INTO users(name,gender) VALUES ('$name','$gender')";
+$result = mysql_query( $sql,$conn );
+$user_id = mysql_insert_id( $conn );
+$sql = "INSERT INTO website(site,user) VALUES ('$site',$user_id)";
+$result = mysql_query( $sql,$conn );
+</code></pre>
+
+<p>Manual for <a href="http://php.net/function.mysql-insert-id" rel="nofollow">mysql_insert_id</a></p>

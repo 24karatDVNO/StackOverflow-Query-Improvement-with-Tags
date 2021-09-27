@@ -1,0 +1,19 @@
+<p>If you want to avoid the loop, this should work (assuming that the .img elements are between the .acc_trigger elements).  </p>
+
+<pre><code>&lt;div class="acc_trigger" id="accord0"&gt;0&lt;/div&gt;
+&lt;div class="img" id="accordimg0"&gt;0&lt;/div&gt;
+&lt;div class="acc_trigger" id="accord1"&gt;1&lt;/div&gt;
+&lt;div class="img" id="accordimg1"&gt;1&lt;/div&gt;
+&lt;div class="acc_trigger" id="accord2"&gt;2&lt;/div&gt;
+&lt;div class="img" id="accordimg2"&gt;2&lt;/div&gt;
+
+$(".acc_trigger").click(function() {
+    $(".selectedimg").hide(1000);
+    $(".selectedimg").removeClass("selectedimg");
+
+    $(this).next(".img").addClass("selectedimg");
+    $(this).next(".img").show(1000);
+});
+</code></pre>
+
+<p>You can try it out here: <a href="http://jsfiddle.net/EJyn5/" rel="nofollow">http://jsfiddle.net/EJyn5/</a>.</p>

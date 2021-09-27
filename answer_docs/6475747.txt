@@ -1,0 +1,19 @@
+<p>Disclaimer: Non-regular Rhino-mocks user.</p>
+
+<p>SetupResult does not seem to be setting an expectation in this case. Since you're using a StrictMock, you need to be <em>explicit</em> in setting expectations on every call made on the mock.</p>
+
+<p>If you want the test to </p>
+
+<ul>
+<li>check on only <code>two calls on VoidNoArgs and not anything else</code> : Comment the SetupResult line.</li>
+<li>check seq - <code>VoidNoArgs &gt; Prop.get &gt; VoidNoArgs</code></li>
+</ul>
+
+<p>.</p>
+
+<pre><code>using (mocks.Ordered())
+{
+        demo.VoidNoArgs();
+        Expect.On(demo).Call(demo.Prop).Return("Ayende"); // fails unless you use .Repeat.Times(30) or make just one call.
+        demo.VoidNoArgs();
+</code></pre>

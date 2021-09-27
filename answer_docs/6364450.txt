@@ -1,0 +1,7 @@
+<p>You misunderstand how <code>LIMIT</code> works.  It expects the row offset first (the starting row number), and then the number of rows you want to return, now the ending row number.  Instead use</p>
+
+<pre><code>$from = 5;
+$to = 5;
+</code></pre>
+
+<p>However, that's confusing to think of the second value as <code>$to</code> when it's really the number of rows.  Call it <code>$numrows</code> instead for clarity.</p>

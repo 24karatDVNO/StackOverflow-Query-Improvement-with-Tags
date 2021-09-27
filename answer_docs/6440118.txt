@@ -1,0 +1,12 @@
+<p>I think this is to do with this:</p>
+
+<pre><code>def save_model(self, request, obj, form, change):
+    instance = form.save(commit=False)
+    if not hasattr(instance, "poster"):
+        instance.poster = request.user
+        instance.save()
+        form.save_m2m()
+        return instance
+</code></pre>
+
+<p>in the admin.py.</p>

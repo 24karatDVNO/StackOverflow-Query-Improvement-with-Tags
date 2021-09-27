@@ -1,0 +1,5 @@
+<p>As taskinoor mentions, Wikipedia provides an excellent reference about what is included in <a href="http://en.wikipedia.org/wiki/Stdio.h" rel="nofollow">stdio.h</a>.</p>
+
+<p>As for what's possible without stdio.h, pretty much everything that is possible with it, although you will have to work a lot harder for certain things.  If you want to use files, for instance, you will have to define your own abstraction of a file, and your own interface for working with it.  If you want to read input from the keyboard then instead of calling <code>scanf()</code> you'll have to use assembly code to call a BIOS interrupt.  </p>
+
+<p>Such is the nature of programming an OS.  None of these higher-level constructs exist until you define them and the API for working with them.  You need to start with the smallest basic pieces of functionality, and start grouping them together to create increasingly more useful and complex constructs.</p>

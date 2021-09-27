@@ -1,0 +1,31 @@
+<p>Confirmed this is the full solution for anyone that might have this question in the future:</p>
+
+<pre><code>// Add the direction you want the sprite to move in to it's current position
+CGPoint tempStep = ccpAdd(self.position, _direction);
+// Subtract the player's current location from it's last known position
+CGPoint playerDiff = ccpSub(player.currentLocation, _lastKnownPlayerLocation);
+// Add the projectile sprite's desired new position to the change in the player's location
+CGPoint finalStep = ccpAdd(tempStep, playerDiff);
+// Set the position of the projectile sprite
+self.position = finalStep;
+
+// Store the new location of the player in the buffer variable
+_lastKnownPlayerLocation = player.currentLocation;
+
+// Move the Box2D body to match the sprite position.
+// Not that this will break physics for this body, but I have
+// my body set as a sensor so it will still report to the contact
+// listener.
+b2Vec2 moveToPosition = b2Vec2(self.position.x/PTM_RATIO, self.position.y/PTM_RATIO);
+_body-&gt;SetTransform(moveToPosition, 0.0);
+</code></pre>
+
+<ul>
+<li>self is a subclass of CCSprite so self.position is the position of the sprite on the screen.</li>
+<li>_lastKnownPlayerLocation should be obvious but this is the position of the player sprite the last time it was checked.</li>
+<li>_direction is a passed in value from a "analog stick".  I get the angle and pass it to the class.  The class uses ccpForAngle(float angle) to get a CGPoint and then uses ccpMult(CGPoint, float) to multiply it into whatever direction step I want (meaning what speed you want your shot to move at).</li>
+</ul>
+
+<p>My situation is using Box2D for many things so the last 2 lines pertain to that.</p>
+
+<p>I hope this helps someone :)</p>

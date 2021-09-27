@@ -1,0 +1,17 @@
+<p>Thanks all, here's what I ended up with in javascript: </p>
+
+<pre><code>var activeDiv=$('#project-A'); //set activeDiv to the first piece you want to show 
+
+              $('a.thumb-text').click(function () {     
+
+                var href = $(this).attr('href'); //grabs the href from &lt;a class="thumb-text"&gt;
+
+
+                    activeDiv.fadeOut("fast", function() { //fades out the currently showing piece
+                        $(href).fadeIn("slow");
+                        activeDiv = $(href); //set the active piece to what was clicked on
+
+                    });
+
+              });
+</code></pre>

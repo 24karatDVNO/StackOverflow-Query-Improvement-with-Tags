@@ -1,0 +1,9 @@
+<blockquote>
+  <p>Debugging in NetBeans has revealed that the JsonObject 'jentry' has a hashtable with corresponding key value pairs for each data member in the JSON string; and the 'template' is stored as a hashtable within this hashtable which may or may not be a problem I honestly haven't been able to find out.</p>
+</blockquote>
+
+<p>That's normal.  Gson initially reads JSON objects into a <code>JsonObject</code>, within which the JSON element names and values are stored in a <code>LinkedHashMap</code>.  So, if the JSON structure includes an object in an object, then the initial structure Gson reads the JSON into will be a <code>JsonObject</code> with a <code>LinkedHashMap</code>, within which one of the entries will have a value of another <code>JsonObject</code> with a <code>LinkedHashMap</code>.</p>
+
+<p>The original post does not clearly describe that the contents of the maps in the <code>JsonObjects</code> were unexpectedly lacking.  It only described that some of the contents were noticed missing after serializing the deserialized data.  Since enough information to reproduce the problem was not provided, folks can only guess at what the problem might have been.  And inder's guess looks as good as any.  I see nothing that points to a deficiency in Gson.</p>
+
+<p>Regarding the specific statement of the question title that "JSON deserialization using GSON skips data members from a hashmap within a hashmap", from the remaining contents of the question, I do not think the original question actually meant that the target Java structure was a map within a map.  If the target Java structure were a map within a map, then I've not been able to reproduce a scenario where Gson mysteriously skips some fields, provided that the JSON elements are properly bound to Java fields, and that handling for <a href="http://code.google.com/p/google-gson/issues/detail?id=325" rel="nofollow">Gson issue 325</a> is provided (with custom deserialization).</p>

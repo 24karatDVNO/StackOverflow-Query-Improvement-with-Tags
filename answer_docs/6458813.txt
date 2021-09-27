@@ -1,0 +1,3 @@
+<p>It's quite hard to cause something to run at the same time every day. Most of the time it's because Sitecore thinks of time in terms of ticks, not time of day. So time between app recycles are the ticks.</p>
+
+<p>We've done this same thing before by implementing a Windows Scheduled Task. Our task calls <a href="http://www.gnu.org/software/wget/" rel="nofollow">wget</a> (Windows version) and wget makes a request to a special page on our site. We have IP restrictions on that page so only the server can hit it via a request through wget. We've never had any problems with it, and if we ever need to manually run the code, we either hit the page from the server or just log onto the server and run the scheduled task at that time.</p>

@@ -1,0 +1,6 @@
+<p>If this is part of an application requirement then I would log the start and finish of all of the calls to this stored procedure then have a view against that to show which instances of the stored procedure are currently running.</p>
+
+<p>If this is for maintenance of the database then I would use <code>sp_who</code> or <code>sp_who2</code>.</p>
+
+<p><strong>EDIT:</strong>
+Actually, <code>sp_who</code> and <code>sp_who2</code> will likely show you the currently running command, not necessarily the stored procedure name itself. You can try using the system dynamic view <code>sys.dm_exec_sql_text</code>, but that isn't always going to be accurate either.</p>

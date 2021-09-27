@@ -1,0 +1,15 @@
+<p>Use ValidationRules property on your text binding binding</p>
+
+<pre><code> &lt;TextBox&gt;
+&lt;TextBox.Text&gt;
+    &lt;Binding Path=Valore, Mode=TwoWay&gt;
+        &lt;Binding.ValidationRules&gt;
+            &lt;ExceptionValidationRule /&gt;
+        &lt;/Binding.ValidationRules&gt;
+    &lt;/Binding&gt;
+&lt;/TextBox.Text&gt;
+</code></pre>
+
+<p></p>
+
+<p>if you enter wrong value your text box border will get red </p>

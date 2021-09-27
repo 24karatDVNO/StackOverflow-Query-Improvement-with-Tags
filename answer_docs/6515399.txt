@@ -1,0 +1,10 @@
+<p>If you just want to open a target window, you can remove your <code>&lt;form&gt;</code> tag , and add a <code>click</code> event to the find button.</p>
+
+<p>Set <code>&lt;input&gt;</code> tag's type attribute to button can't prevent form submit by use press <code>enter</code> in the text field</p>
+
+<p>You can also disable <code>onsubmit</code> event of the form.</p>
+
+<p>like </p>
+
+<pre><code>document.forms[0].onsubmit = function(){return false;}
+</code></pre>

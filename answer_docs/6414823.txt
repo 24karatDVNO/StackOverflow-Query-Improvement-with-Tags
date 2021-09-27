@@ -1,0 +1,5 @@
+<p>2^10 = 1024, so ten bits will represent slightly more than three digits.  Since you're talking about 7 trillion digits, that would be something like 23 trillion bits, or about 3 terabytes, which is more than I could get on one drive from Costco last I visited.</p>
+
+<p>You may be getting overambitious.  I'd wonder about the I/O time to read and write entire disks for each operation.</p>
+
+<p>(The mathematical way to solve it is to use logarithms, since a number that takes 7 trillion digits to represent has a log base 10 of about 7 trillion.  Find the log of the number in the existing base, convert the base, and you've got your answer.  For shorthand between base 2 and base 10, use ten bits==three digits, because that's not very far wrong.  It says that the log base 10 of 2 is .3, when it's actually more like .301.)</p>

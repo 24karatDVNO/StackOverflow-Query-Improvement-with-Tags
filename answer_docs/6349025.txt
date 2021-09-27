@@ -1,0 +1,8 @@
+<p>Well, if you are in the situation where you have to abort a CPU-intensive thread, then you are somwhat stuck with testing an 'Abort' boolean, (or cancellation token), in one loop or another, (maybee not the innermost one - depends on how long this takes). AFAIK, you can just 'return' from the inner loop, so exiting the method - no need to check at every level!  To minimize the overhead on this, try to make it a local-ish boolean, ie try not to dereference it through half-a-dozen ...... classes every time .  </p>
+
+<p>Maybee inherit classes from 'Stoppable', that has an 'Abort' method and a 'Stop' boolean?  You example thread above is spending most time sleeping, so you get 50ms average latency before you get to check anything. In such a case, you could wait on some event with a timeout instead of sleeping.  Override 'Abort' to set the event as well as calling the inherited Abort &amp; so terminate the wait early.  You could also set the event in the cancellationToken delegate/callback, should you implement this new functionality as described by Dan.</p>
+
+<p>There are acually very few Windows API etc. that are not easily 'unstickable' or don't have asynchronous, 'Ex' versions, so it's err.. 'nearly' always possible to cancel, one way or another, eg.  closing sockets to force a socket read to except, writing temporary file to force Folder Change Notifications to return.</p>
+
+<p>Rgds,
+Martin</p>

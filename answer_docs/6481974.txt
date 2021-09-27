@@ -1,0 +1,3 @@
+<p>I know this is an old question, but I'm just putting this for completeness.</p>
+
+<p>You can use:<code>-J-server</code> flag to launch Jython in the Java server mode, which can help speed up the hot loops. (JVM will look to aggressively optimize, but might slow up the start up time)</p>

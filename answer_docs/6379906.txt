@@ -1,0 +1,23 @@
+<p>Initially I was just going to comment on cowbellemoo's answer, as it does not work in IE7 and I wanted to explain how to achieve IE7 compatability, but I suppose my solution is a totally different answer.</p>
+
+<p>His answer is all good and well, but it won't work in IE7. So if that's important to you, here's another approach you can take, based off of this A List Apart article: <a href="http://www.alistapart.com/articles/taminglists/#custom" rel="nofollow">http://www.alistapart.com/articles/taminglists/#custom</a></p>
+
+<p><strong>The Markup</strong></p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;&lt;span&gt;01.&lt;/span&gt; Text content&lt;/li&gt;
+    &lt;li&gt;&lt;Span&gt;02.&lt;/span&gt; More text content&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p><strong>The CSS</strong></p>
+
+<pre><code>ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+</code></pre>
+
+<p>There are a few variations on this you could do, either floating the <code>&lt;span&gt;</code> and giving it a width &amp; margin, or setting the <code>&lt;li&gt;</code> to <code>position:relative;</code>, giving it appropriate padding, and absolutely positioning your span in its right place.</p>

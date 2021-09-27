@@ -1,0 +1,18 @@
+<p>A bit more verbose on Jon Skeets answer...</p>
+
+<pre><code>string xml = @"&lt;r25:spaces xmlns:r25=""http://www.collegenet.com/r25"" pubdate=""2009-05-05T12:18:18-04:00""&gt;"
+    + @"&lt;r25:space id=""VE1QOjRhMDAyZThhXzFfMWRkNGY4MA=="" crc="""" status=""new""&gt;"
+    + @"&lt;r25:space_id&gt;720&lt;/r25:space_id&gt;"
+    + @"&lt;r25:space_name&gt;SPACE_720&lt;/r25:space_name&gt;"
+    + @"&lt;r25:max_capacity&gt;0&lt;/r25:max_capacity&gt;"
+    + @"&lt;/r25:space&gt;"
+    + @"&lt;/r25:spaces&gt;";
+
+XDocument xdoc = XDocument.Parse(xml);
+XNamespace ns = "http://www.collegenet.com/r25";
+
+var value = (from z in xdoc.Elements(ns.GetName("spaces"))
+             .Elements(ns.GetName("space"))
+             .Elements(ns.GetName("space_id")) 
+         select z.Value).FirstOrDefault();
+</code></pre>

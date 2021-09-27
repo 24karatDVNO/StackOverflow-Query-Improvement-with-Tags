@@ -1,0 +1,10 @@
+<p>I dont think it is possible with UITableViewCellAccessoryCheckmark. </p>
+
+<ol>
+<li><p>You will have to create a cell in</p>
+
+<pre><code>tableView:cellForRowAtIndexPath:
+</code></pre></li>
+<li><p>add a custom subview, or return a custom cell </p></li>
+<li><p>Make it look like a checkmark or unchecked based on the state of the data. </p></li>
+</ol>

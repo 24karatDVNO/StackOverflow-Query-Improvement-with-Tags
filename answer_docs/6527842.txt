@@ -1,0 +1,16 @@
+<p>Here's an approach for solving this with <a href="http://modelmapper.org" rel="nofollow">ModelMapper</a>:</p>
+
+<pre><code>ModelMapper modelMapper = new ModelMapper();
+modelMapper.createTypeMap(Source.class, Destination.class).setConverter(
+    new AbstractConverter&lt;Source, Destination&gt;() {
+      protected Destination convert(Source source) {
+        Destination dest = new Destination();
+        dest.numOfImages = source.images.size();
+        return dest;
+      }
+    });
+</code></pre>
+
+<p>This example uses a Converter for the Source and Destination classes.</p>
+
+<p>More examples and docs can be found at <a href="http://modelmapper.org" rel="nofollow">http://modelmapper.org</a></p>

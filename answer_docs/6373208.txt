@@ -1,0 +1,13 @@
+<p>Try validating your code with JSLint. <a href="http://www.jslint.com/" rel="nofollow">http://www.jslint.com/</a></p>
+
+<p>Right now your adding easingFunction &amp; processFrame to the Global object (which isn't a good thing). Not that this is the cause of the problem, but I've found that mismanagement of my objects is the usual cause of memory leaks.</p>
+
+<p>You'll want to do something like:</p>
+
+<pre><code>var MyObject = {}; 
+
+MyObject.easingFunction = function(){};
+MyObject.processFrame = function(){};
+</code></pre>
+
+<p>In short make sure you declare all objects with <code>var</code> before using them. </p>

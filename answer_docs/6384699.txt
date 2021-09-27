@@ -1,0 +1,21 @@
+<p>This example puts your JSON into proper format and does an existence check.  I use jquery for convenience.</p>
+
+<p><a href="http://jsfiddle.net/nXFxC/" rel="nofollow">http://jsfiddle.net/nXFxC/</a></p>
+
+<pre><code>&lt;!-- HTML --&gt;
+&lt;span id="test"&gt;Hello&lt;/span&gt;&lt;br&gt;
+&lt;span id="test2"&gt;Hello&lt;/span&gt;
+
+//Javascript
+
+$(document).ready(function(){
+    var JSON = {"animals":[{"name":"cat"}, {"name":"dog"}]};
+
+if(JSON.animals[1].name){      
+$("#test").html("It exists");
+}
+if(!JSON.animals[2]){       
+$("#test2").html("It doesn't exist");
+}
+});
+</code></pre>

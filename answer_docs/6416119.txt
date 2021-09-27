@@ -1,0 +1,32 @@
+<p>Solved the problem by using a foreign key on the log_activity table like this:</p>
+
+<pre><code>FOREIGN KEY(log_id) REFERENCES log(_id) ON DELETE CASCADE
+</code></pre>
+
+<p>and a delete statement like this:</p>
+
+<pre><code>long userId = 1;
+int keepXLogsOfOthers = 1;
+String del = "DELETE FROM log" +
+                " WHERE user_id != " + userId +
+                "  AND log._id NOT IN (" +
+                "    SELECT _id" +
+                "    FROM (" +
+                "      SELECT _id" +
+                "      FROM log" +
+                "      WHERE user_id != " + userId +
+                "      ORDER BY timestamp DESC" +
+                "      LIMIT " + keepXLogsOfOthers +
+                "    ) logs_of_others_to_keep" +
+                ");";
+db.execSql(del);
+</code></pre>
+
+<p>Don't forget to enable foreign keys:</p>
+
+<pre><code>db.execSQL("PRAGMA foreign_keys = ON;");
+</code></pre>
+
+<p>and I had the issue that the emulator did not cascade the log_activities.. but on a device it works. Thanks to the other answerers who gave me some hints.</p>
+
+<p>See my question again for more details.</p>

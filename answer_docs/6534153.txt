@@ -1,0 +1,16 @@
+<p>This is most probably the case, when the previous page was received with an HTTP POST request. There's almost nothing you can do against it on the JavaScript level.</p>
+
+<p>The problem is, that POST requests are used to <em>change</em> stuff. So, if the browser would send the same request again, it would submit the same change information again. This can be as simple as a double-posted comment and as destructive as two times transferring 10000 bucks.</p>
+
+<p>If you can controll the previous page, you have to do this:</p>
+
+<pre><code>Browser: POST prev-site
+You -&gt; deliver a redirect to prev-site (hence force a GET request)
+       instead of directly showing it
+Browser: GET prev-site
+User: Clicks link to this-site
+Browser: GET this-site
+User: history.go(-1)
+Browser: GET prev-site
+All: rejoice!
+</code></pre>

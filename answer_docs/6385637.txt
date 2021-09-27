@@ -1,0 +1,7 @@
+<p>I don't know C# or any of .NET, but the general concept of a Dictionary is that it's a collection of key-value pairs.<br>
+You don't access sequentially to a dictionary as you would when, for example, iterating a list or array.<br>
+You access by having a key, then finding whether there's a value for that key on the dictionary and what is it.<br>
+In your example you posted a dictionary with numerical keys which happen to be sequential, without gaps and in ascending order of insertion.<br>
+But no matter in which order you insert a value for key '2', you will always get the same value when querying for key '2'.<br>
+I don't know if C# permits, I guess yes, to have key types other than numbers, but in that case, it's the same, there's no explicit order on the keys.<br>
+The analogy with a real life dictionary could be confusing, as the keys which are the words, are alphabetically ordered so we can find them faster, but if they weren't, the dictionary would work anyway, because the definition of the word "Aardvark" would have the same meaning, even if it came after "Zebra".  Think of a novel, in the other hand, changing the order of the pages wouldn't make any sense, as they are an ordered collection in essence.</p>

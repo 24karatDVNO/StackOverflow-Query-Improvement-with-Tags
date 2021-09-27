@@ -1,0 +1,3 @@
+<p>I discovered that there is no easy, reliable method of ensuring that a QSlider be dynamically sizeable within a QGridLayout.</p>
+
+<p>The best way of implementing a widget like this that I've found was to place the labels using QWidget::move(x,y) and using coordinates relative to the slider's size/position.</p>

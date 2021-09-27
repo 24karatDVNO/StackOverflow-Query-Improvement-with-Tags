@@ -1,0 +1,19 @@
+<p>One thing i've noticed with all these is that the first bit of the regex allows for '0' based numbers to work. For example the number:</p>
+
+<pre><code>0,123,456
+</code></pre>
+
+<p>Would match using the accepted answer. I've been using:</p>
+
+<pre><code>((?&lt;!\w)[+-]?[1-9][0-9]{,2}(?:,[0-9]{3})+)
+</code></pre>
+
+<p>Which also ensures that the number has nothing in front of it. It does <em>not</em> catch numbers of less then 1,000 however. This was to prevent ill-formatted numbers from being captured at all. If the final <code>+</code> were a <code>?</code> the following numbers would be captured:</p>
+
+<pre><code>0,123
+1,2 (as 2 separate numbers)
+</code></pre>
+
+<p>I have a strange set of numbers to match for (integers with commas, with spaces and without both), so i'm using pretty restrictive regexs to capture these groups.</p>
+
+<p>Anyway, something to think about!</p>

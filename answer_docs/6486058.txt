@@ -1,0 +1,3 @@
+<p>A segmentation fault error often happens in C when you try to access some part of memory that you shouldn't be accessing.  I suspect that the expression <code>d[N_X_POINTS]</code>  is the culprit (because arrays in C are zero-indexed), but without seeing the definition of <code>d</code> I can't be sure.</p>
+
+<p>Try putting informative <code>printf</code> debugging statements before/after each line of code in your function so you can narrow down the possible sources of the problem.</p>

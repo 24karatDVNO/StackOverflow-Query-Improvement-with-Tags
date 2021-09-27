@@ -1,0 +1,25 @@
+<p>Consider the sequence:</p>
+
+<pre>
+0 NSObject *obj = [[NSObject alloc] init];
+1 [obj retain]
+2 [obj release]
+3 [obj release]
+4 NSLog("@%@",obj);
+5 [obj retain]
+</pre>
+
+<p>will crash at line 4 (obj has been deallocated), while the sequence:</p>
+
+<pre>
+0 NSObject *obj = [[NSObject alloc] init];
+1 [obj retain]
+2 [obj retain]
+3 [obj release]
+4 [obj release]
+4 NSLog("@%@",obj);
+</pre>
+
+<p>will leak (obj retain count is 1).</p>
+
+<p>As you can see the same operations but in different order can change your object from being extra-deallocated to leaked.</p>

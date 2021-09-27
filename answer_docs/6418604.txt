@@ -1,0 +1,6 @@
+<p>Regarding your comment:</p>
+
+<p>Well.. with concurrent users this is going to be problematic with any database...</p>
+
+<p>What I would do is the following:
+Add a last modified timestamp to the document. Load the document, let the user modify it and use the timstamp as a filter when you update the document and also update the timestamp in one step. If it updates 0 documents you know it was modified in the meantime and you can ask the user to reload it. </p>

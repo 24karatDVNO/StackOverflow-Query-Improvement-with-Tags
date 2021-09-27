@@ -1,0 +1,4 @@
+<p>In addition to the things Marc mentioned you will also want to switch to the HTTP Client Stack in order to avoid the dreaded generic "Not Found" error.</p>
+
+<pre><code>bool registerResult = WebRequest.RegisterPrefix("http://", WebRequestCreator.ClientHttp);
+</code></pre>

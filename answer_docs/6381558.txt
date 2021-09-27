@@ -1,0 +1,108 @@
+<p>If you're not worried about efficiency, you can do pass by value or pass by const reference and do a copy and be done with it.</p>
+
+<p>However, if you are worried about efficiency, I don't think the pass by value suggestion in this <a href="https://stackoverflow.com/questions/6368690/rvalue-function-overloading/6373792#6373792">reply</a> is the best approach. This is because I think it results in extra copies/moves, as NRVO only seems to work with local variables, not parameters. I think the way that avoids moves/copies in C++0x is the dual overloads, as illustrated by the following code:</p>
+
+<pre><code>#include &lt;iostream&gt;
+
+struct A
+{
+  A() : i(0) {}
+  A(const A&amp; x) : i(x.i) { std::cout &lt;&lt; "Copy" &lt;&lt; std::endl; }
+  A(A&amp;&amp; x) : i(x.i) { std::cout &lt;&lt; "Move" &lt;&lt; std::endl; }
+  void inc() { ++i; }
+  int i;
+};
+
+A f1(const A&amp; x2) { A x = x2; x.inc(); return x; }
+A&amp;&amp; f1(A&amp;&amp; x) { x.inc(); return std::move(x); }
+
+A f2(A x) { x.inc(); return std::move(x); }
+
+int main()
+{
+  A x;
+  std::cout &lt;&lt; "A a1 = f1(x);" &lt;&lt; std::endl;
+  A a1 = f1(x);
+  std::cout &lt;&lt; "A a2 = f1(A());" &lt;&lt; std::endl;
+  A a2 = f1(A());
+  std::cout &lt;&lt; "A b1 = f2(x);" &lt;&lt; std::endl;
+  A b1 = f2(x);
+  std::cout &lt;&lt; "A b2 = f2(A());" &lt;&lt; std::endl;
+  A b2 = f2(A());
+  std::cout &lt;&lt; std::endl;
+  std::cout &lt;&lt; "A a3 = f1(f1(x));" &lt;&lt; std::endl;
+  A a3 = f1(f1(x));
+  std::cout &lt;&lt; "A a4 = f1(f1(A()));" &lt;&lt; std::endl;
+  A a4 = f1(f1(A()));
+  std::cout &lt;&lt; "A b3 = f2(f2(x));" &lt;&lt; std::endl;
+  A b3 = f2(f2(x));
+  std::cout &lt;&lt; "A b4 = f2(f2(A()));" &lt;&lt; std::endl;
+  A b4 = f2(f2(A()));
+  std::cout &lt;&lt; std::endl;
+  std::cout &lt;&lt; "A a5 = f1(f1(f1(x)));" &lt;&lt; std::endl;
+  A a5 = f1(f1(f1(x)));
+  std::cout &lt;&lt; "A a6 = f1(f1(f1(A())));" &lt;&lt; std::endl;
+  A a6 = f1(f1(f1(A())));
+  std::cout &lt;&lt; "A b5 = f2(f2(f2(x)));" &lt;&lt; std::endl;
+  A b5 = f2(f2(f2(x)));
+  std::cout &lt;&lt; "A b6 = f2(f2(f2(A())));" &lt;&lt; std::endl;
+  A b6 = f2(f2(f2(A())));
+}
+</code></pre>
+
+<p>Which produces the following results:</p>
+
+<pre><code>A a1 = f1(x);
+Copy
+A a2 = f1(A());
+Move
+A b1 = f2(x);
+Copy
+Move
+A b2 = f2(A());
+Move
+
+A a3 = f1(f1(x));
+Copy
+Move
+A a4 = f1(f1(A()));
+Move
+A b3 = f2(f2(x));
+Copy
+Move
+Move
+A b4 = f2(f2(A()));
+Move
+Move
+
+A a5 = f1(f1(f1(x)));
+Copy
+Move
+A a6 = f1(f1(f1(A())));
+Move
+A b5 = f2(f2(f2(x)));
+Copy
+Move
+Move
+Move
+A b6 = f2(f2(f2(A())));
+Move
+Move
+Move
+</code></pre>
+
+<p>You might be able to do some template tricks to avoid writing multiple overloads, for example:</p>
+
+<pre><code>template &lt;class T&gt;
+param_return_type&lt;T&amp;&amp;&gt;::type f3(T&amp;&amp; y, typename std::enable_if&lt;...&gt;::type* dummy = 0 ) 
+{ 
+  typedef return_t param_return_type&lt;T&amp;&amp;&gt;::type;
+  return_t x = static_cast&lt;return_t&gt;(y);
+  x.inc();
+  return static_cast&lt;return_t&gt;(x);
+}
+</code></pre>
+
+<p>Where <code>param_return_type&lt;T&gt;::type</code> is <code>T</code> when passed <code>(const) T&amp;</code>, and <code>T&amp;&amp;</code> when passed <code>T&amp;&amp;</code>. <code>std::enable_if&lt;...&gt;</code> you can use if you only want this template to take particular parameters.</p>
+
+<p>I wasn't sure how to write a definition of <code>param_return_type&lt;T&gt;::type</code>, as it seems there is no <code>std::remove_lvalue_reference</code>. If anyone knows how to, feel free to edit/add to my post.</p>

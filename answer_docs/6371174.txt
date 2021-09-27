@@ -1,0 +1,21 @@
+<p>You are putting the UI thread to sleep for a 1 second before returning. You should not put the UI thread to sleep. I believe you intended for your background thread to sleep for 1 second, if so then you'd need to do:</p>
+
+<pre><code>void Tick()
+{
+    while (true)
+    {
+        textBlock1.Dispatcher.Invoke(
+            DispatcherPriority.Normal,
+            new Action(
+
+      delegate()
+      {
+          textBlock1.Text = DateTime.Now.ToString("h:mm:ss");
+      }
+        ));
+
+          // Executed on background thread, not UI thread
+          Thread.Sleep(1000);
+    }
+}
+</code></pre>

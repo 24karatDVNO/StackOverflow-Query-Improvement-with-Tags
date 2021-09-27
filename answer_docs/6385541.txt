@@ -1,0 +1,9 @@
+<p>How about:</p>
+
+<pre><code>$n = 3;
+function format($x) {
+    global $n;
+    return sprintf("%0${n}d", $x);
+}
+$arr = array_map('format', range(0, pow(10,$n)-1));
+</code></pre>

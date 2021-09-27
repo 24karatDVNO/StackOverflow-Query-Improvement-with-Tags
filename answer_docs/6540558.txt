@@ -1,0 +1,24 @@
+<p>Change to</p>
+
+<pre><code>dialog_buttons[button_yes] = btn_yes_js;
+dialog_buttons[button_no] = btn_no_js;
+</code></pre>
+
+<p>And send the function directly</p>
+
+<pre><code>confirm_yes_no("Print Checks", "Would you like to print checks now?", "Yes", "No",
+    function() {
+        alert('you clicked yes');
+    },
+    function() {
+        alert('you clicked no');
+    });
+</code></pre>
+
+<p>You can execute it calling the function:</p>
+
+<pre><code>dialog_buttons[button_yes]();
+dialog_buttons[button_no]();
+btn_yes_js();
+btn_no_js();
+</code></pre>

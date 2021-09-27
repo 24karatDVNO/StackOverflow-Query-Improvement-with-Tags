@@ -1,0 +1,5 @@
+<p>Sounds like you want an ajax event listener or a callback.  Do some searches for that and you'll find some solutions.  A lot of them will be jQuery-based, but it is certainly possible to do it without jQuery if that is a bad fit for your application.</p>
+
+<p>For jQuery, the relevant documentation is at <a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">http://api.jquery.com/jQuery.ajax/</a>.  It doesn't call it an event listener, but see the part about <code>context</code> and the callback for <code>succes</code>.</p>
+
+<p>Another possibility would be to do your ajax calls synchronously rather than asynchronously.  (Again, do some searches and you'll find lots of stuff.)  If you go that route, you want to be careful about making sure that the synchronous call doesn't basically hang your app waiting for a response.</p>

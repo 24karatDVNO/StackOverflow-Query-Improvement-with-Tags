@@ -1,0 +1,6 @@
+<p>I am still struggling to get my perl application to consume a WCF based web service but I was able to get past the error you are referrign to in your post.</p>
+
+<p>To change the content type use this command.</p>
+
+<pre><code>$SOAP::Constants::DEFAULT_HTTP_CONTENT_TYPE = 'application/soap+xml';
+</code></pre>

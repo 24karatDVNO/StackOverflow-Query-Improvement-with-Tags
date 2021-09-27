@@ -1,0 +1,16 @@
+<p>I'm not sure if I understand the question completely (what is "auto-categorize various fields"?). I am assuming here that you want to show a template "in action" on a documentation page - without attaching some categories (those categories the documentation page usually attaches to articles using this template) to the documentation page.</p>
+
+<p>So</p>
+
+<p>&lt;onlyinclude&gt;[[Category:Some_Category]]&lt;/onlyinclude&gt;</p>
+
+<p>will not do the job - as the template <em>is</em> in fact included. Right?</p>
+
+<p>Try passing a parameter categorize=false to the template to indicate that categories are not to be attached in this case:</p>
+
+<p>{{#ifeq:{{{categorize|}}}|false||[[Category:Some_Category]]}}</p>
+
+<p>The double pipe after "false" means: if(categorize==false) then (empty), else [[Category:Some_Category]] - i.e. it is an equivalent construction for if(NOT(categorize==false))...</p>
+
+<p>Good luck and thanks for all the fish,
+Achim</p>

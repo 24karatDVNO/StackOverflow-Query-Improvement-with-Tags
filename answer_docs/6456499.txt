@@ -1,0 +1,20 @@
+<p>That does the job, unless you want to fetch all values, in which case you'll need to loop:</p>
+
+<pre><code> $connection = mysql_connect('localhost', 'root', '') or die ('Unable to connect!');
+ mysql_select_db('mydb') or die ('Unable to select database!');
+ $query = 'SELECT abbr FROM manualtab';
+ $result = mysql_query($query) or die ('Error in query');
+ $row_list = array();
+ while($row = mysql_fetch_assoc($result)) {
+   $row_list[] = $row;
+ }
+
+ var_dump($row_list);
+     /* row_list now contains:
+     array(
+        array( 'abbr' =&gt; ... ),
+        array( 'abbr' =&gt; ... ),
+        array( 'abbr' =&gt; ... ),
+            ...
+     ) */
+</code></pre>

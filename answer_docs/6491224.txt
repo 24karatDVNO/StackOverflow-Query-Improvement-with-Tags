@@ -1,0 +1,13 @@
+<p>My example is in C# (not a php developer), but the regex pattern should work in both languages..</p>
+
+<pre><code>void Main()
+{
+    string input = @"http://myurl/feedback.php?rcode=1307954819&amp;lang=it";
+
+    Regex pattern = new Regex(".+?&amp;?rcode=([^&amp;]+)");
+
+    string output = pattern.Replace(input, @"http://myurl/index.php?option=com_cake&amp;module=lodgings&amp;task=feedback&amp;id=$1");
+
+    Console.WriteLine(output);
+}
+</code></pre>

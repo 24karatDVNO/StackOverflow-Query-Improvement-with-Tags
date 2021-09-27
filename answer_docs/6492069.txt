@@ -1,0 +1,7 @@
+<p>You have lots of throw Exception statements in there.</p>
+
+<p>Any of those would trigger the invalid Json response!</p>
+
+<p>You need to trap error messages and instead of throwing an exception, return some valid Json to indicate the problem.</p>
+
+<p>Also for debugging I suggest using Firefox with HttpFox installed - you can then analyze the exact content of any responses, whether by Ajax or not. I find it an invaluable and free tool for situations like this.</p>

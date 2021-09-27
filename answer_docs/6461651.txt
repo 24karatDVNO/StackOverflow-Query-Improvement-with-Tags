@@ -1,0 +1,43 @@
+<p>You can write a php script to do this for you:</p>
+
+<pre><code>&lt;?php
+    //mysql connect
+    $conn = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+
+    if (!$conn) {
+        echo 'Unable to connect to DB: ' . mysql_error();
+        exit;
+    }
+
+    //database connect
+    $db = mysql_select_db('mydb');
+
+    if (!$db) {
+        echo 'Unable to select mydb: ' . mysql_error();
+        exit;
+    }
+
+    //get the keep numbers you’re going to use.
+    //and change the number into string so, for example, instead of 5 you get 'SUBSTR(colm,5,1)'
+    $result = mysql_query("SELECT number FROM number_table WHERE keep_or_discard='keep'");
+    $numbers = array();
+    while ($row = mysql_fetch_assoc($result)) {
+        $row = 'SUBSTR(colm,' . $row . ',1)';
+        $numbers = $row;
+    }
+
+    //implode the array so you get one long string with all the substrings
+    //eg. 'SUBSTR(colm,1,1),SUBSTR(colm,5,1),SUBSTR(colm,12,1)'
+    $numbers = implode(",", $numbers);
+
+    //pull the numbers you need and save them to an array.
+    $result = mysql_query("SELECT " . $numbers . " FROM table");
+    $concat = array();
+    while ($row = mysql_fetch_assoc($result)) {
+        $concat= $row;
+    }
+</code></pre>
+
+<p>And there you have an array with the correct numbers. </p>
+
+<p>I'm sorry if you can't/don't want to use PHP for this, I just don't really know how to do this without PHP, Perl, Python or some other similar language. Hopefully this solution will help somehow...</p>

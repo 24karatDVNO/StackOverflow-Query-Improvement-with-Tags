@@ -1,0 +1,22 @@
+<pre><code>&gt;         var d = new Date();
+&gt;         d.setDate(15);
+&gt;         d.setMonth(06);
+&gt;         d.setYear(2011);
+</code></pre>
+
+<p>is equivalent to:</p>
+
+<pre><code>  var d = new Date(2011,6,15); // 15 Jul 2011
+</code></pre>
+
+<p>Months are zero based (January = 0, December = 11).</p>
+
+<p><em>Date.prototype.getYear</em> is specified in ECMA-262 ed5 as <code>Return YearFromTime(LocalTime(t)) − 1900.</code> so:</p>
+
+<pre><code>  alert(d.getYear()); // 111
+</code></pre>
+
+<p>whereas:</p>
+
+<pre><code>  alert(d.getFullYear()); // 2011
+</code></pre>

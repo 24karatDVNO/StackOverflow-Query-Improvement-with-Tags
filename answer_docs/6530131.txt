@@ -1,0 +1,4 @@
+<p>Despite the chat, I were able to solve this. It seems that escape characters weren't escaped in javascript so I've to add the following, solving the issue:</p>
+
+<pre><code>echo str_replace('\"','"', $_POST['datatodisplay']);;
+</code></pre>

@@ -1,0 +1,17 @@
+<p>If you don't want to put &quot;name&quot; in the request, then the only way is to use scriptlet within the JSP code. This is not a clean or standards based solution though.</p>
+<p><strong>REPEAT ## THIS IS NOT A CLEAN SOLUTION ## USE request to store the name as others have pointed out.</strong></p>
+<p>So for example</p>
+<pre><code>&lt;%@page contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+        &lt;title&gt;New&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;% String name = &quot;Mark&quot; %&gt; &lt;%-- PUT THE name IN HERE --%&gt;
+         &lt;%= name %&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>But what is the reason why you don't want to put name in the request? That was why servlets are there for.</p>

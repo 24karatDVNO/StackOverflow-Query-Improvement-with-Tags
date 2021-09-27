@@ -1,0 +1,15 @@
+<p>This function will take pretty much whatever you throw at it (not unicode though) and turn it into something that is URL safe:</p>
+
+<pre><code>function url_from_text($string) {
+    $string = preg_replace('/[^A-Za-z0-9-]/', ' ', $string);
+    $string = preg_replace('/ +/', ' ', $string);
+    $string = trim($string);
+    $string = str_replace(' ', '-', $string);
+    $string = preg_replace('/-+/', '-', $string);
+    $string = strtolower($string);
+
+    return $string;
+}
+</code></pre>
+
+<p>Your database could then have two fields, 'title' and 'slug', where 'slug' is the title converted with the function above.</p>

@@ -1,0 +1,14 @@
+<p>You can use grep:</p>
+
+<pre><code>var classes=$("div").attr("class").split(" ");
+
+var matches = jQuery.grep(classes, function(n, i){
+  return n.indexOf("mid")===0;
+});
+
+if(matches[0]){
+    var number=matches[0].substring(3);
+
+    // do something with that number 
+}
+</code></pre>

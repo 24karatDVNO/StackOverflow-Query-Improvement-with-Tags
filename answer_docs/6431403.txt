@@ -1,0 +1,6 @@
+<p>I'm mostly experienced with Python regular expressions, but the Java syntax appears to be the same. Perhaps strip off the '' from either end, then iterate through the key-value pairs with a regex like</p>
+
+<pre><code>'\s?([\w ]+)="([\w ]+)"\s?(.*?)'
+</code></pre>
+
+<p>(Assuming the keys and values consist only of alphanumeric characters, spaces, and underscores; otherwise, you might substitute the \w's with other sets of characters) The three groups from this match would be the next key, the next value, and the rest of the string, which can be parsed in the same way until you find what you need.</p>

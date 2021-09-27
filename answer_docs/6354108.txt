@@ -1,0 +1,17 @@
+<p>You can use regular expressions. Something like this</p>
+
+<pre><code>String description = "test &lt;p&gt; some \n string &lt;\\/p&gt; skip this &lt;p&gt; another &lt;\\/p&gt; not in range";
+
+...
+
+if (!"".equals(description)) {
+  Pattern p = Pattern.compile("\\Q&lt;p&gt;\\E[\\w|\\s]*\\Q&lt;\\/p&gt;\\E");
+  Matcher m = p.matcher(description);
+  while (m.find()) { 
+    String ptag = m.group(); 
+    Log.d("regex", ptag);
+  } 
+}
+</code></pre>
+
+<p>this will find every part of text between <code>&lt;p&gt;</code> and <code>&lt;\/p&gt;</code>. Maybe, you'll need some modiifications. See all supported RegEx instructions <a href="http://developer.android.com/reference/java/util/regex/Pattern.html" rel="nofollow">in documentation</a></p>

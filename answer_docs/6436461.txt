@@ -1,0 +1,9 @@
+<p>Is there some pattern that distinguishes countries from cities?  Or is it that the first line after a blank line is a country and all subsequent lines are city names until the next blank line?  Alternatively are you finding countries based on a look-up table (a "dictionary" in Python; an associative array in PHP; a hash in Perl --- one that includes all the officially recognized countries)?</p>
+
+<p>Is it safe to assume that there are no cities whose names collide with any country?  Is there a France, Iowa, USA, or the old Usa, Japan?</p>
+
+<p>What do you want to do with these after you separate them?  You mention "some file handling and then extracting to different files" --- are you thinking of something like one file per country containing a list of all the cities therein?  Or one directory per country and one file per city?</p>
+
+<p>The obvious approach would be to iterate over the file, line by line, and maintain a little state machine:  empty (beginning of file, blank lines between countries?) during which you enter the "country" state (whenever you found any pattern that matches whatever criteria means you've encountered the name of a country).  Once you've found a country name then you're in the city loading state.  I would create a dictionary using country names as keys and set of cities as cities (though perhaps you might really need county/provice, city name tuples in cases where a country has multiple cities by the same name: Portland, Maine vs. Portland, Oregon, for example).  You can also have some "error" state if the contents of your file lead to some sort of ambiguity (city names before you've determined a country, two country names in a row, whatever).</p>
+
+<p>It's hard to suggest a good fragment of code given how vague your spec. here is.</p>

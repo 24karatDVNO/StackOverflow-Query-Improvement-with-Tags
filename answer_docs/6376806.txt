@@ -1,0 +1,14 @@
+<p>Starting from what alienhard said I managed to come up with an answer to my problem.</p>
+
+<pre><code>rewritemap  PSTAT prg:/bin/pstat.pl
+...skipping...
+rewritecond ${PSTAT:$site:$1} =devel
+rewriterule ^/images/(\d+)/(\w+) - [E=devel:1]
+
+header set cache-control "no-cache" env=devel
+header unset expires env=devel
+</code></pre>
+
+<p>(<code>/images/(\d+)</code> is the folder of images for a particular project number <code>(\d+)</code>)</p>
+
+<p>The <code>E</code> flag of <code>rewriterule</code> lets you set an environment variable in the case that the rule matches.  <code>-</code> doesn't actually rewrite anything.  Thus, this checks the output of the script using <code>rewritecond</code> sending it the project number from the <code>rewriterule</code>, and then sets the environment variable in the case that both conditions match.  Then <code>header</code> conditionally gets set based on the presence of that environment variable.</p>

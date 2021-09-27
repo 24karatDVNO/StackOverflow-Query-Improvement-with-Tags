@@ -1,0 +1,9 @@
+<p>For your general understanding: methods run on threads. So it is possible that one method is being executed by multiple threads at the same time. </p>
+
+<p>Imagine you want to make sure that a method, or part of it, can only be executed by one thread at a time. This is called a critical section.</p>
+
+<p>A critical section in Java can be protected by a lock: implicitly via <a href="http://download.oracle.com/javase/tutorial/essential/concurrency/syncmeth.html" rel="nofollow">synchronized</a> or explicitly via <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/util/concurrent/locks/package-summary.html" rel="nofollow">java.util.concurrent.locks</a>.</p>
+
+<p>Only one thread at a time can acquire the lock and entering the critical section requires that the lock be acquired first. At the end of the critical section the lock is released and the thread continues running but now without holding that lock.</p>
+
+<p>A thread encountering a lock held by another thread (not necessarily for the same critical section) cannot proceed at that point and must wait. The thread, and other threads waiting on the same lock, will be notified when they can retry to acquire the lock. Again, only one thread will win and the process repeats (unless you have a <a href="http://en.wikipedia.org/wiki/Deadlock" rel="nofollow">deadlock</a> for example).</p>

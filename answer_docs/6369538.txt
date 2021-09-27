@@ -1,0 +1,19 @@
+<p>You can try <strong><code>logic</code></strong> like this.. no need to have monitor on this</p>
+
+<pre><code>private Soap soap = null;
+public Soap getServicePort()
+{
+try {
+    if(soap!=null &amp;&amp; soap.isValide()){ 
+      // not sure about the method isValide(), some condition to check session
+      return soap;
+    }else{
+      // create new soap &amp; return
+      return soap;
+    }
+} catch(Exception e){
+}// END Catch
+}// END MEthod
+</code></pre>
+
+<p>Call the method as many times as you want...</p>

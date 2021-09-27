@@ -1,0 +1,5 @@
+<p>PDO does not throw exceptions unless you explicitly instruct it to do so:</p>
+
+<pre><code>$db = new PDO(...);
+$db -&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+</code></pre>

@@ -1,0 +1,21 @@
+<h2>Revisiting this, I think the following is a better answer</h2>
+<h3><em>this came from another question I answered: <a href="https://stackoverflow.com/questions/6005836/jquery-slide-li-left/6006003#6006003">here</a></em></h3>
+<p>--</p>
+<p>I answered this question when I was realitvely new to <a href="http://jquery.com" rel="nofollow noreferrer">jquery</a>. I have since learned a few things, and after this answer was upvoted the other night I gave this answer a look over. I was initially unhappy with how the next element would enter to quickly, and more or less break the block. (<a href="http://jsfiddle.net/EZpMf/" rel="nofollow noreferrer">see here</a>). I feel the appropriate way to handle this question was with a callback that is called after the first toggle.</p>
+<h2>updated jquery</h2>
+<pre><code>$('li:gt(4)').css('display', 'none');
+
+    $(&quot;button&quot;).click(function() {
+        $('li:first').insertAfter('li:last').toggle('clip', 100, function() {
+            //called after the first .toggle() is finished
+            $('li:eq(4)').toggle('scale', 100);
+        });
+});
+</code></pre>
+<p>see the updated <a href="http://jsfiddle.net/L5yEA/" rel="nofollow noreferrer">live example</a>.</p>
+<h3><a href="http://api.jquery.com/toggle/" rel="nofollow noreferrer">.toggle()</a></h3>
+<pre><code>.toggle( [duration,] [easing,] [callback] )
+durationA string or number determining how long the animation will run.
+easingA string indicating which easing function to use for the transition.
+callbackA function to call once the animation is complete.
+</code></pre>

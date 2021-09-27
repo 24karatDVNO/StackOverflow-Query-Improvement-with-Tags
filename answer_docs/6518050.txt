@@ -1,0 +1,6 @@
+<p>Try removing this line from your code:</p>
+
+<pre><code>root.InnerText = root.InnerText.ToLower();
+</code></pre>
+
+<p>I tried converting your xpath to lowercase and leaving this line in, but resetting the root.InnerText seems to destroy the structure of the XML document (stepping through the code in the debugger changes the <code>root.ChildNodes.Count</code> property from 2 to 1 after the above line has executed).</p>

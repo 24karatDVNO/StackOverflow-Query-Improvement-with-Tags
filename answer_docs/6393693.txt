@@ -1,0 +1,7 @@
+<p>I found that serialization was being interrupted because of some problems with some types that were used in the workflow.</p>
+
+<p>The first problem was that I had marked a property with [DataMember] that didn't have a set accessor. NetDataContractSerializer wasn't able to serialize that type until I removed the attribute.</p>
+
+<p>The second problem was that I had a workflow variable of type IEnumerable, which obviously isn't marked as Serializable or DataContract. I'm not sure what I was thinking when I did that.</p>
+
+<p>These problems were easy to spot <em>after</em> learning about the <a href="http://blogs.msdn.com/b/rjacobs/archive/2011/05/18/using-workflow-services-and-silverlight-together.aspx" rel="nofollow">WorkflowServiceTraceBehavior on Ron Jacobs blog</a>.</p>

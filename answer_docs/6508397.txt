@@ -1,0 +1,3 @@
+<p>With <code>IndexReader.termDocs</code> you can iterate through a term's posting list, that is, all documents that contain that term. You could use this to provide your whole own query processing own top of Lucene, but then you won't be able to use any of <code>Query</code>, <code>Similarity</code> and stuff.</p>
+
+<p>Also, if you are working with synonyms <a href="http://lucene.apache.org/java/3_2_0/api/contrib-wordnet/index.html" rel="nofollow">Lucene has some things in the contrib package</a>. Another possible solution, don't know if you tried it, is to inject synonyms into the documents through a <code>Analyzer</code> (or other). That way you could return documents even if they don't have query terms.</p>

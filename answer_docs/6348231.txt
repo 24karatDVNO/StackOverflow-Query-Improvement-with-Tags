@@ -1,0 +1,5 @@
+<p>Your ItemsControl declares both an ItemsSource and a DataContext.  I believe these two properties are mutually exclusive - setting the DataContext property disconnects the control from the data associated with the logical control tree.</p>
+
+<p>Remove the DataContext= data binding and I think you'll see the items in the ItemsSource appear in your ItemsControl.</p>
+
+<p>Also, note that ItemsControl doesn't provide any UI definition on its own.  For debugging purposes, it can be useful to drop in a ListBox or other concrete ItemsControl and give it the same data binding settings to verify that your data bindings are sane.  If the ItemsControl doesn't show anything but the ListBox does, then your problem isn't in data binding, but in templating the ItemsControl visuals.</p>

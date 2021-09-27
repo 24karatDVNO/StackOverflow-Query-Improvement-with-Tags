@@ -1,0 +1,11 @@
+<blockquote>
+  <p>Is there a way to instantiate an
+  'empty object' of some class to set
+  their fields manually after the
+  instantiation without calling its
+  constructors?</p>
+</blockquote>
+
+<p>No, there isn't. Which is exactly why reflection-based frameworks or libraries generally require the classes they work with to adhere to the JavaBeans specification, which requires a default constructor.</p>
+
+<p>One way to overcome this would be to require metadata of some sort (annotations, xml) for classes that don't have a default constructor, which tells you what constructor to call with what values.</p>

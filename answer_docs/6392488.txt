@@ -1,0 +1,48 @@
+<p>This is the JavaScript code that solved my problem:</p>
+
+<pre><code>// Define images used in slideshow
+imgArray = new Array(
+    "header_img1.jpg",
+    "header_img2.jpg",
+    "header_img3.jpg",
+    "header_img4.jpg",
+    "header_img5.jpg"
+);
+baseURL = "images/";
+
+
+// Hide static image and preload slideshow images
+function preloader() {
+
+    // counter
+    var i = 0;
+
+    // create object
+    imageObj = new Image();
+
+    // start preloading imgArray
+    for (i=0; i&lt;3; i++) {
+        imageObj.src=imgArray[i];
+    }
+
+}
+
+// Control previous/next functions of slideshow
+numImages = imgArray.length;
+function f_slideshow( xflip ) {
+
+    // grab source of current image
+    var curImage = document["faces"].src;
+
+    // get image number from string and convert to int
+    curImage = parseInt(curImage.substring(curImage.length-5, curImage.length));
+
+    // create source for next/previous link
+    curImage = curImage + xflip;
+    if (curImage &gt; numImages)
+        { curImage = 1 ; } 
+    if (curImage == 0)
+        { curImage = numImages ; }      
+    document["faces"].src = baseURL + imgArray[curImage - 1];
+}
+</code></pre>

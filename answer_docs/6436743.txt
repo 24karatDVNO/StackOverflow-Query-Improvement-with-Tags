@@ -1,0 +1,12 @@
+<pre><code>            NSSet *touches = [event allTouches];
+
+        UITouch *touch = [touches anyObject];
+
+        CGPoint currentTouchPosition = [touch locationInView:self.view];
+
+        CGPoint xLocation;
+
+        xLocation = CGPointMake(currentTouchPosition.x-35,currentTouchPosition.y-10);
+
+        pressPoint = xLocation;
+</code></pre>

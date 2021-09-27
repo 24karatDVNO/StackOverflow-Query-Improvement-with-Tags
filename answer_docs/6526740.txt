@@ -1,0 +1,3 @@
+<p>To fix this, you need to check to make sure scanf() actually read the value(s) you want. scanf() returns the number of items successfully read. So store the return value, check to see if it's 1. If it's 0, then 0 items were read and you need to empty the stream before trying again. (edit: Well, maybe not necessarily empty it, but at least get past the offending data that's in the stream)</p>
+
+<p>As the others have said, it tries to read an integer, sees <code>'a'</code>, fails to read the integer, but then the <code>'a'</code> is still in the stream when you try again.</p>

@@ -1,0 +1,6 @@
+<pre><code>select 
+  Value
+from MyTable
+group by substring(Value,2,len(Value))
+having count(*) = 1
+</code></pre>

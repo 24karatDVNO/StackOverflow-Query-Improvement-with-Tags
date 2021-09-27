@@ -1,0 +1,18 @@
+<p>Just one approach. This restructures the array to associate users by company, then just iterates through them.</p>
+
+<pre><code>$companies = array();
+foreach($array as $user)
+{
+    $companies[$user['company_name']][] = $user['user_name'];
+}
+
+foreach($companies as $name =&gt; $userlist)
+{
+    echo $name . '&lt;br /&gt;';
+
+    foreach($userlist as $user)
+    {
+        echo ' - ' . $user . '&lt;br /&gt;';
+    }
+}
+</code></pre>

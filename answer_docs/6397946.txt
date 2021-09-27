@@ -1,0 +1,16 @@
+<pre><code>&lt;?php
+$line = 'Heading: Text1 (a, b) Text2. (d, f) Text3 (g, h)';
+$line = substr(preg_replace('/\([^\)]+\)/', ',', $line), 0, -1);
+?&gt;
+</code></pre>
+
+<p>Or with two regexes you can do:</p>
+
+<pre><code>&lt;?php
+$line = 'Heading: Text1 (a, b) Text2. (d, f) Text3 (g, h)';
+$line = preg_replace('/ \([^\)]+\)$/', '', $line);
+$line = preg_replace('/\([^\)]+\)/', ',', $line);
+?&gt;
+</code></pre>
+
+<p>But that's overkill. Use one regex for simplicity.</p>

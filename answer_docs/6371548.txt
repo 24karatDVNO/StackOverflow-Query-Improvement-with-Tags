@@ -1,0 +1,6 @@
+<p>I don't think Visual Studio supports lookaheads.  If you like, you can do this from a command prompt.</p>
+
+<pre><code>find /v /i "display" *.cs|find /i "style="
+</code></pre>
+
+<p><code>/i</code> means ignore case.  <code>/v</code> means to ignore lines that match.  /n includes the line numbers.</p>

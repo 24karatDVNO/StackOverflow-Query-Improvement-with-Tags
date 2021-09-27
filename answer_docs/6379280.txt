@@ -1,0 +1,19 @@
+<p>If you have full access to the source code of the cmd file, then the most obvious solution is to <strong>not use</strong> <code>SET /P</code> but to pass the option directly as a parameter to the batch file.</p>
+
+<p>Change batch.cmd to ....</p>
+
+<pre><code>echo start
+set inp=%1
+if "%inp%"=="1" goto 1
+if "%inp%"=="2" goto 2
+echo invalid parameter
+goto :eof
+:1
+echo 1
+goto :eof
+:2
+echo 2
+goto :eof
+</code></pre>
+
+<p>and invoke it with a single parameter of choice.</p>

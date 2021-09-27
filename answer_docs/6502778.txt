@@ -1,0 +1,11 @@
+<p>Math.Round isn't a method in javascript. However; Math.round <em>is</em>.</p>
+
+<pre><code>$(function() {
+    $("#button_text").hover(function() {
+        var randomNum = Math.round(Math.random()*3);
+        $("#buttons").addClass(randomNum);
+    }, function() {
+        $("#buttons").removeClass(randomNum)
+    });
+});
+</code></pre>

@@ -1,0 +1,14 @@
+<p>I don't know how the images are loaded and saved on your site. In this PHP solution the images should be saved in an array <code>$images</code></p>
+
+<pre><code>$images = array( 'path/image1.jpg', 'path/image2.jpg', /* ... */ );
+
+for( $i = 0, $i &lt;= count($images)-1, $i++){
+
+     $n = rand( $i, count($images)-1 );
+
+     // display image or something
+
+     unset( $images[$n] );
+     $images = array_merge( array(), $images );
+}
+</code></pre>

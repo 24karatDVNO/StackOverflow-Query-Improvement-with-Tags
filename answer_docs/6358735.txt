@@ -1,0 +1,13 @@
+<p>Adapted from: <a href="https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks-in-python/312644#312644">How do you split a list into evenly sized chunks?</a></p>
+
+<pre><code>from itertools import izip_longest
+data = range(6)
+data_iters = [iter(data)] * 2
+pairs = izip_longest(*data_iters)
+[pair for pair in pairs]
+&gt;&gt;&gt; [(0, 1), (2, 3), (4, 5)]
+</code></pre>
+
+<p>The clever part is that the two elements of data_iters refer to the same object. Izip_longest alternately consumes from the two iterators passed as arguments, but since they're referring to the same object, it effectively pairs the elements in the iterator.</p>
+
+<p>I take no credit for being clever here, upvote the comment I linked to if you liked my answer. :)</p>

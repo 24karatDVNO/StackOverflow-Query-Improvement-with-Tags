@@ -1,0 +1,15 @@
+<p>Specifying a type in the enum declaration only makes it use that type for the storage of the enum values, it doesn't change the syntax when you use the enum values.</p>
+
+<p>The default storage type is <code>int</code>, so specifying that the enum should use <code>int</code> doesn't change anything, but it can still be useful to clarify that you specifically want to use that type.</p>
+
+<hr>
+
+<p>If you are going to use the numeric values of the enums, you should specify them in the definition, and not rely on the default. That way it's clear from reading the code that you need them to have specific values:</p>
+
+<pre><code>public enum Size {
+  Bare = 0,
+  Fixed = 1,
+  VariableByte = 2,
+  VariableShort = 3
+};
+</code></pre>

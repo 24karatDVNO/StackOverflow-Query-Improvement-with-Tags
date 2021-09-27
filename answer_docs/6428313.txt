@@ -1,0 +1,7 @@
+<p>I would opt for a custom validation algorithm:</p>
+
+<ul>
+<li>For each show, compute all showing intervals <code>[start1, end1], [start2, end2], ... [startN, endN]</code>, where N is the number of recurrence of the show.</li>
+<li>For a new show, also compute these intervals.</li>
+<li>Now check if any of these new intervals intersect any old intervals. This is the case if the start or the end of one interval is contained in the other.</li>
+</ul>

@@ -1,0 +1,15 @@
+<p>Just attach the stuff directly.</p>
+
+<pre><code>(function() {
+  window.MyModule = {
+      RED: "#FF0000"
+    , BLUE: "#0000FF"
+    , GREEN: "#00FF00"
+    , testQuery = function() {
+        // Do something
+      }
+  };
+})();
+alert(MyModule.RED);  // #FF0000
+MyModule.testQuery(); // Do something
+</code></pre>

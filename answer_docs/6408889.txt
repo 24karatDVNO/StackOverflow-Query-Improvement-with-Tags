@@ -1,0 +1,3 @@
+<p>The usual enterprisey thing to do is to have a persistence layer (e.g. database) to save the data. You would map the XML to a relational model and store that, then regenerate the XML when B requires it.</p>
+
+<p>Saving a file directly is pretty simple and might be the best solution - you'll need to manage locking etc. yourself. Or you could do a very simple DB with the XML in a column.</p>

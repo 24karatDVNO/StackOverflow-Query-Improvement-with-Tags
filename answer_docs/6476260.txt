@@ -1,0 +1,5 @@
+<p>The solution I resorted to was to simplify the MATLAB structure. I eliminated nested structures. Each data set resides in a single file and I used python to loop over all the files of a particular type in the specified directory. (http://bogdan.org.ua/2007/08/12/python-iterate-and-read-all-files-in-a-directory-folder.html, if you would like to see an example of that.)</p>
+
+<p>Importing the flat matlab structure results in a dictionary where the matlab variable names are the keys. Strings come in as arrays of shape (1,) --> [ string ],  and numbers come in as arrays of shape (N, M) --> [[ numbers ]].</p>
+
+<p>I still have to learn a bit more about the numpy arrays.</p>

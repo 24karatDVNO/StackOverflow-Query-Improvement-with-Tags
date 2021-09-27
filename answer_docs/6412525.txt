@@ -1,0 +1,13 @@
+<p>I've solved the problem. It is a linking error, caused by either some linking arguments are missing or some .h files are missing. It turned out that </p>
+
+<blockquote>
+  <p>mwmathutils.h</p>
+</blockquote>
+
+<p>and </p>
+
+<blockquote>
+  <p>emlrt.h</p>
+</blockquote>
+
+<p>are out of date for my current matlab version. I replaced the two files, and everything started to work. </p>

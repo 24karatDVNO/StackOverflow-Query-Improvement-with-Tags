@@ -1,0 +1,4 @@
+<p>Yes SUM is an aggregate function so we can get our desired result by using BETWEEN operator like:</p>
+
+<pre><code>SELECT Sec_to_Time(Sum(Time_to_Sec(time_utilize))) as week_time FROM attendance WHERE staff_id = 'ahmed' AND today BETWEEN '2011-06-1' AND '2011-06-7'
+</code></pre>

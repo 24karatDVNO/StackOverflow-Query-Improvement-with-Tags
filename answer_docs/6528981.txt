@@ -1,0 +1,11 @@
+<p>Just to make sure: is that 'Y' something that is included in 'encoding' value of XML document? Then I am not surprised you get an error -- there is no such encoding.
+I assume this is an error in whatever produced the document and should be fixed.</p>
+
+<p>But on your side, you have two main options:</p>
+
+<ol>
+<li>Construct an InputStreamReader yourself from InputStream, passing "UTF-8" as encoding</li>
+<li>Modify input document before parsing to remove that 'y' from there</li>
+</ol>
+
+<p>First approach is simple, and most parsers should be ok with it. Second option can be used if first doesn't work.</p>

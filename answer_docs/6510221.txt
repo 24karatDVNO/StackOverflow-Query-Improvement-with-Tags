@@ -1,0 +1,5 @@
+<p>If you intend this to be seamless and behind the scenes, not requiring any user interaction, google for "UUID".  There are many algorithms for implementing this, so I really won't get into it too deep here.  But I have used a timestamped+extremely large random number implementation and it is working quite well so far.  When the app runs, i test if it exists in the <code>SharedPreferences</code>, if not, i create it, and save it in.</p>
+
+<p>BEWARE of <code>Secure.AndroidID.</code>  it is not reliably unique unless your app ONLY runs on 2.3+.</p>
+
+<p>Also remember to not try to use IMEI or other such information, because while unique for handsets that have it, is unavailable for verizon mobiles, and non-3g tablets</p>

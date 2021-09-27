@@ -1,0 +1,20 @@
+<p>If you wanted to guarantee something is done with the old value when it is replaced, then the race could result in not handling all the overwritten keys.</p>
+
+<pre><code>if(table.containsKey(key)){
+    Long oldValue = table.remove(key);
+}
+table.put(key, value);
+if (oldValue != null)
+    importantOperation(oldValue);
+</code></pre>
+
+<p><strong>Edit:</strong></p>
+
+<p>It looks like <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentHashMap.html#put%28K,%20V%29" rel="nofollow">put</a> also returns the old value if there was one, so the check is still not necessary (as others have specified).  The check would be necessary in the following awkward situation, which would have racing involved:</p>
+
+<pre><code>if(table.containsKey(key)){
+    Long oldValue = table.remove(key);
+    value = secretlyAdjustInput(oldValue, value)
+}
+table.put(key, value);
+</code></pre>

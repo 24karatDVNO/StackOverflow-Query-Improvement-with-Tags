@@ -1,0 +1,2 @@
+<p>The BufferedInputStream works for me, and why not just check if(bis.available() > 0) instead of a N value, this works perfectly for me.
+I think ObjectInputStream.readObject blocks(= waits until) when no input is to be read. So if there is any input at all in the stream aka if(bis.available() > 0) ObjectInputStream.readObject will not block. Keep in mind that ObjectInputStream.readObject might throw a ClassNotFoundException, and that is't a problem at all to me. </p>

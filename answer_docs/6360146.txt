@@ -1,0 +1,15 @@
+<pre><code>public class Test {
+    public static void main(String[] args) {
+        TestEnum e = TestEnum.SIGNATURE;
+        System.out.println(e.compareTo(TestEnum.SIGNATURE));
+        String test = "test";
+        if (test.equals("test") &amp;&amp; e.compareTo(TestEnum.SIGNATURE) != 0) {
+            System.out.println("I'm here");
+        }
+    }
+}
+</code></pre>
+
+<p>I did the following test. It does not enter the if block and print "I'm here".</p>
+
+<p>Can you post your snippet?</p>

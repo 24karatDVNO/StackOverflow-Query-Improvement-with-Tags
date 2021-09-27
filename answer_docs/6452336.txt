@@ -1,0 +1,11 @@
+<p>There are various ways of doing this...</p>
+
+<p>You could look into <a href="https://stackoverflow.com/questions/333664/simple-long-polling-example-code">long polling</a>.</p>
+
+<p>Stick a <a href="http://en.wikipedia.org/wiki/Meta_refresh" rel="nofollow noreferrer">meta refresh tag</a> to refresh the page every X seconds.</p>
+
+<p><code>tail -f /path/to/log.log</code> in terminal will open a live preview of the last few lines of that file  - this is what I do if I need to read the error logs as I debug.</p>
+
+<p>Or simply refresh the page manually as you go, it might be annoying having the page change it's contents automatically.</p>
+
+<p>As you have said your file is very large, I would use the PHP <a href="http://uk3.php.net/manual/en/function.file.php" rel="nofollow noreferrer"><code>file()</code></a> function to just grab the first X amount of lines from a file to keep bandwith down and readability up!</p>

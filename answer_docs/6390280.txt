@@ -1,0 +1,15 @@
+<p>This is logic that is supposed to happen in the python view:</p>
+
+<pre><code>games = [x.game for x in x_list]
+game_known = KNOWN_GAME in games
+return render(request, 'my_template.html', {'game_known': game_known, ...})
+</code></pre>
+
+<p>And in the template you have:</p>
+
+<pre><code>{% if game_known %}
+    &lt;show remove link&gt;
+{% else %}
+    &lt;show remove link&gt;
+{% endif %}
+</code></pre>

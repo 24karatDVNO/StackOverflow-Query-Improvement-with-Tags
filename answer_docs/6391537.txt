@@ -1,0 +1,12 @@
+<p>Yeah. When you have double quoted strings, and you put a dollar sign and something else in it, it  interprets it as a variable. (it also escape things like <code>\n</code>)</p>
+
+<p>Example</p>
+
+<pre><code>$test = "hi";
+echo "$test world"; //This outputs hi world
+</code></pre>
+
+<p>In your case, <code>$Q</code> doesn't exist. The default PHP behaviour is to ignore that error and just puts out nothing. This is why it's recommended to report all problems with your code. Check out 
+<a href="http://php.net/manual/en/function.error-reporting.php" rel="nofollow">http://php.net/manual/en/function.error-reporting.php</a> for details.</p>
+
+<p>Solution to your problem would be using single quoted strings. do <code>$a = '$Q'.$i;</code></p>

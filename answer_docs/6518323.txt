@@ -1,0 +1,43 @@
+<p>I think you can run use the 'g' command. Below is an example to run the time() function and get the return value via eax. Hope this helps.</p>
+
+<p>But I don't know how to run a function with parameters. If anyone knows, please post it here.Thanks.</p>
+
+<pre><code>0:023&gt; uf msvcrt!time
+msvcrt!time:
+77c1aecf 8bff            mov     edi,edi
+77c1aed1 55              push    ebp
+77c1aed2 8bec            mov     ebp,esp
+77c1aed4 51              push    ecx
+77c1aed5 51              push    ecx
+77c1aed6 8d45f8          lea     eax,[ebp-8]
+77c1aed9 50              push    eax
+77c1aeda ff154812be77    call    dword ptr [msvcrt!_imp__GetSystemTimeAsFileTime     (77be1248)]
+77c1aee0 8b45f8          mov     eax,dword ptr [ebp-8]
+77c1aee3 8b4dfc          mov     ecx,dword ptr [ebp-4]
+77c1aee6 6a00            push    0
+77c1aee8 050080c12a      add     eax,offset &lt;Unloaded_ure.dll&gt;+0x2ac17fff (2ac18000)
+77c1aeed 6880969800      push    offset &lt;Unloaded_ure.dll&gt;+0x98967f (00989680)
+77c1aef2 81d1214e62fe    adc     ecx,0FE624E21h
+77c1aef8 51              push    ecx
+77c1aef9 50              push    eax
+77c1aefa e8b1c80000      call    msvcrt!_aulldiv (77c277b0)
+77c1aeff 8b4d08          mov     ecx,dword ptr [ebp+8]
+77c1af02 85c9            test    ecx,ecx
+77c1af04 7402            je      msvcrt!time+0x39 (77c1af08)
+
+msvcrt!time+0x37:
+77c1af06 8901            mov     dword ptr [ecx],eax
+
+msvcrt!time+0x39:
+77c1af08 c9              leave
+77c1af09 c3              ret
+0:023&gt; g =77c1aecf 77c1aeff
+eax=4e0aec89 ebx=00000001 ecx=00989680 edx=00000000 esi=00000004 edi=00000005
+eip=77c1aeff esp=06aaffc0 ebp=06aaffc8 iopl=0         nv up ei pl zr na pe nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=0038  gs=0000             efl=00000246
+msvcrt!time+0x30:
+77c1aeff 8b4d08          mov     ecx,dword ptr [ebp+8] ss:0023:06aaffd0=00000005
+
+0:023&gt; ? eax
+Evaluate expression: 1309338761 = 4e0aec89
+</code></pre>

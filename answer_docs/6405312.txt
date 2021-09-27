@@ -1,0 +1,5 @@
+<p>In case this is useful to anyone else out there looking for a "generic" solution, I created a CLR procedure that can take an Xml fragment as above and "shred" it into a tabular resultset, without you providing any additional information about the names or types of the columns, or customizing your call in any way for the given Xml fragment:</p>
+
+<p><a href="http://architectshack.com/ClrXmlShredder.ashx" rel="nofollow">http://architectshack.com/ClrXmlShredder.ashx</a></p>
+
+<p>There are of course some restrictions (the xml must be "tabular" in nature like this sample, the first row needs to contain all the elements/columns that will be supported, etc) - but I do hope it's a few steps ahead of what's available built-in.</p>

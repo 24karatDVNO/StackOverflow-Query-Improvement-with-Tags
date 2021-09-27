@@ -1,0 +1,161 @@
+<h2>MVC / JSONP / DataSet Binding</h2>
+
+<p>I was able to get JSONP to work with MVC by modifying the code above. This sample directly binds datasets to html elements via JSONP. </p>
+
+<h2>Controller</h2>
+
+<p>></p>
+
+<blockquote>
+  <p>public class HomeController : Controller
+     {
+         [HttpGet]
+         public ActionResult HeaderJSONP()
+         {
+             DsPromotion.HeaderDataTable tbl = new DsPromotion.HeaderDataTable();
+             DsPromotion.HeaderRow row = tbl.NewHeaderRow();
+             row.imgBanner_src = "/Content/Home/Image/MainBanner.gif";
+             tbl.Rows.Add(row);
+             return new JsonpResult { Data = tbl };
+         }
+     }</p>
+</blockquote>
+
+<h2>JSONP Result</h2>
+
+<pre>
+> public class JsonpResult : System.Web.Mvc.JsonResult
+>    {
+>        public override void ExecuteResult(ControllerContext context)
+>        {
+>            this.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+>            if (context == null)
+>            {
+>                throw new ArgumentNullException("context");
+>            }
+>
+>            HttpResponseBase response = context.HttpContext.Response;
+>            if (!String.IsNullOrEmpty(ContentType))
+>            {
+>                response.ContentType = ContentType;
+>            }
+>            else
+>            {
+>                response.ContentType = "application/json";
+>            }
+>            if (ContentEncoding != null)
+>            {
+>                response.ContentEncoding = ContentEncoding;
+>            }
+>            if (Data != null)
+>            {
+>                HttpRequestBase request = context.HttpContext.Request;
+>                JavaScriptSerializer jsonserializer = new JavaScriptSerializer();
+>                DataTableConverter serializer = new DataTableConverter();
+>                response.Write(request.Params["jsoncallback"] + "(" + jsonserializer.Serialize(serializer.Serialize(Data, new JavaScriptSerializer())) + ")");
+>            }
+>        }
+>    }
+</pre>
+
+<h2>Javascript / JQuery JSON Request and Callback</h2>
+
+<p>></p>
+
+<blockquote>
+  <p>function BindDataTable(dataTable) {
+     var tableName;
+     for (tableName in dataTable) {
+         if (tableName.indexOf('<em>') > 0) {
+             tableName = tableName.split('</em>')[0];
+         }
+     }
+     var elementAndAttrib;
+     for (elementAndAttrib in dataTable[tableName][0]) {
+         var elementID = elementAndAttrib.split('<em>')[0];
+         var attribName = elementAndAttrib.split('</em>')[1];
+         var attribValue = dataTable[tableName][0][elementAndAttrib];
+         $("#" + elementID).attr(attribName, attribValue);
+     }
+  }
+  function GetHomeHeaderCallBack(tblHeader) {
+     BindDataTable(tblHeader);
+  }
+  function GetHomeHeader() {
+     var call = "/Home/HeaderJSONP?jsoncallback=?&amp;" + Math.round(new Date().getTime());
+     $.getJSON(call, { format: "json" }, GetHomeHeaderCallBack);
+  }
+  $(GetHomeHeader);</p>
+</blockquote>
+
+<h2>Partial View</h2>
+
+<blockquote>
+  <p>&lt;%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+  </p>
+</blockquote>
+
+<h2>XSD</h2>
+
+<p>
+    
+      
+        
+          
+            
+              
+            
+          
+        
+...</p>
+
+<h2>Table Serializer</h2>
+
+<p>></p>
+
+<blockquote>
+  <p>public class DataTableConverter : JavaScriptConverter
+     {
+         public override IEnumerable SupportedTypes
+         {
+             get { return new Type[] { typeof(DataTable) }; }
+         }</p>
+
+<pre><code>   public override object Deserialize(IDictionary&lt;string, object&gt; dictionary, Type type,
+   JavaScriptSerializer serializer)
+   {
+       throw new NotImplementedException();
+   }
+
+   public override IDictionary&lt;string, object&gt; Serialize(object obj, JavaScriptSerializer serializer)
+   {
+       DataTable listType = obj as DataTable;
+
+       if (listType != null)
+       {
+           // Create the representation.
+           Dictionary&lt;string, object&gt; result = new Dictionary&lt;string, object&gt;();
+           ArrayList itemsList = new ArrayList();
+           foreach (DataRow row in listType.Rows)
+           {
+               //Add each entry to the dictionary.
+               Dictionary&lt;string, object&gt; listDict = new Dictionary&lt;string, object&gt;();
+               foreach (DataColumn dc in listType.Columns)
+               {
+                   listDict.Add(dc.ColumnName, row[dc.ColumnName].ToString());
+               }
+               itemsList.Add(listDict);
+           }
+           result[listType.TableName] = itemsList;
+
+           return result;
+       }
+       return new Dictionary&lt;string, object&gt;();
+   }
+</code></pre>
+  
+  <p>}</p>
+</blockquote>
+
+<p>Enjoy!
+Mark Brito</p>

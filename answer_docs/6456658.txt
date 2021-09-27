@@ -1,0 +1,11 @@
+<p>Well, you see "column" and "row" used a lot, to name two.</p>
+
+<p>Regarding your other questions:</p>
+
+<p>Highlighted block of text like a blockquote: well you could use a blockquote, as a rule of thumb, you should always try and use an appropriate standard html element when you can, to keep things clean. Otherwise, you could use a class "highlight" and alter your css accordingly, so you'll know exactly what it means if you come back to it in two years.</p>
+
+<p>A section on a homepage where there are distinct blocks for, say, listing different features: you've kind of answered your own question here. Lists are very popular for this sort of thing, with maybe a class or id on the <code>&lt;ul&gt;</code> element. Name it in a descriptive yet concise way. Doing that, you don't need to come up with a new term.</p>
+
+<p>A pop-up text description of another element: you see <code>popup</code> used a lot, for example <code>&lt;div class=</code>popup">..content..` . This works well when the popup is  a child of the hovered element, for easy DOM traversal.</p>
+
+<p>The introductory description on the homepage: this one I don't have any suggestions for. Your suggestion of intro is fine. You could just have it as a standard <code>&lt;p&gt;</code> and style it based on it's parents. A definition like <code>#content p:first-child</code> would be a nicer solution for a first paragraph of many than a special class, in my opinion.</p>

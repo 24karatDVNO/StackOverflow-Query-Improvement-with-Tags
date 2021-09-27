@@ -1,0 +1,7 @@
+<p>Double check your connection params, it should look something like this...</p>
+
+<pre><code>// filemaker server connection param
+$connection =&amp; new FileMaker('DBName', 'http://www.domain.com');
+$connection-&gt;setProperty('username', 'youruser');
+$connection-&gt;setProperty('password', 'yourpass');
+</code></pre>

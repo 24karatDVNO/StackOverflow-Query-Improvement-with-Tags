@@ -1,0 +1,10 @@
+<p>Use specific ADO.Net data provider <a href="https://help.sap.com/viewer/product/SAP_ASE_SDK/" rel="nofollow noreferrer">stright from manufacturer</a> (SAP now own sybase). I think you can manage to create a connection string yourself using <a href="https://www.connectionstrings.com/advantage-net-data-provider/" rel="nofollow noreferrer">this reference</a>. For <a href="https://help.sap.com/viewer/54c3945e6dd14033889f875bed1323ce/16.0.3.5/en-US/b1745db8bbf910148b75d8c792ace999.html" rel="nofollow noreferrer">example</a>:</p>
+
+<pre><code>var connStr = @"Data Source=\\myserver\myvolume\mypat\mydd.add;User ID=myUsername;
+Password=myPassword;ServerType=REMOTE;"
+using (ASEConnection conn = new AseConnection(connStr)) {
+    // use conn
+}
+</code></pre>
+
+<p>Same informaton can be obtained from documentation mentioned earlier.</p>

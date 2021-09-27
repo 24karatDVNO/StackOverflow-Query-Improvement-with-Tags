@@ -1,0 +1,11 @@
+<blockquote>
+  <p>Is my way of encrypting the data is good or is it lack (comparing it to SSL)?</p>
+</blockquote>
+
+<p>No. The hashed password is effectively the real password and is sent in the clear.</p>
+
+<blockquote>
+  <p>How can I prevent XSS (cross site scripting) - steeling the token from the user cookie and using to to retrieve data from the server without supplying user and password?</p>
+</blockquote>
+
+<p>With the usual mechanisms for protecting your site against XSS, i.e. sanitising / escaping all the data you output so scripts can't be injected from clients.</p>

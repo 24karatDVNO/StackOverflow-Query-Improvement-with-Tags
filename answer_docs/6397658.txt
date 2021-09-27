@@ -1,0 +1,55 @@
+<p>Seems i got it working. Don't know exactly if the code i posted in my question had errors (i don't think so, because it actually sent the msg i wanted), but I ended up using another way of writing.</p>
+
+<p>This was the method used:</p>
+
+<pre><code> -(NSInteger) writeToServer:(const uint8_t *) buf 
+  {
+     return [oStream write:buf maxLength:strlen((char*)buf)];    
+  }
+</code></pre>
+
+<p>And this the code I used (instead of the one posted in the question):</p>
+
+<pre><code>case NSStreamEventHasSpaceAvailable:
+    event = @"NSStreamEventHasSpaceAvailable";
+        connectButton.enabled = NO;
+        disconnectButton.enabled = YES;
+
+        if (theStream == oStream)
+         {
+         //send data
+
+             NSString *msg = [[NSString alloc] initWithFormat:@"ping"];
+             const uint8_t *buffer = (const uint8_t *)[msg UTF8String];  
+             NSInteger err = [self writeToServer:buffer];
+             [msg release];
+
+             if ( err == -1)
+                 NSLog(@"Error sending data."); 
+             else   
+                 NSLog(@"Success sending data.");
+
+break;
+</code></pre>
+
+<p>Also I noticed that the server after the <em>read()</em> and <em>printf(msg)</em>, it would present me with a msg saying the connection had been terminated, so I changed the code on the server side where I had a <em>check</em> whether the server was still connected with the client, like this:</p>
+
+<p><code>check = recv(newsockf,buffer,256, MSG_PEEK|MSG_DONTWAIT);</code> </p>
+
+<pre><code>if(!(check &lt; 0 &amp;&amp; errno == EAGAIN))
+{
+  //close socket;
+  //accept();
+}
+</code></pre>
+
+<p>..to this:</p>
+
+<pre><code>if((check &lt; 0 &amp;&amp; errno != EAGAIN))
+{
+  //close socket;
+  //accept();
+}
+</code></pre>
+
+<p>It seems to have done the trick. Now it doesn't disconnect for nothing. Problem Solved.</p>

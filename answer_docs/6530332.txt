@@ -1,0 +1,10 @@
+<p>You didn't call toCallActivity().So your new Activity is not coming in the front.Write like this.    </p>
+
+<pre><code>@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash);
+    toCallActivity();
+
+    }
+</code></pre>

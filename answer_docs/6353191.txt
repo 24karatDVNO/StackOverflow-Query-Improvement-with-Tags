@@ -1,0 +1,9 @@
+<p>There is delegate method as follows</p>
+
+<pre><code>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+      if (indexPath.row == theRowWhereUwantToIncreaseTheSize) 
+      {
+           return 105.0f;;
+      }
+}
+</code></pre>

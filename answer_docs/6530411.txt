@@ -1,0 +1,27 @@
+<p>Hope the following code helps you:</p>
+
+<p>Write the following jQuery code in document.ready and will be called in menu click.</p>
+
+<pre><code>          $( document ).ready( function() {
+             $( '#nav ul li' ).click( function() {
+                $( '#nav ul' ).children('li').removeClass();
+                $( this ).addClass( 'selected' );
+             });
+          });
+</code></pre>
+
+<p>The class definition should be as follows:</p>
+
+<pre><code>          #nav .selected a{background:red;display:block}
+</code></pre>
+
+<p>See the menu section:</p>
+
+<pre><code>         &lt;div id="nav"&gt;
+           &lt;ul&gt;    
+              &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+           &lt;/ul&gt;
+         &lt;/div&gt;
+</code></pre>

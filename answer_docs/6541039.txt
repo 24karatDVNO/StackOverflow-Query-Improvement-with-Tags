@@ -1,0 +1,17 @@
+<p>Compare your program to this. It might help.</p>
+
+<pre><code>fibonacci = [1,2]
+num = 3
+while num &lt; 4000000:
+    fibonacci.append(num)
+    len_ = len(fibonacci)
+    num = fibonacci[len_-2] + fibonacci[len_-1]
+
+sum = 0
+for num in fibonacci:
+    if num%2 == 0: sum += num
+
+print sum
+</code></pre>
+
+<p>I don't understand why are you unnecessary removing the odd numbered entries from the list. Just add the even numbered ones that's it.</p>

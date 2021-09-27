@@ -1,0 +1,21 @@
+<p>Below is the sample code ... pay attention to format inside SimpleDateFormat Constructor. This string which to be parsed for date should be similar in format to that of string passed in SimpleDateFormat constructor</p>
+
+<p>public Date getDate(String str) {
+        SimpleDateFormat sdFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss");
+        Date d = null;</p>
+
+<pre><code>    try {
+
+        String str1 = str.substring(0, str.lastIndexOf(" ")).substring(0,
+                str.lastIndexOf(" "));
+        String str2 = str1.substring(0, str1.lastIndexOf(" "));
+        Log.v("str1", str2);
+
+        d = sdFormat.parse(str2);
+    } catch (java.text.ParseException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    return d;
+}
+</code></pre>

@@ -1,0 +1,20 @@
+<p>Sorted it.</p>
+
+<p><strong>Anyone that can answer why the symlink was the problem can get the answer!</strong></p>
+
+<p>Thanks for all the feedback and help. Basically if anyone else runs into this problem... here's what it was.</p>
+
+<p>I noticed when I removed configs from /etc/nginx/site-enabled it affected the server.</p>
+
+<p>..OK that sounds right!</p>
+
+<p>Now I noticed when I re-sym linked a config from /etc/nginx/site-available to /etc/nginx/site-enabled it had no effect. Even the default nginx default config didn't work.</p>
+
+<p>so! there must be a problem here with symlink. I did a quick test by importing /etc/nginx/site-available/dankit into the main Nginx config and hey! site is up.</p>
+
+<p>Therefore I believe my symlink command:</p>
+
+<pre><code>sudo ln -s sites-available/dankit sites-enabled/dankit
+</code></pre>
+
+<p>is bollocks. I gotta look into another solution.</p>

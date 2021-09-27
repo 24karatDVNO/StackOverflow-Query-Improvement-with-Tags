@@ -1,0 +1,25 @@
+<p>I don't see anything particularly wrong with your code. You can try to dump the URLs beign requested (either from the code, or using something like fiddler) to see if the client really sends the same queries (and thus getting same responses).</p>
+
+<p>In any case, here is a sample code which does work (using the sample service):</p>
+
+<pre><code>DataServiceContext ctx = new DataServiceContext(new Uri("http://services.odata.org/Northwind/Northwind.svc"));
+
+QueryOperationResponse&lt;Customer&gt; response = (QueryOperationResponse&lt;Customer&gt;)ctx.CreateQuery&lt;Customer&gt;("Customers").Execute();
+do
+{
+    foreach (Customer c in response)
+    {
+        Console.WriteLine(c.CustomerID);
+    }
+
+    DataServiceQueryContinuation&lt;Customer&gt; continuation = response.GetContinuation();
+    if (continuation != null)
+    {
+        response = ctx.Execute(continuation);
+    }
+    else
+    {
+        response = null;
+    }
+} while (response != null);
+</code></pre>

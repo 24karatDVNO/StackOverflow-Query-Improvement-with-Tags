@@ -1,0 +1,28 @@
+<p>So I ended up creating a many-to-many relation through categorizations. This <a href="http://railscasts.com/episodes/167-more-on-virtual-attributes" rel="nofollow">railscast</a> explains perfectly how to do this and create new categories (or tags) on-the-fly.</p>
+
+<p>After I loop through the categories to make them links in my product overview:</p>
+
+<pre><code># app/views/products/index.html.erb 
+&lt;ul class="categories"&gt;
+    &lt;% for category in @categories %&gt;
+       &lt;li&gt;&lt;%= link_to category.name, :action =&gt; "index" , :category =&gt; category.id %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+    &lt;/ul&gt;
+</code></pre>
+
+<p>and then in the controller I build the products from the category if there is any:</p>
+
+<pre><code># products_controller.rb
+  def index
+    if params[:category]
+      @products = Category.find(params[:category]).products
+    else
+      @products = Product.scoped
+    end
+    @products = @products.where("title like ?", "%" + params[:title] + "%") if params[:title]
+    @products = @products.order('title').page(params[:page]).per( params[:per_page] ? params[:per_page] : 25)
+    @categories = Category.all
+  end
+</code></pre>
+
+<p>for sure there is a more elegant way to do it but this wors for now.. any improvement appreciated.</p>

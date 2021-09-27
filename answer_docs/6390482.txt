@@ -1,0 +1,7 @@
+<pre><code>private static void CompareFiles()
+{
+    File.WriteAllLines("FileC.txt",
+    File.ReadAllLines("FileB.txt").Except(File.ReadAllLines("FileA.txt")
+                                        .Union(File.ReadAllLines("FileD.txt"))));
+}
+</code></pre>

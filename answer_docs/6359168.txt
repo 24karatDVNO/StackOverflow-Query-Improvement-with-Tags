@@ -1,0 +1,14 @@
+<p>I think the below implementation would be a little faster than the corresponding linq implementation, but <em>very minor</em> though</p>
+
+<pre><code>public bool ContainsProduct(int productID) {
+    var length = this.ProductIDs.Length;
+
+    for (int i = 0; i &lt; length; i++) {
+        if (productID == this.ProductIDs[i]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+</code></pre>

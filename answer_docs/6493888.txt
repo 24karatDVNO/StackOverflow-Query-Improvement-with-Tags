@@ -1,0 +1,9 @@
+<p>You could go down a halfway-house route of having a couple of methods for your loading your Project entity depending on your requirements: -</p>
+
+<pre><code>LoadProjectLight(int projectId)
+LoadProjectFull(int projectId)
+</code></pre>
+
+<p>The former would just load in the "top level" of the object graph i.e. the Project entity, and the latter which would load the full object, using .Include() to bring in the parts of the graph that are required.</p>
+
+<p>You would use the Light method when you only need top-level depending e.g. master list of Projects, and then the Full method when you need the entire graph e.g. editing the object in a details view.</p>

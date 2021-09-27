@@ -1,0 +1,15 @@
+<p>You're storing the actual secret key in your keystore (which is normal). However, you seem to be trying to read it as a password, for a new key you're generating later.</p>
+
+<p>Instead of this:</p>
+
+<pre><code>String passForTheKey = ks2.getKey(keyAlias, keyPass.toCharArray()).toString();
+KeySpec key = new PBEKeySpec(passForTheKey.toCharArray());
+SecretKey sKey2 = skFactory.generateSecret(key);
+</code></pre>
+
+<p>use this:</p>
+
+<pre><code>SecretKey sKey2 = (SecretKey) ks2.getKey(keyAlias, keyPassword.toCharArray());
+</code></pre>
+
+<p>What you're reading from the keystore is the key itself (as you've stored it), not some password. (<code>generateSecret</code> will just generate a new key.)</p>

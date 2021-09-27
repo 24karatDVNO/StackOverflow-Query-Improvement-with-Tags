@@ -1,0 +1,160 @@
+<h2>XMAL:</h2>
+
+<p><br>
+    
+        
+            
+        
+        
+            
+                
+                
+            
+            
+                
+                
+            </p>
+
+<pre><code>        &lt;Image 
+            Margin="0,0,5,0"
+            Grid.Column="0"
+            Grid.Row="0"
+            Name="image"
+            Stretch="UniformToFill" 
+            DataContext ="{Binding SelectedPhoto, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dns:MainWindow}}}"
+            Source="{Binding ImageFrame}" HorizontalAlignment="Center" VerticalAlignment="Center"&gt;
+        &lt;/Image&gt;
+        &lt;ScrollBar Height="20" Name="scbImages" Orientation="Horizontal" Grid.Column="0"
+            Grid.Row="1" Maximum="0" SmallChange="1" ValueChanged="scbImages_ValueChanged" /&gt;
+
+        &lt;GroupBox Name="info" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"&gt;
+            &lt;GroupBox.HeaderTemplate&gt;
+                &lt;DataTemplate&gt;
+                    &lt;StackPanel Orientation="Horizontal"&gt;
+                        &lt;Label Content="Name: "/&gt;
+                        &lt;Label DataContext="{Binding Path=DataContext, ElementName=image}" Content="{Binding Name}"&gt;&lt;/Label&gt;
+                    &lt;/StackPanel&gt;
+                &lt;/DataTemplate&gt;
+            &lt;/GroupBox.HeaderTemplate&gt;
+            &lt;ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"&gt;
+                &lt;StackPanel DataContext="{Binding Path=Metadata, ElementName=image}"&gt;
+                    &lt;Label&gt;Size:&lt;/Label&gt;
+                    &lt;Label Content="{Binding}"&gt;&lt;/Label&gt;
+                    &lt;Label &gt;Date Image Taken:&lt;/Label&gt;
+                    &lt;Label Content="{Binding DateImageTaken}" /&gt;
+                    &lt;Label &gt;Camera Model:&lt;/Label&gt;
+                    &lt;Label Content="{Binding CameraModel}"/&gt;
+                    &lt;Label &gt;Creation Software:&lt;/Label&gt;
+                    &lt;Label Content="{Binding CreationSoftware}" /&gt;
+                    &lt;Label &gt;Lens Aperture:&lt;/Label&gt;
+                    &lt;Label Content="{Binding LensAperture}" /&gt;
+                    &lt;Label &gt;Focal Length:&lt;/Label&gt;
+                    &lt;Label Content="{Binding FocalLength}" /&gt;
+                    &lt;Label &gt;ISO Speed:&lt;/Label&gt;
+                    &lt;Label Content="{Binding IsoSpeed}" /&gt;
+                    &lt;Label &gt;Exposure Time:&lt;/Label&gt;
+                    &lt;Label Content="{Binding ExposureTime}" /&gt;
+                    &lt;Label &gt;Exposure Mode:&lt;/Label&gt;
+                    &lt;Label Content="{Binding ExposureMode}" /&gt;
+                    &lt;Label &gt;Exposure Compensation:&lt;/Label&gt;
+                    &lt;Label Content="{Binding ExposureCompensation}" /&gt;
+                    &lt;Label &gt;White Balance Mode:&lt;/Label&gt;
+                    &lt;Label Content="{Binding WhiteBalanceMode}" /&gt;
+                    &lt;Label &gt;Color Representation:&lt;/Label&gt;
+                    &lt;Label Content="{Binding ColorRepresentation}" /&gt;
+                &lt;/StackPanel&gt;
+            &lt;/ScrollViewer&gt;
+        &lt;/GroupBox&gt;
+    &lt;/Grid&gt;
+&lt;/Grid&gt;
+</code></pre>
+
+<p></p>
+
+<h2>Cs:</h2>
+
+<p>using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;</p>
+
+<p>namespace WpfApplication2
+{
+    /// 
+    /// Interaction logic for MainWindow.xaml
+    /// 
+    public partial class MainWindow : Window
+    {
+        private string photosDir = @"D:\Users\Rafael\Gaby\Fotos\5 x 7";
+        private ObservableCollection photos = new ObservableCollection();</p>
+
+<pre><code>    public static DependencyProperty SelectedPhotoIndexProperty = DependencyProperty.Register("SelectedPhotoIndex", typeof(double), typeof(MainWindow));
+    public static DependencyProperty SelectedPhotoProperty = DependencyProperty.Register("SelectedPhoto", typeof(Photo), typeof(MainWindow));
+
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        foreach(var curImg in System.IO.Directory.GetFiles(this.photosDir))
+            photos.Add(new Photo(curImg));
+
+        if(photos.Count &gt; 0)
+        {
+            this.scbImages.Maximum = photos.Count - 1;
+            this.SelectedPhotoIndex = 0;
+        }
+    }
+
+    public double SelectedPhotoIndex
+    {
+        get
+        { return this.GetValue(SelectedPhotoIndexProperty) != null ? (double)this.GetValue(SelectedPhotoIndexProperty) : 0; }
+        set
+        { 
+            this.SetValue(SelectedPhotoIndexProperty, value);
+            this.SelectedPhoto = photos[(int)value];
+        }
+    }
+    public Photo SelectedPhoto
+    {
+        get { return this.GetValue(SelectedPhotoProperty)as Photo; }
+        set
+        {
+            this.SetValue(SelectedPhotoProperty, value);
+        }
+    }
+
+    private void scbImages_ValueChanged(object sender, RoutedPropertyChangedEventArgs&lt;double&gt; e)
+    {
+        this.SelectedPhotoIndex = (int)e.NewValue;
+    }
+}
+
+public class Photo
+{
+    public Photo(string path)
+    {
+        Name = path;
+        ImageFrame = BitmapFrame.Create(new Uri(path));
+    }
+
+    public string Name
+    { get; set; }
+    public BitmapFrame ImageFrame { 
+        get;
+        set;
+    }
+}
+</code></pre>
+
+<p>}</p>

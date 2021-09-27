@@ -1,0 +1,21 @@
+<p>The <a href="http://alivepdf.bytearray.org/alivepdf-asdoc/org/alivepdf/pdf/PDF.html#addCell%28%29" rel="nofollow">documentation</a> is wrong, the fill parameter is described as "Link can be internal to do document level navigation (InternalLink) or external (HTTPLink)".</p>
+
+<p>The code to get this working is:</p>
+
+<pre><code>printPDF.beginFill(new RGBColor(0xFF0718));
+printPDF.textStyle(new RGBColor(0x000000));
+printPDF.addCell(30, 10, "Room", 0, 0, Align.LEFT, 1);
+</code></pre>
+
+<p>A couple of things about the code:</p>
+
+<ol>
+<li>The fill parameter should be 0 or 1
+rather than the fill value. It just
+either switches on or off the fill
+value previously set.</li>
+<li>The text style
+    should be set too otherwise the text
+    and background will use the same
+    colour</li>
+</ol>

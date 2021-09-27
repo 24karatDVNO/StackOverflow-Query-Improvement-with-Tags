@@ -1,0 +1,23 @@
+<p>Here is a complete Example</p>
+
+<pre><code>public class GivesNameOfCallingClass {
+//constructor
+    public GivesNameOfCallingClass() {
+        try {
+            throw new Exception("Error");
+        }
+        catch (Exception e) {
+            System.out.println(e.getStackTrace()[1].getClassName());
+        }
+    }
+}
+</code></pre>
+
+<p>And Test Class</p>
+
+<pre><code>public class GetNameOfCallingClassTest {
+    public static void main(String[] args) {
+        new GivesNameOfCallingClass();
+    }
+}
+</code></pre>

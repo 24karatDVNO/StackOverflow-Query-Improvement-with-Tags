@@ -1,0 +1,19 @@
+<blockquote>
+  <p>I have changed logging threshold of Geronimo to debug and I found '2011-06-24 07:33:18,353 DEBUG [root] base URI'. I thing there is some conflict. The application is one process, one JVM instance with thousands of classes, but with only one root logger for all of them.</p>
+</blockquote>
+
+<p>Seams that you are right:</p>
+
+<p>From the <a href="https://cwiki.apache.org/GMOxDOC21/configuring-application-specific-logging-with-log4j.html" rel="nofollow">Geronimo Documentation</a>:</p>
+
+<blockquote>
+  <p>Note that in any case, unless you use hidden-classes or inverse-classloading to load your own copy of log4j separate from the geronimo copy, log4j will not automatically read any log4j.properties files you may have included in your classpath.</p>
+</blockquote>
+
+<p>I found the last "solution" from the documentation very interesting:</p>
+
+<blockquote>
+  <p>Copy the log4j.properties file by hand to the appropriate location such as var/my-app/log4j.properties. There is no need to include this file in your app.</p>
+</blockquote>
+
+<p>Because that allows you to externalize the log4j configuration. So the Operations-Guy can manage and change the log4j configuration. And you do not need to build/and deploy a new version if for example the directory where the files are stored is changed.</p>

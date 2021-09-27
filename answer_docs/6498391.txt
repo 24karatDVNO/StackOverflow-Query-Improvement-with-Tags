@@ -1,0 +1,11 @@
+<pre><code>$(document).ready(function(){    
+   $("#dropdown").change(onSelectChange);
+
+});
+function onSelectChange(){
+    var selected = $("#dropdown option:selected");        
+    var output = "";
+
+    $("#testarea").css('border-style', selected.val());
+}
+</code></pre>

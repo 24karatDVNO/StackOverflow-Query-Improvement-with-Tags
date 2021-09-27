@@ -1,0 +1,22 @@
+<p>Thanks to Thomas and Joachim Sauer for pointing out that the problem was due to the immutability of <code>java.lang.Integer</code>. </p>
+
+<p>The integer is mapped to a genuine JavaScript variable by <code>engine.put()</code> and can be treated like a number. If you need the result, call <code>engine.get()</code> to pass it back into Java. This is different to the <code>List&lt;String&gt;</code> example on <a href="http://java.sun.com/developer/technicalArticles/J2SE/Desktop/scripting/" rel="nofollow">http://java.sun.com/developer/technicalArticles/J2SE/Desktop/scripting/</a> where a Java object is passed to the script, and <em>its own methods (as defined in Java)</em> are applied to it from within the script by callback to Java, using reflection.  </p>
+
+<p>It is an interesting detail that the <code>Integer</code> will be retrieved as <code>Double</code> from JavaScript, indicating that there really was a forward and backward mapping to a JavaScript data object.</p>
+
+<p>Here is the passing test (leaving out the instantiation of <code>engine</code> which is still the same as in my question - I have extracted it in the meantime).</p>
+
+<pre><code>  @Test 
+  public void bindToInteger() throws ScriptException {
+
+    Integer i = 17;
+
+    engine.put( "i", i );        
+    engine.eval( "i++" );  // Execute JavaScript
+
+  // i is mapped back to java.lang.Double by get()
+    double f = (Double) engine.get("i");  
+    assertEquals( 18,  (int) f );        
+
+    }
+</code></pre>

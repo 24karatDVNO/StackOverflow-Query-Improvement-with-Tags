@@ -1,0 +1,21 @@
+<p>Yep, there is a semantical difference. Here's a minimal illustration:</p>
+
+<pre><code>class C&lt;T extends C&gt; {
+}
+
+class D&lt;T extends D&lt;T&gt;&gt; {
+}
+
+class Test {
+    public static void main(String[] args) {
+        new C&lt;C&gt;();  // compiles
+        new D&lt;D&gt;();  // doesn't compile.
+    }
+}
+</code></pre>
+
+<p>The error is fairly obvious:</p>
+
+<blockquote>
+  <p>Bound mismatch: The type <code>D</code> is not a valid substitute for the bounded parameter <code>&lt;T extends D&lt;T&gt;&gt;</code> of the type <code>D&lt;T&gt;</code></p>
+</blockquote>

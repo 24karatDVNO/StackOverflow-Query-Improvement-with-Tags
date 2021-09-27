@@ -1,0 +1,5 @@
+<p>You just need to make sure your Connection Factory is part of the same XA transaction.</p>
+
+<p>you have to set REQUIRES_NEW on the EJB as Gursel Koca said in another post here.</p>
+
+<p>The simpler will be you using the JCA Connection Factory (usually at java://JmsXA)</p>

@@ -1,0 +1,27 @@
+<p>Thank you for your answer. I think I fixed it now. I described the two entities "Account" and "Profile" above. The entity "Employee" is missing in my description above. Here is the mapping:</p>
+
+<pre><code>@Entity
+public class Employee extends UUIDBase {
+    public Account account;
+
+    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.REMOVE}, orphanRemoval = true)
+    public Account getAccount() {
+        return this.account;
+    }
+
+    public void setAccount(Account account) { 
+        this.account = account;
+    } 
+</code></pre>
+
+<p>}</p>
+
+<p>The mapping is "A employee could have a account. A account must have a profile". The problem is in the service class:</p>
+
+<pre><code>public void saveEmployee(Employee data) {
+    Employee savedEmployee = empDao.saveEmployee(data);
+    accountService.saveAccount(data.getAccount()); &lt;-- Here is the failure
+}
+</code></pre>
+
+<p>First I save the employee and get the saved employee object back. After that I try to save the employees account through its own service. When I take the account of the saved employee object everything works and the callbacks are called. When I take the account from the "data" parameter the callbacks are not called.</p>

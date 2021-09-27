@@ -1,0 +1,9 @@
+<p>To perform any administrative operations in IIS such as recycling application pools, starting and stopping sites, creating websites and so on, you need to run as administrator.</p>
+
+<p>If you want to programmatically impersonate a user then you need to use the <a href="http://msdn.microsoft.com/en-us/library/w070t6ka%28v=VS.90%29.aspx#Y800" rel="nofollow"><code>WindowsIdentity.Impersonate</code></a> method.</p>
+
+<p>There's a reasonably good snippet of sample code there to get you started.</p>
+
+<p>Of course all the usual caveats apply here when it comes to storing credentials for highly privileged users in your <code>web.config</code> file (or hard coded).</p>
+
+<p>Also if you're trying to debug code that accesses IIS programmatically using  the managed <code>ServerManager</code> API then make sure you start Visual Studio by doing "Run As Administrator". You need to do this even if your own Windows account is a member of the Administrators group.</p>

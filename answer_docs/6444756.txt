@@ -1,0 +1,20 @@
+<p>Is the activity that is calling this activity perhaps finishing itself? If you don't override onkeydown, the default behavior is to handle the back button. Note that you're confusing backButtonPressed with onBackPressed. Use the @Override annotation to ensure that you're overriding the right methods...</p>
+
+<p>From the android source for Activity</p>
+
+<pre><code>public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (getApplicationInfo().targetSdkVersion
+                &gt;= Build.VERSION_CODES.ECLAIR) {
+            event.startTracking();
+        } else {
+            onBackPressed();
+        }
+        return true;
+    }
+&lt;snip&gt;
+</code></pre>
+
+<p>......</p>
+
+<p>So, you really shouldn't even need to do anything.</p>

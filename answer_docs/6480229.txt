@@ -1,0 +1,3 @@
+<p><code>%esp</code> is the current stackpointer, ie. the top of it. <code>%ebp</code> represents the base pointer of the current function. It is needed so the function knows where its stack begins. You need to save the previous function's <code>%ebp</code> (<code>pushl %ebp</code>) to the stack to be able to assign your own.</p>
+
+<p>Later, when going up the stack again, each function will have its base pointer restored to be able continue working.</p>

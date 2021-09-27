@@ -1,0 +1,5 @@
+<p>As Jonas says, using <code>DateTime.TryParse</code> is preferable to using a regex, however, you might want to consider using a <code>DataTimePicker</code> control.</p>
+
+<p>If you set the <code>Format</code> property to <code>Custom</code> and then set the <code>CustomFormat</code> property to <code>HH:mm</code> you will get a textbox like control that restricts input to 24hr time.</p>
+
+<p>Finally, if you set <code>ShowUpDown</code> to <code>true</code> you will no longer have the calendar visible but have an updown instead.</p>

@@ -1,0 +1,6 @@
+<p>Learned something figuring this one out ...</p>
+
+<pre><code>:%s/$/\=getreg()/
+</code></pre>
+
+<p>The \= says that what follows is an expression to be evaluated, and the getreg() call gets the contents of the register, by default the "general buffer" as it used to be called by vi.</p>

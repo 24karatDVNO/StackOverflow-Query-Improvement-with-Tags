@@ -1,0 +1,18 @@
+<p>I am answering my own question here...</p>
+
+<p>My issue had to do with how the composite primary key was being defined in my mapping class.  When defining a composite primary key using EF Code First, you must define it like so:</p>
+
+<pre><code>HasKey(cpk =&gt; new { cpk.COMPANYID, cpk.RecDate, cpk.BATTYPCD, cpk.BATCTLNO });
+</code></pre>
+
+<p>As opposed to how I had it defined previously:</p>
+
+<pre><code>HasKey(cpk =&gt; cpk.COMPANYID);
+HasKey(cpk =&gt; cpk.RecDate);
+HasKey(cpk =&gt; cpk.BATTYPCD);
+HasKey(cpk =&gt; cpk.BATCTLNO);
+</code></pre>
+
+<p>The error I was receiving was that the ObjectContext contained multiple elements of the same type that were not unique.  This became an issue in my UnitOfWork on CommitTransaction.  This is because when the mapping class was instanciated from my DBContext class, it executed 4 HasKey statements shown above, with only the last one for property BATCTLNO becoming the primary key (not composite).  Defining them inline, as in my first code sample above, resolves the issue.</p>
+
+<p>Hope this helps someone!</p>

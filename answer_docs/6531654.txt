@@ -1,0 +1,1 @@
+<p>I believe using Map is okay for this. But instead of synchronized <code>HashMap</code> you can also use <code>ConcurrenHashMap</code> which allows you to specify concurrency levels, i.e. how many thread can work with map at the same time. And also it has atomic <code>putIfAbsent</code> operation.</p>

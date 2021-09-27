@@ -1,0 +1,10 @@
+<p>Give the ul an id or class, and select off of it.    </p>
+
+<pre><code>&lt;ul id = "nav"&gt;...
+
+var $navItems = $('#nav &gt; li');
+$navItems.click(function(){
+    $navItems.removeClass('active');
+    $(this).addClass('active');
+});
+</code></pre>

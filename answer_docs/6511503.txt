@@ -1,0 +1,13 @@
+<p>With TFS API, you may be able to get to that data.  Each changeset has a commiter.  I would take the code offered up <a href="http://social.msdn.microsoft.com/Forums/en-US/tfsversioncontrol/thread/3bd217c0-0981-4c79-b8ed-a48c4b33b596/" rel="nofollow">here</a>.  From this, you can add:</p>
+
+<pre><code>foreach (var change in cs.Changes)
+{
+    if (change.Item.ServerItem != serverItem)
+    {
+        return;
+    }
+    //Get commiter
+    cs.Committer
+</code></pre>
+
+<p>While this doesn't get you 100% of the way there, it is at least a starting point.</p>

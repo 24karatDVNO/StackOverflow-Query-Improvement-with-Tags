@@ -1,0 +1,18 @@
+<p>Read more about <a href="http://docs.python.org/library/stdtypes.html?highlight=readlines#file.readlines" rel="nofollow">readlines</a> method: if sizehint parameter is specified than '<em>sizehint bytes (possibly after rounding up to an internal buffer size) are read</em>', but you have specified a string that is why it throwing an exception about integer value:</p>
+
+<pre><code>f = open('mike_only_genes.csv') 
+a = f.readlines() 
+</code></pre>
+
+<p>OR use:</p>
+
+<pre><code>with open('mike_only_genes.csv') as f:
+    for line in f:
+        # do something
+</code></pre>
+
+<p>OR:</p>
+
+<pre><code>for line in open('mike_only_genes.csv'):
+    # do something
+</code></pre>

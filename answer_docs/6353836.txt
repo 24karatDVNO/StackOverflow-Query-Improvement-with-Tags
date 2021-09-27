@@ -1,0 +1,5 @@
+<p>It depends what you are willing to expose to the user - It is easy enough to include a url as a query string parameter in the ActionLink, and redirect to it after recording the link, but obviously that url will be visible to (and editable by) the user. If you want only the id to be visible you will have to go back to the DB (or a cache) - HTTP is stateless.</p>
+
+<p>If the URLs are within your site, you have a a few other options - you could add a source link ID to a regular action link and use a global action filter to record where links to a particular action came from.</p>
+
+<p>The actual redirect / new window is easy enough - set the target html attribute in your action link, and have the RecordLink action method return a RedirectResult.</p>

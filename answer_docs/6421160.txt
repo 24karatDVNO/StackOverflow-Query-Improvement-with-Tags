@@ -1,0 +1,3 @@
+<p>What version of PMD are you using?  You may be seeing a <a href="http://sourceforge.net/project/shownotes.php?release_id=623284&amp;group_id=56262" rel="nofollow">false positive</a> that is fixed in a newer version.  (The link is just to one place where such a false positive is fixed.  There may be more than one.)</p>
+
+<p>Depending on what version of Java you are using and exactly how you throw another Exception in a catch block, it is indeed possible to lose the full stack trace information.  If you are using the latest PMD version and you get this complaint, you may want to report an error with PMD on the sourceforge page and then temporarily disable that specific instance of that complaint as others have said.</p>

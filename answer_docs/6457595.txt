@@ -1,0 +1,15 @@
+<p>I have not attempted to transfer the amount of data you are mentioning from a Java application to a webpage, however, if you are using document.eval the performance problem you are having is most likely due to the processing required on an eval statement.  An alternative approach is to directly invoke a JavaScript method which performs the actual data update work.  Here is an example of how you would go about using this approach:  </p>
+
+<p><strong>Java</strong></p>
+
+<pre><code>JSObject jso = JSObject.getWindow(this);
+// invoke JavaScript method updateData with parameter encHexFileUploadStr
+jso.call("updateData", new String[] { encHexFileUploadStr });
+</code></pre>
+
+<p><strong>JavaScript</strong></p>
+
+<pre><code>function updateData(s) {
+    document.getElementById('encOutgoingData').value = s;
+}
+</code></pre>

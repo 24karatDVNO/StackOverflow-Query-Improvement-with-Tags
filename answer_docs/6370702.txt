@@ -1,0 +1,8 @@
+<pre><code> UIBarButtonItem *theSettingsButton = [[[UIBarButtonItem alloc]
+                                  initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered
+                                  target:self action:@selector(settingsClick)]autorelease];
+NSMutableArray * arr = [NSMutableArray arrayWithObjects:theSettingsButton, nil];
+[self.toolbar setToolbarItems:arr animated:YES];
+</code></pre>
+
+<p>try this </p>

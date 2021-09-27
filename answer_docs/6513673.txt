@@ -1,0 +1,103 @@
+<p>Here's a strip_tags_ex function I wrote the other day (just yesterday, actually). It allows you to specify tags of which the whole content should be stripped. It also allows specifying tags of which the attributes should be kept in the resulting text.</p>
+
+<p>It may not do exactly what you want, but it at least shows you how to traverse a DOM tree and check each elements tag and attributes.</p>
+
+<p>Sorry about the comments being in Dutch. Code is reasonably self-explanatory though.</p>
+
+<pre><code>&lt;?php
+
+/**
+ * Helper function. Extraheert recursief tekst uit een DOMNode, met inachtneming van de opgegeven regels.
+ */
+function extract_text_from_node(DOMNode $node, &amp;$index_attrs, &amp;$remove_elements, array &amp;$output)
+{
+    if ($node-&gt;nodeType == XML_TEXT_NODE)
+    {
+        // Huidige node is een tekstnode. Tekst outputten.
+        $output[] = $node-&gt;data;
+    }
+    else
+    {
+        if ($node-&gt;nodeType == XML_ELEMENT_NODE)
+        {
+            // Huidige node is een element. Speciale behandeling;
+
+            if (array_search($node-&gt;tagName, $remove_elements) !== false)
+            {
+                // Element staat in de lijst met uitzonderingen. Verder negeren.
+                return;
+            }
+
+            if (array_key_exists($node-&gt;tagName, $index_attrs))
+            {
+                // Element staat in de lijst van tags waarvan ook attributen geëxporteerd moeten worden.
+                $prefixed = false;
+                // Voor elk opgegeven attribuut controleren of het bestaat.
+                foreach($index_attrs[$node-&gt;tagName] as $attribute)
+                {
+                    $value = $node-&gt;getAttribute($attribute);
+                    if ($value !== '')
+                    {
+                        // Attribuut gevonden. Outputten.
+
+                        // Sommige tags voorzien van extra prefex, zodat de tekst van de attributen
+                        // wat meer context krijgt in de uiteindelijke platte tekst.
+                        if ($prefixed === false)
+                        {
+                            switch ($node-&gt;tagName)
+                            {
+                                case 'img': $output[] = 'Afbeelding: '; break;
+                                case 'a': $output[] = 'Link: '; break;
+                                default: break;
+                            }
+                            $prefixed = true;
+                        }
+                        // Attribute teruggeven met spaties er omheen.
+                        $output[] = ' '.$value.' ';
+                    }
+                }
+            }
+        }
+
+        // Willekeurige node. Als ie children heeft, dan recursief aanroepen.
+        $child = $node-&gt;firstChild;
+        while ($child)
+        {
+            extract_text_from_node($child, $index_attrs, $remove_elements, $output);
+            $child = $child-&gt;nextSibling;
+        }
+    }
+}
+
+/**
+ * strip_tags_ex extraheert tekst uit een html string.
+ * @param string $string. De HTML code om in te zoeken
+ * @param array $index_attrs. De elementen waarvan attributen ook teruggegeven moeten worden.
+ * In de vorm array(tag=&gt;array(attribute,...),...)
+ * $param array of string $remove_elements. Array van elementen die helemaal, inclusief inhoud, genegeerd moeten worden.
+ */
+function strip_tags_ex($string, $index_attrs, $remove_elements)
+{
+    $dom = new DOMDocument;
+    // Eventuele warning (die ontstaan bij ongeldige HTML) onderdrukken.
+    @$dom-&gt;loadHTML($string);
+
+    $output = array();
+
+    $root = $dom-&gt;documentElement;
+
+    // Tekst uit rootnode extraheren.
+    extract_text_from_node($root, $index_attrs, $remove_elements, $output);
+
+    // Resultaat-array samenvoegen tot een string.
+    return implode('', $output);
+}
+
+$string = 'Hallo wereld';
+echo strip_tags_ex(
+    $string,
+    array(
+        'a'=&gt;array('alt', 'title'),
+        'img'=&gt;array('alt')),
+    array('div'));
+</code></pre>

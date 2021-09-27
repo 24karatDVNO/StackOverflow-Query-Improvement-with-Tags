@@ -1,0 +1,1 @@
+<p>The simplest way is probably just to add a second filter to the query inside your validate function. Instead of having it select any user with that email address, have it select any user with that email address and NOT the same username or user id. That way you're ensuring to only get a return if there is a <em>different</em> user with that email address.</p>

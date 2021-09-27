@@ -1,0 +1,3 @@
+<p>If you're actually reading the files themselves from Isolated Storage into your list, you could probably improve your performance by storing the file metadata in an XML file or in a database of some kind. For Windows Phone 7.0 you could use SterlingDB, which is an abstraction over Isolated Storage that lets you do SQL queries against data stored in the app's file system. </p>
+
+<p>Creating a list with thousands of items does seem like a bad idea, but if you have an XML file with the file names and data in it, you'll probably get much better performance than if you try to loop through thousands of files and pull out the file names.</p>

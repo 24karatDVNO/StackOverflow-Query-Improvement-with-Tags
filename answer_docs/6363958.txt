@@ -1,0 +1,15 @@
+<p>perl way:</p>
+
+<pre><code>perl -ple 's/[^\w\-]/_/g'
+</code></pre>
+
+<p>pure bash way</p>
+
+<pre><code>a='foo-BAR_123,.:goo'
+echo ${a//[^[:alnum:]-]/_}
+</code></pre>
+
+<p>produces:</p>
+
+<pre><code>foo-BAR_123___goo
+</code></pre>

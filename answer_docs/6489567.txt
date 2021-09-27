@@ -1,0 +1,14 @@
+<p>Also replace </p>
+
+<pre><code>List&lt;int&gt; lstRows = new List&lt;int&gt;();
+List&lt;int&gt; lstCols = new List&lt;int&gt;();
+</code></pre>
+
+<p>with</p>
+
+<pre><code>HashSet&lt;int&gt; lstRows = new HashSet&lt;int&gt;();
+HashSet&lt;int&gt; lsTCols = new HashSet&lt;int&gt;();
+</code></pre>
+
+<p>without changing anything else.
+The contains checks would be O(1) instead of O(n).</p>

@@ -1,0 +1,8 @@
+<p>Yes, you can run more than one service on Windows.</p>
+
+<p>On mongodb 1.8 you have a new option --serviceDisplayName that allow you to run multiple services, of course you have to use different port.   </p>
+
+<p>For example :</p>
+
+<pre><code>"C:\Mongodb\bin\mongod" --bind_ip your-ip-adress --logpath "C:\data\db\mongo.log" --logappend --dbpath "C:\data\db" --serviceName MongoServiceTest --serviceDisplayName MongoServiceTest --port 27017 --install
+</code></pre>

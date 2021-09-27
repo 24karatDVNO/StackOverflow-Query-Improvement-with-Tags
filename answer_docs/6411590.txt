@@ -1,0 +1,15 @@
+<p>I think <a href="http://cc.embarcadero.com/item/16879" rel="nofollow">this code</a> will fit the bill. </p>
+
+<p>There is more to ADSI than just LDAP, and from my experience it is easier to use LDAP client to connect to ActiveDirectory than the other way around - which is what you are trying to do, unfortunatly.</p>
+
+<p>To get you started, here is a fail safe way to authenticate a user.</p>
+
+<ol>
+<li>Establish a connection with your LDAP server with your service account. If possible, use the LDAP protocol over SSL, LDAPS</li>
+<li>Search for the username (wich is the CN=jdoe part) to get the full DN (distinguished name)</li>
+<li>If you have duplicate result, stop here with an error</li>
+<li>Bind to the LDAP with the DN and password you are trying to validate. Make shure you are using the same validation method on both side.</li>
+<li>If it binds, the password is valid. </li>
+<li>Close the connection you just established</li>
+<li>Depending on your needs, either hold on to the connection you made a step 1 or tear it down, too.</li>
+</ol>

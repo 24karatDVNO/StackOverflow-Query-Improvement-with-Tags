@@ -1,0 +1,16 @@
+<p>You can disable the button on first click, so that you could not click it when the post is in progress, and re enable it when the post-back has finished.</p>
+
+<pre><code> &lt;script type="text/javascript" language="JavaScript"&gt;
+   var submitted = false;  
+   function SubmitTheForm() {
+     if(submitted == true) { return; }
+     document.myform.submit();
+     document.myform.mybutton.value = 'Thank You!';
+     document.myform.mybutton.disabled = true;
+      submitted = true;
+    }
+ &lt;/script&gt;
+&lt;form method="post" action="#"&gt;
+&lt;input type="submit" onclick=return SubmitTheForm()&gt;
+&lt;/form&gt;
+</code></pre>

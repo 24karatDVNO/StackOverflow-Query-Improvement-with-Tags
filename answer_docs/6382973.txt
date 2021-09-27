@@ -1,0 +1,14 @@
+<blockquote>
+  <p><em><strong>[...] last number is always rounded up.</em></strong></p>
+</blockquote>
+
+<p>This rounds to <code>n-1</code> decimals where <code>n</code> represents the number of digits after the decimal point.</p>
+
+<pre><code>def roundupLast(x):
+    return round(x, len(str(x).split(".")[-1]) - 1)
+
+
+print(roundupLast(123.459))  # 123.46
+print(roundupLast(99.9911))  # 99.991
+print(roundupLast(99.9916))  # 99.992
+</code></pre>

@@ -1,0 +1,11 @@
+<p>Here is a link with a detailed answer:</p>
+
+<p><a href="http://blogs.charteris.com/blogs/gopalk/archive/2009/01/20/how-does-asp-net-mvc-work.aspx" rel="nofollow">http://blogs.charteris.com/blogs/gopalk/archive/2009/01/20/how-does-asp-net-mvc-work.aspx</a></p>
+
+<p>it comes down to the new routing http module being added in the webconfig</p>
+
+<pre><code>&lt;add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule, System.Web.Routing,
+ Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" /&gt; 
+</code></pre>
+
+<p>In the global.asax the routes are mapped towards the right controller</p>

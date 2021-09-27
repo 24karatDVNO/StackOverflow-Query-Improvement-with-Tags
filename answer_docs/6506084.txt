@@ -1,0 +1,36 @@
+<p>I would strongly recommend making "time" a first class concept in your Payer entity. Damien_the_unbeliever's "temporal table" solution achieves this, but there are alternative implementations. </p>
+
+<p>In the past, I've solved problems like this by adding a validity window to the payer table, and comparing the transaction date to that window. </p>
+
+<pre><code>TRANSACTION 
+Id(PK) 
+PayerId 
+TransactionDate
+...
+
+PAYER 
+Id 
+ValidFrom
+ValidUntil
+....
+</code></pre>
+
+<p>This schema allows you to find out the payer as they were at the time of the transaction; it does mean you can't rely on referential integrity (because ID in the Payer table won't be a valid primary key - there are multiple records with the same ID.</p>
+
+<p>A twist on that would be:</p>
+
+<pre><code>TRANSACTION 
+Id(PK) 
+PayerId(FK) 
+...
+
+PAYER 
+Id(PK)
+
+PAYER_DETAIL
+ID(FK)
+PayerID (FK)
+ValidFrom
+ValidUntil
+.....
+</code></pre>

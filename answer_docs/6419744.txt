@@ -1,0 +1,11 @@
+<p>Well, you don't need regular expressions:</p>
+
+<pre><code>def findline(search_string, file_name, offset=0):
+    with open(file_name, 'r') as infile:
+        infile.seek(offset)
+        for line in infile
+            if search_string in line:
+               return line
+</code></pre>
+
+<p>(The above is actually just a combination of others' with the addition of file_name as a function param, and offset, meaning you can now traverse the file and get multiple incidences of your sought string).</p>

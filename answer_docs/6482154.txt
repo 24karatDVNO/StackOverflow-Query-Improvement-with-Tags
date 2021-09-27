@@ -1,0 +1,8 @@
+<p>The problem is you are trying to parse an invalid value to int..
+int.Parse converts the string representation of number to its 32-bit signed integer equivalent..
+And that string must be a valid number so provide a valid number there..</p>
+
+<p>like</p>
+
+<pre><code>    int.Parse("0");
+</code></pre>

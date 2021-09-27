@@ -1,0 +1,19 @@
+<p>This isn't the way computed columns work in SQL Server, so I suspect this is something your client application is doing. How are you looking at the data when the value is computed correctly? Does it work when you view the data in SSMS?</p>
+
+<p>Take a look at <a href="http://msdn.microsoft.com/en-us/library/ms191250(v=SQL.90).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ms191250(v=SQL.90).aspx</a> to see how to create computed columns properly.</p>
+
+<p>eg. </p>
+
+<pre><code>create table TestTable
+    (a int,
+    b int,
+    c as a + b)
+
+insert into TestTable (a,b)
+values (1,2)
+
+select * from TestTable
+where c = 3
+</code></pre>
+
+<p>This query is based on the computed column and it returns the row that's been inserted.</p>

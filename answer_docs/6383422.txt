@@ -1,0 +1,21 @@
+<p>I don't expect this answer to solve all of your problems but hopefully it should prove a starting point.</p>
+
+<p>Firstly, why do you want only one checkbox to be selected at any moment? I can't see that as a requirement in your task? By default checkboxes do not exhibit that behaviour (that is what radio buttons are for), but they can be made to. To do this you would need to look at the selected_change event of the checkbox and when one is selected, deselect all the others. However before you do that, make sure it is what you are after before progressing.</p>
+
+<p>With the radio buttons issue, I am assuming you want to set the text of the selected radio button into a label? Well currently you are assigning the selected text into a field, Message, but you are not using this anywhere else. When you set up your labels you have the following:</p>
+
+<pre><code>Label3.Text = RadioButton1.Text
+Label3.Text = RadioButton2.Text
+Label3.Text = RadioButton3.Text
+</code></pre>
+
+<p>Whereas I am guessing you need something along the lines of </p>
+
+<pre><code>Label3.Text = Message
+</code></pre>
+
+<p>At the moment you are setting the same Label text three times and only the third radio button text will be displayed.</p>
+
+<p>On another note I would possibly think about using different variable names that Message as it could result in some confusion later on.</p>
+
+<p>Hope that gets you somewhere</p>

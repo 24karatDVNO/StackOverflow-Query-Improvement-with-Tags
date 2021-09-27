@@ -1,0 +1,11 @@
+<p>How are you checking the value set by Bar. 
+I changed your code and added another function in bar as:</p>
+
+<pre><code>....
+static char const get_dummy(int){return Foo&lt;Bar&gt;::dummy;}
+....
+</code></pre>
+
+<p>and it is giving me exactly the expected result. I may not be understanding correctly, what do you exactly want to achieve ?</p>
+
+<p>Static members are shared among the objects so their scope must be resolved at access. that is why we use :: by telling compiler explicitly that this is the member of the class we want to access.</p>

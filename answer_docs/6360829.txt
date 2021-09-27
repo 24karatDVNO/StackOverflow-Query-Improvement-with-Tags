@@ -1,0 +1,27 @@
+<p>Threads do not hold locks on files (at least not as the operating system is concerned).  Consider the following example.  The thread <code>t</code> creates a file and locks the file.  The main thread writes to the stream and closes it.  This shows that the thread doesn't own the lock.  The process does.</p>
+
+<pre><code>     Stream stream = null;
+     Thread t = new Thread(() =&gt; stream = File.OpenWrite (@"c:\temp\junk111.txt"));
+     t.Start();
+     Thread.Sleep(1000);
+     Console.WriteLine(t.ThreadState);
+     stream.WriteByte(89);
+     stream.Close();
+     File.OpenWrite (@"c:\temp\junk222.txt");
+</code></pre>
+
+<p>Prints <code>stopped</code>, so the thread that opened the file is not running anymore, but the file handle it created is still open.</p>
+
+<p>Here is the relevant part of result of FxCop for the above file</p>
+
+<pre><code>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop&gt;FxCopCmd.exe /file:c:\code\jeremy.sellars\test\Junk\bin\Debug\Junk.exe /console
+Microsoft (R) FxCop Command-Line Tool, Version 10.0 (10.0.30319.1) X86
+Copyright (C) Microsoft Corporation, All Rights Reserved.
+
+...
+[Location not stored in Pdb] : warning  : CA2210 : Microsoft.Design : Sign 'Junk.exe' with a strong name key.
+C:\code\jeremy.sellars\TEST\Junk\Program.cs(50,1) : warning  : CA2000 : Microsoft.Reliability : In method 'Program.Main()', call System.IDisposable.Dispose on object 'File.OpenWrite("c:\\temp\\junk2.txt")' before all references to it are out of scope.
+Done:00:00:06.1251568
+
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop&gt;
+</code></pre>

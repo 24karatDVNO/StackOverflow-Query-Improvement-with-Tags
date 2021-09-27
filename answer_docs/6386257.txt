@@ -1,0 +1,5 @@
+<p>WCF will automatically serialize a list for you, but the default collection type it is deserialized to on the client side is an array. </p>
+
+<p>You can change this default collection to a list (or linked list, or anything else available) by right clicking on your service reference in the project for your client application, selecting "Configure Service Reference...", and selecting System.Collections.Generic.List from the collection type drop down menu. </p>
+
+<p>If you are sending a list from a client to the WCF service, it is sufficient to define you Service method's parameter as a list (if it contains simple .NET types), otherwise you need to define a special data contract as per the other answer.</p>

@@ -1,0 +1,19 @@
+<p>Your jquery is fine. After several hours I found out that it was the formatting in the 'format' function that was triggering the error. </p>
+
+<p>If you look at the source code at</p>
+
+<p><a href="http://jquery.bassistance.de/autocomplete/demo/json.html" rel="nofollow">http://jquery.bassistance.de/autocomplete/demo/json.html</a></p>
+
+<p>You'll see the following, seemingly inconsequential function</p>
+
+<pre><code>function format(mail) {
+    return mail.name + " &amp;lt;" + mail.to + "&amp;gt";
+}
+</code></pre>
+
+<p>If you're leaving out the 'less than' and 'greater than' representations, then you're probably getting the </p>
+
+<pre><code>value is undefinded
+</code></pre>
+
+<p>error after the first record is looped through in your console.  For some strange reason the less than and greater than symbols are significant. Make sure you keep them in your format function.</p>

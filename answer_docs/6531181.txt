@@ -1,0 +1,27 @@
+<pre><code>&lt;?php
+
+    $timeFormat = "%02d:%02d";
+    $startHour = 6;
+    $endHour = 12;
+    $timeInterval = 30; // in minutes
+
+    $currentHour = $startHour;
+    $currentMinute = 0;
+    while ($currentHour &lt;= $endHour) {
+        $timeRange = sprintf($timeFormat, $currentHour, $currentMinute) . ($currentHour &lt; 12 ? " am" : " pm");
+
+        $currentMinute = $currentMinute + $timeInterval;
+        if ($currentMinute &gt; 59) {
+            $currentHour++;
+            $currentMinute = $currentMinute - 60;
+        }
+
+        $timeRange .= " - " . sprintf($timeFormat, $currentHour, $currentMinute) . ($currentHour &lt; 12 ? " am" : " pm");
+
+        if ($currentHour &lt;= $endHour) {
+            echo "## " . $timeRange . "\n";         
+        }       
+    }
+
+?&gt;
+</code></pre>

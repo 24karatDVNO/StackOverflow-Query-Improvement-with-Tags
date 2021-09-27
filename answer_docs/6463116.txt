@@ -1,0 +1,17 @@
+<p>The compile-time warning is just that, a warning. You can ignore it so long as you have both versions of the Unity DLL available to the application.
+You can achieve this by editing your App.config to look something like this</p>
+
+<pre><code>&lt;runtime&gt;
+  &lt;assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1"&gt;
+    &lt;dependentAssembly&gt;
+      &lt;assemblyIdentity name="Unity" publicKeyToken="605f591b87e816bd"/&gt;
+      &lt;codeBase version="1.0.0.0" href="./v1/Unity.dll"/&gt;
+      &lt;codeBase version="2.0.0.0" href="./v2/Unity.dll"/&gt;
+    &lt;/dependentAssembly&gt;
+  &lt;/assemblyBinding&gt;
+&lt;/runtime&gt;
+</code></pre>
+
+<p>This is just pseudo-config, but you can see that under my applications 'bin' directory, I will have a subdirectory for both versions of Unity. This config basically says to the .net runtime, "When you need either version 1, or 2 of unity, you can obtain them from these subdirectories".</p>
+
+<p>Of course, whether or not you SHOULD do this is another story. If you have any loose config (such as xml) in your application which reference types within the Unity DLL - those 'references' will need to specify the version-qualified-strong-name of the Unity DLL, otherwise you're going to get runtime errors.</p>

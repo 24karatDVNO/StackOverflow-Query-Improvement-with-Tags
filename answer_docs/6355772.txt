@@ -1,0 +1,20 @@
+<p>try below code. ur a1,a2,a3 objects are getting  autorelease objects you just retain and load into NSArray(name q)`                       </p>
+
+<pre><code> -(questions*) a1:(NSString*) a1 a2:(NSString*) a2 a3:(NSInteger) a3{
+
+ self = [super init];
+
+if(self){
+   [a1 retain];
+   [a2 retain];
+    [a3 retain];
+
+    q = [NSArray arrayWithObjects:a1,a2,nil];
+    num = a3;
+    return self;
+}
+
+return nil;
+</code></pre>
+
+<p>}`</p>

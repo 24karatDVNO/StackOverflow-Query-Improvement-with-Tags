@@ -1,0 +1,10 @@
+<p>this is just an idea ( and im not sure i coded it right ), but you could use this method. </p>
+
+<pre><code>   var first = $(".main div:lt(4)");
+    $(".main div:lt(4)").remove();
+    var second = $(".main div:lt(4)");
+    $(".main div:lt(4)").remove();
+
+    $(".main").append("&lt;div class=pack1&gt;" + first+ "&lt;/div&gt;");
+    $(".main").append("&lt;div class=pack2&gt;" + second+ "&lt;/div&gt;");
+</code></pre>

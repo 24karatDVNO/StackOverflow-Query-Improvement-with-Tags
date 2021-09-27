@@ -1,0 +1,16 @@
+<p>I can't really tell if there's an issue with your code but it doesn't seem like there is... 
+Have you tried creating a bitmap out of your cropped bitmapData?</p>
+
+<pre><code>var bmp:BitmapData = new BitmapData(crop_mc.width, crop_mc.height, true);
+bmp.draw(box, crop);
+var bitmap = new Bitmap (bmp);
+stage.addChild (bitmap);
+</code></pre>
+
+<p>What does that bitmap look like?</p>
+
+<p>If it still looks like the uncropped version, it seems to me your issue is probably that you're drawing the wrong container. You might try moving the "box" clip into another container and drawing that "outer" container when you go to save the image.</p>
+
+<p>I'm not sure how senocular's tool works, but if the "tool" is storing the modified BitmapData you could try capturing the tool as well.</p>
+
+<p>Hopefully that gives you some ideas...</p>

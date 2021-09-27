@@ -1,0 +1,7 @@
+<p>Several things:</p>
+
+<ol>
+<li>DataSource API does provide a <a href="http://download.oracle.com/javase/6/docs/api/javax/sql/DataSource.html#getConnection%28java.lang.String,%20java.lang.String%29" rel="nofollow">getConnection(username, password)</a> method. For whatever reason, Apache DBCP that Tomcat uses for itself doesn't implement that method. You might want to look into alternative implementations if DBCP doesn't meet your need.</li>
+<li>As others stated, changing database credentials per request is a pretty obscure usecase. Maybe you should reconsider your design, so that your user authentication is decoupled from your database access.</li>
+<li>More generally, pooling is a technique for reusing a number of things that are sufficiently alike that they can be reused multiple times. Clearly, DBCP has decided that "sufficiently alike" doesn't include being reusable across different database credentials. I don't think it's right or wrong on principle.</li>
+</ol>

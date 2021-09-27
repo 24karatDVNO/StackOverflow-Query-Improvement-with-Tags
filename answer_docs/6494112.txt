@@ -1,0 +1,11 @@
+<p>If you scroll down on the examples provided in the Python CSV <a href="http://docs.python.org/library/csv.html#examples" rel="nofollow noreferrer">page</a>, you'll find that it</p>
+<blockquote>
+<p>The csv module doesn’t directly support reading and writing Unicode, but it is 8-bit-clean save for some problems with ASCII NUL characters. So you can write functions or classes that handle the encoding and decoding for you as long as you avoid encodings like UTF-16 that use NULs. UTF-8 is recommended.</p>
+</blockquote>
+<p>But if you do need to do unicode, it looks like this could help:</p>
+<blockquote>
+<p>unicode_csv_reader() below is a generator that wraps csv.reader to handle Unicode CSV data (a list of Unicode strings).</p>
+<p>...</p>
+<p>For all other encodings the following UnicodeReader and UnicodeWriter classes can be used. They take an additional encoding parameter in their constructor and make sure that the data passes the real reader or writer encoded as UTF-8:</p>
+</blockquote>
+<p>So it looks like the example they provide at the bottom should do the encoding you want.</p>

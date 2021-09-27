@@ -1,0 +1,23 @@
+<p>I'm not aware of a callback for what you're looking for.   I would read up on Ruby Delegators for a possible solution that's more elegant than what I've sketched below.</p>
+
+<p>You can wrap the object and intercept on method_missing.</p>
+
+<pre><code>class A
+  def foo
+    puts "hi there, I'm A"
+  end 
+end 
+
+maybe have B inherit A? 
+class B 
+  def initialize 
+    @a = A.new
+  end 
+
+  def method_missing(m, *args, &amp;block)
+    puts "hi there, I'm in B"
+    @a.send(m, *args, &amp;block) if @a.respond_to? m
+    puts "all done"
+  end 
+end 
+</code></pre>

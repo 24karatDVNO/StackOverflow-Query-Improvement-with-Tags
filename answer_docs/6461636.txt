@@ -1,0 +1,41 @@
+<p>In general, if you don't understand what your code is doing, I recommend:</p>
+
+<ul>
+<li>Try to remove stuff from your program (after making a backup copy) until you have a short simple example of what you don't understand. Why try to figure out a large fuzzy problem when you could figure out a smaller piece of it? </li>
+<li>Experiment by adding statements like <code>System.out.println('reached line 17')</code> all over the code to see the order in which your program is doing things.</li>
+</ul>
+
+<p>That said, here are some (partial) answers.</p>
+
+<blockquote>
+  <p>1) It does not Loop after success</p>
+</blockquote>
+
+<p><strong>A loop repeatedly performs the statements inside of it.</strong> It sounds like what you want to be repeated is most or all of the program:</p>
+
+<ol>
+<li>read string from keyboard</li>
+<li>remove certain characters from the string</li>
+<li>if the remaining string is a number, separate it into 3 pieces, then print <code>correct</code></li>
+</ol>
+
+<p>If you want those three actions repeated over and over, you need to make a big loop around the code that does those three actions. No loop, no repetition.</p>
+
+<p>(And somewhere inside that loop is going to be the code that exits the program <strong>if</strong> the input string is "quit", etc.)</p>
+
+<blockquote>
+  <p>2) gives an error due to the parenthesis in: <code>phone = phone.replaceAll("(","");</code></p>
+</blockquote>
+
+<p>To fix this you need to know two things. First, <code>replaceAll</code> treats its first argument <code>"("</code> as a <em>regular expression</em>. Without worrying what that is, just know that <code>replaceAll</code> is giving a special meaning to the <code>(</code> character rather than treating it as a plain old <code>(</code>. You can tell replaceAll to treat it normally by putting a <code>\</code> before the <code>(</code>. The <code>\</code> is called an "escape". So the contents of your string argument should be: <code>\(</code></p>
+
+<p>Second, you can't just type <code>"\("</code> into your source code because <strong>the Java compiler itself treats <code>\</code> as a special character.</strong> You have to add <strong>one more</strong> backslash to tell the compiler to treat the other backslash normally. It sounds absurd, but so it goes.</p>
+
+<pre><code>phone = phone.replaceAll("\\(","");
+</code></pre>
+
+<blockquote>
+  <p>3) does not have a max character validation using the boolean command.</p>
+</blockquote>
+
+<p>Not sure what you want here: checking that it has <em>more</em> or <em>less</em> than a certain number of characters? Either way, you could write an <code>if</code> to check whether phone.length() is more or less than some number.</p>

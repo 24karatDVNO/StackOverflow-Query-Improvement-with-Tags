@@ -1,0 +1,5 @@
+<p>I can't imagine the average user would know what socket permissions meant, let alone the implications of granting it.</p>
+
+<p>There is no limited privilege model for applets (other than the rather odd "J2EE client" when using JNLP applets, but that's about enforcing standards conformance rather than security). The Netscape model did allow selected permissions, but that approach was a failure.</p>
+
+<p>Why do you need to contact a non-same origin server? Could you not use (logged) port forwarding? Or over http and use the limited <code>crossdomain.xml</code> support?</p>

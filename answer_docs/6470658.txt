@@ -1,0 +1,36 @@
+<p>Why not use LINQ, and paging in your app?</p>
+
+<p>Linq has this stuff natively, and MS has both REST and SOAP endpoints.</p>
+
+<p>I have not tested, but I suscpect that the REST endpoint can be used directly with paging.</p>
+
+<pre><code>public static class PagingExtensions
+{
+//used by LINQ to SQL
+public static IQueryable&lt;TSource&gt; Page&lt;TSource&gt;(this IQueryable&lt;TSource&gt; source, int page, int pageSize)
+ {
+return source.Skip((page - 1)*pageSize).Take(pageSize);
+ }
+
+//used by LINQ
+public static IEnumerable&lt;TSource&gt; Page&lt;TSource&gt;(this IEnumerable&lt;TSource&gt; source, int page, int pageSize)
+ {
+return source.Skip((page - 1)*pageSize).Take(pageSize);
+ }
+
+}
+
+class Program
+{
+static void Main(string[] args)
+ {
+List&lt;string&gt; names = new List&lt;string&gt;();
+ names.AddRange(new string[]{"John","Frank","Jeff","George","Bob","Grant", "McLovin"});
+foreach (string name in names.Page(2, 2))
+ {
+Console.WriteLine(name);
+ }
+
+ }
+}
+</code></pre>

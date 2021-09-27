@@ -1,0 +1,15 @@
+<p>You can use the  element to do this: </p>
+
+<pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;groep.does.not.matter&lt;/groupId&gt;
+      &lt;artifactId&gt;neither-does-artifactId&lt;/artifactId&gt;
+      &lt;version&gt;and.nor-does-version&lt;/version&gt;
+      &lt;type&gt;jar&lt;/type&gt;
+      &lt;scope&gt;system&lt;/scope&gt;
+      &lt;systemPath&gt;${project.baseDir}/lib/jarname.jar&lt;/systemPath&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+</code></pre>
+
+<p>where the jar you need to reference (and have in your classpath) is lib/jarname.jar, and the lib directory is in the root of your project. </p>

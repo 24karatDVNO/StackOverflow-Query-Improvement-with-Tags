@@ -1,0 +1,10 @@
+<pre><code>var addrs = create_array_of_possible_addresses();
+var matching_addrs = [];
+for (var i=0; i &lt; addrs.length; i++) {
+    if ( addrs[i].match(/^of/) continue;
+    if ( addrs[i].match((/\d.*(?:St\.?|Street|Ave\.?|Avenue|Ln\.?|Rd\.?|Road))/ )
+        matching_addrs.push( RegExp.$1 );
+}
+</code></pre>
+
+<p>Untested.</p>

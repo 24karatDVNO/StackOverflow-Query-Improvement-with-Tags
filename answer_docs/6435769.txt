@@ -1,0 +1,11 @@
+<p><a href="https://stackoverflow.com/questions/6427004/django-generic-view-subclassed-url-parameters">Django - Generic View Subclassed - url Parameters</a>
+gave me the answer. I have to add the rates pre filtered to the context for the template.</p>
+
+<pre><code>class VideoFileDetailView(DetailView):
+  model = VideoFile
+
+  def get_context_data(self, **kwargs):
+    context = super(VideoFileDetailView, self).get_context_data(**kwargs)
+    context['rates'] = VideoRate.objects.filter(video=self.object, user=self.request.user)
+    return context
+</code></pre>

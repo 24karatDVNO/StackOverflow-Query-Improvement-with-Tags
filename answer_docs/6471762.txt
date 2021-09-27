@@ -1,0 +1,7 @@
+<p>We've had to solve similar problems in our development. You have several choices - which makes sense depends upon your situation and what, exactly, you want to test.</p>
+
+<p>In some of our tests we make use of a very simple HTTP server (our protocol runs on top of HTTP) running on the host machine, which is configured with canned responses to certain requests. We wrote it using Python's SimpleHTTPServer class. The benefit of this approach is that you're doing a full end-to-end test, including the Android network stack. The disadvantage is that it can be fiddly to setup (we have a test-harness that runs on the development machine, starts up the server, runs the tests on an emulator or device and collects the results).</p>
+
+<p>If you want to mock out the low-level code on the device itself, look at <a href="http://borachio.com/" rel="nofollow">Borachio</a> for mocking and <a href="http://code.google.com/p/roboguice/" rel="nofollow">RoboGuice</a> for dependency injection. There's a full worked example of how to do this <a href="https://github.com/jaley/borachio-warehouse" rel="nofollow">here</a>.</p>
+
+<p>Finally, you might be able to use <a href="http://pivotal.github.com/robolectric/" rel="nofollow">Robolectric</a> and run your tests on your development machine. The downside is that your tests will not be running on the Android device itself, and it can be difficult to test the interaction between your code and the OS effectively.</p>

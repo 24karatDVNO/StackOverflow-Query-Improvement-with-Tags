@@ -1,0 +1,16 @@
+<p>what about something like this</p>
+
+<pre><code>&lt;input type="button" value="S" initialVal="S" class="sizeInput" onclick="changeValue()"/&gt;
+....
+
+function changeValue(){
+
+ if ($(this).data('counter')){
+   counter++;
+ }else {
+   $(this).data('counter', 1) //set initial to value1
+ }
+ $(this).val($(this).attr("initialVal")+'/'+$(this).data('counter'))
+</code></pre>
+
+<p>}</p>

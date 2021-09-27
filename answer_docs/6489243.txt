@@ -1,0 +1,21 @@
+<p>Well, here is an ugly solution.  I couldn't get the rounding quite right, so I brute forced over the 4 possibilities to get the optimal value.  The code should be straightforward enough to understand:</p>
+
+<pre><code>from math import *
+
+def opt_image(w, h):
+    aspect = w / h
+    if aspect &gt;= 1:
+        v = min(sqrt(1677215 / aspect), 8191)
+        a, b = floor(aspect * v), floor(v)
+        area, nw, nh =  max([ ( (a+x)*(b+y), (a+x), (b+y) ) for x in range(2) for y in range(2) if (a+x)*(b+y) &lt; 1677215 ])
+        return nw, nh
+
+    a, b = opt_image(w, h)
+    return b, a
+</code></pre>
+
+<p>For your example with width 2514, height 1029; I got:</p>
+
+<blockquote>
+  <p>(1831.0, 916.0)</p>
+</blockquote>

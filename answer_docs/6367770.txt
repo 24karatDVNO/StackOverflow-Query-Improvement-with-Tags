@@ -1,0 +1,13 @@
+<p>To speed up web app loading time, indeed split points are a first step.</p>
+
+<p>But check as well this tool:
+<a href="http://pagespeed.googlelabs.com" rel="nofollow">http://pagespeed.googlelabs.com</a></p>
+
+<p>Slowness can also come from uncompressed pictures for instance.</p>
+
+<p>Also, when you compile your GWT app, ensure you use "OBFUSCATED" mode for your compiled javascript, which makes it significantly smaller.</p>
+
+<p><a href="http://code.google.com/webtoolkit/doc/1.6/FAQ_DebuggingAndCompiling.html#Why_is_my_GWT-generated_JavaScript_gibberish" rel="nofollow">http://code.google.com/webtoolkit/doc/1.6/FAQ_DebuggingAndCompiling.html#Why_is_my_GWT-generated_JavaScript_gibberish</a>?</p>
+
+<p>Now if you are using Apache HTTPD as web server, Google has released a wonderful Apache module that implements web app best practices out of the box:
+<a href="http://code.google.com/p/modpagespeed/" rel="nofollow">http://code.google.com/p/modpagespeed/</a></p>

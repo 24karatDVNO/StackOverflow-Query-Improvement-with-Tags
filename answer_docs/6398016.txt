@@ -1,0 +1,1 @@
+<p>It looks like it's parsing the string fine.  You just want to display it in 24-hour format instead of 12-hour format (16:07:57 is the same as 4:07:57 PM).  Try something like <code>DateTime.Parse("16:07:57.796").ToString("M/d/yyyy H:mm:ss")</code>.</p>

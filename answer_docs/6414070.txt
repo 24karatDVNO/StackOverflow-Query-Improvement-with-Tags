@@ -1,0 +1,9 @@
+<p>You need to define you int variable as a Nullable type and in order to check if it's null or not you need to use HasValue. In order to access the value of your nullable variable use <code>x.Value</code></p>
+
+<pre><code>int? x = 10;
+
+if (x.HasValue)
+{
+   //code here
+}
+</code></pre>

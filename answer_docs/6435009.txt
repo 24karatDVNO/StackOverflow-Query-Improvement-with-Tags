@@ -1,0 +1,6 @@
+<pre><code>EndpointAddressBuilder builder = new EndpointAddressBuilder(client.Endpoint.Address);
+AddressHeader header = AddressHeader.CreateAddressHeader("apiKey", "http://tempuri.org", "longapikeyhere");
+
+builder.Headers.Add(header);
+client.Endpoint.Address = builder.ToEndpointAddress();
+</code></pre>

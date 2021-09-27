@@ -1,0 +1,12 @@
+<p>This will work for simnple data types (str, int, float, list etc.)</p>
+
+<pre>
+>>> def my_print(var_str) : 
+      print var_str+':', globals()[var_str]
+>>> a = 5
+>>> b = ['hello', ',world!']
+>>> my_print('a')
+a: 5
+>>> my_print('b')
+b: ['hello', ',world!']
+</pre>

@@ -1,0 +1,39 @@
+<p>Another hack I will probably use, however personally I would not recommend it.<br>
+Check out here <a href="http://jsfiddle.net/S6Ks8/1/" rel="nofollow">http://jsfiddle.net/S6Ks8/1/</a></p>
+
+<pre><code>function parseSleeps(func){
+    var fdef = func.toString();
+
+    var fbody = fdef.match(/\{([\s\S]*)\}/)[1].split(/sleep\(.*?\)\;?/);
+    var sleeps = fdef.match(/sleep\((.*?)\)/g);
+    var fargs = fdef.match(/\(([\s\S]*?)\)/)[1];
+
+    var fbodyNew = [];
+    var times = [];
+    fbodyNew.push(fbody.shift(), '\n');
+    for(var i = 0; sleeps &amp;&amp; i &lt; sleeps.length; i++){
+        var sec = sleeps[i].match(/\d+/)[0];
+        times.push(sec);
+        fbodyNew.push('setTimeout(function(){\n');
+        fbodyNew.push(fbody.shift(), '\n');
+    }
+
+    while(times.length){
+        var sec = times.pop();
+        fbodyNew.push('}, ', sec, ');\n');
+    }
+
+    return new Function(fargs, fbodyNew.join(''));
+}
+
+// Your code from here
+
+function a(str1, str2){
+    alert(str1);
+    sleep(3000);
+    alert(str2);
+}
+
+var func = parseSleeps(a);
+func('here', 'there');
+</code></pre>

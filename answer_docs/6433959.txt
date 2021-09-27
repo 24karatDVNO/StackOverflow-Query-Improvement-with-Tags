@@ -1,0 +1,39 @@
+<p>If you utilize the <code>CommandArgument</code> value and set it in a <code>TemplateField</code> to be the <code>BookId</code> value, then <code>OnRowCommand</code> you can use that value in your event handler.</p>
+
+<p>Something like this should do the trick.</p>
+
+<p><strong>ASPX:</strong></p>
+
+<pre><code>&lt;asp:GridView ID="myGridView" runat="server" onrowcommand="myGridView_RowCommand"&gt;
+    &lt;Columns&gt;
+        &lt;asp:TemplateField&gt;
+            &lt;ItemTemplate&gt;
+                &lt;asp:LinkButton ID="myLinkButton" runat="server" CommandArgument='&lt;%#Eval("BookId") %&gt;'&gt;Do Stuff&lt;/asp:LinkButton&gt;
+            &lt;/ItemTemplate&gt;
+        &lt;/asp:TemplateField&gt;
+        &lt;asp:BoundField HeaderText="Id" DataField="BookId" /&gt;
+        &lt;asp:BoundField HeaderText="Name" DataField="BookName" /&gt;
+    &lt;/Columns&gt;
+&lt;/asp:GridView&gt;
+</code></pre>
+
+<p><strong>C# code-behind:</strong></p>
+
+<pre><code>protected void myGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+{
+    int bookID = Convert.ToInt32(e.CommandArgument);
+    // Do Stuff
+}
+</code></pre>
+
+<hr>
+
+<p><strong>On selecting a specific Tab using the Telerik <code>RadTabStrip</code></strong> </p>
+
+<p>check this post <a href="http://www.telerik.com/community/forums/aspnet-ajax/tabstrip/how-to-change-progmatically-active-tab-in-radtabstrip-radmultipage.aspx" rel="nofollow">How to change progmatically active Tab in RadTabStrip/RadMultiPage? - TabStrip Forum - ASP.NET Controls</a></p>
+
+<p>looks to be a matter of setting the <code>Selected</code> property for the <code>TabItem</code> and if you're using a <code>MultiPage</code> you'll also need to set the <code>SelectedIndex</code> of that control</p>
+
+<pre><code>radTabStrip1.Tabs.Item( 2 ).Selected = true;
+radMultiPage1.SelectedIndex = 2;
+</code></pre>

@@ -1,0 +1,16 @@
+<p><code>Settings</code> is easy to use. You simply define a setting of type <code>List&lt;Cookie&gt;</code> and then you use it like so:</p>
+
+<pre><code>public List&lt;Cookie&gt; Cookies {
+    get {
+        return Settings.Default.Cookies;
+    }
+    set {
+        Settings.Default.Cookies = value;
+        Settings.Default.Save();
+    }
+}
+</code></pre>
+
+<p>Of course, you'd need to define the type <code>Cookie</code>.</p>
+
+<p>To create the setting, go to your application properties (right click the project and select properties), then go to the Settings tab.</p>

@@ -1,0 +1,7 @@
+<p>in Django you would simply : </p>
+
+<pre><code>response = HttpResponse(my_data, mimetype='application/vnd.ms-excel')
+response['Content-Disposition'] = 'attachment; filename=foo.xls'
+
+wbk.save(response)
+</code></pre>

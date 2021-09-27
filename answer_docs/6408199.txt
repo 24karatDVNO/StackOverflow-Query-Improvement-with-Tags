@@ -1,0 +1,18 @@
+<p><a href="http://jsfiddle.net/ec8TH/" rel="nofollow">Working Example on JSFiddle.net</a></p>
+
+<pre><code>&lt;input /&gt; &lt;button&gt;Change&lt;/button&gt; &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+$(function(){
+  $('button').click(function(){
+
+    $('div').css('background-color', $('input').val());  
+
+  });
+
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>Or if it is the text color you wish to change just use <code>.css('color', $('input').val())</code></p>
+
+<p>Also, Note that your selectors should be better than mine!</p>

@@ -1,0 +1,15 @@
+<p>When you launch a popup, give it a variable name:</p>
+
+<pre><code>myWin = window.open(etc)
+
+//in the child window, call window.opener.myFocusFunction()
+//in the parent window, use this...
+
+function myFocusFunction(){
+   myWin.focus();
+   //myWin.blur();
+   //uncomment as needed!
+}
+</code></pre>
+
+<p>Have a play, it works for me.</p>

@@ -1,0 +1,8 @@
+<p>Try this</p>
+
+<pre><code>for(var i=0; i&lt;$('#thumbsContainer').children().length;i++){
+    $('#img_'+i).click(function(){
+        $('#bigger_image').attr('src', $(this).attr('src'));
+    });
+}
+</code></pre>

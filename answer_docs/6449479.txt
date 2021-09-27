@@ -1,0 +1,24 @@
+<p>This is Solved.
+The code i changed is i returned EncodedImage instead of inputstream from method.</p>
+
+<p>But don't know why returning InputStream from method  worked in india and doesn't work in saudi</p>
+
+<pre><code>        c = (HttpConnection) Connector.open(serverUrl+suffix);
+        c.setRequestMethod(HttpConnection.GET);
+        c.setRequestProperty("Content-Type", "image/png");
+        if (c.getResponseCode() == HttpConnection.HTTP_OK) {
+            is = c.openInputStream();
+            Constants.connectionLength = c.getLength();
+            int c1;
+            StringBuffer sb =new StringBuffer();
+            while( (c1 = is.read()) != -1){
+                sb.append((char)c1);
+            }
+
+            byte [] b = sb.toString().getBytes();
+            EncodedImage encodedImage = EncodedImage.createEncodedImage(b, 0, b.length);
+            return encodedImage;
+        }else{
+            return null;
+        }
+</code></pre>

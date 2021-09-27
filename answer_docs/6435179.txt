@@ -1,0 +1,11 @@
+<p>You may find it useful to enter and exit the php environment within the loop so you don't have so save that string as a variable at all.  </p>
+
+<pre><code>for($i=1; $i&lt;10; $i++){?&gt;
+     &lt;input type="button" id="ID&lt;?=$i?&gt;" value="send"
+       onmousedown="javascript:callthis('&lt;?=$i?&gt;');" class="button" /&gt;
+&lt;?php } ?&gt;
+</code></pre>
+
+<p>So what we are doing is leaving the php environment as we open the loop (<code>?&gt;</code>) then we give some raw html that will be plopped into the page as shown,  no variable needed.  Then while we are outside the php environment we use the <code>&lt;?= $variable ?&gt;</code> syntax to drop a php variable into the html language.  And finally we re-enter the php environment by reopenning the php tags (<code>&lt;?php</code>).</p>
+
+<p>Note: That last ?> would go wherever you wanted to re-exit php again.</p>

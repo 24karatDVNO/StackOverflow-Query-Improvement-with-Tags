@@ -1,0 +1,11 @@
+<p>customErrors for RemoteOnly <em>will probably not help</em> you because RemoteOnly only refers to users not accessing the page from the same physical box.  Users on the LAN will be treated as remote just like users from the WAN will.</p>
+
+<p>If I had to solve your problem, I would start in Application_Error and examine Request.UserHostAddress and Request.UserHostName but even those are not going to be completely reliable because on my corporate intranet, my address of 10.4.42.219 might very well match your companies internal addresses, and UserHostName <em>is supposed</em> to be a human readable name but it isn't always - case in point, look at it running in debug mode and both UserHostAddress and UserHostName will be "127.0.0.1" when you'd expect the latter to be "localhost".</p>
+
+<p>See the problem here is that by the time they hit your webserver, they're inside the firewall, and the server is a listener - so it doesn't matter <em>what</em> IP the incoming connection CLAIMS to be from (spoofing being a very real problem), your webserver isn't gonna <em>initiate</em> a response, it's going to send a response down the very pipeline that the client opened.</p>
+
+<p>Now if your firewall can be configured to leverage spoofing and force the IP coming in to be a specific value, that would be one possible way to reliably identify external connections, and by process of elimination, the internal ones but I can't speak to the viability of that approach with any certainty.</p>
+
+<p>Edit to add:  I suspect your initial question may itself be flawed.  The question I'm asking myself is, who on your internal side really cares about the error message?  Is your corporate secretary going to want to see stack trace info?  Probably not.</p>
+
+<p>I <em>suspect</em> that what you REALLY need here is active authentication and role based security, such that only specifically identified users - members of the "Error Investigator" role perhaps - should see those detailed exceptions, and everyone else, including internal users, gets the pretty custom page.</p>

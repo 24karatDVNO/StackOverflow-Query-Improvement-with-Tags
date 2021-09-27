@@ -1,0 +1,27 @@
+<p>Your "validation library" probably doesn't contain so much extension methods. So it would not be so inelegant to place in each of them the same line of code to add the processed element's name into your array.</p>
+
+<p>Another way would be indeed to artificially make something common to all the elements validated thanks to your "validation library" : a common marker interface. The idea is : don't use the elements as instances of their real types. Make instead subtypes of these types which also implement the interface <code>IValidated</code> with only one <code>string ID</code> member (I suppose here that all the elements you're interested in already have such a property thanks to the original class they're instances of).
+Then, once you've done all you need, you build your array just once as an ending action before sending the page to the client. Now that all your custom-validated elements are recognizable thanks to <code>IValidated</code>, that's pretty easy with a one-liner like this :</p>
+
+<pre><code>errorListArr = new Array(this.Page.SubControls().OfType&lt;IValidated&gt;().Select(elt =&gt; elt.ID));
+</code></pre>
+
+<p><code>SubControls</code> being a very handy extension method to get all the subcontrols whatever their depth in the controls tree :</p>
+
+<pre><code>public static IEnumerable&lt;Control&gt; Subcontrols&lt;T&gt;(this T parentControl) where T : Control
+{
+    //Recursively returns all the parentContol's descendant controls 
+    foreach (Control ctrl in parentControl.Controls)
+    {
+        yield return ctrl;
+        foreach (Control childCtrl in ctrl.Subcontrols())
+        {
+            yield return childCtrl;
+        }
+    }
+}
+</code></pre>
+
+<p>Sure you may have to make a few adaptations to reach your exact needs, but that's essentialy the idea.</p>
+
+<p>This second option has the main advantage to give "something common" to all your elements, despite they're all instances of various classes which otherwise have maybe really few in common. You create a new functional abstraction which is specific to your project and later you'll be able to extend <code>IValidated</code> with specific extension methods if you need to, for instance...</p>

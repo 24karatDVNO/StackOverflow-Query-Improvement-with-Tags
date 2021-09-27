@@ -1,0 +1,12 @@
+<p><code>$(".jwbox_hidden").text();</code> would probably give you the content of that div using the class selector.</p>
+
+<p>You should however, consider your usage. Perhaps use a hidden input with a value set in your php instead. If you are using elements to hold hidden data, try to use id's rather  than classes since you want to query only one instance of that element on your page.</p>
+
+<p>e.g</p>
+
+<pre><code>&lt;input type="hidden" value="&lt;?php echo $video['vid_code']; ?&gt;" id="jwbox_hidden" /&gt;
+</code></pre>
+
+<p>you could then simply query it using <code>$("#jwbox_hidden").val();</code> using the id selector.</p>
+
+<p>More information on selector is <a href="http://api.jquery.com/category/selectors/" rel="nofollow">here</a> It's actually quite easy once you get the hang of it.</p>

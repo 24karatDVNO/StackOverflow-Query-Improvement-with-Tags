@@ -1,0 +1,10 @@
+<p>I don't think you want to sanitize it. Sanitizing strips HTML, leaving the text behind, except for the HTML elements you deem OK. It is intended for allowing a user-input field to contain some markup.</p>
+
+<p>Instead, you probably want to parse it. For example, the following will print the text content of the <code>&lt;p&gt;</code> tags in a given html string.</p>
+
+<pre><code>doc = Nokogiri::HTML.parse(html)
+
+doc.search('p').each do |el|
+  puts el.text
+end
+</code></pre>

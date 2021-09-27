@@ -1,0 +1,23 @@
+<p>You are trying to call an <code>NSString</code> class method with an instance (an incorrectly created instance at that) here</p>
+
+<pre><code>NSString *temp = [NSString alloc];
+    [temp stringwithString:@"http://www.inetwallpaper.com/homescreenhero/sunsets/wall009.jpg"];
+</code></pre>
+
+<p>Change to </p>
+
+<pre><code>NSString *temp = @"http://www.inetwallpaper.com/homescreenhero/sunsets/wall009.jpg";
+</code></pre>
+
+<p><em>EDIT:</em></p>
+
+<p>You are doing several things wrong like calling <code>alloc</code> on things and then setting them to something else. (*temp and *data) when you <code>alloc</code> something it should always be followed with a call to <code>init</code> or <code>initXXXX</code>. Next you do not even need those <code>alloc</code> calls because you are setting the pointer to something else on the line right beneath it which causes a memory leak. </p>
+
+<p>This is all you need</p>
+
+<pre><code>NSData *dato = [NSData dataWithContentsOfURL:[NSURL URLWithString:temp]];
+</code></pre>
+
+<p>Then you are creating a bunch of images with the same data object. You are also blocking the calling thread while you are downloading the image which should done later probably around time of <code>viewDidLoad</code> asynchronously.</p>
+
+<p>The init function of the view controller is not the place for setting the view. Implement loadView and the system will call it when it is needed to minimize the applications memory footprint.</p>

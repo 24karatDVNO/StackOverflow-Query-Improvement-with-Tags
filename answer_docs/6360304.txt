@@ -1,0 +1,16 @@
+<p>My opinion is, you should review your concept, because you want to "reconfigure" the browser's navigation buttons. Disabling browser features is in my eyes old fashioned.</p>
+
+<blockquote>
+  <p>I used the code history.forward() on onload event</p>
+</blockquote>
+
+<p>Try following this way:</p>
+
+<p>In the head section, insert the javascript: </p>
+
+<pre><code>var historySize = history.length;
+</code></pre>
+
+<p>Then replace in <code>onload</code> event: <code>history.forward()</code> by <code>history.go(historySize - 1)</code>. A positive value means move forward to a particular position in browser's history object (array).</p>
+
+<p>I cannot guarantee that it will work, but it is worth to try out.</p>

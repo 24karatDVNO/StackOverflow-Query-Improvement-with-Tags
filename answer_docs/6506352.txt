@@ -1,0 +1,5 @@
+<p>As far as I understand, the hosted option doesn't allow these variables to be passed in (hence they are really only useful for a small number of buttons, i.e. donations with values that don't change often and the amount of the payment isn't crucial. </p>
+
+<p>What I would recommend is that you make your buttons using the encrypted method (using the PayPal Button Generator API) which prevents these 'hidden' values from being changed and gives you full control.</p>
+
+<p>My answer over at <a href="https://stackoverflow.com/questions/6322247/dynamic-paypal-button-generation-isnt-it-very-unsecure/6322342#6322342"><a href="https://stackoverflow.com/questions/6322247/dynamic-paypal-button-generation-isnt-it-very-unsecure/6322342#6322342">Dynamic PayPal button generation - isn&#39;t it very insecure?</a></a> explains how to use it, and also allows you to dynamically generate the amount, item name and numbers as required.</p>

@@ -1,0 +1,26 @@
+<p>You can create a <code>Map</code> for that inside your <code>Errors</code> enum. Use the error code to look up the <code>Errors</code> enum. Look up the value by making a call like this: <code>Errors.getErrorForCode(1);</code></p>
+
+<pre><code>private static final Map&lt;Integer, String&gt; allErrors;
+
+static
+{
+    allErrors = new HashMap&lt;Integer, String&gt;();
+
+    for(Errors error : values())
+    {
+        allErrors.put(error.getErrorCode(), error);
+    }
+}
+
+public static Errors getErrorForCode(int errorCode)
+{
+    Errors error = allErrors.get(errorCode);
+
+    if(error == null)
+    {
+        throw new IllegalArgumentException("Unknown error code");
+    }
+
+    return error;
+}
+</code></pre>

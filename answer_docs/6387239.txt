@@ -1,0 +1,16 @@
+<p>The newly added code will not have the events bound to them. You can add them again by writing a binder function. </p>
+
+<pre><code>function bindUL ( node ) {
+  return dojo.connect(node, "onmouseover", "ListViewInsertList");
+}
+</code></pre>
+
+<p>and add it here</p>
+
+<pre><code>function ListViewInsertListDo()
+{        
+  var x = dojo.create("ul", { dojoType: "dojo.dnd.Source", className: "container listview" }, hovernode);
+  bindUL(x);
+  dojo.query(".listview").forEach(function(node, index, arr)
+  {
+</code></pre>

@@ -1,0 +1,9 @@
+<p>One way might be to iterate over the line and keep an explicit count of the number of lines already seen:</p>
+
+<pre><code>&gt;&gt;&gt; f=open('text.txt','r')
+&gt;&gt;&gt; from itertools import izip
+&gt;&gt;&gt; from itertools import count
+&gt;&gt;&gt; f=open('test.java','r')
+&gt;&gt;&gt; for line_no,line in izip(count(),f):
+...     print line_no,line
+</code></pre>

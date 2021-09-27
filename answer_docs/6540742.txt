@@ -1,0 +1,1 @@
+<p>Your design seems right to me overall: having a separate thread for I/O and a thread pool for computations is right. You might possibly replace Boost threads in pool[1..8] with OpenMP for the computational part, but I would not go beyond that. If you can't use Boost, use POSIX threads.</p>

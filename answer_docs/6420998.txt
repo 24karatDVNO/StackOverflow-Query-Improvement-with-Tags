@@ -1,0 +1,5 @@
+<p>NCover, PartCover and dotCover are .NET coverage tools and do so by instrumenting the IL (I know PartCover and NCover do so by using the ICorProfilerCallback interfaces and JITCompilationStarted events and such like) to gather coverage information and as such they do not know how to handle native code (even though they are actually written in Native code.). </p>
+
+<p>I can't profess to know how dotCover works.</p>
+
+<p>If you are looking at getting coverage for a native aplication I would look at tools such as <a href="http://www.softwareverify.com/cpp/coverage/index.html/" rel="nofollow" title="Coverage Validator">Coverage Validator</a> </p>

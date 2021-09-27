@@ -1,0 +1,12 @@
+<p>You can do it like this:</p>
+
+<pre><code>    UILabel *label = [[UILabel alloc] initWithFrame:theRect];
+[self.view addSubview:label];
+[UIView animateWithDuration:0.5 
+                      delay:0.0 
+                    options:UIViewAnimationCurveEaseIn 
+                 animations:^{label.bounds = targetRect;} 
+                 completion:^(BOOL finished) { /* completion stuff */}];
+</code></pre>
+
+<p>There are more animate methods that take less parameters. You find them in the UIView documentation.</p>

@@ -1,0 +1,7 @@
+<pre><code>SELECT MAX(main.date) as date 
+from accounthistory as main
+WHERE main.account_id=484368430
+      AND EXISTS (SELECT 1 FROM accounthistory as sub
+                           WHERE sub.account_id=main.account_id AND
+                                 sub.date &lt; main.date HAVING SUM(sub.change_ammount) &lt; 0)
+</code></pre>

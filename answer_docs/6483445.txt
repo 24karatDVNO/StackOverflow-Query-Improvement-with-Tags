@@ -1,0 +1,12 @@
+<p>I go a step forward. It seems that it can come from a thread issue. 
+The "writeblock" command of the MifareClassic has to be triggered by the main process of the activity.
+In my app, it's a button (implementing OnClickListener) that triggered the "writeblock". 
+When in debugging mode, the debug thread can hide this behavior because it's the main thread and make the app running well.</p>
+
+<p>So from now, what I did is just to ask the user to remove the tag from the rf field and put it back. So I get the intent that a tag has been discovered again and then I can do the "writeblock" command without any problem.</p>
+
+<p>Finally I thing the best way to handle read and write on tags is the create 2 activities, one for readings and one for writings.</p>
+
+<p>If you have any comment or other way to do it .. please, answer this thread.</p>
+
+<p>Sylvain</p>

@@ -1,0 +1,15 @@
+<p>It should be as simple as:</p>
+
+<pre><code>one_big_string = ' '.join(request.POST.getlist('myselectmultiple'))
+mymodelinstance.field = one_big_string 
+mymodelinstance.save()
+</code></pre>
+
+<p>I can guess at a few problems:</p>
+
+<ol>
+<li>You assign something to <code>table.conditions</code> but never save it. </li>
+<li><code>MyModelInstance.save()</code> doesn't return anything by default, so you're most likely assigning <code>None</code> to <code>table.conditions</code></li>
+</ol>
+
+<p>Hope that helps - if you clarify your question at all I will respond in the morning. </p>

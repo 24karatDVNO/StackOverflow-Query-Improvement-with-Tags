@@ -1,0 +1,11 @@
+<pre><code>SELECT *
+FROM mytable
+    JOIN 
+        ( SELECT MAX(id) AS maxid
+          FROM mytable
+          GROUP BY "key"
+        ) AS grp
+      ON grp.maxid = mytable.id
+</code></pre>
+
+<p>Side note: it's best not to use reserved words like <code>key</code>as identifiers (for tables, fields. etc.)</p>

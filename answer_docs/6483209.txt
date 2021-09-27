@@ -1,0 +1,21 @@
+<p>You could create an index in the right order that includes all the fields you're selecting.  So for your query:</p>
+
+<pre><code>SELECT id, fld1, fld2 FROM tblM ORDER BY fld2 ASC LIMIT 30 
+</code></pre>
+
+<p>You could create this index:</p>
+
+<pre><code>create index ix_tblM_fld2 on tblM (fld2, fld1, id)
+</code></pre>
+
+<p>One word of advice re this:</p>
+
+<blockquote>
+  <p>Sorting by primary key is only fast
+  takes 0.0017 secs, it would be nice to
+  have the other fields with the same
+  performance. Disk space does not
+  matter.</p>
+</blockquote>
+
+<p>In order for the database to work with your data, it has to be loaded into memory.  Loading into memory is a slow operation, and RAM is generally not unlimited.  Creating too many indexes can significantly burden a server.</p>

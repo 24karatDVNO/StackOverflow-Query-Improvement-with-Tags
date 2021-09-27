@@ -1,0 +1,15 @@
+<ol>
+<li><p>If you're using an id there's only ever going to be one. So you can just do:</p>
+
+<p>$('a#foo').dosmth();</p></li>
+<li><p>You don't need to use each() to go through each div and get all the a#foo's out of it. That WILL waste time, creating loops for no reason. Instead use:</p>
+
+<p>$('a#foo').each(function(){ ... });</p></li>
+</ol>
+
+<p>or even just:</p>
+
+<pre><code>$('a#foo').dosmth();
+</code></pre>
+
+<p>You can also do <code>$('div a#foo').dosmth();</code> if you want.</p>

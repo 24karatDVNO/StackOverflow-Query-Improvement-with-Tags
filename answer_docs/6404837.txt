@@ -1,0 +1,49 @@
+<p>Files needed:</p>
+
+<p>icon.png ( <a href="http://www.mediafire.com/imageview.php?quickkey=37phkkdmd1dv1zf&amp;thumb=4" rel="nofollow">http://www.mediafire.com/imageview.php?quickkey=37phkkdmd1dv1zf&amp;thumb=4</a> )</p>
+
+<p>manifest.json</p>
+
+<p>popup.html
+
+Put all in a folder together.</p>
+
+<p>.</p>
+
+<p>in the manifest.json:</p>
+
+<pre>
+{
+  "name": "My First Extension",
+  "version": "1.0",
+  "description": "The first extension that I made.",
+    "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "popup.html"
+  }
+
+}
+</pre>
+
+<p>put in popup.html:</p>
+
+<pre>
+hello world
+</pre>
+
+<p>Save both files.
+go to extentions ( chrome://extensions/ )</p>
+
+<p>And click developer mode. <a href="http://snpr.cm/HBuhYF.jpg" rel="nofollow">http://snpr.cm/HBuhYF.jpg</a></p>
+
+<p>Click "load unpacked extention". and locate the folder.
+It should load fine. </p>
+
+<p>Click on the new extention and see the glory :)</p>
+
+<hr>
+
+<p>edit, just read your post - you learned a hello world /facepalm</p>

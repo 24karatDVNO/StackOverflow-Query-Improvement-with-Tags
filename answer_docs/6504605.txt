@@ -1,0 +1,41 @@
+<p><code>Collection&lt;?&gt;</code> is <em>the supertype for all kinds of collection</em>. It is not <em>a</em> collection that can hold <em>any type</em>. At least that was my misunderstanding of the whole concept.</p>
+
+<p>We can use it where we don't care about the generic type, like in this example:</p>
+
+<pre><code>public static void print(Collection&lt;?&gt; aCollection) {
+  for (Object o:aCollection) {
+    System.out.println(o);
+  }
+}
+</code></pre>
+
+<p><em>If</em> we had chosen the signature instead:</p>
+
+<pre><code>public static void print(Collection&lt;Object&gt; aCollection)
+</code></pre>
+
+<p>we would have limited ourselves to collections of type <code>Collection&lt;Object&gt;</code> - in other words, such a method wouldn't accept a <code>Collection&lt;String&gt;</code> type value.</p>
+
+<p>So a <code>Collection&lt;?&gt;</code> type is <em>not</em> a collection that can take <em>any type</em>. It only takes <em>the unknown type</em>. And as we don't know that type (its unknown ;) ), we can never add a value, because no type in java is a subclass of the unknown type.</p>
+
+<p>If we add bounds (like <code>&lt;? extends Able&gt;</code>), the type is <em>still</em> unknown.</p>
+
+<p>You're looking for a declaration of a map, whose values all implement the <code>Able</code> interface. The correct declaration is simply:</p>
+
+<pre><code>Map&lt;String, Able&gt; map;
+</code></pre>
+
+<p>Let's assume we have two types <code>A</code> and <code>B</code> that subclass <code>Able</code> and two additional maps</p>
+
+<pre><code>Map&lt;String, A&gt; aMap;
+Map&lt;String, B&gt; bMap;
+</code></pre>
+
+<p>and want a, method that returns any map whose values implement the <code>Able</code> interface: <em>then</em> we use the wildcard:</p>
+
+<pre><code>public Map&lt;String, ? extends Able&gt; createAorBMap(boolean flag) {
+ return flag ? aMap: bMap;
+}
+</code></pre>
+
+<p>(again with the constraint, that we can't add new key/value pairs to the map that is returned by this method).</p>

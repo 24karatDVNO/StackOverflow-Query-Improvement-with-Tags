@@ -1,0 +1,42 @@
+<p>This will get you more than the column name if you need more information about each column like size, ordinal,etc.  A few of the most important properties are listed, but there are more.</p>
+
+<p>Note, DataObjects.Column is a POCO for storing column information.  You can roll your own in your code.  Also, note I derive the .Net type as well, useful for converting SQL data types to .Net (C#) ones.   ConnectionString and TableName would be supplied from a caller.</p>
+
+<pre><code>            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand comm = new SqlCommand("Select top(1) * from " + TableName + " Where 1=0");
+                comm.CommandType = CommandType.Text;
+                comm.Connection = conn;
+                using (SqlDataReader reader = comm.ExecuteReader(CommandBehavior.KeyInfo))
+                {
+                    DataTable dt = reader.GetSchemaTable();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        //Create a column
+                        DataObjects.Column column = new DataObjects.Column();
+
+                        column.ColumnName = (string)row["ColumnName"];
+                        column.ColumnOrdinal = (int)row["ColumnOrdinal"];
+                        column.ColumnSize = (int)row["ColumnSize"];
+                        column.IsIdentity = (bool)row["IsIdentity"];
+                        column.IsUnique = (bool)row["IsUnique"];
+
+                        //Get the C# type of data
+                        object obj = row["DataType"];
+                        Type runtimeType = obj.GetType();
+                        System.Reflection.PropertyInfo propInfo = runtimeType.GetProperty("UnderlyingSystemType");
+                        column.type = (Type)propInfo.GetValue(obj, null);
+
+                        //Set a string so we can serialize properly later on
+                        column.DataTypeFullName = column.type.FullName;
+
+                        //I believe this is SQL Server Data Type
+                        column.SQLServerDataTypeName = (string)row["DataTypeName"];
+
+                        //Do something with the column
+                    }
+                }
+            }
+</code></pre>

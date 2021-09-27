@@ -1,0 +1,26 @@
+<p>In the production mode the exception will be handled automatically.
+But there are cases where we want to handle the exceptions. In our case we render a special layout for such pages.</p>
+
+<p>In application controller you have to rescue the exceptions like this:</p>
+
+<pre><code>  PAGE_NOT_FOUND_ERRORS = ActiveRecord::RecordNotFound, ActionController::RoutingError, ActionController::UnknownAction, ActionController::UnknownController
+  def rescue_action_in_public(exception)
+    case exception
+    when *PAGE_NOT_FOUND_ERRORS
+      render_404
+    else
+      render_500
+    end
+  end
+
+
+  def render_404
+    render :file =&gt; File.join(RAILS_ROOT, 'public', '404.html'), :status =&gt; 404, :layout =&gt; true
+  end
+
+
+
+  def render_500
+    render :file =&gt; File.join(RAILS_ROOT, 'public', '500.html'), :status =&gt; 500
+  end
+</code></pre>

@@ -1,0 +1,18 @@
+<p>Assuming you already use the onselectionchanged event but not seeing result directly you could use a updatepanel like this</p>
+
+<pre><code>&lt;asp:ScriptManager ID="ScriptManager1" runat="server"&gt;
+    &lt;/asp:ScriptManager&gt;
+    &lt;asp:UpdatePanel ID="UpdatePanel1" runat="server"&gt;
+    &lt;asp:Calendar ID="Calendar1" runat="server" 
+        onselectionchanged="Calendar1_SelectionChanged"&gt;&lt;/asp:Calendar&gt;
+    &lt;asp:TextBox ID="TextBox1" runat="server"&gt;&lt;/asp:TextBox&gt;
+&lt;/asp:UpdatePanel&gt;
+</code></pre>
+
+<p>If you were just looking for the event then it would look alike this</p>
+
+<pre><code>protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+{
+    TextBox1.Text = Calendar.cal.SelectedDate.ToString();
+}
+</code></pre>

@@ -1,0 +1,34 @@
+<p>It's not necessarily optimized (although it's no slower either), but this is the way I'd write it:</p>
+
+<pre><code>( function( ddlCoverageClientID )
+{
+  $( function()
+  {
+    $( '#CoverageType' ).toggle( $( '#' + ddlCoverageClientID ).val() === 'Basic'  );
+  } );
+}( '&lt;%=ddlCoverage.ClientID %&gt;' ) );
+</code></pre>
+
+<ol>
+<li>I prefer to inject dynamic server side langues via <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/" rel="nofollow">IIFE</a> in order to keep my JS more readble (to me anyway)</li>
+<li>I prefer the <code>$( function(){} );</code> shortcut to <code>$( document ).ready( function(){} );</code></li>
+<li>I prefer to toggle with a BOOL rather than check a BOOL and then call show or hide</li>
+</ol>
+
+<p><strong>EDIT:</strong></p>
+
+<p>I would modify <em>Francois Deschenes</em>'s excellent code, though. Note that I cache the return of <code>$( '#CoverageType' )</code> rather than run it every time the select changes.</p>
+
+<pre><code>( function( ddlCoverageClientID )
+{
+  $( function()
+  {
+    var $CoverageType = $( '#CoverageType' );
+
+    $( '#' + ddlCoverageClientID ).change( function()
+    {
+      $CoverageType.toggle( $( this ).val() === 'Basic' );
+    } );
+  } );  
+}( '&lt;%=ddlCoverage.ClientID %&gt;' ) );
+</code></pre>

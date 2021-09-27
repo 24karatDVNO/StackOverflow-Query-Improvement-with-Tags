@@ -1,0 +1,5 @@
+<p>I don't think nesting IDs selectors will make CSS styles apply faster from a browser rendering point of view.</p>
+
+<p>Also, since you already have the ID, using only that ID will make your CSS more easy to read instead of having long selectors chain.</p>
+
+<p>It is different though if you plan to have different styles referencing to the same element, if the element should change it's position along the page, or maybe removed and then later recreated in another position (thus needing different selectors). In this case maybe you will need to have nested selectors, otherwise I don't see the need for that.</p>

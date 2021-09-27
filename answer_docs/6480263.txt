@@ -1,0 +1,9 @@
+<p>You can get style.width only after the element is drawn. Try to put your code to setTimeout(). Sometimes it helps me</p>
+
+<pre><code>window.onload = function(){
+    setTimeout(
+       function(){ alert(document.getElementById('window').style.width); },
+       200
+    );
+}
+</code></pre>

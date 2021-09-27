@@ -1,0 +1,9 @@
+<p>You are going to have to manage this yourself. The <code>ListBox</code> has a <code>ScrollIntoView</code> method that allows you to scroll to a specific location:</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.listbox.scrollintoview(v=VS.95).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.windows.controls.listbox.scrollintoview(v=VS.95).aspx</a></p>
+
+<p>Determining the items that are currently visible, if you need this, is not so easy. See the <code>ItemsControlExtensions</code> that I wrote as part of the WP7Contrib project:</p>
+
+<p><a href="http://wp7contrib.codeplex.com/SourceControl/changeset/view/67473#1475881" rel="nofollow">http://wp7contrib.codeplex.com/SourceControl/changeset/view/67473#1475881</a></p>
+
+<p>This has a <code>GetItemsInView</code> extensions method that will provide the list of visible items.</p>

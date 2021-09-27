@@ -1,0 +1,3 @@
+<p>No, there is basically no limitation in how deep you can nest beans.</p>
+
+<p>Your problem is caused by something else. Perhaps you are not preserving the same parent beans in the request of the form submit as it was during the request of the form display. Hard to tell without further detail about your code. All what I can suggest is to try making <code>CustomerBean</code> a view scoped bean.</p>

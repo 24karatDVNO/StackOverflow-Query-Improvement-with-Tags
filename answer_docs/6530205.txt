@@ -1,0 +1,20 @@
+<p>Create your own TabControl descendant as shown below. This code was obtained from <a href="http://social.msdn.microsoft.com/Forums/en-US/winforms/thread/c290832f-3b84-4200-aa4a-7a5dc4b8b5bb/" rel="nofollow">here</a>:</p>
+
+<pre><code>using System;
+using System.Windows.Forms;
+
+public class MyTabControl : TabControl {
+    protected override void WndProc(ref Message m)
+    {
+        // Hide tabs by trapping the TCM_ADJUSTRECT message
+        if (m.Msg == 0x1328 &amp;&amp; !DesignMode)
+            m.Result = (IntPtr)1;
+        else
+            base.WndProc(ref m);
+    }
+}
+</code></pre>
+
+<p>Create a tab page for each menu panel that you mention. At design time you can easily switch between the panels by clicking on the appropriate tab page header tab. Associate each menu item with a tab page, so that at run time, whenever you select your menu item you can activate/select the appropriate tab page to display the intended panel. At run time the tab header will not be visible. I tested the above and it works.</p>
+
+<p>Alternatively, you might find a tab control that has built-in support to hide the tab header. For example, I use the tab control available in the <a href="http://www.devexpress.com/Products/NET/Controls/WinForms/" rel="nofollow">DevExpress WinForm controls suite</a>, which supports hiding the headers.</p>

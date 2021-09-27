@@ -1,0 +1,3 @@
+<p>Firstly, I doubt that stored procedure will actually compile because it will recognise that table2 does not have a 'family' field.</p>
+
+<p>Secondly, it is probably advisable to incorporate some form of checking for your own sanity, but in any case, SQL server will rollback automatically on error.</p>

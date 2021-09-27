@@ -1,0 +1,17 @@
+<p>technopeasant, it sounds like you are using a jquery plugin (in your example, a plugin called 'fillit') and it is asking you to run the plugin on a tag or series of tags. Sorry if I misunderstood your question.</p>
+
+<p>If that is the case, all you need to do is one of two things.  If you are trying to run it on a very specific element in the HTML page (one with an id like &lt;div id="myvideo">&lt;/div>) then all you need to do is run:</p>
+
+<pre><code>$('#myvideo').fillit();
+//Notice the '#' symbol, that looks up the element with an id of 'myvideo'
+</code></pre>
+
+<p>If you want to run the plugin on a series of elements (like all &lt;p&gt; tags in the entire document, you'd run something like:</p>
+
+<pre><code>$('p').fillit()
+//notice no '#', it's just looking up all &lt;p&gt; tags regardless of ID.
+</code></pre>
+
+<p>Take a look at the jQuery documentation regarding selectors to get a more concrete idea of how these selectors work:</p>
+
+<p><a href="http://docs.jquery.com/How_jQuery_Works" rel="nofollow">http://docs.jquery.com/How_jQuery_Works</a></p>

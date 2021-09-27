@@ -1,0 +1,42 @@
+<p>Your first problem is handled by: <code>const char *</code> is for the function, not you. Put together your own string -- that signature just means that the function won't change it.</p>
+
+<p>Your second problem is handled by: pass in your own va_list. How do you get it? Make your own varargs function:</p>
+
+<pre><code>char *assemble_strings(int count, ...)
+{
+    va_list data_list;
+    va_list len_list;
+    int size;
+    char *arg;
+    char *formatstr;
+    char *str;
+    int i;
+
+    va_start(len_list, count);
+    for (i = 0, size = 0; i &lt; count; i++)
+    {
+        arg = va_arg(len_list, char *);
+        size += strlen(arg);
+    }
+    va_end(len_list);
+
+    formatstr = malloc(2*count + 1);
+    formatstr[2*count] = 0;
+    for (i = 0; i &lt; count; i++)
+    {
+        formatstr[2*i] = '%';
+        formatstr[2*i+1] = 's';
+    }
+    str = malloc(size + 1);
+
+    va_start(data_list, count);
+    vsprintf(str, formatstr, data_list);
+    va_end(data_list);
+
+    free(formatstr);
+
+    return(str);
+}
+</code></pre>
+
+<p>You'll need some way to terminate the varargs, of course, and it's much easier to just pass it to vsprintf if the string list is entirely within the varargs -- since standard C requires at least one regular argument.</p>

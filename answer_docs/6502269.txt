@@ -1,0 +1,13 @@
+<p>The whole idea about generics is that you make a single class which supports all types of classes (or at least all classes who inherit from a class or implement an interface).</p>
+
+<p>Also in Java (bytecode) there is no difference between say</p>
+
+<pre><code>GenericClass&lt;A,B&gt; foo;
+</code></pre>
+
+<p>and</p>
+
+<pre><code>GenericClass&lt;C,D&gt; bar;
+</code></pre>
+
+<p>You thus need to define a single class that can handle all the different objects that might be given to it.</p>

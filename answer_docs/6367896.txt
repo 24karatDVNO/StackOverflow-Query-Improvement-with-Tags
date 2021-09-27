@@ -1,0 +1,23 @@
+<p>First, some valid HTML. But I guess that wasn't your real HTML?</p>
+
+<pre><code>&lt;div id="div1"&gt;
+  &lt;img [..] /&gt;
+  &lt;div id="div2"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>You could this with position: absolute and negative margins.</p>
+
+<pre><code>#div1 { display: table; position: relative; }
+#div2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: -50px;
+  right: 0;
+}
+</code></pre>
+
+<p><code>display: table</code> should make the first <code>div</code> match the width of the image. <code>position: relative</code> so the second <code>div</code> will position itself relative to first <code>div</code>.</p>
+
+<p>This might work (not sure of relative+table). But I haven't tested it. If it does't work, I suggest that you work with JS to position the second <code>div</code>, it's very easy. </p>

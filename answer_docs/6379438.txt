@@ -1,0 +1,43 @@
+<p>Encapsulate the parameters, as a single parameter:</p>
+
+<pre><code>public class SellCommand: Command {
+   Product OwnerProduct;
+
+   ProductCommand (AOwnerProduct)
+   {
+     this.OwnerProduct = AOwnerProduct;
+   }
+
+   public override void Execute(KeyValueArray Parameters)
+   {
+      double Price = (double)Parameters.ValueofKey("price");
+      // do something else
+   }
+}
+
+public class BuyCommand: Command {
+   Product OwnerProduct;
+
+   ProductCommand (AOwnerProduct)
+   {
+     this.OwnerProduct = AOwnerProduct;
+   }
+
+   public override void Execute(KeyValueArray Parameters)
+   {
+      double Cost = (double)Parameters.ValueofKey("cost");
+      // do something else
+   }
+}
+
+
+public class Product {
+   public void AnyMethod()
+   {
+     KeyValueArray Parameters =  new KeyValueArray Parameters();
+     KeyValueArray.Add("price", "12.5");
+   } 
+}
+</code></pre>
+
+<p>Its sort of pseudocode, you may like to use the collection libraries that match your programming framework.</p>

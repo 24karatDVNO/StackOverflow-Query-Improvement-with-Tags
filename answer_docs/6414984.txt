@@ -1,0 +1,8 @@
+<pre><code>select * from table a
+inner join (
+    select col,n=count(*)
+      from table
+     group by col
+    having count(*) &gt;= 3 ) as b     
+on (a.col=b.col)
+</code></pre>

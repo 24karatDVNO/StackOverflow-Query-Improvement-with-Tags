@@ -1,0 +1,13 @@
+<p>I had the same problem. In my case, the code was executed twice. I had the following situation:</p>
+
+<p>In one app:</p>
+
+<pre><code>from apps.accounts.models import User
+</code></pre>
+
+<p>And in another app:</p>
+
+<pre><code>from accounts.models import User
+</code></pre>
+
+<p>Since the customization code was in the accounts/models.py module, it was executed twice.</p>

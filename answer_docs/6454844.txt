@@ -1,0 +1,14 @@
+<p>Do NOT use set identity insert on. If you have an identity, you should be letting SQL server decide what value to put in there. </p>
+
+<pre><code>ALTER PROCEDURE [dbo].[AddAirConditioner] @CategoricNumber int, @Name nvarchar(50),
+@PicName nvarchar(100), @ShortDetails nvarchar(200), @Details nvarchar(2000), 
+@Price int, @ImagePath nvarchar(500), @AirConditionerType nvarchar(50), @COP float, 
+@BTU float, @ProdType nvarchar(20), @ProdIndex int 
+AS   
+
+INSERT INTO AirConditioner VALUES( @CategoricNumber, @Name, @PicName, 
+@ShortDetails, @Details, @Price, @ImagePath, @AirConditionerType, @COP,
+@BTU, @ProdType, @ProdIndex) 
+</code></pre>
+
+<p>If you need to get the ID back for using in child tables, then use scope_identity or the output clause. Look these up in Books online to see how to use. </p>

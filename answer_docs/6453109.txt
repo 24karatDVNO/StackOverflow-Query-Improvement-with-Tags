@@ -1,0 +1,7 @@
+<p>It's tricky to debug since I don't have a working copy of ie6 on my machine, only ietester but there are known issues with ie6 where it doesn't calculate sizes properly in order to display background images properly. </p>
+
+<p>The answer generally is to trigger hasLayout on the element and the easiest way to do this is using <code>position:relative</code>. I'd give that a go before anything else.</p>
+
+<p>I would also recommend having a look at the <a href="http://html5boilerplate.com/" rel="nofollow">html5boilerplate</a> stylesheet to see if there is anything there that you can make use of. The reset/reassign css in there is simply brilliant and irons out a lot of css issues.</p>
+
+<p>Best of luck!</p>

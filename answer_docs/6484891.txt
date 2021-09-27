@@ -1,0 +1,18 @@
+<p>How about using <code>presentModalViewController</code>?? Its simpler and easy to use..</p>
+
+<p><code>SettingsAboutViewController *settingsView  = [[SettingsAboutViewController alloc] initWithNibName:@"SettingsAboutViewController " bundle:nil];</code></p>
+
+<p><code>settingsView.delegate = self;</code></p>
+
+<p>// The magic statement. This will flip from right to left. // present the modal view controller then when you dismissModalViewController.
+// it will transition flip from left to right. Simple and elegant.</p>
+
+<p><code>settingsView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;</code></p>
+
+<p><code>[self presentModalViewController:settingsView  animated:YES];</code></p>
+
+<p><code>[settingsView  release];</code></p>
+
+<p>I think that would solve your problem.</p>
+
+<p>Good Luck..!</p>

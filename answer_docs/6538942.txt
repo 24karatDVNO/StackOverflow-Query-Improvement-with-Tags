@@ -1,0 +1,17 @@
+<p>If you're at the point of complaining about a 1/1,000,000th of a second outage, then I suggest the following approach:</p>
+
+<p>Front end load balancers pointing to multiple backend servers.</p>
+
+<p>Remove one backend server from the loadbalancer to ensure no traffic will go to it.</p>
+
+<p>Wait for all traffic that the server was processing has been sent.</p>
+
+<p>Shutdown the webserver on that instance.</p>
+
+<p>Update the django instance on that machine.</p>
+
+<p>Add that instance back to the load balancers.</p>
+
+<p>Repeat for every other server.</p>
+
+<p>This will ensure that the 1/1,000,000th of a second gap is removed.</p>

@@ -1,0 +1,7 @@
+<p>Be careful with declaring variables, '<code>last_mark</code>' appears to be in global scope (or at least declared outside of your posted code), this can cause unexpected behavior due to the asynchronous nature of the callbacks since there is potentially a "race condition" between multiple clients which could be clearing and setting the same global variable rather than their own local instances.</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>// Mark to be returned
+var last_mark = 0;
+</code></pre>

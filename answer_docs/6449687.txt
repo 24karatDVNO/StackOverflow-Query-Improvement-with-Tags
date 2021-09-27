@@ -1,0 +1,5 @@
+<p>Most likely what happens is that Android kills your application which it will do to free up some memory. Then you bring it up again and <code>onCreate</code> method sets original image.</p>
+
+<p>What you need to do is to save image (and other state) when <code>onPause()</code> or <code>onSaveInstanceState()</code> is called and in <code>onCreate()</code> pull this data from <code>savedInstanceState</code> and apply it. Details can be found here <a href="http://developer.android.com/reference/android/app/Activity.html" rel="nofollow">http://developer.android.com/reference/android/app/Activity.html</a></p>
+
+<p>Note that it's is perfectly normal behavior.</p>

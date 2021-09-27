@@ -1,0 +1,4 @@
+<pre><code>$source = file_get_contents("http://partnerfeed.itsfogo.com/partnerfeed.aspx?partnerfeedID=1726&amp;ZoneID=128470&amp;partnerTargetLink=&amp;partnerField=itsfogoTargetLink");
+$xml = simplexml_load_string($source);
+var_dump($xml);
+</code></pre>

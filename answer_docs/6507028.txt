@@ -1,0 +1,14 @@
+<p>There's a workaroudn to getting back the focus out of the BrowserField using the NAVIGATION_POINTER.</p>
+
+<p>I found it in this thread:
+<a href="http://supportforums.blackberry.com/t5/Java-Development/BrowserField-2-Navigation-Mode/td-p/632172" rel="nofollow">http://supportforums.blackberry.com/t5/Java-Development/BrowserField-2-Navigation-Mode/td-p/632172</a></p>
+
+<p>"farahh" posted this:
+I found out a hack..</p>
+
+<p>with the navigation set to pointer mode, a click outside the browserfield manager invokes Manager.invokeAction(int). I used the getFieldWithFocus to verify which field has focus and then switch the focus to something else.</p>
+
+<p>Cheers.
+Nahuel</p>
+
+<p>PD: i havent found out how to get the behaviour you want, i need that as well so if you got it working please let me know, its kinda urgent in my project =( </p>

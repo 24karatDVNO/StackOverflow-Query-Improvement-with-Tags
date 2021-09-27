@@ -1,0 +1,54 @@
+<p><strong>Implicit SQL joins considered harmful</strong><br>
+First of all please do not use implicit join syntax. It belongs in 1989 please bury it there.</p>
+
+<p><strong>It looks like you have an SQL-injection leak</strong><br>
+<strong>if</strong> you use php and you don't put your injected variables in single quotes <code>'</code> <code>mysql_real_escape_string()</code> will not work!</p>
+
+<p>And you will be <a href="https://stackoverflow.com/questions/332365/xkcd-sql-injection-please-explain">at risk of SQL-injection</a></p>
+
+<p>Lastly you are injecting column names into your query. <code>mysql_real_escape_string()</code> will not protect you when doing that, neither will use PDO or anything else. You will need to check the column names against a pre-appoved white list on order to not fall victim to SQL injection attacks. <a href="https://stackoverflow.com/questions/5811834/why-would-this-be-poor-php-code">See here for more info:</a><br>
+If you inject $vars into a limit clause <code>mysql_real_escape_string()</code> does not work because MySQL does not see these as values, but as literals you need to cast them into integers to make it safe.</p>
+
+<p>Rewrite the query into and preceding php code to:</p>
+
+<pre><code>//stricly speaking not needed here, because we only accept integers
+//but I would use them anyway, just in case you change the query and the
+//role of these vars change.
+$limit = mysql_real_escape_string($_POST['limit']);
+$startrow = mysql_real_escape_string($_POST['startrow']);
+
+//Check injected column, table and database names against a whitelist!
+$allowed_columns = array('column1', 'column2');
+$orderby = $_POST['orderby'];
+$sort = $_POST['sort'];
+if !(in_array($orderby, $allowed_columns)) {die ("no way Jose");}
+if !(in_array($sort, $allowed_columns)) {die ("no way Jose");}
+
+//Make 100% sure injected limit parameters are integers.
+if !((int) $startrow == $startrow) {die ("no way Jose");}
+if !((int) $limit == $limit) {die ("no way Jose");}
+
+$query = "SELECT s.*, c.* ,AVG(c.field1) as average 
+          FROM comments c
+          INNER JOIN supps s ON (s.tutorialid = c.tutorialid)
+          WHERE category = '1'
+          GROUP BY s.id 
+          ORDER BY `$orderby`, `$sort`  //surround injected column names with ` 
+          LIMIT '$startrow', '$limit' ";
+</code></pre>
+
+<p><strong>SQL injection protection recap</strong><br>
+1. Always use <code>mysql_real_escape_string()</code> to escape data that comes from outside. <em>(or even better use PDO)</em><br>
+2. Surround injected $var values in your queries with <code>'</code> single quotes; if you don't escaping with <code>mysql_real_escape_string()</code> will <strong>not</strong> work.<br>
+3. check injected table, column and database names against a whitelist.<br>
+4. Surround $vars used for table, column and database names in backticks <code>&#96;</code>; this is not a security measure, but your query will fail if you use reserved words, numbers of <em>(shudder)</em> field names with spaces, backticks fix this.<br>
+5. Test to see if injected $vars in your limit clause are integers.  </p>
+
+<p>Fail to do any of those things and your server will the pwned!.</p>
+
+<p><strong>Back to your question</strong><br>
+My fingers hurt, but other people have kindly answered your question.</p>
+
+<p><strong>Links</strong><br>
+SQL-injection in general: <a href="https://stackoverflow.com/questions/332365/xkcd-sql-injection-please-explain">How does the SQL injection from the &quot;Bobby Tables&quot; XKCD comic work?</a><br>
+Whitelisting for injected column names: <a href="https://stackoverflow.com/questions/5811834/why-would-this-be-poor-php-code">How to prevent SQL injection with dynamic tablenames?</a></p>

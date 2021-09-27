@@ -1,0 +1,9 @@
+<p>The problem here is that the calling code is not an actor, so the second case in your <code>concurrentCalculator</code> actor does not match.</p>
+
+<p>Try this, instead, and you should see what you expect:</p>
+
+<pre><code>val me = actor { 
+  concurrentCalculator ! (Plus(2,3), self); 
+  self.receiveWithin(1000) { case x =&gt; println(x) } 
+}
+</code></pre>

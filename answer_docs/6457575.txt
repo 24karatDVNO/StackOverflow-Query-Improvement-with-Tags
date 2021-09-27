@@ -1,0 +1,7 @@
+<p>Well, there is nothing in <code>datasets</code> at that point, so there is no datasets[0], so of course there can be no <code>datasets[0].cover.data</code>!</p>
+
+<p>Ask yourself: How is datasets supposed to be populated, and where and when is that to occur?</p>
+
+<p>It gets populated in <code>handleXML</code> but that only happens <em>after</em> the <code>var d2</code> line.</p>
+
+<p>Also, using <code>eval</code> is generally frowned upon, see <a href="https://stackoverflow.com/questions/86513/why-is-using-javascript-eval-function-a-bad-idea">this stackoverflow question</a> for details.</p>

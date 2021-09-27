@@ -1,0 +1,6 @@
+<p>Without knowing a use-case for your question it's hard to answer it:</p>
+
+<ul>
+<li>If you want to send additional data to the client a bit later you can do a JS timeout on the client side with a handler that will make a new HTTP request to PHP.</li>
+<li>If you want to schedule some task for a later time you can store that in a database and poll the DB in regular intervalls. It's not the best peforming solution but relatively easy to implement.</li>
+</ul>

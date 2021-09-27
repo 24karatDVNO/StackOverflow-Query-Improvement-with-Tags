@@ -1,0 +1,14 @@
+<p>You can try somethink like this...</p>
+
+<pre><code>&lt;img src="thumb-1.jpg" id="img_1"/&gt;
+
+&lt;img id="bg_1"&gt;
+</code></pre>
+
+<p>JQuery</p>
+
+<pre><code>     $(document).ready(function(){
+        $("img_1") .mouseover(function() {$('#bg_1').attr('src','large-1.jpg');}
+$("img_1") .mouseout(function() {$('#bg_1').attr('src','');}
+        }) ;
+</code></pre>

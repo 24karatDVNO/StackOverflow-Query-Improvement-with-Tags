@@ -1,0 +1,20 @@
+<blockquote>
+  <p>How do I force javascript to treat them as floats?</p>
+</blockquote>
+
+<p>Like this:</p>
+
+<pre><code>var RG = "100",
+    max = "85";
+
+if (RG === "" || Number(RG) &gt; Number(max)) {
+  // Your code goes here.
+  // It will be executed if RG is the empty string OR if RG &gt; max.
+}
+</code></pre>
+
+<p><code>Number(foo)</code> will coerce <code>foo</code> into a number. You could also use <code>+foo</code> but I think this is more readable.</p>
+
+<p>You should use <code>parseFloat</code> instead if the string can contain text as well.</p>
+
+<p>Note that you need a strict equality check (<code>===</code>) when checking for the empty string, since <code>RG == ""</code> will be true if <code>RG</code> is <code>0</code>, <code>'0'</code>, <code>false</code>, etc. as well.</p>

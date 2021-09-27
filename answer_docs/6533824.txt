@@ -1,0 +1,5 @@
+<p>I suppose you're using a standard login form along with the Membership API. When using SQL Server Express Edition in conjunction with ASP.NET, the SqlMembershipProvider is able to create a data store that will be used by your membership provider automatically for you. However, when using any other edition of SQL Server, you have to create this data storage manually.</p>
+
+<p>You can use the aspnet_regsql.exe tool and then configure your connection strings.</p>
+
+<p>Hope this <a href="http://www.asp.net/security/tutorials/creating-the-membership-schema-in-sql-server-cs" rel="nofollow">tutorial</a> will help.</p>

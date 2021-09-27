@@ -1,0 +1,17 @@
+<p>Here's an optimized way to do it. No speed difference, but it's good practice to know about.</p>
+
+<ol>
+<li>Use long instead of integer since excel natively uses longs</li>
+<li><p>Unwrap the loop at least one level</p>
+
+<pre><code>Dim Sum As Long
+Dim i As Long
+
+For i = 1 to 10 Step 2
+   Sum = Sum + i
+   Sum = Sum + (i + 1)
+Next
+</code></pre></li>
+</ol>
+
+<p>I hope that helps!</p>

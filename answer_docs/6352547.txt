@@ -1,0 +1,23 @@
+<p>Equivalent of what you showed  is:</p>
+
+<pre><code>SELECT *
+FROM table1 tb1
+WHERE EXISTS
+(
+    SELECT *
+    FROM table1 tb2
+    WHERE 
+        tb1.col1 = tb2.col1 and 
+        tb1.col2 = tb2.col2 and
+        tb2.col3 &lt; 4
+)
+</code></pre>
+
+<p>However, this query does not make much sense as it is equivalent of</p>
+
+<pre><code>SELECT *
+FROM table1 tb1
+WHERE tb2.col3 &lt; 4
+</code></pre>
+
+<p>I just assume that the example you show is not well thought out.</p>

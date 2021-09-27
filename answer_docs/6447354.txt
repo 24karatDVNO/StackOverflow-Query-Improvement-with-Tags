@@ -1,0 +1,30 @@
+<p>Assuming that your array is called <code>$data</code>:</p>
+
+<pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;th&gt;Date&lt;/th&gt;
+    &lt;th&gt;January&lt;/th&gt;
+    &lt;th&gt;February&lt;/th&gt;
+    &lt;th&gt;March&lt;/th&gt;
+    &lt;th&gt;April&lt;/th&gt;
+    &lt;th&gt;May&lt;/th&gt;
+    &lt;th&gt;June&lt;/th&gt;
+    &lt;th&gt;July&lt;/th&gt;
+    &lt;th&gt;August&lt;/th&gt;
+    &lt;th&gt;September&lt;/th&gt;
+    &lt;th&gt;October&lt;/th&gt;
+    &lt;th&gt;November&lt;/th&gt;
+    &lt;th&gt;December&lt;/th&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;?php foreach ( $data as $key =&gt; $value ): ?&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;?php echo date('Y-m-d', mktime(0, 0, 0, (int)date('m'), (int)$key)); ?&gt;&lt;/th&gt;
+        &lt;?php for ( $i = 1; $i &lt;= 12; $i++ ): ?&gt;
+          &lt;td&gt;&lt;?php echo ! empty($value[$i][0]) ? $value[$i][0] : '&amp;nbsp;'; ?&gt;&lt;/td&gt;
+        &lt;?php endfor; ?&gt;
+      &lt;/tr&gt;
+    &lt;?php endforeach; ?&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>

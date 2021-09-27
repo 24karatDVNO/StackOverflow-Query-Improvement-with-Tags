@@ -1,0 +1,22 @@
+<p>Excel will often store cells containing only numbers as numeric cells, rather than string cells. You may think it isn't a numeric cell, but it is...</p>
+
+<p>You probably want something like:</p>
+
+<pre><code>DataFormatter formatter = new DataFormatter(Locale.US);
+
+....
+
+for(Cell cell : row) {
+  String val;
+  if(cell.getCellType()==Cell.CELL_TYPE_NUMERIC) {
+     // Format the number to look like it does in excel
+     val = formatter.formatCellValue(cell);
+  }
+  if(cell.getCellType()==Cell.CELL_TYPE_STRING) {
+     // Just get the string as-is
+     val = cell.getRichStringCellValue().getString();
+  }
+}
+</code></pre>
+
+<p>Have a look at the POI <a href="http://poi.apache.org/spreadsheet/quick-guide.html" rel="nofollow">quick guide</a> and <a href="http://poi.apache.org/spreadsheet/how-to.html" rel="nofollow">howto</a> to get you started with using POI.</p>

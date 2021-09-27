@@ -1,0 +1,7 @@
+<p>Every IP datagram has a <em>source address</em> and a <em>destination address</em> in the IP header, plus a transport protocol number, which is for majority of Internet traffic is either TCP or UDP. Then the header for that transport protocol lists <em>source and destination port numbers</em>.</p>
+
+<p>So here you have it - sending, or better said "client", application gets assigned source address and port, usually automatically - address determined by the local routing table, port number assigned out of range of <a href="http://en.wikipedia.org/wiki/Ephemeral_port" rel="nofollow">ephemeral ports</a>, while "server" application <em>listens</em> on a <a href="http://en.wikipedia.org/wiki/Well_known_port" rel="nofollow">well known port</a> bound to an address at a particular machine. This tuple <code>(source IP, source port, destination IP, destination port)</code> is enough for the datagram to get from here to there.</p>
+
+<p><code>127.0.0.1</code>, and actually all the addresses in the range <code>127/8</code>, are reserved for the <a href="http://en.wikipedia.org/wiki/Loopback_address" rel="nofollow">loopback</a>, a virtual local interface, i.e. it's the way to say "no matter what my real address is, or even if I don't have one, connect to <em>this</em> machine I'm at right now". </p>
+
+<p>Read up on the <a href="http://en.wikipedia.org/wiki/Internet_protocol_suite" rel="nofollow">TCP/IP</a> suite of protocols - it's a fairly simple concept (with ton of interesting details, of cource).</p>

@@ -1,0 +1,25 @@
+<p>You say you're using the PHP SDK but I don't see any mention of it anywhere in your code.</p>
+
+<p>The proper way is this:</p>
+
+<pre><code>&lt;?php
+
+    require('facebook.php');
+
+    $fb = new Facebook(array('appId' =&gt; APP_ID, 'secret' =&gt; SECRET));
+
+    $user = $fb-&gt;getUser();
+
+    // if we have a valid user, we're logged in
+    if ($user)
+    {
+        // do stuff with the API using the $fb object
+    }
+    else
+    {
+        // redirect the user to the authentication page
+        header("Location: ".$fb-&gt;getLoginUrl());
+    }
+</code></pre>
+
+<p>Example largely paraphrased from <a href="https://github.com/facebook/php-sdk" rel="nofollow">Facebook's SDK Github</a>.</p>

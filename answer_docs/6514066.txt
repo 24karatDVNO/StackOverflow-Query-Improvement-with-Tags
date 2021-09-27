@@ -1,0 +1,24 @@
+<p>This should get you started.    </p>
+
+<pre><code>var dates = ['Mon-Fri 11 am - 7:30 pm','Sat 11 am - 6 pm'];//for testing
+    var regex = '(\\w{3})-?(\\w{3})?\\s+(.*)';
+    var week = {'Mon':0, 'Tue':1, 'Wed':2, 'Thu':3, 'Fri':4, 'Sat':5, 'Sun':6};
+    function foo(){
+        var datum = [];
+        re = new RegExp(regex);
+        for(i in dates){
+            match = re.exec(dates[i]);
+            if(match != null){
+                from = week[match[1]];
+                to = match[2]? week[match[2]]: from;
+                tim = match[3];
+
+                for(i=from; i&lt;=to; ++i){
+                    datum[i] = tim;
+                }
+            }
+        }
+
+        alert(datum);
+    }
+</code></pre>

@@ -1,0 +1,12 @@
+<p>I think you have to study intent-filters. Here is the short text from android docs.</p>
+
+<p><em>"Components advertise their capabilities — the kinds of intents they can respond to — through intent filters. Since the Android system must learn which intents a component can handle before it launches the component, intent filters are specified in the manifest as  elements. A component may have any number of filters, each one describing a different capability."</em></p>
+
+<p>Specifically for a browser I suppose that you have to register it like below:</p>
+
+<pre><code>    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.VIEW" /&gt;
+        &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+        &lt;data android:scheme="http"/&gt; 
+    &lt;/intent-filter&gt;
+</code></pre>

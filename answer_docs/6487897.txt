@@ -1,0 +1,63 @@
+<p>I have got it working but one thing I am not sure is that the item becomes just a string array rather than JSON object. I did try to parse each item as a JSON but doesn't seem to work.</p>
+
+<p>Here is the working jquery json with webservice jquery combinations.</p>
+
+<p>jQuery(function () {
+            jQuery("input#autocomplete").autocomplete({</p>
+
+<pre><code>            minChars: 2,
+
+            select: function (event, ui) {
+                AutoCompleteSelectHandler(event, ui)
+            }
+            ,
+            source: function (request, response) {
+                jQuery.ajax({
+                    url: "http://localhost/integration/webservices/PostcodeJSON.asmx/GetPostCodeListJSONfromSuburb",
+                    data: '{ Suburb: "' + jQuery("#autocomplete").val() + '" }',
+                    dataType: "json",
+                    type: "POST",
+                    minChars: 2,
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        var obj = jQuery.parseJSON(data.d);
+                        response($.map(obj, function (item) {
+                            var item_obj = jQuery.parseJSON(item);
+                            return {
+                                value: item[1]
+
+
+                            }
+                        }))
+
+
+                    },
+                    //                        parse: function (data) {
+                    //                            var parsed = [];
+                    //                            data = data.d;
+
+                    //                            for (var i = 0; i &lt; data.length; i++) {
+                    //                                parsed[parsed.length] = {
+                    //                                    data: data[i],
+                    //                                    value: data[i].value,
+                    //                                    result: data[i].value
+                    //                                };
+                    //                            }
+
+                    //                            return parsed;
+                    //                        },
+                    //                        formatItem: function (item) {
+                    //                            return item.value;
+                    //                        },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            }
+        });
+
+
+
+    });
+</code></pre>

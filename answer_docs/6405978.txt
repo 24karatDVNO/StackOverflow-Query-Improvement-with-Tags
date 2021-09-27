@@ -1,0 +1,24 @@
+<p>One side note, ASP has user accounts built in and set up automatically if you want to just use those (SqlMembershipProvider).</p>
+
+<pre><code>CREATE PROCEDURE createAccount
+    @cssn VARCHAR(100)
+    , @first_name VARCHAR(100)
+    , @middle_name VARCHAR(100)
+    , @last_name VARCHAR(100)
+    , @company VARCHAR(100)
+    , @address VARCHAR(150)
+    , @phone_number VARCHAR(20)
+    , @email VARCHAR(100)
+    , @account VARCHAR(100)
+    , @occupation VARCHAR(100)
+    , @nationality VARCHAR(100)
+    , @social VARCHAR(100)
+    , @successful_invites INT
+AS
+BEGIN
+    INSERT INTO Customer ( cssn, first_name, middle_name, last_name, company, address, phone_number, email, account, occupation, nationality, social, successful_invites )
+    VALUES ( @cssn, @first_name, @middle_name, @last_name, @company, @address, @phone_number, @email, @account, @occupation, @nationality, @social, @successful_invites )
+END
+</code></pre>
+
+<p>I just guessed at the data types.  As for security, the only thing you need to add is re-validation rules (i.e. blocking of HTML tags and stuff in your VARCHAR fields).  Otherwise, security is built-in automatically because you are using parameters and variables (and not using dynamic sql).</p>

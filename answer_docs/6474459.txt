@@ -1,0 +1,4 @@
+<p>The media volume was 0 on my phone, which explains why it only works on the virtual device. I fixed this by adding this line to the onCreate method:</p>
+
+<pre><code>    this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+</code></pre>

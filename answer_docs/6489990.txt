@@ -1,0 +1,9 @@
+<p>I solved the problem by using a visual trick.  First of all, my trick required I placed the buttons on an image that would represent the background.  The buttons were somewhat transparent so the color of this background came through</p>
+
+<p>The buttons in the middle be simple rectangle canvas classes.  While the end buttons had rounded ends.</p>
+
+<p>The middle buttons were in front of the buttons on the end and they overlapped them.</p>
+
+<p>The buttons were transparent and so normally it would not work because you would be able to see the end buttons edges behind the middle buttons.  I solved this by putting a rectangle filled with the color of the background image "between" (think in 3D layered depth terms) the end buttons and the rectangle shapped buttons in front of it.  The colored rectangles only were positioned in front of the end buttons that were behind the rectangle buttons in front of them.</p>
+
+<p>This was kind of a hack but it worked.  When I have time, I will try the solutions suggested here.</p>

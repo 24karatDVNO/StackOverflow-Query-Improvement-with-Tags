@@ -1,0 +1,6 @@
+<p>Assuming the poster just wanted to be able to select all the text inside of the textarea when it's clicked (like in the example website he gave), then if you look at the html source on the page, you'll see that they don't use a jQuery solution, they just call</p>
+
+<pre><code>&lt;textarea onclick="this.select();"&gt;
+</code></pre>
+
+<p>Here's a jsFiddle showing that this will work (at least in all the most up-to-date versions of IE9, Firefox 5, Chrome 12, Opera, and Safari), <a href="http://jsfiddle.net/QpfAj/" rel="nofollow">http://jsfiddle.net/QpfAj/</a>.</p>

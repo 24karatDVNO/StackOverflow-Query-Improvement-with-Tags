@@ -1,0 +1,29 @@
+<p>I got the solution by making the ImageView img in adatper inflater as final because it avoids 
+the images to display at a single cell in gridview . And my images was of big size and got the error decoder return false and this error is solved by taking another class</p>
+
+<p>--</p>
+
+<pre><code>import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class PatchInputStream extends FilterInputStream {
+      public PatchInputStream(InputStream in) {
+        super(in);
+      }
+      public long skip(long n) throws IOException {
+        long m = 0L;
+        while (m &lt; n) {
+          long _m = in.skip(n-m);
+          if (_m == 0L) break;
+          m += _m;
+        }
+        return m;
+      }
+    }
+</code></pre>
+
+<p>this class is used in AsyncImageLoaderv given above .</p>
+
+<pre><code>  b=BitmapFactory.decodeStream(new PatchInputStream(inputStream), null,bpo );
+</code></pre>

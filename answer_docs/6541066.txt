@@ -1,0 +1,5 @@
+<p>First of all you should profile your application against bottleneck - if there is any place in your code which makes your application slow then adding new servers won't help. There are many profilers - I recommend JetBrains Dot Trace (there is a free trial for couple of days).</p>
+
+<p>Second thing is OutputCache - the shortest explanation is "store html that is sent to the users, not recreate it every time. There is a huge number of articles about OutputCache so I don't think you need any link here.</p>
+
+<p>If the traffic is even bigger you can think about using some solution for caching your responses around the world (read e.g. about Akamai) but I don't suppose you will need it with couple thousands of visitors daily.</p>

@@ -1,0 +1,13 @@
+<p>The full answer is posted here:</p>
+
+<p><a href="https://forums.openvpn.net/viewtopic.php?t=8310" rel="nofollow noreferrer">https://forums.openvpn.net/viewtopic.php?t=8310</a></p>
+
+<p>Without duplicating that answer in full, the jist of it is that the configuration in server.config of openvpn needs to be:</p>
+
+<pre><code>plugin /usr/local/openvpn/sbin/openvpn-auth-pam.so "openvpn"
+</code></pre>
+
+<p>Contrary to the example provided in the documentation:</p>
+
+<pre><code>plugin openvpn-auth-pam.so "login login USERNAME password PASSWORD"
+</code></pre>

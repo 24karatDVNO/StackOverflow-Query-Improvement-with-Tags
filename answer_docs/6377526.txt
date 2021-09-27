@@ -1,0 +1,100 @@
+<p>Well, it seems that maybe it can be done after all. I found the following <a href="http://www.cstruter.com/blog/270" rel="nofollow">link</a>, and that lead me to realise that my primary problem was incorrect usage of the LOGON32_LOGON_INTERACTIVE parameter for the LogonUser API call (it should have been LOGON32_LOGON_NEWCREDENTIALS).</p>
+
+<p>As such, I can now use the following code to connect to a database on SQL Server, protected by Windows Authentication but on a totally unrelated domain to the workstation from which the code is running...</p>
+
+<p>static void Main(string[] args) {</p>
+
+<pre><code>SafeTokenHandle safeTokenHandle;
+
+try {
+
+    string userName = @"*****", domainName = @"*****", password = @"*****";
+    bool returnValue = NativeMethods.LogonUser(userName, domainName, password, 
+        NativeMethods.LogonType.NewCredentials, NativeMethods.LogonProvider.Default, out safeTokenHandle);
+
+    if (false == returnValue) {
+        int ret = Marshal.GetLastWin32Error();
+        Console.WriteLine("LogonUser failed with error code : {0}", ret);
+        throw new Win32Exception(ret);
+    }
+
+    using (safeTokenHandle) {
+
+        WindowsIdentity windowsIdentity = new WindowsIdentity(safeTokenHandle.DangerousGetHandle());
+        using (WindowsImpersonationContext impersonationContext = windowsIdentity.Impersonate()) {
+
+            using (DataTable table = new DataTable()) {
+                using (SqlDataAdapter adapter = new SqlDataAdapter()) {
+                    using (adapter.SelectCommand = new SqlCommand(@"select * from dbo.MyTable")) {
+                        adapter.SelectCommand.CommandType = CommandType.Text;
+                        using (adapter.SelectCommand.Connection = new SqlConnection(@"Data Source=Server;Initial Catalog=Database;Integrated Security=Yes")) {
+                            adapter.SelectCommand.Connection.Open();
+                            adapter.Fill(table);
+                        }
+                    }
+                }
+
+                Console.WriteLine(string.Format(@"{0} Rows retrieved.", table.Rows.Count));
+
+            }
+
+        }
+
+    }
+
+}
+catch (Exception ex) {
+    Console.WriteLine("Exception occurred. " + ex.Message);
+}
+</code></pre>
+
+<p>Of course, it needs tidying up and I need to prompt the user for their credentials (there is no way they will convince me to hard code credentials) but in principle it works (save for the anonymisation).</p>
+
+<p>Hope this helps somebody else some time.</p>
+
+<p>Oh, and you will also need the following...</p>
+
+<pre><code>public sealed class SafeTokenHandle : SafeHandleZeroOrMinusOneIsInvalid {
+
+    private SafeTokenHandle() : base(true) {
+    }
+
+    protected override bool ReleaseHandle() {
+        return NativeMethods.CloseHandle(handle);
+    }
+
+}
+
+[DllImport(@"kernel32.dll")]
+[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+[SuppressUnmanagedCodeSecurity]
+[return: MarshalAs(UnmanagedType.Bool)]
+public static extern bool CloseHandle(
+    IntPtr handle);
+
+[DllImport(@"advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+public static extern bool LogonUser(
+    String lpszUsername,
+    String lpszDomain,
+    String lpszPassword,
+    LogonType dwLogonType,
+    LogonProvider dwLogonProvider,
+    out SafeTokenHandle phToken);
+
+public enum LogonType {
+    Interactive = 2,
+    Network = 3,
+    Batch = 4,
+    Service = 5,
+    Unlock = 7,
+    NetworkClearText = 8,
+    NewCredentials = 9
+}
+
+public enum LogonProvider {
+    Default = 0,
+    WinNT35 = 1,
+    WinNT40 = 2,
+    WinNT50 = 3
+}
+</code></pre>

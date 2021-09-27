@@ -1,0 +1,8 @@
+<p>I was so narrow minded in my looking for a solution above - trying to tie the removeClass with the form submit (which had to many actions tied into it and would have been overly complicated).</p>
+
+<p>Instead, I just did a remove class at the beginning of the error checking:</p>
+
+<pre><code>$("li").removeClass("alertRed");
+$("input").removeClass("CO_form_alert");  
+$("select").removeClass("CO_form_alert"); 
+</code></pre>

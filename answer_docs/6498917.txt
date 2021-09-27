@@ -1,0 +1,22 @@
+<p>You need to use background page for doing AJAX requests from a content script.</p>
+
+<p><strong>Background page code:</strong></p>
+
+<pre><code>chrome.extension.onRequest.addListener(function(request, sender, callback) {
+     $.ajax({
+        type: "GET",
+        dataType: 'html',
+        url: request.url,
+        username: "username",
+        password: "X",
+        success: callback
+    });
+});
+</code></pre>
+
+<p><strong>Content script code:</strong></p>
+
+<pre><code>chrome.extension.sendRequest({'url': 'https://site.basecamphq.com'}, function(data) {
+    $("#example").append(data);
+});
+</code></pre>

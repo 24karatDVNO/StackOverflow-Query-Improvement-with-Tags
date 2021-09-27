@@ -1,0 +1,27 @@
+<p>I don't think combining the not standardized <code>xmp</code> element with XSLT will give you what you want. You could however use a stylesheet that serializes nodes to text, like <a href="http://lenzconsulting.com/xml-to-string/xml-to-string.xsl" rel="nofollow">http://lenzconsulting.com/xml-to-string/xml-to-string.xsl</a> from <a href="http://lenzconsulting.com/xml-to-string/" rel="nofollow">http://lenzconsulting.com/xml-to-string/</a>. You would import and use that as follows:</p>
+
+<pre><code>&lt;xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  version="1.0"&gt;
+
+  &lt;xsl:import href="xml-to-string.xsl"/&gt;
+
+  &lt;xsl:template match="/"&gt;
+    &lt;html&gt;
+        &lt;head /&gt;
+        &lt;body&gt;
+          &lt;div&gt;
+          &lt;pre&gt;
+            &lt;xsl:call-template name="xml-to-string"&gt;
+              &lt;xsl:with-param name="node-set" select="node()"/&gt;
+            &lt;/xsl:call-template&gt;
+          &lt;/pre&gt;
+          &lt;/div&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>That should do within browsers, as long as you ensure all stylesheet modules are on the same server as the XML.</p>

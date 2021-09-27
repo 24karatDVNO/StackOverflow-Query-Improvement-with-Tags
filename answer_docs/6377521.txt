@@ -1,0 +1,9 @@
+<p>If you want it to be centered at startup, set your form's StartPosition ( <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.form.startposition.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.windows.forms.form.startposition.aspx</a> ) to CenterScreen.</p>
+
+<p>If you want it to be centered some other time, you have to use the SystemInformation.WorkingArea class ( <a href="http://msdn.microsoft.com/en-us/library/system.windows.forms.systeminformation.workingarea.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.windows.forms.systeminformation.workingarea.aspx</a> ) and perform arithmetic on that like so:</p>
+
+<p>X = (Screen Width - Form Width) / 2</p>
+
+<p>Y = (Screen Height - Form Height) / 2</p>
+
+<p>And then consider what should happen if your form was too big. Setting either or both coordinates to a negative number is poor form, so don't forget that case.</p>

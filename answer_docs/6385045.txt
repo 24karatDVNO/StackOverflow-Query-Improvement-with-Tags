@@ -1,0 +1,35 @@
+<p>Could you please try this:</p>
+
+<pre><code>function validateFields() {
+  return (checkCampaignStatus() &amp;&amp; checkCreatedBy());          
+}
+function checkCampaignStatus() {
+        var rdbCampStatus = document.all('&lt;%=rdbCampStatus.ClientID%&gt;');
+        var radio = rdbCampStatus.getElementsByTagName("input");
+        var isChecked = false;
+        for (var i = 0; i &lt; radio.length; i++)
+        {
+            if (radio[i].checked)
+            {
+                isChecked = true;
+                break;
+            }
+        }
+        if (!isChecked)
+        {
+            showOk('Save/Close', 'Please fill in all mandatory fields');
+            document.getElementById('popupControl').style.display = 'block';
+            document.getElementById('divEntryMain').style.display = 'none';
+            document.getElementById('divBuilderMain').style.display = 'none';
+            return false;
+        }
+        return true;
+    }
+
+    function checkCreatedBy() {
+        var createdBy = document.all('&lt;%=txtCreatedBy.ClientID%&gt;').value;
+        return (createdBy == "");
+    }
+</code></pre>
+
+<p>HTH</p>

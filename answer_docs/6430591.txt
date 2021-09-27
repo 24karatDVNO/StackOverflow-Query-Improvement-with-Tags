@@ -1,0 +1,5 @@
+<p><code>and</code> returns true if both of the operands are true.</p>
+
+<p>In your case, <code>num_pallets</code> is <code>31</code> after 6 iterations, resulting in a false second expression, thus the whole expression returns <code>false</code>.</p>
+
+<p><code>or</code> returns true if either of the operands is true. In the first 6 iterations, both expressions are true (<code>weight</code> is below 100 and num_pallets is below or equal 30). In the seventh iteration, <code>num_pallets</code> is 31, thus the second expression is false, but <code>weight</code> is still below 100, so the loop runs until <code>weight</code> is larger than 100.</p>

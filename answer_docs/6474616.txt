@@ -1,0 +1,30 @@
+<p>This is probably less of a Cake-specific issue and more of a PHP / MySQL issue. (Others have already brought up encoding, so I'll skip that.)</p>
+
+<p>Single quotes means a literal string being handed to MySQL: <code>'Item.name != ' =&gt; ''</code></p>
+
+<p>PHP (a la Cake) probably parses that string quite literally. In fact, it's might even be parsing it like:</p>
+
+<pre><code>"Item.name != "
+</code></pre>
+
+<p>(note there's nothing after the operand? and if it falls last in the SQL query, the query wouldn't error, it would probably still work!)</p>
+
+<p>When you meant for it to test:</p>
+
+<pre><code>"Item.name != ''"
+</code></pre>
+
+<p>(note empty single quotes now included in the string)</p>
+
+<p>However, since you're not getting an error - and the rest of the data pulls! - you probably want to edit that statement, because your problem is more likely syntax.</p>
+
+<pre><code>'Item.name IS NOT NULL'
+'Item.name &lt;&gt; ' =&gt; ''
+'Item.name IS NOT' =&gt; ''
+</code></pre>
+
+<p>Give those a try. </p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.6/en/comparison-operators.html" rel="nofollow">http://dev.mysql.com/doc/refman/5.6/en/comparison-operators.html</a> describing IS NOT NULL vs IS NOT (bool) vs &lt;> and != (is not equal to).</p>
+
+<p>HTH :)</p>

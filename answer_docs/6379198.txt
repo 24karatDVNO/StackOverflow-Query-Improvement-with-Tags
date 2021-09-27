@@ -1,0 +1,25 @@
+<p>Rather than adding it as a Field, just store a reference to it somewhere in your Manager and then paint it yourself. Here's an untested example:</p>
+
+<pre><code>public class MyManager extends VerticalFieldManager() {
+    Bitmap _bg;
+    public MyManager() {
+        _bg = Bitmap.getBitmapResource("img.jpg");
+    }
+
+    protected void paint(Graphics graphics) {
+        graphics.drawBitmap(x_offset, y_offset, _bg.getWidth(), _bg.getHeight(), _bg, 0, 0);
+        super.paint(graphics);
+    }
+
+}
+</code></pre>
+
+<p>Now you can just set x_offset and y_offset to whatever you want and it'll be shifted. If you need to mess with the size of the Manager to fit the Bitmap, add:</p>
+
+<pre><code>protected void sublayout(int width, int height) {
+    super.sublayout(width, height);
+    setExtent(Math.min(width, Math.max(getWidth(), _bg.getWidth())), Math.min(height, Math.max(getHeight(), _bg.getHeight()));
+}
+</code></pre>
+
+<p>Hope this helps!</p>

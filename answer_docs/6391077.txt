@@ -1,0 +1,11 @@
+<p>Although your problem is a typo in your <code>fib-with-let</code> function, in its simplest form, <code>let</code> is "syntatic-sugar" for an anonymous lambda followed by the arguments that are then evaluated and passed to the lamba, which is then evaluated and a final value returned.  So</p>
+
+<pre><code>(let ((f1 (fib-with-let (- n 1)))
+      (f2 (fib-with-let (- n 2))))
+        (+ f1 f2))
+</code></pre>
+
+<p>would be re-written without <code>let</code> to look like</p>
+
+<pre><code>((lambda (f1 f2) (+ f1 f2))(fib-with-let (- n 1))(fib-with-let (- n 2)))
+</code></pre>

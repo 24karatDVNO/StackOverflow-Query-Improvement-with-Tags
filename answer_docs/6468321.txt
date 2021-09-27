@@ -1,0 +1,31 @@
+<p>Something like this should work (untested):</p>
+
+<pre><code>$(document).ready(function()
+{
+  $.ajax({
+    type: "GET",
+    url: "YOUR XML",
+    dataType: "xml",
+    success: parseXml
+  });
+});
+
+function parseXml(xml){
+    $(xml).find("title").filter(function(){
+                $(this).text() == "Test event 1";
+         }).each(function(){
+             $("#dataDiv").append($(this).find("city").text();
+             $("#dataDiv").append("(" + $(this).find("startdate").text() + "),");
+     });
+
+     $(xml).find("title").filter(function(){
+                $(this).text() == "Test event 2";
+         }).each(function(){
+             $("#dataDiv").append($(this).find("city").text();
+             $("#dataDiv").append("(" + $(this).find("startdate").text() + "),");
+     });  
+
+}
+</code></pre>
+
+<p>where <code>#dataDiv</code> and <code>#dataDiv2</code> are divs on the page with just <em>Test event 1</em> or <em>Test event 2</em> inside them.</p>

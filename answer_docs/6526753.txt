@@ -1,0 +1,10 @@
+<p>It does work for me. Try a demo <a href="http://jsfiddle.net/tuKLL/" rel="nofollow">here</a>: </p>
+
+<p>I assume your jQuery is not loaded before you use it. </p>
+
+<p>Always use jQuery within </p>
+
+<pre><code>$(document).ready(function(){
+
+});
+</code></pre>

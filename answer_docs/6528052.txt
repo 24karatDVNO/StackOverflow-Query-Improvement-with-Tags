@@ -1,0 +1,3 @@
+<p>"Standard" regular expressions cannot parse this text exactly as you described. That parsing requires some <em>context</em>, that cannot be expressed with regexes. For example, when receiving the first "-", how does the expression not to end?</p>
+
+<p>Out of my head, I can only come with Perl extended regular expressions, that allow sub-expression parsing, but it won't be easy, as you have to count the occurrences of ":" and "-" to match exactly the last one.</p>

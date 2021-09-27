@@ -1,0 +1,7 @@
+<pre><code>template&lt;class T, class Y&gt;
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const External::Internal&lt;T, Y&gt;&amp;)
+{
+}
+</code></pre>
+
+<p>The <code>External::</code> behaves as a namespace and is required because <code>operator&lt;&lt;</code> definition is outside of class External.</p>

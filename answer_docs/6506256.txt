@@ -1,0 +1,21 @@
+<pre><code>import logging
+logger = logging.getLogger(test)
+# logging to a file
+hdlr = logging.FileHandler(test.log)
+formatter = logging.Formatter('%(asctime)s %(filename)s %(lineno)s %(levelname)s %    (message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.DEBUG) 
+</code></pre>
+
+<p>Then in the loop, you have to check for file type and if file is present or not.
+Then add :  </p>
+
+<pre><code>logger.debug('File Type : %s ' % file_type)
+</code></pre>
+
+<p>also  </p>
+
+<pre><code>if file_present:
+    logger.debug('File Present : %s ' % present)
+</code></pre>

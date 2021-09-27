@@ -1,0 +1,12 @@
+<p>I used Andy's suggestion to implement a code pattern  with this structure:</p>
+
+<pre><code>// create a "me" object
+JSONObject me = fb.Get("me");
+
+// get first name
+string firstName = string.Empty;
+if (me.Dictionary.ContainsKey("first_name"))
+{
+    firstName = me.Dictionary["first_name"].String;
+}
+</code></pre>

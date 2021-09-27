@@ -1,0 +1,6 @@
+<p>You can try to use this mod_rewrite pattern (add it to the .htaccess):</p>
+
+<pre><code>RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)$ users.php?idu=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ users.php?idu=$1
+</code></pre>

@@ -1,0 +1,8 @@
+<p>The example code you pasted is a bit off, it won't do what you expect it to.  What you need to do is select all of the elements you want to operate on, and then filter them based on the value of their float style.  Then, after filtering, apply the operations you want to the filtered set.  For instance, if you want to run the equalHeights plugin on the set of all ".two-column li" elements that have float set to "left", try this code:</p>
+
+<pre><code>$('.two-column li').filter(function(index) {
+    if($(this).css('float') == 'left') return true;
+}).equalHeights();
+</code></pre>
+
+<p>With that said, it sounds like the root of your problem is with your CSS media query not properly being activated when the browser is resized.  Could you post your media query code to see if there's an easier solution in there?</p>

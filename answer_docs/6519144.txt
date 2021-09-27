@@ -1,0 +1,3 @@
+<p>You never create a form, so the value of the popup_menu can never be submitted. You need to put your form controls inside a form.</p>
+
+<p><code>$cgi-&gt;param</code> will have data to fetch only after the form data has been submitted (you'll need a submit button too) back to the server from the browser.</p>

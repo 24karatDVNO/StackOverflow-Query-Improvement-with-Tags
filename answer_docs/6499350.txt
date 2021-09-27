@@ -1,0 +1,14 @@
+<p>The behavior is caused by a conflict in the code. When the close button is clicked you both create and remove a new <code>.media-list-display</code>. </p>
+
+<pre><code> _close.bind('click',function(e){
+//This line removes the .media-list-display div when 
+//the close button is clicked
+
+$('.media-list a').live('click',function(e){
+//This line adds a new .media-list-display div when any `&lt;a&gt;` 
+//inside .media-list is clicked.
+</code></pre>
+
+<p>The problem is that the close button is also an <code>&lt;a&gt;</code> inside <code>.media-list</code> so when it is clicked it triggers both events creating an endless loop of removing and creating.</p>
+
+<p>Check this <a href="http://jsfiddle.net/ycysD/2/" rel="nofollow">link</a> out with alerts on the conflicting parts. </p>

@@ -1,0 +1,20 @@
+<p>I think this might be what you are looking for...</p>
+
+<pre><code>select
+     u1.userID
+   from
+      usergroup u1
+         join usergroup u2
+            on u2.groupid = 714
+           AND u1.userid = u2.userid
+   where
+      u1.groupid = 27
+</code></pre>
+
+<p>So, the primary WHERE clause is just give me a list of users within group ID = 27... so this will be optimized exclusively on the GROUP ID.  THEN, by doing a self-join to the user groups table matched by the same user ID AND group ID = the 714, it will only return the record if such IS found.   I could have a compound index on BOTH Group AND User such as</p>
+
+<p>KEY GroupUser (groupid, userid)</p>
+
+<p>so this way the index will be optimized for BOTH query components...</p>
+
+<p>At MOST, it will go through the first u1 instance one time for everyone in the group 27... No counts or having involved...</p>

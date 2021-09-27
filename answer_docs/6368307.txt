@@ -1,0 +1,5 @@
+<blockquote>
+  <p>My assumption is that on some iterations over each item the html being generated is not valid which is throwing the error, can anyone suggest a better way of doing things or where i might be going wrong.</p>
+</blockquote>
+
+<p>Nope <code>push</code> is a method on the <code>Array</code> prototype. My guess would be that you are trying to push a value onto an <code>Object</code> or some other type instead of an <code>Array</code>. I cant be sure because its not the template code that you posted unless you have left out that part.</p>

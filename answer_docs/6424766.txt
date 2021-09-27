@@ -1,0 +1,6 @@
+<p>I assume that <code>=/=</code> means "not equal" (which would be <code>!=</code> or <code>&lt;&gt;</code> in SQL terminology).</p>
+
+<p>A unique index on (parent, ordering) should do that:</p>
+
+<pre><code>CREATE UNIQUE INDEX idx_order_unique ON foo (parent, ordering);
+</code></pre>

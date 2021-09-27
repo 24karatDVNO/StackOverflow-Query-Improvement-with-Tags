@@ -1,0 +1,9 @@
+<p>I'f I'm understanding your data structure correctly:</p>
+
+<pre><code>SELECT 
+  S.supervisorname,        
+  D.divisionname 
+FROM SuperisorTable S  
+INNER JOIN Users U ON S.employeeid = U.userid  
+INNER JOIN DivisionTable D ON U.divisionid = D.divisionid 
+</code></pre>

@@ -1,0 +1,3 @@
+<p>In MySQL I could just change the field type from varchar to time, and it automatically changed the format from 1:30 PM to 01:30:00.</p>
+
+<p>Otherwise you can write a small PHP script to loop through all times, format them with date and strtotime, and then insert them back in a correct format before you switch field types.</p>

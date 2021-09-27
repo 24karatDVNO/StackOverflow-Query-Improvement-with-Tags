@@ -1,0 +1,55 @@
+<p>I modified the xml layout and also modified the onScroll listener. It works perfectly fine now.</p>
+
+<pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent" android:layout_height="fill_parent"
+android:orientation="vertical"&gt;
+&lt;LinearLayout android:layout_width="fill_parent"
+    android:id="@+id/mainLayout" android:layout_height="wrap_content"
+    android:orientation="horizontal"&gt;
+
+    &lt;ListView android:id="@+id/listView1" android:layout_width="100dp"
+        android:layout_height="wrap_content" android:background="@color/white"
+        android:cacheColorHint="#00000000" android:smoothScrollbar="true"
+        android:scrollbars="none" /&gt;
+    &lt;HorizontalScrollView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"&gt;
+        &lt;ListView android:id="@+id/listView2" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:background="@color/white"
+            android:cacheColorHint="#00000000" android:smoothScrollbar="true"
+            android:scrollbarStyle="outsideOverlay" /&gt;
+    &lt;/HorizontalScrollView&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p></p>
+
+<pre><code>lv1.setOnScrollListener(new OnScrollListener() {
+        public void onScroll(AbsListView view, int firstVisibleItem,
+                int visibleItemCount, int totalItemCount) {
+            int index = firstVisibleItem;
+            View v = view.getChildAt(0);
+            int top = (null == v) ? 0 : v.getTop();
+            Log.i("lv1","index:"+index+" top:"+top);
+            lv1.setSelection(index);
+            lv2.setSelectionFromTop(index, top);
+        }
+
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+            String sState;
+            switch (scrollState) {
+            case OnScrollListener.SCROLL_STATE_FLING:
+                sState = "Fling";
+                break;
+            case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+                sState = "Touch Scroll";
+                break;
+            case OnScrollListener.SCROLL_STATE_IDLE:
+                sState = "Idle";
+                break;
+            default:
+                sState = "Unknown";
+                break;
+            }
+                      }
+    });
+</code></pre>

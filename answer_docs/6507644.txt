@@ -1,0 +1,29 @@
+<p>With the color binding :</p>
+
+<pre><code>&lt;UserControl.Resources&gt;
+        &lt;Color x:Key="MyColor"&gt;LightGray&lt;/Color&gt;
+
+        &lt;Style x:Key="RoundButton" TargetType="Button"&gt;
+            &lt;Setter Property="Template"&gt;
+                &lt;Setter.Value&gt;
+                    &lt;ControlTemplate TargetType="Button"&gt;
+                        &lt;Grid&gt;
+                            &lt;Ellipse Width="40" Height="40" Stroke="#FF000000" StrokeThickness="1" Canvas.Left="141" Canvas.Top="61"&gt;
+                                &lt;Ellipse.Fill&gt;
+                                    &lt;SolidColorBrush Color="{StaticResource MyColor}" /&gt;
+                                &lt;/Ellipse.Fill&gt;
+                            &lt;/Ellipse&gt;
+                        &lt;/Grid&gt;
+                    &lt;/ControlTemplate&gt;
+                &lt;/Setter.Value&gt;
+            &lt;/Setter&gt;
+        &lt;/Style&gt;
+    &lt;/UserControl.Resources&gt;
+
+
+&lt;Grid x:Name="LayoutRoot" Background="White"&gt;
+      &lt;Button Style="{StaticResource RoundButton}" /&gt;
+&lt;/Grid&gt;
+</code></pre>
+
+<p>Enjoy ;)</p>

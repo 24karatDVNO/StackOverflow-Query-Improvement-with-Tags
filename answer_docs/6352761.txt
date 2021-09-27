@@ -1,0 +1,13 @@
+<p>If you are looking to put 1 in empid for the first row, 2 for the second, etc. the easiest way would be to use your id field that is already doing this like so:</p>
+
+<pre><code>UPDATE table
+SET empid = id
+</code></pre>
+
+<p>The only thing you need to worry about is missing numbers in the id column.  If that would be an issue and you are missing id numbers, you will have to use a different method.  To do that, you would need to do something like this:</p>
+
+<pre><code>DECLARE @counter int
+SET @counter = 1
+UPDATE table
+SET @counter = empid = @counter + 1
+</code></pre>

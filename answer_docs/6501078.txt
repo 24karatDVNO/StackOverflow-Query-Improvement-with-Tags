@@ -1,0 +1,14 @@
+<p>I assume when you say "non-repeating" you mean "distinct" (unique) as opposed to "eventually becomes periodic" (as in "the digits of pi do not repeat")</p>
+
+<ol>
+<li>Generate <em>n</em> distinct integers in your range.</li>
+<li>Pick two from the first 5. Call these <em>a</em> and <em>b</em>.</li>
+<li>Remove the last 3 from the list.</li>
+<li>Insert <em>a</em> at position 0, 1, 2, or 3 in the sublist.</li>
+<li>Insert <em>b</em> at position 0, 1, 2, 3, or 4 in the sublist.</li>
+<li>Add the sublist back to the end of the list.</li>
+</ol>
+
+<p>Removal of the sublist is not necessary but makes it easier to conceptualize.</p>
+
+<p>Not obvious what to do if n+2 is less than 10. In particular, this algorithm may crash for n &lt; 5 and return the wrong result for n=7.</p>

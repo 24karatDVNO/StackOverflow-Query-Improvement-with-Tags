@@ -1,0 +1,23 @@
+<p>This is actually something that Scuzzy proposed (I have even left the same naming convention), but improved:</p>
+
+<pre><code>// list of files
+$my_files = array(
+    'a' =&gt; 'case_1.php',
+    'b' =&gt; 'case_2.php',
+    'c' =&gt; 'case_3.php',
+    'd' =&gt; 'case_4.php',
+);
+
+// determine which one to load
+if (array_key_exists($var, $my_files)) {
+    include($my_files[$var]);
+} else {
+    include('case_default.php');
+}
+</code></pre>
+
+<p>or even shorter ;) :</p>
+
+<pre><code>$f = array('a','b','c','d');
+include((in_array($var,$f)?$var:'case_default').'.php');
+</code></pre>

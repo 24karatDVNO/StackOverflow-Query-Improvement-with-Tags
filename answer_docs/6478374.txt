@@ -1,0 +1,53 @@
+<p>I have made some assumptions about the actual structure of your tables, but if I understand what you are looking for then I think this query will get the results you are wanting.  You may have to make a few modifications to match your table structures.</p>
+
+<pre><code>    SELECT
+        matches.UserName,
+        CAST(matches.SameRatings AS FLOAT) / CAST(ratings.UserRatingCount AS FLOAT) AS MatchPercent
+    FROM 
+        tbl_User
+    CROSS APPLY
+    (
+        SELECT
+            COUNT(*) UserRatingCount
+        FROM 
+            tbl_MemberAssociation
+        WHERE 
+            UserId = tbl_User.UserId
+    ) ratings
+    CROSS APPLY
+    (
+        SELECT
+            u1.UserId,
+            u1.UserName,
+            COUNT(*) AS SameRatings
+        FROM 
+            tbl_MemberAssociation ma
+        INNER JOIN 
+            tbl_MemberAssociation ma1 
+        ON
+            ma.ImageId = ma1.ImageId 
+        AND ma.Rating = ma1.Rating 
+        AND ma.UserId &lt;&gt; ma1.UserId
+        INNER JOIN 
+            tbl_User u1 
+        ON 
+            ma1.userId = u1.UserId
+        WHERE 
+            ma.UserId = tbl_User.UserId
+        GROUP BY
+            u1.UserId,
+            u1.UserName
+    ) matches
+    WHERE
+        tbl_User.UserId = @UserId
+    ORDER BY
+        MatchPercent DESC
+</code></pre>
+
+<p>@UserId could be passed as an input to the stored procedure.</p>
+
+<p>The 1st CROSS APPLY "ratings" is getting a count of for the total number of ratings for the logged in user.</p>
+
+<p>The 2nd CROSS APPLY "matches" is getting a count of the number of like ratings for the other users in the database.</p>
+
+<p>The result set uses the counts calculated by the two CROSS APPLY queries to compute the match percentage between the logged in user and the other users who have rated the same images as the logged in user.</p>

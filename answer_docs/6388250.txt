@@ -1,0 +1,31 @@
+<p>I use his code. This will not work if the user change the date of its device but if he doesn't, that does the trick (note that I use french date style, you may have to change that) :</p>
+
+<pre><code>/***** Time bombing code to get a demo that only works for a certain period of time *****/
+-(BOOL) isDateDeprecated {
+    return NO;
+    BOOL deprecated = NO;
+    // Get today date
+   // NSDate* today = [NSDate date];
+
+    // Get limit date date
+    NSDateFormatter* frDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [frDateFormatter setDateFormat:@"dd:MM:yyyy"];
+    NSLocale *frLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"] autorelease];
+    [frDateFormatter setLocale:frLocale];
+
+    NSString* LIMIT_DATE_STRING = @"26:06:2011";
+    NSDate* limitDate = [frDateFormatter dateFromString:LIMIT_DATE_STRING];
+    NSLog (@"Limit value %f %@", [limitDate timeIntervalSinceNow], limitDate);
+    if ([limitDate timeIntervalSinceNow] &lt; 0) {
+        deprecated = YES;
+    }
+    return deprecated;
+}
+
+-(void) displayNoLaunchingScreen {
+    NoLaunchingScreen* noLaunchingViewController = [[[NoLaunchingScreen alloc] initWithNibName:@"NoLaunchingScreen" bundle:nil] autorelease];
+    [window addSubview:noLaunchingViewController.view];
+}
+</code></pre>
+
+<p>You just need to check isDateDepcrated when you application starts or restarts and if it is true, you launch displayNoLaunchingScreen.</p>

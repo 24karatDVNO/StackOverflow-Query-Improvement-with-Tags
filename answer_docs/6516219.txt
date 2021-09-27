@@ -1,0 +1,19 @@
+<p>If you want to compare based on single column, then you can do something like this:</p>
+
+<pre><code>SELECT ID FROM B LEFT JOIN A ON B.ID = A.ID WHERE A.ID IS NULL;
+</code></pre>
+
+<p>The above query will give you the list of records that are not present in A but in B.</p>
+
+<p>Instead if you want to compare the entire row, you can use the following approach:</p>
+
+<pre><code>SELECT COUNT(*) FROM B;
+
+SELECT COUNT(*) FROM A;
+
+SELECT COUNT(*) FROM (
+  SELECT * FROM B UNION SELECT * FROM A
+)
+</code></pre>
+
+<p>If all the queries returns the same count then you can assume that both the tables are exactly equal.</p>

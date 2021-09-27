@@ -1,0 +1,10 @@
+<p>You generally need to register the JDBC driver before you can connect to the backend.</p>
+
+<p>Try something like </p>
+
+<pre><code>DriverManager.registerDriver(new com.octetstring.jdbcLdap.sql.JdbcLdapDriver());
+</code></pre>
+
+<p>before setting up the connection.</p>
+
+<p>More general information on <a href="http://publib.boulder.ibm.com/infocenter/iadthelp/v7r5/index.jsp?topic=/com.ibm.etools.iseries.toolbox.doc/jdbcdrvr.htm" rel="nofollow">ways of registering drivers</a>.</p>

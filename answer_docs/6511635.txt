@@ -1,0 +1,31 @@
+<p>You can do this in the model like the other answer to set the default ordering:</p>
+
+<pre><code>has_many :items, :order =&gt; "some_col DESC"
+</code></pre>
+
+<p>Or if you need to deviate from the default order, you can also set it in the controller and access in the view:</p>
+
+<p>controller.rb</p>
+
+<pre><code>def index
+  @items = Item.all(:order =&gt; 'some_col DESC')
+end
+</code></pre>
+
+<p>index.erb</p>
+
+<p>&lt;%= f.collection_select :item_id, @items, :id, :name %></p>
+
+<hr>
+
+<p>Another option is you can do a named scope inside your model for ordering:</p>
+
+<p>item.rb</p>
+
+<pre><code>named_scope :alphabetically, :order =&gt; "some_col DESC"
+</code></pre>
+
+<p>index.erb</p>
+
+<pre><code>&lt;%= f.collection_select :item_id, Item.alphabetically, :id, :name %&gt;
+</code></pre>

@@ -1,0 +1,16 @@
+<p>2 subqueries joining on the username as common key    should do the job in MS Sql server /SYBASE it will lokk like below but any other RDBMS you can apply same logic using 2 subqueries...syntax might differ a little buit</p>
+
+<pre><code>Select A.SDToken.iUserNem, A.chDefaultLogin, A.dateLastLoginm,B.logincount
+    FROM 
+    (
+        (SELECT SDToken.iUserNem, chDefaultLogin, dateLastLogin FROM SDUserScope JOIN SDToken ON SDUserScope.iUserNum = SDToken.iUserNum )A
+        INNER JOIN 
+        (SELECT COUNT(*)logincount,SDToken.iUserNem FROM SDToken    
+         JOIN SDLogEntry ON SDLogEntry.chTokenSerialNum = SDToken.chSerialNum    
+         JOIN SDUserScope ON SDToken.iUserNum = SDUserScope.iUserNum    
+         JOIN SDLogMessage ON SDLogEntry.iMessageNum = SDLogMessage.iMessageNum    
+         WHERE SDToken.iUserNum = 17 AND SDUserScope.iSiteNum = iMySite AND SDLogEntry.dtGMTDate &gt; GMTDateNow - 7 
+         GROUP BY SDToken.iUserNem)B
+         ON A.iUserNem = B.iUserNem
+    )
+</code></pre>

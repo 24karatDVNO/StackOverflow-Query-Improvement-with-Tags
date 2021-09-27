@@ -1,0 +1,3 @@
+<p>I did that, it's simple: when you detect the mouse is pressed, you save the <code>System.currentTimeMillis()</code>. When you detect the mouse is released, you just check how long it was pressed.</p>
+
+<p>If you want the action to be made after a certain amount of time, even if the mouse is still pressed, you start a thread that lives the desired amount of time when pressed and you interrupt it when releasing. If the thread isn't interrupted in the amount of time you wanted, the action will be performed.</p>

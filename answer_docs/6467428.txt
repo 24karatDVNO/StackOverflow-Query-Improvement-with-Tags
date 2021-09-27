@@ -1,0 +1,3 @@
+<p>I'm inclined to think that there's something at work here other than your multiple <code>$(document).ready()</code> calls. AFAIK, multiple calls against <code>$(document).ready()</code> (and even bubbled-up versions, like <code>$('#someid').ready()</code>) shouldn't cause issues as they are all aggregated together silently by jQuery for you.</p>
+
+<p>I'd double-check my syntax for starters, and make sure that all your blocks are properly encapsulated, all statements end with a <code>;</code>, and all that jazz.</p>

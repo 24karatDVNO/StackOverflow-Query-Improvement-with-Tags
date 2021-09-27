@@ -1,0 +1,16 @@
+<p>With PHP 5.3 (or greater), you can catch exceptions thrown from <a href="http://php.net/manual/en/language.oop5.autoload.php" rel="nofollow">__autoload</a></p>
+
+<pre><code>function __autoload($name) {
+    // if class doesn't exist:
+        throw new Exception("Class $name not found");
+    // else, load class source
+}
+
+
+$test = 'SomeClass';    
+try {
+    $ins = new $test;
+} catch (Exception $e) {
+
+}
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Part of my jQuery base-arsenal includes the following, as it's <em>usually annoying</em> when you go to drag something and end up selecting text instead...</p>
+
+<pre><code>// disables text selection on sortable, draggable items 
+$( ".sortable" ).sortable();
+$( ".sortable" ).disableSelection();
+</code></pre>
+
+<p>Not sure if you can just flip the "disable" to "enable", but there's my $.02.  Without trying it though.. common sense suggests that you may need to define an inactive section within the same "group" element, to provide a "handle" for the drag action.... or else those clicks may relentlessly be mistaken as the intent to select/edit... </p>

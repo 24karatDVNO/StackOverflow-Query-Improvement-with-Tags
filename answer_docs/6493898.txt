@@ -1,0 +1,14 @@
+<p>in your index.pl file you need to do: </p>
+
+<pre><code>$method = $ENV{'REQUEST_METHOD};
+$data = '';
+$buffer = '';
+if ( $method eq 'PUT' ) {
+  sysread(STDIN, $data, $length);
+  while( length($data) &lt; $length ) {
+      last unless sysread(STDIN, $buffer, 4096);
+      $data .= $buffer;
+  }
+  # You now have your PUT data in the $data variable.
+}
+</code></pre>

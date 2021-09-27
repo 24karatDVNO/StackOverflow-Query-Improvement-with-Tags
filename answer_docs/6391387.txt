@@ -1,0 +1,21 @@
+<p>Make sure that you are setting the calling <code>self.view.backgroundColor = [UIColor clearColor];</code> in the view controller's <code>- (void) viewDidLoad</code> otherwise the window's image will not be displayed.</p>
+
+<pre><code>- (void) viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor clearColor];
+...
+}
+</code></pre>
+
+<p>My problem was that I set the view's <code>backgroundColor</code> when it is initialized </p>
+
+<pre><code>MyTableViewController  *myTVC =
+    [[MyTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+myTVC.view.backgroundColor = [UIColor clearColor];
+</code></pre>
+
+<p>and not in <code>- (void) viewDidLoad</code>.  </p>
+
+<p>In this situation, the <code>UITableViewController</code>'s view's background color was set after it was initially created.  However after a low memory warning, the <code>UIViewController</code>'s that were not displayed have <code>- (void) viewDidUnload</code> called on them.  That deallocate their views.  Just before the <code>UIViewController</code> was to be displayed again, <code>- (void) viewDidLoad</code> was called and created a new view, but the view's background color was set to the default which is not clear.</p>

@@ -1,0 +1,6 @@
+<p>maybe regular expressions can help here: </p>
+
+<pre><code>SELECT *
+FROM MyTable
+WHERE MyRoles ~ ('^(.*,)*' || 1 || '(,.*)*$')
+</code></pre>

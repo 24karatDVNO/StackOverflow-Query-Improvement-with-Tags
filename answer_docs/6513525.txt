@@ -1,0 +1,7 @@
+<p>This should do it.  You might want to change it a little bit for duplicates or similar, but this simple query should work</p>
+
+<pre><code>SELECT u.mail
+FROM users u
+   LEFT JOIN field_data_field_city fdfc ON fdfc.entity_id = u.uid
+WHERE fdfc.field_city_value LIKE 'Fort Lauderdale'
+</code></pre>

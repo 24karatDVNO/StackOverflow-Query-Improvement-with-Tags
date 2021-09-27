@@ -1,0 +1,39 @@
+<p>First, I needed to fix the Javascript to add the button click handler in a <code>$(document).ready()</code> call, not as inline script code.  This fixed the "Post Message" button issue.  Next up, how to handle the style change of the div...</p>
+
+<p>For now, I've added a <code>.css()</code> call to set the css properties you defined in your question inline in the click handler, but you would probably want to move these css properties into a single CSS rule and use <code>.addClass()</code> and <code>.removeClass()</code></p>
+
+<p>Here are some links to check out regarding the changes I made:</p>
+
+<p><a href="http://api.jquery.com/ready/" rel="nofollow">$(document).ready()</a></p>
+
+<p><a href="http://api.jquery.com/css/" rel="nofollow">.css()</a></p>
+
+<p><a href="http://api.jquery.com/addClass/" rel="nofollow">.addClass()</a></p>
+
+<p><a href="http://api.jquery.com/removeClass/" rel="nofollow">.removeClass()</a></p>
+
+<p>Here's the source I used to fix the JS and CSS issues, from a static HTML page I created from your source code.  Hope it helps.</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+   &lt;link href="css/Style.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script src="jquery.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+$(document).ready(function(){
+    $('button').click(function () {
+        var x = $('textarea').val();
+        $('div').html(x);
+        $('div').css({width:"400px",height:"400px",border:"1px solid red",padding:"10px","margin-top":"10px"});
+        // or $('div').addClass('name of css rule with above css props');
+        // or $('div').removeClass('name of css rule with above css props');
+    });
+});
+&lt;/script&gt;
+&lt;textarea style="border: 0" cols="77" rows="5"&gt;&lt;/textarea&gt;
+&lt;button&gt;Post Message&lt;/button&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

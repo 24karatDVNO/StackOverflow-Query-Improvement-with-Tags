@@ -1,0 +1,12 @@
+<p>I ended up creating a <code>~/bin folder</code>, and placing an executable file in there named <code>lookfor</code>, with the following content:</p>
+
+<pre><code>#!/bin/sh
+grep -rnI "$1" . | sed 's/\:\s\+/\:\n/g'
+</code></pre>
+
+<p>The <code>~/bin</code> folder is already acknowledged by my distro as being in the PATH, but for those who don't have this automatically set, you can add it to your PATH by putting the following in your <code>~/.bashrc</code>:</p>
+
+<pre><code>if [ -d ~/bin ] ; then
+    PATH=~/bin:"${PATH}"
+fi
+</code></pre>

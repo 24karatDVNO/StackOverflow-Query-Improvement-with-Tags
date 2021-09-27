@@ -1,0 +1,1 @@
+<p>data is an array of byte, with <code>MAX_DATA_BUFFER_SIZE</code> elements, its size would be <code>sizeof(byte) * MAX_DATA_BUFFER_SIZE</code>. when you access it, it is an inplace array, thus it is the actual data, not a pointer to it (though you can create a pointer to it via <code>&amp;a.data[0]</code> or <code>a.data</code>)</p>

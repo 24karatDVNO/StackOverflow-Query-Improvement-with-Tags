@@ -1,0 +1,8 @@
+<p>You can use this code for getting the state of nearest checkbox.</p>
+
+<pre><code>function test(oSrc, args) {    
+   var nearestCheckBox= $(oSrc).parent().find('input:checkbox:first');
+            var state=nearestCheckBox.attr('checked');//use this variable
+
+}
+</code></pre>

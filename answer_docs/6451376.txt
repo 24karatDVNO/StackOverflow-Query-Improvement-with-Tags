@@ -1,0 +1,23 @@
+<pre><code>// Assuming you have 2 byte arrays that you want to XOR
+byte[] ba1 = new byte[4];
+byte[] ba2 = new byte[4];
+
+// Just filling up with arb. values
+ba1[0] = 99;
+ba1[1] = 100;
+ba1[2] = 101;
+ba1[3] = 102;
+
+ba2[0] = 10;
+ba2[1] = 11;
+ba2[2] = 12;
+ba2[3] = 13;
+
+// To store the XOR in ba1 (or new byte[] if you want)
+ba1[0] = ba1[0] ^ ba2[0];
+ba1[1] = ba1[1] ^ ba2[1];
+ba1[2] = ba1[2] ^ ba2[2];
+ba1[3] = ba1[3] ^ ba2[3];
+</code></pre>
+
+<p>Now you can convert it to an integer again if you want. But from how I understand your question you actually want them in <code>byte[]</code> format.</p>

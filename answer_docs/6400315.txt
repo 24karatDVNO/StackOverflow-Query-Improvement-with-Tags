@@ -1,0 +1,5 @@
+<p>I prefer caching the remote prices and making the calculations over cached variables and if they're expired you can grab them from web service. You can do this with APC, memcached, xCache etc.</p>
+
+<p>Or you can calculate them in periods with cron jobs (maybe like 5 minutes interval or more) and write them on to your local database.</p>
+
+<p>With this two options visitors will not wait this hole calculation operation everytime when they visit your service.</p>

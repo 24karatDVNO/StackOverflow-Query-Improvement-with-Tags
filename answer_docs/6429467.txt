@@ -1,0 +1,21 @@
+<p>Here is a generic solution where you can have custom index and you can also access conditions by name if need be and it can be easily extended to add any new complexities</p>
+
+<pre><code>class Condition(object):
+    def __init__(self, active, index1, index2):
+        self.active = active
+        self.index1 = index1
+        self.index2 = index2
+
+conditions = {
+    'A': Condition(True,0,0),
+    'B': Condition(True,1,1),
+    'C': Condition(True,2,2),
+    'D': Condition(True,3,3),
+    'E': Condition(True,4,4),
+}
+
+for line in input_file:
+    for condition in conditions.itervalues():
+        if condition.active:
+            condition.active = My_Function(A_tuple[condition.active.index1], B_tuple[condition.active.index2])
+</code></pre>

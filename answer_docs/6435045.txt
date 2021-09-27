@@ -1,0 +1,13 @@
+<p>PHP tags in a string are not parsed (unless given to some functions such as <code>eval()</code>).</p>
+
+<p>Use string concatenation.</p>
+
+<p>Change this...</p>
+
+<pre><code>"&lt;?php echo $boxId; ?&gt;" 
+</code></pre>
+
+<p>...to...</p>
+
+<pre><code>"' . $boxId . '" 
+</code></pre>

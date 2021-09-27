@@ -1,0 +1,7 @@
+<p>You can use the <code>History</code> control in asp.net to make sure Back button leads to the View you wish user to be taken to</p>
+
+<pre><code>protected void MultiView1_ActiveViewChanged(object sender, System.EventArgs e)
+{
+    History1.AddHistoryPoint("currentPage", ((MultiView)sender).ActiveViewIndex);
+}
+</code></pre>

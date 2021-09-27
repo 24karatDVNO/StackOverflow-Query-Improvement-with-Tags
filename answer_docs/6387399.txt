@@ -1,0 +1,15 @@
+<p>I find that imaginary numbers can sometimes help convey coupled information quite well while reducing clutter. My method will double the number of calculations necessary (i.e. I find the distance X and Y then Y and X), and I still need a single for loop</p>
+
+<pre><code>x = 1:20;
+y = 1:20;
+[X,Y] = meshgrid(x,y);
+Z =X + Y*i;
+z = Z(:);
+leng = length(z);
+store = zeros(leng);
+for looper = 1:(leng-1) 
+    dummyz = circshift(z,looper);
+    store(:,looper+1) = z - dummyz;
+end
+final = abs(store);
+</code></pre>

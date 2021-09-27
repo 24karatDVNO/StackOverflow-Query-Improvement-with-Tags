@@ -1,0 +1,10 @@
+<p>This isn't really a problem as you can convert it back to an octal representation easily:</p>
+
+<pre><code>var dec = 11;
+alert(dec.toString(8)); // returns "13"
+</code></pre>
+
+<p>Numbers are returned in decimal format, but the numerical operations on it won't be any different as far as I know. Note also that <em>all</em> octal numbers supplied to JavaScript will be immediately "converted" in this fashion:</p>
+
+<pre><code>alert(013); // returns 11
+</code></pre>

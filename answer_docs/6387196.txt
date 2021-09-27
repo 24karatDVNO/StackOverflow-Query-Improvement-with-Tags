@@ -1,0 +1,18 @@
+<p>Using delegate to attach the events. This way if you add any new element to this it will trigger the fire the same events.</p>
+
+<pre><code>$("#Selected").delegate("ul li a", "click", function()
+    {
+        // do stuffs
+        return false;
+    }
+);
+$("#UnSelected").delegate("ul li a", "click", function ()
+    {
+    var li = $(this).parent();
+    $clone = li.clone(false);
+    $clone.children().text("-");
+    $("#Selected ul").append($clone);
+    return false;
+    }
+);
+</code></pre>

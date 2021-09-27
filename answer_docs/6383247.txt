@@ -1,0 +1,5 @@
+<p>More "modern" dataaccess libraries are generally preferable, they provide better performance, flexibility and usability. I would generally avoid the old SQLHelper class if possible. :) I worked on an old project where a dependency on the SQLHelper class kept us from upgrading from .NET 1.1 to .NET 4. </p>
+
+<p>For awesome performance, you may want to take a look at <a href="http://code.google.com/p/dapper-dot-net/" rel="nofollow">Dapper</a>, it's used here at Stackoverflow and is very fast and easy to use. </p>
+
+<p>But if you're looking at 100k simultaneous requests (second, minute, day??) you probably want to avoid the database altogether. Look at caching, either ASP.NETs own built-in or maybe something like the <a href="http://msdn.microsoft.com/en-us/windowsserver/ee695849" rel="nofollow">Windows Server AppFabric Cache</a>.</p>

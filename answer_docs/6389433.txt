@@ -1,0 +1,1 @@
+<p>It's hard to tell exactly what you're trying to do but in the second code snippet the interval is in a closure and it's not externally accessible. In the first example, it looks like interval is a global. I'm guessing when you call clearInterval in the AJAX call there is no interval variable available.</p>

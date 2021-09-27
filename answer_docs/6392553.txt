@@ -1,0 +1,8 @@
+<p>I think the better approach is injecting an object. But why is ServiceObject there?
+You have a method createArticle, then it would be logical to pass an article object to it, no?
+In that way it is simplier to organize a validation process, you may just mark fields that you want to be validated in annotations.</p>
+
+<p>Also it is a matter of approach you are using. If you use data mapper pattern in your service layers, then you should obviously pass an object to it.</p>
+
+<p>With an object you have transparent and clear interface of communication between your objects.
+With an array it is not quiet clear what type of data you transfer, what kind of fields and so on.</p>

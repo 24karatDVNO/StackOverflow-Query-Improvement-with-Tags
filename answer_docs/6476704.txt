@@ -1,0 +1,17 @@
+<p>Since it is a <code>Create</code> operation, it should not be done with a <code>GET</code> request, like changing <code>window.location</code>. Instead you have to do it with <code>POST</code> Request. Check this code:</p>
+
+<pre><code>$('#CreateButton').click(function (event) {
+    var theUrl = '&lt;%= ResolveUrl("~/SomethingControlloer/Create")%&gt;';
+
+    $.ajax({
+        type: "POST",
+        url: theUrl,  
+        data: { },   // Data to send with request
+        dataType: "json",
+        success: function () {},
+        failure: function () { alert("Error!"); }
+    });
+});
+</code></pre>
+
+<p>Of course, for <code>ResolveUrl</code> to work, you should already have a registered MVC route in <code>Global.asax.cs</code>, and your action method should have <code>[HttpPost]</code> attribute.</p>

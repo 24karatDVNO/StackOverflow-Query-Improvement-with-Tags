@@ -1,0 +1,24 @@
+<p>Try this:</p>
+
+<pre><code>select std.StudentId, std.Lastname, att.AttCount, pap.PaperCount, prj.ProjCount
+from Students std
+    left join
+    (
+        select StudentId, count(*) AttCount
+        from StudentAttendance
+    ) att on
+        std.StudentId = att.StudentId
+    left join
+    (
+        select StudentId, count(*) PaperCount
+        from Papers
+    ) pap on
+        std.StudentId = pap.StudentId
+    left join
+    (
+        select StudentId, count(*) ProjCount
+        from Projects
+    ) prj on
+        std.StudentId = prj.StudentId
+where att.AttCount &gt; 10
+</code></pre>

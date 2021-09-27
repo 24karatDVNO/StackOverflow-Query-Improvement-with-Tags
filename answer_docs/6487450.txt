@@ -1,0 +1,8 @@
+<p>You must escape all user input, which even includes things like server variables. If a value is pulled from the database and not touched in any way by user input, it needn't be escaped when reused in  a query unless it contains characters that would break that query when passed in by string concatenation.</p>
+
+<p>For example, I pull the name <code>O'Brien</code> from the database into a PHP variable <code>$name</code> and then in another statement attempt to put it back in like this:</p>
+
+<pre><code>$query = "INSERT INTO table (id, name) VALUES (123, '$name');";
+</code></pre>
+
+<p>This will break the query, as I have failed to escape the <code>'</code> in O'Brien.</p>

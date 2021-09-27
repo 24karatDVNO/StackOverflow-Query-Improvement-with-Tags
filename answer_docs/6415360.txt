@@ -1,0 +1,5 @@
+<p>You can use <a href="http://www.jboss.org/netty" rel="nofollow">netty</a> java library. Here is an example usage in Scala:</p>
+
+<p><a href="https://github.com/mcroydon/scala-echo-server" rel="nofollow">https://github.com/mcroydon/scala-echo-server</a></p>
+
+<p>Generally you need to use Java Socket API. In <a href="http://www.frothandjava.com/2008/02/tcpip-echo-server-in-scala.html" rel="nofollow">this example</a> Java Socket API are used, but the whole server is wrapped in Actor in order to process clients in separate thread and not to block acceptor thread (the same thing you will normally do in Java, but you will use threads directly).</p>

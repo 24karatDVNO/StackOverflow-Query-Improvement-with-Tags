@@ -1,0 +1,11 @@
+<p>If you have to display your entire document all the time based on the id, then the general rule of thumb is to attempt to keep e working set in memory. </p>
+
+<p><a href="http://blog.boxedice.com/2010/12/13/mongodb-monitoring-keep-in-it-ram/" rel="nofollow">http://blog.boxedice.com/2010/12/13/mongodb-monitoring-keep-in-it-ram/</a></p>
+
+<p>This is one of the resources that talks about that. There is a video on mongodb's site too that speaks about this. </p>
+
+<p>By attempting to size the ram so that the working set is in memory, and also looking at sharding, you will not have to do this right away, you can always add sharding later. This will improve scalability of your app over time. </p>
+
+<p>Again, these are not absolute statements, these are general guidelines, that you should think through your usage patterns and make sure that they ar relevant to what you are doing. </p>
+
+<p>Personally, I have not had the need to fit everything in ram. </p>

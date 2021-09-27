@@ -1,0 +1,14 @@
+<p>Don't create potentially unbounded numbers of loggers, that's not good practice - there are other ways of getting context-sensitive information into your logs, as documented <a href="http://docs.python.org/howto/logging-cookbook.html#adding-contextual-information-to-your-logging-output" rel="nofollow">here</a>.</p>
+
+<p>You also don't need to have a logger as an instance attribute: loggers are singletons so you can just get a particular one by name from anywhere. The recommended practice is to name loggers at module level using</p>
+
+<pre><code>logger = logging.getLogger(__name__)
+</code></pre>
+
+<p>which suffices for most scenarios.</p>
+
+<p>From your question I can't tell whether you appreciate that handlers and loggers aren't the same thing - for example you talk about removeHandler calls (which might serve to free the handler instances because their reference counts go to zero, but you won't free any logger instances by doing so).</p>
+
+<p>Generally, loggers are named after parts of your application which generate events of interest.</p>
+
+<p>If you want each thread to e.g. write to a different file, you can create a new filename each time, and then close the handler when you're done and the thread is about to terminate (that closing is important to free handler resources). Or, you can log everything to one file with thread ids or other discriminators included in the log output, and use post-processing on the log file.</p>

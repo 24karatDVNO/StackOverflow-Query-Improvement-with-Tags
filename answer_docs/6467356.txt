@@ -1,0 +1,3 @@
+<p>Precalculate the <code>ToUpper()</code> call so you dont have to do it every time. You could maintain a second list where all the strings are stored uppercase.</p>
+
+<p>Secondly you should search the filtered list (instead of the whole list) in case a key is <strong>added</strong> to the search string. The new (longer) string can never be outside of the filtered results.</p>

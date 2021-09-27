@@ -1,0 +1,13 @@
+<p>This code:</p>
+
+<pre><code>ContentValues values = new ContentValues(1);     
+values.put(MediaStore.Video.Media.DESCRIPTION, edtext.getText().toString());
+//values.put(MediaStore.Video.Media.DATA, videoFile.getAbsolutePath());
+ContentResolver contentResolver = getContentResolver();
+Uri base = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+contentResolver.update(base, values,null,null);
+</code></pre>
+
+<p>appears to be trying to insert and update values in a database... If you want to take values from a database and display them in a listView I would recommend looking at this <a href="http://thinkandroid.wordpress.com/2010/01/11/custom-cursoradapters/" rel="nofollow">tutorial</a></p>
+
+<p>If you are truly just wanting to pull items from a folder and display them in a list I would recommend using a Custom ListViewAdapter tutorial <a href="http://united-coders.com/phillip-steffensen/android-dealing-with-listactivities-customized-listadapters-and-custom-designed-0" rel="nofollow">here</a>. Where he is using Twitter Api you will be replacing that code with IO stuff for the directory mentioned...</p>

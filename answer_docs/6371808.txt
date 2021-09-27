@@ -1,0 +1,11 @@
+<p>The question is not very clear but sounds like you want something like this</p>
+
+<pre><code>public static IQueryable&lt;T&gt; GetAllByType&lt;T&gt;(
+    this IQueryable&lt;T&gt; customQuery, string seller) where T : class, new()
+{
+    return from i in customQuery
+                let prop = typeof(T).GetProperty("SellerType")
+                where prop != null &amp;&amp; prop.GetValue(i, null).Equals(seller) 
+                select i;
+}
+</code></pre>

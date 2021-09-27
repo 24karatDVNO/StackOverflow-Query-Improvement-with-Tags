@@ -1,0 +1,12 @@
+<p>Okay, I now know I had to approach this problem via the User model itself. This DQL query fetches all the users who miss their test from a specific invite:</p>
+
+<pre><code>$user  = new User;
+$users = $user-&gt;getTable()
+              -&gt;getQueryObject()
+              -&gt;leftJoin('User.userInvite i')
+              -&gt;leftJoin('User.tests t')
+              -&gt;where('i.invite_id = ?', $invite-&gt;id)
+              -&gt;andWhere('i.user_id IS NOT NULL')
+              -&gt;andWhere('t.user_id IS NULL')
+              -&gt;execute();
+</code></pre>

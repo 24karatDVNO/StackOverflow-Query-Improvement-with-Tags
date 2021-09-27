@@ -1,0 +1,18 @@
+<p>As you probably have learned by now, conditional comments are parsed in the HTML output, not within the CSS file itself, unless you are using <a href="http://www.conditional-css.com/" rel="nofollow">third party software</a>.</p>
+
+<p>Another way you can target IE within your CSS files without <a href="http://en.wikipedia.org/wiki/CSS_filter" rel="nofollow">hacks</a>:</p>
+
+<pre><code>&lt;!--[if lt IE 7]&gt; &lt;html class="ie6"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7]&gt;    &lt;html class="ie7"&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8]&gt;    &lt;html class="ie8"&gt; &lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html&gt; &lt;!--&lt;![endif]--&gt;
+</code></pre>
+
+<p>It's become common to use variations of this technique for IE, I believe it was made popular by <a href="http://html5boilerplate.com/" rel="nofollow">HTML5 Boilerplate</a>. You are basically using conditional comments to add a class to the <code>&lt;html&gt;</code> tag (or body tag if you wish) so you can target elements in your CSS files like so:</p>
+
+<pre><code>.ie6 #header {
+    /* some ie6 only styles here */
+}
+</code></pre>
+
+<p>To me, this is more maintainable than using separate stylesheets, but suffers the very mild setback of other browsers reading (but not applying) the IE styles.</p>

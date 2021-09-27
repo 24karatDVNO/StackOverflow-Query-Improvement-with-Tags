@@ -1,0 +1,7 @@
+<p>This is definitely possible, but would be grossly inefficient. What you would do is to simply store all your states in a link list, and then each state would need to keep a transition table. The transition table would look something like:</p>
+
+<pre><code>'a' -&gt; 2
+'b' -&gt; 5
+</code></pre>
+
+<p>where your alphabet is <code>{a,b}</code>, and 2 and 5 are the states stored at position 2 and 5 in the linked list. As I said, this is definitely NOT how you would want to implement a DFA, but it is possible.</p>

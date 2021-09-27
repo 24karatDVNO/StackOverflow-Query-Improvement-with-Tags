@@ -1,0 +1,10 @@
+<p>What I ended up doing was this:</p>
+
+<pre><code>window.unload = function(){
+    var _href = $('selector').attr('href');
+    $('selector').attr('href', '');
+
+    setTimeout(function(){
+        $('selector').attr('href', _href);
+    }, 1500);
+}</code></pre>

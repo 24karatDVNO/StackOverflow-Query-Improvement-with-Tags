@@ -1,0 +1,9 @@
+<p>The quickest way is like this:</p>
+
+<pre><code>&lt;?php echo $this-&gt;getLayout()-&gt;createBlock('cms/block')-&gt;setBlockId('block_identifier')-&gt;toHtml(); ?&gt; 
+</code></pre>
+
+<p>But you can also create it as an XML block in your layouts folder and bring it out in the usual way (I prefer this when using custom themes):</p>
+
+<pre><code>&lt;?php echo $this-&gt;getChildHtml('block_identifier') ?&gt; 
+</code></pre>

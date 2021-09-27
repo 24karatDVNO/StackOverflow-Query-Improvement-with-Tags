@@ -1,0 +1,3 @@
+<p>At first glance, variable <code>$attr-name</code> appears to be defined three lines above its reference. A closer look however reveals that the apparent definition is in literal element content of the constructed <code>function</code> element. From within that element content, a single curly brace escapes into expression mode, where the reference is.</p>
+
+<p>Thus the definition is in the generated query, whereas the reference is in the generating query. It will be necessary to align the curly braces appropriately, to get both into the same scope. Note that there are two curly braces opening the generated function, which is the notation for a single curly brace to appear in element content.</p>

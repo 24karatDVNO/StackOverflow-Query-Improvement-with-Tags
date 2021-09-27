@@ -1,0 +1,5 @@
+<p>I found a work around for the issue, although I still don't know what's causing it. I placed my Google chart code into my main page and wrapped it into a jQuery function, calling it when the user control was loaded.</p>
+
+<p>This then led to a further problem where the iFrame came back empty in Firefox and Chrome (but not in IE, bizarrely). This problem was addressed <a href="https://stackoverflow.com/questions/3719866/google-visualization-piechart-linechart-jquery-ajax-firefox-issue">here</a>.</p>
+
+<p>Long story short, it's messier than I would have liked, but the end result is the same.</p>

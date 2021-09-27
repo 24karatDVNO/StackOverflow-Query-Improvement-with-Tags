@@ -1,0 +1,15 @@
+<pre><code>&lt;img&gt; 
+</code></pre>
+
+<p>should be replaced with 
+<code>img</code></p>
+
+<pre><code>jQuery.preloadImages = function() { for(var i = 0; i&lt;arguments.length; i++) jQuery("img").attr("src", arguments[i]); }
+
+$(function() {
+
+$('#background-wrap img').css('opacity',0);
+$('#background-wrap img').animate({ opacity: 1}, 3000);
+
+});
+</code></pre>

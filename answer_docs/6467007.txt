@@ -1,0 +1,6 @@
+<p>From error description I guess you've put @synthesize directive outside of class implementation, i.e. make sure that it goes after @implementation in you file:</p>
+
+<pre><code>@implementation MyClass
+
+@synthesize myVar;
+</code></pre>

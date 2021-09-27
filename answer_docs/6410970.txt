@@ -1,0 +1,7 @@
+<p>It depends on what you want to do/ what you understand under threadsafe.
+Normally you dont want threads to access the same data concurrently so you serialize this.
+But this means if one thread is in the function all others have to wait. This is called a mutex(mutual exclusion).
+The other way would be to have multiple threads in the function but a limited number.
+There you could apply a semaphore.</p>
+
+<p>So what do you want to do?</p>

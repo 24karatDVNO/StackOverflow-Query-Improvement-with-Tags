@@ -1,0 +1,11 @@
+<p>Is this:</p>
+
+<pre><code>  $('.new').addClass('default').removeClass('reader');
+</code></pre>
+
+<p>Supposed to be:</p>
+
+<pre><code>  $('.new').addClass('default').removeClass('new');
+</code></pre>
+
+<p>Also, have you checked firefox / fiddler / etc to see if the browser is trying to download the second stylesheet?</p>

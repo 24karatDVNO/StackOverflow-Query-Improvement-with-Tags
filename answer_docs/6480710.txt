@@ -1,0 +1,5 @@
+<p>I've been thinking about this recently and the only idea I could come up with is (assuming that you have thread-safe queues) to only ever have multiple threads servicing a single queue.</p>
+
+<p>You can then have one or more work producing threads adding jobs to a single queue and one or more worker threads blocking on the queue until they find something to process.</p>
+
+<p>If you ever have multiple queues that multiple worker threads have to poll, then a solution might be to add one extra thread for each queue and an extra queue.  The extra threads each block on their own single queue, but simply forward jobs to the extra queue.  Now the existing worker thread are back to blocking on a single queue.</p>

@@ -1,0 +1,11 @@
+<p>jQuery doesn't have any unique URL parsing abilities aside from what JavaScript itself provides. You can get the URL path with:</p>
+
+<pre><code>var path = location.pathname;
+</code></pre>
+
+<p>Then, you can get the parts of the path with:</p>
+
+<pre><code>var parts = path.split('/');
+</code></pre>
+
+<p>Then, just loop through the parts and generate your breadcrumb HTML as you see fit.</p>

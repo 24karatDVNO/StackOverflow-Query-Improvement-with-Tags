@@ -1,0 +1,7 @@
+<p>The directory does not contain the .svn (hidden) folders. I suspect that you are trying to release a project from an exported directory, instead of having checked it out from svn first.
+Maven needs the .svn folders when doing a release.
+Also, you need to have committed all your changes and not have files/directories which aren't added yet.</p>
+
+<p>Basically, you need to have a clean checkout with no local changes of any kind in order to get this to work.</p>
+
+<p>In addition, if the above is the complete setup for the release plugin, you're missing the  and a few other things, so this will definitely not work. (But, you might also be inheriting these from somewhere; anyhow -- that's another problem).</p>

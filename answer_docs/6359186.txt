@@ -1,0 +1,16 @@
+<p>Maybe you have definied a logging configuration for a given namespace ? We can redefine the log level with this simple addition to our configuration</p>
+
+<pre><code>    &lt;logger name="MyApp.Project.SomeNamespace.Foo"&gt;
+&lt;level value="WARN" /&gt;
+&lt;/logger&gt;
+</code></pre>
+
+<p>Alternatively, we can set the log level for the entire namespace or even the entire project
+with this configuration.</p>
+
+<pre><code>&lt;logger name="MyApp.Project"&gt;
+&lt;level value="WARN" /&gt;
+&lt;/logger&gt;
+</code></pre>
+
+<p>Could you provide your log4net configuration ?</p>

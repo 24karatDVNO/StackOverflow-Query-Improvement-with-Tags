@@ -1,0 +1,9 @@
+<p>You can try with something like this:</p>
+
+<pre><code>&lt;?php if ( $_links = $_product-&gt;getDownloadableLinks() ) {
+    foreach ($_links as $_link) {
+        // Do what you want with $_link
+        //Mage::log($_link-&gt;getData());
+    }
+?&gt;
+</code></pre>

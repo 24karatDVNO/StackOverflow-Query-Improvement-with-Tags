@@ -1,0 +1,3 @@
+<p>You probably want to show the UIImagePickerController in viewDidAppear: instead of viewDidLoad:. Since you are keeping your view controllers in an array, they are only instantiated once therefore viewDidLoad: will most likely only be called once on each view controller. viewDidAppear: will be called every time the view controller is pushed or presented.</p>
+
+<p>If your app got into a low memory situation it is possible that viewDidUnload: would be called at some point leading to viewDidLoad: being called again at some later point but you cannot rely on this at all.</p>

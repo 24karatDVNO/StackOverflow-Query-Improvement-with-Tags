@@ -1,0 +1,12 @@
+<p>It looks like you cannot specify a capital letter in Hibernate 3 XML for Grails. When I change the mapping to:</p>
+
+<pre><code> &lt;class name="User" table="x_users"&gt;
+        &lt;cache usage="read-write"/&gt;
+        &lt;comment&gt;User&lt;/comment&gt;
+...
+&lt;property name="emailAddress" column="test"/&gt;
+...
+&lt;/class&gt;
+</code></pre>
+
+<p>it works correctly. When I change it to anything lowercase it works correctly, but introducing the capital causes it to go with the default value.</p>

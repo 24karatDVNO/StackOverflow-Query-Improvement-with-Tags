@@ -1,0 +1,4 @@
+<p>Just call <code>Application.DoEvents();</code> once you've updated your text. But note that updating too often might cause flicker as well as slow down your overall processing. Also note that this is error prone if any drawing/update code causes updates/draws again (infinite recursion).</p>
+
+<p>Edit: Read half the question ...
+Add a <code>FileSystemWatcher</code> to watch for changes to the log file. However this is a very ineffective approach and depending on the settings used to write the log file you might be missing access rights and/or the file might update only when the application closes. If both processes are your own code and you're able to modify them, you should think about other possibilities (e.g. a simple "server" you can connect to using some telnet (or custom) client).</p>

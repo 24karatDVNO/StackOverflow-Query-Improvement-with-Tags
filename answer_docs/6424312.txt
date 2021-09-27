@@ -1,0 +1,8 @@
+<p>Usually, it's a good thing to follow <a href="http://www.infoq.com/articles/rest-introduction" rel="nofollow">REST principles</a>.</p>
+
+<p>The idea is quite simple - every "resource" should map to controller (approach #2).</p>
+
+<p>However, I think it's better to "cut along natural joints".<br>
+With that I mean - sometimes decomposition (dividing into more controllers) just for sake of it leads to unnecessary complexity. Controllers should appear accordingly to Your use cases.  </p>
+
+<p>Start with one (which appears as most important) and slice next when current one exceeds ~100 loc.</p>

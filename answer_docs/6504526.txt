@@ -1,0 +1,19 @@
+<p>I found the way to do this is to override a method called onBeforeCallback on the live datasource. <a href="http://developer.yahoo.com/yui/docs/YAHOO.util.DataSourceBase.html#method_doBeforeCallback" rel="nofollow">http://developer.yahoo.com/yui/docs/YAHOO.util.DataSourceBase.html#method_doBeforeCallback</a></p>
+
+<blockquote>
+  <p>Overridable method gives implementers access to the original full response and
+   the parsed response (parsed against the given schema) before the data
+   is added to the cache (if applicable) and then sent back to callback function.
+   This is your chance to access the raw response and/or populate the parsed
+   response with any custom data.</p>
+</blockquote>
+
+<p>This allows you to change the data before sending it to the chart. If it is empty then I can add a dummy "No Activity" entry. </p>
+
+<pre><code>this.datasource.doBeforeCallback = function(oRequest, oFullResponse, oParsedResponse, oCallback) {
+    if (!oParsedResponse.results || oParsedResponse.results.length &lt; 1) {
+       oParsedResponse.results = new Array({ "name": "No Activity", "count": "0" });
+    }   
+    return oParsedResponse;
+ };
+</code></pre>

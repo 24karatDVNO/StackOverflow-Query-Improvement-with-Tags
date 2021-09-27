@@ -1,0 +1,13 @@
+<p>Try something like</p>
+
+<pre><code>$string = &lt;&lt;&lt;XML
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;News&gt;
+    &lt;News.Env&gt;abc&lt;/News.Env&gt;
+&lt;/News&gt;
+XML;
+
+$xml = simplexml_load_string($string);
+
+print_r($xml-&gt;{'News.Env'});
+</code></pre>

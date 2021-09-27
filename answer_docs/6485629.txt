@@ -1,0 +1,29 @@
+<p>I haven't tried it, but <a href="http://apache.webthing.com/mod_proxy_html/" rel="nofollow">mod_proxy_html</a> might be able to do this. From the documentation:</p>
+
+<blockquote>
+  <p>mod_proxy_html is an output filter to
+  rewrite HTML links in a proxy
+  situation, to ensure that links work
+  for users outside the proxy. It serves
+  the same purpose as Apache's
+  <code>ProxyPassReverse</code> directive does for
+  HTTP headers, and is an essential
+  component of a reverse proxy.</p>
+  
+  <p>For example, if a company has an
+  application server at
+  <code>appserver.example.com</code> that is only
+  visible from within the company's
+  internal network, and a public
+  webserver <code>www.example.com</code>, they may
+  wish to provide a gateway to the
+  application server at
+  <code>http://www.example.com/appserver/</code>.
+  When the application server links to
+  itself, those links need to be
+  rewritten to work through the gateway.
+  mod_proxy_html serves to rewrite <code>&lt;a
+  href="http://appserver.example.com/foo/bar.html"&gt;foobar&lt;/a&gt;</code>
+  to foobar
+  making it accessible from outside.</p>
+</blockquote>

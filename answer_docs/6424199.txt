@@ -1,0 +1,13 @@
+<p>Your Inner Exception is about <code>ViewState</code> but about file not found exception:</p>
+
+<pre><code>[FileNotFoundException: Could not load file or assembly 'App_Web_ujlndqyx, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.]
+</code></pre>
+
+<p>This means that your server tried to resolve some class type, and didn't find anything corresponding.
+Try to check this:</p>
+
+<ol>
+<li>I think that you've linked some library in your project, and have deployed it on one machine, but not to your server.</li>
+<li>Maybe some dll from GAC is missing</li>
+<li>Maybe IIS settings for the .NET version is different from your local machine or you simply running the application on the machine with different .NET version</li>
+</ol>

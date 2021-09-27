@@ -1,0 +1,17 @@
+<p>In Urlmon.dll, there's a function called FindMimeFromData.</p>
+
+<p>From the documentation</p>
+
+<blockquote>
+  <p>MIME type detection, or "data
+  sniffing," refers to the process of
+  determining an appropriate MIME type
+  from binary data. The final result
+  depends on a combination of
+  server-supplied MIME type headers,
+  file extension, and/or the data
+  itself. Usually, only the first 256
+  bytes of data are significant.</p>
+</blockquote>
+
+<p>So, read the first (up to) 256 bytes from the file and pass it to FindMimeFromData.</p>

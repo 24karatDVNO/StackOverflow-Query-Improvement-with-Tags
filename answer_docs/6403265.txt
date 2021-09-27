@@ -1,0 +1,73 @@
+<p>Finaly i solved it with the workaround of carrying the name of the model in my model and dynamically create the right model in the modelbinder.
+If you know a better solution plz show me :-)</p>
+
+<p>HomeController:</p>
+
+<pre><code>// CREATE
+public ActionResult About(MBTest testItem)
+{
+    if (testItem == null)
+    {
+        testItem = new MBAbl();
+        testItem.Model = "MBAbl";
+    }
+
+    return View(testItem);
+}
+</code></pre>
+
+<p>Models:</p>
+
+<pre><code>public class MBTest
+{
+    public MBTest()  {}
+
+    [HiddenInput]
+    public string Model { get; set; }
+
+    public string Name { get; set; }
+}
+
+public class MBAbl : MBTest
+{
+    public MBAbl()  {}
+
+    public string House { get; set; }
+}
+
+public class MBAb2 : MBTest
+{
+    ...
+}
+</code></pre>
+
+<p>ModelBinder:</p>
+
+<pre><code>public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+{
+    if (controllerContext == null) throw new ArgumentNullException("controllerContext");
+    if (bindingContext == null) throw new ArgumentNullException("bindingContext");
+
+    //string 'Model' is needed in the base class
+    var modelType = bindingContext.ValueProvider.GetValue("Model");
+
+    if (modelType != null &amp;&amp; !string.IsNullOrEmpty(modelType.AttemptedValue))
+    {
+        string projectName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+
+        Type classtype = Type.GetType(string.Format("{0}.Models.{1}", projectName, modelType.AttemptedValue));
+        PropertyInfo[] properties = classtype.GetProperties();
+
+        var classObject = classtype.GetConstructor(new Type[] { }).Invoke(null);
+
+        foreach (PropertyInfo propertie in properties)
+        {
+            var value = bindingContext.ValueProvider.GetValue(propertie.Name).AttemptedValue;
+            classtype.GetProperty(propertie.Name).SetValue(classObject, value, null);
+        }
+
+        return classObject;
+    }
+    return null;
+}
+</code></pre>

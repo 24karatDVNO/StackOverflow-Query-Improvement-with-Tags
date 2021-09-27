@@ -1,0 +1,7 @@
+<p>This is the correct way to remove all selected items. The method is to always access fist selected item with an index 0 and loop until no more selected items left. You cannot refer to other items inside collection with an absolute index safely since indexes will change as soon as you delete one of the items.</p>
+
+<pre><code>while( listView1.SelectedItems.Count &gt; 0)
+{
+    listView1.Items.Remove(lvFiles.SelectedItems[0]);
+}
+</code></pre>

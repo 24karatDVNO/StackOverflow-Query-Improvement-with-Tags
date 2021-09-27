@@ -1,0 +1,9 @@
+<pre><code>$('img').each(function() {
+    var alt   = $(this).attr('alt'),
+        style = $(this).attr('style');
+    $(this).after("&lt;span&gt;" + alt + "&lt;/span&gt;")
+           .next('span')
+           .andSelf()
+           .wrapAll('&lt;div class="imgtxt" style="'+style+'"&gt;&lt;/div&gt;');
+});
+</code></pre>

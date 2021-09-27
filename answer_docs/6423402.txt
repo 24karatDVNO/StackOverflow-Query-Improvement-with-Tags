@@ -1,0 +1,3 @@
+<p>First: consider redesigning your data structure, I think it is not optimal.
+Store a user's recommendation in a table user-recommendeditem-score: I don't see any need for a temp table or anything else.
+Otherwise, you could start using sessions, but you should encapsulate the code carefully, making it easy to change if/when this solution is no more maintainable.</p>

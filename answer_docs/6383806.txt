@@ -1,0 +1,11 @@
+<p>You can read about the <a href="http://msdn.microsoft.com/en-us/library/bb982026.aspx" rel="nofollow">shared_ptr</a> struct.</p>
+
+<p>It implements a simple <a href="http://en.wikipedia.org/wiki/Reference_counting" rel="nofollow">reference-counting</a> garbage collector.</p>
+
+<p>If you want a real garbage collector, you can overload the <strong>new</strong> operator.</p>
+
+<p>Create a struct similar to shared_ptr, call it Object.</p>
+
+<p>This will wrap the new object created. Now with overloading its operators, you can control the GC.</p>
+
+<p>All you need to do now, is just implement one of the many <a href="http://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29" rel="nofollow">GC algorithms</a> </p>

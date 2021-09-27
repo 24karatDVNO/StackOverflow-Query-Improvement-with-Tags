@@ -1,0 +1,10 @@
+<p>Using an absolute path seems to work fine in most cases with SP2010. We reference it in our SharePoint solutions like so, without any problems:</p>
+
+<pre><code>.yourPIEEnhancedClass {
+    behavior: url('/_layouts/ProjectName/Styles/PIE.htc');
+}
+</code></pre>
+
+<p>If you're pointing at the Style Library for whatever reason, the space in the string will probably force you to have to use a quoted string for the behaviour URL... same goes for most things in CSS (e.g. font names with spaces).</p>
+
+<p>The only other thing I can think of is to make sure that IIS is serving up the correct mime-type (<strong>text/x-component</strong>) for the .HTC. You may have to add it in there manually as per the <a href="http://css3pie.com/documentation/known-issues/#content-type" rel="nofollow">known issues documentation</a>.</p>

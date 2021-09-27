@@ -1,0 +1,16 @@
+<p>First, I'd lose the old outer join syntax and rewrite using ANSI (that might get rid of your error message right off the bat - it's a shortcoming of the old (+) syntax). I'd then try to incorporate CASE logic in the where clause (untested):</p>
+
+<pre><code>SELECT info.sortingorder sort, info.stage, SUM(am.qty) boh
+FROM it.snapshot am
+   , it.info info LEFT JOIN it.naming nm ON info.stage = nm.stage
+WHERE CASE WHEN 
+           (:flag = 1 AND am.process IN 
+              (SELECT process_name FROM it.special_processes)) THEN 'Y'
+           WHEN 
+           (:flag = 2 AND am.process NOT IN 
+              (SELECT process_name FROM it.special_processes)) THEN 'Y'
+           WHEN :flag = 0 THEN 'Y'
+           ELSE 'N'
+      end = 'Y'
+GROUP BY info.sortingorder, info.stage;
+</code></pre>

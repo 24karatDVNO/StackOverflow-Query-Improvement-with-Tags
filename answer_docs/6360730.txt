@@ -1,0 +1,1 @@
+<p>Since they're all located on a server.. I'd create an application which would run on the server and handle requests for images. Otherwise, you could end up with old lock files hanging around after program crashes and such, which would then require clean up every x days. The server application can handle all of the locking and such.</p>

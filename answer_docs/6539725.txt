@@ -1,0 +1,9 @@
+<p>Without knowing what <code>$usersClass-&gt;register()</code> returns it's difficult to make a determination over what is going wrong. I do advise you try something like the following (just for debugging purposes):</p>
+
+<pre><code>var_dump($_POST);
+$_test = $usersClass-&gt;register($_POST['produgg_username'], md5($_POST['produgg_password']), $_POST['produgg_email'], $randomkey);
+var_dump($_test);
+// proceed on with your if statement.
+</code></pre>
+
+<p>Make sure you're seeing what you expect to see. A few echo's in developement code never hurt anyone, just make sure they're removed for release purposes.</p>

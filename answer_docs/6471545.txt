@@ -1,0 +1,144 @@
+<p>In the past I've used a simple menu bar-less form with a label and a Forms.ProgressBar on it using the following code in the form:</p>
+
+<pre><code>public partial class ProgressDialog : Form
+{
+    //public delegate delSetProgress 
+private readonly int progressBarMax;
+
+/// &lt;summary&gt;
+/// Structure used for passing progress bar related parameters as a single variable.
+/// &lt;/summary&gt;
+public struct ProgressBarParams
+{
+    public int value;
+    public string message;
+
+    public ProgressBarParams(string Message, int Value)
+    {
+        message = Message;
+        value = Value;
+    }
+}
+
+/// &lt;summary&gt;
+/// Constructs the progress bar dialog and sets the progress bar's maximum value to maxValue.
+/// &lt;/summary&gt;
+/// &lt;param name="maxValue"&gt;Value to set to progress bar's Maximum property.&lt;/param&gt;
+public ProgressDialog(int maxValue)
+{
+    InitializeComponent();
+    progressBarMax = maxValue;
+}
+
+private void ProgressDialog_Load(object sender, EventArgs e)
+{
+    progressBar.Maximum = progressBarMax;
+}
+
+/// &lt;summary&gt;
+/// Public method to update the progressDialog
+/// &lt;/summary&gt;
+/// &lt;param name="inputParams"&gt;Values to update on the progressDialog&lt;/param&gt;
+public void SetProgress(ProgressBarParams inputParams)
+{
+    lblMessage.Text = inputParams.message;
+    progressBar.setValue(inputParams.value);
+    Update();
+}
+
+/// &lt;summary&gt;
+/// This method should be called when the operation represented by the ProgressDialog is
+/// completed. It shows an "operation complete" message for a second and then closes the form.
+/// &lt;/summary&gt;
+public void Finish()
+{
+    lblMessage.Text = "Operation complete.";
+    progressBar.setValue(progressBar.Maximum);
+    Update();
+    System.Threading.Thread.Sleep(1000);
+        this.Close();
+    }
+}
+
+public static class MyExtensions
+{
+    /// &lt;summary&gt;
+    /// Implements a hack to get around a stupid rendering problem with the .NET progress bar in some environments.
+    /// Sets the progress bar value property.
+    /// &lt;/summary&gt;
+    /// &lt;param name="proBar"&gt;Progress bar control to set the value on.&lt;/param&gt;
+    /// &lt;param name="value"&gt;Value to be set.&lt;/param&gt;
+    public static void setValue(this ProgressBar proBar, int value)
+    {
+        if (value &gt; 0)
+        {
+            proBar.Value = value;
+            proBar.Value = value - 1;
+            proBar.Value = value;
+        }
+        else
+        {
+            proBar.Value = value;
+            proBar.Value = value + 1;
+            proBar.Value = value;
+        }
+    }
+} 
+</code></pre>
+
+<p>Note the <code>setValue</code> extension method that uses a workaround to avoid an issue with some versions of Windows.</p>
+
+<p>I then set it (and a splash screen) up with the following, where <code>m_frmProgress</code> is the progress bar form:</p>
+
+<pre><code>        // Create splash screen/progress bar thread on the thread pool
+        ThreadPool.QueueUserWorkItem((x) =&gt;
+        {
+            bool localDone = false;
+            m_frmSplash.Show();
+            m_frmProgress.Show();
+                // Set the progress bar form up slightly below the bottom of the splash screen
+                m_frmProgress.Location = new Point(m_frmProgress.Location.X, m_frmProgress.Location.Y + (m_frmSplash.Height / 2) + (m_frmProgress.Height / 2) + 10);    
+
+                while (!localDone)  // Keep iterating until the main thread tells us we're done
+                {
+                    lock (splashScreenDoneLock)
+                    {
+                        localDone = splashScreenDone;
+                    }
+                    // I don't like this method of keeping the UI responsive, but as yet I have no better method
+                    Application.DoEvents();
+                    Thread.Sleep(500);
+                }
+                m_frmSplash.Close();
+                m_frmProgress.Close();
+                while (!m_frmProgress.IsDisposed || !m_frmSplash.IsDisposed)    // While either splash form is not disposed (still active)
+                {
+                    Thread.Sleep(100);  // Keep waiting until the splash forms are gone
+                }
+                splashFormsDisposed.Set();  // Signal the main thread that the splash forms are gone so the main form can be shown
+            });
+
+            bool isSplashHandleCreated = false;
+            bool isProgressHandleCreated = false;
+
+            // Wait until both splash forms are created
+            while (!(isSplashHandleCreated &amp;&amp; isProgressHandleCreated))
+            {
+                lock (m_frmSplash)
+                {
+                    isSplashHandleCreated = m_frmSplash.IsHandleCreated;
+                }
+                lock (m_frmProgress)
+                {
+                    isProgressHandleCreated = m_frmProgress.IsHandleCreated;
+                }
+                Thread.Sleep(500);
+            }
+</code></pre>
+
+<p>And invoke it like this: </p>
+
+<pre><code>m_frmProgress.Invoke(new Action&lt;ProgressDialog.ProgressBarParams&gt;(m_frmProgress.SetProgress), progressLevel);
+</code></pre>
+
+<p>It's not the most elegant method, but it gives you a cleanly update-able progress bar on a separate thread that will stay responsive while you're messing with it. I pretty much copy and pasted all that code from a working app, so it should work. On the flip side, I apologize if any of it is unclear.</p>

@@ -1,0 +1,11 @@
+<p>The regex is:</p>
+
+<pre><code>/L\d+:[^;]*/g
+</code></pre>
+
+<p>Meaning, begin with an <code>L</code>, followed by a sequence of one or more digits (<code>\d+</code>), a <code>:</code>, and a sequence of zero or more characters not including a <code>;</code> (<code>[^;]*</code>). The <code>g</code> on the end is for "global", and makes the regex apply to more than one occurence.</p>
+
+<p>Use with match:</p>
+
+<pre><code>var parts = test.match(/L\d+:[^;]*/g);
+</code></pre>

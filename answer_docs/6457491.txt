@@ -1,0 +1,40 @@
+<pre><code>$nxt.prev()
+</code></pre>
+
+<p>is to my mind :</p>
+
+<pre><code>&lt;td class="content"&gt;&amp;nbsp;&lt;/td&gt;
+</code></pre>
+
+<p>Then :</p>
+
+<pre><code>.parent('.title')
+</code></pre>
+
+<p>Gives you nothing because the parent has no class named "title" (just a no attribute tr tag).</p>
+
+<p>First of all, say that you are receiving JSON :</p>
+
+<pre><code>$.ajax({
+          type: 'POST',
+          url: 'ajax.php',
+          data: 'id=2&amp;dir=mix',
+          cache: false,
+          dataType: "json",
+          success: function(result3) {
+            //your stuff here
+          },
+        });
+</code></pre>
+
+<p>Than wouldn't that be easier for you to give an ID with the index of the tag you want to fill, and then do a for loop on your json result. Before that, you could access to the right tr parent node by and access all your title elements:</p>
+
+<pre><code>var trTitle = $(this).parent().next();
+</code></pre>
+
+<p>Then here are you titles :</p>
+
+<pre><code>trTitle.find('.title');
+</code></pre>
+
+<p>I have tested nothing, but I think this works.</p>

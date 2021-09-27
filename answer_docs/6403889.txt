@@ -1,0 +1,19 @@
+<p>Why don't you just build a simple function and TELL it?</p>
+
+<pre><code>/**
+ * Prints out $obj for debug
+ *
+ * @param any_type $obj
+ * @param (string) $title
+ */
+function print_all( $obj, $title = false )
+{
+    print "\n&lt;div style=\"font-family:Arial;\"&gt;\n";
+    if( $title ) print "&lt;div style=\"background-color:red; color:white; font-size:16px; font-weight:bold; margin:0; padding:10px; text-align:center;\"&gt;$title&lt;/div&gt;\n";
+    print "&lt;pre style=\"background-color:yellow; border:2px solid red; color:black; margin:0; padding:10px;\"&gt;\n\n";
+    var_export( $obj );
+    print "\n\n&lt;/pre&gt;\n&lt;/div&gt;\n";
+}
+
+print_all( $aUser, '$aUser' );
+</code></pre>

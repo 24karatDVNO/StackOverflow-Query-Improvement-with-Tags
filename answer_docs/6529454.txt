@@ -1,0 +1,10 @@
+<p>Another possible solution is to set the default at the database level using a migration. That way you don't have to do anything special for the default situation.</p>
+
+<p>The migration might look something like:</p>
+
+<pre><code>change_table :users do |t|
+  t.string :avatar, :default =&gt; 'default_url'
+end
+</code></pre>
+
+<p>From: <a href="http://guides.rubyonrails.org/migrations.html" rel="nofollow">http://guides.rubyonrails.org/migrations.html</a></p>

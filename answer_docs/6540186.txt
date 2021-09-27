@@ -1,0 +1,7 @@
+<p>The best thing to learn right now is how to find the cause of these kind of problems using Instruments.</p>
+
+<p>In Xcode 4 go to Product / Profile, your project will compiled and Instruments window will appear. Choose the Allocations instrument, then stop automatically started execution by clicking on the red button that looks like a REC button.</p>
+
+<p>Click on the little i button in front of Allocations instrument. And select "Record Reference Count" and "Enable NSZombie Detection", now run again by clicking that same red button. Reproduce the problem, when it crashs go back to the Instruments window and you will see a dialog box click on the arrow and search for the problem's origin. IMO you should look where your object is been wrongly released.</p>
+
+<p><img src="https://i.stack.imgur.com/mOoE5.png" alt="enter image description here"></p>

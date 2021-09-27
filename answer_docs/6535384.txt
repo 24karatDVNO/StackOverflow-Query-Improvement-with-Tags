@@ -1,0 +1,7 @@
+<p>I think the problem is the <code>SELECT</code>.</p>
+
+<p>You are <code>SELECT</code>ing from a table variable that is not declared in the query, so there's nothing for BCP to do.</p>
+
+<p>Table variables only persist for the context they are called in, so even if you have one in a query, and you have dynamic sql or a subproc within that first query, they won't be able to see the table variable.</p>
+
+<p><a href="http://social.msdn.microsoft.com/Forums/is/sqltools/thread/02337dd5-5cfd-40d8-b529-12dc557d6a7e" rel="nofollow">See this for more info.</a></p>

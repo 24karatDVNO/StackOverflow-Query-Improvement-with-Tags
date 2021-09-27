@@ -1,0 +1,9 @@
+<p>You could do:</p>
+
+<pre><code>if (lang==langcodes[i]){
+    dest = dest.substr(0,dest.lastIndexOf('/') +1) + lang.substr(0,2) + dest.substr(dest.lastIndexOf('/'));
+    window.location.replace ?window.location.replace(dest) :window.location=dest;
+}
+</code></pre>
+
+<p>ok, tested on www.google.it and it woked (output www.google.it/it/)</p>

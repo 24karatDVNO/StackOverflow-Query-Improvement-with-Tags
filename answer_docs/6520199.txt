@@ -1,0 +1,11 @@
+<p>The answer is no the session timeout applies to ALL session variables per user. You can however use the cache or a cookie which both support timeout on an individua(per key) level.</p>
+
+<p>But hang on those solutions don't come without some major drawbacks. If you use the cache you lose the privacy the session provides and if you use the cookie you are constrained with file size and serialization issues.</p>
+
+<p>One workaround for this is to use the cache and make sure you include the user's session id in every key you use. This way you'll end up with a cache storage that mimics the session itself.</p>
+
+<p>If you want further functionality and don't want to bother about implementing this however you can use the API from this little project on CodePlex:</p>
+
+<p><a href="http://www.univar.codeplex.com" rel="nofollow">http://www.univar.codeplex.com</a></p>
+
+<p>The version 2.0 offers many storage type options out of the box including a session bound cache.</p>

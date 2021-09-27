@@ -1,0 +1,15 @@
+<p>The danger with Border testing (or sometimes called Boundary Value Analysis) is that we tend to focus on the clear and obvious boundaries. But there can be many unknown and difficult to predict boundaries. If we trust too much in the clear and obvious boundaries then we risk missing failures around hidden boundaries.</p>
+
+<p>So while it is important to focus on known boundaries, it does no harm to try a sample of tests at various intervals.</p>
+
+<p>So I would say your set of tests might be a little light.</p>
+
+<p>Where you have:
+"0", "1","50","100", "101", "0.9", "100.1", "A"</p>
+
+<p>I would be more inclined to add a few in between:
+"0", "1","10","20","30","40","50","60","70","80","90","100", "101", "0.9", "100.1", "A"</p>
+
+<p>You might also want to consider adding some extreme cases too, such as very large numbers, or a few million characters. </p>
+
+<p>You always need to consider cost vs. value. If these tests are automated, and adding a few more data points to your input data adds very little time to the test run, they the cost is very low. But if these tests are manual, then you may decide on reducing the set of tests. But don't just don't stick to the boundaries...</p>

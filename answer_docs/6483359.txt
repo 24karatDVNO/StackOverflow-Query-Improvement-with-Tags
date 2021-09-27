@@ -1,0 +1,11 @@
+<p>What about setting the BoundField.DataFormatString and the BoundField.NullDisplayText properties, like:</p>
+
+<pre><code>&lt;asp:GridView ID="BoundFieldExample" runat="server"&gt;
+     &lt;Columns&gt;
+          &lt;asp:BoundField DataFormatString="{0:d}" NullDisplayText="Not Found" /&gt;
+     &lt;/Columns&gt;
+&lt;/asp:GridView&gt;
+</code></pre>
+
+<p>The above will display dates in short date string format for the current culture and the text "Not Found" for Null values.
+See GridView <a href="http://msdn.microsoft.com/en-us/library/e6f329ah.aspx" rel="nofollow">BoundField Class</a> for more information.</p>

@@ -1,0 +1,11 @@
+<p>You may be thinking of something like this:</p>
+
+<pre><code>void foo(vector&lt;int&gt; large_object)
+</code></pre>
+
+<p>vs.</p>
+
+<pre><code>void foo(const vector&lt;int&gt;&amp; large_object)
+</code></pre>
+
+<p>The second case may be faster because the compiler will only push a reference on the stack.  In the first case the entire vector will be pushed.</p>

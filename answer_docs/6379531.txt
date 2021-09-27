@@ -1,0 +1,9 @@
+<p>You can't pass array as condition. You should:</p>
+
+<p>a. do a for(each) loop in the $data1 array and perform next actions</p>
+
+<p>b. implode the array and search with <code>IN</code>. Example:</p>
+
+<p><code>$commaSeparated = implode(",", $data1);</code></p>
+
+<p><code>$results2=mysql_query('SELECT * FROM searchengine WHERE id IN ('.$commaSeparated.'));</code></p>

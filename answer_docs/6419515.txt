@@ -1,0 +1,47 @@
+<p>Because did I try this and I ran into problems.  Here is another try:<br></p>
+
+<p>The output looks like:<br></p>
+
+<pre><code># lines is already prefilled with a valid HTML message
+m = email.message_from_string( lines );
+email.iterators._structure( m );
+print m.is_multipart();
+print m.get_payload( decode=True );
+print m.get_payload();
+</code></pre>
+
+<p>The output looks like:<br></p>
+
+<blockquote>
+  <p>&gt;&gt;&gt; execfile( 'email2.py' )<br>
+    multipart/alternative<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text/plain<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text/html<br>
+    True<br>
+    None<br>
+    [&lt;email.message.Message instance at 0x0235FDF0&gt;, &lt;email.message.Message instance at 0x02355F08&gt;]<br></p>
+</blockquote>
+
+<p>You see, fails if I use <code>decode='true'</code>.  Here is the simplified email:</p>
+
+<pre><code>Content-Type: multipart/alternative;
+    boundary="----=_NextPart_000_0130_01CC1E30.41026040"
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0130_01CC1E30.41026040
+Content-Type: text/plain;
+    charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+plain
+
+------=_NextPart_000_0130_01CC1E30.41026040
+Content-Type: text/html;
+    charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+html
+
+------=_NextPart_000_0130_01CC1E30.41026040--
+</code></pre>

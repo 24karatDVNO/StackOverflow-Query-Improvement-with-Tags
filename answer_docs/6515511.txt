@@ -1,0 +1,5 @@
+<p>You cannot modify keys while enumerating them.</p>
+
+<p>One method I use for changes to the collection while enumerating them is that I do <code>break;</code> out of the <code>foreach</code> loop when a match is found and item is modified, and am restarting the whole enumeration all over again.  That's one way of handling it...</p>
+
+<p>No, Dictionary can't have duplicate keys.  If you want something that will sort by key and allow duplicates, you should use some other data structure.</p>

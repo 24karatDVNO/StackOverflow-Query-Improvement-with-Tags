@@ -1,0 +1,12 @@
+<p>Maybe your directory <em>$inDirectory</em> ... is not a directory as expected and I'm not sure but it looks like you don't need the end slash for the dirname  :</p>
+
+<pre><code>print $inDirectory::Find::name;
+if ( -d $inDirectory::Find::name ) { # just grab directories, not files.
+   print "adding a dir\n";
+   $zip-&gt;addDirectory($inDirectory::Find::name);
+} else {
+  #zip files
+   print "adding a file\n";
+  $zip-&gt;addFile($inDirectory::Find::name) != AZ_OK ||  print "couldn't add file \n";
+}
+</code></pre>

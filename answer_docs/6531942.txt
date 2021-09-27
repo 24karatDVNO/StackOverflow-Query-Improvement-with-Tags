@@ -1,0 +1,5 @@
+<p>This is caused by a socket error emitting an "error" event, but not finding any listeners for "error" events.  In this case, node converts the event into an exception.</p>
+
+<p>So the simple thing to check is make sure that you are listening for errors on all of your connections.</p>
+
+<p>There is a tricky bug right now where some sockets emit errors before, or possibly after the user code can be listening for errors.  I see this a lot when doing HTTPS.  If you are hitting this uncatchable error situation, there's not much you can do about this besides changing node to not convert those socket errors into exceptions.  If you can come up with a reliable way to reproduce this issue, it'll get fixed much more quickly.</p>

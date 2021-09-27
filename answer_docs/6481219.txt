@@ -1,0 +1,15 @@
+<pre><code>function startsWith($key, $data) {
+   // get the length of the key we are looking for
+   $len = strlen($key);
+   // Check if the key matches the initial portion of the string
+   if ($key === substr($data, 0, $len)) {
+      // if yes return the remainder of the string
+      return substr($data, $len);
+   } else {
+      // return false
+      return false;
+   }
+}
+</code></pre>
+
+<p>This would allow you to check if the string starts with that and process it accordingly</p>

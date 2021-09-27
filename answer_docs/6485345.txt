@@ -1,0 +1,15 @@
+<pre><code>List&lt;UIElement&gt; list = new List&lt;UIElement&gt;();
+
+            GetAllControl("someCanvas", list);
+
+        private void GetAllControl(Canvas c , List&lt;UIElement&gt; list)
+        {
+            foreach (Control control in c.Controls)
+            {
+                list.Add(control);
+
+                if (control.Controls.Count &gt; 0)
+                    GetAllControl(control , list);
+            }
+        }
+</code></pre>

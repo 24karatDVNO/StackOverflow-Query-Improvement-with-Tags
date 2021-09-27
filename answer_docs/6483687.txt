@@ -1,0 +1,103 @@
+<p>Before adding an item bookmark the current row of your table that correspond to dbgrid.
+Afer adding an item goto your bookmark
+a sample for working with TBookmark:
+(you can replace clientdataset1 with your tableName like table1)</p>
+
+<pre><code>unit MainForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, DB, DBClient, ExtCtrls, ActnList, Grids, DBGrids,
+  DBCtrls;
+
+type
+  TfrmMain = class(TForm)
+    DataSource1: TDataSource;
+    pnlClient: TPanel;
+    pnlBottom: TPanel;
+    btnFirst: TButton;
+    btnLast: TButton;
+    btnNext: TButton;
+    btnPrior: TButton;
+    DBGrid1: TDBGrid;
+    ClientDataSet1: TClientDataSet;
+    btnSetRecNo: TButton;
+    DBNavigator1: TDBNavigator;
+    btnGetBookmark: TButton;
+    btnGotoBookmark: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure btnNextClick(Sender: TObject);
+    procedure btnLastClick(Sender: TObject);
+    procedure btnSetRecNoClick(Sender: TObject);
+    procedure btnFirstClick(Sender: TObject);
+    procedure btnPriorClick(Sender: TObject);
+    procedure btnGetBookmarkClick(Sender: TObject);
+    procedure btnGotoBookmarkClick(Sender: TObject);
+  private
+    { Private declarations }
+    FBookmark: TBookmark;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  ClientDataSet1.LoadFromFile('C:\Employee.cds');
+end;
+
+procedure TfrmMain.btnFirstClick(Sender: TObject);
+begin
+  ClientDataSet1.First;
+end;
+
+procedure TfrmMain.btnPriorClick(Sender: TObject);
+begin
+  ClientDataSet1.Prior;
+end;
+
+procedure TfrmMain.btnNextClick(Sender: TObject);
+begin
+  ClientDataSet1.Next;
+end;
+
+procedure TfrmMain.btnLastClick(Sender: TObject);
+begin
+  ClientDataSet1.Last;
+end;
+
+procedure TfrmMain.btnSetRecNoClick(Sender: TObject);
+var
+  Value: string;
+begin
+  Value := '1';
+  if InputQuery('RecNo', 'Enter Record Number', Value) then
+    ClientDataSet1.RecNo := StrToInt(Value);
+end;
+
+procedure TfrmMain.btnGetBookmarkClick(Sender: TObject);
+begin
+  if Assigned(FBookmark) then
+    ClientDataSet1.FreeBookmark(FBookmark);
+
+  FBookmark := ClientDataSet1.GetBookmark;
+end;
+
+procedure TfrmMain.btnGotoBookmarkClick(Sender: TObject);
+begin
+  if Assigned(FBookmark) then
+    ClientDataSet1.GotoBookmark(FBookmark)
+  else
+    ShowMessage('No bookmark set!');
+end;
+
+end.
+</code></pre>

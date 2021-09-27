@@ -1,0 +1,12 @@
+<p>My best guess/answer so far:</p>
+
+<p>It appears to have something to do with the way I'm "nesting" the return (returning the list function). </p>
+
+<p>If I duplicate the List() method call inside my UpdateStatus and use the following line:</p>
+
+<pre><code>Return View("List",plvm)
+</code></pre>
+
+<p>It works, sort of.  </p>
+
+<p>Sometimes it doesn't return any data, just blanks out the entire list and leaves it there and I have to reload the entire page.  Is that a bug in the ajax implementation?</p>

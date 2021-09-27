@@ -1,0 +1,16 @@
+<p>You want to implode all your product name from your database? if yes, than your code above is wrong.</p>
+
+<p>mysql_fetch_array($category) only return 1 row of your database. If you want to implode of your all product name than code should like this:</p>
+
+<pre><code>$result="";
+while($row_category=mysql_fetch_array($category))
+   $result=$result.",".$row[0];
+</code></pre>
+
+<p>or you some thing like this. You hold all your product name on array and implode it. Like this:</p>
+
+<pre><code>    while($row_category=mysql_fetch_array($category))
+   $result[]=$row[0];
+
+$newResult=implode(",",$result);
+</code></pre>

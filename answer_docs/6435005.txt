@@ -1,0 +1,6 @@
+<p>Regarding your problem getting this to work with <code>getElementByName()</code> - that's probably because the method is actually <code>getElementsByName()</code> - note the plural elementS. It returns a list of all elements with the specified name, accessible via array syntax; even if there is only one matching element you still get a list (with only one thing in it).</p>
+
+<p>If you are sure there will be exactly one element with the specified name you can do this:</p>
+
+<pre><code>var elementValue = document.getElementsByName(name)[0].value;
+</code></pre>

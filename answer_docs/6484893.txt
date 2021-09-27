@@ -1,0 +1,15 @@
+<pre><code>using System.Runtime.InteropServices;  
+...  
+namespace N  
+{  
+   class C {  
+     [DllImport("User32.dll")]  
+     public static extern Int32 SetForegroundWindow(int hWnd);  
+     ...  
+     void f(){  
+          SetForegroundWindow(this.Handle.ToInt32());  
+     }  
+  }  
+</code></pre>
+
+<p>}  </p>

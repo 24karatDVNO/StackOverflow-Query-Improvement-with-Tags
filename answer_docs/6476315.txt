@@ -1,0 +1,8 @@
+<p>also, you may want to consider just calling 'show tables', then caching it at the class level in a private var, so you could do a simple isset later, eg. </p>
+
+<pre><code>isset($this-&gt;tables_cache[$db_name][$table_name])
+</code></pre>
+
+<p>this would allow you to scale a bit better with more tables.</p>
+
+<p>you could also save this as a json structure or serialized struct in your filesystem, loading it on __construct of your class, and (re)saving it on __destruct.</p>

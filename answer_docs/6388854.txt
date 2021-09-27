@@ -1,0 +1,17 @@
+<p>i think you should be doing this instead if <a href="http://jsfiddle.net/Che7G/" rel="nofollow">all you want is just anchors</a>.</p>
+
+<blockquote>
+  <p>$(temporaryString).find("a").remove();</p>
+</blockquote>
+
+<p>but the thing is, what's in the temporarystring?
+if it's just text then i think the easiest way is to use a hidden div and paste the html there and call the div to process using jquery.</p>
+
+<p>i.e.</p>
+
+<pre><code>$("#hiddenDivId").html(myHtmlChunk);
+$("#hiddenDivId").find("a").remove();
+
+//then do whatever u want with the html and clear the hidden div
+$("#hiddenDivId").html("");
+</code></pre>

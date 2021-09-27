@@ -1,0 +1,20 @@
+<p>It might help if you talked about what you were trying to do - it isn't really typical to use the id() builtin for anything, least of all strings, unless you really know what you're doing.</p>
+
+<p><a href="http://docs.python.org/library/functions.html#id" rel="nofollow">Python docs nicely describe the id() builtin function:</a></p>
+
+<blockquote>
+  <p>This is an integer (or long integer)
+  which is guaranteed to be unique and
+  constant for this object during its
+  lifetime. Two objects with
+  non-overlapping lifetimes may have the
+  same id() value.</p>
+</blockquote>
+
+<p>As I read this, the return values of id() are really only guaranteed to be unique in one interpreter instance - and even then only if the lifetimes of the items overlap. Saving these ids for later use, sending them over sockets, etc. seems not useful. Again, I don't think this is really for people who don't know that they need it.</p>
+
+<p>If you want to generate IDs which are unique across multiple program instances, you might check out the <a href="http://docs.python.org/library/uuid.html" rel="nofollow">uuid module</a>.</p>
+
+<p>It also occurs to me that you might be trying to <a href="http://docs.python.org/reference/datamodel.html#object.__hash" rel="nofollow">produce hashes from Python objects.</a></p>
+
+<p>Probably there is some approach to your problem which will be cleaner than trying to use the id() function, maybe the problem needs reformulating.</p>

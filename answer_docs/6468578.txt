@@ -1,0 +1,27 @@
+<p>Hope this helps.  I have tested and created a js fiddle: <a href="http://jsfiddle.net/xDqZK/" rel="nofollow">http://jsfiddle.net/xDqZK/</a></p>
+
+<p>Basically once you have the xml in javscript you can use jquerys parseXML() function to get it into a jquery object.   Once in the object you can search for different nodes and iterate within them using the $.find() method.  One tricky thing, if you want to get the value of a node you need to use .text().  I was using .val() and .hmtl() which returned undefined.  </p>
+
+<pre><code>var strXml ="&lt;root&gt;&lt;item guid=\"np_108886\"&gt;&lt;title&gt;Test event 1&lt;\/title&gt;&lt;description&gt;lorem ipsum&lt;\/description&gt;&lt;specfields&gt;&lt;city&gt;oslo&lt;\/city&gt;&lt;startdate&gt;2011\/08\/11&lt;\/startdate&gt;&lt;\/specfields&gt;&lt;\/item&gt;&lt;item guid=\"np_108886\"&gt;&lt;title&gt;Test event 1&lt;\/title&gt;&lt;description&gt;lorem ipsum&lt;\/description&gt;&lt;specfields&gt;&lt;city&gt;dallas&lt;\/city&gt;&lt;startdate&gt;2011\/11\/11&lt;\/startdate&gt;&lt;\/specfields&gt;&lt;\/item&gt;&lt;item guid=\"np_108886\"&gt;&lt;title&gt;Test event 2&lt;\/title&gt;&lt;description&gt;lorem ipsum&lt;\/description&gt;&lt;specfields&gt;&lt;city&gt;new york&lt;\/city&gt;&lt;startdate&gt;2011\/09\/11&lt;\/startdate&gt;&lt;\/specfields&gt;&lt;\/item&gt;&lt;item guid=\"np_108886\"&gt;&lt;title&gt;Test event 2&lt;\/title&gt;&lt;description&gt;lorem ipsum&lt;\/description&gt;&lt;specfields&gt;&lt;city&gt;seattle&lt;\/city&gt;&lt;startdate&gt;2011\/09\/11&lt;\/startdate&gt;&lt;\/specfields&gt;&lt;\/item&gt;&lt;\/root&gt;";
+var xml = $.parseXML(strXml);
+
+$("#test").html((parse(xml,"Test event 1")));
+
+function parse(xml, strEvent)
+{
+    var eventStr = "",$xml = $(xml);
+    $xml.find("item").each(function(){
+        if($(this).find("title").text().toLowerCase() == strEvent.toLowerCase()){
+           var childNode = $(this).find("specfields")
+           eventStr += childNode.find("city").text();
+           eventStr += " (" + childNode.find("startdate").text() + ") ";
+        }
+    });
+    return eventStr;
+}
+</code></pre>
+
+<p>HTML</p>
+
+<pre><code>&lt;div id="test&gt;&lt;/div&gt;
+</code></pre>

@@ -1,0 +1,12 @@
+<p>Since you are using Spring, then use the Resource support in Spring to inject the properties files directly.  </p>
+
+<p>see <a href="http://static.springsource.org/spring/docs/3.0.x/reference/resources.html" rel="nofollow">http://static.springsource.org/spring/docs/3.0.x/reference/resources.html</a></p>
+
+<p>Even if the class that requires the properties file is not Spring managed, you can still get access to the ApplicationContext and use it to load the resource</p>
+
+<p>resource would be something like, classpath:settings.properties, presuming that your properties file got picked up by your build and dropped in the war file.</p>
+
+<p>You can also inject directly, from the docs:</p>
+
+<pre><code>&lt;property name="template" value="classpath:some/resource/path/myTemplate.txt"&gt;
+</code></pre>

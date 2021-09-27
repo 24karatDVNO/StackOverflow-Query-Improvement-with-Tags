@@ -1,0 +1,14 @@
+<p>I know this is old, but how about this:</p>
+
+<p>Add a config.py where you define the DEBUG flag (or if you have it defined elsewhere, even better). And then:</p>
+
+<pre><code>from config import DEBUG
+
+def webapp_add_wsgi_middleware(app):
+    if not DEBUG:       
+        from google.appengine.ext.appstats import recording
+        app = recording.appstats_wsgi_middleware(app)
+    return app
+</code></pre>
+
+<p>EDIT: Advantage of this method is you can use the same debug flag elsewhere in your app.</p>

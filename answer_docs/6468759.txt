@@ -1,0 +1,5 @@
+<p>Notice that <code>PATH_TRANSLATED = E:\web\wowreforgec\htdocs\EU\Kael%27Thas\Acekhor</code>. It looks like the URL encoded character <code>%27</code> is not being translated to <code>'</code>  before looking up the path of the file on disk. The <code>%</code> character is forbidden by the <a href="http://msdn.microsoft.com/en-us/library/system.web.configuration.httpruntimesection.requestpathinvalidcharacters.aspx" rel="nofollow">default configuration of the RequestPathInvalidCharacters</a> property, thus the input is considered dangerous and an exception is thrown.</p>
+
+<h2>Edit</h2>
+
+<p>The <a href="http://msdn.microsoft.com/en-us/library/adwtk1fy.aspx" rel="nofollow">HttpUtility.UrlDecode(string s)</a> method should transform <code>/EU/Kael%27Thas/Acekhor</code> into <code>/EU/Kael'Thas/Acekhor</code>. This method (or one of similar function) should be called at the point where the virtual path is resolved to a physical path. Are you using a custom method to transform the virtual path into a physical path?</p>

@@ -1,0 +1,30 @@
+<ol>
+<li>Create a CLass Library</li>
+<li>Inside the .vb file, Create a Interface first.</li>
+<li>Create class by inheriting from Interface.</li>
+<li>Create Strong Name under "Signing" TAB of Properties.</li>
+<li>Enable the "Register for Com Interop" under "compile" TAB of Properties</li>
+<li>Enter the Assembly Information.</li>
+<li>Build the Solution.</li>
+</ol>
+
+<p>After this,</p>
+
+<ol>
+<li>Goto "Visual Studio 2010 Command Prompt"</li>
+<li>Navigate to dll path</li>
+<li>Register the dll using "regasm" like regasm test.dll /tlb:test.tlb</li>
+</ol>
+
+<p>Now Registry Entries will be done under CLSID and Interface. Then</p>
+
+<ol>
+<li>Export to GAC(Global Assembly Cache ie. C:\Windows\Microsoft.Net\Assembly) using "gacutil.exe" like gacutil /i test.dll</li>
+</ol>
+
+<p>That's all.... We can use the COM application....</p>
+
+<h1>Refer the links:</h1>
+
+<p><a href="http://www.codeproject.com/KB/COM/nettocom.aspx" rel="nofollow">http://www.codeproject.com/KB/COM/nettocom.aspx</a>
+http://www.15seconds.com/issue/040721.htm</p>

@@ -1,0 +1,5 @@
+<p>I created a table called 12HourClock that contains the columns you specified in your example.</p>
+
+<pre><code>SELECT LEFT(CAST(CONVERT(time, [Time] + ' ' + AMPM, 8) AS nvarchar(5)), 5) AS 'Time'
+FROM [12HourClock]
+</code></pre>

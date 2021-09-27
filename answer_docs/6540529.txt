@@ -1,0 +1,30 @@
+<p>Pass them as functions instead.</p>
+
+<pre><code>function confirm_yes_no(xtitle,msg, btn_yes_txt, btn_no_txt, btn_yes_js, btn_no_js)
+{
+    var button_yes = btn_yes_txt;
+    var button_no = btn_no_txt;
+    var dialog_buttons = {};
+
+    dialog_buttons[button_yes] = btn_yes_js
+    dialog_buttons[button_no] = btn_no_js
+
+    $("#modal_confirm_yes_no").html(msg);
+    $("#modal_confirm_yes_no").dialog({
+                title: xtitle,
+                bgiframe: true,
+                autoOpen: false,
+                height: 150,
+                width: 300,
+                modal: true,
+                buttons: dialog_buttons
+            });
+
+    $("#modal_confirm_yes_no").dialog("open");
+}
+</code></pre>
+
+<p>Call it by:</p>
+
+<pre><code>confirm_yes_no("Print Checks", "Would you like to print checks now?", "Yes", "No", function() { alert('you clicked yes'); }, function() { alert('you clicked no'); } );
+</code></pre>

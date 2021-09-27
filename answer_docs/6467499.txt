@@ -1,0 +1,3 @@
+<p>You could probably use the <code>StringComparison.OrdinalIgnoreCase</code> option on your string comparisons and avoid having to call <code>ToUpper</code> on all your strings 20k times.</p>
+
+<p>Ideally, first you need to decide how slow is too slow based on your best estimates for typical usage of your program. After all <a href="http://c2.com/cgi/wiki?PrematureOptimization" rel="nofollow">premature optimisation is the root of all evil</a>.</p>

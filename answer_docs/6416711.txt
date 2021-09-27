@@ -1,0 +1,16 @@
+<p>Try using GROUP BY instead of select DISTINCT.  Also you can move your sub-query from the WHERE clause and use it as a derived table in a join.</p>
+
+<pre><code>SELECT EM.Employee, 
+       RTRIM(EM.FirstName) + ' ' + RTRIM(EM.LastName) AS Name 
+FROM EM EM 
+INNER JOIN PR PR 
+    ON EM.Employee = PR.ProjMgr 
+INNER JOIN (SELECT WTS1 
+              FROM TabFields 
+             WHERE custInclude = 'Y' AND WTS2 = ''
+             GROUP BY WTS1) x
+    ON PR.WTS1 = x.WTS1
+    AND PR.WTS2 = '' 
+GROUP BY EM.Employee,    RTRIM(EM.FirstName) + ' ' + RTRIM(EM.LastName) 
+ORDER BY RTRIM(EM.FirstName) + ' ' + RTRIM(EM.LastName)
+</code></pre>

@@ -1,0 +1,11 @@
+<p>You're using the '&amp;&amp;' operator which is not T-SQL, use AND, also use INNER JOIN and table aliases to simplify your query. I think the result should look something like this:</p>
+
+<pre><code>SELECT adm.comp_name, emp.emp_fname, emp.date_registered, lgn.login_date 
+FROM tb1_admin_detail adm
+INNER JOIN tb1_employee_personalinfo emp ON adm.unit_id = emp.unit_id
+INNER JOIN tb1_employee_login_detail lgn ON adm.unit_id = lgn.unit_id
+WHERE emp.Active = 1
+ORDER BY lgn.unit_id ASC, lgn.emp_id asc, lgn.login_date desc 
+</code></pre>
+
+<p>Hope this helps.</p>

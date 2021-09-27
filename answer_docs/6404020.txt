@@ -1,0 +1,22 @@
+<blockquote>
+  <p>(besides doing it manually with events)</p>
+</blockquote>
+
+<p>It must be clarified that one and two way data binding <strong>does</strong> depend on events. Please read about <a href="http://msdn.microsoft.com/en-us/library/ms743695.aspx" rel="nofollow">How to: Implement Property Change Notification</a></p>
+
+<p>That said, you can databind without hard coding strings representing property names in your code.</p>
+
+<p>One way to do it is through custom attributes. You can decorate certain properties in your data model you want your user control to bind to. This way when the <code>DataSource</code> is set in your user control, via reflection you can search the <code>DataSource</code> object for custom <code>Attribute</code> decorated properties and bind to them:</p>
+
+<pre><code>public class MyDataModelObject
+{
+    public int NotBindableProperty { get; }
+
+    [MyBindableAttribute]
+    public string BindableStringProperty
+    {
+        get {...}
+        set {...}
+    }
+}
+</code></pre>

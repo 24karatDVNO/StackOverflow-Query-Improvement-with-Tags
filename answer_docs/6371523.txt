@@ -1,0 +1,9 @@
+<p>This is the solution I actualy used.</p>
+
+<p>RewriteEngine on<br/>
+RewriteCond %{REQUEST_FILENAME} !-f<br/>
+RewriteCond %{REQUEST_FILENAME} !-d<br/>
+RewriteRule ^(.*)$ site/index.php?q=$1 [L,QSA]<br/>
+RewriteRule ^$ site/index.php [L,QSA]</p>
+
+<p>Probably I can omit the last line by rewriting it a bit, but at least it is working as I expect!</p>

@@ -1,0 +1,5 @@
+<p>You could start simple and build from there.  Maybe provide one action in your email controller that simply takes in inputs (From, Subject, Message, etc. - I would put this in a view model) from your administrator.  Provide a radio button that gives them the option to select HTML or Plain text.  In your code, depending on what they choose, you can tell System.Net.Mail what format to send the email in.</p>
+
+<p>Also, if the administrator simply wants to write text, you could design a simple HTML layout that poses as an HTML email template that can provide the flair surrounding the text entered.</p>
+
+<p>There are many options, hopefully this helped a little.</p>

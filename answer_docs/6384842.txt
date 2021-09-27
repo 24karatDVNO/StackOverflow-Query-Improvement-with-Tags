@@ -1,0 +1,17 @@
+<p>There is just an onResize method used in Javascript so that when the browser changes then that changes the CSS for the background image's position.</p>
+
+<p>Give the image an id: <code>id="fullImage"</code></p>
+
+<p>They then use javascript to manipulate the <code>left:;</code> css style.</p>
+
+<p>As you resize <code>left</code> changes up and down.</p>
+
+<p>This should do it:</p>
+
+<pre>var el = document.getElementById(fullImage),
+width = window.innerWidth,
+imageWidth = [width of image here];
+window.onresize = function() {
+  el.style.left = imageWidth - width + "px";
+}
+</pre>

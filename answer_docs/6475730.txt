@@ -1,0 +1,9 @@
+<p>First, your code is illegible. If you use accepted style guidelines it will help when debugging. </p>
+
+<p>A couple of things to help improve: </p>
+
+<p>Use names not letters for variables and favor camelCaseVariables. These will help with readability especially when asking a question like this.</p>
+
+<p>Use open and close brackets even for one lined if statements and loops. It will better set off loops and make them more readable and helps prevent bugs in program flow.</p>
+
+<p>Anyway, you may be passing a null position object (capitalize your class names btw) to the mover method. In your IDE, set a breakpoint on that line and make it conditional to stop only when the passed pointer object is null. You'll quickly see why.</p>

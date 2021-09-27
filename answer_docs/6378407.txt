@@ -1,0 +1,14 @@
+<pre><code>
+$('#select1').change(function() {
+    if($(this).val() != "") {
+        $('#select2').removeAttr('disabled');
+    } else {
+        $('#select2').attr('disabled', 'disabled');
+    }
+})
+
+</code></pre>
+
+<p>...etc.</p>
+
+<p>I'm assuming you probably want to redisable the other selects if the initial state is reselected.</p>

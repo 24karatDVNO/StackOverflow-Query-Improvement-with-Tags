@@ -1,0 +1,5 @@
+<p>I have experimented with this too. I don't have the code at hand at the moment, but I used one of the hooks (not pre-receive, I think it was the update one) to do a temporary checkout of the new ref. You can speed this up by having a checked out tree which you just have to update and by just doing shallow clones.</p>
+
+<p>This allows access to the whole source tree and you can not only run CS on the files changed with the push, but also run the unit or smoke tests.</p>
+
+<p>I also agree with some of the other comments that these tests should be kept to a minimum, because nothing is more annoying than being blocked by commit hooks. Any further checks should be happening in your CI server or deployment system. </p>

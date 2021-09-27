@@ -1,0 +1,9 @@
+<p>Although I may not answer your question you <em>are</em> touching on some interesting points.</p>
+
+<p>I subscribe to the school of thought that says one should not query an object model but rather make use of a denormalized lightweght query layer.</p>
+
+<p>You will pobably quickly run into the lazy-loading and projection issue: i.e. you do not <em>always</em> require the related data and you do not <em>always</em> require all the fields.  A query layer takes care of this quite nicely since using a denormalized model means that when you do your query you do not need to do N-number of joins to get the related data.  You will still at some point need to gather up the data but you actual view queries will be order fo magnitude faster.</p>
+
+<p>Also, getting all the data (by joining) for your denormalized model is a once-off affair as opposed to doing it each and every time you display the relevant data on the front-end.</p>
+
+<p>Hope that makes sense :)</p>

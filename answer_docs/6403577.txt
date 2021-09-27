@@ -1,0 +1,23 @@
+<p>I have found an interexting method : 
+Manfest :</p>
+
+<pre><code>android:launchMode="singleInstance"
+&lt;action android:name="com.gr.app.KILLSELF" /&gt;
+</code></pre>
+
+<p>receiver code :</p>
+
+<pre><code>Intent intentInterface = new Intent("com.gr.app.KILLSELF");
+mContext.startActivity(intentInterface);
+</code></pre>
+
+<p>activity onCreate part :</p>
+
+<pre><code>if (intent.getAction().compareTo("com.gr.app.KILLSELF") == 0) {
+        finish();
+    };
+</code></pre>
+
+<p>It will not work in such configuration if you may have many instancesof activity (string android:launchMode="singleInstance" is a problem for you),</p>
+
+<p>I hope it will help</p>

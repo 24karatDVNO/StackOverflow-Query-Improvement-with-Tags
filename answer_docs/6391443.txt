@@ -1,0 +1,16 @@
+<p>I think something like this may be what you're looking for:</p>
+
+<pre><code>if (bgSkyer == false) {
+    CCMoveTo *moveOne = [CCMoveTo actionWithDuration:0.5 position:ccp(240,100)];
+    CCRepeatForever *repeatOne = [CCRepeatForever actionWithAction:moveOne];
+    [bg3 runAction:repeatOne];
+
+    CCMoveTo *moveTwo = [CCMoveTo actionWithDuration:1.5 position:ccp(240,95)];
+    CCRepeatForever *repeatTwo = [CCRepeatForever actionWithAction:moveTwo];
+    [bg3 runAction:repeatTwo];
+}else{
+    //just repeat code, etc...
+}
+</code></pre>
+
+<p>Hope it works!</p>

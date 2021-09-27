@@ -1,0 +1,8 @@
+<p>Try this:</p>
+
+<pre><code>$('ul &gt; li[value]').click(function () {
+    $(this).closest('ul').attr('value', this.value);
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/mDmsW/3/" rel="nofollow">http://jsfiddle.net/mDmsW/3/</a></p>

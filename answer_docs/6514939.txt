@@ -1,0 +1,27 @@
+<p>Although I don't think it's a great idea, Ivan Nevostruev is correct. Since he answered while I was putting the test case together, below would work:</p>
+
+<pre><code>&lt;?php
+
+class test {
+    function set($key, $val) {
+        $this-&gt;$key = $val;
+    }
+}
+
+$form_data = new test;
+$form_data-&gt;set('do_you_have_a_job_offer?',array('test'));
+
+print_r($form_data-&gt;{"do_you_have_a_job_offer?"});
+
+?&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>Array
+(
+    [0] =&gt; test
+)
+</code></pre>
+
+<p><a href="http://codepad.org/l62mGQ8Q" rel="nofollow">http://codepad.org/l62mGQ8Q</a></p>

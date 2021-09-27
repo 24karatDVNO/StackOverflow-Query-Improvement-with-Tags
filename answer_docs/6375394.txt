@@ -1,0 +1,40 @@
+<p>I ran into the same thing, finding out that the width of my divs containing the column headings and the table cells had the width = 0. So i had to wait a bit until the whole html-table was built, then i had to run the "format" method.
+Next thing is that i have the HTML table built in an invisible div at the beginning. So i had to omit the <code>not(:hidden)</code> selector within my code.</p>
+
+<p>Here we go:</p>
+
+<pre><code>    $.fn.flexAddData = function(data) { // function to add data to grid
+       ...
+    };
+    // my own method to justify the column headers with the body
+    $.fn.flexFormat = function() {
+        return this.each(function() {
+            var gridContainer = $('.flexigrid');
+            var headers = gridContainer.find('.hDiv table tr:first th');
+            var firstDataRow = gridContainer.find('.bDiv table tr:first td');
+            var offSet = 10;
+            // for each element in headers
+            // compare width with firstDataRow elemts
+            // the greater one sets the width of the lower one
+            $.each(headers, function(i) {
+                var thWidth = $(this).find('div').outerWidth();
+                var tdWidth = $(firstDataRow[i]).find('div').outerWidth();
+
+                thWidth &gt; tdWidth ? $(firstDataRow[i]).find('div').width(thWidth - offSet) : $(this).find('div').width(tdWidth - offSet);
+
+            });
+        });
+    }; // end format
+</code></pre>
+
+<p>The call for the method as follows:</p>
+
+<pre><code>    setTimeout(function() {
+            $('.flexigrid').flexFormat();
+        }
+        , 10
+    );
+</code></pre>
+
+<p>Hope to have another solution for the problem ;-)
+Regards, Christoph</p>

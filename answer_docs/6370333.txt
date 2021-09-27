@@ -1,0 +1,20 @@
+<p>Base class pointers are used when you have multiple derived classes but you want to abstract yourself from the derived class type. This can be very useful for example in situations like this:</p>
+
+<pre><code>class Animal {
+        Animal();
+}
+
+class Dog : public Animal {
+        Dog();
+}
+
+class Cat : public Animal {
+        Cat();
+}
+</code></pre>
+
+<p>As you see, in this example you have a base class (Animal) and two derived classes (Cat and Dog). Lets say now that you're running a zoo (that only has Cats and Dogs :) ), and you need to keep up a list of your animals. You could just create two separate lists, one for Cats and another for Dogs. However, if you consider that Cats and Dogs are just Animals, you could create a list with pointers to Animals.</p>
+
+<p>This way, by abstracting yourself from the derived class type, you can work with different derived classes by having a simple pointer to a base class.</p>
+
+<p>Derived class pointers are completely different since they can only "represent" the derived class type.</p>

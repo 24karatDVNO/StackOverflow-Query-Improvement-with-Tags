@@ -1,0 +1,6 @@
+<p>The other variables defined shouldn't be string but part of an object such as... Description.
+In this case, it would be easier, calling a Description->isEmpty() that returns true if one of those variables are empty.</p>
+
+<p>If you are stuck with this configuration, you still can make an array:
+$myArray=array($name, $category,...);
+and check in a loop or maybe the return of in_array('',$myArray)</p>

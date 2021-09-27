@@ -1,0 +1,6 @@
+<p>I was able to fix the problem by adding .clone() to the variable assignment. This way I'm not just placing the XML object in the DOM and overwriting it. rather, I am copying the data from the XML each time I need it so that it stays in tact.</p>
+
+<pre><code>quote = $(xmlData).find('endorsement').eq(0).children('quote').clone();
+author =$(xmlData).find('endorsement').eq(0).children('author').clone();
+title =$(xmlData).find('endorsement').eq(0).children('title').clone();
+</code></pre>

@@ -1,0 +1,21 @@
+<p>There is even a easier approach to the subject, if you or your boss are willing to pay 50$! </p>
+
+<p>Is called <a href="http://www.excelsior-usa.com/xfunction.html" rel="nofollow">eXcelsior xFunction</a>. Try the evaluation version.</p>
+
+<p>Works very well and is simple to use.</p>
+
+<p>The only thing xFunction library does not do have is implementation of address arithmetic in Java, which i assume you will possibly never need. </p>
+
+<p>From their site:</p>
+
+<p>With xFunction, you no longer need to implement those ugly native methods. Instead, you extend and instantiate xFunction classes to create conventional Java objects representing <strong>external functions</strong>, <strong>data structures</strong>, <strong>pointers</strong>, and <strong>callbacks</strong>. All necessary data conversions and external function calls are done seamlessly by the xFunction library:</p>
+
+<pre><code>import com.excelsior.xFunction.*;
+...
+/* Call Beep() from KERNEL32.DLL */
+xFunction f = 
+  new xFunction( "kernel32",
+                 "int Beep(int,int)" );
+f.invoke( new Argument(1770), 
+          new Argument(100) );
+</code></pre>

@@ -1,0 +1,3 @@
+<p>You can't set the cookie using an AJAX call: setting a third-party cookie on domain B by domain A requires that a page on domain B be in the act of fetching a page on domain A, which your ajax call is not doing.</p>
+
+<p>I'd suggest that instead of trying to use the cookie you fetch the access token from the response to the oauth dialog (<code>permObj-&gt;access_token</code> unless I'm wrong, and I could be) and post that as a request parameter with your AJAX call. You can then call the <code>$facebook-&gt;setAccessToken</code> method with the token value and you should be all set.</p>

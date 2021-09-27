@@ -1,0 +1,9 @@
+<p>If you have not yet upgraded to perl version 5.12, <strong>diagnostics</strong> has a bug which masks a specific warning.  The bug has been fixed in 5.12 (see <a href="http://perldoc.perl.org/perl5120delta.html#Modules-and-Pragmata" rel="nofollow">perl512delta</a>):</p>
+
+<blockquote>
+  <p>diagnostics no longer suppresses Use
+  of uninitialized value in range (or
+  flip) warnings. [perl #71204]</p>
+</blockquote>
+
+<p>Once I became aware of the bug, I went back and commented <code>use diagnostics;</code> out of all my code.  If I get warning messages, I uncomment it temporarily, but always go back and comment it out again.</p>

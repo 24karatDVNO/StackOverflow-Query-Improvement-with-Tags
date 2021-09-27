@@ -1,0 +1,7 @@
+<p>The network path was not found.</p>
+
+<p>This is related to DNS/WINS not being able to look up the name.     When I have seen this there are problems with our DNS servers.</p>
+
+<p>Adding an Entry into the <a href="http://en.wikipedia.org/wiki/LMHOSTS" rel="nofollow">lmhost file</a> would prevent the system from looking in DNS/WINS.</p>
+
+<p>If that does not work, another option to consider is to increase the number of retries on the Action.   This can be done from the "Runtime" tab of the action by clicking on "Timing Properties"</p>

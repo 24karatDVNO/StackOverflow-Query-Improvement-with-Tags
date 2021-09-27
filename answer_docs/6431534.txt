@@ -1,0 +1,58 @@
+<p>You need a couple of pieces of information to do this, start location, end location, duration and elapsed time. </p>
+
+<p>Here's an example in actionscript:</p>
+
+<pre><code>package {
+    import flash.utils.getTimer;
+    import flash.events.Event;
+    import flash.display.Shape;
+    import flash.geom.Point;
+    import flash.display.Sprite;
+
+    public class Mover extends Sprite {
+
+        private var circle      :Shape;
+        private var start       :Point;
+        private var end         :Point;
+        private var duration    :int;
+
+        public function Mover() {
+
+            // first we create something to move, like, a circle
+            circle = new Shape();
+            circle.graphics.beginFill(0xff00ff);
+            circle.graphics.drawCircle(0, 0, 20);
+            addChild(circle);
+
+            // start and end positions
+            start = new Point(0, 0);
+            end = new Point(100, 100);
+
+            // and finally, the duration, i'm using milliseconds
+            duration = 2000;
+
+            // this event handler will run each frame
+            addEventListener(Event.ENTER_FRAME, handleEnterFrame);
+        }
+
+        private function handleEnterFrame(event:Event):void {
+            // we figure out how much of the animation has elapsed by using getTimer
+            // should you want to use a start time, add it here 
+            var progress:Number = getTimer() / duration;
+
+            // we need to clamp our progress so we don't under- or overshoot the target
+            if(progress &lt; 0) progress = 0;
+            if(progress &gt; 1) progress = 1;
+
+
+            // then it's a matter of setting the position
+            // we use the start position as a base and then gradually add in 
+            // the difference between the start and the end
+            circle.x = start.x + (end.x - start.x) * progress;
+            circle.y = start.y + (end.y - start.y) * progress;  
+        }
+    }
+}
+</code></pre>
+
+<p>If you're not all that interested in the <em>how</em> and just want the results, I wholeheartedly recommend a tweening engine like <a href="http://www.greensock.com/tweenlite/" rel="nofollow">TweenLite</a> or any of the other myriad of them. Just stay clear of the one that comes with flash, it's a bit crap.</p>

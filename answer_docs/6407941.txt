@@ -1,0 +1,8 @@
+<p>I've found a very hacky way to do it:</p>
+
+<pre><code>CGRect to = fromView.superview.frame;
+to.origin.y -= 20;
+fromView.superview.frame = to;
+</code></pre>
+
+<p>Anyone that can explain to me why I had to do this and a more elegant way to do this will get the answer accepted.</p>

@@ -1,0 +1,12 @@
+<p>there is no need to wrap TYPE within the if markup. this should work</p>
+
+<pre><code>&lt;script id="mainTemplate" type="text/x-jquery-tmpl"&gt;
+    &lt;li&gt;
+        {{if TYPE == "INTLINK" }}
+            &lt;a class="Page" href="#" rel="${LINK}" &gt;${DESCRIPTION}&lt;/a&gt;
+        {{/if}}
+    &lt;/li&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>assuming your data contains something like {"TYPE": "INTLINK"}.</p>

@@ -1,0 +1,11 @@
+<p>I believe you need to add a key to your ResourceDictionary tag:</p>
+
+<pre><code>&lt;UserControl.Resources&gt;
+    &lt;ResourceDictionary x:Key="ucRescDict"&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="/PDMC;component/Views/XamlResources/AppFormsStyle.xaml" /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+    &lt;converters:InvertBooleanToVisibilityConverter x:Key="invertBoolToVisibility" /&gt;
+&lt;/UserControl.Resources&gt;
+</code></pre>

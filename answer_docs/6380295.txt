@@ -1,0 +1,6 @@
+<p>Alternate work-around below, if paging is disabled and your still having an issue:</p>
+
+<pre><code>Private Sub DetailsView1_ModeChanged(sender As Object, e As System.EventArgs) Handles DetailsView1.ModeChanged
+        EntityDataSource1.Where = "it.[ID]=" &amp; Me.lstFilter.SelectedValue  ' DetailView.Edit work-around for lost context: Reset bound EntityDataSource.Where
+Sub
+</code></pre>

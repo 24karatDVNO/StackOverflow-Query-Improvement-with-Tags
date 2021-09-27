@@ -1,0 +1,15 @@
+<pre><code>var ar = []; 
+
+function reversePrint(LList){
+  var c = null;
+  c = LList;
+  while (c.next != null) {
+    ar.unshift(c.data);
+    c = c.next;
+  }
+  ar.unshift(c.data); //gets that last element
+  c=c.next; //c now equals null
+
+  console.log(ar);
+}
+</code></pre>

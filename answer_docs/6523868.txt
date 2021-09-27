@@ -1,0 +1,1 @@
+<p>This is interesting, at this moment I'm doing something similar. Just keep a reference to the adapter, and inside <code>onItemSelected</code> access the object with <code>adapter.getItem(pos)</code>. Then you can use this object to update the second spinner adapter. Just take care of UI threading. I would like to do this in a cleaner way but I don't know how to do it.</p>

@@ -1,0 +1,24 @@
+<p>Couldn't you just place the image switching in the <code>if/else</code> block, and remove the need for the <code>setTimeout()</code>?</p>
+
+<pre><code>function slideContactDetails() {
+    if (sliderState == "closed") {
+        $(".sliderBlock").animate({
+            width: 400
+        }, 'slow', function () {
+            $("div.sliderForm").fadeIn("fast");
+        });
+        sliderState = "open";
+        $('.contactBtnBtn img').attr("src", firstState);
+        $('.sliderBlockForm').show();
+    } else {
+        $(".sliderBlock").animate({
+            width: 0
+        }, 'slow', function () {
+            $("div.sliderForm").fadeIn("fast");
+        });
+        sliderState = "closed";
+        $('.contactBtnBtn img').attr("src", secondState);   
+        $('.sliderBlockForm').hide();
+    }
+};
+</code></pre>

@@ -1,0 +1,3 @@
+<p>Set frameRate of your SWF to something big like 60 fps (AFAIK, bigger number will give no speedup) and keep graphic effects and code computations simple. This way you'll get high frame rate. You need it because your code awakens only between frames rendered by player, and big fps will increase time resolution.<br>
+Then measure your data using real time given by getTimer. If your application will be able to run at 60 fps, one frame will last for 1000/60 = 16.666 milliseconds, so you can hope your data is that precise.<br>
+<em>(@Marty Wallace: getTimer() returns int, not Number)</em></p>

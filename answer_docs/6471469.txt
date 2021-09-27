@@ -1,0 +1,15 @@
+<p>When the regex below is used in AutoIt's <code>StringRegExp()</code> function (using the flag "1" to return an array of matches), it returns <code>161804\abc9831</code>. Is this what you're wanting to return?</p>
+
+<pre><code>.*\\([^\\]+\\[a-z]{3}\d+)\\.*
+</code></pre>
+
+<p>Here's an example you can run yourself:</p>
+
+<pre><code>#include &lt;Array.au3&gt;
+
+$string = 'U:\some text here\more text over here\06-17-2011\Folder 2\161804\abc9831\xyz10007569.JPG'
+
+$capture = StringRegExp($string,'.*\\([^\\]+\\[a-z]{3}\d+)\\.*',1)
+
+_ArrayDisplay($capture)
+</code></pre>

@@ -1,0 +1,5 @@
+<p>try</p>
+
+<pre><code>select count(CustomerID) as counter ,o.* from Order o
+group by CustomerID having  counter  = 1  limit 1000
+</code></pre>

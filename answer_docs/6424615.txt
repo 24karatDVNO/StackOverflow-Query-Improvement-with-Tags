@@ -1,0 +1,30 @@
+<p>This is exactly what I needed as well. Please see <a href="http://img833.imageshack.us/img833/2465/deploydb.png" rel="nofollow">here</a> a PNG that depicts all points that follow:<br></p>
+
+<ol>
+<li>At first I arranged a set of Arguments in my build process template, where I set the target Database host, the user &amp; the password. (See "Argument" section)<br></li>
+<li>In case the current Project's Unit tests need a running DB, I set in "Items to build" 2 different projects:
+<ul>
+<li>In the first slot the *.dbproj</li>
+<li>In the second the SLN itself<br></li>
+</ul></li>
+<li>Now within the Build process template I 've expanded the "Run MSBuild for project" as a Sequence (See "Sequence"), ensuring that that the MSBuild Arguments are different in the left case :</li>
+</ol>
+
+<p>Arguments for MSBuild on the left side ("Run MSBuild + Deploy DB"):</p>
+
+<pre><code>String.Format("/p:SkipInvalidConfigurations=true /t:Build;Deploy /p:TargetConnectionString=""Data Source={0}%3Buser={1}%3Bpwd={2}"" /p:DeployToDatabase=true /p:TargetDatabase={3}_{4} {5}",
+          TargetMachineToDeployDB, DBUsername, DBPassword, DBName, BuildDetail.BuildNumber.Replace(".", "_"), MSBuildArguments)
+</code></pre>
+
+<p>In case it's not too obvious, the connection between the Arguments &amp; the displayed params in the Definition are:<br>
+- TargetMachineToDeployDB = "PC name where Database shall be deployed"<br>
+- DBUsername = "Database Username"<br>
+- DBPassword = "Database Password"<br>
+- DBName = "Database Prefix Name" (I concat the current buildname)</p>
+
+<p>Arguments for MSBuild on the right side ("Run MSBuid for SLN/Project"):</p>
+
+<pre><code>String.Format("/p:SkipInvalidConfigurations=true {0}", MSBuildArguments)
+</code></pre>
+
+<p>Note that if I deployed a DB on the left side, I will also set a <i>DBHasBeenSet</i> into TRUE, which will also trigger some file handling inside "Adaptations in Source Files". These include redirecting our NUnit DLLs to the newly constructed DB. I can set more details on that, if you 'd like.</p>

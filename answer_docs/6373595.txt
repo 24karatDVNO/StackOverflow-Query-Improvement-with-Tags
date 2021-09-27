@@ -1,0 +1,13 @@
+<pre><code>$newarr=array();
+
+foreach ($arr as $element) {
+    $currentroot=$newarr;
+    $pieces=explode('\\', $element);
+    for ($x=0; $x&lt;=count($pieces); x++) {
+        $currentroot[$pieces[$x]]=array();
+        $currentroot=$currentroot[$pieces[$x]];
+    }
+}
+</code></pre>
+
+<p>Untested but should get you started.  You need to add a condition to check if it is the last piece, and make it a string value instead of an array.</p>

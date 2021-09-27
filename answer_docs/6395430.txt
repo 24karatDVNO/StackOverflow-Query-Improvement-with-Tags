@@ -1,0 +1,3 @@
+<p>1) No. It uses implicit transaction for each statement if you do not specify the transaction scope. You do not have to put explicit transaction scope for making 'set transaction isolation level to work'.</p>
+
+<p>2) You don't have to reset it to original. It will be taken care by SQL Server. Please refer to this SO entry: <a href="https://stackoverflow.com/questions/1045634/transaction-isolation-level-scopes">Transaction Isolation Level Scopes</a></p>

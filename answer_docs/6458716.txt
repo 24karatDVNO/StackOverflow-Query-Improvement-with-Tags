@@ -1,0 +1,11 @@
+<ol>
+<li>They are just "shorthand"
+everything can be done and function
+the exact same with $.ajax(), the
+difference is only syntax</li>
+<li><code>complete</code> is fired after every request is complete, while <code>success</code> only fires if there were no errors (a successfully one</li>
+<li>whatever you want to do with the HTTP response you do by making a function(data){dostuff(data);} in the <code>success</code> callback area</li>
+<li><code>beforeSend</code> is called right before the ajax request is fired</li>
+</ol>
+
+<p><a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">Documentation</a></p>

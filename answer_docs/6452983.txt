@@ -1,0 +1,3 @@
+<p>I think WCF doesn't support it out of the box because that is WSDL extension to standard XSD description of data type. Both <code>XmlSerializer</code> and <code>DataContractSerializer</code> should work with standard XSD in scenarios where web services are not involved at all so it uses the plain XSD approach.</p>
+
+<p>If you need the first approach you can either write WSDL + XSDs yourselves or you can try to implement custom <a href="http://msdn.microsoft.com/en-us/library/system.servicemodel.description.iwsdlexportextension.aspx" rel="nofollow noreferrer">export extension</a> - to use that for WCF client generation you will also need custom import extension.</p>

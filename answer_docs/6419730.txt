@@ -1,0 +1,11 @@
+<p>I believe your code is telling Rails that the id <em>is</em> the user, which of course doesn't make sense. That's creating a path like /users/@user, for which no route exists. As you probably know, you want a path like /users/1.</p>
+
+<p>So I think you code should look like</p>
+
+<pre><code>get :show, :id =&gt; @user.id
+</code></pre>
+
+<p>or possibly</p>
+
+<pre><code>get :show, @user
+</code></pre>

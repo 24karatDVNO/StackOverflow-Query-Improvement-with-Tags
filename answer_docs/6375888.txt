@@ -1,0 +1,13 @@
+<p>Try to use <code>before_filter</code>:</p>
+
+<pre><code>def self.included(target)
+  target.send :before_filter, :do_something_with_email, :only =&gt; :create
+end
+
+def do_something_with_email
+  #email comes from a form
+  email = params[:email]
+
+  do_something(email)
+end
+</code></pre>

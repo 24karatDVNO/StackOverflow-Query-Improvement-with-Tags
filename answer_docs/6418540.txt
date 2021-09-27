@@ -1,0 +1,33 @@
+<p>If it's not too much trouble to have the <code>modal</code> inside the <code>content</code> div, you might want to try this HTML:</p>
+
+<pre><code>&lt;div id = "content"&gt;
+    &lt;div id="modal"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>...with this CSS:</p>
+
+<pre><code>#modal {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+}
+
+#content {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    background-color: green;
+}
+</code></pre>
+
+<p><a href="http://jsfiddle.net/saKCV/1/" rel="nofollow">Demo</a></p>
+
+<p>Basically you're absolutely-positioning the <code>modal</code> div inside the <code>content</code> div, and telling it to go start at 50% from the top and 50% from the left. This will center the top-left corner of the <code>modal</code>, but not the div as a whole. To center the div as a whole, you then have to add a negative margin to move it back up and to the left. The amount of the negative margin is half the height/width of the <code>modal</code> div.</p>
+
+<p>If you want to keep the same HTML, you can still accomplish the same thing using this technique, just make sure to do <code>position: relative</code> on your <code>replace</code> div so that any <code>absolute</code>ly-position children are positioned relative to it.</p>

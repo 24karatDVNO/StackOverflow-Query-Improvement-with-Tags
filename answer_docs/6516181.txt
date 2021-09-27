@@ -1,0 +1,38 @@
+<p>OK.  I have got it going - I think....</p>
+
+<p>This is what I have ended up...</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+
+    $(document).ready(function () {
+        // trigger an ajax request to the controller action every 5s
+        // and inject the returned HTML fragment into a div with id="result"
+
+        RefreshStatus();
+
+        window.setInterval(function () {
+            RefreshStatus();
+        }, 5000);
+    });
+
+    function RefreshStatus() {
+        $("#GridDatabaseMng").load('@Url.Content("~/DatabaseMng/Status")', function () { DoCycle(); });
+    }
+
+    function DoCycle() {
+        j$(function ($) {
+            $('.slideshow').each(function () {
+                $(this).cycle({
+                    timeout: 100,
+                    speed: 500
+                });
+            });
+        });
+    }
+
+&lt;/script&gt;
+</code></pre>
+
+<p>and seems to work ok - so far....  Thanks webtrifusion for your assistance.  You at least gave me areas to investigate for.</p>
+
+<p>Cheers</p>

@@ -1,0 +1,17 @@
+<p>Problem is with using SWFUpload (flash) to send up cookies.</p>
+
+<p>This link got me looking in the right direction:
+<a href="http://ruby-on-rails-development.co.uk/2011/05/23/securing-ckeditor-file-management" rel="nofollow">http://ruby-on-rails-development.co.uk/2011/05/23/securing-ckeditor-file-management</a></p>
+
+<p>The solution is to follow the directiosn from that article with the following additions:</p>
+
+<ol>
+<li><p>In the flash_session_cookie_middleware.rb file add</p>
+
+<p>env['HTTP_COOKIE'] = [ 'auth', params['auth'] ].join('=').freeze</p></li>
+<li><p>In the base_helper.rb file (under /app/helpers/ckeditor) add the following:</p>
+
+<p>options['auth'] = Rack::Utils.escape(cookies[:auth])</p></li>
+</ol>
+
+<p>The latest source for this gem handles session based tokens and the authenticity token already.  This simple hack is only needed if your going with a cookie based approach to managing your authentication ticket.</p>

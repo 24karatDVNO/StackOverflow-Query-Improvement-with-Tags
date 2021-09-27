@@ -1,0 +1,13 @@
+<p>I think this is what you want:</p>
+
+<pre><code>a = 1
+
+while a != 100:
+    f = urllib2.urlopen('http://example.com/?id=1000')
+    f_contents = f.read()
+    if f_contents != '{"Response":"Parse Error"}':
+         print f_contents
+    a += 1
+</code></pre>
+
+<p>Although if you're not wanting to get the same page 100 times, you might have forgotten to add <code>a</code> into the URL.</p>

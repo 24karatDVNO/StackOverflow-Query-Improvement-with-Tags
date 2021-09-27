@@ -1,0 +1,14 @@
+<p>i have searched and found this solution</p>
+
+<pre><code>$txt = "
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Something wicked this way comes&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+This is the interesting stuff I want to extract
+&lt;/body&gt;
+&lt;/html&gt;";
+
+$text = preg_replace("/&lt;([^&lt;&gt;]*)&gt;/", "", $txt);
+
+echo htmlentities($text);
+</code></pre>

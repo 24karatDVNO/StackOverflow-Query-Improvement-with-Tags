@@ -1,0 +1,12 @@
+<p>Cleaned up version of Doc's code:</p>
+
+<pre><code>catsused = {}
+posts = {}
+
+for post in Post.objects.order_by('date'):
+    if post.category not in catsused:
+        posts.add(post)
+        catsused.add(post.category)
+        if len(catsused) == 5:
+            break
+</code></pre>

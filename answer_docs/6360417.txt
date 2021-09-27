@@ -1,0 +1,21 @@
+<p>You can use CONNECT BY PRIOR (more info at <a href="http://psoug.org/reference/connectby.html" rel="nofollow">http://psoug.org/reference/connectby.html</a> )</p>
+
+<p>A small example (d is my date column). Of course, you can put a count round the query, but I find it's easier to verify what you want without the count.</p>
+
+<pre><code>create table gregws(
+  item_id varchar2(200),
+  opp varchar2(200),
+  d varchar2(200)
+);
+
+insert into gregws (item_id,opp,d) values ('AA','FOO','100');
+insert into gregws (item_id,opp,d) values ('AB','BOO','100');
+insert into gregws (item_id,opp,d) values ('AC','FOO','300');
+insert into gregws (item_id,opp,d) values ('AD','MOO','300');
+insert into gregws (item_id,opp,d) values ('AE','ZOO','200');
+
+
+select distinct * from gregws
+start with opp='FOO'
+connect by nocycle prior d = d and prior opp != opp;
+</code></pre>

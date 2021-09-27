@@ -1,0 +1,13 @@
+<p>Providing I've understood the example, the regex below should give the required output.</p>
+
+<pre><code>void Main()
+{
+    string testString = @"G/20/EU (picture)/europe 21/";
+
+    Regex test = new Regex(@"(\w+[^\w\d]?|\d+)/");
+
+    string outputTest = test.Replace(testString, "$1\r\n");
+
+    Console.WriteLine(outputTest);
+}
+</code></pre>

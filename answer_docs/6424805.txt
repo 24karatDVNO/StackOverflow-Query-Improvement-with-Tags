@@ -1,0 +1,11 @@
+<p>If you are in <code>Linux</code>, then follow this:</p>
+
+<pre><code>mv oldname.php newname.php
+
+# search and replace the files (*.php) which has content oldname.php
+find . -name "*.php" -exec sed -i -e 's/oldname.php/newname.php/' {} \;
+</code></pre>
+
+<p>If you are in <code>Windows</code>, then follow this:</p>
+
+<p>Using eclipse you can easily do it. Please follow the steps in this link: <a href="http://www.eclipse-blog.org/eclipse-ide/using-find-and-replace-in-eclipse-ide.html" rel="nofollow">http://www.eclipse-blog.org/eclipse-ide/using-find-and-replace-in-eclipse-ide.html</a></p>

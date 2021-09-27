@@ -1,0 +1,4 @@
+<p>In case you want to get the <strong>full</strong> path, you can use <a href="http://www.php.net/manual/en/function.parse-url.php" rel="nofollow"><code>parse_url</code></a>:</p>
+
+<pre><code>$path = trim(parse_url($url, PHP_URL_PATH), '/');
+</code></pre>

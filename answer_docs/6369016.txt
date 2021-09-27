@@ -1,0 +1,9 @@
+<p>You need something like:</p>
+
+<pre><code>usort($array, function($a, $b)
+{
+  return strcmp($a['k1'], $b['k1']);
+});
+</code></pre>
+
+<p>You may need to replace <code>strcmp</code> with a different sorting function (or operators) because it's unclear exactly what you are doing.</p>

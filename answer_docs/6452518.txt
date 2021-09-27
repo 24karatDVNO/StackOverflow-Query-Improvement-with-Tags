@@ -1,0 +1,29 @@
+<p>If you can change the method, I would recomend passing array of object not strings. And then do the string conversion inside.</p>
+
+<pre><code>public void MyMethod(param object[] objs)
+{
+    String[] strings = objs.Select(o=&gt;o.ToString()).ToArray();
+
+    // work with strings here
+}
+</code></pre>
+
+<p>If you can't change the method, you can either do static method, to which you will pass the objects, those objects get converted to strings and then passed to your method.</p>
+
+<pre><code>public static void MyMethod(param object[] objs)
+{
+    String[] strings = objs.Select(o=&gt;o.ToString()).ToArray();
+
+    MyStaticObject.MyMethod(strings);
+}
+</code></pre>
+
+<p>Or if it is instance method, then you can make an Extesion method instead.</p>
+
+<pre><code>public static void MyMethod(this MyObject t, param object[] objs)
+{
+    String[] strings = objs.Select(o=&gt;o.ToString()).ToArray();
+
+    t.MyMethod(strings);
+}
+</code></pre>

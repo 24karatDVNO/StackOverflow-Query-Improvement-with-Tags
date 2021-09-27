@@ -1,0 +1,11 @@
+<p>why don't you replace </p>
+
+<pre><code>&lt;filter class="solr.PatternReplaceFilterFactory" ????????? /&gt;
+</code></pre>
+
+<p>with</p>
+
+<pre><code>&lt;filter class="solr.LowerCaseFilterFactory"/&gt;
+</code></pre>
+
+<p>and add a copyfield termCompleteField_lowercase with this new fieldtype?</p>

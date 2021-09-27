@@ -1,0 +1,27 @@
+<p>You should be able to close or hide the current form during the button_Click event.  It sounds like the users are going to be viewing the home form after they have logged in, so it is probably better to just hide the home form.</p>
+
+<p>In order to reshow the home form, the Login form must have a reference to it.  This can be done by passing it through the constructor.</p>
+
+<p>(This code is in C#, sorry I don't know VB. Should work the same way, though.)</p>
+
+<pre><code>// Login Button Click Event
+private void button1_Click(object sender, EventArgs e)
+{
+   LoginForm loginForm = new LoginForm();
+   loginForm.Show();
+   this.Hide();
+}
+
+// Login Form Constructor
+public LoginForm(HomeForm homeForm)
+{
+   this._homeForm = homeForm;
+}
+
+// Home Button Click Event
+private void btnHome_Click(object sender, EventArgs e)
+{
+   this._homeForm.Show();
+   this.Hide();
+}
+</code></pre>

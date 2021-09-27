@@ -1,0 +1,5 @@
+<p>I would place the queues mentioned by Charlee in the ServletContext. It is initialized when your WebApplication is started.</p>
+
+<p>You can initialize and destroy these queues an the backend process in an implementation of <code>ServletContextListener</code>. Store them with <code>setAttribute</code> on the ServletContext.</p>
+
+<p>Now you're able to access these queues via ServletContext in your Servlet.</p>

@@ -1,0 +1,27 @@
+<p>You can create an interface of your choosing and then create and adapter wrapper that talks to MyClient like so:</p>
+
+<pre><code>public interface IClient
+{
+    void Foo();
+    int Bar();
+}
+
+public class MyClientAdapter : IClient
+{
+    private MyClient Client { get; set; }
+
+    public MyClientAdapter(MyClient client)
+    {
+        Client = client
+    }
+    public void Foo()
+    {
+        Client.Foo();
+    }
+
+    public int Bar()
+    {
+        return Client.Bar();
+    }
+}
+</code></pre>

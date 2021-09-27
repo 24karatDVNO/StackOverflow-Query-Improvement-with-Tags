@@ -1,0 +1,1 @@
+<p>I fixed the problem. The OAuth server was running on port 81 (rather than 80), so I had to append :81 to the end of the url (http://api.example.com:81). I changed the port to 80, to leave it off the URL, and it fixed the "invalid signature" error.</p>

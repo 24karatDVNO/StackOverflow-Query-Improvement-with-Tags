@@ -1,0 +1,29 @@
+<p>I think that this will be fast enough:</p>
+
+<pre><code>function daysAgo(dt) {
+    var diff = Math.floor((new Date() - dt) / 86400000);
+    if (diff === 1)       
+    {
+        return diff + ' day ago';
+    } else {
+        return diff + ' days ago';
+    }
+}
+
+function minsAgo(dt) {
+    var diff = Math.floor((new Date() - dt) / 60000);
+    if (diff === 1)       
+    {
+        return diff + ' minute ago';
+    } else {
+        return diff + ' minutes ago';
+    }
+}
+
+var then = new Date('2011-06-23T13:20:12+0000');
+document.write(then + '&lt;br /&gt;');
+document.write(daysAgo(then) + '&lt;br /&gt;');
+document.write(minsAgo(then));
+</code></pre>
+
+<p>You can write the other functions for weeks and hours similarly. Also, these are approximations because of the <code>Math.floor</code> call, but I figured that would be good enough.</p>

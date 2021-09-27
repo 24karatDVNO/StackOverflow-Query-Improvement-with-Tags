@@ -1,0 +1,12 @@
+<p>What you've done is add two extension methods to the <code>HtmlHelper</code> class. The <code>ByVal helper as HtmlHelper</code> is passed implicitly as an instance of the <code>HtmlHelper</code> class when you use these methods. </p>
+
+<p>This is how you use them in a view:</p>
+
+
+
+<pre class="lang-vb prettyprint-override"><code>@Imports YourApplicationName.AppCode
+
+@Html.LanguageSelectorLink("en-CA", "[English]", "English", Nothing)
+</code></pre>
+
+<p>Hope this helps.</p>

@@ -1,0 +1,16 @@
+<pre><code>&gt; i want make an unique counter which
+&gt; tracks following, every referrer and
+&gt; ip from where the user comes.
+&gt; Memcached should store that data and
+&gt; than it should be entered into the
+&gt; database after 5 mins or so. And also
+&gt; it should check for duplicate entries
+&gt; that not twice the ip is written to
+&gt; the DB
+</code></pre>
+
+<p>I would advise you to use <a href="http://redis.io" rel="nofollow">redis</a> to implement this because redis has all the commands needed to do this <a href="http://redis.io/topics/benchmarks" rel="nofollow">efficiently</a> and has <a href="http://redis.io/topics/persistence" rel="nofollow">persistent</a> snapshots. To count you simply use the <a href="http://redis.io/commands/incrby" rel="nofollow">incrby</a>/<a href="http://redis.io/commands/incr" rel="nofollow">incr</a> => <a href="http://redis.io/commands/decr" rel="nofollow">decr</a>/<a href="http://redis.io/commands/decrby" rel="nofollow">decbry</a> commands.</p>
+
+<p>If you installed memcached on your box, then installing redis is going to be a sinch. Just <code>make</code> will be enough. A popular client to connect to redis from PHP is <a href="https://github.com/nrk/predis/" rel="nofollow">predis</a>.</p>
+
+<p>If you can not install software you also have the option to use the free plan(5 MB memory, 1 Database, but no backups) from <a href="http://redistogo.com" rel="nofollow">http://redistogo.com</a>. Than you need to do the backups to MySQL manually because snapshots are disabled with free plan(probably better of getting a dedicated box or buying mini plan for $5/month).</p>

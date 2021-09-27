@@ -1,0 +1,24 @@
+<p>If I understand your question, you're wondering what the Single_linked_list class template parameter means.</p>
+
+<p>Your statement:</p>
+
+<blockquote>
+  <p>in c++ [the <code>*</code>] is the way of specifying that it is to be a pointer, pointing the start of the linked_list with all the children</p>
+</blockquote>
+
+<p>is worth discussion.  The <code>Single_linked_list</code> template class manages instances of the type given as the template parameter.  The template parameter does not change how the list is used.  The managed type identified by the template parameter may be built-in - like a pointer - or could be a class.  Whatever the template parameter, I would assume that access to the start of the linked list and functions to traverse the list will be accessed by calling methods on <code>children</code> e.g.</p>
+
+<pre><code>Single_linked_list&lt; SomeClassOrType &gt; my_list;
+putThingsOnList( &amp;my_list );
+
+my_list.goToFirst();
+while( !my_list.hasNext() )
+{
+  SomeClassOrType &amp;o = children.getCurrent();
+  children.goToNext();
+}
+</code></pre>
+
+<p>The first part of your statement quoted above is correct: the <code>*</code> specifies a pointer type.  The second part of your statement is where I disagree: the template parameter is not related to the idea of the start of the linked_list.</p>
+
+<p>I hope you find my answer valuable.</p>

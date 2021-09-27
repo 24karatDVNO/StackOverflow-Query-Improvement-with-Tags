@@ -1,0 +1,18 @@
+<p>You can PInvoke the API <code>[FindWindow][1]</code> in order to have the top level window, or maybe better, if you know the process name, by using:</p>
+
+<pre><code>Process[] processes = Process.GetProcessesByName("yourprocessname");
+
+foreach (Process p in processes)
+
+{
+
+    IntPtr pFoundWindow = p.MainWindowHandle;
+
+    // Do something with the handle...
+
+    //
+
+}
+</code></pre>
+
+<p>Notice there is more entries because there can be potentially more process instance running at the same time. Then you need some strategy to lookup the top level children to point exactly the window you are looking for.</p>

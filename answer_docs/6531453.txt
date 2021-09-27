@@ -1,0 +1,19 @@
+<p>I've the same problem and solved as follow:</p>
+
+<pre><code>public class CustomMenuBar extends MenuBar {
+
+    public CustomMenuBar(boolean isVertical) {
+        super(isVertical);
+    }
+
+    public MenuItem getSelected() {
+        return super.getSelectedItem();
+    }
+
+    public void clearSelected() {
+        super.selectItem(null);
+    }
+}
+</code></pre>
+
+<p>and you can check it for null (if not null then clear it)</p>

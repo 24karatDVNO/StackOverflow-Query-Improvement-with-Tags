@@ -1,0 +1,4 @@
+<p>The <code>/i</code> at the end makes it case-insensitive.  The <code>(?&lt;=regex)</code> means look immediately before the current position for the beginning of the line followed by 2 letters.</p>
+
+<pre><code>echo preg_replace('/(?&lt;=^[a-z]{2})[a-z ]*/i','','FALL 2012');
+</code></pre>

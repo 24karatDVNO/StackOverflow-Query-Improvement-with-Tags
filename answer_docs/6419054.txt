@@ -1,0 +1,7 @@
+<pre><code>var htmlArray = $('#source').children('table')
+                            .filter(function() {
+                                return ($('tbody &gt; tr', $(this)).length &gt;= 4);
+                          }).map(function(i, item) {
+                                return $(item).html();
+                          }).get();
+</code></pre>

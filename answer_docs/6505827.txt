@@ -1,0 +1,23 @@
+<p>Complete C-Sharp code for this</p>
+
+<pre><code> void PrintAllWays(int n, string str) 
+    {
+        string str1 = str;
+        StringBuilder sb = new StringBuilder(str1);
+        if (n == 0) 
+        {
+            Console.WriteLine(str1);
+            return;
+        }
+        if (n &gt;= 1) 
+        {
+            sb = new StringBuilder(str1);
+            PrintAllWays(n - 1, sb.Append("1").ToString());
+        }
+        if (n &gt;= 2) 
+        {
+            sb = new StringBuilder(str1);
+            PrintAllWays(n - 2, sb.Append("2").ToString());
+        }
+    }
+</code></pre>

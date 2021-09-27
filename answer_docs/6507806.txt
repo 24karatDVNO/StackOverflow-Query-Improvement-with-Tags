@@ -1,0 +1,19 @@
+<p>Try this:</p>
+
+<pre><code>^#?([Nn]ote [Tt]o [Ss]elf|NTS).*
+</code></pre>
+
+<p>Explanation:</p>
+
+<ul>
+<li><code>^</code> indicates the start of the line (supported in more languages than <code>\A</code>)</li>
+<li><code>#?</code> looks for 0 or 1 <code>#</code> symbols</li>
+<li><code>([Nn]ote [Tt]o [Ss]elf|NTS)</code> is an or statement, looking for either <code>[Nn]ote [Tt]o [Ss]elf</code> or <code>NTS</code>.  The <code>[Nn]</code> in brackets means to find either <code>N</code> or <code>n</code> (allowing you to match both "Note To Self" and "note to Self")</li>
+<li><code>.*</code> at the end just matches the rest of the line: <code>.</code> is any character, and <code>*</code> is any number of repetitions.</li>
+</ul>
+
+<p>Possibly useful references:</p>
+
+<p><a href="http://www.regular-expressions.info/refflavors.html" rel="nofollow">http://www.regular-expressions.info/refflavors.html</a></p>
+
+<p><a href="http://docs.python.org/library/re.html" rel="nofollow">http://docs.python.org/library/re.html</a> (even if you're not doing Python, I think the examples and explanations are helpful)</p>

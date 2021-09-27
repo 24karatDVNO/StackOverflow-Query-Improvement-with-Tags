@@ -1,0 +1,5 @@
+<p>This should be sufficient:</p>
+
+<pre><code>uasort($yourArray,
+       create_function('$a,$b','return $a[0]["sort_order"] &gt; $b[0]["sort_order"];'));
+</code></pre>

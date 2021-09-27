@@ -1,0 +1,16 @@
+<p>Your approach to solve this situation is wrong mistake first </p>
+
+<pre><code>setContentView(R.layout.main);
+layout = (FrameLayout) findViewById(R.id.LinearLayout01);
+// layout.setOnTouchListener(this);
+layout1 = (FrameLayout) mistake first
+</code></pre>
+
+<p>so here your on main.xml is set that's why layout1 will be null.</p>
+
+<p>I will advise you to use onClickListener  of button, in place of ontouch</p>
+
+<p>then inside the onClick method using layout inflator load XML layout to a view object and
+ then using that view object call findviewById like <code>obj.findViewById(R.id.LinearLayout01);</code></p>
+
+<p>then add image in that, it will solve your problem .</p>

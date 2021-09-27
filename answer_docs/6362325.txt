@@ -1,0 +1,13 @@
+<p>Use <a href="http://api.jquery.com/nextAll/" rel="nofollow">.nextAll()</a> instead of <code>.find()</code>. You can't use find() as it looks for the matched elements in descendants of the selection, but you want to look among them instead.</p>
+
+<pre><code>var ht = '&lt;div id="1" class="pp"&gt;Hi&lt;/div&gt;&lt;div id="2"&gt;Hola&lt;/div&gt;&lt;div id="3" class="pp"&gt; Bonjour&lt;/div&gt;';
+
+
+$(ht).nextAll("div.pp").each( function(i){
+
+   var i = this.id;
+   console.log(i);
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/niklasvh/dLL5r/" rel="nofollow">http://jsfiddle.net/niklasvh/dLL5r/</a></p>

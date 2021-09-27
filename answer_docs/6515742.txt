@@ -1,0 +1,5 @@
+<p>To add to dave's answer, I would follow his suggestion to keep the tools, etc., in their own directories.</p>
+
+<p>In addition, you could consider adding the svn.externals property to the trunk directory of the main application.  Using svn.externals can be used to cause svn to check out the other repository directories (tools, etc) into sub-folders of the working directory for you main application.</p>
+
+<p>This can be used, for instance, to allow shared code to be checked out with multiple applications. </p>

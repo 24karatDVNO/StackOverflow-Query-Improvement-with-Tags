@@ -1,0 +1,31 @@
+<p>Try this construtor and modify your <code>jump, increment</code> and <code>decrement</code> logic accordingly !!!!
+You need to add listener to the frame and not to the panel.</p>
+
+<p><code>int x_Pos = 30;</code>
+<code>int y_Pos = 15;</code></p>
+
+<pre><code>ControlledBall() {
+    JFrame fr = new JFrame("Controlled Ball");
+    this.setBackground(Color.black);
+    fr.add(this);
+    fr.setVisible(true);
+    fr.setSize(600, 400);
+    fr.addKeyListener(new KeyAdapter() {
+        public void keyPressed(KeyEvent ke) {
+            if (ke.getKeyCode() == ke.VK_RIGHT) {
+                System.out.println("Right Key");
+                increment();
+            } else if (ke.getKeyCode() == ke.VK_LEFT) {
+                System.out.println("Left Key");
+                decrement();
+            } else if (ke.getKeyCode() == ke.VK_UP) {
+                System.out.println("Up Key");
+                jump();
+            }
+        }
+    });
+    y_Pos = this.getHeight() - diameter;
+    //register();
+    repaint();
+}
+</code></pre>

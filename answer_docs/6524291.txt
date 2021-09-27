@@ -1,0 +1,16 @@
+<p>Here is the solution which I found it after 3 weeks research.</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+
+function OnSuccess(e) { 
+    if (e["success"] == "true") {
+        $("#dialog").dialog("close");
+        location.reload();
+    }
+    else {
+        $("#dialog").html(e);
+        return false;
+    }
+}
+&lt;/script&gt;
+</code></pre>

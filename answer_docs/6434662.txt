@@ -1,0 +1,17 @@
+<p>with regards to the batching requirment, please use Spring batching <a href="http://static.springsource.org/spring-batch/reference/pdf/spring-batch-docs.pdf" rel="nofollow">link</a>
+this provides all the necessary batching facilities needed.</p>
+
+<p>Regarding the object loading issue, </p>
+
+<blockquote>
+  <p>So a way around this which may not be
+  the most optimal is - the batch class
+  just calls a service to load all the
+  IDs of those objects (long values) -
+  and we pass this ID to a service
+  method which will load that object
+  from the DB by the ID and then do the
+  processing on it.</p>
+</blockquote>
+
+<p>seems correct.</p>

@@ -1,0 +1,13 @@
+<p>you can disable head requests at webserver level... for apache:</p>
+
+<pre><code>&lt;LimitExcept GET POST&gt;
+deny from all
+&lt;/LimitExcept&gt;
+</code></pre>
+
+<p>you can work this at robots.txt level by adding:</p>
+
+<pre><code>Disallow: /Home/Import
+</code></pre>
+
+<p>Head requests are used to get information about the page, without getting the whole page, like last-modified-time, size etc.  it is an efficiency thing.  your script should not be giving errors because of head requests, and those errors are probably because of lack of validations in your code.  your code could check if the request http method is 'head' and do something different.</p>

@@ -1,0 +1,19 @@
+<p>Improving on previous answer by tvanfosson (preventing unnecessary DOM lookup):</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+    var data = "http://mywebsite.com/ingredients.php";
+    $(document).ready(function() {
+        $('#addingredient').click(function() {
+            var newIngredient = $('&lt;input type="text" class="ingredient" name="ingredient[]" id="ingredient[]" size="60" /&gt;');
+            $('&lt;li /&gt;').append(newIngredient)
+                .append('&lt;input type="text" class="amount" name="amount[]" id="amount[]" size="5" /&gt;')
+                .append('&lt;select class="unit" name="unit[]" id="unit[]"&gt;&lt;?=$units ?&gt;&lt;/select&gt;')
+                .appendTo('#ingredients')
+                .hide()
+                .fadeIn('normal');
+            newIngredient.autocomplete(data);
+        });
+        $(".ingredient").autocomplete(data);
+    });
+&lt;/script&gt;
+</code></pre>

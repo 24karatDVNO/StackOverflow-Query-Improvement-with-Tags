@@ -1,0 +1,46 @@
+<p>your first problem is that you're not getting an XML element, but a string. You need to get an XML node from your XML document, but the shorthand method you're using is guessing you want a string. Usually you can force it by explicitly casting it over to [System.Xml.XmlElement], but that doesn't always work. You can reliably get an element using "SelectSingleNode". </p>
+
+<p>You've not hit your second problem yet, but it's just around the corner. Once you've got XML, it still won't work because it's from a different XML document, so you need to "Import" the node. You'll want to tweak this to get the XML to align the way you envision, but the code works. </p>
+
+<pre><code>$parentString = @"
+&lt;manifest&gt;
+  &lt;manifestExecution&gt;
+    &lt;assetDetail&gt;
+      &lt;fileAsset fileAssetGuid="parentguid1"&gt;
+    &lt;parentfile1 /&gt;
+      &lt;/fileAsset&gt;
+      &lt;fileAsset fileAssetGuid="parentguid2"&gt;
+    &lt;parentfile2 /&gt;
+      &lt;/fileAsset&gt;
+    &lt;/assetDetail&gt;
+  &lt;/manifestExecution&gt;
+&lt;/manifest&gt;
+"@
+$childString = @"
+&lt;manifest&gt;
+  &lt;manifestExecution&gt;
+    &lt;assetDetail&gt;
+     &lt;fileAsset fileAssetGuid="childguid1"&gt;
+    &lt;childfile1 /&gt;
+     &lt;/fileAsset&gt;
+    &lt;/assetDetail&gt;
+  &lt;/manifestExecution&gt;
+&lt;/manifest&gt;
+"@
+
+$parent = [xml] ($parentString)
+$parentnode = $parent.manifest.manifestExecution.assetDetail
+$child = [xml] ($childString)
+$xpath = '/manifest/manifestExecution/assetDetail'
+$childnode = $child.SelectSingleNode($xpath)
+Write-Host("So the child is $($childnode.OuterXML)")
+$importedNode = $parent.ImportNode($childNode,$true)
+Write-Host("And after importing: $($importedNode.OuterXML)")
+$parentnode.InsertAfter($importednode, $parentnode.LastChild)
+Write-Host("To finally yield: $($parent.OuterXML)")
+</code></pre>
+
+<p>Also, you may find you can use something like your original code if you cast it to XmlElement properly. </p>
+
+<pre><code>$childnode = [System.Xml.XmlElement]$child.manifest.manifestExecution.assetDetail.InnerXml
+</code></pre>

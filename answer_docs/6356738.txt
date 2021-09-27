@@ -1,0 +1,30 @@
+<p>Try the below code:</p>
+
+<p>public class SampleTest extends SeleneseTestCase{
+  @Test
+  public void sampleTest() throws Exception
+  {
+   setUp("http://www.google.com","*iexplore");
+   selenium.windowMaximize();
+   selenium.windowFocus();
+   selenium.open("/");
+   selenium.type("q", "Software");
+   selenium.click("btnG");
+   selenium.waitForPageToLoad("");
+  for (int second = 0;; second++) {
+            if (second >= 60) fail("timeout");
+            try 
+            { 
+              if (selenium.isElementPresent("link=Computer software - Wikipedia, the free encyclopedia"))
+                  break;
+              }
+            catch (Exception e) {}
+              Thread.sleep(1000);
+            }</p>
+
+<pre><code>    selenium.click("link=Computer software - Wikipedia, the free encyclopedia");
+</code></pre>
+
+<p>}</p>
+
+<p>}</p>

@@ -1,0 +1,19 @@
+<p>Something that may be useful:</p>
+
+<p>If you want to deal with Cursors in a threadsafe way on an asynchronous thread (i.e. predictably)  try using runOnUiThread: <a href="http://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)" rel="nofollow">http://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)</a></p>
+
+<p>The code is as follows:</p>
+
+<pre><code>activity.runOnUiThread(new Runnable() {
+           @Override
+           public void run() {
+               //Paste code here
+           }
+       });
+</code></pre>
+
+<p>This code would go in one of the AsyncTask overloads such as onPreExecute or doInBackground.</p>
+
+<p>This may allow you to run non-thread-safe code in a more threadsafe manner.</p>
+
+<p>I hope this helps!</p>

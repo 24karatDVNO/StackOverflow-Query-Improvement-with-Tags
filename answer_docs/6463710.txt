@@ -1,0 +1,14 @@
+<p>Do some thing like the following</p>
+
+<pre><code>List myStrings = new ArrayList();
+    myStrings = gson.fromJson(json,myStrings.getClass());
+
+    Iterator myIterator = myStrings.iterator();
+    boolean b;
+    while(myIterator.hasNext()){
+        Object o =myIterator.next();
+        b=o instanceof String;
+
+        System.out.println("...."+b);
+    }
+</code></pre>

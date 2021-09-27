@@ -1,0 +1,8 @@
+<p>From the comments it looks like your problem is not really with the RoR code but with the fact that you're looking at the file on an EBCDIC system.</p>
+
+<p>You'll need to convert the files from an ASCII encoding to EBCDIC (see <a href="http://www-03.ibm.com/systems/z/os/zos/features/unix/bpxa1p03.html#cmd" rel="nofollow">IBM ASCII TO EBCDIC conversion</a>)</p>
+
+<p>Basically you're looking at:</p>
+
+<pre><code>iconv -f IS08859-1 -t IBM-1047 canned.csv &gt; converted.csv
+</code></pre>

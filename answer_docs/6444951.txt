@@ -1,0 +1,5 @@
+<p>I would have to assume that <code>Animal</code> is an interface (or abstract class). The data type Cat must implement the Animal interface ... so yes, you have an implicit conversion from <code>new Cat()</code> to Animal. The conversion from Animal to Cat must be explicit: e.g.  <code>(Cat)thisIsACat</code>  </p>
+
+<p>Read on into the resource on subtype polymorphism and you will see: <a href="http://en.wikipedia.org/wiki/Subtype_polymorphism" rel="nofollow">OriginsThe notion of subtyping in programming languages</a> dates back to the 1960s; it was introduced in Simula derivatives. The first formal treatments of subtyping were given by John C. Reynolds in 1980 who used category theory to formalize <a href="http://en.wikipedia.org/wiki/Implicit_conversion" rel="nofollow">implicit conversions</a>, and Luca Cardelli (1985).</p>
+
+<p>Specifically, in this case, we have 2 types: Animal and Cat. Cat is a subtype of Animal: type conversion, typecasting, and coercion refers to different ways of, implicitly or explicitly, changing an entity of one data type into another</p>

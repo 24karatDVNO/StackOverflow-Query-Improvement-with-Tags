@@ -1,0 +1,9 @@
+<p>Using a regex and a list comprehension:</p>
+
+<pre><code>def parse_mem_file(memfile = '/proc/meminfo'):
+    with open(memfile, 'r') as meminfo:
+        return dict(
+            (m.group(1), int(m.group(2)))
+            for m in [re.match('(.+):\\s*(\\d+)', line) for line in meminfo]
+            if m is not None)
+</code></pre>

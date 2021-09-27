@@ -1,0 +1,46 @@
+<p>I solved my problem.I created a binary file with following code.</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+#define NAME_LEN    30  
+#define ABBREV_LEN  15  
+#define CLASS_LEN   20  
+#define MAX_UNITS   20  
+
+struct unit {               
+    char name[NAME_LEN];        
+    char abbrev[ABBREV_LEN];    
+    char class[CLASS_LEN];                                      
+    double standard;            
+};
+
+int main(void)
+{
+    int i;
+    struct unit unitp[MAX_UNITS];
+    FILE *inp, *outp;
+    inp = fopen("units.dat", "r");
+    outp = fopen("units.bin", "wb");
+    for(i=0;!feof(inp);i++){
+        fscanf(inp, "%s%s%s%lf", unitp[i].name,
+                                    unitp[i].abbrev,
+                                    unitp[i].class,
+                                    &amp;unitp[i].standard);
+    }
+    fwrite(unitp, sizeof(struct unit ), i, outp);
+
+    fclose(inp);
+    fclose(outp);
+
+    return(0);
+}
+</code></pre>
+
+<p>and my for loop;</p>
+
+<pre><code>for (status = fread(&amp;units[i++], sizeof( struct unit ), 1, filep);
+     i &lt; MAX_UNITS &amp;&amp; !feof(filep);
+     status = fread(&amp;units[i++], sizeof( struct unit ), 1, filep)){
+    //units[i++] = data;
+}
+</code></pre>

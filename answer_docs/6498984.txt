@@ -1,0 +1,7 @@
+<p>I solved the issue. A http_handler for static content was needed. After I added the following to the web.config:</p>
+
+<pre><code>&lt;httpHandlers&gt;
+&lt;add path="*.htm" verb="*" type="System.Web.StaticFileHandler" validate="True" /&gt;
+</code></pre>
+
+<p>The static .htm files are being served. Microsoft has a nice article on that: <a href="http://support.microsoft.com/kb/909641" rel="nofollow">http://support.microsoft.com/kb/909641</a></p>

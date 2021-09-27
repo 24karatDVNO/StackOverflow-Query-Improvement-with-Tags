@@ -1,0 +1,17 @@
+<p>The char pointer b is initiaized to 0 when the program runs.  So you can't copy anything to it.</p>
+
+<p>If you want to copy a string, in C++ style, do this instead:</p>
+
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+
+using namespace std;
+
+int main()
+{
+    string a = "hello";
+    string b = a;
+    cout &lt;&lt; b &lt;&lt; endl;
+    return 0;
+}
+</code></pre>

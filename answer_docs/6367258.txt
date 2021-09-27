@@ -1,0 +1,7 @@
+<p>This removes the need for an OR clause because NULL comparisons fail.</p>
+
+<pre><code>WHERE
+    Activity.ActivityUID = NULLIF(@ActivityUID, '00000000-0000-0000-0000-000000000000')
+</code></pre>
+
+<p>See if there is a performance difference...</p>

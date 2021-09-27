@@ -1,0 +1,7 @@
+<p>Here goes another version using only a join, given that you only have the type as a string:</p>
+
+<pre><code>SELECT A.* FROM `type` T 
+LEFT JOIN `authtype` AT ON T.id=AT.authid 
+LEFT JOIN `authors` A on AT.`authid`=A.`id` 
+WHERE T.`type`="Religion"
+</code></pre>

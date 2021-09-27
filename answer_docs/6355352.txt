@@ -1,0 +1,5 @@
+<p>Class order matters in PHP definitions.</p>
+
+<p><a href="https://stackoverflow.com/questions/3458756/does-the-order-of-class-definition-matter-in-php">Does the order of class definition matter in PHP?</a></p>
+
+<p>This is why you don't have visibility of the class defined after the one you are defining (in this case <code>class A</code> cant see <code>class B</code> because it is defined after).</p>

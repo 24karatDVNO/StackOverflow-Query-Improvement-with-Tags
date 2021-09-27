@@ -1,0 +1,23 @@
+<p>You need to add a callback to your $('').load function</p>
+
+<p>$('#form, #myform').submit(function () {</p>
+
+<pre><code>    $("#overlay").overlay({
+    top: 100,
+    mask: {
+    color: '#fff',
+    loadSpeed: 200,
+    opacity: 0.5
+    },
+    closeOnClick: false,
+    load: true
+    });
+
+    adOver.load();
+    $('#overlayinfo').html('&lt;p&gt;&lt;img src=../imagenes/tooltip/loader.gif /&gt;&lt;/p&gt;');
+    $('#overlayinfo').load('&lt;?= $datosServ[carpeta] ?&gt;/overlay/add.php', 'add=1&amp;'+sendObjValues('myform'), function() {
+        $("#overlay").overlay("close");
+    });
+    return false;
+});
+</code></pre>

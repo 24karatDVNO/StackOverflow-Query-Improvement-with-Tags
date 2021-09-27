@@ -1,0 +1,38 @@
+<p>If you can't arrange the logic so that <code>break</code> in the inner loop gets straight to continuing the outer loop, then do this:</p>
+
+<pre><code>for (int i = 0; i&lt;10; i++)
+{ 
+    if (!valid(i)) continue;
+    for (int j = 0; j&lt;5; j+=2)    
+    {
+        if (!valid(i,j)) goto continue_i;
+        do_whatever_with_i_and_j()
+    }
+    more_stuff_here();
+continue_i:
+}
+</code></pre>
+
+<p>There, I've said it. The code is shorter, simpler, easier to read and easier to analyse than the version that sets a flag, then breaks, then immediately checks the flag again and conditionally continues.</p>
+
+<p>Another option is this</p>
+
+<pre><code>void inner_loop(int i) {
+    if (!valid(i)) return;
+    for (int j = 0; j&lt;5; j+=2)    
+    {
+        if (!valid(i,j)) return;
+        do_whatever_with_i_and_j()
+    }
+    more_stuff_here();
+}
+
+for (int i = 0; i&lt;10; i++)
+{
+    inner_loop(i);
+}
+</code></pre>
+
+<p>Depending what the inner loop does, though, you might find yourself building quite a mechanism to give it access to whatever it's supposed to modify.</p>
+
+<p>Community wiki, because this (or situations like it) has been argued so many times on SO as to practically define "subjective and argumentative".</p>

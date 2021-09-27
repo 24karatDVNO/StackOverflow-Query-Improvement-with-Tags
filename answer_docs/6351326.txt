@@ -1,0 +1,20 @@
+<p>skipping the lines starting with <code>&gt;</code> is easy;</p>
+
+<pre><code>while((line=istream.readLine())!=null){
+    if(line.charAt(0)=='&gt;')continue;
+
+    //do normal concat to buffers
+}
+</code></pre>
+
+<p>if you want to go to the next buffer on lines starting with <code>&gt;</code> is a bit more involved</p>
+
+<pre><code>while((line=istream.readLine())!=null){
+    if(line.charAt(0)=='&gt;'){
+         //create new buffer and append the current one to the list (check first if current one is not empty)
+         continue;
+    }
+
+    //do normal concat to buffer
+}
+</code></pre>

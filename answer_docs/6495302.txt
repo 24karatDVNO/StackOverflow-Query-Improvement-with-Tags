@@ -1,0 +1,8 @@
+<p>This is a static wrapper around <code>itoa</code>.  It is not thread-safe.</p>
+
+<pre><code>static const char * static_itoa( const int val )
+{
+    static char buff[20];
+    return itoa( val, buff, 10 );
+}
+</code></pre>

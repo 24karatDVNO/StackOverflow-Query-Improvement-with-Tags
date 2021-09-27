@@ -1,0 +1,71 @@
+<p>It is not possible to write structs with variable sizes to a binary file, and then read them back again without any record of their size. You could either use a char array with a fixed size instead of a char pointer, or use a custom file format where you record the size of each element if you need them to be of variable length. </p>
+
+<p>Since I didn't have anything better to do, I wrote a  little program which I hope does what you are looking for. No error checking :)</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;malloc.h&gt;
+
+typedef struct {
+    int offset;
+    int length;
+    char *data;
+} log_record;
+
+void write_to_file(const char *filename)
+{
+    log_record lr;
+    const int num_records = 10;
+    char buf[100];
+    int i;
+    FILE *fp;
+
+    fp = fopen(filename, "wb");
+
+    for(i = 0; i &lt; num_records; ++i)
+    {
+        sprintf(buf, "Data entry %d goes here. Beware of size limit!", i);
+        lr.length = strlen(buf) + 1;
+        lr.offset = i;
+        lr.data = malloc(sizeof(char) * lr.length);
+        strncpy(lr.data, buf, lr.length);   
+        fwrite(&amp;lr.offset, sizeof(lr.offset), 1, fp);
+        fwrite(&amp;lr.length, sizeof(lr.length), 1, fp);
+        fwrite(lr.data, sizeof(char), lr.length, fp);   
+        free(lr.data);
+    }   
+    fclose(fp); 
+}
+
+void read_from_file(const char * filename)
+{
+    log_record lr;
+    int tmp;
+    FILE *fp;
+
+    fp = fopen(filename, "rb");
+
+    while (feof(fp) == 0) 
+    {
+        tmp = fgetc(fp);
+        if(tmp != EOF)
+        {
+            ungetc(tmp, fp);            
+            fread(&amp;lr.offset, sizeof(int), 1, fp);
+            fread(&amp;lr.length, sizeof(int), 1, fp);
+            lr.data = malloc(sizeof(char) * lr.length);
+            fread(lr.data, sizeof(char), lr.length, fp);
+            free(lr.data);      
+        }
+    }
+    fclose(fp); 
+}
+
+
+int main(int argc, char *argv[])
+{
+    write_to_file("temp.bin");  
+    read_from_file("temp.bin"); 
+    return 0;
+}
+</code></pre>

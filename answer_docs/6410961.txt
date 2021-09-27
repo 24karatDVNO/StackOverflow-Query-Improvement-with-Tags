@@ -1,0 +1,3 @@
+<p>Possible? Yes. Practical? Not so much. Especially when it comes to browser specific css. You can use css hacks but IMHO they're quite ugly thing that spoil the css readability. Instead I'd use conditional comments <a href="http://www.quirksmode.org/css/condcom.html" rel="nofollow">conditional comments</a>. That is for IE—for the rest of the world try to use one proper css.</p>
+
+<p>As for time reduction, as far as you'd use static css files download speed gain would be negligible. Static files are mostly cached, so you'd save only a couple of requests returning only "Not Modified".</p>

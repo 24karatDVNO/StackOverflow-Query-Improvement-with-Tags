@@ -1,0 +1,16 @@
+<p>Define the object before the <code>$.post()</code> call. A little something like this:</p>
+
+<pre><code>// variable somePropertyName holds the name of the property you want to set    
+var myPostParams = {};
+myPostParams[somePropertyName] = "some value";
+
+$.post('page.php', myPostParams, function () { /* etc. */ });   
+</code></pre>
+
+<p>Note that if some of the parameters you are passing will be constant you can define them up front:</p>
+
+<pre><code>var myPostParams = {"x" : "something", "y" : "something else"};
+myPostParams[someVariablePropertyName] = "another value";
+myPostParams[someOtherPropertyName] = aValueInAVariable;
+//etc.
+</code></pre>

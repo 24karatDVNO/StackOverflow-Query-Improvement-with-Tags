@@ -1,0 +1,11 @@
+<pre><code>d = {}
+
+for item in list:
+    if (item[0], item[1]) not in d:
+        d[(item[0], item[1])] = item[2]
+    else:
+        if item[2] &gt; d[(item[0], item[1])]:
+            d[(item[0], item[1])] = item[2]
+
+item = [(x[0], x[1], d[x] for x in d.keys()]
+</code></pre>

@@ -1,0 +1,6 @@
+<ol>
+<li>Replace the ListField with a VerticalFieldManager to contain your rows.  </li>
+<li>Move the draw code of your rows from the ListView to a custom Field class's paint method.  Or if it's a simple text row, use a LabelField.</li>
+<li>Create another custom Field to contain your headers, or use another LabelField.</li>
+<li>Add headers and rows to the VerticalFieldManager in the order you want them to appear.</li>
+</ol>

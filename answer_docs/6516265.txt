@@ -1,0 +1,35 @@
+<p>package test;</p>
+
+<p>public class Test {</p>
+
+<pre><code>child newchild = new child();
+
+   public static void main(String[] args) {
+
+        new Test().method();
+    }
+    void method()
+    {
+        String[] b;
+        b = newchild.main();
+        int i=0;
+        while(i&lt;b.length){
+            System.out.println(b[i]);
+            i++;
+        }
+    }
+</code></pre>
+
+<p>}</p>
+
+<p>package test;</p>
+
+<p>public class child {</p>
+
+<pre><code>public String[] main() {
+
+    String[] a = {"This","is","not","Working"};
+    return a;
+
+}
+</code></pre>

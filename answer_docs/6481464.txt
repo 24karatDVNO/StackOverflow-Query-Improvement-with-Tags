@@ -1,0 +1,22 @@
+<pre><code>L = [1, 2, 3, 4, 5, 6, 7, 11, 13]
+
+def index(L, v):
+    if len(L) == 0:
+            return -1000000
+    elif L[0] == v:
+        return 0
+    else:
+        return 1 + index(L[1:], v)
+
+print index(L, 7)
+print index(L, 13)
+print index(L, 100)
+</code></pre>
+
+<p><strong>* Remote Interpreter Reinitialized  *</strong></p>
+
+<p>6</p>
+
+<p>8</p>
+
+<p>-999991</p>

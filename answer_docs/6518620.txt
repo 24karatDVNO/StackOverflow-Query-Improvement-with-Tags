@@ -1,0 +1,19 @@
+<p>I solved my issue with the following method :</p>
+
+<p>I added a custom field in my Article linq class called firstReference, I then altered my linq query so it now look like this :</p>
+
+<pre><code>            var articlesQuery = from art in QueryDataContext.Article
+                                join artSup in QueryDataContext.ArticleSupplier on art.uid equals artSup.uidArticle
+                                            select new
+                                            {
+                                                Article = art,
+
+                                                firstSupplierUid = artSup.uid,
+                                                firstReference = artSup.reference,
+                                                firstFormat = artSup.format,
+                                            };
+</code></pre>
+
+<p>And in my XAML binding, instead of binding on "ArticleSupplier[0].reference" I simply bind on "firstReference".</p>
+
+<p>It seem to do the job pretty well.</p>

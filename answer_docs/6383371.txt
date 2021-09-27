@@ -1,0 +1,7 @@
+<p>Assuming there's a column named <code>tag</code> in both <code>Tag</code> and <code>News_tag</code>, and that you're looking for the number of <code>News</code> items for each <code>Tag</code>:</p>
+
+<pre><code>SELECT Tag.tag, COUNT(*)
+FROM Tag
+INNER JOIN News_tag ON News_tag.tag = Tag.Tag
+GROUP BY Tag.tag
+</code></pre>

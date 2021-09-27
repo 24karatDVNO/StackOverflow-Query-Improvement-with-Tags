@@ -1,0 +1,18 @@
+<p>What you could do is detect the iOS version, and if its v. 3.0 then use appWillTerminate and if its v. 4.0 use appWillResignActive or appDidEnterBackground, example:</p>
+
+<pre><code>NSString *ver = [[UIDevice currentDevice] systemVersion];
+if([ver isEqualToString:@"3.0"]){
+    //Device is running 3.0
+    [[NSNotificationCenter defaultCenter]   addObserver:self
+                                             selector:@selector(appWillTerminate:)
+                                             name:UIApplicationWillTerminateNotification
+                                             object:[UIApplication sharedApplication]];
+}
+else if([ver isEqualToString:@"4.0"]){
+    //4.0
+    [[NSNotificationCenter defaultCenter]   addObserver:self
+                                             selector:@selector(appWillTerminate:)
+                                             name:UIApplicationWillResignActiveNotification
+                                             object:[UIApplication sharedApplication]];
+}
+</code></pre>

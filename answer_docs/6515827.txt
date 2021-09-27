@@ -1,0 +1,20 @@
+<p>I can see a lot of potential issues with your code, but this could be due to the lack of code/context.</p>
+
+<p>Try this:</p>
+
+<pre><code>function changey(elem) {
+    $(elem).css('background-color','gray');
+}
+
+$(document).ready(function() { // this line is very important
+
+    $('TABLE TBODY TR TD INPUT').change(function() {     
+        changey((this).closest('td'));
+    });  
+
+    $('TABLE TBODY TR TD').click(function () {   
+        changey((this).closest('td'));
+    });
+
+});
+</code></pre>

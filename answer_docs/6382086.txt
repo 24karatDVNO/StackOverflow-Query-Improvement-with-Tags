@@ -1,0 +1,7 @@
+<p>Please try this....</p>
+
+<p>select a.id1,a.id2 <br>
+from <br>
+table_name a,(select count(1),id1 from table_name a group by id1 having count(*)&lt;=3) b<br>
+where a.id1=b.id1 <br>
+order by id1</p>

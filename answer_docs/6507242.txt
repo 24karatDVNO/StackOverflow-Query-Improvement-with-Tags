@@ -1,0 +1,45 @@
+<p>It's possible to redirect <code>POST</code> fields that have been sent to the current request (by redirecting with a <code>307</code>), but to create them artificially is tricky and depends on if the user has javascript enabled. I use this function, but you shouldn't depend on it working if the user disables javascript.</p>
+
+<pre><code>&lt;?php
+
+function createHiddenFields( $value, $name = NULL )
+{
+    $output = "";
+    if( is_array( $value ) ) {
+        foreach( $value as $key =&gt; $value ) {
+            $output .= self::createHiddenFields( $value, is_null( $name ) ? $key : $name."[$key]" );
+        }
+    } else {
+        $output .= sprintf("&lt;input type=\"hidden\" name=\"%s\" value=\"%s\" /&gt;",
+            htmlspecialchars( stripslashes( $name ) ),
+            htmlspecialchars( stripslashes( $value ) )
+        );
+    }
+    return $output;
+}
+
+function redirectNowWithPost( $url, array $post_array = NULL )
+{
+    if( is_null( $post_array ) ) { //we want to forward our $_POST fields
+        header( "Location: $url", TRUE, 307 );
+    } elseif( ! $post_array ) { //we don't have any fields to forward
+        header( "Location: $url", TRUE );
+    } else { //we have some to forward let's fake a custom post w/ javascript
+        ?&gt;
+&lt;form action="&lt;?php echo htmlspecialchars( $url ); ?&gt;" method="post"&gt;
+&lt;script type="text/javascript"&gt;
+//this is a hack so that the submit function doesn't get overridden by a field called "submit"
+document.forms[0].___submit___ = document.forms[0].submit;
+&lt;/script&gt;
+&lt;?php print createHiddenFields( $post_array ); ?&gt;
+&lt;/form&gt;
+&lt;script type="text/javascript"&gt;
+document.forms[0].___submit___();
+&lt;/script&gt;
+        &lt;?php
+    }
+    exit();
+}
+
+?&gt;
+</code></pre>

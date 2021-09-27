@@ -1,0 +1,9 @@
+<p>I've been struggeling with somewhat the same problem, only I needed to style the label instead of hidding / stripping it.</p>
+
+<p>From what I've found out there is no simple way to manipulate the label of the embedded form, but I figured the following 'hack'.</p>
+
+<p>The embedRelation method accepts a inner- and outer-decorator parameter. You can use these to wrap extra markup around the label and the embedded form. You can then use CSS to hide the label using a specific id / css class.</p>
+
+<p>By openning tags in the outerdecorator and closing them in the inner decorator you can wrap the label in a tag (which is rendered inbetween the two). It is kind of tricky to make sure your HTML is still valid.</p>
+
+<p>I know this is kind of a crappy solution but I haven't found a better way up until now.</p>

@@ -1,0 +1,3 @@
+<p>The cleanest way would be to create a new set of view controllers and set them to the <code>viewControllers</code> of the <code>UITabBarController</code> object but it needn't be the cheapest always. This will be something that you need to check if it's viable or not.</p>
+
+<p>Otherwise, you'll have to to consider adding reset methods to the view controllers. If the tab is a navigation controller, <code>popToRootViewControllerAnimated:</code> and reset the first view controller. This one is a bit of effort to implement compared to the former approach.</p>

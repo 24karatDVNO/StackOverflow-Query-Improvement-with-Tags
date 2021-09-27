@@ -1,0 +1,17 @@
+<p>There might be an optimized way to do this but here's one query that should get your results</p>
+
+<pre><code>select 
+  food.id, 
+  food.name,
+  reports.reportcount
+from 
+  food
+inner join
+  (select 
+    food_id, 
+    count(food_id) reportcount
+    from 
+      report
+    group by (food_id)) as reports
+on food.id=reports.food_id
+</code></pre>

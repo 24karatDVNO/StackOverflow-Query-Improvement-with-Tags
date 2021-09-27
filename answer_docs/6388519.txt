@@ -1,0 +1,46 @@
+<p>This is a simple version, which displays the last 30 points of y (actually it just discards all data except the last 30 points, since it sounds like you don't need to store it), but the x axis labels stay at 0-30 forever, which is presumably not what you want:</p>
+
+<pre><code>def animate(y, x_window):
+    while(1):
+        data = random.random()
+        y.append(data)
+        if len(y)&gt;x_window:  
+            y = y[-x_window:]
+        x = range(len(y))
+        ax.clear()
+        line, = ax.plot(y)
+        line.set_ydata(y)
+        fig.canvas.draw()
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+y = []
+win = fig.canvas.manager.window
+fig.canvas.manager.window.after(100, animate(y,30))
+</code></pre>
+
+<p>So I add an offset variable to keep track of how much of y we've cut off, and just add that number to all the x axis labels with set_xticklabels:</p>
+
+<pre><code>def animate(y, x_window):
+    offset = 0
+    while(1):
+        data = random.random()
+        y.append(data)
+        if len(y)&gt;x_window:  
+            offset += 1
+            y = y[-x_window:]
+        x = range(len(y))
+        ax.clear()
+        line, = ax.plot(y)
+        line.set_ydata(y)
+        ax.set_xticklabels(ax.get_xticks()+offset)
+        fig.canvas.draw()
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+y = []
+win = fig.canvas.manager.window
+fig.canvas.manager.window.after(100, animate(y,30))
+</code></pre>
+
+<p>Does that work?</p>

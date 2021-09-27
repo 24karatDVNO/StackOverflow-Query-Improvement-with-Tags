@@ -1,0 +1,5 @@
+<p>The <em>instruction size</em> is 16-Bit in thumb mode, not the register size.</p>
+
+<p>This means that a constant assignment - as in <code>i=1;</code> - can be seen as atomic. Although  more than one instruction is generated, only one will modify the memory location of <code>i</code> even if <code>i</code> is <code>int32_t</code>.</p>
+
+<p>But you need a critical section once you to things like <code>i=i+1</code>. That is of course not atomic.</p>

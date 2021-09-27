@@ -1,0 +1,6 @@
+<p>The easiest way to do this would be to cut out your custom socket solution and replace it with a tiny web server. Obviously the task isn't going to have serious latency if the user is going to be seeing the result on a map in the near future, so HTTP is fine. Just make an http post request to the server, with longitude and latitude as input values in the post body. The response from the HTTP server should be another longitude and latitude, I am guessing. So you can receive those in the response, in JSON, would be nice: </p>
+
+<pre><code>{ "longitude" : 40.0, "latitude" : 31 }
+</code></pre>
+
+<p>Would be your response. You can parse that with JSONObject and you can use the Apache libraries to make your server requests. Once it is requested and parsed, you can pack the data into the extras of an Intent, and fire it off to the Activity.</p>

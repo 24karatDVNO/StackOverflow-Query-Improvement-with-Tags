@@ -1,0 +1,10 @@
+<p>You mention that it sends it as a form. Perhaps you are sending it with the POST method?</p>
+
+<p>To find out try this.</p>
+
+<pre><code>&lt;?php
+print_r($_GET); // All GET data. aka x.php?x=1
+print_r($_POST); //Post data usually sent from form
+print_r($_REQUEST); //everyhting
+?&gt;
+</code></pre>

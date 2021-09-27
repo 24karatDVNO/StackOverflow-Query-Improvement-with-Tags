@@ -1,0 +1,28 @@
+<p>I don't think wrap_content works well with the width of a Gallery view. </p>
+
+<p>Instead use android:layout_toRightOf, it will ensure that the Gallery doesn't extend into the area of your textviews. The following code is an example, but I have not tested it.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_height="fill_parent"
+ android:layout_width="fill_parent"&gt;
+
+&lt;LinearLayout
+android:id="@+id/right_side"
+android:layout_height="fill_parent"
+android:layout_width="wrap_content"
+android:layout_alignParentLeft="true"&gt;
+
+*put your textviews here*
+&lt;/LinearLayout&gt;
+
+&lt;Gallery 
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_toLeftOf="@id/right_side"
+/&gt;
+
+
+&lt;/RelativeLayout&gt;
+</code></pre>

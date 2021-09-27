@@ -1,0 +1,26 @@
+<p>Every control that is on the page has a "controls" property which contains all of its children controls. I have written recursive functions to loop through these before but do not have any on hand. Let me try to write one real quick:</p>
+
+<pre><code>public Collection&lt;Control&gt; findControlsWithAttributes(Control startingControl)
+{
+    Collection&lt;Control&gt; toReturn = new Collection&lt;Control&gt;();
+    foreach (Control curControl in startingControl.controls)
+    {
+        if (DO COMPARISON HERE WITH CURCONTROL) toReturn.add(curControl);
+        if (curControl.Count() &gt; 0) findControlsWithAttributes(curControl, toReturn);
+    }
+    return toReturn;
+}
+
+private void findControlsWithAttributes(Control startingControl, Collection&lt;Control&gt; inputCollection)
+{
+    foreach (Control curControl in startingControl.controls)
+    {
+        if (DO COMPARISON HERE WITH CURCONTROL) inputCollection.add(curControl);
+        if (curControl.Count() &gt; 0) findControlsWithAttributes(Control startingControl, Collection&lt;Control&gt; inputCollection);
+    }
+}
+</code></pre>
+
+<p>Its been a little while since i've done this and I can't remember off the top of my head if Collection.Count is a method or property so make sure you check that first, but if you pass the page in then this will check against every server-visible control on your page and return a collection containing controls that match your comparison.</p>
+
+<p>Lastly, Control.Attributes will return an AttributeCollection which you should be able to subsequently compare against.</p>

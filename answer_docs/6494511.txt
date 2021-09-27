@@ -1,0 +1,7 @@
+<p>I'm guessing you have a list of objects (say of type MyRecord> with a Property ProdId1, and you want these values.</p>
+
+<pre><code>IList&lt;MyRecord&gt; list;
+IEnumerable&lt;int&gt; ids = from item in list 
+    orderby item.ProdId1 
+    select item.ProdId1;
+</code></pre>

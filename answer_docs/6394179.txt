@@ -1,0 +1,29 @@
+<pre><code>SELECT
+    vw.EmployeeID,
+    SUM(vw.TotalSale) as Total,
+    Recent.RecentMonthSale
+FROM
+    vwSales vw
+    LEFT JOIN
+    (
+        SELECT
+            _vw.EmployeeID,
+            _vw.TotalSale as RecentMonthSale
+        FROM
+            vwSales _vw
+        INNER JOIN
+        (
+            SELECT EmployeeID, MAX(MonthNumber) as MaxMonth
+            FROM vwSales
+            GROUP BY EmployeeID
+        ) _a
+        on _vw.EmployeeID = _a.EmployeeID
+        and _vw.MonthNumber = _a.MaxMonth
+    ) Recent
+    on Recent.EmployeeID = vw.EmployeeID
+GROUP BY
+    vw.EmployeeID,
+    Recent.RecentMonthSale
+</code></pre>
+
+<p>If you just execute each of the subqueries and view their results you should get a good idea for how this works</p>

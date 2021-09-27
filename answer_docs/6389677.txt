@@ -1,0 +1,104 @@
+<p>To load image you can use this method:</p>
+
+<pre><code>ImageIcon loadImageIcon(String name) {
+    URL imgURL = getClass().getResource(path);
+    if (imgURL != null) {
+        return new ImageIcon(imgURL);
+    } else {
+        System.err.println("Couldn't find file: " + path);
+        return null;
+    }
+}
+</code></pre>
+
+<p>Where parameter <code>name</code> has the following constrains:    </p>
+
+<ul>
+<li>If the name begins with a <code>/</code>, then the absolute name of the resource is the portion of the name following the <code>/</code>.</li>
+<li>Otherwise, the absolute name is of the following form: <code>modified_package_name/name</code>, 
+where the <code>modified_package_name</code> is the package name of this object with <code>/</code> substituted for <code>.</code>.</li>
+</ul>
+
+<p>See <a href="http://download.oracle.com/javase/1,5.0/docs/api/java/lang/Class.html#getResource%28java.lang.String%29" rel="nofollow">description of getResource(String name) method</a> for details.</p>
+
+<p>For example, if you place this method in <code>MyPanel.java</code> file and you have the following packages structure</p>
+
+<pre><code>swing/
+  | - panel/
+  |      | - MyPanel.java
+  | - resources/
+         | - my_image.jpg
+</code></pre>
+
+<p>than the <code>name</code> parameter maybe </p>
+
+<p>either <code>../resources/my_image.jpg</code>, or <code>/swing/panel/resources/my_image.jpg</code>,</p>
+
+<p>but neither <code>swing/panel/resources/my_image.jpg</code>, nor <code>/resources/my_image.jpg</code>.</p>
+
+<h2>Update:</h2>
+
+<p>Here is the working example. In the NetBeans UI Designer you can do analog.</p>
+
+<pre><code>package swing.panel;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class ImagePanel extends JPanel {
+
+    private Image img;
+
+    public ImagePanel(String img) {
+        this(new ImageIcon(img).getImage());
+    }
+
+    public ImagePanel(Image img) {
+        this.img = img;
+        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        setLayout(null);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(img, 0, 0, null);
+    }
+
+    /** Returns an ImageIcon, or null if the path was invalid. */
+    private static ImageIcon loadImageIcon(String path) {
+        URL imgURL = ImagePanel.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+                return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run(){
+                ImagePanel panel =
+                        new ImagePanel(loadImageIcon("../resources/image.png").getImage());
+
+                JFrame frame = new JFrame();
+                frame.getContentPane().add(panel);
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
+    }
+}
+</code></pre>

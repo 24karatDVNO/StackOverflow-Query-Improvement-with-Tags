@@ -1,0 +1,3 @@
+<p>After thinking about it for a bit more, I think I have answered my own question. I've decided not to try to both store every action in a tabular way and try to get quick lookup of frequency counts for betting lines in the same data structure. </p>
+
+<p>Instead, I am going to use my class above as the database-like storage to disk and use a DAG for the betting lines where the edges are tuples of {action, position, players ahead} and the vertices are frequency counts. I think a DAG is correct over a trie here since I do want multiple edges coming into a vertex since lines with common suffix are considered close.</p>

@@ -1,0 +1,7 @@
+<p><a href="http://jinwolf.tumblr.com/post/6591954772/architectural-patterns-vs-design-patterns" rel="nofollow">http://jinwolf.tumblr.com/post/6591954772/architectural-patterns-vs-design-patterns</a></p>
+
+<p>The architecture tells you how your system is laid out. One traditional architectural pattern example is 3 tier system where your system is broken down into presentation, business and data layers.</p>
+
+<p>The domain driven design promotes 4 tier architecture. Presentation, application, domain and infrastructure layers. And the repository pattern resides in between the domain layer and infrastructure layer. Your domain models should not know anything about the infrastructure and also should be kept pure and independent from it as well. That is why we have the repository to mediate those two layers.</p>
+
+<p>The repository pattern is still a pattern since it's a reusable solution and handles the problems that repeats. However, the repository pattern becomes only relevant when we talk about the architecture. It has its roles and responsibilities in the domain driven design architecture. It is not mathematical type general solution such as the abstract factory pattern which can be applied anywhere in your system.</p>

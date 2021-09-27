@@ -1,0 +1,1 @@
+<p>Try calling <code>Response.Flush()</code> in between <code>Response.Write()</code> and <code>Response.End()</code>.  Also, don't use an <code>&lt;asp:Button</code> for this.  Use an <code>&lt;asp:HyperLinK</code> (or even just a normal <code>&lt;a href</code> anchor) that points to a different page (or, even better, a *.ashx handler) that will give this response.</p>

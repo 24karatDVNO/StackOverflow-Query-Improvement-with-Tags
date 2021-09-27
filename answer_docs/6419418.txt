@@ -1,0 +1,9 @@
+<p>After some more work and digging I found out the following:</p>
+
+<ol>
+<li><p>Either my earlier observation (about presence or absence of back button depending on UA string) was incorrect, or I was looking at a different version of the docs (there are different versions for each release)</p></li>
+<li><p>Writing my own app, my own back button was NOT turned off by default. But it turns out I was using an alpha release of JQM (1.0.4), instead of the more recent beta release</p></li>
+<li><p>The beta release documentation appears to be tailored to tablet apps (has a two-column layout. Maybe it does screen size detection? I can't see that working on a phone)</p></li>
+</ol>
+
+<p>In conclusion, thanks to the good folks at Stackoverflow for looking at this question. It doesn't seem to have been much of an issue at all</p>

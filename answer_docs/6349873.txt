@@ -1,0 +1,7 @@
+<p>Unfortunately there is no easy way to go about this problem.  I had a similar problem with the uploading of images and people who try to upload their uncompressed 24ft wide image of their daughters birthday party :)</p>
+
+<p>The problem is you cant figure out the file size until the file is basically uploaded to the server via the post.  Which will cause the server to take forever and a day to load and eventually time out which doesn't make for a user friendly page.</p>
+
+<p>The only solution I could come up with was a flash file uploader which would compress the file on the client machine then send the compressed file to the site.  So a 200mb image becomes a 100k file.  There are some open source flash projects out there just have to google them.  This is what websites like Facebook and Picasa do for uploading documents/images.</p>
+
+<p>I have not tried looking for one but maybe HTML5 will offer something since it is basically replacing flash at some point in the near future.</p>

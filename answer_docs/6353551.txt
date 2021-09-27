@@ -1,0 +1,12 @@
+<p>What I interpret about your problem is that you have two applications say A1 and A2, A1 does some modification in the MySQL table T and based on whether some updation has happened on T or not, A2 does some processing.</p>
+
+<p>I think polling should be a good option.You can also use the "information_schema" database to find when T was last updated.This can be achieved in the following manner : </p>
+
+<p>SELECT UPDATE_TIME
+FROM   information_schema.tables
+WHERE  TABLE_SCHEMA = 'db_name'
+   AND TABLE_NAME = 'T'</p>
+
+<p>Alternatively if you dont want to poll, you can make A1 talk to A2, in case it has to do the required changes in T.</p>
+
+<p>But its a tradeoff b/w both the approaches which only you could analyze.</p>

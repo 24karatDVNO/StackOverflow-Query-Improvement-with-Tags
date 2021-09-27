@@ -1,0 +1,34 @@
+<p>The important thing to decide is how you are going to manage the number of playing <code>SoundEffectInstances</code> at once? The obvious way is to modify your gameplay code (or levels or whatever) such that the number of playing sounds simply never grows too large.</p>
+
+<p>But if this is not acceptable you will need to enforce a hard limit somehow. And the question is: how are you going to do it? Will each sound effect have a maximum number of instances of that effect? Or will you have "sound classes" (where the class has a maximum play count)? Or just a global maximum sound count? Will the cap be enforced by preventing additional sounds from playing? Or by cutting off sounds that are already playing?</p>
+
+<p>What I would suggest is creating a wrapper object around <code>SoundEffect</code> that implements pretty much the same thing that <code>SoundEffect.Play</code> does (it internally manages a pool of <code>SoundEffectInstance</code>s, reusing them when they are finished playing). Then add your playback cap functionality on top of it.</p>
+
+<p>So your wrapper class might look something like this:</p>
+
+<pre><code>class MySoundEffect
+{
+    SoundEffect sound;
+    List&lt;SoundEffectInstance&gt; instances;
+    int maxInstances;
+}
+</code></pre>
+
+<p>Or perhaps like this:</p>
+
+<pre><code>class MySoundEffect
+{
+    static int[] soundClassMaximums = { 2, 2, 5, 10 };
+    static int[] soundClassInstanceCount;
+
+    SoundEffect sound;
+    List&lt;SoundEffectInstance&gt; instances;
+    int class;
+}
+</code></pre>
+
+<p>And then you would use <code>MySoundEffect</code> everywhere you'd normally be using <code>SoundEffect</code>.</p>
+
+<p>Take a look at <a href="http://andrewrussell.net/2011/06/exen-public-preview-1/" rel="nofollow">ExEn</a>. Because it implements the internals of <code>SoundEffect</code>, you can possibly borrow its pooling code, which is similar to what the real XNA <code>SoundEffect</code> does, and then use it as a starting point for your own instance pool with your added functionality.</p>
+
+<p>There are other ways to do it, and it will depend on your architecture. But basically <strong>it is up to you to track the association between sound effects and instances</strong>. There's no way to do it in the XNA API (short of doing some nasty reflection).</p>

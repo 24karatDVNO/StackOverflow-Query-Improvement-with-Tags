@@ -1,0 +1,11 @@
+<p>I've found the solution by myself.</p>
+
+<p>I simply have to remove the AutoPostBack property of the check box and the double post back was gone. </p>
+
+<pre><code>&lt;asp:CheckBox ID="chkCopyToRespDoc" runat="server" Text="&lt;%$ Translation:JacieWeb.Admin.Notifications.CopyToRespDoc %&gt;"
+ OnCheckedChanged="chkCopyToRespDoc_CheckedChanged" CssClass="triggerOverlay" /&gt;
+</code></pre>
+
+<p>Thanks for all suggestions.</p>
+
+<p>Greatings</p>

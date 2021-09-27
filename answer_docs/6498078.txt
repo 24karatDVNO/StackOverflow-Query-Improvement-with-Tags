@@ -1,0 +1,13 @@
+<p>It'll depend somewhat on what db you're using, but this outta work in PostgreSQL:</p>
+
+<pre><code>    SELECT d.id , p.count, c.count, AVG(I.rating)
+      FROM tbl_item d
+      JOIN ( SELECT count(id), item_id as id from tbl_purchases ) as P
+     USING (id)
+      JOIN ( SELECT count(id), item_id as id from tbl_comment ) as C
+     USING (id)
+ LEFT JOIN tbl_rating as I
+        ON tbl_rating.id = d.id
+  GROUP BY d.id
+;
+</code></pre>

@@ -1,0 +1,9 @@
+<p>Don't guess performance issues: while people often return <code>std::string</code> by const reference, it is really not a big deal to return one by value, especially if you have no other choice.</p>
+
+<p>Actually, you can sometimes even change that latter as it affects only a few things for the client code.</p>
+
+<p>Remember: premature optimization is the root of all evil.</p>
+
+<p>Now, to fully answer the question, you can perfectly return a reference in virtual function (whether it is pure or not doesn't really matter). Just ensure never to return a reference to a temporary.</p>
+
+<p>If some derived class needs to perform a costly computation, it can still store the result in a member <code>std::wstring</code> and return a reference to that. But once again, don't guess performance issues: measure first and focus on it only if this seems to be the bottleneck.</p>

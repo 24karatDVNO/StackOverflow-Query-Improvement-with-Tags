@@ -1,0 +1,12 @@
+<pre><code>SqlCommand comm = new SqlCommand("Select required fields from YourTable, conn);
+
+conn.Open();
+SqlDataReader rdr = comm.ExecuteReader();
+
+GridView1.DataSource = rdr;
+GridView1.DataBind();
+
+rdr.Close();
+</code></pre>
+
+<p>This will print only required fields.    </p>

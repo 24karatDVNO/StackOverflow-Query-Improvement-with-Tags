@@ -1,0 +1,6 @@
+<p><a href="http://ca2.php.net/mcrypt_encrypt" rel="nofollow">mcrypt_encrypt</a> already returns the encrypted data as a string - why go through the further conversion?  If you're worried about transport (eg email) then you could use base64 <a href="http://ca2.php.net/manual/en/function.base64-encode.php" rel="nofollow">encode</a>/decode after encryption, if you're worried about database storage just make sure you escape the string in the SQL (or use database parameters).</p>
+
+<p>Also, "It is better not to use ASCII strings for keys." Try instead:</p>
+
+<pre><code>$key=hash("SHA256", "TestingKey", true);
+</code></pre>

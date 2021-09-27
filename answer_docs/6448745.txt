@@ -1,0 +1,8 @@
+<p>No need to use AJAX here. Just make sure that you do one of the following:</p>
+
+<ol>
+<li>Make sure you SELECT from the DB <em>after</em> you have INSERTed the data.</li>
+<li>Better, is that <code>if ($_SERVER['REQUEST_METHOD'] == 'POST')</code>, then rather than performing an extra SQL query, just display the POSTed value since you already know it.</li>
+</ol>
+
+<p>A side note on your code sample. If you don't have <code>magic_quotes</code> enabled, it's susceptible to SQL injection, so make sure you properly escape user input before using it in queries.</p>

@@ -1,0 +1,13 @@
+<p>You should consider the use of transaction and maybe change the PRAGMA synchronous of the database.
+Inserting 200+ rows will be long , the use of transaction will reduce the time needed : </p>
+
+<pre><code>sql.execSQL("BEGIN;");
+//insert 1
+//insert 2
+// ...
+sql.execSQL("END;");
+</code></pre>
+
+<p>Changing PRAGMA synchronous for 0 or 1 will also increase the insertion speed but could induce some error (it remove the wrting lock while inserting)</p>
+
+<p>See <a href="http://www.sqlite.org/pragma.html" rel="nofollow">http://www.sqlite.org/pragma.html</a> and <a href="http://www.sqlite.org/lang_transaction.html" rel="nofollow">http://www.sqlite.org/lang_transaction.html</a> for more information</p>

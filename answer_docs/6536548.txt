@@ -1,0 +1,20 @@
+<p>Further investigation has produced this solution: Add a new execution with a cc goal and a fixed up main source path:</p>
+
+<pre><code>    &lt;execution&gt;
+    &lt;id&gt;cc-compiletest&lt;/id&gt;
+    &lt;phase&gt;test-compile&lt;/phase&gt;
+        &lt;goals&gt;
+          &lt;goal&gt;cc&lt;/goal&gt;
+          &lt;/goals&gt;
+      &lt;configuration&gt;
+    &lt;mainSourceDir&gt;${project.build.sourceDirectory}/../../test/scala&lt;/mainSourceDir&gt;
+        &lt;useFsc&gt;true&lt;/useFsc&gt;
+        &lt;once&gt;true&lt;/once&gt;
+    &lt;displayCmd&gt;true&lt;/displayCmd&gt;
+    &lt;/configuration&gt;
+    &lt;/execution&gt;
+</code></pre>
+
+<p>Which runs the cc 'fast' compile goal against the /test/scala directory rather than the (default) /main/scala</p>
+
+<p>Is this the best/only way to do this?</p>

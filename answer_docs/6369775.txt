@@ -1,0 +1,20 @@
+<pre><code>Select
+Acc.ID,
+Cust.Forname,
+Cust.Name,
+Acc.Number
+
+From CustomerAccount Acc
+Inner Join Customers Cust
+On Acc.ID_CUstomer = Cust.ID
+</code></pre>
+
+<p>I assume your column are</p>
+
+<p>CustomerAccount
+ID|ID_Customer|Number</p>
+
+<p>Customers
+ID|ForName|Name</p>
+
+<p>I think It'll work</p>

@@ -1,0 +1,42 @@
+<p><a href="http://www.youtube.com/watch?v=S6pzabpUmoc" rel="nofollow">optikalefxx</a> helped me out with this. <a href="http://www.youtube.com/watch?v=S6pzabpUmoc" rel="nofollow">http://www.youtube.com/watch?v=S6pzabpUmoc</a></p>
+
+<p><strong>HTML</strong></p>
+
+<pre><code>&lt;p class="navigation"&gt;
+    &lt;h2&gt;&lt;a href="#link1"&gt;Link 1&lt;/a&gt; | &lt;a href="#link2"&gt;Link 2&lt;/a&gt; | &lt;a href="#link3"&gt;Link 3&lt;/a&gt; | &lt;a href="#link4"&gt;Link 4&lt;/a&gt;&lt;/h2&gt;
+&lt;/p&gt;
+</code></pre>
+
+<p><strong>Javascript</strong></p>
+
+<pre><code>$(function() {
+    // catch all clicks on a tags
+    $("a").click(function() {
+        // check if has hash
+        if(this.hash) {
+            // get rid of the # sign
+            var hash = this.hash.substr(1);
+
+            // get the position of the &lt;a name&gt;
+            var $toElement = $("a[name="+hash+"]");
+            var toPosition = $toElement.position().top;
+
+            // scroll/animate to that element
+            $("body,html").animate({
+                scrollTop : toPosition
+            },1500,"easeOutExpo");
+
+            // don't do the jump
+            return false;
+        }
+    });
+
+    if(location.hash) {
+        var hash = location.hash;
+        window.scroll(0,0);
+        $("a[href="+hash+"]").click();
+    }
+});
+</code></pre>
+
+<p>Hope it helps you too.</p>

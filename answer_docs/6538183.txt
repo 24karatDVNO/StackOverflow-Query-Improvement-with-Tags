@@ -1,0 +1,9 @@
+<p>I ended up overriding moveFocus() in my custom ListField.</p>
+
+<pre><code>    public int moveFocus(int amount, int status, int time) {
+        invalidate(getSelectedIndex());
+        return super.moveFocus(amount, status, time);
+    }
+</code></pre>
+
+<p>Vivek's method works well for single fields outside of a ListField row though.</p>

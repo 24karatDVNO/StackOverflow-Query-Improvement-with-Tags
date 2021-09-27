@@ -1,0 +1,36 @@
+<p>I solved this problem using code I found here:</p>
+
+<p><a href="http://developerfriendly.googlecode.com/svn/trunk/mozilla/xulrunner/WebRunner_app/Contents/Resources/chrome/content/webrunner.js" rel="nofollow">http://developerfriendly.googlecode.com/svn/trunk/mozilla/xulrunner/WebRunner_app/Contents/Resources/chrome/content/webrunner.js</a></p>
+
+<p>Specifically I did this:</p>
+
+<pre><code>var gXULBrowserWindow =
+{
+  QueryInterface: function(aIID)
+  {
+    if (aIID.Equals(Components.interfaces.nsIXULBrowserWindow) ||
+        aIID.Equals(Components.interfaces.nsISupports))
+     return this;
+
+    throw Components.results.NS_NOINTERFACE;
+  },
+
+  setJSStatus: function() { },
+  setJSDefaultStatus: function() { },
+
+  setOverLink: function(msg, aLink)
+  {
+    var sb = GetOptElem('bottomstatus');
+    if(sb)
+        sb.label = msg;
+  }
+};
+// hookup the browser window callbacks
+window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+    .getInterface(Components.interfaces.nsIWebNavigation)
+    .QueryInterface(Components.interfaces.nsIDocShellTreeItem)
+    .treeOwner
+    .QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+    .getInterface(Components.interfaces.nsIXULWindow)
+    .XULBrowserWindow = gXULBrowserWindow;
+</code></pre>

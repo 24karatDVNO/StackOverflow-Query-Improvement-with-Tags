@@ -1,0 +1,7 @@
+<p>if you're okay with having only certain allowable numbers of vertices, then the subdivision methods above are definitely the way to go.  if you want an arbitrarily-specified number of vertices, then i recommend:</p>
+
+<p>first, distribute points randomly and uniformly over the sphere.
+i talk at length about doing this at <a href="http://elenzil.com/progs/randompoints" rel="nofollow">http://elenzil.com/progs/randompoints</a> .
+i believe my method is at least as performant as that at worlfram.</p>
+
+<p>second, "relax" the distribution by treating the points as a particle system where each particle repels every other particle. the difficulty here is making sure the system doesn't become unstable, and deciding when to stop. i have an example of this here: <a href="http://elenzil.com/progs/separate" rel="nofollow">http://elenzil.com/progs/separate</a> unfortunately these were the days before i included source code with my projects, so that code is lost.</p>

@@ -1,0 +1,9 @@
+<p>If I understand correctly, the scenarios that you are talking about are those that (generally) are <em>undefined</em> according to the language.</p>
+
+<p>These scenarios lead to unpredictable results and, as you've noted, these results can sometimes include the program continuing and appearing to "work", or it can crash, or nasal demons can spontaneously come into existence.</p>
+
+<p>If you want to catch the use of undefined behaviour then you can do this <em>in some situations</em>, using tools.</p>
+
+<p>For example, <a href="http://en.wikipedia.org/wiki/Electric_Fence" rel="nofollow">Electric Fence</a> is great at revealing where you're writing to memory that you shouldn't be (though don't activate it in release builds!). Whether this will work for writing to something whose <code>const</code>ness you casted away will depend on what optimisations have been applied; it's possible that the object <em>will</em> have writeable memory, and it'll be physically impossible to determine that you're actually doing something wrong.</p>
+
+<p>What you're not going to get is a tidy language-layer exception. Since you're going to have to go down the tools route anyway, just apply static and dynamic analysis tools as best you can and <em>profile</em>. There is no foolproof way to suddenly turn on "sanely inform me of all use of Undefined Behaviour".</p>

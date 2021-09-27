@@ -1,0 +1,7 @@
+<p>yes, it is called global. it is some weird pseudo global construct build by VSTO.
+it makes for simple looking code like this ;</p>
+
+<pre><code>    Excel . Application eA = Globals . ThisAddIn . Application;
+    Excel . Workbook nWB=Globals . ThisAddIn . Application . ActiveWorkbook;
+    Excel . Worksheet eS = eA . ActiveSheet;
+</code></pre>

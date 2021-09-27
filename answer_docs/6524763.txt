@@ -1,0 +1,8 @@
+<p>In the following line, there shouldn’t be a space after the comma.</p>
+
+<pre><code>recipients = ', '.join(email_list)
+</code></pre>
+
+<p>Furthermore, Outlook needs semicolons, not commas. Apart from that, mailto never gave me grief.</p>
+
+<p>The general tip is to test mailto URLs manually in the browser first and to debug URLs by printing them out and entering them manually.</p>

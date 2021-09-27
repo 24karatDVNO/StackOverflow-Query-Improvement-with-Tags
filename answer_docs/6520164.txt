@@ -1,0 +1,15 @@
+<p>You seem to confuse something. Neither <code>UTF-8</code> nor <code>windows-1256</code> describe languages, they denote character sets/encodings. Although the character sets may contain characters that are typically used in certain languages, their use doesn’t say anything about the language.</p>
+
+<p>Now as the characters of Windows-1256 are contained in <a href="http://en.wikipedia.org/wiki/Universal_Character_Set" rel="nofollow">Unicode’s character set</a> and thus can be encoded with UTF-8, you should choose UTF-8 for both languages.</p>
+
+<p>And if you want to declare the language for your contents, read the <a href="http://www.w3.org/International/tutorials/language-decl/" rel="nofollow">W3C’s tutorial on <em>Declaring Language in XHTML and HTML</em></a>.</p>
+
+<p>In your case you could declare your primary document language as <code>en</code> (English) and parts of your document as <code>ar</code> (Arabic):</p>
+
+<pre><code>header('Content-Language: en');
+header('Content-Type: text/html;charset=UTF-8');
+
+echo '&lt;p&gt;The following is in Arabic: &lt;span lang="ar"&gt;العربية&lt;/span&gt;&lt;/p&gt;';
+</code></pre>
+
+<p>Make sure to use UTF-8 for both.</p>

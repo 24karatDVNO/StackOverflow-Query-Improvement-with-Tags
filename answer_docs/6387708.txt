@@ -1,0 +1,4 @@
+<p>This actually made a better test:</p>
+
+<pre><code>SELECT CASE WHEN EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='RMCoil') THEN 1 ELSE 0 END
+</code></pre>

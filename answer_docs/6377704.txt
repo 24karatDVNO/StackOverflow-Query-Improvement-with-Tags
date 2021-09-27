@@ -1,0 +1,1 @@
+<p>I'd think this should do the trick: 1) order by itemID 2) use OVER...PARTITION to get row number 3) use it in a recursive Common Table Expression that joins a number to all others where anchor + row number equals the ItemID, thereby finding all sequential numbers 4) group by the anchor in an outer query and then use MIN and MAX to get the range.</p>

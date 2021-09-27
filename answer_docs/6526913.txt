@@ -1,0 +1,15 @@
+<p>Well if you are using jQuery you should be able to do some checking of the url in document ready... </p>
+
+<pre><code>$(document).ready(function() {
+    // put all your jQuery goodness in here.
+});
+</code></pre>
+
+<p>I don't know off the top of my head if / what the js function is that gets called when the page is done loading.</p>
+
+<p>Then you should be able to something along the lines of...
+<a href="http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html" rel="nofollow">http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html</a></p>
+
+<p>To call the method. I don't know if you could call the js directly from the URL but this might be a work around, instead of using the js function you'd need to set a flag and then you could trigger the method.</p>
+
+<p>Hope this helps.</p>

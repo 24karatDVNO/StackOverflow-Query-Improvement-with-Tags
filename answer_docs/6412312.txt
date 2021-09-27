@@ -1,0 +1,16 @@
+<p>As a more concrete example, I have a case where, after the application has launched, I'm actually not quite ready for the user to see what is happening on the screen.  In this case, I have a webview that is still rendering, so I overlay the the Default.png file onto my view while some junk happens in the background.</p>
+
+<pre><code>// put the default image over the whole screen while we wait for the html to load
+UIImageView * defaultImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"Default.png"]] ;
+[self.view addSubview:defaultImageView];  
+
+
+// adjust for status bar
+if(![[UIApplication sharedApplication] isStatusBarHidden]) {//http://stackoverflow.com/questions/5310975/iphone-view-and-statusbar
+    CGRect imageRect = defaultImageView.frame;
+    imageRect.origin.y = imageRect.origin.y - 20;
+    defaultImageView.frame = imageRect;
+  }
+
+Now, later in the code, remove the subview....
+</code></pre>

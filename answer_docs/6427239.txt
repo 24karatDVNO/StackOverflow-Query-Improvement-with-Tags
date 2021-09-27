@@ -1,0 +1,10 @@
+<p>Most (all?) browsers will be able to parse that date string in with a simple</p>
+
+<pre><code>var parsedDate = new Date(dateString);
+</code></pre>
+
+<p>Once you have a Date object you can add a day and output a formatted date string using something like <a href="https://github.com/timrwood/underscore.date" rel="nofollow">underscore.date</a>.</p>
+
+<p>If you discover that some browsers can't parse that date format then you can write a pretty simple regex that will pull apart the date string into its constituent parts, and then build a Date instance by hand. </p>
+
+<p>Also I would strongly recommend doing the parsing in a separate function, and to try and keep dates in a Date representation as much as possible. Parse the string into a date as soon as you can, and format it back into a string as late as you can.</p>

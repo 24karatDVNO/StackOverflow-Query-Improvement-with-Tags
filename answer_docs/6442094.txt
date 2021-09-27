@@ -1,0 +1,31 @@
+<p>Your query doesn't have the rownum listed in the first nested table. Add a rownum column in the first nested table then you can do a between function in the where clause at the top level:</p>
+
+<pre><code>--create a demo table
+DROP TABLE paging_test;
+CREATE TABLE paging_test AS
+  (SELECT rownum x FROM user_tables
+  );
+
+--count how many records exist (in my case there is 821)
+SELECT COUNT(*)
+FROM paging_test;
+
+--get the first 300 rows
+SELECT *
+FROM
+  (SELECT rownum rn, x FROM paging_test ORDER BY x
+  ) pt
+WHERE pt.rn BETWEEN 1 AND 300 ;
+
+--get the next 300 rows
+SELECT *
+FROM
+  (SELECT rownum rn, x FROM paging_test ORDER BY x
+  ) pt
+WHERE pt.rn BETWEEN 300 AND 600 ;
+</code></pre>
+
+<p>You might also be interested in my reference:</p>
+
+<p>References:
+<a href="http://asktom.oracle.com/pls/asktom/f?p=100:11:0%3a%3a%3a%3aP11_QUESTION_ID:948366252775" rel="nofollow">http://asktom.oracle.com/pls/asktom/f?p=100:11:0::::P11_QUESTION_ID:948366252775</a></p>

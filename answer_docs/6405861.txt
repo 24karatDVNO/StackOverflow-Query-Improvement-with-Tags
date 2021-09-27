@@ -1,0 +1,41 @@
+<p>I've found the trick is this gem <a href="http://rubygems.org/gems/nested_has_many_through" rel="nofollow">http://rubygems.org/gems/nested_has_many_through</a> which can do something like this:</p>
+
+<pre><code>class Author &lt; User
+  has_many :posts
+  has_many :categories, :through =&gt; :posts, :uniq =&gt; true
+  has_many :similar_posts, :through =&gt; :categories, :source =&gt; :posts
+  has_many :similar_authors, :through =&gt; :similar_posts, :source =&gt; :author, :uniq =&gt; true
+  has_many :posts_of_similar_authors, :through =&gt; :similar_authors, :source =&gt; :posts, :uniq =&gt; true
+  has_many :commenters, :through =&gt; :posts, :uniq =&gt; true
+end
+
+class Post &lt; ActiveRecord::Base
+  belongs_to :author
+  belongs_to :category
+  has_many :comments
+  has_many :commenters, :through =&gt; :comments, :source =&gt; :user, :uniq =&gt; true
+end
+</code></pre>
+
+<p>This has super-simplified my queries and collections.</p>
+
+<p>This is all the code I ended up needing.  I'm told the gem nested_has_many_through will be standard in Rails 3.1</p>
+
+<h1>User model</h1>
+
+<pre><code>  has_many :products, :dependent =&gt; :destroy
+  has_many :product_posts, :through =&gt; :products, :source =&gt; :posts, :uniq =&gt; true
+  has_many :food_orders, :through =&gt; :product_posts, :source =&gt; :orders, :uniq =&gt; true
+</code></pre>
+
+<h1>OrdersController</h1>
+
+<pre><code> @orders_for_my_products = current_user.food_orders.all
+</code></pre>
+
+<h1>Orders index</h1>
+
+<pre><code>&lt;%= render :partial =&gt; "order", :collection =&gt; @orders_for_my_products, :locals =&gt; {:order =&gt; @order}  %&gt;
+</code></pre>
+
+<p>This returns the deep nested data via relationships using minimal code.  I sure hope its efficient, but at least my sanity is spared!</p>

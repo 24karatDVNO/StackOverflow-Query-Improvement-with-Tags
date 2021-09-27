@@ -1,0 +1,12 @@
+<p>My guess is this is happening because the <code>filterFunction</code> that was being applied to the old <code>ArrayCollection</code> is getting wiped out when the data gets loaded. What I would do is make a copy of the old ArrayCollection's <code>filterFunction</code> (and <code>Sort</code> if needed) and then reassign those properties once the data has been loaded. </p>
+
+<p>Here's a quick (and untested) example:</p>
+
+<pre><code>public function loadData(myData:ArrayCollection):void
+{
+  var filter:Function = reportData.filterFunction;
+  reportData = myData;
+  reportData.filterFunction = filter;
+  reportData.refresh();
+}
+</code></pre>

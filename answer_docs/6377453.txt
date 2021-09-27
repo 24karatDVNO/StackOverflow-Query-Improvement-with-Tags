@@ -1,0 +1,9 @@
+<p>Both.</p>
+
+<p>In general, a UPnP device will advertise itself from time to time via a NOTIFY message.</p>
+
+<p>At the same time, other devices can broadcast an M-SEARCH message to ask local devices on the network if they meet it's query, and if so, will/should cause those devices to re-advertise themselves again.</p>
+
+<p>So yes... you could do a search for your media player via an M-SEARCH message, looking for a urn:schemas-upnp-org:device:MediaRenderer:1</p>
+
+<p>As for how you send an M-SEARCH query... UDP multicast is the protocol SSDP uses, so sending a broadcast message via that depends on the language &amp; libraries you are using.</p>

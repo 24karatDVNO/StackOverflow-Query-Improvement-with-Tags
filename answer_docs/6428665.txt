@@ -1,0 +1,15 @@
+<pre><code>function checkit() {
+    var request = $.ajax({
+        url: '/checkit',
+        data: $('#checkit_form').serialize()
+    });
+
+    return request;
+}
+</code></pre>
+
+<p>The <code>return</code> statement isn't needed, but it allows you to say:</p>
+
+<pre><code>var x = checkit();
+x.success(function() { /* DO STUFF */ });
+</code></pre>

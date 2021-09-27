@@ -1,0 +1,14 @@
+<p>First, about your first attempt:</p>
+
+<pre><code>float rat;
+for (int i=1 ; i ; ++i) {
+    // the loop for the first won't be reached
+  for (int j=1 ; j ; ++j) {
+  // this loop will never end, it will either loop for ever or return something like (floag)1/(float)j
+    rat = (float)i/(float)j;
+    if goodRat(rat) then return rat;
+  }
+}
+</code></pre>
+
+<p>My advice is , make your purpose clear, and maybe you can refer to <a href="http://en.wikipedia.org/wiki/Stern-Brocot_tree" rel="nofollow">http://en.wikipedia.org/wiki/Stern-Brocot_tree</a></p>

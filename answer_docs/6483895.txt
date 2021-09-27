@@ -1,0 +1,3 @@
+<p>This is very bad design. What you want is a third, <strong>linking</strong>, or <strong>join</strong> table the has two columns: the id of your so-called child table and the id in the master table. There will be an entry in this table for every row in your child table that currently has a non-zero parent-id.</p>
+
+<p>Update: maybe 'very bad' is an over statement, as you could use a nullable foreign key as others have stated, but it should depend on the frequency of the nulls. If most rows have a non null link to master than go with the nullable FK, otherwise use a linking table.</p>

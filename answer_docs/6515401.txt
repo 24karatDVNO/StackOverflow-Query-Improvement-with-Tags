@@ -1,0 +1,13 @@
+<p>As noted, display: none will cause the item to take itself entirely out of the the layout. visibility: hidden will not; that is, if you had a 20px by 20px block, that block of space would continue to occupy the space even if it is hidden.</p>
+
+<p>You can also set the display to block, border to none and whitespace</p>
+
+<p>A few other items would be helpful to know - in order for anyone to answer this question with more than the display: none (which will work if all you are wanting to do is have it taken out of the space).</p>
+
+<ol>
+<li>What version of IE are you referencing? In no way are the all the same.</li>
+<li>What is the purpose of the span, if in fact you do not want it to be visible?</li>
+<li>What doctype is your HTML? Depending, for IE there could be quirks mode involved, you may have the option of using an IE specific meta tag, telling it to render in IE7 mode etc.</li>
+</ol>
+
+<p>For number two, if you are simply wanting to have have an indent as the name implies, then you can use the CSS text-indent: 10px (or whatever). If you have other reasons for it, there are options such as setting margins, padding on the containing area. In other words, semantically, why is this span there when there is no visibility and so on? Which then leads to have you tried other elements etc.</p>

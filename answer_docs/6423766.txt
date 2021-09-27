@@ -1,0 +1,14 @@
+<p>Isn't it obvious?</p>
+
+<p><strong>Action:</strong></p>
+
+<pre><code>ProdutkyNowyViewModel viewData = new ProdutkyNowyViewModel();
+return View("Nowy", viewData);
+</code></pre>
+
+<p><strong>View:</strong></p>
+
+<pre><code>&lt;%@ ... Inherits="System.Web.Mvc.ViewPage&lt;SklepAlfa.Models.Produkty&gt;" %&gt;
+</code></pre>
+
+<p>Change the <code>Inherits</code> to match the type of <code>viewData</code>, or vice versa.</p>

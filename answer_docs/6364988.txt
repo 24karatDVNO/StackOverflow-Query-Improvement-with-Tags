@@ -1,0 +1,3 @@
+<p>month supposed to be from 1 to 12 (no zeros in front)</p>
+
+<p><code>checkdate($month, $day, $year);</code> as in <code>checkdate(3, 27, 1977);</code> not <code>checkdate(03, 27, 1977);</code> so for month you should use <code>$month = date( 'n', $stamp );</code></p>

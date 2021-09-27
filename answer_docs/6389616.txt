@@ -1,0 +1,5 @@
+<p>I figured out the problem finally.  What you have to do before you set the highlighting is to remove the currently applied Style to the row by setting the <code>curSelRow.cells[i].style.backgroundColor = ''</code>.  Now you can highlight the row by using <code>curSelRow.style.backgroundColor = '#FFEEC2'</code>, which will set the row to the highlight value.  </p>
+
+<p>In addition, you must save each cell's own style before you reset the values and restore each cells value when the cursor leaves that row.  Otherwise you'll get white for each row that you hover over.  Again, remember to reset the style for the highlighted row before you setting each cell's style to what it was originally.</p>
+
+<p>What a pain!</p>

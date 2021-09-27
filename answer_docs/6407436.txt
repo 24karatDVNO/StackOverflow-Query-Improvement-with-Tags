@@ -1,0 +1,18 @@
+<pre><code>AlertDialog dialog = new Builder(Main.this.getParent()).create();
+dialog.setTitle("Delete");
+
+dialog.setButton("No", new DialogInterface.OnClickListener() {
+    public void onClick(DialogInterface dialog, int whichButton) {
+        dialog.dismiss();
+    }
+});
+dialog.setButton2("Yes", new DialogInterface.OnClickListener() {
+    public void onClick(DialogInterface dialog, int whichButton) {
+
+        // Whatever you want to do
+        dialog.dismiss();
+    }
+});
+
+dialog.show();
+</code></pre>

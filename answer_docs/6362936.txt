@@ -1,0 +1,28 @@
+<p>If you don't need interpolation, only exact reverse lookup, then it's relatively straighforward:</p>
+
+<pre><code>std::map&lt;YType, XType&gt; lookup;
+// (code to read the file goes here)
+// for each x {
+    YType y = f(x);
+    if ((lookup.count(y) == 0) || (lookup[y] &lt; x)) {
+        lookup[y] = x;
+    }
+// }
+</code></pre>
+
+<p>Then your reverse lookup is just <code>lookup[y]</code>, which will return 0 (or a default-constructed value where applicable) if <code>y</code> in fact was missing from the data.</p>
+
+<p>Be aware that my code is a bit inefficient, it looks up <code>y</code> several times in the map, up to 3. You can optimize using iterators, but I'm concerned that obscures what's going on if you're not already familiar with them:</p>
+
+<pre><code>typedef std::map&lt;YType, XType&gt; maptype;
+typedef std::pair&lt;maptype::iterator, bool&gt; resulttype;
+
+resulttype result = lookup.insert(std::make_pair(y, x));
+if (!result.second) {
+    // key already existed, so value was not inserted. Check for max.
+    maptype::iterator pos = result.first;
+    if ((*pos).second &lt; x) {
+        (*pos).second = x;
+    }
+}
+</code></pre>

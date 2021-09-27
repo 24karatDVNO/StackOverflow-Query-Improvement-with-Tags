@@ -1,0 +1,24 @@
+<p>i think u run program under Windows Vista/7
+try to use Application Manifest file</p>
+
+<pre><code>  &lt;trustInfo xmlns="urn:schemas-microsoft-com:asm.v2"&gt;
+&lt;security&gt;
+  &lt;requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3"&gt;
+    &lt;!-- UAC Manifest Options
+        If you want to change the Windows User Account Control level replace the 
+        requestedExecutionLevel node with one of the following.
+
+    &lt;requestedExecutionLevel  level="asInvoker" uiAccess="false" /&gt;
+    &lt;requestedExecutionLevel  level="requireAdministrator" uiAccess="false" /&gt;
+    &lt;requestedExecutionLevel  level="highestAvailable" uiAccess="false" /&gt;
+
+        Specifying requestedExecutionLevel node will disable file and registry virtualization.
+        If you want to utilize File and Registry Virtualization for backward 
+        compatibility then delete the requestedExecutionLevel node.
+    --&gt;
+    &lt;requestedExecutionLevel level="asInvoker" uiAccess="false" /&gt;
+  &lt;/requestedPrivileges&gt;
+&lt;/security&gt;
+</code></pre>
+
+<p></p>

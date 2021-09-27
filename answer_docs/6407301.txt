@@ -1,0 +1,14 @@
+<blockquote>
+  <p>wait() takes the address of an integer
+  variable and returns the process ID of
+  the completed process.</p>
+</blockquote>
+
+<p>More about the <a href="http://www.csl.mtu.edu/cs4411/www/NOTES/process/fork/wait.html" rel="nofollow">wait()</a> system call</p>
+
+<p>The </p>
+
+<pre><code>while (pid!=wait(&amp;ReturnCode));
+</code></pre>
+
+<p>loop is comparing the process id (pid) returned by wait() to the pid received earlier from a <em>fork</em> or any other <em>process</em> starter. If it finds out that the <em>process</em> that has ended IS NOT the same as the one this <em>parent process</em> has been waiting for, it keeps on wait()ing.</p>

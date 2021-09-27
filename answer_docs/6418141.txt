@@ -1,0 +1,25 @@
+<p>This is a fairly old post, but here's something I devised and use in all of my console applications. It's just a small snippet of code that can be injected into a single file and everything will work.</p>
+
+<p><a href="http://www.ananthonline.net/blog/dotnet/parsing-command-line-arguments-with-c-linq" rel="nofollow">http://www.ananthonline.net/blog/dotnet/parsing-command-line-arguments-with-c-linq</a></p>
+
+<p>Edit: This is now available on <a href="http://www.nuget.org/packages/declcmdparser" rel="nofollow">Nuget</a>, and is part of the open-source project <a href="http://codeblocks.codeplex.com/" rel="nofollow">CodeBlocks</a>.</p>
+
+<p>It was devised to be declaratively and intuitively used, like so (another usage example <a href="http://codeblocks.codeplex.com/wikipage?title=Declarative%20command%20line%20parser%20sample&amp;referringTitle=Home" rel="nofollow">here</a>):</p>
+
+<pre><code>args.Process(
+    // Usage here, called when no switches are found
+    () =&gt; Console.WriteLine("Usage is switch0:value switch:value switch2"),
+
+    // Declare switches and handlers here
+    // handlers can access fields from the enclosing class, so they can set up
+    // any state they need.
+    new CommandLine.Switch(
+        "switch0",
+        val =&gt; Console.WriteLine("switch 0 with value {0}", string.Join(" ", val))),
+    new CommandLine.Switch(
+        "switch1",
+        val =&gt; Console.WriteLine("switch 1 with value {0}", string.Join(" ", val)), "s1"),
+    new CommandLine.Switch(
+        "switch2",
+        val =&gt; Console.WriteLine("switch 2 with value {0}", string.Join(" ", val))));
+</code></pre>

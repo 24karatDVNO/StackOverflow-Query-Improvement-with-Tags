@@ -1,0 +1,28 @@
+<p>You can simply use BackgroundWorker or Thread class. Keep in mind that each thread may directly call methods only of it's own WinForms controls. If you want to avoid Cross-thread exceptions you need to to use the "Invoke" method. For more detailed info and samples go to: <a href="http://geekswithblogs.net/DrissZouakBlog/archive/2006/06/20/82513.aspx" rel="nofollow">http://geekswithblogs.net/DrissZouakBlog/archive/2006/06/20/82513.aspx</a></p>
+
+<p>sample:    </p>
+
+<pre><code>BackgroundWorker bw = new BackgroundWorker();
+
+bw.DoWork += (x,y)  
+    =&gt; 
+    {
+        while (true)
+        {
+            if (checkCondition)
+            {
+                // do sth here -&gt; for example refresh control or 
+                this.Invoke(updateUI, new object[] { args }); // // now ‘schedule’ the update for when the Winform (i.e. this) is able to by calling
+                break; // if the job is done and you want to terminate the thread
+            }
+            // maybe put some Sleep here Thread.Sleep(5);
+        }
+    };
+
+bw.RunWorkerCompleted += (x, y) =&gt; // not mandatory!
+    {
+        // sth
+    };
+
+bw.RunWorkerAsync(); // start 
+</code></pre>

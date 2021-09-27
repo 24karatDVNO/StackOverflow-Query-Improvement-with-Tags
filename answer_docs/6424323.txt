@@ -1,0 +1,12 @@
+<p>The event listener should be added after the load is completed:</p>
+
+<p>in jQuery it's easiest to do like that:</p>
+
+<pre><code>$(function() {
+  $('#outdirections a').click(function() {
+              $('#outdirections a').removeClass('directionsselect');$(this).addClass('directionsselect');
+          });
+});
+</code></pre>
+
+<p>Where the <code>$(function() {</code> part is a short form for <code>$(document).ready(function() {</code>....</p>

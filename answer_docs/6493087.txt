@@ -1,0 +1,13 @@
+<p>This could be the result of jQuery AJAX caching. I've had similar problems myself.</p>
+
+<p>Try turning it off with this:</p>
+
+<pre><code>$.ajax({
+    type: "POST",
+    url: "check.php",
+    data: { value: 'true' },
+    cache: false
+});
+</code></pre>
+
+<p>Also try fiddling the requests to check whether they're actually being made or not to confirm that it's a caching issue.</p>

@@ -1,0 +1,10 @@
+<p>This question is probably best for <a href="http://dba.stackexchange.com">Database Administrators</a>, but short answer is that there's a variety of methods you can use:  </p>
+
+<ol>
+<li>Scheduled backup/restores (if you're
+happy to blow away your 2nd DB on
+each restore)</li>
+<li>Log shipping (passes over changes since last updated)</li>
+<li>SSIS package (if you need to change the structure of the database ie: transform, then this is a good method, if the structure is the same use one of the other methods)</li>
+<li><a href="http://www.simple-talk.com/sql/database-administration/sql-server-replication-crib-sheet/" rel="nofollow">Replication</a> (as you seem to want 1 way, I'd suggest transactional replication, this is the closest you'll probably get to real time, but should not be entered into lightly as it will have impacts on how you work with both databases)</li>
+</ol>

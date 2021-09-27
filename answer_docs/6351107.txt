@@ -1,0 +1,22 @@
+<p>My hunch is that coupling the common framework too closely with the separate versions will cause headaches. Perhaps this would work better:</p>
+
+<pre><code>/-+
+  |
+  +--discovery/
+  |  |
+  |  +--index.php
+  |  +--main.css
+  |  +--main.js
+  +--engine/
+     |
+     +--1.0-stable/
+     |  |
+     |  +--feature.php
+     +--2.0-beta/
+        |
+        +--feature.php
+</code></pre>
+
+<p>The discovery section would manage a list of engine versions and their current state. Each engine version would be completely stand-alone. There's no direct link from the discovery section to the engine deployments, it's just a way to publicize which versions are currently running.</p>
+
+<p>The deployments from version control would then be fairly standard to each engine version's directory.</p>

@@ -1,0 +1,3 @@
+<p>Depends on the amount of data (single or bulk), but I would say that SqlCommand would probably have the least overhead. The other 2 examples create an additional DataTable or DataAdapter which is not required for a basic insert.</p>
+
+<p>I would  also look at stored procedures (using SqlCommand) as this would be my personal choice</p>

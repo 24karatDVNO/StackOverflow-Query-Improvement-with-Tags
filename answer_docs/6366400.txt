@@ -1,0 +1,7 @@
+<p>You can try this:</p>
+
+<pre><code>Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^([^/.]+)/our_courses.php$ index.php?p=our_courses&amp;course_id=$1 [L]
+RewriteRule ^([^/.]+)/(^/.]+)/my_account.php$ index.php?p=my_account&amp;cat=$2course_id=$1 [L]
+</code></pre>

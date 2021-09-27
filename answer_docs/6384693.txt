@@ -1,0 +1,16 @@
+<pre><code>&lt;input type="checkbox" onclick="return false;" /&gt;
+</code></pre>
+
+<p>or with jquery:</p>
+
+<p>html:</p>
+
+<pre><code>&lt;input type="checkbox" class="disabled" /&gt;
+</code></pre>
+
+<p>js:</p>
+
+<pre><code>$('input.disabled').click(function(e) {
+    e.preventDefault();
+});
+</code></pre>

@@ -1,0 +1,64 @@
+<p>It can be done as below by checking whether the unzipped entry is a directory. If directory then create the directory and proceed with streaming the file inside the directory.</p>
+
+<pre><code>private void unZipFile(long lBatchID, String sFileName) throws Exception {
+    final int BUFFER = 2048;
+    BufferedOutputStream dest = null;
+    FileInputStream fis = null;
+    ZipInputStream zis = null;
+    int iSubstr1 = sFileName.indexOf("-");
+    int iSubstr2 = sFileName.lastIndexOf("-");
+    int iEDocketSubStr = sFileName.lastIndexOf("\\");
+    String sBatchNum = sFileName.substring(iSubstr1 + 1,
+            iSubstr2);
+    String sEDocketNum = sFileName.substring(iEDocketSubStr + 1,
+            iSubstr1);
+    Date startTime = new Date();
+    try {
+
+        fis = new FileInputStream(sFileName);
+        zis = new ZipInputStream(
+                new BufferedInputStream(fis));
+        ZipEntry entry;
+        String sTempDir = TEMP_DIR + "\\" + sEDocketNum+"-"+sBatchNum;
+        File fTempDir = new File(sTempDir);
+        fTempDir.mkdirs();
+        while ((entry = zis.getNextEntry()) != null) {
+            int count;
+            byte data[] = new byte[BUFFER];
+            if(entry.isDirectory())
+            {
+                File f2 = new File(TEMP_DIR + "\\" + sEDocketNum+"-"+sBatchNum+"\\"+entry.getName());
+                f2.mkdir();
+                logger.debug("Creating directory during unzip....."+entry.getName());
+            }
+            else
+            {
+            FileOutputStream fos = new FileOutputStream(new File(sTempDir
+                    + "\\" + entry.getName()));
+            dest = new BufferedOutputStream(fos, BUFFER);
+            while ((count = zis.read(data, 0, BUFFER)) != -1) {
+                dest.write(data, 0, count);
+            }
+            dest.flush();
+            dest.close();
+            }
+        }
+        zis.close();
+        LogTaskDuration.logDuration(lBatchID, startTime, "UNZIP");
+    } catch (Exception e) {
+
+        e.printStackTrace();
+        logger.error("Problem unzipping file - " + sFileName);
+        throw new Exception(
+                "Could not create temporary directory to unzip file");
+    }
+    finally
+    {
+        if(dest != null)
+            dest.close();
+        if(fis!=null)
+            fis.close();
+
+    }
+}
+</code></pre>

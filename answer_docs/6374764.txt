@@ -1,0 +1,25 @@
+<p>Looks to me like your issue is with your crop style.</p>
+
+<p>add_image_size has a third property that is crop style and defaults to false (soft proportional cropping.</p>
+
+<p>"Box resizing shrinks an image proportionally (that is, without distorting it), until it fits inside the “box” you’ve specified with your width and height parameters." </p>
+
+<p>The reason that your regenerate thumbnails is not working correctly, is because you are using this soft mode, and it seems like the result you are actually looking for is hard crop.</p>
+
+<p>"in this mode, the image is cropped to match the target aspect ratio, and is then shrunk to fit in the specified dimensions exactly."</p>
+
+<p>so you will want to change</p>
+
+<pre><code>add_image_size( 'side-excerpt', 86, 93);
+</code></pre>
+
+<p>to</p>
+
+<pre><code>add_image_size( 'side-excerpt', 86, 93, true);
+</code></pre>
+
+<p>For more information see:</p>
+
+<p><a href="http://markjaquith.wordpress.com/2009/12/23/new-in-wordpress-2-9-post-thumbnail-images/" rel="nofollow">http://markjaquith.wordpress.com/2009/12/23/new-in-wordpress-2-9-post-thumbnail-images/</a></p>
+
+<p><a href="http://codex.wordpress.org/Function_Reference/add_image_size" rel="nofollow">http://codex.wordpress.org/Function_Reference/add_image_size</a></p>

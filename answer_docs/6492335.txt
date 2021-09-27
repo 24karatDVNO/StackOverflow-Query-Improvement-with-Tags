@@ -1,0 +1,9 @@
+<p>You may use the same code to test the whether server side script is running or not. But you may write the code inside document.ready function</p>
+
+<pre><code>$(document).ready(function(){
+    var obj = Sys.WebForms.PageRequestManager.getInstance();
+    if (obj.get_isInAsyncPostBack()) {
+        obj.abortPostBack();
+    }
+});
+</code></pre>

@@ -1,0 +1,14 @@
+<p>So I got it working like so...</p>
+
+<p>I have an object (obj A) that needs to observe another object (obj B) and implements the following function: <code>observeValueForKeyPath:ofObject:change:context:</code></p>
+
+<p>Obj B calls the following in its init function: </p>
+
+<pre><code>[self addObserver:[&lt;some singleton class&gt; sharedManager] forKeyPath:@"someVar" options:(NSKeyValueObservingOptionNew) context:self];
+</code></pre>
+
+<p>Of course the observer class does not need to be a singleton class, but of course it is very convenient. I passed in the object being observed as the context and that allowed obj A to access all ivars for obj B in the <code>observeValueForKeyPath:ofObject:change:context:</code> function.</p>
+
+<p>As I discovered, different background threads aren't used for KVO notifications, so I am reverting back to using protocols to transfer information as they both work out the same.</p>
+
+<p>This form of data transfer is not recommended, but I wanted to just point out that it is indeed possible.</p>

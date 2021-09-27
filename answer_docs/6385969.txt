@@ -1,0 +1,3 @@
+<p>I have found the solution to my problem. It was caused by missing dependencies and I solved it by using the prepackaged PHP Wordpress application available <a href="http://wordpress-on-quercus.appspot.com/wordpress-on-gae-quercus.zip" rel="nofollow">here</a>.</p>
+
+<p>One thing is to be noted. The package overlooked a minor issue in that all files other than the src/ directory need to be in a war/ directory which stays alongside the src/ directory (this as per appengine conventions as mentioned on its documentation). So I organized the files thus myself, put the above PHP file in the war/ directory, and it's working fine on the appengine.</p>

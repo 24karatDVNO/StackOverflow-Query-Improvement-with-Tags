@@ -1,0 +1,5 @@
+<p>Answer by Nicolae Albu is right - this is request <strong>attribute</strong>, not <strong>parameter</strong>.
+Attribute is something you associate with request yourself, in code, using API (in this case - Spring MVC does that using Model). Parameters are added by Servlet Container, not you, and they represent URL/POST parameters sent by browser.</p>
+
+<p>The only thing to add is that ${varName} is equivalent to pageContext.findAttribute("varName");
+and request.getAttribute("varName") is equivalent to pageContext.getAttribute("varName", PageContext.REQUEST_SCOPE) (if you're not sure what this is about, look up documentation on page, request, session and application scopes in Servlets+JSPs).</p>

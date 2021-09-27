@@ -1,0 +1,103 @@
+<p>Well, I kept working on it and resolved the issue by firing an event from the finalizer of one object to notify the other to clean up it's native object before the first finalizer completes. It feels a bit dirty doing it in the finalizer. is that bad?</p>
+
+
+
+<pre class="lang-cpp prettyprint-override"><code>// CLILib.h
+
+#pragma once
+
+#include "Native.h"
+
+using namespace System;
+
+namespace CLILib 
+{
+    interface class Interface2;
+
+    //------------------------------------------------------------------------------
+    public interface class Interface1
+    {
+    };
+
+    //------------------------------------------------------------------------------
+    public interface class Interface2
+    {
+        void Initialize( Interface1^ i1 );
+    };
+
+    //------------------------------------------------------------------------------
+    public ref class Class1 : Interface1
+    {
+    public:
+        Class1()
+        {
+            m_pn1 = new CNative1();
+        };
+
+        ~Class1()
+        {
+            this-&gt;!Class1();
+        }
+
+        !Class1()
+        {
+            OnEvent();
+            delete m_pn1;
+        }
+
+        delegate void Eventhandler();
+        event Eventhandler^ OnEvent; 
+
+    internal:
+        CNative1* GetNative()
+        {
+            return m_pn1;
+        }
+
+    private:
+        Interface2^ m_hi2;
+        CNative1*   m_pn1;
+    };
+
+    //------------------------------------------------------------------------------
+    public ref class Class2 : Interface2
+    {
+    public:
+
+        Class2()
+        {
+            m_pn2 = new CNative2();
+        }
+
+        ~Class2()
+        {
+            this-&gt;!Class2();
+        }
+
+        !Class2()
+        {
+        }
+
+        virtual void Initialize( Interface1^ i1 )
+        {
+            m_i1 = i1;
+
+           Class1^ c1 = safe_cast&lt; Class1^ &gt;( i1 );
+
+           c1-&gt;OnEvent += gcnew Class1::Eventhandler( this, &amp;Class2::Notify );
+
+            m_pn2-&gt;Initialize( c1-&gt;GetNative() );
+        }
+
+        void Notify()
+        {
+            delete m_pn2;
+            m_pn2 = nullptr;
+        }
+
+    private:
+        Interface1^ m_i1;
+        CNative2*   m_pn2;
+    };
+}
+</code></pre>

@@ -1,0 +1,10 @@
+<p>This is what you want to be doing:</p>
+
+<pre><code>public static &lt;T extends Comparable&lt;T&gt;&gt; T[] function(final T[] a) {
+    final T[] m = (T[]) Array.newInstance(a.getClass().getComponentType(), 2);
+
+    /* some work here */
+
+    return m;
+}
+</code></pre>

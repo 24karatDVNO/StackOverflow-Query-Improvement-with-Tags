@@ -1,0 +1,12 @@
+<p>Assume your upload control is in a form named "image" and you are using <a href="http://werkzeug.pocoo.org/docs/datastructures/" rel="nofollow">Werkzeug's FileStorage</a>: </p>
+
+<pre><code>img_stream = self.form.image.data
+mimetype = img_stream.content_type
+img_str = img_stream.read().encode('base64').replace('\n', '')
+
+data_uri = 'data:%s;%s,%s' % (mimetype, 'base64', img_str)
+</code></pre>
+
+<p>Your <a href="http://en.wikipedia.org/wiki/Data_URI_scheme#HTML" rel="nofollow">data_uri</a> now contains the string information you need. </p>
+
+<p><em>Thank you all for your helpful comments!</em></p>

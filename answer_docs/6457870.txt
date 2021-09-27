@@ -1,0 +1,5 @@
+<p>Try to prepare and execute the query:</p>
+
+<pre><code>$stmt = $db-&gt;prepare("SELECT * FROM test WHERE column1 LIKE ?");
+$stmt-&gt;execute(array("%{$user_input}%"));
+</code></pre>

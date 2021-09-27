@@ -1,0 +1,35 @@
+<p>One way to get hold of all 8 cases in a switch is the following.</p>
+
+<p>Convert the booleans to different int flags (values with only one bit set), combine these with bitwise OR, and then switch on the 8 possible values.</p>
+
+<pre><code>int combination = (option1 ? 1 : 0) | (option2 ? 2 : 0) | (option3 ? : 4 : 0);
+
+switch(combination) {
+case 0: // !1 &amp;&amp; !2 &amp;&amp; !3
+  ...
+break;
+case 1: // 1 &amp;&amp; !2 &amp;&amp; !3
+  ...
+break;
+case 2: // !1 &amp;&amp; 2 &amp;&amp; !3
+  ...
+break;
+case 3: // 1 &amp;&amp; 2 &amp;&amp; !3
+  ...
+break;
+case 4: // !1 &amp;&amp; !2 &amp;&amp; 3
+  ...
+break;
+case 5: // 1 &amp;&amp; !2 &amp;&amp; 3
+  ...
+break;
+case 6: // !1 &amp;&amp; 2 &amp;&amp; 3
+  ...
+break;
+case 7: // 1 &amp;&amp; 2 &amp;&amp; 3
+  ...
+break;
+}
+</code></pre>
+
+<p>With this approach, you can handle all 8 cases equally. But it will grow out of hands if there are more booleans added, because the number of combinations grows exponentially.</p>

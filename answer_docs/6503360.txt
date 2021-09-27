@@ -1,0 +1,11 @@
+<p>You can use triggers to keep track of your changes. Keep the history of your changes in new table.</p>
+
+<p>Importance of triggers is that whenever there occurs any change in the table records, we can make history of the changes done.</p>
+
+<p><a href="http://www.codeproject.com/KB/database/TriggersSqlServer.aspx" rel="nofollow">Sample code for triggers</a></p>
+
+<p>For updated data you can pick record from <strong><code>Inserted</code></strong> Table</p>
+
+<p>For obsolete data you can pick record from <strong><code>Deleted</code></strong> Table</p>
+
+<p>While creating new table, you can avoid using the foreign key in this table. Directly saving the data into this table will help you to keep the query fast while retrieving history data</p>

@@ -1,0 +1,18 @@
+<p>You can also pass in the name into the function above by doing it this way, and then you'd have a function that can start any workflow on any item:</p>
+
+<pre><code>public void StartWF(SPListItem listItem, SPSite spSite, string wfName)  
+{ 
+   SPList parentList = listItem.ParentList;      
+   SPWorkflowAssociationCollection associationCollection = parentList.WorkflowAssociations;        
+   foreach (SPWorkflowAssociation association in associationCollection) 
+   {
+       if (association.Name == wfName) 
+       {
+           association.AutoStartChange = true;
+           association.AutoStartCreate = false;
+           association.AssociationData = string.Empty; 
+           spSite.WorkflowManager.StartWorkflow(listItem, association,  association.AssociationData);
+      }
+   }
+}
+</code></pre>

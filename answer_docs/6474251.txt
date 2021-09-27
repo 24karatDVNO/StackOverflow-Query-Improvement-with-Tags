@@ -1,0 +1,12 @@
+<p>So your issue (as I understand it)  is:</p>
+
+<ul>
+<li>LOGIN.XAML - > LoggedInUser.XAML</li>
+<li>---->HIT BACK BUTTON&lt;----</li>
+<li>-> Which then returns you back to LOGIN.XAML </li>
+<li>-> Which then returns you right back to LoggedInUser.XAML...</li>
+</ul>
+
+<p>You could set a flag after the user logs in and then on the OnNavigated event could you check that flag to determine if you want to redirect?  Without some sort of flag I'm not sure how you are going to do this and have it pass certification.  With all that being said, I personally I wouldn't do it this way.  I'm pretty sure that auto-redirecting isn't something that looked highly upon (mainly because of the certification process and UX).  You might want to consider having a main screen with a login button.  Then the login screen will do what you need it to and then if it passes then go to the next step for your app.</p>
+
+<p>Just my 2 cents.</p>

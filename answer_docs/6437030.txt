@@ -1,0 +1,8 @@
+<p><code>#fbinfo</code> is an <code>input</code> element, as such, you cannot set <code>html()</code> inside it, but should instead, use <code>val()</code>. </p>
+
+<p>Like this:</p>
+
+<pre><code>$('#fbinfo').val('user id is:' + user.uid);
+</code></pre>
+
+<p>For more information, have a look at the <a href="http://api.jquery.com/val/" rel="nofollow">val() documentation</a>.</p>

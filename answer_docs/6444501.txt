@@ -1,0 +1,23 @@
+<p>As boca observed, <code>List&lt;T&gt;</code> already has a method to do this.  A somewhat larger issue, though, is that this really isn't a scenario where you should be creating a new extension method.  There's already an extension method that takes a predicate:  <code>Where</code>.</p>
+
+<p>Granted, doing this:</p>
+
+<pre><code>var result = list.Where(x =&gt; x != 5).ToList();
+</code></pre>
+
+<p>is a little more code than using <code>RemoveAll</code>:</p>
+
+<pre><code>list.RemoveAll(x =&gt; x == 5);
+</code></pre>
+
+<p>But:</p>
+
+<ul>
+<li>it also builds a new list instead of modifying the existing list in place, </li>
+<li><code>list</code> can actually be any <code>IEnumerable&lt;T&gt;</code>, not just a <code>List&lt;T&gt;</code>, </li>
+<li>the <code>Where</code> method is a commonly used, well-documented extension method that any reasonably-skilled C# programmer can be expected to recognize on sight </li>
+<li>it's clear to anyone reading that code that it's creating a new list, and </li>
+<li>if you don't <em>want</em> to create a new list, just leave off <code>ToList()</code> and enumerate over <code>result</code>.</li>
+</ul>
+
+<p>It's really hard for me to envision circumstances where I'd want to write an extension method for <code>IEnumerable&lt;T&gt;</code> that takes a predicate.  You're saving very little by making it possible for you to not use <code>Where()</code>.</p>

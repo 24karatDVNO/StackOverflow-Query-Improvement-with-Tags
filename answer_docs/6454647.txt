@@ -1,0 +1,54 @@
+<p>I have started to use html codes for german characters and it works. </p>
+
+<p>functions.xsl</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+&lt;xsl:output encoding="utf-8" method="xml" indent="yes" /&gt;
+&lt;xsl:template name="replace"&gt;
+    &lt;xsl:param name="text"/&gt;
+    &lt;xsl:param name="search"/&gt;
+    &lt;xsl:param name="replace"/&gt;
+    &lt;xsl:choose&gt;
+        &lt;xsl:when test="contains($text, $search)"&gt;
+            &lt;xsl:variable name="replace-next"&gt;
+                &lt;xsl:call-template name="replace"&gt;
+                    &lt;xsl:with-param name="text" select="substring-after($text, $search)"/&gt;
+                    &lt;xsl:with-param name="search" select="$search"/&gt;
+                    &lt;xsl:with-param name="replace" select="$replace"/&gt;
+                &lt;/xsl:call-template&gt;
+            &lt;/xsl:variable&gt;
+            &lt;xsl:value-of select="concat(substring-before($text, $search),$replace,$replace-next)"/&gt;
+        &lt;/xsl:when&gt;
+        &lt;xsl:otherwise&gt;&lt;xsl:value-of select="$text"/&gt;&lt;/xsl:otherwise&gt;
+    &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template name="replaceCH"&gt;
+    &lt;xsl:param name="value"/&gt;
+        &lt;xsl:variable name="temp"&gt;
+        &lt;xsl:call-template name="replace"&gt;
+            &lt;xsl:with-param name="text" select="$value"/&gt;
+            &lt;xsl:with-param name="search" select="'_'"/&gt;
+            &lt;xsl:with-param name="replace" select="''"/&gt;
+        &lt;/xsl:call-template&gt;
+        &lt;/xsl:variable&gt;
+        &lt;xsl:variable name="temp1"&gt;
+            &lt;xsl:call-template name="replace"&gt;
+                &lt;xsl:with-param name="text" select="$temp"/&gt;
+        &lt;xsl:with-param name="search" select="'&amp;#214;'"/&gt;
+                &lt;xsl:with-param name="replace" select="'OE'"/&gt;
+            &lt;/xsl:call-template&gt;
+        &lt;/xsl:variable&gt;
+        &lt;xsl:variable name="temp2"&gt;
+            &lt;xsl:call-template name="replace"&gt;
+                &lt;xsl:with-param name="text" select="$temp1"/&gt;
+        &lt;xsl:with-param name="search" select="'&amp;#220;'"/&gt;
+                &lt;xsl:with-param name="replace" select="'UE'"/&gt;
+            &lt;/xsl:call-template&gt;
+        &lt;/xsl:variable&gt; 
+        &lt;xsl:value-of select="$temp2"/&gt;     
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>

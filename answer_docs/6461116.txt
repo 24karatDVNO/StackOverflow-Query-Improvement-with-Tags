@@ -1,0 +1,15 @@
+<p>I see this is mvc application=>
+your solution would lie in routing(for me_)</p>
+
+<p>you know every option which is not marked as [nonaction] is registered in Global.asax
+which contains </p>
+
+<pre><code>  AreaRegistration.RegisterAllAreas();
+  RegisterRoutes(RouteTable.Routes);
+</code></pre>
+
+<p>and in this routes you will be able to find all accessible methods =>eg actions</p>
+
+<p>this is created in basic mvc</p>
+
+<p>Hope this will help</p>

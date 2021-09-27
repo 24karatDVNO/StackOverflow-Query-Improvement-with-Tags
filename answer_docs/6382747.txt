@@ -1,0 +1,24 @@
+<p>I suggest to look at the classes in java.util.concurrent (available from Java 1.5). In particular, instead of a Queue, you might use a BlockingQueue. </p>
+
+<p>It allows you to produce:</p>
+
+<pre><code>try {
+    while(true) { queue.put(produce()); }
+} catch (InterruptedException ex) { ... handle ...}
+</code></pre>
+
+<p>and consume:</p>
+
+<pre><code>try {
+   while(true) { consume(queue.take()); }
+ } catch (InterruptedException ex) { ... handle ...}
+</code></pre>
+
+<p>Otherwize, (if this is an exercise on java synchronization), you should </p>
+
+<ul>
+<li>improve the visibility of fields (why only max_capacity is private?)</li>
+<li>improve the design (I prefer to create two separate classes for producers and consumers)</li>
+<li>ensure that producers and consumers wait and notify on the <strong>SAME</strong> object</li>
+<li>make producers and consumers work on the same queue</li>
+</ul>

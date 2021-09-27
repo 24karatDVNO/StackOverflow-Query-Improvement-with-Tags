@@ -1,0 +1,107 @@
+<p>I got it figured out finally</p>
+
+<p>First, I utilized the code from Ryan Taylor of BoostWorthy.com that was brought up in this tutorial:
+<a href="http://www.boostworthy.com/blog/?p=200" rel="nofollow">http://www.boostworthy.com/blog/?p=200</a></p>
+
+<p>The trouble with this tutorial is that the color ranges do not get all of the possible hues available for my hue color wheel since he is using sine waves to calculate the angular color.  If you review the wikipedia article for Hue you can see that the color spectrum is not a sine wave but rather a simple blend of red green and blue.  Here is the graph that visually explains what I'm talking about:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/File:HSV-RGB-comparison.svg" rel="nofollow">http://en.wikipedia.org/wiki/File:HSV-RGB-comparison.svg</a></p>
+
+<p>If you use sine waves instead the waves only peak at their maximum value <em>once</em> every 60 degrees...when the color value's slope needs to be constant during every 60 degrees (i.e. during one period each color will have a maximum value of 255 or a minimum value of 0 for the duration of that period)</p>
+
+<p>This was brought up in the tutorial's posts as an issue with his code, but no one posted the resolution for it...Here's the actual resolution:</p>
+
+<pre><code>//Define our variables
+var nRadians:Number;
+var nColor:int = 0;
+var nX:Number;
+var nY:Number;
+var nIX:Number;
+var nIY:Number;     
+var nR:Number;
+var nG:Number;
+var nB:Number;
+// Calculate the thickness of the lines which draw the colors.
+var iThickness:int = 1 + int(nRadius / 50); 
+
+// Loop from '0' to '360' degrees, drawing lines from the center 
+// of the wheel outward the length of the specified radius.
+for(var i:int = 0; i &lt; 360; i++)
+{
+    nRadians = i * (Math.PI / 180);
+
+    var offset:Number = i;
+    do 
+    {
+        offset = offset - 60;
+    } while (offset &gt;= 60)
+
+    if (offset &lt; 0) offset = offset + 60;
+
+    var greenSlope:String = "up";
+    var redSlope:String = "max";
+    var blueSlope:String = "min";
+
+    //GREEN-----------------
+    if (i &gt;= 60) greenSlope = "max";
+    if (i &gt; 180) greenSlope = "down";
+    if (i &gt;= 240) greenSlope = "min";
+    //RED-------------------
+    if (i &gt; 60) redSlope = "down";
+    if (i &gt;= 120) redSlope = "min";
+    if (i &gt; 240) redSlope = "up";
+    if (i &gt;= 300) redSlope = "max";
+    //BLUE------------------
+    if (i &gt; 120) blueSlope = "up";
+    if (i &gt;= 180) blueSlope = "max";
+    if (i &gt; 300) blueSlope = "down";
+
+    var colorArr:Array = new Array(blueSlope,greenSlope,redSlope);
+    var valueArr:Array = new Array(nB,nG,nR);
+    var counter:int = 0;
+    var bitRotation:int = 0;
+
+    for each (var color:String in colorArr)
+    {
+        var value:Number = 0;
+        var percentUpOffset:Number = ((100 / 60) * offset) / 100;
+        var percentDownOffset:Number = ((100 / 60) * (60 - offset)) / 100;
+
+        if (color == "max")  value = 255;
+        if (color == "min")  value = 0;
+        if (color == "up")   value = 255 * percentUpOffset;
+        if (color == "down") value = 255 * percentDownOffset;
+
+        valueArr[counter] = value &lt;&lt; bitRotation;
+        if (i == 0) trace(value);
+
+        bitRotation = bitRotation + 8;  
+        counter++;
+    }
+
+    nR = valueArr[2];
+    nG = valueArr[1];
+    nB = valueArr[0];
+
+    // OR the individual color channels together.
+    nColor = nR | nG | nB;
+
+    // Calculate the coordinate in which the line should be drawn to.
+    // (nIX / nIY is the inner start position of the ring
+    nX = (nRadius * Math.cos(nRadians)) + DEFAULT_RADIUS;
+    nY = (nRadius * Math.sin(nRadians)) + DEFAULT_RADIUS;
+    nIX = ((nRadius - nHeight) * Math.cos(nRadians)) + DEFAULT_RADIUS;
+    nIY = ((nRadius - nHeight) * Math.sin(nRadians)) + DEFAULT_RADIUS;
+
+    //Draw the line
+    var line:Line = new Line();
+    var stroke:SolidColorStroke = new SolidColorStroke(nColor,iThickness);
+    line.stroke = stroke;
+    line.xFrom = nIX;
+    line.xTo = nX;
+    line.yFrom = nIY;
+    line.yTo = nY;
+
+    this.addElement(line);
+}
+</code></pre>

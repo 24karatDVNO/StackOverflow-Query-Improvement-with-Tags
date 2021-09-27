@@ -1,0 +1,9 @@
+<p>I also found another way to do this :</p>
+
+<pre><code>@user = User.find(params[:id])
+@groupcollect = []
+@user.products.each { |e| @groupcollect &lt;&lt; e.group_id}   # collect group_id for all products
+@mygroups = Group.find(@groupcollect.uniq)        # gets the groups for all group_id, unique
+</code></pre>
+
+<p>:-)</p>

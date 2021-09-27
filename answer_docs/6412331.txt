@@ -1,0 +1,27 @@
+<p>I get the same error when I specify the <code>ReceiveTimeout="02:00:00"</code>, without that, it is working. 
+I try to find out how to set the ReveiveTimeout without an error.</p>
+
+<p>Update:
+I think its working, thats my Server web.config:</p>
+
+<pre><code>&lt;customBinding&gt;
+    &lt;binding name="SLDuplexService" receiveTimeout="02:00:00"&gt;
+      &lt;pollingDuplex duplexMode="MultipleMessagesPerPoll"
+           maxPendingSessions="2147483647" maxPendingMessagesPerSession="2147483647" maxOutputDelay="00:00:05"
+                     inactivityTimeout="02:00:00" /&gt;
+      &lt;binaryMessageEncoding/&gt;
+      &lt;httpTransport transferMode="StreamedResponse"/&gt;
+    &lt;/binding&gt;
+  &lt;/customBinding&gt;
+</code></pre>
+
+<p>Note that the receiveTimeout is a property of the binding whereas inactivityTimeout is a property of pollingDuplex. Both timeouts have to be set if you don't want a faulted channel after 10 minutes.</p>
+
+<p>You also have to specify the timeouts on the client, thats my code:</p>
+
+<pre><code>PollingDuplexHttpBinding binding = new PollingDuplexHttpBinding(PollingDuplexHttpSecurityMode.None, PollingDuplexMode.MultipleMessagesPerPoll);
+            binding.InactivityTimeout = new TimeSpan(2,0,0);
+            binding.ReceiveTimeout = new TimeSpan(2, 0, 0);
+
+          _client = new SLDuplexServiceClient(binding, new EndpointAddress("http://localhost/LpSystem.ServiceInterface.Web/SLDuplexService/SLDuplexService.svc"));
+</code></pre>

@@ -1,0 +1,6 @@
+<p>In jQuery 1.6, you could use <code>prop()</code>. In older versions, <code>attr()</code> could be used.</p>
+
+<pre><code>$("#maintext").prop("selectionStart");
+</code></pre>
+
+<p>However, <code>selectionStart</code> and <code>selectionEnd</code> properties are not supported in IE &lt; 9. I've published a cross-browser function to work round this in a few places on Stack Overflow (for example, <a href="https://stackoverflow.com/questions/263743/how-to-get-cursor-position-in-textarea/3373056#3373056">here</a>), or you could use my <a href="http://code.google.com/p/rangyinputs/" rel="nofollow noreferrer">jQuery plug-in</a> for dealing with textarea/text input selections.</p>

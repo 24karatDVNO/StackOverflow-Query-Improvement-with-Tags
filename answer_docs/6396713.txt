@@ -1,0 +1,1 @@
+<p>I'm by no means an expert C guy but I don't believe that this is possible natively. I think the recommend route would be to pass in a named macro at the compiler level using <code>-D</code> and if it is (or possibly is not) defined perform your include. This way the person compiling the program has to make a conscious decision to skip the include (or include it).</p>

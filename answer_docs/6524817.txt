@@ -1,0 +1,3 @@
+<p>I found the issue - I believe the issue happened because I ran the program's installer for an older version. This placed the items in the GAC. The program somehow tired to fix itself by re-inserting the dlls after I removed them. The conflicting information (installed version vs VS version) confused Visual Studio and caused the Visual Studio crash.</p>
+
+<p>Once I uninstalled the program I was working with via add/remove programs and worked exclusively with the visual studio version everything worked fine. Since the program was completely removed it didn't try to repair itself when it saw items were missing.</p>

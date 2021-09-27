@@ -1,0 +1,16 @@
+<p>The answer for this depends on how much formatting is needed in the content and also where you get content from.
+If you have less content and less formatting then you can use what jelovirt suggested</p>
+
+<pre><code>&lt;xsl:text&gt;I am some text, and I want to be &lt;/xsl:text&gt;
+&lt;strong&gt;bold&lt;strong&gt;
+&lt;xsl:text&gt; &lt;/xsl:text&gt;
+</code></pre>
+
+<p>However if your content has large formatting then what David Medinets suggests is better way to do it</p>
+
+<pre><code>&lt;xsl:text disable-output-escaping="yes"&gt;
+</code></pre>
+
+<p>We have some instructions to print on UI. The set of instructions is huge and of course we read those from XML file.</p>
+
+<p>In such cases the above method is easy to use and maintain too. That is because the content is provided by technical writers. They have no knowledge of XSL. They know using HTML tags and they can easily edit the XML file.</p>

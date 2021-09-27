@@ -1,0 +1,19 @@
+<p>I hope I read your question correctly:</p>
+
+<pre><code>$strings = array('a', 'b', 'c', 'd', 'f');
+
+$new = array_map(function ($arr) {
+    return implode('', $arr);
+}, array(array_splice($strings, 0, floor(sizeof($strings) / 2)), $strings));
+
+print_r($new);
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>Array
+(
+    [0] =&gt; ab
+    [1] =&gt; cdf
+)
+</code></pre>

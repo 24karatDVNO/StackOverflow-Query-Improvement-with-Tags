@@ -1,0 +1,17 @@
+<p>Your issue is that the function in $(function() { ... }); is running when your body onload is called.  You need to do something like</p>
+
+<pre><code>$(function () {
+    loadXMLDoc("parsers.json", function () {
+        handleXML(); // possibly add a callback to this function which calls the remaining code in this function
+
+        var d1 = [];
+        var d2 = datasets[0].cover.data;
+        // a null signifies separate line segments
+        var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+        $.plot($("#placeholder"), [d1, d2, d3]);
+    });
+});
+</code></pre>
+
+<p>And then remove the call from body onload</p>

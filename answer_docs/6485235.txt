@@ -1,0 +1,21 @@
+<p>What about :</p>
+
+<pre><code>ISession _context = SessionProvider.OpenSession();
+
+//Persist all changes to the database
+using(var tx = _context.BeginTransaction())
+{
+    //Create new entities
+    for(int i=0; i&lt;100; i++)
+    {
+        MyEntity entity = new MyEntity(i);
+
+        //Attach new entity to the context
+        _context.Save(entity);
+    }
+
+    //Flush the session
+    tx.Commit();
+
+}
+</code></pre>

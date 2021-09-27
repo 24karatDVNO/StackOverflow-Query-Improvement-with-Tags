@@ -1,0 +1,8 @@
+<p>Here's your problem - block-level elements like divs will <em>not</em> appear next to each other unless you change the way they're displayed.  Currently, <code>#ftr_ctr</code> is taking up the entire footer, and <code>#ftr_rgt</code> is appearing below it.<br>
+There are a couple ways to move <code>#ftr_rgt</code> up.  Since it has <code>position:relative;</code>, you can give it a <code>top:-20px;</code> to slide it up.  The downside it that it'll still reserve white space for itself below the footer.</p>
+
+<p>You can make both <code>#ftr_ctr</code> and <code>#ftr_rgt</code> <code>float:left;</code>, and put a <code>&lt;div style="clear:both;"&gt;&lt;/div&gt;</code> after them.  You'll need to adjust the widths of each of them to get them to line up right, though.</p>
+
+<p>You can set both of them to have <code>display:inline-block;</code></p>
+
+<p>You may even be able to get away with just using  <code>display:inline</code> as well.</p>

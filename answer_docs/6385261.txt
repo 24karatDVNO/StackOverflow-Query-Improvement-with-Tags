@@ -1,0 +1,30 @@
+<p>I would use the RadWindowManager to access your windows: </p>
+
+<pre><code>function UseRadWindow()
+{
+   var oManager = GetRadWindowManager();
+   var oWnd = oManager.GetWindowByName("DictionaryWindow");
+   oWnd.setUrl("WebForm1.aspx");        
+   oWnd.SetWidth(800);
+   oWnd.SetHeight(800);
+   oWnd.Show();
+   oWnd.Center();
+}
+</code></pre>
+
+<p>You could also do it by accessing the window directly:</p>
+
+<pre><code>function UseRadWindow()
+{
+   var oWnd = $find("&lt;%= DictionaryWindow.ClientID %&gt;"); 
+   oWnd.setUrl("WebForm1.aspx");        
+   oWnd.SetWidth(800);
+   oWnd.SetHeight(800);
+   oWnd.Show();
+   oWnd.Center();
+}
+</code></pre>
+
+<p>Take a look at their client-side API docs:</p>
+
+<p><a href="http://www.telerik.com/help/aspnet/window/radwindowobjectclientside.html" rel="nofollow">Telerik RadWindowManager Client-Side API</a></p>

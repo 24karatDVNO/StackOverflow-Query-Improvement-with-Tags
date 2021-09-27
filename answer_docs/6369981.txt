@@ -1,0 +1,14 @@
+<p>I believe the problem you are facing here are 2 assumptions.  These are:</p>
+
+<ol>
+<li>That there is a DNS record for <strong>domain.se</strong>.  There are many domains that have entries like www.domain.se but not domain.se</li>
+<li>That should this host (entry) exist that there is a mail server listening in on port 25.</li>
+</ol>
+
+<p>Since the mail server may live on a completley different hostname there are DNS records called <strong>MX</strong> or Mail eXchange.  These point to where the mail server actually is.  Unfortunatly unless you use a 3rd party control or some more complicated .net calls I am not sure if you can specify which TYPE of dns records to return (please comment this if I am wrong :) ).</p>
+
+<p>There are components that you can get that will check all these sorts of things and more eg. <a href="http://www.dart.com/ptmlvnet_overview.aspx" rel="nofollow">http://www.dart.com/ptmlvnet_overview.aspx</a>.  I have not used this particular control but this will try and connect to the mail server and stop just short of sending the email to see if the remote server reports if the email address in not valid or does not exist.  I have seen others as will so try either googling or binging "Email Address Validation Component .net".</p>
+
+<p>I hope this helps explain why you are having problems.</p>
+
+<p>Jonathan</p>

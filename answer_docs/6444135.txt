@@ -1,0 +1,7 @@
+<p>My two bits:</p>
+
+<ol>
+<li><p>main.cpp: I would #include <code>&lt;cstddef&gt;</code> but probably not <code>&lt;utility&gt;</code> here. You are using <code>std::size_t</code> independent of whether it happens to be defined in the standard library headers. On the other hand, read the documentation on <code>std::map</code> and it is very clear that <code>&lt;map&gt;</code> must somehow define std::pair. There's no reason to #include <code>&lt;utility&gt;</code>. (This is particularly so since the connection between std::pair and  is a bit of a WTF without reading the <em>fine</em> documentation.)</p></li>
+<li><p>f.hh: I would grudingly #include <code>&lt;string&gt;</code> here. Normally it is better to forward declare a class rather than #include the header that defines the class if the class is only used as a reference, a pointer, or a return type. The only reason to #include <code>&lt;string&gt;</code> in f.hh is because forward declaring <code>std::string</code> is a bit tough.</p></li>
+<li><p>f.cpp: I would #include <code>&lt;string&gt;</code> here. If the return type from f() was some class Foo rather than std::string, the expectation should be that the header merely forward declares Foo. The source file needs to #include the header that specifies class Foo. That the return type is std::string doesn't change this basic concept. Who knows? Some pedantically correct programmer might fix the problem in f.hh. (The problem with f.hh being that it #includes <code>&lt;string&gt;</code> when it doesn't really need to do so.)</p></li>
+</ol>

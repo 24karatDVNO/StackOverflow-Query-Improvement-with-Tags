@@ -1,0 +1,26 @@
+<p>Here,</p>
+
+<p>use this code to send the messages to any JID on your domain.</p>
+
+<pre><code>- (void)sendMessage:(NSString *)userId
+{
+
+NSString *messageStr = @"Hello...";
+
+if([messageStr length] &gt; 0)
+{
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:messageStr];
+
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
+    [message addAttributeWithName:@"to" stringValue:userId];
+    [message addChild:body];
+
+    [[self xmppStream] sendElement:message];
+
+
+
+}
+}
+</code></pre>

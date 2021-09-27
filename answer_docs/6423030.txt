@@ -1,0 +1,11 @@
+<p>You can call an executable from java. Just a matter of:</p>
+
+<pre><code>String[] cmd = { "/path/to/program", "arg1", "arg2" };
+Process proc = Runtime.getRuntime().exec( cmd );
+</code></pre>
+
+<p>You can then use <code>proc</code> to communicate with the command via standard I/O streams, and to wait for it to finish.</p>
+
+<p>Now if you wanted to go down the JNI path you will need to write some additional code to act as the JNI layer between the java and C. This layer is responsible for keeping track of the allocated C memory and converting between C data types and Java datatypes. This layer would then be able to call functions in your other source code (but probably not the main function). Then you need to modify/create a makefile which links your new JNI layer source code with the source code you already have into a .dll/.so. You then need to write the java class(es) that sit atop your JNI layer.</p>
+
+<p>Which approach you choose really depends on what you want the native code to do, and how much interaction you need with it. </p>

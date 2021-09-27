@@ -1,0 +1,12 @@
+<p>try to dispose all the texture in the onDestroy() method. that way all the texture will be destroyed when you exit/finish the activity.</p>
+
+<pre><code>   @Override
+protected void onDestroy() {
+    super.onDestroy();
+    for(Texture t:textures) {
+        t.dispose();
+    }
+}
+</code></pre>
+
+<p>note : I don't really know that Android has it own texture class. I used libgdx and there's a dispose method to call. maybe you should find a way to dispose all those garbage. If i recall there's a recycle() method in Bitmap class that do similiar thing.</p>

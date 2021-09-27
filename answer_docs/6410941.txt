@@ -1,0 +1,17 @@
+<p>As far as I know, no. What you <em>could</em> do is to query all of your SCVMM servers and see which happens to know the guest.</p>
+
+<p>Load up the VMM module and connect to your VMM.</p>
+
+<pre><code># VM name, might or might not be hostname
+$guestToLook = "myLostVM"
+# A list of all of your VMM servers
+$VMMServers = @("vmmsrv01", "vmmsrv02", "vmmsrv03")
+$VMMServers | % {
+    # Connect to VMM server
+    Get-VMMServer $_
+    # Get a VM from the VMM host by guest name
+    $vm = Get-VM -name $myLostVM
+    # If VM object is returned, you got the VM from current VMM host.
+    if($vm.Name -eq $myLostVM) { "{0} is managed by VMM host: {1}" -f $vm.Name, $_}
+}
+</code></pre>

@@ -1,0 +1,20 @@
+<p>It should be possible to make one script that works with both Entourage and Outlook, without bugging you if one isn't found either when you compile or when you run. I don't have either Entourage or Outlook but it should work like this:</p>
+
+<pre><code>using terms from application "Microsoft Entourage"
+    script theScript
+        tell application "Finder" to try
+            set theApp to application file id "Entourage's Bundle ID" as text
+        on error
+            set theApp to application file id "Outlook's Bundle ID" as text
+        end try
+        tell application theApp
+            -- do stuff
+        end tell
+    end script
+end using terms from
+store script theScript in "MyScript.scpt"
+</code></pre>
+
+<p>"using terms from" is only relevant when compiling the script - it isn't needed when running, though for some reason you'll still get bugged if that app isn't found. So by wrapping it around a script object and then writing out that script to file, the resultant script will still run but won't contain "using terms from" and so won't bug the user.</p>
+
+<p>For getting a reference to the right app, Finder can look for it by ID and simply error if it isn't found rather than bugging the user. You'll need to insert the proper ID's there, I don't know what they are.</p>

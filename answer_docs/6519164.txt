@@ -1,0 +1,32 @@
+<p>I ended up not using my <code>index</code> view, instead I looked up the most recent record in my <code>cns</code> database table and redirected to the <code>view</code> view using the returned value as a parameter:</p>
+
+<pre><code>if (!$id) {
+    $most_recent_change_note = $this-&gt;Cn-&gt;find('first', array(
+        'order' =&gt; array('Cn.id DESC')
+    ));
+    $this-&gt;redirect(array('controller' =&gt; 'cns', 
+        'action' =&gt; 'view/'.$most_recent_change_note['Cn']['id']));
+}
+</code></pre>
+
+<p>For the pagination, I ended up using the <code>$neighbors</code> feature of CakePHP:</p>
+
+<pre><code>function get_neighbors($id) {
+    $neighbors = $this-&gt;Cn-&gt;find('neighbors', array('field' =&gt; 'id', 
+        'value' =&gt; $id));
+    $this-&gt;set('neighbors', $neighbors);
+}
+</code></pre>
+
+<p>Then in my <code>view</code> view, I used those values to create links:</p>
+
+<pre><code>&lt;div class="paging"&gt;
+    &lt;?php echo ($neighbors['next']) ? $html-&gt;link('&lt;&lt; Prev', 
+         array('controller'=&gt;'cns',
+         'action'=&gt;'view/'.$neighbors['next']['Cn']['id'])).' | ' : '&lt;&lt; Prev | ';
+    echo $html-&gt;link('Next &gt;&gt;', array('controller'=&gt;'cns', 
+         'action'=&gt;'view/'.$neighbors['prev']['Cn']['id'])); ?&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Thanks to Charles and Ross for helping me reach this conclusion. :)</p>

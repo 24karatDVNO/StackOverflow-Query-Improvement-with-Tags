@@ -1,0 +1,12 @@
+<p>You may use <code>which</code>:</p>
+
+<pre><code>data$ProbFinal = "NA"
+
+data$ProbOne = data$Prob[ ,1]
+data$ProbTwo = data$Prob[ ,2]
+data$ProbThree = data$Prob[ ,3]
+
+data$ProbFinal[which(data$Group == 1)] = data$ProbOne[which(data$Group  == 1)]
+data$ProbFinal[which(data$Group == 2)] = data$ProbTwo[which(data$Group == 2)]
+data$ProbFinal[which(data$Group == 3)] = data$ProbThree[which(data$Group == 3)]
+</code></pre>

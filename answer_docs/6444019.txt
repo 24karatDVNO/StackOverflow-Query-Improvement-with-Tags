@@ -1,0 +1,18 @@
+<p>Use the method from the related question (NSBundle loadNibNamed) and make sure the owner in that call is an object that has an IBOutlet for the view in question.</p>
+
+<p>Hook that iboutlet up to the view in interface builder (you will need to set the class of the owner in IB to the class of the owner in your load nib call).</p>
+
+<p>The nib will load the view into that iboutlet variable.</p>
+
+<p>In .h file:</p>
+
+<pre><code>IBOutlet UIView *myView;
+</code></pre>
+
+<p>in .m file:</p>
+
+<pre><code>[[NSBundle mainBundle] loadNibNamed:@"viewToLoad" owner:self options:nil];
+[someOtherView addSubView:myView];
+</code></pre>
+
+<p>The rest is in IB.</p>

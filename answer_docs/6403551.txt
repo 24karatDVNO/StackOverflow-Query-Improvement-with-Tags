@@ -1,0 +1,9 @@
+<p>" premature optimization is the root of all evil"
+-Donald Knuth</p>
+
+<p>Pass the whole thing, and then if it's slow, then think about this.</p>
+
+<ol>
+<li><p>Theoretically yes, since UILabel.text stores the text printed on the screen. But, we don't run on machines that have 16k memory anymore. See quote above.</p></li>
+<li><p>I believe Quartz will do this optimization. In general, drawing that occurs outside of the CGRect of the bounds of the UIView won't be done.</p></li>
+</ol>

@@ -1,0 +1,42 @@
+<pre><code> #include &lt;stdio.h&gt;
+ #include &lt;string.h&gt;
+
+int main()
+{
+char c[80], *sch;
+int n;
+
+
+scanf("%s", c);printf("string %s \n", c);
+//c = "this is a test\n";
+
+sch = strchr(c, 'a');
+
+if(sch != NULL)
+{
+    n = sch-c;
+
+    printf("%d\n", (int)sch);
+    printf("%d\n\n", (int)c);
+
+    printf("'a' found at: %d", n);
+}
+
+/////////////////////
+sch = &amp;c;
+*(sch + n) = 'z';
+/////////////////////
+*(c + n) = 'z';
+/////////////////////
+c[n] = 'z';
+/////////////////////
+
+printf("\n\n%s", c);
+
+getchar();
+return 0;
+</code></pre>
+
+<p>run above snippet with the string "this-is-a-test"</p>
+
+<p>Problem with your earlier code is that string literals end up in read-only section and you can't modify them. So, writing it as <strike>char c[] ="this is a string" also won't help.</strike></p>

@@ -1,0 +1,1 @@
+<p>There's no primitive for this in C. I'd probably malloc (or perhaps alloca) a long enough buffer and loop over the input. I've also seen it done with a dynamic string library with semantics (but not syntax!) similar to C++'s <code>ostringstream</code>, which is a plausibly more generic solution but it may not be worth the extra complexity just for a single case.</p>

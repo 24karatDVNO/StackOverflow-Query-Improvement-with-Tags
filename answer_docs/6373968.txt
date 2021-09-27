@@ -1,0 +1,25 @@
+<p>the syntax of <code>indexOf()</code> is like this:</p>
+
+<pre><code>['a', 'b', 'c', 'd'].indexOf('b'); // returns 1
+</code></pre>
+
+<p>you can use jQuery's <code>.inArray()</code> method:</p>
+
+<pre><code>$.inArray('b', ['a','b','c','d']); // returns 1
+</code></pre>
+
+<hr>
+
+<p>if <code>$.cookie('testCookie')</code> returns string you can check it like this:</p>
+
+<pre><code>if (['grabber','nextag','shopzilla'].indexOf($.cookie('testCookie')) == -1)  {
+    // your code
+}
+</code></pre>
+
+<p>or </p>
+
+<pre><code>if ($.inArray($.cookie('testCookie', ['grabber','nextag','shopzilla']) == -1) {
+    // your code
+}
+</code></pre>

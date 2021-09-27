@@ -1,0 +1,22 @@
+<p>Execute the bash-script below from folder</p>
+
+<pre><code>/home/user/Drive-backup/2010 Backup/2010 Account/Jan
+</code></pre>
+
+<p>and it will report the number of non-blank lines per user.</p>
+
+<pre><code>#!/bin/bash
+
+#save where we start
+base=$(pwd)
+# get all top-level dirs, skip '.'
+D=$(find . \( -type d ! -name . -prune \))
+
+for d in $D; do
+    cd $base
+    cd $d
+    # search for all files named *.ano and count blank lines
+    sum=$(find . -type f -name *.ano -exec grep -cv '^[[:space:]]*$' {} \; | awk '{sum+=$0}END{print sum}')
+    echo $d $sum
+done
+</code></pre>

@@ -1,0 +1,13 @@
+<p>I found that I can implement omitType method in an easier way using omitField and reflection.</p>
+
+<p>Below is my current implementation.</p>
+
+<pre><code>public void omitType(Class&lt;?&gt;... definedIn) {
+    for (Class&lt;?&gt; clazz : definedIn) {
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            omitField(clazz, field.getName());
+        }
+    }
+}
+</code></pre>

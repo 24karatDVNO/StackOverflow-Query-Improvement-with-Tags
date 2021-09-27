@@ -1,0 +1,45 @@
+<p>Here is how I would do it:</p>
+
+<p><strong>User Model</strong></p>
+
+<pre><code>class User &lt; ActiveRecord::Base
+  has_many :memberships
+  has_many :groups, :through =&gt; :memberships
+end
+</code></pre>
+
+<p><strong>Group Model</strong></p>
+
+<pre><code>class Group &lt; ActiveRecord::Base
+  has_many :memberships
+  has_many :users, :through =&gt; :memberships
+end
+</code></pre>
+
+<p><strong>Membership Model</strong></p>
+
+<pre><code>class Membership &lt; ActiveRecord::Base
+  belongs_to :user
+  belongs_to :group
+end
+</code></pre>
+
+<p><strong>Controller</strong></p>
+
+<pre><code>def show
+  @groups = Group.all
+end
+</code></pre>
+
+<p><strong>View</strong></p>
+
+<pre><code>&lt;% @groups.each do |group| %&gt;
+  &lt;% group.users.each do |user| %&gt;
+    &lt;%= user.name %&gt; 
+  &lt;% end %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<p>There are probably a few ways to do it, but this should get you started.</p>
+
+<p>Hope this helps!</p>

@@ -1,0 +1,3 @@
+<p>Yes, you should store the file in the file system and the location of the file in the database. In my experience the database connectors perform very poorly on large pieces of binary data in the database.</p>
+
+<p>You should store all the meta-information you need in the database so you don't need to rely on the OS for anything else than storing the raw bytes.</p>

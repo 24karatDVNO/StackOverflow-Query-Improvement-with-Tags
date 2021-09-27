@@ -1,0 +1,5 @@
+<p>If you have a declared non-volatile <code>const</code> variable, there is no legal way for it to be modified externally. </p>
+
+<p>Writing to a <code>const</code> variable is undefined behavior. And declaring a <code>extern double PI;</code> in another translation unit will declare a <em>different</em> variable than what you declared, because yours has <em>internal</em> linkage, which means it can only be redeclared in the same translation unit.</p>
+
+<p>And even if it were to declare the same variable, then behavior would be undefined (because of a <code>const</code> / <code>non-const</code> mismatch in type identity).</p>

@@ -1,0 +1,3 @@
+<p>You need to make sure that the <code>method</code> attribute on your HTML form that is submitting the data is set to either <code>post</code> or <code>get</code>.</p>
+
+<p>Assuming your variable names match field names in the form, then instead of using <code>$fname</code> etc, address your data as <code>$_POST['fname']</code> or <code>$_GET['fname']</code> depending on the <code>action</code> of your HTML form</p>

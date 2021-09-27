@@ -1,0 +1,23 @@
+<pre><code>static bool IsFirstInstance()
+{
+    // First attempt to open existing mutex, using static method: Mutex.OpenExisting
+    // It would fail and raise an exception, if mutex cannot be opened (since it didn't exist)
+    // And we'd know this is FIRST instance of application, would thus return 'true'
+
+    try
+    {
+        SingleInstanceMutex = Mutex.OpenExisting("SingleInstanceApp");
+    }
+    catch (WaitHandleCannotBeOpenedException)
+    {
+        // Success! This is the first instance
+        // Initial owner doesn't really matter in this case...
+       SingleInstanceMutex = new Mutex(false, "SingleInstanceApp");
+
+        return true;
+    }
+
+    // No exception? That means mutex ALREADY existed!
+    return false;
+ }
+</code></pre>

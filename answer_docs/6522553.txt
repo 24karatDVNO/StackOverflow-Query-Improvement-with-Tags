@@ -1,0 +1,8 @@
+<p>Change the code to something like this:</p>
+
+<pre><code>today.setDate(today.getDate() + 1);
+var the_cookie = "screen_resolution=" + screen.width + "x" + screen.height + ";expires=" + today;
+document.cookie = the_cookie;
+</code></pre>
+
+<p>The <code>setDate</code> function won't return the new date as far as I know, so it means your cookie had no expire date... probably some browsers have a default, and some will treat such cookie as invalid.</p>

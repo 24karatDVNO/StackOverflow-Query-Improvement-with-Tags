@@ -1,0 +1,20 @@
+<p>Try the below - note that you appeared to be attempting to join the two tables to perform the 'not in' which would result in a very slow to produce and very wrong resultset.</p>
+
+<p>Also, if IDDate is a DATETIME column then you'd be better of performing a range check e.g.  <code>(a.IDDate &gt;= '2011-04-21' AND a.IDDate &lt; '2011-04-22')</code>.  Thinking about it - if it's a text column in the format yyyy-MM-dd then a range check would also work - if it's a text column with mixed format dates then forget I mentioned it.</p>
+
+<pre><code>select x.Station as Station,
+       count(distinct x.NimID) as Difference
+from (
+      select a.NimID,
+             a.IDDate,
+             a.Station
+      from database1.dbo.table1 a
+      where left(cast(a.IDDate as date),11)='2011-04-21'
+ ) as X
+ where x.NimID not in (
+      select b.XilID
+      from database2.dbo.Table2 b
+      where b.XilDate='2011-04-21'
+ )
+ group by x.Station
+</code></pre>

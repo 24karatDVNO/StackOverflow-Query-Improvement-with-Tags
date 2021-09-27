@@ -1,0 +1,10 @@
+<p>To get rid of your <code>urlAddress</code> warnings you should declare <code>NSURL *urlAddress</code> above <code>if..else</code>:</p>
+
+<pre><code>NSURL *urlAddress = nil;
+if (result) {  
+    urlAddress = [NSURL URLWithString: textField.text];    
+} else {   
+    NSString *good = [NSString stringWithFormat:@"http://%@", [textField text]];  
+    urlAddress = [NSURL URLWithString: good];     
+}   
+</code></pre>

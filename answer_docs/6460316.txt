@@ -1,0 +1,4 @@
+<ol>
+<li><p>It's preferable not to overload the comparison operators just to satisfy a collection.  (<a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Operator_Overloading" rel="nofollow">http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Operator_Overloading</a>). It's better to use comparator objects or functions, if possible.  If your operator defines how these objects are intrinsically ordered, rather than just what their priority should be in the queue, then it's OK.  But if not, you could get into trouble if another developer uses your operator in another context.</p></li>
+<li><p>I'm not sure what <code>fvalue</code> is, but it's possible that it may not have <code>operator &lt;</code> defined for it.</p></li>
+</ol>

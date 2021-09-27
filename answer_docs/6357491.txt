@@ -1,0 +1,12 @@
+<p>You could just do an empty check on it. </p>
+
+<p><strong>DISCLAIMER</strong>
+This is a simple example. Does not check whether <code>$value</code> is an array (e.g. checkbox or file input). Works only for inputs. </p>
+
+<pre><code>$data = array();
+foreach ($_POST as $key =&gt; $value) {
+   if (empty($value)) continue;
+   $data[$key] = $value;
+}
+//save $data to DB
+</code></pre>

@@ -1,0 +1,18 @@
+<blockquote>
+  <p>Should we be trying to save a
+  collection of objects in one service
+  call?</p>
+</blockquote>
+
+<p>If you mean saving whole object graph in one call then the answer is definitely yes. If you mean saving multiple independent object graphs (collection) in one call then the answer is probably yes. It is good idea to reduce number of roundtrips between client and service to minimum but in the same time doing this can introduce complications. You must decide if the whole collection must be saved as atomic operation or if you are happy with saving only part of the collection and returning errors for the rest. This will influence the rest of your architecture.</p>
+
+<blockquote>
+  <p>Should we be conveying the validation
+  messages through a fault contract?</p>
+</blockquote>
+
+<p>Yes but only if you will use save operation as atomic because fault contract is exception and exception should break your current operation and return only validation errors. It should be enough to have single fault contract which will transfer all validation errors. Don't fire the exception for each single validation error because it can make your application pretty annoying and useless.</p>
+
+<p>If you want to save only part of the collection which passes validations and return errors for the rest you should not use fault contracts. Instead of fault contracts you should have some container data contract used for response which will carry both ids and timestamps for saved data and ids and errors for unsaved data.</p>
+
+<p>One little note to STEs: Passing back just Ids and timestamps can be probably tricky. I'm not sure if you don't have to turn off tracking when you want to set them and after that turn the tracking on again.</p>

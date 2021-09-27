@@ -1,0 +1,13 @@
+<p>An alternative solution I just found that seems to work as well is using tostring() instead of write():</p>
+
+<pre><code>main = open('file.html', 'w')
+main.write(lxml.html.tostring(htmlTree))
+main.close()
+</code></pre>
+
+<p>instead of</p>
+
+<pre><code>htmlTree.write('file.html', pretty_print=False)
+</code></pre>
+
+<p>Figured I'd post it here as well, even though I decided to go with CDATA since it seems to be a cleaner solution that will prevent problems in the future with other parsing scripts as well.</p>

@@ -1,0 +1,13 @@
+<p>If you know that folder <code>Dump</code> will always be present in the deployement folder of your application then you certainly don't need to hard code full path.</p>
+
+<p>For ASP.net:</p>
+
+<pre><code>var path = System.IO.Path.Combine(Server.MapPath("/"), "Dump",
+                             "GetAddressById.xml");
+</code></pre>
+
+<p>For C#:</p>
+
+<pre><code>var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dump", 
+                                  "GetAddressById.xml");
+</code></pre>

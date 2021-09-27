@@ -1,0 +1,12 @@
+<p>I believe it is possible. However, you will need to save the comments on your own database while retrieving the wall posts from Facebook. This may be a little tough considering the fact that you'll need to map the comments on the database to the wall posts from Facebook.</p>
+
+<p>I'm not sure how the plugin works - If it retrieves the Facebook data without storing it, then it may be a problem.</p>
+
+<p>One possible work around maybe:</p>
+
+<ol>
+<li>Store the Facebook wall post in your database (Table1) and store the corresponding comments in Table2.</li>
+<li>While displaying to users, pull the facebook and local comments from the database.</li>
+</ol>
+
+<p>One caveat is that the Facebook data will not be current.</p>

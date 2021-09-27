@@ -1,0 +1,1 @@
+<p>If you declare your QGraphicsPixmapItem as a stack variable, it will be destructed at each iteration of the loop. Therefore, using its address as a pointer for the QGraphicsItemGroup::addToGroup method will most likely lead to a segmentation fault later in the program.</p>

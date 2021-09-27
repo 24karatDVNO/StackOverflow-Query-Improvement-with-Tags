@@ -1,0 +1,25 @@
+<p>You can format the date as you wish and send it to DB. For example if you have only whole-day-events you can add a date prototype:</p>
+
+<pre><code>    Date.prototype.toYMD = function() {
+       var year, month, day;
+       year = String(this.getFullYear());
+       month = String(this.getMonth() + 1);
+       if (month.length == 1) {
+           month = "0" + month;
+       }
+       day = String(this.getDate());
+       if (day.length == 1) {
+           day = "0" + day;
+       }
+       return year + "-" + month + "-" + day;
+    };
+</code></pre>
+
+<p>you can convert your date to MySQL-formatted one using: </p>
+
+<pre><code>    var strID = j.toYMD();
+    alert("strID: "+strID);
+</code></pre>
+
+<p>If you need hour, minutes and secs you can extend the above example.
+cheers Kris</p>

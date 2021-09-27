@@ -1,0 +1,5 @@
+<p>It is not clear from your question if you are using DI, as you mentioned you have your layers split up properly I am presuming so, then again this should be possible without DI I think...</p>
+
+<p>Create an interface called IUserSession or something similar, Implement that inside your asp.net mvc application, the interface can contain something like GetUser(); from this info I am sure you can filter data inside your middle tier, otherwise you can simply use this IUserSession inside your web application and do the filtering inside that tier...</p>
+
+<p>See: <a href="https://gist.github.com/1042173" rel="nofollow">https://gist.github.com/1042173</a></p>

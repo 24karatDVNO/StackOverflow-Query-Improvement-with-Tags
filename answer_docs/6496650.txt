@@ -1,0 +1,30 @@
+<p>Are you getting anything out of the trace?</p>
+
+<p>Flash has an internal limit with how many simultaneous loads it can do at once. You're loading 800 images in a loop, which means that the first ~780 or so will be overridden by the last 20 or so. The max I ever load at once is around 10 (I think <a href="http://code.google.com/p/bulk-loader/" rel="nofollow">BulkLoader</a> has something similar). If you want to load in 800 images, use the array to keep track of what's loading in. Something like:</p>
+
+<pre><code>private var m_imagesLoaded:int = 0;
+private var m_toLoad:Array = null;
+
+private function _init():void
+{
+    // create your array and set the first 10 or so loading
+    this.m_toLoad = new Array( 800 );
+    ...
+}
+
+private function _onImageLoad( e:Event ):void
+{
+    // load the next one in the list
+    this.m_imagesLoaded++;
+    this.m_toLoad[this.m_imagesLoaded].load();
+
+    // do whatever else
+}
+</code></pre>
+
+<p>As for <code>close()</code>, it "<a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Loader.html#close%28%29" rel="nofollow">Cancels a load() method operation that is currently in progress for the Loader instance</a>." If there's no <code>load()</code> going on in the <code>Loader</code>, then nothing's probably going to happen.</p>
+
+<p><em>P.S.: in your <code>try</code> statement, you're creating a new <code>Loader</code> everytime, before assigning it to something else. Just change it to</em></p>
+
+<pre><code>var obj:Loader = ItemsBuilder.thumbLoadersArray[i];
+</code></pre>

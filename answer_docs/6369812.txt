@@ -1,0 +1,22 @@
+<pre><code>def split_list(lst, num):
+    def splitter(lst, num):
+        while lst:
+            head = lst[:num]
+            lst = lst[num:]
+            yield head
+    return list(splitter(lst, num))
+</code></pre>
+
+<p>Here is an excerpt from running this in the interactive shell:</p>
+
+<pre><code>&gt;&gt;&gt; def split_list(lst, num):
+...     def splitter(lst, num):
+...         while lst:
+...             head = lst[:num]
+...             lst = lst[num:]
+...             yield head
+...     return list(splitter(lst, num))
+...
+&gt;&gt;&gt; split_list(range(10), 3)
+[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
+</code></pre>

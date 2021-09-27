@@ -1,0 +1,4 @@
+<ol>
+<li>Instead of getting an autoreleased <code>ASIHTTPRequest</code> , try to alloc ,init , release one.   </li>
+<li>Haven't tried it , but think about alternating async and sync calls (to the same thread, not the main one)  , like having 20 async requests followed by one sync.. this trick could help.  </li>
+</ol>

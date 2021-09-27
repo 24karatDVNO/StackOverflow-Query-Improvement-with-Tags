@@ -1,0 +1,64 @@
+<p>I'm not sure if i've understood your problem actually because you haven't provided any source-code, but i try to give an answer anyway.</p>
+
+<p>There are several options to avoid this behaviour:</p>
+
+<ol>
+<li>set the TextBox' <code>AutoPostback</code>-Property to <code>true</code>. On this way the TextChanged-Event will occur directly after the user entered something into the Textbox and presses <em>Enter</em> or leaves the Textbox' focus</li>
+<li>You should hide the CheckMarks by default(<code>Visible="false"</code>)</li>
+<li>You must not rebind the GridView <code>OnSelectedIndexChanging</code> but only set it's <code>SelectedIndex</code> to <code>e.NewSelectedIndex</code>. On this way the Text of the Textboxes which was already been changed by the user will not be overwritten from the old db-values</li>
+</ol>
+
+<p>Here's a simple example to demontrate what i mean:</p>
+
+<pre><code>&lt;asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" AutoGenerateSelectButton="true" OnSelectedIndexChanging="GridSelecting" OnRowDataBound="GridRowDataBound" &gt;  
+    &lt;SelectedRowStyle BackColor="LightBlue" /&gt;
+    &lt;columns&gt;   
+        &lt;asp:TemplateField&gt;
+            &lt;ItemTemplate&gt;
+               &lt;asp:CheckBox ID="CheckMark" Checked="true" Enabled="false" visible="false" runat="server" /&gt;
+               &lt;asp:TextBox ID="Textbox1" runat="server" AutoPostBack="false" OnTextChanged="TextChanged"&gt;&lt;/asp:TextBox&gt;
+            &lt;/ItemTemplate&gt;
+       &lt;/asp:TemplateField&gt;         
+    &lt;/columns&gt;
+&lt;/asp:gridview&gt; 
+</code></pre>
+
+<p>Codebehind:</p>
+
+<pre><code>protected void Page_Load(object sender, System.EventArgs e)
+{
+    if (!IsPostBack) {
+        BindGrid();
+    }
+}
+
+private void BindGrid()
+{
+    DataTable source = new DataTable();
+    source.Columns.Add(new DataColumn("Value", typeof(string)));
+    DataRow row = source.NewRow();
+    row["Value"] = "A";
+    source.Rows.Add(row);
+    row = source.NewRow();
+    row["Value"] = "B";
+    source.Rows.Add(row);
+    row = source.NewRow();
+    row["Value"] = "C";
+    source.Rows.Add(row);
+    this.GridView1.DataSource = source;
+    this.GridView1.DataBind();
+}
+
+protected void TextChanged(object sender, EventArgs e)
+{
+    var chk = ((TextBox)sender).NamingContainer.FindControl("CheckMark");
+    chk.Visible = true;
+}
+
+protected void GridSelecting(object sender, GridViewSelectEventArgs e)
+{
+    this.GridView1.SelectedIndex = e.NewSelectedIndex;
+}
+</code></pre>
+
+<p><em>Note: I'm sure that the original OP meanwhile has found the answer or a workaround by himself, maybe it'anyway   helpful for someone else to see the differences between this simplified working sample and his own code</em></p>

@@ -1,0 +1,5 @@
+<p>JPA create a table BlogPost_Tags which stores ID of BlogPost and Tags.</p>
+
+<p>So when you try to delete a BlogPost, the constraint on the BlogPost_Tags failed.</p>
+
+<p>You need to delete the relation before delete the Post, and there is no easy way in JPQL, you have to use the EntityManager.</p>

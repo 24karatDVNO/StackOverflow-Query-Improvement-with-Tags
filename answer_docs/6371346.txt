@@ -1,0 +1,40 @@
+<p>Actually what you can have is:</p>
+
+<p>Customer array.
+Each element of Customer array is a dictionary.
+In dictionary you can save an array of products against each account number.</p>
+
+<pre><code>NSMutableArray *customerArray=[[NSMutableArray alloc] init];
+</code></pre>
+
+<p>...
+...</p>
+
+<pre><code>Customer *customer=[customerArray objectAtIndex:i];
+
+[customer setObject:accountNumberArray forKey:@"accountNumbers"];
+[customer setObject:productsArray forKey:accountNumber1];
+[customer setObject:productsArray forKey:accountNumber2];
+</code></pre>
+
+<p>..
+//where accountNumber can be a string identifying the customer's account.</p>
+
+<p>so to get the count of products for each customer, you can have:</p>
+
+<pre><code>for(Customer *customer in customerArray)
+{
+      int numOfProductsForThisCustomer=0;
+      NSArray *accountsArray=[customer getObjectForKey:@"accountNumbers"];
+      for(NSString *accountNumber in accountsArray)
+      {
+
+          NSArray *productsForAccount=[customer getObjecForKey:accountNumber];
+          int numOfProducts=[productsForAccount count];
+          numOfProductsForThisCustomer+=numOfProducts;
+      }
+
+}
+</code></pre>
+
+<p>//excuse any typos.</p>

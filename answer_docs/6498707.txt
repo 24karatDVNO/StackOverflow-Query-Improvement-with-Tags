@@ -1,0 +1,11 @@
+<p>You used </p>
+
+<pre><code>delete [] c;
+</code></pre>
+
+<p>If c was allocated like this:</p>
+
+<pre><code>Cube * c = new Cube[3]; //3 for example
+</code></pre>
+
+<p>THEN delete [] c would be appropriate.  In this case, you should omit the [].</p>

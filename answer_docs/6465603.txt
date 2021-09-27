@@ -1,0 +1,30 @@
+<pre><code>select * into #temp from table1
+select * into #temp1 from table2
+select * into #temp2 from table3
+
+
+SELECT
+    a.Field1,
+    a.Field2,
+    b.Field3,
+    b.Field4,
+    c.Field5
+FROM #temp a
+    LEFT JOIN #temp1 b ON a.Field1 = b.Field1
+    INNER JOIN #temp2 c ON a.Field1 = c.Field1
+
+
+
+if(Object_Id('TempDB..#temp') Is Not Null)
+Begin
+    Drop table #temp
+End
+if(Object_Id('TempDB..#temp1') Is Not Null)
+Begin
+    Drop table #temp1
+End
+if(Object_Id('TempDB..#temp2') Is Not Null)
+Begin
+    Drop table #temp2
+End
+</code></pre>

@@ -1,0 +1,3 @@
+<p>AFAIK gitosis leaves it entirely up to SSH to determine (via public key authentication) who is allowed access to the repo and who isn't. From there, to the git-serve instance all users are identified by the 'author' and 'commiter' fields only. </p>
+
+<p>What's wrong with just using the 'author' and 'commiter' fields anyway? If you're worried about people spoofing them, use two repositories: 'development' and 'release', and use a more fine-grained access control scheme in your gitosis.conf to only allow write access to 'release' for particular keys.</p>

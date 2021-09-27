@@ -1,0 +1,13 @@
+<p>this.Page will give you a reference to the page object.</p>
+
+<p>If you implement the DisplayMessage in a base page and then inherit from that.</p>
+
+<p>you could cast this.Page as BasePage and then call the method that way :)</p>
+
+<pre><code>if(this.Page is BasePage)
+{
+   BasePage bs = this.Page as BasePage
+
+   bs.DisplayMessage(....)   
+}
+</code></pre>

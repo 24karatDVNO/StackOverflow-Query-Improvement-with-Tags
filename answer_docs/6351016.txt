@@ -1,0 +1,10 @@
+<p>Here's a simple, readable, efficient query that will do it for you:</p>
+
+<pre><code>DELETE FROM table1
+WHERE id NOT IN (
+   SELECT table1_id FROM details_table_1
+   UNION
+   SELECT table1_id FROM details_table_2
+   -- more unions to other child tables as required
+);
+</code></pre>

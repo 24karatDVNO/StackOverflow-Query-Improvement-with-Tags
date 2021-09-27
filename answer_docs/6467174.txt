@@ -1,0 +1,16 @@
+<p>I also had similar problem but not for the config object but for the Base Theme , for your issue first you can correct the items property of your panel instead of </p>
+
+<pre><code> items: [
+        Ext.create('CDR.chart.Daily'),
+</code></pre>
+
+<p>it should be </p>
+
+<p>items: [
+           { Ext.create('CDR.chart.Daily'),....}</p>
+
+<p>Also if you are using the MVC framework then make sure in your app.js you  have added the below lines in the Ext.require section :      </p>
+
+<pre><code>'Ext.chart.theme.Base',
+'Ext.chart.theme.Theme',
+</code></pre>

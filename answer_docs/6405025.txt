@@ -1,0 +1,16 @@
+<p>If your using a 64-bit OS then it's fairly normal.</p>
+
+<pre><code>  RSS COMMAND
+89824 Rack: /var/www/vhosts/zmdev.net/zmdev  # RefineryCMS on Passenger
+148216 thin server (0.0.0.0:5000)  # Redmine
+238856 thin server (0.0.0.0:3000)  # Spree after a couple of weeks
+140260 thin server (0.0.0.0:3000)  # Spree after a fresh reboot
+</code></pre>
+
+<p>All of these are 64-bit OSes, there are significant memory reductions using 32-bit OS</p>
+
+<p>Here's the exact same Spree application running Webrick in my dev environment using 32-but Ubuntu</p>
+
+<pre><code>  RSS COMMAND
+58904 /home/chris/.rvm/rubies/ruby-1.9.2-p180/bin/ruby script/rails s
+</code></pre>

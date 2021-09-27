@@ -1,0 +1,16 @@
+<p>My goal was add text to a Text Box on another form. I had Form1 and Form2. Form2 has a text box control named Text1. In order to make this work, I created a Sub Routine:</p>
+
+<pre><code>public Void WriteToText(string sData)
+{
+// Here is where I wrote to my textbox
+Text1.text = sData;
+}
+</code></pre>
+
+<hr>
+
+<p>Form 1 code:</p>
+
+<pre><code>Form2 Frm2 = new Form2();
+Frm2.WriteToText("My Data");
+</code></pre>

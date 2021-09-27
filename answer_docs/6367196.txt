@@ -1,0 +1,17 @@
+<p>You will need a column like</p>
+
+<pre><code>last_modified TIMESTAMP
+</code></pre>
+
+<p>so each time a row is inserted, or updated, the <code>last_modified</code> column gets updated with the current timestamp. Then, all you need is a query like</p>
+
+<pre><code>SELECT *
+  FROM tblTask
+ WHERE task_id = n
+ ORDER BY last_modified DESC
+ LIMIT 5
+</code></pre>
+
+<p>Will fetch the latest 5 updated tasks from the database with the given <code>task_id</code>. Remove the <code>WHERE</code> clause to get the newest tasks regardless of the <code>task_id</code>.</p>
+
+<p><strong>note</strong>: the <code>TIMESTAMP</code> data type is special, in the sense that MySQL will update the field automatically, by default, to the current timestamp, unless a value is explicitly defined in the insert or update query. If this behavior is not wanted, use <code>DATETIME</code>, but it will require that you specify the column value for the new column (unless a default value is set in the table)</p>

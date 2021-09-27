@@ -1,0 +1,26 @@
+<p>You put your static instance in "<code>main.cpp</code>", so that seems like it should have worked (since there is no ambiguity about construction before "<code>main()</code>").</p>
+
+<p>However, I've had similar problems of static instances across DLL boundaries, or when singletons reference other singletons (<code>A</code> could reference <code>B</code> after <code>B</code> was allocated, but before the <code>B::B()</code> constructor is called).  In such cases, a reasonable work-around (that <em>should</em> also work for you) explicitly forces instantiation:</p>
+
+<pre><code>//SomeClass my_singleton;   // OLD, NOW INSTANTIATE EXPLICITLY
+
+SomeClass&amp; GetSomeClassSingleton(void) {
+  static SomeClass my_singleton;  // Instantiate once, explicitly
+  return my_singleton;
+}
+</code></pre>
+
+<p>In some cases, you may want to instantiate "somewhat dynamically":</p>
+
+<pre><code>SomeClass&amp; GetSomeClassSingleton(void) {
+  static SomeClass* my_singleton = NULL;
+  if(!my_singleton) {
+    my_singleton = new SomeClass();
+  }
+  return *my_singleton;
+}
+</code></pre>
+
+<p>Of course, the approaches work fine even in the event you need to pass parameters to the constructor of your singleton.</p>
+
+<p>Good luck, and let us know if you get that working on Android (I really want to know what works there).  I would guess that Android process-loading presents similar problems to singletons-across-DLL-boundaries, and I use the above patterns for singletons in such cases.</p>

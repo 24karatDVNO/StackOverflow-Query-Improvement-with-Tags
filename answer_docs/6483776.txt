@@ -1,0 +1,8 @@
+<ol>
+<li>In most situations, you won't notice a performance difference between static and non-static functions.  Theoretically, the fact that they cannot be virtual (and don't push the "this" pointer as an argument) make then slightly faster.  But again, not something you would usually notice.</li>
+<li>Static and thread-safety are not related.  If the method was thread-safe before "static", it will be thread-safe after "static".</li>
+<li>I have seen this before with some tools.  If the additional private methods are used by non-static methods, the code analysis will assume they cannot be made static (even if they do not reference members).  If you change the other non-static methods to static (if you can) then it will probably give you the same warning.</li>
+</ol>
+
+<p>Hope that helps,
+John</p>

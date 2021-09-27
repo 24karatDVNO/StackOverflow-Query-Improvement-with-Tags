@@ -1,0 +1,33 @@
+<p>You're declaring a dynamic function in the <code>setInterval</code>, your call to <code>clearInterval</code> inside that function will not be able to access the <code>thisFunc</code> variable.</p>
+
+<p>Try declaring the function outside the scope of the <code>setInterval</code>, like so:</p>
+
+<pre><code>/// countdown JS
+echo '&lt;script type="text/javascript"&gt;
+    function doTimer() {
+
+    //instantiate delay
+    //delay = ' . $delay . ';
+
+    // get current fundage
+    var currentFund = document.getElementById("fundage").innerHTML;
+    currentFund = parseFloat(currentFund);
+
+    // add a penny
+    currentFund += 0.01;
+    // round to 2 decimal places
+    currentFund = Math.round(currentFund * 100)/100;
+    // dont update more than finish amount
+    if(currentFund &gt; ' . $finishAmount . ') currentFund = ' . $finishAmount . '; 
+
+    //if finish amount reached, stop function
+    if(currentFund = ' . $finishAmount . ') clearInterval(thisFunc);
+
+    // update countdown div
+    document.getElementById("fundage").innerHTML = currentFund;
+
+}
+
+var thisFunc = setInterval("doTimer()", ' . $delay . ');
+&lt;/script&gt;';
+</code></pre>

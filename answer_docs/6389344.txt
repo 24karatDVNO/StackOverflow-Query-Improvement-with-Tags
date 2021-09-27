@@ -1,0 +1,3 @@
+<p>You can use <a href="http://msdn.microsoft.com/en-us/library/aa919436.aspx" rel="nofollow">TAPI</a> or <a href="http://msdn.microsoft.com/en-us/library/aa918613.aspx" rel="nofollow">RIL</a> to change the power of the GSM or CDMA cellular radio.  Both API are pretty complex as far as Win32 API goes.  These API will work from Pocket PC 2002 through Windows Mobile 6.5.3.  It's possible to use these API from .NET but you will probably have to use Platform Invoke.</p>
+
+<p>There is also the <a href="http://msdn.microsoft.com/en-us/library/microsoft.windowsmobile.status.aspx" rel="nofollow">SNAPI</a>, which has a managed wrapper.  This API requires Windows Mobile 5 or later.  See the SystemProperty.PhoneRadioOff enumeration for more information.</p>

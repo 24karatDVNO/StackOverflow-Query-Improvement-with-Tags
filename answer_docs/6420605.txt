@@ -1,0 +1,7 @@
+<p>It seems that you have to scripts competing to read the same Query.String at the same time, and only one of the scripts is executed. I would suggest one of the following methods:</p>
+
+<p>1- Direct the user to another page that has the other part of the script to handle the database</p>
+
+<p>2- You can use the same page, but the first script can rename the variable so that the other script can read the value it is waiting for</p>
+
+<p>3- You can use the same page, same variable name if you handle the Page Load event correctly, meaning that you need to decide which part of the script should run now, based on the user interaction with the form (If the user just visited the page, (No postback) then script1 should read the variable. Otherwise, script2 should get it.</p>

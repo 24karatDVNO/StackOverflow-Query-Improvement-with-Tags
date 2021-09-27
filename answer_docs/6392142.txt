@@ -1,0 +1,58 @@
+<p>I can think of at least 2 ways to get what you need done.</p>
+
+<p><strong>Method #1</strong>
+Server side break up your web-service output into two queries and return sets. Have the initial query be for a list of id's of results and a second query that you can call a single result set by id name.</p>
+
+<p>service.com/results.xml.php? returns:
+
+ 1
+
+
+ 2
+
+etc ...</p>
+
+<p>service.com/result.xml.php?id= returns:
+
+ 
+ 
+ etc...
+</p>
+
+<p>This will cause a lot of queries that will add overhead but will stop you from downloading multiple duplicate results over and over again.</p>
+
+<p>What you can do then is spam the 1st query and compare it to ID's currently displayed and then query #2 for details you need to push out yet.</p>
+
+<p><strong>Method #2:</strong></p>
+
+<p>Have 1 query return all the results like you do now but use an ID field stored locally in your scripting portion that keeps track of which content has already been displayed and only add the new data through AJAX into the existing page. You will have to have your javascript pulling and parsing the XML in a looping environment in this case.</p>
+
+<hr>
+
+<p>The true hitch in this is how does your application determine that it has all the results and to stop looping?</p>
+
+<p>The best way to do this would maybe be to strip down your query to try and get rowcounts for your final resultset before sending the query that returns all the details you need.</p>
+
+<p>example:</p>
+
+<p>select compareitem from sourcetable where compareitem=</p>
+
+<p>this will simply tell you how many items match your query with the least amount of information getting pumped back to you. you then rowcount that resultset and store it for a rainy day.</p>
+
+<p>select * from sourcetable where compareitem=</p>
+
+<p>now you grab all the details and i assume this takes longer. now you can effectively loop your display code to know when to stop checking for results.</p>
+
+<p>ajax pseudo code for method #1:
+- set current displayed results to 0
+- set array of displayed id's to null
+- run the basic query to determine how many rows you are expecting total (count each provider separate if you have multiple sources then add them all up)
+- enter loop
+- grab xml with details
+- process xml id by id to see if it is displayed yet (if array is null, first iteration display them all)
+- any id that needs to be displayed add the id as a member of the displayed id's array
+- pump the details into the document
+- increment current displayed results by 1 for each result id details displayed
+- check if you have displayed all the results expected. (displayedids >= expectedresults). if true exit loop. if not continue on.</p>
+
+<p>to optimize this you will most likely want to add some kind of time management or you will simply spam the server at a stupid high rate for xml but that you can test out.</p>

@@ -1,0 +1,22 @@
+<p>I tried a few methods to change the back button, but I eventually created a custom back button using the three20 styles. It uses shapes and not UIImage, so it looks pretty much native.</p>
+
+<p>In the application style sheet, i have this style class:</p>
+
+<pre><code>///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTStyle*)grayBackwardButton:(UIControlState)state {
+  TTShape* shape = [TTRoundedLeftArrowShape shapeWithRadius:4.5];
+  UIColor* tintColor = RGBCOLOR(102, 102, 102);
+  return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:nil];
+}
+</code></pre>
+
+<p>And then I create a TTButton while hiding the standard back button.</p>
+
+<pre><code> [self.navigationItem setHidesBackButton:YES];
+
+ TTButton* backButton = [TTButton 
+                      buttonWithStyle:@"grayBackwardButton:" 
+                      title:NSLocalizedString(@"BACK", @"")];
+ backButton.frame = CGRectMake(0,0,55,32);
+ [backButton addTarget:self action:@selector(dismissPlayer) forControlEvents:UIControlEventTouchUpInside]; 
+</code></pre>

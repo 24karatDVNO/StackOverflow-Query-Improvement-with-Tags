@@ -1,0 +1,15 @@
+<p>I would recommend storing the password data in JSON format on the server. I would then use one of the many JSON frameworks and tutorials on the Web to help implement loading the data into the app. There are many good ones. <a href="http://mobileorchard.com/tutorial-json-over-http-on-the-iphone/" rel="nofollow">I went through this one when I first worked with JSON on iOS.</a> There may be better ones out there.</p>
+
+<p>One problem with this scheme is that the app users would need a new password each time you change the password. You'd need a secure distribution channel to each user so that unauthorized users wouldn't get the new password. </p>
+
+<p>Instead I would use public/private key pair encryption on the data. Each instance of the app would have a private key, and you would keep the matching public key and the associated user ID. This could be setup with a phone-home process during the apps initial run on a particular device. I would encrypt the password with the authorized public keys, and load all the encrypted strings into the JSON file on the server. When run, the app would load the encrypted password strings through JSON, decrypt the strings and check against the known password. If the correct password is found, the app is authorized and continues to run. </p>
+
+<p>Then deauthorizing one user is done merely by removing the one user's encrypted password from the server. All other users will continue to work without being notified of a new password.</p>
+
+<p>An additional level of security can be applied by signing the JSON data with an additional public/private key pair. The JSON is signed with the private key and all the apps get a copy of the public key to check the source of the JSON data. </p>
+
+<p>Since iOS apps must be code signed, an interloper will have difficulty circumventing this protection within the app.  But there is a security hole in that the JSON data could be stored and later presented to the app in a man-in-the-middle attack with a hostile (to the app) proxy server. The JSON data can be date stamped and then signed, so the app can check that data too, and not accept JSON data older than some set time depending upon how critical the timing required for disabling users. If a week is soon enough, maybe this can stay a manual process, but a timeframe on the order of days or hours should be implemented as an automatic process on the webserver.  </p>
+
+<p>If distribution of the app grows to the point that the JSON data is huge, requiring too much data download, the JSON data can be segmented. Multiple JSON files can be stored on the server and accessed by inserting an ID string into the file name. This ID string can be chosen during the initial run setup on a particular device, or other mechanism. </p>
+
+<p>Although much more complex to initially implement, this method is more secure and easier to manage, especially on the part of the users who never need to deal with new authorization passwords.</p>

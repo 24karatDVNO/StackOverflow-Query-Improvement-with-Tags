@@ -1,0 +1,8 @@
+<p>Assuming you have added the section from the tutorial:</p>
+
+<pre><code>&lt;Target Name="BeforeBuild"&gt;
+...
+&lt;/Target&gt;
+</code></pre>
+
+<p>The target will be run automatically when you build the project. The "BeforeBuild" target is one of the standard entry-points to add your own modifications to the build. The target will then generate a file (named [WebProjectName].wxs that is placed in the same directory as your wixproj file. Click on the show all files button in visual studio and right-click on the file and "Include in project" That will then include the wxs is your installer and when you next build it will have the correct folder/file structure.</p>

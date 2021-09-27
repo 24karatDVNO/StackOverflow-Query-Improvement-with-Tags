@@ -1,0 +1,21 @@
+<p>If you want to free the non-mutable list before you return, you can use something like this:</p>
+
+<pre><code> - (NSArray *)allQuestionsFromCategories:(NSArray *)categories {
+
+    ...
+
+    NSArray* result;
+    NSMutableArray *ids = [[NSMutableArray alloc] init]; // AUTORELEASE REMOVED FROM HERE
+
+
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        [ids addObject:[NSNumber numberWithInt:sqlite3_column_int(statement, 0)]];
+    }
+    result = [NSArray arrayWithArray:ids]; // COPY LIST BEFORE IT IS FREED.
+    [ids release]; // MUTABLE LIST FREES _NOW_
+
+    return result; // NONMUTABLE COPY IS RETURNED
+}
+</code></pre>
+
+<p>It is not worth doing this unless your mutable array is likely to sometimes use a lot of memory.</p>

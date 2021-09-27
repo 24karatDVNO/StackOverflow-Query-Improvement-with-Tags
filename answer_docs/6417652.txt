@@ -1,0 +1,21 @@
+<p>I am not sure if I should write this, since it is in the same spirit of kingjiv's answer. But it is slightly different, so I decided to put it here in any case.</p>
+
+<pre><code>function enum(name, value, date) {
+    this.name = name;
+    this.value = value;
+    this.date = date;
+}
+enum.prototype.toString = function() {
+    return this.name;
+}
+</code></pre>
+
+<p>Usage is:</p>
+
+<pre><code>RRR = new enum("RRRaney", 2, 2007);
+alert(RRR + " " + RRR.date);
+</code></pre>
+
+<hr>
+
+<p>Edit: An unfortunate choice of object name. Apparently <code>enum</code> is a reserved keyword in javascript 1.3+, so the code fails in internet explorer. You need to rename it to <code>Enum</code> or some such if you want to use it.</p>

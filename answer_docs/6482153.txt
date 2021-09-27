@@ -1,0 +1,9 @@
+<p>Did you try a simple check?</p>
+
+<p>something like </p>
+
+<pre><code>if (!String.IsNullOrEmpty(e.Row.Cells[4].Text))
+    e.Row.Cells[4].Text = Convert.ToDateTime(e.Row.Cells[4].Text).ToString("MM/dd/yyyy");
+else
+    e.Row.Cells[4].Text = "-";
+</code></pre>

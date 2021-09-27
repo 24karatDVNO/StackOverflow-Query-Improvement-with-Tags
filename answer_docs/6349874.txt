@@ -1,0 +1,12 @@
+<p>Maybe Something like this would work, havent tested it though</p>
+
+<pre><code>Dim AnnualProgramTasksId As New List(Of Integer)
+        For Each task As ListViewItem In Me.TasksList.Items
+            Dim CompletedCheckboxs As CheckBox = DirectCast(task.FindControl("CompletedCheckbox"), CheckBox)
+            If CompletedCheckboxs IsNot Nothing Then
+                If CompletedCheckboxs.Checked Then
+                    Dim HiddenProductID As HiddenField = DirectCast(task .FindControl("AnnualProgramTasksId"), HiddenField)
+                    Dim ID As String = CInt(HiddenProductID.Value.ToString)
+                End If
+        Next
+</code></pre>

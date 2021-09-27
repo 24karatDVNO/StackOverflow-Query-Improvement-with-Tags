@@ -1,0 +1,11 @@
+<p>(Before I begin: I am a Java guy)<br/>
+What I recommend:</p>
+
+<ol>
+<li>Find the closest point up the call chain from the exception source where you can handle the exception properly - i.e take corrective measures, signal failure of the transaction/action etc. (Logging by itself should not be considered as handling the exceptions) All the methods between the handler and the thrower should ignore the exception. Prefer unchecked exceptions to checked ones so that the exceptions don't even figure in all those intermediate methods. </li>
+<li>Layer boundaries and APIs should specify the exceptions it can throw using checked exceptions since handling those exceptions is part of the contract for the client layer/code that uses it.</li>
+<li>Write an exception handler class with a <code>handle(Exception e)</code> method and release that to the team initially and ensure that everyone uses it to handle exceptions. Based on changing exception handling scenarios, keep adding overloaded 'handle' methods later on so that only the handler need to be modified. </li>
+<li>Always remember to chain exceptions when doing catch-and-throw. This ensures that the full cause of exception gets reported.</li>
+<li>Never log the same exception trace more than once. It makes it very hard to debug using log files.</li>
+<li>Top level methods should have a catch clause that will catch <em>any</em> exception that the system may throw. This prevents spilling of our internal information to the outside world if, god forbid, things go wrong in production environment. This is more of a security requirement.</li>
+</ol>

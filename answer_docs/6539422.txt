@@ -1,0 +1,11 @@
+<p>Here it is.</p>
+
+<pre>
+<code>
+var t = selectedDrivers
+    .GroupBy(item =&gt; item.Value)
+    .Any(group =&gt; group.Skip(1).Any());
+</code>
+</pre>
+
+<p>I have used 'group.Skip(1).Any()' to find a group with at least two elements and avoid enumerating the entire group with Count().</p>

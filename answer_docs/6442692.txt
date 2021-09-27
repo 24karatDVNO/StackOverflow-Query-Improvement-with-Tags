@@ -1,0 +1,10 @@
+<p>Use $.getJSON(url, data, callback);</p>
+
+<p>It get data from the given url and check if it is JSON valid.</p>
+
+<pre><code>$.getJSON(
+    'http://www.example.com/getjson.php?catid=' + $('#valueContainer').val(),
+     function (data) {
+         // do stuff here
+     });
+</code></pre>

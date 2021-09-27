@@ -1,0 +1,10 @@
+<p>I've used the following code to handle emums when converting a custom classes for DB SP params, works all the time. </p>
+
+<pre><code>    public static object ParamValue&lt;T&gt;(Enum value)
+    {
+        if (value == null)
+            return System.DBNull.Value;
+        else
+            return (T)Enum.Parse(value.GetType(), value.ToString());
+    }
+</code></pre>

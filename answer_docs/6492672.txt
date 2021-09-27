@@ -1,0 +1,21 @@
+<p>M1shk4 and Chet Haase, as told  "It's impossible to pass calculated value to xml resource"</p>
+
+<p>So to implement my requirement, we need to do it using code in . Java file.</p>
+
+<p>The below was the code I got from Chet Haase: </p>
+
+<pre><code>public void turn()  
+{ 
+RotateAnimation anim = new RotateAnimation(currentRotation, currentRotation + 30,Animation.RELATIVE_TO_SELF, 0.5f,nimation.RELATIVE_TO_SELF,0.5f);     
+currentRotation = (currentRotation + 30) % 360;     
+anim.setInterpolator(new LinearInterpolator());     
+anim.setDuration(1000);     
+anim.setFillEnabled(true);      
+anim.setFillAfter(true);     
+turnImg.startAnimation(anim); 
+} 
+</code></pre>
+
+<p>Its working fine: )</p>
+
+<p>For more <a href="https://stackoverflow.com/questions/5928412/android-rotate-imageview-i-cant-set-the-final-position-of-imageview-in-onanimati">info</a></p>

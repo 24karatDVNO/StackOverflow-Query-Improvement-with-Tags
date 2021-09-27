@@ -1,0 +1,11 @@
+<p>I solved it, actually thanks to a combination of answers.</p>
+
+<pre><code>function notifyevent(){
+    $('#searchoverflow').slideUp('fast');
+    $('#subscribercontent').slideUp('fast');
+    $('#subscribercontent').slideDown('fast');
+    setTimeout("$('#subscribercontent').stop(true,true).slideUp('fast');", 3000)
+}
+</code></pre>
+
+<p>I use the setTimeout instead of delay, then I use .stop() not to stop a delay, but to stop the animation before the timeout. If anyone knows of a better way, that'd be great, with way kinda destroys the timer if you clickspam, and people will do that.</p>

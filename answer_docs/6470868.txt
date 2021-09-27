@@ -1,0 +1,15 @@
+<p>Jez, </p>
+
+<p>I know I was having the same problem with the "A program is trying to access e-mail addresses you have stored in Outlook. Do you want to allow this?" error message, and I think your problem is the following line of code:</p>
+
+<pre><code>objOutlook = new Microsoft.Office.Interop.Outlook.Application(); //create it
+</code></pre>
+
+<p>Instead, try changing it to the following</p>
+
+<pre><code>objOutlook = Globals.ThisAddIn.Application(); //get current Outlook object
+</code></pre>
+
+<p>I think that should help you avoid that error message, or at least, that's what fixed it for me! :-)</p>
+
+<p>Good luck! :-)</p>

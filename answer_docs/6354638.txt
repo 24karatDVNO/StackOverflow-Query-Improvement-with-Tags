@@ -1,0 +1,32 @@
+<p>Depending on how you want the parent to be sized you could do one of several things:</p>
+
+<ol>
+<li><p>Set #parent size with max-width instead of width</p>
+
+<pre><code>#parent {
+    position: absolute;
+    max-width: 300px;
+    height: 100%;
+}
+</code></pre></li>
+<li><p>Size #parent width with percents</p>
+
+<pre><code>#parent {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+</code></pre></li>
+<li><p>Or just size the #parent using something like this:</p>
+
+<pre><code>#parent {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+</code></pre></li>
+</ol>
+
+<p>Using 2 or 3 does pretty much the same thing in this case, but 2 gives more flexibility if you want some extra space around #parent.</p>

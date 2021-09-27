@@ -1,0 +1,13 @@
+<p>Try this function:</p>
+
+<pre><code>$pn = "777.777.7777 x 7302"; 
+
+function get_ext($pn)
+{
+$ext = preg_replace('/[\d\.\s]+[ext\s]+(\d{1,})/i', '$1', $pn);
+return $ext;
+}
+
+echo get_ext($pn);
+//7302
+</code></pre>

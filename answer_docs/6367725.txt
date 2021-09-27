@@ -1,0 +1,9 @@
+<p>If the format of the <code>fldUserLog</code> field value contains spaces, you need to embrace the value with <code>[ ]</code> ..</p>
+
+<pre><code>&amp; "fldUserLog = [fldUserLog @xUserLog] " _
+</code></pre>
+
+<p>I guess what you may want to write is the following:</p>
+
+<pre><code>&amp; "fldUserLog = @xUserLog " _
+</code></pre>

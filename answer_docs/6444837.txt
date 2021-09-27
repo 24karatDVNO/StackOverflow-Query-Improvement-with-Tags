@@ -1,0 +1,7 @@
+<p>I use &amp; like both.</p>
+
+<p>For simple static modals, @Peter J's answer is correct - BlockUI is fantastic and very lightweight. You can pass in an hidden div as the message and it will display it as a modal dialog, which can be made interactive via jQuery binds, etc.  It does not provide a method to retrieve the message via ajax without hand-coding it (which is counter to BlockUI's simple perfection- to display a block message while you wait for an ajax operation to complete).  </p>
+
+<p>For dynamic modals, jqModal is great as it can retrieve modal content via ajax calls.  It can also handle the triggering element for you (button, link, etc), controlling the show/hide itself, though also provides abilities for you to customize it any way you'd like.</p>
+
+<p>To get more complex - I even use both simultaneously to display an ajax-provided dialog via jqModal, then block it via BlockUI upon submit to display a custom message. (One item to note: be aware the default z-index for jqModal is below default for BlockUI so using them together requires you set BlockUI basez option higher than jqModal's default 3000.)</p>

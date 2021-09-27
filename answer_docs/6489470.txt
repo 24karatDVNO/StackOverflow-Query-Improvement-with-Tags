@@ -1,0 +1,16 @@
+<p>You could do a loop:</p>
+
+<pre><code>while( !is_object($xml) || $tryAgain){
+    $xml = simplexml_load_file(rawurlencode('http://www.example.com/yourxml.xml'));
+    if(is_object($xml-&gt;error)){
+        $tryAgain = true;
+        sleep(10);
+    }else{
+        $tryAgain = false;
+    }
+}
+</code></pre>
+
+<p>See this answer regarding sleep: <a href="https://stackoverflow.com/questions/740954/php-does-sleep-time-count-for-execution-time-limit">Does sleep time count for execution time limit?</a></p>
+
+<p>(<code>simplexml_load_file</code> can also load URLs, see <a href="http://php.net/simplexml-load-file" rel="nofollow noreferrer">http://php.net/simplexml-load-file</a> , so you don't need the <code>file_get_contents</code>)</p>

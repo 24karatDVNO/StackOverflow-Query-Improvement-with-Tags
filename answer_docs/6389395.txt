@@ -1,0 +1,22 @@
+<p>The below worked for me, is this what you mean?</p>
+
+<pre><code>Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\foo]
+@="URL: foo Protocol"
+"URL Protocol"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\foo\DefaultIcon]
+@="C:\\Program Files (x86)\\Internet Explorer\\iexplore.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\foo\shell]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\foo\shell\open]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\foo\shell\open\command]
+@="C:\\Program Files (x86)\\Internet Explorer\\iexplore.exe \"%1\""
+</code></pre>
+
+<p>Just to note, I'm running Win7Pro, so you may have to move around file path(s) to conform to your environment.</p>
+
+<p>And if that doesn't work, create a proxy between the protocol and the browser, pass the argument(s) from <code>foo://</code> to that, parse what's necessary, then hand it off to IE using <code>start iexplorer.exe "args"</code>.</p>

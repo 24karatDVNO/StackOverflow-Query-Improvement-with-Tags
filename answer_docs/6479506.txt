@@ -1,0 +1,9 @@
+<p>I think you may have some kind of strange overload confusion occuring here.</p>
+
+<p>You are specifiing "Right" (which could be calling a local "Right" function).
+The function your implying is "Microsoft.VisualBasic.Strings.Right" in most of my code ends up being "Strings.Right" due to the global import.</p>
+
+<p>I would try changing you code to the below and see if it still happens, in order to rule out some overload/scope confusion. (and/or the reduced "Strings.Right")</p>
+
+<pre><code>If Micosoft.VisualBasic.Strings.Right(input, 1) = "[" Then Do stuff 
+</code></pre>

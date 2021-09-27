@@ -1,0 +1,11 @@
+<p>The following code will solve the issue.</p>
+
+<pre><code>                _dgTemp.CommitEdit();
+                object SelectedItem = _dgTemp.SelectedItem;
+                DataGridRow _dgRow = DataGridHelper.GetRow(_dgTemp, _dgTemp.Items.IndexOf(SelectedItem));
+                DataGridCell _dgCell = DataGridHelper.GetCell(_dgTemp, _dgRow, _dgTemp.Columns.IndexOf(_dgTemp.CurrentColumn));
+                _dgCell.MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                _dgTemp.ScrollIntoView(_dgTemp.Items.IndexOf(_dgTemp.CurrentItem));
+                _dgTemp.UpdateLayout();
+                _dgTemp.SelectedIndex = _dgTemp.Items.IndexOf(_dgTemp.CurrentItem);
+</code></pre>

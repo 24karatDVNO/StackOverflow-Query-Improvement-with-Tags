@@ -1,0 +1,3 @@
+<p>I suppose you could have a provider that keeps a reference to the current object. When you call get on the provider it would unbind the last object, construct the new one and save the reference to it.</p>
+
+<p>though I'm not really sure why you would want to do something like this since other objects can in theory still be referencing it</p>

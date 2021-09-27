@@ -1,0 +1,10 @@
+<p>Try this </p>
+
+<pre><code>$post = "";
+   $amp = "";
+   foreach($_SESSION['cart'] as $key =&gt; $value) {
+       $post .= $amp . $key . "=" . urlencode($value);
+       $amp = "&amp;";                        
+   }
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+</code></pre>

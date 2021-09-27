@@ -1,0 +1,5 @@
+<p>You should probably start off by defining the query as best you can in SQL, and looking at the execution plans to find the very best method (and whether your indexes are sufficiant).</p>
+
+<p>At that point you know what you're shooting for, and then it's reasonably easy to try and code the query in HQL or QueryOver or even LINQ and check the results using the SQL writer in NHibernate, or the excellent NHProfiler <a href="http://www.nhprof.com" rel="nofollow">http://www.nhprof.com</a>.</p>
+
+<p>You are probably right about ending up with several queries. Speed them up by batching as many as you can (that do not depend on each other) into single trips by using the "Future" command in Criteria or QueryOver. You can read more about that here: <a href="http://ayende.com/blog/3979/nhibernate-futures" rel="nofollow">http://ayende.com/blog/3979/nhibernate-futures</a></p>

@@ -1,0 +1,5 @@
+<p>There really isn't. If you are depending on the fact that your webservice URL is hidden as you security measure, then you are <strong>doing security wrong</strong>.</p>
+
+<p>This URL <strong>will</strong> be discovered, even if the code is encrypted / obfuscated, users can use a debugger to connect to a running application, or simply use a proxy / <a href="http://www.wireshark.org/" rel="nofollow">Wireshark</a> to inspect the web traffic. This is <em>not</em> a way to secure your application.</p>
+
+<p>You should have <strong>per-user</strong> login names and passwords or use <a href="http://en.wikipedia.org/wiki/Public_key_certificate#Client_certificates" rel="nofollow">client certificates</a> to authenticate the individual users. You should consider your application <a href="http://nakedsecurity.sophos.com/2011/03/03/droid-dream-android-market-malware-attack-aftermath/" rel="nofollow">easy to copy and duplicate</a>, so building the authentication into the application directly will <em>never</em> keep your confidential information private.</p>

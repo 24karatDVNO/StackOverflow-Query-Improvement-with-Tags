@@ -1,0 +1,23 @@
+<pre><code>SELECT
+   Region,
+   MIN(Company) as [30th_percentile_company],  --potentially, two companies would from the same region would have the exact same percentile_in_region.
+FROM
+(
+SELECT
+   Region,
+   MIN(percentile_in_region) as percentile_in_region
+WHERE
+   percentile_in_region &gt; 30
+GROUP BY
+   Region
+) a
+
+INNER JOIN
+   TableName T1
+ON
+   T1.Region = a.Region
+   AND T1.percentile_in_region = a.precentile_in_region
+
+GROUP BY
+   Region
+</code></pre>

@@ -1,0 +1,25 @@
+<p>Here's another couple of alternatives using <code>NextPrime</code>:</p>
+
+<pre><code>pairs1[pmax_] := Select[Range[pmax], PrimeQ[#] &amp;&amp; NextPrime[#] == 2 + # &amp;]
+
+pairs2[pnum_] := Module[{p}, NestList[(p = NextPrime[#];
+                      While[p + 2 != (p = NextPrime[p])]; 
+                      p - 2) &amp;, 3, pnum]] 
+</code></pre>
+
+<p>and a modification of your Reap/Sow solution that lets you specify the maximum prime:</p>
+
+<pre><code>pairs3[pmax_] := Module[{k,p},
+                   Reap[For[k = 1, (p = Prime[k]) &lt;= pmax, k++,
+                        If[PrimeQ[p + 2], Sow[p]]]][[-1, 1]]]
+</code></pre>
+
+<p>The above are in order of increasing speed.</p>
+
+<pre><code>In[4]:= pairs2[10000]//Last//Timing
+Out[4]= {3.48,1261079}
+In[5]:= pairs1[1261079]//Last//Timing
+Out[5]= {6.84,1261079}
+In[6]:= pairs3[1261079]//Last//Timing
+Out[7]= {0.58,1261079}
+</code></pre>

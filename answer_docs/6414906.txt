@@ -1,0 +1,82 @@
+<p>This is what I was referring to in the other thread; handle the exception in the pl/sql:</p>
+
+<pre><code>create or replace
+PROCEDURE TESTDATA(myArrayNo in number , myOutputArray out varchar2)
+is
+    customException EXCEPTION;
+    PRAGMA EXCEPTION_INIT( customException, - 20101 );
+begin
+    myOutputArray := chr( myArrayNo );
+    if mod( myArrayNo, 2 ) = 0 then
+        raise customException;
+    end if;
+
+exception
+    when customException then
+         myOutputArray := 'I am invalid';
+end TESTDATA;
+</code></pre>
+
+<p>but only capture expected errors here, ones that you don't want to stop the progression, if you put in a when others... then things may get hairy and hide bugs and allow bulk updates/inserts that you don't want to allow.</p>
+
+<p>c# code:</p>
+
+<hr>
+
+<pre><code>...
+      int[]    myArrayNo   = new int[3]{65, 66, 67};
+      String[] myOutputArray ;
+
+
+      OracleConnection connection = new OracleConnection(connectStr);
+      OracleCommand    command    = new OracleCommand (
+        "TESTDATA", connection);
+          //insert into dept values (:deptno, :deptname, :loc)
+      // Set the Array Size to 3. This applied to all the parameter in 
+      // associated with this command
+      command.ArrayBindCount = 3;
+        command.CommandType = CommandType.StoredProcedure  ;
+      command.BindByName = true;
+
+      // deptno parameter
+      OracleParameter arrayNoParam = new OracleParameter("myArrayNo",OracleDbType.Int32);
+      arrayNoParam.Direction       = ParameterDirection.Input;
+      arrayNoParam.Value           = myArrayNo;
+      command.Parameters.Add(arrayNoParam);
+
+
+      OracleParameter arrayOutParam = new OracleParameter();
+      arrayOutParam.ParameterName = "myOutputArray" ;
+      arrayOutParam.Direction       = ParameterDirection.Output ;
+      arrayOutParam.ArrayBindSize   = new int[3] { 50, 50, 50 };
+      arrayOutParam.OracleDbTypeEx  = OracleDbType.Varchar2  ;
+      command.Parameters.Add(arrayOutParam);
+
+      try 
+      {
+        connection.Open();
+        command.ExecuteNonQuery();
+        myOutputArray = (String[])command.Parameters["myOutputArray"].Value ;
+
+                for (int i = 0; i &lt; 3; i++){
+                  Console.WriteLine("myOutputArray{0} = {1}", 
+                              i, myOutputArray[i]);
+              }                 
+      }
+        catch (OracleException e)
+            {
+              Console.WriteLine("OracleException {0} occured", e.Message);
+              if (e.Number == 24381)
+                for (int i = 0; i &lt; e.Errors.Count; i++){
+                  Console.WriteLine("Array Bind Error {0} occured at Row Number {1}", 
+                    e.Errors[i].Message, e.Errors[i].ArrayBindIndex);
+              }
+            }
+</code></pre>
+
+<p>and outputs</p>
+
+<pre><code> myOutputArray0 = A 
+ myOutputArray1 = I am invalid 
+ myOutputArray2 = C
+</code></pre>

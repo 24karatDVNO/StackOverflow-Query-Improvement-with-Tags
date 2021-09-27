@@ -1,0 +1,24 @@
+<p>If I understand you correctly, you want a jQuery function. So, here is how you can do it:</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>(function($){
+    // define your function here
+    $.fn.listIterator = function(){
+        return this.each(function(){
+            $(this)
+                .find('ul li')
+                .each(function(){
+                    // do whatever you like here with list items
+                });
+        });
+    }
+
+    $(document).ready(function(){
+        // use the function like this
+        $('div:visible').listIterator();
+    });
+})(jQuery);
+</code></pre>
+
+<p><a href="http://jsfiddle.net/Shef/Mrwn7/" rel="nofollow">Here is a demo for you to see it in action</a></p>

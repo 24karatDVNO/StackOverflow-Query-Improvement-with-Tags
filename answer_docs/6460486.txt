@@ -1,0 +1,36 @@
+<p>You are trying to return two logically distinct bits of information: First, "What are the list of processes?" and second, "Can I compute the list of processes?". I suggest you return those in two distinct variables:</p>
+
+<pre><code>// UNTESTED
+bool get_running_proc_list(vector&lt;DWORD&gt;&amp; result)
+{
+  DWORD proc_list[1024], size;
+
+  if(!EnumProcesses(proc_list, sizeof(proc_list), &amp;size))
+  {
+    return false; 
+  }
+
+  result = vector&lt;DWORD&gt;(proc_list, proc_list + size/sizeof(DWORD));
+  return true;
+}
+</code></pre>
+
+<p>But, I might try to save a couple <code>memcpy</code>'s:</p>
+
+<pre><code>// UNTESTED
+bool get_running_proc_list(vector&lt;DWORD&gt;&amp; result)
+{
+  result.clear();
+  result.resize(1024);
+
+  DWORD size;
+  if(!EnumProcesses(&amp;result[0], result.size()*sizeof(DWORD), &amp;size))
+  {
+    result.clear();
+    return false; 
+  }
+  result.resize(size/sizeof(DWORD));
+
+  return true;
+}
+</code></pre>

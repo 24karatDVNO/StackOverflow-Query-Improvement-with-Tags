@@ -1,0 +1,14 @@
+<p>As I see you work with numbers with floating point. I want to point you that in standard C library there are two functions that can help you:</p>
+
+<pre><code>double floor(double); //round down
+double ceil(double);  //round up
+</code></pre>
+
+<p>They return rounded number. Also there are another rounding functions. You can find reference of them <a href="http://www.gnu.org/s/hello/manual/libc/Rounding-Functions.html" rel="nofollow">here</a>. After you learn how they work, you may write your own rounding function. Which will use normalization. Look at example:</p>
+
+<pre><code>// this function will round to tens
+float my_floor(float d)
+{
+    return floor(d/10)*10;
+}
+</code></pre>

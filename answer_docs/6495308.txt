@@ -1,0 +1,19 @@
+<p>Here's a little helper function to do the trick:</p>
+
+<pre><code>inline std::string myitoa(size_t n)
+{
+  std::string res = n ? "" : "0";
+  while(n) { res += '0' + (n % 10); n /= 10; }
+  return std::string(res.rbegin(), res.rend());
+}
+
+for (size_t i = 0; i &lt; N; ++i)
+{ 
+  const std::string n = myitoa(i+1);
+
+  std::string g1 = "group1_" + n;
+  /* ... */
+}
+</code></pre>
+
+<p>This requires your encoding to store the numeral characters contiguously and N less than 10.</p>

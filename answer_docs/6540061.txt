@@ -1,0 +1,3 @@
+<p>That sounds like the approach I would take. Whenever you have an action that takes place at a different time than the web request, you need to "queue" that action up to be completed later. Then you need a script that runs (however often you want) that checks the queue (i.e. DB table) and processes the items in the queue.</p>
+
+<p>You're on the right track.</p>

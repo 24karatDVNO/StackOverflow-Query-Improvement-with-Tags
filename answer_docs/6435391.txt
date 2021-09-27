@@ -1,0 +1,6 @@
+<p>You are not defining the parameter correctly in the query, use:</p>
+
+<pre><code>String query1 = "SELECT * FROM UserDetails WHERE UserName like ?";
+PreparedStatement ps = con.prepareStatement(query1);
+ps.setString(1, str1 + "%");
+</code></pre>

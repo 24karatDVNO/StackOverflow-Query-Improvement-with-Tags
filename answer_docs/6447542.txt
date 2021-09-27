@@ -1,0 +1,11 @@
+<p>If you're just being careful, why not just count the rows you would update?</p>
+
+<pre><code>select count(*) from MYTABLE WHERE ...some condition...;
+</code></pre>
+
+<p>If the count is sufficiently low, this is practically cut &amp; paste to the update:</p>
+
+<pre><code>update MYTABLE set col1 = val1, ... WHERE ...some condition...;
+</code></pre>
+
+<p>Put into your scripting language, pl/sql, or stored procedure as is appropriate.</p>

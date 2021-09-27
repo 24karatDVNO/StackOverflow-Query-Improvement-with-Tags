@@ -1,0 +1,6 @@
+<p>I would suggest that you step through your code in the debugger. You can bring this up in IE by hitting F12 and going to the Script tab. Once you're there, you can set up a watch for $("#weatherFeed").html(). Under IE7 mode, I stopped after the appending of the first TD and I found that the watch displayed the following:</p>
+
+<pre><code>"&lt;TABLE class=weather&gt;\r\n&lt;TBODY&gt;\r\n&lt;TR&gt;\r\n&lt;DIV&gt;&lt;/DIV&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;\r\n&lt;TD&gt;a&lt;/TD&gt;"
+</code></pre>
+
+<p>This says to me that the tags are being closed for you and that any subsequent appending after the initial TABLE and TR are appearing outside of the table you were trying to create.</p>

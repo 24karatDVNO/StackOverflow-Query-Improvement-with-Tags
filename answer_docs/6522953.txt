@@ -1,0 +1,6 @@
+<p>You could also try constructing your image using <code>drupal_get_path()</code> and it would be sure to resolve to the correct location for the image.</p>
+
+<pre><code>$img_path = drupal_get_path('theme', 'name-of-your-theme') . '/images/logo.png';
+$img = theme('image', $img_path, 'the-alt-text', 'the-title-text');
+print l( $img, '&lt;front&gt;', array('html' =&gt; TRUE));
+</code></pre>

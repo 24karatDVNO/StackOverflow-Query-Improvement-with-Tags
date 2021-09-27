@@ -1,0 +1,6 @@
+<p>if you need to search text inside a large string you can use one of those:<br>
+<a href="http://www.mongodb.org/display/DOCS/Full+Text+Search+in+Mongo" rel="nofollow">keyword splitting</a><br>
+<a href="http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries-RegularExpressions" rel="nofollow">regular expression</a></p>
+
+<p>the former has the downside that you need some "logic" to combine the keyword to make a search, the latter heavily impacts on performance.<br>
+probably if you really need full text search the best option is to use an external indexer like solr or lucene.</p>

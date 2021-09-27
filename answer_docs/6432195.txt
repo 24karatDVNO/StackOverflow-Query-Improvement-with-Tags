@@ -1,0 +1,10 @@
+<p>If you want one animation to fire after another finishes, use the <a href="http://api.jquery.com/animate/" rel="nofollow">.animate</a>'s callback:</p>
+
+<p><em>pseudo-ish code:</em></p>
+
+<pre><code>$(selector).animate({ key: val },
+                     'slow' /*easing*/,
+                      function() {
+                          // second animation goes here
+                     });
+</code></pre>

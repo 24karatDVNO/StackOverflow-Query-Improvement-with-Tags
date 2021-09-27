@@ -1,0 +1,7 @@
+<p>To answer my own question;</p>
+
+<p>What was happening was <code>window.location.hash</code> was generated from the <code>&lt;a name="hash name"&gt;</code> so the browser was pushing the page to my element on the page.</p>
+
+<p>What i did was removed the name element from the anchor tags and pushed the names in via jQuery.  As i only had 4 anchor tags it was the easiest solution for my scenario, how ever if you are referencing lots of hash tags and wish to stop it from jumping i found another post on Stack Overflow with some great answers.</p>
+
+<p><a href="https://stackoverflow.com/questions/1489624/modifying-document-location-hash-without-page-scrolling">Modifying document.location.hash without page scrolling</a></p>

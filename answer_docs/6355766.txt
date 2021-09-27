@@ -1,0 +1,11 @@
+<p>May be ur connection string not correct you can it by using .udl file
+just follow the link 
+<a href="http://www.gotknowhow.com/articles/test-a-database-connection-string-using-notepad" rel="nofollow">http://www.gotknowhow.com/articles/test-a-database-connection-string-using-notepad</a></p>
+
+<p>You can also check the code shown below</p>
+
+<pre><code>        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\Users\\ruby\\Desktop\\screenShots\\ruby.mdb;Persist Security Info=False");
+        con.Open();
+        OleDbCommand cmd = new OleDbCommand("insert into raj(Name,Roll) values('XYZ',12);",con);
+        cmd.ExecuteNonQuery();
+</code></pre>

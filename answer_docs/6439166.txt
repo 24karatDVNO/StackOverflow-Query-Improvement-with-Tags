@@ -1,0 +1,27 @@
+<p>why not add a seeding bit to the url?</p>
+
+<pre><code>(function() {
+    var url = "some valid url to some image.jpg?";
+    this.timer = 10;
+    var counter = 0;
+
+    this.refresh = (function() {
+        var loader = new Asset.image(url + counter, {
+            onLoad: function() {
+                camera_container.empty();
+                camera_container.inject(loader);
+                counter++;
+            }
+        });
+    });
+
+})();
+
+window.addEvent('domready', function() {
+    // the periodical starts here, the * 1000 is because milliseconds required
+    refresh.periodical(timer * 1000, this);
+    this.camera_container = $('camera-image');
+});
+</code></pre>
+
+<p>this way the url will always be path/image.jpg?n where n changes and will force the browser to re-fetch it.</p>

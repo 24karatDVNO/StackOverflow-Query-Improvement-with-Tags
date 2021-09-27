@@ -1,0 +1,62 @@
+<p>i got the answer...i gave clicklistener name in </p>
+
+<pre><code>    tts = new TextToSpeech(this,(OnInitListener) clickball);    
+</code></pre>
+
+<p>actuallly i had to give the OnInitListener name there.i had changed the code like this..</p>
+
+<p>fisrt implement TextToSpeech.OnInitListener 
+and added its unimplemented method(OnInit).</p>
+
+<pre><code> private TextToSpeech tts;
+ @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game);
+         tts = new TextToSpeech(this,this); 
+OnClickListener clickball=new OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+
+            score=scorenumber.nextInt(8);
+            ballid=v.getId();
+            if (totalovers==0)
+            {
+
+                gameover();
+                return;
+            }
+            if(score==4)
+                {
+                    playgame(ballid,Integer.toString(score));
+                    dynamic_image.setBackgroundDrawable(getResources().getDrawable(R.drawable.four_01));
+                    dynamic_image.setVisibility(0x000000);
+                    disablelayout();
+                    timerfunc1(dynamic_image,R.drawable.four_02);
+
+                    currentScore ="FOUR";
+                    tts.setLanguage(Locale.US); 
+                    tts.speak(currentScore, TextToSpeech.QUEUE_FLUSH, null);
+
+                    dynamic_image.postDelayed(new Runnable(){             
+                         @Override             
+                         public void run() {   
+                             dynamic_image.setBackgroundDrawable(getResources().getDrawable(R.drawable.score4));
+                             dynamic_image.setVisibility(0x000000);      
+                             timerfunc(dynamic_image);
+                         }         
+                         }, 2000);
+                    enablelayout4();
+
+                }
+             }
+
+   @Override      
+    public void onInit(int status) {
+        // TODO Auto-generated method stub
+
+    }
+</code></pre>
+
+<p>this solved my problem...</p>

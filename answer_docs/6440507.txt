@@ -1,0 +1,51 @@
+<p>I finally got a suitable work around...</p>
+
+<p>CGSize constraintSize;</p>
+
+<p>CGSize stringSize;</p>
+
+<p>// make an overly big size allowance</p>
+
+<p>constraintSize.width = 300;</p>
+
+<p>constraintSize.height = 2000;</p>
+
+<p>NSString *s = @"this can be text as long or as short as required...;</p>
+
+<p>UIFont *f = [UIFont fontWithName:@"Arial" size:14];</p>
+
+<p>stringSize =[s sizeWithFont:f constrainedToSize: constraintSize lineBreakMode: UILineBreakModeWordWrap];</p>
+
+<p>// create a label to accomodate the text</p>
+
+<p>UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(14, 2, stringSize.width, stringSize.height)];</p>
+
+<p>l.text = s;</p>
+
+<p>[l setNumberOfLines:0];</p>
+
+<p>[l sizeToFit];</p>
+
+<p>// now create a TTStyledTextLabel to match the size we just obtained above</p>
+
+<p>TTStyledTextLabel *tl = [[TTStyledTextLabel alloc] initWithFrame:[l frame]];</p>
+
+<p>// set the text making use of links etc</p>
+
+<p>tl.text = [TTStyledText textFromXHTML:l.text lineBreaks:YES URLs:YES];</p>
+
+<p>[tl setBackgroundColor:[UIColor clearColor]];</p>
+
+<p>tl.textColor = [UIColor whiteColor]; </p>
+
+<p>UIScrollView *sv = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 185, 320, 300)];</p>
+
+<p>// adjust scrollview content size to accomodate the TTStyledTextLabel</p>
+
+<p>[sv setContentSize:CGSizeMake(tl.frame.size.width, tl.frame.size.height)];</p>
+
+<p>[sv addSubview:tl];</p>
+
+<p>[self.view addSubview:sv];</p>
+
+<p>Now I can have an auto sizing TTStyledTextLabel that scrolls ;-)</p>

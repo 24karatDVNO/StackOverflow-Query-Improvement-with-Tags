@@ -1,0 +1,43 @@
+<p>This is not about arrays but rather how to map an integer (i=[0-2]) to a set of various parameters including enum values, with possibly different types of parameters for each (subtype, grandparent reference).</p>
+
+<p>Overloading <code>popAccAttr</code> will not help because the caller would have to choose the correct overloading.  That just moves the problem to the caller.  You still have to map i=>params.</p>
+
+<p>In my opinion the best way to clean it up is to remove the opaque integer <code>i</code>.  What does "2" mean outside of this method?  You can use an enum that provides both a list of all possible account types, and a mapping from each.  It looks like the account type itself is sufficient.  So, (also removing redundancy between "0" and "default" cases),</p>
+
+<pre><code>public static AccountGrp[] popAccArr(IncomingObject incObject) {
+    ArrayList&lt;AccountGrp&gt; accAL = new ArrayList&lt;AccountGrp&gt;();
+    for (AccountType type : AccountType.values()) { // enumerate values
+        accAL.add(popAccAttr(type, incObject));
+    }
+    AccountGrp[] AccountGrpArr = (AccountGrp[]) accAL
+            .toArray(new AccountGrp[accAL.size()]);
+    return AccountGrpArr;
+}
+
+private static AccountGrp popAccAttr(AccountType type, IncomingObject incObject) {
+    AccountGrp acc = new AccountGrpImpl();
+
+    acc.setAccountType(type); // common for all
+
+    switch (type) {
+    case CUST:
+        acc.setAccount(incObject.getM_clientAcronym());
+        acc.setAcctIDSource(AcctIDSource.SLANG);
+        acc.setGrandParentAccount(incObject.getM_grandparentNum());
+        break;
+    case BKR:
+        acc.setAccount(incObject.getM_brokerAcronym());
+        acc.setAcctIDSource(AcctIDSource.SLANG);
+        // acc.setGrandParentAccount(incObject.getM_grandparentNum());
+        break;
+    case FIRM:
+        acc.setAccount(incObject.getM_errorAccount());
+        acc.setAcctIDSource(AcctIDSource.SLANG);
+        acc.setAccountSubType(AccountSubType.ERROR);
+        break;
+    default: throw new IllegalArgumentException("unsupported account type: "+type);
+    }
+
+    return accc; // common for all
+}
+</code></pre>

@@ -1,0 +1,9 @@
+<p>You cannot chain attribution operators like <code>+=</code>.</p>
+
+<pre><code>var addhtml = '&lt;div id="leftbio" class="left-float"&gt;'
+              + '&lt;div id="bioname"&gt;e["screen_name]&lt;/div&gt;'
+              + '&lt;div id="biophoto"&gt;&lt;img src="e["profile_image_url"]"/&gt;&lt;/div&gt;'
+              + '&lt;div id="biodetails"&gt;e["description"]&lt;/div&gt;'
+              + '&lt;/div&gt;';             // invalid assignment left-hand side
+console.log(addhtml);
+</code></pre>

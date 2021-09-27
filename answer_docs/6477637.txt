@@ -1,0 +1,13 @@
+<p>Most likely is that <code>detailViewController</code> is nil. If you look at the console output it will tell you for certain. </p>
+
+<p>The reason its nil on hardware is that the file system is case sensitive on hardware and hence</p>
+
+<p><code>golfbaner *detailViewController = [[golfbaner alloc] initWithNibName:@"Golfbaner" bundle:nil];</code></p>
+
+<p>"Golfbaner" != "golfbaner"</p>
+
+<p>Check your nibname for case match. I suspect its "golfbaner.xib".</p>
+
+<p>See <a href="https://stackoverflow.com/questions/4454676/ios-objective-c-image-file-name-path-different-behavior-betwewen-simulator-and-de">iOS Objective-C Image file name/path different behavior betwewen simulator and device</a></p>
+
+<p>As a style point class names should be capitalised otherwise it makes a class hard to separate from a variable when reading code. </p>

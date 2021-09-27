@@ -1,0 +1,20 @@
+<p>In your code, <code>B</code> has an inplicit reference to <code>A</code>, so you need an <code>A</code> (the <code>this</code> inside a method of <code>A</code>, of a <code>new A()</code> outside the context of <code>A</code>) If in your application <code>B</code> is an <code>I</code> in the namespace of <code>A</code> without actually using the implicit reference between <code>B</code> and <code>A</code>, you should declare the inner class <code>static</code>:</p>
+
+<pre><code>public class A {
+  //stuff
+  public static class B implements I {}
+}
+
+public interface I {}
+
+public class Foo {
+  int bar(I i) {}
+}
+</code></pre>
+
+<p>Now the following should work:</p>
+
+<pre><code>Foo foo = new Foo();
+B b = new A.B();
+foo.bar(b);
+</code></pre>

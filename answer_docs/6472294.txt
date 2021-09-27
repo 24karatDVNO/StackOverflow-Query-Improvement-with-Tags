@@ -1,0 +1,27 @@
+<p>Here's some code that I used that I only passed a postal code to and it works fine.</p>
+
+<pre><code>var map = null;
+  var geocoder = null;
+  var address = "SW1A 0AA";
+
+  function initialize() {
+    if (GBrowserIsCompatible()) {
+      map = new GMap2(document.getElementById("map_canvas"));
+      map.addControl(new GSmallMapControl());
+      map.addControl(new GMapTypeControl());
+      map.setMapType(G_HYBRID_MAP);
+      geocoder = new GClientGeocoder();
+
+        if (geocoder) {
+            geocoder.getLatLng(
+              address,
+              function(point) {
+                  map.setCenter(point, 13);
+                  var marker = new GMarker(point);
+                  map.addOverlay(marker);
+              }
+            );
+          }
+    }
+  }
+</code></pre>

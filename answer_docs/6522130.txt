@@ -1,0 +1,18 @@
+<p>This is more of the simple solution I was looking for:</p>
+
+<pre><code>var ctrl = $('#&lt;your control id&gt;');         // This is the control that the div is display to the right of.
+var elem = $('#&lt;your element id&gt;');         // This is the div that may be out of view.
+var panel = $('#&lt;your scrollable div id&gt;');
+var left = elem.position().left;
+var right = left + elem.outerWidth();
+
+if ((panel.length &amp;&amp; (right &gt; panel.innerWidth())) || (right &gt; ($(window).width() + $(window).scrollLeft()))) {
+    left = left - ctrl.outerWidth() - elem.outerWidth();
+}
+
+if (panel.length) {
+    left += panel.scrollLeft();
+}
+
+elem.css('left', left);
+</code></pre>

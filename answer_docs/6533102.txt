@@ -1,0 +1,3 @@
+<p>Just to add a bit of detail to what people have said above...</p>
+
+<p>Use a using block as, regardless of whether an exception occurs or not, the Dispose method will automatically be called due to implementations of IDataReader having to also implementing IDisposable.</p>

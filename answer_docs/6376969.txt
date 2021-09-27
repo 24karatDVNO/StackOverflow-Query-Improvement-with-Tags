@@ -1,0 +1,6 @@
+<p>I would think that if your UI doesn't change (significantly) between views, then reusing your activity and displaying different data seems fine to me (I do this myself).  </p>
+
+<p>I keep an object on the <code>Application</code> class that contains a list of the sub-objects (Inputs in your case).  </p>
+
+<p>On the top level object, I keep the index of the current index.<br>
+This works very well, does not leak memory and is very fast to render as I swipe through my pages.</p>

@@ -1,0 +1,5 @@
+<p>The one area that will probably bite you is if any of your 32-bit integers are manipulated bit-wise. If you assume that some status flags are stored in a 32-bit register (for example), or if you are doing bit shifting, then you'll need to focus on those.</p>
+
+<p>Another place to look would be any networking code that assumes the size (and endian) of integers passed on the wire. Once those get moved into 64-bit ints you'll need to make sure that you don't lose sign bits or precision.</p>
+
+<p>Structures that contain integers will no longer be the same size. Any assumptions about size and alignment need to be cleaned out.</p>

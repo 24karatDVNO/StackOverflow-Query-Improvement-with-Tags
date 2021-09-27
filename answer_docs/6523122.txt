@@ -1,0 +1,10 @@
+<p>It actually binds to the element and not the class.  The class name is just used for the initial lookup.</p>
+
+<p>In this case you would either want to use the <code>.unbind()</code> method to unbind the click event after it's been clicked <code>$(this).unbind('click');</code></p>
+
+<p>OR</p>
+
+<p>use the <code>.one()</code> <a href="http://api.jquery.com/one/" rel="nofollow">method</a> which would only allow the element to be clicked once.</p>
+
+<pre><code>$('.voteUp').one('click', function() {...
+</code></pre>

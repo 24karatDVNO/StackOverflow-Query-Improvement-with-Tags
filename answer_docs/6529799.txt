@@ -1,0 +1,18 @@
+<p>Currently these are the phone states I'm using for this to work. I think the thing that makes it work is the modify phone state. Hopefully, this can help someone else out. </p>
+
+<p>BTW. It really a pain some of the description in the google docs for this. Does anyone know of a better place that (I know this is a funny question because they're google's docs) describes the phone's user permissions.</p>
+
+<p>One other thing. After some reading, it has been noted that the modify phone state has changed some with future behavior. Basically some hidden / undocumented classes / Interfaces can be used like in 2.2.</p>
+
+<pre><code>&lt;uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/&gt;
+
+&lt;uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/&gt;
+
+&lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/&gt;
+
+&lt;uses-permission android:name="android.permission.VIBRATE"/&gt;
+
+&lt;uses-permission android:name="android.permission.WAKE_LOCK"/&gt;
+
+&lt;uses-permission android:name="android.permission.WRITE_SETTINGS"/&gt;
+</code></pre>

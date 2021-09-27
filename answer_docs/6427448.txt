@@ -1,0 +1,21 @@
+<p>I've run into the same problem, as I'm sure thousands of coders have.</p>
+
+<p>The problem is that the browsers (other than IE) don't like window.event.</p>
+
+<p>I'm poking around trying to find a solution (which is how I stumbled across this), and I found the following (so far):</p>
+
+<p>1) Write JQuery:</p>
+
+<pre><code>    $(document).keyup(function(e) {
+        var GetKey = e.keyCode;
+`enter code here` 
+        }
+    });
+</code></pre>
+
+<p>2) Redefine the key variable:</p>
+
+<pre><code>var key = (window.event) ? evt.keyCode : evt.which;
+</code></pre>
+
+<p>I tried the JQuery solution.  It seems to be okay in FF, but I ran into an unexpected bug in IE that I'm still trying to solve.  I haven't yet tried the second solution; that's next, if I can't get the JQuery to work.</p>

@@ -1,0 +1,9 @@
+<p>try to use below query:</p>
+
+<pre><code>$sql="SELECT j.*, jr.*
+            FROM jobs as j
+      INNER JOIN job_resp as jr ON j.job_id = jr.job_id 
+           WHERE j.job_id ='".$job_id."'";
+</code></pre>
+
+<p>But you should avoid *, try to use field name as j.id, j.job_titel etc.</p>

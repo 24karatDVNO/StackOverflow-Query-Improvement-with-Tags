@@ -1,0 +1,1 @@
+<p>Definitely use a temporary table, especially since you've alluded to the fact that its purpose is to assist with calculations and aggregates. If you used a table inside one of your database's schemas all that work is going to be logged - written, backed up, and so on. Using a temporary table eliminates that overhead for data that in the end you probably don't care about.</p>

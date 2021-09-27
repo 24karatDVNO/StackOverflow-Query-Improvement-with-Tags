@@ -1,0 +1,12 @@
+<p>You don't appear to be doing anything with your SqlDataReader.  Typically you would have something like this:</p>
+
+<pre><code>using (SqlDataReader sdr = cmd.ExecuteReader())
+{
+   while(sdr.Read())
+   {
+      //whatever
+   }
+...
+</code></pre>
+
+<p>Right now it looks like you are executing the command and then doing nothing with the results.  I'm not sure how the DataTable comes into play either.</p>

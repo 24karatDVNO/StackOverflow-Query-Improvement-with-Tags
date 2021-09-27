@@ -1,0 +1,11 @@
+<p>The right way to do this is to populate the model from within the controller and send it to the view.</p>
+
+<pre><code>// create a new model object
+MyViewModel model = new MyViewModel();
+
+// populate the "Field" property in said object
+model.Field = "this is my field text";
+
+// send the pre-populated model to the veiw
+return View(model);
+</code></pre>

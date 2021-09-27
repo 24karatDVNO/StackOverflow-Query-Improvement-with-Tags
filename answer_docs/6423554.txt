@@ -1,0 +1,10 @@
+<p>OK, it seems like you made the "volume" control correctly. Are you saying you put different values in the following line and it always sounded the same volume?</p>
+
+<pre><code>volume.setValue(-20.63f);  
+</code></pre>
+
+<p>I can't imagine what values of 10 or 80 would do, as I think the range is -80 to 6. And most of the bottom end of that is pretty much inaudible. It's supposed to correspond to decibels from -80 to 6 or volts or something more typical to a VU meter. My mixer has a VU meter that ranges from -20 to +5, for example.</p>
+
+<p>In any event, trying test values like 5 or 0 or -10 might have a better chance of sounding like something.</p>
+
+<p>Also, most people expect that one changes the volume during playback, as a dynamic process, and so we are looking for logical places in your code to do this, such as the Timer or the Slider. But I guess you were just trying to get sounds to play at different hard-coded sound levels, and the slider was just for displaying progress. I found the code rather hard to decipher, as well as the description of the problem.</p>

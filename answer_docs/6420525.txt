@@ -1,0 +1,3 @@
+<p>Figured it out.  Had to do with my configuration.  I'm using a tab bar controller that uses the same view controller for multiple tabs.  Each view controller shows different filtered data for some tab items.</p>
+
+<p>Therefore, in such a configuration, you must be sure to connect the IBOutlets for each view controller that's contained by a tab bar item.  I only connected one, which is why it wasn't working for some of the tab items.  </p>

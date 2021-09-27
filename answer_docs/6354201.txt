@@ -1,0 +1,3 @@
+<p>We had this exact problem and found that the msi build process creates vsi*.tmp files in the c:\Documents and Settings\username\Local Settings\Temp folder which are not cleaned up, and thus build up over time. The more of these files that exist, the longer the msi creation takes. We solved our problem by using a scheduled task to delete any of those files that are > 24 hours old.</p>
+
+<p>Note - for our situation the server was Windows Server 2003 R2 - hence the c:\Documents and Settings prefix. If you are using Windows Vista or Windows 7, you'll probably find the files by searching for vsi*.tmp under c:\Users\username instead.</p>

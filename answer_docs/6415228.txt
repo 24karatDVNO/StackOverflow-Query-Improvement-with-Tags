@@ -1,0 +1,7 @@
+<p>Make an array of rules.  You can store the rules as lambdas, or store their function names as symbols, or strings. whatever is easiest.
+Then check each pair against the rule set.  For lambdas it would be something like:</p>
+
+<pre><code> valid = input_pairs.map{|pair| rules.find{|rule| !rule[pair]}}
+</code></pre>
+
+<p>If you store symbols use <code>send(rule,pair)</code>.  For strings, <code>eval "#{rule}(pair)"</code></p>

@@ -1,0 +1,9 @@
+<p>Figured it out.</p>
+
+<p>Easiest way was just to get the Method I was trying to create the object for (parameter), get the ParameterInfo object, and get the exact Type from that.</p>
+
+<pre><code>Type t = proxy.GetType();
+MethodInfo m = t.GetMethodInfo("methodName");
+ParameterInfo[] mParams = m.GetParameters();
+string typeName = mParam.ParameterType.AssemblyQualifiedName;
+</code></pre>

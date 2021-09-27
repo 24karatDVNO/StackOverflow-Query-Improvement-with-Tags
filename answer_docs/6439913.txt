@@ -1,0 +1,13 @@
+<p>I don't think you mention the database but I would expect something like</p>
+
+<pre><code>select StringColumn || '-' || cast( NumberColumn as varchar ) from table
+</code></pre>
+
+<p>may do what you want, but that becomes database dependent.</p>
+
+<p>If you are saying its access, and you are using the jet provider then I would think that </p>
+
+<pre><code>select StringColumn + '-' + {fn cstr( NumberColumn )} from table
+</code></pre>
+
+<p>Would work. At least it does directly to the MS Access ODBC driver</p>

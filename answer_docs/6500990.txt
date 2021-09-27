@@ -1,0 +1,21 @@
+<p>At last, I find a solution of this problem.
+My solution is not using php, using jquery.
+Process it in client, not server.</p>
+
+<p>the code is like this, </p>
+
+<pre><code>$(document).ready(function(){
+    $("ul.image-info").each(function(){
+        $(this).replaceWith('');
+    });
+    $("div.file-preview").each(function(){
+        $(this).replaceWith('&lt;div class="raw-image-info" id="' + 
+          $(this).attr("id").substring(0, $(this).attr("id")-1) + '"&gt;&lt;/div&gt;');
+    });
+    $("div.file-detail").each(function(){
+        $(this).replaceWith('');
+    });
+});
+</code></pre>
+
+<p>Hope this help for another guys who confront this kind of problem too. </p>

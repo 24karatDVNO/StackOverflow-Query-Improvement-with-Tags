@@ -1,0 +1,39 @@
+<p><a href="http://Control.ViewStateMode%20Property" rel="nofollow">ViewStateMode</a> is used to change the result behavior of setting the <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.control.enableviewstate%28v=VS.100%29.aspx" rel="nofollow">EnableViewState</a> of a page or a control to <code>true</code>.</p>
+
+<p>Refering to <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.control.viewstatemode.aspx" rel="nofollow">Control.ViewStateMode Property</a> </p>
+
+<blockquote>
+  <p>The ViewStateMode property of a page
+  or a control has an effect only if the
+  EnableViewState property is set to
+  true. If the EnableViewState property
+  is set to false, view state will be
+  turned off even if the ViewStateMode
+  property is set to Enabled. </p>
+  
+  <p>The default value of the ViewStateMode
+  property for a page is Enabled. The
+  default value of the ViewStateMode
+  property for a Web server control in a
+  page is Inherit. As a result, if you
+  do not set this property at either the
+  page or the control level, the value
+  of the EnableViewState property
+  determines view-state behavior. </p>
+  
+  <p>You can use the ViewStateMode property
+  to enable view state for an individual
+  control even if view state is disabled
+  for the page. For more information
+  about view state and control state,
+  see the EnableViewState property.</p>
+  
+  <p>To disable view state for a page and
+  to enable it for a specific control on
+  the page, set the EnableViewState
+  property of the page and the control
+  to true, set the ViewStateMode
+  property of the page to Disabled, and
+  set the ViewStateMode property of the
+  control to Enabled.</p>
+</blockquote>

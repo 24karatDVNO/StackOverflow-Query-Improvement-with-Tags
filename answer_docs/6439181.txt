@@ -1,0 +1,12 @@
+<p>I assume you are talking about a WPF Application.</p>
+
+<p>There are several reasons your button could become / stay inactive:</p>
+
+<ul>
+<li>Your CanExecute implementation is faulty and returns false even if it should return true</li>
+<li>You didnt implement CanExecute or didnt hook it up correctly</li>
+<li>The CommandManager didn't realize it's time to requery the commands</li>
+<li>You've got a problem with the Focus on your Window / Control</li>
+</ul>
+
+<p>You need to show more of the code so it gives us a broader picture of what you are trying to do.</p>

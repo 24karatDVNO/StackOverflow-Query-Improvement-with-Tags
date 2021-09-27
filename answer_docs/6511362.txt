@@ -1,0 +1,11 @@
+<p>you NEED to add this to your model class:</p>
+
+<pre><code>//lib/model/Table.class.php
+
+class Table extends BaseTable{
+  public function serializeReferences($bool=null)
+  {
+   return true;
+  }
+}
+</code></pre>

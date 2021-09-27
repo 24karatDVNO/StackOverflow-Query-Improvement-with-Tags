@@ -1,0 +1,13 @@
+<p>You need to set it when you add a new row. It is then executed as an INSERT by the adapter. Adapters commit only changes.</p>
+
+<p>The code would look almost like:</p>
+
+<pre><code>var newRow = ClientTable.NewRow();
+
+newRow["ClientID"] = GetNewID();
+...set other fields...
+
+ClientTable.Rows.Add(newRow);
+
+Adapter.Update(ClientTable);
+</code></pre>

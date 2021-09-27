@@ -1,0 +1,23 @@
+<p>From your short JSON example, I would say it's <a href="http://jsonlint.com/" rel="nofollow">invalid</a>.</p>
+
+<pre><code>{ name: 'allVisits', data: [1, 0, 4] }, { name: 'newVisits', data: [5, 7, 3] }
+</code></pre>
+
+<p>Should be:</p>
+
+<pre><code> [{"name":"allVisits", "data": [1, 0, 4] }, {"name": "newVisits", "data": [5, 7, 3] }]
+</code></pre>
+
+<p>If I recall correctly, jQuery does some JSON validation.</p>
+
+<p>Once your file is valid JSON, you can use <a href="http://api.jquery.com/jQuery.getJSON/" rel="nofollow"><code>jQuery.getJSON</code></a> instead of <a href="http://api.jquery.com/jQuery.get/" rel="nofollow"><code>jQuery.get</code></a>.</p>
+
+<pre><code>jQuery.getJSON( 'file.json' , function( data ){
+
+   alert( data[0].name );
+   // do your thang with data
+
+});
+</code></pre>
+
+<p>Test your JSON with <a href="http://jsonlint.com/" rel="nofollow">JSONLint</a></p>

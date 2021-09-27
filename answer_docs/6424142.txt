@@ -1,0 +1,12 @@
+<p>Have worked it out! </p>
+
+<pre><code>$(document).ready(function(){
+   $("#thumbnailImages li a").click(function(event) {
+     event.preventDefault(); 
+    var image= $(this).attr('href'); 
+    $('#largeImage img').attr('src',image); 
+    $('.activeThumbnail').removeClass('activeThumbnail'); 
+    $(this).addClass('activeThumbnail'); 
+  });
+}); 
+</code></pre>

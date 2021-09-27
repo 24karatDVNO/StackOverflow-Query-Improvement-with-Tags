@@ -1,0 +1,3 @@
+<p>The <code>Date</code> class is (informally) deprecated. The API has so many faults, that it is really difficult to get Dates/Times right with it. The easiest example is something like your code for <code>differencems</code>. It fails, if the time inbetween contains a daylight savings switch (if you don't use UT) and will always fail to take care of leap seconds.</p>
+
+<p>If your application depends on correct dates, you might want to use <a href="http://joda-time.sourceforge.net/" rel="nofollow">Joda Time</a>.</p>

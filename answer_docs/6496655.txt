@@ -1,0 +1,16 @@
+<p>OP said</p>
+
+<blockquote>
+  <p>What is the properly [sic] way to return the Value?</p>
+</blockquote>
+
+<p>The proper way is to not reinvent the wheel:</p>
+
+<pre><code>public T Greatest&lt;T&gt;( IEnumerable&lt;T?&gt; list ) where T : struct, IComparable&lt;T&gt; 
+{
+    return list.Where(  x =&gt; x.HasValue )
+               .Select( x =&gt; x.Value    )
+               .Max()
+               ;
+}
+</code></pre>

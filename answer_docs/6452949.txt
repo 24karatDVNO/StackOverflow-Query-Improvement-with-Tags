@@ -1,0 +1,21 @@
+<p>This would be an approach:</p>
+
+<pre><code>^((\w+):)?\/\/((\w|\.)+(:\d+)?)[^:]+\.(jpe?g|gif|png)$
+</code></pre>
+
+<p>Mathing on the colon. (:)
+In this case it's only accepted for the protocol and port (optional).</p>
+
+<p>This will not match:</p>
+
+<pre><code>http://site.com/site.com/files/audio/audiofile.mp3 http://site.com/site.com/files/images/img (5).jpg
+</code></pre>
+
+<p>This will match (colon in second http:// removed)</p>
+
+<p>"<strong>/audiofile.mp3 http/</strong>" will count as a folder in "<strong>/audio/</strong>"</p>
+
+<pre><code>http://site.com/site.com/files/audio/audiofile.mp3 http//site.com/site.com/files/images/img (5).jpg
+</code></pre>
+
+<p>It's not fool proof. There are other characters that are not allowed in filenames ( <strong>* | " &lt; ></strong> )</p>

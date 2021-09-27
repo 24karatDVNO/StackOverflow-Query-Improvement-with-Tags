@@ -1,0 +1,43 @@
+<p>It appears that the current Image_GraphViz package cannot handle default node/edge/cluster attributes.  I've extended the class by changing these functions: <code>_escape</code>, <code>_escapeArray</code>, and <code>parse</code>. Here are my changes:</p>
+
+<pre><code>function _escape($input, $html = false) {
+        switch (strtolower($input)) {
+        //removed case 'node' and case 'edge' so they won't be quoted
+        case 'graph':
+        case 'digraph':
+        case 'subgraph':
+        case 'strict':
+            return '"'.$input.'"';
+        } //...
+
+
+function _escapeArray($input) {
+//...
+        default:
+            if(is_array($v)){
+                $v=$this-&gt;_escapeArray($v); //added recursion to allow default node/edge/cluster attribute sets
+            } else {
+                $v = $this-&gt;_escape($v);
+            }
+            $k = $this-&gt;_escape($k);
+        }
+//...
+
+function parse() {
+//...
+    foreach ($attr as $key =&gt; $value) {
+        if(is_array($value)){
+            $a=implode(',', 
+            array_map(function($v,$k){ return $k . '='.$v;}, 
+                array_values($value),
+                array_keys($value)));
+        //default format for node/edge/cluster: thing[att1="blah", att2="foo"];
+            $parsedGraph .= $indent.$key.'['.$a."];\n";
+        } else {
+            $parsedGraph .= $indent.$key.'='.$value.";\n";
+        }
+    }
+//...
+</code></pre>
+
+<p>I hope this is useful to someone.</p>

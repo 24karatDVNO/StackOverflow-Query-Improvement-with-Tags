@@ -1,0 +1,22 @@
+<p>Just check your AndroidManifest.xml file and modify your activity same as below code example:</p>
+
+<pre><code>       &lt;activity android:name=".MainActivity"
+                  android:label="@string/app_name"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;activity android:name=".SecondActivity"
+                  android:label="SecondActivity"&gt;
+        &lt;/activity&gt;
+</code></pre>
+
+<p>So if you mark the above code then you can easily come to know that the below code mention that this activity is going to be act as a launcher activity.</p>
+
+<pre><code> &lt;intent-filter&gt;
+           &lt;action android:name="android.intent.action.MAIN" /&gt;
+           &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+ &lt;/intent-filter&gt;
+</code></pre>

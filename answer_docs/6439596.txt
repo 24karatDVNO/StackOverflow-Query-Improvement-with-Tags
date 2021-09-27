@@ -1,0 +1,11 @@
+<p>If you have a string like <code>"blahROOT fooROOT barROOTS"</code>, and you want to extract <code>blah</code> and <code>foo</code> but not <code>bar</code> (since it ends in ROOT<b>S</b>), try this expression: <code>(\w+)ROOT\b</code>. Note that it matches any part before <code>ROOT</code> if the word ends with <code>ROOT</code> exactly (hence the <code>\b</code>).</p>
+
+<p>Then use something like this: </p>
+
+<pre><code>Pattern p = Pattern.compile("(\\w+)ROOT\\b");
+Matcher m = p.matcher("blahROOT fooROOT barROOTS");
+
+while (m.find()) { //loop through all matches
+ String part = m.group(1); //the word parts you look for, note that group 0 represents the entire match
+}
+</code></pre>

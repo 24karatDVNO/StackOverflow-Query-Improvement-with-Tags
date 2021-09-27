@@ -1,0 +1,7 @@
+<p>Button commands don't "return". They do, but they return to the event loop so there's nothing there to process whatever it is that is returned.</p>
+
+<p>That being said, it's hard to know what you are asking. You say "I can't access the returned information from the function" but I see no reason why not. If you call it, does it not return what the return statement returns? That seems quite impossible.</p>
+
+<p>If you configure a button to run 'self.OnButton', and define 'self.OnButton' to call your function 'get_user_entries', what happens? Does it not retun anything?</p>
+
+<p>Look at it this way: your button function shouldn't <em>return</em> something, it should <em>do</em> something. It can do that by calling you function, get what it returns, tnen call whatever else you want it to call.</p>

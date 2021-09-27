@@ -1,0 +1,3 @@
+<p>You should store the user id in cookie in exactly the same point where you did with session attribute. Use HttpServletRequest.getCookies() for reading cookie. This method returns array of cookies, so you have to iterate over the array to identify relevant cookie. </p>
+
+<p>To change cookie, just override it. </p>

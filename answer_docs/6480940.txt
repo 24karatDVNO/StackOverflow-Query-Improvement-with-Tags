@@ -1,0 +1,6 @@
+<p><code>mysql_num_rows()</code> expects a result resource (in your case <code>$query</code>) rather than a row pulled from <code>mysql_fetch_array()</code>.</p>
+
+<pre><code>if(mysql_num_rows($query )==9) {
+  // etc...
+}
+</code></pre>

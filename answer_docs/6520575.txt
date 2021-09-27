@@ -1,0 +1,6 @@
+<p>Donot get all data. only get the required data using projection</p>
+
+<pre><code>String[] proj ={ContactsContract.CommonDataKinds.Nickname.NAME, ContactsContract.CommonDataKinds.Nickname.TYPE};
+
+Cursor nickname = getContentResolver().query( ContactsContract.Data.CONTENT_URI, proj,ContactsContract.CommonDataKinds.Nickname.CONTACT_ID +" = "+ recordId, null, null); 
+</code></pre>

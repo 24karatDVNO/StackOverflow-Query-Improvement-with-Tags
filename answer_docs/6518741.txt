@@ -1,0 +1,10 @@
+<p>The flashplayer restricts your socket usage in several ways. One you already found out :) The other is to specify whether you use the network or not. There is a networking mode and a file system mode (access to the filesystem). You can't have both.</p>
+
+<p>So you should try to compile it with this:</p>
+
+<pre><code>-use-network=true
+</code></pre>
+
+<hr>
+
+<p>And yes I know it's a PITA doing socket programming with flash. You should implement every OnErrorXYZ method and print as much information as possible. Using wireshark or a different network sniffer is also a good idea.</p>

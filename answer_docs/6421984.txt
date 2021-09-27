@@ -1,0 +1,18 @@
+<p>since the format of the "dbx" file is something similiar to the CSV (Comma seperated values) 
+you can find the code that parses the CSV and put the pipe sign ("|") as your seperator </p>
+
+<p><strong>The following link is the sample about the flow of line-break seperated value</strong> 
+<a href="http://www.iphonedevsdk.com/forum/iphone-sdk-game-development/13753-tutorial-quiz-game.html#post64855" rel="nofollow noreferrer">http://www.iphonedevsdk.com/forum/iphone-sdk-game-development/13753-tutorial-quiz-game.html#post64855</a></p>
+
+<p>your attempt is seprating the line-break first and second seprating the | and populate it into NSArray / NSMutableArray / NSDictionary</p>
+
+<p>For the url , you can access it :</p>
+
+<pre><code>NSError* error;
+NSString* text = [NSString stringWithContentsOfURL:TheUrl encoding:NSASCIIStringEncoding error:&amp;error];
+</code></pre>
+
+<p>Refer to : <a href="https://stackoverflow.com/questions/2039203/what-is-the-stringwithcontentsofurl-replacement-for-objective-c">What is the &quot;stringWithContentsOfURL&quot; replacement for objective C?</a></p>
+
+<p>or use ASIHTTPRequest to ease the steps 
+<a href="http://allseeing-i.com/ASIHTTPRequest/" rel="nofollow noreferrer">http://allseeing-i.com/ASIHTTPRequest/</a></p>

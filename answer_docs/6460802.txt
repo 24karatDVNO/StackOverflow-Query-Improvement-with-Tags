@@ -1,0 +1,27 @@
+<p>The problem is more complicated than that. Since you can compile libraries in Flex and use them with Flash CS5, and create assets in CS5 and add them to a Flex project, the line is beyond blurred -- it might not exist.</p>
+
+<p>My general preference for Flex is in situations where data binding is paramount. It doesn't do animations terribly well, but it has far better support for large class structures. Since it is built from Eclipse, Flash Builder (AKA Flex Builder) has the feeling of an IDE, whereas CS5 has the feeling of... another Flash Professional product.</p>
+
+<p>On the other hand, if I am working with layout and animators in a very intense way, I will often rely on CS5 over Flex. CS5 gives them the ability to lay out things as they want with a very fine-grained level of control.</p>
+
+<p>So, my guesses for the sites:</p>
+
+<ol>
+<li>Probably Flex with imported assets -- this type of behavior is really typical for Flex components.</li>
+<li>Once again Flex, but with fewer imported assets. The images have a "generated" feel, which leads me to believe that they are created by a computer and not as much by a designer.</li>
+<li>This one is hard, but I would guess that it is high end CS5 -- there are a large number of well integrated animations, and while that is not hard with Flex, it is a lot easier with CS5. The repeated animations are especially typical of CS5 applications -- those are so easy in CS5...</li>
+<li>Um.... I have no idea. I've actually had to do something remarkably like this in AS2 (in CS5... strange, no?), so I think that would be my guess. Pixel perfect mask placement is difficult if you have to manipulate the x and y as numbers.</li>
+</ol>
+
+<p>What's happening (my guesses):</p>
+
+<ol>
+<li>There are probably quite a few assets which were laid out ahead of time here. They would have been placed in a swc and imported into the Flex project and then swapped out at run-time. Some of these assets could be colored and displayed based on different masking tricks though -- manipulating primary and secondary color on a cake are easy fair for ActionScript if you know what you're doing.</li>
+<li>I firmly believe that all of this is being done through Flash's native ability to manipulate images through code.</li>
+<li>Most of these assets were laid out ahead of time, or I have to meet this guy and shake his hand, because that is just impressive.</li>
+<li>Well, when I did this in CS5, it was simply a case of adding assets to a custom image distortion library, and the colors was done by adding filters to it.</li>
+</ol>
+
+<p>As to tutorials... I don't know any which would help in this situation (that isn't to say that there aren't any, I just don't know them). Sorry.</p>
+
+<p>As a bit of an aside, I've found that quite frequently Flex and CS5 are treated as entirely separate beasts. That kind of makes sense -- they have some very different paradigms. That said, a programmer has no excuse for not knowing enough to switch between them.</p>

@@ -1,0 +1,9 @@
+<p>What you're trying to do is very possible, and as far as I see you are doing it right. Maybe you made a mistake linking the graphic movieclip to the class? </p>
+
+<p>To make sure, first remove any graphic object from the stage of your first .fla file (the one you are compiling into a .swc), and then write on the first frame the code:</p>
+
+<pre><code>var myClip:MyClip = new MyClip();
+addChild(myClip);
+</code></pre>
+
+<p>You should see both the trace AND the graphic associated, otherwise there might be something wrong there. When you get it to work on the first .fla file, it should work as well on the one that loads the .swc</p>

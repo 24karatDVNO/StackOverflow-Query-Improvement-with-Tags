@@ -1,0 +1,37 @@
+<p>HTML is simply a way of marking up text, so to write a HTML file, you are simply writing the HTML as text to a file with the .html extension.</p>
+
+<p>There's plenty of tutorials out there for reading and writing from files, as well as getting a list of files from a directory.  (Google 'java read file', 'java write file', 'java list directory' - that is basically everything you need.)  The important thing is the use of BufferedReader/BufferedWriter for pulling and pushing the text in to the files and realising that there is no particular code science involved in writing HTML to a file.</p>
+
+<p>I'll reiterate; HTML is nothing more than <code>&lt;b&gt;text with tags&lt;/b&gt;</code>.</p>
+
+<p>Here's a really crude example that will output two files to a single file, wrapping them in an <code>&lt;html&gt;&lt;/html&gt;</code> tag.</p>
+
+<pre><code>BufferedReader getReaderForFile(filename) {
+    FileInputStream in = new FileInputStream(filename);
+    return new BufferedReader(new InputStreamReader(in));
+}
+
+public void main(String[] args) {
+    // Open a file
+    BufferedReader myheader = getReaderForFile("myheader.txt");
+    BufferedReader contents = getReaderForFile("contentfile.txt");
+
+    FileWriter fstream = new FileWriter("mypage.html");
+    BufferedWriter out = new BufferedWriter(fstream);
+
+    out.write("&lt;html&gt;");
+    out.newLine();
+
+    for (String line = myheader.readLine(); line!=null; line = myheader.readLine()) {
+        out.write(line);
+        out.newLine(); // readLine() strips 'carriage return' characters
+    }
+
+    for (String line = contents.readLine(); line!=null; line = contents.readLine()) {
+        out.write(line);
+        out.newLine(); // readLine() strips 'carriage return' characters
+    }
+
+    out.write("&lt;/html&gt;");
+}
+</code></pre>

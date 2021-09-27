@@ -1,0 +1,6 @@
+<p>It looks like you want something like this:</p>
+
+<pre><code>/([^\\])+\s\[\d{4}\]$/
+</code></pre>
+
+<p>That's what I'd go with, at least. Should only include whatever comes after the last backslash in the string, and the movie title will be in the first capture group.</p>

@@ -1,0 +1,13 @@
+<p>no javascript expert but i think that your javascript:</p>
+
+<pre><code>frm.elements[i].checked=true;
+</code></pre>
+
+<p>will loop over all elements of the form, this includes the radiobuttions and it'll "check" them.</p>
+
+<p>you'll need something like  </p>
+
+<pre><code>frm.checkRec[i].checked=true;
+</code></pre>
+
+<p>to 'check' all checkboxes in the grid (and only these)</p>

@@ -1,0 +1,18 @@
+<p>Have you tried <code>display:none</code>?</p>
+
+<pre><code>span.x-tree-node-indent {
+    display: none;
+}
+</code></pre>
+
+<p>That should work the same everywhere but I can't check IE right now, <a href="http://www.w3.org/TR/CSS2/visuren.html#display-prop" rel="nofollow"><code>display:none</code></a>:</p>
+
+<blockquote>
+  <p>This value causes an element to not appear in the formatting structure (i.e., in visual media the element generates no boxes and has no effect on layout). Descendant elements do not generate any boxes either; the element and <strong>its content are removed from the formatting structure entirely</strong>. This behavior cannot be overridden by setting the 'display' property on the descendants.  </p>
+  
+  <p>Please note that a display of 'none' does not create an invisible box; <strong>it creates no box at all</strong>. [...]</p>
+</blockquote>
+
+<p>Emphasis mine.</p>
+
+<p>Here's a quick example if you want to check for yourself: <a href="http://jsfiddle.net/ambiguous/ZrzWz/" rel="nofollow">http://jsfiddle.net/ambiguous/ZrzWz/</a></p>

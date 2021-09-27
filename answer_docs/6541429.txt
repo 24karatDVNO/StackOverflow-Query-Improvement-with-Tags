@@ -1,0 +1,6 @@
+<p>Can you try <a href="http://commons.apache.org/io/api-2.0/org/apache/commons/io/IOUtils.html" rel="nofollow">IOUtils.copy()</a> from <a href="http://commons.apache.org/io/" rel="nofollow">Apache Commons IO</a>?</p>
+
+<pre><code>IOUtils.copy(new FileInputStream("some.file"), servletResponse.getOutputStream());
+</code></pre>
+
+<p>Hard to tell from your code, but most likely you have a bug somewhere while copying data from one place to another (index mismatch/missing flush, etc.) Use ready-made and well-tested stream copying routine to pinpoint the problem.</p>

@@ -1,0 +1,18 @@
+<p>Use a regex: preg_grep function,</p>
+
+<p>I don't know the format of english postcodes but you could go with something like:</p>
+
+<pre><code>(-[a-zA-Z0-9]+-)+
+</code></pre>
+
+<p>This matches </p>
+
+<ul>
+<li>"-Accountants-"</li>
+<li>"-BN31GE-"</li>
+</ul>
+
+<p>You can then proceed at taking always the second value or you can enhance you regex to match exactly english postcodes, something like maybe</p>
+
+<pre><code> ([A-Z0-9]{6})
+</code></pre>

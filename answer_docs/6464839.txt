@@ -1,0 +1,8 @@
+<p><code>i think by default the system takes as "30" days for a month and adds the +20 days.. but actually May has 31 days so that result should be 5/7/2011.</code></p>
+
+<p>You are interpreting it a wrong way, <code>Month</code> in a <code>date</code> starts with <code>0 - Jan</code>..
+So as per the date entered by you it comes <code>Jul 15 2011</code> on the month number <code>6</code>.</p>
+
+<p>When you add 20 to date it will be <code>Aug 04 2011</code> and you are directly getting month number which is <code>7 - i.e. Aug</code> which misleads your calculation. And for the year, yes it is you should <code>getFullYear</code> </p>
+
+<p>Read <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date/UTC" rel="nofollow">this</a> to get your basics correct..</p>

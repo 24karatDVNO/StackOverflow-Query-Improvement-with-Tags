@@ -1,0 +1,20 @@
+<p>Fist of all you must not use ids more than once: in this case only one works because the event is attached only on the first matching id. </p>
+
+<p>Anyway you could do like this:(http://jsfiddle.net/7Kmny/)</p>
+
+<pre><code>&lt;a class="toggle" href="javascript:void(0);"&gt;Expand box 1&lt;/a&gt; 
+&lt;div id="content"&gt;Content 1&lt;/div&gt; 
+&lt;div id="contentHidden" style="display:none;"&gt;Hidden 1&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;a class="toggle" href="javascript:void(0);"&gt;Expand box 2&lt;/a&gt; 
+&lt;div id="content"&gt;Content 2&lt;/div&gt; 
+&lt;div id="contentHidden" style="display:none;"&gt;Hidden 2&lt;/div&gt;
+  $(".toggle").click(function() 
+  {  
+    // hides matched elements if shown, shows if hidden 
+    $(this).next().toggle();
+    $(this).next().next().toggle();
+  }); 
+</code></pre>

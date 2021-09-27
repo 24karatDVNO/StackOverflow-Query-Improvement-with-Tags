@@ -1,0 +1,8 @@
+<p>OK in what sense?  It's legal C++.  It's usually very poor programming
+practice, for the reason you mention: it imposes a (usually) unnecessary
+restriction on derived classes.  Independently of <code>virtual</code>, you should
+only return a reference when the semantics of the function require it;
+if the type has value semantics, like <code>std::string</code>, then this would
+only be a non-const reference.  (Templates complicate the issue somewhat,
+and it is reasonable for classes like <code>std::vector</code> to return a
+reference to const from <code>operator[] const</code>.) </p>

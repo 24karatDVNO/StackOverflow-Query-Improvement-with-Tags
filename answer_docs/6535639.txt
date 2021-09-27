@@ -1,0 +1,29 @@
+<p>The following works for me on Windows 7, wxPython 2.8.10.1, Python 2.5</p>
+
+<pre><code>import wx
+
+class MyForm(wx.Frame):
+
+    #----------------------------------------------------------------------
+    def __init__(self):
+        wx.Frame.__init__(self, None, title="Tutorial")
+
+        # Add a panel so it looks the correct on all platforms
+        panel = wx.Panel(self, wx.ID_ANY)
+
+        slider = wx.Slider(panel, size=wx.DefaultSize)
+        slider.Bind(wx.EVT_SLIDER, self.onSlide)
+
+    #----------------------------------------------------------------------
+    def onSlide(self, event):
+        """"""
+        obj = event.GetEventObject()
+        print obj
+
+#----------------------------------------------------------------------
+# Run the program
+if __name__ == "__main__":
+    app = wx.App(False)
+    frame = MyForm().Show()
+    app.MainLoop()
+</code></pre>

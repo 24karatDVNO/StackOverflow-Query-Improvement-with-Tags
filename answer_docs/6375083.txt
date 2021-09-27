@@ -1,0 +1,9 @@
+<p>Just echo an INPUT element right before outputting the name of the file</p>
+
+<pre><code>echo "&lt;input type=\"checkbox\" value=\"$file\" name=\"files[]\" /&gt;$file&lt;br /&gt;";
+</code></pre>
+
+<p><strong>You might also want to add <code>! is_file($path.DIRECTORY_SEPARATOR.$file)</code> to your if statement to make sure that it's a file and not a directory.</strong></p>
+
+<pre><code>if ( $file == "." || $file == ".." || $file == "index.php" || ! is_file($path.DIRECTORY_SEPARATOR.$file) ) 
+</code></pre>

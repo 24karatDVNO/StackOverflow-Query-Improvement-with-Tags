@@ -1,0 +1,9 @@
+<p>A DOM/XML parser might be better, depending on what you need to do. But the simple way would be:</p>
+
+<pre><code>int index = -1;
+for(int i=0; i &lt; 3; i++){
+   index = html.indexOf("&lt;div",index + 1);
+   if(index == -1)
+      throw new Exception();
+}
+</code></pre>

@@ -1,0 +1,7 @@
+<p>Add group by to query for correct output, e.g:</p>
+
+<p>select * 
+from Order 
+group by CustomerID
+having count(CustomerID) = 1 
+limit 1000</p>

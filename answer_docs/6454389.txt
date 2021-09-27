@@ -1,0 +1,12 @@
+<p>You could try something like this (but note that <code>itoa</code> isn't strictly portable):</p>
+
+<pre><code>UCHAR ucdata[256]; // filled somehow
+
+CString result;    // starts out empty
+char buf[9];       // for each number
+
+for (size_t i = 0; i &lt; 256; ++i)
+  result += itoa(ucdata[i], buf, 2);
+</code></pre>
+
+<p>I don't know <code>CString</code>, but if it's like a <code>std::string</code> then you can append null-terminated C-strings simply with the <code>+</code> operator.</p>

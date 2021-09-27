@@ -1,0 +1,19 @@
+<p>IDs in the DOM are meant to refer to only one element. Give all those spans a class like:</p>
+
+<pre><code>&lt;span class="myClass"&gt;some text&lt;/span&gt;
+</code></pre>
+
+<p>and then target them by class:</p>
+
+<pre><code>$('span.myClass').click(function() {
+            var divOverlay= jQuery('&lt;div class="divOverlay"&gt;text on overlay &lt;/div&gt;');
+            var off=$(this).offset();
+            divOverlay.css(
+            {
+                left:(off.left)+'px',
+                top:(off.top-200)+'px'
+            });
+            divOverlay.appendTo(document.body)
+
+        });
+</code></pre>

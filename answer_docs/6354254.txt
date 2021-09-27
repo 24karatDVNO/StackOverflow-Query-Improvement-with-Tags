@@ -1,0 +1,9 @@
+<p>You are using a static address.</p>
+
+<pre><code>void insert(node &amp;anode) {
+ node newNode;
+ anode.next = &amp;newNode;
+}
+</code></pre>
+
+<p>newNode is a local object. At the end of the function, it will go out of scope and its address will be invalid.</p>

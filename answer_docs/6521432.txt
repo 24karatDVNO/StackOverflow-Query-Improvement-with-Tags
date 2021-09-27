@@ -1,0 +1,8 @@
+<p>Adding this CSS fixed it for me. The reasoning is that jQuery wraps your <code>span</code> in a <code>div</code> while animating it, and that <code>div</code> has <code>display:block</code> by default. We take advantage of the fact that they did not set an inline <code>display</code> style on the element and set the class to have <code>display:inline-block</code>.</p>
+
+<pre><code>.ui-effects-wrapper {
+    display:inline-block;
+}
+</code></pre>
+
+<p>EDIT: Something was messing up my <code>span</code> tags, no margin modifications are needed.</p>

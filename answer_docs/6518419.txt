@@ -1,0 +1,30 @@
+<p>I manage every project separetaly.
+Every project folder could contain all files for correct build - so all referenced files is included in "refs" directory. In this case is build easy: get latest version of "src, refs &amp; build" directory, run the build script. The output is in "bin" directory.</p>
+
+<p>The "refs" folder is consuming the disk size, but it's much simpliest than managing cross-project references with correction versions (and branches).</p>
+
+<ul>
+<li>3rdParty-Project-A</li>
+<li>3rdParty-Project-B
+<ul>
+<li>src  // source code &amp; resources</li>
+<li>refs // referenced binaries in correct version</li>
+<li>build // build script</li>
+<li>bin // builded binaries &amp; related files</li>
+<li>deploy // files used for deploy (setup.exe, setup.msi, etc...)</li>
+<li>... other folders ...</li>
+</ul></li>
+<li>MyProject-A</li>
+<li>MyProject-B
+<ul>
+<li>src</li>
+<li>refs
+<ul>
+<li>3rdParty-Project-B // there are referenced files from 3rdParty-Project-B</li>
+<li>MyProject-A // there are referenced files from MyProject-A</li>
+</ul></li>
+<li>build</li>
+<li>bin</li>
+<li>deploy</li>
+</ul></li>
+</ul>

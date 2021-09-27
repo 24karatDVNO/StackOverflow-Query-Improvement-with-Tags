@@ -1,0 +1,13 @@
+<p>You can use 2 special characters:</p>
+
+<p><code>~</code> - delimiter</p>
+
+<p><code>*</code> - escape character (to escape a delimiter or an escape character itself)</p>
+
+<p>Examples:</p>
+
+<pre><code>array('123','ABC') =&gt; 123~ABC
+array('12*3','A~BC') =&gt; 12**3~A*~BC
+</code></pre>
+
+<p>You can choose different characters for delimiter and escape character. If selected characters will be rarely usable then the string usually will be well readable.</p>

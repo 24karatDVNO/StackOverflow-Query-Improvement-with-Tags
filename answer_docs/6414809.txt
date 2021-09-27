@@ -1,0 +1,7 @@
+<p>I figured it out, the problem was I was doing </p>
+
+<p><code>if (isset($pics[$cout]))</code></p>
+
+<p>so to fix this I did</p>
+
+<p><code>if (isset($pics['name'][$cout]))</code></p>

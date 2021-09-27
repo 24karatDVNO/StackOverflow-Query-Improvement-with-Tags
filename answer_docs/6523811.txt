@@ -1,0 +1,17 @@
+<p>Change from:</p>
+
+<pre><code>db.execute( 
+"INSERT INTO "siteQueue"  VALUES(1,'www.yahoo.co.uk',1.0 ,20);
+ INSERT INTO "siteQueue"  VALUES(2,'www.google.com', 2.5, 30);
+ INSERT INTO "siteQueue"  VALUES(3, 'www.person.name', 9.0, 2);
+ COMMIT;")
+</code></pre>
+
+<p>to</p>
+
+<pre><code>db.execute( 
+"INSERT INTO siteQueue  VALUES(1,'www.yahoo.co.uk',1.0 ,20);
+ INSERT INTO siteQueue  VALUES(2,'www.google.com', 2.5, 30);
+ INSERT INTO siteQueue  VALUES(3, 'www.person.name', 9.0, 2);
+ COMMIT;")
+</code></pre>

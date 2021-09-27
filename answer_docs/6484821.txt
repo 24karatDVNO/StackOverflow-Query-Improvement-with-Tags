@@ -1,0 +1,28 @@
+<p>This code should do what you want. This part should go in the HEAD section of your page:</p>
+
+<pre><code>function init() {
+    document.getElementById('password').type = 'text';
+}
+window.onload = init;
+
+function gotFocus(item) {
+    if (item.value == 'Password') {
+        item.value = '';
+        item.type = 'password';
+        item.style.color = '';
+    }
+}
+
+function lostFocus(item) {
+    if(item.value == '') {
+        item.value = 'Password';
+        item.type = 'text';
+        item.style.color = '#C0C0C0';
+    }
+}
+</code></pre>
+
+<p>And then where you want the password input to be, you would put this HTML:</p>
+
+<pre><code>&lt;input id='password' name='password' type='password' onfocus="gotFocus(this);" onblur="lostFocus(this);" value="Password" style="color:#C0C0C0" /&gt;
+</code></pre>

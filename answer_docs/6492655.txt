@@ -1,0 +1,10 @@
+<p>Dont have VS right now to test compiling the code, but this should convey the logic.
+You can build up the array list with as many of the types without having to repeat the test logic with big if-else or switch statements. </p>
+
+<pre><code>    TheType[] typesWithPanel = new TheType[] { TheType.Train, TheType.Car, TheType.Hotel};
+    if (typesWithPanel.Contains(model.ModelType) &amp;&amp; panelCount &lt; NumberOfPanelsToShow)
+    {
+        panelTypeList.Add(model.ModelType);
+        panelCount++;
+    }
+</code></pre>

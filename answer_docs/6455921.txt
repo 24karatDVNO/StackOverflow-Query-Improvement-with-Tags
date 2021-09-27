@@ -1,0 +1,19 @@
+<p>if this code is intended to working on the <em>current</em> page's URL you can use the <code>window.location.hash</code> property to just get the anchor portion of the URL and take everything after the first forward-slash:</p>
+
+<pre><code>var h = window.location.hash;
+var p = h.substring(h.indexOf('/') + 1);
+</code></pre>
+
+<p>[NB: this will fail if there is no forward-slash in the anchor]</p>
+
+<p>If instead you need to do this for a URL which you've currently only got in a string variable you can get some help from your browser's own URL parser by creating a detached DOM element and reading its properties:</p>
+
+<pre><code>var a = document.createElement('a');
+a.href = 'http://example.com/some/path/#tags/hello/world';
+
+// a.hash now contains '#tags/hello/world'
+var h = a.hash;
+var p = h.substring(h.indexOf('/') + 1);
+</code></pre>
+
+<p>See <a href="http://jsfiddle.net/alnitak/xsEUW/" rel="nofollow">http://jsfiddle.net/alnitak/xsEUW/</a> for a demo.</p>

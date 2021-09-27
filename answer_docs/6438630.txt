@@ -1,0 +1,27 @@
+<p>new answer based on answer from michael wright:</p>
+
+<pre><code>$(document).ready(function(){
+    // This function get the search results from Solr server 
+    $("#submit").click(function(){
+        var query=getquerystring() ; //get the query string entered by user
+        var newquery=query;
+        $.getJSON("http://192.168.1.9:8983/solr/db/select/?wt=json&amp;&amp;start=0&amp;rows=100&amp;q="+query+"&amp;json.wrf=?", function(result){
+            if(result.response.numFound==0)
+            {
+                $.ajax({
+                    url: "http://192.168.1.9:8983/solr/db/select/?wt=json&amp;&amp;start=0&amp;rows=100&amp;q="+query+"&amp;spellcheck=true&amp;json.wrf=?",
+                    async:false,
+                    dataType: 'json',
+                    success: commonSuccess});
+            }else{
+
+                $.getJSON("http://192.168.1.9:8983/solr/db/select/?wt=json&amp;&amp;start=0&amp;rows=20&amp;q="+newquery+"&amp;sort=price asc&amp;hl=true&amp;hl.fl=description&amp;hl.usePhraseHighlighter=true&amp;json.wrf=?", commonSuccess);
+
+            }
+//...
+}); //End of $(document).ready(...)
+
+function commonSuccess(json){
+    //do onSuccess for all queries
+}
+</code></pre>

@@ -1,0 +1,27 @@
+<p>This is an old one, but since I reach here from Google's first page, it deserves an answer.</p>
+
+<p>I guess the best shot is to add "VirtualHost"s to your httpd and "Host"s to your tomcat's server.xml for each subdomain. Take this as a "HelloMultiWorld" example:</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+  ServerName abc.com
+  ServerAlias www.abc.com sd1.abc.com
+  ...
+  ProxyPreserveHost true
+  ProxyPass / ajp://localhost:8009/
+  ProxyPassReverse / ajp://localhost:8009/
+  ...
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>And, in Tomcat's server.xml:</p>
+
+<pre><code>&lt;Engine defaultHost="localhost" ...&gt;
+  ...
+  &lt;Host name="localhost" appBase="webapps" ...&gt;...&lt;/Host&gt;
+  &lt;Host name="sd1.abc.com" appBase="webapps-sd1"...&gt;...&lt;/Host&gt;
+&lt;/Engine&gt;
+</code></pre>
+
+<p>Obviously, you need a "webapps" and a "webapps-sd1" folder with their own ROOT.war.</p>
+
+<p>With this configuration, HTTPd will proxy all abc.com, www.abc.com and sd1.abc.com requests to Tomcat (using AJP - you can also use HTTP/8080). Tomcat will receive a request with a "Host: xxx.abc.com" HTTP header (because of "ProxyPreserveHost"). With multiple "Host"s in server.xml, it will route the request according to the "Host" header. All unidentified hosts will route to 'defaultHost'.</p>

@@ -1,0 +1,21 @@
+<p>This is a terrible hack but it allowed me to get on with my day. I think the way to do this correctly is to write an Html Helper that allows you to pass in the footer row. I'm a little disappointed the WebGrid doesn't have a footer row built in.</p>
+
+<pre><code> gridHtml = MvcHtmlString.Create(gridHtml.ToString().Replace("&lt;/table&gt;", sbTotalsTable.ToString()));
+
+    gridHtml is from   var gridHtml = @grid.GetHtml....blah..
+
+
+    the sbTotalsTable is    var sbTotalsTable = new StringBuilder();
+
+    sbTotalsTable.Append("&lt;tr&gt;");
+
+    sbTotalsTable.Append("&lt;td&gt;");
+
+    sbTotalsTable.Append(DataSource.Select(s=&gt;s.PropToSum).Sum().ToString();//The total of that column
+    sb.TotalsTable.Append("&lt;/td&gt;");
+    sb.TotalsTable.Append("&lt;/tr&gt;");
+    sb.TotalsTable.Append("&lt;/table&gt;");//closing the table without opening it because the rest comes from the gridHtml.
+</code></pre>
+
+<p>Only make sure you match the number of columns in your hand built table row. Notice there is no table start tag.. The whole idea is to hijack the created html at the table close and add a row.
+Sorry for the hand typed code. I'm on a proprietary app and I don't dare paste anything from it...</p>

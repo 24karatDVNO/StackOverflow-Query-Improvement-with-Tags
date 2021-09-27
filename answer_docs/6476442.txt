@@ -1,0 +1,10 @@
+<p>Try this:</p>
+
+<pre><code>
+DetailViewController *dvController = [[DetailViewController alloc] 
+                                      initWithNibName:@"DetailView" bundle:[NSBundle mainBundle]];
+
+dvController.selectedCountry = selectedCountry;
+[self.navigationController pushViewController:dvController animated:YES];
+dvController = nil;
+</code></pre>

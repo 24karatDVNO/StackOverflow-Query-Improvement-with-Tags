@@ -1,0 +1,33 @@
+<p>I could be off base here, but it sounds like you want to change the DataTemplate based on the type of object that is being bound from a list of heterogeneous objects.</p>
+
+<p>If that's the case, you want to look into DataTemplateSelectors or create DataTemplates for each of the types you want to support in the list.</p>
+
+<p>For example, for an Apartment you might have:</p>
+
+<pre><code>&lt;DataTemplate DataType="local:ApartmentBudget"&gt;
+  &lt;StackPanel Orientation="Horizontal"&gt;
+    &lt;TextBlock Text="{Binding Text}" /&gt;
+    &lt;TextBlock Text="{Binding Value}" /&gt;
+  &lt;/StackPanel&gt;
+&lt;/DataTemplate&gt;
+</code></pre>
+
+<p>a Car may look like: </p>
+
+<pre><code>&lt;DataTemplate DataType="local:CarBudget"&gt;
+  &lt;StackPanel Orientation="Horizontal"&gt;
+    &lt;TextBlock Text="{Binding Insurance}" /&gt;
+    &lt;TextBlock Text="{Binding Loan}" /&gt;
+    &lt;TextBlock Text="{Binding Maintenance}" /&gt;
+  &lt;/StackPanel&gt;
+&lt;/DataTemplate&gt;
+</code></pre>
+
+<p>Then your ItemsControl can be set like:</p>
+
+<pre><code>&lt;ItemsControl ItemSource="{Binding BudgetItems}"&gt;
+</code></pre>
+
+<p>The correct DataTemplate will be picked based on the data type.  You can have even more control by creating a custom DataTemplateSelector.</p>
+
+<p>See <a href="https://msdn.microsoft.com/en-us/library/ms742521(v=vs.100).aspx" rel="nofollow">https://msdn.microsoft.com/en-us/library/ms742521(v=vs.100).aspx</a> for more information.</p>

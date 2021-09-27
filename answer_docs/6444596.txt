@@ -1,0 +1,8 @@
+<p>The <code>ChangeLogoForm</code>'s model is <code>BusinessLogo</code>, but when calling it's constructor you pass it a <code>Business</code> instance:</p>
+
+<pre><code>b = get_object_or_404(Business, pk = bus_id)
+...
+form = ChangeLogoForm(request.POST, request.FILES, instance = b)
+</code></pre>
+
+<p>(And you should probably use a <code>OneToOneField</code> field instead of <code>ForeignKey</code>)</p>

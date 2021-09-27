@@ -1,0 +1,8 @@
+<p>Simply put, this is not something you can do in CSS as the nested <code>&lt;ul&gt;</code> is in the <code>&lt;li&gt;</code> and not the <code>&lt;a&gt;</code> (Or the entire submenu would be a link and that's just silly)</p>
+
+<p>You can get around that with javascript/jquery</p>
+
+<pre><code>$('.menu ul li a').hover(function() {
+    $(this).parent().children('ul').toggle();
+});
+</code></pre>

@@ -1,0 +1,33 @@
+<p>A generic list type will allow you to skip the casting of objects back to Cards for instance ...</p>
+
+<pre><code>public class Card
+{
+   public Suits Suit { get; set; }
+   public string Value { get; set; }
+
+   public Card(Suits suit, string value)
+   {
+      this.Suit = suit;
+      this.Value = value;
+   }
+}
+
+public enum Suits { Heart, Spade, Club, Diamond }
+
+// Generic List
+List&lt;Card&gt; cards = new List&lt;Card&gt;();
+cards.Add(new Card(Suits.Heart, "Queen"));
+cards.Add(new Card(Suits.Club, "Ace"));
+cards.Add(new Card(Suits.Diamond, "5"));
+
+// List of Objects
+ArrayList list = new ArrayList();
+list.Add(new Card(Suits.Heart, "Queen"));
+list.Add(new Card(Suits.Club, "Ace"));
+list.Add(new Card(Suits.Diamond, "5"));
+
+Console.WriteLine(String.Format("{0} {1}", cards[0].Suit, cards[0].Value));
+Console.WriteLine(String.Format("{0} {1}", (list[0] as Card).Suit, (list[0] as Card).Value));
+</code></pre>
+
+<p>Basically it all depends on what you want.  Since you know you are going to be storing cards you may as well use a generic collection.</p>

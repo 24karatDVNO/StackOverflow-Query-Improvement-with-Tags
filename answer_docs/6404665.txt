@@ -1,0 +1,4 @@
+<pre><code>$('#clickMe').contents().filter(function() {   
+    return this.nodeType == 3;
+}).get(0).nodeValue = 'Hello';
+</code></pre>

@@ -1,0 +1,7 @@
+<p>Roland's answer is correct if you are downloading a dynamic binary. If it's something sitting around in your filesystem and you want Apache to set the correct headers try setting this in your <code>.htaccess</code>:</p>
+
+<pre><code>&lt;Files *.mp3&gt;
+ForceType application/octet-stream
+Header set Content-Disposition attachment
+&lt;/Files&gt;
+</code></pre>

@@ -1,0 +1,13 @@
+<p>You can import certificate chain into a truststore and set the following VM arguments:</p>
+
+<pre><code>-Djavax.net.ssl.trustStore="&lt;path to truststore file&gt;"
+-Djavax.net.ssl.trustStorePassword="&lt;passphrase for truststore&gt;"
+</code></pre>
+
+<p>or override the truststore at runtime like:</p>
+
+<pre><code>System.setproperty("javax.net.ssl.trustStore","&lt;path to truststore file&gt;")
+System.setproperty("javax.net.ssl.trustStorePassword","&lt;passphrase for truststore&gt;")
+</code></pre>
+
+<p>Keep in mind that both options will override default JVM truststore.  So if you are hitting different sites with different certs, you may want to import all of them into one truststore.</p>

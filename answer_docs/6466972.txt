@@ -1,0 +1,9 @@
+<p>The event is fired in the same way as the <code>onchange</code> Event in HTML:</p>
+
+<p>It only fires after leaving the text boxes, and going to the next one.</p>
+
+<p>I can't tell if it's really a bug or some kind of feature.</p>
+
+<hr>
+
+<p>You could just catch the <a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html" rel="nofollow" title="KeyEvent.Callback"><code>KeyEvent.Callback</code></a> when extending the <code>TimePicker</code> class. Then you should get informed about every single key press inside the <code>EditText</code> controls internally used by the <code>TimePicker</code>.</p>

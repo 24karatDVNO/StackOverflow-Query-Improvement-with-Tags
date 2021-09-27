@@ -1,0 +1,31 @@
+<p>If you can use <code>XPathDocument</code>, you can try something like this. </p>
+
+<p>Note: If you already have a <code>XmlReader</code> instance, instead of using <code>StringReader</code>, you can use the constructor overload that take <code>XmlReader</code>.</p>
+
+<pre><code>string xml = @"&lt;?xml version=""1.0"" encoding=""UTF-8""?&gt;
+&lt;Application&gt;
+      &lt;Tabs&gt;
+         &lt;Tab name=""1""&gt;
+           &lt;title&gt;abcd&lt;/title&gt;
+           &lt;description&gt;xyz&lt;/description&gt;
+         &lt;/Tab&gt;
+         &lt;Tab name=""2""&gt;
+           &lt;title&gt;abcd&lt;/title&gt;
+           &lt;description&gt;xyzw&lt;/description&gt;
+         &lt;/Tab&gt;
+      &lt;/Tabs&gt;
+     &lt;Files&gt;
+     &lt;/Files&gt;
+&lt;/Application&gt;";
+
+string xpath = "/Application/Tabs/Tab/description";
+
+XPathDocument doc = new XPathDocument(new StringReader(xml));
+XPathNavigator nav = doc.CreateNavigator();
+XPathNodeIterator nodeIterator = nav.Select(xpath);
+
+foreach (XPathNavigator item in nodeIterator)
+{
+    Console.WriteLine(item.Value);
+}
+</code></pre>

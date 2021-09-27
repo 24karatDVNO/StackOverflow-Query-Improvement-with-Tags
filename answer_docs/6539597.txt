@@ -1,0 +1,6 @@
+<p>Another long shot:</p>
+
+<pre><code>export triangular_C_FLAGS = -std=gnu99
+</code></pre>
+
+<p>(These makefiles seem to be recursing.) If that doesn't work, you'll have to find the rule that is attempting to build <code>main.o</code>.</p>

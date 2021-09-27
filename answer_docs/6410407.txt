@@ -1,0 +1,14 @@
+<p>Assuming you have lists implemented as nested lists, you could do something like:</p>
+
+<pre><code>List&lt;List&lt;int&gt;&gt; lists = new List&lt;List&lt;int&gt;&gt;();
+
+// fill data here
+// ...
+// ...
+
+List&lt;List&lt;int&gt;&gt; filtered = lists.Where(lst =&gt; lst.Any(num =&gt; num != 0)).ToList();
+</code></pre>
+
+<p>If what you need is an object that contains only properties that satisfy a condition, a reflection (or perhaps Dynamic object from .NET 4.0) should be used. And in that case I wouldn't force doing it with lambdas.</p>
+
+<p>Try to explain your data structure in more details so someone can give a useful answer.</p>

@@ -1,0 +1,39 @@
+<p><strong>This transformation</strong>:</p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+ &lt;xsl:output method="xml" omit-xml-declaration="yes"/&gt;
+ &lt;xsl:strip-space elements="*"/&gt;
+
+ &lt;xsl:template match="node()|@*"&gt;
+  &lt;xsl:copy&gt;
+   &lt;xsl:apply-templates select="node()|@*"/&gt;
+  &lt;/xsl:copy&gt;
+ &lt;/xsl:template&gt;
+
+ &lt;xsl:template match="a"&gt;
+  &lt;xsl:apply-templates select=
+  "document(@href)/*/body/node()"/&gt;
+ &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p><strong>when applied on the file "a.html":</strong></p>
+
+<pre><code>&lt;html&gt;
+    &lt;body&gt;Text1&lt;br/&gt;&lt;a href="b.html"&gt;Link&lt;/a&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>produces the wanted, correct result</strong>:</p>
+
+<pre><code>&lt;html&gt;&lt;body&gt;Text1&lt;br/&gt;Text2&lt;br/&gt;Text3&lt;br/&gt;&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+
+<p><strong>Explanation</strong>:</p>
+
+<ol>
+<li><p>The identity rule copies every node "as-is".</p></li>
+<li><p>The only overriding template matches any <code>a</code> element.</p></li>
+<li><p>Within this template the processing of the document pointed to in the <code>href</code> attribute of the <code>a</code> element is initiated. It is essential that we use the standard XSLT function <code>document()</code>.</p></li>
+</ol>

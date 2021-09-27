@@ -1,0 +1,33 @@
+<p>That's because behind the scene it uses the <code>_trigger</code> function of the <code>Widget</code> object.</p>
+
+<p>Check out code excerpt bellow and you'll see that the <code>callBack</code> (the function in your options parameter) is called after the normal event trigger (<code>this.element.trigger</code>).</p>
+
+<pre><code>_trigger: function( type, event, data ) {
+    var callback = this.options[ type ];
+
+    event = $.Event( event );
+    event.type = ( type === this.widgetEventPrefix ?
+        type :
+        this.widgetEventPrefix + type ).toLowerCase();
+    data = data || {};
+
+    // copy original event properties over to the new event
+    // this would happen if we could call $.event.fix instead of $.Event
+    // but we don't have a way to force an event to be fixed multiple times
+    if ( event.originalEvent ) {
+        for ( var i = $.event.props.length, prop; i; ) {
+            prop = $.event.props[ --i ];
+            event[ prop ] = event.originalEvent[ prop ];
+        }
+    }
+
+    this.element.trigger( event, data );
+
+    return !( $.isFunction(callback) &amp;&amp;
+        callback.call( this.element[0], event, data ) === false ||
+        event.isDefaultPrevented() );
+}
+</code></pre>
+
+<p>Best regard,<br />
+Stéphane.</p>

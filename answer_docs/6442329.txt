@@ -1,0 +1,13 @@
+<p>The basic case of a single RGB image (3D-matrix) has been shown by <a href="https://stackoverflow.com/questions/6438571/matlab-how-would-i-convert-an-image-array-to-a-black-and-white-array-based-on-th/6438709#6438709">others</a>:</p>
+
+<pre><code>img = imread('image.png');     %# some RGB image
+
+img2 = ~(img(:,:,1)&gt;200 &amp; img(:,:,2)&lt;50 &amp; img(:,:,3)&lt;50);
+</code></pre>
+
+<p>If you want to apply this to all frames of a movie (4D-matrix = height-by-width-by-color-by-frame), try the following compact solution:</p>
+
+<pre><code>mov = cat(4, img, img);        %# a sample video of two frames
+
+mov2 = squeeze( ~(mov(:,:,1,:)&gt;200 &amp; mov(:,:,2,:)&lt;50 &amp; mov(:,:,3,:)&lt;50) );
+</code></pre>

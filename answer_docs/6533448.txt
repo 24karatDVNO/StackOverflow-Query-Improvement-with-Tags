@@ -1,0 +1,35 @@
+<p>Try this:</p>
+
+<pre><code>public abstract class BaseTable extends JTable {
+    public BaseTable() {
+        init();
+        ..
+    }
+
+    protected boolean sortableDisable() {
+        return false;
+    }
+
+    private void init() {
+        TableRowSorter&lt;BaseTableModel&gt; sorter =
+            new TableRowSorter&lt;BaseTableModel&gt;(tableModel);
+        if (sortableDisable()) {
+            setAutoCreateRowSorter(false);
+            for (int c = 0; c &lt; tableModel.getColumnCount(); c++) {
+                sorter.setSortable(c, false);
+            }
+        }
+        setRowSorter(sorter);
+        ..
+    }
+}
+
+public class TableX extends BaseTable() {
+
+    @Override
+    protected boolean sortableDisabled() {
+        return true;
+    }
+    ..
+}
+</code></pre>

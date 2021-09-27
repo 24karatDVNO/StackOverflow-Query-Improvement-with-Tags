@@ -1,0 +1,28 @@
+<p>My solution is very similar to the “native” function by lazyr:</p>
+
+<pre><code>import functools
+
+def file_len2(fname):
+    with open(fname, 'rb') as f:
+        lines= 0
+        reader= functools.partial(f.read, 131072)
+        for datum in iter(reader, ''):
+            lines+= datum.count('\n')
+            last_wasnt_nl= datum[-1] != '\n'
+        return lines + last_wasnt_nl
+</code></pre>
+
+<p>This, unlike <code>wc</code>, considers a final line <em>not</em> ending with '\n' as a separate line. If one wants the same functionality as wc, then it can be (quite unpythonically :) written as:</p>
+
+<pre><code>import functools as ft, itertools as it, operator as op
+
+def file_len3(fname):
+    with open(fname, 'rb') as f:
+        reader= ft.partial(f.read, 131072)
+        counter= op.methodcaller('count', '\n')
+        return sum(it.imap(counter, iter(reader, '')))
+</code></pre>
+
+<p>with comparable times to <code>wc</code> in all test files I produced.</p>
+
+<p>NB: this applies to Windows and POSIX machines. Old MacOS used '\r' as line-end characters.</p>

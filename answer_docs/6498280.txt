@@ -1,0 +1,11 @@
+<blockquote>
+  <p>So, is there a way to allow a PHP script to run as a particular user, other than granting users sudo access to run the script as 'apache'?</p>
+</blockquote>
+
+<p>You must be missing something. Either you allow apache to execute the file under a different user (sudo/suexec) or not. However, this is merely configuration. So you should first decide what you want to achieve and then configure the server as needed.</p>
+
+<p>So if you want to run the PHP script under a particular user, you do this with making use of the sudo functionality and specifying the user. Apache will then execute the script under that configured user.</p>
+
+<p>If you do not like to make use of sudo then, well, then there is no other option then to run the script under the user that runs apache or apache has been configured to use for invoking the scripts.</p>
+
+<p>So make your decision what you want to achieve. But if you want to change the user, the only way I'm aware of (probably there's something else as well but I doubt it) is making use of the apache sudo feature(s).</p>

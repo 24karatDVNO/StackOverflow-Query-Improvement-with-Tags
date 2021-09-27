@@ -1,0 +1,5 @@
+<p>There are a few more options which will allow you to copy from one table to another.</p>
+
+<p>Possibly the simplest way would be to write a smallish program which uses one of their communication layers (ODBC, .NET Data Provider, JDBC, cli, etc.) and use that to take a select statement and an insert statement. This would require some work, but it would have less overhead than trying to learn how to write TPT scripts. You would not need any 'DBA' permissions to write your own.</p>
+
+<p>Teradata also sells other applications which hides the complexity of some of the tools. Teradata Data Mover handles provides an abstraction layer between tools like arcmain and tpt. Access to this tool is most likely restricted to DBA types. </p>

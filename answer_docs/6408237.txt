@@ -1,0 +1,10 @@
+<p>The following sequences of commands returns the string you request</p>
+
+<pre><code>$ grep true input | sed 's/&gt;//g' | cut -d _ -f 3 | printf "&lt;query&gt;%s&lt;/query&gt;" `paste -d, - -`
+&lt;query&gt;2,3&lt;/query&gt;
+</code></pre>
+
+<p>Gives:</p>
+
+<pre><code>&lt;query&gt;2,3&lt;/query&gt;
+</code></pre>

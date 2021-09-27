@@ -1,0 +1,36 @@
+<pre><code>CREATE TABLE table_name
+(
+   id        NUMBER,
+   content   NUMBER,
+   status    NUMBER
+);
+
+INSERT INTO table_name
+     VALUES (1, 2, 3);
+
+INSERT INTO table_name
+     VALUES (4, 5, 6);
+
+INSERT INTO table_name
+     VALUES (7, 8, 9);
+
+COMMIT;
+</code></pre>
+
+<p>Before running the test, you store the string resulting from this SELECT in a VARCHAR2(4000) variable, and after the test you have only to execute the string:</p>
+
+<pre><code>SELECT    'UPDATE TABLE_NAME SET CONTENT = '
+       || CONTENT
+       || ', STATUS = '
+       || STATUS
+       || ' WHERE ID = '
+       || ID
+  FROM TABLE_NAME
+ WHERE ID = 1;
+</code></pre>
+
+<p>In my previous example I have supposed that the record to backup has ID = 1.
+The string, in this example, contains the following UPDATE statement:</p>
+
+<pre><code>UPDATE TABLE_NAME SET CONTENT = 2, STATUS = 3 WHERE ID = 1
+</code></pre>

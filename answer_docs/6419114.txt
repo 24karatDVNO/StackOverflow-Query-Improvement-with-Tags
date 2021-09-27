@@ -1,0 +1,49 @@
+<p>Solved it. By checking on the SharePoint logs, I noticed the following lines:</p>
+
+<pre><code>06/20/2011 08:24:03.80  w3wp.exe (0x1C2C)                           0x0CAC  SharePoint Foundation           General                         fbs6    Medium      &lt;?xml version="1.0" ?&gt;&lt;S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"&gt;&lt;S:Body&gt;&lt;GetChanges xmlns="http://schemas.microsoft.com/sharepoint/soap/"&gt;&lt;objectType&gt;SiteCollection&lt;/objectType&gt;&lt;contentDatabaseId&gt;{E5C5E20X-5A9F-406C-B9F6-28923750CECD}&lt;/contentDatabaseId&gt;&lt;startChangeId&gt;&lt;/startChangeId&gt;&lt;endChangeId&gt;1;1;69c025ce-96a7-4131-adc0-7da1603e8d24;634439772069030000;47449&lt;/endChangeId&gt;&lt;Timeout&gt;0&lt;/Timeout&gt;&lt;/GetChanges&gt;&lt;/S:Body&gt;&lt;/S:Envelope&gt;  bafe1d43-e41c-47e9-bff2-5dc35a15298d
+06/20/2011 08:24:03.80  w3wp.exe (0x1C2C)                           0x0CAC  SharePoint Foundation           General                         9ka5    Verbose     GetChanges: objectType=SiteCollection, contentDbId={E5C5E20X-5A9F-406C-B9F6-28923750CECD}, startChange=, endChange=; MaxChanges=0, MaxSPRequests=50 bafe1d43-e41c-47e9-bff2-3dc35a15298d
+</code></pre>
+
+<p>Notice on the second line, that the content database Id is enclosed by "{}" characters. Also, see that "contentDbId" is parsed correctly from the incoming XML, while "endChange" is empty. This second observation, is probably what leads to the "Object reference not set to an instance of an object" exception. So, what is wrong with that changeId? No idea, probably there is something wrong with the XML encoding that prevents SharePoint from parsing the changeId correctly.</p>
+
+<p>By further looking on the same log, I found this lines:</p>
+
+<pre><code>06/20/2011 08:42:54.35  w3wp.exe (0x1C2C)                           0x2BC4  SharePoint Foundation           General                         fbs6    Medium      &lt;?xml version='1.0' encoding='UTF-8'?&gt;&lt;soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"&gt;&lt;soapenv:Body&gt;&lt;ns1:GetChangesEx xmlns:ns1="http://schemas.microsoft.com/sharepoint/soap/"&gt;&lt;ns1:version&gt;1&lt;/ns1:version&gt;&lt;ns1:xmlInput&gt;&amp;lt;GetChanges&gt;&amp;lt;ObjectType&gt;1&amp;lt;/ObjectType&gt;&amp;lt;ContentDatabaseId&gt;{x4284f47-f050-4fe9-b7e9-caf8f4b882b0}&amp;lt;/ContentDatabaseId&gt;&amp;lt;StartChangeId&gt;1;0;x4284f47-f050-4fe9-b7e9-caf8f4b882b0;634441572386370000;72973&amp;lt;/StartChangeId&gt;&amp;lt;EndChangeId /&gt;&amp;lt;RequestLoad&gt;100&amp;lt;/RequestLoad&gt;&amp;lt;GetMetadata&gt;False&amp;lt;/GetMetadata&gt;&amp;lt;IgnoreSecurityIfInherit&gt;True&amp;lt;/IgnoreSecurityIfInherit&gt;&amp;lt;/GetChanges&gt;&lt;/ns1:xmlInput&gt;&lt;/ns1:GetChangesEx&gt;&lt;/soapenv:Body&gt;&lt;/soapenv:Envelope&gt;   fa5ab5a7-2e27-4e78-aa1f-b027ca3b120f
+06/20/2011 08:42:54.35  w3wp.exe (0x1C2C)                           0x2BC4  SharePoint Foundation           General                         9ka5    Verbose     GetChanges: objectType=ContentDatabase, contentDbId={x4284f47-f050-4fe9-b7e9-caf8f4b882b0}, startChange=1;0;x4284f47-f050-4fe9-b7e9-caf8f4b882b0;634441572386370000;72973, endChange=; MaxChanges=500, MaxSPRequests=50 fa5ab5b7-2e27-4e78-aa1f-b027ca3b120f
+</code></pre>
+
+<p>Here, the changeId is correctly parsed from the incoming XML. So, I changed from GetChanges() method to GetChangesEx(), passed the exact same parameters I was using on the former call, and it worked correctly!! My guess is that because the parameters are encoded inside an element of the SOAP In request, the Web Service is able to parse them correctly.</p>
+
+<p>Here is the final SOAP In message (formatted):</p>
+
+<pre><code>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"&gt;
+    &lt;soapenv:Body&gt;
+        &lt;ns1:GetChangesEx xmlns:ns1="http://schemas.microsoft.com/sharepoint/soap/"&gt;
+            &lt;ns1:version&gt;1&lt;/ns1:version&gt;
+            &lt;ns1:xmlInput&gt;&amp;lt;GetChanges&gt;&amp;lt;ObjectType&gt;7&amp;lt;/ObjectType&gt;&amp;lt;ContentDatabaseId&gt;{X5C5E20A-5A9F-406C-B9F6-28923750CECD}&amp;lt;/ContentDatabaseId&gt;&amp;lt;StartChangeId&gt;1;1;69f025ce-96a7-4131-adc0-7da1603e8d24;634439727021700000;47404&amp;lt;/StartChangeId&gt;&amp;lt;EndChangeId&gt;1;1;69d025ce-96a7-4131-adc0-7da1603e8b24;634441802456970000;47472&amp;lt;/EndChangeId&gt;&amp;lt;RequestLoad&gt;100&amp;lt;/RequestLoad&gt;&amp;lt;GetMetadata&gt;False&amp;lt;/GetMetadata&gt;&amp;lt;IgnoreSecurityIfInherit&gt;True&amp;lt;/IgnoreSecurityIfInherit&gt;&amp;lt;/GetChanges&gt;&lt;/ns1:xmlInput&gt;
+        &lt;/ns1:GetChangesEx&gt;
+    &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;
+</code></pre>
+
+<p><strong>Edit</strong></p>
+
+<p>C# code example:</p>
+
+<pre><code>SiteData.SiteDataSoapClient siteDataService = new SiteData.SiteDataSoapClient();
+siteDataService.Endpoint.Address = new System.ServiceModel.EndpointAddress("URL/_vti_bin/sitedata.asmx");
+siteDataService.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential("username", "password", "domain");
+siteDataService.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation;
+
+String xmlInput = "&lt;GetChanges&gt;" + 
+                  "&lt;ObjectType&gt;7&lt;/ObjectType&gt;" + 
+                  "&lt;ContentDatabaseId&gt;{X5C5E20A-5A9F-406C-B9F6-28923750CECD}&lt;/ContentDatabaseId&gt;" + 
+                  "&lt;StartChangeId&gt;1;1;69b025ce-96a7-4131-adc0-7da1603e8d24;634439727021700000;47404&lt;/StartChangeId&gt;" + 
+                  "&lt;EndChangeId&gt;1;1;69b025ce-96a7-4131-adc0-7da1603e8d24;634441802456970000;47472&lt;/EndChangeId&gt;" + 
+                  "&lt;RequestLoad&gt;100&lt;/RequestLoad&gt;" + 
+                  "&lt;GetMetadata&gt;False&lt;/GetMetadata&gt;" + 
+                  "&lt;IgnoreSecurityIfInherit&gt;True&lt;/IgnoreSecurityIfInherit&gt;" + 
+                  "&lt;/GetChanges&gt;";
+String result = siteDataService.GetChangesEx(1, xmlInput);
+</code></pre>

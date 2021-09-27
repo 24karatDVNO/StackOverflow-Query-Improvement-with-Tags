@@ -1,0 +1,5 @@
+<p>Although controllers are aware of the views, the views (full or partial) have no knowledge of the controller that calls them. It's a one way street.</p>
+
+<p>Controllers have the responsibility of passing the information (model or viewModel) to the views. When a "parent view" renders a partial view the "parent view" should pass to the partial whatever information the partial view is expecting.</p>
+
+<p>In your case your might need to fetch in your products controller the information that will be needed to render both the products view and the (partial) featured products view. </p>

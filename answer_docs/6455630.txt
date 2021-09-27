@@ -1,0 +1,3 @@
+<p>Usually when you see just one of several objects being saved like this, the problem is that a relationship that should be to-many is improperly set as to-one. No matter how many objects you try to add to the relationship, only the last one is set because the relationship can hold only one value. </p>
+
+<p>I think in this circumstance the problem is most likely in the code of the custom subclass instead of the data model itself given that the data model works with generic NSManagedObjects.</p>

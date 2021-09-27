@@ -1,0 +1,13 @@
+<p>I used jQuery for this, there is probably a method without using jQuery but unfortunately I don't know it.</p>
+
+<p>You can assign code to be run when a user clicks a link, the code will be run, and then the frame will go to the page specified by the link.</p>
+
+<p>Here is an example with an alert box.</p>
+
+<pre><code>$("a").click(function() {
+    //do whatever you need to do on a link press here.    
+    alert("Test");
+});
+</code></pre>
+
+<p>In action: <a href="http://jsfiddle.net/W2NMu/" rel="nofollow">http://jsfiddle.net/W2NMu/</a>, Note how the frame does not change until the alert box is closed.</p>

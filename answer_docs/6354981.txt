@@ -1,0 +1,23 @@
+<blockquote>
+  <p>What exactly IS the pointer returned by dynamic_cast. A pointer to the same address? a pointer to a different instance? I lack this understanding. More in specific - There's an assignment I wish to make to a pointer of a father type only if in runtime it turns out to be a pointer to a son type.</p>
+</blockquote>
+
+<p>Suppose you have</p>
+
+<pre><code>class Base { ... };
+class ChildA : public Base { ... };
+class ChildB : public Base { ... };
+
+ChildA childa;
+ChildB childb;
+
+Base * ptra = &amp;childa;
+Base * ptrb = &amp;childb;
+
+ChildA * ptra_as_ChildA = dynamic_cast&lt;ChildA*&gt;(ptra); // == &amp;childa
+ChildA * ptrb_as_ChildA = dynamic_cast&lt;ChildA*&gt;(ptrb); // == NULL
+</code></pre>
+
+<p>dynamic_cast will return a non-null pointer if the pointed-to object is an instance of the target class or a class that derives from the target class. It returns a null pointer if the pointed-to object is not an instance of the target class.</p>
+
+<p>NOTE: The exact memory positions pointed to by the pointer input to dynamic_cast and the pointer returned by dynamic_cast may not be the same. Example: Suppose ChildA inherits from two classes, Base and SomeInterface. You can static_cast a ChildA pointer to a Base pointer and to a SomeInterface pointer. At least one of those two parent class pointers is not going to point to the same memory location as the ChildA pointer. Dynamic casting either of those two parent class pointers will return that original ChildA pointer.</p>

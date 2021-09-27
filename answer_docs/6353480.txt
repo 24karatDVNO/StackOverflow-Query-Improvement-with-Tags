@@ -1,0 +1,13 @@
+<p>I see an old <a href="http://logging.apache.org/log4net/release/release-notes.html#1.2.0%20Beta%204" rel="nofollow">release notes</a> for log4net that says you use an environment variable with the money sign and brackets. But I've never used that style before.</p>
+
+<pre><code>${AppData}
+</code></pre>
+
+<p>I've used the <a href="http://www.csharptocsharp.com/log4net-configuration-for-rockin-loggin#comment-3" rel="nofollow">percent</a> style for accessing special folders and it works. Try it like this with your custom environment variable.</p>
+
+<pre><code>%AppData%
+</code></pre>
+
+<hr>
+
+<p>But, I do have to ask why you're putting a "To:" email address in an environment variable? Can't you use something a bit more modern like the built in log4net <a href="http://logging.apache.org/log4net/release/manual/contexts.html" rel="nofollow">Contexts</a>?</p>

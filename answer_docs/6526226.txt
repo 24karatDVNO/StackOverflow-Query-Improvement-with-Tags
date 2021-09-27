@@ -1,0 +1,21 @@
+<p>My version with a max iteration setting (set to -1 if you want to let it run until it finds a unique)</p>
+
+<pre><code>$person = new Person();
+$unique = false;
+$maxloops = 100;
+while($maxloops&gt;=0){
+    //Generates a random five digit alphanumerical id
+    $aliasId = $model-&gt;random_id_gen('5');
+    //searches the person table to see if this alias is being used
+    $unique = empty($person-&gt;find('alias=:alias', array(':alias'=&gt;$aliasId)));         
+    if($unique) break;
+    $maxloops--;
+}
+
+if($unique){
+    $model-&gt;setAttribute('alias', $aliasId);
+    $model-&gt;setIsNewRecord(TRUE);
+}else{
+    trigger_error("oops!");
+}
+</code></pre>

@@ -1,0 +1,16 @@
+<p>Clearly from the responses you've been getting, you can reasonably start with either D3D or OpenGL for your 3D graphics API.  Triple-A gaming titles have been developed using both technologies, and they both have their strengths and weaknesses.</p>
+
+<p>If you're already reasonably proficient in C++, either one will serve, however there's a number of other considerations to make in your selection:</p>
+
+<ul>
+<li>Portability: OpenGL (and OpenGL ES) is available on Windows, Linux, OS X, iOS, Android, and other systems.  D3D/DirectX locks you into MS platforms only.</li>
+<li>Game Input: In DirectX, the DirectInput API gives you access to controllers.  OpenGL doesn't have an equivalent here.</li>
+<li>Sounds: DirectAudio supports sounds, OpenGL has no equivalent (however OpenAL is often used)</li>
+<li>Physics: Depending on your game needs, you may need some advanced physics simulation</li>
+</ul>
+
+<p>Typically the actual "gameplay" focus is on the AIs, combat, storyline, etc.</p>
+
+<p>If you're still climbing the C++ learning curve (worthwhile, but takes some time), you might instead use C# and <a href="http://www.opentk.com" rel="nofollow">OpenTK</a>.  This would provide you with the benefits of a "gaming framework" like Ogre, reasonably direct access to OpenGL, and the significant benefits of using managed code (and IDE) for the game logic.  OpenTK is cross-platform via Mono, so your code can run on OS X and Linux as well.</p>
+
+<p>Have fun!</p>

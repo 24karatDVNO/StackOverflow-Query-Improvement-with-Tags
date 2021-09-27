@@ -1,0 +1,8 @@
+<p>ASP.NET postback works by submitting a client side form with two additional values, <code>__EVENTTARGET</code> and <code>__EVENTARGUMENT</code>. ASP.NET uses these to determine which control to find, and which event to fire. You could do:</p>
+
+<pre><code>if (IsPostBack)
+{
+    string controlId = Request["__EVENTTARGET"];
+    // Do something with the control Id.
+}
+</code></pre>

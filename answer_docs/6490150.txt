@@ -1,0 +1,21 @@
+<p><a href="https://stackoverflow.com/questions/6489970/what-should-i-expect-from-the-c-programming-language-2nd-edition1991-example/6489982#6489982">cnictuar's suggestion</a> is exactly what that code snippet looks like in my English paperback edition, 17th printing. Maybe the indent got screwed up in the Spanish translation, but it feels like a funny thing to change.</p>
+
+<p>There are a lot of <a href="http://home.datacomm.ch/t_wolf/tw/c/c9x_changes.html" rel="nofollow noreferrer">new features in C99</a>, but the ones that I'm really happy about are:</p>
+
+<ul>
+<li><p>named initializers:</p>
+
+<pre><code>struct {int a, b, c, d;} s =
+{ .a = 1, .c = 3, 4, .b = 5};
+</code></pre></li>
+<li><p>declarations in <code>for</code> loops:</p>
+
+<pre><code>for (int i; i&lt;foo; i++) { ... }
+</code></pre></li>
+<li><p>Initializers for auto aggregates can be non-constant expressions:</p>
+
+<pre><code>void foo(int n) {
+    int arr[n];
+}
+</code></pre></li>
+</ul>

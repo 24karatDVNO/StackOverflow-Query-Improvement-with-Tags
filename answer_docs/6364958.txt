@@ -1,0 +1,12 @@
+<p>The problem here is not in your pointer arithmetic (although you are making it more complicated than it needs to be, see Matteo Italia's answer).</p>
+
+<p>Your problem is that the following code doesn't do what you think it does:</p>
+
+<pre><code>char *c;
+
+c = "this is a test\n";
+</code></pre>
+
+<p>This code creates a pointer and assigns it the address of a <em>static string</em>.  Even with Matteo's suggestion, you won't be able to modify the static string.</p>
+
+<p>To fix this, you can do one of two things.  You can declare <code>c</code> as an array and initialize it with the string.  You can also let <code>c</code> remain a pointer, then use <code>malloc</code> to allocate a buffer (storing the buffer's address in <code>c</code>) and then use <code>strcpy</code> to copy the static string into the buffer.  At that point, you should be able to manipulate the string as you are trying to do.</p>

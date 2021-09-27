@@ -1,0 +1,19 @@
+<p>I can't reproduce it here. Here is my code:</p>
+
+<pre><code>span.x-tree-node-indent
+{    
+    left: 0px;    
+    width: 0px;    
+    height: 0px;    
+    margin: 0px;    
+    padding: 0px;
+}
+
+&lt;BODY&gt;
+&lt;P&gt;left&lt;SPAN class="x-tree-node-indent"&gt;&lt;/SPAN&gt;right&lt;/P&gt;
+&lt;/BODY&gt;
+</code></pre>
+
+<p>I see the one word "leftright" without any space inbetween in my IE9.</p>
+
+<p>Depending upon what kind of behavior you want to achieve you may use the attributes <code>display:none</code> and <code>visibility:hidden</code>.</p>

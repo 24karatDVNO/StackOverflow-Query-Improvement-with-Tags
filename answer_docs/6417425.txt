@@ -1,0 +1,55 @@
+<p>You should use an CI library to handle your user registration and per page authorisation.
+Here's a very simple example on how you could do it. Keep in mind that CI uses the <a href="http://codeigniter.com/user_guide/overview/mvc.html" rel="nofollow">MVC pattern</a> </p>
+
+<pre><code>    class Reports extends CI_Controller {
+
+        public function __construct() {
+           parent::__construct();
+           // load database if needed
+           // load a model if needed
+
+        }
+
+        public function page() {
+            //get the page requested
+            $page_id = $this-&gt;uri-&gt;segments(2);
+            // based on the page_id do something.
+
+            $data['somedata'] = 'About us data here';
+
+            // this is an actual file loaded from the template view
+            $data['maincontent'] = 'my_page';
+            $this-&gt;load-&gt;view('template',$data);
+        }
+
+    }
+
+    class About extends CI_Controller {
+
+        public function __construct() {
+           parent::__construct();
+           // load database if needed for this page
+        }
+
+        public function page() {
+            // same here
+            //get the page requested
+            $page_id = $this-&gt;uri-&gt;segments(2);
+            // based on the page_id do something.
+
+            $data['somedata'] = 'About us data here';
+
+            // this is an actual file loaded from the template view
+            $data['main_content'] = 'my_about_page';
+            $this-&gt;load-&gt;view('template',$data);
+        }
+    }
+</code></pre>
+
+<p>in the template file</p>
+
+<pre><code>    $this-&gt;load-&gt;view('template/header');
+    $this-&gt;load-&gt;view('template/nav');
+    $this-&gt;load-&gt;view($main_content);
+    $this-&gt;load-&gt;view('template/footer');
+</code></pre>

@@ -1,0 +1,12 @@
+<p>Your OO design is poor: you should not have a <code>AccountGrp[]</code>, it should be a class instead, with nicely named attributes..  Your code would be much more readable and maintainable.</p>
+
+<p>If you want to stick with your current design, you should at least split your <code>popAccAttr</code> method.  I don't see the need to put 3 completely different methods inside one, with a case switch.</p>
+
+<pre><code>public static AccountGrp[] popAccArr(IncomingObject incObject) {
+  AccountGrp[] accountGrp = new AccountGrp[noAccounts];
+  accountGrp[0] = popAccClient(incObject);
+  accountGrp[1] = popAccBroker(incObject);
+  accountGrp[2] = popAccError(incObject);
+  return AccountGrpArr;
+}
+</code></pre>

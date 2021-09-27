@@ -1,0 +1,19 @@
+<p>Example of table structure and join queries on PostgreSQL</p>
+
+<pre><code>CREATE TABLE arts (
+    arts_id serial PRIMARY KEY,
+    name text NOT NULL
+);
+
+CREATE TABLE sessions (
+    sessions_id integer NOT NULL,
+    arts_id integer NOT NULL REFERENCES arts
+);
+
+
+SELECT arts.name, count(sessions_id)
+FROM arts
+JOIN sessions USING (arts_id)
+GROUP BY arts.name
+ORDER BY count(sessions_id) DESC;
+</code></pre>

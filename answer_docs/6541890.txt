@@ -1,0 +1,19 @@
+<p>We originally <a href="http://blogs.atlassian.com/developer/2007/02/preventing_concurrent_operatio.html" rel="nofollow">wrote our own utilities</a> to handle this, but if you want the results memoised, then <a href="http://code.google.com/p/guava-libraries/" rel="nofollow">Guava</a>'s <a href="http://guava-libraries.googlecode.com/svn/trunk/javadoc/com/google/common/collect/MapMaker.html#makeComputingMap%28com.google.common.base.Function%29" rel="nofollow">ComputingMap</a> encapsulates the initialisation by one and only one thread (with other threads blocking and waiting for the result), and the memoisation.</p>
+
+<p>It also supports various expiration strategies.</p>
+
+<p>Usage is simple, you construct it with an initialisation function:</p>
+
+<pre><code>Map&lt;Long, Foo&gt; cache = new MapMaker().makeComputingMap(new Function&lt;Long, Foo&gt;() {
+  public Foo apply(String key) {
+    return … // init with expensive calculation
+  }
+});
+</code></pre>
+
+<p>and then just call it:</p>
+
+<pre><code>Foo foo = cache.get("key");
+</code></pre>
+
+<p>The first thread to ask for "key" will be the one who performs the initialisation</p>

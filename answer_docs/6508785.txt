@@ -1,0 +1,8 @@
+<blockquote>
+  <p>when updating A, all related Bs and
+  Cs must also be locked, and in
+  reverse, if updating a C, the
+  corresponding B and A are also locked</p>
+</blockquote>
+
+<p>With this restriction in place you only need one mutex for each set of an A and its associated Bs and Cs. This mutex logically belongs in the A object, since there is only one of these the group, but it is probably wise to keep a reference in the B and C objects, so that it can be locked directly from there when an update must be made, without having to first traverse the object tree to find the mutex.</p>

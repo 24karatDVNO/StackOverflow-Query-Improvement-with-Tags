@@ -1,0 +1,15 @@
+<p>Guessing your intent from what you have so far..</p>
+
+<ul>
+<li>On <code>#ftr_rgt</code>, you need to set <code>position</code> to <code>absolute</code>, instead of <code>relative</code>.</li>
+<li>On the parent of <code>#ftr_rgt</code> (which is <code>#ftr_btm</code>, you need to set <code>position: relative</code>.</li>
+<li>Lastly, you need to add <code>right: 0</code> to <code>#ftr_rgt</code>. You already have <code>top: 0</code>.</li>
+</ul>
+
+<p><strong>See:</strong> <a href="http://jsfiddle.net/a4Gar/1/" rel="nofollow">http://jsfiddle.net/a4Gar/1/</a></p>
+
+<p>If you're trying to use <code>relative</code>/<code>absolute</code> positioning, you need to get your head around how it works:</p>
+
+<p><a href="http://css-tricks.com/791-absolute-positioning-inside-relative-positioning/" rel="nofollow">http://css-tricks.com/791-absolute-positioning-inside-relative-positioning/</a></p>
+
+<p>Lastly, I think that you could accomplish this layout in a simpler way with <code>float</code>s.</p>

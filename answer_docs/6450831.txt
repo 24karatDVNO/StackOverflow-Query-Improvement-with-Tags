@@ -1,0 +1,27 @@
+<p>Internet Information Services have performance counters that can be used to monitor the active Web and FTP connections...</p>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc728306%28WS.10%29.aspx" rel="nofollow">http://technet.microsoft.com/en-us/library/cc728306%28WS.10%29.aspx</a></p>
+
+<pre><code>       To monitor active Web and FTP connections in IIS 6.0
+
+     1.
+  Open Administrative Tools, and then click Performance.
+     2.
+  Right-click the System Monitor details pane, and then click Add Counters.
+     3.
+  Do one of the following:
+      * To monitor any computer on which the monitoring console is run, click Use local computer counters.
+  -or-
+      * To monitor a specific computer, regardless of where the monitoring console is run, click Select counters from computer, and specify a computer name or IP address.
+     4.
+  In Performance object, click:
+      * Web Service to monitor active Web connections.
+  -or-
+      * FTP Service to monitor active FTP connections.
+     5.
+  Click Select counters from list, and select Current Connections.
+     6.
+  Click All instances.
+     7.
+  Click Add, and then click Close.
+</code></pre>

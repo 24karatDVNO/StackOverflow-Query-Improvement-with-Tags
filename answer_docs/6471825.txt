@@ -1,0 +1,20 @@
+<p>An anchor tag, if i'm understanding your question correctly, is simply an a tag.</p>
+
+<p>You can style it several ways:
+- with a class/id, which makes use of css's speed:</p>
+
+<pre><code>a.anchorClass {
+ display: block;
+ color: red;
+ ... ... ...
+}
+</code></pre>
+
+<ul>
+<li>or with javascript after page load, you can get the element and apply css styles to it.</li>
+</ul>
+
+<p>With jquery this is very easy:</p>
+
+<pre><code>$('a.anchorClass').css('color', 'red');
+</code></pre>

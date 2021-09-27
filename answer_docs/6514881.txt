@@ -1,0 +1,9 @@
+<p>There's a couple of ways that you could do this. I'm assuming by "3 input boxes", you mean 3 <code>TextBox</code> controls:</p>
+
+<ol>
+<li><p>Add more <code>TextBox</code> controls to begin with in the markup, and hide the extra ones until the user clicks "Add more". This would be suitable if there was a reasonable upper-bound to how many controls you want the user to be allowed to add.</p></li>
+<li><p>Before postback, take the values of the newly added controls, and place them in a hidden field. The server will be able to read the values from there. </p></li>
+<li><p>Communicate the values of the controls to the server via AJAX.</p></li>
+</ol>
+
+<p>I'm sure that there are other ways to accomplish this as well, but I think that one of these three will work for you.</p>

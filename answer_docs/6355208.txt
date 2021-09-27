@@ -1,0 +1,23 @@
+<p>My solution using json and no specific javascript:</p>
+
+<pre><code>/// &lt;summary&gt;
+/// A result to use in combination with jquery.ajax.form when we want to upload a file using ajax
+/// &lt;/summary&gt;
+public class FileJsonResult : JsonResult
+{
+    public JsonResult Result { get; set; }
+
+    public FileJsonResult(JsonResult result):base()
+    {
+        this.Result = result;
+    }
+
+    public override void ExecuteResult(ControllerContext context)
+    {
+        context.HttpContext.Response.Write("&lt;textarea&gt;");
+        this.Result.ExecuteResult(context);
+        context.HttpContext.Response.Write("&lt;/textarea&gt;");
+        context.HttpContext.Response.ContentType = "text/html";
+    }
+}
+</code></pre>

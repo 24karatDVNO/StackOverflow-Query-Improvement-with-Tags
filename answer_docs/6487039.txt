@@ -1,0 +1,19 @@
+<p>I found the answer. 
+Let me share with you. I dont know if there is a better approach.</p>
+
+<p>First, I tried to parse data inside table with:</p>
+
+<pre><code>String line = null;
+HtmlELementCollection elems = webBrowser1.Document.GetElementByTagName("tbody");
+foreach (HtmlElement row in elems)
+{
+line +=row.InnerHtml;
+}
+</code></pre>
+
+<p>After that I decided to use Regex to parse the exact data from String line 
+With MatchCollection I parsed the data I want.</p>
+
+<p>I am not writing that part but if anybody needs more information I can help.</p>
+
+<p>I hope it will be helpful. At least it worked for me :)</p>

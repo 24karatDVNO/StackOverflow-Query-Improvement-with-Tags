@@ -1,0 +1,13 @@
+<p>solved it, had to change the .aspx file to </p>
+
+<pre><code>&lt;asp:Chart ID="Chart1" runat="server"&gt;
+    &lt;Series&gt;
+        &lt;asp:Series Name="Series1"&gt;
+        &lt;/asp:Series&gt;
+    &lt;/Series&gt;
+    &lt;ChartAreas&gt;
+        &lt;asp:ChartArea Name="ChartArea1"&gt;
+        &lt;/asp:ChartArea&gt;
+    &lt;/ChartAreas&gt;
+&lt;/asp:Chart&gt;
+</code></pre>

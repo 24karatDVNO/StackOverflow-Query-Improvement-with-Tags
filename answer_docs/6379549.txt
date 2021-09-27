@@ -1,0 +1,14 @@
+<p>An RTF file is not encoded using UTF8 as a plain text file might be.</p>
+
+<p>For example, from the wiki page <a href="http://en.wikipedia.org/wiki/Rich_Text_Format" rel="nofollow">http://en.wikipedia.org/wiki/Rich_Text_Format</a></p>
+
+<p>a text element might be marked up like:</p>
+
+<pre><code>{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0\pard
+This is some {\b bold} text.\par
+}
+</code></pre>
+
+<p>You would have to parse the various formatting elements to get to the text "This is some bold text."</p>
+
+<p>I don't believe there is a 1-2 line solution in the SDK for this, but there may be 3rd party solutions.</p>

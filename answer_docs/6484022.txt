@@ -1,0 +1,15 @@
+<p>I have previously linked to MIT's solvent and EnvJS as my answers to scrape off Ajax pages. These projects seem no longer accessible.</p>
+
+<p>Out of sheer necessity, I have invented another way to actually scrape off Ajax pages, and it has worked for tough sites like findthecompany which have methods to find headless javascript engines and show no data.</p>
+
+<p>The technique is to use chrome extensions to do scraping. Chrome extensions are the best place to scrape off Ajax pages because they actually allow us access to javascript modified DOM. The technique is as follows, I will certainly open source the code in sometime. Create a chrome extension ( assuming you know how to create one, and its architecture and capabilities. This is easy to learn and practice as there are lots of samples),</p>
+
+<ol>
+<li>Use content scripts to access the DOM, by using xpath. Pretty much get the entire list or table or dynamically rendered content using xpath into a variable as string HTML Nodes. ( Only content scripts can access DOM but they can't contact a URL using XMLHTTP )</li>
+<li>From content script, using message passing, message the entire stripped DOM as string, to a background script. ( Background scripts can talk to URLs but can't touch the DOM ). We use message passing to get these to talk.</li>
+<li>You can use various events to loop through web pages and pass each stripped HTML Node content to the background script.</li>
+<li>Now use the background script, to talk to an external server (on localhost), a simple one created using Nodejs/python. Just send the entire HTML Nodes as string, to the server, where the server would just persist the content posted to it, into files, with appropriate variables to identify page numbers or URLs.</li>
+<li>Now you have scraped AJAX content ( HTML Nodes as string ), but these are partial html nodes. Now you can use your favorite XPATH library to load these into memory and use XPATH to scrape information into Tables or text.</li>
+</ol>
+
+<p>Please comment if you cant understand and I can write it better. ( first attempt ). Also, I am trying to release sample code as soon as possible.</p>

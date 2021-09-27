@@ -1,0 +1,39 @@
+<p>Another way to prove that the inner elements will be GCed when out of scope:</p>
+
+<pre><code>use Scalar::Util 'weaken';
+
+my $x;
+
+{
+    my @a = ({foo =&gt; 'bar'}, ['foo', 'bar']);
+
+    $x = $a[1]; # ref to the inner array
+    weaken $x; # weaken the ref, so it doesn't interfere with GC
+    print "'$x-&gt;[1]'\n"; # show us what we got
+}
+
+print "'$x-&gt;[1]'\n"; # and now it's gone
+</code></pre>
+
+<p>Outputs:</p>
+
+<pre><code>'bar'
+''
+</code></pre>
+
+<hr>
+
+<blockquote>
+  <p><a href="http://search.cpan.org/~gbarr/Scalar-List-Utils/lib/Scalar/Util.pm" rel="nofollow"><strong>weaken REF</strong></a></p>
+  
+  <p>REF will be turned into a weak reference. This means that it
+  will not hold a reference count on the
+  object it references. Also when the
+  reference count on that object reaches
+  zero, REF will be set to undef.</p>
+  
+  <p>This is useful for keeping copies of
+  references , but you don't want to
+  prevent the object being DESTROY-ed at
+  its usual time.</p>
+</blockquote>

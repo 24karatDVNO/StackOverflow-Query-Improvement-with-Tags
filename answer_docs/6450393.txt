@@ -1,0 +1,5 @@
+<p>Expose the <code>ObservableCollection&lt;Record&gt;</code> as a public property</p>
+
+<p>also</p>
+
+<p>Using <code>ObservableCollection</code> only affect binding when you add/remove items from your list. By using <code>ObservableCollection</code> you do not need to reset binding to the list or <code>DataGrid</code> when your collection changed (not the item inside collection changed). But they do not have any effect when your data object properties changed. For that you need to implement <code>INotifyPropertyChanged</code> interface for your DataObject.</p>

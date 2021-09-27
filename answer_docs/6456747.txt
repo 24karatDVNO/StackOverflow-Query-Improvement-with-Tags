@@ -1,0 +1,13 @@
+<p>As others have said, there's a reason to use POST because of browsers' limitations. But I'd like to make another agruement.</p>
+
+<p>POST makes more sense in terms of HTTP method definitions. GET is supposed to be safe and make no changes to your system state (database). This is typically enforced in services, but not as much in HTML form processing.</p>
+
+<blockquote>
+  <p>Some methods (for example, HEAD, GET, OPTIONS and TRACE) are defined as safe, which means they are intended only for information retrieval and should not change the state of the server. In other words, they should not have side effects, beyond relatively harmless effects such as logging, caching, the serving of banner advertisements or incrementing a web counter. Making arbitrary GET requests without regard to the context of the application's state should therefore be considered safe.</p>
+</blockquote>
+
+<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Safe_methods" rel="nofollow">Source</a></p>
+
+<p>Additional reading:</p>
+
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" rel="nofollow">HTTP Spec - Method Definitions</a></p>

@@ -1,0 +1,6 @@
+<p><code>ls</code> output depends from current locale settings. When you run it from console on behalf yourself it uses your locale settings, but user <code>www-data</code> has own locale settings (which probably differ from your). So, I suggest to you specify locale settings explicitly:</p>
+
+<pre><code>exec("LC_TIME=POSIX ls -lh /", $output);
+</code></pre>
+
+<p>where instead of <code>POSIX</code> you may substitute locale which you want to use.</p>

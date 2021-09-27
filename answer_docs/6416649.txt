@@ -1,0 +1,20 @@
+<p>Here is my take on it:</p>
+
+<pre><code>public static IEnumerable&lt;IList&lt;byte&gt;&gt; Split(IEnumerable&lt;byte&gt; input, IEnumerable&lt;byte&gt; delimiter)
+{
+    var l = new List&lt;byte&gt;();
+    var set = new HashSet&lt;byte&gt;(delimiter);
+    foreach (var item in input)
+    {
+        if(!set.Contains(item))
+            l.Add(item);
+        else if(l.Count &gt; 0)
+        {
+            yield return l;
+            l = new List&lt;byte&gt;();
+        }
+    }
+    if(l.Count &gt; 0)
+        yield return l;
+}
+</code></pre>

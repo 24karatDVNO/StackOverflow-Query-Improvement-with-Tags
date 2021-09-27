@@ -1,0 +1,9 @@
+<p>Nothing's wrong.</p>
+
+<p>Tabspaces do not automatically tabulate your content for you. They simply advance the caret to the next available tabstop.</p>
+
+<p>"Next available tabstop" means the next tabstop at which there is not already a character. In the case of your console, your tabstops are set such that the first tabstop happens to fall within the expected length of your first "column" of data.</p>
+
+<p>Since tabstops are always, by design, configurable by the end-user's display mechanism, they are not really appropriate for tabulating.</p>
+
+<p>Use fixed whitespace instead, so that you can guarantee the layout.</p>

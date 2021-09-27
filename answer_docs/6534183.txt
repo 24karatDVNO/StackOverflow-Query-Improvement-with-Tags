@@ -1,0 +1,9 @@
+<p>Some guidelines here :</p>
+
+<ul>
+<li>With that much data inserted at peak times, does it make sense to have it available in the index right away ? Couldn't a scheduled task do the trick ?</li>
+<li>What sort of searching are you doing on those fields ? If it is really simple, isn't lucene overkill ?</li>
+<li>You told us about the write volumes, but what about reads ? It looks like there will be quite a lot of data, but if it is searched not intensively, isn't a <em>select id from table where col like '%search%'</em> sufficient ?</li>
+</ul>
+
+<p>You should really get a proof of concept with different indexing strategies, and stress test it to find which one fits best.</p>

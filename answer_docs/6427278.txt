@@ -1,0 +1,7 @@
+<p>I think we'd need a bit more information about the type of animation you're hoping to create.</p>
+
+<p>Depending on what it is, it could be very possible in theory. You'd be creating a separate class that extends MovieClip and instantiate that in your 'for loop'. That class could have all sorts of animation instructions and logic. Extending 'MovieClip' isn't the only option, but it does enable you to use Event.ENTER_FRAME where with a Sprite you'd need to set up an internal Timer or use a public 'update' or 'draw' method that can be called from your main code.</p>
+
+<p>There are also 'Motion' classes that allow you to load XML animation instructions that you have a fair amount of control with. Look up fl.motion.Animator.  </p>
+
+<p>What are you trying to do? Welcome to ActionScript!</p>

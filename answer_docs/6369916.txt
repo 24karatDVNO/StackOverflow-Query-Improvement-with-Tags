@@ -1,0 +1,14 @@
+<p>I haven't tested this, but try biding to the <code>resize</code> and <code>scroll</code> events in JavaScript. Here is an example in jQuery:</p>
+
+<pre><code>$(window).bind("touchstart touchend resize scroll",function(){
+    $("#background").css({
+        top:$("body").scrollTop(),
+        left:$("body").scrollLeft(),
+        width:$(window).width(),
+        height:$(window).height()
+    });
+});
+</code></pre>
+
+<p>I have also added to the touchstart and touchend events so that it works on iDevices too. 
+Ad@m</p>

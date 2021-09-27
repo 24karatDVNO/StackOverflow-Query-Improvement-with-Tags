@@ -1,0 +1,28 @@
+<p>You're using direct assignment for <code>$search</code> when you want array assignment. This means that when you go to implode it, it probably returns false(??? I've never suppressed warnings on implode. I have no idea what that does.). That is being misread when appended to $sql. You then append $sort and $limit to $sql and then prepend $sql again for good measure before calling mysql_query. You're also not checking to see if $_REQUEST['city'] and $_REQUEST['desitination'] have values.</p>
+
+<p>Your final result (worse case):</p>
+
+<pre><code>select * FROM properties WHERE type= "'.$type.'" and  select * FROM properties WHERE type= "'.$type.'" and order by added asc Limit 0,10
+</code></pre>
+
+<p>Your final result (best case):</p>
+
+<pre><code>select * FROM properties WHERE type= "'.$type.'" and city = 'Atlanta' select * FROM properties WHERE type= "'.$type.'" and city = 'Atlanta' order by added asc Limit 0,10
+</code></pre>
+
+<p>Add this at the top:</p>
+
+<pre><code>$search = array();
+</code></pre>
+
+<p>and then any time you want to append <code>$search</code>:</p>
+
+<pre><code>$search[] = ' district = '.$_REQUEST['district'];
+</code></pre>
+
+<p>And replace this line <code>$searchResults = mysql_query($sql.$sql_with_limit);</code> with:</p>
+
+<pre><code>$searchResults = mysql_query($sql_with_limit); 
+</code></pre>
+
+<p>BTW you're begging for SQL injection here. Any time you pull a value from <code>$_REQUEST</code>, you should be using <code>mysql_real_escape_string</code>.</p>

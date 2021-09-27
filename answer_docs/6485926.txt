@@ -1,0 +1,7 @@
+<p>Answering my own question for anyone else who stumbles upon this.</p>
+
+<p>Basically if you want deterministic recording and playback you need to lock the frame-rate. If the system cannot handle the frame-rate you must introduce slowdown or risk dsyncronization.</p>
+
+<p>After two weeks of additional research I've decided it is just not possible due to floating point inadequacies and the fact that floating point numbers are not necessarily associative.</p>
+
+<p>The only solution to have a deterministic engine that relies on floating point numbers is to have a stable and fixed frame-rate. Any change in the frame-rate will - across a long term - result in the playback becoming desynchronized.</p>

@@ -1,0 +1,15 @@
+<p>you may use mutexes... I do such check with following code:</p>
+
+<pre><code>bool insureApplicationUniqueness(HANDLE&amp; mutexHandle)
+{
+    mutexHandle=CreateMutexW(NULL,true,UNIQUE_INSTANCE_MUTEX_NAME);
+    if( mutexHandle&amp;&amp;(ERROR_ALREADY_EXISTS==GetLastError()))
+    {
+        CloseHandle(mutexHandle);
+        return false;
+    }
+    return true;
+}
+</code></pre>
+
+<p>but this is for application which source code is yours and which checks is another instance of itself running.</p>

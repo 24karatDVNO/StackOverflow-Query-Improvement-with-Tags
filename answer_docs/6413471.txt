@@ -1,0 +1,4 @@
+<p>Using sessions in php (see <a href="http://php.net/manual/en/function.session-start.php" rel="nofollow">session_start</a>) you can keep a state on the server about the user.</p>
+
+<p>When logging in, for example, you can set <code>$_SESSION['username']</code> to the username; meaning you can ask in other parts if there is a username.<br>
+For example by using <code>if (!empty($_SESSION['username']))</code>.</p>

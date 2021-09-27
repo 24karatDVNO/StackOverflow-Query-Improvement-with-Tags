@@ -1,0 +1,44 @@
+<p>10^5 is not really that big a number of objects, even in-memory.  littletable is a little module I wrote as an experiment for simulating queries, pivots, etc. using just Python dicts.  One nice thing about littletable queries is that the result of any query or join is itself a new littletable Table.  Indexes are kept as dicts of keys->table objects, and index keys can be defined to be unique or not.</p>
+
+<p>I created a table of 140K objects with 3 single letter keys, and then queried for a specific key. The time to build the table itself was the longest, the indexing and querying pretty fast.</p>
+
+<pre><code>from itertools import product
+from littletable import Table,DataObject
+
+objects = Table()
+alphas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphas += alphas.lower()
+import time
+
+print "building table", time.time()
+objects.insert_many(
+    DataObject(k1=k1, k2=k2, k3=k3, created=time.time())
+        for k1,k2,k3 in product(alphas.upper(),alphas,alphas)
+    )
+print "table complete", time.time()
+print len(objects)
+
+print "indexing table", time.time()
+for k in "k1 k2 k3".split():
+    objects.create_index(k)
+print "index complete", time.time()
+
+print "get specific row", time.time()
+matches = objects.query(k1="X", k2="k", k3="W")
+for o in matches:
+    print o
+print time.time()
+</code></pre>
+
+<p>Prints:</p>
+
+<pre><code>building table 1309377011.63
+table complete 1309377012.52
+140608
+indexing table 1309377012.52
+index complete 1309377012.98
+get specific row 1309377012.98
+{'k3': 'W', 'k2': 'k', 'k1': 'X', 'created': 1309377011.9960001}
+{'k3': 'W', 'k2': 'k', 'k1': 'X', 'created': 1309377012.4260001}
+1309377013.0
+</code></pre>

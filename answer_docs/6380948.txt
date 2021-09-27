@@ -1,0 +1,8 @@
+<p>Dont both your options of $proxy have length>0 ?</p>
+
+<p>I think it should be</p>
+
+<pre><code>if($proxy != "known_proxy"){
+  header('Location:http://www.google.com')
+}
+</code></pre>

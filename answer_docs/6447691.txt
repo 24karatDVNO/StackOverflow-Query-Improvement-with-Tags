@@ -1,0 +1,15 @@
+<p>It is possible if you add an extra variable eg. :active
+then your query shoul look something like this.</p>
+
+<pre><code>...
+where
+(m.name like :manufacturer and 1 = :active) or
+(m.name like :manufacturer and a.description like :description  and 2 = :active) or
+(m.name like :manufacturer and a.description like :description and a.percentSize &lt;= :sizeMax and 3 = :active) or ...
+</code></pre>
+
+<p>And so on...
+With the :active you can then later decide which of the arguments should "count".
+Or do nothing by setting :active to e.g null.</p>
+
+<p>Do you get the idea?</p>

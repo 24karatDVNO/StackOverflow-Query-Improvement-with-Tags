@@ -1,0 +1,11 @@
+<p>The problem i was getting because i am adding two button in a row, and i had used a VerticalFieldManager for adding the buttons that is why i got the problem. And for solution i have added the button in HorizontalFeildManager and now it is working fine  </p>
+
+<pre>
+VerticalFieldManager _fieldManagerContext = new VerticalFieldManager(VerticalFieldManager.USE_ALL_WIDTH | VerticalFieldManager.USE_ALL_HEIGHT)
+</pre>
+
+<p>to this one </p>
+
+<pre>
+HorizontalFieldManager _fieldManagerContext = new HorizontalFieldManager(USE_ALL_WIDTH)
+</pre>

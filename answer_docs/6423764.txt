@@ -1,0 +1,6 @@
+<p>When I was using log4j XMLLayout to output xml data I just used </p>
+
+<pre><code>logger.info("]]&gt;"+xmlMsg+"&lt;![CDATA[");
+</code></pre>
+
+<p>This is the lazy way, but it worked for me as not all my log messages were XML so the ones that were not remained escaped.</p>

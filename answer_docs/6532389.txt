@@ -1,0 +1,25 @@
+<p>I wouldn't implement it a a scheduled job at all - I'd make the code deal with the scenario depending on the date it is processing. </p>
+
+<p>Modifying te state of the system at this level means you're going to get in a mess if the rollover fails to occur. It also means that you can't easily measure historic data. </p>
+
+<p>It's hard to say exactly how you should implement this without understanding more about what the system is doing. One way would be to hard-code the logic, e.g. in MySQL....</p>
+
+<pre><code> SELECT emp_id, 
+   STRTODATE(CONCAT(DATE_FORMAT(clock_in_time, '%Y-%m-%d '), 
+     IF(DATE_FORMAT(clock_in_time, '%m') 
+         BETWEEN '05' AND '08', '08:00', '09:00'))) 
+     AS expected_clockin,
+   clock_in_time AS actual
+ FROM clockin
+</code></pre>
+
+<p>Or alternatively use a lookup table....</p>
+
+<pre><code>SELECT a.emp_id,
+  STRTODATE(CONCAT(DATE_FORMAT(a.clock_in_time, '%Y-%m-%d '),
+     b.start_time) 
+  AS expected_clockin,
+   a.clock_in_time AS actual
+ FROM clockin a INNER JOIN lookup b
+    ON a.clock_in_time BETWEEN b.period_start AND b.period_end
+</code></pre>

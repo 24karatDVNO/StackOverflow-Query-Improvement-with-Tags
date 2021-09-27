@@ -1,0 +1,17 @@
+<p>Ok, I got it to work. All that was missing was <code>format.js</code> under the <code>format.html</code> in show in the games controller. Like this:</p>
+
+<pre><code> def show
+    @user = User.find(params[:id])
+    @gameid = Game.find(params[:id])
+    @features = Feature.paginate(:page =&gt; params[:page], :per_page =&gt; 8, :conditions =&gt; {:game_id =&gt; @gameid})
+    @feature = Feature.new
+         respond_to do |format|
+           format.html
+           format.js
+    end
+  end
+</code></pre>
+
+<p>I guess the strange thing is that games didn't need this to execute ajax...</p>
+
+<p>Cheers guys for the help</p>

@@ -1,0 +1,13 @@
+<p>Instead of</p>
+
+<pre><code>if e.Layer_name == val:     
+   data = val 
+</code></pre>
+
+<p>use</p>
+
+<pre><code>if val in e.Layer_name:     
+   data.append(e.Layer_name) 
+</code></pre>
+
+<p>(and you don't need the line <code>data = form.cleaned_data</code>)</p>

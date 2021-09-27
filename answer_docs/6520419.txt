@@ -1,0 +1,20 @@
+<p>If you don't want B to have a reference to A (or can't as you want A to reference B and that would cause a circular reference), then you need a common type defined in a third assembly that both A and B reference. In our implementation we tend to have a ConfigurationData type that is in a separate project referenced by both Wpf projects, e.g.</p>
+
+<pre><code>public static class ConfigurationData
+{
+
+    private static string _errorLogFileName = "error log.xml";
+
+    public string ErrorLogFileName
+    {
+        get { return _errorLogFileName; }
+    }
+
+}
+</code></pre>
+
+<p>Another approach would be to define an Interface for your ErrorLogFileName property in a 3rd assembly that both A and B reference, and then implement that interface on your Wpf Application class - A and B would then both be able to cast to that type. If you wanted your A project to set the values on that at runtime, you could make the ErrorLogFileName a read-write property instead and initialize it in your application startup.</p>
+
+<p>I personally prefer using a separate ConfigurationData type from the Wpf app object for this kind of stuff (ErrorLogFileName etc.) as it can then also be used for code that might execute in a unit test and therefore might not be running under a Wpf application - it also avoids having to do casts all over the place (<code>ConfigurationData.ErrorLogFileName</code> instead of <code>((IAppConfigurationData)Application.Current).ErrorLogFileName</code>.</p>
+
+<p>BTW, if you have an Application object in both assemblies it sounds like you might have both assemblies configured to build as <strong>Output type: Windows Application</strong> in your project properties. You should only really have one assembly that is configured as the Windows Application and the rest should be Class Library to avoid confusing numbers of Application classes being generated - only the one in the main EXE (and it's related resources) will get created at runtime.</p>

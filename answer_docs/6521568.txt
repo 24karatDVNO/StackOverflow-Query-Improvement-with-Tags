@@ -1,0 +1,7 @@
+<p>If your problem is that there may be 0 rows in table Demographics with State = 'NY' (for example) but you want to see state 'NY' in the results anyway, then you need another table e.g. States that has all the states in it, and make this your driving table:</p>
+
+<pre><code>SELECT States.State
+FROM States
+    LEFT OUTER JOIN Demographics ON Demographics.state = States.state
+...
+</code></pre>

@@ -1,0 +1,10 @@
+<p>The answer is XPath.</p>
+
+<ul>
+<li><code>/books/book[position() &lt; 5]</code> returns the first 5 books</li>
+<li><code>/books/book[author = 'xyz']</code> returns all books of a specific author</li>
+<li><code>/books/book[title = 'xyz']</code> returns books of a specific title</li>
+<li><code>/books/book[title = 'xyz']/author</code> returns the author of a book with a specific title</li>
+</ul>
+
+<p>…and so on. See: <a href="http://php.net/manual/en/class.domxpath.php" rel="nofollow">http://php.net/manual/en/class.domxpath.php</a></p>

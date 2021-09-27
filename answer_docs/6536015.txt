@@ -1,0 +1,12 @@
+<p>Because I have a live datasource that I am polling, I can listen for an event when the data changes and then update the chart before sending the data onto it.</p>
+
+<pre><code> datasource.doBeforeCallback = function(oRequest, oFullResponse, oParsedResponse, oCallback) {
+    if (!oParsedResponse.results || oParsedResponse.results.length &lt; 1) {
+        oParsedResponse.results = [{ "name": "No Activity", "count": "0" }];
+        mychart._seriesDefs.style.colors = [{style: { colors: ['#000000']}}];
+    } else {
+        mychart._seriesDefs = null; // sets color array back to default
+    }
+    return oParsedResponse;
+};
+</code></pre>

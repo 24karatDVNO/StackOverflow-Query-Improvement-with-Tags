@@ -1,0 +1,20 @@
+<p>If you are using associations and for whatever reason chose not to use Active Records default id, you can set the default id using "set_primary_key" so methods like find and destroy work properly.</p>
+
+<pre><code>class User &lt; ActiveRecord::Base
+  set_primary_key :user_primary
+  has_many :group_members, :dependent =&gt; :destroy
+  has_many :groups, :through =&gt; :group_members
+end
+
+class GroupMember &lt; ActiveRecord::Base
+  set_primary_key :group_member_primary
+  belongs_to :group
+  belongs_to :user
+end
+
+class Group &lt; ActiveRecord::Base
+  set_primary_key :group_primary
+  has_many :group_members, :dependent =&gt; :destroy
+  has_many :users, :through =&gt; :group_members
+end
+</code></pre>

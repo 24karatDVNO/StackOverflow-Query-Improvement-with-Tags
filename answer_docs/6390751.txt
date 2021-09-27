@@ -1,0 +1,11 @@
+<p>Maybee not the best solution, but it works:</p>
+
+<pre><code>DELETE FROM form_options_info, form_options, forms
+  USING forms INNER JOIN form_options INNER JOIN form_options_info
+  WHERE (form_options_info.form_options_id = form_options.id 
+    AND form_options.form_id = forms.id
+    OR form_options.form_id = forms.id)
+    AND forms.id = 2;
+</code></pre>
+
+<p>...or just change the tables to InnoDB ;-)...</p>

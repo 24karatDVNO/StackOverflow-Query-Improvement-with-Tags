@@ -1,0 +1,8 @@
+<p>A possible merging function is available in the standard library. It's intended to merge sorted lists to make sorted combined lists; garbage in, garbage out, but it does have the desired property of maintaining sublist order no matter what.</p>
+
+<pre><code>def merge_files(output, *inputs):
+    # all parameters are opened files with appropriate modes.
+    from heapq import merge
+    for line in heapq.merge(*(reversed(tuple(input)) for input in inputs)):
+        output.write(line)
+</code></pre>

@@ -1,0 +1,24 @@
+<p>In C# both works in the same way. I think you are thinking if you handle the exception (rather than throwing it), how to get rid of executing the second statement?</p>
+
+<pre><code>void SomeFunction() 
+{     
+   if (key.Length != Dimensions)     
+   {  
+       throw new KeySizeException(); //Halt the execution of SomeFunction method
+   }
+      SomeOtherFunction(); 
+} 
+</code></pre>
+
+<p>If you handle and do not want to execute SomeOtherFunction, you can just return as below.</p>
+
+<pre><code>void SomeFunction() 
+{     
+   if (key.Length != Dimensions)     
+   {  
+       HandleMyException(); 
+       return;    // Returns and halt the execution of SomeFunction method.
+   }
+      SomeOtherFunction(); 
+} 
+</code></pre>

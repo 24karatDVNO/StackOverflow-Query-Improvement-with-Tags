@@ -1,0 +1,11 @@
+<p>For HTTP PUT-method you need to use form parameters with "application/x-www-form-urlencoded" MIME-type of your HTTP Header and @QueryParam annotation.</p>
+
+<pre><code>@PUT
+@Produces("application/html")
+@Consumes("application/x-www-form-urlencoded")
+public Response postContainer(@QueryParam("objecturi")String path){
+...
+}
+</code></pre>
+
+<p>Hope this helps.</p>

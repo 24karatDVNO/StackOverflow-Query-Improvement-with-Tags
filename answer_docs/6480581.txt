@@ -1,0 +1,7 @@
+<p>or play with negative lookaheads</p>
+
+<p>php> echo preg_replace('/"(?!.<em>?\s+.</em>?)/', '', 'what "foo bar" "foobar"');</p>
+
+<p>what "foo bar" foobar</p>
+
+<p>of course that one needs some work, won't work with nested quotes and the like. but you get the picture.</p>

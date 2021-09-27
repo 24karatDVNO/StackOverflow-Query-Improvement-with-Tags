@@ -1,0 +1,12 @@
+<p>I've had a quick look at the assembler the compiler spews out for above code snippets. Turns out that the bytes right after <code>jmp @HandleOnExeption</code> contain data such as the exception class pointers you use in the <code>on</code> clauses (if any).</p>
+
+<p>I'm not that well versed in assembler to know exactly what's going on, but enough to understand what is roughly going on and come to this conclusion:</p>
+
+<p>I suspect System.pas' HandleOnException does a <code>call @IsClass</code> already, and passes the exception on if no suitable handler is found, so if you use <code>on e:Exception</code> and re-raise, this will add a little code and make two calls extra:</p>
+
+<ul>
+<li>one back to your exception handling section (in all cases)</li>
+<li>one <code>call @RaiseAgain</code> (in cases the exception gets re-raised)</li>
+</ul>
+
+<p>So, there's a difference. A minor one, but still, it's there.</p>

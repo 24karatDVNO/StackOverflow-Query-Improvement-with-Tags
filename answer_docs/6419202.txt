@@ -1,0 +1,21 @@
+<p>The main problem is that you're passing your <code>vector</code> by value, so the addresses you store no longer point to valid memory as soon as the function returns and said <code>vector</code> goes out of scope. (The same is true of the address you return from <code>Method2</code>, as <code>ptrs</code> goes out of scope.) If you want a <code>double**</code> (as opposed to a <code>const double**</code>), then you need to pass your <code>vector</code> by non-const reference.</p>
+
+<p>The other problem is that you have no way of returning a <code>double**</code> without allocating any memory and consequently forcing someone to <code>delete</code> it later. Your <code>Method2</code> implemention is almost the correct approach -- rather than deal with the "<em>who's responsibility is it to <code>delete</code> this memory?</em>" issue, it's significantly easier to simply return a <code>std::vector&lt;double*&gt;</code> and when the <code>double**</code> is needed, take the address of the 0th element of <em>that</em> vector instead.</p>
+
+<pre><code>template&lt;typename T&gt;
+std::vector&lt;T*&gt; Method3(std::vector&lt;std::vector&lt;T&gt; &gt;&amp; vvT)
+{
+    std::vector&lt;T*&gt; ret;
+    for (size_t i = 0, i_max = vvT.size(); i != i_max; ++i)
+        ret.push_back(&amp;vvT[i][0]);
+    return ret;
+}
+
+// ...
+
+std::vector&lt;std::vector&lt;double&gt; &gt; vec = api1();
+std::vector&lt;double*&gt; addresses = Method3(vec);
+api2(!addresses.empty() ? &amp;addresses[0] : 0);
+</code></pre>
+
+<p>Note that the stored pointers may potentially point to invalid memory as soon as the <code>vector</code> passed to <code>Method3</code> is modified (i.e., resized or destroyed). Also note that <code>pin_ptr</code> has no place here, as it's for pinning the elements of a managed object and <code>std::vector&lt;&gt;</code> is not a managed type.</p>

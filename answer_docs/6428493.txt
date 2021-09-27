@@ -1,0 +1,11 @@
+<p>I just thought of an approach:<br>
+You can write a function accepting two parameters 1. String 2. Number of lines   </p>
+
+<p>Get the length of the string (String.length if using C#).
+Divide the length by number of lines (lets say the result is n)</p>
+
+<p>Now start a loop and access each character of the string (using string[i])
+Insert a '\n\r' after every nth occurrence in the array of characters.</p>
+
+<p>In the loop maintain a temp string array which would be null if there is a blank character(maintaining each word).<br>
+If there is a nth occurrence and temp string is not null then insert '\n\r' after that temp string. </p>

@@ -1,0 +1,20 @@
+<pre><code>(select * from PO, PO_HIST) P
+</code></pre>
+
+<p>This subquery might make a cross join of tables that share a common column name.</p>
+
+<p>Maybe you want:</p>
+
+<pre><code>Select t.trang_quan
+     , p.pono
+     , d.id
+  from translog t
+  inner join po_detail d
+     on d.id = t.source_id
+  cross join po_detail_hist
+  inner join po p
+     on p.id = d.po_id
+  cross join po_hist p2
+</code></pre>
+
+<p>Are you sure you want cross joins?</p>

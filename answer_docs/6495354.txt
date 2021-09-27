@@ -1,0 +1,8 @@
+<p>You can use <code>eval</code> -</p>
+
+<pre><code>for item in locals():                # although locals() is a dict, you can iterate through its keys.
+    obj = eval(item)
+    print type(obj)                  # this prints the type of the object
+    if isinstance(obj, someclass):
+        # do something
+</code></pre>

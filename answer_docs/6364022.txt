@@ -1,0 +1,78 @@
+<p>Here is what I ended up doing, still interested if there is a cleaner way!</p>
+
+<h3>REST</h3>
+
+<pre><code>private static class OperationContractResolver
+{
+    private static readonly Dictionary&lt;string, MethodInfo&gt; RegularExpressionsByMethod = null;
+
+    static OperationContractResolver()
+    {
+    OperationContractResolver.RegularExpressionsByMethod = new Dictionary&lt;string, MethodInfo&gt;();
+
+    foreach (MethodInfo method in typeof(IREST).GetMethods())
+    {
+        WebGetAttribute attribute = (WebGetAttribute)method.GetCustomAttributes(typeof(WebGetAttribute), false).FirstOrDefault();
+
+        if (attribute != null)
+        {
+        string regex = attribute.UriTemplate;
+
+        //Escape question marks. Looks strange but replaces a literal "?" with "\?".
+        regex = Regex.Replace(regex, @"\?", @"\?");
+
+        //Replace all parameters.
+        regex = Regex.Replace(regex, @"\{[^/$\?]+?}", @"[^/$\?]+?");
+
+        //Add it to the dictionary.
+        OperationContractResolver.RegularExpressionsByMethod.Add(regex, method);
+        }
+    }
+    }
+
+    public static string ExtractApiCallInfo(string relativeUri)
+    {
+    foreach (string regex in OperationContractResolver.RegularExpressionsByMethod.Keys)
+        if (Regex.IsMatch(relativeUri, regex, RegexOptions.IgnoreCase))
+        return OperationContractResolver.RegularExpressionsByMethod[regex].Name;
+
+    return null;
+    }
+}
+</code></pre>
+
+<h3>SOAP</h3>
+
+<pre><code>private static void TrackSoapApiCallInfo(HttpContext context)
+{
+    string filePath = Path.GetTempFileName();
+    string title = null;
+
+    //Save the request content. (Unfortunately it can't be written to a stream directly.)
+    context.Request.SaveAs(filePath, false);
+
+    //If the title can't be extracted then it's not an API method call, ignore it.
+    try
+    {
+    //Read the name of the first element within the SOAP body.
+    using (XmlReader reader = XmlReader.Create(filePath))
+    {
+        if (!reader.EOF)
+        {
+        XmlNamespaceManager nsManager = new XmlNamespaceManager(reader.NameTable);
+        XDocument document = XDocument.Load(reader);
+
+        //Need to add the SOAP Envelope namespace to the name table.
+        nsManager.AddNamespace("s", "http://schemas.xmlsoap.org/soap/envelope/");
+        title = document.XPathSelectElement("s:Envelope/s:Body", nsManager).Elements().First().Name.LocalName;
+        }
+    }
+
+    //Delete the temporary file.
+    File.Delete(filePath);
+    }
+    catch { }
+
+    //Track the page view.
+}
+</code></pre>

@@ -1,0 +1,3 @@
+<p>It was, and is still common, as it's pretty much the only way to handle libraries built against different runtimes on certain operating systems.  For example, on Windows, sharing multiple VC++ runtime libraries in a single executable typically will only work correctly if the libraries are responsible for all of their own memory management, including both the allocation of the objects as well as the disposal.  <code>shared_ptr</code> and similar tools actually can cause issues in that case.</p>
+
+<p>That being said, typically, the function name and/or documentation (when done correctly) would make it obvious this was happening.  It was also common to have a corresponding DeleteXXX() function to handle the free call.</p>

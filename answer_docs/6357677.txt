@@ -1,0 +1,9 @@
+<p>if you want a batch job to execute on the client tier, override the <code>runsImpersonated</code> method (inherited from <code>RunBaseBatch</code> class) and make it return false:</p>
+
+<pre><code>public boolean runsImpersonated()
+{
+    return false; // always on the client
+}
+</code></pre>
+
+<p>Regards.</p>

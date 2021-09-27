@@ -1,0 +1,7 @@
+<p>Try to have a look at <a href="http://se2.php.net/manual/en/function.clearstatcache.php" rel="nofollow">clearstatcache()</a> I think this will solve your problem.</p>
+
+<blockquote>
+  <p>This function caches information about specific filenames, so you only need to call clearstatcache() if you are performing multiple operations on the same filename and require the information about that particular file to not be cached.</p>
+</blockquote>
+
+<p>Have a look at the example in the <a href="http://se2.php.net/manual/en/function.clearstatcache.php" rel="nofollow">docs</a>, it clearly shows the problem with ownership for instance.</p>

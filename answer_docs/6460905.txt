@@ -1,0 +1,9 @@
+<p>Attempting to insert data (key or value) into an <code>NSDictionary</code> will result in a Run Time Error. Therefore, you do not have to deal with null data in the dictionary.</p>
+
+<p><code>'-[__NSCFDictionary setObject:forKey:]: attempt to insert nil value (key: Test)'</code></p>
+
+<p>and</p>
+
+<p><code>'-[__NSCFDictionary setObject:forKey:]: attempt to insert nil key'</code></p>
+
+<p>However, this means you are responsible for checking the validity of the data before putting it into the dictionary to prevent crashes.</p>

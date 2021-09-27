@@ -1,0 +1,12 @@
+<p>If ClassA and ClassB have no relation then you can't. If they are in the same hierarchy structure (suppose both inherits from ClassC) put a parent class reference (ClassC).</p>
+
+<p>For example:</p>
+
+<pre><code>public ClassC{}
+public ClassA&lt;T extends ClassC&gt; extends ClassC{
+public void setCustomHandler(final List&lt;T&gt; customHandler) {
+    this.customHandler = customHandler;
+}
+
+}
+</code></pre>

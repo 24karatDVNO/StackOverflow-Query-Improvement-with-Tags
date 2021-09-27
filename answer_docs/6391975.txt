@@ -1,0 +1,19 @@
+<p>The second argument to postMessage is now required. Your code could be changed to this:</p>
+
+<pre><code>   window.postMessage('1st' + data, document.location);
+</code></pre>
+
+<p>Which works because you are posting to your own window.  To post to another window, use this:</p>
+
+<pre><code>   popup = window.open('http://example.com/');
+   popup.postMessage("Hi!", 'http://example.com/')
+</code></pre>
+
+<p>Further Reading:  </p>
+
+<ul>
+<li><p><a href="http://ejohn.org/blog/postmessage-api-changes/" rel="nofollow">http://ejohn.org/blog/postmessage-api-changes/</a></p></li>
+<li><p><a href="http://dev.w3.org/html5/postmsg/#web-messaging" rel="nofollow">http://dev.w3.org/html5/postmsg/#web-messaging</a></p></li>
+</ul>
+
+<p>Good luck!</p>

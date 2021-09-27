@@ -1,0 +1,13 @@
+<p>You can use the classic Java way:</p>
+
+<pre><code>try {
+    InetAddress addr = InetAddress.getLocalHost();
+
+    // Get IP Address
+    byte[] ipAddr = addr.getAddress();
+
+    // Get hostname
+    String hostname = addr.getHostName();
+} catch (UnknownHostException e) {
+}
+</code></pre>

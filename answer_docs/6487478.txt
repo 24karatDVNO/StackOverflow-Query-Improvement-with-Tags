@@ -1,0 +1,141 @@
+<p>Actually it's the problem of the class which is inside the array.</p>
+
+<p>I changed my class as this:</p>
+
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+
+@interface SymbolTalkEntry : NSObject {
+
+ int categoryId;
+ NSString *runModeType;
+ NSString *sceneCategory;
+ NSString *fileName;
+ int isDefault;
+ int sortX;
+ int pathId;// 0 for appbundle 1 for document directry
+
+
+}
+@property (nonatomic, retain)NSString *runModeType;;
+@property (nonatomic, retain)NSString *sceneCategory;
+@property (nonatomic, retain)NSString *fileName;
+
+-(id)init;
+
+-(void) setCategoryId:(int) ctgId;
+-(int)categoryId;
+
+-(void) setRunModeType:(NSString *)rmType;
+-(NSString *) runModeType;
+
+-(void) setSceneCategory:(NSString *)scCategory;
+-(NSString *) sceneCategory;
+
+-(void) setFileName:(NSString *)Flname;
+-(NSString *) fileName;
+
+-(void) setIsDefault:(int) isDeft;
+-(int)isDefault;
+
+-(void) setSortX:(int) srtX;
+-(int)sortX;
+
+-(void) setPathId:(int) srtX;
+-(int)pathId;
+@end
+[5:05:00 AM] Shamsudheen TK: #import "SymbolTalkEntry.h"
+
+
+@implementation SymbolTalkEntry
+@synthesize runModeType;
+@synthesize sceneCategory;
+@synthesize fileName;
+
+
+-(id) init{
+ categoryId = 0;
+ runModeType = @"";
+ sceneCategory =@"";
+ fileName = @"";
+ isDefault = 0;
+ sortX =0;
+ pathId =0;
+ return self;
+}
+-(void) setCategoryId:(int) ctgId{
+ categoryId = ctgId;
+}
+-(int)categoryId{
+ return categoryId;
+}
+
+-(void) setRunModeType:(NSString *)rmType{
+
+ if (runModeType != rmType) {  
+  [runModeType release ];
+  runModeType = [rmType retain];
+ }
+}
+-(NSString *) runModeType{
+ return runModeType;
+}
+
+-(void) setSceneCategory:(NSString *)scCategory{
+
+ if (sceneCategory != scCategory) {
+  [sceneCategory release];
+  sceneCategory = [scCategory retain];
+ }
+}
+-(NSString *) sceneCategory{
+ return sceneCategory;
+}
+
+-(void) setFileName:(NSString *)Flname{
+
+ if (fileName != Flname) {
+  [fileName release];
+  fileName = [Flname retain];
+ }
+}
+-(NSString *) fileName{
+ return fileName;
+}
+
+-(void) setIsDefault:(int) isDeft{
+ isDefault = isDeft;
+}
+-(int)isDefault{
+ return isDefault;
+}
+
+-(void) setSortX:(int) srtX{
+ sortX =srtX;
+}
+-(int)sortX{
+ return sortX;
+}
+
+-(void) setPathId:(int) srtX{
+ pathId = srtX;
+}
+-(int)pathId{
+ return pathId;
+}
+
+-(void)dealloc{
+ [categoryId release];
+ [runModeType release];
+ [sceneCategory release];
+ [fileName release];
+ [isDefault release];
+ [sortX release];
+ [pathId release];
+}
+@end
+</code></pre>
+
+<p>and set the values using the set methods that I wrote (eg: <code>[classobj setCategoryId:1]</code>).</p>
+
+<p>now  out of scope is solved.....</p>

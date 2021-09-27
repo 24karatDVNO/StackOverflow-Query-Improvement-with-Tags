@@ -1,0 +1,30 @@
+<p>As per the C# specification 17.4.5 Variable initializers:</p>
+
+<blockquote>
+  <p>For instance fields, variable
+  initializers correspond to assignment
+  statements that are executed when an
+  instance of the class is created.</p>
+</blockquote>
+
+<p>All fields also have default value initializers that run regardless of whether the field has a variable initializer:</p>
+
+<blockquote>
+  <p>The default value initialization
+  described in 1.4.3 occurs for all
+  fields, including fields that have
+  variable initializers. Thus, when a
+  class is initialized, all static
+  fields in that class are first
+  initialized to their default values,
+  and then the static field initializers
+  are executed in textual order.
+  Likewise, when an instance of a class
+  is created, all instance fields in
+  that instance are first initialized to
+  their default values, and then the
+  instance field initializers are
+  executed in textual order.</p>
+</blockquote>
+
+<p>So basically, there is no difference between private member initialization and construction initialization - the compiler will put it all the object's instance initialization routine, in textual order.</p>

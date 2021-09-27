@@ -1,0 +1,7 @@
+<blockquote>
+  <p>In this i'm having some problems accessing private functions since it is out of the scope for the public functions defined in the lib's prototype.</p>
+</blockquote>
+
+<p>This is because there is no such thing as <code>private</code> there is only <code>local</code>. You cannot access local variables out of scope. </p>
+
+<p>The prototype cannot talk to local variables in the constructor. There are various hacks around this like keeping a public hash of instances but then you lose the "privacy"</p>

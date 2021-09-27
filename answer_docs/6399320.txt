@@ -1,0 +1,28 @@
+<p>Can you please clarify what you are asking?
+The assumption made by Jebego, and my understanding of your question, is that you are interesting in finding out what different Virtualization tools are available, though your comment:</p>
+
+<blockquote>
+  <p>I want to assemble a collection of browsers for testing as portable application. In addition to its main functions I want to be able to see html \ css \ js or something like Firebug.</p>
+</blockquote>
+
+<p>Is slightly misleading as it refers to browsers.</p>
+
+<p>Other useful information you may want to include is the size of your budget.  You mention that you are currently using VirtualBox, which is Open Source, so I am assuming you ideally are looking for products which are free.</p>
+
+<p>Anyway assuming my assumptions are correct, I can give details on a couple of options which I have experience with:</p>
+
+<ol>
+<li><a href="http://www.microsoft.com/windows/virtual-pc/default.aspx" rel="nofollow">Micsoroft Virtual PC</a> - I found Microsoft Virtual PC easy to set up and get started with.  It is a free download, and if you have Windows 7 installed then I believe it is built into the OS.  If you're looking for seomthing fairly basic, simply to run your application in a browser for testing purposes then this may be sufficient.  Virtual PC allows you to allocate a specfic amount of RAM to each VM, but you cannot go over 3,712MB, which is pretty limiting if you need to do anything requiring significant resources inside the VM.</li>
+<li><a href="http://www.vmware.com/products/server/overview.html" rel="nofollow">VMWare Server</a> - I recently moved to VMWare Server 2.0, also a free product. I use a virtual machine for development tasks, and found that the RAM limit on Virtual PC was too low to run the developer tools and add-ins at a suitable speed.  With VMWare Server, you can allocate as much RAM as you see fit (obviously you need to have it available in the host machine), and you can also specify the number of CPUs to allocate to the VM.  The setup is slightly less starightforward than Virtual PC, but by no means complicated.  The tools provided by VMWare offer more configuration options (such as those mentioned above).</li>
+</ol>
+
+<p>This is a brief summary of my experience, I'd be happy to give more detail on either if you so require.</p>
+
+<p>Some general things to bear in mind when choosing virtualisation software:</p>
+
+<ul>
+<li>What OS do you plan to install on the guest?  Some Virtualisation software is better suited to specific OS'es</li>
+<li>How much poower do you need inside your guest VM?  Again, this will influence your decision on which way to go.</li>
+</ul>
+
+<p>Hope this helped, good luck with your search.</p>

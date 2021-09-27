@@ -1,0 +1,3 @@
+<p>Another potential issue is that the current method does not select each record with the same probability.  A simple way to see that is suppose that 9 of 10 records are desired.  The current method would have only a 10% chance of selecting the first record yet it would always select the 10th record. </p>
+
+<p>It seems it would be better to generate a random set of record numbers (such as <a href="https://stackoverflow.com/questions/254844/random-array-using-linq-and-c">described in this post</a>).  Then use those to choose those entries from the result set.</p>

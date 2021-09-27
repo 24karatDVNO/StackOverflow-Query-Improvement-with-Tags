@@ -1,0 +1,3 @@
+<p>I have a bit different approach when writing page objects. Translated to your terms <strong>load() method ends with conditional wait ensuring the page contains what you desire</strong>. Then I do not need any isLoaded() - either I'm there or Exception is thrown.</p>
+
+<p><strong>Components in page are properties of the page</strong> containing them and I set two-way relationship between a component and the page. They are not fully functional page objects. Maybe your forms can be modeled this way too. </p>

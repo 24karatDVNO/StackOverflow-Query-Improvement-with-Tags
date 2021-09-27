@@ -1,0 +1,48 @@
+<p>Another way to do this is using a MultiBinding and Converter on the button you want to enable/disable</p>
+
+<pre><code>&lt;Window ... xmlns:local="..."&gt;
+  &lt;Window.Resources&gt;
+    &lt;local:MyMultiValueConverter x:Key="MyMultiValueConverter" /&gt;
+  &lt;/Window.Resources&gt;
+
+  ...
+
+  &lt;ComboBox x:Name="myComboBox"&gt;...&lt;/ComboBox&gt;
+  &lt;TextBox x:Name="myTextBox"&gt;...&lt;/TextBox&gt;
+
+  ...
+
+  &lt;Button Content="My Button"&gt;
+    &lt;Button.IsEnabled&gt;
+      &lt;MultiBinding Converter="{StaticResource MyMultiValueConverter}"&gt;
+        &lt;Binding ElementName="myComboBox" Path="SelectedValue" /&gt;
+        &lt;Binding ElementName="myTextBox" Path="Text" /&gt;
+      &lt;/MultiBinding&gt;
+    &lt;/Button.IsEnabled&gt;
+  &lt;/Button&gt;
+
+  ...
+
+&lt;/Window&gt;
+</code></pre>
+
+<p>You need to create an implementation of the <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.imultivalueconverter.aspx" rel="nofollow">IMultiValueConverter interface</a> that tests the values of both the ComboBox.SelectedValue and TextBox.Text properties and return either true or false which will then be assigned to the Button.IsEnabled property. Here's a simple converter that works but you'd want to make sure to tailor one to your specific needs:</p>
+
+<pre><code>public class MyMultiValueConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        if (values == null)
+            return false;
+
+        return values.All(c =&gt; c is String ? !String.IsNullOrEmpty((string)c) : c != null);
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+</code></pre>
+
+<p>While this approach does work, I tend to agree with the other answers in that you should use commands when possible over multibindings and converters.</p>

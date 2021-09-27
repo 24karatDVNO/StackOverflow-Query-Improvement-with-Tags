@@ -1,0 +1,22 @@
+<p>I don't know the answer but this may be a workaround. It runs a script with each build.</p>
+
+<pre><code>&lt;key&gt;Targets&lt;/key&gt;
+&lt;array&gt;
+    &lt;dict&gt;
+        &lt;key&gt;BuildPhases&lt;/key&gt;
+        &lt;array&gt;
+            &lt;dict&gt;
+                &lt;key&gt;Class&lt;/key&gt;
+                &lt;string&gt;ShellScript&lt;/string&gt;
+                &lt;key&gt;ShellPath&lt;/key&gt;
+                &lt;string&gt;/bin/sh&lt;/string&gt;
+                &lt;key&gt;ShellScript&lt;/key&gt;
+                &lt;string&gt;~/hello.sh&lt;/string&gt;
+            &lt;/dict&gt;
+</code></pre>
+
+<p><img src="https://i.stack.imgur.com/00UDZ.png" alt="enter image description here"></p>
+
+<p>Note that the path to the script is absolute. Maybe you can define a path with <code>PathType</code> <code>Group</code> to set it relative to a group inside the project (I didn't try).</p>
+
+<p><code>DstPath</code> is the destination path of the files to copy (I guess). I don't know what <code>DstSubfolderSpec</code> is, it only appears in the Command Line Tool with a value of 0. I guess you don't know it either.</p>

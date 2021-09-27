@@ -1,0 +1,12 @@
+<p>I pulled a few of the answers here into something like this.  It actually returns each email address from the string (sometimes there are multiples from the mail host and target address).  I can then match each of the email addresses up against the outbound addresses we sent, to verify.  I used the article from @plinth to get a better understanding of the regular expression and modified the code from @Chris Bint</p>
+
+<p>However, I'm still wondering if this is the <em>fastest</em> way to monitor 10,000+ emails?  Are there any more efficient methods (while still using c#)?  The live code won't recreate the Regex object every time within the loop.</p>
+
+<pre><code>public static MatchCollection CheckEmail(string email)
+{
+  Regex regex = new Regex(@"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b", RegexOptions.IgnoreCase);          
+  MatchCollection matches = regex.Matches(email);
+
+  return matches;
+}
+</code></pre>

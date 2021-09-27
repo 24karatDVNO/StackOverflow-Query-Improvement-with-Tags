@@ -1,0 +1,29 @@
+<p>I would suggest you to increase the value of the <code>style.zIndex</code> property of your drop-down menu, so that it could appear in front of the iframe even if it is not transparent. But it's just an idea, I don't know if it will work.  </p>
+
+<p>To try this, as browsers ignore the <code>style.zIndex</code> property on non-positioned elements,  your drop-down menu should then have <code>style.position</code> with <code>"relative"</code> or <code>"absolute"</code>.</p>
+
+<p>EDIT: I could see you are now trying to add a <code>makeWmode</code> function to your version of the swfobject.js. Of course I hope your code will work, but otherwise here is mine, if I can help you... </p>
+
+<pre><code>function makeWMode(id, mode) {  // id: the id of the &lt;object&gt; tag of the Flash object; in this case I think it is "content"
+    var object = swfobject.getObjectById(id);
+    var params = object.getElementsByTagName("param");
+    var success = false;
+    for (var i = 0; i&lt; params.length; i++) {
+        if (params[i].name.toLowerCase() == "wmode") {
+            params[i].value = mode;
+            success = true;
+            break;
+        }
+    }
+    if (success == false) {
+        var param = document.createElement("param");
+        param.name = "wmode";
+        param.value = "transparent";
+        object.appendChild(param);
+        success = true;
+        return success;
+    }
+}
+</code></pre>
+
+<p>Using <code>makeWMode("content", "transparent")</code> added a tag <code>&lt;param name="wmode" value="transparent"&gt;</code> to the <code>object</code> tag, but it may not work with an <code>embed</code> tag. </p>

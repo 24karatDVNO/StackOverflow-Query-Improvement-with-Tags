@@ -1,0 +1,21 @@
+<p>Here you go:</p>
+
+<p><a href="http://jsfiddle.net/fehays/QNXXf/" rel="nofollow">http://jsfiddle.net/fehays/QNXXf/</a></p>
+
+<pre><code>$(function() {
+    $('.next').click(function() {
+        var $nxt = $(this);
+        var $titlex = $nxt.parent().next().find('.title');
+        var result3 = {"data":["value1","value2","value3","value4","value5"]};
+
+        $.each(result3.data, function(index, value) {
+            $titlex.eq(index).html(value);
+        });
+    });
+});
+</code></pre>
+
+<p>I removed the ajax call and just used a json object containing an array.  Also note that your selector for finding the .title elements was wrong.  Needs to be something like this:</p>
+
+<pre><code>var $titlex = $nxt.parent().next().find('.title');
+</code></pre>

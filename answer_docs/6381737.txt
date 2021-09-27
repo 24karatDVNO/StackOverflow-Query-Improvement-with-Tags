@@ -1,0 +1,24 @@
+<p>You can get data from textbox using textbox.getText();</p>
+
+<p>Store it as string and then you can insert this data referring this code:</p>
+
+<pre><code> try
+        {
+            URI myURI = URI.create("file:///SDCard/Databases/SQLite_Guide/" +
+                                   "MyTestDatabase.db"); 
+            d = DatabaseFactory.open(myURI);
+
+            Statement st = d.createStatement("INSERT INTO People(textboxid) " +
+                                             "VALUES (textbox.getText())");
+            st.prepare();
+            st.execute();
+            st.close();
+            d.close();
+
+        }
+        catch ( Exception e ) 
+        {         
+            System.out.println( e.getMessage() );
+            e.printStackTrace();
+        }
+</code></pre>

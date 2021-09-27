@@ -1,0 +1,21 @@
+<p>If you're making your array dynamic, you might want to consider:</p>
+
+<ul>
+<li>Using <a href="http://www.boost.org/doc/libs/1_46_1/libs/multi_array/doc/index.html" rel="nofollow">Boost::multi_array</a>.</li>
+</ul>
+
+<p>or</p>
+
+<ul>
+<li><p>Allocating a one-dimensional array: </p>
+
+<pre><code>arr= (uint16_t *) malloc(NUM_ROWS*NUM_COLS*sizeof(uint16_t));
+</code></pre>
+
+<p>and accessing it at column <code>col</code> and row <code>row</code>  as follows:</p>
+
+<pre><code>arr[col*NUM_ROWS+row]
+</code></pre>
+
+<p>This is not as convienient to use, but its simple to implement.</p></li>
+</ul>

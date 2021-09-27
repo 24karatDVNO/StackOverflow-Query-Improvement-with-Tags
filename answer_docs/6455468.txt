@@ -1,0 +1,3 @@
+<p>Well, yes, you could use Flash to call JavaScript and remove the div/span which is holding it (see <code>fscommand</code> and <code>ExternalInterface</code>), but I don't think that is your best option -- it is too prone to failure and it is too subject to its environment.</p>
+
+<p>If you can, just navigate away from that page using <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html" rel="nofollow"><code>navigateToUrl(new URLRequest(&lt;ip&gt;), "_self")</code></a></p>

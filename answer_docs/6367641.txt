@@ -1,0 +1,41 @@
+<p>This is the solution I ended with (thanks @dyppl). For the user control idea</p>
+
+<pre><code>public partial class forecastView : UserControl
+{    
+    public forecastView()
+    {
+        InitializeComponent();
+    }
+
+    public forecastView(int x, int y, int index,WeatherSet set)
+    {
+        InitializeComponent();
+
+        label7.Text = string.Format("High:{0}", set.Forecast[index].High);
+        label8.Text = string.Format("Low: {0}", set.Forecast[index].Low);
+        pictureBox3.Load(string.Format("http://www.google.com/{0}", set.Forecast[index].Icon));
+        groupBox1.Text = set.Forecast[index].DayOfTheWeek;
+
+        this.Location = new System.Drawing.Point(x, y);
+    }
+}
+</code></pre>
+
+<p>And I load them this way</p>
+
+<pre><code>private void LoadControls(WeatherSet set)
+{
+    RemoveConrols();
+    //form2.Dispose();
+
+    form = new forecastView(12, 136, 1, set);
+    form1 = new forecastView(155, 136, 2, set);
+    form2 = new forecastView(12, 218, 3, set);
+
+    this.Controls.Add(form);
+    this.Controls.Add(form1);
+    this.Controls.Add(form2);
+}
+</code></pre>
+
+<p>So thanks to all that helped me with this issue ;)</p>

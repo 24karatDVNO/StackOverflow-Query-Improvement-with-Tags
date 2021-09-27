@@ -1,0 +1,32 @@
+<p>This is JSON:</p>
+
+<pre><code>var foo = "{bar: 1}";
+</code></pre>
+
+<p>This is not JSON:</p>
+
+<pre><code>var foo = {bar: 1};
+</code></pre>
+
+<p>Your code snippet is not using JSON at all and my educated guess is that you don't even need it. If you are using PHP to generate some JavaScript code, you can simply tweak your PHP code to print text that will contain <em>real</em> JavaScript variables. There is no need to encode stuff as plain text!</p>
+
+<p>Now it's clear we don't need JSON, let's use a dirty trick. PHP has <a href="http://php.net/json_encode" rel="nofollow">json_encode()</a> and we can abuse the fact that a JSON strings resemble JavaScript variables. All we have to do is call json_encode() on our PHP variable and <em>forget</em> to quote the result:</p>
+
+<pre><code>&lt;?php
+
+$foo = array(
+    'bar' =&gt; 1,
+    'dot' =&gt; FALSE,
+);
+
+echo 'var JSONString = "' . json_encode($foo) . '";' . PHP_EOL;
+echo 'var realVariable = ' . json_encode($foo) . ';' . PHP_EOL;
+</code></pre>
+
+<p>Compare:</p>
+
+<pre><code>var JSONString = "{"bar":1,"dot":false}";
+var realVariable = {"bar":1,"dot":false};
+</code></pre>
+
+<p><strong>Edit:</strong> Yep, my JSONString is not a valid string... but we get the idea &lt;:-)    </p>

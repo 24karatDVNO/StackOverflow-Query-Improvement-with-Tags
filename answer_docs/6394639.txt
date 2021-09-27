@@ -1,0 +1,112 @@
+<p>You can try OpenCV. I have functions to read and modify a video file and it can open variety of formats. It is available for C++ but not sure if it is available for JAVA. Also it will not parse the audio. </p>
+
+<p>Here is a sample implementation of mine which i use in my computer vision projects</p>
+
+<p>.h file</p>
+
+<pre><code>#ifndef _VPLAYER_H_
+</code></pre>
+
+<p>#define _VPLAYER_H_</p>
+
+<p>#include 
+   #include 
+   #include 
+   #include "cv.h"
+   #include "highgui.h"</p>
+
+<p>class VPlayer {</p>
+
+<p>public:
+    VPlayer();
+    ~VPlayer();</p>
+
+<p>private:</p>
+
+<pre><code>CvCapture* pAvi;
+IplImage* pFrame;
+</code></pre>
+
+<p>public:
+    int Height;
+    int Width;
+    int fps;
+    int numFrames;
+    double CodecCode;</p>
+
+<p>public:</p>
+
+<pre><code>bool LoadVideo(char * fname);
+void GetFrame(int FrameNo);
+void GetImage (IplImage* &amp;pOutBuffer);
+void GetProperties();
+</code></pre>
+
+<p>};</p>
+
+<p>#endif   </p>
+
+<p>.cpp file</p>
+
+<p>#include "stdafx.h"
+   #include "VideoPlayer_PB_1.h"</p>
+
+<p>bool VPlayer::LoadVideo(char * fname){</p>
+
+<pre><code>if(pAvi)cvReleaseCapture(&amp;pAvi);
+if(!(pAvi = cvCaptureFromAVI(fname)))return false;
+GetProperties();
+return true;
+</code></pre>
+
+<p>}</p>
+
+<p>VPlayer::VPlayer(){
+    pAvi = 0;
+    pFrame =0;
+   }</p>
+
+<p>VPlayer::~VPlayer(){</p>
+
+<pre><code>cvReleaseCapture(&amp;pAvi);
+</code></pre>
+
+<p>}</p>
+
+<p>void VPlayer::GetFrame(int FrameNo){</p>
+
+<pre><code>cvSetCaptureProperty(pAvi,CV_CAP_PROP_POS_FRAMES,FrameNo);
+
+if(!cvGrabFrame(pAvi)){              // capture a frame 
+    printf("Could not grab a frame\n\7");
+    exit(0);
+}
+pFrame = cvRetrieveFrame(pAvi);  
+</code></pre>
+
+<p>}</p>
+
+<p>void VPlayer::GetImage (IplImage* &amp;pOutBuffer){</p>
+
+<pre><code>pOutBuffer = cvCloneImage(pFrame);
+</code></pre>
+
+<p>}</p>
+
+<p>void VPlayer::GetProperties(){
+    if(pAvi){
+        cvQueryFrame(pAvi); // this call is necessary to get correct capture properties</p>
+
+<pre><code>    Height = (int) cvGetCaptureProperty(pAvi, CV_CAP_PROP_FRAME_HEIGHT);
+
+    Width = (int) cvGetCaptureProperty(pAvi, CV_CAP_PROP_FRAME_WIDTH);
+
+    fps       = (int) cvGetCaptureProperty(pAvi, CV_CAP_PROP_FPS);
+
+    numFrames = (int) cvGetCaptureProperty(pAvi,  CV_CAP_PROP_FRAME_COUNT);
+
+    CodecCode = cvGetCaptureProperty(pAvi, CV_CAP_PROP_FOURCC);
+}
+</code></pre>
+
+<p>}</p>

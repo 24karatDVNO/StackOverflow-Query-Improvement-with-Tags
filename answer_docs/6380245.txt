@@ -1,0 +1,1 @@
+<p>Set the main view/controller as the delegate of the inner views, define a protocol in which you define a method, say, <code>toggleMainButtons</code>, have the VC conform to that protocol and implement the message. On the buttons, <code>addTarget:self.delegate action:@selector(toggleMainButtons) forControlEvents:UIControlEventTouchUpInside</code>.</p>

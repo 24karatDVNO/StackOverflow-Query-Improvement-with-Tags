@@ -1,0 +1,5 @@
+<p>First off, why is the cp_ data split into seperate tables? If the data was properly normalized this would not be an issue.</p>
+
+<p>Givn that, a simple solution would be to create a view of a union of all the cp_ tables - however IME, mysql does not optimise push-predicates for views/sub-queries as efficiently as it might. And as you have discovered you still need to maintain the view.</p>
+
+<p>Which leads me to using the solution described by Devart. Noet that this is not a substitute for normalizing your data! It will never be as efficient and as the number of tables increases, performance will degrade rapidly. However Devart has skipped over the fiddly bit - how to get the resultset out of the procedure - the short answer is that you can't. However you can insert the matched rows into a temporary table then select the rows from that.</p>

@@ -1,0 +1,9 @@
+<p>You must drop all objects before dropping the schema.
+To check if a schema exists:</p>
+
+<pre><code>IF NOT EXISTS (select SCHEMA_NAME from INFORMATION_SCHEMA.SCHEMATA WHERE CATALOG_NAME='YOUR DB NAME HERE' and SCHEMA_NAME=@SchemaName)
+BEGIN
+     -- Do some processing...
+     return
+END
+</code></pre>

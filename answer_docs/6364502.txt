@@ -1,0 +1,14 @@
+<p>Presorting doesn't work when you have many points in the application where things get added to the ListBox. You can add an event handler when it gets updated. Pseudocode:</p>
+
+<pre><code>import com.google.gwt.event.dom.client.ChangeHandler;
+
+ChangeHandler sortMyList(){
+
+    //extract your elements, sort, then reinsert
+}
+
+ListBox lb = new ListBox();
+lb.addChangeHandler( sortMyList());
+</code></pre>
+
+<p>The other alternative is to extend ListBox to a class called SortedListBox which keeps elements sorted as they are inserted. This would avoid O(n^2) amortized insertion cost.</p>

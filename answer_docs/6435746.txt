@@ -1,0 +1,21 @@
+<p>There is no straight way to do that as form with url (action) must be rendered before user types anything into search. So you need initial value, but it may not make sense when you don't know what user wants to type in. GET form with parameters would solve it but I suppose you want "nice" search urls.</p>
+
+<p>Generally there are two options:</p>
+
+<ol>
+<li><p>You can't change URL path by simple form submittion - only params (?x=1&amp;y=2...) may be added. But you can modify whole URL by JavaScript when user types something to search input (onchange) or submits form (onsubmit).</p></li>
+<li><p>Use another action which will receive standard form input values then redirect it to proper url. E.g. <code>/searchforward?search=Query&amp;page=1</code> should forward to <code>/Query/1</code>.</p></li>
+</ol>
+
+<p>routes.rb:</p>
+
+<pre><code>match 'searchforward', :to =&gt; 'search#searchforward'
+match '/:search/:page, :to =&gt; 'search#create', :as =&gt; :search
+</code></pre>
+
+<p>controller:</p>
+
+<pre><code>def searchforward
+  redirect_to search_path(params[:search],params[:page]
+end
+</code></pre>

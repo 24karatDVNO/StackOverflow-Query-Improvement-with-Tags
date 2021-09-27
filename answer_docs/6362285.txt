@@ -1,0 +1,5 @@
+<p>Method 2 doesn't work because you are passing the pointer by value, and overwriting that value locally, so the value of the pointer outside the function isn't changed. You can fix this by either passing it by reference or by passing a pointer to the pointer.</p>
+
+<p>As for the other question: it's really just a matter of clearly documenting who has got the responsibility to delete the allocated data. (By the way: yes, you should deallocate otherwise you will leak). In many APIs you will see in the documentation: "the caller has the responsiblity to delete this" or "call this other function to delete the allocated data".</p>
+
+<p>A good way to decouple this kind of ownership concerns is to use smart pointers (as Armen suggests).</p>

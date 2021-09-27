@@ -1,0 +1,9 @@
+<p>To get the value of an attribute property, just cast the object returned by GetCustomAttributes():</p>
+
+<pre><code>{
+    string val;
+    object[] atts = method.GetCustomAttributes(typeof(MethodTestAttibute), true);
+    if (atts.Length &gt; 0)
+       val = (atts[0] as MethodTestingAttibute).Value;
+}
+</code></pre>

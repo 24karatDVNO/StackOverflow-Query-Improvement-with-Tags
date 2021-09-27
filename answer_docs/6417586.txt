@@ -1,0 +1,21 @@
+<pre><code>getFullAddressFromId: function (contactId) {
+            var contact;
+
+                $.ajax({
+                    url: "/WebServices/FormOverview.asmx/GetFullAddressfromId",
+                    data: { id: contactId},
+                    success: function (result) {
+                        contact = result;
+                    },
+                        error: function (err) {
+                            _local.sendNotification.apply(this, ['Failed to load address information', 'Error']);
+                    },
+                    async: false
+                });     
+            };
+
+            return contact;     
+        }
+</code></pre>
+
+<p>But you don't want to use this because the browser window will most likely hang waiting for the web server. Go for the asynchronous ones.</p>

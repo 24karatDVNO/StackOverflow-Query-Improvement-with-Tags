@@ -1,0 +1,18 @@
+<p>Have you tried just using a JsonStore? Try doing something like this:</p>
+
+<pre><code>var comboStore = new Ext.data.JsonStore({
+       id: 'JsonStore',
+       idProperty: 'id',
+       autoLoad: true,
+       idProperty: 'id',
+       root: &lt;root of your JSON&gt;,
+       fields: [ 'id', 'name' ],
+       proxy: new Ext.data.ScriptTagProxy({
+           api: {
+               read: '../cxf/rest/CustomerService/getGroups',
+           }
+       })
+   });
+</code></pre>
+
+<p>Then use that is the Store for the ComboBox. A JsonStore automatically creates a JsonReader, which I think is where the conflict in your code is.</p>

@@ -1,0 +1,26 @@
+<p>You might try <a href="http://www.boost.org/doc/libs/1_46_1/doc/html/variant.html" rel="nofollow">boost::variant</a> and the use a visitor:</p>
+
+<pre><code>typedef boost::variant&lt;MyClass1, MyClass2, MyClass3&gt; MyVariantClass;
+
+boost::shared_ptr&lt;MyVariantClass&gt; myObject;
+switch (foo) {
+    case  1: {
+        MyClass1 object();
+        myObject = boost::shared_ptr&lt;MyVariantClass&gt;(new MyVariantClass(object))
+        break;
+    }
+   case  2: {
+        MyClass2 object();
+        myObject = boost::shared_ptr&lt;MyVariantClass&gt;(new MyVariantClass(object))
+        break;
+    }
+    case  3: {
+        MyClass3 object();
+        myObject = boost::shared_ptr&lt;MyVariantClass&gt;(new MyVariantClass(object))
+        break;
+    }
+}
+</code></pre>
+
+<p>And then create a visitor as boost guys says in their tutorial. 
+The only issue here is that you really create two objects. The object itself in the declaration (MyClass3 object()) and then the copy the variant is doing inside. </p>

@@ -1,0 +1,5 @@
+<p>Based on what I saw in the EclipseLink code, you may need to open a bug for this issue. I don't use EclipseLink, but I took a minute to download the latest release of the source to see if the problem was still there. </p>
+
+<p>The source for org.eclipse.persistence.platform.database.DB2Platform shows that getTimestampQuery() still returns the same sloppy, wasteful query you're encountering. There is no reason at all to query SYSIBM.SYSTABLES just to get DB2 to hand you a timestamp. If you care enough about this to open a bug, you could recommend that they replace the query with <code>"SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1"</code></p>
+
+<p>Although SYSIBM.SYSTABLES is also referenced by getNativeTableInfo() in the same class, the comments hint that the method is just a compatibility hedge against mediocre JDBC drivers, assuming the method is even called at all.</p>

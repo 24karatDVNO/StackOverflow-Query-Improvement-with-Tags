@@ -1,0 +1,12 @@
+<pre><code>&lt;ListBox ItemsSource="{Binding Customers}" x:Name="customersList"/&gt;
+    &lt;ListBox x:Name="customersDetails" ItemsSource="{Binding ElementName=customersList,Path=SelectedItems}"&gt;
+        &lt;ListBox.ItemTemplate&gt;
+            &lt;DataTemplate&gt;
+                &lt;PropertyGrid IsEditable ="{Binding CanEditCustomer}" SelectedItem ="{Binding}"/&gt;
+            &lt;/DataTemplate&gt;
+        &lt;/ListBox.ItemTemplate&gt;
+    &lt;/ListBox&gt;
+</code></pre>
+
+<p>The first list contains all customers.
+The second list contains editors for properties of selected customers.</p>

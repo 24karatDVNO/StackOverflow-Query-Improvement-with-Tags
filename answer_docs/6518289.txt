@@ -1,0 +1,23 @@
+<p>You can do it via sorting the list and getting the highest values by d[2]:</p>
+
+<pre><code>    In [26]: d
+    Out[26]: 
+    [('mail', 167, datetime.datetime(2010, 9, 29, 0, 0)),
+     ('name', 1317, datetime.datetime(2011, 12, 12, 0, 0)),
+     ('mail', 1045, datetime.datetime(2010, 8, 13, 0, 0)),
+     ('name', 3, datetime.datetime(2011, 11, 3, 0, 0))]
+
+    In [27]: d.sort(key = lambda i: i[2], reverse=True)
+
+    In [28]: d
+    Out[28]: 
+    [('name', 1317, datetime.datetime(2011, 12, 12, 0, 0)),
+     ('name', 3, datetime.datetime(2011, 11, 3, 0, 0)),
+     ('mail', 167, datetime.datetime(2010, 9, 29, 0, 0)),
+     ('mail', 1045, datetime.datetime(2010, 8, 13, 0, 0))]
+
+    In [29]: [i for pos, i in enumerate(d) if i[0] in [j[0] for j in d[pos+1:]]]
+    Out[29]: 
+    [('name', 1317, datetime.datetime(2011, 12, 12, 0, 0)),
+     ('mail', 167, datetime.datetime(2010, 9, 29, 0, 0))]
+</code></pre>

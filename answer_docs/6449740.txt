@@ -1,0 +1,7 @@
+<p>Make sure you're enabling orientation notifications via:</p>
+
+<p><code>[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];</code></p>
+
+<p>If that still doesn't work, you can also use the status bar to figure out the current orientation (if your UI is rotating) via:</p>
+
+<p><code>[[UIApplication sharedApplication] statusBarOrientation];</code></p>

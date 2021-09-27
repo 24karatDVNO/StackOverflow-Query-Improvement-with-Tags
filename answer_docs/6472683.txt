@@ -1,0 +1,16 @@
+<p>The default namespace in the XML document must be declared in the XSLT. For example, use the prefix 'brl'.</p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0" 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:brl="http://www.max.com/BRL"&gt;
+</code></pre>
+
+<p>Then use the brl prefix when referring to the tag names. For example,</p>
+
+<pre><code>&lt;xsl:template match="brl:lhs" name="lhsTemplate"&gt;
+...
+&lt;xsl:when test="brl:incident != ''"&gt;
+&lt;xsl:for-each select="brl:incident"&gt;
+</code></pre>
+
+<p>If the XML document may or may not have a namespace, see my article "<a href="http://www.ibm.com/developerworks/library/x-xpath5tips/#tip5" rel="nofollow">Stay on the XPath: Tip 5: Handling XPath select expressions that fail to match documents with a default namespace</a>" on IBM developerWorks.</p>

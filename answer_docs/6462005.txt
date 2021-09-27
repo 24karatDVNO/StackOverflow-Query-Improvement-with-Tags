@@ -1,0 +1,9 @@
+<p><a href="http://blog.manontheground.net/traveller/2008/07/svndeltasourcee.html" rel="nofollow">Here's</a> how I solved the problem:</p>
+
+<p>Step 1: I identified the file that was causing the problem. May be the last file checked-in before the build break. </p>
+
+<p>Step 2: I made sure that all changed files in the problem file's directory were committed to the repository.</p>
+
+<p>Step 3: I deleted the problem file's directory from my working copy (not the repository!). If it is difficult to find the causing file, just delete the whole directory after checking all the modifications.</p>
+
+<p>Step 4: I updated my entire working copy</p>

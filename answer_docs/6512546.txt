@@ -1,0 +1,5 @@
+<p>What you're seeing is the real thing- the orientation sensors on most phones are only good enough to give you a rough compass heading.</p>
+
+<p>If you want to smooth the displayed value out so it gives you something that's doesn't appear to change randomly I recommend implementing a <a href="http://en.wikipedia.org/wiki/Moving_average" rel="nofollow">http://en.wikipedia.org/wiki/Moving_average</a> or other smoothing filter in Java on that orientation result.</p>
+
+<p>For the highest performance you could write the filter using the NDK and use the Boost Accumulators library: <a href="http://www.boost.org/doc/libs/1_46_1/doc/html/accumulators.html" rel="nofollow">http://www.boost.org/doc/libs/1_46_1/doc/html/accumulators.html</a></p>

@@ -1,0 +1,15 @@
+<p>Try reading this link, it should tell you how to deny access to anonymous users, so you should get a popup.</p>
+
+<p><a href="http://weblogs.asp.net/scottgu/archive/2006/07/12/Recipe_3A00_-Enabling-Windows-Authentication-within-an-Intranet-ASP.NET-Web-application.aspx" rel="nofollow">http://weblogs.asp.net/scottgu/archive/2006/07/12/Recipe_3A00_-Enabling-Windows-Authentication-within-an-Intranet-ASP.NET-Web-application.aspx</a></p>
+
+<pre><code> &lt;configuration&gt;
+    &lt;system.web&gt;
+        &lt;authentication mode="Windows" /&gt;
+         &lt;authorization&gt;
+             &lt;deny users="?"/&gt;
+          &lt;/authorization&gt;
+    &lt;/system.web&gt;
+&lt;/configuration&gt;
+
+Note that the &lt;deny users=”?”/&gt; directive within the &lt;authorization&gt; section above is what tells ASP.NET to deny access to the application to all “anonymous” users to the site (the “?” character means anonymous user).  This forces Windows to authenticate the user, and ensures that the username is always available from code on the server.
+</code></pre>

@@ -1,0 +1,7 @@
+<p>New line has character value of 10 (&lt;32), so its not appended, so consider appending all characters with >0 value, hence change to</p>
+
+<pre><code> if( c &lt;= 0 )
+    break;
+  else
+    sb.append( (char)c );  
+</code></pre>

@@ -1,0 +1,12 @@
+<p>I haven't tried anything like that but it seems if you want to catch the user before authentication you'll either have to write a Devise authentication strategy or a <code>before_filter</code> to be run before <code>authenticate_user!</code>.  Something like:</p>
+
+<pre><code>before_filter :no_deleted_users
+
+def no_deleted_users
+  if User.find(params[:email]).deleted?
+    redirect_to root_path, :flash =&gt; { :error =&gt; "Your user was deleted.  You cannot log in." } 
+  end
+end
+</code></pre>
+
+<p>Although it might be more complex to get the user than that.  I haven't played with Devise pre-authentication.</p>

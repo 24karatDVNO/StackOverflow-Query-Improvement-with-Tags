@@ -1,0 +1,24 @@
+<p>Make sure to put a <code>div</code> wrapper around your two images and attach the hover event to that.  If you don't, your hover will continuously trigger as the image disappears/appears. </p>
+
+<p>Here, I simply fade the last element out when hovering, and in when un-hovering.  Of course, you could be more specific and act on <code>img</code> tags only, or on specific ID's.  The generic way is more useful as you never have to write the code again for another pair of images.</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;div class="hoverfade"&gt;
+    &lt;img src="http://my/image1.jpg"&gt;
+    &lt;img src="http://my/image2.jpg"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$(".hoverfade").hover(function() {
+    $(this).children().last().fadeOut(1000);
+}, function() {
+    $(this).children().last().fadeIn(500);
+})
+</code></pre>
+
+<p>Example: <a href="http://jsfiddle.net/jtbowden/wQkWR/" rel="nofollow">http://jsfiddle.net/jtbowden/wQkWR/</a></p>
+
+<p>Example using divs with background images: <a href="http://jsfiddle.net/jtbowden/wQkWR/1/" rel="nofollow">http://jsfiddle.net/jtbowden/wQkWR/1/</a></p>

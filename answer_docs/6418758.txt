@@ -1,0 +1,33 @@
+<p>You can do this all in one query ordered by hotelid and build the data structure by using a grouped nested CFOUTPUT.</p>
+
+<pre><code>&lt;cfquery name="myHotels" datasource="HotelStuff" &gt;
+  SELECT H.*, M.*
+  FROM Hotels H
+      JOIN HotelsXMedia HXM ON H.hotelid = HXM.hotelid
+      JOIN Media M ON M.mediaid = HXM.mediaid
+  ORDER BY H.hotelid
+&lt;/cfquery&gt;
+</code></pre>
+
+<p>The group="" attribute to CFOUTPUT causes the loop to be grouped by changes in the hotelid field value.</p>
+
+<pre><code>&lt;cfoutput query="myHotels" group="hotelid"&gt;
+  &lt;cfset hotels = {
+     hotelid = myHotels.hotelid,
+     name = myHotels.name,
+     company = myHotels.company,
+     address = myHotels.address,
+     state = myHotels.state,
+     city = myHotels.city,
+     zip = myHotels.zip,
+     media = arrayNew(1)
+  } /&gt;
+
+  &lt;cfoutput&gt;
+     &lt;cfset thisMedia = { label = myHotels.label, url = myHotels.url } /&gt;
+     &lt;cfset arrayAppend(hotels.media, thisMedia) /&gt;
+  &lt;/cfoutput&gt;
+&lt;/cfoutput&gt;
+</code></pre>
+
+<p>You could order by Hotels.name and sometimes get away with it; you'd need to make sure that no two hotels ever have exactly the same name or they will be collapsed into a single group. It's generally safer to use a group based on your primary key column.</p>

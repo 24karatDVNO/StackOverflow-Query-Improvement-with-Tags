@@ -1,0 +1,37 @@
+<p>Here is the fixed code for anyone who is interested:</p>
+
+<pre><code>while($info = mysql_fetch_array( $data )) 
+{ 
+
+    // if the current subsection is a new section
+    if($info['subsection']==0){
+    // if the current section is NOT the first section
+    if($info['section']!=0){
+    // end the section div
+    echo "
+            &lt;/ul&gt;
+    &lt;/div&gt;
+    ";
+    }
+
+    // start the section div and add the section header
+    echo "
+    &lt;div class='menuSection'&gt;
+    &lt;div class='sectionHeader' id='header".$info['section']."'&gt;&lt;img src='images/status_circ_empty.gif' alt='Section Empty' /&gt;&lt;a href='index.php?s=".$info['section']."&amp;ss=".$info['subsection']."'&gt;".$titleArr[$info['section']]."&lt;/a&gt;&lt;img src='images/arrow_".$currentArrow.".gif' alt='Arrow' class='arrow' /&gt;&lt;/div&gt;
+        &lt;ul class='sectionSubmenu' id='section".$info['section']."' style='display:".$currentSection."'&gt;
+        &lt;li&gt;&lt;img src='images/status_circ_empty.gif' alt='Section Empty' /&gt;&lt;a href='index.php?s=".$info['section']."&amp;ss=".$info['subsection']."'&gt;".$info['title']."&lt;/a&gt;&lt;/li&gt;
+
+    ";
+
+    }
+    // if the current section is not a new section
+    else{
+        // add the next submenu item
+        echo "&lt;li&gt;&lt;img src='images/status_circ_empty.gif' alt='Section Empty' /&gt;&lt;a href='index.php?s=".$info['section']."&amp;ss=".$info['subsection']."'&gt;".$info['title']."&lt;/a&gt;&lt;/li&gt;"; 
+    }
+} 
+echo"
+    &lt;/ul&gt;
+&lt;/div&gt;
+";
+</code></pre>

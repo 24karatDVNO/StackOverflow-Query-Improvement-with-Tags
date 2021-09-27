@@ -1,0 +1,12 @@
+<p>I may not be understanding your question, but here is one way you can place a table in a panel that is larger than the table:  </p>
+
+<pre><code>final JPanel bigPanel = new JPanel(new BorderLayout());
+// initialize your panel with stuff
+
+final JXTable smallTable = new JXTable(...);
+bigPanel.add( smallTable, BorderLayout.LINE_START ); // Left side of panel
+bigPanel.add( smallTable, BorderLayout.LINE_END );   // Right side of panel
+bigPanel.add( smallTable, BorderLayout.PAGE_START ); // Top of panel
+bigPanel.add( smallTable, BorderLayout.PAGE_END);    // Bottom of panel
+bigPanel.add( smallTable, BorderLayout.CENTER );     // Center of panel
+</code></pre>

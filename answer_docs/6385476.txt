@@ -1,0 +1,10 @@
+<p>The usual solution for this sort of problem is to use templates.  There
+aren't that many functions in an <code>std::istream</code> or and <code>std::ostream
+which need covering, and a good template member for</code>&lt;&lt;<code>and</code>>><code>should
+cover a lot of the cases.  In most of the cases I've done this, I've
+only offerred</code>&lt;&lt;<code>or</code>>>`.  (Generally speaking, I've not needed
+bidirectional streams.)</p>
+
+<p>As for handling other types of streams, just use <code>std::iostream</code> instead
+of <code>std::fstream</code>.  (In general, except when opening files, you
+shouldn't see the <code>fstream</code> part.) </p>

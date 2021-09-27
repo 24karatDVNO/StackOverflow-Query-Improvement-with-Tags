@@ -1,0 +1,10 @@
+<p>I don't think you need to be using animations for what you're doing.  It should just be something like:</p>
+
+<pre><code>[objectName removeFromSuperview];
+[superViewName addSubview:otherView];
+</code></pre>
+
+<p>To call your function, it should be:</p>
+
+<pre><code>[object switchTheViews:viewController over:otherViewController];
+</code></pre>

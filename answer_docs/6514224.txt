@@ -1,0 +1,28 @@
+<p>You can try adding a flag before calling animate. Something like this:</p>
+
+<pre><code>$(document).ready(function() {
+var animating = false;
+        //Left nav  
+        $('#menu-left').children().addClass('closed');
+
+        $('#menu-left &gt; li a').click(function(e){
+            e.preventDefault();
+        });
+
+        $('.closed').live('hover', function() { 
+
+            var position_open = parseInt($(this).css('bottom')) + parseInt($('.sub-menu', this).css('height')) - 12;
+                    if(!animating) { 
+                        animating = true;
+                $(this).animate({ bottom: position_open }, function() {
+                 $(this).removeClass('closed'); 
+                 $(this).addClass('opened');
+                               animating = false;
+                });     
+                    }
+        });         
+
+    });
+</code></pre>
+
+<p>Also, try removing one of the hover handler code. Seems they are stepping over each other.</p>

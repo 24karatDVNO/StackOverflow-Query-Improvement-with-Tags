@@ -1,0 +1,11 @@
+<pre><code>UIButton* myButton;
+- (IBAction)buttonPressed {
+    if(alreadySelected) {
+        myButton.imageView.image = myNormalImage;
+    } else {
+        myButton.imageView.image = mySelectedImage;
+    }
+}
+</code></pre>
+
+<p>Not sure, but I think this should do it.</p>

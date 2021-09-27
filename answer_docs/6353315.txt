@@ -1,0 +1,21 @@
+<p>Rather than parsingJson on the ajax query, here's the syntax I use to conquer these challenges</p>
+
+<pre><code>    $.ajax({
+       url: "pagegoeshere.php",                   
+       timeout: 30000,
+       type: "POST",
+       data: 'data1='+data1+'&amp;data2='+data2,
+       dataType: 'json',
+       error: function(XMLHttpRequest, textStatus, errorThrown)  {
+         alert("An error has occurred making the request: " + errorThrown)
+       },
+       success: function(returnjson){                                                                                                   
+           var returnstuff = returnjson.returnstuff;
+           //Do next Javascript step here
+       }
+});
+</code></pre>
+
+<p>You can run ensuing javascript/jquery in the success and "stack" events together on success of your Ajax call.  That way, if it works, it proceeds.  Otherwise, the error handling can occur in the provided error section in a manner that you define.  I generally fire my ajax calls on a click handler, but it's certainly doable to run it in a function as you have chosen.  Be sure to check your return JSON (could be mailed from your processing page, for example) to make sure it's valid JSON.  <a href="http://jsonlint.com/" rel="nofollow">Jsonlint</a> is your friend!</p>
+
+<p>I've had chrome effectively parse bad HTML and JSON while the other browsers don't on several occasions.  I'd suspect it's something along those lines that's specifically causing your issues.</p>

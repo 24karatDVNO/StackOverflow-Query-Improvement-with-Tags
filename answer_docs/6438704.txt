@@ -1,0 +1,15 @@
+<p>I found this blog post by Jeff LaMarche to be really helpful in making custom alert views: <a href="http://iphonedevelopment.blogspot.com/2010/05/custom-alert-views.html" rel="nofollow">http://iphonedevelopment.blogspot.com/2010/05/custom-alert-views.html</a>. He goes through the steps of making a custom class since modifying UIAlertView can cause App Store rejection (however he warns that using custom techniques can still cause HIG violations, but I doubt they will for what you're trying to do). By the time you're done, you'll have a custom alert view class that can be added in much the same style as UIAlertView:</p>
+
+<blockquote>
+  <p>At this point, we're done. We can now
+  use this custom alert view exactly the
+  same way we use UIAlertView:</p>
+
+<pre><code>CustomAlertView *alert = [[CustomAlertView alloc] init];
+alert.delegate = self;
+[alert show];
+[alert release];
+</code></pre>
+</blockquote>
+
+<p>He creates a custom text input view. Obviously, in your case, you would want to use a different background and instead of adding a text field you'd stick to just the buttons. Since he makes custom buttons in his view too it should cover all your needs, if not more.</p>

@@ -1,0 +1,14 @@
+<pre><code>$text = file_get_contents($file);               //get contents of file
+$words = explode(',', $text);                   //split into array
+
+if (($length = count($words) &lt; 10) {
+    $lastWords = $words;                        //shorter than 10 so return all
+} else {
+    for ($i = $length-11, $i &lt; $length; $i++ {  //loop through last 10 words
+        $lastWords[] = $words[$i];              //add to array
+    }
+}
+
+$str = implode(',', $lastWords);                //change array back into a string
+echo $str;
+</code></pre>

@@ -1,0 +1,6 @@
+<p>please check the signature of the method "myCell:"  .
+as @Robert Fratto  pointed out it might be some thing else.<br>
+Document says:<br>
+<strong><code>
+[myRectangle setOrigin:30.0 :50.0]; // This is a bad example of multiple arguments<br>
+Since the colons are part of the method name, the method is named setOrigin::. It has two colons as it takes two arguments. This particular method does not interleave the method name with the arguments and, thus, the second argument is effectively unlabeled and it is difficult to determine the kind or purpose of the method’s arguments.</code></strong></p>

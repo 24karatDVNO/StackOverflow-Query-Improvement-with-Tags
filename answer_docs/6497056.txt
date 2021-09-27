@@ -1,0 +1,20 @@
+<p>Make sure that header is before any output</p>
+
+<p>Correct </p>
+
+<pre><code>    &lt;?php
+     if ( some condition ){
+        header('Location: http://www.test.com/');
+        exit;
+     }
+    ?&gt; 
+&lt;htmL&gt;
+</code></pre>
+
+<p>Incorrect will give error</p>
+
+<pre><code>&lt;htmL&gt;
+&lt;?php
+ header('Location: http://www.test.com/');
+?&gt;
+</code></pre>

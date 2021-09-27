@@ -1,0 +1,6 @@
+<p>OK I have found one way to get round this.  Previously I was passing over a DateTime .NET type.  I am now passing over a string value formatted to US date style e.g.</p>
+
+<pre><code>MeetingDate = MyDateVariable.ToString("MM/dd/yyyy");
+</code></pre>
+
+<p>This works.</p>

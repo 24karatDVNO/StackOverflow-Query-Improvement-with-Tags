@@ -1,0 +1,10 @@
+<p>I see a few issues here.  First, your selector is wrong.  <code>div.thumb-text</code> will select all <code>div</code>s with a class of <code>thumb-text</code>.  You have none of those.  This should be either <code>div .thumb-text</code> to find all elements within a <code>div</code> with the class of <code>thumb-text</code> or <code>a.thumb-text</code> to get all <code>a</code> tags with the class of <code>thumb-text</code>.  </p>
+
+<p>2nd, <code>$('div#piece-content').load('portfolio.html#' +href);</code> you will end up with two <code>#</code>s in this case since <code>href</code> already has one.  And I'm not sure what your intention is here but <code>#</code> is not used to pass things to the backend, you may be intending to use <code>?</code>, not entirely sure what you were going for here.  </p>
+
+<p>And finally, you never fade the element back in.  So in your <code>.load</code> you need a callback:</p>
+
+<pre><code>$('div#piece-content').load('portfolio.html#' +href, function(){
+   $(this).fadeIn();
+});
+</code></pre>

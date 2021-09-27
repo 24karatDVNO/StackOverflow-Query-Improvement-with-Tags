@@ -1,0 +1,18 @@
+<p>My goal was to make my code available to the public using Google Code. Fortunately they provide a <code>Mercurial</code> repository. So I ended up mixing both <code>SVN</code> and <code>Mercurial</code>.</p>
+
+<ul>
+<li>Clone the project from <code>Google Code</code> on the local machine into folder <code>project-hg</code></li>
+<li>Checkout the project using the in-house SVN into the folder <code>project-hg</code></li>
+<li>Add and commit the files using <code>Mercurial</code> and ignore <code>.svn</code> folders</li>
+<li>Push the changes to <code>Google Code</code></li>
+</ul>
+
+<p>Every time I want to synchronize my project with <code>Google Code</code> I do</p>
+
+<ul>
+<li><code>svn update</code></li>
+<li>Commit the modification using <code>Mercurial</code></li>
+<li>Push the changes to <code>Google Code</code></li>
+</ul>
+
+<p>I will lose the revision history from SVN but it’s not a problem for me.</p>

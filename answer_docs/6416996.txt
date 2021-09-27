@@ -1,0 +1,5 @@
+<p>Each user operation should correspond to a different command method in the application service layer.  Much of the time it will correspond to exactly one call on a domain object.</p>
+
+<p>You probably don't have fine-grained enough methods on your Order domain object.</p>
+
+<p><code>Approve()</code> should probably only be a method, not a public setter.  Throw an exception within <code>Approve()</code> if it would place the <code>Order</code> object in an invalid state.</p>

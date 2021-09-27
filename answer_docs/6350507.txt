@@ -1,0 +1,1 @@
+<p>The simplest way I can think of is to implement -shouldAutorotate... and dismiss the modal view and return NO to abort rotation. Perhaps that will be sufficient to avoid any concurrency issues. If this suggestion isn't to your liking take a look at NSNotificationCenter. </p>

@@ -1,0 +1,29 @@
+<p>I think there are essentially three ways you can model the worker-project relationship. It can be hierarchic by project:</p>
+
+<pre><code>&lt;project name="X"&gt;
+  &lt;worker name="Sue"/&gt;
+  &lt;worker name="John"/&gt;
+&lt;/project&gt;
+&lt;project name="Y"&gt;
+  &lt;worker name="Sue"/&gt;
+  &lt;worker name="Bill"/&gt;
+&lt;/project&gt;
+</code></pre>
+
+<p>or hierarchic by worker:</p>
+
+<pre><code>&lt;worker name="Sue"&gt;
+  &lt;project name="X"/&gt;
+  &lt;project name="Y"/&gt;
+&lt;/worker&gt;
+</code></pre>
+
+<p>or flat:</p>
+
+<pre><code>&lt;engagement project="X" worker="Sue"/&gt;
+&lt;engagement project="Y" worker="Bill"/&gt;
+</code></pre>
+
+<p>In all three cases if youa re to avoid data duplication you need foreign keys (e.g. IDREF values) to link to the elements holding details of a project or a worker.</p>
+
+<p>Which of the three you choose is entirely up to you. Very often you will find yourself transforming from one view to another, which is why grouping in XSLT is so significant - it is often used for this kind of hierarchic inversion.</p>

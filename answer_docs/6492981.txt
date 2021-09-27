@@ -1,0 +1,11 @@
+<pre><code>if($_GET['search'] != ''){
+
+$query1 = "SELECT * FROM klant WHERE klant_id LIKE '%" .$search."%' OR voornaam LIKE '%" .$search."%' OR achternaam LIKE '%" .$search."%' OR email LIKE '%".$search."%' OR plaats LIKE '%" .$search."%' OR bedrijfsnaam LIKE '%" .$search."%'ORDER BY klant_id DESC";
+
+$query2 = "SELECT * FROM klant WHERE klant_id LIKE '%" .$search2."%' OR voornaam   LIKE '%" .$search2."%' OR achternaam LIKE '%" .$search2."%' OR email LIKE '%" .$search2."%' OR plaats LIKE '%" .$search2."%' OR bedrijfsnaam LIKE '%" .$search2."%'ORDER BY klant_id DESC";
+
+$result = mysql_query($query1 . ' UNION ALL ' . $query2;
+$i = 0;
+
+}
+</code></pre>

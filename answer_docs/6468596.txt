@@ -1,0 +1,15 @@
+<p>I would use the <a href="http://msdn.microsoft.com/en-us/library/bb335435%28v=VS.90%29.aspx" rel="nofollow">AsEnumerable extension method</a> which basically converts the <code>IQueryable</code> to an <code>IEnumerable</code> which forces the enumerator to be processed. You could achieve the same thing by calling <code>ToArray()</code> or <code>ToList()</code> but <code>AsEnumerable()</code> magically lets you return it back to an <code>IQueryable</code> by calling <code>AsQueryable()</code></p>
+
+<p>So probably doing the following will work for you:</p>
+
+<pre><code>var result1 = DataContext.myTable.AsEnumerable()
+  .Select(v=&gt; new MainClass {
+                  MainKey = v.Field1,
+                  MainName = v.Field2,
+                  MainList = new []
+                  {
+                     new SmallObject { SmallKey = v.Field3 },
+                     new SmallObject { SmallKey = v.Field4 },
+                  }
+         });
+</code></pre>

@@ -1,0 +1,12 @@
+<p>Don't post username and password if its under same domain. Set the wordpress cookie instead. Some thing like this should get you started:</p>
+
+<pre><code>require('wp-blog-header.php');
+$user_login = 'username';
+$user = get_userdatabylogin($user_login);
+$user_id = $user-&amp;gt;ID;
+wp_set_current_user($user_id, $user_login);
+wp_set_auth_cookie($user_id);
+do_action('wp_login', $user_login);
+</code></pre>
+
+<p>You might want to read more on this: <a href="http://www.lbsharp.com/wordpress/index.php/2007/12/10/wordpress-auto-login/" rel="nofollow">WordPress Auto-Login</a></p>

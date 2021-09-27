@@ -1,0 +1,14 @@
+<p>Here's an alternative approach that utilizes LINQ more effectively and not just replace the lists in each <code>A</code>.  Use a group join and add the items in each group to the corresponding <code>A</code>.</p>
+
+<pre><code>List&lt;A&gt; myAs = ...;
+List&lt;B&gt; myBs = ...;
+
+var pairs = from a in myAs
+            join b in myBs on a.Something1 equals b.Anything1 into TheseBs
+            select new { A = a, TheseBs };
+
+foreach (var pair in pairs)
+{
+    pair.A.Something3.AddRange(pair.TheseBs);
+}
+</code></pre>

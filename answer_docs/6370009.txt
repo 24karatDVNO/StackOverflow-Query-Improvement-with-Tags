@@ -1,0 +1,17 @@
+<p>Use getString() to obtain string from xml</p>
+
+<p>you can use <code>setMessage(getString(R.string.error)+" My Dynamic Message")</code></p>
+
+<h2>Example</h2>
+
+<pre><code>new AlertDialog.Builder(this).setMessage(getString(R.string.error)+" My Dynamic Message")
+        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                finish();
+            }
+        }).setNegativeButton("NO", null).show();
+</code></pre>
+
+<p>Thanks
+Deepak</p>

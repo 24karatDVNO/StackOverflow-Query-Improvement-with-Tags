@@ -1,0 +1,20 @@
+<p>You could write a HttpContext provider class (interface) that just returns the current HttpContext.Current instance.</p>
+
+<pre><code>using System.Web;
+
+interface IHttpContextProvider
+{
+    HttpContextBase HttpContext { get; }
+}
+
+public class HttpContextProvider : IHttpContextProvider
+{
+    HttpContextBase HttpContext
+    {
+        get
+        {
+            return new HttpContextWrapper(System.Web.HttpContext.Current);
+        }
+    }
+}
+</code></pre>

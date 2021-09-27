@@ -1,0 +1,24 @@
+<p>Aleadam is right.  Here's an example XML in support of his answer:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    &lt;ListView 
+        android:id="@+id/android:list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        /&gt;
+    &lt;TextView 
+        android:id="@id/android:empty" 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:textColor="@drawable/red"
+        android:gravity="center_vertical|center_horizontal"
+        android:textStyle="bold"
+        android:text="@string/error_no_groups" 
+        /&gt;
+&lt;/LinearLayout&gt;
+</code></pre>

@@ -1,0 +1,31 @@
+<p>The first thing to jump out at me is </p>
+
+<pre><code> SELECT distinct Enrollment.StudentNo, enrollment.CourseNo, prereqNeeded.prereq 
+from Enrollment, (SELECT ENROLLMENT.CourseNo, PrereqCourseNo, StudentNo
+            from enrollment, prerequisite 
+                where ENROLLMENT.CourseNo = PREREQUISITE.CourseNo AND 
+                NOT EXISTS 
+                (SELECT StudentNo, MARK 
+                FROM ENROLLMENT 
+                WHERE enrollment.CourseNo = PrereqCourseNo 
+                AND MARK &gt;= 50)) prereqNeeded 
+WHERE Enrollment.StudentNo = prereqNeeded.StudentNo 
+and prereqNeeded.CourseNo = ENROLLMENT.CourseNo
+</code></pre>
+
+<p>I think you need to keep the case of the table names. </p>
+
+<pre><code> SELECT distinct Enrollment.StudentNo, Enrollment.CourseNo, prereqNeeded.prereq 
+from Enrollment, (SELECT Enrollment.CourseNo, PrereqCourseNo, StudentNo
+            from Enrollment, Prerequisite 
+                where Enrollment.CourseNo = Prerequisite.CourseNo AND 
+                NOT EXISTS 
+                (SELECT StudentNo, MARK 
+                FROM Enrollment 
+                WHERE Enrollment.CourseNo = PrereqCourseNo 
+                AND MARK &gt;= 50)) prereqNeeded 
+WHERE Enrollment.StudentNo = prereqNeeded.StudentNo 
+and prereqNeeded.CourseNo = Enrollment.CourseNo 
+</code></pre>
+
+<p>Could be wrong but on the DB I use it complains about this.</p>

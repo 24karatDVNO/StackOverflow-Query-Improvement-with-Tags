@@ -1,0 +1,9 @@
+<p>Found the answer, instead of </p>
+
+<pre><code>NSString *filepath = [documentsDirectory stringByAppendingString:@"notificationScheduled.plist"];
+</code></pre>
+
+<p>Used </p>
+
+<pre><code>NSString *filepath = [documentsDirectory stringByAppendingPathComponent:@"notificationScheduled.plist"];
+</code></pre>

@@ -1,0 +1,5 @@
+<p>Log the less important events with a lower precedence, like DEBUG. See <a href="http://docs.python.org/library/logging.html#logging.Logger.setLevel" rel="nofollow">setLevel</a> and <a href="http://docs.python.org/library/logging.handlers.html#sysloghandler" rel="nofollow">SysLogHandler</a>.</p>
+
+<p>At development time set the level to DEBUG, and as your application matures, set it to more reasonable values like INFO or ERROR.</p>
+
+<p>Your app should do something about the errors, like remove files of the wrong type and/or create lacking files; or move the wrongfully configured directories from the job polling to a quarantine location, so your log will not be flooded.</p>

@@ -1,0 +1,17 @@
+<p>Put the file in one of the website folder and set the authentication to this folder from web.config using form authentication and location attribute. Users need to login in order to download PDF.    </p>
+
+<pre><code>&lt;authentication mode="Forms"&gt;
+            &lt;forms defaultUrl="Default.aspx" loginUrl="~/adminlogin.aspx" slidingExpiration="true" timeout="30"&gt;&lt;/forms&gt;
+        &lt;/authentication&gt;
+
+        &lt;location path="[PDF Folder]"&gt;
+        &lt;system.web&gt;
+            &lt;authorization&gt;
+                &lt;allow roles="[role]"/&gt;
+                &lt;deny users="*"/&gt;
+            &lt;/authorization&gt;
+        &lt;/system.web&gt;
+    &lt;/location&gt;
+
+This is only sample Get more details about above from net.
+</code></pre>

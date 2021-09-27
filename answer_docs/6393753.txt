@@ -1,0 +1,12 @@
+<p><strong>Use</strong>:</p>
+
+<pre><code>  (/*/node[ID='12']/following-sibling::*[contains(.,$pattern)][1]
+  |
+   /*/node[ID='12']/preceding-sibling::*[contains(.,$pattern)][1]
+  )
+   [last()]
+</code></pre>
+
+<p>This expression selects the last from the two wanted selections -- the first of the following siblings that contains the value of <code>$pattern</code> and the first of the preceding siblings that contains the value of <code>$pattern</code>.</p>
+
+<p>You need to substitute <code>$pattern</code> with the exact value you want to serch for.</p>

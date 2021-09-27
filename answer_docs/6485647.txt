@@ -1,0 +1,12 @@
+<p>Put the new TargetImage() inside the for-loop like this:</p>
+
+<pre><code>var img:Image = ImageBuffer.imageStorage.shift();
+
+for (var i:int = 1; i &lt;= 4; i++) 
+{
+    var ti:TargetImage = new TargetImage();
+    MovieClip(ti.getChildByName("cont"+i)).addChild(img);
+}
+</code></pre>
+
+<p>This will produce four different objects.. if you want to adress them you can put them in an array dynamically, also inside the for loop.</p>

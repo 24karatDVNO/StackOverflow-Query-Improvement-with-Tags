@@ -1,0 +1,8 @@
+<p>It seems like what you actually want may be a dictionary, not a list. </p>
+
+<pre><code>something = {}
+for u in range(3):
+    something[u] = [1,2,3]
+</code></pre>
+
+<p>With a list, the list has to already have at least u elements before you can assign list[u], but with a dictionary you can add new items arbitrarily.</p>

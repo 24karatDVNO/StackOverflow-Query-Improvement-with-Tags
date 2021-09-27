@@ -1,0 +1,12 @@
+<p>I suspect that the problem is that your <code>chart</code> view is persisting for longer than your Activity, and is therefore being added to a parent multiple times without being removed when the parent is destroyed. It's difficult to be certain without seeing more of your code.</p>
+
+<p>You could try adding an <code>onDestroy()</code> method which removes it:</p>
+
+<pre><code>@Override
+void onDestroy()
+{
+    ((LinearLayout)findViewById(R.id.chart_area)).removeView( chart );
+}
+</code></pre>
+
+<p>Alternatively, you could try instantiating a new <code>chart</code> in <code>onCreate()</code>. </p>

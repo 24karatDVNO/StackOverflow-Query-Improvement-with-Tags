@@ -1,0 +1,39 @@
+<p>i changed the code in: app\views\editprofile\edit.html.erb   </p>
+
+<pre><code>&lt;%= form_for :profileinfo do |fe| %&gt;
+&lt;fieldset&gt;
+&lt;info&gt;&lt;%= @titlu %&gt;&lt;/info&gt;
+&lt;%= error_messages_for 'profileinfo' %&gt;
+&lt;div class="fields"&gt;
+&lt;%= text_field_for fe, "first_name" %&gt;
+&lt;%= text_field_for fe, "last_name" %&gt;
+&lt;label for="gender"&gt;Gender:&lt;/label&gt;
+&lt;%= radio_button :profileinfo, :gender, "Male" %&gt; Male
+&lt;%= radio_button :profileinfo, :gender, "Female" %&gt; Female
+&lt;br /&gt;
+&lt;label for="birth_date"&gt;Birthdate:&lt;/label&gt;
+&lt;%= date_select :profileinfo, :birth_date, :start_year =&gt; Profile::YEAR_FT, :end_year =&gt; Time.now.year, :include_blank =&gt; true, :order =&gt; [:month, :day, :year] %&gt;
+&lt;%= text_field_for fe, "ocupation" %&gt;
+&lt;%= text_field_for fe, "city" %&gt;
+&lt;%= text_field_for fe, "country" %&gt;
+&lt;%= text_field_for fe, "postal_code", Profile::PSTCOD_LEN %&gt;
+&lt;%= submit_tag "Update", :class =&gt; "submit" %&gt;
+&lt;/div&gt;
+&lt;/fieldset&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<p>also the function text_field_for in application_helper </p>
+
+<pre><code>   def text_field_for(form, field, size=TEXT_FIELD_LEN, maxlength=STRING_LEN_MAX_DB)
+    label = content_tag("label", "#{field.humanize}:", :for =&gt; field)
+    form_field = form.text_field field, :size =&gt; size, :maxlength =&gt; maxlength
+    content_tag("div", "#{label} #{form_field}", :class =&gt; "fields")
+   end  
+</code></pre>
+
+<p>the gender and birthday are ok , but for the text fields i get no text fields, instead i get the html tags with all the params ... like this:</p>
+
+<pre><code>    &lt;label for="first_name"&gt;First name:&lt;/label&gt; &lt;input id="profileinfo_first_name" maxlength="255" name="profileinfo[first_name]" size="15" type="text" value="" /&gt;
+    &lt;label for="last_name"&gt;Last name:&lt;/label&gt; &lt;input id="profileinfo_last_name" maxlength="255" name="profileinfo[last_name]" size="15" type="text" value="" /&gt;
+</code></pre>

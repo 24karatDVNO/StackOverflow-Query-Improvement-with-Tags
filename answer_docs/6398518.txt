@@ -1,0 +1,6 @@
+<p>Possible solutions:</p>
+
+<ul>
+<li><p>If the count number is big in comparison to the total number of rows in the table, then adding indexes that cover <code>where</code> condition will help and the query will be very fast.</p></li>
+<li><p>If the result number is close to the total number of rows in the table, indexes will not help much. You could implement a trigger that would maintain a 'conditional count table'. So whenever row matching condition added you would increment the value in the table, and when row is deleted you would decrement the value. So you will query this small 'summary count table'.</p></li>
+</ul>

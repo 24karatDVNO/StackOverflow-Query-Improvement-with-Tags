@@ -1,0 +1,10 @@
+<p>You can try something like this :</p>
+
+<pre><code>newText="&lt;your new license text&gt;";
+
+for file in &lt;your files&gt;
+do
+   sed '1,&lt;number of lines of your old license text&gt;d' $file |awk -v TEXT="$newText" 'BEGIN {print TEXT}{print}' &gt; "${file}.tmp";
+   mv "${file}.tmp" $file 
+done
+</code></pre>

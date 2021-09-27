@@ -1,0 +1,6 @@
+<p>Cron uses a default profile when it runs cronjobs, which will likely have a different PATH variable than what you use when logged in. You can load your own profile at the beginning of the cronjob, to ensure that the cronjob's environment matches your logged in environment.</p>
+
+<p>You can load your profile in this way:</p>
+
+<pre><code>00 16 * * * ~/.profile; ./etc/cron.daily/maj_cat
+</code></pre>

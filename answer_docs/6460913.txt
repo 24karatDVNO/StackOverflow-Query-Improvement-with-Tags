@@ -1,0 +1,17 @@
+<p>Another option is to use generics. This will be helpful if you need to put constraints on the types that can be passed in:</p>
+
+<pre><code>public void BuildXml&lt;T&gt;(T obj)
+{
+    // do work
+}
+</code></pre>
+
+<p>Or if you are expecting a collection of objects:</p>
+
+<pre><code>public void BuildXml&lt;T&gt;(IEnumerable&lt;T&gt; items)
+{
+    // do work
+}
+</code></pre>
+
+<p>Then you can use reflection to get the relevant data you need.</p>

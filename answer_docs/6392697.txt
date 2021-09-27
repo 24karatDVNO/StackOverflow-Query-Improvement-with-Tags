@@ -1,0 +1,6 @@
+<p>The key for your file is the field name <code>document</code> (not <code>file</code>), and it's better to use <code>cleaned_data</code>:</p>
+
+<pre><code>document = form.cleaned_data['document']
+</code></pre>
+
+<p><code>form.cleaned_data['document']</code> (or <code>request.FILES['document']</code>) return a <code>UploadedFile</code> object.</p>

@@ -1,0 +1,5 @@
+<p>To use the kernel for arbitrary matrix sizes you should think about the problem and rewrite the kernel. The issue is the limited memory size of the GPU and limited size for a single buffer. You can get the maximum size for a buffer with clGetDeviceInfo and CL_DEVICE_MAX_MEM_ALLOC_SIZE.</p>
+
+<p>You need to split your problem into smaller pieces. Calculate them separately and merge the results afterwards.</p>
+
+<p>I do not know the problem above and can not give you any hint which helps you to implement this. I can only give you the general direction.</p>

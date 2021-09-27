@@ -1,0 +1,52 @@
+<p>As a function for multidimensional arrays:</p>
+
+<pre><code>&lt;?php
+
+    // Start array
+    $array = array(array("apples", "oranges", "lettuce"),array("bananas", "grapes", "cabbage"),array("pears", "mangoes", "celery"));
+
+    $newArray = addtoarray($array, "?");
+
+    // Echo out the new array
+    foreach ($newArray as $aKey =&gt; $aValue) {
+
+        echo "Array: {$aKey}&lt;br /&gt;";
+
+        foreach ($aValue as $key =&gt; $value) {
+
+            echo "Key: ". $key . " - Value: " . $value . "&lt;br /&gt;";
+        }
+
+        echo "&lt;br /&gt;";
+    }
+
+    function addtoarray($array, $stringtoadd) {
+
+        $newArray = array();
+
+        foreach ($array as $aValue) {
+
+            $count = count($aValue);
+
+            $tArray = array();
+
+            foreach ($aValue as $key =&gt; $value) {
+
+                if ($key == $count - 1) {
+
+                    array_push($tArray, $value . $stringtoadd);
+                }
+                else {
+
+                    array_push($tArray, $value);
+                }
+            }
+
+            array_push($newArray, $tArray);
+        }
+
+        return $newArray;
+    }
+
+?&gt;
+</code></pre>

@@ -1,0 +1,34 @@
+<p>There should be a natural flow to your program, so that you don't have to have a mechanism specifically for storing variables just for the sake of storing variables.  By that I mean that if you are storing a userName, it should be while login is occurring, or if you are obtaining contactInfo, then you should have a servlet specifically for that purpose.  Regardless, here is a three part answer to your question.  It is very general and non-specific, but will accomplish what you want once fleshed out:</p>
+
+<p>Here is the web.xml file:</p>
+
+<pre><code>    &lt;servlet&gt;
+        &lt;servlet-name&gt;StoreVariableServlet&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;tests.servlets.StoreVariableServlet&lt;/servlet-class&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;StoreVariableServlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/storeVariableServlet&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+</code></pre>
+
+<p>Here is the jQuery Code:</p>
+
+<pre><code>    $.ajax({
+        type: "POST",
+        url: "/storeVariableServlet",
+        data: ({
+            variable : $(variableName).val()
+        }),
+        success: function(){
+            alert("Success");
+        }
+    });
+</code></pre>
+
+<p>Here is the Servlet Code:</p>
+
+<pre><code>    String variableToBeStored = request.getParameter("variable");
+    HttpSession session = request.getSession();
+    session.setAttribute("variableXYZ", variableToBeStored);
+</code></pre>

@@ -1,0 +1,15 @@
+<p>The simplest solution is probably to handle that in your own <code>index</code> method.  something like this:</p>
+
+<pre><code>class ChineseFlashcards:
+    zh_cn = ChineseFlashcards_zh_cn()
+    en = ChineseFlashcards_en()
+
+    aliases = {'zh-cn': zh_cn}
+
+    @cherrypy.expose
+    def index(self, locale, *args, **kwargs):
+        if arg in self.aliases:
+            return aliases[locale](*args, **kwargs)
+</code></pre>
+
+<p><code>en</code> will still work as normal, so will <code>zh_cn</code>, and any url not recognized will go through <code>index</code>, and it will look in it's own dict of aliases.</p>

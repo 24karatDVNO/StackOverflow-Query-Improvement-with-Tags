@@ -1,0 +1,9 @@
+<p>Here's what I wound up doing.  I grabbed the whole chunk in one line of code and stuck it in an array.</p>
+
+<pre>var = sometext.scan(/goodtext.*?endofsection/m)</pre>
+
+<p>and then in another line made an array out of the chunks.  I know the heading is first and an undetermined number of pictures follow, so I then limit the array down to three items.</p>
+
+<pre>var = var.collect{|x| x.scan(/heading|image).slice(0..2)}</pre>
+
+<p>I need to refine this more by gsub out the stuff other stuff I don't need, but I think this will satisfy my criteria.   If anyone else can think of a more elegant way of doing this, I'm all for it.</p>

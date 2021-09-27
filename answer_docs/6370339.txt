@@ -1,0 +1,7 @@
+<p>I think the "incompatible types" should only be a warning.
+If it is an error then try casting the buffer to char* when you give it to the function.
+But this is a quick and dirty solution
+Maybe you should think about a more generic solution that does not produce this error.</p>
+
+<p>The parsing of the data should be the workers job.
+If you let the master parse it would slow him down.</p>

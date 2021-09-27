@@ -1,0 +1,9 @@
+<pre><code>SELECT t.id 
+FROM table t
+WHERE NOT EXISTS
+  ( SELECT * 
+    FROM table tt
+    WHERE tt.time &gt; X
+      AND tt.id = t.id
+  )
+</code></pre>

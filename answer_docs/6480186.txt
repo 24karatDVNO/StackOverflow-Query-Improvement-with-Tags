@@ -1,0 +1,11 @@
+<p>Can you go ahead and lay out your view with all fields bracketed by named divs then in your render Action have the Controller add a class "hidden" defined as</p>
+
+<pre><code>   .hidden
+   {
+      display:none;
+   }
+</code></pre>
+
+<p>to each of the divs containing a field you do not need?</p>
+
+<p>The other choice is write an HTML extension method that builds the view dynamically.  You could create partial views for each control type and one by one the extension inserts them into HtmlString that gets rendered.</p>

@@ -1,0 +1,8 @@
+<p>The easiest way I found is to get the document directory using this code:</p>
+
+<pre><code>NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+NSString *dir = [paths objectAtIndex:0];
+NSLog(@"Directory: %@", dir);
+</code></pre>
+
+<p>In there, the Documents dir will contain the .data file</p>

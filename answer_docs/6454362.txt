@@ -1,0 +1,9 @@
+<p>As <a href="https://stackoverflow.com/users/2297/ceejayoz">ceejayoz</a> says, your query would need to be:</p>
+
+<pre><code>$status = $facebook-&gt;api_client-&gt;fql_query("SELECT message,time FROM 
+status WHERE uid in (SELECT uid2 FROM friend WHERE uid1=".$user.") ORDER BY time LIMIT 1");
+
+echo "&lt;pre&gt;";
+print_r($status);
+echo "&lt;/pre&gt;";
+</code></pre>

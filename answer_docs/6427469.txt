@@ -1,0 +1,12 @@
+<p>If you're using session cookies, also try expiring the session cookie explicitly, like this:</p>
+
+<pre><code>if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+</code></pre>
+
+<p>Also, going back in the browser only loads a cached copy of the page.  If you tried interacting with the cached page to fetch a new page from the server, you shouldn't be able to proceed.</p>

@@ -1,0 +1,12 @@
+<p>The problem is in the calculation of the height of <code>#mainmenu li</code> when set as <code>display:inline</code>.  Mozilla must be using the padding-top and padding-bottom 13px to calculate where to place the background tick image.</p>
+
+<p>In firebug, I change padding and height settings below to get the intended result.</p>
+
+<pre><code>#mainmenu li {
+    display: inline;
+    float: left;
+    height: 30px;
+    padding-left: 30px;
+    padding-top: 13px;
+}
+</code></pre>

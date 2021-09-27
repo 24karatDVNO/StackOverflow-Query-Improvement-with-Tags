@@ -1,0 +1,10 @@
+<p>These queries are executed to load the <code>grp</code> of each fetched <code>UsrGrp</code>. Mark the ManyToOne from <code>UsrGrp</code> to <code>Grp</code> as lazy, and these queries should disappear. Or, if you want to load the groups in the same query, you could add a left join fetch to the query:</p>
+
+<pre><code>SELECT DISTINCT usr FROM Usr usr 
+LEFT JOIN FETCH usr.usrGrpList userGroup 
+LEFT JOIN FETCH userGroup.grp grp
+</code></pre>
+
+<p>You might also enable <a href="http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html_single/#performance-fetching-batch" rel="nofollow">batch fetching</a> to reduce the number of queries.</p>
+
+<p>PS: Vowels are cool. UserGroup is much more readable than UsrGrp</p>

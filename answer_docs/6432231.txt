@@ -1,0 +1,12 @@
+<p>instead of using</p>
+
+<pre><code> var checkboxes_claimType = $("#field-claimType-wrapper").find("input:checked");
+ if (checkboxes_claimType.length) {
+</code></pre>
+
+<p>you can simply check from <a href="http://api.jquery.com/prop" rel="nofollow">prop()</a> introduced in jQuery v1.6</p>
+
+<p>like</p>
+
+<pre><code>$(elem).prop("checked") // returns boolean value
+</code></pre>

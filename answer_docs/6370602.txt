@@ -1,0 +1,18 @@
+<p>What you probably want is something like the following. You will have to find your Views by their id you gave them in the .xml file with <code>android:id="+@id/XXXXXXX"</code>.</p>
+
+<p>Your code will look something like this:</p>
+
+<pre><code>String id;
+int resID;
+ImageView views[] = new ImageView[NUM_OF_VIEWS];
+
+for(int i = o; i &lt; NUM_OF_VIEWS; i++){
+    id = "ImageViewIdentifier" + i; // Do name their id's in the .xml file so that you can easily loop over them.
+    resID = getResources().getIdentifier(resID, "defType", "defPackage"); // see here: http://developer.android.com/reference/android/content/res/Resources.html#getIdentifier(java.lang.String, java.lang.String, java.lang.String)
+    views[NUM_OF_VIEWS-1] = (ImageView) findViewById(resID);
+    views[NUM_OF_VIEWS-1].setOnTouchListener(new OnTouchListener(){
+            // DO Stuff here
+        }
+    }
+}
+</code></pre>

@@ -1,0 +1,26 @@
+<p>In Mono 2.10.2 calling paypal Timeout exception occurs if this code is used:</p>
+
+<pre><code>HttpWebRequest objRequest = 
+  (HttpWebRequest)WebRequest.Create("https://api-3t.sandbox.paypal.com/nvp");
+objRequest.Timeout =15000;
+objRequest.Method = "POST";
+objRequest.ContentLength = strPost.Length;
+using (StreamWriter myWriter = new 
+  StreamWriter(objRequest.GetRequestStream()))
+            myWriter.Write(strPost);
+</code></pre>
+
+<p>causes exception at GetRequestStream() :</p>
+
+<pre><code>    System.Net.WebException: The request timed out
+      at System.Net.HttpWebRequest.GetRequestStream () [0x0005f] in 
+    /usr/src/redhat/BUILD/mono-                2.10.2/mcs/class/System/System.Net/HttpWebRequest.cs:752
+      at NVPAPICaller.HttpCall (System.String NvpRequest) [0x00000] in         &lt;filename 
+    unknown&gt;:0
+
+    --------------------------------------------------------------------        ------------
+    Version information: Mono Runtime Version: 2.10.2 (tarball Mon Apr         18 
+    18:57:39 UTC 2011); ASP.NET Version: 2.0.50727.1433
+</code></pre>
+
+<p>You should downgrade to Mono 2.10 first version, it look like this happens in 2.10.2 only.</p>

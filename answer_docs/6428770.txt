@@ -1,0 +1,28 @@
+<p><strong>Answers in action:</strong></p>
+
+<ul>
+<li><a href="http://jsfiddle.net/morrison/PqDCH/" rel="nofollow">http://jsfiddle.net/morrison/PqDCH/</a></li>
+<li><a href="http://jsfiddle.net/morrison/PqDCH/3/" rel="nofollow">http://jsfiddle.net/morrison/PqDCH/3/</a></li>
+<li><a href="http://jsfiddle.net/morrison/PqDCH/4/" rel="nofollow">http://jsfiddle.net/morrison/PqDCH/4/</a></li>
+</ul>
+
+<hr>
+
+<pre><code>//option 1
+var $table = $('table');
+$table.parent().before($table).remove();
+
+//option 2
+var $toRemove = $('.remove_this_only');
+$toRemove.before($toRemove.children()).remove();
+
+//option 3
+$('table').unwrap();
+</code></pre>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+<li><code>append</code>, <code>before</code>, and some other jQuery functions do 'detachment' automatically.</li>
+<li>These are all really short, which makes them awesome.</li>
+</ul>

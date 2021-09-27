@@ -1,0 +1,28 @@
+<p>Assuming your comman is meant to be a decimal point(from French numbering system)
+The one below should work with tables aswell and so on.</p>
+
+<pre><code>&lt;ul class="row"&gt;
+  &lt;li class="qty"&gt;2&lt;/li&gt;
+  &lt;li class="price"&gt;2.45&lt;/li&gt;
+  &lt;li class="sum"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="row"&gt;
+  &lt;li class="qty"&gt;3&lt;/li&gt;
+  &lt;li class="price"&gt;24.5&lt;/li&gt;
+  &lt;li class="sum"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id="total"&gt;&lt;/div&gt;
+
+
+//jquery
+$('.row').each(function(i,n){
+   var sum = ( parseFloat($(n).children('.qty')) * parseFloat($(n).children('.price')) );
+   $(n).children('.sum').text(sum)
+}).delay(1).queue(function(){
+   var total = 0;
+   $('.sum').each(function(i,n){
+      total += parseFloat($(n).text());
+   });
+   $('#total').text(total);
+});
+</code></pre>

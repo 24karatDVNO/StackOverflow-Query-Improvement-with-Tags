@@ -1,0 +1,9 @@
+<p>It appears since the GKRocket Demo is using the NSNotification Center that in fact you need to sign your code. You can sign your code with your/or your team cert. Change the Project -> Project Settings -> Code Signing Identity to use your cert. Note: If you don't have your cert, and you paid the $99 dev license go through the steps <a href="http://developer.apple.com/ios/manage/overview/index.action" rel="nofollow noreferrer">here</a>.</p>
+
+<p>Then open the plist file and change the bundle to your domain name. </p>
+
+<p>Also, to get the GKRocket Demo running, make sure you turn on Bluetooth in your network settings.</p>
+
+<p>System Preferences -> Bluetooth. Turn it on and check discoverable. Then go into advanced settings <img src="https://i.stack.imgur.com/lSZrK.png" alt="Advanced Bluetooth Settings"></p>
+
+<p>Install your app on your iPhone with a build and run. Close the debugger. Then start your app in the local iOS simulator. Now manually run your app on your phone.</p>

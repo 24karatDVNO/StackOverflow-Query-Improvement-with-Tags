@@ -1,0 +1,3 @@
+<p>It wont return a result immediately since it takes time for the GPS provider to start and find your location. This is why you listen for a callback event. </p>
+
+<p>Currently your code is listening for the network location, which is not very accurate. Change the LocationManager to GPS_Provider (on your last line) to use GPS if it is enabled.</p>

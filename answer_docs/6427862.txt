@@ -1,0 +1,17 @@
+<p>Probably you are using the variable in a different scope from the one where it's assigned, like</p>
+
+<pre><code>string st;
+if (condition) {
+    st = dt.Rows[3]["timeslot_StartTime"].ToString();
+}
+DateTime pt1 = DateTime.Parse(st);
+</code></pre>
+
+<p>So, <code>st</code> is not always initialized (it is only if the if condition is verified). Try instead</p>
+
+<pre><code>string st;
+if (condition) {
+    st = dt.Rows[3]["timeslot_StartTime"].ToString();
+    DateTime pt1 = DateTime.Parse(st);
+}
+</code></pre>

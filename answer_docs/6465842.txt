@@ -1,0 +1,7 @@
+<p>You may try this:</p>
+
+<ul>
+<li>Call System.out.flush() after each println(), because Java/SO can buffer the output and this can be a trap for fools since things looks slower than they actually are.</li>
+<li>Instead of creating a thread for each socket, use a <a href="http://download.oracle.com/javase/1,5.0/docs/api/java/util/concurrent/ThreadPoolExecutor.html" rel="nofollow">thread pool</a>.</li>
+<li>Design your protocol so a client can reuse a connection if messages are separated by short periods.</li>
+</ul>

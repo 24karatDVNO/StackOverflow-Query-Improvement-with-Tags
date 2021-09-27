@@ -1,0 +1,9 @@
+<p>If you want to do this by only SQL queries, you need to code a procedure like</p>
+
+<pre><code>INSERT INTO person (person_name) VALUES ('PERSON_NAME')
+INSERT INTO email (email_id,email,person_id) VAUES ('EMAIL_ID','EMAIL',(SELECT LAST_INSERT_ID()))
+</code></pre>
+
+<p>I assumed that you can post PERSON_NAME, EMAIL_ID, EMAIL from your web form.</p>
+
+<p>I think it's easy to send both EMAIL_ID, EMAIL from your autocomplete like box.</p>

@@ -1,0 +1,5 @@
+<p><a href="https://github.com/reprogrammer/BundleUpdater/commit/f42fa873278adb7f36bd2a1d619d6049558a2747" rel="nofollow">My commit</a>  opens the "Check for Updates" dialog by invoking the command "org.eclipse.equinox.p2.ui.sdk.update" instead of invoking the following method.</p>
+
+<p><code>org.eclipse.equinox.p2.ui.ProvisioningUI.openUpdateWizard(boolean, UpdateOperation, LoadMetadataRepositoryJob)</code></p>
+
+<p>Surprisingly, this change seems to fix the issue with the race condition in accessing the p2 profile. Does anyone have an explanation for how my commit removes the race condition?</p>

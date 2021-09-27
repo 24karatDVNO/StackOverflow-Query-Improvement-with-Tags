@@ -1,0 +1,34 @@
+<p>If you don't need strict FIFO I think you should use <code>BlockingCollection</code>.</p>
+
+<p>It is thread safe and the implementation would look somthing like:</p>
+
+<pre><code>var collection = new BlockingCollection&lt;Data&gt;();
+
+var sqlinserter = Task.Factory.StartNew(UpdateSql());
+
+while (true) {
+    Data statistics = FetchStatistics();
+    if (statistics == null)
+        break;
+    collection.Add(statistics);
+}
+collection.CompleteAdding();
+sqlinserter.Wait();
+</code></pre>
+
+<p><strong>Edit</strong>
+Saw that you wanted to  insert a specific count of items in each batch</p>
+
+<pre><code>void UpdateSql() {
+    var batch = new List&lt;Data&gt;();
+    foreach (var item in collection.GetConsumingEnumerable()) {
+        batch.Add(item);
+        if (batch.Count &gt; SomeBatchSize) {
+            InsertIntoSql(batch);
+            batch.Clear();
+        }
+    }
+    if (batch.Count &gt; 0)
+        InsertIntoSql(batch); // insert remaining items
+}
+</code></pre>

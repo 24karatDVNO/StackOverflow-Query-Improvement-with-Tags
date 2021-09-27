@@ -1,0 +1,26 @@
+<p>I found the solution. First of all please download the RTW release of CRM SDK 2011.</p>
+
+<p>Code for connectivity will be :</p>
+
+<pre><code>public static IOrganizationService Service() 
+{
+    ClientCredentials Credentials = new ClientCredentials(); 
+    Credentials.Windows.ClientCredential.UserName ="&lt;username&gt;"; 
+    Credentials.Windows.ClientCredential.Password ="&lt;password&gt;"; 
+
+    //This URL needs to be updated to match the servername and Organization for the environment.
+    Uri OrganizationUri = new Uri("http://&lt;server name&gt;/&lt;organization name&gt;/XRMServices/2011/Organization.svc"); 
+    Uri HomeRealmUri = null; 
+
+    //OrganizationServiceProxy serviceProxy; 
+    using (OrganizationServiceProxy serviceProxy = new OrganizationServiceProxy(OrganizationUri, HomeRealmUri, Credentials, null)) 
+    {
+        IOrganizationService service = (IOrganizationService)serviceProxy; 
+        return service; 
+    }
+}
+</code></pre>
+
+<p>and here you go...</p>
+
+<p>Cheers! Enjoy coding.</p>

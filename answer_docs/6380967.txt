@@ -1,0 +1,3 @@
+<p>Just wrapping up the previous comments : </p>
+
+<p>Either you use <code>RandomAccessFile</code> to first count byte and second parse what you read to find lines by hand OR you use a <code>LineNumberReader</code> to first read lines by lines and count the bytes of each line of char (2 bytes in utf 16 ?) by hand.</p>

@@ -1,0 +1,26 @@
+<p>Android has cut-down version of Bouncy Castle and seems not to allow access to org.bouncycastle.crypto.macs.HMac class, instead javax.crypto.Mac.getInstance(String algorithm) should be used (<a href="https://stackoverflow.com/questions/3140650/how-to-generate-hmac-md5-in-android">here</a>). Again only some MAC algorithms seems to be allowed (I saw "HMAC-SHA512" is working). But if you decide to use SpongyCastle library, you can do this (<a href="https://stackoverflow.com/questions/6488658/can-i-use-latest-bouncycastle-provider-on-android/6501205#6501205">here</a>):  </p>
+
+<pre><code>        CipherParameters p = new KeyParameter(key.getBytes("UTF-8"));
+
+        WhirlpoolDigest w = new WhirlpoolDigest();
+        HMac hm = new HMac(w);
+        hm.init(p);
+        hm.update(inbytes, 0, inbytes.length);
+        byte[] result = new byte[hm.getMacSize()];
+        hm.doFinal(result, 0);
+</code></pre>
+
+<p>Including SpongyCastle may be problematic to many becuase it increased app size by 1.84MB in android 2.2. Then only relevant files could be imported into the project:  </p>
+
+<p>// interfaces<br>
+org.bouncycastle.crypto.CipherParameters<br>
+org.bouncycastle.crypto.Digest<br>
+org.bouncycastle.crypto.ExtendedDigest<br>
+org.bouncycastle.crypto.Mac  </p>
+
+<p>// classes<br>
+org.bouncycastle.crypto.params.KeyParameter<br>
+org.bouncycastle.crypto.digests.WhirlpoolDigest<br>
+org.bouncycastle.crypto.macs.HMac<br>
+org.bouncycastle.crypto.DataLengthException<br>
+org.bouncycastle.crypto.RuntimeCryptoException  </p>

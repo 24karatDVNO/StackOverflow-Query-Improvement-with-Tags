@@ -1,0 +1,10 @@
+<p>If you'd like to use minidom, you can do the following (replace gd.xml with your xml input):</p>
+
+<pre><code>from xml.dom import minidom
+
+dom = minidom.parse("gd.xml")
+id = dom.getElementsByTagName("id")[0].childNodes[0].nodeValue
+print id
+</code></pre>
+
+<p>Also, I assume you meant id element, and not id attribute.</p>

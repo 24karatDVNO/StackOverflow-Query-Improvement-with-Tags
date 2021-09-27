@@ -1,0 +1,9 @@
+<pre><code>class My_Core_New_Api extends My_Core_Default_Api {
+  public function getApi()
+  {
+    echo "New Api";
+    // if you'd like to also include functionality of parent class
+    My_Core_Default_Api::getApi();
+  }
+}
+</code></pre>

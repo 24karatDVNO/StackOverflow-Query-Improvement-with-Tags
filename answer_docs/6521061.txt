@@ -1,0 +1,3 @@
+<p>If EclipseLink works similarly to Hibernate then yes there is a cache. The "first level cache" guaranties that you get the exact same instance within one transaction which makes sense. If you know EclipseLink/transactions then try to evict all loaded instances or commit the transaction and then try your DAO again. This would force EclipseLink to fetch the data from the database again </p>
+
+<p>See <a href="https://stackoverflow.com/questions/3472819/jpa-eclipselink-cache-life-span/3474595#3474595">Answer to similar question</a></p>

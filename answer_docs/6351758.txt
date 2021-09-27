@@ -1,0 +1,6 @@
+<p>Our <a href="http://www.semanticdesigns.com/Products/TestCoverage" rel="nofollow">Test Coverage</a> tools will compute intersections, unions, complements, set differences, of test coverage vectors easily, making your intersections trivial to compute.</p>
+
+<p>You can associate an individual test with its own test coverage vector, and compute intersections of that with other tests, telling you how much overlap two tests have.  If they have small overlap, then they are "adjacent" by your characterization.  Often they will exercised some shared "core functionality" which might confuse the issue, but you can compute this by intersection of a number of tests which exercise that core functionality, and subtract it away, to see what they do not share.</p>
+
+<p>Even better, if you modify some code, the tool will tell you which test coverage sets (e.g., which tests) were affected, and therefore which ones you need to run.  More importantly, this tells which ones you don't need to run.  If your tests are manual,
+this should be really helpful in minimizing re-testing effort.</p>

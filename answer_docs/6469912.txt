@@ -1,0 +1,13 @@
+<pre><code>Dim i1 As Integer
+Dim Results1() As Variant
+Dim rngDest as Range
+
+Set rngDest = Sheets("SearchResult").Cells(rows.count,4).End(xlUp).Offset(1,-3)
+
+For i1 = LBound(Results1) To UBound(Results1)
+        
+  Range(Results1(i1)).EntireRow.Copy rngDest
+  Set rngDest = rngDest.Offset(1,0)
+               
+Next i1
+</code></pre>

@@ -1,0 +1,16 @@
+<p>Try with regex:</p>
+
+<pre><code>([^*]+\*)\s*\x28(.+?)\x29\s+([^-]+\-)(.+?)
+</code></pre>
+
+<p>-</p>
+
+<pre><code>   string a = "3 + 2 * ((1 + 1 - (2 + 4))) + 112 * 31 - ((1+1) - 14 + 1)";
+                Match match = Regex.Match(a, @"([^*]+\*)\s*\x28(.+?)\x29\s+([^-]+\-)(.+?)");
+                for (int c = 0, len = match.Length; c &lt; len; c++)
+                {
+                    Console.WriteLine(match.Groups[c].Value);
+                }
+</code></pre>
+
+<p>Well,I have no any better idea of as parsing this.</p>

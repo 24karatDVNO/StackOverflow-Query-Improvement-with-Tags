@@ -1,0 +1,10 @@
+<p>The problem is because your Dates are being read as american culture or similar.</p>
+
+<p>If you use the following you can specify the format you expect your dates to be in:use</p>
+
+<pre><code>DateTime result;
+if(DateTime.TryParseExact("dd/MM/yyyy", out result))
+{
+   // Got an English date
+ }
+</code></pre>

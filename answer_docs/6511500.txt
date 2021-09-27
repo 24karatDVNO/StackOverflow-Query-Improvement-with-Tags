@@ -1,0 +1,3 @@
+<p>$ajax is probably not what is causing your freezing. $ajax calls back to your web server asynchronously so it shouldn’t block your browser. If you are recreating your 50 objects every call this would definitely cause a freezing affect. Only update the view if it has changes.</p>
+
+<p>As for a better way I would recommend using a library such as backbone.js to handle refreshing your view layer for you.</p>

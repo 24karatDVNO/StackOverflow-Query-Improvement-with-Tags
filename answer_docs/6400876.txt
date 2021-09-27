@@ -1,0 +1,12 @@
+<pre><code>select add_months( trunc(sysdate,'YYYY'), -12 ) 
+       + interval '4' month 
+       + level 
+       - 1
+  from dual
+connect by level &lt;= ( (trunc(sysdate,'YYYY') 
+                       + interval '4' month) -
+                      (add_months( trunc( sysdate, 'YYYY' ), -12 ) 
+                       + interval '4' month) )
+</code></pre>
+
+<p>should work.  You could probably simplify the expression that computes the number of rows but I'd have to think for a few minutes about leap years.</p>

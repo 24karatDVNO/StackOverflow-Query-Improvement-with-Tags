@@ -1,0 +1,2 @@
+<p>You want a serialization mechanism whereby your derived serialize method call serialize on the base and then serializes first some id to indicate the derived type (typeid) then its own members.<br>
+To reconstitute the objects from the serialized file you want a factory object that reads the file and determines type (from the derived serialize typeid), instatiates an object of that type, and calles the deserailize method on the object to load it from the file and return the object via a base class pointer.</p>

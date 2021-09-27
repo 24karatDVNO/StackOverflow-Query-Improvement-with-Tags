@@ -1,0 +1,16 @@
+<p>I would recommend NOT reloading the page every time someone changes a dropdown.  I would recommend only updating the dropdowns below the current one using AJAX.</p>
+
+<p>Simple AJAX call would be to replace a div surrounding the following dropdown(s) with a snippet of html.  The first select will replace the contents of div 'second' (which will include clearing the third dropdown.  The second select will replace the contents of div 'third'.</p>
+
+<p>The pages you grab with ajax will return the html snippet for only the appropriate section.  The replace functions will use ajax against the appropriate pages to replace the contents of the appropriate div.</p>
+
+<pre><code>&lt;div id="first"&gt;
+    &lt;select name=first onchange="replace1()"&gt;&lt;/select&gt;
+    &lt;div id="second"&gt;
+        &lt;select name=second onchange="replace2()"&gt;&lt;/select&gt;
+        &lt;div id="third"&gt;
+            &lt;select name=third&gt;&lt;/select&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>

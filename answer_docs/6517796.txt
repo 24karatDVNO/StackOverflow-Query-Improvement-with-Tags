@@ -1,0 +1,17 @@
+<p>You can set focus on the main frame:</p>
+
+<pre><code>import sys
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+from PyQt4.QtWebKit import *
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    web = QWebView()
+    frame = web.page().mainFrame()
+    frame.setFocus()
+    web.showFullScreen()
+    web.load(QUrl("http://www.google.com"))
+    sys.exit(app.exec_())
+</code></pre>

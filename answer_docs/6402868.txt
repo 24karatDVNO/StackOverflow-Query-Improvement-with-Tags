@@ -1,0 +1,9 @@
+<p>Creates annonymous function and calls it, therefore avoiding pollution of the namespace and memory for functions that are called only once.</p>
+
+<p>Although similar to:</p>
+
+<pre><code>var f = function () { ... };
+f();
+</code></pre>
+
+<p>This variant avoids creating a variable f, which saves memory and avoids namespace conflicts.</p>

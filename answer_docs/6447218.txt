@@ -1,0 +1,61 @@
+<p>For what it's worth, the solution I came up with was a customized version of Paul Irish's <a href="http://paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/" rel="nofollow">Markup-based unobtrusive comprehensive DOM-ready execution</a> and @NitinJS' / @Ethan's answers.</p>
+
+<p><br /></p>
+
+<h2><em>At the bottom of my JavaScript I added:</em></h2>
+
+<pre><code>UTIL = {
+
+    fire : function(func, funcname) {
+
+        var namespace = SFAIC;
+        funcname = (funcname === undefined) ? "init" : funcname;
+
+        if (func !== "" &amp;&amp; 
+            namespace[func] &amp;&amp; 
+            typeof namespace[func][funcname] == "function") { 
+
+            namespace[func][funcname](); 
+
+        }
+
+    },
+
+    loadEvents : function() {
+
+        var bodyId = document.body.id;
+
+        UTIL.fire("common");
+        UTIL.fire(bodyId);
+
+    }
+
+};
+
+// Fire events on initial page load.
+UTIL.loadEvents();
+
+// Fire events for partial postbacks.
+Sys.WebForms.PageRequestManager.getInstance().add_endRequest(UTIL.loadEvents);
+</code></pre>
+
+<p><br /></p>
+
+<h2><em>In my MasterPage's aspx, I modified the body tag to:</em></h2>
+
+<pre><code>&lt;body id="&lt;%=bodyId%&gt;"&gt;
+</code></pre>
+
+<p><br /></p>
+
+<h2><em>In my MasterPage's code-behind declarations, I added:</em></h2>
+
+<pre><code>Public bodyId As String = String.Empty
+</code></pre>
+
+<p><br /></p>
+
+<h2><em>In my MasterPage's code-behind Page.PreRender handler, I added:</em></h2>
+
+<pre><code>bodyId = MyBase.GetType.BaseType.Name
+</code></pre>

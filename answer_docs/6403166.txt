@@ -1,0 +1,18 @@
+<p>Two errors you got there:</p>
+
+<ol>
+<li><p>You should use <code>document.getElementById('user_val').value = "abcd";</code> and not <code>document.getElementById('user_val').Value = "abcd";</code> (lower case <code>value</code>, not <code>Value</code>).</p></li>
+<li><p>You should also close the ready event after your click event.</p></li>
+<li><p><a href="http://jsfiddle.net/Shef/uYwKz/" rel="nofollow">Here is the complete working solution</a>:</p>
+
+<pre><code>/* adding the value to user_val input field id in javascript onload function based on drop down select event*/
+document.getElementById('user_val').value = "abcd";
+
+/* then trying to get value which changed  */
+$(document).ready(function() {
+    $("#submits").click(function() {
+        alert($("#user_val").val());
+    });
+});
+</code></pre></li>
+</ol>

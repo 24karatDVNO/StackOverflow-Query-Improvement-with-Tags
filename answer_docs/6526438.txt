@@ -1,0 +1,13 @@
+<p>For printing your list in reverse order, you can use a helper method:</p>
+
+<pre><code>public void display() {
+    displayHelper(this);
+}
+
+private void displayHelper(LinkedListImp temp) {
+    if (temp.next != null)
+        displayInternal(temp.next);
+
+    System.out.println("\n\t"+ temp.element +"\n");;
+}
+</code></pre>

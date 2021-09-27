@@ -1,0 +1,15 @@
+<p>@riku; you can use <code>rgba</code> for transparent color, like this</p>
+
+<p><strong>css:</strong></p>
+
+<pre><code>.TB_overlayBG {
+    background: rgba(0,0,0,0.7)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000); /* IE 6 &amp; 7 */
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000)"; /* IE8 */
+
+}
+</code></pre>
+
+<p>Because <code>rgba</code> is not transparent it's content as <code>opacity</code> does</p>
+
+<p>For more check <a href="https://stackoverflow.com/questions/5662178/opacity-of-divs-background-without-affecting-contained-element-in-ie-8/5662237#5662237">THIS</a></p>

@@ -1,0 +1,13 @@
+<p>You could use a Time variable :</p>
+
+<pre><code>Time t = new Time();
+t.dayOfMonth = dialog.getDayOfMonth();
+t.month = dialog.getMonth();
+t.year = dialog.getYear();
+t.normalize( false );
+</code></pre>
+
+<p>and then use a simple date formatter or the format method of Time to format it in mm/dd/yy</p>
+
+<pre><code>String s  = t.format( "your pattern" );
+</code></pre>

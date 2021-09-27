@@ -1,0 +1,22 @@
+<p>Using jQuery, try something along these lines:</p>
+
+<p>If you're using <code>&lt;link&gt;</code>:</p>
+
+<pre><code>$('body').append('&lt;link rel=StyleSheet href="'+$("link:contains('Main.css')").attr('href')+'" type="text/css" media=screen /&gt;');
+</code></pre>
+
+<p>If you're using <code>&lt;style&gt;</code> </p>
+
+<pre><code>$('body').append('&lt;style src="'+$("style:contains('Main.css')").attr('href')+'" type="text/css" media="screen" /&gt;');
+</code></pre>
+
+<p>Im not 100% sure if the syntax is spot on as I've not had a chance to test it. But its a start. Basically you want to append a <code>&lt;link&gt;</code> or <code>&lt;style&gt;</code> tag to your iframe which contains the <code>href=""</code> or <code>src=""</code> of your Main.css respectively.</p>
+
+<p><strong>Edit</strong></p>
+
+<p>Had a chance to code this up, you want the following:</p>
+
+<pre><code>$("#myFrame").contents().find("body").append('&lt;style src="'+$("style[src='some.css']").attr('src')+'"&gt;&lt;/style&gt;
+</code></pre>
+
+<p>Check the working example here - <a href="http://jsfiddle.net/ajthomascouk/erEUW/" rel="nofollow">http://jsfiddle.net/ajthomascouk/erEUW/</a></p>

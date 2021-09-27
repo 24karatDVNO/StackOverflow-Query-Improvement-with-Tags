@@ -1,0 +1,14 @@
+<p>Try with using below </p>
+
+<pre><code>NSString *CellIdentifier = [NSString stringWithFormat:@"Cell_%d_%d",indexPath.section,indexPath.row];
+
+EDITED:
+</code></pre>
+
+<p>You have issue with <code>NSArray</code> , You are trying to access an element from the array which doesn't exist,</p>
+
+<p>Your <code>arrayDuaGroups</code> array  does'nt have any object at index <code>indexPath.section</code>.</p>
+
+<p>Check the <code>arrayDuaGroups</code> array content and length before fetching the object.</p>
+
+<p>[arrayDuaGroups objectAtIndex:indexPath.section]</p>

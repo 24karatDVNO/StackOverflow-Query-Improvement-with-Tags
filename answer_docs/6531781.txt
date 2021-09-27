@@ -1,0 +1,10 @@
+<p>I ran into same situation, so this is my temporary fix</p>
+
+<pre><code>&lt;script type="text/javascript"&gt;
+$("div[data-role='page']").live('pagecreate', function(event){
+    $('.ui-btn-inner &gt; .ui-icon').bind('click', function() {
+        $(this).prev().children('a.ui-link-inherit').click();
+    });
+});
+&lt;/script&gt;
+</code></pre>

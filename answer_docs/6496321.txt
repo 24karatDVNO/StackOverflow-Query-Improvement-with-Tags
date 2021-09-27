@@ -1,0 +1,95 @@
+<p>Few days back in my last project i worked on Oracle 11g and ODAC beta vresion for EF4. I came across many problems regarding its use like no function can access, Working with Stored Prodedure is great and easy until you are not returning any value from it then you have to use RefCusrose, In Views you must have to give primary key and the one that you are saying  mapping number(1,0) fields to Boolean and and most of the fields maps in Decimal format.   </p>
+
+<p>I found Oracle forum is very useful <a href="http://forums.oracle.com/forums/thread.jspa?messageID=9379810&#9379810" rel="nofollow">here on oracle form</a> people gave three suggestions to solve it i am as it is quoting it all..</p>
+
+<p><strong>1. In .Config files set alterntives</strong></p>
+
+<p>In ODAC EF Beta 2, by default, Number(1, 0) will be mapped to Edm.Int16. You may specify in the app.config or web.config to map Number(1, 0) to Edm.Boolean instead.</p>
+
+<p><strong>The following info applies to the upcoming Beta 2:</strong></p>
+
+<p>The default mapping for Oracle NUMBER(p, 0) types can be overridden based on 
+a custom mapping that can be configured in a app.config, web.config, or a 
+machine.config.</p>
+
+<p><strong>For example</strong>, by default NUMBER(1, 0) is mapped to Int16. However, users may 
+want to map NUMBER(1, 0) to .NET Bool or .NET Byte type. This can be done 
+via a configuration file.</p>
+
+<p>Below is an example of app.config that contains a custom mapping where 
+NUMBER(1, 0) is mapped to Bool, NUMBER(3,0) is mapped to Byte, and the 
+maximum precisions for Int16, Int32, Int64 are changed to 4, 9, 18 from the 
+default values of 5, 10, 19, respectively: </p>
+
+<pre><code> &lt;?xml version="1.0" encoding="utf-8"?&gt;
+ &lt;configuration&gt;
+ &lt;connectionStrings&gt;
+ &lt;/connectionStrings&gt;
+ &lt;oracle.dataaccess.client&gt;
+ &lt;settings&gt;
+ &lt;add name="bool" value="edmmapping number(1,0)" /&gt;
+ &lt;add name="byte" value="edmmapping number(3,0)" /&gt;
+ &lt;add name="int16" value="edmmapping number(4,0)" /&gt;
+ &lt;add name="int32" value="edmmapping number(9,0)" /&gt;
+ &lt;add name="int64" value="edmmapping number(18,0)" /&gt;
+ &lt;/settings&gt;
+ &lt;/oracle.dataaccess.client&gt;
+ &lt;/configuration&gt;
+</code></pre>
+
+<p><strong>2. Static class For Conversion:</strong></p>
+
+<pre><code> namespace convert{
+static class boolConvert
+ {
+
+  public static bool boolchar(char ON)
+  {
+    switch (ON)
+    {
+      case 'O':
+      return true;
+      case 'N':
+      return false;
+      default:
+      return true;
+    }
+  }
+
+  public static char charbool(bool ON)
+  {
+   switch (ON)
+   {
+    case true:
+    return 'O';
+    case false:
+    return 'N';
+    default:
+    return 'O';
+   }
+  }
+
+}
+}
+</code></pre>
+
+<p>then you could use it to do you conversions where required:
+       bool isSomthing = convert.boolConvert.boolchar('N');
+       char isSomthigEelse = convert.boolConvert.charbool(true);</p>
+
+<p><strong>3. Use Property If you are using POCO's</strong></p>
+
+<p>If you're using one of the code generators that generates POCOs you could add a property in a partial class. If you have a field called "MyField", then in the partial class add something like this:</p>
+
+<pre><code> public bool MyField_Boolean
+ {
+ get
+ {
+  return MyField == 'O';
+ }
+ }
+</code></pre>
+
+<p>You won't be able to use MyField_Boolean inside an EF Linq query (because it's not a database property) but anywhere else in your code you can use it instead to get a boolean version.</p>
+
+<p>Although i didn't tested any of them yet but may be it'll solve your problem. I am hoping that the next version of ODAC wont have these kinda issues.</p>

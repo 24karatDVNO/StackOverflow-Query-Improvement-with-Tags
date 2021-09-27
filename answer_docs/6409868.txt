@@ -1,0 +1,3 @@
+<p>I fiddled around a lot with this and learnt a lot about spring in the process.  I don't think it's possible to get the parent spring context to apply these properties dynamically.  I got around the problem by implementing caching in the mainloader object so that expensive types aren't created multiple times frmo the spring definition.</p>
+
+<p>The other possiblity I investigated was making the ChildLoader context aware and allowing the ClassThatDoesStuff to use the parent context to get handles on beans, but this was bedding in spring to the app too much for my liking.</p>

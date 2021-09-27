@@ -1,0 +1,2 @@
+<p>There seems to be no direct method. Work around I think is like this:<br>
+You can present the UIImagePickerController from your TargetViewController(that you want to present after dismissing be UIImagePickerController) with one of its view hidden (Image View). In the UIImagePickerController delegate, you can set the required image and make it visible in the TargetViewController. After dismissing the UIImagePickerController, you will get the required transition.</p>

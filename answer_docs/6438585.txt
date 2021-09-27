@@ -1,0 +1,5 @@
+<p>In my case the reason was that I converted an int to an enum (<code>public enum FieldType : int { }</code>).</p>
+
+<p>Somehow, that convertion made an error jump where a Field had no Question. I made Question_id not nullable directly in the db, and removed the Fields with null question_id... and the error disappeared. (Replaced by another one, <em>Can't parse 32 as int.</em>. But still, improvement. I think the db type needs to be different.)</p>
+
+<p>"Any sufficiently advanced technology is indistinguishable from magic."</p>

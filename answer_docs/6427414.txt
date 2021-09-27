@@ -1,0 +1,19 @@
+<p>It is better to make sure that you do <em>not</em> have a CLASSPATH environment variable set. If it is not set, Java will by default look in the current directory for class files. As long as your Java source files are in the same directory (and not in a package) you should be able to compile and run them with simple commands:</p>
+
+<pre><code>javac Shirt.java
+javac ShirtTest.java
+java ShirtTest
+</code></pre>
+
+<p>If this complains with a <code>NoClassDefFoundError</code>, then try specifying the classpath on the command line using the <code>-cp</code> option:</p>
+
+<pre><code>javac -cp . Shirt.java
+javac -cp . ShirtTest.java
+java -cp . ShirtTest
+</code></pre>
+
+<p>(note that <code>.</code> means "the current directory").</p>
+
+<p>See the <a href="http://download.oracle.com/javase/tutorial/getStarted/cupojava/index.html" rel="nofollow">Getting Started tutorial</a>, which also has a section on <a href="http://download.oracle.com/javase/tutorial/getStarted/problems/index.html" rel="nofollow">common problems</a> and their solutions.</p>
+
+<p>When you get an error, please always copy &amp; paste the exact error message, instead of just saying "I get some errors". The more specific information you give, the easier it is to understand what the exact problem it is and the better we can help you.</p>

@@ -1,0 +1,3 @@
+<p>Because fork continues to execute the code as it goes downwards.  So each of the processes will run through the i = i * 2 each time as they spawn off more children.  Making it what you get and not what you expected (i.e. it doesn't jump to the end of the block once forked).</p>
+
+<p>Info on fork: <a href="http://www.csl.mtu.edu/cs4411/www/NOTES/process/fork/create.html" rel="nofollow">http://www.csl.mtu.edu/cs4411/www/NOTES/process/fork/create.html</a></p>

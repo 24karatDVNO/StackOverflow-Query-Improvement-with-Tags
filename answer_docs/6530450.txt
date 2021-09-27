@@ -1,0 +1,11 @@
+<p>You don't need to create any additional programs. All what you need, to setup replications from the old DB to the new one.
+All your data from the old DB will automatically transfer to the new DB. At this period you should use you old DB as the main data source. And as soon as all data will be copied to the new location, you'll need just brake replica connection and change the DB address in your code (or DNS pointer) to the new one.</p>
+
+<pre><code>1.       oldDB ===&gt; replication ==&gt; newDB
+    R/W operations
+
+2.       oldDB ==/= brake ==/=      newDB
+                               R/W operations
+</code></pre>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.0/en/replication-howto.html" rel="nofollow">MySQL Doc: 15.1.1. How to Set Up Replication</a></p>

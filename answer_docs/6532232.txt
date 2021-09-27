@@ -1,0 +1,7 @@
+<p>Not perfect, but removing space from the list below is easy :-)</p>
+
+<pre><code>re.split('([\d ])', 'my t0kens')
+['my', ' ', 't', '0', 'kens']
+</code></pre>
+
+<p><a href="http://docs.python.org/library/re.html#re.split" rel="nofollow">docs</a>: "Split string by the occurrences of pattern. If capturing parentheses are used in pattern, then the text of all groups in the pattern are also returned as part of the resulting list."</p>

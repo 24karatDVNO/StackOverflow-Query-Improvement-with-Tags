@@ -1,0 +1,15 @@
+<p>Here's the Android docs (with some representative screen sizes at the foot of the page): <a href="http://developer.android.com/guide/practices/screens_support.html" rel="nofollow">http://developer.android.com/guide/practices/screens_support.html</a></p>
+
+<p>First of all, in order to deploy your app to the Android store you need to publish it as an AIR file. (Note that this needs the Android device to have AIR on it: <a href="https://market.android.com/details?id=com.adobe.air" rel="nofollow">https://market.android.com/details?id=com.adobe.air</a>).</p>
+
+<p>You can get the screen resolution for the app using the <code>flash.system.capabilities</code>:</p>
+
+<pre><code>trace(Capabilities.screenResolutionX);
+trace(Capabilities.screenResolutionY);
+</code></pre>
+
+<p>or  via <code>flash.display.screen</code> when using AIR as this contains additional screen information.</p>
+
+<p>Finally you also need to bear in mind the screen orientation (see <a href="http://www.adobe.com/devnet/flash/articles/screen_orientation_apis.html" rel="nofollow">http://www.adobe.com/devnet/flash/articles/screen_orientation_apis.html</a>). You may want to consider multi-touch as well, and review you app from the UI point of view to take on board the different user experience of Android compared with the web.</p>
+
+<p>Good luck!</p>

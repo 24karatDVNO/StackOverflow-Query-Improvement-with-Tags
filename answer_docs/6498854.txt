@@ -1,0 +1,29 @@
+<p>Reflection is your friend in this case. Your data classes have a structure which can be explored using that class's <code>Type</code>. A <code>Type</code> is the base class for metadata concerning a class or structure, and includes methods to, for instance, get a list of all fields, properties and/or methods belonging to that class. The objects representing these class "members" can then be used to set or get field or property values, or invoke methods, given an instance of an object of that type.</p>
+
+<p>A reflective algorithm can be designed to handle any object structure it is given, and it doesn't have to know those structures at compile-time unlike an algorithm based on static types. The downside? It's slow, and you get very little compile-time checking of your algorithm so it can fail at run-time in unexpected ways.</p>
+
+<p>Here's something to get you started:</p>
+
+<pre><code>//statically set up an instance of some arbitrary object
+MyClass myObject = new MyClass();
+myObject.Field1 = "Hello";
+myObject.Field2 = "World";
+
+//This method is available on any object, and produces a Type representing the class definition
+Type myType = myObject.GetType();
+
+//C# also has a typeof() keyword that works when you have a static type and not an instance
+myType = typeof(MyObject);
+
+//Interrogate the Type instance to get its fields
+FieldInfo[] fields = myType.GetFields();
+
+//then, iterate through the fields to perform some (useful?) work.
+//Here, we are outputting a list of paired field names and their current values.
+//You will probably want to instantiate a Label and Textbox representing this value 
+//and show them on a Form.
+foreach(FieldInfo field in fields)
+   Console.WriteLine(String.Format("{0}: {1}", field.Name, field.GetValue(myObject));
+</code></pre>
+
+<p>To handle editability, you will need some sort of record of what the user has permission to change and what they don't. If that information will never change from user to user, you can incorporate that information into the data class itself using attributes (which won't change the "interface" of the object; it'll still have all the same members, but those members will have additional metadata). You could also create another set of classes that implement an interface defining each one as a set of "field permissions" for its parent class, and then you can dynamically construct an instance of the "field permission" class with a Type instance representing your object definition, and knowledge of the name of the interface that field permission objects implement.</p>

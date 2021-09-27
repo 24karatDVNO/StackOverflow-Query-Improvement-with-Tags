@@ -1,0 +1,24 @@
+<p>To illustrate, assuming:</p>
+
+<pre><code>var a = 1;
+</code></pre>
+
+<p>then</p>
+
+<pre><code>var b = ++a;
+</code></pre>
+
+<p>results in</p>
+
+<pre><code>true === (b === 2 &amp;&amp; a === 2)
+</code></pre>
+
+<p>while</p>
+
+<pre><code>var b = a++;
+</code></pre>
+
+<p>results in</p>
+
+<pre><code>true === (b === 1 &amp;&amp; a === 2)
+</code></pre>

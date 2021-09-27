@@ -1,0 +1,5 @@
+<p>It seems like you're trying to assign the value to whatever there is on the cell rather than instantiate the object that resides in the cell and then assign its value.  I would try something like this:</p>
+
+<pre><code>Dim vComboBoxColumn As DropDownList = DirectCast(GRDAntimicrobials.Rows(index).Cells("cmbAntibiotics"))
+vComboBoxColumn.Value = dr("AntibioticsStatus").ToString
+</code></pre>

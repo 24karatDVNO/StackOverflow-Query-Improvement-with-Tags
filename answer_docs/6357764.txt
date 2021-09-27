@@ -1,0 +1,53 @@
+<p>The solution was more easy that i expected:</p>
+
+<p>First create a multiple action result class that is a wrapper of ActionResult that contains an IEnumerable with ActionResults</p>
+
+<pre><code>/// &lt;summary&gt;
+/// this class contains a batch of ActionResult to execute
+/// &lt;/summary&gt;
+public class PortalMultipleActionResult : ActionResult
+{
+    /// &lt;summary&gt;
+    /// Builds a new instance of PortalMultipleActionResult
+    /// &lt;/summary&gt;
+    /// &lt;param name="results"&gt;&lt;/param&gt;
+    public PortalMultipleActionResult(IEnumerable&lt;ActionResult&gt; results)
+    {
+        Results = results;
+    }
+
+    /// &lt;summary&gt;
+    ///  Builds a new instance of PortalMultipleActionResult
+    /// &lt;/summary&gt;
+    /// &lt;param name="actions"&gt;&lt;/param&gt;
+    public PortalMultipleActionResult(IEnumerable&lt;Action&gt; actions)
+    {
+        Results = actions.Select(x =&gt; new PortalActionDelegateResult(x));
+    }
+
+    /// &lt;summary&gt;
+    /// Batch execution of all the results
+    /// &lt;/summary&gt;
+    /// &lt;param name="context"&gt;&lt;/param&gt;
+    public override void ExecuteResult(ControllerContext context)
+    {
+        foreach (var res in Results)
+        {
+            res.ExecuteResult(context);
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// Action results collection
+    /// &lt;/summary&gt;
+    private IEnumerable&lt;ActionResult&gt; Results
+    {
+        get;
+        set;
+    }
+}
+</code></pre>
+
+<p>Second you can create a Filter in order to return set filterContext.Result to one instance of this PortalMultipleActionResult.</p>
+
+<p>Finally just add the filter to your action method of the controller.</p>

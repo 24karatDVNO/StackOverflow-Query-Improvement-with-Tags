@@ -1,0 +1,31 @@
+<p>When you say the Google Map is blank, do you mean the map shows with no Markers or it's completely blank?</p>
+
+<p>If completely blank try changing </p>
+
+<pre><code>&lt;body onLoad="load()"&gt;
+</code></pre>
+
+<p>to </p>
+
+<pre><code>&lt;body onLoad="initializeGoogleMap()"&gt;
+</code></pre>
+
+<p>You will also have probs with the last comma in some code in IE. Make sure the code</p>
+
+<pre><code>var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: "Barefoot Days",
+    icon: "",
+});
+</code></pre>
+
+<p>You remove the , after icon to make it:</p>
+
+<pre><code>var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: "Barefoot Days",
+    icon: ""
+});
+</code></pre>

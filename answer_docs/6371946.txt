@@ -1,0 +1,5 @@
+<p>you can use <code>svn log</code> to get a list of changed files, or <code>svn diff --summarize</code> will return you a list of changed files.</p>
+
+<p>To get a count of changed lines, you could parse the output of <code>svn diff</code>, or you could parse the output of <code>svn blame</code> if you specified 1 revision change (use the -c option to refer to a single revision)</p>
+
+<p>In all cases, there's a --xml option to get something more easily parsable.</p>

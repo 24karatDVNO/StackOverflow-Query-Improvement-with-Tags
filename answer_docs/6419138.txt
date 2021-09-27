@@ -1,0 +1,17 @@
+<p>You're talking about three different fields:</p>
+
+<pre><code>  COST:
+  PRICE:
+  PROFIT:
+</code></pre>
+
+<p>You don't actually need to store all three of them, because from any two, you can calculate the third. So, if you're storing COST and PRICE, don't store PROFIT. If you're storing PRICE and PROFIT don't store COST. </p>
+
+<p>You can display the result of the calculation on your data entry form, of course:</p>
+
+<pre><code>  COST:    $50
+  PRICE:  $100
+  PROFIT: =IIf(IsNull(Price) And IsNull(Cost), "N/A", Price - Cost)
+</code></pre>
+
+<p>This would be the usual way to do this, seems to me.</p>

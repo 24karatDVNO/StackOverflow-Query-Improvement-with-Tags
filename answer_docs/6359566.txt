@@ -1,0 +1,13 @@
+<blockquote>
+  <p>And I am getting an "invalid argument"
+  error for DB_INIT_MPOOL. If I omit it,
+  I get complaints about "environment
+  did not include a memory pool" (for
+  either Hash or Btree databases).</p>
+</blockquote>
+
+<p>You're typically getting this first kind of error ("Invalid argument") if you try to create an environment where an environment with a <em>different configuration</em> (different flags) already exists.</p>
+
+<p>As for the second error (missing memory pool), it's because you're instructing BDB to do <code>DB_INIT_CDB</code> without <code>DB_INIT_MPOOL</code> - that's not possible, CDB <em>has to go</em> with a memory pool.</p>
+
+<p>Take a look at <a href="https://stackoverflow.com/q/5752815/269126">this other BDB/CDB question</a>, I've left some pointers to documentation there that might prove interesting to you.</p>

@@ -1,0 +1,34 @@
+<p>I use <a href="https://github.com/valums/file-uploader" rel="nofollow noreferrer">valums/file-uploader</a> and I am pretty happy with it.<br>
+It's very easy to use.<br>
+You can find some of my answers about this tool <a href="https://stackoverflow.com/questions/5349326/need-advice-on-ajax-fileupload/5349442#5349442">here</a> and <a href="https://stackoverflow.com/questions/4789993/what-is-the-best-way-to-upload-files-with-asp-net-mvc-2/4792528#4792528">here</a>.</p>
+
+<p><strong>HTML:</strong></p>
+
+<pre><code>&lt;div id="uploaderFile"&gt;&lt;/div&gt;
+</code></pre>
+
+<p><strong>Javascript:</strong></p>
+
+<pre><code>function CreateImageUploader() {
+    var uploader = new qq.FileUploader({
+        element: $('#uploaderFile')[0],
+        template: '&lt;div class="qq-uploader"&gt;' +
+                              '&lt;div class="qq-upload-drop-area"&gt;&lt;span&gt;Drop files here to upload&lt;/span&gt;&lt;/div&gt;' +
+                              '&lt;div class="qq-upload-button ui-button ui-widget ui-corner-all ui-button-text-only ui-state-default"&gt;Seleziona il Listino Excel&lt;/div&gt;' +
+                              '&lt;ul class="qq-upload-list"&gt;&lt;/ul&gt;' +
+                              '&lt;/div&gt;',
+        hoverClass: 'ui-state-hover',
+        focusClass: 'ui-state-focus',
+        action: 'Home/UploadImage',
+        allowedExtensions: ['jpg', 'gif'],
+        params: { },
+        onSubmit: function(file, ext) {
+
+            },
+        onComplete: function(id, fileName, responseJSON) {
+            $("#PopupImageUploader").dialog('close');
+            }
+        }
+    });
+}
+</code></pre>

@@ -1,0 +1,10 @@
+<p>To prevent an ugly error on timeout I suggest enclosing it and using a rescue like this:</p>
+
+<pre><code>begin
+   status = Timeout::timeout(5) do 
+      #Some stuff that should be interrupted if it takes too long
+   end       
+rescue Timeout::Error
+   puts "Error message: It took too long!\n"
+end  
+</code></pre>

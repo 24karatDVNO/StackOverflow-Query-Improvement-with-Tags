@@ -1,0 +1,7 @@
+<p>I think your issue might be becuase your MDX is not returning any values. Whilst the cellset returned will list the regions, the region names will be in a sort of header (similar to a SQL column name, or field name). </p>
+
+<p>Debug your code, and have a look what is inside the datatable. No rows?</p>
+
+<p>The main body of the datatable will not contain any values (numbers or text) because you have said <code>{} ON COLUMNS</code>. You may still be able to get what you are after by changing what you connect to <code>.DataTextField</code> but there is another way.</p>
+
+<p>ADOMD provides a way to interrogate an OLAP cube to find out what dimensions it has, what members are in each dimension, without asking it for any values (in a way, you can ask it for text, but no numbers!). For example, you can ask it to list the names of measures available, without asking it what the value of a measure is. You want the ADOMD <code>Catalog</code> oject in this case. It would list all members of the Product dimension at the Region level, if you asked it.</p>

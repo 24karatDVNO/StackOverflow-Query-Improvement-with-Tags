@@ -1,0 +1,18 @@
+<p>You're only ever using the first item in the actionArray array.</p>
+
+<p>ie</p>
+
+<pre><code>commands.Add(new RelayCommand(o =&gt; { actionArray[0](); }));
+</code></pre>
+
+<p>You need to iterate through the collection of actions.</p>
+
+<p>eg</p>
+
+<pre><code>public static ICommand[] CreateCommands(IEnumerable&lt;Action&gt; actions)
+{
+  commands = actions.Select(o =&gt; new RelayCommand(o)).ToArray();
+}
+</code></pre>
+
+<p>Code is freehand so might be some typos but should point you in the right idea.</p>

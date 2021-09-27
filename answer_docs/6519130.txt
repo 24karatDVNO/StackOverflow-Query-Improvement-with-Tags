@@ -1,0 +1,3 @@
+<p>The URL you actually use in <code>getConnection(...)</code> is wrong.  You are not supposed to put in just the name of the table you want to work with.  You need to have a complete URL so the JDBC system knows that it should use the mysql driver and where the mysql driver needs to connect to.</p>
+
+<p>Recheck the example you copied from, and see where they use the "url" variable.</p>

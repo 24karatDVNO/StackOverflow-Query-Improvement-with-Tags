@@ -1,0 +1,5 @@
+<p>The "old" (pre Java 5, JavaDoc-based) deprecated annotation is stored in the compiled class file, but is unfortunately not accessible through reflection.</p>
+
+<p>If it is an option for you to use the "real" annotation instead (@java.lang.Deprecated), you could of course use reflection to get all declared fields of your class, check if they are static Strings with a @Deprecated annotation and compare these with the passed method argument.</p>
+
+<p>This sounds rather ugly however and I would encourage you to find a different way to check for unwanted arguments.</p>

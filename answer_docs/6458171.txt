@@ -1,0 +1,13 @@
+<p>To me, second query is more efficient because it lowers the number of records for GROUP BY and HAVING.</p>
+
+<p>Alternatively, you may try the following query to avoid using IN:</p>
+
+<pre><code>SELECT `fp`.`user_id`
+FROM `forum_posts` `fp`
+LEFT JOIN `banned_users` `bu` ON `fp`.`user_id` = `bu`.`user_id`
+WHERE `bu`.`user_id` IS NULL
+GROUP BY `fp`.`user_id`
+HAVING COUNT(`fp`.`id`) &gt;= 100
+</code></pre>
+
+<p>Hope this helps.</p>

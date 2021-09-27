@@ -1,0 +1,13 @@
+<p>It is being sent because you use the input type image, why? Don't know exactly but you could call the submit using the onclick event and Javascript :</p>
+
+<pre><code>&lt;script language="javascript"&gt;
+function submitMyForm() {
+    document.search.submit();
+}
+&lt;/script&gt;
+
+&lt;form name="search" class="search" action="/search/" method="get"&gt;
+    &lt;input type="text" size="20" name="keywords" class="searchfield" value="Search for Property" onclick="clearSearchField()" title="Enter search keywords here. Ex- project name, city, state, etc." /&gt;
+    &lt;img src="/media/images/elements/search_icon.png" onclick="submitMyForm()" title="Click here to search" class="searchbutton"&gt;
+&lt;/form&gt;
+</code></pre>

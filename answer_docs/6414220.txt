@@ -1,0 +1,10 @@
+<p>Probably you are looking for src attribute</p>
+
+<pre><code>function checkimages() {
+     var images = document.getElementsByTagName('img');
+     for (var i=0; i&lt;images.length; i++){
+        var img =images[i].getAttribute('src');
+       alert(img);
+     }
+}
+</code></pre>

@@ -1,0 +1,4 @@
+<pre><code>File.WriteAllLines("FileC.txt", File.ReadAllLines("FileB.txt").Except(File.ReadAllLines("FileA.txt")).Except(File.ReadAllLines("FileD.txt")));
+</code></pre>
+
+<p>Admittedly, not entirely sure this would work. But take the result from the first Except, and call Except on that again with FileD.</p>

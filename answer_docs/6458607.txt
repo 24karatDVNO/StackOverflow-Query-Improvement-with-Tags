@@ -1,0 +1,4 @@
+<p>If you specifically want to change just the <code>datadir</code> value, the following command is more reasonable:<br>
+<code>sed -i.bak 's| *datadir *=.*|datadir = /var/lib/mysql3306/|g' /etc/my.cnf</code></p>
+
+<p>Note: <code>-i.bak</code> the backup of the original file with suffix <code>.bak</code> before making the change.</p>

@@ -1,0 +1,23 @@
+<p>I once secured a Plone site so that only authenticated users could see anything (login form 
+was accessible). It was a Plone 2.5 and I know I modified (checked/unchecked roles) these permissions in the Plone Site root's access ZMI page (manage_access):</p>
+
+<ul>
+<li>Add portal member</li>
+<li>Allow sendto</li>
+<li>Change portal events</li>
+<li>Modify portal content</li>
+<li>Set own password</li>
+<li>Set own properties</li>
+<li>View</li>
+</ul>
+
+<p>I know new permissions have been added in next Plone versions so you might need to tweek other ones.</p>
+
+<p>I think that the easiest way to achieve what you need is by doing this, although I'd recommend using GenericSetup and not TTW customization, like I did:</p>
+
+<ul>
+<li>It's easier than modifying Published state of workflows.</li>
+<li>If you configure Apache you'll need a double log in (to access the login form and then to log in to Plone). Unless you set a special PAS plugin. This approach, in my opinion, is more difficult than mine.</li>
+</ul>
+
+<p>But given that I didn't tried any of these two last options I can not say my way is <em>the</em> way. I can just say that it worked for me, and hopefully it'll work for you.</p>

@@ -1,0 +1,15 @@
+<p>In 8 chapter of <a href="https://rads.stackoverflow.com/amzn/click/com/1590599098" rel="nofollow noreferrer" rel="nofollow noreferrer">this book</a> you can find very detailed answer to your question.  </p>
+
+<p>In short: use <a href="http://en.wikipedia.org/wiki/Object_composition#Aggregation" rel="nofollow noreferrer">Composition</a> or Factories. (see answer of Wesley van Opdorp).</p>
+
+<p>Also, avoid using string arguments as enumerable:
+<code>$viewmode = 'visitor'</code><br>
+with this argument, you will have to keep in memory all possible values of this argument. Or look into code of function to remember them. And these values are strings - good place for typos. Also, it will be very difficult to change values in feature, because all calls of this method will contain hardcoded strings.<br>
+Use class-constants:</p>
+
+<pre><code>class AdWriter { 
+const view_mode_visitor = 1;
+...
+</code></pre>
+
+<p>Also, <code>$adState</code> - wrong code, should be $ad->state. But using public fields it's bad practice too :)  </p>

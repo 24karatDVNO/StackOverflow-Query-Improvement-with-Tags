@@ -1,0 +1,6 @@
+<p>Look into the webservers <code>error.log</code>. It will probably tell you that the command wasn't found. The current directory is seldomly in the search path. Prefix the binary name with <code>./</code> if it resides in the same directory as your php script.</p>
+
+<pre><code>shell_exec("./wkhtmltoimage-amd64 http://google.com/ test.png");
+</code></pre>
+
+<p>You can also add <code>2&gt;&amp;1</code> after the command to have stderr output returned from shell_exec (in case of other issues).</p>

@@ -1,0 +1,5 @@
+<p>The NPE I see in your stacktrace is caused by something called WSResponse. It looks like you are using a 3rd party library for WSDL/SOAP communications. Am I correct?</p>
+
+<p>My guess is that the error message just above the NPE is causing the problem. According to the error message you are not formatting our "input string" properly, probably because you provided a null value. So first, check if the input string you are providing to your WSDL/SOAP library is correct.</p>
+
+<p>If that doesn't help, check the API of this library and see if there is documentation on what may be causing the "Soap Method Error" in your stacktrace. If the API is open source you can also check the code of the WSResponse class to see what may be causing the NPE.</p>

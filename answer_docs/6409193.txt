@@ -1,0 +1,9 @@
+<p>You can get it via the active <a href="http://msdn.microsoft.com/en-us/library/system.net.networkinformation.networkinterface.aspx" rel="nofollow">network interface</a>, such as:</p>
+
+<pre><code>var mac =
+    (from item in NetworkInterface.GetAllInterfaces()
+    where item.OperationalStatus == OperationalStatus.Up
+    select item.GetPhysicalAddress()).FirstOrDefault();
+</code></pre>
+
+<p>Failing retrieval from an active interface, you might consider just grabbing the loopback address. Also, you could loop the elements as opposed to using Linq, should you wish to.</p>

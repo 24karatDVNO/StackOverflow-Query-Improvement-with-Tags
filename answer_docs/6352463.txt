@@ -1,0 +1,60 @@
+<p>Items:
+Duke forever
+Quake
+UT3
+Duke3d
+Halo</p>
+
+<pre><code>REV1:
+- Duke nukem forever
+- Duke3d
+
+REV2:
+- Duke3d
+- UT3
+- Quake
+
+REV3:
+- Duke3d
+- Duke nukem forever
+</code></pre>
+
+<p>Logical deduction:</p>
+
+<ul>
+<li>REV1: Duke forever > duke3d   #</li>
+<li>REV1: Duke3d &lt; Duke forever   ##</li>
+<li>REV2: Duke3d > UT3            %</li>
+<li>REV2: UT3 &lt; Duke3d            %</li>
+<li>REV2: Duke3d > Quake          %%</li>
+<li>REV2: Quake &lt; Duke3d          %%</li>
+<li>REV2: UT3 > Quake             %%%</li>
+<li>REV2: Quake &lt; UT3             %%%</li>
+<li>REV3: Duke3d > Duke forever   #</li>
+<li>REV3: Duke forever &lt; Duke3d   ##</li>
+</ul>
+
+<p>Most voted:</p>
+
+<ul>
+<li>Duke3d 3</li>
+<li>Duke forever 2</li>
+<li>UT3, Quake 1</li>
+</ul>
+
+<p>Remove # that contradict by creating contradicting pairs and convert to =
+Accept % that match in pairs.
+Group with count everything.
+If there are &lt; and = contradictions the true is the one with more count.</p>
+
+<p>Filtered then sorted by logic:</p>
+
+<ul>
+<li>Duke3d, Duke forever</li>
+<li>UT3</li>
+<li>Quake</li>
+</ul>
+
+<p>But sorting should be influenced by the voting count (Bayesian sort). That way Duke3d would win.</p>
+
+<p>Halo cannot be placed anywhere because it is not voted...</p>

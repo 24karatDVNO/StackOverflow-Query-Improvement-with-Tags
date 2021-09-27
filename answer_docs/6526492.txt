@@ -1,0 +1,11 @@
+<p>You need to actually save the data in the Bundle. And then actually reload the data from the Bundle. You were very close.</p>
+
+<pre><code>@Override
+public void onSaveInstanceState(Bundle outState){
+    super.onSaveInstanceState(outState);
+    outState.putString("text1", text1.getText().toString());
+}
+public void reloadState(){
+    text1.setText(outState.getString("text1"));
+}
+</code></pre>

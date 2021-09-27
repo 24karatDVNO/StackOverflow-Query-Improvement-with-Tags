@@ -1,0 +1,19 @@
+<p>No, for security reasons the Flash Player Settings panels are not accessible to developers, therefore you cannot modify or remove any of them. </p>
+
+<p>Things you cannot control in Flash Player Settings panel:</p>
+
+<ul>
+<li>The UI from any component within the settings panels</li>
+<li>There are no Events being dispatched (neither by components or by the panel itself)</li>
+<li>You cannot force a panel to close</li>
+<li>There's no way to know if a panel is open or closed (note that the user can use the flash menu to open the settings panel)</li>
+</ul>
+
+<p>The only thing you can control is which panel should be open, after that it's all up to the user.</p>
+
+<p>To open a Security Panel (i.e. the Camera panel):</p>
+
+<pre><code>Security.showSettings(SecurityPanel.CAMERA);
+</code></pre>
+
+<p>For more security panels check the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/SecurityPanel.html" rel="nofollow">SecurityPanel documentation</a>.</p>

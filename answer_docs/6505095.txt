@@ -1,0 +1,49 @@
+<p>It seems that I can work around the problem by introducing an intermediate class.  The class instance holds the address to the "inner" lambda functions.</p>
+
+<p>So, instead of this:</p>
+
+<pre><code>    Dim lMatchedPass2 As Boolean = Test(Function(a As Integer, b As Integer) (Function(c As Integer) c + 1)(a) = (b + 1), 10, 10)
+
+    Dim ChildFunc As Func(Of Integer, Integer) = Function(s As Integer) s + 1
+    Dim MatchedFail1 As Boolean = Test(Function(a, b) (ChildFunc(a)) = b, 10, 9)
+</code></pre>
+
+<p>I would have calls like this:</p>
+
+<pre><code>    Dim lDoCompare As New DoCompare(Of Integer)(10)
+    lDoCompare.Comparator = Function(a As Integer, b As Integer) (Function(c As Integer) c + 1)(a) = (b + 1)
+    Dim lMatchClassPass1 as Boolean = TestClass(lDoCompare, 10)
+
+    Dim ChildFunc As Func(Of Integer, Integer) = Function(c As Integer) c + 1
+    lDoCompare.Comparator = Function(a As Integer, b As Integer) ChildFunc(a) = (b + 1)
+    Dim lMatchClassPass2 as Boolean = TestClass(lDoCompare, 10)
+</code></pre>
+
+<p>Where the new classes look like this:</p>
+
+<pre><code>Public Function TestClass(Of T)(ByVal pComparator As IDoCompare(Of T), ByVal pValue As T) As Boolean
+    Dim lParamExpression As ParameterExpression = Expression.Parameter(GetType(T), "t")
+    Dim lCompareFunc As IDoCompare(Of T).Compare = AddressOf pComparator.DoCompare
+    Dim lInstance As ConstantExpression = Expression.Constant(pComparator)
+    Dim lMatcherExpr As MethodCallExpression = Expression.Call(lInstance, lCompareFunc.Method, lParamExpression)
+
+    Dim lFunc As Func(Of T, Boolean) = (Expression.Lambda(Of Func(Of T, Boolean))(lMatcherExpr, lParamExpression)).Compile
+    Return lFunc(pValue)
+End Function
+
+Interface IDoCompare(Of T)
+    Delegate Function Compare(ByVal pParam As T) As Boolean
+    Function DoCompare(ByVal pParam As T) As Boolean
+End Interface
+
+Class DoCompare(Of T) : Implements IDoCompare(Of T)
+    Protected mClue As T
+    Sub New(ByVal pClue As T)
+        mClue = pClue
+    End Sub
+    Public Comparator As Func(Of T, T, Boolean) = Function(a As T, B As T) a.ToString = B.ToString
+    Public Function DoCompare(ByVal pParam As T) As Boolean Implements IDoCompare(Of T).DoCompare
+        Return Comparator(mClue, pParam)
+    End Function
+End Class
+</code></pre>

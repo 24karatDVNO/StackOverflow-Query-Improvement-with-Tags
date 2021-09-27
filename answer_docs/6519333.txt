@@ -1,0 +1,10 @@
+<p>If you just want to count the rows and exit the loop when you've done 50, you could use something like:</p>
+
+<pre><code>my $count = 0;
+while(*row is found* &amp;&amp; $count++ &lt; 50)
+{
+    *stuff*
+}
+</code></pre>
+
+<p>But using SQL <code>LIMIT</code> or the like is better if it works in your case.</p>

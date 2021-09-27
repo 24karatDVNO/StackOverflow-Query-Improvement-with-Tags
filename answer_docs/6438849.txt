@@ -1,0 +1,13 @@
+<p><code>jTitle</code> needs to be completely <em>outside</em> of your double quoted strings, otherwise all you're doing is putting the literal string <code>[id='+jTitle+']</code> in your selector:</p>
+
+<pre><code>$(".jquery_image img:not([id='" + jTitle + "'])").hide();
+</code></pre>
+
+<p>In any event, per @Raynos's comment, you should be using a <code>#</code> selector to match on ID which makes the code much simpler to follow:</p>
+
+<pre><code>var sel = '#' + jTitle;
+$(sel).show();
+$('.jquery_image img').not(sel).hide();
+</code></pre>
+
+<p>By the way, I seem to recall reading that pure-numeric IDs aren't supported by older browsers, although they are permitted in HTML5.</p>

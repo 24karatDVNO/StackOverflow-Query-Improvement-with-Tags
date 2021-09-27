@@ -1,0 +1,28 @@
+<p>Basically the condition works like this:</p>
+
+<pre><code>#include &lt;iostream&gt;
+
+int main() {
+        for (int i=0; i&lt;10; ++i) {
+                std::cerr &lt;&lt; i &lt;&lt; std::endl;
+        }
+}
+</code></pre>
+
+<p>You can debug it like this:</p>
+
+
+
+<pre><code>(gdb) break 5
+Breakpoint 1 at 0x100000d0e: file foobar.cpp, line 5.
+(gdb) condition 1 i==3
+(gdb) r
+Starting program: /private/tmp/foobar 
+Reading symbols for shared libraries ++. done
+0
+1
+2
+
+Breakpoint 1, main () at foobar.cpp:5
+5           std::cerr &lt;&lt; i &lt;&lt; std::endl;
+</code></pre>

@@ -1,0 +1,15 @@
+<p>CMake generates make files that contain some "pre-defined" make targets that follow conventions expected by those that use them. Targets such as all, install, package and test.</p>
+
+<p>The 'install' and 'package' make targets typically, by default, depend on the 'all' make target. (So that if you type 'make install' it does a 'make all' first to ensure everything's up to date before the install occurs. Similarly with 'package'.)</p>
+
+<p>What 'make package' actually does is to call cpack under the covers:</p>
+
+<pre><code>/full/path/to/cpack --config ./CPackConfig.cmake
+</code></pre>
+
+<p>You can see this command line being invoked if you execute:</p>
+
+<pre><code>make package VERBOSE=1
+</code></pre>
+
+<p>What part of your CMakeLists.txt file do you want to skip in the packaging case? There is no variable such as the one you are looking for, because the packaging does not occur at CMake configure-time; it occurs later, after build time, when the user explicitly invokes 'make package' or 'cpack'.</p>

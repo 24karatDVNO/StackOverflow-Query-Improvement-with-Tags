@@ -1,0 +1,21 @@
+<p>Using the following example markup :</p>
+
+<pre><code>&lt;div id="slides"&gt;
+  &lt;img src="http://cloud.github.com/downloads/malsup/cycle/beach1.jpg" style="display: none;"&gt;
+  &lt;img src="http://cloud.github.com/downloads/malsup/cycle/beach1.jpg" style="display: block;"&gt;
+  &lt;img src="http://cloud.github.com/downloads/malsup/cycle/beach1.jpg" style="display: none;"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>This Javascript:</p>
+
+<pre><code>$('#slides img').each(function (){
+  if($(this).css("display") == "block"){
+    //this is your current slide!
+  }
+});
+</code></pre>
+
+<p>Should provide you with the current element element.</p>
+
+<p>Note that current element has a display: block attribute, and inactive elements are hidden with display: none</p>

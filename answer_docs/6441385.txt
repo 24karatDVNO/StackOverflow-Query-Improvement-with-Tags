@@ -1,0 +1,15 @@
+<p>Change the Security Area's route mapping to the following: </p>
+
+<pre><code>context.MapRoute(
+        "Security_default",
+        "Security/{controller}/{action}/{id}",
+        new { action = "Index", id = UrlParameter.Optional },
+        new string[] { "Eis.Mvc.Web.Areas.Security.Controllers" }
+    );    
+</code></pre>
+
+<p>Notice the area and controller portions of the defaults parameter were removed.</p>
+
+<p>Now the <code>@Html.ActionLink("Security", "Index", "Home", new { area = "Security" }, new { })</code> renders <code>&lt;a href="/Security/Home"&gt;Security&lt;/a&gt;</code></p>
+
+<p>Keith</p>

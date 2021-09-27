@@ -1,0 +1,13 @@
+<p>The way to correctly state the problem is: </p>
+
+<pre><code>f(x) = f(x - 1) + (x - 1)
+f(1) = 0
+</code></pre>
+
+<p>You want to solve <code>f(x)</code> in terms of <code>x</code>.</p>
+
+<p>There are many ways to solve these kinds of recursive formulas.  I like to use Wolfram Alpha, it has an easy interface.</p>
+
+<p><a href="http://www.wolframalpha.com/input/?i=f%28x%29=f%28x-1%29%2b%28x-1%29" rel="nofollow" title="Wolfram Alpha query">Wolfram Alpha query "f(x)=f(x-1)+(x-1)"</a></p>
+
+<p>That gives you the precise answer, in big-O notation you would say the function <code>f</code> is in <code>O(x^2)</code>.</p>

@@ -1,0 +1,18 @@
+<pre><code>SELECT
+  f.fUID,
+  u.Name
+FROM (
+  SELECT fUID
+  FROM (
+    SELECT
+      CASE WHEN UID  IN (@X, @X2) THEN UID ELSE fUID END AS UID,
+      CASE WHEN fUID IN (@X, @X2) THEN UID ELSE fUID END AS fUID
+    FROM friends
+    WHERE     (UID IN (@X, @X2) OR  fUID IN (@X, @X2))
+      AND NOT (UID IN (@X, @X2) AND fUID IN (@X, @X2))
+  ) s
+  GROUP BY fUID
+  HAVING COUNT(DISTINCT UID) = 2
+) f
+  INNER JOIN users u ON f.fUID = u.UID
+</code></pre>

@@ -1,0 +1,17 @@
+<p>You can create the div using the DOM instead. That will make it immediately available to add the event handler. Example:</p>
+
+
+
+<pre class="lang-js prettyprint-override"><code>function createNewDiv(){
+  var ele = document.createElement("div");
+  div.setAttribute("id","nDiv");
+
+  // ...
+
+  document.getElementById("con").appendChild( ele );
+}
+</code></pre>
+
+<p>Side note:</p>
+
+<p>Doing this using the DOM is also much faster and much more standards complaint than innerHTML. But people tend to use innerHTML because it is easier.</p>

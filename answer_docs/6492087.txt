@@ -1,0 +1,6 @@
+<p>You might want to set the time zone of the date formatter to <code>GMT</code> here. Do it using</p>
+
+<pre><code>[df setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+</code></pre>
+
+<p>before you do <code>dateFromString:</code> calls. This will give you what you want.</p>

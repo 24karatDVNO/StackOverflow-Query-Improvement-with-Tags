@@ -1,0 +1,5 @@
+<p>Then you 'update' on PC 2, it should merge the changes from PC 1 into PC 2's working copy. If the file was edited on PC 2 then it should either cleanly merge them, or give a merge conflict and you can manually resolve them.</p>
+
+<p>It is done this way so that SVN has a place to merge the 2 changes. Merges are done in a working copy, not on the server.</p>
+
+<p>If your changes from PC2 are lost when updating, and no merge errors are shown, then that indeed could be a problem.</p>

@@ -1,0 +1,11 @@
+<blockquote>
+  <p>Edit: For some reason, it removes all of the slashes from my URL. So 
+  <a href="https://www.something.com/dog.jpg" rel="nofollow">https://www.something.com/dog.jpg</a> becomes https: www.something.com dog.jpg</p>
+</blockquote>
+
+<p>you can use "safe" filter to avoid this if your dogs.0.id is <a href="https://www.something.com/dog" rel="nofollow">https://www.something.com/dog</a></p>
+
+<p>code like this:</p>
+
+<pre><code>&lt;div class="inner" style="background-image: url("{{ dog.0.id | safe }}.jpg");"&gt;
+</code></pre>

@@ -1,0 +1,16 @@
+<p>If you want top 2 for both first and last name, you can do UNION ALL.</p>
+
+<pre>
+select name 
+FROM table
+where Nametype = 1
+order by FrequencyPercent desc
+limit 2
+UNION ALL
+select name 
+from table
+where nametype = 2
+order by FrequencyPercent desc
+limit2
+
+</pre>

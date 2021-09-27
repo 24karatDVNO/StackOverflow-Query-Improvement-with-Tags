@@ -1,0 +1,9 @@
+<pre><code>string theType = dropDownList1.SelectedValue;
+
+var yearQuery = (from y in context
+where theType == "All" || y.Type == theType
+orderby y.Year ascending
+select y.Year).Distinct();
+</code></pre>
+
+<p>That should work too. </p>

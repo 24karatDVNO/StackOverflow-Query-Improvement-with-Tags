@@ -1,0 +1,5 @@
+<p>Multithreading won't really help you here, because you can't have all these threads accessing the same string to replace stuff, and the overhead of creating all these threads would outweigh any benefit anyway - Your computer doesn't have a 718 core CPU!</p>
+
+<p>You're better off not using multithreading. Keep in mind that 718 replace operations might not actually be all that slow anyway, unless the string is huge.</p>
+
+<p>Just do the replace operations without threading - If you want to add threading to your application, find an operation that takes several seconds, and doesn't all involve the same variable for the entire operation.</p>

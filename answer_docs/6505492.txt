@@ -1,0 +1,13 @@
+<p>if we suppose $res is your result set then ,</p>
+
+<p>$str = "table width='100%'";</p>
+
+<p>while($row = mysql_fetch_array($res)){
+     $str .= "tr
+                td class='class_name'".$row['col_name']." /td
+              /tr";
+}</p>
+
+<p>$str .= "/table";</p>
+
+<p>echo $str;</p>

@@ -1,0 +1,15 @@
+<p>There seems to be two errors in your declaration, the order is wrong and the url is to the image is some sort of mix between absolute and relative.</p>
+
+<p>background: url(http:/appimages/background.gif) #fff bottom left repeat-x;</p>
+
+<p>Should probably be</p>
+
+<pre><code>background: #fff url(appimages/background.gif) repeat-x scroll left bottom;
+</code></pre>
+
+<p>or if the images is really on another server</p>
+
+<pre><code>background: #fff url(http://www.yourdomain.com/appimages/background.gif) repeat-x scroll left bottom;
+</code></pre>
+
+<p>Scroll is default and can be omitted..</p>

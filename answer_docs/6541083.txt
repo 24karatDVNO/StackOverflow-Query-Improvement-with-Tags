@@ -1,0 +1,10 @@
+<p>In Java its like this:</p>
+
+<pre><code>Criteria criteria = session.createCriteria(Parent.class,"parent")
+    .createAlias("child","child")
+    .add(Restriction.eq("child.name",child.getName());
+
+   List&lt;Parent&gt; parents = criteria.list();
+</code></pre>
+
+<p>should give you the answer.</p>

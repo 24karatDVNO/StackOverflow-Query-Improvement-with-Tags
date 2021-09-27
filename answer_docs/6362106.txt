@@ -1,0 +1,12 @@
+<p>You can also do this with <a href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">jQuery Ajax</a> method pretty easily and it gives you a bit more flexibility than the load method (e.g. you can specify you don't want to get a cached version of the page).</p>
+
+<pre><code>&lt;div id="results"&gt;&lt;/div&gt;
+
+$.ajax({
+  url: "1.html",
+  cache: false,
+  success: function(html){
+    $("#results").append(html);
+  }
+});
+</code></pre>

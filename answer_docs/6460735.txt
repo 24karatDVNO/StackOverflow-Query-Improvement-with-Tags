@@ -1,0 +1,12 @@
+<p>Your enum does not have a proper name (it doesn't have a tag) and cannot be referenced from distinct points in the code. Try this:</p>
+
+<pre><code>enum SomeMatches { CHIP_WIDE, NODE_WIDE, SYSTEM_WIDE };
+struct _test_setup {
+     /* ... */
+     enum SomeMatches SomeMatches;
+     void (*match_partners)(enum SomeMatches match);
+     /* ... */
+};
+</code></pre>
+
+<p>Sprinkle <code>typedefs</code> at will, or leave things bare ...</p>

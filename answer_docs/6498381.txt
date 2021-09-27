@@ -1,0 +1,51 @@
+<p>Clicking on the <kbd>JS Lint</kbd> button (at the top of the screen) reveals:</p>
+
+<pre><code>Error:
+Problem at line 6 character 33: Expected ')' and instead saw ':'.
+$("div").css('border-style' : str);
+
+Problem at line 6 character 34: Missing semicolon.
+$("div").css('border-style' : str);
+
+Problem at line 6 character 35: Expected an assignment or function call and instead saw an expression.
+$("div").css('border-style' : str);
+
+Problem at line 6 character 38: Missing semicolon.
+$("div").css('border-style' : str);
+
+Problem at line 6 character 38: Expected an identifier and instead saw ')'.
+$("div").css('border-style' : str);
+
+Problem at line 6 character 38: Stopping, unable to continue. (75% scanned).
+Implied global: $ 1,3,4,6
+</code></pre>
+
+<p>Which are the faults identified by JS Fiddle.</p>
+
+<p>All of these are fixed by switching the <code>:</code> to a <code>,</code> in the <code>css()</code> method: <a href="http://jsfiddle.net/davidThomas/2wfVj/9/" rel="nofollow">JS Fiddle demo</a>.</p>
+
+<p>Also: you were using <code>$(this).text()</code> instead of the <code>$(this).val()</code> (the <code>text()</code> method returned invalid CSS <code>normal : dotted box</code> for example, instead of just <code>dotted</code>).</p>
+
+<p>That and the <code>+=</code> which appends the new value of the variable to the old value, rather than simply over-writing it. The fixed code (fixed so far as I can see) is:</p>
+
+<pre><code>$("select").change(function () {
+          var str = "";
+          $("select option:selected").each(function () {
+                str = $(this).val();
+              });
+    $("div").css('border-style',str);
+        })
+        .change();
+</code></pre>
+
+<p><a href="http://jsfiddle.net/davidThomas/2wfVj/13/" rel="nofollow">JS Fiddle demo</a>.</p>
+
+<p>And a slightly revised example:</p>
+
+<pre><code>$("select").change(function() {
+    var str = $("select option:selected").val();
+    $("div").css('border-style', str);
+}).change();
+</code></pre>
+
+<p><a href="http://jsfiddle.net/davidThomas/2wfVj/15/" rel="nofollow">JS Fiddle demo</a>.</p>

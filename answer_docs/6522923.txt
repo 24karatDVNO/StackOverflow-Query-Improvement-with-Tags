@@ -1,0 +1,15 @@
+<p>This should work (the MySQL way):</p>
+
+<pre><code>"UPDATE `custcomm_T`
+SET `Telephone` = IF(TRIM('" . mysql_real_escape_string($a) . "') != '', '" . mysql_real_escape_string($a) . "', `Telephone`),
+SET `Fax` = IF(TRIM('" . mysql_real_escape_string($b) . "') != '', '" . mysql_real_escape_string($b) . "', `Fax`),
+SET `Mobile` = IF(TRIM('" . mysql_real_escape_string($c) . "') != '', '" . mysql_real_escape_string($c) . "', `Mobile`),
+SET `EMail` = IF(TRIM('" . mysql_real_escape_string($d) . "') != '', '" . mysql_real_escape_string($d) . "', `EMail`),
+SET `trlicense` = IF(TRIM('" . mysql_real_escape_string($e) . "') != '', '" . mysql_real_escape_string($e) . "', `trilicense`),
+SET `trlicexp` = IF(TRIM('" . mysql_real_escape_string($f) . "') != '', '" . mysql_real_escape_string($f) . "', `trlicexp`)
+WHERE Cust_Name_VC = '" . mysql_real_escape_string($g) . '";
+</code></pre>
+
+<p>I've tried to keep the columns and variables to what you have posted in your question, but feel free to correct as per your schema.</p>
+
+<p>Hope it helps.</p>

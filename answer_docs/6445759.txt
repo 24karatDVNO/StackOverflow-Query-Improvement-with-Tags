@@ -1,0 +1,27 @@
+<p>Some useful bits:</p>
+
+<p>If you have a list of lists like</p>
+
+<pre><code>[['marsbar', 0, 1, 2, 3, 4], ['twix', 3, 4, 5, 6, 7]]
+</code></pre>
+
+<p>(which you should be able to get by using the <code>csv</code> module)</p>
+
+<p>You will probably want to convert it to a dictionary, where the first item of each list is used for the key, and the rest make up the value. You can do this with something like</p>
+
+<pre><code>dict((x[0], x[1]) for x in list_of_lists)
+</code></pre>
+
+<p>You can look up multiple keys with a list comprehension as well:</p>
+
+<pre><code>[the_dict[key] for key in key_list]
+</code></pre>
+
+<p>That gives you a list of lists, where you want to sum the first elements of each list, the second elements, etc. To do that, we 'zip' the lists to make a list of lists with all the first elements, all the second elements etc., and then sum the inner lists.</p>
+
+<pre><code>[sum(x) for x in zip(*the_requested_candybars)]
+</code></pre>
+
+<p>The <code>zip()</code> function takes multiple arguments; the <code>*</code> here turns the list of lists into several list arguments.</p>
+
+<p>We can <code>zip</code> again to match up the week names with the sums.</p>

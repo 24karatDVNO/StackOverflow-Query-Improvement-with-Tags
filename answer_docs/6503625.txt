@@ -1,0 +1,9 @@
+<pre><code>$has_customer_note = empty($customer_note) ? 'N' : 'Y';
+</code></pre>
+
+<p>Check out the part about return values of <a href="http://php.net/manual/en/function.empty.php" rel="nofollow"><code>empty</code></a> to see what is considered an empty value.</p>
+
+<p>An alternative can be to use <a href="http://php.net/manual/en/function.strlen.php" rel="nofollow"><code>strlen</code></a>.</p>
+
+<pre><code>$has_customer_note = strlen($customer_note) &gt; 0 ? 'Y' : 'N';
+</code></pre>

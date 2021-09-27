@@ -1,0 +1,10 @@
+<pre><code>function filter_post($value)
+{ 
+  if ($value !='')
+  {
+    return $value;
+  }
+
+}
+$new_array=array_filter($_POST,'filter_post');
+</code></pre>

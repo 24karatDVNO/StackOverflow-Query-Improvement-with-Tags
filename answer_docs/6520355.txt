@@ -1,0 +1,9 @@
+<p>Doh, second question today that I'm answering myself.  The tx and ty properties need to be multiplied by the scale factor in order to preserve the correct offset values.  Presumably this is something to do with the order in which the matrix is translated?</p>
+
+<p>Solution:</p>
+
+<pre><code>var scale:Number = .32;
+var bmd:BitmapData = new BitmapData(target.width/scale,target.height/scale,true,0);
+var mat:Matrix = new Matrix(scale,0,0,scale,-(target.x*scale),-(target.y*scale));
+bmd.draw(this,mat);
+</code></pre>

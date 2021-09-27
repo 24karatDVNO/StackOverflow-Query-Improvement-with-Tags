@@ -1,0 +1,34 @@
+<p>I like to think I do know a thing or two about php and I am aware of the responsibility involved in this project. I am only working with a test gateway the creditcard company supplies, no actually monetary danger is involved. What baffles me really is that I can send standard html form post to this url and get a xml response but when I try doing this with javascript(with or without jquery) or with php I always get error code 500, exactly the same message I get when I change the url to <a href="http://some_crazy_url_that_doesnt_exist.com" rel="nofollow">http://some_crazy_url_that_doesnt_exist.com</a>, I've tried using the same php code on some other server url, it didn't give any response as the arguments supplied were all wrong but I didn't get error code 500 as with <a href="http://someurl.com/processPayment" rel="nofollow">http://someurl.com/processPayment</a>. The code I used is below if you are interested and want to point out some mistakes:</p>
+
+<pre><code>&lt;?php
+function do_post_request($url, $data, $optional_headers = null)
+{
+  $params = array('http' =&gt; array(
+              'method' =&gt; 'POST',
+              'content' =&gt; $data
+            ));
+  if ($optional_headers !== null) {
+    $params['http']['header'] = $optional_headers;
+  }
+  $ctx = stream_context_create($params);
+  $fp = @fopen($url, 'rb', false, $ctx);
+  if (!$fp) {
+    throw new Exception("Problem with $url, $php_errormsg");
+  }
+  $response = @stream_get_contents($fp);
+  if ($response === false) {
+    throw new Exception("Problem reading data from $url, $php_errormsg");
+  }
+  return $response;
+}
+</code></pre>
+
+<p>?></p>
+
+<p>
+
+
+
+    
+
+</p>

@@ -1,0 +1,16 @@
+<p>The autocomplete function that is included with jQuery UI has a different code format than the stand-alone jQuery plugin. Details on this can be found at the jQuery UI website at the link below.</p>
+
+<p><a href="http://jqueryui.com/demos/autocomplete/" rel="nofollow">http://jqueryui.com/demos/autocomplete/</a></p>
+
+<p>Here is a simple example of the jQuery UI Autocomplete function</p>
+
+<pre><code>$( "#Name" ).autocomplete({
+        source: url,
+        minLength: 1,
+        select: function( event, ui ) {
+            log( ui.item ?
+                "Selected: " + ui.item.value + " aka " + ui.item.id :
+                "Nothing selected, input was " + this.value );
+        }
+    });
+</code></pre>

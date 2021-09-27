@@ -1,0 +1,8 @@
+<p>What I think you should use is a single frame in the Main navigation of your application.
+So you can 've all the history across your pages in the web browser.</p>
+
+<p>Other pages can then use your Main frame like this </p>
+
+<pre><code>Frame frame =this.parent as Frame
+frame.navigate(new Uri("/Views/Details.xaml", UriKind.Relative));
+</code></pre>

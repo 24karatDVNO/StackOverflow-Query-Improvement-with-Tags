@@ -1,0 +1,13 @@
+<p>You can check the java property <code>user.name</code>:</p>
+
+<pre><code>&lt;target name="checkroot"&gt;
+  &lt;condition property="isroot"&gt;
+    &lt;equals arg1="${os.user}" arg2="root"/&gt;
+  &lt;/condition&gt;
+&lt;/target&gt;
+&lt;target name="dostuff" depends="checkroot" unless="isroot"&gt;
+...
+&lt;/target&gt;
+</code></pre>
+
+<p>Since ant 1.7 you can also use <code>&lt;scriptcondition&gt;</code> to do something clever in a script instead of the <code>&lt;equals&gt;</code> above</p>

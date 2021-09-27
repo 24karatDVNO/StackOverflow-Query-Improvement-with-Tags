@@ -1,0 +1,7 @@
+<p>There is a way how to change stack size back to 1 MiB or even more. You can use EDITBIT command. Here's the information <a href="http://blogs.msdn.com/b/tom/archive/2008/03/31/stack-sizes-in-iis-affects-asp-net.aspx" rel="nofollow">how</a> to do it.</p>
+
+<p>On the other hand modifying IIS binaries namely w3wp.exe does not look good from deployment point of view. </p>
+
+<p>Caveats with extra thread are performance related. Extra thread will consume 1 MiB of memory. If there are a lot of requests to your web app you can run out of memory sooner.</p>
+
+<p>To reduce memory usage you can make a custom thread pool with threads that have stack size of the right size.</p>

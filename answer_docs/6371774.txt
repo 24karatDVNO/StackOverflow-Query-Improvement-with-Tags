@@ -1,0 +1,25 @@
+<p>When you pass a varaible by reference, it has to match the type exactly.</p>
+
+<p>You can call the method by creating another varaible with the correct type:</p>
+
+<pre><code>string bbb = "";
+object o = bbb;
+foo(ref o);
+</code></pre>
+
+<p>If you want the changed value back in the string variable, you have to check the type and cast it:</p>
+
+<pre><code>bbb = o as string;
+</code></pre>
+
+<hr>
+
+<p>Consider using a return value instead of the <code>ref</code> keyword, and just return the changed value:</p>
+
+<pre><code>static object foo(object aaa) {
+</code></pre>
+
+<p>Usage:</p>
+
+<pre><code>o = foo(o);
+</code></pre>

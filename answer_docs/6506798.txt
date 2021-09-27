@@ -1,0 +1,13 @@
+<p>I had this problem earlier. All my applications that use a customized component based on Visualization API suddenly stop working, even older versions and local deployments.</p>
+
+<p>Then I replace this line:</p>
+
+<pre><code>VisualizationUtils.loadVisualizationApi(onLoadCallback, Blabla.PACKAGE);
+</code></pre>
+
+<p>with:</p>
+
+<pre><code>VisualizationUtils.loadVisualizationApi(onLoadCallback);
+</code></pre>
+
+<p>and it works. Still have no idea on what has happened though.</p>

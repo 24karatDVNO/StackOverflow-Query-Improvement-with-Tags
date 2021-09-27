@@ -1,0 +1,13 @@
+<p>This code works for me:</p>
+
+<pre><code>- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSString *string = [[NSString alloc] initWithFormat:@"Helooooooo"];
+    NSString *htmlString = [[NSString alloc] initWithFormat:@"&lt;html&gt;&lt;head&gt;&lt;style type='text/css'&gt;body { color:#FFFFFF; background-color: #000000; }&lt;/style&gt;&lt;/head&gt;&lt;body&gt;%@&lt;/body&gt;&lt;/html&gt;", string];
+    [webView loadHTMLString:htmlString baseURL:nil];
+}
+</code></pre>
+
+<p>Here's a screenshot:</p>
+
+<p><img src="https://i.stack.imgur.com/gn1MZ.png" alt="enter image description here"></p>

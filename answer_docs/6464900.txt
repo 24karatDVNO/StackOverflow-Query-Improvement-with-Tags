@@ -1,0 +1,7 @@
+<p>There is no need to call <code>new</code> for the given datatype <code>T</code>. The <code>push_back</code> implementation should (must) call the copy-constructor or the assignment operator. The memory should have been allocated to hold those elemnets that are being pushed. The intial memory allocation should not call CTOR of type T. Something like:</p>
+
+<pre><code>   T* pArray; 
+   pArray = (T*) new  BYTE[sizeof(T) * INITIAL_SIZE);
+</code></pre>
+
+<p>And then just put new object into pArray, calling the assignment operator.</p>

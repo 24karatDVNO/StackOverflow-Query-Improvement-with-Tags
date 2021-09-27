@@ -1,0 +1,3 @@
+<p>I decided to investigate a little bit. I looked at Eclipse Debug Package. This package is a rich collection of plug-ins working together to provide services for multiple launches/environments debugging.</p>
+
+<p>In this package, a launch state is encapsulated in objects instantiated from Launch and  DebugTarget. However the access to these data is not limited to any object or thread. The design is mainly based on event dispatchers and listeners. It provides flexibility for adding new features, but less control over data accesses and state transitions. In particular, developers have to be careful about concurrency issues.</p>

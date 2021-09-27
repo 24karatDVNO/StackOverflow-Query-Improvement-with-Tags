@@ -1,0 +1,14 @@
+<p>Just make a new <code>confirmation.php</code> file and then redirect if file uploaded successfully.</p>
+
+<pre><code>if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)) 
+{
+header("location: confirmation.php");
+} 
+else {
+echo "Sorry, there was a problem uploading your file.";
+}
+</code></pre>
+
+<p>Hope it will help you.</p>
+
+<p>cheers..!!</p>

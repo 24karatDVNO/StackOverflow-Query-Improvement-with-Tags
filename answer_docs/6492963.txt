@@ -1,0 +1,14 @@
+<p>Hope this helps. Gets the value of the firsts and disables the second. Test it on fiddle</p>
+
+<pre><code>$(document).ready(function(){
+
+    $("#MyTextBox").blur(function () {
+        Testing('MyTextBox','MyTextBoxResult');
+    });
+     function Testing(htmlData, htmlResult) {
+           alert( $('#'+htmlData).val());
+         $('#'+htmlResult).attr("disabled", "disabled"); 
+    }   
+
+    });
+</code></pre>

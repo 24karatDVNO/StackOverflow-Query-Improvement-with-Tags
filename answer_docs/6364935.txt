@@ -1,0 +1,1 @@
+<p>No, it's not possible. Probably the way to achieve this would be to have <code>before</code> advice on <code>Thread.start()</code> using AspectJ... Of course you can subclass <code>Thread</code>, patch JDK code (different boot CLASSPATH), etc., but AspectJ seems to be the most portable and elegant solution.</p>

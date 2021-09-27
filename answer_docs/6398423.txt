@@ -1,0 +1,10 @@
+<p>Just chan ging the model like you have above will not work, the old data will still be in a different strucutre in the db. </p>
+
+<p>Very similar the previous answer, one of the things I have done to do this migration before is to do it dynamically, while the system is running and being used by the users. </p>
+
+<p>I had the data layer separated from the logic, so it let me add some preprocessors and inject code to do the following.</p>
+
+<p>Lets say we start with the old datamodel, then release new code that does the following:
+On every access to the document, you would have to check whether the embedded property exists, if it does, create a new entry associated as a reference and save to the database and delete the embedded property from the documents. Once this is done for a couple of days, a lot of my data got migrated and then I just had to run a similar script for everything that was not touched, made the job of migrating the data much easier and simpler and I did not have to run long running scripts or get the system offline to perform the conversion. </p>
+
+<p>You may not ha ve that requirement, so Pick accordingly.</p>

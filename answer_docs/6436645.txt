@@ -1,0 +1,3 @@
+<p>Yes, you can have a whole graph of objects (massive data structure) but if none of it is tied down or referred to, it will be garbage collected.</p>
+
+<p>If it's not, either the GC hasn't run (you could try a <code>GC.Collect()</code> for diagnostic purposes but you shouldn't use it in production code) or something is referring to a part of the structure.  For example, the UI might be bound to it.</p>

@@ -1,0 +1,18 @@
+<p>You can retreive data in JSP in this way:</p>
+
+<ol>
+<li>retreive data in bean object</li>
+<li>set bean object in request object</li>
+<li>dispatch your request to the JSP</li>
+</ol>
+
+<p>Follow this code:</p>
+
+<pre><code>&lt;%
+    forumbean bean=(forumbean)request.getAttribute("userdata");
+    String name=bean.getName();
+    out.print("&lt;input type='text' id='name' name='name' value='"+name+"'&gt;");
+%&gt;
+</code></pre>
+
+<p>You can use expression language also to avoid scriplet tag.</p>

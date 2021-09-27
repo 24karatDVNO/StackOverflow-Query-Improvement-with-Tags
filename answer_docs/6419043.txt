@@ -1,0 +1,7 @@
+<p>You should never use lookup fields defined in Access tables:</p>
+
+<p><a href="http://access.mvps.org/access/lookupfields.htm" rel="nofollow">The Evils of Lookup Fields in Tables</a></p>
+
+<p>A combo box is a UI object and should be defined at the UI level (in forms, for instance), not in your data tables. What you are experiencing is exactly one of the problems that comes from using them.</p>
+
+<p>Any time I take over an existing Access app, the first thing I do is remove all lookup fields in the data tables. They just get in the way of knowing what the data really is.</p>

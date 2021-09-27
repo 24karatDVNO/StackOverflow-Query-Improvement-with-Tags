@@ -1,0 +1,3 @@
+<p>To add to helpful comments here - if your structs get much more complex you could be better off considering a serialization library like <a href="http://www.boost.org/doc/libs/1_46_1/libs/serialization/doc/index.html" rel="nofollow">Boost.Serialization</a> or <a href="http://code.google.com/apis/protocolbuffers/docs/reference/cpp/index.html" rel="nofollow">Google Protocol Buffers</a>, which handle endianness for you under the covers. </p>
+
+<p>When encoding the string, make sure you send a length (probably a <code>short</code> handled using <code>htons</code>) before the string itself, don't just send 100 chars every time.</p>

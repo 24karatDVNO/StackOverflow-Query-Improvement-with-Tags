@@ -1,0 +1,10 @@
+<p>If you have the possiblity: </p>
+
+<p>Create two tables:</p>
+
+<p><strong>Threads</strong>: id, subject, date_created, date_last_reply, ..</p>
+
+<p><strong>Posts</strong>: id, thread_id, date, ..</p>
+
+<pre><code>SELECT * FROM threads ORDER BY date_last_reply
+</code></pre>

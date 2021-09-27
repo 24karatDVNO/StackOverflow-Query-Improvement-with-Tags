@@ -1,0 +1,5 @@
+<p>In the parent process, fork()'s return value is the process ID of the child process. Stuff that value away somewhere for when you need to terminate the child process. fork() returns zero(0) in the child process.</p>
+
+<p>When you need to terminate the child process, use the kill(2) function with the process ID returned by fork(), and the signal you wish to deliver (e.g. SIGTERM).</p>
+
+<p>Remember to call wait() on the child process to prevent any lingering zombies.</p>

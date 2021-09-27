@@ -1,0 +1,10 @@
+<pre><code>int i = myList.Count / 100;
+int batchSize = 100;
+
+for(int j = 0; j &lt; i; j++)
+{
+    InsertIntoDataBase(myList.Skip(j * batchSize).Take(batchSize));
+}
+</code></pre>
+
+<p>Where <code>InsertIntoDataBase()</code> is some function you can implement to do the insert.</p>

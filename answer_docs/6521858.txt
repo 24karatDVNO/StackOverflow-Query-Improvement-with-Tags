@@ -1,0 +1,9 @@
+<p>You need to use the Advanced Editor to tell the excel source the column is a Unicode String, not a numeric.  That is why alphanumeric fields are null.</p>
+
+<ol>
+<li>Right-click on the Excel Source and choose advanced editor</li>
+<li>Choose the fourth tab "Input and Output Properties"</li>
+<li>Choose the column in question under the "Output Columns" and change the source to Unicode</li>
+</ol>
+
+<p>That should fix your problem.</p>

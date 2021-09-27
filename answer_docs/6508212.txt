@@ -1,0 +1,4 @@
+<p>I believe your design is incorrect.  You have a many-to-many relationship between documents and signers.  You should have a junction table, something like:</p>
+
+<pre><code>ID  DocumentID  SignerID
+</code></pre>

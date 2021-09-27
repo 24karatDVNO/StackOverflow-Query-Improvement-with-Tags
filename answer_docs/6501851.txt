@@ -1,0 +1,82 @@
+<p>A word of warning on this solution. I wouldn't use it for a large set of numbers. If I were doing this same solution for a much larger set, I would use array_splice to drop chosen members from the array. As you get a much larger space, finding an unused number in your range becomes quite expensive, and demands a better solution than the brute force method below. </p>
+
+<p>This will build half of your target set. You will call it twice, once for each half. </p>
+
+<pre><code>function build_half($min, $max, $num_elements, $arr = array() ){
+
+  while( count($arr) &lt;= $num_elements)
+   {
+      $candidate = rand($min, $max);
+      if( !in_array($candidate, $arr))
+        {
+          array_push($arr, $candidate);
+        }
+    }
+   return $arr;
+}
+</code></pre>
+
+<p>This will grab $this_many elements from the array. </p>
+
+<pre><code>function random_grab($arr, $this_many){      // don't try this on the subway
+  $nums_to_repeat = array();
+
+  // catch some edge cases...
+  if( $this_many &gt; count($arr) )
+    {
+      return FALSE;
+    }
+  else if( $this_many == count($arr) )
+    {
+      return shuffle($arr);
+    }
+
+  while( count($nums_to_repeat) &lt;= $this_many) 
+    {
+      $rand_key = rand(0, count($arr) - 1);
+
+      if( ! in_array($arr[$rand_key], $nums_to_repeat))
+        {
+          array_push($nums_to_repeat, $arr[$rand_key]);
+        }
+    }
+ return $nums_to_repeat;
+}
+</code></pre>
+
+<p>This is a fairly specialized case, but could be made more general by allowing the offset floor and ceiling to be passed in as parameters. For your problem they would be 5 and 9, so we just derive them directly.</p>
+
+<pre><code>function random_insert_2nd_half($target, $source){
+  $offsets_consumed = array();
+  $num_elements = count($target);
+
+  while( count($source) &gt; 0 )
+    {
+      $offset = rand( ($num_elements/2), $num_elements - 1);
+
+      if( ! in_array( $offset, $offsets_consumed)
+        {
+          $arr[$offset] = array_pop($nums_to_repeat);
+        }
+    }
+}
+</code></pre>
+
+<p>Ok so after having done all that, let's put it to work. </p>
+
+<pre><code>// Generate the first half of the array
+$my_array = $repeated_nums = array();
+$my_array = build_half(1, 10, 5);
+
+// then grab the 2 random numbers from that first half.
+$repeated_nums = random_grab($my_array, 2);
+
+// So now we have our random numbers and can build the 2nd half of the array.
+// we'll just repeat the call to the first function.
+$my_array = build_half(1, 10, 5, $my_array);
+
+// Then swap out two of the values in the second half.
+$my_array = random_insert_2nd_half($my_array, $repeated_nums);
+
+// at this point $my_array should match what you are looking for.
+</code></pre>

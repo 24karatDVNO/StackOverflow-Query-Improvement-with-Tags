@@ -1,0 +1,16 @@
+<p>Here's yet another way of doing it (on Mac OS X 10.6):</p>
+
+<pre><code>find -x "$PWD" -type f -iname "*.ano" -exec bash -c '
+  ar=( "${@%/*}" )                 # perform a "dirname" command on every array item
+  printf "%s\000" "${ar[@]%/*}"    # do a second "dirname" and add a null byte to every array item
+' arg0 '{}' + | sort -uz | 
+while IFS="" read -r -d '' userDir; do
+  # to-do: customize output to get example output needed
+  echo "$userDir"
+  basename "$userDir"
+  find -x "${userDir}" -type f -iname "*.ano" -print0 |
+  xargs -0 -n 500 grep -hcv '^[[:space:]]*$' | awk '{ s+=$0 } END { print s }'
+  #xargs -0 -n 500 grep -cv '^[[:space:]]*$' | awk -F: '{ s+=$NF } END { print s }'
+  printf '%s\n' '----------'
+done
+</code></pre>

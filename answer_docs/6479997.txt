@@ -1,0 +1,10 @@
+<p>You could also use the function <code>mysql_num_rows</code>, which will tell you the number of rows returned by your query.</p>
+
+<pre><code>$rows = mysql_num_rows($searchResult);
+if($rows &lt;= 0){
+    /* Code if there are no rows */
+}
+else{
+    /* At least one row has been found */
+}
+</code></pre>

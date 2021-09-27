@@ -1,0 +1,36 @@
+<p>You need to go to the Domain Services file (where the GetTimeFormsQuery() is defined). It'll look something like:</p>
+
+<pre><code>public IQueryable&lt;TimeForm&gt; GetTimeForms() {
+    return this.Context.TimeForm;
+}
+</code></pre>
+
+<p>, and add to it so it is like this:</p>
+
+<pre><code>public IQueryable&lt;TimeForm&gt; GetTimeForms() {
+    return this.Context.TimeForm
+        .Include("Client") // Assuming your property to see the client is called "Client"
+        .Include("Rate") // Same for "Rate"
+        .Include("Task"); // and "Task
+}
+</code></pre>
+
+<p>Or whatever the navigation properties are called in your TimeFrom entity.</p>
+
+<p>Silverlight doesn't do lazy loading, so you'll have to explicitly include these properties in the query in the domain service. Also it's probably wise to create an extra method on the domain service that accepts the start and end date and userid so that you don't pull the entire table over the wire every time.</p>
+
+<pre><code>public IQueryable&lt;TimeForm&gt; GetTimeFormsWithStartAndEnd(DateTime start, DateTime end, string userId) {
+    return this.Context.TimeForm
+        .Include("Client") // Assuming your property to see the client is called "Client"
+        .Include("Rate") // Same for "Rate"
+        .Include("Task") // and "Task
+        .Where(o =&gt; o.Start&gt;= start 
+                &amp;&amp; o.End&lt;= end 
+                &amp;&amp; o.USERID== userId));
+
+}
+</code></pre>
+
+<p>After you rebuild your web-project, you'll have a method called GetTimeFormsWithStartAndEndQuery in your silverlight with these 3 as parameters.</p>
+
+<p>Goodluck!</p>

@@ -1,0 +1,6 @@
+<pre><code>outputList = [line[45:47] for line in open('cron.log', 'r')]
+
+for idx, item in enumerate(outputList[:-1]):
+    if item == outputList[idx+1]:
+        # do something
+</code></pre>

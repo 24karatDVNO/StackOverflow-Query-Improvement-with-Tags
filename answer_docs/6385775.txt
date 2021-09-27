@@ -1,0 +1,5 @@
+<p>Some of the comments here are very good. Using libavfilter is probably a good place to start. Watermarking every frame is going to be very expensive because it requires decoding and re-encoding the entire video for each viewer.</p>
+
+<p>One idea I'd like to expand upon is watermarking only portions of the video. I will assume you're working with h.264 video, which requires far more CPU cycles to decode and encode than older codecs. I think per cpu core you could mark 1 or 2 stream in real time. If you can reduce your requirements to 10 seconds marked out of 100, then you're talking about 10-20 per core, so about 100 per server. It's probably not the performance you're looking for.</p>
+
+<p>I think some companies sell watermarking hardware for TV operators, but I doubt it's any cheaper than a rack of servers and far less flexible.</p>

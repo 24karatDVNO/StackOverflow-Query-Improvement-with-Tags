@@ -1,0 +1,15 @@
+<p>If you're passing the Validation object to the callback method, you can do a custom error on it if it fails your condition. (inside of your callback: $validation->error(...))</p>
+
+<p>Otherwise, your callback should accept the field's value, return bool and look like this :</p>
+
+<pre><code>// The callback method is static, you shouldn't call it on the instance.
+array(array('Model_Whatever::country_from_list'), array(':value'))
+</code></pre>
+
+<p>And the method:</p>
+
+<pre><code>public static function country_from_list($value)
+{
+    return in_array($value, ORM::factory('country')-&gt;getActive('array'));
+}
+</code></pre>

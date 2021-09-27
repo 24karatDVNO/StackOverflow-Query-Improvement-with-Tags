@@ -1,0 +1,3 @@
+<p>Infopath (and actually most MS Office applications) has code which attempts to determine where a given form came from and then use the content from that server rather than a local copy. This is typically important to offer the ability to post updates back to the original source (e.g. a SharePoint site). Generally you shouldn't see multiple <em>full</em> downloads, although you certainly may see several HEAD, OPTIONS or other WebDav verbs.</p>
+
+<p>(The Office team is working to reduce redundant downloads but this isn't trivial for a bunch of reasons).</p>

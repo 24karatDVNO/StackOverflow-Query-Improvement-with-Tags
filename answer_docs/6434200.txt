@@ -1,0 +1,7 @@
+<p>In application servers there are usually settings for workers thread pool. Maximum thread number in that pool roughly defines how much memory you would consume. This is a simple and, importantly, working concept.</p>
+
+<p>I would not call it "graceful degradation" though. This is throttling. Graceful degradation involves reducing the service level (e.g. amount of details provided to user) to keep at least the basic necessary functions available to every current user. With throttling extra users are just out of luck.</p>
+
+<p>Graceful degradation by that definition requires the knowledge of the application nature, and therefore you have to make the code know about it.</p>
+
+<p>The obvious approach is to divide all possible operations into classes by their necessity for a user. 1st class shall always be handled. 2nd (3rd, 4th, ...) class shall be served only if server is below specific load level, otherwise return "temporarily unavailable" error.</p>

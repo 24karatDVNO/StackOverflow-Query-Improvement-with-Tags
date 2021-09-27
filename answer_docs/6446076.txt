@@ -1,0 +1,11 @@
+<p>Because of you post formcollection to action you should check form properties manually.</p>
+
+<pre><code>ViewData.ModelState.AddModelError("XXX", form["XXX"], "XXX is wrong");
+</code></pre>
+
+<p>in View you can show error:</p>
+
+<pre><code>&lt;%= Html.ValidationMessage("XXX") %&gt;
+</code></pre>
+
+<p>But I recommend to make model and pass model to action. Not formCollection.</p>

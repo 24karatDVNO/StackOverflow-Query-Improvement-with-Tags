@@ -1,0 +1,17 @@
+<p>Sorry that this is not an answer, but I am not good enough to actually leave a comment.</p>
+
+<p>It looks like there is a bug in your second function.  Your code won't work correctly for queries that return more than one row.  Shouldn't that return statement be:</p>
+
+<pre><code>while($stmt-&gt;fetch()) {
+
+    //to dereference
+    $row_copy = $parameters;
+    $return_array[] = $row_copy;
+
+}
+</code></pre>
+
+<p>And then the function should end with:</p>
+
+<pre><code>return $return_array;
+</code></pre>

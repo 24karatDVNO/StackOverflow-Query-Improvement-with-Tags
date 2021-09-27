@@ -1,0 +1,40 @@
+<p>I'll add this as an idea I was playing around with, involving using a <code>SoftReference</code> as a "sniffer" for low memory. </p>
+
+<pre><code>SoftReference&lt;Byte[]&gt; sniffer = new SoftReference&lt;String&gt;(new Byte[8192]);
+while(iter.hasNext()){
+   tuple = iter.next();
+   treeset.add(tuple);
+   if(sniffer.get()==null){
+      dump(treeset);
+      treeset.clear();
+      sniffer = new SoftReference&lt;String&gt;(new Byte[8192]);
+   }
+}
+</code></pre>
+
+<p>This might work well in theory, but I don't know the exact behaviour of <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/ref/SoftReference.html" rel="nofollow"><code>SoftReference</code></a>. </p>
+
+<blockquote>
+  <p>All soft references to softly-reachable objects are guaranteed to have been cleared before the virtual machine throws an OutOfMemoryError. Otherwise no constraints are placed upon the time at which a soft reference will be cleared or the order in which a set of such references to different objects will be cleared. Virtual machine implementations are, however, encouraged to bias against clearing recently-created or recently-used soft references.</p>
+</blockquote>
+
+<p>Would like to hear feedback as it seems to me like an elegant solution, although behaviour might vary between VMs? </p>
+
+<p>Testing on my laptop, I found that it the soft-reference is cleared infrequently, but sometimes is cleared too early, so I'm thinking to combine it with meriton's answer:</p>
+
+<pre><code>SoftReference&lt;Byte[]&gt; sniffer = new SoftReference&lt;String&gt;(new Byte[8192]);
+while(iter.hasNext()){
+   tuple = iter.next();
+   treeset.add(tuple);
+   if(sniffer.get()==null){
+      free = MemoryManager.estimateFreeSpace();
+      if(free &lt; MIN_SAFE_MEMORY){
+         dump(treeset);
+         treeset.clear();
+         sniffer = new SoftReference&lt;String&gt;(new Byte[8192]);
+      }
+   }
+}
+</code></pre>
+
+<p>Again, thoughts welcome!</p>

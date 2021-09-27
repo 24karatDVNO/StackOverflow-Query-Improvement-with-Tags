@@ -1,0 +1,22 @@
+<p>If you need to "reset" the QuerySet you can access the model of the queryset and call the original manager again (to fully reset).  However that's probably not very useful for you, unless you were keeping track of the previous filter/exclude etc statements and can replay them again on the reset queryset.  With a bit of planning that actually wouldn't be too hard to do, but may be a bit brute force.</p>
+
+<p>Overall manji's answer is definitely the right way to go.</p>
+
+<p>So amending manji's answer you need to replace the existing <code>"model"."private" = False</code> with <code>("model"."owner_id" = 2 AND "model"."private" = True ) OR "model"."private" = False )</code>.  To do that you will need to walk through the <code>where</code> object on the <code>query</code> object of the queryset to find the relevant bit to remove.  The query object has a <code>WhereNode</code> object that represents the tree of the where clause, with each node having multiple children.  You'd have to call the <code>as_sql</code> on the node to figure out if it's the one you are after:</p>
+
+<pre><code>
+from django.db import connection
+qn = connection.ops.quote_name
+q = myModel.objects.all()
+print q.query.where.children[0].as_sql(qn, connection)
+</code></pre>
+
+<p>Which should give you something like:</p>
+
+<pre><code>
+('"model"."private" = ?', [False])
+</code></pre>
+
+<p>However trying to do that is probably way more effort than it's worth and it's delving into bits of Django that are probably not API-stable.</p>
+
+<p>My recommendation would be to <strong>use two managers</strong>. One that can access everything (an escape hatch of sort), the other with the default filtering applied.  The default manager is the first one, so you need to play around with the ordering depending on what you need to do.  Then restructure your code to know which one to use - so you don't have the problem of having the extra private=False clause in there already.</p>

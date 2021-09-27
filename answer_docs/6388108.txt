@@ -1,0 +1,25 @@
+<pre><code>awk '
+    NR == FNR {tag[$2] = $3; next}
+    {
+        # determine if this line has a "NR" tag from file2
+        have_nr = 0
+        for (i=4; i&lt;=NF; i++) {
+            if ($i ~ /^NR/ &amp;&amp; $i in tag) {
+                have_nr = 1
+                break
+            }
+        }
+
+        # if it does have a matching NR tag, then
+        # print the tag value for every matching NR/NM tag
+        if (have_nr) {
+            for (i=4; i&lt;=NF; i++) {
+                if ($i in tag) {
+                    print $1, $2, $3, $i, tag[$i]
+                }
+            }
+        }
+    }
+
+' file2 file1
+</code></pre>

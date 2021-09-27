@@ -1,0 +1,3 @@
+<p>Apple's GCC has been extended to understand that <code>CFString</code> is a string type that can be used with <code>__attribute__((format_arg(...)))</code> (which is used to provide some extra error-checking when format strings are passed between functions).  There is a conditional in the header which tries to disable this usage of the attribute if the compiler doesn't support it, but it fails to check for Apple-specific GCC.</p>
+
+<p>See <a href="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=44981" rel="nofollow">http://gcc.gnu.org/bugzilla/show_bug.cgi?id=44981</a> - it looks like it has now been implemented in mainline GCC.</p>

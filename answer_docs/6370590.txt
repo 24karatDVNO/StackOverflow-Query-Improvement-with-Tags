@@ -1,0 +1,6 @@
+<p>Is this what you mean?</p>
+
+<pre><code>SELECT r.userId, r.programmeId, u.email, u.firstName, (SELECT TOP (1) r.id FROM tblUserQuestionnaireHistory AS r WHERE (r.userId = urh.UserId) AND (r.programmeId = urh.ProgrammeId) AND (r.success = 1) AND r.stepId = 9)
+FROM tblUserRepeatHistory urh
+where urh.UserId = @UserId and usr.ProgrammeId = @programmeId
+</code></pre>

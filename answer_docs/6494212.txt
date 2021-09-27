@@ -1,0 +1,9 @@
+<p>That doesn't even look like Objective-C.</p>
+
+<p>Having a property named <code>Init</code> is quite confusing and what is <code>String</code>?</p>
+
+<p>Perhaps this is what you want:</p>
+
+<pre><code>NSString *initialString = self.carte.titre;
+originalCarte.initialLetter = [initialString characterAtIndex:0];
+</code></pre>

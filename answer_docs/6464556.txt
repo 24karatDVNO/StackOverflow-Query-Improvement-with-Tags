@@ -1,0 +1,7 @@
+<pre><code>    UIGraphicsBeginImageContext(firstImage.size);
+    [firstImage drawAtPoint:CGPointMake(0,0)];
+    [secondImage drawAtPoint:CGPointMake(0,0)];
+
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+</code></pre>

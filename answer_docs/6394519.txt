@@ -1,0 +1,3 @@
+<p>It looks like it might be a Java bug.  Others have reported issues similar to what you've seen; see this <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6462682" rel="nofollow">Java bug report</a>.  The Java devs don't think there's a bug but I'm suspicious.  The code JRE uses to get the return value from a spawned process is hairy, and I wouldn't be surprised if there's a race condition or other concurrency bug.</p>
+
+<p>I'm guessing that the JRE fails to capture the return code if the spawned process exits very quickly.  If my suspicion is correct, adding <code>sleep 1</code> to your shell script will cause it to work.</p>

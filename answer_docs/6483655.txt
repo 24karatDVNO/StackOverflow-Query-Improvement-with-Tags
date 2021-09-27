@@ -1,0 +1,5 @@
+<p>Well, I had a similar problem: <a href="https://stackoverflow.com/questions/6468103/how-to-properly-handle-session-and-access-token-with-facebook-php-sdk-3-0">How to properly handle session and access token with Facebook PHP SDK 3.0?</a></p>
+
+<p>You can see there how I handle the session. Since the new PHP SDK you somehow can't directly edit the session of Facebook. If you also get the new access token via signed request or the JS SDK, you maybe can use a similar approach as I did.</p>
+
+<p>My issue with lost information about the user seems to be solved with the <a href="http://adamyoung.net/IE-Blocking-iFrame-Cookies" rel="nofollow noreferrer">IE iFrame problem</a>, but I'm not quite sure if my approach will also work with <code>fb-&gt;getUser()</code>.</p>

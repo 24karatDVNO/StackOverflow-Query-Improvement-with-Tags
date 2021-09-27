@@ -1,0 +1,7 @@
+<p>This should load the XML into an Object and print it:</p>
+
+<pre><code>{assign var="feeds" value="-RSS FEED LINK-"}
+{$feeds|@simplexml_load_string|@print_r}
+</code></pre>
+
+<p>But loke Paul said in the comments, I would suggest to do the assignment in PHP and then use smarty to just walk the object.</p>

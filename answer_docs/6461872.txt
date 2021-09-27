@@ -1,0 +1,7 @@
+<p>If you have no control over the code or the database design, I would recommend solving this problem using a trigger.</p>
+
+<p>Set up an INSERT, UPDATE trigger that will specifically only look at the rows that have just been changed.  That way you're not running an update statement on data that has already been checked for consistency.  Less rows to check/update means better performance.</p>
+
+<p>You can narrow it down to the rows that have been touched by looking at the virtual <code>inserted</code> and <code>deleted</code> tables.</p>
+
+<p>Once your trigger is in place either touch all of the existing rows (to fire the trigger on them) or run your original script to make sure that everything is in a consistent state.</p>

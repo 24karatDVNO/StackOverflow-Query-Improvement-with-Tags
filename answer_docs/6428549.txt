@@ -1,0 +1,15 @@
+<p>You'll want to use query parameters to avoid issues with quotes:</p>
+
+
+
+<pre class="lang-java prettyprint-override"><code>Cursor mCursor =  mDb.query(
+    true,
+    DATABASE_TABLE,
+    new String[] { KEY_ROWID, "actionData", "mid" }, 
+    "mid = ?",              // the ? is a placeholder.
+    new String[] { mid },   // sqlite will put the value of mid into the placeholder above.
+    null,
+    null,
+    null,
+    null);
+</code></pre>

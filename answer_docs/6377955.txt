@@ -1,0 +1,9 @@
+<p>This does not seem like a very safe thing to do.</p>
+
+<pre><code>public TResult CreateToType&lt;TType,TResult&gt;() where TType : new() where TResult : class
+{
+    return new TType() as TResult;
+}
+</code></pre>
+
+<p>Edit - hmm this actually won't do what you want, as your trying to cast to an interface. Woops.</p>

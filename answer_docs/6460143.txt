@@ -1,0 +1,5 @@
+<p>Here's my one-liner, which is probably less efficient than some of the other suggestions:</p>
+
+<pre><code>def is_alternating_signs(lst):
+    return all(x * y &lt; 0 for x, y in zip(lst, lst[1:]))
+</code></pre>

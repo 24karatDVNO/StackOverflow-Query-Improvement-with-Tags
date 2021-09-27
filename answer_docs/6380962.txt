@@ -1,0 +1,7 @@
+<p>Another way to do it, if you didn't want to use a User Defined Function would be to use the REPLACE function, like so:</p>
+
+<pre><code>SELECT Phone, REPLACE(REPLACE(REPLACE(REPLACE(Phone,' ',''),'(',''),')',''),'-','') AS NewPhone
+FROM Contacts
+</code></pre>
+
+<p>Although its a bit klunky, it should serve your purpose.</p>

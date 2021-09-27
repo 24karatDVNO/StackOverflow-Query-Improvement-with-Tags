@@ -1,0 +1,63 @@
+<p>Well, I've turned up nothing that works, so I've resorted to a nasty hack. </p>
+
+<p>The FacebookOAuthClient.GetLogoutUrl() method URL does not log me out, however, it does return an "m.facebook.com" URL, e.g.:</p>
+
+<p><a href="http://m.facebook.com/logout.php?next=http://www.facebook.com/dialog/oauth/?response_type=token&amp;display=popup&amp;scope=user_about_me%252coffline_access&amp;client_id=123456789012345&amp;redirect_uri=http%253a%252f%252fwww.facebook.com%252fconnect%252flogin_success.html&amp;confirm=1" rel="nofollow">http://m.facebook.com/logout.php?next=http://www.facebook.com/dialog/oauth/?response_type=token&amp;display=popup&amp;scope=user_about_me%252coffline_access&amp;client_id=123456789012345&amp;redirect_uri=http%253a%252f%252fwww.facebook.com%252fconnect%252flogin_success.html&amp;confirm=1</a></p>
+
+<p>The mobile page has a "Logout" link at the bottom of the page. </p>
+
+<p>Trying to catch the anchor tag:</p>
+
+<pre><code>HtmlElementCollection hec = wbrFacebookAuth.Document.GetElementsByTagName("a");
+foreach (HtmlElement elem in hec)
+{
+    // the logout link has a data-sigil="logout" attribute:
+    string datasigil = elem.GetAttribute("data-sigil").ToLower();
+    if (datasigil == "logout")
+    {
+    wbrFacebookAuth.Navigate(elem.GetAttribute("href"));
+    break;
+    }
+}
+</code></pre>
+
+<p>In the Navigated WebBrowser event is unpredictable and unreliable. The actual method of catching it isn't relevant. e.g. This does not work either:</p>
+
+<pre><code>        string logoutPattern = @"&lt;a href=""(/logout.[^""]+)""";
+
+        Regex rx = new Regex(logoutPattern);
+        if (rx.IsMatch(wbMain.DocumentText))
+        {
+            MatchCollection mc = rx.Matches(wbMain.DocumentText);
+            if (mc.Count &gt; 0)
+            {
+                foreach (Match m in mc)
+                {
+                    Console.WriteLine("*** " + m.ToString());
+                }
+            }
+        }
+</code></pre>
+
+<p>However, it can be caught reliably in the DocumentCompleted event handler. </p>
+
+<pre><code>private void wbrFacebookAuth_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+{
+   if (_logout)
+   {
+    HtmlElementCollection hec = wbrFacebookAuth.Document.GetElementsByTagName("a");
+    foreach (HtmlElement elem in hec)
+    {
+        // the logout link has a data-sigil="logout" attribute:
+        string datasigil = elem.GetAttribute("data-sigil").ToLower();
+        if (datasigil == "logout")
+        {
+        wbrFacebookAuth.Navigate(elem.GetAttribute("href"));
+        break;
+        }
+    }
+   }
+}
+</code></pre>
+
+<p>The problem is that it is now loading 2 pages instead of 1, and it's still a bit messy. However, it works. </p>

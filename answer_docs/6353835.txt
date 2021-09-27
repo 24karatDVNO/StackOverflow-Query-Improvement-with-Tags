@@ -1,0 +1,32 @@
+<p>Browser detection example using the built-in navigator object (source: <a href="http://www.w3schools.com/js/js_browser.asp" rel="nofollow noreferrer">http://www.w3schools.com/js/js_browser.asp</a>):<br /></p>
+
+<pre>
+&lt;div id="example"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript">
+  txt = "&lt;p>Browser CodeName: " + navigator.appCodeName + "&lt;/p>";
+  txt+= "&lt;p>Browser Name: " + navigator.appName + "&lt;/p>";
+  txt+= "&lt;p>Browser Version: " + navigator.appVersion + "&lt;/p>";
+  txt+= "&lt;p>Cookies Enabled: " + navigator.cookieEnabled + "&lt;/p>";
+  txt+= "&lt;p>Platform: " + navigator.platform + "&lt;/p>";
+  txt+= "&lt;p>User-agent header: " + navigator.userAgent + "&lt;/p>";
+
+  document.getElementById("example").innerHTML=txt;
+&lt;/script>
+
+</pre>
+
+<p>And check this out to find out how to load up CSS using JavaScript:<br />
+<a href="https://stackoverflow.com/questions/574944/how-to-load-up-css-files-using-javascript">How to load up CSS files using Javascript?</a></p>
+
+<p>This may work too (source: <a href="http://snippets.dzone.com/posts/show/4554" rel="nofollow noreferrer">http://snippets.dzone.com/posts/show/4554</a>):</p>
+
+<pre>
+function includeCSS(p_file) {
+    var v_css  = document.createElement('link');
+    v_css.rel = 'stylesheet'
+    v_css.type = 'text/css';
+    v_css.href = p_file;
+    document.getElementsByTagName('head')[0].appendChild(v_css);
+}
+</pre>

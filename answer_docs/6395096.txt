@@ -1,0 +1,9 @@
+<p>Your question is a bit unclear. If you need to present both marks and percentage you can just combine the code in a single page. If you want to split in two consecutive pages, please be aware of the possibilities of</p>
+
+<ul>
+<li>HTML forms and <a href="http://download.oracle.com/javaee/6/api/javax/servlet/ServletRequest.html#getParameter%28java.lang.String%29" rel="nofollow">HttpServletRequest.getParameter</a> to transfer data.</li>
+<li>the possibility not only to map servlet, but jsp files as well in your web.xml (servlet, replace servlet-class with jsp-file and enter relative path).</li>
+<li>the option to develop a custom tag for clearly defined views.</li>
+</ul>
+
+<p>I don't know how appropiate my suggestions are, but at least the first and second will help you to proceed.</p>

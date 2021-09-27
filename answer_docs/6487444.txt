@@ -1,0 +1,19 @@
+<p>private function in namespace2.</p>
+
+<p>publicFunction reveal privateFunction using Revelation Pattern.</p>
+
+<pre><code>var namespace2;
+
+(function() {
+
+    function privateFunction() {
+    }
+
+    namespace2 = {
+       publicFunction : privateFunction
+    };
+
+}());
+
+namespace2.publicFunction();
+</code></pre>

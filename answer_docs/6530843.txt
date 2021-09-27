@@ -1,0 +1,15 @@
+<p>the statement compiles to:</p>
+
+<pre><code>080483b4 &lt;main&gt;:
+ 80483b4:   55                      push   %ebp
+ 80483b5:   89 e5                   mov    %esp,%ebp
+ 80483b7:   83 ec 10                sub    $0x10,%esp
+ 80483ba:   c7 45 fc 94 84 04 08    movl   $0x8048494,-0x4(%ebp)
+ 80483c1:   c9                      leave  
+ 80483c2:   c3                      ret
+</code></pre>
+
+<p>the string at 0x8048494 is "hello\0" as seen here from xxd:</p>
+
+<pre><code>0000490: 0100 0200 6865 6c6c 6f00 0000 011b 033b  ....hello......;
+</code></pre>

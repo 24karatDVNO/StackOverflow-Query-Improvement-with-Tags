@@ -1,0 +1,24 @@
+<p><strong>The question was about python and c++, but changed to c++ only ??</strong></p>
+
+<p>In Python you can print every thing on <code>globals()</code> or <code>locals()</code> and, if the object is a instance of class which doesn't have a representation of your data, just print the <code>__dict__</code> attribute inside it. I.e. Go recursively printing every thing.</p>
+
+<p>Pseudo code:</p>
+
+<pre><code>def show(obj):
+    if isinstance(obj, (int, float, ...default types...)):
+        print obj
+
+    if isinstance(obj, dict):
+        for i,j in obj.items()
+            print i, show(j)
+
+    else:
+         show(obj.__dict__)
+</code></pre>
+
+<p>then you do:</p>
+
+<pre><code>show(globals()) #or show(locals())
+</code></pre>
+
+<p>You may want to filter more cases, but that is the basic algorithm.</p>

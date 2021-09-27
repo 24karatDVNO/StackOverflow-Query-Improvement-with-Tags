@@ -1,0 +1,27 @@
+<p>You can Query the Data Dictionary and generate the script. It would be better if you look at the script once and then run it instead of running the generated commands directly in a Procedure.</p>
+
+<p>Eg. In Oracle, to convert say..number(2)to number(6), you can use a query like this..</p>
+
+<pre><code>create table test1(
+  id number(2),
+  name varchar2(50),
+  count1 number(2)
+)
+/
+
+select 'Alter Table ' || table_name || 
+       ' modify ( ' || COLUMN_NAME || ' NUMBER(6)); '
+  from user_tab_cols
+  where table_name = 'TEST1'
+    and data_type = 'NUMBER'
+    and data_precision = 2
+    and data_scale = 0
+</code></pre>
+
+<p>Output :</p>
+
+<pre><code>Alter Table TEST1 modify ( ID NUMBER(6)); 
+Alter Table TEST1 modify ( COUNT1 NUMBER(6)); 
+</code></pre>
+
+<p>Review before you run it... </p>

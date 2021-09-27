@@ -1,0 +1,7 @@
+<p>the <em>style</em> property can be used to set styles and to retrieve inline style values, but it cannot retrieve style values set in an external style sheet. </p>
+
+<pre><code>someElement = document.getElementById("element");
+myStyles = document.defaultView.getComputedStyle(someElement,null);
+backgroundImage = myStyles.getPropertyValue("background-image"); // w3c
+backgroundImage = someElement.currentStyle["background-image"]; //IE
+</code></pre>

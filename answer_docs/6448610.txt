@@ -1,0 +1,5 @@
+<p>And of course I just found another question with what is presumably the answer:<br>
+<a href="https://stackoverflow.com/questions/838318/how-to-keep-asp-net-assemblies-in-appdomain-alive">How to keep ASP.NET assemblies in AppDomain alive?</a>  </p>
+
+<p>I had looked at all the settings for recycling AppPools, but missed the vital "Idle Timeout" property.<br>
+Its default is of course 20 minutes and it can be changed to zero to stop this behaviour.</p>

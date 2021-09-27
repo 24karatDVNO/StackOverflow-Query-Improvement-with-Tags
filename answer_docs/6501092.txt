@@ -1,0 +1,12 @@
+<p>This line alone generates a compiling error: </p>
+
+<pre><code>IplImage *img = (cvSize(4000, 141), IPL_DEPTH_32F, 1); 
+</code></pre>
+
+<p>I'm pretty sure that you wanted to put a <code>cvCreateImage()</code> there, but if you want serious help than you better post good code (and good code is usually free of errors, or very close to that).</p>
+
+<ol>
+<li><p>Why not feed this data into OpenCV and then use OpenCV to scale your image?</p></li>
+<li><p>You can use cvResize() to change the dimension of your image.</p></li>
+<li><p>I take it that this is a grayscale image, because you are creating it with only one channel. Your values should be in the range 0.0 to 1.0 for IPL_DEPTH_32F images, so make sure of that.</p></li>
+</ol>

@@ -1,0 +1,5 @@
+<p>I think the issue you might be running into is that when you are going to the different sections of your flash application, you are adding an event listener so that your display objects are positioned correctly on resize. However you are not doing any dynamic positioning of these objects upon actually going to that section.</p>
+
+<p>To clarify, when the flash piece first loads, it grabs the stage height and width, does it's object placement on those calculations and then sits there. When you click on the tabs, it's not reloading those objects and repositioning them because it did so when the application first started. It will pop them into place once you start to resize the swf, because that is what the onresize event is supposed to do.</p>
+
+<p>I'd suggest writing a function that does the positioning of the objects in each section, then have it called whenever you hit that specific section you want opened from clicking on a tab, then also call that function from inside the onresize event.</p>

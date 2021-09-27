@@ -1,0 +1,8 @@
+<p>In your static main class instantiate a timer and create a elapsed event handler for the timer to go to when the 5 seconds are up. </p>
+
+<p>in the elapsed event handler, call your method you want to run every 5 seconds. Keep in mind the timer and event handler span threads so you need to realize you could have two events happening at the same time - meaning code in a thead safe maner...</p>
+
+<p>Example of timer
+<a href="http://msdn.microsoft.com/en-us/library/system.timers.timer(v=VS.71).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.timers.timer(v=VS.71).aspx</a></p>
+
+<p>i just reread your post, you are using a timer... Keep in mind THREADSAFE. if you need to stop your timer before going into the method you need called when the elapsed even ocurs.</p>

@@ -1,0 +1,17 @@
+<p>in onItemSelected I would do something like:</p>
+
+<pre><code>public void  onItemSelected  (AdapterView&lt;?&gt;  parent, View  v, int position, long id) {
+   if(mPreviousView != null) //remove logic
+
+   mPreviousView = v;
+
+   // Other View stuff ...
+}
+</code></pre>
+
+<p>Where mPreviousView is declared outside like:</p>
+
+<pre><code>private View mPreviousView;
+</code></pre>
+
+<p>I have found this method to work better then findViewById plus/minus logic. If the view is null that means we don't have a previous view just yet.</p>

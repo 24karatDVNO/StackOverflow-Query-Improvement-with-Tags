@@ -1,0 +1,23 @@
+<p>Options menu items are not checked as you have predefined constants.  They usually are resources that you have defined in menu/options_menu.xml and inflate in onCreateOptionsMenu. Your handler should look like:</p>
+
+<pre><code>public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle all of the possible menu actions.
+    switch (item.getItemId()) {
+        case R.id.menu_slow:
+            ...
+            break;
+        case R.id.menu_normal:
+                                 ...
+            break;
+        case R.id.menu_fast:
+                                 ...
+            break;
+        case R.id.menu_exit:
+                                 ...
+            break;
+        }
+    Log.e(TAG,"onOptionsItemSelected");
+    return super.onOptionsItemSelected(item);
+</code></pre>
+
+<p>Put a few logs in your handler so you can see what is happening too.</p>

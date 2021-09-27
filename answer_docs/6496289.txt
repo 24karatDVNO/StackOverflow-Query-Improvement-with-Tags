@@ -1,0 +1,22 @@
+<p>You forgot the <code>&lt;script&gt;&lt;/script&gt;</code> tags and you are also missing a <code>)</code> at the end of the <code>alert()</code> function. You also need to pass <code>this</code> in the <code>onclick</code> function so that you know which item is being called.</p>
+
+<pre><code>&lt;script&gt;
+function getTitle(element)  {
+    var objTitle = jQuery(element).attr("title"); 
+    alert(objTitle); 
+}
+&lt;/script&gt;
+&lt;img onclick="getTitle(this);" title="myimg" /&gt;
+</code></pre>
+
+<p>Also, having the <code>&lt;script&gt;</code> before will ensure this particular function works.</p>
+
+<p>Or, to make it even more simpler, you could do this:</p>
+
+<pre><code>&lt;script&gt;
+function getTitle(elementTitle)  { 
+    alert(elementTitle); 
+}
+&lt;/script&gt;
+&lt;img onclick="getTitle(this.title);" title="myimg" /&gt;
+</code></pre>

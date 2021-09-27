@@ -1,0 +1,22 @@
+<p>Reviewing your code, you have no element that is represented by <code>#ty</code></p>
+
+<p>You can take your current HTML and wrap it in a <code>&lt;section&gt;</code> or <code>&lt;div&gt;</code> HTML tag.  Like:</p>
+
+<pre><code> &lt;section name="form"&gt;
+     --- all your form html goes here
+ &lt;/section&gt;
+</code></pre>
+
+<p>And then have your thank you message:</p>
+
+<pre><code> &lt;section name="ty"&gt;
+     --- thank you message
+ &lt;/section&gt;
+</code></pre>
+
+<p>Use some jquery goodness to hide the thank you section and show it only when the form is submitted ... which then hides the section "form"</p>
+
+<ul>
+<li><a href="http://api.jquery.com/hide/" rel="nofollow">http://api.jquery.com/hide/</a></li>
+<li><a href="http://api.jquery.com/show/" rel="nofollow">http://api.jquery.com/show/</a></li>
+</ul>

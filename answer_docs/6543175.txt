@@ -1,0 +1,6 @@
+<p>The best mechanism is to use a Regex to ensure it matches a certain pattern.  Try:</p>
+
+<pre><code>vin != null &amp;&amp; vin.matches([a-zA-Z0-9]{9}))
+</code></pre>
+
+<p>This will ensure that the vin string is a 9 character string and is only alphanumeric.</p>

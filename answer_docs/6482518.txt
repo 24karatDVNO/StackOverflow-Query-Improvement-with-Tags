@@ -1,0 +1,3 @@
+<p>This doesn't directly answer your question, but I think it's a better way to achieve what you are trying to do.</p>
+
+<p>Instead of having postfix deliver the message, have it pipe the message to your program (see <code>man aliases</code>).  Then you can handle the message with the mail gem in your program by doing <code>Mail.new(STDIN.read)</code>.  This saves you the trouble of dealing dealing with maildirs/deleting messages/etc.</p>

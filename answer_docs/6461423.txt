@@ -1,0 +1,18 @@
+<p>This works...</p>
+
+<pre><code>my $eventID = $parsedText[$i];
+my $eventLink = $parsedText[$i];
+my $event_id_title = $parsedText[$i];
+
+$eventID =~ s/.*id=['"]?(\d+)['"]?.*/$1/;
+$eventLink =~ s/^.+a\s+href\s*=\s*(['"])([^\1]+)\1.*/$2/;
+$event_id_title =~ s/\s+&lt;a.*?&gt;([^&lt;]*).*/$1/;
+
+print "$eventID\n";
+print "$eventLink\n";
+print "$event_id_title\n";
+</code></pre>
+
+<p>Regular expressions can be tricky. It's best you build a test program and test them bit by bit until you get what you want. Remember that you can use single or double quotes in HTML, and that URLs can have quotes in them. And, IDs don't have to be numeric (although I kept it as such here).</p>
+
+<p>The '\1' in the <code>$eventLink</code> references either a single quote or double quote. Since it's part of the regular expression, you need the backslash in front of the number and not a dollar sign.</p>

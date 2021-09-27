@@ -1,0 +1,3 @@
+<p>Filenames do not have a notion of encoding. You have to figure out the filename by other means. The only important point for your situation is that in <em>most</em> filesystems a filename is a null-terminated *byte*string, but in NTFS it is a null-terminated 16-bit-string. Consequently, you cannot use the standard <code>fopen</code>-type functions to access all possible NTFS filenames.</p>
+
+<p>However, if you have obtained the NTFS filename of an existing file by other means, you can use the Windows API function <code>GetShortPathName</code> to obtain the short name of the file, which you <em>can</em> use in <code>fopen</code>. I don't know if PHP lets you access Windows API functions, though, but perhaps someone has written a module or plugin for that.</p>

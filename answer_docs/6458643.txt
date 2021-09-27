@@ -1,0 +1,26 @@
+<p>See if such a solution suits you:</p>
+
+<pre><code>with mlbmvpvoting (season, division, player, MVP, WAR, rankWAR) as 
+(
+    select 1955,    'AL', 'Mickey Mantle',  5,   9.5,     1  union all
+    select 1955,    'AL', 'Al Kaline',      2,   9.0,     2  union all
+    select 1955,    'NL', 'Willie Mays',    4,   9.3,     1  union all
+    select 1955,    'NL', 'Duke Snider',    2,   8.9,     2  union all
+    select 1956,    'AL', 'Mickey Mantle',  1,   12.9,    1  union all
+    select 1956,    'AL', 'Early Wynn',     13,  8.5,     2  union all
+    select 1956,    'NL', 'Duke Snider',    10,  7.7,     1  union all
+    select 1956,    'NL', 'Hank Aaron',     3,   7.5,     2
+)
+select
+    season, 
+    division,
+    pl_1  = max(case rankWAR when 1 then player end),
+    pl_2  = max(case rankWAR when 2 then player end),
+    MVP_1 = max(case rankWAR when 1 then MVP end),
+    MVP_2 = max(case rankWAR when 2 then MVP end),
+    WAR_1 = max(case rankWAR when 1 then WAR end),
+    WAR_2 = max(case rankWAR when 2 then WAR end)
+from mlbmvpvoting
+group by season, division
+order by season;
+</code></pre>

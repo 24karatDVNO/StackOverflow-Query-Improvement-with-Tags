@@ -1,0 +1,11 @@
+<pre><code>$("#myTable tr:eq(" + row + ") td:eq(" + column + ")").html(item.qty.toString());
+</code></pre>
+
+<p>However you should be aware of nested tables. Especially if you have another table inside the table with the myTable id. If so let me know, i might rewrite the line for you.</p>
+
+<p>Also you should be aware that I was using jQuery here. To add jQuery to your page you should add the following to the page, preferably in the &lt;head&gt; element:</p>
+
+<pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>This if you want to make use of the jQuery file hosted by google, but of course you can download it and host it yourself if you wish so.</p>

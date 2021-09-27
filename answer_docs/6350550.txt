@@ -1,0 +1,10 @@
+<p>For "class BLAH extends FOO" you might want something like</p>
+
+<pre><code>/class\s+\S+\s+extends\s+\S+/
+</code></pre>
+
+<ul>
+<li>\s matches any kind of whitespace,</li>
+<li>\S matches any kind of non-whitespace,</li>
+<li>the + suffix means "one or more of", so "\s+" means "one or more whitespace".</li>
+</ul>

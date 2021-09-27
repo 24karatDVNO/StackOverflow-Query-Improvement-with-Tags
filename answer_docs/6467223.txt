@@ -1,0 +1,30 @@
+<p>This doesn't look right to me. Unless you have specified your {categorynameurl} parameter as optional or a wildcard it should not match the route.</p>
+
+<p>Take the following controller:</p>
+
+<pre><code>public class HomeController : Controller
+{
+    public ActionResult Index() {
+        return Content("index");
+    }
+
+    public ActionResult Foo(string foo) {
+        return Content("foo");
+    }
+}
+</code></pre>
+
+<p>And the following route configuration:</p>
+
+<pre><code>    public static void RegisterRoutes(RouteCollection routes)
+    {
+        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+        routes.MapRoute("", "{foo}", new { controller = "Home", action = "Foo" });
+        routes.MapRoute("", "", new { controller = "Home", action = "index" });
+    }
+</code></pre>
+
+<p><code>http://localhost/</code> is matched by our empty url route -> Home/Index
+<code>http://localhost/abc123</code> is matched by our foo route -> Home/Foo</p>
+
+<p>@geertvdc has mentioned some good tools for debugging routes. You should also test them. I wrote a post about testing both inbound route matching and outbound url generation <a href="http://blogs.planetcloud.co.uk/mygreatdiscovery/post/ASPNET-MVC-Outbound-Url-tests-with-NSubstitute.aspx" rel="nofollow">here</a>.</p>

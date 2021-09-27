@@ -1,0 +1,8 @@
+<p>You can't log the response body with the toString method.</p>
+
+<p>The object returned in the responseEntity can be read as an InputStream or more simply, converted to a string with the EntityUtils class.</p>
+
+<pre><code>String responseStr = org.apache.http.util.EntityUtils.toString(response.getEntity());
+</code></pre>
+
+<p>Try logging the responseStr.</p>

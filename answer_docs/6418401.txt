@@ -1,0 +1,9 @@
+<p>Maybe something like this:</p>
+
+<pre><code>text = 'text here http://www.sitename.com and text here www.sitename.com and text here email@sitename.com and text here'
+links = []
+text.split.each do |word|
+  links &lt;&lt; word if word.match(/(((\S+)?)((@|mailto\:)|(((ht|f)tp(s?))\:\/\/)|([www]))\S+)/)
+end
+puts links
+</code></pre>

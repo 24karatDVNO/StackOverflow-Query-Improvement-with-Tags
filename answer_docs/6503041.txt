@@ -1,0 +1,15 @@
+<p>You can try like this:</p>
+
+<pre><code>Array.prototype.exists = function(search){
+      for (var i=0; i&lt;this.length; i++)
+        if (this[i] == search) return true;
+
+      this.push(search);
+      return true;
+} 
+
+function linearSearch(arrayName, sValue) 
+{               
+    arrayName.exists(sValue);
+}
+</code></pre>

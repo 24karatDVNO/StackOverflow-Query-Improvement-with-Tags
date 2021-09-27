@@ -1,0 +1,16 @@
+<p>I would recommend using <a href="http://api.jquery.com/animate/" rel="nofollow"><code>.animate()</code></a> over <code>.fadeIn()</code> and <code>.fadeOut()</code> simply because the using <code>.fadeOut()</code> adds <code>display: none</code> when it's done.</p>
+
+<p>This block of code on the .animate() page might help you get started...</p>
+
+<pre><code>$('#clickme').click(function() {
+  $('#book').animate({
+    opacity: 0.25,
+    left: '+=50',
+    height: 'toggle'
+  }, 5000, function() {
+    // Animation complete.
+  });
+});
+</code></pre>
+
+<p>In terms of having something happen when the user clicks a link (other than taking them to the page), you're going to want to use <a href="http://api.jquery.com/event.preventDefault/" rel="nofollow"><code>event.preventDefault()</code></a>.</p>

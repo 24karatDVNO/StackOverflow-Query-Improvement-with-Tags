@@ -1,0 +1,43 @@
+<p>I'm assuming you're using Firefox, because it doesn't seem to work the same using other browsers..</p>
+
+<blockquote>
+  <p>the problem is the space between eich
+  bouton like between Dior and Faq/help
+  and help forum, they are meant to be
+  attached to each other</p>
+</blockquote>
+
+<p>I'll start by saying that I'm not familiar with Blogger.</p>
+
+<p>Your HTML:</p>
+
+<pre><code>&lt;div class="menutitle" onclick="SwitchMenu('sub2')"&gt;FAQ/Help&lt;/div&gt;
+&lt;span class="submenu" id="sub2"&gt;..&lt;/span&gt;
+&lt;div class="menutitle" onclick="SwitchMenu('sub3')"&gt;
+</code></pre>
+
+<p>What you get if you View Source on your page:</p>
+
+<pre><code>&lt;div class="menutitle" onclick="SwitchMenu('sub2')"&gt;FAQ/Help&lt;/div&gt;
+&lt;span class="submenu" id="sub2"&gt;..&lt;/span&gt;&lt;br /&gt;   &lt;!-- extra br! --&gt;
+&lt;div class="menutitle" onclick="SwitchMenu('sub3')"&gt;
+</code></pre>
+
+<p><strong>Those frequent extra <code>&lt;br /&gt;</code>s are the main problem. There are lots of them.</strong> You need to prevent them from being inserted. Perhaps removing the whitespace in <em>your HTML</em> will help? Like this:</p>
+
+<pre><code>&lt;div class="menutitle" onclick="SwitchMenu('sub2')"&gt;FAQ/Help&lt;/div&gt;
+&lt;span class="submenu" id="sub2"&gt;..&lt;/span&gt;&lt;div class="menutitle" onclick="SwitchMenu('sub3')"&gt;
+</code></pre>
+
+<blockquote>
+  <p>also the gap between the Title of the
+  page and those menus !</p>
+</blockquote>
+
+<p>You need to get rid of many instances of <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> that are wrapped around everything, including <code>&lt;script&gt;</code>s, for some reason..</p>
+
+<p>Also, you have the same problem with <code>&lt;br /&gt;</code>s being magically inserted. Again, compare <em>your HTML</em> to what comes out when you use View Source in your browser.</p>
+
+<p>After removing those extraneous <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> and <code>&lt;br /&gt;</code> <a href="http://getfirebug.com/" rel="nofollow noreferrer">using Firebug</a> (just to test), this was the result:</p>
+
+<p><img src="https://i.stack.imgur.com/29ts3.png" alt=""></p>

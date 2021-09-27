@@ -1,0 +1,7 @@
+<p>you don't need to separate pages to separate logic. you can quite easy write functions and actions in other files and then import them. have one db.php and one somthingelse.php and use import to use their functions (or classes, if you (like me) an OOP kinda guy) in your original somthing.php...  As I see it, passing sensitive information between pages is problematic, since a clever user can change it himself.  </p>
+
+<p>When you use "GET" you need to be ready for your users to mess around with the values without any vicious intent, something can get deleted, or they send a link to a friend, or maybe something else occurred.</p>
+
+<p>anyway, always remember you need to re-validate info every time you send it between pages.</p>
+
+<p>EDIT: I need to clarify, I referred to first validating, and then blindly passing info through GET or POST to database logic...</p>

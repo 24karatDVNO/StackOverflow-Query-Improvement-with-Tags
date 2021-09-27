@@ -1,0 +1,10 @@
+<p>This situation is in fact pretty rare, because if you need to have tables referencing the fact that a user is registered into a course (I'll call this a "registration"), then it probably means that this registration is an entity, holding information.</p>
+
+<p>The many-to-many relationship thus becomes two one-to-many relationships:</p>
+
+<ul>
+<li>One student has many registrations</li>
+<li>One course has many registrations</li>
+</ul>
+
+<p>The registration entity can be used to hold information (date of the registration, ...), and you may have other entities referencing the registration using a foreign key to its auto-generated ID.</p>

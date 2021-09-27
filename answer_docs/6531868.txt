@@ -1,0 +1,12 @@
+<p>In Firefox you might have the text of the div in a child node (<code>o_div.childNodes[0]</code>)               </p>
+
+<pre><code>var range = document.createRange();
+
+range.setStart(o_div.childNodes[0],last_caret_pos);
+range.setEnd(o_div.childNodes[0],last_caret_pos);
+range.collapse(false);
+
+var sel = window.getSelection(); 
+sel.removeAllRanges();
+sel.addRange(range);
+</code></pre>

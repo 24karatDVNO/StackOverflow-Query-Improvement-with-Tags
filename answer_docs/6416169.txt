@@ -1,0 +1,13 @@
+<p>No distinct is needed in the code below</p>
+
+<pre><code>select  EM.Employee, 
+                rtrim(EM.FirstName) + ' ' + rtrim(EM.LastName) as Name 
+from EM 
+inner join PR 
+    on EM.Employee = PR.ProjMgr 
+where exists (Select * 
+                  from TabFields 
+                  where custInclude = 'Y' and WTS2 = '' and PR.WTS1 = tabfields.WTS1 ) 
+    and PR.WTS2 = '' -- Comment: Check if this clause is covered by the subquery and can be ommited
+order by Name
+</code></pre>

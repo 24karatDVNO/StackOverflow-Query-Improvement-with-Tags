@@ -1,0 +1,8 @@
+<pre><code>var str = "IAMA JavaScript Developer";
+var a=str.split(''), b = a.length;
+for (var i=0; i&lt;b; i++) {
+    a.unshift(a.splice(1+i,1).shift())
+}
+a.shift();
+alert(a.join(''));
+</code></pre>

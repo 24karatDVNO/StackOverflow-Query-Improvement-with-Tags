@@ -1,0 +1,11 @@
+<p>Another quick and dirty...</p>
+
+<pre><code>using System.Text.RegularExpressions;
+
+private void Test(){
+    Regex rex = new Regex(@"(?&lt;!£\d*),");
+    string[] s = rex.Split(@"Name,Sal,Address,Location Mike,£10,732,xxxxxx,GBR Bob,£6,450,xxxxxxx,Fra Arthur,£8,320,xxxxx,Spa James,£7,423,xxxxxxxxxxxx,IRE");
+}
+</code></pre>
+
+<p>The regex will not split on comma preceeded by a pound-sign and digits. However this will only allow for one comma in the currency and so <code>£10,342,234</code> will break it...</p>

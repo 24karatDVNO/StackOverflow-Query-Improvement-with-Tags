@@ -1,0 +1,9 @@
+<p>This perfectly legal and should work flawlessly:</p>
+
+<pre><code>&lt;img src="http://example.com/img.jpg?get=data" /&gt; 
+</code></pre>
+
+<p>This keeps the query string intact:</p>
+
+<pre><code>RewriteRule (.*).png(.*) $1.php$2
+</code></pre>

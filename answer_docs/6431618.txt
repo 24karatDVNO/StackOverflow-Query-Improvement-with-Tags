@@ -1,0 +1,7 @@
+<p>I'm not 100% sure I understand what you are trying to achieve, but I <em>think</em> you're looking for the bracket syntax:</p>
+
+<pre><code>this["TweenAX" + circle.current.arrowHead.count] = new Tween(circle.current.arrowHead, "_x", mx.transitions.easing.Strong.easeOut, circle.current._x, Stage.width/2, 2, true);
+this["TweenAY" + circle.current.arrowHead.count] = new Tween(circle.current.arrowHead, "_y", mx.transitions.easing.Strong.easeOut, circle.current._y, Stage.height/2, 2, true);
+</code></pre>
+
+<p>This will create two properties on <code>this</code> named <code>TweenAXN</code> and <code>TweenAYN</code> where <code>N</code> is the value of <code>circle.current.arrowHead.count</code></p>

@@ -1,0 +1,15 @@
+<pre><code>function toggleContent(){
+    document.getElementById('divOne').style.display = 
+    document.getElementById('divTwo').style.display = 'none';
+    if(document.getElementById('firstCheckbox').checked &amp;&amp; 
+    document.getElementById('secondCheckbox').checked){
+            document.getElementById('divOne').style.display = 
+            document.getElementById('divTwo').style.display'';
+    }
+    else if(document.getElementById('firstCheckbox').checked){
+        document.getElementById('divOne').style.display = '';
+    }
+}
+</code></pre>
+
+<p>That should give you a good idea of how this is done. Try using <a href="http://jquery.com/" rel="nofollow">http://jquery.com/</a> for simple hide/show things, very easy.</p>

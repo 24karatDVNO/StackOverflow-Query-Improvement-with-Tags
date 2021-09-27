@@ -1,0 +1,17 @@
+<p>What you have already is pretty good.  If you want to do it all with one query, you could  get the <code>COUNT(message_id) GROUP BY thread_id</code> as part of the same subselect that gets the <code>MAX(message_id) GROUP BY thread_id</code>:</p>
+
+<pre><code>SELECT personal_messages.message_id,
+       personal_messages.thread_id,
+       personal_messages.body,
+       users.username,
+       thread.countmessages
+FROM personal_messages
+JOIN users ON users.id=personal_messages.from_id
+JOIN
+     (SELECT COUNT(message_id) countmessages, 
+             MAX(message_id) maxmessage_id
+         FROM personal_messages
+         GROUP BY thread_id) AS thread 
+     ON thread.maxmessage_id=personal_messages.message_id
+ORDER BY personal_messages.message_date DESC
+</code></pre>

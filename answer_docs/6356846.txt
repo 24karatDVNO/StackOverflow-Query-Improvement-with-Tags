@@ -1,0 +1,6 @@
+<p>I usually use this one: it puts the criteria to the end of the domain string, having a tld from 2 to 4 chars, and handles any number of sub domain levels:</p>
+
+<pre><code>(messag|courrier|zimbra|imp|mail)(.*)\.(.*)\..{2,4}$
+</code></pre>
+
+<p>You can customize the list of services you want to catch, in addition to the ones mentioned here, depending on ISPs present in your area.</p>

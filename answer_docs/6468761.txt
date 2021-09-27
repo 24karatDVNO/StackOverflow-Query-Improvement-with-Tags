@@ -1,0 +1,11 @@
+<p>Check out the first demo here: <a href="http://www.jstree.com/documentation/core#demos" rel="nofollow">http://www.jstree.com/documentation/core#demos</a></p>
+
+<p>Your click handler doesn't work as I believe the plugin itself unbinds click handlers as they use their own custom events.  You can bind into these events via the same methodology they do in the first demo.</p>
+
+<pre><code>$("#demo1").jstree("toggle_node","#phtml_1");
+$("#demo1").bind("open_node.jstree close_node.jstree", function (e) {
+    //Stuff
+});
+</code></pre>
+
+<p>The events appear to follow the form "<em>function</em>.jstree".  So the <code>open_node.jstree</code> event is fired after the <code>open_node</code> function occurs.  You can find the function list on the same link above.</p>

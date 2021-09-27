@@ -1,0 +1,3 @@
+<p>In my view you are trying to show the sequence of interactions between objects for <em>purchase of a product</em>.</p>
+
+<p>In this case the web page or the view <strong>should not be in the diagram</strong>. The page/view is a means of interaction with the user and might be displayed as an external call to a <em>endpoint</em> which will actually deal with a purchase request. So, probably the first/left-most <em>object</em> in your sequence diagram will be the controller/endpoint which receives this call.</p>

@@ -1,0 +1,12 @@
+<p>You can also use something like this:</p>
+
+<pre><code>from string import uppercase
+
+res = ((x , uppercase[i%26]*(i//26+1)) for i,x in enumerate(inputList))
+</code></pre>
+
+<p>Or you can use something like this - note that this is just an idea how to deal with long lists not the solution:</p>
+
+<pre><code>from string import uppercase
+res = ((x , uppercase[i%26] + uppercase[i/26]) for i,x in enumerate(inputList))
+</code></pre>

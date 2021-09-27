@@ -1,0 +1,6 @@
+<p>Replace this line <code>$(this).wrap("&lt;div class='imgtxt' /&gt;");</code> with:</p>
+
+<pre><code>$(this).wrap("&lt;div class='imgtxt' style=\"" + $(this).attr("style") + "\" /&gt;");
+</code></pre>
+
+<p>This takes the style attribute of the image and adds it to the new <code>div</code>.</p>

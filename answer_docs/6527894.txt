@@ -1,0 +1,19 @@
+<p>you can use a two steps solution (it is more readable)<br>
+first enclose your actual (and working) sql statment as a view</p>
+
+<pre><code>create view step1 as 
+TRANSFORM ....
+SELECT ...
+FROM ...
+PIVOT ...
+</code></pre>
+
+<p>and then create a select like:
+(you will need a state table like @Tony Andrews says)</p>
+
+<pre><code>select * -- or whatever
+from state 
+left join step1 on state.id = step1.state
+</code></pre>
+
+<p>and that's all</p>

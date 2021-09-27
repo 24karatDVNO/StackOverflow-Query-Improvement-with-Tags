@@ -1,0 +1,18 @@
+<p>Form an inner table called latest_animals that will calculate the latest entry date for each animal.
+Form another inner table called previous_animals that will calculate the previous latest entry date for each animal.</p>
+
+<p>Do a left join between these 2 tables based on the animal name and filter the record based on the time-diff between the 2 dates.</p>
+
+<pre><code>SELECT latest_animals.animal_name, TIME_DIFF(latest_animals.created_at, previous_animals.created_at) created_diff FROM
+
+(
+  SELECT animal_name, MAX(date) created_at FROM animals GROUP BY animal_name
+) latest_animals
+LEFT JOIN
+(
+  SELECT animal_name, MAX(date) created_at FROM animals GROUP BY animal_name WHERE id NOT IN
+  (SELECT id, MAX(date) FROM animals GROUP BY animal_name)
+) previous_animals
+ON latest_animals.animal_name =  previous_animals.animal_name
+WHERE created_diff &gt; INTERVAL 30 MINUTE 
+</code></pre>

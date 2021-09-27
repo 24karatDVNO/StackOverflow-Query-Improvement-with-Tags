@@ -1,0 +1,10 @@
+<p>I don't think you can subclass UISearchDisplayController and have it work correctly. It does a lot of stuff in methods which aren't public, so you wouldn't be able to override them with the correct behavior. </p>
+
+<p>You can, however, use the built in UISearchDisplayController with your custom table cells in the search results, as is. You need to encapsulate the creation and configuring of your custom cells such that it works in any table view just by overriding -...cellForRowAtIndexPath (this is the standard method of displaying custom data in a tableview). Make sure that controller is the UISearchDisplayDelegate and it'll use that method to create the rows in your search list.</p>
+
+<p>To set the custom height, implement</p>
+
+<pre><code>- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)searchTableView
+</code></pre>
+
+<p>to set the rowHeight on the searchTableView.</p>

@@ -1,0 +1,3 @@
+<p>We've been using a JNI to start processes from Java for years.  Neither Runtime.exec or ProcessBuilder will work, and it seems unlikely that they will fix this, given how long it's been already.</p>
+
+<p>However, you should be able to work around the issue by using the input stream, a socket, or environment variables to pass parameters.  If you don't have direct control over the executable, you'll have to make a wrapper.</p>

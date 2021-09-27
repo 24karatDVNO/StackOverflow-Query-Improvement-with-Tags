@@ -1,0 +1,13 @@
+<p>I usually use setInterval() to time my image sliders. <a href="https://developer.mozilla.org/En/window.setInterval" rel="nofollow">https://developer.mozilla.org/En/window.setInterval</a></p>
+
+<pre><code>function rotate() {
+  /* Image and text rotator code */
+}
+
+var intervalID = setInterval(rotate,10000);
+</code></pre>
+
+<p>Then, should you want to stop the rotator, use <code>clearInterval()</code>:</p>
+
+<pre><code>clearInterval(intervalID);
+</code></pre>

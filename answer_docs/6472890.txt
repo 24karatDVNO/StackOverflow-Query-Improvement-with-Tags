@@ -1,0 +1,18 @@
+<p>If this is your form:</p>
+
+<pre><code>&lt;form name="Rogers" method="POST" action="something.php" id="addForm"&gt; 
+    &lt;input type="submit" class="formbutton2" name="mysubmitbutton" value="SUBMIT" /&gt;
+&lt;/form&gt; 
+</code></pre>
+
+<p>you either need to create a new input form:</p>
+
+<pre><code>&lt;input type="text" name="username" value="" /&gt;
+</code></pre>
+
+<p>of if you don't want it visible:</p>
+
+<pre><code>&lt;input type="hidden" name="username" value="myusername" /&gt;
+</code></pre>
+
+<p>and on something.php grab the $_POST result with: <code>$username = $_POST['username']</code></p>

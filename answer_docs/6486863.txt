@@ -1,0 +1,21 @@
+<p>Bash really isn't the best language for this kind of task. While possible, ild highly recommend the use of perl, python, or tcl for this.</p>
+
+<p>That said, you can write all of stdin from input to a temporary file with shell redirection. Then, use a command like grep to output matches to another file. It might look something like this.</p>
+
+<pre><code>#!/bin/bash
+
+cat &gt; temp
+
+grep pattern1 &gt; file1
+grep pattern2 &gt; file2
+grep pattern3 &gt; file3
+
+rm -f temp
+</code></pre>
+
+<p>Then run it like this:</p>
+
+<pre><code>cat file_to_process | ./script.sh
+</code></pre>
+
+<p>I'll leave the specifics of the pattern matching to you. </p>

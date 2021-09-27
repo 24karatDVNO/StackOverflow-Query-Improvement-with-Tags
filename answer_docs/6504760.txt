@@ -1,0 +1,11 @@
+<p>Just pass the address of the first byte you want to copy. Make sure you adjust the length. </p>
+
+<p><strong>Pseudocode</strong>:</p>
+
+<pre><code>var
+  Dest   : TBytes;
+  Source : TBytes;
+...
+SetLength (Dest, Length (Source) - FromByte);
+CopyMemory (@Dest[0], @Source[FromByte], Length (Source) - FromByte);
+</code></pre>

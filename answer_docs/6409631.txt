@@ -1,0 +1,11 @@
+<p>After you call <code>mp.release()</code> your player instance is no longer usable. </p>
+
+<p>You should call <code>mp.release()</code> in <code>onDestroy()</code>. And in your stop handler just leave <code>stop()</code>:</p>
+
+<pre><code>stop.setOnClickListener(
+          new Button.OnClickListener() {
+              public void onClick(View v) {
+                  mp.stop();
+             }
+          });
+</code></pre>

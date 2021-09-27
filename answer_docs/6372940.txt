@@ -1,0 +1,5 @@
+<p><a href="https://github.com/mikeobrien/WcfRestContrib/wiki/De-serialization-Overview" rel="nofollow">WcfRestContrib should be able to do this via Formatters</a>. It provides set of build in formatters for XML, JSON, URL encoded form posts and it also allows creating custom formatters.</p>
+
+<p>Built in <code>webHttpBinding</code> in WCF doesn't have this functionality at the moment - it allows only <code>appliation/json</code> and <code>text/xml</code> negotiation and other content types can be mapped to these two via <a href="http://msdn.microsoft.com/en-us/library/bb943479.aspx" rel="nofollow">custom content type mapper</a>. </p>
+
+<p>"Attributes" for response formatting are only available for syndication where it works little bit differently. Service must always return <code>SyndicationFeedFormatter</code> and known types allow defining multiple derived formatters for Atom or Rss.</p>

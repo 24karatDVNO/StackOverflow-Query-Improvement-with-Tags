@@ -1,0 +1,11 @@
+<p>I am not sure what exactly your requirements are, but if you have scenario where producer creates data and push this data on queue and you have single consumer who takes this data and uses it and then destroys it, you just need tread safe queue or you can make your own single linked list that is tread safe in this scenario.</p>
+
+<ul>
+<li>create list element</li>
+<li>append data in list element</li>
+<li>change pointer of next element from null to list element (or equivalent in other languages)</li>
+</ul>
+
+<p>Consumer can be implemented in any way, and most linked lists are by default tread safe for this kind of operation (but check that whit implementation)</p>
+
+<p>In this scenario, consumer should free this memory, or it can return it in same way back to producer setting predefined flag. Producer does not need to check all flags (if there are more than like 1000 of them) to find which bucket is free, but this flags can be implemented like tree, enabling log(n) searching for available pool. I am sure this can be done in O(1) time without locking, but have no idea how </p>

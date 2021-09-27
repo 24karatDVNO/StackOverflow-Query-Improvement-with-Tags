@@ -1,0 +1,41 @@
+<p>i get what i need i call <code>MyDB.Etudinat</code> from the pakage genrated by hibernate
+on a beans in my jsp page </p>
+
+<p>
+</p>
+
+<p>and i save it like that </p>
+
+<pre><code> &lt;%
+if(user.getUserName()!=null){
+
+Session hibernateSession = MyDB.HibernateUtil.currentSession(); 
+   Transaction tx = hibernateSession.beginTransaction();
+   Etudinat etudiant = new Etudinat(); 
+     etudiant.setUserName(user.getUserName());
+       etudiant.setPassword(user.getPassword());
+       etudiant.setEmail(user.getEmail());
+       etudiant.setNom(user.getNom());
+       etudiant.setPrenom(user.getPrenom());
+     etudiant.setSexe(user.getSexe());
+    etudiant.setQuestion(user.getQuestion());
+     etudiant.setAnswer(user.getAnswer());
+     etudiant.setIDFilliere(Filliere.INFORMATIQUE);
+ /* out.print("&lt;Li&gt;"+user.getUserName());
+  out.print("&lt;Li&gt;"+user.getPassword());
+  out.print("&lt;Li&gt;"+user.getEmail());
+  out.print("&lt;Li&gt;"+user.getNom());
+  out.print("&lt;Li&gt;"+user.getPrenom());
+  out.print("&lt;Li&gt;"+user.getSexe());
+  out.print("&lt;Li&gt;"+user.getQuestion());
+  out.print("&lt;Li&gt;"+user.getAnswer());
+
+  */
+hibernateSession.save(etudiant);
+tx.commit();
+ HibernateUtil.closeSession();
+ }
+  %&gt; 
+</code></pre>
+
+<p>i wish that will help outhers </p>

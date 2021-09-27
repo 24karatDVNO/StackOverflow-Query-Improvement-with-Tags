@@ -1,0 +1,12 @@
+<p>Another solution for O(n) (but not exactly n/2+1), but with O(1) space:</p>
+
+<p>Because you have n/2 of that number, then if you look at it as a sorted array, there are to scenarios for its position:</p>
+
+<p>Either it's the lowest number, so it will take positions 1-n/2 .. or it's not, and then for sure it's in position n/2+1 .</p>
+
+<p>So, you can use a <a href="http://en.wikipedia.org/wiki/Selection_algorithm" rel="nofollow"><strong>selection algorithm</strong></a>, and retrieve 4 elements: the range [(n/2-1),(n/2+1)] in size<br>
+We want then number k in size, so that's ok with the algorithm.</p>
+
+<p>Then the repeated number has to be at least twice in those 4 numbers (simple check)</p>
+
+<p>So total complexity: 4*O(n) + O(1) = O(n)</p>

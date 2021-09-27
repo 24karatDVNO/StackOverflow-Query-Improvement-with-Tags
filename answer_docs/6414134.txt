@@ -1,0 +1,8 @@
+<p>The <a href="http://www.yassl.com" rel="nofollow">CyaSSL SSL library</a> (similar to OpenSSL, but with a much smaller footprint and other cool features) has I/O callbacks similar to what you are looking for I believe.</p>
+
+<p>In CyaSSL, the input/output callbacks are prototyped by <strong>CallbackIOSend</strong> and <strong>CallbackIORecv</strong> in ssl.h.  These functions need to be registered per SSL_CTX with <strong>CyaSSL_SetIOSend()</strong> and <strong>CyaSSL_SetIORecv()</strong>.  The default case (CBIOSend() and CBIORecv() are registered at the bottom of cyassl_io.c.</p>
+
+<p>The CBIOSend and CBIORecv function pointers can be pointed to your custom I/O functions. You can use the default Send() and Receive() functions (EmbedSend() and EmbedReceive(), located in cyassl_io.c) as examples.</p>
+
+<p>Regards,<br/>
+Chris</p>

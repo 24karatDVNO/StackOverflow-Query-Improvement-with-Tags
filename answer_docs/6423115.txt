@@ -1,0 +1,6 @@
+<p>If you don't want to provide a numeric constraint, just delete the 4th parameter, ie</p>
+
+<pre><code>routes.MapRoute("Partner", "{id}", new { controller = "Home", action = "Partners"});
+</code></pre>
+
+<p>The 4th parameter is an anonymous object that provides constraints for the route parameters that you have defined.  The names of the anonymous object members correspond to the route parameters - in this case "controller" or "action" or "id", and the values of these members are <strong>regular expressions</strong> that constrain the values that the parameters must have in order to match the route.  "\d+" means that the id value must consist of one or more digits (only).</p>

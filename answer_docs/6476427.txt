@@ -1,0 +1,20 @@
+<pre><code>SELECT mm.*
+FROM myTable mm
+  LEFT JOIN myTable m
+    ON mm.UserId = m.UserId
+   AND (m.to = :contactNumber OR m.from = :contactNumber)
+   AND mm.x &lt; m.x
+WHERE mm.userId = :userId
+  AND (mm.to = :contactNumber OR mm.from = :contactNumber)
+  AND m.userId IS NULL
+</code></pre>
+
+<p>This uses a known technique for finding maximum or minimum values using a LEFT JOIN to self. Basically the technique is like this:</p>
+
+<pre><code> SELECT a.*
+ FROM a
+   LEFT JOIN a AS a2 ON a.key = a2.key AND a.value &lt; a2.value
+ WHERE a2.key IS NULL
+</code></pre>
+
+<p>This returns all the rows from <code>a</code> with the maximum values of <code>value</code> for every <code>key</code>. For minimums you'd basically replace <code>&lt;</code> with <code>&gt;</code>.</p>

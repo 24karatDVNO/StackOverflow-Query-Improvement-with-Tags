@@ -1,0 +1,50 @@
+<p>Well, had to do it in two functions, but here goes:</p>
+
+<pre><code>// Directory Array to Hierarchy
+function _DAtoH($path, $result = null)
+{    
+  if (empty($path))      return array();
+  if (is_null($result))  $result = array();
+
+  $path = explode(DIRECTORY_SEPARATOR, $path);
+  $curr = array_shift($path);
+  if (!isset($result[$curr]))
+    $result[$curr] = array();
+  $result[$curr] = _DAtoH(implode(DIRECTORY_SEPARATOR, $path), $result[$curr]);
+  return $result;
+}
+function DAtoH($arr)
+{
+  $result = array();
+  foreach ($arr as $a)
+    $result = _DAtoH($a,$result);
+  return $result;
+}
+</code></pre>
+
+<p>Passing the bottom function (the _DAtoH is just a recursive helper) the array you specified in your original question (<code>var_dump(DAtoH($arr));</code>), you should receive:</p>
+
+<pre><code>array(2) {
+  ["aaa"]=&gt;
+  array(2) {
+    ["bbb"]=&gt;
+    array(1) {
+      ["ccc"]=&gt;
+      array(0) {
+      }
+    }
+    ["fff"]=&gt;
+    array(0) {
+    }
+  }
+  ["ddd"]=&gt;
+  array(1) {
+    ["eee"]=&gt;
+    array(0) {
+    }
+  }
+</code></pre>
+
+<p>}</p>
+
+<p>(Note: I added some folder paths just to test it out, thus the fff, eee, etc.)</p>

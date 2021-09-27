@@ -1,0 +1,12 @@
+<p>I'm unsure of how your code can produce that output—for example, the quote marks are missing. Of course, this could be due to "corruption" somewhere between your file and me seeing the page. SO may filter corrupted UTF-8. I suggest providing hex dumps in the future!</p>
+
+<p>Anyway, to get UTF-8 output working in Perl, there are several approaches:</p>
+
+<ol>
+<li><p>Work with character data, that is let Perl know that your variables contain Unicode. This is probably the best method. Confirm that <code>utf8::is_utf8($var)</code> is true (you do <em>not</em> need to, and <em>should not</em> <code>use utf8</code> for this). If not, look into the <code>Encode</code> module's <code>decode</code> function to make Perl know its Unicode. Once Perl knows your data is characters, that print will give warnings (which you do have enabled, right?). To fix, enable the <code>:utf8</code> or <code>:encoding(utf8)</code> layer on your file (the latter version provides error checking). You can do this in your open (<code>open FILE, '&gt;:utf8', "$fname"</code>) or alternative enable it with binmode (<code>binmode FILE, ':utf8'</code>). Note that you can also use other encodings; see the <code>encoding</code> and <code>PerlIO::encoding</code> docs.</p></li>
+<li><p>Treat your Unicode as opaque binary data. <code>utf8::is_utf8($var)</code> must be false. You must be very careful when manipulating strings; for example, if you've got UTF-16-BE, this would be a bad idea: <code>print "$data\n"</code>, because you actually need <code>print $data\0\n"</code>. UTF-8 has fewer of these issues, but you need to be aware of them.</p></li>
+</ol>
+
+<p>I suggest reading the perluniintro, perlunitut, perlunicode, and perlunifaq manpages/pods.</p>
+
+<p>Also, <code>use utf8;</code> just tells Perl that your script is written in UTF-8. Its effects are very limited; see its pod docs.</p>

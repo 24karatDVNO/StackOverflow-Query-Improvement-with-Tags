@@ -1,0 +1,8 @@
+<p>Use a NVL function:</p>
+
+<pre><code>SELECT NVL(MAX((CASE 
+          WHEN to_char(sysdate, 'DY') = 'SAT' THEN 1 
+          WHEN to_char(sysdate, 'DY') = 'SUN' THEN 1
+          ELSE 0 END)), 1) status 
+FROM mytable WHERE mycondition;
+</code></pre>

@@ -1,0 +1,8 @@
+<p>The <strong>-></strong> operator is used with pointers, to access methods and members. A pointer needs to get the address of an object.</p>
+
+<p>So, because you have an array of actual objects, and not an array of pointers, you need to get a reference to their address.<br>
+You can get the address of an object (unless the operator is overloaded) with the <strong>&amp;</strong> operator.</p>
+
+<pre><code>gun = &amp;gunCabinet[1];
+gun-&gt;A_Guns_method();
+</code></pre>

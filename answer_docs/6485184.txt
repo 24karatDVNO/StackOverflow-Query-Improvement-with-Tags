@@ -1,0 +1,29 @@
+<p>played around with it a bit...
+now instead of the function running within other functions, it happens only within the <code>execute</code> function, the other functions (f1,f2 etc) close completely, because we're using the return function.</p>
+
+<p>The advantage of running the function in this way is that any resources that the functions are using can not be edited by the same function, and in the case of resources that were created for the function, they can be marked for garbage collection before the next function starts.</p>
+
+<pre><code>public function startSequence():void {
+    execute(f1);
+}
+
+public function execute($f1:Function):void {
+    var $f2:Function = $f1();
+    if ($f2 != null) {
+        execute($f2);
+    }
+}
+
+public function f1():Function {
+    trace("f1");
+    return f2
+}
+
+
+public function f2():Function {
+    trace("f2");
+    return null
+}
+</code></pre>
+
+<p>Another way of doing this is using a timer event, where the event execution is taken care of by an onComplete listener with the time set to 0.</p>

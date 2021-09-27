@@ -1,0 +1,5 @@
+<p>Creating a table for every region very well might be more efficient, but that is going to cause a headache in terms of design and implementation.</p>
+
+<p>Now, for every region, it must encode the table name it is referencing rather than just using a foreign key (the region's ID). Similarly, for every region that you decide to add later (expansions, etc), you will need to both add new code, as well as new tables to interact with a fundamentally identical operation.</p>
+
+<p>I would only do this if you determine that it is a bottleneck. Pre-optimizing on this scale is generally a mistake. After all, it's easy to take the good, normalized design and make it a bit little more domain specific, but it's harder to do the reverse.</p>

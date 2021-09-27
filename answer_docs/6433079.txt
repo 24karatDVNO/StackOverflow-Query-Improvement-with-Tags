@@ -1,0 +1,11 @@
+<p>As the error message makes clear, in evaluating the form <code>((my-macro 2 3) 1)</code>, Emacs doesn't expand <code>(my-macro 2 3)</code> before evaluating the list it's the first element of.  You want to say</p>
+
+<pre><code>(funcall (my-macro 2 3) 1)
+</code></pre>
+
+<p>or</p>
+
+<pre><code>(eval (list (my-macro 2 3) 1)
+</code></pre>
+
+<p>or something like that, so that the macro gets evaluated.</p>

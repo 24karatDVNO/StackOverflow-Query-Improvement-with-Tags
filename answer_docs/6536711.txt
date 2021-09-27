@@ -1,0 +1,20 @@
+<p>The problem was down to the POCO class Key annotation being on a non-unique field. I have changed it around to the unique Month property and it now works as expected.</p>
+
+<p>Strange error though...</p>
+
+<pre><code>Imports System.ComponentModel.DataAnnotations
+Imports System.Runtime.Serialization
+
+Public Class EngineeringHeadBUHistory
+
+    '&lt;Key()&gt;
+    '&lt;DataMember()&gt; _
+    'Property BusinessUnit As String
+    &lt;Key()&gt;
+    &lt;DataMember()&gt;
+    Property Month As Date
+    &lt;DataMember()&gt; _
+    Property HeadCount As Integer
+
+End Class
+</code></pre>

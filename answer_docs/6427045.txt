@@ -1,0 +1,13 @@
+<ol>
+<li>You have to backup the log regularly
+otherwise your log file will grow
+indefinitely. If you can't write to
+the log (i.e. out of disk space or
+hit max size) the DB will fail</li>
+<li>SQL Server 2005 has an issue where
+    the shrink isn't reflected on the
+    mirror side. The solution is here
+    <a href="http://support.microsoft.com/kb/937531" rel="nofollow">http://support.microsoft.com/kb/937531</a></li>
+</ol>
+
+<p>This article has some good info on <a href="http://technet.microsoft.com/en-us/library/ms178037.aspx" rel="nofollow">How Log Files</a> work, you should also read <a href="http://technet.microsoft.com/en-us/library/ms345414.aspx" rel="nofollow">Factors that can delay log truncation</a></p>

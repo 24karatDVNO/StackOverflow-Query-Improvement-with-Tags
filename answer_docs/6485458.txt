@@ -1,0 +1,3 @@
+<p>So, to get the list to scroll to the bottom when you add new items, you should set it to be in "<a href="http://developer.android.com/reference/android/widget/AbsListView.html#attr_android%3atranscriptMode" rel="nofollow">transcriptMode</a>". However, the fact that you have to <em>restart</em> your app for new content to show tells me something else is wrong.</p>
+
+<p>Edit: Stephane is right, don't call <code>buildMessageList();</code> again when you get the <code>onChange</code> notification just update the data in the adapter and call <code>notifyDatasetChanged()</code></p>

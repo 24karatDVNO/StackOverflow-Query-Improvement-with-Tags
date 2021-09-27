@@ -1,0 +1,3 @@
+<p>The recommended way to do a repeated task, is via <a href="http://developer.android.com/reference/android/app/AlarmManager.html" rel="nofollow">AlarmManager</a>, as alluded to by Scythe.  Basically it involves setting up a broadcast listener, and having AlarmManager fire off an intent to that listener at whatever interval you choose.  You then would have your broadcast listener call out to the activity to run the AsyncTask.  If you need a very tight timer (less than 5s calls I'd say), then you're better off using a Timer within a Service, and using AIDL to call back to the activity.</p>
+
+<p>Instead of talking directly from the broadcast intent, you could also setup an IntentService which you can poke, and use AIDL to update the activity.</p>

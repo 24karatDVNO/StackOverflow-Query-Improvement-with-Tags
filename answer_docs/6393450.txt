@@ -1,0 +1,13 @@
+<p>Other common problem is the <code>friend class Area;</code> declaration inside the class without a forward declaration first (I'm almost sure this is the case, are you using GCC?)</p>
+
+<p>In Region.h</p>
+
+<pre><code>class Area;  // &lt;- this is a forward declaration
+
+clasee Region {
+ ...
+ friend class Area;
+};
+</code></pre>
+
+<p>Regards</p>

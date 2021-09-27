@@ -1,0 +1,13 @@
+<blockquote>
+  <p>Do they need to be packaged in the same EAR, or can I deploy the Web service provider separately (in a WAR)?</p>
+</blockquote>
+
+<p>That depends on how you intend to deploy the EJBs. If you are deploying them in the same EAR file, and therefore, in the same container, I would consider the <code>@WebServiceRef</code> annotation to be pointless and a drag on performance. You might as well inject the other EJB instead of injecting a JAX-WS proxy in it's place.</p>
+
+<p>If you want to separate these out and deploy one of the EJBs (the one providing the webservice) in a WAR file, then it is possible to do so in a Java EE 6 container.</p>
+
+<blockquote>
+  <p>Will dependency injection (accomplished through @WebServiceRef annotation) work if the two EJBs are deployed separately?</p>
+</blockquote>
+
+<p>Yes, dependency injection will work as long as you have deployed the client in a managed environment (this includes application client containers, web containers and EJB containers). As far as the client EJB is concerned, the container will provide a proxy for the web-service at runtime. All calls will be delegated to the proxy, that will make the required HTTP requests to the actual web-service, and return the appropriate objects after processing the response.</p>

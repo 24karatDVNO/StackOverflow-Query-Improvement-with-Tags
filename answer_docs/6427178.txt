@@ -1,0 +1,18 @@
+<p>As long as it isn't mega-large, you could read the whole file into an NSString.</p>
+
+<pre><code>NSString *text = [NSString stringWithContentsOfFile:path encoding:NSUTF8Encoding error:nil];
+</code></pre>
+
+<p>Then split the lines:</p>
+
+<pre><code>NSArray *lines = [text componentsSeparatedByString:@"\n"];
+</code></pre>
+
+<p>And make it mutable:</p>
+
+<pre><code>NSMutableArray *mutableLines = [lines mutableCopy];
+</code></pre>
+
+<p>Now, depending on where your text file is coming from, you probably need to be more careful. It could be separated by <code>\r\n</code> instead of just <code>\n</code>, in which case your lines will contain a bunch of extra <code>\r</code> characters. You could clean this up after the fact, using something to remove extra whitespace (your file also might have blank lines which the above will turn into empty strings).</p>
+
+<p>On the other hand, if you're in control of the file, you won't have to worry about that. (But in that case, why not read a <code>plist</code> instead parsing a plain text file...)</p>

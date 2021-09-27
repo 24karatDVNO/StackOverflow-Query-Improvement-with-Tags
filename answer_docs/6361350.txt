@@ -1,0 +1,56 @@
+<p>You need to implement an AVStream miindriver to complete the pipeline there by creating a driver that gets recognised as a live source (look for details here <a href="http://msdn.microsoft.com/en-us/library/ff554228(v=VS.85).aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ff554228(v=VS.85).aspx</a>) Another solution is to write using DirectShowFilter or MFT filters, but I cannot help you much in this department.</p>
+
+<p>I have workied with expression encoder sdk, but I have not encountered a solution for what you have been asking yet. However, you can VERY easilly transfer image data to Expression Encoder. One way would be to retrieve the bytes off of the rendertarget and transfer them to the expression encoder with any means you prefer (WCF is a good choice for this) and reconstruct the data to a bitmap to use for streaming.</p>
+
+<p>I put my source for retrieving byte data from Texture2D (and hence a RenderTarget2D) and then constructing a Bitmap object from them.</p>
+
+<pre><code>    public static Bitmap ToBitmap(this Microsoft.Xna.Framework.Graphics.Texture2D rd, int Width, int Height)
+    {
+        var Bmp = new Bitmap(Width, Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+        byte[] data = ToBytes(rd);
+
+        var bmpData = Bmp.LockBits(new Rectangle(0, 0, rd.Width, rd.Height), System.Drawing.Imaging.ImageLockMode.WriteOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+        System.Runtime.InteropServices.Marshal.Copy(data, 0, bmpData.Scan0, data.Length);
+
+        Bmp.UnlockBits(bmpData);
+
+        return Bmp;
+    }
+
+    public static byte[] ToBytes(this Microsoft.Xna.Framework.Graphics.Texture2D rd, byte[] data = null)
+    {
+        if (data == null || data.Length != 4 * rd.Height * rd.Width)
+            data = new byte[4 * rd.Height * rd.Width];
+
+        rd.GetData&lt;byte&gt;(data);
+
+        SwapBytes(data);
+
+        return data;
+    }
+
+    private static void SwapBytes(byte[] data)
+    {
+        System.Threading.Tasks.ParallelOptions po = new System.Threading.Tasks.ParallelOptions();
+        po.MaxDegreeOfParallelism = -1;
+
+        System.Threading.Tasks.Parallel.For(0, data.Length / 4, po, t =&gt;
+        {
+            int bi = t * 4;
+            byte temp = data[bi];
+            data[bi] = data[bi + 2];
+            data[bi + 2] = temp;
+        });
+    }
+
+    public static void FromBytes(this Texture2D texture, byte[] bytes)
+    {
+        SwapBytes(bytes);
+
+        texture.SetData&lt;byte&gt;(bytes);
+    }
+</code></pre>
+
+<p>I hope I have helped.</p>

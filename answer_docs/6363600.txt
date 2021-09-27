@@ -1,0 +1,10 @@
+<p>If you're not concerned about running the filter twice every time, you can still use the search callback.</p>
+
+<pre><code>$("#list").autocomplete({
+    source: anArray,
+    search: function(event){
+        var data = $(event.target).data("autocomplete");
+        var result = $.ui.autocomplete.filter(data.options.source, data.term);
+    }
+});
+</code></pre>

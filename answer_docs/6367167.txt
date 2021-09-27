@@ -1,0 +1,5 @@
+<p>The <a href="http://martinfowler.com/articles/injection.html#UsingAServiceLocator" rel="nofollow">service locator</a> is <a href="http://twitter.com/#!/jeremydmiller/status/80657730188214272" rel="nofollow">considered</a> an <a href="http://blog.ploeh.dk/2010/02/03/ServiceLocatorIsAnAntiPattern.aspx" rel="nofollow">anti-pattern</a> by many on the leading edge of the .NET community. I would say that logging is usually a very benign feature of our applications. It's essentially "write-only". We are never making decisions based on queries of the logging system. </p>
+
+<p>log4net is also a system that's easy to turn off, doesn't throw exceptions, silently fails, can update its configuration on the fly... there's almost no reason to swap out implementations once its in. </p>
+
+<p>So, I say that, in application code, it's ok to use it directly.</p>

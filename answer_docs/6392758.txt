@@ -1,0 +1,12 @@
+<p>Remove the <code>$</code> from your 'shemale' comparison.  </p>
+
+<p>That's causing your script to fail as it's looking for a non-existent variable.</p>
+
+<pre><code>        var genderdb = "&lt;?php echo $genderdb; ?&gt;";
+        if ((genderdb == "Female") || (genderdb == "Shemale")) {
+            var himher = "her";
+        } else {
+            var himher = "him";
+        }
+        alert (himher);
+</code></pre>

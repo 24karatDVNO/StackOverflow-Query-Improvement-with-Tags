@@ -1,0 +1,15 @@
+<p>Since there may be too many requests calling to this service, the synchronous approach may not be achieved. There also may be a chance that some clients waiting so that it is time-out. Then I prefer the asynchronous as</p>
+
+<ol>
+<li>The Service-A receives the request and put it to queue-A or DB table-A, together with generating the ref-id.</li>
+<li>The Service-A returns the ref-id to the client for further monitoring.</li>
+<li>There is a back-end process monitoring the queue-A or DB table-A and perform the request one-by-one.</li>
+<li>After finish, put the result to another queue-B or DB table-B.</li>
+<li>The client keep monitoring periodically via another Service-B by using the ref-id, if the request is done.</li>
+</ol>
+
+<p>I hope this may help to achieve your requirement.</p>
+
+<p>Regard,</p>
+
+<p>Charlee Ch.</p>

@@ -1,0 +1,7 @@
+<p>Yes Quartz would work in thread. However you cannot create a context in other thread. You have to pass the context from main thread. I believe create a CGContextRef in -drawRect method and pass it to thread. Take precaution that context dont go out of scope or just retain its reference.</p>
+
+<p>How to get a screen to put graphics.. well as I said you need some place to create a context, may be some derived class of NSVIew. Then in -drawRect method make a context and pass it to thread.</p>
+
+<p>CGContextRef contextref = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];</p>
+
+<p>Cheers!</p>

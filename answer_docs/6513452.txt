@@ -1,0 +1,2 @@
+<p><code>PhantomReference</code> object is added to the queue when the referenced object id GC'd, not the <code>PhantomReference</code> itself.
+If you don't add a <code>PhantomReference</code> to a <code>List</code>, there is no reference to <code>PhantomReference</code> object, and thus it is GC'd immediately and never makes into the queue.</p>

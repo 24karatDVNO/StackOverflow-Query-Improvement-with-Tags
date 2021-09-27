@@ -1,0 +1,37 @@
+<p>I believe this <a href="https://stackoverflow.com/q/1960957/210774">question</a> has answers that will work for you. I'll post summaries here for convenience.</p>
+
+<p><em>From <a href="https://stackoverflow.com/questions/1960957/twitter-api-logout/1961377#1961377">Ryan McGeary</a></em>:</p>
+
+<blockquote>
+  <p>The session with Twitter is defined by
+  a cookie owned by Twitter -- something
+  you do not have control over. You
+  cannot log them out of Twitter on
+  their behalf.</p>
+  
+  <p>If you want someone to be able to use
+  your "switch twitter account"
+  functionality, you'll need to pass
+  them off to the OAuth handshake again,
+  but use the <code>/oauth/authorize</code> path
+  instead of the <code>/oauth/authenticate</code>
+  path. This will allow the user to
+  switch their user credentials at
+  Twitter during the handshake instead
+  of just re-authenticating using their
+  existing Twitter session.</p>
+</blockquote>
+
+<p><em>From <a href="https://stackoverflow.com/questions/1960957/twitter-api-logout/1972194#1972194">abraham</a></em>:</p>
+
+<blockquote>
+  <p>You can use <code>oauth/authenticate</code> and add
+  <code>force_login=true</code> as specified in
+  <a href="http://dev.twitter.com/doc/get/oauth/authenticate" rel="nofollow noreferrer">http://dev.twitter.com/doc/get/oauth/authenticate</a>*.
+  This will prompt the user with a login
+  form.</p>
+</blockquote>
+
+<p>**updated reference to most recent documentation*</p>
+
+<p>If any of answers above work for you, be sure to follow the link and upvote the originals.</p>

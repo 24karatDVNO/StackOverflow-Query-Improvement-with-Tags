@@ -1,0 +1,7 @@
+<p>A couple of ways come to my mind:</p>
+
+<p>I believe the translation for "raise an event" would be to send a notification, in which case you could look into <code>NSNotification</code> and <code>NSNotificationCenter</code>. Pretty simple.</p>
+
+<p>Optionally, you could add a reference to an object that follows the <code>UITableViewDelegate</code> protocol to each cell, and when creating the cell, assigning that reference to the object that you want to handle that event, when the subview is tapped, send the <code>didSelectRowAtIndexPath</code> message to that reference.</p>
+
+<p>Personally I'd choose the second one, because I'm not a big fan of notifications.</p>

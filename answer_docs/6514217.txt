@@ -1,0 +1,9 @@
+<p>I figured out. It might helpful for any one who looking for the answer. In below code <code>count</code> will give the answer to find the no of windows to open.</p>
+
+<pre><code>popup = this;count=0;
+if(window.top != popup.self)
+{
+ count=count+1;
+ popup = popup.parent;
+}
+</code></pre>

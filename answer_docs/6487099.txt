@@ -1,0 +1,25 @@
+<p>I'm not a python zen master, but here's my take.</p>
+
+<pre><code>import random
+
+#You have you read everything into a list from at least one of the files.
+fin = open("filename1","r").readlines()
+# tuple of all of the files.
+fls = ( open("filename2","r"), 
+       open("filename3","r"), )
+
+for fl in fls: #iterate through tuple
+   curr = 0
+   clen = len(fin)
+   for line in fl: #iterate through a file.
+      # If we're at the end or 1 is randomly chosen, insert at current position.
+      if curr &gt; clen or round(random.random()):
+         fin.insert(curr,line)
+         clen = len(fin)
+      curr +=1 #increment current index.
+
+# when you're *done* reverse. It's easier.
+fin.reverse()
+</code></pre>
+
+<p>Unfortunately with this it becomes obvious that this is a weighted distrobution. This can be fixed by calculating the length of each of the files and multiplying the call to random by certain probability based on that. I'll see if I can't provide that at some later point.</p>

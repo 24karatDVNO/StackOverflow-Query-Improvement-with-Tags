@@ -1,0 +1,63 @@
+<p>What I did with the SimpleCursorAdapter in my project is temporary set a SimpleCursorAdapter.ViewBinder. The method ViewBinder.setViewValue(...) is called when the list items become visible on the screen. Do the pre-selecting and remove itself.</p>
+
+<pre><code>    final SimpleCursorAdapter sca = new SimpleCursorAdapter(this, layout, c, from, to);
+    mProjectListView.setAdapter(sca);
+
+    // Add temporary ViewBinder for pre-selected ListView item
+    // i.e. the current project should be selected
+    final ViewBinder viewBinder = new ViewBinder() {
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+            String text = cursor.getString(columnIndex);
+            String currentProject = mPreferences.getString(PREF_NAME, sDefName);
+            if (currentProject.equals(text)) {
+                mProjectListView.setItemChecked(cursor.getPosition(), true);
+                // Remove itself
+                sca.setViewBinder(null);
+            }
+            // Let CursorAdapter handle the binding, so return false
+            return false;
+        }
+    };
+    sca.setViewBinder(viewBinder);
+</code></pre>
+
+<p>Unfortunately the ArrayAdapter doesn't have this listener. So i override ArrayAdapter.getItem(int position) and introduce OnGetItemListener interface.</p>
+
+<pre><code>public class CustomArrayAdapter&lt;T&gt; extends ArrayAdapter&lt;T&gt; {
+
+    public static interface OnGetItemListener&lt;T&gt; {
+        void onGetItem(int position, T item);
+    }
+
+    private OnGetItemListener&lt;T&gt; mGetItem = mNullGetItem;
+
+    public void setOnGetItemListener(OnGetItemListener&lt;T&gt; listener) {
+        if (listener != null) {
+            mGetItem = listener;
+        } else {
+            mGetItem = mNullGetItem;
+        }
+    }
+
+    @Override
+    public T getItem(int position) {
+        T item = super.getItem(position);
+        mGetItem.onGetItem(position, item);
+        return item;
+    }
+}
+</code></pre>
+
+<p>Using the CustomArrayAdapter:</p>
+
+<pre><code>    caa.setOnGetItemListener(new CustomArrayAdapter.OnGetItemListener&lt;String&gt;() {
+        @Override
+        public void onGetItem(int position, String item) {
+            if (item.equals(&lt;is it your item?&gt;)) {
+                mProjectListView.setItemChecked(position, true);
+                caa.setOnGetItemListener(null);
+            }
+        }
+    });
+</code></pre>

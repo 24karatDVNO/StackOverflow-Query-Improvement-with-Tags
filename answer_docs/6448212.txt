@@ -1,0 +1,12 @@
+<p>Ok, I will make a hand wavy attempt at this. The perfect(ish) data structure for your problem is (as you've said a trie) made up of the words in the dictionary. A trie is best visualised as a <a href="http://en.wikipedia.org/wiki/Deterministic_finite-state_machine" rel="nofollow">DFA</a>, a nice state machine where you go from one state to the next on every new character. This is really easy to do in code, a Java(ish) style class for this would be :</p>
+
+<pre><code>Class State 
+{
+   String matchedWord;
+   Map&lt;char,State&gt; mapChildren;
+}
+</code></pre>
+
+<p>From hereon, building the trie is easy. Its like having a rooted tree structure with each node having multiple children. Each child is visited on one character transition. The use of a <code>HashMap</code> kind of structure trims down time to look up character to next <code>State</code> mappings. Alternately if all you have are 26 characters for the alphabet, a <code>fixed size array of 26</code> would do the trick as well.</p>
+
+<p>Now, assuming all of that made sense, you have a trie, your problem still isn't fully solved. This is where you start doing things like regular expressions engines do, walk down the trie, keep track of states which match to a whole word in the dictionary (thats what I had the <code>matchedWord</code> for in the <code>State</code> structure), use some backtracking logic to jump to a previous match state if the current trail hits a dead end. I know its general but given the trie structure, the rest is fairly straightforward. </p>

@@ -1,0 +1,14 @@
+<p>I am not sure if this is the cause of your error, but looking at the documentation of <a href="http://msdn.microsoft.com/en-us/library/aa381365%28v=VS.85%29.aspx" rel="nofollow">ITaskFolder::RegisterTaskDefinition</a> and your code:</p>
+
+<pre><code>hr = pRootFolder-&gt;RegisterTaskDefinition(  // line 289
+        _bstr_t( wszTaskName ),
+        pTask,
+        TASK_CREATE_OR_UPDATE, 
+        _variant_t(L"soribo"), // put in my windows username again (I'm the admin)
+        _variant_t(L"XXXXXX"), // put in my user password &amp; no its not really XXXXXX :P 
+        TASK_LOGON_GROUP,
+        _variant_t(L""),
+        &amp;pRegisteredTask);
+</code></pre>
+
+<p>I see you are using TASK_LOGON_GROUP, but pass an username password. If you use TASK_LOGON_GROUP, you should probably use a name of a group (like <code>L"Builtin\\Administrators"</code> or <a href="http://support.microsoft.com/kb/243330" rel="nofollow"><code>L"S-1-5-32-545"</code></a>) and VT_NULL for the password.</p>

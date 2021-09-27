@@ -1,0 +1,11 @@
+<p>Please see this lucene FAQ entry, it suggests to use a token filter to provide alias / aliasing of words:</p>
+
+<p><strong><a href="http://www.iicm.tugraz.at/thesis/cguetl_diss/literatur/Kapitel07/URL/JAKARTA/JakartaLuceneFAQ.html#q26" rel="nofollow">26. How can I make 'pig' also match 'hog' ?</a></strong>:</p>
+
+<blockquote>
+  <p>As far as I know, Lucene does not provide a tokenzier that support term aliasing but you should be able to write one yourself. All you need is to write a TokenFilter that accepts a word pair mapping and uses it map the first word to the second.</p>
+  
+  <p>Again, make sure to use the same analyzer both during the indexing and searching and don't forget to submit your code to the Lucene project so other can use it as well ;-) </p>
+</blockquote>
+
+<p>That's older information probably this is even more comfortable nowadays, but probably worth the direction.</p>

@@ -1,0 +1,17 @@
+<p>This is what I did using @btreat 's idea and it worked great.</p>
+
+<pre><code>public List&lt;List&lt;Integer&gt;&gt; create4(List&lt;Integer&gt; dice) {
+        List&lt;List&lt;Integer&gt;&gt; permutations = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+        for(int i = 0; i &lt; dice.size(); i++) {
+            List&lt;Integer&gt; includedPermutation = new ArrayList&lt;Integer&gt;();
+            for(int j = 0; j &lt; dice.size(); j++) {
+                if(i!=j) {
+                    includedPermutation.add(dice.get(j));
+                }
+            }
+            permutations.add(includedPermutation);
+        }
+
+        return permutations;
+    }
+</code></pre>

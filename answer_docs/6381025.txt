@@ -1,0 +1,11 @@
+<p>The first tutorial on the Android developer website explains how to do this:
+<a href="http://developer.android.com/resources/tutorials/notepad/notepad-ex1.html" rel="nofollow">http://developer.android.com/resources/tutorials/notepad/notepad-ex1.html</a></p>
+
+<p>(Look under Step 4)</p>
+
+<p>Snippet:</p>
+
+<ul>
+<li>The ListView and TextView can be thought as two alternative views, only one of which will be displayed at once. ListView will be used when there are notes to be shown, while the TextView (which has a default value of "No Notes Yet!" defined as a string resource in res/values/strings.xml) will be displayed if there aren't any notes to display.</li>
+<li>The View with the empty id is used automatically when the ListAdapter has no data for the ListView. The ListAdapter knows to look for this name by default. Alternatively, you could change the default empty view by using setEmptyView(View) on the ListView. </li>
+</ul>

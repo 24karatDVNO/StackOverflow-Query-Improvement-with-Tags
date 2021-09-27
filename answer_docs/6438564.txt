@@ -1,0 +1,21 @@
+<p>The error message you pasted tells you everything you need to know. When you click on the link, you're being directed to <code>http://localhost:3000/slide/slide/2</code> rather than <code>http://localhost:3000/slide/2</code>. Given that the link is working when you copy and paste it, and that you're using the standard <code>slide_path</code> suggests that the link is correct in the HTML, but something is happening to break it in your javascript. </p>
+
+<p>It's probably just a simple case of the URL being treated as relative to the current page, rather than relative to root.</p>
+
+<p>Incidentally, you could still use RESTful routes here, even if your slides aren't backed up by a database. If your whole app is a single slideshow, use:</p>
+
+<pre><code>RadioDose::Application.routes.draw do
+   resources :slides
+end
+</code></pre>
+
+<p>or if you want to support multiple slideshows, then:</p>
+
+<pre><code>RadioDose::Application.routes.draw do
+   resources :slideshows do
+      resources :slides
+   end
+end
+</code></pre>
+
+<p>Then you could display the first slide from either the <code>index</code> action of the Slides controller, or in the second example, the <code>show</code> action of the Slideshow controller.</p>

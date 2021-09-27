@@ -1,0 +1,30 @@
+<p>The other way is to bind the list to a public property, with a separate property for the current item.</p>
+
+<pre><code>   &lt;ListBox ItemsSource="{Binding Path=Images}" SelectedItem="{Binding CurrentItem}" /&gt;
+
+private IndexedImage _currentItem;
+public IndexedImage CurrentItem
+{
+    get { return _currentItem; }
+    set
+    {
+        if (_currentItem == value) return;
+        _currentItem = value;
+        RaisePropertyChanged("CurrentItem");
+    }
+}
+
+    private ObservableCollection&lt;IndexedImage&gt; _images;
+    public ObservableCollection&lt;IndexedImage&gt; Images
+    {
+        get { return _images ?? (_images = new ObservableCollection&lt;IndexedImage&gt;()); }
+        set
+        {
+            if (_images == value) return;
+            _images = value;
+            RaisePropertyChanged("Images");
+        }
+    }
+</code></pre>
+
+<p>CurrentItem is then totally under your control. When you start it's null and it gets set when they click an item or you set it manually.</p>

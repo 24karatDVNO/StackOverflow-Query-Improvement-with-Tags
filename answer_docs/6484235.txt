@@ -1,0 +1,19 @@
+<p>Your query not having any conflict but please make sure about data..And why you are having single quotes in besides event like this `events??</p>
+
+<p>Check these </p>
+
+<pre><code> select events.id from events where events.id &lt;&gt; 75
+</code></pre>
+
+<p>and</p>
+
+<pre><code> select events_topics.event_id from events_topics where events_topics.event_id &lt;&gt; 75
+</code></pre>
+
+<p>If these are giving proper data then try this way</p>
+
+<pre><code>  SELECT events.* 
+  FROM events
+  INNER JOIN events_topics  ON events.id = events_topics.event_id and    
+   events_topics.topic_id &lt;&gt; 75
+</code></pre>

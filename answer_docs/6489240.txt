@@ -1,0 +1,1 @@
+<p>Ohh I feel stupid now. The reason it is returning commas is most likely because <code>$("#edmt_pp").html(myarray+"");</code> is coercing a type conversion from your array variable to a string (which incidentally prints out each element separated by a comma).</p>

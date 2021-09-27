@@ -1,0 +1,19 @@
+<p>Take your input and make sure it's a string so that it's iterable.</p>
+
+<p>Then perform a list comprehension and change each value back to a number.</p>
+
+<p>Now, you can do the sum of all the numbers if you want:</p>
+
+<pre><code>inp = [int(i) for i in str(input("Enter a number:"))]
+print sum(inp)
+</code></pre>
+
+<p>Or, if you really want to see the output while it's executing:</p>
+
+<pre><code>def printadd(x,y):
+    print x+y
+    return x+y
+
+inp = [int(i) for i in str(input("Enter a number:"))]
+reduce(printadd,inp)
+</code></pre>

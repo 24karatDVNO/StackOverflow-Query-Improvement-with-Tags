@@ -1,0 +1,17 @@
+<p>chances are it does show, but you don't have enough time to see it happen(the destruction would happen during the "return 0;" statement".</p>
+
+<p>Prehapse if you were to put that code into a function, you'd be able to see the destruction of localObj,since it'd fall out of scope after you leave the function:</p>
+
+<pre><code>void f(){
+    Tester localObj(3);
+    cout&lt;&lt;"In local function f";
+}
+
+/*...*/ 
+
+int main(){
+    f();
+    system("pause");
+    return 0;
+}
+</code></pre>

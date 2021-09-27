@@ -1,0 +1,38 @@
+<p>You are looking at a fairly complex <a href="http://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29" rel="nofollow">algorithm</a>.  Do a search for <a href="http://en.wikipedia.org/wiki/Breadth-first_search" rel="nofollow">breadth-first</a> and <a href="http://en.wikipedia.org/wiki/Depth-first_search" rel="nofollow">depth-first</a> search to get ideas how to implement a recursive method in your Person model to do this.</p>
+
+<p>One general suggestion: set up Person-to-Person associations in your Person model, like this:</p>
+
+<pre><code>  has_many :from_relations, :source =&gt; :from_person, :through =&gt; :from_relationships
+  has_many :to_relations, :source =&gt; :to_person, :through =&gt; :to_relationships
+</code></pre>
+
+<p>Then you can get a collection of relations with @person.from_relations and @person.to_relations.</p>
+
+<p>Depending on your application needs, you may be able to simplify things further by dealing with direction in your relationship model, like this:</p>
+
+<p>Person model:</p>
+
+<pre><code>  has_many :relationships
+  has_many :relations, :through =&gt; :relationships
+</code></pre>
+
+<p>Relationship model</p>
+
+<pre><code>  belongs_to :person
+  belongs_to :relation, :class_name =&gt; "Person"
+</code></pre>
+
+<p>With the more simple assocations, an instance method in your Person model to find if two persons are related would look something like this:</p>
+
+<pre><code>def related_to?(target)
+  if self == target
+    return true
+  elsif self.relations.empty?
+    return false
+  else
+    return self.relations.each {|relation| relation.related_to?(target)}
+  end
+end
+</code></pre>
+
+<p>Note it uses recursion.  Also, I didn't work through the algorithm to make sure there is no potential for infinite loops due to cyclical associations (Joe -> Bob -> Joe -> Bob ).</p>

@@ -1,0 +1,1 @@
+<p>Clearly it fails because you declare the context menu object inside the AddContextMenu method as local method variable instead of having it as private member of the containing class. the solution MegaHerz has suggested would probably work, or you keep a reference to your object as private member of the class.</p>

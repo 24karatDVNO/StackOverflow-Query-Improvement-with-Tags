@@ -1,0 +1,15 @@
+<p>Well, managed to find the answer:</p>
+
+<pre><code>fileMenu = menuBar()-&gt;addMenu(tr("&amp;Metrics"));
+metricMenu-&gt;addAction(ttAct);
+metricMenu-&gt;addAction(plAct);
+</code></pre>
+
+<p>is only almost correct. Shoulda been </p>
+
+<pre><code>metricMenu = menuBar()-&gt;addMenu(tr("&amp;Metrics"));
+metricMenu-&gt;addAction(ttAct);
+metricMenu-&gt;addAction(plAct);
+</code></pre>
+
+<p>instead.</p>

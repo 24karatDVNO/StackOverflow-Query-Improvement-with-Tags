@@ -1,0 +1,5 @@
+<p>Just call <code>facebook.request("me/friends")</code> from within onComplete and let the rest of the logic follow from that.</p>
+
+<p>That way it will only call once the <code>Facebook</code> onject has an access token and not if there is an error or some such.
+You will probably want to use the other callbacks in the <code>DialogListener</code> for a better flow.
+Also think about maintaining that facebook object across the application if you plan on making more requests. </p>

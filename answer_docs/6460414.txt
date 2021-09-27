@@ -1,0 +1,16 @@
+<p>your example converted to httplib:</p>
+
+<pre><code>import httplib
+
+host = 'localhost:8080'
+path = '/openrdf-sesame/repositories/rep/statements'
+path = '/index.html'
+headers = {'Content-type': 'application/rdf+xml;charset=utf-8'}
+
+f = open('Tea.rdf')
+conn = httplib.HTTPConnection(host)
+conn.request('PUT', path, f, headers)
+res = conn.getresponse()
+print res.status, res.reason
+print res.read()
+</code></pre>

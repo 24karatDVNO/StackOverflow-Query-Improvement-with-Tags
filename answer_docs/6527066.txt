@@ -1,0 +1,34 @@
+<p>As you use generics, you use Java 5. What about overriding the methods with a more specific return type:</p>
+
+<pre><code>class BinaryTree&lt;E&gt; {
+  public BinaryTree&lt;E&gt; root() {
+    if (parent == null) return this;
+    else return parent.root();
+  }
+}
+
+class ColorBinaryTree&lt;E&gt; extends BinaryTree&lt;E&gt; {
+  @Override
+  public ColorBinaryTree&lt;E&gt; root() {
+    return (ColorBinaryTree&lt;E&gt;)super.root();
+  }
+}
+</code></pre>
+
+<p>Or may use a more sophisticated generic solution:</p>
+
+<pre><code>abstract class AbstractBinaryTree&lt;E, T extends AbstractBinaryTree&lt;E,T&gt;&gt; {
+  T parent;
+
+  public T root() {
+    if (parent == null) return (T)this;
+    else return parent.root();
+  }
+}
+
+class BinaryTree&lt;E&gt; extends AbstractBinaryTree&lt;E, BinaryTree&lt;E&gt;&gt;{
+}
+
+class ColorBinaryTree&lt;E&gt; extends AbstractBinaryTree&lt;E, ColorBinaryTree&lt;E&gt; {
+}
+</code></pre>

@@ -1,0 +1,56 @@
+<p>Here is a complete working sample of using <code>SharedSizeGroup</code> with data binding.</p>
+
+<p>The markup:</p>
+
+<pre><code>&lt;Grid&gt;
+    &lt;StackPanel Grid.IsSharedSizeScope="True" Margin="20"&gt;
+        &lt;Grid HorizontalAlignment="Left"&gt;
+            &lt;Grid.ColumnDefinitions&gt;
+                &lt;ColumnDefinition SharedSizeGroup="{Binding ColumnA}"/&gt;
+                &lt;ColumnDefinition SharedSizeGroup="{Binding ColumnB}"/&gt;
+            &lt;/Grid.ColumnDefinitions&gt;
+            &lt;TextBlock Text="aa" Grid.Column="0" Foreground="Red"/&gt;
+            &lt;TextBlock Text="bbbbbbbb" Grid.Column="1" Foreground="Blue"/&gt;
+        &lt;/Grid&gt;
+        &lt;Grid HorizontalAlignment="Left"&gt;
+            &lt;Grid.ColumnDefinitions&gt;
+                &lt;ColumnDefinition SharedSizeGroup="{Binding ColumnC}"/&gt;
+                &lt;ColumnDefinition SharedSizeGroup="{Binding ColumnD}"/&gt;
+            &lt;/Grid.ColumnDefinitions&gt;
+            &lt;TextBlock Text="cccccccc" Grid.Column="0" Foreground="Red"/&gt;
+            &lt;TextBlock Text="dd" Grid.Column="1" Foreground="Blue"/&gt;
+        &lt;/Grid&gt;
+    &lt;/StackPanel&gt;
+&lt;/Grid&gt;
+</code></pre>
+
+<p>and the code-behind:</p>
+
+<pre class="lang-cs prettyprint-override"><code>void Window_Loaded(object sender, RoutedEventArgs e)
+{
+    DataContext = new SharedSizeGroupViewModel
+    {
+        ColumnA = "group1",
+        ColumnB = "group2",
+        ColumnC = "group1",
+        ColumnD = "group2",
+    };
+}
+</code></pre>
+
+<p>and the primitive view-model:</p>
+
+<pre class="lang-cs prettyprint-override"><code>public class SharedSizeGroupViewModel
+{
+    public string ColumnA { get; set; }
+    public string ColumnB { get; set; }
+    public string ColumnC { get; set; }
+    public string ColumnD { get; set; }
+}
+</code></pre>
+
+<p>and this is what it looks like:</p>
+
+<p><img src="https://i.stack.imgur.com/kafAj.png" alt="SharedSizeGroup Demo"></p>
+
+<p>which shows the red and blue columns lined up.</p>

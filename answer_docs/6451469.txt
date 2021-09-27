@@ -1,0 +1,33 @@
+<p>It sounds like you want this formatted a little bit.  It also sounds like this is a high school, beginning of semester assignment, and you may be cheating yourself out of discovering whatever language you're using.  But let's say you're not, and you want formatting.</p>
+
+<p>FredOverflow gives the right pseudocode algo for printing:</p>
+
+<pre><code>x
+xx
+xxx
+...
+</code></pre>
+
+<p>but if you want it to be centered then you need to consider how many spaces to add first.</p>
+
+<p>If your pyramid is n tall, then the bottom is n wide.  Row n-1 contains n-1 x's, but needs even spacing, and you can't just add 0.5 spaces to each side, at least with text (unless this is in a GUI and you're using some DrawText(x,y,text) method).  Instead, consider that if you put a space between each x, you'll always have an odd # of characters on a line, allowing pyramidal spacing, like so:</p>
+
+<pre><code>  x
+ x x
+x x x
+</code></pre>
+
+<p>Thus you can do:</p>
+
+<pre><code>for (i = 1; i&lt;= n; i++) {
+  for (j = 0; j &lt; n-i; j++) {
+    printf(" ");
+  }
+  for (k = 0; k &lt; i; i++) {
+    printf("x ");
+  }
+  printf("\n");
+}
+</code></pre>
+
+<p>Or rewrite to suit your needs / be more efficient.  There are options here, and you should try doing it another way to see what the differences teach you.  Specifically, though, pay attention to the math used in your recursion loops.  It's easy, especially when starting out, to have off-by-1 math errors in loops.  Heck, I hope I didn't make one just now!</p>

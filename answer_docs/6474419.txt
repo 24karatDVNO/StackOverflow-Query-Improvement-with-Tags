@@ -1,0 +1,19 @@
+<p>I've parsed it through the reader in v2, and it seems to make perfect sense:</p>
+
+<pre><code>1=5
+2=0
+3=
+4=yo
+5=6
+6=2 bytes, 68-69
+7=how
+8=are
+9=you
+10=sir
+</code></pre>
+
+<p>Note that I've done that <em>purely</em> from the hex data (not using the .proto), but it should be close to your original data. But most notably, it seems intact.</p>
+
+<p>So: first thing to do; check that the binary you get at the C++ side is exactly the same as the binary you sent; this is doubly important if you are doing any translations along the way (binary => string, for example - which should be done via base-64).</p>
+
+<p>second thing; if that doesn't work, it is <em>possible</em> that there is a problem in the C++ implementation. It seems <em>unlikely</em> since that is one of google's pets, but nothing is impossible. If the binary comes across intact,  but it still behaves oddly, I can try speaking to the C++ folks, to see if one of us has gone cuckoo.</p>

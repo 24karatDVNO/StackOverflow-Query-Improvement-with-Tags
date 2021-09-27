@@ -1,0 +1,6 @@
+<p>The log4net configurator call that you're making actually tries to find the <a href="http://logging.apache.org/log4net/release/sdk/log4net.Config.XmlConfigurator.Configure_overload_1.html" rel="nofollow"><code>AppDomain.CurrentDomain.SetupInformation.ConfigurationFile</code></a>. I don't know what the <code>AppDomain</code> is for a stored procedure.</p>
+
+<p>You might want to try a <a href="http://logging.apache.org/log4net/release/manual/configuration.html#Reading%20Files%20Directly" rel="nofollow">standalone</a> configuration file and use the overload of that configurator.</p>
+
+<pre><code>log4net.Config.XmlConfigurator.Configure(new FileInfo("config.log4net"));
+</code></pre>

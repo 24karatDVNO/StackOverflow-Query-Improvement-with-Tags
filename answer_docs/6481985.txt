@@ -1,0 +1,13 @@
+<p>How will you know if you have an Internet Connection? Is it enough that you can route packets to a nearby router? Maybe the machine has only a single NIC, a single gateway, and perhaps that Gateway's connection goes down but the machine can still route to the gateway and local network?</p>
+
+<p>Maybe the machine has a single NIC and a dozen gateways; maybe they come and go all the time, but <em>one</em> of them is always up?</p>
+
+<p>What if the machine has multiple NICs, but only a single gateway? Perhaps it can route to some subset of the Internet, but still has an excellent connection to a local network not connected to the Internet?</p>
+
+<p>What if the machine has muliple NICs, multiple gateways, but for administrative policy reasons, still only portions of the Internet are routeble?</p>
+
+<p>Do you really only care if clients have connectivity to <em>your</em> servers?</p>
+
+<p>What kind of latency between packets is acceptable? (30ms is good, 300ms is pushing the limits of human endurance, 3000ms is intolerable long time, 960000ms is what would be required for a connection to a solar probe.) What kind of packet loss is acceptable?</p>
+
+<p>What are you <em>really</em> trying to measure?</p>

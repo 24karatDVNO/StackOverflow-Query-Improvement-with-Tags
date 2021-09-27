@@ -1,0 +1,3 @@
+<p>Check your mail server's mail log. On Unix-ish systems, it's generally /var/log/maillog. On Windows, who knows, but there should be a log somewhere. If mail is returning TRUE, then whatever mail server it's connecting to has accepted the mail for eventual delivery. After that, <code>mail()</code> is no longer involved in any way and it's up to the SMTP servers to do the actual delivery. </p>
+
+<p>In real world terms, <code>mail()</code> is you walking a letter down the block and dropping it into a mail box. Everything after that is utterly outside of PHP's scope and control.</p>

@@ -1,0 +1,6 @@
+<p>For a list of N items and a period P, your algorithm which re-sorts the list for every item is O(N * P lgP).   There is an O(N * lg P) algorithm, which uses 2 <a href="http://en.wikipedia.org/wiki/Heap_%28data_structure%29" rel="nofollow noreferrer">heaps</a>.  </p>
+
+<p>It uses a min-heap which contains P/2 items above the median, and a max-heap with the P-P/2 items less than or equal to it.   Whenever you get a new data item, replace the oldest item with the new one, then do a sift-up or sift-down to move it to the correct place.  If the new item reaches the root of either heap, compare it to the root of the other and swap and sift-down when needed.    For odd P, the median is at the root of the max-heap.  For even P, it is the average of both roots.  </p>
+
+<p>There is a <a href="https://stackoverflow.com/questions/5527437/rolling-median-in-c-turlach-implementation/5970314#5970314">c implementation in this question</a>.  One tricky part in implementing it is 
+tracking the oldest item efficiently.  The overhead in that part may make the speed gains insignificant for small P.</p>

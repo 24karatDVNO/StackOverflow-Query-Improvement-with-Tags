@@ -1,0 +1,18 @@
+<p>I found out the solution:</p>
+
+<pre><code>-(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+NSLog(@"display project details");
+if (tableView == self.table) {
+    [parentController projectSelectedFromList:indexPath.row];
+    NSLog(@"indexpath at orignal tableview is: %@", [indexPath description]);
+}else{
+    NSIndexPath *indexPathForOriginal = [resultsController indexPathForObject: [self.filteredResults objectAtIndex:indexPath.row]];
+    NSInteger index = indexPathForOriginal.row;
+    [parentController projectSelectedFromList:index];
+    NSLog(@"indexpath at search tableview is: %@", [indexPathForOriginal description]);
+
+}
+[tableView deselectRowAtIndexPath:indexPath animated:YES];
+</code></pre>
+
+<p>}</p>

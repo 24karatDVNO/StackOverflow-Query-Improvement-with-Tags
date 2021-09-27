@@ -1,0 +1,17 @@
+<p>If you have good HTML5 support this is possible using a <a href="https://developer.mozilla.org/en/HTML/Canvas" rel="nofollow"><code>Canvas</code></a> element.</p>
+
+<p>You can use:</p>
+
+<pre><code>ctx.drawImage(img, dx, dy);
+</code></pre>
+
+<p>to render the contents of an <code>&lt;img&gt;</code> tag into the canvas at a specified offset (to give you a border), and:</p>
+
+<pre><code>ctx.fillText(...);
+</code></pre>
+
+<p>to add your own text on top.</p>
+
+<p>See the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#images" rel="nofollow">W3C spec</a>.</p>
+
+<p>If you don't have HTML5, it'll have to be done server-side.</p>

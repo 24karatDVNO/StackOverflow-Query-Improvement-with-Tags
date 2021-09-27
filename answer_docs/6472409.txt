@@ -1,0 +1,6 @@
+<p>Figured it out with this regular expression..</p>
+
+<pre><code>$regexp = implode('[^0-9a-zA-Z]*', str_split(remove_nonalphanums($word)));
+</code></pre>
+
+<p>Then I do <code>The_Column REGEXP $regexp</code></p>

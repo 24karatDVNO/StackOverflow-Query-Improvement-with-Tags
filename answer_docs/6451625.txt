@@ -1,0 +1,67 @@
+<p>Paste the following code in your <code>connectasAction</code> in the controller you use and get the correct param:</p>
+
+<pre><code>public function connectAsAction() {
+
+if (!Mage::getSingleton('admin/session') -&gt;isAllowed('customer/connectas')) {
+
+echo 'You are not allowed to connect as another user'; return;
+
+}
+
+$customerId = $this-&gt;getRequest()-&gt;getParam('id');
+
+$customer = Mage::getModel('customer/customer') -&gt;load($customerId);
+
+if ($customer-&gt;getId() != $customerId) { echo 'User not found.'; return; }
+
+$preferedStoreViewId = $customer-&gt;getPreferedStoreViewId();
+
+if (!$preferedStoreViewId &gt; 0) {
+
+$customer-&gt;getWebsiteId();
+
+$preferedStoreViewId = Mage::app() -&gt;getWebsite($customer-&gt;getWebsiteId())
+
+-&gt;getDefaultStore() -&gt;getStoreId();
+
+} session_write_close();
+
+//Suppression du cookie 'frontend'
+
+$params = session_get_cookie_params();
+
+setcookie(
+           'frontend', 
+           '', 
+           time() - 42000, 
+           $params["path"], 
+           $params["domain"], 
+           $params["secure"], 
+           $params["httponly"] 
+         );
+
+//Here we need to write on the session 
+//corresponding to the frontend website 
+
+session_regenerate_id(); 
+session_name('frontend'); 
+session_start(); 
+
+$customer-&gt;setPreferedStoreViewId($preferedStoreViewId); 
+
+//We set the customer and its store view 
+Mage::app()-&gt;setCurrentStore( Mage::getModel('core/store') 
+                  -&gt;load($preferedStoreViewId) ); 
+Mage::getSingleton('customer/session') 
+                      -&gt;setCustomerAsLoggedIn($customer); 
+
+//We need to write data before continuing 
+//in the normal magento process session_write_close();
+//Redirect to the front on the specific store view 
+$this-&gt;_redirectUrl(Mage::app() 
+           -&gt;getStore($preferedStoreViewId) 
+           -&gt;getBaseUrl()); 
+}
+</code></pre>
+
+<p>This is from my blog: <a href="http://benjion.wordpress.com/2011/04/29/magento-se-connecter-en-tant-que-client-depuis-ladmin/" rel="nofollow noreferrer">http://benjion.wordpress.com/2011/04/29/magento-se-connecter-en-tant-que-client-depuis-ladmin/</a></p>

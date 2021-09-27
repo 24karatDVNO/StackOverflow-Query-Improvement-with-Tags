@@ -1,0 +1,21 @@
+<pre><code>            @echo off
+            ::File:FileCounter.cmd how-to count from for loop in cmd
+
+
+            SET count=1
+            FOR /L %%G IN (1,1,3) DO (call :LabelGoUpOnce "%%G")
+            echo Hit a key to continue
+
+            echo Dir3LevelsUp %Dir3LevelsUp%
+
+            pause &gt;nul
+            GOTO :eof
+            :LabelGoUpOnce
+            pushd ..
+            echo CD IS %CD%
+            set Dir3LevelsUp=%CD%
+            echo %count%:%1
+
+            set /a count+=1
+            GOTO :eof
+</code></pre>

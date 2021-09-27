@@ -1,0 +1,3 @@
+<p>The problem may be that all producers change g_lChangedProducerId, so the value written by one producer may be overwritten by another producer before the consumer sees it.</p>
+
+<p>This means that the consumer effectively doesn't see that the first producer has produced some output.</p>

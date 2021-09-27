@@ -1,0 +1,14 @@
+<p>I have another approach.. </p>
+
+<pre><code>try:
+    data = s.recv(4096)
+except socket.error:
+    if e[0] in (errno.EWOULDBLOCK, errno.EAGAIN): # since this is a non-blocking socket..
+        return # no error
+    else:
+        # error
+        socket.close()
+
+if not data: #closed either
+    socket.close() 
+</code></pre>

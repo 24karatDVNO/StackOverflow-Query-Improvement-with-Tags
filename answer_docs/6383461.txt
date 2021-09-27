@@ -1,0 +1,10 @@
+<p>I believe that <code>return false</code> is equivalent to <code>e.preventDefault();</code> and <code>e.stopPropagation();</code> at the same time. However, I recommend that you use the functions and the return false for future and past browser compatibility:</p>
+
+<pre><code>$("#something").click(function(e){
+    alert("Something was clicked");
+    e.preventDefault();
+    return false;
+});
+</code></pre>
+
+<p>Ad@m</p>

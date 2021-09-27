@@ -1,0 +1,47 @@
+<p>I wrote this method which works but not with the best performance:</p>
+
+<pre><code>public static TimeOfDay Create(NameValueCollection httpRequestForm, string checkBoxId)
+        {
+            var result = new TimeOfDay();
+
+            var selectedCheckBoxItems = from key in httpRequestForm.AllKeys
+                       where key.Contains(checkBoxId)
+                       select httpRequestForm.Get(key);
+
+            if (selectedCheckBoxItems.Count() == 0)
+            {
+                result.ShowFull = true;
+                return result;
+            }
+
+            foreach (var item in selectedCheckBoxItems)
+            {
+                var selectedValue = int.Parse(item.Substring(item.Length));
+
+                    switch (selectedValue)
+                    {
+                        case 0:
+                            result.ShowAm = true;
+                            break;
+                        case 1:
+                            result.ShowPm = true;
+                            break;
+                        case 2:
+                            result.ShowEvening = true;
+                            break;
+                        case 3:
+                            result.ShowFull = true;
+                            break;
+                        default:
+                            throw new ApplicationException("value is not supported int the check box list.");
+                    }
+                }
+
+            return result;
+        }
+</code></pre>
+
+<p>and use it like this:</p>
+
+<pre><code>TimeOfDay.Create(this.Request.Form, this.cblTimeOfDay.ID)
+</code></pre>

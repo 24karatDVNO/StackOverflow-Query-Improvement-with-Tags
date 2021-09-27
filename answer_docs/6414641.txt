@@ -1,0 +1,7 @@
+<pre><code>SELECT [column names]
+FROM tableA AS a INNER JOIN tableC as c ON (c.foo = a.foo)
+LEFT OUTER JOIN tableB as B on (b.blah = a.blah)
+WHERE [more where conditions]
+</code></pre>
+
+<p>If the [more where conditions] are on B, then you need to include them in the OUTER JOIN ON clause.</p>

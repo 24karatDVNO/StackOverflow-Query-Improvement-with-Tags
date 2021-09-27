@@ -1,0 +1,27 @@
+<p>Try setting startURL to the url of the application under test instead of pointing to the selenium rc server url. For example, if your selenium test case is clicking a link on google, set startURL to <a href="http://www.google.com" rel="nofollow">http://www.google.com</a></p>
+
+<p>Here's a snippet from my pom that's working**</p>
+
+<pre><code>&lt;plugin&gt;
+&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+&lt;artifactId&gt;selenium-maven-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+      &lt;browser&gt;*firefox&lt;/browser&gt;
+      &lt;startURL&gt;http://my-site.com&lt;/startURL&gt;
+      &lt;suite&gt;test-suite&lt;/suite&gt;
+      &lt;!-- &lt;logOutput&gt;true&lt;/logOutput&gt; --&gt;
+      &lt;!-- &lt;timeoutInSeconds&gt;30&lt;/timeoutInSeconds&gt; --&gt;
+        &lt;/configuration&gt;
+&lt;executions&gt;
+  &lt;execution&gt;
+    &lt;id&gt;test&lt;/id&gt;
+        &lt;phase&gt;test&lt;/phase&gt;
+        &lt;goals&gt;
+      &lt;goal&gt;selenese&lt;/goal&gt;
+        &lt;/goals&gt;
+  &lt;/execution&gt;
+&lt;/executions&gt;
+  &lt;/plugin&gt;
+</code></pre>
+
+<p>** It works great except that on Mac OS, firefox just stays open and doesn't close?! But, hope that helps. </p>

@@ -1,0 +1,11 @@
+<p>I don't know if this is relevant anymore (old question), but here are some opinions on this (and nothing more than opinions).</p>
+
+<p>For Q1, I prefer to use what I imagine being "logical" URLs with MVC - i.e. from a user perspective, the URL should let them know what resource they are likely to fetch. Since you can do some semi-fancy routing, perhaps a route such as this would be clever:</p>
+
+<p>/gateways/5/sensorlist</p>
+
+<p>Or some variation on that theme. Of course there are a number of ways you could set the "current" gateway, as a session variable or a session cookie for instance, but what then of someone copying the URL, mailing it to his friend saying "Check out the sensors on THIS bad boy gateway!" - it wouldn't work without a reference to the gateway (doesn't have to be the ID, some people think exposing database IDs is a bad thing).</p>
+
+<p>As for Q2, my common solution to this is basically to include a hidden field in the form of the create view, indicating the ID of the gateway you want to create a sensor for. It's clean and it works, and that is usually enough for me. </p>
+
+<p>If you're still waiting for an answer half a year later, I hope some of this helps! :)</p>

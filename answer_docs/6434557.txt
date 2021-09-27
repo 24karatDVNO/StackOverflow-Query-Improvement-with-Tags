@@ -1,0 +1,8 @@
+<p>In practice, the suitable design for performance depends on how "weight" your data is accessed.</p>
+
+<p>Using "Table Inheritance" is suitable when the part of data(table2 or table3) is accessed frequently.
+Using "Nullable FK" is suitable if all of the data(whatever table2 or table3) is accessed frequently.</p>
+
+<hr>
+
+<p>The "Nullable FK", however, could be established by view based on "Table Inheritance".</p>

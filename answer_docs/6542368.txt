@@ -1,0 +1,7 @@
+<p>I have several apps published that do just that - call <code>viewDidLoad</code> on one or several UIViewControllers from <code>applicationDidBecomeActive</code>. </p>
+
+<p>It works just fine. Apple doesn't object to it either.</p>
+
+<p><strong>However</strong>, be aware that if you have allocations in your viewDidLoad you need to either check for already allocated instances or release the instances you allocate in <code>viewDidLoad</code> when your app suspends. The same goes for DB connections that need to be closed, notification listeners, and so on.</p>
+
+<p>As long as you watch for these elements and handle them correctly, the approach is valid and very usable.</p>

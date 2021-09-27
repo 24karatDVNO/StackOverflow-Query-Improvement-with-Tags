@@ -1,0 +1,18 @@
+<p>Try this.  You have too many <code>GROUP BY</code> criteria, and need aggregates on the remaining fields.  From you desired output they all look like <code>MAX</code> values to me:</p>
+
+<pre><code>select  sd.ident,
+        sd.suniq, 
+        td.testc, 
+        MAX(td.testuniq) as TestUniq, 
+        MAX(td.subtestc) as Subtestc, 
+        MAX(ts.testscore) as TestScore, 
+        MAX(ud.metadept) as metadept, 
+        max(ts.takendt)AS testdate
+from studemo sd, stutests ts, testdef td, udefstu ud
+where ts.suniq =sd.suniq
+and td.testuniq = ts.testuniq
+and ts.suniq = ud.suniq
+and td.testuniq IN ('2000089', '2000090', '2000091', '2000092')
+group by sd.suniq, sd.ident, td.testc,
+order by suniq
+</code></pre>

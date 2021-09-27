@@ -1,0 +1,5 @@
+<p>There is no input record separator in Perl.  You're basically emulating awk by using the <code>-a</code> and <code>-F</code> flags.  If you really don't want to hard code the value, then why not just use an environmental variable?</p>
+
+<pre><code>$ export SPLIT=":"
+$ perl -F$SPLIT -lane 'BEGIN { $, = $ENV{SPLIT}; } ...'
+</code></pre>

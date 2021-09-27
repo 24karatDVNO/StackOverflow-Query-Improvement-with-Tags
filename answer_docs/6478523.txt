@@ -1,0 +1,23 @@
+<p>I didn't test this but it's something like...</p>
+
+<pre><code>public struct SeasonEpisodeNr: IComparable
+{ 
+    public int seasonNr; 
+    public int episodeNr;
+    public int CompareTo(Object Item)
+    {
+        SeasonEpisodeNr that = (SeasonEpisodeNr) Item;
+
+        if (this.seasonNr &gt; that.seasonNr)
+            return -1;
+         if (this.seasonNr &lt; that.seasonNr)
+            return 1;
+
+         if (this.episodeNr &gt; that.episodeNr)
+             return -1;
+         if (this.episodeNr &lt; that.episodeNr)
+             return 1;
+
+         return 0;
+    }
+</code></pre>

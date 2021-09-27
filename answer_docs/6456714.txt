@@ -1,0 +1,12 @@
+<p>It is hard to say exactly without code, so please post canVirate definition.
+Usually that error means that canVirate is global variable defined in header file. Compiler creates the variable in every module that includes the header. You should declare canVirate in header, but define it in SomeModule.m file:</p>
+
+<p>SomeModule.h:</p>
+
+<pre><code>extern int canVirate;
+</code></pre>
+
+<p>SomeModule.m:</p>
+
+<pre><code>int canVirate = 123;
+</code></pre>

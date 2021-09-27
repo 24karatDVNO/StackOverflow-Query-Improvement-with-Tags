@@ -1,0 +1,11 @@
+<p>DECLARE @Contribution AS VARCHAR(MAX)
+SET @Contribution = 
+(
+SELECT RTRIM(Ltrim(C.strname)) + '; ' 
+FROM tbl M
+INNER JOIN tbl2 ON tbl2.ID =tbl.CID 
+WHERE M.PID =@PID ORDER BY C.Orderby 
+FOR XML PATH('')
+)</p>
+
+<p>Print @Contribution</p>

@@ -1,0 +1,1 @@
+<p>Also, be sure that the stored procedure is not being held up inside of a transaction, waiting for another process to complete.  I just ran across this with a Linq to Sql stored procedure being called multiple times within a transaction.  It gave me a timeout expired error and I just realized it was waiting for a previous call to complete, and thus timing out.</p>

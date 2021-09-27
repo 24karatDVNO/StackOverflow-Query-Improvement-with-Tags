@@ -1,0 +1,57 @@
+<p>It seems you are resetting the variable <code>e</code> in the second <code>for</code> loop, causing it to loop endlessly.</p>
+
+<p>Also, always use the keyword <code>var</code> in your <code>for</code> loops to make those iterative variables local to the function.</p>
+
+<p>Also make sure you set <code>var out</code> to an empty string, or it will start out as <code>undefined</code></p>
+
+<pre><code>function PadDigits(n, totalDigits) { 
+    n = n.toString(); 
+    var pd = ''; 
+    if (totalDigits &gt; n.length) 
+    { 
+        for (var i=0; i &lt; (totalDigits-n.length); i++) 
+        { 
+            pd += '0'; 
+        } 
+    } 
+    return pd + n.toString(); 
+}
+
+var filatrans = new Array();
+filatrans[0] =  '1';
+filatrans[1] =  '5 2';
+filatrans[2] =  '9 6 3';
+filatrans[3] =  '12 10 7 4';
+filatrans[4] =  '15 13 11';
+filatrans[5] =  '26 21 18 16 14';
+filatrans[6] =  '33 27 22 19 17';
+filatrans[7] =  '40 34 28 23 20';
+filatrans[8] =  '47 41 35 29 24';
+filatrans[9] =  '54 48 42 36 30 25';
+filatrans[10] = '61 55 49 43 37 31';
+filatrans[11] = '68 62 56 50 44 38 32';
+filatrans[12] = '75 69 63 57 51 45 39';
+filatrans[13] = '82 76 70 64 58 52 46';
+filatrans[14] = '89 83 77 71 65 59 53';
+filatrans[15] = '96 90 84 78 72 66 60';
+filatrans[16] = '103 97 91 85 79 73 67';
+filatrans[17] = '110 104 98 92 86 80 74';
+filatrans[18] = '117 111 105 99 93 87 81';
+filatrans[19] = '124 118 112 106 100 94 88';
+filatrans[20] = '125 119 113 107 101 95';
+filatrans[21] = '126 120 114 108 102';
+filatrans[22] = '127 121 115 109';
+filatrans[23] = '128 122 116';
+filatrans[24] = '129 123';
+filatrans[25] = '130';
+
+var w = filatrans;
+for (var i=0; i&lt;w.length; i++) {
+    fila = w[i].split(' ');
+    var out = ""
+    for (var j=0; j&lt;fila.length; j++) {
+        out += '.b' + PadDigits(fila[j], 3) + ', ';
+    }
+    $(out).addClass('ct' + PadDigits(i+1, 2));
+}
+</code></pre>

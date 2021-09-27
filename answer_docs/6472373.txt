@@ -1,0 +1,6 @@
+<p>This is because JSON as standard does not have a DateTime format - vendors are free to mark it down as they  want. WCF has this weird format of /Date()/
+I faced this just a couple of months ago.
+Using Jquery and Jquery UI it will look like that. controlId is the identifier of an element with </p>
+
+<pre><code>var converted = eval(original.replace(/\/Date\((\d+)\)\//gi, 'new Date($1)'));
+</code></pre>

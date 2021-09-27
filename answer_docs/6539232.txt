@@ -1,0 +1,7 @@
+<p>I think this has maybe been answered/discussed before here: <a href="https://stackoverflow.com/questions/4392884/why-call-getscript-instead-of-using-the-script-tag-directly">Why call $.getScript instead of using the &lt;script&gt; tag directly?</a>.</p>
+
+<p>getScript allows you to dynamically load a script in situations where it's either desirable to delay the loading of the script, in situations where you want to get a status callback on when the script has been loaded or in situations where you couldn't use a script tag.</p>
+
+<p>getScript has some downsides in that it's subject to the same-origin policy whereas a script tag is not.</p>
+
+<p>If have seen other web pages put an ID on a script tag (smugmug.com), but I've also seen that flagged as non-standard when testing standard's compliance.  It seems to work and be used by others, but I'm guessing it isn't standard.</p>

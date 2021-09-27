@@ -1,0 +1,25 @@
+<p>There's a slightly better way to do this;  </p>
+
+<pre><code>UPDATE SomeTable pe SET (match, FooTwo, SomeName) = (SELECT he.MyPrimary, he.SomeCode, he.SomeName
+                                                     FROM AnotherTable he 
+                                                     WHERE he.ColOne = pe.FooOne
+                                                     AND he.ColTwo = pe.ColTwo
+                                                     AND he.ColThree = pe.FooOne
+                                                     AND he.SomeCode = pe.SomeCode)
+WHERE he.relevancy = 1 
+AND he.ColThree = '2011-01-05' 
+AND he.ColFive = 9
+</code></pre>
+
+<p>This works pretty well on the iSeries version of DB2.<br>
+If you need to worry about <code>NULL</code> rows, don't forget your exists clause:  </p>
+
+<pre><code>AND EXISTS (SELECT '1'
+            FROM AnotherTable he
+            WHERE he.ColOne = pe.FooOne
+            AND he.ColTwo = pe.ColTwo
+            AND he.ColThree = pr.FooOne
+            AND he.SomeCode = pe.SomeCode)  
+</code></pre>
+
+<p>Add that after the existing <code>WHERE</code> clause in the main <code>UPDATE</code> statement.</p>

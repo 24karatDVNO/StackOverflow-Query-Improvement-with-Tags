@@ -1,0 +1,15 @@
+<p>Binding cannot be used as a way to invoke methods and pass parameters. It is merely a mechanism for synchronising state between your view and your view model.</p>
+
+<p>In your case, the view model needs to know the coordinates of your rectangle in order to determine the fill. Therefore, for each rectangle, your view model needs to expose <code>X, Y, Fill</code> properties.</p>
+
+<p>The big problem here is how to supply the view model with the X &amp; Y coordinates? I am guessing these rectangles are within some sort of container that dictates their location? If so, the only technique I can think of is to create an attached behaviour for a UIElement that calculates its position via TransformToVisual. See for example:</p>
+
+<p><a href="http://forums.silverlight.net/forums/p/12160/414862.aspx" rel="nofollow">http://forums.silverlight.net/forums/p/12160/414862.aspx</a></p>
+
+<p>This can then be bound to your X &amp; Y values in your view model.</p>
+
+<p>However, to be honest, if you struggle to get MVVM working here, perhaps it is the wrong pattern?</p>
+
+<p>If you are just building a UI which is composed of coloured rectangles, I would just do it in a loop, adding Rectangles and colouring them in code-behind!</p>
+
+<p>KISS (Keep It Simple Stupid!)</p>

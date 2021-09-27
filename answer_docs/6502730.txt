@@ -1,0 +1,20 @@
+<p>You can reduce time complexity by copying the <code>syn</code> array into a HashSet. Then instead of iterating over <code>syn</code> over and over again you can use the <code>HashSet#contains</code> method which is O(1):</p>
+
+<pre><code>public static boolean kijkContains(String[] syn){
+  if (syn == null || syn.length == 0) return false; // that was missing
+  Set&lt;String&gt; input = new HashSet&lt;String&gt;();
+  for (String s:syn)
+    input.add(s);         // will remove duplicates, another perfo improvement
+
+  for(String key:myMap.keySet()){
+    for(String s:myMap.get(key)){  // we don't need the loop variable
+      if (input.contains(s)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+</code></pre>
+
+<p>the complexity <em>was</em> <code>O(i*j*k)</code> and I've reduced it to <code>O(i*j+k)</code> (with i being the size of the map, j the <em>average</em> size of the value arrays and k the size of the syn array)</p>

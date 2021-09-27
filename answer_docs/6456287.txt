@@ -1,0 +1,6 @@
+<p>I would have thought this should work, if you have it in the sub folder:</p>
+
+<pre><code>RewriteBase /articles/
+RewriteCond %{http_host} ^website\.com [nc]
+RewriteRule ^(.*)$ http://www.website.com/articles/$1 [R=301,NC]
+</code></pre>

@@ -1,0 +1,13 @@
+<p>If you've got a rather crappy phone (I do - Xperia X8), then you won't be able to apply any color effects at all. To find out what color effects are supported by your phone, you could use something like this:</p>
+
+<pre><code>Camera.Parameters params = cam.getParameters();
+
+try {           
+    for (String e : params.getSupportedColorEffects()) {
+        Log.d(TAG, "Effect: " + e);
+    }
+}
+catch (NullPointerException npe) {
+    Log.d(TAG, "No color effects supported by this camera.");           
+}
+</code></pre>

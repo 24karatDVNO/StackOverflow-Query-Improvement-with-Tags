@@ -1,0 +1,15 @@
+<p>Just generalizing, not checked for accuracy:</p>
+
+<pre><code>function nav(item, height){
+$('.nav li').hover(function() {
+$(this).find(item).show(); 
+     $(this).find(item).stop().animate({height:height, opacity: '100'},{queue:false, duration:200, easing: 'easeInSine'})
+        }, function() {
+     $(this).find(item).stop().animate({height: '0px',opacity: '0'},{queue:false, duration:100, easing: 'easeInCirc'}) 
+      });
+  };
+  $(document).ready(function() {
+    nav('ul.item1.sub, '145px');
+    nav('ul.item2.sub', '170px');
+});
+</code></pre>

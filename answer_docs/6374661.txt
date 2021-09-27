@@ -1,0 +1,9 @@
+<p>I think the best course of action would be to put majority of the logic inside your Models and keep your controllers lean. Your models can extend your own class which would have common operations in it.</p>
+
+<p>You could also write your own class, it doesn't have to be a helper, and use it in the controllers to save the entity:</p>
+
+<pre><code>$saver = new My_Editing_Class();
+$saver-&gt;edit("account",$this-&gt;getRequest()-&gt;getPost()); // Editing "account" with the POST data.
+</code></pre>
+
+<p>You then do your magic inside "My_Editing_Class".</p>

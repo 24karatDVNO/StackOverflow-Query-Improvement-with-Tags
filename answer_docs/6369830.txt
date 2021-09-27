@@ -1,0 +1,19 @@
+<p>I have managed to get to the client machine again - and added a new simple template to prove or otherwise my issue. The new <code>WorkBook_Open</code> routine is...<br></p>
+
+<pre><code>Private Sub WorkBook_Open()
+    MsgBox "Hello World"
+    With ThisWorkbook.VBProject.VBComponents("ThisWorkbook").CodeModule
+        .DeleteLines 1, _
+        .CountOfLines
+    End With
+    MsgBox "Goodbye to all that!"
+End Sub
+</code></pre>
+
+<p>...and this works exactly as required i.e. the routine executes then deletes itself (the second msgbox displays even though the code has been deleted!</p>
+
+<p>So, this test invalidates my question - McAfee is NOT deleting the routine as part of AV protection - so I am no longer looking for a workaround! </p>
+
+<p>Now all I need to do is to figure out what my problem really is!</p>
+
+<p>Thanks for the comments</p>

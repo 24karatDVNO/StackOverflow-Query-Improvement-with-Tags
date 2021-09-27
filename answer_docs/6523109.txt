@@ -1,0 +1,1 @@
+<p>As per @Microprocessor's suggestion, I examined the HTML and realized the <code>.OptionRow</code> clone was being inserted into the wrong place in the DOM. I solved the problem by using <code>.insertBefore($this.parent())</code> instead of <code>.insertBefore($this)</code>. Thanks @Microprocessor, I don't know why I didn't do that earlier.</p>

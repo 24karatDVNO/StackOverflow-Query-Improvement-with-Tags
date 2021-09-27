@@ -1,0 +1,13 @@
+<p>Try this:    </p>
+
+<pre><code>$(function() {
+    $("select").change(function() {
+        var jqThis = $(this);
+        jqThis
+            .next('input')
+            .val(jqThis.find('option:selected').val())
+    }).change();
+});
+</code></pre>
+
+<p>Here's a jsfiddle: <a href="http://jsfiddle.net/HPYxy/" rel="nofollow">http://jsfiddle.net/HPYxy/</a></p>

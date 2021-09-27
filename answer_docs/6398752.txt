@@ -1,0 +1,60 @@
+<p><strong>Use</strong> (with current node any <code>profil</code> element):</p>
+
+<pre><code>count(*[starts-with(name(),'m')
+      and
+        @a = ../*[starts-with(name(),'e')]/@a
+       ]
+      )
+</code></pre>
+
+<p><strong>And the complete XSLT code</strong>:</p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+ &lt;xsl:output omit-xml-declaration="yes" indent="yes"/&gt;
+ &lt;xsl:strip-space elements="*"/&gt;
+
+ &lt;xsl:template match="profil"&gt;
+  &lt;count&gt;
+   &lt;xsl:value-of select=
+   "count(*[starts-with(name(),'m')
+          and
+            @a = ../*[starts-with(name(),'e')]/@a
+           ]
+         )
+   "/&gt;
+  &lt;/count&gt;
+ &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p><strong>when applied on the provided XML document</strong>:</p>
+
+<pre><code>&lt;root&gt;
+    &lt;profil&gt;
+        &lt;e1 a="2"&gt;1&lt;/e1&gt;
+        &lt;m1 a="3"&gt;1&lt;/m1&gt;
+        &lt;e2 a="4"&gt;1&lt;/e2&gt;
+        &lt;m2 a="5"&gt;1&lt;/m2&gt;
+    &lt;/profil&gt;
+    &lt;profil&gt;
+        &lt;e1 a="5"&gt;1&lt;/e1&gt;
+        &lt;m1 a="3"&gt;1&lt;/m1&gt;
+        &lt;e2 a="4"&gt;1&lt;/e2&gt;
+        &lt;m2 a="4"&gt;1&lt;/m2&gt;
+    &lt;/profil&gt;
+    &lt;profil&gt;
+        &lt;e1 a="7"&gt;1&lt;/e1&gt;
+        &lt;m1 a="7"&gt;1&lt;/m1&gt;
+        &lt;e2 a="4"&gt;1&lt;/e2&gt;
+        &lt;m2 a="2"&gt;1&lt;/m2&gt;
+    &lt;/profil&gt;
+&lt;/root&gt;
+</code></pre>
+
+<p><strong>produces the wanted, correct result</strong>:</p>
+
+<pre><code>&lt;count&gt;0&lt;/count&gt;
+&lt;count&gt;1&lt;/count&gt;
+&lt;count&gt;1&lt;/count&gt;
+</code></pre>

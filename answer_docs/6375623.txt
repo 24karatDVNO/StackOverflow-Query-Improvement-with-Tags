@@ -1,0 +1,34 @@
+<p>As far as I know, you have to scan through the whole data set.</p>
+
+<p>Something like this should work (warning: untested and may contain typos as I don't have a SAS installation to hand).</p>
+
+<pre><code>%macro drop_unused(libname=,memname=);
+
+proc sql noprint;
+  select trim(put(count(1), 8. -L)) into :count_vars from sashelp.vcolumn
+    where libname eq "%upcase(&amp;libname)" and memname eq "%upcase(&amp;memname)";
+  select trim(left(name)) into :var_1-:var_&amp;count_vars from sashelp.vcolumn
+    where libname eq "%upcase(&amp;libname)" and memname eq "%upcase(&amp;memname)";
+quit;
+
+data _null_;
+  length __missing $ 32767;
+  set &amp;libname..&amp;memname end=lastrec;
+%do i=1 %to &amp;count_vars;
+  retain __missing_&amp;i 'y';
+  if not missing(&amp;&amp;var_&amp;i) then __missing_&amp;i = 'n';
+%end;
+  if lastrec then do;
+%do i=1 %to &amp;count_vars;
+    if __missing_&amp;i eq 'y' then __missing = trim(left(__missing)) || ' ' || "&amp;&amp;vars_&amp;i";
+%end;
+    call symput('missing', trim(left(__missing)));
+  end;
+run;
+
+data new_data;
+  set &amp;libname..&amp;memname (drop=&amp;missing);
+run;
+
+%mend;
+</code></pre>

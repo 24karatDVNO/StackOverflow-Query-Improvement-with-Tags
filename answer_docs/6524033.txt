@@ -1,0 +1,32 @@
+<p>Do you mean something like <strong><a href="http://jsfiddle.net/NGLN/Bsamc/" rel="nofollow">this demo fiddle</a></strong>?</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;div id="footer"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Color&lt;/li&gt;
+                &lt;li&gt;Red&lt;/li&gt;
+                &lt;li&gt;Blue&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Fruit&lt;/li&gt;
+                ...
+</code></pre>
+
+<p>CSS:</p>
+
+<pre><code>#footer ul {
+    list-style: none;
+}
+#footer&gt;ul&gt;li {
+    float: left;
+    width: 120px;
+}
+#footer ul li ul li:first-child {
+    font-weight: bold;
+}
+</code></pre>

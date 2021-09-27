@@ -1,0 +1,8 @@
+<p>The arguments for value and display attribute are method names, not expressions on a user object.</p>
+
+<p>To control the format more precisely, you can use the <code>select</code> tag helper instead:</p>
+
+<pre><code>select("user", "user_id", @users.each {|u| [ "#{u.first_name u.last_name}", u.user_id ] })
+</code></pre>
+
+<p>The <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html%5d" rel="nofollow">docs</a> are pretty useful.</p>

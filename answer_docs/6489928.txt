@@ -1,0 +1,8 @@
+<p>As I understand Lucene, it stores (term, doc) pairs in its index, so that querying is implemented as</p>
+
+<ol>
+<li>Get documents containing the query terms,</li>
+<li>score/sort them.</li>
+</ol>
+
+<p>I've never implemented my own scoring, but I'd look at <a href="http://lucene.apache.org/java/3_2_0/api/core/org/apache/lucene/index/IndexReader.html#termDocs%28org.apache.lucene.index.Term%29" rel="nofollow"><code>IndexReader.termDocs</code></a> first; it seems to implement step 1.</p>

@@ -1,0 +1,34 @@
+<p>This works for me. (button action)</p>
+
+<pre><code>  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    'Print customer slip for current customer.
+    Dim appWord As Word.Application
+    Dim doc As Word.Document
+    'Avoid error 429, when Word isn't open.
+    On Error Resume Next
+    Err.Clear()
+    'Set appWord object variable to running instance of Word.
+    appWord = GetObject(, "Word.Application")
+    If Err.Number &lt;&gt; 0 Then
+        'If Word isn't open, create a new instance of Word.
+        appWord = New Word.Application
+    End If
+    doc = appWord.Documents.Open("D:\Test.docx", , True)
+    doc.Visible()
+    doc.Activate()
+    With doc.Bookmarks
+        .Item("Name").Range.Text = Me.NameID.Text
+        .Item("City").Range.Text = Me.CityID.Text
+    End With
+
+    Dim dlg As Word.Dialog
+    dlg = appWord.Dialogs.Item(Word.WdWordDialog.wdDialogFilePrint)
+    dlg.Display()
+    'doc.Printout
+    doc = Nothing
+    appWord = Nothing
+    Exit Sub
+     errHandler:
+    MsgBox(Err.Number &amp; ": " &amp; Err.Description)
+End Sub
+</code></pre>

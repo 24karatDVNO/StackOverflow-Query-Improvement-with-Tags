@@ -1,0 +1,48 @@
+<p>If the data you wish to access is an attribute on the join table, then includes is a pretty clean way to do it.</p>
+
+<p>However, from your post it seems like you have a method on the membership that wants to do some intelligent work with the underlying data. Also, it seems like you want to do two things with one query:</p>
+
+<ol>
+<li>Output user information (which is why you're iterating on the user object in the first place, if you just wanted memberships you'd just iterate on those).</li>
+<li>Output some intelligent and processed information for your membership object.</li>
+</ol>
+
+<p>As you've noticed, anything you do here feels weird because no matter where you put that code, it doesn't feel like the right model.</p>
+
+<p>I usually identify this feeling as the need for another abstraction layer. Consider creating a new model called MembershipUsers (it's a terrible name, but you can think of a different one).</p>
+
+<p>The following is my ad-hoc coding attempt that is untested but should give you an idea of the solution:</p>
+
+
+
+<pre class="lang-rb prettyprint-override"><code>class MembershipUser &lt; User
+  def self.for_group(group)
+    select('memberships.*, users.*').
+    joins('join memberships on memberships.user_id = users.id').
+    where('memberships.group_id = ?', group.id)
+  end
+  def foo
+    # now you have access to the user attributes and membership attributes
+    # and you are free to use both sets of data for your processing
+  end
+end
+</code></pre>
+
+<p>By creating a class that represents the User and their Membership to a specified Group, you've created a context where the foo method feels appropriate. I'm guessing that foo didn't mean much without being in the context of a specific user, and that you references the associated user in the foo method.</p>
+
+<p>-Nick (@ngauthier)</p>
+
+<p>EDIT: forgot to bring this full-circle:</p>
+
+<pre><code>class Group
+  def membership_users
+    MembershipUser.for_group(self)
+  end
+end
+
+# then iterate
+group.membership_users.each do |membership_user|
+  membership_user.user_name # a pretend method on user model
+  membership_user.foo # the foo method that's only on MembershipUser
+end
+</code></pre>

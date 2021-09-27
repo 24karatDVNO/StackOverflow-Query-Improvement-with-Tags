@@ -1,0 +1,14 @@
+<p>Checking through javaScript is easy, but I'd advise you to have-and-assign an <code>id</code> attribute to your <code>form</code> elements</p>
+
+<p>You can check in the following way,</p>
+
+<pre><code>var email = document.getElementById('email').value;
+</code></pre>
+
+<p>and you can remove <code>email</code> from your <code>form</code> as shown below</p>
+
+<pre><code>form.removeChild(document.getElementById('email'));
+form.submit();
+</code></pre>
+
+<p>you can have a look at <a href="http://www.dustindiaz.com/add-and-remove-html-elements-dynamically-with-javascript/" rel="nofollow">Adding and Removing HTML elements dynamically with Javascript</a> for more details.</p>

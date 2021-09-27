@@ -1,0 +1,27 @@
+<pre><code>'&lt;?xml version="1.0" encoding="utf-8"?&gt;
+ &lt;TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="@drawable/droid_background" &gt;
+ &lt;TextView  
+android:layout_height="wrap_content" 
+android:gravity="center_horizontal"
+android:text="@string/hello"
+android:textColor="#FFFFFF"
+android:textStyle="bold" /&gt;
+&lt;RelativeLayout
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"&gt;
+&lt;ToggleButton
+android:id="@+id/togglebutton1"
+android:layout_height="wrap_content"
+android:layout_width="wrap_content"
+android:text="Audio"
+android:layout_alignParentRight="true"
+android:layout_alignParentBottom="true" /&gt;
+&lt;/RelativeLayout&gt;
+&lt;/TableLayout&gt;'
+</code></pre>
+
+<p>your relative layout must have height and width properties</p>

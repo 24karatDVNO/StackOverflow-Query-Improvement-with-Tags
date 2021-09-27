@@ -1,0 +1,5 @@
+<p>Try setting a breakpoint in <code>canUseCachedDataForRequest</code> in <code>ASIDownloadCache.m</code>; single step through and see what route the code takes.</p>
+
+<p>It should follow one of the paths that calls <code>isCachedDataCurrentForRequest</code>, which should return NO if the data has expired.</p>
+
+<p>From looking at the <a href="https://github.com/pokeb/asi-http-request/blob/master/Classes/ASIDownloadCache.m#L312" rel="nofollow">code</a> it appears that 'setSecondsToCache' should set the "X-ASIHTTPRequest-Expires" header in the cached object, which should make isCachedDataCurrentForRequest return NO - I think only debugging through is going to tell you at which point this is going wrong in your case.</p>

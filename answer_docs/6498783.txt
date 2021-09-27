@@ -1,0 +1,38 @@
+<pre><code>use strict;
+use warnings;
+
+use threads;  # or: use forks;
+
+use Thread::Queue qw( );
+
+use constant MAX_WORKERS =&gt; 10;
+
+my $request_q  = Thread::Queue-&gt;new();
+my $response_q = Thread::Queue-&gt;new();
+
+# Create the workers.
+my @workers;
+for (1..MAX_WORKERS) {
+   push @workers, async {
+      while (my $url = $request_q-&gt;dequeue()) {
+         $response_q-&gt;enqueue(process_request($url));
+      }
+   };
+}
+
+# Submit work to workers.
+$request_q-&gt;enqueue(@urls);
+
+# Signal the workers they are done.    
+for (1..@workers) {
+   $request_q-&gt;enqueue(undef);
+}
+
+# Wait for the workers to finish.
+$_-&gt;join() for @workers;
+
+# Collect the results.
+while (my $item = $response_q-&gt;dequeue()) {
+   process_response($item);
+}
+</code></pre>

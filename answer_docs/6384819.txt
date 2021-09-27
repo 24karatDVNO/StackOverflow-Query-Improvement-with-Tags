@@ -1,0 +1,12 @@
+<p>To count the number of *.ano files in a directory you can use</p>
+
+<pre><code>find "$dir" -iname '*.ano' | wc -l
+</code></pre>
+
+<p>If you want to do that for all directories in some directory, you can just use a for loop:</p>
+
+<pre><code>for dir in * ; do
+    echo "user $dir"
+    find "$dir" -iname '*.ano' | wc -l
+done
+</code></pre>

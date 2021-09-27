@@ -1,0 +1,13 @@
+<p>Got it.  </p>
+
+<p>You gotta change the definition of </p>
+
+<p><code>parent_company_id</code> INTEGER(32)</p>
+
+<p>To match company_id except for the autoincrement and then use this statement</p>
+
+<pre><code>ALTER TABLE `Company` 
+  ADD CONSTRAINT fk_parent_company_id FOREIGN KEY (`parent_company_id`) REFERENCES `Company`(`company_id`)
+</code></pre>
+
+<p>So basically remember to put unsigned on the column you are using as FK so it matches the definition of the referenced key</p>

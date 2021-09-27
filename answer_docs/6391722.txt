@@ -1,0 +1,6 @@
+<p>This happens when the COM object you are using cannot be found in the registry.</p>
+
+<p>You usually can run <code>regsvr32 someDll.dll</code> to register the COM dll.</p>
+
+<p><strong>64-bit Computers</strong>:
+Make sure that your .exe is compiled as <code>x86</code>, so that on 64-bit computers it looks for the COM registration at the right place in the registry.</p>

@@ -1,0 +1,5 @@
+<p>well i would advise against creating any manual Mocks (because if you add new method to interface, it gets broken). </p>
+
+<p>if you really have to do it, when expose some counter/bool in your MockEmailSender and you can Assert it later on. </p>
+
+<p><code>Assert.IsTrue(emailSender.IsCalled)</code></p>

@@ -1,0 +1,5 @@
+<p>Your route and controller code look good, i.e. it should be sending you to the show method in your users_controller.  I'd put some debbugging code in there, i.e. <code>logger.debug("Inside Show")</code> to see if the show method was being called.</p>
+
+<p>You could also include the output of <code>rake routes</code> in your edited question, it might be informative to show where the user_path helper is going to send the redirect.</p>
+
+<p>ian.</p>

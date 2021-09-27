@@ -1,0 +1,19 @@
+<p>The problem is that your route for the form that is generated goes to <code>/posts/:post_id/comments</code>, which is the route defined in your <em>application</em>, but not your <em>engine</em>. Your engine only defines this route:</p>
+
+<pre><code>resources :comments
+</code></pre>
+
+<p>This is (almost) working because the engine sees that the application has the route which matches to <code>CommentsController</code>, it's just that there's no <code>CommentsController</code> for it to go to.</p>
+
+<p>I downloaded the application from GitHub and had a play around and changed the <code>form_for</code> in <code>app/views/kurakani/comments/_form.html.erb</code> to be this:</p>
+
+<pre><code>form_for(Kurakani::Comment.new, :url =&gt; kurakani.comments_path)
+</code></pre>
+
+<p>This makes the test pass, but I am not sure if it actually gives you what you want. You're probably going to want to play around with that URL part yourself.</p>
+
+<p>What's happening here is that this view is rendered by the main application using the <code>kurakani_list</code> helper in <code>spec/dummy/app/posts/show.html.erb</code>, meaning that any URL helper that you reference (directly or indirectly) will point to the <em>application</em> and not to the engine, like I think you want it to.</p>
+
+<p>So in order to tell Rails what the true route is that we want our form to go to we <em>must</em> specify the <code>:url</code> option and tell it we want to go to <code>kurakani.comments_path</code>, rather than the <code>comments_path</code> which <em>may</em> be defined by the application.</p>
+
+<p>If we wanted to do the reverse (reference an application route from within an engine), we would use <code>main_app</code> rather than <code>kurakani</code>.</p>

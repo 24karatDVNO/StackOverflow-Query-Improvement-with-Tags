@@ -1,0 +1,9 @@
+<p>Not only may it be against the terms of service, but it is also lowering the value of the ads to the advertiser and creating a clunky element in UI.  </p>
+
+<p>Think about it from a UI standpoint...you're on the site, concentrating on something, then everything flashes.  Your attention goes from what you were concentrating to to figuring out what just happened.  Never mind, just a banner flip.  Next.....now, where was I?</p>
+
+<p>For the advertiser, what if you notice the ad and are about to click on it and BOOM, it changes.  Now what, can you go back?  If not, you just lost revenue.  Users spend seconds on many pages, so unless you've got an incredibly "sticky" website, how much exposure is the advertiser really going to get?  Remember, Google rewards AdWord sites for clickthroughs, not based on volume shown, which can actually hurt your CTR.</p>
+
+<p>If you're determined to make this happen, I think I would consider attacking it by having the ad server post directly as it's intended into the dom, then use a javascript-based timer to asynchronously ping the adserver and again tell it to redraw the desired div.  I would avoid iFrames like the plague because they're just not friendly in this age of simple Dom manipulation.</p>
+
+<p>Or, you could just take the MSNBC approach and reload the entire page every X minutes.  It's a horrible UI pattern, but it would achieve your goal and likely bend (but not break) TOS.</p>

@@ -1,0 +1,4 @@
+<p>I believe that UITableView actually lays out the cell after it asks for cellForRowAtIndexPath. While I agree with donalbain's answer in that you should use a customizable cell, I believe you can get the functionality you want by changing the frame inside this delegate method</p>
+
+<pre><code>- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+</code></pre>

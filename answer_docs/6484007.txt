@@ -1,0 +1,9 @@
+<p>It's not that strange.</p>
+
+<p>For instance, if you did <code>return_value = some_string_zval;</code> you would be changing only the local variable. <code>php_debug_zval_dump</code> would work, but it would have no effect outside the function. You have to actively copy the zval, e.g. with:</p>
+
+<pre><code>ZVAL_COPY_VALUE(return_value, my_string_zval_p);
+zval_copy_ctor(return_value);
+</code></pre>
+
+<p>The only case you could return from an internal function merely copying a pointer instead of copying data was if that function returned by reference. In that case, you're given a <code>zval**</code>.</p>

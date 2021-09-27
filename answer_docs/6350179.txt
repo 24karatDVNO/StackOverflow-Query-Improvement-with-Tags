@@ -1,0 +1,6 @@
+<p>Due to security and performance reasons, I would personally split the members's name in first/ last <i>before</i> compiling the query. Now, I'm not familiar with the language you use to call this query, but I'll formulate something that will hopefully make sense, regardless of it's stupidity:</p>
+
+<pre><code>String sql =@" SELECT member_Id FROM members WHERE member_Lastname = "+safely_escaped(tbMembername.Last.Text)+" AND member_Firstname = "+safely_escaped(tbMembername.First.Text)+"
+</code></pre>
+
+<p>This will allow for a more precise analysis of the names before inserting it into the query and it will allow you to use an index (which is not possible with any of the previously shown examples). Just to be clear, the index, most efficiently in this case, would be INDEX (member_Lastname, member_Firstname).</p>

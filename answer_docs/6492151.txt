@@ -1,0 +1,19 @@
+<p>First of all you must change <a href="http://example.com" rel="nofollow">http://example.com</a> to your url.</p>
+
+<p>Then I got the same problem as you. I managed to figure it out... I think you are missing this code snippet:</p>
+
+<pre><code>&lt;div id="fb-root"&gt;&lt;/div&gt;
+&lt;script src="http://connect.facebook.net/en_US/all.js#xfbml=1"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Put this code in the end of your  tag. And Viola, it should work!</p>
+
+<p>If you still have some problems, use this code snippet</p>
+
+<pre><code>&lt;iframe src="http://www.facebook.com/plugins/comments.php?href=example.com&amp;permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"&gt;&lt;/iframe&gt; 
+</code></pre>
+
+<p>instead of </p>
+
+<pre><code>&lt;fb:comments-count href=http://example.com/&gt;&lt;/fb:comments-count&gt; awesome comments 
+</code></pre>

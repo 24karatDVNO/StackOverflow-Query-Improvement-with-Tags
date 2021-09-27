@@ -1,0 +1,17 @@
+<p>Due to the fact that I'm using both Seam and ICEFaces, I was not able to invoke Javascript reliably from my server-side Java code. I was, however, able to add the necessary Javascript in-line in my XHTML, within the ui:component that was being conditionally rendered, close to the input field I needed the focus to go to. The relevant section of my XHTML looks like this:</p>
+
+<pre><code>&lt;ice:panelGroup id="textPanelInput" &gt;
+    &lt;ice:form id="textInputForm"  partialSubmit="true" style="vertical-align:middle;"&gt;
+        &lt;ice:inputText id="textInput"  valueChangeListener="#{appField.valueChangeListener}"
+                       size="#{appField.fieldDefLengthAsInt}" 
+                       value="#{appField.value}"
+                       styleClass="fieldStyle" rendered="#{appField!=null}"
+                       &gt;                    
+        &lt;/ice:inputText&gt;
+        &lt;ice:message id="jo" for="textInput" /&gt;
+    &lt;/ice:form&gt;
+&lt;/ice:panelGroup&gt;
+&lt;script type="text/javascript"&gt;document.getElementById('panelsFields:0:textInputForm:textInput').focus();&lt;/script&gt;
+</code></pre>
+
+<p>The Javascript line at the bottom is the line I added to solve my problem. All of the code above is in a ui:component block that may or may not be rendered, based on other conditions. When this ui:component block is rendered, my Javascript goes with it, and sets the input focus to my desired input field.</p>

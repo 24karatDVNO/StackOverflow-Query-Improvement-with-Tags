@@ -1,0 +1,13 @@
+<p>You have several constraints you must deal with, which makes this a complex problem.</p>
+
+<ol>
+<li>Hard drive IO</li>
+<li>Memory space</li>
+<li>Processing time</li>
+</ol>
+
+<p>I would suggest writing a multithreaded/multiprocess python app. The libraries to subprocess are painless. Have each process read in a file, and the parse tree as suggested by Blindy. When it finishes, it returns the results to the parent, which writes them to a file. </p>
+
+<p>This will use up as many resources as you can throw at it, while allowing for expansion. If you stick it on a beowulf cluster, it will transparently share the processes across your cpus for you. </p>
+
+<p>The only sticking point is the hard drive IO. Break it into chunks on different hard drives, and as each process finishes, start a new one and load a file. If you're on linux, all of the files can coexist in the same filesystem namespace, and your program won't know the difference.</p>

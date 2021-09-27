@@ -1,0 +1,12 @@
+<p>I notice you are using HTTPS (<strong>https</strong>://testserver2.mydomain.org/ORDERNET/WCFServices/OrderService/OrderService.svc)</p>
+
+<p>Have you tried explicitly adding a https://* uri to your cross domain policy file:</p>
+
+<pre><code>&lt;domain uri="https://*"/&gt;
+</code></pre>
+
+<p>If you need to support http, then add both:</p>
+
+<pre><code>&lt;domain uri="http://*"/&gt;
+&lt;domain uri="https://*"/&gt;
+</code></pre>

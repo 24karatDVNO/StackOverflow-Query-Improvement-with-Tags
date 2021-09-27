@@ -1,0 +1,9 @@
+<ol>
+<li><p>The length of the compared string, <strong>support</strong> is not 5 characters long, so the if statement is always false.</p></li>
+<li><p>The URI normally starts with a <strong>/</strong> at position 0, so include it in the string to compare or start comparing at position 1.</p></li>
+</ol>
+
+<p>I would use:</p>
+
+<pre><code>if (substr($_SERVER['REQUEST_URI'], 0, 9) !== '/support/') {
+</code></pre>

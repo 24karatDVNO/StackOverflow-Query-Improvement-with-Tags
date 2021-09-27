@@ -1,0 +1,49 @@
+<p><strong>Affaire class</strong> </p>
+
+<pre><code>    [Key]
+    public string IdAffaire { get; set; }
+    public string Title { get; set; }
+    public string Note { get; set; }
+    public ICollection&lt;Suite&gt; Suites {get;set;}
+</code></pre>
+
+<p><strong>Suite Class</strong> </p>
+
+<pre><code>[Key]
+public string IdSuite { get; set; }
+public string Description { get; set; }
+
+[Required]
+public string AffaireId { get; set; }
+public virtual Affaire Affaire { get; set; }
+</code></pre>
+
+<hr>
+
+<p><strong>Creating objects</strong> </p>
+
+<pre><code>Affaire aff= new Affaire{
+             Title="An Affair",
+              Note="Iam note of affair"
+}
+
+
+
+Suite suite1= new Suite{
+               Description="Iam Description of suite 1",
+               Affaire=aff  
+            };
+Suite suite2= new Suite{
+               Description="Iam Description of suite 2",
+               Affaire=aff  
+            };
+Suite suite3= new Suite{
+               Description="Iam Description of suite 3",
+               Affaire=aff  
+            };
+
+DbContext.Affaires.Add(aff);
+DbContext.Suites.Add(suite1);
+DbContext.Suites.Add(suite2);
+DbContext.Suites.Add(suite3);
+</code></pre>

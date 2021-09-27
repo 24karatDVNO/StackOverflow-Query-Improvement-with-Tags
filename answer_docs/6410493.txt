@@ -1,0 +1,18 @@
+<p>Try following</p>
+
+<pre><code>var url_to_load = '../menu.html?opt1=test&amp;opt2=test2';
+$('#divMenuHolder').load(url_to_load);
+
+function getUrlVars(url_to_load)
+{
+    var vars = [], hash;
+    var hashes = url_to_load.slice(url_to_load.indexOf('?') + 1).split('&amp;');
+    for(var i = 0; i &lt; hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+</code></pre>

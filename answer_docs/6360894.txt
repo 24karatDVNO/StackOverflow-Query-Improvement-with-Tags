@@ -1,0 +1,27 @@
+<p>This tutorial applies a value after select to a text field and the combobox. </p>
+
+<p><a href="http://www.jensbits.com/2010/03/29/jquery-ui-autocomplete-widget-with-php-and-mysql/" rel="nofollow">http://www.jensbits.com/2010/03/29/jquery-ui-autocomplete-widget-with-php-and-mysql/</a></p>
+
+<p>Be sure to check the demo:</p>
+
+<p><a href="http://www.jensbits.com/demos/autocomplete/" rel="nofollow">http://www.jensbits.com/demos/autocomplete/</a></p>
+
+<pre><code>$(function() {
+
+        $('#abbrev').val("");
+
+        $("#state").autocomplete({
+            source: "states.php",
+            minLength: 2,
+            select: function(event, ui) {
+                $('#state_id').val(ui.item.id);
+                $('#abbrev').val(ui.item.abbrev);
+            }
+        });
+
+        $("#state_abbrev").autocomplete({
+            source: "states_abbrev.php",
+            minLength: 2
+        });
+    });
+</code></pre>

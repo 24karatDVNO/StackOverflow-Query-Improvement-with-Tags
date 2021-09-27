@@ -1,0 +1,3 @@
+<p>A commit is a heavy operation in Solr and you don't want to do it to often. If it is possible don't have commit triggered on a user activated function since this might put a lot of stress on your servers as the user base grows (and some users are evil).</p>
+
+<p>If you can, set the server to autocommit every x seconds (depending on the size of the index and the load on the server). This way you wont have a commit-flood while keeping the delay at a known max interval.</p>

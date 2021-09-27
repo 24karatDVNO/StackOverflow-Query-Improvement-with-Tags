@@ -1,0 +1,18 @@
+<p>This will supply <code>DateTime.MinValue</code> if there are no transactions available for that object, example:</p>
+
+<pre><code>users.Select(u =&gt;
+  new MyDomainObject(
+     u.Id,
+     u.Transactions
+        .Where(t =&gt; false) // empty results set
+        .Select(t =&gt; t.TransactionTime)
+        .Any() ?
+     u.Transactions
+        .Where(t =&gt; false) // empty results set
+        .Select(t =&gt; t.TransactionTime) // TransactionTime is DATETIME NOT NULL
+        .OrderByDescending(x =&gt; x)
+        .FirstOrDefault() : // I want DateTime.MinValue (or SqlDateTime.MinValue)
+     DateTime.MinValue
+  )
+);
+</code></pre>

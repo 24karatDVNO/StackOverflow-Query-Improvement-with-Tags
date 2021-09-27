@@ -1,0 +1,26 @@
+<p>I think you may be misusing wxString::mb_str().</p>
+
+<p>The docs give us this:</p>
+
+<blockquote>
+  <p>wxString::mb_str const char*
+  mb_str(wxMBConv&amp; conv) const</p>
+  
+  <p>const wxCharBuffer mb_str(wxMBConv&amp;
+  conv) const</p>
+  
+  <p>Returns multibyte (C string)
+  representation of the string. In
+  Unicode build, converts using conv's
+  cWC2MB method and returns
+  wxCharBuffer. In ANSI build, this
+  function is same as c_str. The macro
+  wxWX2MBbuf is defined as the correct
+  return type (without const).</p>
+</blockquote>
+
+<p>This suggest to me that you should write something like</p>
+
+<pre><code>wxMBConv conv;
+sockConn-&gt;Write(test.mb_str(conv), wxStrlen(test));
+</code></pre>

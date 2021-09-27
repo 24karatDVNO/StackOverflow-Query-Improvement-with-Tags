@@ -1,0 +1,12 @@
+<p>If I'm understanding the question correctly:  just create a separate data set and use the result set as the available values for your parameter.  Discriminate in your where clause.</p>
+
+<pre><code>-- (example) Query used in the CarMakes dataset
+SELECT DISTINCT make
+FROM    tbl_Cars
+where  make not like 'Toyota',
+        and make not like 'Ford'
+        and make not like 'Kia'
+union select '- Select Make -';  -- used as first value in drop down 
+</code></pre>
+
+<p>Then set the data set you create as the available values for your parameter.</p>

@@ -1,0 +1,1 @@
+<p>At a minimum, you're missing the <code>$().val()</code> around your selector: <code>if('#StatusGroup' == 'Distance Ed') {</code> should be <code>if($('#StatusGroup').val() == 'Distance Ed') {</code></p>

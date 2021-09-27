@@ -1,0 +1,26 @@
+<p>You can actually force the containing div to continue behind your other divs by using special separator divs with a clear: both; set in them. Like this:</p>
+
+<pre><code>&lt;div id="wrapper"&gt;
+
+    &lt;div id="left"&gt;
+        Left
+    &lt;/div&gt;
+
+    &lt;div id="right"&gt;
+        Right
+    &lt;/div&gt;
+
+    &lt;div style="clear:both;"&gt;&lt;/div&gt;
+
+    &lt;div id="footer"&gt;
+        Footer
+    &lt;/div&gt;
+
+    &lt;div style="clear:both;"&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>Use the  where ever you want your wrapper to continue going down. </p>
+
+<p>NOTE: I'm not sure whether W3c says that's good or bad practice, probably bad, BUT it works.</p>

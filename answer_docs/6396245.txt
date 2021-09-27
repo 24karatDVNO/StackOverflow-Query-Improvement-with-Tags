@@ -1,0 +1,9 @@
+<p>My approach would be to save the last post id of each topic a specific user has seen in the database:</p>
+
+<pre><code>user_id   topic_id   post_id
+1         2          3
+</code></pre>
+
+<p>So, here you know that user 1 visited the third post in the second topic, but didn't look at the first topic at all.</p>
+
+<p>To check if the user has new/unread topics you can first check for topic_id's which are not in this table for that user. To check if known topics have new messages you can compare the post_id with the last post_id of each topic. If they are not equal, there are new messages.</p>

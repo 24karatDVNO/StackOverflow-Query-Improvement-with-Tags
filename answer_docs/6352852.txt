@@ -1,0 +1,18 @@
+<p>just put your posts into divs for now</p>
+
+<pre><code>
+&#60;?php if (have_posts()) ?>
+&#60;?php while (have_posts()): the_post(); ?>
+&#60;div class="wppost">
+&#60;h2>
+&#60;?php the_excerpt(); ?>
+&#60;p>">Read more...</p>
+&#60;/div>
+&#60;?php endwhile; ?>
+&#60;?php endif; ?>
+</code></pre>
+
+<p>and then style .wppost (or whatever you name it)
+like so .wppost{width:32%; float:left}</p>
+
+<p>that's not perfect, but it'll get you started. check out jQuery Masonry for an easy, slick fx for that. </p>

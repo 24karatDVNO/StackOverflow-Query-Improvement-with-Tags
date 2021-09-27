@@ -1,0 +1,28 @@
+<p>Thanks, but this would actually only work if there is a single element between the start tag and the end tag I assume. </p>
+
+<p>Anyway, I found an answer in the meantime thanks to some other helpful internet folks so let me share what we came up with in the end :</p>
+
+<pre><code>        &lt;xsl:template match="Content"&gt;
+    &lt;xsl:copy&gt;
+        &lt;xsl:for-each-group select="node()" group-ending-with="EndUnderline"&gt;
+            &lt;xsl:variable name="start" select="current-group()[self::Underline][1]"/&gt;
+            &lt;xsl:choose&gt;
+                &lt;xsl:when test="$start"&gt;
+                    &lt;!-- Content element contains at least one &lt;Underline/&gt; marker element, so we group all between the first &lt;Underline/&gt; tag until the first &lt;EndUnderline/&gt; tag --&gt;
+                    &lt;xsl:apply-templates select="current-group()[$start &gt;&gt; .]"/&gt;
+                    &lt;!-- Every tag before the first &lt;Underline/&gt; marker gets transformed as standard, all tags between the markers gets encapsulated in a &lt;u&gt; tag --&gt;
+                    &lt;u&gt;
+                        &lt;xsl:apply-templates select="current-group()[. &gt;&gt; $start][not(self::Underline)][not(self::EndUnderline)]"/&gt;
+                    &lt;/u&gt;
+                &lt;/xsl:when&gt;
+                &lt;xsl:otherwise&gt;
+                    &lt;!-- Apply standard transformation on current group (not containing underline tags...) --&gt;
+                    &lt;xsl:apply-templates select="current-group()"/&gt;
+                &lt;/xsl:otherwise&gt;
+            &lt;/xsl:choose&gt;
+        &lt;/xsl:for-each-group&gt;
+    &lt;/xsl:copy&gt;
+&lt;/xsl:template&gt;
+&lt;!-- Get rif of standalone end tags... --&gt;
+&lt;xsl:template match="EndUnderline"/&gt;
+</code></pre>

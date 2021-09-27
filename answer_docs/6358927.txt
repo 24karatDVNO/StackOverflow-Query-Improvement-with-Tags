@@ -1,0 +1,6 @@
+<p>In the connection string example you attached you are storing the session locally on the web server; it wont get stored on both rather the first one the user logs into. </p>
+
+<p>As i see it you have 3 options depending on your circumstances
+1) You could use session aware load balancing to send users to server 1 or server 2 every time they connect or 
+2) Store the session on a single sql server and both web servers will be able to see the session data.
+3) If that isn't practical for load ballancing or uptime reasons w0rite a service on each web server that checks the other one if it can't find the session details locally.</p>

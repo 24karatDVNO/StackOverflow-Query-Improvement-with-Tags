@@ -1,0 +1,14 @@
+<p>You'll want something like this.</p>
+
+<pre><code>$.ajax({
+    url: "test.html",
+    ...
+    success: function(data){
+        $("&lt;div&gt;" + data + "&lt;/div&gt;").hide().appendTo('.a-selector').fadeIn();
+    }
+});
+</code></pre>
+
+<p>When the callback gets called, it puts the data in a div, hides it (so it can be faded-in later), appends it somewhere and finally fades that div in.</p>
+
+<p>The key here is to call the <code>hide()</code> function.</p>

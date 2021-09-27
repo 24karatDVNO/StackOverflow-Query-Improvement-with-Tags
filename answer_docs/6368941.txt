@@ -1,0 +1,3 @@
+<p>Oh dear, right the error message I was getting back was misleading me. What was actually happening was a error in a loop in my form. It was converting my entire dictionary output into a json string, rather than the individual parameters (if necessary) in the dictionary.</p>
+
+<p>So thats easily fixed! Now I'm only using json to convert a parameter if required and passing a well formed dictionary through to the various facebook-python-sdk methods. All is working great!</p>

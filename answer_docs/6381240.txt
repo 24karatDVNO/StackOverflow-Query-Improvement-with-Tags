@@ -1,0 +1,12 @@
+<p>You need to do some testing / debugging to see how that date is coming through.
+For me, in Rails console (Rails 3.0.9, Ruby 1.9.2)</p>
+
+<pre><code>ruby-1.9.2-p180 :014 &gt; d = Date.parse("2011-06-17 01:31:35.057551")
+ =&gt; Fri, 17 Jun 2011 
+ruby-1.9.2-p180 :015 &gt; @list = {:created_at =&gt; d}
+ =&gt; {:created_at=&gt;Fri, 17 Jun 2011} 
+ruby-1.9.2-p180 :016 &gt; @list.to_json
+ =&gt; "{\"created_at\":\"2011-06-17\"}" 
+</code></pre>
+
+<p>i.e. it's just fine. Can you see whether the date is really ok?</p>

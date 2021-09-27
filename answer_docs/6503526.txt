@@ -1,0 +1,3 @@
+<p>1) Long-running applications will run into problems, because the OS can only reclaim the memory when the application stops running.</p>
+
+<p>2) <code>delete b;</code> also causes the destructor of the pointed-at B instance to run. Otherwise it will never run, since there is no longer any way to get at it. That destructor might do something important.</p>

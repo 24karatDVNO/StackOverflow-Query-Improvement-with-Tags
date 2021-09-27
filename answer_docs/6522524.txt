@@ -1,0 +1,6 @@
+<p>I would suggest to keep data in a single table.</p>
+
+<ul>
+<li>You may frequently need to join the two tables having a 1-1 relation, favoring perf problems</li>
+<li>I don't see any security reason why splitting the table would be better than keeping all data in one.</li>
+</ul>

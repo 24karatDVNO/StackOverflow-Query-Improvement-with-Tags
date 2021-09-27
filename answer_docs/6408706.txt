@@ -1,0 +1,17 @@
+<p>I think you're right with your guess, as <a href="http://www.mediatel.lu/workshop/graphic/3D_fileformat/h_3ds2.html" rel="nofollow">here</a> they say about A351:</p>
+
+<pre><code>If read as a short int (ls byte first):
+
+bit4 bit0: 00 tile (default) 11 decal  01 both
+bit 1: mirror
+bit 2: not used ? (0)
+bit 3: negative
+bit 5: summed area map filtering (instead of pyramidal)
+bit 6: use alpha  (toggles RGBluma/alpha. For masks RGB means RGBluma)
+bit 7: there is a one channel tint (either RGBluma or alpha)
+bit 8: ignore alpha (take RGBluma even if an alpha exists (?))
+bit 9: there is a three channel tint (RGB tint)
+... not used (0)
+</code></pre>
+
+<p>I think the <code>tile</code> option (bits 0 and 4) could be what you're looking for. I guess when <code>tile</code> is on, the texCoords are repeated and otherwise they're clamped.</p>

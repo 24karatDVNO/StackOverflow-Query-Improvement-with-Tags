@@ -1,0 +1,6 @@
+<p>Couple options I can think of:</p>
+
+<ol>
+<li>How about creating a large LUT (lookup table) which will be stored in a ROM? The address would be the INST_SPEED value, and the output would be UPPER10 or TEMP. You could generate the ROM contents with a script (outside of VHDL) and then paste it into your code, or load from a file with VHDL file IO support.</li>
+<li>Is there really no simple pattern between the inputs and outputs? Is this some math function that you could derive instead?</li>
+</ol>

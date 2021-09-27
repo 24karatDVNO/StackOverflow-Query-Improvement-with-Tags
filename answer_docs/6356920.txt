@@ -1,0 +1,29 @@
+<p>You mean like:-
+
+    
+        
+    </p>
+
+<pre><code>&lt;facebookSettings
+  appId = "cut out"
+  appSecret = "cut out"
+  canvasPage = "cut out"
+  canvasUrl ="cut out"
+  cancelUrlPath = "" /&gt;  
+</code></pre>
+
+<p>....! All this works perfectly, but, for example, if I cut &amp; paste in some DB schema info- such as </p>
+
+<pre><code>&lt;connectionStrings&gt;
+    &lt;remove name="LocalSqlServer" /&gt;
+    &lt;add name="LocalSqlServer"
+        connectionString= "Data Source=DF-Workstation;Initial Catalog= (deleted log in stuff)
+        providerName="System.Data.SqlClient" /&gt;
+    &lt;/connectionStrings&gt;
+</code></pre>
+
+<p>...then all the Facebook stuff 'disappears' (Message    2   Could not find schema information for the element 'facebookSettings'.   C:\Devs\FacebookSDK\Samples\CSASPNETFacebookApp\Web.config  11  6   C:...\CSASPNETFacebookApp)</p>
+
+<p>If I now delete all the 
+
+<p>Anyone any other ideas?</p>

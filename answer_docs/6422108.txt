@@ -1,0 +1,5 @@
+<p>Value types <strong>may</strong> be allocated on stack.
+This can happen only if they are in parameters or local variables or fields in a another value type which is.</p>
+
+<p>Value types in arrays and fields in classes are stored locally in array or class, instead of pointer being stored there - value types result in more local memory access (performance improvement)
+and in case of arrays value n is right after value n-1 in memory, something which is not guaranteed with objects in array of reference types (including boxed values in array of object - also no grantee of continuity). In arrays of reference types it is the references that are continual.</p>

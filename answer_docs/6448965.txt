@@ -1,0 +1,31 @@
+<pre><code>int n = 34 //max page
+int current = 5 //current page
+
+if(current &gt; 1)
+     //Dislpay 'prev'
+
+if (current &lt; 5){
+    for(int i=1; i&lt;current; ++i)
+        //Display i
+}
+else {
+    //Display 1 followed by ...
+    for(int i=current-2; i&lt;current; ++i)
+        //Display i
+}
+
+//Display current in red
+
+if (current &gt; n-4) {
+    for(int i = current+1; i&lt;=n; ++i)
+        //Display i
+}
+else {
+    for(int i=current+1; i&lt;current+3; ++i)
+        //Display i
+    //Display ... folowed by n
+}
+
+if (current &lt; n)
+    //Display 'next'
+</code></pre>

@@ -1,0 +1,8 @@
+<pre><code>foreach (Expression&lt;Func&lt;Alert, bool&gt;&gt; Predicate in Predicates.Distinct())    
+    {
+        _currentPredicate = _currentPredicate.Or(Predicate);
+        _currentPredicate.Compile();    
+    }
+</code></pre>
+
+<p>Will force your list of Predicates to be unique.</p>

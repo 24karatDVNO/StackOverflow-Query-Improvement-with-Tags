@@ -1,0 +1,12 @@
+<blockquote>
+  <p>Is there a way for this class to know
+  (or find out) what objects are on the
+  screen at the time?</p>
+</blockquote>
+
+<p>Find the momma view and you can iterate through all the objects on the screen (because they will be UIViews too) like this. Note that you may need to add recursion:</p>
+
+<pre><code>for (UIView *view in mommaView.subviews) {
+    do something to the view
+}
+</code></pre>

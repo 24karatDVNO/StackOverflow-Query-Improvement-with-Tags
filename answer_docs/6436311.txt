@@ -1,0 +1,5 @@
+<p>This is really complex. ttmodule.py adds lot of entries in your pbxproj file. you can not remove all those lines manually, its not practical. There are hundreds of line added in pbxproj file and if you are modifying it manually by removing one line at a time, you will definitely end up making a mistake and corrupt it.</p>
+
+<p>Also this is not the only problem we faced. If you have added the Three20 framework using ttmodule.py and have kept Three20 framework files outside your codebase as they suggest, then other developers also have to have the exact same structure on their mac. otherwise they will get build error for "not able to find three20" framework. If they try to add three20 again on their mac, then they will end up getting duplicate entries in pbxproj and header search path and will still get the same build error.</p>
+
+<p>I would recommend to better include the three20 files along with your project code so that other developers working in your team does not have to worry about it but I can still not find a simple way to remove it.</p>

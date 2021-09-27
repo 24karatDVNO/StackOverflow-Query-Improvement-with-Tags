@@ -1,0 +1,14 @@
+<p><code>&lt;g:link</code> is processed on server-side, so you can't use it on client side, you have to use javascript instead. </p>
+
+<p>It would be like: </p>
+
+<pre><code>&lt;a href="#" class="excelExport" onclick="doExport(); return false"&gt;
+&lt;script type="text/javascript"&gt;
+function doExport() {
+  var id= $('input:radio[name=radId]:checked').val();
+  window.location = '${g.createLink(action:'excelReport')}?id=' + id;
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>ps I assume that you are using jQuery</p>

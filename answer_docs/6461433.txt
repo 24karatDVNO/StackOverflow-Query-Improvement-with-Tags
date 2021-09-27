@@ -1,0 +1,12 @@
+<p>In a RDBMS, full text searching can be accomplished in one of two ways. </p>
+
+<ol>
+<li>without prior indexing, each row must be scanned for the matching keyword or </li>
+<li>if the table has been specifically indexed for full text search (using an <a href="http://en.wikipedia.org/wiki/Inverted_index" rel="nofollow">inverted index</a>), the index is used to identify all rows matching the keyword.</li>
+</ol>
+
+<p>If your query has multiple keywords, in the first method, each row must be searched as many times as there are keywords, and in the second, the index must be searched for each keyword.</p>
+
+<p>If the query requires boolean operations (must include, must not include, etc.), result rows must be constructed by merging multiple result sets.</p>
+
+<p>Thus one should naturally expect processing time to increase linearly for multiple keyword or boolean full text queries.</p>

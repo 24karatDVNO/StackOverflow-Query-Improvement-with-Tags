@@ -1,0 +1,9 @@
+<p>try to replace</p>
+
+<pre><code>document.location.href.indexOf($(this).attr('href')) &gt;0
+</code></pre>
+
+<p>by</p>
+
+<pre><code>document.location.toString().indexOf($(this).attr('href')) &gt;0
+</code></pre>

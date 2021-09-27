@@ -1,0 +1,16 @@
+<p>I have found in the past that putting () after ScriptService in the attribute declared on the web service class has <em>seemingly</em> solved certain bizarre problems.  No idea why it might have worked but worth a try in your case too.</p>
+
+<p>i.e.</p>
+
+<pre><code>[WebService(Namespace = "http://localhost:2900/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+[ScriptService()]
+public class WebServices1 : WebService
+{
+    [WebMethod]
+    public string PieTable(string table)
+    {
+        return table + " - resultant text";
+    }
+}
+</code></pre>

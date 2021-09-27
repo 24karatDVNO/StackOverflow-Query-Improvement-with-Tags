@@ -1,0 +1,7 @@
+<p>I'm on a ferry typing this on my phone, so I can't test your link, but...</p>
+
+<p>In all browsers, z-index is relative to the nearest stacking context.  In FF, Chrome, IE8, stacking context is most often created by having positioning (relative or absolute) and a z-index.  In IE7, only positioning is needed to create a stacking context.</p>
+
+<p>What this means is that in IE7, z-index only applies up to the nearest parent with any position property set.</p>
+
+<p>To make all browsers behave like IE7, for sanity, add "z-index: 1" to any element that also has position set to "relative" or "absolute"</p>

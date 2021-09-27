@@ -1,0 +1,38 @@
+<p>Try the following code hopefully it works for you</p>
+
+<pre><code>@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.optionsmenu, menu);
+    return true;
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item){
+
+    switch (item.getItemId()){
+
+        case R.id.info:
+                startActivity(new Intent(this, AboutApp.class));
+                return true;
+
+        case R.id.exit:
+                finish();
+                return true;
+    }
+  return false;
+}
+</code></pre>
+
+<p>and this is the optionsmenu.xml in res/menu/</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;menu xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+      &lt;item android:id="@+id/info"
+          android:title="Info"
+          android:icon="@drawable/info_menubtn" /&gt;
+      &lt;item android:id="@+id/exit"
+          android:title="Exit" /&gt;
+    &lt;/menu&gt;
+</code></pre>

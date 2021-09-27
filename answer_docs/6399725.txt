@@ -1,0 +1,41 @@
+<p>Ok I got it right,
+First thing first, never mix ManyToMany and choices, so my 2nd attempt was totally wrong. The problem was in form,</p>
+
+<p>So Now final solution looks like,</p>
+
+<pre><code>BUSINESS_GROUP = (
+    ('MNC','Multinational'),
+    ('INT','International (Export/Import)'),
+    ('DOM','Domestic/National'),
+    ('LOC','Local'),
+    ('VIR','Virtual'),
+)
+
+class BusinessGroup(models.Model):
+    bgroup_type = models.CharField(max_length=15)
+
+class Business(models.Model):
+    business_group_choices = models.ManyToManyField(BusinessGroup)
+</code></pre>
+
+<p>Rather than,</p>
+
+<pre><code>class BusinessForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+    super(BusinessForm, self).__init__(*args, **kwargs)
+    self.fields['business_group_choices'].widget = forms.CheckboxSelectMultiple(choices=BUSINESS_GROUP)
+</code></pre>
+
+<p>In Form I have something like,</p>
+
+<pre><code>class BusinessForm(forms.ModelForm):
+   business_group_choices = forms.MultipleChoiceField(label="Business Group", widget=forms.CheckboxSelectMultiple, choices=BUSINESS_GROUP)
+</code></pre>
+
+<p>You need to use MultipleChoiceField with CheckboxSelectMultiple.</p>
+
+<p>This one in the model is totally wrong(mixing M2M and choices), </p>
+
+<pre><code>class Business(models.Model):
+    business_group_choices = models.ManyToManyField(BusinessGroup, verbose_name= "Business Group", choices=BUSINESS_GROUP)
+</code></pre>

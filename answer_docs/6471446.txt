@@ -1,0 +1,22 @@
+<p>Can you use temporary table?
+This is a sample how to do this with a temp table.</p>
+
+<pre><code>CREATE TABLE #MyTableVar (ID INT IDENTITY(1,1), SomeData NVARCHAR(300))
+
+insert #MyTableVar(SomeData) values ('test1'), ('test2')
+
+---doesn't work
+DELETE FROM #MyTableVar 
+
+insert #MyTableVar(SomeData) values ('test3'), ('test4')
+select * from #MyTableVar 
+
+--resets the identity
+truncate table #MyTableVar
+insert #MyTableVar(SomeData) values ('test3'), ('test4')
+select * from #MyTableVar 
+</code></pre>
+
+<p>Regards</p>
+
+<p>Piotr</p>

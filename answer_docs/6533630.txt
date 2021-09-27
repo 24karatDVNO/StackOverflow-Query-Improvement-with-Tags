@@ -1,0 +1,22 @@
+<p>To reduce the validation strictness. E.g. not have the need for alphanumeric characters. You need to alter the <code>MembershipProvider</code> properties. This can be done via the <code>web.config</code> file as per <a href="http://msdn.microsoft.com/en-us/library/system.web.security.membershipprovider.minrequirednonalphanumericcharacters.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/system.web.security.membershipprovider.minrequirednonalphanumericcharacters.aspx</a>.</p>
+
+<pre><code>   &lt;membership&gt;
+          &lt;providers&gt;
+              &lt;clear/&gt;
+              &lt;add name="AspNetSqlMembershipProvider"
+                type="System.Web.Security.SqlMembershipProvider"
+                connectionStringName="LocalSqlServer"
+                enablePasswordRetrieval="false"
+                enablePasswordReset="true"
+                requiresQuestionAndAnswer="false"
+                requiresUniqueEmail="false"
+                maxInvalidPasswordAttempts="5"
+                minRequiredPasswordLength="6"
+                minRequiredNonalphanumericCharacters="0"
+                passwordAttemptWindow="10"
+                applicationName="/"/&gt;
+          &lt;/providers&gt;
+      &lt;/membership&gt;
+</code></pre>
+
+<p>You can then better control the level of strictness via Danny Tuppeny's answer.</p>

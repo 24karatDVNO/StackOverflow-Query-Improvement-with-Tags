@@ -1,0 +1,12 @@
+<p>You can do this in several ways. One way would be to include a check box, named <code>close_task</code> in your form. When this check box is checked and the form is submitted, you check for <code>param[:close_task]</code>.</p>
+
+<p>So for example:</p>
+
+<pre><code>def update
+  if param[:close_task]
+    @task.status = 'closed'
+    @task.save
+  end
+  ...
+end
+</code></pre>

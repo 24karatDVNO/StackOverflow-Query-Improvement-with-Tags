@@ -1,0 +1,7 @@
+<p>I ended up passing the includes I wanted as parameters (you can use actual types or strings) to the method, and then I looped the includes since they return DbQuery objects and don't actually query the database. Thanks for the input @moi_meme (+1).</p>
+
+<pre><code>foreach (var include in includes)
+{
+  query = query.Include(include);
+}
+</code></pre>

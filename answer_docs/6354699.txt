@@ -1,0 +1,7 @@
+<p>I'm having a similar problem using a function I based off of <a href="http://snook.ca/archives/javascript/simplest-jquery-slideshow" rel="nofollow">snook.ca's simplest jquery slideshow</a>. (see my comment @tom) Although mine happens whether I'm clicking or scrolling or not!</p>
+
+<p>It seems as though after the first run through the cycle the timings get all messed up and start half fading in or out and just jumping in with no fade! I was watching the html panel in firebug and found that the css display attribute wasn't getting set from 'block' back to 'none' properly, eventually resulting in all of the images having <code>display:block</code> set on them reglardless of their supposed fade state.</p>
+
+<p>I did wonder if this was a timing issue with the fade speed getting messed up with the setInterval delay causing a mixed order of triggering. If this is the case then I don't know how to fix it.</p>
+
+<p>But having seen the css behaviour I now wonder if it's an underlying problem in the way that jQuery implements it's 'fadeIn' and 'fadeOut' functions??!!</p>

@@ -1,0 +1,13 @@
+<p>I am not really a file IO expert... but why not do something like this:</p>
+
+<p>Before you start reading lines declare two variables.</p>
+
+<pre><code>string currentLine = string.Empty
+string previousLine = string.Empty
+</code></pre>
+
+<p>Then while you are reading...</p>
+
+<pre><code>previousLine = currentLine;
+currentLine = reader.ReadLine();
+</code></pre>

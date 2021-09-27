@@ -1,0 +1,16 @@
+<p>Most browsers support XML parsing in javascript already.  Here's a sample snippet, which you'll have to adapt to parse your specific input.</p>
+
+<pre><code>if (window.DOMParser)
+  {
+  parser=new DOMParser();
+  xmlDoc=parser.parseFromString(text,"text/xml");
+  }
+else // Internet Explorer
+  {
+  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+  xmlDoc.async="false";
+  xmlDoc.loadXML(text);
+  } 
+</code></pre>
+
+<p>For more information, I suggest you do a Google search for <code>javascript xml dom</code>.</p>

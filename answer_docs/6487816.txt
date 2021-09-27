@@ -1,0 +1,18 @@
+<p>So I found solution myself:</p>
+
+<pre><code>var t=setTimeout("closeAdd()",2000);});
+
+function closeAdd(){
+ $('#add').append('&lt;span id="close_but"&gt;Close&lt;/span&gt;');
+ $('#close_but').css('position','absolute');
+ $('#close_but').css('color','blue');
+ $('#close_but').css('top','0px');
+ $('#close_but').css('left','425px');
+ $('#close_but').click(function(){
+  $('#add').hide();});
+ }
+</code></pre>
+
+<p>Using jQuery I am adding the 'Close' span to the node containing the add. The actual placing depends on the format of the add unit, here I have "AdFormat.BANNER". Anyway, I also attach the click handler to the Close span which hides the add containing element.</p>
+
+<p>BTW. delaying the manipulation is necessarry as google does strange manipulations with a node and untill the adds load completely.</p>

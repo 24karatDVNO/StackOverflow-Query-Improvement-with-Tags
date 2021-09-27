@@ -1,0 +1,18 @@
+<p>I take a slightly different approach..</p>
+
+<pre><code>if ($_SERVER['HTTP_HOST'] == 'testingserver') // local environment here
+{
+    // local settings
+}
+else if ( // remote environment here
+    $_SERVER['HTTP_HOST'] == 'www.something.com' ||
+    $_SERVER['HTTP_HOST'] == 'something.com'
+) 
+{
+    // remote settings
+}
+else // error.. this shouldn't happen
+{
+    echo $_SERVER['HTTP_HOST']; 
+}
+</code></pre>

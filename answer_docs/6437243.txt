@@ -1,0 +1,40 @@
+<p>Refering to <a href="http://msdn.microsoft.com/en-us/library/6hbkh9s7%28v=VS.100%29.aspx" rel="nofollow">Configuring Specific Files and Subdirectories</a></p>
+
+<blockquote>
+  <p>Configuration settings can be applied
+  to specific resources by using a
+   tag with an appropriate
+  path attribute. The path attribute can
+  be used to identify a specific file or
+  child directory to which unique
+  configuration settings apply. Only one
+  file path can be used in the path
+  attribute.</p>
+</blockquote>
+
+<pre><code>&lt;configuration&gt;
+  &lt;system.web&gt;
+    &lt;sessionState cookieless="true" timeout="10"/&gt;
+  &lt;/system.web&gt;
+
+  &lt;!-- Configuration for the "sub1" subdirectory. --&gt;
+  &lt;location path="sub1"&gt;
+    &lt;system.web&gt;
+      &lt;httpHandlers&gt;
+        &lt;add verb="*" path="sub1" type="Type1"/&gt;
+        &lt;add verb="*" path="sub1" type="Type2"/&gt;
+      &lt;/httpHandlers&gt;
+    &lt;/system.web&gt;
+  &lt;/location&gt;
+
+  &lt;!-- Configuration for the "sub1/sub2" subdirectory. --&gt;
+  &lt;location path="sub1/sub2"&gt;
+    &lt;system.web&gt;
+      &lt;httpHandlers&gt;
+        &lt;add verb="*" path="sub1/sub2" type="Type3"/&gt;
+        &lt;add verb="*" path="sub1/sub2" type="Type4"/&gt;
+      &lt;/httpHandlers&gt;
+    &lt;/system.web&gt;
+  &lt;/location&gt;
+&lt;/configuration&gt;
+</code></pre>

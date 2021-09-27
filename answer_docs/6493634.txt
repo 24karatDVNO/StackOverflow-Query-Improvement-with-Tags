@@ -1,0 +1,17 @@
+<p>If you want to call that method from outside the <code>A</code> class then it shouldn't be private.</p>
+
+<p>If you just want it to be part of the <code>B</code> creation process then you should do something like this:</p>
+
+<pre><code>class B extends A {
+
+  public B() {
+    super(); // invokes A's constructor
+  }
+}
+
+class A {
+  public A(){
+    // use builder() here
+  }
+}
+</code></pre>

@@ -1,0 +1,25 @@
+<p>I finally figured it out. The problem is that every window of my document-based app is borderless, and I recently read that borderless windows cannot get closed via the <code>performClose:</code> method that the menu item (or the Cmd-W key) sends to firstResponder. So I had to implement some additional methods in the window's subclass:</p>
+
+<pre><code>- (void)performClose:(id)sender {
+    [documentClass canCloseDocumentWithDelegate:self shouldCloseSelector:@selector(document:shouldClose:contextInfo:) contextInfo:NULL];
+}
+
+- (void)document:(NSDocument*)doc shouldClose:(BOOL)shouldClose contextInfo:(void*)contextInfo {
+    if (shouldClose)
+        [doc close];
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    return ([menuItem action]==@selector(performClose:))?YES:[super validateMenuItem:menuItem];
+}
+
+- (BOOL)canBecomeMainWindow {
+    return YES;
+}
+
+- (BOOL)canBecomeKeyWindow {
+    return YES;
+}
+</code></pre>
+
+<p>The last two methods make sure that the window can get the focus and that some other functions can be executed (like the Find command for textviews).</p>

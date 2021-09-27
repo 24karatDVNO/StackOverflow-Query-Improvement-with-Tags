@@ -1,0 +1,13 @@
+<p>It's not exactly what you wanted, but you could get the same effect by using <code>getline</code> to obtain the row input all on one line, and then use <code>std::stringstream</code> to parse out the values.</p>
+
+<pre><code> std::string row;
+ getline(cin,row);
+ std::stringstream ss(row);
+ int j=0,i=currentrow;  //put this in a loop over your rows
+ int input; //or float, double, whatever
+ while(ss &gt;&gt; input)
+ {
+      mat[i][j] = input;
+      j++;
+ }
+</code></pre>

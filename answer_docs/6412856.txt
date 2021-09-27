@@ -1,0 +1,5 @@
+<p>First of all, what you are doing is a genetic algorithm, not genetic programming (which is a related, but a different concept).</p>
+
+<p>I don't know Python, but it looks you have a major problem in your extinction function. As far as I can tell, if x1 > x2 it causes the string to increase in size instead of decreasing (the part between x1 and x2 is effectively doubled). What would happen in the replication function when x1 > x2, I can't tell without knowing Python.</p>
+
+<p>Also keep in mind, that maintaining a population is key to effectively solving problems with genetic algorithms. Crossovers are the essential part of the algorithm, and they make little or no sense if they are not made between population members (also, the more varied the population is, the better, most of the time). The code you presented is dependant on mutations of a single specimen to achieve your expected result, and thus highly unlikely to produce anything useful faster than a simple brute force method.</p>

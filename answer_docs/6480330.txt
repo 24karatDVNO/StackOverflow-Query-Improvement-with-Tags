@@ -1,0 +1,3 @@
+<p>I assume you want to know whether the user modified any fields when the form is submitted. It would be easiest to use <a href="http://api.jquery.com/data/" rel="nofollow"><code>.data()</code></a> to keep track of which fields have changed from their original value. As other posters have mentioned your code calls <code>.val()</code> redundantly, incorrectly uses <code>==</code> instead of <code>!=</code>, and might not be using jQuery objects correctly.</p>
+
+<p>This fiddle should address your issues: <a href="http://jsfiddle.net/EYjxP/" rel="nofollow">http://jsfiddle.net/EYjxP/</a></p>

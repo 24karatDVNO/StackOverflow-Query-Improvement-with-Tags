@@ -1,0 +1,6 @@
+<p>I believe that your service cannot write to the path you configure. Try using some dedicated log directory and make sure that the service has enough rights to write to this directory.</p>
+
+<p>If your settings are in the app.config then this is enough to configure it:</p>
+
+<pre><code>[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+</code></pre>

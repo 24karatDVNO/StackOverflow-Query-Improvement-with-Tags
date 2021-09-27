@@ -1,0 +1,11 @@
+<pre><code>$('select[class~="cactus"]')
+$('option[class~="cactus"]')
+
+javascript:(function(){    
+    var out = "hi\n";
+    out += $('*[class~="cactus"]').html2string()  ;
+    alert( out );
+})()
+</code></pre>
+
+<p>For future reference, instead of describing in words the html ... show actual html</p>

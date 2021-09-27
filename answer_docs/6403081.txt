@@ -1,0 +1,16 @@
+<p>Can be done by using DomDocument to normalize the HTML input and Xpath to get the values you're interested in:</p>
+
+<pre><code>$results = array();
+$dom = new DOMDocument;
+@$dom-&gt;loadHTML($html);
+$xpath = new DomXpath($dom);
+foreach($xpath-&gt;query('//option[@value]') as $node) {
+    $results[] = array(
+        'value' =&gt; $node-&gt;getAttribute('value'), 
+        'name' =&gt; trim($node-&gt;nodeValue)
+    );
+}
+var_dump($results);
+</code></pre>
+
+<p>If you remove the <code>@</code> in front of the third line, you will see the errors inside the HTML chunk.</p>

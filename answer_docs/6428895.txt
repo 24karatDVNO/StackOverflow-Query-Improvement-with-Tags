@@ -1,0 +1,23 @@
+<p>I would attach the event handler with jQuery:</p>
+
+<pre><code>var data = [...];
+
+function toggleChange(list) {
+   for (i = 0; i &lt; list.length; i++) {
+      $('&lt;option/&gt;').val(list[i]).html(list[i]).appendTo('#drpdownSub');
+   }
+}
+
+$(function() {
+    $('#ddlchanger').change(function() {
+        toggleChange(data);
+    });
+});
+</code></pre>
+
+<p>which leaves the HTML as</p>
+
+<pre><code>&lt;select id='ddlchanger'&gt;
+...
+&lt;/select&gt;
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Try using setStore() on the grid and adding the parameters you need.</p>
+
+<p>For example, </p>
+
+<pre><code>myGrid.setStore(myStore, '?aaa=', '111');
+</code></pre>
+
+<p>I am pretty sure that this works after the store has loaded, but it looks like it refreshes the store.  I'm using this to add extra "filter" parameters that my REST service uses to limit what information is returned; it works for me because once I add the parameters the user expects the data to reload. </p>

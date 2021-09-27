@@ -1,0 +1,22 @@
+<p>from your <code>previousWinner</code> definition, the function takes no arguments, so either of the calls will be equivalent:  </p>
+
+<pre><code>previousWinner();
+previousWinner(1);
+previousWinner(1,2,3,4,5,6);
+previousWinner(function(){},function(){});
+// and so on
+</code></pre>
+
+<p>It appears that you want to provide a callback as an argument in the second example.<br>
+If that's the case, you should consider redefining your function to something like :  </p>
+
+<pre><code>function previousWinner(callback) {
+    //Webservice call
+    services.isUserAWinner(ID, events, function (response) {
+            //Code
+            if(typeof callback == 'function')
+                callback(response);
+            //return whatever you want
+    });
+}
+</code></pre>

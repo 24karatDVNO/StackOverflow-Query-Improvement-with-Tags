@@ -1,0 +1,46 @@
+<p>So, I solved my problem. The solution wasn't simple but here it is:</p>
+
+<p>In ItemCreated event I firstly count the number of buttons, then save it to ViewState, and only then I create buttons. I had to save the number of buttons to ViewState because on every postback e.Item.DataItem becomes Nothing.</p>
+
+<p>Maybe there is a simplier solution but I found only that one...</p>
+
+<pre><code>Sub OnItemCreated(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.ListViewItemEventArgs)
+    Dim ListView_Albums_PlaceHolder_Artists As PlaceHolder = e.Item.FindControl("ListView_Albums_PlaceHolder_Artists")
+
+    If Not ListView_Albums_PlaceHolder_Artists Is Nothing Then
+        If Not e.Item.DataItem Is Nothing Then
+            ViewState("Length") = e.Item.DataItem("album_artists").ToString.Split("/").Length
+        End If
+
+        If Not ViewState("Length") Is Nothing Then
+            Dim Length As Integer = ViewState("Length")
+
+            For Integer1 As Integer = 0 To Length - 1
+                Dim ListView_Albums_LinkButton_Artist As New LinkButton
+                ListView_Albums_LinkButton_Artist.ID = "ListView_Albums_LinkButton_Artist_" &amp; Integer1
+
+                ListView_Albums_PlaceHolder_Artists.Controls.Add(ListView_Albums_LinkButton_Artist)
+            Next
+        End If
+    End If
+End Sub
+
+Sub OnItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.ListViewItemEventArgs)
+    Dim ListView_Albums_PlaceHolder_Artists As PlaceHolder = e.Item.FindControl("ListView_Albums_PlaceHolder_Artists")
+
+    If Not ListView_Albums_PlaceHolder_Artists Is Nothing Then
+        If Not e.Item.DataItem Is Nothing Then
+            Dim Artists As String() = e.Item.DataItem("album_artists").ToString.Split("/")
+            Dim Artists_N As String() = e.Item.DataItem("album_artists_n").ToString.Split("/")
+
+            For Integer1 As Integer = 0 To Artists.Length - 1
+                Dim ListView_Albums_LinkButton_Artist As LinkButton = e.Item.FindControl("ListView_Albums_LinkButton_Artist_" &amp; Integer1)
+
+                ListView_Albums_LinkButton_Artist.CommandArgument = Artists(Integer1)
+                ListView_Albums_LinkButton_Artist.Text = Artists_N(Integer1)
+                ListView_Albums_LinkButton_Artist.CssClass = "a-03"
+            Next
+        End If
+    End If
+End Sub
+</code></pre>

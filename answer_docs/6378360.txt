@@ -1,0 +1,29 @@
+<p>You should read only once the header. i.e. if you have</p>
+
+<pre><code>struct id3v2hdr {
+    char TAG[3];
+    unsigned char version;
+    unsigned char subversion;
+    ...
+}
+</code></pre>
+
+<p>Your code would be:</p>
+
+<pre><code>fseek(file,0,SEEK_SET); 
+fread(&amp;tag.TAG, 1, sizeof(tag),file); // tag is structure with elements of header
+
+if(strncmp(tag.TAG,"ID3", 3) == 0)
+{
+    printf("ID3v2.%hhd.%hhd", tag.version, tag.subversion);
+}
+</code></pre>
+
+<p>Note that <code>version</code> and <code>subversion</code> are byte-sized integers, not printable characters, so you should use <code>%hhu</code> (<code>%hhd</code> if they are signed) as its format specification.</p>
+
+<p>Also, the pointer to the first element of a struct, and the pointer to a struct compare equal, so changing your <code>fread</code> line to:</p>
+
+<pre><code>fread(&amp;tag, 1, sizeof(tag),file); // tag is structure with elements of header
+</code></pre>
+
+<p>is unnecessary (tough it would show the intent much more clearly).</p>

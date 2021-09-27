@@ -1,0 +1,4 @@
+<p>If fubar is really 1 to 20 integer(or other number type), but stored in nvarchar(), then I would use BETWEEN like @TStamper says and as @Russ Cam suggested with the CAST(fubar as Int), if you're in MSSQL or MySQL.  </p>
+
+<p>Unlikey what you mean, but...
+ if when you say fubar may be an nvarchar, and your really looking to have non-numberical values that are tested, the IN('1','x','5679fjdk', etc...) would probably be needed.</p>

@@ -1,0 +1,6 @@
+<p>It's as simple as this:</p>
+
+<pre><code>PropertyInfo[] props = obj.GetType().GetProperties();
+</code></pre>
+
+<p>The GetType method will return the actual type, not <code>object</code>. Each of the <code>PropertyInfo</code> objects will have a Name property.</p>

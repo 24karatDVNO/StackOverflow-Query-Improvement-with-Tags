@@ -1,0 +1,16 @@
+<p>No way. By definition switch/case is based on enumerated types only (int, boolean, long, enum) in all C-like languages I know. </p>
+
+<p>So you have to use if/else structure here:</p>
+
+<pre><code>public String sizeOfSupermarket() {
+    String size;
+        if (this.numberOfProducts &gt;  5000) {
+            size = "Large";
+        } else if (this.numberOfProducts &gt;  2000 &amp;&amp; this.numberOfProducts &lt; 5000) {
+            size = "Medium";
+        } else (this.numberOfProducts &lt;  2000) {
+            size = "Small";
+        }
+    return size;
+}
+</code></pre>

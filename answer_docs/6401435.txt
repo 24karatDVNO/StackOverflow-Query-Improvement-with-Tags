@@ -1,0 +1,27 @@
+<p>you can do something like this. Assuming your Two database contexts are named <code>FirstContext and</code>SecondContext`</p>
+
+<pre><code>public class ContextFacade : IUnitOfWork // your Unit of work interface
+{
+  FirstContext _fc;
+  SecondContext _sc
+  public ContextFacade(FirstContext fc, SecondContext sc)
+  {
+     _fc = fc;
+     _sc = sc;
+  }
+
+  public void SaveChanges()
+  {
+    var scope = new TransactionScope(TransactionScopeOption.Required, options);
+    using(scope)
+    {
+      _fc.SaveChanges();
+      _sc.SaveChanges()
+
+      scope.Complete();
+    }
+  }
+}
+</code></pre>
+
+<p>Take a look at <a href="https://stackoverflow.com/questions/5026265/where-does-unit-of-work-belong-w-ef4-ioc-unity-and-repository/5026857#5026857">Ladislav Mrnka's answer</a> on how all of these can be put together.</p>

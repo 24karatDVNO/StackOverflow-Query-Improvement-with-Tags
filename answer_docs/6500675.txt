@@ -1,0 +1,44 @@
+<p>Fixed, using console at least.</p>
+
+<p>The problem is that the anchor-ed objects don't exist yet when animate wants to have it's way with it. For some reason it works a second time through though.</p>
+
+<p>However the solution is as follows: use the 'live' method instead of 'click'. It looks like this:</p>
+
+<pre><code>$('.link , .sublink').live('click', function(event){
+        //prevent the default action for the click event
+
+        event.preventDefault();
+
+        //get the full url - like mysitecom/index.htm#home
+
+        var full_url = this.href;
+
+        //split the url by # and get the anchor target name - home in mysitecom/index.htm#home
+
+        var parts = full_url.split("#");
+
+        var trgt = parts[1];
+
+        //get the top offset of the target anchor
+
+        var target_offset = $("#"+trgt).offset();
+
+        var target_top = target_offset.top;
+
+        //goto that anchor by setting the body scroll top to anchor top
+
+        $('html, body').animate({"scrollTop":target_top}, 750);
+
+    });
+</code></pre>
+
+<p>This worked for me when I pasted it in the console so I hope it works for you too.</p>
+
+<p>By the way, to also solve that fade problem you are having. Use the callback method for fading like so:</p>
+
+<pre><code>$('.something').fadeOut('slow', function(){ $('.otherthing').fadeIn('slow'); });
+</code></pre>
+
+<p>That way, the fadein will only begin when the fadeout has stopped.</p>
+
+<p>Have fun!</p>

@@ -1,0 +1,13 @@
+<p>You could use <code>FOR /F</code> with the <code>skip</code> parameter:</p>
+
+<pre><code>@ECHO OFF
+SET skip=%1
+SET /A skip-=1
+IF %skip% LSS 0 GOTO out
+IF %skip% GTR 0 SET params="skip=%skip%"
+FOR /F %params% %%L IN (<i>filename</i>) DO (SET "line=%%L"& GOTO out)
+:out
+ECHO %line%
+</code></pre>
+
+<p>The <code>skip</code> parameter means the <code>FOR /F</code> loop must skip the specified number of lines at the beginning. The parameter is only applied if you specify a line number greater than 1. If you specify a number less than one or a non-number, the script outputs an empty string.</p>

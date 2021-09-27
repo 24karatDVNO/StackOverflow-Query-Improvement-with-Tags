@@ -1,0 +1,29 @@
+<p>After having tried some techniques, I've opted for an hybrid one: PHP + htaccess</p>
+
+<p>I'm writing it for the ones that will fly into this question.</p>
+
+<p>HTACCESS CONFIGURATION:</p>
+
+<pre><code>RewriteRule    ^/?$    _builder.php?mod=language-redirect    [L,QSA]
+RewriteRule    ^en/?$     _builder.php?mod=homepage&amp;lang=en  [L,QSA]
+RewriteRule    ^it/?$     _builder.php?mod=homepage&amp;lang=it    [L,QSA]
+</code></pre>
+
+<p>_builder.php CODE ( relative to Italian and English Language, easily convertible to suit your needs )</p>
+
+<pre><code>if ( ! isset ( $_GET['lang'] ) || ( $_GET['lang'] != 'en' &amp;&amp; $_GET['lang'] != 'it' ) ) {
+    // reaches here when someone accesses the / of the site. This piece of code outputs the correct geolocation language. If needed, you can also place an header redirect to the correct language-based homepage instead of defining the language
+    $geoplugin = new geoPlugin();
+    if ( $geoplugin -&gt; countryCode == 'IT' ) define ( 'LANGUAGE', 'it' );
+    else define ( 'LANGUAGE', 'en' );
+}
+else {
+    if ( $_GET['lang'] == 'it' ) define ( 'LANGUAGE', 'it' );
+    else define ( 'LANGUAGE', 'en' );
+}
+</code></pre>
+
+<p>Finally, the <strong>geoPlugin Class</strong> is reachable through Google "PHP geoplugin" or by this url:
+<a href="http://www.geoplugin.com/webservices/php" rel="nofollow">http://www.geoplugin.com/webservices/php</a></p>
+
+<p>Remember to place the language setter snippet into your main builder, so the script can know what language to output on the page, even if that wasn't passed by htaccess.</p>

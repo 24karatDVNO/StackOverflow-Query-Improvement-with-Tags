@@ -1,0 +1,47 @@
+<p>For what it's worth, here's how I eventually worked around the problem:</p>
+
+<p>I created a custom <code>TypeAdapter</code> (extending TypeAdapter) with the additional public attribute (String) <code>attrName</code>. Also:</p>
+
+<pre><code>@Override
+public Object invoke() throws IllegalAccessException, InvocationTargetException {
+
+    if ("getAttribute".equals(method.getName())) {
+        Object params[] = { attrName };
+        return method.invoke(target, params);
+    } else {
+        return super.invoke();
+    }
+}
+</code></pre>
+
+<p>Then I extended <code>fit.RowFixture</code> and made the following overrides:</p>
+
+<ul>
+<li><code>public getTargetClass()</code> - to return my class reference</li>
+<li><p><code>protected TypeAdapter bindField(String name)</code> throws Exception - this is a protected method in <code>ColumnFixture</code> which I modified so that it would use my class's getter method:</p>
+
+<pre><code>@Override
+protected TypeAdapter bindField(String name) throws Exception {
+
+    String fieldName = camel(name);
+
+    // for all attributes, use method getAttribute(String)
+    Class methodParams[] = new Class[1];
+    methodParams[0] = String.class;
+
+    TypeAdapter a = TypeAdapter.on(this, getTargetClass().getMethod("getAttribute", methodParams));
+
+    PHETypeAdapter pheAdapter = new PHETypeAdapter(fieldName);
+    pheAdapter.target = a.target;
+    pheAdapter.fixture = a.fixture;
+    pheAdapter.field = a.field;
+    pheAdapter.method = a.method;
+    pheAdapter.type = a.type;
+
+    return pheAdapter;
+
+}
+</code></pre></li>
+</ul>
+
+<p>I know this is not a neat solution, but it was the best I could come up with. Maybe I'll get some better solutions here :-)</p>

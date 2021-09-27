@@ -1,0 +1,4 @@
+<p>Another issue that I see in the code (which might or might not be the cause of the problem):
+What if in a given line you have only normal characters (no spaces, questions, exclamantion marks etc)?</p>
+
+<p>Then, if I am reading this correctly, your innermost while-loop will go beyond the beginning of your string and start processing some garbage. Also, as a result, you might incorrectly seekg in your file stream.</p>

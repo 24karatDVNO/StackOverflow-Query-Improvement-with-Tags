@@ -1,0 +1,15 @@
+<p>It will probably be a bit tricky, but check out the <code>document()</code> function.</p>
+
+<ul>
+<li><a href="http://www.w3schools.com/Xsl/func_document.asp" rel="nofollow">http://www.w3schools.com/Xsl/func_document.asp</a></li>
+</ul>
+
+<p>The examples I've seen show how to include another document in your output, but I didn't see any examples that would let you begin transforming that document during the same invocation.  But I didn't try it out myself either.</p>
+
+<p>If it doesn't work out that <code>document()</code> lets you recurse your transform into the other documents, you could invoke your transform in a loop, and write your transform to be called repeatedly.  Then you'll need some way to check for when you can stop transforming.</p>
+
+<p>One way to know when you should stop would be to do a diff between your source and target documents.</p>
+
+<p>Another way would be to place an element at the top of your document if any sub-documents were found, and remove it when none are found.  Then just check for the presence of this element.</p>
+
+<p>But maybe there is a way to continue transforming through included sub-documents.</p>

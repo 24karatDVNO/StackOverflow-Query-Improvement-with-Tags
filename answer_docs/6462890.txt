@@ -1,0 +1,66 @@
+<p>After further reading, it's apparently not possible to receive notification of the Intent.CATEGORY_HOME intent, short of creating a custom home for the device, which was not the question here.</p>
+
+<p>To provide the desired behavior, I ended up doing something a little shakier than I'd hoped - but it is a reasonable enough approach and it has been working.  The summary of the approach is to have every activity update a singleton timestamp onPause, and then in the onResume of each activity, check how long it's been since that pause was set - if the difference is larger than some small amount, it means that the activity is being resumed from somewhere other than the app, and the PIN screen should be shown.  A custom extension of the Application class provides an easy mechanism for managing the timestamp singleton and centralizing the checking code.  Here is the code:</p>
+
+<pre><code>public class MyApplication extends Application {
+
+private long mLastPause;
+
+public long getLastPause() {
+    return mLastPause;
+}
+
+public void setLastPause() {
+    mLastPause = new Date().getTime();
+}
+
+public boolean isAppResuming() {
+    long now = new Date().getTime();
+    long millisecondsSinceLastPause = now - getLastPause(); 
+    return millisecondsSinceLastPause &gt; 2000;
+}
+
+public Intent onResume() {
+    if ( shouldShowPINEntry() == true ) {
+        return new Intent( this, PINEnterActivity.class );
+    }
+    return null;
+}
+
+public boolean shouldShowPINEntry() {
+
+    if ( isAppResuming() == true || Session.isActive( this ) == false ) {
+        return true;
+    }
+    else {
+        Session.extend();
+    }
+
+    return false;
+}
+}
+</code></pre>
+
+<p>[the Session object in the code above is a separate singleton that determines whether the user has been inactive for too long.  See <a href="https://stackoverflow.com/questions/5836843/android-detecting-if-an-application-entered-the-background">this post</a> for more on that pattern.]</p>
+
+<p>All my activities then extend a common SecureActivity, which interacts with the MyApplication like so:</p>
+
+<pre><code>public class SecureActivity extends Activity {
+    @Override
+    protected void onResume() {
+        Intent resumeIntent = ( (MyApplication) this.getApplicationContext() ).onResume();
+        if ( resumeIntent != null ) {
+                startActivity( resumeIntent );
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ( (MyApplication) this.getApplicationContext() ).setLastPause();
+    }
+}
+</code></pre>
+
+<p>I'm still interested if anyone else has a solid solution that doesn't rely on this "small interval between pause and resume", but this will do fine for now.</p>

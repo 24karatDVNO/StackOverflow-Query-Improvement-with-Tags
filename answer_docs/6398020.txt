@@ -1,0 +1,12 @@
+<p>this might look inefficient but will solve your problem. the strategy is </p>
+
+<ul>
+<li>use <code>preg_match</code> to find out the number
+of occurrences of pattern, in this case its brackets and say its
+<code>n</code></li>
+<li>use <code>preg_replace</code> to replace the
+occurrences of <code>n-1</code> brackets by comma
+setting the <code>limit</code> parameter to n-1</li>
+<li>use <code>preg_replace</code> to replace the set
+of brackets by empty string</li>
+</ul>

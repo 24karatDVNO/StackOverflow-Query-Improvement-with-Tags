@@ -1,0 +1,8 @@
+<p>wrap <code>StringReader</code> in a <code>BufferedReader</code> and use <code>readLine()</code></p>
+
+<pre><code>    BufferedReader bufferedReader = new BufferedReader(new StringReader(lyrics));
+
+    for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
+        // do something with line
+    }
+</code></pre>

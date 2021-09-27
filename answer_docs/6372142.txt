@@ -1,0 +1,30 @@
+<p>It would be easier to at least start by loading the data into a table with the surrogate ID:</p>
+
+<pre><code>people father mother
+------ ------ ------
+john   tony   jane
+tony   jack
+</code></pre>
+
+<p>Then you can add rows for the fathers and mothers not already in the "people" column:</p>
+
+<pre><code>insert into mytable (people)
+( select mother from mytable
+  union
+  select father from mytable 
+)
+minus
+select people from mytable;
+</code></pre>
+
+<p>That will give you:</p>
+
+<pre><code>people father mother
+------ ------ ------
+jack
+tony   jack
+jane
+john   tony   jane
+</code></pre>
+
+<p>You can then add a surrogate ID for each row and use that instead, if you need it.</p>

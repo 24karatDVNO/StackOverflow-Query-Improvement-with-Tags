@@ -1,0 +1,14 @@
+<p>With help, this is what I got:</p>
+
+<p><code>find . -name "R*VER" -exec sh -c 'grep -H ^err "{}" || echo "{}:No error"' \; |
+        awk -F: '
+                BEGIN { q="\047" }
+                {
+                        file=$1
+                        result=$2
+                        sub(/^.*\//,"",file)
+                        split(file,a,/~/)
+                        print "INSERT INTO MYTABLE (COL1,COL2,COL3,COL4,COL5,COL6,COL7,COL8) VALUES (" q file q "," q result q "," q a[1] q "," q a[2] q "," q a[7] q "," q a[8] q "," q a[9] q "," q a[10] q ")"
+                }'</code></p>
+
+<p>It works great. Thanks for taking the time.</p>

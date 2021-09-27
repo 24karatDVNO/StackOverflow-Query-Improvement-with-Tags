@@ -1,0 +1,3 @@
+<p>Without seeing any code, it sounds as if your form response may be cached.  What is the method attribute on your <code>&lt;form&gt;</code> ? Forms submitted via <code>GET</code> (or no <code>method</code> attribute at all) are allowed to be cached; in which case neither the server nor your portlet's <code>processAction(...)</code> will be invoked - the browser will re-render the previous response from cache.</p>
+
+<p>If you post some code there may be more offers to help...</p>

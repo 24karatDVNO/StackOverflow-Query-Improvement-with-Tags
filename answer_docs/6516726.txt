@@ -1,0 +1,21 @@
+<pre><code>Can i make msi or smth like that, to install database on existing server.
+</code></pre>
+
+<p>Yes, you can. There are two approaches:</p>
+
+<ol>
+<li>Write a custom action which connects to your server and runs an SQL script that creates the database. This is complicated but free.</li>
+<li>Use a commercial setup authoring tool which supports SQL scripts. It's much easier, but you need to purchase a license.</li>
+</ol>
+
+<blockquote>
+  <p>Can i configure MSI, to show for
+  example some pictures of my company in
+  installation procces</p>
+</blockquote>
+
+<p>Yes, they are called billboards. The native MSI billboards support is very limited, so I recommend an <a href="https://stackoverflow.com/questions/2335354/how-to-create-custom-ui-for-msi-in-wix">external UI</a> solution.</p>
+
+<p>If you want a free solution, you can try <a href="http://wix.sourceforge.net/" rel="nofollow noreferrer">WiX</a>. It supports both external UI and SQL scripts. These features will need some work, but they are doable.</p>
+
+<p>Let me know if you want some recommendation for commercial tools.</p>

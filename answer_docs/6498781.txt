@@ -1,0 +1,21 @@
+<p>Add to @Boris' comment, if all you need is a Utility class its is even simpler using an enum</p>
+
+<pre><code>public enum Utility {
+    ; // no instances
+    public static Object myStaticMethod(Object ... args) { }
+}
+</code></pre>
+
+<p>If you have an interface to implement, this a singleton makes sense.  Note, you can create more than one Singleton with an enum</p>
+
+<pre><code>public enum Callables implements Callable&lt;String&gt; {
+    HELLO {
+         public String call() { return "Hello"; }
+    }, 
+    WORLD {
+         public String call() { return "World"; }
+    }
+}
+</code></pre>
+
+<p>Note: HELLO and WORLD share a super class Callables but actually have different classes.</p>

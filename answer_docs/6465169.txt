@@ -1,0 +1,15 @@
+<p>Why you need this?
+Create your custom ApplicationController and derive all controllers from this one.
+In ApplicationController implement the method <code>Json&lt;data&gt;()</code> where data</p>
+
+<pre><code>   public JsonResult Json&lt;TData&gt;(TData data, bool status) where TData : class
+    {
+        return Json(
+            new
+                {
+                    data,
+                    status
+                },
+            JsonRequestBehavior.AllowGet);
+    }
+</code></pre>

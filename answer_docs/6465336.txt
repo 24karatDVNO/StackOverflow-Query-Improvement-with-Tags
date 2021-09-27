@@ -1,0 +1,8 @@
+<p>well, there is no easier way, you could use <code>param</code> feature, but it is risky as well. </p>
+
+<p>have a look at example for <code>string.Format()</code> where you can use it like:</p>
+
+<pre><code>stringA.Format("{0} is {1}", str1, str2)
+</code></pre>
+
+<p>that way you can pass any number of params, but it is quite tricky how u consume it and could be quite error prone</p>

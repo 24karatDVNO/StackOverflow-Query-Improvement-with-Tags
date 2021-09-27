@@ -1,0 +1,8 @@
+<p>You can get <code>int</code> indentifier from your activity with this code:</p>
+
+<pre><code>Random x = new Random(44);
+int l = x.nextInt();
+int path = getResources().getIdentifier(String.valueOf(l), "raw", getPackageName());
+</code></pre>
+
+<p>More info in documentation: <a href="http://developer.android.com/reference/android/content/res/Resources.html#getIdentifier%28java.lang.String,%20java.lang.String,%20java.lang.String%29" rel="nofollow">http://developer.android.com/reference/android/content/res/Resources.html#getIdentifier%28java.lang.String,%20java.lang.String,%20java.lang.String%29</a></p>

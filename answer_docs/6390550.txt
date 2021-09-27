@@ -1,0 +1,2 @@
+<p>As Steven and nmc said for every variable you want to access on your page you need to expose it with a getter method like <code>getPersonDTO()</code> in your case.<br>
+But assuming your code is in <code>execute</code> method the <code>personDTO</code> is a local variable and cannot be returned by a getter. So first you have to declare it as instance variable then provide a getter method.</p>

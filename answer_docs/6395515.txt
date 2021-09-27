@@ -1,0 +1,11 @@
+<p>If the two lines of code you posted above fall inside a loop (for / Do While / Loop While) then make sure to include </p>
+
+<pre><code>DoEvents
+</code></pre>
+
+<p>to allow the program to handle events (like mouse clicks, keyboard, form re-size and minimize, etc.) while it is busy processing the rest of the code.</p>
+
+<pre><code>a.Read from socket
+DoEvents
+b.update database
+</code></pre>

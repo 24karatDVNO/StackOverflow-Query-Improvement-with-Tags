@@ -1,0 +1,8 @@
+<p>If you are really dedicated to receiving only the data that has changed you would have to do 4 things</p>
+
+<ol>
+<li>Version the xml</li>
+<li>Have your JS periodically query the version number</li>
+<li>if different JS then calls "updateFromCurrentVersion(currentVersion)" </li>
+<li>updateFromCurrentVersion returns the changes </li>
+</ol>

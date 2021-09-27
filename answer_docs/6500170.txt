@@ -1,0 +1,112 @@
+<p>I have found another solution but I need advice whether I'm doing the correct way.
+The database tables itself is not design by me, thus I cant help but to follow the structure.</p>
+
+<p>because all of the address data is stored only in one table, I use an inheritance mapping to do this.</p>
+
+<p>for example i have 3 tables like this;</p>
+
+<p>Address table</p>
+
+<pre><code>Address
+-------
+ID (pk)
+ownertype (string)
+ownerid (int)
+addr1
+postcode
+...
+</code></pre>
+
+<p>User table</p>
+
+<pre><code>User
+-----
+ID (pk)
+name
+...
+</code></pre>
+
+<p>Org table</p>
+
+<pre><code>Org
+----
+ID (pk)
+Orgname
+....
+</code></pre>
+
+<p>according to my DBA, she said that both User and Org table has relation to the address table, and it is differentiated by the ownertype column in the address table.</p>
+
+<p>so, I made the one base entity "Address" that has all the common properties like this:</p>
+
+<pre><code>public abstract class Address {
+  public virtual string addr1 { get;set; }
+  public virtual int postcode { get;set; }
+  ...
+}
+</code></pre>
+
+<p>then for each parent table relation to the address table, I made another subclass of address (derived from class Address) and made so that parent entity relationship to this subclass instead of the Address class, like so:</p>
+
+<p>UserAddress subclass of Address</p>
+
+<pre><code>public class UserAddress : Address {
+  public virtual User Owner { get;set; }
+}
+</code></pre>
+
+<p>User entity</p>
+
+<pre><code>public class User {
+  public virtual int ID { get;set; }
+  public virtual string Name { get;set; }
+
+  public virtual UserAddress Address {
+    get {
+      return address;
+    }
+    set {
+      if (value != null) 
+        value.Owner = this
+      address = value
+    }
+  }
+}
+</code></pre>
+
+<p>and the mapping for Adderss, UserAddress and user is like the following:</p>
+
+<p>Address and its subclasses (Table per class hierarchy strategy):</p>
+
+<pre><code>&lt;class name="Address" table="Address" abstract="true"&gt;
+  &lt;id name="ID"&gt;
+    &lt;generator class="identity"/&gt;
+  &lt;/id&gt;
+  &lt;discriminator column="Ownertype" type="System.String" /&gt;
+  &lt;property name="addr1 /&gt;
+  &lt;property name="postcode" /&gt;
+  ....
+  &lt;subclass name="UserAddress" discriminator-value="USER"&gt;
+    &lt;many-to-one name="Owner" column="Ownerid" /&gt;
+  &lt;/subclass&gt;
+  &lt;subclass name="OrgAddress" discriminator-value="ORG"&gt;
+    &lt;many-to-one name="Owner" column="Ownerid" /&gt;
+  &lt;/subclass&gt;
+&lt;/class&gt;
+</code></pre>
+
+<p>User:</p>
+
+<pre><code>&lt;class name="User" table="User"&gt;
+  &lt;id name="ID"&gt;
+    &lt;generator class="identity"/&gt;
+  &lt;/id&gt;
+  &lt;property name="Name" /&gt;
+  ....
+  &lt;one-to-one name="Address" property-ref="Owner" cascade="all" /&gt;
+&lt;/class&gt;
+</code></pre>
+
+<p>is this the correct way to do this? do give me any other better alternative than this.</p>
+
+<p>notes: i do not show here on Org entity and mapping, basically it has the same concept as user table. pardon me for any syntax error as I type this here, because the real entity name is not intuitive without docs to refer.</p>

@@ -1,0 +1,7 @@
+<p>DoEvents() calls are hazardous in the wrong hands.</p>
+
+<p>What you probably have going on is the assumption of "magic" message framing, a failure to buffer and parse messages from inbound data streams, and reentrant calls to your DataArrival handler because you are calling DoEvents().</p>
+
+<p>Nagle could be an issue as well but it should result in responsiveness problems and not apparent data loss.</p>
+
+<p>This same issue has been asked about and answered innumerable times over the last decade.</p>

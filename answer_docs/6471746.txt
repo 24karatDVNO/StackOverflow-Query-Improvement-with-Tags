@@ -1,0 +1,7 @@
+<p>I'm also confused about the motivation for implementing a pure ruby ncurses library. That said, you have a few options:</p>
+
+<p><a href="http://ruby-doc.org/stdlib/libdoc/curses/rdoc/index.html" rel="nofollow">curses</a> is in the standard library.  It's not as featureful as ncurses, but would provide a good base to build upon.</p>
+
+<p>FFI would be a good way to get an ncurses wrapper going if compiling C extensions is what prohibits you from using the regular ruby ncurses library (looks like someone <a href="http://rubygems.org/gems/ffi-ncurses" rel="nofollow">already started one</a>).</p>
+
+<p>Or, as @mu is too short commented, you could send the terminal control codes directly (I really can't see why this would ever be necessary or advisable though).</p>

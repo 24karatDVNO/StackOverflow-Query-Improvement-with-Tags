@@ -1,0 +1,7 @@
+<p>You cannot call <code>findViewById</code> <em>before</em> you set the view contents. You must move these lines </p>
+
+<pre><code>  super.onCreate(savedInstanceState);
+  setContentView(R.layout.createlist);
+</code></pre>
+
+<p>to the top of your <code>onCreate</code> method. You probably think it has to do with Spinners because you added the Spinner code before these two lines.</p>

@@ -1,0 +1,13 @@
+<p>In C++ the only difference between a <code>class</code> and a <code>struct</code> is that class-members are private by default, while <code>struct</code>-members default to public. So structures can have constructors, and the syntax is the same as for classes. But only if you do not have your structure in a union.</p>
+
+<p>e.g.</p>
+
+<pre><code>struct TestStruct {
+        int id;
+        TestStruct() : id(42)
+        {
+        }
+};
+</code></pre>
+
+<p>Credit goes to the answers in this <a href="https://stackoverflow.com/questions/1127396/structure-constructor-in-c">question</a>.</p>

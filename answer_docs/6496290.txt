@@ -1,0 +1,8 @@
+<p>No, it's not just getting the last text, it's getting each text, but as you are setting the title on all images each time you will overwrite the previous value, and all images end up with the last text.</p>
+
+<p>The <code>each</code> method provides the callback method with the index, so you can use that to get the right text for each image:</p>
+
+<pre><code>$("ul").find('li').each(function(i){
+  $(this).attr('title', $('#tooltips'+(i+1)).text());
+});
+</code></pre>

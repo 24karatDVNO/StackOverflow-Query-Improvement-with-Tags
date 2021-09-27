@@ -1,0 +1,15 @@
+<p>What you are trying to do with generics is impossible if the type you need is not T.</p>
+
+<p>The value that goes where you are asking for needs to be a generic value or a value known at compile time.</p>
+
+<p>That means your only choice is:</p>
+
+<pre><code>create&lt;T&gt;(root);
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code>create&lt;PureTypeName&gt;(root);
+</code></pre>
+
+<p>Or adding other generic parameters.</p>

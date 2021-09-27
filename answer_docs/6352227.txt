@@ -1,0 +1,10 @@
+<p>In C++ nesting one class inside another only means the <em>name</em> is nested, not that <em>instances</em> are nested. In other words, if you have classes A and B like:</p>
+
+<pre><code>class A { 
+    class B { 
+        // whatever
+    };
+};
+</code></pre>
+
+<p>Then B being nested inside of A <em>only</em> affects the visibility of the names involved, <em>not</em> how instances of either can be/are created -- for example, you can create an <code>A::B</code> without necessarily creating an instance of <code>A</code>.</p>

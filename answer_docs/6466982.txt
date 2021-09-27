@@ -1,0 +1,6 @@
+<p>You are trying to simulate click event but this only works on events attached with jQuery. Events on <strong>load more comments</strong> links at reddit attached using html attributes. I.e:</p>
+
+<pre><code>onclick="return morechildren(this, 't3_i7hb5', 'c21ko21,c21kesz,c21klil,c21ko45,c21kro5,c21l90v,c21lo38', 3, '')"
+</code></pre>
+
+<p>to solve your problem you need to extract values from this attributes and call them separately.</p>

@@ -1,0 +1,140 @@
+<pre><code>public class CreateButton extends ActivityGroup implements View.OnClickListener
+{
+
+int i=0;
+TableLayout tl_bed;
+TableRow tr;
+Button btn_delete,edit;
+TextView[] tv; // Here i have decleared an array of TextView
+
+
+/** Called when the activity is first created. */
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    tl_bed = (TableLayout)findViewById(R.id.tableLayoutOfBed);
+
+    Button Btn_BedRoom = (Button) findViewById(R.id.bed);
+    Btn_BedRoom.setOnClickListener(ListenrOf_BedRoom);      
+}
+
+// Listener Of Create Bed Room
+private OnClickListener ListenrOf_BedRoom = new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        int no = 3;
+        tv = new TextView[no];
+        for(int i =0 ;i&lt; no  ;i++){
+
+        CreateRoom(i);
+        }
+    }
+   };
+
+   public void CreateRoom(int i)
+{
+    tr = new TableRow(this);
+ // Here i have set the same id for deleting row and editing name.
+    tr.setId(i);
+    TableRow.LayoutParams Rdel = new TableRow.LayoutParams(
+            TableRow.LayoutParams.WRAP_CONTENT,
+            TableRow.LayoutParams.WRAP_CONTENT);
+
+    Rdel.setMargins(45, 10, 0,0);
+
+    Button btn_delete = new Button(this);
+
+    btn_delete.setText("delete");
+    btn_delete.setHeight(10);
+    btn_delete.setWidth(10);
+    btn_delete.setBackgroundResource(R.drawable.close_btn);
+    btn_delete.setLayoutParams(Rdel);
+    btn_delete.setTag("DeleteTag");
+    btn_delete.setId(i);
+    tr.addView(btn_delete);
+    btn_delete.setOnClickListener(this);
+
+    Rdel.setMargins(15, 10, 0,0);
+    Button edit = new Button(this);
+
+    edit.setBackgroundResource(R.drawable.edit_btn);
+    edit.setHeight(10);
+    edit.setWidth(10);
+    edit.setLayoutParams(Rdel);
+         edit.setTag("Edit Name");
+         edit.setId(i);
+    tr.addView(edit);
+    edit.setOnClickListener(this);
+
+    TableRow.LayoutParams tr_text = new TableRow.LayoutParams(
+            TableRow.LayoutParams.WRAP_CONTENT,
+            TableRow.LayoutParams.MATCH_PARENT);
+    tr_text.setMargins(25, 5, 0,0);
+    tv[i] = new TextView(this);
+
+    tv[i].setLayoutParams(tr_text);
+    tv[i].setId(i);
+    tv[i].setText("Bed Room"+no++);
+    tv[i].setEnabled(true);
+
+    tr.addView(tv[i]);
+
+    tl_bed.addView(tr);
+
+  }
+
+public void onClick(final View v) 
+{
+  final String tag = (String) v.getTag();
+  final int z = v.getId();
+  //Edit Click
+  if (tag == "Edit Name") 
+    {
+        // prepare the alert box
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+        // set the message to display
+        alertbox.setCancelable(true);
+        // alertbox.setTitle("Hi Akshay"); // Gives Msg
+        alertbox.setMessage("Edit Room Name"); // Gives Msg same as above
+
+        final EditText et = new EditText(this);
+        et.setId(edit_id++);
+        final int a = et.getId();
+        alertbox.setView(et);
+
+
+
+        // add a neutral button to the alert box and assign a click listener
+        alertbox.setNeutralButton("Save",
+                new DialogInterface.OnClickListener() 
+    {
+
+    // click listener on the alert box
+    public void onClick(DialogInterface arg0, int arg1) {
+        // the button was clicked
+    final String s = et.getText().toString();
+    tv[z].setText(s);
+                                        Toast.makeText(getApplicationContext(),"Name Changed", Toast.LENGTH_LONG).show();
+                    }
+
+
+                    }
+                });
+        // show it
+        alertbox.show();
+    }
+
+    if( tag == "DeleteTag") 
+    {
+        int tr = v.getId();
+        tl_bed.removeView(findViewById(tr));
+        Toast.makeText(getApplicationContext(),"Room Deleted " +(tr+1), Toast.LENGTH_LONG).show();
+
+    }
+}         
+   }
+</code></pre>
+
+<p>This is my updated class and is working fine now.</p>

@@ -1,0 +1,7 @@
+<p>I would just store it as a string, since you have fields for something from <em>x</em> to <em>y</em>, which should always be in some sort of array form. The easiest way, I think, is storing it as:</p>
+
+<p><code>hits:yardage hits:yardage hits:yardage</code><em><code>etc...</code></em></p>
+
+<p>In your database, then splitting the string by <code>:</code> and <code></code>.</p>
+
+<p>(And in response to your edit, yes, your current way will probably make it unnecessarily difficult to update the database structure.)</p>

@@ -1,0 +1,21 @@
+<p>Use <a href="http://allseeing-i.com/ASIHTTPRequest/How-to-use" rel="nofollow">ASIHTTPRequest</a></p>
+
+<p>and do this:</p>
+
+<pre><code>    -(void)uploadImage{
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+
+        // Upload a file on disk
+        [request setFile:@"/Users/ben/Desktop/ben.jpg" withFileName:@"myphoto.jpg" andContentType:@"image/jpeg"
+    forKey:@"photo"];
+
+       // Upload an NSData instance
+      [request setData:UIImageJPEGRepresentation(myUIImage) withFileName:@"myphoto.jpg" andContentType:@"image/jpeg" forKey:@"photo"];
+
+      [request setDelegate:self];
+      [request setDidFinishSelector:@selector(uploadRequestFinished:)];
+      [request setDidFailSelector:@selector(uploadRequestFailed:)];
+
+      [request startAsynchronous];
+}
+</code></pre>

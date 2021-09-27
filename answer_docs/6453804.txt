@@ -1,0 +1,21 @@
+<p>As you have shown you've defined CSS this way :</p>
+
+<pre><code>.alternateRow tr {
+    background-color: #FFFFFF;
+}
+
+.alternateRow tr.odd {
+    background-color: #DEDEDE;
+}
+</code></pre>
+
+<p>When you are adding the rows dynamically you should check whether there are even or odd number of rows and based on that add a tr of the right class, something like this :</p>
+
+<pre><code>$('table.alternateRow').append(function(i,h){
+    var tr = '&lt;tr';
+    if ( $(this).children('tr').size() % 2 == 0 )
+        tr += ' class="odd"';
+    tr += '&gt;&lt;/tr&gt;';
+    return tr;
+});
+</code></pre>

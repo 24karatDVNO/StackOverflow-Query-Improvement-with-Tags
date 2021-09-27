@@ -1,0 +1,3 @@
+<p>Shouldn't you just declare the relations from Price to Product and Currency as ManyToOne directly in the Price entity, and annotate Price with @IdClass(PricePK)?</p>
+
+<p>I don't know how Hibernate handles this though, but I have successfully implemented this using OpenJPA. In that case, PricePK must declare its fields with the same names as in Price, but using the simple type instead (Integer instead of Currency or Product). In Price, you might need to annotate product and currency with @Id. Note that this is out of the JPA spec (@IdClass only supports simple fields).</p>

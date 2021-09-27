@@ -1,0 +1,7 @@
+<p>I'm not sure what the best approach is, but I do agree there's potential for a lot of problems here.</p>
+
+<p>While reading your post, I was thinking...   albeit a naughty move, but you COULD change the field type of the "DataSource" field. Of course, mucking about in system templates is something to be cautionable about - but in this case, the alternative seems slightly worse.</p>
+
+<p>If doing so, you would need to hook into the getRenderingDatasource pipeline as well, and override the GetDatasourceLocation step.</p>
+
+<p>I've not done this myself, so cannot guarantee it will work. Seems fairly straight forward however :-)</p>

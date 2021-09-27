@@ -1,0 +1,1 @@
+<p>You should remember that while continuation is suspended in your Servlet the HTTP socket will be hold. As long as you're not going to perform a long-lasting push to a Web client, timeout should be set to the estimated maximum time of the operation that your Servlet does. Otherwise, you may run out of sockets.</p>

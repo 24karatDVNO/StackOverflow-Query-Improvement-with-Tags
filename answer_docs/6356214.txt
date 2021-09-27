@@ -1,0 +1,13 @@
+<p>Personally I would design in a "modulus" value, populate it with something that is a function representative of the data - so if your data was inserted a regular intervals throughout the day you could do a modulus of the time, if there's nothing predictable then you could use a random value; with a collection of that size it would tend toward even distribution pretty quickly.</p>
+
+<p>An example using a random value...</p>
+
+<pre><code>    // add the index
+    db.example.ensureIndex({modulus: 1});
+    // insert a load of data
+    db.example.insert({ your: 'data', modulus: Math.round((Math.random() * 1000) % 1000) });
+    // Get a 1/1000 of the set
+    db.example.find({modulus: 1});
+    // Get 1/3 of the set
+    db.example.find({modulus: { $gt: 0, $lt: 333 }});
+</code></pre>

@@ -1,0 +1,8 @@
+<p>Don't start running in your constructor.</p>
+
+<ul>
+<li>Users of your API won't expect that, and it makes your class harder to use</li>
+<li>From an exception handling standpoint, you want to be able to report an error that happens when constructing an object, separately from an error that happens during execution.</li>
+<li>It prevents sharing instances of your object, if you ever wanted to do something like a static factory singleton pattern.</li>
+<li>I would second StriplingWarrior's point that there are many good reasons, like dependency injection, where object creation needs to happen first so that some other class can run it later.</li>
+</ul>

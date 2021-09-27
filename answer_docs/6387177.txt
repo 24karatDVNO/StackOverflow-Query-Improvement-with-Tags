@@ -1,0 +1,14 @@
+<pre><code>import datetime
+today = datetime.datetime.now()
+weekday = today.strftime("%a")
+hourmin = int(today.strftime("%H%M"))
+print "today here is: " + today.strftime("%c") # for debug
+days = ["Sun", "Fri"]
+times = [2000, 1630]
+if weekday == "Sat" or \
+    weekday in days and hourmin &lt; times[days.index(weekday)] or \
+    2000 &gt; hourmin &gt;= 1630:
+    print "bad time"
+else:
+    print "good time"
+</code></pre>

@@ -1,0 +1,6 @@
+<p>There are a couple of options:</p>
+
+<ol>
+<li><p>Check out the documentation for the popoverContentSize property on the UIPopoverController, you should set it to be the size of the XIB that provides the content (so the XIB and popover both have the same size/contentSize, essentially).</p></li>
+<li><p>Set the autoresizing masks on the subviews in the XIB so that they lay themselves out correctly dependant on the size of the XIB. To center them within their parent view you do NOT want the left and right mask setting (they should both be deselected in Interface Builder). This guide covers centering subviews: <a href="http://www.techotopia.com/index.php/IPhone_Rotation,_View_Resizing_and_Layout_Handling" rel="nofollow">http://www.techotopia.com/index.php/IPhone_Rotation,_View_Resizing_and_Layout_Handling</a></p></li>
+</ol>

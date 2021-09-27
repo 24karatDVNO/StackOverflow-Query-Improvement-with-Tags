@@ -1,0 +1,32 @@
+<p>Do you have to use Java?</p>
+
+<p>You can get the answer by adding the following into the SVG:</p>
+
+<pre><code>&lt;script type="text/ecmascript"&gt;
+&lt;![CDATA[
+    function getWidth(evt)
+    {
+        var bb = evt.target.getBBox();
+        alert(bb.width - bb.x);
+    }
+]]&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>Then adding <code>onmousedown="getWidth(evt)"</code> into the path element. Then if you open up the SVG in a web browser and click on the image, you find its width is 691.466.</p>
+
+<p>Otherwise you'll have to write your own program to interpret the path's coordinates, which is not straightforward.</p>
+
+<p>Briefly:</p>
+
+<ul>
+<li>At *<em>M</em>*x y, move to coordinate x y</li>
+<li>At *<em>l</em>*x y, move to +x, +y</li>
+<li>At *<em>h</em>*x, move to +x, +0</li>
+<li>At *<em>v</em>*y, move to 0, +y</li>
+<li>At *<em>c</em>*x1 y1 x2 y2 x3 y3, move to +x3, +y3</li>
+</ul>
+
+<p>However with the Bézier curves (indicated by c), some parts may stick out beyond the coordinates.</p>
+
+<p>See <a href="http://www.w3.org/TR/SVG/paths.html#PathDataMovetoCommands" rel="nofollow">http://www.w3.org/TR/SVG/paths.html#PathDataMovetoCommands</a> for more details.</p>

@@ -1,0 +1,7 @@
+<p>What you are looking for is push updates (Comet). This can be achieved by having a long polled connection to your web server that sends updates to it's connections as they pop in. You can have two connections open per domain in most web browsers. One connection will be used for this 'update' connection, and the other one will be used to send player actions to the web server. </p>
+
+<p>If you are using PHP it will not be efficient to keep these long polled connections open. You can use an alternative pull strategy that connects to the webserver every few seconds to see if it has an update available. </p>
+
+<p>See this example for a chat room in PHP and JQuery: <a href="https://stackoverflow.com/questions/4174521/how-to-implement-a-chat-room-using-jquery-php">How to implement a chat room using Jquery/PHP?</a></p>
+
+<p>You can use these ideas to create your game. For example instead of a chatroom, it connects to a game.</p>

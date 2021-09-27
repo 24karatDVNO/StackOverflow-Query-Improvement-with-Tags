@@ -1,0 +1,21 @@
+<p>If you want to put the data into a file, start by loading a DataTable instead of using a DataReader.
+With the DataReader, as has been mentioned in the comments, you might want to iterate through the result set with a while loop<br /></p>
+
+<pre><code>while (reader.Read())
+{
+
+}
+</code></pre>
+
+<p>The loop reads one row at a time and quits when all of the rows have been read.
+Once you move to the next row, the previous rows are no longer available unless you have put them into some other structure, like a list or DataTable.</p>
+
+<p>But you can use a DataAdapater to fill a DataTable so there might not be a reason to use a DataReader. Then you can write to a file from the DataTable.</p>
+
+<p>In any event, I don't see how this line could work.<br /></p>
+
+<pre><code>FileName = Convert.ToString(reader["FileName"])
+</code></pre>
+
+<p>I can post additional code for either approach if you like.<br />
+HTH Harvey Sather</p>

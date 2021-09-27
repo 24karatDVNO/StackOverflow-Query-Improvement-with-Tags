@@ -1,0 +1,8 @@
+<p>See you have two options :</p>
+
+<ul>
+<li><p>In your text editor "Find and Replace All" all "&lt;" with "&lt;" and all ">" with "&gt;"</p></li>
+<li><p>And as posted by Oltarus, if your server supports php then just use:</p>
+
+<p><code>&lt;?php echo htmlentities("&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;/html&gt;"); ?&gt;</code></p></li>
+</ul>

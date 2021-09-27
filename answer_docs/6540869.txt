@@ -1,0 +1,5 @@
+<p>First, it would be a good idea to resolve any broken packages reported by ghc-pkg check, by removing/reinstalling/upgrading them.</p>
+
+<p>Next, can you manually cabal build the mysite app without trouble ? If your mysite.cabal actually does not specify base in the build-depends list, you should follow the suggestion to add that.</p>
+
+<p>The repeating Testing Files message is normal for current yesod devel, it is polling your source files.</p>

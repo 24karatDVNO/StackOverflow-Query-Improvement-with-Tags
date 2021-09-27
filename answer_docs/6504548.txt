@@ -1,0 +1,14 @@
+<p><code>contents</code> property works only with <code>CGImageRef</code>. If you wish to use text on it, use <a href="http://developer.apple.com/library/mac/#documentation/GraphicsImaging/Reference/CATextLayer_class/Introduction/Introduction.html" rel="nofollow noreferrer"><code>CATextLayer</code></a>.</p>
+<h3>Example Usage</h3>
+<pre><code>CATextLayer * textLayer = [CATextLayer layer];
+textLayer.backgroundColor = [[UIColor darkGrayColor] CGColor];
+textLayer.foregroundColor = [[UIColor whiteColor] CGColor];
+textLayer.bounds = CGRectMake(0, 0, 60, 40);
+textLayer.position = CGPointMake(25, 25);
+textLayer.string = @&quot;Hello World&quot;;
+textLayer.font = CGFontCreateWithFontName(CFSTR(&quot;Helvetica&quot;));
+textLayer.fontSize = 15.0;
+
+[self.window.layer addSublayer:textLayer];
+</code></pre>
+<p>Of course, I am leaking memory with <code>CGFontCreateWithFontName</code>. You can fix that by assigning it to a variable and releasing it later.</p>

@@ -1,0 +1,11 @@
+<p>try not using jQuery, instead iterate through the array manually and use a RegExp. Replace <code>jQuery.inArray("John", arr)</code> with <code>inArray("John", arr)</code>, and put the following function in your script:</p>
+
+<pre><code>function inArray(string, arr){
+    var re = RegExp(string, "g");
+    for(var i in arr){
+        if(arr[i].search(re) != -1){
+            return i;
+        }
+    }
+}
+</code></pre>

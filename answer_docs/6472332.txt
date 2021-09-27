@@ -1,0 +1,6 @@
+<p>After initial page load, that bit of javascript is never processed again. It only sets the header once, which it does successfully. Afterwards, you'll have to manually update the h1:</p>
+
+<pre><code>$.get("ajax/siteInfo.php?id=" + getURLvar( 'id' ), function(siteData){
+    $('div[data-role="header"] h1').html(siteData.siteTitle);
+}, "json");
+</code></pre>

@@ -1,0 +1,7 @@
+<pre><code>$string = '//[langStart-en] This is a test //[langEnd-en]';
+$string = preg_replace(
+      '/\/\/\[langStart-en\][\s\S]+?\/\/\[langEnd-en\]/',
+      '//[langStart-en]//[langEnd-en]',
+      $string
+ );
+</code></pre>

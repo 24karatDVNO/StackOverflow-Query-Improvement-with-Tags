@@ -1,0 +1,10 @@
+<p>Be sure you are running the most recent version of Thinking Sphinx, 3.0.4 or so. Looks like there has been some issues with <code>sanitize_sql</code></p>
+
+<p><a href="https://github.com/freelancing-god/thinking-sphinx/issues/213" rel="nofollow">https://github.com/freelancing-god/thinking-sphinx/issues/213</a></p>
+
+<p>Also try re-writing the line to be </p>
+
+<pre><code>where sanitize_sql(["active = ? and expiration &gt; ?", true, Time.now]) 
+</code></pre>
+
+<p>Also try commenting out all the lines and gradually add them back to determine exactly where the error is occurring.</p>

@@ -1,0 +1,61 @@
+<p>Used your code in conjunction with <a href="http://ottopress.com/2010/wordpress-3-1-advanced-taxonomy-queries/" rel="nofollow">this post on advance taxonomy querying</a>, and came up with this:</p>
+
+<pre><code>&lt;?php 
+
+$myquery = array(
+    'post_status' =&gt; 'publish',
+    'posts_per_page' =&gt; -1,
+    'meta_key' =&gt; 'whatever',
+    'orderby' =&gt; 'meta_value',
+    'order' =&gt; 'DESC',
+    'post_type' =&gt; 'your_post_type',
+);
+
+$myquery['tax_query'] = array(
+    array(
+        'taxonomy' =&gt; 'your_tax',
+        'terms' =&gt; array('your_term'),
+        'field' =&gt; 'slug',
+    ),
+    array(
+        'taxonomy' =&gt; 'your_other_tax',
+        'terms' =&gt; array('your_other_term'),
+        'field' =&gt; 'slug',
+    ),
+);
+
+$queryObject = new WP_Query($myquery); 
+
+while( $queryObject-&gt;have_posts() ) : $queryObject-&gt;the_post();
+
+$posts_array[] = $post-&gt;ID;
+
+endwhile;
+
+wp_reset_query();
+
+$current = array_search($post-&gt;ID, $posts_array); // returns key
+$prevID = $posts_array[$current - 1]; // get value from key 1 before
+$nextID = $posts_array[$current + 1]; // get value from key 1 after
+
+$prevLINK = get_permalink( $prevID );
+$nextLINK = get_permalink( $nextID );
+
+$prevTITLE = get_the_title( $prevID );
+$nextTITEL = get_the_title( $nextID );
+
+?&gt;
+
+&lt;div class="post-nav"&gt;
+    &lt;?php if (!empty($prevID)) { ?&gt;
+        &lt;a href="&lt;?php echo $prevLINK; ?&gt;" title="&lt;?php echo $prevTITLE; ?&gt;" class="left"&gt;&amp;#171; PREVIOUS&lt;/a&gt;
+    &lt;?php }
+    if (!empty($nextID)) { ?&gt;
+        &lt;a href="&lt;?php echo $nextLINK; ?&gt;" title="&lt;?php echo $nextTITLE; ?&gt;" class="right"&gt;NEXT &amp;#187;&lt;/a&gt;
+    &lt;?php } ?&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Works for me and it's pretty freaking awesome... with the advanced taxonomy querying Otto explains, you can really control those next/previous links quite well. I wouldn't have been able to figure this out without your original code though, so mad props to you and Otto!</p>
+
+<p>I'm going to try and fine tune this even further by auto detecting the terms from the page... <code>get_the_term_list()</code> might work.</p>

@@ -1,0 +1,8 @@
+<p>I assume that there is not simple method to do this. So I wrote a simple templatetag which takes url name and call reverse method for it and put reverse into try..except:</p>
+
+<pre><code>try:
+    result = reverse(url)
+except:
+    result = None
+return result
+</code></pre>

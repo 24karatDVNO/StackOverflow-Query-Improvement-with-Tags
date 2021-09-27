@@ -1,0 +1,24 @@
+<p>Try this. Pass the date string which you get to the below function. It will give you the JavaScript date object.</p>
+
+<pre><code>function (val) {
+        var reISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/;
+        var reMsAjax = /^\/Date\((d|-|.*)\)[\/|\\]$/;
+
+
+            if (val)) {
+                        var a = reISO.exec(val);
+                        if (a) {
+                            val = new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]));
+                            return val;
+                        }
+                        a = reMsAjax.exec(val);
+                        if (a) {
+                            var b = a[1].split(/[-+,.]/);
+                            val = new Date(b[0] ? +b[0] : 0 - +b[1]);
+                            return val;
+                        }
+                    }
+
+       return val; 
+    }
+</code></pre>

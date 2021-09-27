@@ -1,0 +1,3 @@
+<p>It utilizes <a href="http://en.wikipedia.org/wiki/Short-circuit_evaluation" rel="nofollow">short-circuit evaluation</a>. <a href="http://www.sitepoint.com/javascript-json-serialization/" rel="nofollow"><code>JSON.stringify</code> isn't supported by all browsers</a>, and so it's replaced it with a backup function in the event that <code>JSON.stringify</code> is not defined.</p>
+
+<p>Additionally, the syntax may be a little bit confusing. It's checking for <code>JSON.stringify</code> first, and if it doesn't exist then creating <code>function(obj) { ... }</code> (that is, the part in <code>{ ... }</code> has nothing to do with the preceding <code>JSON.stringify</code>).</p>

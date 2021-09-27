@@ -1,0 +1,11 @@
+<p>The error means that you are missing a resource called "Locator", usually being the ViewModelLocator. Look at your view XAML and you should find something like this:</p>
+
+<pre><code>&lt;... DataContext="{Binding SomeViewModel, Source={StaticResource Locator}}" ...&gt;
+</code></pre>
+
+<p>This line specifies the data context for an element. The data context is bound to the <code>SomeViewModel</code> property of a the static resource named <code>Locator</code>. Usually the locator is defined in the <code>App.config</code> by a statement similar to this:</p>
+
+<pre><code>&lt;prefix:ViewModelLocatorClassName x:key="Locator"/&gt;
+</code></pre>
+
+<p>The error most likely means that this line is missing.</p>

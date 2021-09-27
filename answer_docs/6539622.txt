@@ -1,0 +1,6 @@
+<p>I have not tested the code, but it should work as is. Basically you need to capture after @twitter too.</p>
+
+<pre><code>$description = preg_replace("%([^:]+): @twitter (.+)%i", 
+    "&lt;a href=\"http://www.twitter.com/\\1\" target=\"_blank\"&gt;@\\1&lt;/a&gt;: \\2", 
+    $description);
+</code></pre>

@@ -1,0 +1,26 @@
+<p>@hakre Finally this problem is solved by hacking phpsrc/sapi/cgi/cgi_main.c.
+The reason is that php's echo and printf functions' behavior are controlled
+by different sapis, like cgi, cli, the sapi determines where the destination
+is. Modules are not able to change the destination.</p>
+
+<p>In cgi_main.c, the original work flow is:</p>
+
+<pre><code>listen();
+while (req = accept()) {
+    php_request_start();
+    php_execute_script();
+    php_request_shutdown();
+}
+</code></pre>
+
+<p>All I did is move the request start and shutdown out of the while loop,</p>
+
+<pre><code>listen();
+php_request_start();
+while (req = accept()) {
+    php_execute_script();
+}
+php_request_shutdown();
+</code></pre>
+
+<p>It works fine and the "require_onced-files" will be loaded only once.</p>

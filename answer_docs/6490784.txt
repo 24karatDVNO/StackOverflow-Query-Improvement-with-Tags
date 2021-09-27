@@ -1,0 +1,9 @@
+<p>Theoretically you have two options:</p>
+
+<ol>
+<li><p>Use <code>CodeDom</code> to construct the enum :<br>
+<a href="http://msdn.microsoft.com/en-us/library/y2k85ax6.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/y2k85ax6.aspx</a></p></li>
+<li><p>Write the enum source code to a textfile and compile it dynamicaly to an assembly.</p></li>
+</ol>
+
+<p>Nevertheless, as others say, if it changes dynamically, probably an enum is not the right choice for you.</p>

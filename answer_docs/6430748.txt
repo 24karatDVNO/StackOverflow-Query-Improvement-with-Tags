@@ -1,0 +1,13 @@
+<p>devise module Database Authenticatable. as github says its responsible for</p>
+
+<blockquote>
+  <p>Database Authenticatable: encrypts and
+  stores a password in the database to
+  validate the authenticity of a user
+  while signing in. The authentication
+  can be done both through POST requests
+  or HTTP Basic Authentication.</p>
+</blockquote>
+
+<p>Maybe you want to not include this module in you User model.
+Also im guess if you dont want to store password, than creating your own registration/authentication process is a great idea. See Ryan <a href="http://railscasts.com/episodes/21-super-simple-authentication" rel="nofollow">screencast</a> about it, should be enough, just cut the part with password.</p>

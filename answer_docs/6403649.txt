@@ -1,0 +1,13 @@
+<pre><code>&gt;&gt;&gt; lst = ['a', 'b', 'c', 'd']
+&gt;&gt;&gt; nums = list(range(0, len(lst)))
+&gt;&gt;&gt; import random
+&gt;&gt;&gt; random.shuffle(nums)
+&gt;&gt;&gt; for i in nums:
+...     print lst[i]
+c
+a
+b
+d
+</code></pre>
+
+<p>Or if the list is really large you can use a bit of generator flavoring. :-)</p>

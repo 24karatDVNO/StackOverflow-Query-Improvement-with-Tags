@@ -1,0 +1,14 @@
+<p>It may be that I am reading too closely into the wording you chose in your description, but you may want to clarify what you mean by filters. Technically the WHERE clause isn't a filter but instead <a href="http://msdn.microsoft.com/en-us/library/ms144785%28v=SQL.90%29.aspx" rel="nofollow">identifies the slicer axis</a> for the resulting data set.  If you mean FILTER, then you may want to look into the MDX function named <a href="http://msdn.microsoft.com/en-us/library/ms146037%28v=SQL.90%29.aspx" rel="nofollow">FILTER</a> which you can apply to a set expression.</p>
+
+<p>What you may try is rearranging your MDX query to define BOTH Axis - ROWS and COLUMNS.</p>
+
+<pre><code>SELECT 
+{
+    [Measures].[ParentCount],[Measures].[ChildCount]
+} ON COLUMNS,
+{
+    [SomeDimension].&amp;[Foo]
+} ON ROWS
+FROM [Cube]
+WHERE ([Time].[Month].&amp;[2011-06-01T00:00:00])
+</code></pre>

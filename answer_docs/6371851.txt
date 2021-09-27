@@ -1,0 +1,18 @@
+<p>Let suppose you have data in customer array then,</p>
+
+<pre><code>NSArray *customer;
+int product_count = 0;
+NSMutableDictionary *count_dict = [[NSMutableDictionary alloc] init];
+
+for(int i=0; i &lt; [customer count]; i++){
+
+   NSArray *account = [customer objectAtIndex:i];
+
+   product_count = [account count]-1;
+
+   [count_dict addObject:product_count forKey:[account objectAtIndex:0]];
+
+}
+</code></pre>
+
+<p>All the product count data will be saved in count_dict object with account number as its key.</p>

@@ -1,0 +1,9 @@
+<p>You could create 4 objects, position them on top of each other then use z-index to hide each object for 3/4 of it's revolution.</p>
+
+<pre><code>$(obj1).circulate({ ... , zIndexValue: [ 1, -1, -1, -1] });
+$(obj2).circulate({ ... , zIndexValue: [-1,  1, -1, -1] });
+$(obj3).circulate({ ... , zIndexValue: [-1, -1,  1, -1] });
+$(obj4).circulate({ ... , zIndexValue: [-1, -1, -1,  1] });
+</code></pre>
+
+<p>This works but I'd really like to have a different image for each 1/8 of a revolution so if you or anyone else comes up with a better solution let me know.</p>

@@ -1,0 +1,10 @@
+<p>I see you're using a <code>DataReader</code>. You can only have 1 <code>DataReader</code> open at a time per connection. <code>using</code> blocks come in handy for those:</p>
+
+<pre><code>using( var reader = myCommand.ExecuteReader() ) {
+    while (reader.Read()) {
+        // get values, do stuff
+    }
+}// reader gets closed
+</code></pre>
+
+<p>You only hint at it in the code in your question (currently), but it's possible that is part of your problem. You haven't shown how you're using the <code>DataReader</code>, so I'm not certain. Just a possibility.</p>

@@ -1,0 +1,25 @@
+<p>STrictly algorithmically...
+You could do something like this:</p>
+
+<pre><code>num = 169
+ar = []
+
+while ( num &gt;= 1 ) {
+    str = num.toString()
+    ar.add(str[str.indexOf('.')-1])
+    num = num/10.toInteger()
+}
+
+len = ar.size()
+for ( i in 1..len-1 ) {
+    for (j in 0..len-i-1) {
+        str = ""
+        for ( k in 0..i) {
+           str += ar.get(j+k)
+        }
+        ar.add(str)
+    }
+}
+</code></pre>
+
+<p>I think that should work.</p>

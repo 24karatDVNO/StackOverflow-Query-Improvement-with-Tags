@@ -1,0 +1,12 @@
+<p>For columns (D:P) Try:    </p>
+
+<pre><code>Dim i1 As Integer
+Dim Results1() As Variant
+
+For i1 = LBound(Results1) To UBound(Results1)
+    Sheets("SearchResult").Cells(Rows.Count, "D").End(xlUp)(2).Resize(, 13).Value = _
+    Range(Results1(i1)).Resize(, 13).Value
+Next i1
+</code></pre>
+
+<p>Assuming use dont need formats then its better to avoid using copy.  Copy makes use of the clipboard which is slow.</p>

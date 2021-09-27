@@ -1,0 +1,8 @@
+<p>use proper join instead of subquery </p>
+
+<pre><code>UPDATE INVENTORY i2
+SET i2.BVRTLPRICE01 = i1.BVRTLPRICE01 
+FROM INVENTORY i1,INVENTORY i2
+WHERE i1.CODE = REPLACE(LEFT(i2.CODE,1), 'S', 'C') + SUBSTRING(i2.CODE,2,LENGTH(i2.CODE)))  
+AND i2.CODE like 'S%'
+</code></pre>

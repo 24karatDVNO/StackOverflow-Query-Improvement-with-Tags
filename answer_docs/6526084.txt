@@ -1,0 +1,13 @@
+<p>I'm a bit rusty, but I think this line:</p>
+
+<pre><code>String name = input.nextLine();
+</code></pre>
+
+<p>Tries to use the variable <code>input</code>, but that's not in its scope: it cannot "reach" it, so its not an initialised variable.</p>
+
+<p>Either put this in that function:</p>
+
+<pre><code> Scanner input = new Scanner(System.in);
+</code></pre>
+
+<p>Or make <code>input</code> "global" by declaring it as a for instance <code>public</code>.</p>

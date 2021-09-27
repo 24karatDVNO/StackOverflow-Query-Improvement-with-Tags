@@ -1,0 +1,6 @@
+<p>The file input field's look and feel and behabior are different from browser to browser. It's not easy to change this. You are better off using a plugin that hides the file input field and replaces it with a custom one. Like the one here - <a href="http://plugins.jquery.com/project/jquery-prettyfile" rel="nofollow">http://plugins.jquery.com/project/jquery-prettyfile</a>.
+With jQuery you may also try the following code -</p>
+
+<p>$('input[type="file"]').focus(function(){$(this).click();$('body').focus();});</p>
+
+<p>I don't have IE6 so can't check it; but it works on IE7 and 8.</p>

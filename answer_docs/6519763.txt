@@ -1,0 +1,13 @@
+<p>You need to concatenate strings using the string cat operator: +</p>
+
+<pre><code>JOptionPane.showMessageDialog( null, firstnumber  + "+" + secondnumber + " = " + sum, "Results", JOptionPane.PLAIN_MESSAGE );
+</code></pre>
+
+<p>Btw; it's considered a good thing to declare variables where they are assigned for the first time - and not sticking to the old c- requirement (with ancient roots) that all variables must be declared before the actual code.</p>
+
+<pre><code>String firstnumberstring = JOptionPane.showInputDialog( 
+        "Write first number" );
+</code></pre>
+
+<p>It helps a little when trying to figure out where a variable is used.
+It's particulary good when a variable is used only in a specific scope; ( inside curly brackets) </p>

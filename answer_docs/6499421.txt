@@ -1,0 +1,5 @@
+<p>I would recommend using the first approach since objects are seldom used in isolation. The Person object is usually referenced <strong>by</strong> other entities such as Employee. If you create a new instance, you're invalidating the whole object graph and believe me, you don't want to mess around with deep copying.</p>
+
+<p>As for the possibility of future RPC's, whatever you'll be using to accomplish this, it will most likely be able to update the ID field after the operation commits.</p>
+
+<p>@CPerkins - Objects are passed by "reference value" to be absolutely correct ;)</p>

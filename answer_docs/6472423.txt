@@ -1,0 +1,7 @@
+<pre><code>File.WriteAllText("C:\\myText.csv",
+    "&lt;parent&gt;&lt;children&gt;" +
+    String.Join(";",
+        XDocument.Load("C:\\my.xml").Descendants("child")
+        .Select(e =&gt; e.Attribute("id") + "|" + e.Value)) + 
+    "&lt;/children&gt;&lt;/parent");
+</code></pre>

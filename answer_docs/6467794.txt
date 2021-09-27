@@ -1,0 +1,17 @@
+<p>As far as I understand, what you are going to achieve, there is no reason to split the strings, before processing</p>
+
+<pre><code>$size = strlen($string1);
+$sum = 0; 
+for ($i=0; $i&lt;$size; $i++)
+  $sum += $string1[$i] * $string2[$i];
+</code></pre>
+
+<p>or (only looking at the remainder)</p>
+
+<pre><code>$size = strlen($string1);
+$remainder = 0;
+for ($i=0; $i&lt;$size; $i++)
+  $remainder = ($remaider + $string1[$i] * $string2[$i]) % 10;
+</code></pre>
+
+<p>The last one is definitly prefered, because you can assume, that the sum will grow very large</p>

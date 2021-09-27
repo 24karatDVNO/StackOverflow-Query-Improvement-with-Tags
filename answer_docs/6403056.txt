@@ -1,0 +1,11 @@
+<p>Just put the facebook stuff in the same <code>p</code>-element as the flash object:</p>
+
+<pre><code>&lt;p align="center"&gt;&lt;u&gt;
+&lt;object ...&gt;
+...
+&lt;/object&gt;
+&lt;div id="fb-root"&gt;&lt;/div&gt;&lt;script src="..."&gt;...&lt;/fb:like&gt;
+&lt;/u&gt;&lt;/p&gt;
+</code></pre>
+
+<p>And of course delete the <code>left:500px;</code> style of <code>fb:like</code>. So everything is centered, but the like-button is left-hand-side of the flash..</p>

@@ -1,0 +1,11 @@
+<p>Use @Cybernate's solution.
+<strike></p>
+
+<pre><code>$('.weekday').click(function() {
+    var date = $(this).attr('id');
+    $('#therapydate').val(date.slice(date.lastIndexOf("_")+1, date.length));
+});
+</code></pre>
+
+<p><a href="http://jsfiddle.net/Shef/mYXfa/" rel="nofollow">Try it here</a>
+</strike></p>

@@ -1,0 +1,8 @@
+<p>Try assigning this to the anchor, not the image:</p>
+
+<pre><code>$("body.mediaPackPage p.genericLinkButton a, body.mediaPackPage .rightImageColumn a").colorbox(...);
+</code></pre>
+
+<p>By assigning this to  the image, two click events happen - first is for the image second is for the link so maybe it's "toggling" something behind the scenes.</p>
+
+<p>You can also solve this by having <code>return false</code> to cancel any further click events, but in your case better to handle only one event to begin with.</p>

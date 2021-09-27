@@ -1,0 +1,7 @@
+<p><code>Arrays.asList(T... a)</code> doesn't work as expected with primitive arrays, because generics and primitives don't get along very well.  The compiler is using <code>double[]</code> for <code>T</code>, which is why <code>Arrays.asList</code> is returning a <code>List&lt;double[]&gt;</code>.</p>
+
+<p>I think the shortest code to get what you want is:</p>
+
+<pre><code>Vector&lt;Double&gt; v = new Vector&lt;Double&gt;(arr.length);
+for (double d : arr) v.add(d);
+</code></pre>

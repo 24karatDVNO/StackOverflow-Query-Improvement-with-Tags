@@ -1,0 +1,11 @@
+<p>Like I've mentioned on this site: <a href="http://entlib.codeplex.com/discussions/261749" rel="nofollow">http://entlib.codeplex.com/discussions/261749</a></p>
+
+<p>When you create your <code>CreationExpression</code> in the <code>TraceListener</code> data class make sure you have a flat constructor definition. To put it in other words, don't return:</p>
+
+<pre><code>() =&gt; new MyTraceListener(new TraceListenerConfig(..., Container.ResolvedIfNotNull&lt;ILogFormatter&gt;(), ...));
+</code></pre>
+
+<p>just have it in the constructor of the <code>MyTraceListener</code>:</p>
+
+<pre><code>() =&gt; new MyTraceListener(..., Container.ResolvedIfNotNull&lt;ILogFormatter&gt;(), ...);
+</code></pre>

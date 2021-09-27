@@ -1,0 +1,30 @@
+<p>You could use a subquery:</p>
+
+<pre><code>SELECT * FROM (
+  SELECT `migo_artig_photos`.`photo_id`,
+         `migo_artig_photos`.`photo_name`
+  FROM   `migo_artig_photos`
+  WHERE  `migo_artig_photos`.`photo_deleted` = 0 AND
+         `migo_artig_photos`.`photo_type` = 2
+  ORDER BY photo_id DESC
+  LIMIT 12) `top_12_migo_artig_photos`
+ORDER BY RAND();
+</code></pre>
+
+<p>Alternatively, you could do this:</p>
+
+<pre><code>// To shuffle:
+while ( $row = mysql_fetch_array($artig_photos) )
+{
+  $artig_shuffled[] = $row;
+}
+
+shuffle($artig_shuffled);
+
+// To display:
+foreach ( $artig_shuffled as $row )
+{
+  echo $row['photo_id'];
+  echo $row['photo_name'];
+}
+</code></pre>

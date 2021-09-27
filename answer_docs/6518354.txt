@@ -1,0 +1,5 @@
+<p>I'd re-write your current catch block to only catch <a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlexception.aspx" rel="nofollow"><code>SQLException</code></a> - catching <em>any</em> <code>Exception</code> is rarely correct. This would also mean that you could produce prettier output (formatting each separate SQLError object), include a total error count, or react to specific errors that you know your code can handle.</p>
+
+<p>A general rule for exception handling is to only catch exceptions that your code can correctly deal with at that point (hence the general avoidance of catching <code>Exception</code>). You'd generally install a single top level "unhandled Exception" handler in your app that will log other exceptions and shut down the app. If you don't know <em>what</em> the exception is, how can you hold a belief that your code can continue to operate successfully when it has occurred?</p>
+
+<p>As Neil says, you don't need to explicitly close the connection since the <code>using</code> block guarantees this as well.</p>

@@ -1,0 +1,11 @@
+<p>I won't comment on how you seek the results, but rather on how you store the result for later lookup.</p>
+
+<p>Since you have only 46656 possible combinations and one byte can store the resulting hand strength, this problem is much easier than a poker hand problem.</p>
+
+<p>You can have a lookup table, consisting of hands as indexes and associated with results (some hands can have multiple results) of that hand. Each byte can store all hand types as a binary representation (hopefully, if not use a short).</p>
+
+<p>Each number you get (eg. 66655 - full house) is a number in base six (1-6), convert it into a base 10 number to get the index in the lookup table.</p>
+
+<p>It will require about 46656 bytes (+ CPU alignment), and can fit into CPU L2 cache. Speed would be enourmous, since the only operation you would need to do is convert number base, and the binary OR operation to extract a hand strenght.</p>
+
+<p>What you will miss is the real strength of a hand. Eg. 66655 is better than 66644. You can easily figure that out - you will need a bigger type to store result into :)</p>

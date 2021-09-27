@@ -1,0 +1,37 @@
+<p>I don't know about the internals of your <code>SComms</code> object there, but it doesn't look like you're doing anything to create more than one record.  You're just setting one object's <code>ListID</code> property over and over again.</p>
+
+<p>If <code>SComms</code> is a regular class and you want to return a collection of them, you might do something like this:</p>
+
+<pre><code>[WebMethod]  
+public static SComms comms()  
+{  
+  var result = new List&lt;SComms&gt;();   
+
+  string connect = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;  
+  string query = "select * from dbo.Comms where dateadd(dd, datediff(dd, 0, created), 0) = dateadd(dd, datediff(dd, +10, getdate()), 0) order by 2";  
+
+  using (SqlConnection conn = new SqlConnection(connect))  
+  {  
+    using (SqlCommand cmd = new SqlCommand(query, conn))  
+    {            
+      conn.Open();  
+      SqlDataReader rdr = cmd.ExecuteReader();  
+
+      // No need to test for HasRows first. If there aren't any,
+      //  the while won't execute and the method will return
+      //  an empty array which is easy to test for on the client-side.
+      while (rdr.Read())  
+      {  
+        var c = new SComms();
+
+        c.ListID = rdr["ListID"].ToString();
+        c.Title = rdr["Title"].ToString();
+
+        result.Add(c);
+      }  
+    }  
+  }
+
+  return result;  
+}  
+</code></pre>

@@ -1,0 +1,26 @@
+<p>If you <em>must</em> do it on one line, the following should work for you:</p>
+
+<pre><code>content += '&lt;a href="/%s/"&gt;%s&lt;/a&gt; %s  %s' % tuple(itertools.chain((item.slug,),
+           str(item.title).ljust(25).split(" ", 1), (item.date.ljust(10),)))
+</code></pre>
+
+<p>However the following should be a little easier to read</p>
+
+<pre><code>values = [item.slug]
+values += str(item.title).ljust(25).split(" ", 1)
+values.append(item.date.ljust(10))
+content += '&lt;a href="/%s/"&gt;%s&lt;/a&gt; %s  %s' % values
+</code></pre>
+
+<p>Notice I've added one extra space to your formatting string to make up for the one lost to the string split operation.</p>
+
+<hr>
+
+<p>EDIT: The above code fails when <code>item.title</code> is greater than 25 characters.  A revised version is below.</p>
+
+<pre><code>title, spaces = (str(item.title).ljust(25)+" ").split(" ", 1)
+content += '&lt;a href="/%s/"&gt;%s&lt;/a&gt;%s  %s' % (item.slug, title, 
+                                            spaces, item.date.ljust(10))
+</code></pre>
+
+<p>This version adds a space to the end of the justified title, so the split operation is guaranteed to return a tuple of length 2.</p>

@@ -1,0 +1,10 @@
+<p>In my experience with MS SQL 2008 cell level encryption, you need to set up a master key for your database, create a certificate for your database, and based on that certificate a symmetric key that you will use to encrypt cell level data.</p>
+
+<p>Columns for which you want to encrypt the data on have to be of one of type VARBINARY (or two others: I believe VARCHAR, and NVARCHAR, but I'm not certain). There is also a specific method of inserting/updating data in these columns, as well as reading data from these columns.</p>
+
+<p>We're currently storing a few selected columns of sensitive information encrypted in this manner in VARBINARY(256) columns, along with TDE on top of our database.</p>
+
+<p>More information and helpful tutorials can be found here:</p>
+
+<p><a href="http://www.sqlservergeeks.com/articles/sql-server-bi/19/cell-level-encryption-in-sql-server" rel="nofollow">http://www.sqlservergeeks.com/articles/sql-server-bi/19/cell-level-encryption-in-sql-server</a>
+http://blogs.technet.com/b/keithcombs/archive/2005/11/24/415079.aspx</p>

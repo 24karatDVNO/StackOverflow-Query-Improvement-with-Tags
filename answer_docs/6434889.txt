@@ -1,0 +1,13 @@
+<p>for case 1 try this</p>
+
+<pre><code>            string s = "JohnMarkMarkMark";
+            Regex x = new Regex("Mark");
+            MatchCollection m = x.Matches(s);
+            if (m!=null &amp;&amp; m.Count &gt; 0)
+            {
+                s = s.Remove(m[0].Index, m[0].Length);
+                s = s.Insert(m[0].Index,"Tom");
+            }
+</code></pre>
+
+<p>for case 2 try <code>s = s.Replace("Mark","Tom");</code></p>

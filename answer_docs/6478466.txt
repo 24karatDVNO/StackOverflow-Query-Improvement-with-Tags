@@ -1,0 +1,15 @@
+<p>Function definitions must come before you attempt to call them.</p>
+
+<p>In this case in your first part</p>
+
+<pre><code>...
+            DrawRects();
+            DrawRect();
+....
+</code></pre>
+
+<p>Will call to undefined functions</p>
+
+<p>EDIT:</p>
+
+<p>Moving your if block below all the function definitions should help</p>

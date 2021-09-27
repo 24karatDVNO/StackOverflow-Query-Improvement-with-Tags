@@ -1,0 +1,13 @@
+<pre><code>SELECT * FROM pictures
+WHERE NOT EXISTS (SELECT * FROM ipvote WHERE idPicture = picutres.id AND ip = "127.0.0.1")
+</code></pre>
+
+<p>The picutre does not come through if...<br>
+- Many people voted, including "127.0.0.1"<br>
+- Just "127.0.0.1" voted  </p>
+
+<p>The picture does come through if...<br>
+- No-one voted<br>
+- One/Many people voted, but not "127.0.0.1"  </p>
+
+<p>Additionally, the picture only appears once, regardless of how many people voted.</p>

@@ -1,0 +1,8 @@
+<p>If you want the count for each category:</p>
+
+<pre><code>SELECT bookscategories.categoryid, count(book.bookid) as count
+  FROM book
+ Inner JOIN bookscategories ON book.bookid = bookscategories.bookid
+                           AND bookscategories.categoryid in (3, 4)
+ GROUP BY bookscategories.categoryid
+</code></pre>

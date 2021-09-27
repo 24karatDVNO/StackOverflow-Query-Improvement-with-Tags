@@ -1,0 +1,5 @@
+<p>call strpbrk() for matching eol character you want. and set \0</p>
+
+<pre><code>char* ptr = strpbrk(pc, "\r\n.");
+if (ptr) *ptr = '\0';
+</code></pre>

@@ -1,0 +1,25 @@
+<p>To select one column, you do the following:</p>
+
+<pre><code>SELECT columnName FROM tableName
+</code></pre>
+
+<p>You then manipulate the data as required and save it:</p>
+
+<pre><code>$query = mysql_query("SELECT id,columnName FROM tableName"); // You need ID field for reference
+while($row = mysql_fetch_assoc($query) {
+   $field = $row["columnName"];
+   // Do Something with the Field Data
+   // ...
+   // ...
+
+   // Update the Table with new values
+   $update = "UPDATE tableName SET columnName = '".$field."' WHERE id = '".$row['id']."'");
+   mysql_query($update); // This update the field with what you set in "$field"
+}
+</code></pre>
+
+<p>// LEARN MORE:</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.0/en/select.html" rel="nofollow">SELECT Syntax</a></p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.0/en/update.html" rel="nofollow">UPDATE Syntax</a></p>

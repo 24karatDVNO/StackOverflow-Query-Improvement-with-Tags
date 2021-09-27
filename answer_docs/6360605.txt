@@ -1,0 +1,33 @@
+<pre><code>#! /usr/bin/env perl
+
+use strict;
+use warnings;
+
+# for demo only
+*ARGV = *DATA;
+
+my %record;
+my @order;
+while (&lt;&gt;) {
+  chomp;
+  my($key,$combine) = split;
+
+  push @order, $key unless exists $record{$key};
+  push @{ $record{$key} }, $combine;
+}
+
+print $_, "\t", join(";", @{ $record{$_} }), "\n" for @order;
+
+__DATA__
+a foo
+a bar
+a foo2
+b bar
+c bar2
+</code></pre>
+
+<p>Output (with tabs converted to spaces because Stack Overflow breaks the output):</p>
+
+<pre>a       foo;bar;foo2
+b       bar
+c       bar2</pre>

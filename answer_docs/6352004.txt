@@ -1,0 +1,9 @@
+<p>How about adding box view on window in appDelgate? Give a tag to your boxView and in the remove method get the boxView back by using tag. For example if you give tag 99</p>
+
+<pre><code>- (void)receivedServerResponse {
+    UIView *box = [window viewWithTag:99];
+    [box removeFromSuperview];
+}
+</code></pre>
+
+<p>also you don't need to declare an instance variable in header file. and you can access progress indicator anywhere in the application.</p>

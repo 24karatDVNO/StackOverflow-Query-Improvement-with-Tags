@@ -1,0 +1,26 @@
+<p>As suggested by preinheimer the header must be sended before each page ouput. Without using the headers you can use one row of javascript code for a simple redirect. This may be a solution for you:</p>
+
+<pre><code>&lt;?php
+
+    print "&lt;pre&gt;";
+    $loop = true;
+    $counter = 0;
+    while ($loop) {
+        $counter++;
+
+        // some code
+        print "some output of code. \n";
+
+        if ($elapsedTime &gt; 300) {
+            $loop = false;
+            print "5 minute passed and loop ended. \n";
+        }
+    }
+    print "&lt;/pre&gt;";
+
+    # The php code has ended and the javascript code is ready for redirecting... (external to php tags)
+?&gt;
+&lt;script type="text/javascript"&gt;
+    window.location="http://www.example.com/";
+&lt;/script&gt;
+</code></pre>

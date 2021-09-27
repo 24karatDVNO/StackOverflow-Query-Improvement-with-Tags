@@ -1,0 +1,86 @@
+<p>I attempted this and when I try to consume my secure service I get the following error:</p>
+
+<pre><code> The HTML document does not contain Web service discovery information. Metadata contains a reference that cannot be resolved: 'https://localhost:44304/ExternalOrderProcessing.svc'. There was no endpoint listening at https://localhost:44304/ExternalOrderProcessing.svc that could accept the message. This is often caused by an incorrect address or SOAP action. See InnerException, if present, for more details. The remote server returned an error: (404) Not Found.If the service is defined in the current solution, try building the solution and adding the service reference again.
+</code></pre>
+
+<p>When I try to consume my unsecure service I get the following error:</p>
+
+<pre><code> The HTML document does not contain Web service discovery information. Metadata contains a reference that cannot be resolved: 'http://localhost:5000/LegacyOrderProcessing.svc'. Content Type application/soap+xml; charset=utf-8 was not supported by service http://localhost:5000/LegacyOrderProcessing.svc.  The client and service bindings may be mismatched. The remote server returned an error: (415) Cannot process the message because the content type 'application/soap+xml; charset=utf-8' was not the expected type 'text/xml; charset=utf-8'.. If the service is defined in the current solution, try building the solution and adding the service reference again.
+</code></pre>
+
+<p>I am running this in IIS Express.  I have setup the project to allow SSL.  My config is as follows:</p>
+
+<p></p>
+
+<pre><code>&lt;services&gt;
+  &lt;service name="ExternalOrderProcessing" behaviorConfiguration="SecureBehavior"&gt;
+    &lt;endpoint address="" binding="basicHttpBinding" bindingConfiguration="BasicHttpBindingSecure" contract="IExternalOrderProcessing" /&gt;
+    &lt;endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/&gt;
+  &lt;/service&gt;
+  &lt;service name="LegacyOrderProcessing" behaviorConfiguration="UnsecureBehavior"&gt;
+    &lt;endpoint address="" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding" contract="ILegacyOrderProcessing" /&gt;
+    &lt;endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/&gt;
+  &lt;/service&gt;
+&lt;/services&gt;
+
+&lt;behaviors&gt;
+  &lt;serviceBehaviors&gt;
+    &lt;behavior name="SecureBehavior"&gt;
+      &lt;serviceMetadata httpsGetEnabled="true" httpsGetUrl=""/&gt;
+      &lt;!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information --&gt;
+      &lt;serviceDebug includeExceptionDetailInFaults="true"/&gt;
+      &lt;serviceCredentials&gt;
+        &lt;serviceCertificate findValue="localhost" storeLocation="LocalMachine" storeName="My" x509FindType="FindBySubjectName" /&gt;
+        &lt;clientCertificate&gt;
+          &lt;authentication certificateValidationMode="None" /&gt;
+        &lt;/clientCertificate&gt;
+      &lt;/serviceCredentials&gt;
+    &lt;/behavior&gt;
+    &lt;behavior name="UnsecureBehavior"&gt;
+      &lt;serviceMetadata httpGetEnabled="true" httpGetUrl=""/&gt;
+      &lt;!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information --&gt;
+      &lt;serviceDebug includeExceptionDetailInFaults="true"/&gt;
+    &lt;/behavior&gt;
+  &lt;/serviceBehaviors&gt;
+&lt;/behaviors&gt;
+
+&lt;bindings&gt;
+
+  &lt;basicHttpBinding&gt;
+    &lt;!-- Used by external order processing service --&gt;
+    &lt;binding name="BasicHttpBindingSecure"
+            hostNameComparisonMode="StrongWildcard"
+            maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647"
+            receiveTimeout="00:05:00"
+            sendTimeout="00:05:00"
+            openTimeout="00:05:00"
+            closeTimeout="00:05:00"&gt;
+      &lt;readerQuotas maxArrayLength="2147483647"/&gt;
+      &lt;security mode="TransportWithMessageCredential"&gt;
+        &lt;transport clientCredentialType="Certificate" proxyCredentialType="None" realm="" /&gt;
+        &lt;message clientCredentialType="Certificate" algorithmSuite="Default"  /&gt;
+      &lt;/security&gt;
+    &lt;/binding&gt;
+    &lt;!-- Used to create binding to internal order processing service --&gt;
+    &lt;binding name="BasicHttpBinding"
+            hostNameComparisonMode="StrongWildcard"
+            maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647"
+            receiveTimeout="00:05:00"
+            sendTimeout="00:05:00"
+            openTimeout="00:05:00"
+            closeTimeout="00:05:00"&gt;
+      &lt;readerQuotas maxArrayLength="2147483647"/&gt;
+      &lt;security mode="None" /&gt;
+    &lt;/binding&gt;
+  &lt;/basicHttpBinding&gt;
+
+&lt;/bindings&gt;
+
+&lt;serviceHostingEnvironment multipleSiteBindingsEnabled="true" /&gt;
+</code></pre>
+
+<p></p>
+
+<p>If I put the services into two separate projects, it works.  When I do that, I omit the services section in the config and remove the name="BasicHttpBindingSecure" and name="SecureBehavior".</p>

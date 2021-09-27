@@ -1,0 +1,55 @@
+<p>Consider this sample code (doesn't have the loop for simplicity):</p>
+
+<pre><code>    import java.lang.reflect.InvocationHandler;
+    import java.lang.reflect.Method;
+    import java.lang.reflect.Proxy;
+
+    public class Main {
+
+      interface Interface {
+        public void run();
+      }
+
+      static class Hello /* does't implement Interface */{
+
+        public void run() {
+          System.out.println("Hello, world!!");
+        }
+      }
+
+      static &lt;T&gt; T dirtyCast(Class&lt;T&gt; intrface, final Object target) {
+
+        return intrface.cast(Proxy.newProxyInstance(
+          intrface.getClassLoader(),
+          new Class&lt;?&gt;[] { intrface }, new InvocationHandler() {
+
+          @Override
+          public Object invoke(Object proxy, Method method,
+            Object[] args) throws Throwable {
+
+              Method targetMethod = target.getClass().getMethod(
+                method.getName(), method.getParameterTypes());
+
+              return targetMethod.invoke(target, args);
+          }
+
+        }));
+      }
+
+      public static void main(String[] args) {
+
+        Interface proxy = dirtyCast(Interface.class, new Hello());
+
+        proxy.run();
+
+      }
+    }
+</code></pre>
+
+<p>Please don't consider this solution as feasible if you want to pass arguments or return values or throw exceptions. The problem is that the shared objects (as arguments and return values and exceptions) need to live in the same (common) classloader. This also means that usual java lang types and exceptions will be okay.</p>
+
+<p>Also you have to bear in mind security considerations. Classloaders may have different (incompatible) security constraints.</p>
+
+<p>If you run quickly into trouble, I would try a project designed for this like <a href="http://code.google.com/p/transloader/" rel="nofollow">transloader</a>.</p>
+
+<p>Have fun.</p>

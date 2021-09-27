@@ -1,0 +1,11 @@
+<p>I would just increment a counter and then check to see if it's divisible by 5.</p>
+
+<pre><code>$acounter = 0;
+foreach( $ds as $d){
+  $acounter++;
+  if ( $acounter % 5 == 0 ) echo '&lt;div class="marker"&gt;&lt;/div&gt;';
+
+  echo '&lt;div class="bkback" onclick="bkdates(this);"&gt;'.date('M', strtotime("today + $d day")).'&lt;br /&gt;&lt;span class="bknum"&gt;'.date('d', strtotime("today + $d day")).'&lt;/span&gt;&lt;br /&gt;'.date('D', strtotime("today + $d day")).'&lt;/div&gt;';
+
+ }
+</code></pre>

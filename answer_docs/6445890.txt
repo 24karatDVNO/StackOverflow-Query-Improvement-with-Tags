@@ -1,0 +1,6 @@
+<p>Check out DATEDIFF:</p>
+
+<pre><code>UPDATE table_name
+SET Approved='Yes'
+WHERE DATEDIFF(dd, Joining_Date, GETDATE()) &gt; Period
+</code></pre>

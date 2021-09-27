@@ -1,0 +1,33 @@
+<p>try this:</p>
+
+<pre><code>$("#nav").hover(function() {
+    if (!$("#header-wrapper").is(':animated')) {
+        $("#header-wrapper").animate({
+            height: 140
+        },
+        500);
+        $("#dropdown").animate({
+            height: 100
+        },
+        500);
+    } else {
+        $("#header-wrapper").stop(true, false).css('height', $("#header-wrapper").height());
+        $("#dropdown").stop(true, false).css('height', $('#dropdown').height());
+    }
+},
+function() {
+    if (!$("#header-wrapper").is(':animated')) {
+        $("#header-wrapper").animate({
+            height: 40
+        },
+        500);
+        $("#dropdown").animate({
+            height: 0
+        },
+        500);
+    } else {
+        $("#header-wrapper").stop(true, false).css('height', $("#header-wrapper").height());
+        $("#dropdown").stop(true, false).css('height', $("#dropdown").height());
+    }
+});
+</code></pre>

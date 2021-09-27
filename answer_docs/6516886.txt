@@ -1,0 +1,4 @@
+<p>If your id - auto_increment field you need to use ALTER TABLE to change it's value...</p>
+
+<p>But if it's impossible you can try not to delete rows but to set there value to NULL or "" or 0 and then just to update there value
+not INSERT but UPDATE ... WHERE id = 5</p>

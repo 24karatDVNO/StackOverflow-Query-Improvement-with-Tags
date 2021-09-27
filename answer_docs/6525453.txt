@@ -1,0 +1,40 @@
+<p>This can be done quite generically using a variable that enumerates the names of the fields to be copied:</p>
+
+<pre><code>&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:output method="xml" encoding="utf-8" indent="no" /&gt;
+    &lt;xsl:variable name="fields" select="'|audio_format|camera|'" /&gt;
+    &lt;xsl:template match="@*|node()"&gt;
+        &lt;xsl:copy&gt;
+            &lt;xsl:apply-templates select="@*|node()" /&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match="MasterClip"&gt;
+        &lt;xsl:copy&gt;
+            &lt;xsl:apply-templates select=
+                "*[contains($fields, concat('|', @name, '|'))]" /&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+
+<p>Given this input:</p>
+
+<pre><code>&lt;MasterClip&gt;
+    &lt;Field name="audio_format" value="" /&gt;
+    &lt;Field name="camera" value="" /&gt;
+    &lt;Field name="some_other_name" value="" /&gt;
+&lt;/MasterClip&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>&lt;MasterClip&gt;
+    &lt;Field name="audio_format" value="" /&gt;
+    &lt;Field name="camera" value="" /&gt;
+&lt;/MasterClip&gt;
+</code></pre>
+
+<p><strong>Note:</strong> This example uses the identity transform to copy the <code>Field</code> elements. If you don't want a direct copy, then simply create a separate template for handling those elements.   </p>
+
+<p><strong>Note also:</strong> This is XSLT 1.0 compatible.             </p>

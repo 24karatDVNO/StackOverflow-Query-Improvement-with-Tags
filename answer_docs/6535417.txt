@@ -1,0 +1,3 @@
+<p>The problem has been fixed by manually updating the transaction. It seems that the QuerySet did not update since the start of the transaction. When two QuerySets would somehow start at the same time, and one job would occur in both QuerySets, it would break up the runners.</p>
+
+<p>After reading <a href="https://stackoverflow.com/questions/1886909/how-to-disable-django-query-cache/4739960#4739960">this answer</a>, I came up with a solution: just before the <code>return True</code>, the transaction is committed.</p>

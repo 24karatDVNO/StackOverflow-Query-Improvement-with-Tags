@@ -1,0 +1,55 @@
+<p>here is the code:</p>
+
+<pre><code>Imports System.Data
+Imports System.Data.OleDb
+Public Class Form5
+    Inherits System.Windows.Forms.Form
+    Dim mypath = Application.StartupPath &amp; "\login.mdb"
+    Dim mypassword = ""
+    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" &amp; mypath &amp; ";Jet OLEDB:Database Password=" &amp; mypassword)
+    Dim cmd As OleDbCommand
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Me.Hide()
+        Dim sql = "SELECT UserID ,PassID FROM MYTAB WHERE USERID='" &amp; TextBox1.Text &amp; "' AND PASSID='" &amp; TextBox2.Text &amp; "'"
+
+        cmd = New OleDbCommand(sql, conn)
+        conn.Open()
+        Dim dr As OleDbDataReader = cmd.ExecuteReader
+
+        Try
+            If dr.Read = False Then
+                MessageBox.Show("Authentication failed...")
+                Me.Show()
+            Else
+                MessageBox.Show("Login successfully...")
+                Dim frmDialogue As New Form11
+
+                frmDialogue.ShowDialog()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        conn.Close()
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Close()
+    End Sub
+
+
+    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Me.Hide()
+        Dim frmDialogue As New Form1
+
+        frmDialogue.ShowDialog()
+    End Sub
+
+
+    Private Sub Form5_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
+        Dim frm As New Form1
+        frm.Show()
+    End Sub
+End Class
+</code></pre>

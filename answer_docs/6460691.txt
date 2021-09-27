@@ -1,0 +1,12 @@
+<p>Using <code>insertObject:... atIndex:1</code> you are inserting month 1 at index 1 (no elements so it goes to index 0), then month 2 (which is actually at index 1) then you keep inserting before 2. After 5 elements your array will look like this 1,5,4,3,2. What you should do is just access the array by subtracting 1 from the index, but if you want to access starting at index 1 add an NSNull first.</p>
+
+<pre><code>[latestArrayForMonth addObject:[NSNull null]];
+
+for (i = 0; i &lt; 30; i++){
+
+    [latestArrayForMonth addObject:[numberOfdaysInAMonth objectAtIndex:i]];
+
+    NSLog (@"Element_latestArrayForMonth %d = %@", i + 1, [latestArrayForMonth objectAtIndex: i + 1]);  
+
+}
+</code></pre>

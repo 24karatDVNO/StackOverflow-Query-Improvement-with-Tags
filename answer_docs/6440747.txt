@@ -1,0 +1,17 @@
+<p>What you need is probably a custom <a href="http://msdn.microsoft.com/en-us/library/system.xml.xmlurlresolver.aspx" rel="nofollow">XmlUrlResolver</a> implementation</p>
+
+<pre><code>/// &lt;summary&gt;
+/// Enables loading of xslt stylesheets from embedded resources.
+/// &lt;/summary&gt;
+public class EmbeddedResourceResolver : XmlUrlResolver
+{
+    public override object GetEntity(
+        Uri absoluteUri,
+        string role,
+        Type ofObjectToReturn)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        return assembly.GetManifestResourceStream(absoluteUri.Segments.Last());
+    }
+}
+</code></pre>

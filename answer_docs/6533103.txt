@@ -1,0 +1,9 @@
+<p>An inline element, when it doesn't break on to multiple lines, respects left/right padding - so you see the padding-left and padding-right inside the left and right edges of the element respectively.</p>
+
+<p>When the inline element does break on to multiple lines, the padding is somewhat respected, in that again both left and right inside edges of the element have padding. The part where it isn't respected is exactly the part where the element breaks, the break-point doesn't have any padding because it simply spreads itself onto the next line.</p>
+
+<p>A block element on the other hand, does respect padding properly because it adds the padding and the contents of the element break <em>inside</em> that padding.</p>
+
+<p>Here's a quick image to help explain what I've explained:</p>
+
+<p><img src="https://i.stack.imgur.com/NdSjM.png" alt="enter image description here"></p>

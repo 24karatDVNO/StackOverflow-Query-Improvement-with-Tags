@@ -1,0 +1,15 @@
+<p>I found the "error". The solution was substitute the line:</p>
+
+<pre><code>command = str(raw_input('&gt;&gt;&gt;'))
+</code></pre>
+
+<p>by</p>
+
+<pre><code>print '&gt;&gt;&gt; ',
+command = sys.stdin.readline().replace('\n','')
+</code></pre>
+
+<p>I am not sure but maybe the reason of this can be in this explanation:<br>
+<a href="http://pydev.org/faq.html#why_raw_input_input_does_not_work_correctly" rel="nofollow">http://pydev.org/faq.html#why_raw_input_input_does_not_work_correctly</a></p>
+
+<p>If someone has another explanation I will grateful if comment it.</p>

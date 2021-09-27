@@ -1,0 +1,31 @@
+<p>Add <code>overflow: hidden</code> to the list items, see <strong><a href="http://jsfiddle.net/NGLN/JQAWC/1/" rel="nofollow">this demo fiddle</a></strong>.</p>
+
+<p>HTML:</p>
+
+<pre><code>&lt;ol&gt;
+    &lt;li&gt;      
+        &lt;img src="foo.jpg" /&gt;This is a ver long title, right
+    &lt;/li&gt;
+    &lt;li&gt;        
+        &lt;img src="bar.jpg" /&gt;Super long title is so long that it can't fit
+    &lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+<p>CSS:</p>
+
+<pre><code>li img {
+    width: 4em;
+    height: 4em;
+    vertical-align: middle;
+}
+li {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+}
+</code></pre>
+
+<p>Or, with the <a href="http://jsfiddle.net/NGLN/JQAWC/" rel="nofollow">images within paragraph's</a>. <br />
+Or, with the <a href="http://jsfiddle.net/NGLN/JQAWC/2/" rel="nofollow">images outside paragraph's</a>.</p>

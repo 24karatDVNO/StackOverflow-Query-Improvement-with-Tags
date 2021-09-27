@@ -1,0 +1,1 @@
+<p>The WCF service that is exposed is only to get messages onto the bus.  Once the messages is on the bus it will be dispatched to the appropriate message handler.  You can then Publish from your handler.  NSB will expose methods for each message handler that inherits the WcfService&lt;T,K&gt; class.  Just keep using that class to expose more methods.</p>

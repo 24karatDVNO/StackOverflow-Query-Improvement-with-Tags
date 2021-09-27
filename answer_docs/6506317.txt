@@ -1,0 +1,8 @@
+<p>Because you don;t have <code>position:absolute</code> on the iframe, you have it on the div before it;</p>
+
+<p>try this:</p>
+
+<pre><code>&lt;div style="position:absolute;top:30px;left:50px;height:100px;z-index:9999;background:red;">This is not visible 
+         &lt;iframe src="http://www.irs.gov/pub/irs-pdf/fw4.pdf" height="50%" width="100%">&lt;/iframe>
+&lt;/div>
+</code></pre>

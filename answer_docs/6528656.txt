@@ -1,0 +1,12 @@
+<p>I'm actually guessing here, but let's pretend for a while I did not say that aloud.</p>
+
+<p>Check out the function writeCommand() in lib/Predis/Network/StreamConnection.php on line 176 and use it through SimpleDebuggableConnection in examples/SimpleDebuggableConnection.php. You still have to define new commands that are not already defined in lib/predis/commands, as mentioned in the wiki that @Colum referred to.</p>
+
+<p>If you're really feeling adventurous, change the protected method writeBytes() in StreamConnection on line 96 to public. That should enable you to feed it pure redis with </p>
+
+<pre><code>$redis-&gt;getConnection()-&gt;writeBytes("*3\r\n$3\r\nSET\r\n$5\r\nmykey\r\n$7\r\nmyvalue\r\n")
+</code></pre>
+
+<p>Unfortunately, publicizing the writeBytes() seems to go in to the direction of <a href="http://en.wikipedia.org/wiki/Object_orgy" rel="nofollow">http://en.wikipedia.org/wiki/Object_orgy</a> anti-pattern.</p>
+
+<p>Good luck!</p>

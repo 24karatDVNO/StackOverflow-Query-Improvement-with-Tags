@@ -1,0 +1,14 @@
+<pre><code>$var = "World"
+echo "Hello $var" // Output "Hello World"
+echo 'Hello $var' // Output "Hello $var"
+</code></pre>
+
+<p>Double quotes replace variable content.</p>
+
+<p>If you have an array you have to do something more:</p>
+
+<pre><code>$var = array("World")
+echo "Hello {$var[0]}" // Output "Hello World"
+</code></pre>
+
+<p>Note the angle brackets {} betwenn $var[0]</p>

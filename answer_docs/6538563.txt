@@ -1,0 +1,37 @@
+<p>A suggestion I have is to pre-calculate the change size and store them in an attribute on the file revision.  You can use the undocumented <code>p4 attribute</code> command.</p>
+
+<pre><code>PS&gt; p4 help undoc
+
+    attribute -- Set per-revision attributes on revisions (unsupported)
+
+    p4 attribute [ -e -f -p ] -n name [ -v value ] files...
+
+        Sets a user-managed attribute 'name' to 'value' on opened files.
+        If -v isn't given the attribute is cleared (if set).
+
+        Attributes can only be viewed with 'p4 fstat'.
+
+        The -e flag indicates the 'value' is in hex.
+
+        The -f flag sets the attribute on submitted files.
+
+        The -p flag creates an attribute whose value will be propagated
+        when the file is opened with 'p4 add', 'p4 edit', or 'p4 delete'.
+
+PS&gt; p4 help undoc
+
+    Unsupported or obsolete Perforce commands and options:
+...
+
+    p4 fstat [ -Oacedhiz ] [ -A pattern ]
+        The -Oa flag shows attributes set by 'p4 attribute'.  The -Oae flag
+        shows the attribute values encoded as hex.  The -Od flag outputs the
+        digest of the attribute.  The -Oc flag outputs the path, revision and
+        type of the server archive file (requires 'admin' privilege). The
+        -Oz flag outputs the path and revision of any lazy copies (requires
+        'admin' privilege).  The -Oh flag outputs the size, digest and any
+        selected attributes of the synced revision rather than the head
+        revision. The -Oi flag outputs extra (debugging) information about
+        the attributes.  The -A pattern flag restricts attributes to those
+        matching 'pattern'.
+</code></pre>

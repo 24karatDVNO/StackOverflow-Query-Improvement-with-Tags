@@ -1,0 +1,9 @@
+<p>It looks like it could be an <a href="http://en.wikipedia.org/wiki/MD5" rel="nofollow">md5 hash</a>.</p>
+
+<p>Basically a hash is a one-way function. The idea is that you take some input data and run it through the algorithm to create a value (such as the string above) that has a low probability of collisions (IE, two input values hashing to the same string).</p>
+
+<p>You cannot decrypt a hash because there is not enough information in the resultant string to go back. However, it may be possible for someone to figure out your input values if you use a 'weak' hashing algorithm and do not do proper techniques such as salting a hash, etc.</p>
+
+<p>I don't know how FaceBook uses hashes, but a common use for a hash might be to uniquely identify a page. For example, if you had a private image on a page, you might ask to generate a link to the image that you can email to friends. That link might use a hash as part of the URL since the value can be computed quickly, is reasonably unique, and has a low probability of a third party figuring it out.</p>
+
+<p>This is actually a large topic that I am by no means doing justice to. I suggest googling around for hash, md5, etc to learn more, if you are so inclinded.</p>

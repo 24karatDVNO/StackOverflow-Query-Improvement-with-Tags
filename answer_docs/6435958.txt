@@ -1,0 +1,1 @@
+<p>I must admit I haven't worked with DNN so far, but if you just want to avoid it you might want to just save the chosen culture (i.e. the IETF-Tag) in a Session-Variable and create a Class inheriting <code>Page</code> which all your pages implement that overrides <code>InitializeCulture</code> and sets the <code>CurrentCulture</code> and <code>CurrentUICulture</code>.</p>

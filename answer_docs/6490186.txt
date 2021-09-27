@@ -1,0 +1,22 @@
+<p>instead of </p>
+
+<pre><code>&lt;?php if (is_user_logged_in() &amp;&amp; $cat == '1') { ?&gt;
+</code></pre>
+
+<p>try</p>
+
+<pre><code>&lt;?php if (is_user_logged_in() &amp;&amp; is_category('1')) { ?&gt;
+</code></pre>
+
+<p>the whole piece of code should</p>
+
+<pre><code>&lt;?php if ( is_user_logged_in() &amp;&amp; is_category('1','158','161')){
+         the_content(); 
+      } else { 
+         the_excerpt(); 
+ ?&gt;
+         &lt;div class="restrict"&gt;
+         Please Login/Register to read this article!
+         &lt;/div&gt;
+ &lt;?php } ?&gt;
+</code></pre>

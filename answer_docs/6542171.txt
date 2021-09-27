@@ -1,0 +1,28 @@
+<p>In awk, I don't think there is a simpler way to iterate over the fields in a line.</p>
+
+<pre><code>awk '
+  {
+    delete a
+    for (i=1; i&lt;=NF; i++)
+      a[$i]++
+    printf("%d -- ", NR)
+    for (val in a)
+      printf("%s:%d, ", val, a[val])
+    print ""
+  }
+'
+</code></pre>
+
+<p>Given your input, this outputs</p>
+
+<pre><code>1 -- A:5, G:1, 
+2 -- A:6, 
+3 -- A:2, G:4, 
+4 -- A:1, G:5, 
+5 -- A:5, G:1, 
+6 -- C:4, T:2, 
+7 -- A:5, G:1, 
+8 -- C:6, 
+9 -- G:5, T:1, 
+10 -- T:6, 
+</code></pre>

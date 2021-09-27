@@ -1,0 +1,9 @@
+<p>If you monitoring with monit be careful have one pid file per worker</p>
+
+<pre><code>#!/bin/sh
+cd &lt;path of app&gt;/current/
+for i in 3; 
+do
+    VVERBOSE=1 PIDFILE=&lt;path of app&gt;/shared/pids/resque_$i.pid RAILS_ENV=production QUEUE=name_of_queue bundle exec rake environment resque:work &gt; &lt;path of app&gt;/shared/log/resque_$i.log
+done
+</code></pre>

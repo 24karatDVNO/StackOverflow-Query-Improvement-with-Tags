@@ -1,0 +1,5 @@
+<p>Well I guess you're having a problem with fetching records from database.. I have worked in php paging alot and trust me php works better with mySQL queries than LINQ.. You can check out a blog post on LINQ Paging <a href="http://wahabkotwal.blogspot.com/2011/06/aspnet-ajax-simple-paging-system-using.html" rel="nofollow">here</a> . Its using ASP.net but im pretty sure you can get atleast and idea to do your work.. Whenever I go for paging with LINQ i usually use this query</p>
+
+<p><code>(from ac in dc.students where StudentIDs.Contains(ac.Ids) select ac).Skip((PageNumber - 1) * NumberOfRecordsInPage).Take(NumberOfRecordsInPage)</code></p>
+
+<p>Hope it helps :)</p>

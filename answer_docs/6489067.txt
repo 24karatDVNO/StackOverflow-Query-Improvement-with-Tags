@@ -1,0 +1,5 @@
+<p>Replace <code>echo ${pkg} | grep -qE "bz2$"</code> by <code>echo ${pkg} | grep -q -E "bz2$"</code>
+and it will work like a charm! 
+[EDIT]
+Oops.. also change the if () condition to 
+<code>if [ $? -ne 1 ] ; then</code></p>

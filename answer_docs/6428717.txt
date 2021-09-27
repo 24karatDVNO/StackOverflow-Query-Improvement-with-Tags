@@ -1,0 +1,13 @@
+<p><a href="http://api.jquery.com/get/" rel="nofollow">http://api.jquery.com/get/</a> says:</p>
+
+<blockquote>
+  <p>Retrieve the DOM elements matched by the jQuery object.<br>
+  .get( [index] )<br>
+   index A zero-based integer indicating which element to retrieve.</p>
+</blockquote>
+
+<p>Note that you'll get the DOM object, not a jQuery one:</p>
+
+<pre><code>var rows = $('tr', tbl);
+$(rows.get(0)).addClass('my_class');
+</code></pre>

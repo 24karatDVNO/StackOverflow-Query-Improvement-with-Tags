@@ -1,0 +1,11 @@
+<p>Finally after googling and trial and error method, got working</p>
+
+<p>This is the command we need to execute</p>
+
+<pre><code>Set-ClusterOwnerNode -Group &lt;CLUSTERGROUPNAME&gt; -Owners &lt;OWNER1&gt;,&lt;OWNER2&gt;
+</code></pre>
+
+<p>Don't forget to import Failover cluster module before executing the above command</p>
+
+<pre><code>Import-Module FailoverClusters
+</code></pre>

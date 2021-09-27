@@ -1,0 +1,17 @@
+<p>mads.ohm is correct about combining the two queries into a single query.</p>
+
+<p>As for your problem with only getting one return value, your while loop is just overwriting the contents of $data2 each time through.</p>
+
+<p>You could write something like this instead:</p>
+
+<pre><code>$i = 0;
+$data2 = array();
+while ($row = mysql_fetch_array($results2)) {
+
+    $data2[$i] = $row;
+    $i++;
+
+}
+</code></pre>
+
+<p>In this case, $data2 is declared as an array, and each iteration of the while loop adds a row from the database to the array.</p>

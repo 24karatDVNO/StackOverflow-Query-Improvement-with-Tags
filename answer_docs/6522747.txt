@@ -1,0 +1,17 @@
+<p>A minor shuffle to trigger the <code>hide()</code> on the last callback for the <code>each()</code> you've got going should do the trick.</p>
+
+<pre><code>elsCheck = $(".treeclick", "#treegrid");
+
+$("#expandAll").click(function(e){
+
+    $('#collapseExpandProgress').show();
+
+    elsCheck.each(function(i){
+        if ($(this).hasClass("tree-plus")) {
+            $(this).trigger("click");
+        }
+        if (i==(elsCheck.length-1)){ $('#collapseExpandProgress').hide(); }
+    });
+
+});
+</code></pre>

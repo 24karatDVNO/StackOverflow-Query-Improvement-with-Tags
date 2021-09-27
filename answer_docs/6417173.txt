@@ -1,0 +1,7 @@
+<p>Threads share memory (except the stack and possibly thread-local storage). So, you need to do something to avoid two threads stomping into each other.</p>
+
+<p>Mutexes are a way to prevent threads from interfering into each other. A mutex is a MUTual EXClusion primitive, only one thread can hold a given mutex at a time.</p>
+
+<p>So, if you want to protect some data structure from simultaneous access from several threads, you associate a mutex with that thread, and wrap every access to that data structure into mutex lock and unlock calls. This way, you ensure that only one thread can access the data structure at a time.</p>
+
+<p>If a thread holds a mutex, and a second thread tries to lock the mutex, the second thread will block (sleep) until the first thread unlocks the mutex.</p>

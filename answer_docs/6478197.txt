@@ -1,0 +1,11 @@
+<p>anyways i made it work using </p>
+
+<pre><code>RewriteCond %{REQUEST_URI} ^(.*\.com/?.*|.*\.net/?.*)
+RewriteRule ^(.*)$ sites/$1/ [L]
+</code></pre>
+
+<p>Notice the slash in the end of the second line after <code>$1</code>.</p>
+
+<p>i am pretty sure it wont work for any other server setup, so if you have a better solution,post it and i will accept it</p>
+
+<p>@LazyOne thanks for your help</p>

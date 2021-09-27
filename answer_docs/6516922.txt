@@ -1,0 +1,7 @@
+<p>All shapes can probably implement an <code>IShape</code> interface. <code>IShape</code> would require an <code>Area()</code> method, and a <code>IsIntersectingWith(IShape otherShape)</code> method. This simplistic view though raises some other questions about how you will implement dynamic dispatch (triangle/triangle intersection requires a different algorithm from triangle/segment).</p>
+
+<p>This of course is assuming you actually need this functionality. Assuming a graphics oriented shape library, you can define transformations like <code>Rotate</code>, <code>Translate</code>, <code>Scale</code>. You could also enforce the use of <code>Union</code>, <code>Intersect</code> or whatever other set operation (but those two can express everything you might need).</p>
+
+<p>You can also base things towards computational geometry and provide method functions that convert any <code>IShape</code> into a <code>Polygon</code>.</p>
+
+<p>My point is, the functionality that can be enforced through an <code>IShape</code> should follow the expected use. If you don't have any expected use (since its educational to start with) you should make the use as part of the exercise itself, or as a discovery field (how about this use, or that use, can we express all this functionality in one interface or should we split it into many)</p>

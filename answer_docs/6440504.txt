@@ -1,0 +1,43 @@
+<p>Thank you for your answers. Unfortunately because I'm so new to the field (with very limited time on my hands), I am now even more confused than I was before. From what I understood webforms are not meant to be used with IoC and although work-arounds exist, they are fairly complicated. 
+I think I will abandon Windsor until I migrate the project to MVC, for now I have utilized a simple static <code>SessionManager</code> class.</p>
+
+<p>SessionManager is then responsible for instantiating <code>SessionFactoriesContainer</code> during App_Init, defined as:</p>
+
+<pre><code>public static readonly Dictionary&lt;string, ISessionFactory&gt; SessionFactoriesContainer = new Dictionary&lt;string, ISessionFactory&gt;();
+</code></pre>
+
+<p>and <code>SessionsContainer</code> defined as:</p>
+
+<pre><code>public static Dictionary&lt;string, ISession&gt; SessionsContainer
+    {
+        get
+        {
+            Dictionary&lt;string, ISession&gt; sessionContainer = (Dictionary&lt;string, ISession&gt;)HttpContext.Current.Items[SESSION_CONTAINER_KEY] ?? new Dictionary&lt;string, ISession&gt;();
+            foreach (FactoryType type in Enum.GetValues(typeof(FactoryType)))
+            {
+                if (!sessionContainer.ContainsKey(type.ToString()))
+                    sessionContainer.Add(type.ToString(), null);
+            }
+            HttpContext.Current.Items[SESSION_CONTAINER_KEY] = sessionContainer;
+            return sessionContainer;
+        }
+    }
+</code></pre>
+
+<p>Although <code>SessionsContainer</code> is static, since it's stored in HttpContext my understanding is that each user will have their own container, am I wrong in assuming this?</p>
+
+<p>SessionManager also has a class <code>GetSessionFor</code> defined as:</p>
+
+<pre><code>public static ISession GetSessionFor(FactoryType type)
+    {
+        ISession session = SessionsContainer[type.ToString()] ?? SessionFactoriesContainer[type.ToString()].OpenSession();
+        session.BeginTransaction();
+        SessionsContainer[type.ToString()] = session;
+
+        return session;
+    }
+</code></pre>
+
+<p>This method gets called whenever a new repository is required and ISession is then passed to the constructor. At the end of the request every open session will get either committed or transaction will be rolled back in case of errors.</p>
+
+<p>I realize this is a very crude implementation, but I think it should work. If I have time at the end of the project I aim to revisit session management and hopefully implement installers. In the meantime, if any anyone has any more ideas, please feel free to add them.</p>

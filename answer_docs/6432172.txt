@@ -1,0 +1,60 @@
+<p>you are doing it pretty hard way.. i did it like this...</p>
+
+<p>public void onCreate(Bundle savedInstanceState) 
+    {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.tablayout);</p>
+
+<pre><code>    res = getResources();
+    tabHost=(TabHost)this.findViewById(android.R.id.tabhost);
+
+    tabHost.getTabWidget().setDividerDrawable(R.drawable.vertical_seperator);
+
+    setupTab(new TextView(this), "Login",new Intent().setClass(this,loginForm.class));
+    setupTab(new TextView(this), "Can't Login",new Intent().setClass(this,ForgotPwd.class));
+    setupTab(new TextView(this), "Register",new Intent().setClass(this,RegisterUser.class));
+}
+
+private void setupTab(final View view, final String tag,final Intent myIntent) 
+{
+
+        View tabview = createTabView(tabHost.getContext(), tag);
+
+
+      TabSpec setContent = tabHost.newTabSpec(tag).setIndicator(tabview).setContent(
+       new TabContentFactory() 
+        {
+            public View createTabContent(String tag) 
+            {return view;}
+        }).setContent(myIntent);
+
+      tabHost.addTab(setContent);
+
+
+}
+
+private static View createTabView(final Context context, final String text)
+{
+    View view = LayoutInflater.from(context).inflate(R.layout.tabs_bg, null);
+    TextView tv = (TextView) view.findViewById(R.id.tabsText);
+    tv.setText(text);
+    return view;
+}
+</code></pre>
+
+<p>hope this helps....
+tabs_bg is just an xml with</p>
+
+<p>
+</p>
+
+<pre><code>&lt;TextView android:id="@+id/tabsText" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:text="Title"
+    android:textSize="15dip" 
+    android:textColor="@drawable/tab_text_selector" /&gt;
+</code></pre>
+
+<p></p>

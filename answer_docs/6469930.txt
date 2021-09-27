@@ -1,0 +1,13 @@
+<p>i found a way to send json through javascript, el, in a jsf page,
+first i enconde the the arraylist of objects with the flexjson library in java.</p>
+
+<p>2) the this object i put it in a java bean
+3) the i call the javascript with the oncomplete event
+4) like this callapp(#{bean.jsonString})
+5) this is received in flex with the external interface
+ExternalInterface.addCallback</p>
+
+<p><a href="http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf69084-7e92.html" rel="nofollow">http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf69084-7e92.html</a></p>
+
+<p>6) then something weird occurs, the json string is converted in a array of objects of ACTIONSCRIPT
+so i just have to loop through the array, and obtain the objects properties and buala …</p>

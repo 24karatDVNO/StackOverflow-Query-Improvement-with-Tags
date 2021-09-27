@@ -1,0 +1,15 @@
+<p>If you wanted to seperate out your css to make it easier to manage. You could separate your css into seperate files and call the using <code>@import url();</code>. For example:</p>
+
+<p>core.css would be like so:</p>
+
+<pre><code>//Navigation styles
+@import url("navigation.css");
+
+//Banner styles
+@import url("banner.css");
+
+//Footer styles
+@import url("footer.css");
+</code></pre>
+
+<p>This would however create one style sheet, which includes the separate referenced ones.</p>

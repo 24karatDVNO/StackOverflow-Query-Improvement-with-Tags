@@ -1,0 +1,10 @@
+<p>Try:</p>
+
+<pre><code>var jsTree = (from cat in cats
+             select new JsTreeModel
+             {
+                 data = cat.ICG_CATEGORY_NAME, 
+                 attr = new JsTreeAttribute { id = cat.ICG_CATEGORY_ID.ToString() }, 
+                 state = "closed"
+             }).ToArray();
+</code></pre>

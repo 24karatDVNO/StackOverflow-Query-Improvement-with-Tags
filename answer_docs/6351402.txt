@@ -1,0 +1,33 @@
+<p>There are a number of ways you could do this.  Here's another.</p>
+
+<pre><code>&lt;?php
+$cars = array('Car #1', 'Car #2', 'Car #3', 'Car #4');
+$car = array('Car #1');
+$twocars = array('Car #1', 'Car #2');
+
+function arrayToText($arr) {
+    switch (count($arr)) {
+    case 1:
+        return $arr[0];
+        break;
+    case 2:
+        return implode($arr, ' and ');
+        break;
+    default:
+        $last = array_pop($arr);
+        return implode($arr, ', ') . ' and ' . $last;
+        break;
+    }
+}
+
+echo '&lt;p&gt;' . arrayToText($cars) . "&lt;/p&gt;\n";
+echo '&lt;p&gt;' . arrayToText($twocars) . "&lt;/p&gt;\n";
+echo '&lt;p&gt;' . arrayToText($car) . "&lt;/p&gt;\n";
+</code></pre>
+
+<p><strong>Output</strong></p>
+
+<pre><code>&lt;p&gt;Car #1, Car #2, Car #3 and Array&lt;/p&gt;
+&lt;p&gt;Car #1 and Car #2&lt;/p&gt;
+&lt;p&gt;Car #1&lt;/p&gt;
+</code></pre>

@@ -1,0 +1,13 @@
+<p>In objective-c if you do not call alloc,copy,new or retain an object, then you do not need to release it. If you want to create a pointer that you can get rid of then you probably want to make a copy of the object.</p>
+
+<pre><code>NSMutableArray * tab2 = [model1 tab] copy];
+</code></pre>
+
+<p>or </p>
+
+<pre><code>NSMutableArray *tab2 = [model1 tab] mutableCopy];
+</code></pre>
+
+<p>then you can release tab2 when you're done with it and tab1 will still exist.</p>
+
+<p>Hope this makes sense.</p>

@@ -1,0 +1,15 @@
+<p>Assuming you mean that <code>name1</code> is the value <code>nameid</code> from the first object, etc...</p>
+
+<p>Convert it to the array format you want before passing it to <code>json_encode()</code>.  Something like this might work for you:</p>
+
+<pre><code>// Assuming your objects are an array $objects
+$output_array = array();
+foreach ($objects as $o) {
+  // Put the two properties from the object into an array
+  // and append it to $output_array
+  $output_array[] = array($o-&gt;id, $o-&gt;src);
+}
+
+// Encode the array as json
+$json = json_encode($output_array);
+</code></pre>

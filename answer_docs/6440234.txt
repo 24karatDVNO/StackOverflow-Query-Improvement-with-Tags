@@ -1,0 +1,4 @@
+<p>Let's the Data class implements <a href="http://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx" rel="nofollow">INotifyPropertyChanged</a> . Raise the event when someone change the property value on the instances of Data. Then set the proper <a href="http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.datacontext.aspx" rel="nofollow">DataContext</a> to your UI, and bind the single ui element as for example:</p>
+
+<pre><code>&lt;TextBox Text="{Binding Age}"/&gt;
+</code></pre>

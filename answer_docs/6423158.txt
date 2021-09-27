@@ -1,0 +1,19 @@
+<p>When you run <code>java WriteHelper.java</code>  you are telling Java to look for a class called "java" in the "WriteHelper" package.  It isn't there, and that is what the exception is telling you when it says:</p>
+
+<blockquote>
+  <p>Exception in thread "main" java.lang.NoClassDefFoundError: <strong>WriteHelper/java</strong></p>
+</blockquote>
+
+<p>Run the class as <code>java WriteHelper</code>.  The <code>java</code> command expects a class name ... not a class file name.</p>
+
+<hr>
+
+<p>There are other problems with the way that you are compiling and running code.  </p>
+
+<ul>
+<li><p>The <code>-cp</code> option and its value must appear before the names of the Java source files (for <code>javac</code>) and the name of the Java class (for <code>java</code>).</p></li>
+<li><p>The <code>java</code> command expects ONE class name, not lots of class names.  You need to figure out which class is the one with the <code>public static void main(String[] args)</code> method and use that one (only) as the <code>java</code> class argument.  (I would guess, that if you have a class called <code>Main</code> that that has the <code>main</code> entry point method.)</p></li>
+<li><p>This will only work if the classes are all declared in the default class.  If the source code starts with a <code>package</code> declaration, you need to organize the classes in a directory tree whose components mirror the class packages; see @Jon Skeet's answer.</p></li>
+</ul>
+
+<p>Finally, you would be well advised to read the manual pages for <code>java</code> and <code>javac</code> carefully, along with the linked page that talks about how the classpath works.  Once you understand them, this stuff won't seem like black magic anymore.</p>

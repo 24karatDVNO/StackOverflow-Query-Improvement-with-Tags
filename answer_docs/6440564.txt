@@ -1,0 +1,7 @@
+<p>Venkat, SugarCRM does indeed have its own pdf generation ability. We use it to generate customer orders, quotes, invoices, and statements.</p>
+
+<p>Though I've done some work on the pdf generation myself, I don't think I'm really experienced enough to be able to guide someone else in detail in the use of Sugar's pdf capabilities. I can tell you that we use pdf generation only in our own custom modules, so the files are found in [sugarRoot]/modules/[customModule]/. (You may know that unless you know exactly what you're doing, NEVER modify the main SugarCRM files in the [root]/modules/ folder!) In the previously mentioned custom module folder are two sub-folders, "sugarpdf", which has the code that accesses the modules/database to get the information to write to the pdf, and a "tpls" folder that holds the layout information for the header, body, and footer of the pdf, in HTML format, using the information from the sugarpdf folder's file.</p>
+
+<p>I strongly recommend you visit the <a href="http://www.sugarcrm.com/forums/forumdisplay.php?f=6" rel="nofollow">SugarCRM developer forums</a> where you will be in touch with many developers much more experienced than me in Sugar.</p>
+
+<p>I hope this helps in some way.</p>

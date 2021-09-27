@@ -1,0 +1,11 @@
+<p>Unfortunately I can't give you a concrete answer, but let me say that it should be theoretically possible to do for a Flash or Java application since they can use raw TCP sockets and implement the FTP protocol (but I am not aware of any Flash-based implementation).</p>
+
+<p>If I'm not wrong all major browsers offer native file upload via FTP by browsing to the FTP directory itself (but you can't influence the visual appearance), just like Windows Explorer can access FTP servers and use them like a network drive.</p>
+
+<p>However, I discourage you from using a FTP server at all. That protocol with it's double connection and that passive/non-passive modes often causes problems. It's usually much better to upload via HTTP and implement a HTTP-based file server yourselves, which is rather easy after all (but be very careful not to expose too much of your server's file system).</p>
+
+<p>I see no real reason for using FTP unless you really want to allow your users to use their FTP client of choice, but that is contrary to your question.</p>
+
+<p>Hope this helps.</p>
+
+<p><strong>Update:</strong> I just noticed the sentence "<em>copy the files from the web server to my local ftp</em>". In case you are really talking about two different servers I would still suggest a HTTP upload and then forward the file to the FTP server via the PHP script (your web server acting as a proxy).</p>

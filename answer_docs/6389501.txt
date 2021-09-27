@@ -1,0 +1,11 @@
+<p>The trick to figuring out the template parameters for FromAsyncPattern, is to imagine you're creating a Func that is matching the <em>synchronous</em> version of the function. </p>
+
+<p>In this case, the prototype is: </p>
+
+<p><code>public HttpListenerContext GetContext()</code></p>
+
+<p>Which means, my Func would look like:</p>
+
+<p><code>Func&lt;HttpListenerContext&gt;</code></p>
+
+<p>Then, just take your template parameter and copy-paste it to the FromAsyncPattern.</p>

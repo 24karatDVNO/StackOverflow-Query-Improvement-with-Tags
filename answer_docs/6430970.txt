@@ -1,0 +1,56 @@
+<p><em>To be 150% honest, I don't believe that you should be playing around with AJAX and PHP for professional purposes unless you know what you're doing, simply because there are a lot of places you can mess up and make yourself look stupid</em></p>
+
+<p>That aside, I also believe that this community is a generally good one and <strong>if you're asking for this it's because you have an impending deadline and not because you are too lazy</strong> to  learn these languages. Which is why I will give you the code:</p>
+
+<p>*note the php should go on a seperate page called <code>/autoquoter.php</code></p>
+
+<p>JS:</p>
+
+<pre><code>function getXMLText(dname){
+    if (window.XMLHttpRequest){
+      xhttp=new XMLHttpRequest();
+    }
+    else{
+      xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET",dname,false);
+    xhttp.send();
+    return xhttp.responseText;
+}
+function safery(boolvar){
+    if(boolvar){
+        document.getElementById("changling").innerHTML = getXMLText("/autoquoter.php?discount=safedriver");
+    }
+    else{
+        document.getElementById("changling").innerHTML = getXMLText("/autoquoter.php?discount=unsafedriver");   
+    }
+}
+</code></pre>
+
+<p>HTML:</p>
+
+<pre><code>&lt;a href="javascript:safery(true)"&gt;I am a safe driver&lt;/a&gt;&lt;br /&gt;
+&lt;a href="javascript:safery(false)"&gt;I am NOT a safe driver&lt;/a&gt;&lt;br /&gt;
+&lt;div id="changling"&gt; &lt;/div&gt;
+</code></pre>
+
+<p>Then put this at the top of your <code>autoquoter.php</code> page:</p>
+
+<pre><code>&lt;?php switch(trim($_GET['discount'])){
+    case 'safedriver':
+        die("Ask about a safe driver discount, which could save you up to 25% for drivers with no violations or at-fault accidents!");
+    break;
+    case 'unsafedriver':
+        die("This will be expensive!");
+    break; } ?&gt;
+</code></pre>
+
+<p>And to see the whole thing as a JSFiddle, go <a href="http://jsfiddle.net/QAtXb/4/" rel="nofollow">here</a> (without the php of course). </p>
+
+<p>Now you have a deadline to get to, so you can stop reading here. I'll leave this explanation here for posterity:</p>
+
+<ol>
+<li>Page is loaded</li>
+<li>When user clicks on a link the javascript queries that page (<code>autoquoter.php</code>) and funnels its output into the empty div called <code>changeling</code></li>
+<li><code>autoquoter.php</code> uses a standard <a href="http://en.wikipedia.org/wiki/Switch_statement" rel="nofollow">switch</a> statement to output the correct warning based on its GET variable</li>
+</ol>

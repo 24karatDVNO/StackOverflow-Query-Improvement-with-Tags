@@ -1,0 +1,8 @@
+<p>Alternatively, you can try</p>
+
+<pre><code>Dim gc As New HtmlGenericControl
+gc.TagNane = "script"
+gc.Attributes.Add("type", "javascript")
+gc.Attributes.Add("src", "http://mysite.com/myscript.ashx")
+Master.Header.Controls.Add(gc)
+</code></pre>

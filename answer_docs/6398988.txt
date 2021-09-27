@@ -1,0 +1,29 @@
+<p>I think I see a couple of issues.</p>
+
+<p>First, you're taking the ID from a <code>li</code> element:</p>
+
+<pre><code>$("li").live("click", function() {
+    auflisten($(this).attr("id"));  // ID of the &lt;li&gt;
+});
+</code></pre>
+
+<p>...passing it to <code>auflisten</code>:</p>
+
+<pre><code>function auflisten(start) {
+</code></pre>
+
+<p>...the assigning that ID to a <code>ul</code> element:</p>
+
+<pre><code>.append("&lt;ul class='kategorien' id='" + start + "'&gt;&lt;/ul&gt;")
+</code></pre>
+
+<p>So now it would seem that you have 2 elements with the same ID, which is invalid.</p>
+
+<p>So it seems likely that when you try to select the new <code>ul</code> element from the DOM using that ID, the selection will fail:</p>
+
+<pre><code> $("ul#"+start) // Trying to select based on a non-unique ID will cause problems.
+</code></pre>
+
+<hr>
+
+<p>Second, it seems that you're using numeric IDs. This is not valid in HTML4, and can cause similar selection problems.</p>

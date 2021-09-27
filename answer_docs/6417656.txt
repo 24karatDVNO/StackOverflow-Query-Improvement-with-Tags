@@ -1,0 +1,7 @@
+<p>You'll have to script/code this yourself.</p>
+
+<p>Either: backup all the .svn folders and put them back in place after your 3. party have done its thing, or keep a 2. working copy nearby and copy over all the files from the 1. working copy which the 3. party have updated.</p>
+
+<p>Then, find all the removed files with <code>svn status</code>, the ones marked 'D' and issue svn rm on those. Find all the new files with svn status, marked <code>?</code> and svn add those. </p>
+
+<p>Finally run svn commit.</p>

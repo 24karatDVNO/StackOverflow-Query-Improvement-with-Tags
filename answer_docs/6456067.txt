@@ -1,0 +1,36 @@
+<p>You need to change the rows, not the ListView. Instead of using 
+android.R.layout.simple_list_item_1, when calling setAdapter, create your own row layout that is styled the way you want it to be.</p>
+
+<p>For example:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+&gt;
+&lt;ImageView
+android:id="@+id/icon"
+android:padding="2dip"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:src="@drawable/tick"
+/&gt;
+&lt;TextView
+  android:id="@+id/label"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:textSize="40sp"
+/&gt;
+&lt;/LinearLayout
+</code></pre>
+
+<p>This layout uses a LinearLayout to set up a row, with a icon on the left and
+the text (in a nice big font) on the right.</p>
+
+<p>Then your .setAdapter would be:</p>
+
+<pre><code>lv1.setAdapter(new ArrayAdapter&lt;String&gt;(this,android.R.layout.row , lv_arr));
+</code></pre>
+
+<p>Hope this helps to get you started, not quite sure what you mean by wanting the list disabled, perhaps you could clarify a bit!</p>

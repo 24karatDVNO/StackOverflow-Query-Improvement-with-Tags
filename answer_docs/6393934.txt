@@ -1,0 +1,29 @@
+<p>yes, the methods provided below will be called whenever a textField becomes Active. I think you are looking for </p>
+
+<pre><code>- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+[textField resignFirstResponder];
+return 1;
+}
+</code></pre>
+
+<p>or </p>
+
+<pre><code>- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+[textField resignFirstResponder];
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+[textField resignFirstResponder];
+}
+</code></pre>
+
+<p>and if you are looking for a specific textField in your view, you should assign them tags:</p>
+
+<pre><code>textField.tag =1 // for textField 1
+textField.tag =2 // for textField 2
+
+// You may check for these tags and then resign specific ones. 
+</code></pre>

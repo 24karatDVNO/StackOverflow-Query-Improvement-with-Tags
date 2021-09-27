@@ -1,0 +1,10 @@
+<p>If you're using a CheckBoxGroup, you should do something like this to make sure you are firing on the correct Radio.</p>
+
+<pre><code>listeners: {
+    check: function(checkbox, checked) {
+        if(checked) {
+                 // do whatever.
+        }
+    }
+}
+</code></pre>

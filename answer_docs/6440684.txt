@@ -1,0 +1,17 @@
+<p>Change checkall function like this using Jquery...it will work fine....</p>
+
+<pre><code>function checkall(formname,checkname,thestate)
+{
+    if ($('li').is(':hidden')) {
+        var visible = $('input[type=checkbox]:visible').each(function() { 
+                         this.checked = thestate; }
+                       );
+    }
+    else
+    {
+        var visible = $('input[type=checkbox]').each(function() { 
+                         this.checked = thestate; }
+                       );
+    }
+}
+</code></pre>

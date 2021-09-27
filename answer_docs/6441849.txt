@@ -1,0 +1,15 @@
+<p>I discovered it is already there, in Ruby 1.9.2 at least.</p>
+
+<p>If it weren't there, I would create a file in config/initializers called array_helper.rb (or whatever) and add the following code:</p>
+
+<pre><code>class Array
+  def second
+    self[1]
+  end
+end</code></pre>
+
+<p>Why? Because all classes in Ruby are open and you can extend anything you want.</p>
+
+<p>Here's some tricks to know:</p>
+
+<p>When working in the console, if you want to test the file, be sure to use <code>rails console</code> and not <code>irb</code>. Also, do <code>reload!</code> after creating or updating the above file. Finally, all objects must be recreated to use the new code after <code>reload!</code>.</p>

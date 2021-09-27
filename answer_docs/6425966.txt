@@ -1,0 +1,10 @@
+<p>Also please make sure that you are not creating more than one instance of <code>HibernateTemplate</code>, 
+i</p>
+
+<pre><code>ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring/applicationContext.xml");
+Object o=context.getBean("hibernateTemplate");
+</code></pre>
+
+<p>The object <code>o</code> has to be cached somewhere and returned when your app code is asking for instance of <code>hibernatetemplate</code>.</p>
+
+<p>Thanks</p>

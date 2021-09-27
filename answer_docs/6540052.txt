@@ -1,0 +1,13 @@
+<p>Are you running your page in a framework? Do you use sessions? </p>
+
+<p>Php doesn't store any information about the page or user object unless you tell it to.</p>
+
+<p>If you however have an object with userdata you can simply access it like this</p>
+
+<pre><code>print_r($userObj);
+</code></pre>
+
+<p>And if there are some data in and userId property you might access it like this</p>
+
+<pre><code>$userObj-&gt;userId
+</code></pre>

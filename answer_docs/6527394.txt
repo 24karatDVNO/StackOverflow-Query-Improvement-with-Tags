@@ -1,0 +1,13 @@
+<p>Got the issue, when I reviewed my event logs I found this:</p>
+
+<pre><code>"Service cannot be started. System.InvalidOperationException: The HttpGetEnabled property of ServiceMetadataBehavior is set to true and the HttpGetUrl property is a relative address, but there is no http base address.  Either supply an http base address or set HttpGetUrl to an absolute address.
+   at System.ServiceModel.Description.ServiceMetadataBehavior.EnsureGetDispatcher(ServiceHostBase host, ServiceMetadataExtension mex, Uri url, String scheme)
+   at System.ServiceModel.Description.ServiceMetadataBehavior.CreateHttpGetEndpoints(ServiceDescription description, ServiceHostBase host, ServiceMetadataExtension mex)
+   at System.ServiceModel.Description.ServiceMetadataBehavior.ApplyBehavior(ServiceDescription description, ServiceHostBase host)
+   at System.ServiceModel.Description.ServiceMetadataBehavior.System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(ServiceDescription description, ServiceHostBase serviceHostBase)
+   at System.ServiceModel.Description.DispatcherBuilder.InitializeServiceHost(ServiceDescript..."
+</code></pre>
+
+<p>Then after thorough reviewing, the issues is that I did HTTPSGETENABLED to false only for one, infact there are two, after making the change for the other one, the app started to work like charm.  </p>
+
+<p>I special</p>

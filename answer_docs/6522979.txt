@@ -1,0 +1,17 @@
+<p>Supposing your URI has the 'support' string always at that position (first), your code looks fine, I can't see any error there. But remember that the argument of the <a href="http://codex.wordpress.org/Function_Reference/get_header" rel="nofollow">get_header()</a> function is the suffix that you must append to the file name. So, if you have:</p>
+
+<pre><code>get_header('test');
+</code></pre>
+
+<p>Your header file should be named: <code>header-test.php</code></p>
+
+<p>Also, to be sure you always find the string even if it changes position in the URI, you could do it like this:</p>
+
+<pre><code>$params= explode('/',$_SERVER['REQUEST_URI'] );
+
+if(in_array('support', $params)) {
+    get_header('support');
+} else {
+    get_header();
+}
+</code></pre>

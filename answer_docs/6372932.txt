@@ -1,0 +1,14 @@
+<p>Use <code>HttpPost</code> to send data to the server, and use <code>json</code> to create an array of array's. <code>nameValuePairs</code> will carry the data:</p>
+
+<pre><code>HttpClient httpclient = new DefaultHttpClient();
+HttpPost httppost = new HttpPost("http://www.yoursite.com");
+
+List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;NameValuePair&gt;(1);         
+nameValuePairs.add(new BasicNameValuePair("items", jsonObject));
+
+httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+HttpResponse response = httpclient.execute(httppost);
+</code></pre>
+
+<p>Hope this helps...</p>

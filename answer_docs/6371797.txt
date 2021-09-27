@@ -1,0 +1,41 @@
+<p>You can use <a href="http://msdn.microsoft.com/en-us/library/ms188006.aspx" rel="nofollow">parsename</a> if you have a four part string separated by <code>.</code>. Since you have five countries you can get the first with a regular substring and then remove the first country, replace all <code>,</code> with <code>.</code> and use <code>parsename</code> for the rest</p>
+
+<pre><code>declare @T table(Id int,  CountryName varchar(50))
+insert into @T values
+(1,   'India,Australia,Singapore,Pakistan,Bangaladesh'),
+(2,   'Norway,Argentina,Brazil,WestIndies,Burma')
+
+select Id,
+  substring(CountryName, 1, charindex(',', CountryName)-1) as Country1,
+  parsename(T.N, 4) as Country2,
+  parsename(T.N, 3) as Country3,
+  parsename(T.N, 2) as Country4,
+  parsename(T.N, 1) as Country5
+from @T
+  cross apply(select replace(stuff(CountryName, 1, charindex(',', CountryName), ''), ',', '.')) as T(N)
+</code></pre>
+
+<p>If you know that you have 8 countries you can do this.</p>
+
+<pre><code>declare @T table(Id int,  CountryName varchar(100))
+insert into @T values
+(1,   'India,Australia,Singapore,Pakistan,Bangaladesh,Denmark,Germany,France'),
+(2,   'Norway,Argentina,Brazil,WestIndies,Burma,South Africa,Spain,Portugal')
+
+
+select Id,
+  parsename(T1.N, 4) as Country1,
+  parsename(T1.N, 3) as Country2,
+  parsename(T1.N, 2) as Country3,
+  parsename(T1.N, 1) as Country4,
+  parsename(T2.N, 4) as Country5,
+  parsename(T2.N, 3) as Country6,
+  parsename(T2.N, 2) as Country7,
+  parsename(T2.N, 1) as Country8
+from @T
+  cross apply(select charindex(',', CountryName, charindex(',', CountryName, charindex(',', CountryName, charindex(',', CountryName)+1)+1)+1)) as S(P)
+  cross apply(select replace(substring(CountryName, 1, S.P-1), ',', '.')) as T1(N)
+  cross apply(select replace(stuff(CountryName, 1, S.P, ''), ',', '.')) as T2(N)
+</code></pre>
+
+<p>If you don't know how many countries you have you need to build the query dynamically. <a href="http://www.sommarskog.se/dynamic_sql.html" rel="nofollow">The Curse and Blessings of Dynamic SQL</a> </p>

@@ -1,0 +1,27 @@
+<p>There've been some answers already, but let me summarize. Pay attention to the mapped type (which is a pointer! And is it 1D or 2D?) -- or even better, use typedefs to deconfuse yourself:</p>
+
+<pre><code>typedef Array3D&lt;unsigned short&gt; Array; // decide on 1D, 2D, 3D, ...!
+typedef std::map&lt;std::string, Array*&gt; ArrayMap;
+
+ArrayMap DataBuffers;
+
+ArrayMap * pDataPool;
+
+/* ... */
+
+if (pDataPool != NULL)
+{  
+  for (ArrayMap::const_iterator it = pDataPool-&gt;begin(), end = pDataPool-&gt;end(); it != end; ++it)
+  {    
+    const std::string &amp; sKeyName = it-&gt;first;
+    DataBuffers[sKeyName] = new Array(2048); // terrible, use shared_ptr&lt;Array&gt;!
+  }
+}
+</code></pre>
+
+<p>Attention to detail is the key. A few notes:</p>
+
+<ul>
+<li><p>Having a raw pointer as the mapped type is terrible; what if the element already exists and you just overwrite it with a <code>new</code> pointer? Memory leak! You should <strong>seriously</strong> consider making your map a <code>std::map&lt;std::string, std::tr1::shared_ptr&lt;Array&gt; &gt;</code>.</p></li>
+<li><p>A string makes for a poor key type if you have lots of entries. Consider <code>std::tr1::unordered_map</code> instead. (If you're in C++0x or MSVC10, omit the <code>::tr1</code>.)</p></li>
+</ul>

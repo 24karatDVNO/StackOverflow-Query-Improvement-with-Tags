@@ -1,0 +1,6 @@
+<p>In a header file, if you do not have anything other than pointers to that class (members and/or parameters / return types), you can use the forward declaration instead of including the header:</p>
+
+<pre><code>class Bullet;
+</code></pre>
+
+<p>You still need to include both Structure.h and Bullet.h in the cpp file, because it needs the full definition for both.</p>

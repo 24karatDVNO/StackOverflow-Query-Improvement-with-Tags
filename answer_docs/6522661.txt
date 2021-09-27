@@ -1,0 +1,13 @@
+<p>Use </p>
+
+<pre><code>if(!isset($_SESSION($user_id){
+</code></pre>
+
+<p>Because if the $user_id==0 then isempty() will not work and be sure that the session which is not required on another page must be unset after the page end for the better security. The method to unset a particular session variable is</p>
+
+<pre><code>unset($_session_variable_name);
+</code></pre>
+
+<p>and the session should be destroyed whenever it is required ie when a user logout.</p>
+
+<p>Thanks</p>

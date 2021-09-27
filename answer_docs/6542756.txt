@@ -1,0 +1,10 @@
+<p>A matrix class should be relatively easy to make. If the size of the matrix is constant, you can easily use a c array. Using some simple math you can access any element in the matrix in constant time.</p>
+
+<p>element at column c and row r: x = matrix[ r * NUM_COLUMNS + c ];</p>
+
+<p>element above element at index i: matrix[ i - NUM_COLUMNS ];
+element below element at index i: matrix[ i + NUM_COLUMNS ];
+element to the right of element at index i: matrix[ i + 1 ];
+element to the left of element at index i: matrix[ i - 1 ];</p>
+
+<p>depending on what you want to do at the edges you may have to use some if statement or possibly modulus operators if you want to wrap around the matrix.</p>

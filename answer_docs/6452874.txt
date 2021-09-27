@@ -1,0 +1,11 @@
+<p>Turns out all I needed was an echo statement before the following line.</p>
+
+<pre><code>echo
+[ $RETVAL -eq 0 ] &amp;&amp; rm -f $PIDFILE_L
+</code></pre>
+
+<p>This is related to my question about the behaviour of <code>echo -n $"Shutting down Launcher"</code>.</p>
+
+<p>The echo <code>-n</code> switch supresses the line feed character <code>\n</code>. The <code>$</code> preceding the quotes outputs carriage return <code>\r</code> to move the cursor back to the beginning of the line.</p>
+
+<p>Without the echo statement, the Job Selector shutdown line was overwriting the Launcher shutdown line.</p>

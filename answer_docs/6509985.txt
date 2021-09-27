@@ -1,0 +1,14 @@
+<p>Using PHP's strtotime() is surely a nice way of doing this but I've found issues working with strtotime() earlier. So perhaps you may like to do this only in MySQL, like:</p>
+
+<pre><code>SELECT STR_TO_DATE(
+    CONCAT(
+        SUBSTRING('Fri Jul 16 16:55:52 +0000 2010', 1, 20),
+        ' ',
+        SUBSTRING('Fri Jul 16 16:55:52 +0000 2010', -4)
+    ),
+'%a %b %d %H:%i:%s %Y');
+</code></pre>
+
+<p>Please note that when doing so I've ignored the +0000 part of the time-stamp.</p>
+
+<p>Hope this helps.</p>

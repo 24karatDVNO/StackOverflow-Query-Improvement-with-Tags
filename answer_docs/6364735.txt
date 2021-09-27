@@ -1,0 +1,11 @@
+<p>From what I understand you should never modify anything but cell content within a cell in cellForRowAtIndexPath. Check out one of my <a href="https://stackoverflow.com/questions/4937319/changing-an-object-in-uitableviewcell-is-also-changing-the-object-of-a-reused-uit">questions</a> from a while back. Summary: </p>
+
+<blockquote>
+  <p>So the golden rule is: NEVER change
+  the cell structure after you've dequed
+  it. If you need to change the
+  structure then use DIFFERENT cell IDs.
+  Of course the more customizable is the
+  cell the easier is the possibility to
+  reuse them.</p>
+</blockquote>

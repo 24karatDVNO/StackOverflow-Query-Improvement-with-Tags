@@ -1,0 +1,30 @@
+<p>You have to make sure that no other thread than the UI thread is executing your <code>ProfileInfoAvailable</code> method. You can make sure of this by using the following code     </p>
+
+<pre><code>runOnUiThread(new Runnable() {
+    public void run() {
+        mFirstNameTextBox.setText(b.getString(key));
+    }
+}
+</code></pre>
+
+<p>The <code>onCreate</code> method of an Activity is always run on the UI thread. If you want to use this, add something like this</p>
+
+<pre><code>Intent i = new Intent(CurrentIntent.this, NewIntentToLaunch.class);
+i.putExtra("name", userName);
+...add more data
+startActivity(i);
+</code></pre>
+
+<p>to launch the activity and use something like this</p>
+
+<pre><code>public void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+
+  Bundle extras = this.getIntent().getExtras();
+  if (extras != null &amp;&amp; extras.containsKey("name")) {
+      String userName = this.getIntent().getExtras().getString("name");
+  }
+}
+</code></pre>
+
+<p>to read it in your onCreate method.</p>

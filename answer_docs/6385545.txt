@@ -1,0 +1,6 @@
+<p>It seems you are popping view controller back after pushing. See if there is this line</p>
+
+<pre><code>[self.navigationController popViewControllerAnimated:YES];
+</code></pre>
+
+<p>you have in viewWillAppear/viewDidAppear method of the next screen</p>

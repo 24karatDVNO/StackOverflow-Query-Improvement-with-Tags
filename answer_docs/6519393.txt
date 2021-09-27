@@ -1,0 +1,23 @@
+<p>Such conversion is not allowed, because if the conversion would be possible, you could modify the const object in a following way:</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+const double A0 = 0;
+const double A1 = 1;
+const double* A[2] = { &amp;A0, &amp;A1 };
+double * B[2];
+
+int main()
+{
+  double** b = B;
+  const double ** a = b; // illegal
+  //const double ** a = (const double **)b; // you can simulate it would be legal
+
+  a[0] = A[0];
+  b[0][0] = 2; // modified A0
+
+  printf("%f",A[0][0]);
+}
+</code></pre>
+
+<p>For a simulated result, check the <a href="http://ideone.com/Ud4OU" rel="nofollow">code at IdeOne.com</a> - you will get SIGSEGV (const object was placed in read only memory and you are trying to modify it). With a different platform the object might be modified silently.</p>

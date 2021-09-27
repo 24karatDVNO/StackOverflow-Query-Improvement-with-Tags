@@ -1,0 +1,4 @@
+<pre><code>Dim trackingQuery As SqlTrackingQuery = New SqlTrackingQuery(connectionString)
+Dim options As SqlTrackingQueryOptions = New SqlTrackingQueryOptions()
+options.WorkflowType = GetType(Workflow1) ' where Workflow1 is the name of your Workflow
+</code></pre>

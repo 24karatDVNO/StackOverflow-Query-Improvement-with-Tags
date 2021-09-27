@@ -1,0 +1,7 @@
+<p>For the copy semantic I usually follow these rules:</p>
+
+<p>1) if my class is a POD I can use the compiler generated copy constructor and assignment operator.</p>
+
+<p>2) if I want to prevent copies of my object, I declare copy constructor and assignment operator private and I don't implement them</p>
+
+<p>3) if my class is not a POD I provide my implementation of copy constructor and assignment operator that provide a deep copy of the object. When an object has const data members I declare the assignment operator private and I don't implement it.</p>

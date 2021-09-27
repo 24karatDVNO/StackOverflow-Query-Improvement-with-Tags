@@ -1,0 +1,30 @@
+<p>Your on the right track using the <code>illegalChars</code> concept. However, it is not consistent on your different validation methods. Also the RegEx will not match like you want. I suggest adding the same logic in <code>validateUsername</code> in all your validation method use these RegEx's:</p>
+
+<pre><code>function validateUsername(val) {
+    var illegalChars = /[^a-zA-Z0-9_]/;
+    ...
+}
+
+function validatePhone(val) {
+    var illegalChars = /[^0-9().-]/; // No spaces allowed
+    // Or
+    var illegalChars = /[^0-9]/; // Only numbers no spaces or dashes or (area code)
+    ...
+}
+</code></pre>
+
+<p>Also have you concidered using <code>throw</code>, <code>try</code>, and <code>catch</code> to manage the error?</p>
+
+<pre><code>function test() {
+    throw new Error("Illegal Characters");
+}
+
+try
+{
+    test();
+}
+catch (e)
+{
+    alert(e); // Displays: "Error: Illegal Characters"
+}
+</code></pre>

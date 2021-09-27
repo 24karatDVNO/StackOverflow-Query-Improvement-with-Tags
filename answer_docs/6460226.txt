@@ -1,0 +1,25 @@
+<p>Sorted - managed to work it out (see below) thanks to everyone for their input/support!
+Only problem now is internet explorer is returning an error "object doesn't support this property or method" on the buttons that fire the stopFlash command, but at least it still works. Grrr.</p>
+
+<pre><code>var flashvars = {};
+var params = {wmode:"opaque", allowscriptaccess:"always" };
+var attributes = {};
+
+swfobject.embedSWF("images/clients/blank1.swf", "blank1", "747", "420", "9.0.0", false, flashvars, params, attributes);
+swfobject.embedSWF("images/clients/blank2.swf", "blank2", "747", "420", "9.0.0", false, flashvars, params, attributes);
+swfobject.embedSWF("images/clients/blank3.swf", "blank3", "747", "420", "9.0.0", false, flashvars, params, attributes);
+
+
+function getFlashMovie(movieName) {
+var isIE = navigator.appName.indexOf("Microsoft") != -1;
+return (isIE) ? window[movieName] : document[movieName];
+}
+
+
+function stopFlash(){
+getFlashMovie("blank1").commandFlash();
+getFlashMovie("blank2").commandFlash();
+getFlashMovie("blank3").commandFlash();
+return true;
+}
+</code></pre>

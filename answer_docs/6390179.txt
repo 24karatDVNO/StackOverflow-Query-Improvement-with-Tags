@@ -1,0 +1,11 @@
+<p>You can use the cmp argument of the sort() method:</p>
+
+<pre><code>object_list.sort(cmp=lambda x,y: cmp(string_list.index(x.key),
+                                     string_list.index(y.key)))
+</code></pre>
+
+<p>or use sorted() to avoid the in-place substitution:</p>
+
+<pre><code>sorted(object_list, cmp=lambda x,y: cmp(string_list.index(x.key),
+                                        string_list.index(y.key)))
+</code></pre>

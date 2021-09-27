@@ -1,0 +1,22 @@
+<pre><code>import java.util.Scanner;
+public class Birthday
+{
+  public static void main(String[]args)
+  {
+  int birthday;
+  int age;
+  int yearOfBirth;
+
+  System.out.println(" What is your Age ?");
+
+  Scanner keyboard = new Scanner( System.in);
+  String input = keyboard.nextLine();
+  age = Integer.parseInt(input);
+
+  yearOfBirth = 2011 - age;
+  System.out.println("I was born :" + yearOfBirth);
+  }
+}
+</code></pre>
+
+<p>This should work.</p>

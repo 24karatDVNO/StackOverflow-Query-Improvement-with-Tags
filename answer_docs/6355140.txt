@@ -1,0 +1,12 @@
+<p>Suppose that you got:</p>
+
+<pre><code>var month = getMonthFromUserInput();
+var year = getYearFromUserInput();
+</code></pre>
+
+<p>This will give the last day of that month</p>
+
+<pre><code>new Date((new Date(year , month , 1)) -1 )
+</code></pre>
+
+<p>Remember that month 0 is Jan</p>

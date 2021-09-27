@@ -1,0 +1,4 @@
+<p>Your problem is that when you do a update in the ajax panel your jquery is not called. If the text is changed you update the box to yellow and not call the javascript because it is rendered outside of your panel. To fix this you can register the script in you codebehide like:</p>
+
+<pre><code>ScriptManager.RegisterClientScriptBlock(Page,typeof(string),"JavaScriptCall",script.ToString(), false);
+</code></pre>

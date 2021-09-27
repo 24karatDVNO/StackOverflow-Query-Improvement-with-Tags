@@ -1,0 +1,20 @@
+<p>You could do an INSERT On Duplicate aand add a coloumn called value to queries. Just make sure you set the query column as a unique index</p>
+
+<p>on your SQL:</p>
+
+<pre><code>&lt;?php
+
+$database=mysql_connect("localhost","username","password");
+mysql_select_db("database",$database);
+
+$query=$_GET['q'];
+
+logQuery($query);
+function logQuery($query){
+$query="insert into queries (query) values ('$query')
+ on duplicate key update value=value+1;
+";
+mysql_query($query);
+}
+?&gt;
+</code></pre>

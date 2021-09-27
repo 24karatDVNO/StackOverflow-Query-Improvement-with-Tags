@@ -1,0 +1,11 @@
+<p>There are a pile of blend modes to choose from, a few of which are useful for "masking". I believe this should do approximately what you want:</p>
+
+<pre><code>CGContextSaveGState(contextRef);
+CGContextSetBlendMode(contextRef,kCGBlendModeDestinationIn);
+CGContextFillEllipseInRect(contextRef,face_rect);
+CGContextRestoreGState(contextRef);
+</code></pre>
+
+<p>"approximately" because it'll mask the entire context contents every time, thus doing the wrong thing for more than one face. To handle this case, use CGContextAddEllipseInRect() in the loop and CGContextFillPath() at the end.</p>
+
+<p>You might also want to look at CGContextBeginTransparencyLayerWithRect().</p>

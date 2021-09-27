@@ -1,0 +1,15 @@
+<p>I found where the problem was.</p>
+
+<p>I didn't realize that there were merged columns affecting the result.</p>
+
+<p>So, instead of doing </p>
+
+<pre><code>cell = sheet.getRow(fila).createCell(columna++);
+</code></pre>
+
+<p>I changed it to, for example</p>
+
+<pre><code>cell = sheet.getRow(fila).createCell( 7 );
+</code></pre>
+
+<p>Where 7 is the real column number where the column starts.</p>

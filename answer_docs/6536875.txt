@@ -1,0 +1,7 @@
+<p>Static files (images, CSS, JavaScript, sound) are loading fine. It's your PHP page that can take up to 10-15 seconds to load. Without looking at the code it's difficult to debug, but take a look at your homepage code (maybe index.php or in some theme file) and check around the area where it echos out the client login image. Always seems to pause around there for a while.</p>
+
+<p>Check PHP code near:</p>
+
+<p><code>&lt;a href=""&gt;&lt;img src="http://phoenix-productions.tv/v2/wp-content/themes/phoenix/style/social-client.png" style="vertical-align:middle"&gt;&lt;/a&gt;</code></p>
+
+<p>Other options might include installing and setting up caching for your website. Try the default WP cache or a plugin called SuperCache.</p>

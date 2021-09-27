@@ -1,0 +1,7 @@
+<p>Does this work with the command line LDAP tools?   It seems like it's a problem with the LDAP query rather than with Net::LDAP.</p>
+
+<p>I'm not very good with the LDAP syntax, but I thought it'd be something like</p>
+
+<p><code>(&amp;(group=uniqueMember)(cn=exuser)(ou=people)(dc=example)(dc=com))</code></p>
+
+<p>You could also try setting up the filter with Net::LDAP::Filter and see what it parses it to.</p>

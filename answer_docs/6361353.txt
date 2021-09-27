@@ -1,0 +1,13 @@
+<p>I will suggest you run <code>print_r($_SERVER)</code> on your script and look into the output of that array. You'll find your URL in one of the elements of that array, perhaps $_SERVER['HTTP_HOST'] is the one you'll need.</p>
+
+<pre><code>switch ($_SERVER['HTTP_HOST']) {
+    case 'www.url1.com':
+        // print image 1;
+        break;
+    case 'www.url2.com':
+        // print image 2;
+        break;
+}
+</code></pre>
+
+<p>I think you do not need to give http:// because $_SERVER['HTTP_HOST'] does not contain it, but please verify it.</p>

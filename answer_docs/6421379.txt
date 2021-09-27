@@ -1,0 +1,19 @@
+<p><a href="http://www.w3.org/TR/html4/interact/forms.html#h-17.9.1" rel="nofollow">http://www.w3.org/TR/html4/interact/forms.html#h-17.9.1</a></p>
+
+<blockquote>
+  <p>for = idref [CS] This attribute
+  explicitly associates the label being
+  defined with another control. When
+  present, the value of this attribute
+  must be the same as the value of the
+  id attribute of some other control in
+  the same document. When absent, the
+  label being defined is associated with
+  the element's contents.</p>
+</blockquote>
+
+<p>I'm assuming you currently have the <code>&lt;select&gt;</code> inside of the <code>&lt;label&gt;</code>.</p>
+
+<p>If you move the content outside without setting the <code>for</code> attribute, it should do what your're after:</p>
+
+<p><code>&lt;label&gt;Date&lt;label&gt;&lt;select&gt;&lt;/select&gt;...</code></p>

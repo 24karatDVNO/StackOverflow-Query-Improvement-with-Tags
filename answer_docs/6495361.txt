@@ -1,0 +1,5 @@
+<p>As others have said, the cost of the method call is trivial-to-nada, as the compiler will optimize it for you.</p>
+
+<p>That said, there are dangers in making method calls to instance methods from a constructor.  You run the risk of later updating the instance method so that it may try to use an instance variable that has not been initiated yet by the constructor.  That is, you don't necessarily want to separate out the construction activities from the constructor.</p>
+
+<p>Another question--your clear() method sets the root to EMPTY, which is initialized when the object is created.  If you then add nodes to EMPTY, and then call clear(), you won't be resetting the root node.  Is this the behavior you want?</p>

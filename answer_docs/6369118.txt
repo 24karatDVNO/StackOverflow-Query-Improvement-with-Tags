@@ -1,0 +1,22 @@
+<p>In the same vein as @iammilind's answer, but sans duplication:</p>
+
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+string foo(const string &amp;unchange) {
+  return string("hello ") + unchange;
+}
+
+string&amp; foo(string &amp;change) {
+  return change = foo(static_cast&lt;const string&amp;&gt;(foo));
+}
+
+int main(int argc, char** argv) {
+    string a = "world";
+    const string b = "immutable world";
+    cout &lt;&lt; foo(a) &lt;&lt; '\n' &lt;&lt; foo(b) &lt;&lt; '\n';
+    cout &lt;&lt; foo(a) &lt;&lt; '\n' &lt;&lt; foo(b) &lt;&lt; '\n';
+}
+</code></pre>
+
+<p>NB: You could also use <code>const_cast</code> here to add the <code>const</code> qualification.</p>

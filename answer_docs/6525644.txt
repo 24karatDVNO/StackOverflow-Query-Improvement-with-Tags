@@ -1,0 +1,5 @@
+<p>Is this a one-time copy operation, or do you want it to be an ongoing replication of transactions to the destination server?</p>
+
+<p>If it's the latter option, you can export and ship the transaction logs, which requires much less bandwidth per unit time than shipping a backup of the database. See <a href="http://blog.willbeattie.net/2009/07/log-shipping-in-sql-server-express-2008.html#disqus_thread" rel="nofollow">this</a> for details. I've had great success with this method using SQL Server 2008 R2 Express.</p>
+
+<p>You can still use transaction logs if it's a one-time operation, but it may not be worth the up-front investment in time developing the scripts. In that case, see <a href="http://support.microsoft.com/kb/314546" rel="nofollow">How to move databases between computers that are running SQL Server</a>.</p>

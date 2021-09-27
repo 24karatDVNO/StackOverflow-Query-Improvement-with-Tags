@@ -1,0 +1,34 @@
+<p>Hardest part is parsing in your time - I've just added Jan 1, 2009 to the start of the parse method so that it parses it nicely and you don't need to write your own.  (not that it's difficult).  Collapse the code below into a few lines - expanded to show the steps.</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;script type="text/javascript"&gt;
+        function calculateTime(stringTime) {
+            var hoursToSubtract = 1;
+            var oldTime = Date.parse('Jan 1, 2009 ' + stringTime);
+            var newTime = new Date(oldTime - 1000 * 60 * 60 * hoursToSubtract);
+            var hours = newTime.getHours();
+            var minutes = newTime.getMinutes();
+            var designation = "PM";
+            if ((hours == 0 || hours == 24) &amp;&amp; minutes == 0)
+                designation = 'MIDNIGHT';
+            else if (hours == 12 &amp;&amp; minutes == 0)
+                designation = 'NOON'
+            else if (hours &lt; 12)
+                designation = 'AM';
+            else
+                hours -= 12;
+
+            document.write('new time = ' + hours + ':' + minutes + ' ' + designation );
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script type="text/javascript"&gt;
+        calculateTime('8:30 AM');
+        calculateTime('8:30 PM');
+        calculateTime('12:10 PM');
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>

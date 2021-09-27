@@ -1,0 +1,13 @@
+<p>Not elegant but funny solution :</p>
+
+<pre><code>string myString = "I love cats, some more stuff here, we dont know how much more";
+
+        Regex expr = new Regex("cats");
+        int start = 8;
+        int end = 11;
+        Match m =expr.Match(myString);
+        if (m.Index == start-1 &amp;&amp; m.Length == end - (start-1))
+        {
+            Console.WriteLine(expr.Replace(myString, "dogs")); 
+        }
+</code></pre>

@@ -1,0 +1,11 @@
+<pre><code>var click_alert = function() {
+    alert("hi");
+};
+var spans = document.getElementsByTagName('span');
+for(var i = 0; i &lt; spans.length; i++)
+{
+  spans[i].addEventListener("click", click_alert, false);
+}
+</code></pre>
+
+<p>You can write a wrapper that uses either addEventListener or attachEvent for broader compatibility.</p>

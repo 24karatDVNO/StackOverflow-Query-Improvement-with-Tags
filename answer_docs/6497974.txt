@@ -1,0 +1,25 @@
+<p>You could maybe make sure your headers have not been sent already which might be the case as keeping on the same page. See this from php manual :</p>
+
+<pre><code>function redirect($url, $debug=FALSE){
+
+// If headers not sent yet... then do php redirect
+if (!headers_sent()) {
+    header('Location: '.$url);
+    exit;
+// if headers are already sent... do javascript redirect... if javascript is disabled, do html redirect.
+} else {
+
+    // Js redirect
+    echo '&lt;script type="text/javascript"&gt;';
+    echo "&lt;!--";
+    echo 'window.location.href="'. $url .'";';
+    echo "//--&gt;";
+    echo '&lt;/script&gt;';
+
+    // HTML redirect if js disabled
+    echo '&lt;noscript&gt;';
+    echo '&lt;meta http-equiv="refresh" content="0;url='.$url.'" /&gt;';
+    echo '&lt;/noscript&gt;';
+}
+}//==== End -- Redirect  
+</code></pre>

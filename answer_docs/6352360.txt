@@ -1,0 +1,11 @@
+<p>I think you can use</p>
+
+<pre><code>            XmlDocument appSettingsDoc = new XmlDocument();
+            appSettingsDoc.Load(Assembly.GetExecutingAssembly().Location + ".config");
+            XmlNode node = appSettingsDoc.SelectSingleNode("//appSettings");
+
+            XmlElement element= (XmlElement)node.SelectSingleNode(string.Format("//add[@name='{0}']", "myname"));
+            string typeValue = element.GetAttribute("type");
+</code></pre>
+
+<p>Hope this solves your problem. Happy Coding. :)</p>

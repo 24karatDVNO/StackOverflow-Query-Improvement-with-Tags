@@ -1,0 +1,20 @@
+<p>Bah.  Where's the challenge in using ls or find?  May as well write a one-liner in perl to do all the work, and then just call the one-liner from a script. ;)</p>
+
+<p>You can do your recursive directory traversal in the shell natively, and use stat to get the size and owner.  Basically, you write a function to list the directory (for element in *), and have the function change to the directory and call itself if [[ -d $element ]] is true.  Something like</p>
+
+<pre><code>do_print "$elem"
+if [[ -d "$elem" ]]
+then
+  cd "$elem"
+  process_dir
+  cd ..
+fi
+</code></pre>
+
+<p>or something akin to that.</p>
+
+<p>Yeah, you'll have a zillion system calls to stat, but IMHO that's probably preferable to machine-parsing the output of a program whose output is intended to be human-readable.  In this case, where performance is not an issue, it's worth it.</p>
+
+<p>For bonus super happy fun times, change the value of IFS to a value which won't appear in a filename so the shell globbing won't get confused by files containing whitespace in its name.  I'd suggest either a newline or a slash.</p>
+
+<p>Or take the easy way out and just use find with printf. :)</p>

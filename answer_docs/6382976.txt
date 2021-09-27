@@ -1,0 +1,16 @@
+<pre><code>$query = mysql_query(); // your query here 
+$result = mysql_fetch_array($query);
+foreach($result as $row){
+  switch($row['rank']){
+    case 3: 
+    // statement to apply formatting, add to each case
+    // example:
+    echo "&lt;span style="color:red;"&gt;;
+    break;
+    case 2: break;
+    case 1: break;
+  }
+}
+</code></pre>
+
+<p>Then output each row, echo closing <code>&lt;/span&gt;</code> (or div or whatever) where you want the formatting to end</p>

@@ -1,0 +1,16 @@
+<p>I recommend you to do something like this,it works fine for me:</p>
+
+<pre><code>public Cursor SearchRecord(String search) {        
+    Cursor c;        
+    String[]columns = {UserName, Age, Sex,DOB};
+    String Limit = "0,5";
+
+    String query = search != null ? UserName + " LIKE '" + search + "%' " : "";
+
+    c = myDataBase.query(DATABASE_TABLE,columns, query, null, null, null, null, Limit);
+
+    return c;
+}
+</code></pre>
+
+<p>Then do anything you waht with the retrieved data in the Cursor</p>

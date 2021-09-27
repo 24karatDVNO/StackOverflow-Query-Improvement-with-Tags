@@ -1,0 +1,9 @@
+<p>It's likely that you want a time without timezone here, since if Dominoes in NY opens at 9:00 local time, and Dominoes in California also opens at 9:00 local time, then a time with a timezone would not work properly.</p>
+
+<p>What you likely want is one of two things.  either two times a start and an end time, or a start time and an interval.  I would suggest two times, but the choice is yours. Note that you can an interval from two times by subtracting one from the other.</p>
+
+<pre><code>select '09:00:00'::time - '05:00:00'::time;
+ ?column? 
+----------
+ 04:00:00
+</code></pre>

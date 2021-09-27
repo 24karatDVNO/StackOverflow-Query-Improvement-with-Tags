@@ -1,0 +1,13 @@
+<p>I think in you case it will work as you want:</p>
+
+<pre><code>class Seat(db.Model):
+    id = db.IntegerProperty()
+    roomId = db.ReferenceProperty(Room,collection_name='seats')
+</code></pre>
+
+<p>And after that you may use something like this:</p>
+
+<pre><code>rooms = Room.all().order('id')
+for room in rooms:
+    seat_at_room = room.seats.order('id')
+</code></pre>

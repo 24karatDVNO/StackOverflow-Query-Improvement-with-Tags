@@ -1,0 +1,13 @@
+<p>If the trailing "," is an array element of itself, use <a href="http://se.php.net/manual/en/function.array-pop.php" rel="nofollow">array_pop()</a>, else, use <a href="http://se.php.net/manual/en/function.rtrim.php" rel="nofollow">rtrim()</a></p>
+
+<pre><code>$array = array('one','two',3,',');
+array_pop($array);
+print_r($array);
+</code></pre>
+
+<p>Gives:</p>
+
+<blockquote>
+  <p>Array ( [0] => one <a href="http://se.php.net/manual/en/function.array-pop.php" rel="nofollow">1</a> => two <a href="http://se.php.net/manual/en/function.rtrim.php" rel="nofollow">2</a> => 3
+  )</p>
+</blockquote>

@@ -1,0 +1,11 @@
+<p>Figured it out and used the retry statement. the if statement now looks like this (all other variables have been edited to be non-global as well)</p>
+
+<pre><code>if lname[i] == lname.last 
+  santas = Array.new
+  giftfname = fname.clone
+  giftlname = lname.clone
+  giftemail = email.clone
+  retry  
+</code></pre>
+
+<p>That, aside from a few other edits, created the solution I needed without breaking apart the code too much again. Will definitely try out mu's solution as well, but I'm just glad I have this running error-free for now.</p>

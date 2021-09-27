@@ -1,0 +1,18 @@
+<p>I think, the best practice to pass data you need is <strong>json-object</strong>, e.g.:</p>
+
+<pre><code>&lt;?php 
+$countries = array(
+  'france' =&gt; array(
+     'capital' =&gt; 'Paris',
+  ),
+  'spain' =&gt; array(
+     'capital' =&gt; 'Madrid',
+  )
+);
+?&gt;
+
+&lt;script type="text/javascript"&gt;
+  var countries = &lt;?php echo json_encode($countries); ?&gt;;
+  alert(countries.spain.capital)      # ==&gt; returns Madrid
+&lt;/script&gt;
+</code></pre>

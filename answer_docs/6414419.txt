@@ -1,0 +1,16 @@
+<p>If you want to get all products of a catalogue, you just have to use the <strong>getProduct()</strong> method of a catalogue instance. </p>
+
+<p>For example, if you want to get all catalogues with all products:</p>
+
+<pre><code>$catalogues = Doctrine::getTable('catalogue')-&gt;findAll();
+
+foreach($catalogues as $catalogue){
+   //$catalogue is an instance
+   echo $catalogue-&gt;getCatalogueName()
+
+   //you've got all products from a catalogue instance    
+   foreach($catalogue-&gt;getProduct() as $product){
+       echo $product-&gt;getProductDesc();
+   }
+}
+</code></pre>

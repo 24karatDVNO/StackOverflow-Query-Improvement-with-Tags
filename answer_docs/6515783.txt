@@ -1,0 +1,17 @@
+<p>You're setting the time zone for your <code>NSDateComponents</code> object to GMT:</p>
+
+<pre><code>[dateComps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+</code></pre>
+
+<p>Thus your date will be interpreted as being in GMT. If you want the time zone that the device is in, use <code>systemTimeZone</code>:</p>
+
+<pre><code>[dateComps setTimeZone:[NSTimeZone systemTimeZone]];
+</code></pre>
+
+<p>In general, as noted in <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSTimeZone_Class/Reference/Reference.html%23//apple_ref/occ/clm/NSTimeZone/timeZoneWithAbbreviation%3a" rel="nofollow">the docs for <code>timeZoneWithAbbreviation:</code></a>, the abbreviations can be ambiguous. If you want to get a particular time zone in a way that will always work no matter the location of the device, you can use <a href="http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSTimeZone_Class/Reference/Reference.html#//apple_ref/occ/clm/NSTimeZone/timeZoneForSecondsFromGMT%3a" rel="nofollow"><code>timeZoneForSecondsFromGMT:</code></a>. </p>
+
+<p>You can also set a time zone for your app, if you want, rather than always referring to a specific time zone when creating date-related objects:</p>
+
+<pre><code>[NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:60*8]];
+NSTimeZone * appTZ = [NSTimeZone defaultTimeZone];
+</code></pre>

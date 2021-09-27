@@ -1,0 +1,19 @@
+<p>As long as the path you are trying to access is under the Virtual Directory your application is in, you should be able to access it in Medium Trust.  Are you sure your application identity has folder create permission?</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/aa302425#c09618429_015" rel="nofollow">http://msdn.microsoft.com/en-us/library/aa302425#c09618429_015</a></p>
+
+<hr>
+
+<p>Edit: I might have read the doc above wrong.  See this link as well, it appears you only have Read, Write, Append, and PathDiscovery permissions :(</p>
+
+<blockquote>
+  <p>FileIOPermission is restricted. This
+  means you can only access files in
+  your application's virtual directory
+  hierarchy. Your application is granted
+  Read, Write, Append, and PathDiscovery
+  permissions for your application's
+  virtual directory hierarchy.</p>
+</blockquote>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/ff648344.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/ff648344.aspx</a></p>

@@ -1,0 +1,9 @@
+<p>There is not really a pattern here, because the concept is likely too situation specific.</p>
+
+<p>In short, however, you will need to define <strong>staleness</strong> and check for it any time you read a message off of the queue.</p>
+
+<p>As per @Space_C0wb0y's comment to the OP, this could use a simple time-to-live or other expiration timer, or it could be some other more complex check at the appropriate point in the line.</p>
+
+<p>It cannot realistically, however, be implemented as a separate step in the chain that puts the message back on the queue, because in your scenario, the delay could then happen after the checks have been done.</p>
+
+<p>So to reiterate, any checks of this nature would need to go at the last possible moment, in the actual processing step, after reading from the queue.</p>

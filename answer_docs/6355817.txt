@@ -1,0 +1,16 @@
+<p>I think you asked why you should use ? super UTF-STRING instead of ? extends UTF-STRING.
+If this is the question you can also use a Identifiable when declaring z.
+Person and Tourist implement it so you can use it for both.
+Honestly I think that a Tourist should extend a Person, because all the Tourists are Persons (in lexical meaning) so I'd declare </p>
+
+<p>public class Person implements Identifiable  { . . . }</p>
+
+<p>public class Tourist extends Person { . . . }</p>
+
+<p>Person z = null;
+if ( . . . ) {
+     z = new Person ( ) ;
+} else {
+    z = new Tourist ( ) ;
+}
+z.setId(new UTFString(…))</p>

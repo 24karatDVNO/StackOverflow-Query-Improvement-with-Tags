@@ -1,0 +1,16 @@
+<p>How about doing this in 2 steps</p>
+
+<pre><code>seq 10 &gt; file
+
+while read i; do printf "%.8d\n" $i; done &lt; file
+00000001
+00000002
+00000003
+00000004
+00000005
+00000006
+00000007
+00000008
+00000009
+00000010
+</code></pre>

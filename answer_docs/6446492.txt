@@ -1,0 +1,11 @@
+<p>As <a href="https://stackoverflow.com/questions/6445521/drag-and-drop-the-user-control-wont-work-in-net-windows-project/6446151#6446151">Hans</a> says, you might need to use the DesignMode property in the Constructor or OnLoad.  Also, make sure any public properties that use the connection have this attribute:</p>
+
+<pre><code>[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+public string Foo
+{
+    get;
+    set;
+}
+</code></pre>
+
+<p>That way, the designer won't attempt to set them when you add the control to a form.  This is always a good habit to get into anyway for properties that you won't be setting at design time.</p>
