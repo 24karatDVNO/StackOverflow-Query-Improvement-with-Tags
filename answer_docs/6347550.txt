@@ -1,3 +1,0 @@
-<p>If you use the function in your first example, it is called many times -- once for each record in your RosterLevel table.  It returns a (potentially) different table each time, depending on the join field.</p>
-
-<p>If you use the function in your second example, it is only called once.  From there, the table variable is in memory, and you're not having to do a read over and over.</p>

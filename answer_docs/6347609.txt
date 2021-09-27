@@ -1,7 +1,0 @@
-<p>Anything added to the navigation bar is actually a view. You have some options. I don't think you want the whole view on a navigation bar since it is too big, so I'm going to assume you want to display the view by pressing a button on the navigation bar.</p>
-
-<p>For this simply add a button to the navigation bar, here you have several options or places you can add them in. I usually use either the <code>self.navigationItem.rightBarButtonItem</code>, or the <code>self.navigationItem.leftBarButtonItem</code>, but you can also play around and get it even on the title view. I have setup in the past an alphabetical segmented control in the titleView for the navigation bar.</p>
-
-<p>Once you added the button, all you have to do is create the action that will be connected to that button that will compare a flag (BOOL instance variable) to true or false. If true, then simply addSubview the pannel.view to self.view, and if false just <code>[pannel.view removeFromSuperview]</code>. </p>
-
-<p>Don't forget to set the flag after add and remove the view.</p>
